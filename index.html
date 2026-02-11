@@ -26,7 +26,7 @@
       --bg:#f4f7fa;
       --text:#1f2937;
       --muted:#6b7280;
-      --line:rgba(0,0,0,.08);
+      --line:rgba(0,0,0,.10);
       --card:#ffffff;
       --radius:16px;
       --shadow: 0 10px 25px rgba(0,0,0,.08);
@@ -63,84 +63,147 @@
     .btn.secondary:hover{background:rgba(0,107,177,.12)}
     .pill{
       display:inline-flex;align-items:center;gap:8px;
-      border:1px solid var(--line);background:rgba(255,255,255,.75);
+      border:1px solid var(--line);background:rgba(255,255,255,.78);
       padding:8px 10px;border-radius:999px;color:var(--muted);
       font-size:12px;
     }
 
-    /* Header */
+    /* ===== HEADER (TOP) ===== */
     header{
-      background:var(--primary); color:#fff;
-      position:sticky; top:0; z-index:2000;
-      border-bottom:1px solid rgba(255,255,255,.08);
+      background:var(--primary);
+      color:#fff;
+      position:sticky;
+      top:0;
+      z-index:3000;
+      border-bottom:1px solid rgba(255,255,255,.10);
     }
+
     .headbar{
-      display:flex;align-items:center;justify-content:space-between;
-      padding:14px 0; position:relative;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:12px 0;
     }
+
     .logo-wrapper{
-      display:flex;align-items:center;gap:14px;
-      text-decoration:none;color:inherit;
+      display:flex;
+      align-items:center;
+      gap:14px;
+      text-decoration:none;
+      color:inherit;
     }
     .logo-wrapper img{width:54px;height:auto}
-    .logo-wrapper h1{font-size:1.35rem;line-height:1.1}
-    .menu-toggle{
-      display:none;background:none;border:none;color:#fff;
-      font-size:1.7rem; cursor:pointer;
-      padding:10px;
+    .logo-wrapper h1{
+      font-size:1.35rem;
+      line-height:1;
+      letter-spacing:.2px;
+      white-space:nowrap;
     }
+
+    .menu-toggle{
+      display:none;
+      background:none;
+      border:none;
+      color:#fff;
+      font-size:1.75rem;
+      cursor:pointer;
+      padding:10px;
+      border-radius:10px;
+      transition:background .2s ease;
+    }
+    .menu-toggle:hover{background:rgba(255,255,255,.08)}
 
     nav.desktop{
       background:var(--dark);
-      border-top:1px solid rgba(255,255,255,.08);
+      border-top:1px solid rgba(255,255,255,.10);
     }
+
     nav.desktop .navlinks{
-      display:flex;flex-wrap:wrap;justify-content:center;gap:18px;
+      display:flex;
+      justify-content:center;
+      gap:18px;
       padding:10px 0;
+      flex-wrap:wrap;
     }
+
     nav.desktop a{
-      color:#fff;text-decoration:none;font-weight:700;font-size:0.98rem;
+      position:relative;
+      color:#fff;
+      text-decoration:none;
+      font-weight:700;
+      font-size:0.98rem;
       opacity:.96;
+      padding:8px 6px;
+      border-radius:10px;
+      transition:background .2s ease, color .2s ease, opacity .2s ease;
     }
-    nav.desktop a:hover{color:#cfe8ff}
+
+    nav.desktop a:hover{
+      background:rgba(255,255,255,.08);
+      opacity:1;
+    }
+
+    nav.desktop a::after{
+      content:"";
+      position:absolute;
+      left:10px;
+      right:10px;
+      bottom:4px;
+      height:2px;
+      background:rgba(207,232,255,.0);
+      border-radius:999px;
+      transition:background .2s ease;
+    }
+
+    nav.desktop a:hover::after{
+      background:rgba(207,232,255,.85);
+    }
 
     nav.mobile{
-      display:none; flex-direction:column;
+      display:none;
+      flex-direction:column;
       background:var(--dark);
-      border-top:1px solid rgba(255,255,255,.08);
+      border-top:1px solid rgba(255,255,255,.10);
     }
     nav.mobile a{
-      color:#fff;text-decoration:none;font-weight:700;
-      padding:12px 18px;
+      color:#fff;
+      text-decoration:none;
+      font-weight:700;
+      padding:14px 18px;
       border-bottom:1px solid rgba(255,255,255,.08);
+    }
+    nav.mobile a:hover{
+      background:rgba(255,255,255,.08);
     }
     nav.mobile.show{display:flex}
 
-    /* Hero */
+    /* ===== HERO / SECTIONS ===== */
     .hero{padding:26px 0 10px;}
     .hero-grid{
-      display:grid;grid-template-columns:1.2fr .8fr;gap:18px;
+      display:grid;
+      grid-template-columns:1.2fr .8fr;
+      gap:18px;
       align-items:stretch;
     }
     .hero-card{
-      background:rgba(255,255,255,.82);
-      border:1px solid var(--line);
+      background:rgba(255,255,255,.84);
+      border:1px solid rgba(0,0,0,.08);
       border-radius:var(--radius);
       box-shadow:var(--shadow);
       padding:28px;
     }
     .hero h2{
       margin:10px 0 10px;
-      font-size:2.05rem; line-height:1.15;
+      font-size:2.05rem;
+      line-height:1.15;
     }
     .hero p{color:var(--muted); font-size:1.05rem; margin-bottom:14px}
     .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:10px}
 
-    /* Sections */
     section{margin:18px auto;}
     .section-card{
       background:var(--card);
-      border:1px solid var(--line);
+      border:1px solid rgba(0,0,0,.08);
       border-radius:var(--radius);
       box-shadow:var(--shadow);
       padding:34px 30px;
@@ -150,22 +213,15 @@
     .section-title h3{font-size:1.6rem}
     .muted{color:var(--muted)}
     .grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:14px}
-    .grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:14px}
     .mini-card{
-      border:1px solid var(--line);
+      border:1px solid rgba(0,0,0,.08);
       border-radius:14px;
       padding:16px;
       background:rgba(255,255,255,.72);
     }
     .mini-card b{display:block;margin-bottom:6px}
-    .thumb{
-      width:100%; height:130px;
-      object-fit:cover; border-radius:12px;
-      border:1px solid var(--line);
-      background:#eef3f8;
-    }
 
-    /* Floating social (desktop only) - mais clean */
+    /* Social floating (desktop) - igual antes, SEM WhatsApp */
     .social-floating{
       position:fixed; top:50%; right:0;
       transform:translateY(-50%);
@@ -179,7 +235,10 @@
     }
     .social-floating a.linkedin{background:#0077b5}
     .social-floating a.instagram{background:#e4405f}
-    .social-floating a.whatsapp{background:#25d366}
+    .social-floating a.facebook{background:#3b5998}
+    .social-floating a.youtube{background:#ff0000}
+    .social-floating a.hotmart{background:#ff5c00;font-weight:900;font-family:Arial;font-size:1.1rem}
+    .social-floating a.tiktok{background:#000}
 
     /* WhatsApp floating button */
     .wa-fab{
@@ -194,7 +253,7 @@
       display:flex;align-items:center;gap:10px;
     }
 
-    /* Course banner (discreto) */
+    /* Course banner */
     .course-banner{
       margin-top:14px;
       border:1px solid rgba(255,92,0,.35);
@@ -220,7 +279,6 @@
     @media (max-width: 900px){
       .hero-grid{grid-template-columns:1fr}
       .grid3{grid-template-columns:1fr}
-      .grid2{grid-template-columns:1fr}
     }
     @media (max-width: 768px){
       nav.desktop{display:none}
@@ -241,12 +299,9 @@
 <body>
   <header>
     <div class="container headbar">
-      <a href="index.html" class="logo-wrapper">
+      <a href="index.html" class="logo-wrapper" aria-label="Voltar para o início">
         <img src="logo-alogy.webp" alt="Logo ALOGY" />
-        <div>
-          <h1>ALOGY Engenharia</h1>
-          <div style="font-size:12px;opacity:.85">Industrial • Residencial • Cursos</div>
-        </div>
+        <h1>ALOGY Engenharia</h1>
       </a>
 
       <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menu">
@@ -254,8 +309,7 @@
       </button>
     </div>
 
-    <!-- MENU NOVO (sem blog) -->
-    <nav class="desktop">
+    <nav class="desktop" aria-label="Menu principal">
       <div class="container navlinks">
         <a href="#industrial">Industrial</a>
         <a href="#residencial">Residencial</a>
@@ -265,7 +319,7 @@
       </div>
     </nav>
 
-    <nav class="mobile">
+    <nav class="mobile" aria-label="Menu mobile">
       <a href="#industrial" onclick="toggleMobileMenu()">Industrial</a>
       <a href="#residencial" onclick="toggleMobileMenu()">Residencial</a>
       <a href="#cursos" onclick="toggleMobileMenu()">Cursos</a>
@@ -274,11 +328,14 @@
     </nav>
   </header>
 
-  <!-- Social floating (desktop) -->
+  <!-- Social floating (desktop) - SEM WhatsApp -->
   <div class="social-floating" aria-label="Redes sociais">
     <a href="https://www.linkedin.com/company/alogyengenharia" class="linkedin" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i></a>
     <a href="https://www.instagram.com/alogyengenharia" class="instagram" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
-    <a href="https://wa.me/5519991787430" class="whatsapp" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
+    <a href="https://www.facebook.com/alogyengenharia" class="facebook" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a>
+    <a href="https://www.youtube.com/@alogyengenharia" class="youtube" target="_blank" rel="noopener"><i class="fab fa-youtube"></i></a>
+    <a href="https://hotmart.com/pt-br/club/alogyengenharia" class="hotmart" target="_blank" rel="noopener">H</a>
+    <a href="https://www.tiktok.com/@alogyengenharia" class="tiktok" target="_blank" rel="noopener"><i class="fab fa-tiktok"></i></a>
   </div>
 
   <!-- WhatsApp FAB -->
@@ -450,8 +507,10 @@
     <p style="margin-top:6px">
       <a href="https://www.linkedin.com/company/alogyengenharia" target="_blank" rel="noopener">LinkedIn</a> •
       <a href="https://www.instagram.com/alogyengenharia" target="_blank" rel="noopener">Instagram</a> •
+      <a href="https://www.facebook.com/alogyengenharia" target="_blank" rel="noopener">Facebook</a> •
       <a href="https://www.youtube.com/@alogyengenharia" target="_blank" rel="noopener">YouTube</a> •
-      <a href="https://hotmart.com/pt-br/club/alogyengenharia" target="_blank" rel="noopener">Hotmart</a>
+      <a href="https://hotmart.com/pt-br/club/alogyengenharia" target="_blank" rel="noopener">Hotmart</a> •
+      <a href="https://www.tiktok.com/@alogyengenharia" target="_blank" rel="noopener">TikTok</a>
     </p>
   </footer>
 </body>
