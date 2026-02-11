@@ -34,6 +34,9 @@
       /* Banner */
       --banner-h: 520px; /* troque para 100vh se quiser full screen */
       --banner-radius: 18px;
+
+      /* reserva do lado direito para NÃO atrapalhar os ícones */
+      --social-safe: 72px;
     }
 
     *{box-sizing:border-box;margin:0;padding:0}
@@ -83,6 +86,12 @@
       border-bottom:1px solid rgba(255,255,255,.10);
     }
 
+    /* Logo mais pra esquerda (sem mudar o resto do layout) */
+    header .container{
+      padding-left:10px;
+      padding-right:18px;
+    }
+
     .headbar{
       display:flex;
       align-items:center;
@@ -96,6 +105,7 @@
       gap:14px;
       text-decoration:none;
       color:inherit;
+      margin-left:-6px; /* empurra um pouco mais para a esquerda */
     }
     .logo-wrapper img{width:54px;height:auto}
     .logo-wrapper h1{
@@ -180,7 +190,7 @@
     nav.mobile a:hover{background:rgba(255,255,255,.08)}
     nav.mobile.show{display:flex}
 
-    /* Social floating (desktop) - voltou completo, SEM WhatsApp */
+    /* Social floating (desktop) - somente LinkedIn + Instagram */
     .social-floating{
       position:fixed; top:50%; right:0;
       transform:translateY(-50%);
@@ -191,13 +201,16 @@
       width:40px;height:40px;display:flex;align-items:center;justify-content:center;
       border-radius:8px 0 0 8px;
       box-shadow:0 8px 18px rgba(0,0,0,.18);
+      transition: transform .15s ease, filter .2s ease, box-shadow .2s ease;
+      will-change: transform;
+    }
+    .social-floating a:hover{
+      transform: translateX(-2px) scale(1.03);
+      filter: brightness(1.08);
+      box-shadow:0 14px 30px rgba(0,0,0,.26);
     }
     .social-floating a.linkedin{background:#0077b5}
     .social-floating a.instagram{background:#e4405f}
-    .social-floating a.facebook{background:#3b5998}
-    .social-floating a.youtube{background:#ff0000}
-    .social-floating a.hotmart{background:#ff5c00;font-weight:900;font-family:Arial;font-size:1.1rem}
-    .social-floating a.tiktok{background:#000}
 
     /* WhatsApp floating button */
     .wa-fab{
@@ -215,11 +228,10 @@
     /* ===== BANNER (SLIDER) ===== */
     .banner-wrap{ width:100%; padding: 22px 0 10px; }
 
+    /* largura menor do banner para não atrapalhar os ícones */
     .banner-fullwidth{
-      width:100vw;
-      margin-left:calc(50% - 50vw);
-      margin-right:calc(50% - 50vw);
-      padding: 18px 18px 10px;
+      width:100%;
+      padding: 18px calc(18px + var(--social-safe)) 10px 18px; /* reserva no lado direito */
     }
 
     .banner{
@@ -353,15 +365,6 @@
     .section-title h3{font-size:1.6rem}
     .muted{color:var(--muted)}
 
-    .grid2{display:grid;grid-template-columns:1.1fr .9fr;gap:14px;margin-top:14px}
-    .mini-card{
-      border:1px solid rgba(0,0,0,.08);
-      border-radius:14px;
-      padding:16px;
-      background:rgba(255,255,255,.72);
-    }
-    .mini-card b{display:block;margin-bottom:6px}
-
     /* Form */
     .form-grid{
       display:grid;
@@ -396,7 +399,6 @@
 
     /* Responsive */
     @media (max-width: 900px){
-      .grid2{grid-template-columns:1fr}
     }
     @media (max-width: 768px){
       nav.desktop{display:none}
@@ -407,7 +409,11 @@
       .banner-content{padding:18px}
       .banner-nav{width:48px;height:48px;border-radius:14px}
       .form-grid{grid-template-columns:1fr}
+
+      /* no mobile, não precisa reservar espaço para ícones (eles somem) */
       .banner-fullwidth{padding: 14px 12px 8px;}
+      header .container{padding-left:12px;padding-right:12px;}
+      .logo-wrapper{margin-left:0;}
     }
   </style>
 
@@ -484,7 +490,7 @@
       startAuto();
     }
 
-    // ===== Form -> e-mail (sem botão WhatsApp aqui, porque já tem o FAB) =====
+    // ===== Form -> e-mail =====
     function enviarEmailContato(e){
       e.preventDefault();
 
@@ -547,23 +553,13 @@
     </nav>
   </header>
 
-  <!-- Social floating (desktop) - voltou completo, SEM WhatsApp -->
+  <!-- Social floating (desktop) - SOMENTE LinkedIn + Instagram -->
   <div class="social-floating" aria-label="Redes sociais">
     <a href="https://www.linkedin.com/company/alogyengenharia" class="linkedin" target="_blank" rel="noopener" aria-label="LinkedIn">
       <i class="fab fa-linkedin-in"></i>
     </a>
     <a href="https://www.instagram.com/alogyengenharia" class="instagram" target="_blank" rel="noopener" aria-label="Instagram">
       <i class="fab fa-instagram"></i>
-    </a>
-    <a href="https://www.facebook.com/alogyengenharia" class="facebook" target="_blank" rel="noopener" aria-label="Facebook">
-      <i class="fab fa-facebook-f"></i>
-    </a>
-    <a href="https://www.youtube.com/@alogyengenharia" class="youtube" target="_blank" rel="noopener" aria-label="YouTube">
-      <i class="fab fa-youtube"></i>
-    </a>
-    <a href="https://hotmart.com/pt-br/club/alogyengenharia" class="hotmart" target="_blank" rel="noopener" aria-label="Hotmart">H</a>
-    <a href="https://www.tiktok.com/@alogyengenharia" class="tiktok" target="_blank" rel="noopener" aria-label="TikTok">
-      <i class="fab fa-tiktok"></i>
     </a>
   </div>
 
@@ -584,7 +580,7 @@
                 Automação, instrumentação e projetos — do levantamento à entrega, com documentação e foco em confiabilidade.
               </div>
               <div class="banner-actions">
-                <span class="btn"><i class="fas fa-industry"></i> Entrar em Industrial</span>
+                <span class="btn"><i class="fas fa-industry"></i> Entrar</span>
               </div>
             </div>
           </div>
@@ -598,7 +594,7 @@
                 Projetos elétricos, adequações e automação residencial com acabamento e responsabilidade.
               </div>
               <div class="banner-actions">
-                <span class="btn"><i class="fas fa-house-signal"></i> Entrar em Residencial</span>
+                <span class="btn"><i class="fas fa-house-signal"></i> Entrar</span>
               </div>
             </div>
           </div>
@@ -612,7 +608,7 @@
                 Formação técnica e evolução prática em automação e instrumentação.
               </div>
               <div class="banner-actions">
-                <span class="btn"><i class="fas fa-graduation-cap"></i> Entrar em Cursos</span>
+                <span class="btn"><i class="fas fa-graduation-cap"></i> Entrar</span>
               </div>
             </div>
           </div>
@@ -635,46 +631,6 @@
   </div>
 
   <main class="container">
-    <!-- Atalhos rápidos -->
-    <section class="section-card" aria-label="Atalhos rápidos">
-      <div class="section-title">
-        <div class="bar"></div><h3>Atalhos rápidos</h3>
-      </div>
-      <p class="muted">
-        Escolha por onde quer entrar (ou use o banner acima). O contato fica no fim da página.
-      </p>
-
-      <div class="grid2">
-        <div class="mini-card">
-          <b><i class="fas fa-industry"></i> Industrial</b>
-          <div class="muted">Automação, instrumentação, comissionamento e documentação.</div>
-          <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
-            <a class="btn" href="industrial.html"><i class="fas fa-arrow-right"></i> Abrir Industrial</a>
-            <a class="btn secondary" href="https://wa.me/5519991787430?text=Ol%C3%A1!%20Quero%20um%20or%C3%A7amento%20industrial." target="_blank" rel="noopener">
-              <i class="fab fa-whatsapp"></i> Orçamento
-            </a>
-          </div>
-        </div>
-
-        <div class="mini-card">
-          <b><i class="fas fa-house-signal"></i> Residencial</b>
-          <div class="muted">Projetos elétricos, adequações (DR/quadros) e automação residencial.</div>
-          <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
-            <a class="btn" href="residencial.html"><i class="fas fa-arrow-right"></i> Abrir Residencial</a>
-            <a class="btn secondary" href="https://wa.me/5519991787430?text=Ol%C3%A1!%20Quero%20um%20or%C3%A7amento%20residencial." target="_blank" rel="noopener">
-              <i class="fab fa-whatsapp"></i> Orçamento
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
-        <a class="btn" href="cursos.html"><i class="fas fa-graduation-cap"></i> Abrir Cursos</a>
-        <a class="btn secondary" href="sobre.html"><i class="fas fa-user"></i> Abrir Sobre</a>
-        <a class="btn secondary" href="#contato"><i class="fas fa-envelope"></i> Ir para Contato</a>
-      </div>
-    </section>
-
     <!-- CONTATO (fica no HOME) -->
     <section id="contato" class="section-card">
       <div class="section-title">
@@ -729,14 +685,6 @@
 
   <footer>
     <p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p>
-    <p style="margin-top:6px">
-      <a href="https://www.linkedin.com/company/alogyengenharia" target="_blank" rel="noopener">LinkedIn</a> •
-      <a href="https://www.instagram.com/alogyengenharia" target="_blank" rel="noopener">Instagram</a> •
-      <a href="https://www.facebook.com/alogyengenharia" target="_blank" rel="noopener">Facebook</a> •
-      <a href="https://www.youtube.com/@alogyengenharia" target="_blank" rel="noopener">YouTube</a> •
-      <a href="https://hotmart.com/pt-br/club/alogyengenharia" target="_blank" rel="noopener">Hotmart</a> •
-      <a href="https://www.tiktok.com/@alogyengenharia" target="_blank" rel="noopener">TikTok</a>
-    </p>
   </footer>
 </body>
 </html>
