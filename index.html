@@ -150,6 +150,7 @@
     .section-title h3{font-size:1.6rem}
     .muted{color:var(--muted)}
     .grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:14px}
+    .grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:14px}
     .mini-card{
       border:1px solid var(--line);
       border-radius:14px;
@@ -164,7 +165,7 @@
       background:#eef3f8;
     }
 
-    /* Social floating (desktop only) - como era antes, sem WhatsApp */
+    /* Floating social (desktop only) - mais clean */
     .social-floating{
       position:fixed; top:50%; right:0;
       transform:translateY(-50%);
@@ -178,10 +179,7 @@
     }
     .social-floating a.linkedin{background:#0077b5}
     .social-floating a.instagram{background:#e4405f}
-    .social-floating a.facebook{background:#3b5998}
-    .social-floating a.youtube{background:#ff0000}
-    .social-floating a.hotmart{background:#ff5c00;font-weight:900;font-family:Arial;font-size:1.1rem}
-    .social-floating a.tiktok{background:#000}
+    .social-floating a.whatsapp{background:#25d366}
 
     /* WhatsApp floating button */
     .wa-fab{
@@ -196,7 +194,7 @@
       display:flex;align-items:center;gap:10px;
     }
 
-    /* Course banner */
+    /* Course banner (discreto) */
     .course-banner{
       margin-top:14px;
       border:1px solid rgba(255,92,0,.35);
@@ -222,6 +220,7 @@
     @media (max-width: 900px){
       .hero-grid{grid-template-columns:1fr}
       .grid3{grid-template-columns:1fr}
+      .grid2{grid-template-columns:1fr}
     }
     @media (max-width: 768px){
       nav.desktop{display:none}
@@ -255,6 +254,7 @@
       </button>
     </div>
 
+    <!-- MENU NOVO (sem blog) -->
     <nav class="desktop">
       <div class="container navlinks">
         <a href="#industrial">Industrial</a>
@@ -274,14 +274,11 @@
     </nav>
   </header>
 
-  <!-- Social floating (desktop) - como estava, SEM WhatsApp -->
+  <!-- Social floating (desktop) -->
   <div class="social-floating" aria-label="Redes sociais">
     <a href="https://www.linkedin.com/company/alogyengenharia" class="linkedin" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i></a>
     <a href="https://www.instagram.com/alogyengenharia" class="instagram" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
-    <a href="https://www.facebook.com/alogyengenharia" class="facebook" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a>
-    <a href="https://www.youtube.com/@alogyengenharia" class="youtube" target="_blank" rel="noopener"><i class="fab fa-youtube"></i></a>
-    <a href="https://hotmart.com/pt-br/club/alogyengenharia" class="hotmart" target="_blank" rel="noopener">H</a>
-    <a href="https://www.tiktok.com/@alogyengenharia" class="tiktok" target="_blank" rel="noopener"><i class="fab fa-tiktok"></i></a>
+    <a href="https://wa.me/5519991787430" class="whatsapp" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
   </div>
 
   <!-- WhatsApp FAB -->
@@ -453,10 +450,8 @@
     <p style="margin-top:6px">
       <a href="https://www.linkedin.com/company/alogyengenharia" target="_blank" rel="noopener">LinkedIn</a> •
       <a href="https://www.instagram.com/alogyengenharia" target="_blank" rel="noopener">Instagram</a> •
-      <a href="https://www.facebook.com/alogyengenharia" target="_blank" rel="noopener">Facebook</a> •
       <a href="https://www.youtube.com/@alogyengenharia" target="_blank" rel="noopener">YouTube</a> •
-      <a href="https://hotmart.com/pt-br/club/alogyengenharia" target="_blank" rel="noopener">Hotmart</a> •
-      <a href="https://www.tiktok.com/@alogyengenharia" target="_blank" rel="noopener">TikTok</a>
+      <a href="https://hotmart.com/pt-br/club/alogyengenharia" target="_blank" rel="noopener">Hotmart</a>
     </p>
   </footer>
 </body>
