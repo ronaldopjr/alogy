@@ -10,9 +10,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
-  <meta name="description" content="Soluções em automação e instrumentação industrial, consultorias e treinamentos com foco em resultado. Fale no WhatsApp."/>
+  <meta name="description" content="Projetos industriais e residenciais com padrão técnico. Automação, instrumentação e projetos elétricos. Fale no WhatsApp."/>
   <meta property="og:title" content="ALOGY Engenharia" />
-  <meta property="og:description" content="Projetos, consultoria e treinamentos em Automação e Instrumentação Industrial."/>
+  <meta property="og:description" content="Projetos e consultoria em automação, instrumentação e elétrica industrial/residencial."/>
   <meta property="og:image" content="logo-alogy.webp" />
   <meta property="og:url" content="https://www.alogy.com.br" />
   <meta name="twitter:card" content="summary_large_image" />
@@ -28,7 +28,7 @@
       --muted:#6b7280;
       --line:rgba(0,0,0,.08);
       --card:#ffffff;
-      --radius:14px;
+      --radius:16px;
       --shadow: 0 10px 25px rgba(0,0,0,.08);
     }
 
@@ -46,12 +46,14 @@
 
     a{color:inherit}
     .container{max-width:1100px;margin:0 auto;padding:0 18px}
+
     .btn{
       display:inline-flex;align-items:center;gap:10px;
       background:var(--brand);color:#fff;text-decoration:none;
-      padding:12px 18px;border-radius:10px;font-weight:700;
+      padding:12px 18px;border-radius:12px;font-weight:700;
       box-shadow:0 6px 14px rgba(0,0,0,.12);
       transition:transform .15s ease, background-color .2s ease;
+      border:none;
     }
     .btn:hover{background:var(--accent);transform:translateY(-1px)}
     .btn.secondary{
@@ -61,7 +63,7 @@
     .btn.secondary:hover{background:rgba(0,107,177,.12)}
     .pill{
       display:inline-flex;align-items:center;gap:8px;
-      border:1px solid var(--line);background:rgba(255,255,255,.7);
+      border:1px solid var(--line);background:rgba(255,255,255,.75);
       padding:8px 10px;border-radius:999px;color:var(--muted);
       font-size:12px;
     }
@@ -93,12 +95,12 @@
       border-top:1px solid rgba(255,255,255,.08);
     }
     nav.desktop .navlinks{
-      display:flex;flex-wrap:wrap;justify-content:center;gap:16px;
+      display:flex;flex-wrap:wrap;justify-content:center;gap:18px;
       padding:10px 0;
     }
     nav.desktop a{
       color:#fff;text-decoration:none;font-weight:700;font-size:0.98rem;
-      opacity:.95;
+      opacity:.96;
     }
     nav.desktop a:hover{color:#cfe8ff}
 
@@ -115,51 +117,44 @@
     nav.mobile.show{display:flex}
 
     /* Hero */
-    .hero{
-      padding:26px 0 10px;
-    }
+    .hero{padding:26px 0 10px;}
     .hero-grid{
       display:grid;grid-template-columns:1.2fr .8fr;gap:18px;
       align-items:stretch;
     }
     .hero-card{
-      background:rgba(255,255,255,.8);
+      background:rgba(255,255,255,.82);
       border:1px solid var(--line);
       border-radius:var(--radius);
       box-shadow:var(--shadow);
-      padding:22px;
+      padding:28px;
     }
     .hero h2{
       margin:10px 0 10px;
-      font-size:2.1rem; line-height:1.15;
+      font-size:2.05rem; line-height:1.15;
     }
     .hero p{color:var(--muted); font-size:1.05rem; margin-bottom:14px}
     .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:10px}
 
     /* Sections */
-    section{
-      margin:18px auto;
-    }
+    section{margin:18px auto;}
     .section-card{
       background:var(--card);
       border:1px solid var(--line);
       border-radius:var(--radius);
       box-shadow:var(--shadow);
-      padding:26px 22px;
+      padding:34px 30px;
     }
-    .section-title{
-      display:flex;align-items:center;gap:10px;margin-bottom:10px;
-    }
+    .section-title{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
     .section-title .bar{width:6px;height:28px;background:var(--accent);border-radius:999px}
     .section-title h3{font-size:1.6rem}
     .muted{color:var(--muted)}
     .grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:14px}
-    .grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:14px}
     .mini-card{
       border:1px solid var(--line);
       border-radius:14px;
       padding:16px;
-      background:rgba(255,255,255,.7);
+      background:rgba(255,255,255,.72);
     }
     .mini-card b{display:block;margin-bottom:6px}
     .thumb{
@@ -169,7 +164,7 @@
       background:#eef3f8;
     }
 
-    /* Floating social (desktop only) */
+    /* Social floating (desktop only) - como era antes, sem WhatsApp */
     .social-floating{
       position:fixed; top:50%; right:0;
       transform:translateY(-50%);
@@ -185,7 +180,6 @@
     .social-floating a.instagram{background:#e4405f}
     .social-floating a.facebook{background:#3b5998}
     .social-floating a.youtube{background:#ff0000}
-    .social-floating a.whatsapp{background:#25d366}
     .social-floating a.hotmart{background:#ff5c00;font-weight:900;font-family:Arial;font-size:1.1rem}
     .social-floating a.tiktok{background:#000}
 
@@ -202,11 +196,11 @@
       display:flex;align-items:center;gap:10px;
     }
 
-    /* Course banner (discreto) */
+    /* Course banner */
     .course-banner{
       margin-top:14px;
       border:1px solid rgba(255,92,0,.35);
-      background:linear-gradient(90deg, rgba(255,92,0,.10), rgba(255,255,255,.7));
+      background:linear-gradient(90deg, rgba(255,92,0,.10), rgba(255,255,255,.75));
       border-radius:14px;
       padding:14px;
       display:flex;align-items:center;justify-content:space-between;gap:12px;
@@ -222,12 +216,12 @@
       text-align:center; padding:22px 10px;
       margin-top:26px; font-size:.92rem;
     }
+    footer a{color:#cfe8ff}
 
     /* Responsive */
     @media (max-width: 900px){
       .hero-grid{grid-template-columns:1fr}
       .grid3{grid-template-columns:1fr}
-      .grid2{grid-template-columns:1fr}
     }
     @media (max-width: 768px){
       nav.desktop{display:none}
@@ -252,7 +246,7 @@
         <img src="logo-alogy.webp" alt="Logo ALOGY" />
         <div>
           <h1>ALOGY Engenharia</h1>
-          <div style="font-size:12px;opacity:.85">Automação • Instrumentação • Projetos</div>
+          <div style="font-size:12px;opacity:.85">Industrial • Residencial • Cursos</div>
         </div>
       </a>
 
@@ -263,33 +257,29 @@
 
     <nav class="desktop">
       <div class="container navlinks">
-        <a href="#solucoes">Soluções</a>
-        <a href="#projetos">Projetos</a>
-        <a href="#consultoria">Consultoria</a>
-        <a href="#treinamentos">Treinamentos</a>
-        <a href="#blog">Blog</a>
+        <a href="#industrial">Industrial</a>
+        <a href="#residencial">Residencial</a>
+        <a href="#cursos">Cursos</a>
+        <a href="#sobre">Sobre</a>
         <a href="#contato">Contato</a>
       </div>
     </nav>
 
     <nav class="mobile">
-      <a href="#solucoes" onclick="toggleMobileMenu()">Soluções</a>
-      <a href="#projetos" onclick="toggleMobileMenu()">Projetos</a>
-      <a href="#consultoria" onclick="toggleMobileMenu()">Consultoria</a>
-      <a href="#treinamentos" onclick="toggleMobileMenu()">Treinamentos</a>
-      <a href="#blog" onclick="toggleMobileMenu()">Blog</a>
+      <a href="#industrial" onclick="toggleMobileMenu()">Industrial</a>
+      <a href="#residencial" onclick="toggleMobileMenu()">Residencial</a>
+      <a href="#cursos" onclick="toggleMobileMenu()">Cursos</a>
+      <a href="#sobre" onclick="toggleMobileMenu()">Sobre</a>
       <a href="#contato" onclick="toggleMobileMenu()">Contato</a>
-      <a href="blog.html">Ver blog</a>
     </nav>
   </header>
 
-  <!-- Social floating (desktop) -->
+  <!-- Social floating (desktop) - como estava, SEM WhatsApp -->
   <div class="social-floating" aria-label="Redes sociais">
     <a href="https://www.linkedin.com/company/alogyengenharia" class="linkedin" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i></a>
     <a href="https://www.instagram.com/alogyengenharia" class="instagram" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
     <a href="https://www.facebook.com/alogyengenharia" class="facebook" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a>
     <a href="https://www.youtube.com/@alogyengenharia" class="youtube" target="_blank" rel="noopener"><i class="fab fa-youtube"></i></a>
-    <a href="https://wa.me/5519991787430" class="whatsapp" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
     <a href="https://hotmart.com/pt-br/club/alogyengenharia" class="hotmart" target="_blank" rel="noopener">H</a>
     <a href="https://www.tiktok.com/@alogyengenharia" class="tiktok" target="_blank" rel="noopener"><i class="fab fa-tiktok"></i></a>
   </div>
@@ -305,25 +295,25 @@
       <div class="hero-grid">
         <div class="hero-card">
           <span class="pill"><i class="fas fa-check-circle"></i> Atendimento objetivo + padrão técnico</span>
-          <h2>Automação e Instrumentação com foco em resultado real.</h2>
+          <h2>Projetos industriais e residenciais com padrão técnico e responsabilidade.</h2>
           <p>
-            Projetos, consultoria e suporte técnico para indústria — com documentação, segurança e boas práticas.
-            Se você precisa tirar um projeto do papel, o caminho mais rápido é pelo WhatsApp.
+            Automação, instrumentação e projetos elétricos — do levantamento à entrega, com documentação
+            e foco em confiabilidade. O caminho mais rápido é pelo WhatsApp.
           </p>
           <div class="hero-actions">
             <a class="btn" href="https://wa.me/5519991787430?text=Ol%C3%A1!%20Quero%20um%20or%C3%A7amento%20para%20um%20projeto." target="_blank" rel="noopener">
               <i class="fab fa-whatsapp"></i> Solicitar orçamento
             </a>
-            <a class="btn secondary" href="#projetos">
-              <i class="fas fa-briefcase"></i> Ver projetos
+            <a class="btn secondary" href="#industrial">
+              <i class="fas fa-industry"></i> Ver serviços
             </a>
           </div>
 
           <div class="course-banner">
             <div class="left">
-              <span class="badge">OFERTA</span>
+              <span class="badge">CURSO</span>
               <div>
-                <b>Curso de Instrumentação Industrial</b><br/>
+                <b>Instrumentação Industrial</b><br/>
                 <span class="muted" style="font-size:13px">Acesso via Hotmart • foco prático</span>
               </div>
             </div>
@@ -340,118 +330,112 @@
           </p>
           <div style="display:grid;gap:10px;margin-top:10px">
             <div class="pill">1) Cidade / local</div>
-            <div class="pill">2) O que precisa (ex.: pesagem, sensores, CLP, SCADA)</div>
+            <div class="pill">2) O que precisa (industrial ou residencial)</div>
             <div class="pill">3) Prazo e contexto</div>
           </div>
           <p class="muted" style="margin-top:12px;font-size:13px">
-            *Se preferir e-mail, use: <a href="mailto:contato@alogy.com.br">contato@alogy.com.br</a>
+            *Se preferir e-mail: <a href="mailto:contato@alogy.com.br">contato@alogy.com.br</a>
           </p>
         </div>
       </div>
     </div>
 
-    <!-- SOLUÇÕES -->
-    <section id="solucoes" class="section-card">
+    <!-- INDUSTRIAL -->
+    <section id="industrial" class="section-card">
       <div class="section-title">
-        <div class="bar"></div><h3>Soluções</h3>
+        <div class="bar"></div><h3>Industrial</h3>
       </div>
       <p class="muted">
-        Serviços pensados para entregar confiabilidade, segurança e performance (sem “gambiarra”).
+        Projetos e consultoria em automação e instrumentação industrial, com foco em confiabilidade, segurança e desempenho.
       </p>
 
       <div class="grid3">
         <div class="mini-card">
-          <b><i class="fas fa-industry"></i> Projetos Industriais</b>
-          <div class="muted">Instrumentação, automação, melhorias, especificações e documentação técnica.</div>
+          <b><i class="fas fa-gauge-high"></i> Instrumentação</b>
+          <div class="muted">Especificação, adequações, suporte técnico e documentação.</div>
         </div>
         <div class="mini-card">
-          <b><i class="fas fa-user-cog"></i> Consultoria Técnica</b>
-          <div class="muted">Diagnóstico, recomendações, padronização e apoio em decisões técnicas.</div>
+          <b><i class="fas fa-robot"></i> Automação</b>
+          <div class="muted">Integrações, melhorias e comissionamento (CLP/IHM/SCADA).</div>
         </div>
         <div class="mini-card">
-          <b><i class="fas fa-chalkboard-teacher"></i> Treinamentos</b>
-          <div class="muted">Treinamentos práticos para equipes (presencial ou in company).</div>
+          <b><i class="fas fa-file-signature"></i> Projetos & Especificações</b>
+          <div class="muted">Documentação técnica e apoio em decisões e implantação.</div>
         </div>
+      </div>
+
+      <div style="margin-top:16px">
+        <a class="btn" href="https://wa.me/5519991787430?text=Ol%C3%A1!%20Quero%20falar%20sobre%20um%20projeto%20industrial." target="_blank" rel="noopener">
+          <i class="fab fa-whatsapp"></i> Falar sobre projeto industrial
+        </a>
       </div>
     </section>
 
-    <!-- PROJETOS (com fotos) -->
-    <section id="projetos" class="section-card">
+    <!-- RESIDENCIAL -->
+    <section id="residencial" class="section-card">
       <div class="section-title">
-        <div class="bar"></div><h3>Projetos e trabalhos</h3>
+        <div class="bar"></div><h3>Residencial</h3>
       </div>
       <p class="muted">
-        Coloque aqui fotos reais. (Sugestão: crie uma pasta <b>assets/img</b> e suba imagens otimizadas.)
+        Projetos elétricos e adequações com padrão técnico — além de automação residencial e integrações.
       </p>
 
       <div class="grid3">
         <div class="mini-card">
-          <img class="thumb" src="assets/img/projeto1.webp" alt="Projeto 1" loading="lazy">
-          <div style="margin-top:10px">
-            <b>Case 1 — (título curto)</b>
-            <div class="muted" style="font-size:13px">Problema → Solução → Resultado (1–2 linhas).</div>
-          </div>
+          <b><i class="fas fa-bolt"></i> Projetos Elétricos</b>
+          <div class="muted">Dimensionamento, quadros, circuitos e melhorias.</div>
         </div>
-
         <div class="mini-card">
-          <img class="thumb" src="assets/img/projeto2.webp" alt="Projeto 2" loading="lazy">
-          <div style="margin-top:10px">
-            <b>Case 2 — (título curto)</b>
-            <div class="muted" style="font-size:13px">Ex.: pesagem, calibração, retrofit, integração.</div>
-          </div>
+          <b><i class="fas fa-shield-halved"></i> Adequações (DR, quadros)</b>
+          <div class="muted">Correções, segurança e conformidade para alto padrão.</div>
         </div>
-
         <div class="mini-card">
-          <img class="thumb" src="assets/img/projeto3.webp" alt="Projeto 3" loading="lazy">
-          <div style="margin-top:10px">
-            <b>Case 3 — (título curto)</b>
-            <div class="muted" style="font-size:13px">Ex.: comissionamento, melhoria, segurança.</div>
-          </div>
+          <b><i class="fas fa-house-signal"></i> Automação Residencial</b>
+          <div class="muted">Cenas, iluminação, integrações e automação sob medida.</div>
         </div>
+      </div>
+
+      <div style="margin-top:16px">
+        <a class="btn" href="https://wa.me/5519991787430?text=Ol%C3%A1!%20Quero%20falar%20sobre%20um%20projeto%20residencial." target="_blank" rel="noopener">
+          <i class="fab fa-whatsapp"></i> Falar sobre projeto residencial
+        </a>
       </div>
     </section>
 
-    <!-- CONSULTORIA -->
-    <section id="consultoria" class="section-card">
+    <!-- CURSOS -->
+    <section id="cursos" class="section-card">
       <div class="section-title">
-        <div class="bar"></div><h3>Consultoria</h3>
+        <div class="bar"></div><h3>Cursos</h3>
       </div>
       <p class="muted">
-        Apoio técnico para otimizar processos, reduzir falhas e melhorar desempenho de sistemas automatizados.
+        Cursos com foco prático para formação e evolução técnica em automação e instrumentação.
       </p>
-      <a class="btn" href="https://wa.me/5519991787430?text=Ol%C3%A1!%20Quero%20falar%20sobre%20consultoria%20t%C3%A9cnica." target="_blank" rel="noopener">
-        <i class="fab fa-whatsapp"></i> Falar sobre consultoria
+      <a class="btn" href="https://hotmart.com/pt-br/club/alogyengenharia" target="_blank" rel="noopener">
+        <i class="fas fa-graduation-cap"></i> Ver cursos na Hotmart
       </a>
     </section>
 
-    <!-- TREINAMENTOS -->
-    <section id="treinamentos" class="section-card">
+    <!-- SOBRE -->
+    <section id="sobre" class="section-card">
       <div class="section-title">
-        <div class="bar"></div><h3>Treinamentos</h3>
+        <div class="bar"></div><h3>Sobre</h3>
       </div>
-      <p class="muted">
-        Treinamentos presenciais e in company com aplicação prática (eletricistas, instrumentistas e operadores).
+      <p class="muted" style="margin-bottom:10px">
+        Eng. Ronaldo Junior — atuação prática em automação e instrumentação, com foco em projetos bem documentados
+        e soluções seguras (industrial e residencial).
+      </p>
+      <p class="muted" style="margin-bottom:0">
+        Método de trabalho: levantamento → proposta → execução → entrega com documentação e orientação.
       </p>
     </section>
 
-    <!-- BLOG -->
-    <section id="blog" class="section-card">
-      <div class="section-title">
-        <div class="bar"></div><h3>Blog Técnico</h3>
-      </div>
-      <p class="muted">
-        Artigos sobre automação, instrumentação e tendências. (No GitHub, o blog pode ser simples e organizado.)
-      </p>
-      <a class="btn secondary" href="blog.html"><i class="fas fa-book"></i> Acessar o Blog</a>
-    </section>
-
-    <!-- CONTATO (foco WhatsApp) -->
+    <!-- CONTATO -->
     <section id="contato" class="section-card">
       <div class="section-title">
         <div class="bar"></div><h3>Contato</h3>
       </div>
       <p class="muted">
-        Canal preferencial: WhatsApp (mais rápido). Se precisar, e-mail abaixo.
+        Resposta mais rápida via WhatsApp. Se precisar, e-mail abaixo.
       </p>
       <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:10px">
         <a class="btn" href="https://wa.me/5519991787430?text=Ol%C3%A1!%20Vim%20pelo%20site%20ALOGY%20e%20quero%20fazer%20um%20or%C3%A7amento." target="_blank" rel="noopener">
@@ -466,6 +450,14 @@
 
   <footer>
     <p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p>
+    <p style="margin-top:6px">
+      <a href="https://www.linkedin.com/company/alogyengenharia" target="_blank" rel="noopener">LinkedIn</a> •
+      <a href="https://www.instagram.com/alogyengenharia" target="_blank" rel="noopener">Instagram</a> •
+      <a href="https://www.facebook.com/alogyengenharia" target="_blank" rel="noopener">Facebook</a> •
+      <a href="https://www.youtube.com/@alogyengenharia" target="_blank" rel="noopener">YouTube</a> •
+      <a href="https://hotmart.com/pt-br/club/alogyengenharia" target="_blank" rel="noopener">Hotmart</a> •
+      <a href="https://www.tiktok.com/@alogyengenharia" target="_blank" rel="noopener">TikTok</a>
+    </p>
   </footer>
 </body>
 </html>
