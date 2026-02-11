@@ -1,22 +1,3 @@
-Me passa a programação completa, "sem tirar nada"
-
-no inicio onde coloquei em vermelho qeuria um banner sabe, que ficasse mudando 3 imagens (industrial,residencialç,cursos) banner grende ou inteiro, e nas laterias setas pra epssoamudar e escolher em qual ela quer entrar
-
-O Industrial, Residencia e Cursos, quero pagina própria (quando crlcar tanto nos botão como no panner, vai direcionar para suas rescpectivas paginas), não vai precisar mostrar na pagina home como é hoje
-
-Incluia isso sim:
-Se quiser, eu adapto o banner pra ficar “full width” (ocupando a tela inteira) ou mais alto tipo 520px, e também posso deixar as setas com “blur glass” pra ficar ainda mais premium.
-
-O forumalrio de contato deixa le embaixo e vai ficar em home mesmo quando eu clico no botao contato ele rola a pagina la pra baixo no formulario de contato
-
-Sobre tambem eu quero uma pagina propria, poder tirar do home o conteudo e deixa apenas o botao mesmo como esta.
-
-Deixa os nomes da imagem genérico ( como exemplo... banner1 , banner 2, banner 3) 
-
-A principio vamos editar apenas o index que é o home
-
-Index atual:
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -49,6 +30,10 @@ Index atual:
       --card:#ffffff;
       --radius:16px;
       --shadow: 0 10px 25px rgba(0,0,0,.08);
+
+      /* Banner */
+      --banner-h: 520px; /* pode trocar pra 100vh se quiser “full screen” */
+      --banner-radius: 18px;
     }
 
     *{box-sizing:border-box;margin:0;padding:0}
@@ -73,6 +58,7 @@ Index atual:
       box-shadow:0 6px 14px rgba(0,0,0,.12);
       transition:transform .15s ease, background-color .2s ease;
       border:none;
+      cursor:pointer;
     }
     .btn:hover{background:var(--accent);transform:translateY(-1px)}
     .btn.secondary{
@@ -191,56 +177,10 @@ Index atual:
       padding:14px 18px;
       border-bottom:1px solid rgba(255,255,255,.08);
     }
-    nav.mobile a:hover{
-      background:rgba(255,255,255,.08);
-    }
+    nav.mobile a:hover{background:rgba(255,255,255,.08)}
     nav.mobile.show{display:flex}
 
-    /* ===== HERO / SECTIONS ===== */
-    .hero{padding:26px 0 10px;}
-    .hero-grid{
-      display:grid;
-      grid-template-columns:1.2fr .8fr;
-      gap:18px;
-      align-items:stretch;
-    }
-    .hero-card{
-      background:rgba(255,255,255,.84);
-      border:1px solid rgba(0,0,0,.08);
-      border-radius:var(--radius);
-      box-shadow:var(--shadow);
-      padding:28px;
-    }
-    .hero h2{
-      margin:10px 0 10px;
-      font-size:2.05rem;
-      line-height:1.15;
-    }
-    .hero p{color:var(--muted); font-size:1.05rem; margin-bottom:14px}
-    .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:10px}
-
-    section{margin:18px auto;}
-    .section-card{
-      background:var(--card);
-      border:1px solid rgba(0,0,0,.08);
-      border-radius:var(--radius);
-      box-shadow:var(--shadow);
-      padding:34px 30px;
-    }
-    .section-title{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
-    .section-title .bar{width:6px;height:28px;background:var(--accent);border-radius:999px}
-    .section-title h3{font-size:1.6rem}
-    .muted{color:var(--muted)}
-    .grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:14px}
-    .mini-card{
-      border:1px solid rgba(0,0,0,.08);
-      border-radius:14px;
-      padding:16px;
-      background:rgba(255,255,255,.72);
-    }
-    .mini-card b{display:block;margin-bottom:6px}
-
-    /* Social floating (desktop) - igual antes, SEM WhatsApp */
+    /* Social floating (desktop) - só LinkedIn + Instagram */
     .social-floating{
       position:fixed; top:50%; right:0;
       transform:translateY(-50%);
@@ -254,10 +194,6 @@ Index atual:
     }
     .social-floating a.linkedin{background:#0077b5}
     .social-floating a.instagram{background:#e4405f}
-    .social-floating a.facebook{background:#3b5998}
-    .social-floating a.youtube{background:#ff0000}
-    .social-floating a.hotmart{background:#ff5c00;font-weight:900;font-family:Arial;font-size:1.1rem}
-    .social-floating a.tiktok{background:#000}
 
     /* WhatsApp floating button */
     .wa-fab{
@@ -272,19 +208,206 @@ Index atual:
       display:flex;align-items:center;gap:10px;
     }
 
-    /* Course banner */
-    .course-banner{
-      margin-top:14px;
-      border:1px solid rgba(255,92,0,.35);
-      background:linear-gradient(90deg, rgba(255,92,0,.10), rgba(255,255,255,.75));
-      border-radius:14px;
-      padding:14px;
-      display:flex;align-items:center;justify-content:space-between;gap:12px;
+    /* ===== BANNER (SLIDER) ===== */
+    .banner-wrap{
+      width:100%;
+      padding: 22px 0 10px;
     }
-    .course-banner .left{display:flex;align-items:center;gap:12px}
-    .badge{
-      background:#ff5c00;color:#fff;font-weight:900;
-      padding:6px 10px;border-radius:999px;font-size:12px;
+
+    /* full width (ocupando a tela inteira) */
+    .banner-fullwidth{
+      width:100vw;
+      margin-left:calc(50% - 50vw);
+      margin-right:calc(50% - 50vw);
+      padding: 18px 18px 10px;
+    }
+
+    .banner{
+      position:relative;
+      height:var(--banner-h);
+      border-radius:var(--banner-radius);
+      overflow:hidden;
+      border:1px solid rgba(0,0,0,.10);
+      box-shadow:var(--shadow);
+      background:#0b1220;
+    }
+
+    .slides{
+      position:absolute; inset:0;
+    }
+
+    .slide{
+      position:absolute; inset:0;
+      display:block;
+      opacity:0;
+      transform:scale(1.02);
+      transition:opacity .5s ease, transform .8s ease;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.55)),
+        var(--img, none);
+      background-size:cover;
+      background-position:center;
+      text-decoration:none;
+      color:#fff;
+    }
+    .slide.active{
+      opacity:1;
+      transform:scale(1);
+      z-index:2;
+    }
+
+    .banner-content{
+      position:absolute;
+      inset:0;
+      display:flex;
+      align-items:flex-end;
+      padding: 26px;
+    }
+
+    .banner-card{
+      width:min(720px, 100%);
+      background: rgba(255,255,255,.10);
+      border:1px solid rgba(255,255,255,.18);
+      border-radius:18px;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      padding: 18px 18px 16px;
+      box-shadow: 0 18px 55px rgba(0,0,0,.35);
+    }
+
+    .banner-topline{
+      display:flex; gap:10px; flex-wrap:wrap;
+      align-items:center;
+      margin-bottom:10px;
+    }
+
+    .banner-title{
+      font-size:2.15rem;
+      line-height:1.1;
+      letter-spacing:.2px;
+      margin-bottom:10px;
+    }
+
+    .banner-desc{
+      color: rgba(255,255,255,.88);
+      font-size:1.02rem;
+      margin-bottom: 14px;
+    }
+
+    .banner-actions{
+      display:flex; gap:10px; flex-wrap:wrap;
+    }
+
+    /* Setas (blur glass premium) */
+    .banner-nav{
+      position:absolute;
+      top:50%;
+      transform:translateY(-50%);
+      z-index:5;
+      width:52px;
+      height:52px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.25);
+      background: rgba(255,255,255,.10);
+      color:#fff;
+      cursor:pointer;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 18px 45px rgba(0,0,0,.30);
+      transition: transform .15s ease, background .2s ease;
+    }
+    .banner-nav:hover{
+      background: rgba(255,255,255,.16);
+      transform: translateY(-50%) scale(1.03);
+    }
+    .banner-nav.prev{left:14px}
+    .banner-nav.next{right:14px}
+
+    .banner-dots{
+      position:absolute;
+      z-index:6;
+      left:50%;
+      bottom:14px;
+      transform:translateX(-50%);
+      display:flex; gap:8px;
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.18);
+      background: rgba(0,0,0,.18);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+    .dot{
+      width:10px; height:10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.55);
+      background: rgba(255,255,255,.25);
+      cursor:pointer;
+      transition: transform .15s ease, background .2s ease;
+    }
+    .dot.active{
+      background: rgba(255,255,255,.95);
+      transform: scale(1.1);
+    }
+
+    /* ===== SECTIONS ===== */
+    section{margin:18px auto;}
+    .section-card{
+      background:var(--card);
+      border:1px solid rgba(0,0,0,.08);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:34px 30px;
+    }
+    .section-title{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+    .section-title .bar{width:6px;height:28px;background:var(--accent);border-radius:999px}
+    .section-title h3{font-size:1.6rem}
+    .muted{color:var(--muted)}
+
+    .grid2{display:grid;grid-template-columns:1.1fr .9fr;gap:14px;margin-top:14px}
+    .mini-card{
+      border:1px solid rgba(0,0,0,.08);
+      border-radius:14px;
+      padding:16px;
+      background:rgba(255,255,255,.72);
+    }
+    .mini-card b{display:block;margin-bottom:6px}
+
+    /* Form */
+    .form-grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:12px;
+      margin-top:12px;
+    }
+    .field{
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+    }
+    label{font-weight:700;color:#223}
+    input, textarea{
+      width:100%;
+      border:1px solid rgba(0,0,0,.12);
+      border-radius:12px;
+      padding:12px 12px;
+      outline:none;
+      background: rgba(255,255,255,.92);
+      font: inherit;
+    }
+    textarea{min-height:120px; resize:vertical}
+    .form-actions{
+      display:flex; gap:12px; flex-wrap:wrap;
+      margin-top:12px;
+      align-items:center;
+    }
+    .hint{
+      font-size:13px;
+      color:var(--muted);
+      margin-top:10px;
     }
 
     footer{
@@ -296,14 +419,19 @@ Index atual:
 
     /* Responsive */
     @media (max-width: 900px){
-      .hero-grid{grid-template-columns:1fr}
-      .grid3{grid-template-columns:1fr}
+      :root{ --banner-h: 520px; }
+      .grid2{grid-template-columns:1fr}
     }
     @media (max-width: 768px){
       nav.desktop{display:none}
       .menu-toggle{display:block}
       .social-floating{display:none}
       .logo-wrapper h1{font-size:1.15rem}
+      .banner-title{font-size:1.65rem}
+      .banner-content{padding:18px}
+      .banner-nav{width:48px;height:48px;border-radius:14px}
+      .form-grid{grid-template-columns:1fr}
+      .banner-fullwidth{padding: 14px 12px 8px;}
     }
   </style>
 
@@ -312,6 +440,111 @@ Index atual:
       const menu = document.querySelector('nav.mobile');
       if(menu) menu.classList.toggle('show');
     }
+
+    // ===== Banner slider =====
+    let currentSlide = 0;
+    let sliderTimer = null;
+
+    function getSlides(){
+      return Array.from(document.querySelectorAll('.slide'));
+    }
+    function getDots(){
+      return Array.from(document.querySelectorAll('.dot'));
+    }
+
+    function showSlide(index){
+      const slides = getSlides();
+      const dots = getDots();
+      if(!slides.length) return;
+
+      currentSlide = (index + slides.length) % slides.length;
+
+      slides.forEach((s, i) => s.classList.toggle('active', i === currentSlide));
+      dots.forEach((d, i) => d.classList.toggle('active', i === currentSlide));
+    }
+
+    function nextSlide(){ showSlide(currentSlide + 1); }
+    function prevSlide(){ showSlide(currentSlide - 1); }
+
+    function startAuto(){
+      stopAuto();
+      sliderTimer = setInterval(nextSlide, 6500);
+    }
+    function stopAuto(){
+      if(sliderTimer) clearInterval(sliderTimer);
+      sliderTimer = null;
+    }
+
+    function initBanner(){
+      const banner = document.querySelector('.banner');
+      if(!banner) return;
+
+      // Dots click
+      document.querySelectorAll('.dot').forEach((dot) => {
+        dot.addEventListener('click', () => {
+          const idx = Number(dot.getAttribute('data-idx'));
+          showSlide(idx);
+          startAuto();
+        });
+      });
+
+      // Arrows
+      const btnPrev = document.querySelector('.banner-nav.prev');
+      const btnNext = document.querySelector('.banner-nav.next');
+      if(btnPrev) btnPrev.addEventListener('click', () => { prevSlide(); startAuto(); });
+      if(btnNext) btnNext.addEventListener('click', () => { nextSlide(); startAuto(); });
+
+      // Pause on hover
+      banner.addEventListener('mouseenter', stopAuto);
+      banner.addEventListener('mouseleave', startAuto);
+
+      // Swipe (mobile)
+      let startX = 0;
+      let endX = 0;
+      banner.addEventListener('touchstart', (e) => { startX = e.touches[0].clientX; }, {passive:true});
+      banner.addEventListener('touchmove', (e) => { endX = e.touches[0].clientX; }, {passive:true});
+      banner.addEventListener('touchend', () => {
+        const diff = endX - startX;
+        if(Math.abs(diff) > 40){
+          if(diff > 0) prevSlide();
+          else nextSlide();
+          startAuto();
+        }
+        startX = 0; endX = 0;
+      });
+
+      // init
+      showSlide(0);
+      startAuto();
+    }
+
+    // ===== Contato -> WhatsApp (form) =====
+    function enviarWhatsAppContato(e){
+      e.preventDefault();
+
+      const nome = (document.getElementById('c_nome')?.value || '').trim();
+      const email = (document.getElementById('c_email')?.value || '').trim();
+      const fone = (document.getElementById('c_fone')?.value || '').trim();
+      const cidade = (document.getElementById('c_cidade')?.value || '').trim();
+      const assunto = (document.getElementById('c_assunto')?.value || '').trim();
+      const msg = (document.getElementById('c_msg')?.value || '').trim();
+
+      const texto =
+        `Olá! Vim pelo site ALOGY e quero falar sobre um projeto.\n\n` +
+        `Nome: ${nome || '-'}\n` +
+        `Telefone: ${fone || '-'}\n` +
+        `E-mail: ${email || '-'}\n` +
+        `Cidade/Local: ${cidade || '-'}\n` +
+        `Assunto: ${assunto || '-'}\n\n` +
+        `Mensagem:\n${msg || '-'}`;
+
+      const url = `https://wa.me/5519991787430?text=${encodeURIComponent(texto)}`;
+      window.open(url, '_blank', 'noopener');
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      initBanner();
+    });
   </script>
 </head>
 
@@ -328,33 +561,34 @@ Index atual:
       </button>
     </div>
 
+    <!-- MENU: Industrial/Residencial/Cursos/Sobre vão para páginas próprias -->
     <nav class="desktop" aria-label="Menu principal">
       <div class="container navlinks">
-        <a href="#industrial">Industrial</a>
-        <a href="#residencial">Residencial</a>
-        <a href="#cursos">Cursos</a>
-        <a href="#sobre">Sobre</a>
+        <a href="industrial.html">Industrial</a>
+        <a href="residencial.html">Residencial</a>
+        <a href="cursos.html">Cursos</a>
+        <a href="sobre.html">Sobre</a>
         <a href="#contato">Contato</a>
       </div>
     </nav>
 
     <nav class="mobile" aria-label="Menu mobile">
-      <a href="#industrial" onclick="toggleMobileMenu()">Industrial</a>
-      <a href="#residencial" onclick="toggleMobileMenu()">Residencial</a>
-      <a href="#cursos" onclick="toggleMobileMenu()">Cursos</a>
-      <a href="#sobre" onclick="toggleMobileMenu()">Sobre</a>
+      <a href="industrial.html" onclick="toggleMobileMenu()">Industrial</a>
+      <a href="residencial.html" onclick="toggleMobileMenu()">Residencial</a>
+      <a href="cursos.html" onclick="toggleMobileMenu()">Cursos</a>
+      <a href="sobre.html" onclick="toggleMobileMenu()">Sobre</a>
       <a href="#contato" onclick="toggleMobileMenu()">Contato</a>
     </nav>
   </header>
 
-  <!-- Social floating (desktop) - SEM WhatsApp -->
+  <!-- Social floating (desktop) - só LinkedIn + Instagram (sem WhatsApp) -->
   <div class="social-floating" aria-label="Redes sociais">
-    <a href="https://www.linkedin.com/company/alogyengenharia" class="linkedin" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i></a>
-    <a href="https://www.instagram.com/alogyengenharia" class="instagram" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
-    <a href="https://www.facebook.com/alogyengenharia" class="facebook" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a>
-    <a href="https://www.youtube.com/@alogyengenharia" class="youtube" target="_blank" rel="noopener"><i class="fab fa-youtube"></i></a>
-    <a href="https://hotmart.com/pt-br/club/alogyengenharia" class="hotmart" target="_blank" rel="noopener">H</a>
-    <a href="https://www.tiktok.com/@alogyengenharia" class="tiktok" target="_blank" rel="noopener"><i class="fab fa-tiktok"></i></a>
+    <a href="https://www.linkedin.com/company/alogyengenharia" class="linkedin" target="_blank" rel="noopener" aria-label="LinkedIn">
+      <i class="fab fa-linkedin-in"></i>
+    </a>
+    <a href="https://www.instagram.com/alogyengenharia" class="instagram" target="_blank" rel="noopener" aria-label="Instagram">
+      <i class="fab fa-instagram"></i>
+    </a>
   </div>
 
   <!-- WhatsApp FAB -->
@@ -362,162 +596,203 @@ Index atual:
     <i class="fab fa-whatsapp"></i> WhatsApp
   </a>
 
-  <main class="container">
-    <!-- HERO -->
-    <div class="hero">
-      <div class="hero-grid">
-        <div class="hero-card">
-          <span class="pill"><i class="fas fa-check-circle"></i> Atendimento objetivo + padrão técnico</span>
-          <h2>Projetos industriais e residenciais com padrão técnico e responsabilidade.</h2>
-          <p>
-            Automação, instrumentação e projetos elétricos — do levantamento à entrega, com documentação
-            e foco em confiabilidade. O caminho mais rápido é pelo WhatsApp.
-          </p>
-          <div class="hero-actions">
-            <a class="btn" href="https://wa.me/5519991787430?text=Ol%C3%A1!%20Quero%20um%20or%C3%A7amento%20para%20um%20projeto." target="_blank" rel="noopener">
-              <i class="fab fa-whatsapp"></i> Solicitar orçamento
-            </a>
-            <a class="btn secondary" href="#industrial">
-              <i class="fas fa-industry"></i> Ver serviços
-            </a>
-          </div>
-
-          <div class="course-banner">
-            <div class="left">
-              <span class="badge">CURSO</span>
-              <div>
-                <b>Instrumentação Industrial</b><br/>
-                <span class="muted" style="font-size:13px">Acesso via Hotmart • foco prático</span>
+  <!-- BANNER (onde você marcou em vermelho) -->
+  <div class="banner-wrap banner-fullwidth">
+    <div class="banner" aria-label="Banner principal com 3 destaques">
+      <div class="slides">
+        <!-- nomes genéricos das imagens -->
+        <a class="slide active" href="industrial.html"
+           style="--img:url('banner1.webp')"
+           aria-label="Ir para Industrial">
+          <div class="banner-content">
+            <div class="banner-card">
+              <div class="banner-topline">
+                <span class="pill" style="border-color:rgba(255,255,255,.22);background:rgba(255,255,255,.10);color:rgba(255,255,255,.92)">
+                  <i class="fas fa-check-circle"></i> Atendimento objetivo + padrão técnico
+                </span>
+              </div>
+              <div class="banner-title">Industrial</div>
+              <div class="banner-desc">
+                Automação, instrumentação e projetos — do levantamento à entrega, com documentação e foco em confiabilidade.
+              </div>
+              <div class="banner-actions">
+                <a class="btn" href="industrial.html">
+                  <i class="fas fa-industry"></i> Entrar em Industrial
+                </a>
+                <a class="btn secondary" href="https://wa.me/5519991787430?text=Ol%C3%A1!%20Quero%20falar%20sobre%20um%20projeto%20industrial." target="_blank" rel="noopener"
+                   style="border-color:rgba(255,255,255,.25);color:#fff;background:rgba(255,255,255,.10)">
+                  <i class="fab fa-whatsapp"></i> Falar no WhatsApp
+                </a>
               </div>
             </div>
-            <a class="btn" href="https://go.hotmart.com/V93269953X" target="_blank" rel="noopener">
-              Ver curso <i class="fas fa-arrow-right"></i>
+          </div>
+        </a>
+
+        <a class="slide" href="residencial.html"
+           style="--img:url('banner2.webp')"
+           aria-label="Ir para Residencial">
+          <div class="banner-content">
+            <div class="banner-card">
+              <div class="banner-topline">
+                <span class="pill" style="border-color:rgba(255,255,255,.22);background:rgba(255,255,255,.10);color:rgba(255,255,255,.92)">
+                  <i class="fas fa-check-circle"></i> Padrão técnico e segurança
+                </span>
+              </div>
+              <div class="banner-title">Residencial</div>
+              <div class="banner-desc">
+                Projetos elétricos, adequações e automação residencial com acabamento e responsabilidade.
+              </div>
+              <div class="banner-actions">
+                <a class="btn" href="residencial.html">
+                  <i class="fas fa-house-signal"></i> Entrar em Residencial
+                </a>
+                <a class="btn secondary" href="https://wa.me/5519991787430?text=Ol%C3%A1!%20Quero%20falar%20sobre%20um%20projeto%20residencial." target="_blank" rel="noopener"
+                   style="border-color:rgba(255,255,255,.25);color:#fff;background:rgba(255,255,255,.10)">
+                  <i class="fab fa-whatsapp"></i> Falar no WhatsApp
+                </a>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <a class="slide" href="cursos.html"
+           style="--img:url('banner3.webp')"
+           aria-label="Ir para Cursos">
+          <div class="banner-content">
+            <div class="banner-card">
+              <div class="banner-topline">
+                <span class="pill" style="border-color:rgba(255,255,255,.22);background:rgba(255,255,255,.10);color:rgba(255,255,255,.92)">
+                  <i class="fas fa-graduation-cap"></i> Conteúdo prático
+                </span>
+              </div>
+              <div class="banner-title">Cursos</div>
+              <div class="banner-desc">
+                Formação técnica e evolução prática em automação e instrumentação.
+              </div>
+              <div class="banner-actions">
+                <a class="btn" href="cursos.html">
+                  <i class="fas fa-graduation-cap"></i> Entrar em Cursos
+                </a>
+                <a class="btn secondary" href="https://hotmart.com/pt-br/club/alogyengenharia" target="_blank" rel="noopener"
+                   style="border-color:rgba(255,255,255,.25);color:#fff;background:rgba(255,255,255,.10)">
+                  <i class="fas fa-arrow-right"></i> Ver na Hotmart
+                </a>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <button class="banner-nav prev" type="button" aria-label="Slide anterior">
+        <i class="fas fa-chevron-left"></i>
+      </button>
+      <button class="banner-nav next" type="button" aria-label="Próximo slide">
+        <i class="fas fa-chevron-right"></i>
+      </button>
+
+      <div class="banner-dots" aria-label="Indicadores do banner">
+        <span class="dot active" data-idx="0" aria-label="Ir para slide 1"></span>
+        <span class="dot" data-idx="1" aria-label="Ir para slide 2"></span>
+        <span class="dot" data-idx="2" aria-label="Ir para slide 3"></span>
+      </div>
+    </div>
+  </div>
+
+  <main class="container">
+    <!-- HOME: agora sem mostrar Industrial/Residencial/Cursos/Sobre como seções (ficam nas páginas próprias) -->
+
+    <section class="section-card" aria-label="Atalhos rápidos">
+      <div class="section-title">
+        <div class="bar"></div><h3>Atalhos rápidos</h3>
+      </div>
+      <p class="muted">
+        Escolha por onde quer entrar (ou use o banner acima). O contato fica no fim da página.
+      </p>
+
+      <div class="grid2">
+        <div class="mini-card">
+          <b><i class="fas fa-industry"></i> Industrial</b>
+          <div class="muted">Automação, instrumentação, comissionamento e documentação.</div>
+          <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
+            <a class="btn" href="industrial.html"><i class="fas fa-arrow-right"></i> Abrir Industrial</a>
+            <a class="btn secondary" href="https://wa.me/5519991787430?text=Ol%C3%A1!%20Quero%20um%20or%C3%A7amento%20industrial." target="_blank" rel="noopener">
+              <i class="fab fa-whatsapp"></i> Orçamento
             </a>
           </div>
         </div>
 
-        <div class="hero-card">
-          <b>Para agilizar seu atendimento</b>
-          <p class="muted" style="margin-top:8px">
-            Me envie no WhatsApp:
-          </p>
-          <div style="display:grid;gap:10px;margin-top:10px">
-            <div class="pill">1) Cidade / local</div>
-            <div class="pill">2) O que precisa (industrial ou residencial)</div>
-            <div class="pill">3) Prazo e contexto</div>
+        <div class="mini-card">
+          <b><i class="fas fa-house-signal"></i> Residencial</b>
+          <div class="muted">Projetos elétricos, adequações (DR/quadros) e automação residencial.</div>
+          <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
+            <a class="btn" href="residencial.html"><i class="fas fa-arrow-right"></i> Abrir Residencial</a>
+            <a class="btn secondary" href="https://wa.me/5519991787430?text=Ol%C3%A1!%20Quero%20um%20or%C3%A7amento%20residencial." target="_blank" rel="noopener">
+              <i class="fab fa-whatsapp"></i> Orçamento
+            </a>
           </div>
-          <p class="muted" style="margin-top:12px;font-size:13px">
-            *Se preferir e-mail: <a href="mailto:contato@alogy.com.br">contato@alogy.com.br</a>
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <!-- INDUSTRIAL -->
-    <section id="industrial" class="section-card">
-      <div class="section-title">
-        <div class="bar"></div><h3>Industrial</h3>
-      </div>
-      <p class="muted">
-        Projetos e consultoria em automação e instrumentação industrial, com foco em confiabilidade, segurança e desempenho.
-      </p>
-
-      <div class="grid3">
-        <div class="mini-card">
-          <b><i class="fas fa-gauge-high"></i> Instrumentação</b>
-          <div class="muted">Especificação, adequações, suporte técnico e documentação.</div>
-        </div>
-        <div class="mini-card">
-          <b><i class="fas fa-robot"></i> Automação</b>
-          <div class="muted">Integrações, melhorias e comissionamento (CLP/IHM/SCADA).</div>
-        </div>
-        <div class="mini-card">
-          <b><i class="fas fa-file-signature"></i> Projetos & Especificações</b>
-          <div class="muted">Documentação técnica e apoio em decisões e implantação.</div>
         </div>
       </div>
 
-      <div style="margin-top:16px">
-        <a class="btn" href="https://wa.me/5519991787430?text=Ol%C3%A1!%20Quero%20falar%20sobre%20um%20projeto%20industrial." target="_blank" rel="noopener">
-          <i class="fab fa-whatsapp"></i> Falar sobre projeto industrial
-        </a>
+      <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
+        <a class="btn" href="cursos.html"><i class="fas fa-graduation-cap"></i> Abrir Cursos</a>
+        <a class="btn secondary" href="sobre.html"><i class="fas fa-user"></i> Abrir Sobre</a>
+        <a class="btn secondary" href="#contato"><i class="fas fa-envelope"></i> Ir para Contato</a>
       </div>
     </section>
 
-    <!-- RESIDENCIAL -->
-    <section id="residencial" class="section-card">
-      <div class="section-title">
-        <div class="bar"></div><h3>Residencial</h3>
-      </div>
-      <p class="muted">
-        Projetos elétricos e adequações com padrão técnico — além de automação residencial e integrações.
-      </p>
-
-      <div class="grid3">
-        <div class="mini-card">
-          <b><i class="fas fa-bolt"></i> Projetos Elétricos</b>
-          <div class="muted">Dimensionamento, quadros, circuitos e melhorias.</div>
-        </div>
-        <div class="mini-card">
-          <b><i class="fas fa-shield-halved"></i> Adequações (DR, quadros)</b>
-          <div class="muted">Correções, segurança e conformidade para alto padrão.</div>
-        </div>
-        <div class="mini-card">
-          <b><i class="fas fa-house-signal"></i> Automação Residencial</b>
-          <div class="muted">Cenas, iluminação, integrações e automação sob medida.</div>
-        </div>
-      </div>
-
-      <div style="margin-top:16px">
-        <a class="btn" href="https://wa.me/5519991787430?text=Ol%C3%A1!%20Quero%20falar%20sobre%20um%20projeto%20residencial." target="_blank" rel="noopener">
-          <i class="fab fa-whatsapp"></i> Falar sobre projeto residencial
-        </a>
-      </div>
-    </section>
-
-    <!-- CURSOS -->
-    <section id="cursos" class="section-card">
-      <div class="section-title">
-        <div class="bar"></div><h3>Cursos</h3>
-      </div>
-      <p class="muted">
-        Cursos com foco prático para formação e evolução técnica em automação e instrumentação.
-      </p>
-      <a class="btn" href="https://hotmart.com/pt-br/club/alogyengenharia" target="_blank" rel="noopener">
-        <i class="fas fa-graduation-cap"></i> Ver cursos na Hotmart
-      </a>
-    </section>
-
-    <!-- SOBRE -->
-    <section id="sobre" class="section-card">
-      <div class="section-title">
-        <div class="bar"></div><h3>Sobre</h3>
-      </div>
-      <p class="muted" style="margin-bottom:10px">
-        Eng. Ronaldo Junior — atuação prática em automação e instrumentação, com foco em projetos bem documentados
-        e soluções seguras (industrial e residencial).
-      </p>
-      <p class="muted" style="margin-bottom:0">
-        Método de trabalho: levantamento → proposta → execução → entrega com documentação e orientação.
-      </p>
-    </section>
-
-    <!-- CONTATO -->
+    <!-- CONTATO (fica no HOME; menu "Contato" rola pra cá) -->
     <section id="contato" class="section-card">
       <div class="section-title">
         <div class="bar"></div><h3>Contato</h3>
       </div>
       <p class="muted">
-        Resposta mais rápida via WhatsApp. Se precisar, e-mail abaixo.
+        Resposta mais rápida via WhatsApp. Se preferir, use o formulário abaixo (ele abre o WhatsApp já com a mensagem pronta).
       </p>
-      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:10px">
-        <a class="btn" href="https://wa.me/5519991787430?text=Ol%C3%A1!%20Vim%20pelo%20site%20ALOGY%20e%20quero%20fazer%20um%20or%C3%A7amento." target="_blank" rel="noopener">
-          <i class="fab fa-whatsapp"></i> Chamar no WhatsApp
-        </a>
-        <a class="btn secondary" href="mailto:contato@alogy.com.br">
-          <i class="fas fa-envelope"></i> contato@alogy.com.br
-        </a>
-      </div>
+
+      <form onsubmit="enviarWhatsAppContato(event)" aria-label="Formulário de contato">
+        <div class="form-grid">
+          <div class="field">
+            <label for="c_nome">Nome</label>
+            <input id="c_nome" type="text" placeholder="Seu nome" />
+          </div>
+          <div class="field">
+            <label for="c_fone">Telefone</label>
+            <input id="c_fone" type="tel" placeholder="(xx) xxxxx-xxxx" />
+          </div>
+
+          <div class="field">
+            <label for="c_email">E-mail</label>
+            <input id="c_email" type="email" placeholder="seuemail@exemplo.com" />
+          </div>
+          <div class="field">
+            <label for="c_cidade">Cidade / Local</label>
+            <input id="c_cidade" type="text" placeholder="Ex.: Americana/SP" />
+          </div>
+
+          <div class="field" style="grid-column:1/-1">
+            <label for="c_assunto">Assunto</label>
+            <input id="c_assunto" type="text" placeholder="Industrial, residencial, curso, consultoria..." />
+          </div>
+
+          <div class="field" style="grid-column:1/-1">
+            <label for="c_msg">Mensagem</label>
+            <textarea id="c_msg" placeholder="Explique o que precisa, prazo e contexto."></textarea>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button class="btn" type="submit">
+            <i class="fab fa-whatsapp"></i> Enviar no WhatsApp
+          </button>
+          <a class="btn secondary" href="mailto:contato@alogy.com.br">
+            <i class="fas fa-envelope"></i> contato@alogy.com.br
+          </a>
+        </div>
+
+        <div class="hint">
+          Dica: se quiser deixar o banner ainda mais “full width”, troque <b>--banner-h</b> para <b>100vh</b> (tela inteira) ou ajuste a altura aqui: <b>--banner-h: 520px</b>.
+        </div>
+      </form>
     </section>
   </main>
 
@@ -525,11 +800,7 @@ Index atual:
     <p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p>
     <p style="margin-top:6px">
       <a href="https://www.linkedin.com/company/alogyengenharia" target="_blank" rel="noopener">LinkedIn</a> •
-      <a href="https://www.instagram.com/alogyengenharia" target="_blank" rel="noopener">Instagram</a> •
-      <a href="https://www.facebook.com/alogyengenharia" target="_blank" rel="noopener">Facebook</a> •
-      <a href="https://www.youtube.com/@alogyengenharia" target="_blank" rel="noopener">YouTube</a> •
-      <a href="https://hotmart.com/pt-br/club/alogyengenharia" target="_blank" rel="noopener">Hotmart</a> •
-      <a href="https://www.tiktok.com/@alogyengenharia" target="_blank" rel="noopener">TikTok</a>
+      <a href="https://www.instagram.com/alogyengenharia" target="_blank" rel="noopener">Instagram</a>
     </p>
   </footer>
 </body>
