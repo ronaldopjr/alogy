@@ -1,501 +1,471 @@
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>ALOGY Engenharia</title>
+  <title>ALOGY Engenharia | Automação e Instrumentação</title>
+
   <link rel="icon" href="logo-alogy.webp" type="image/webp" />
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <meta name="description" content="Soluções em automação e instrumentação industrial, consultorias, cursos online e serviços técnicos com foco em resultados."/>
+
+  <meta name="description" content="Soluções em automação e instrumentação industrial, consultorias e treinamentos com foco em resultado. Fale no WhatsApp."/>
   <meta property="og:title" content="ALOGY Engenharia" />
-  <meta property="og:description" content="Cursos, Projetos e Consultorias em Automação e Instrumentação Industrial."/>
+  <meta property="og:description" content="Projetos, consultoria e treinamentos em Automação e Instrumentação Industrial."/>
   <meta property="og:image" content="logo-alogy.webp" />
   <meta property="og:url" content="https://www.alogy.com.br" />
   <meta name="twitter:card" content="summary_large_image" />
+
   <style>
-    :root {
-      --primary-color: #000;
-      --secondary-color: #006bb1;
-      --light-bg: #f4f7fa;
-      --dark-bg: #004b80;
-      --accent-color: #0169b0;
+    :root{
+      --primary:#000;
+      --dark:#004b80;
+      --brand:#006bb1;
+      --accent:#0169b0;
+      --bg:#f4f7fa;
+      --text:#1f2937;
+      --muted:#6b7280;
+      --line:rgba(0,0,0,.08);
+      --card:#ffffff;
+      --radius:14px;
+      --shadow: 0 10px 25px rgba(0,0,0,.08);
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:'Roboto',sans-serif;
+      background:
+        radial-gradient(1100px 500px at 10% 10%, rgba(1,105,176,.14), transparent 60%),
+        radial-gradient(900px 450px at 85% 0%, rgba(0,107,177,.12), transparent 55%),
+        var(--bg);
+      color:var(--text);
+      line-height:1.6;
     }
 
-    html {
-      scroll-behavior: smooth;
+    a{color:inherit}
+    .container{max-width:1100px;margin:0 auto;padding:0 18px}
+    .btn{
+      display:inline-flex;align-items:center;gap:10px;
+      background:var(--brand);color:#fff;text-decoration:none;
+      padding:12px 18px;border-radius:10px;font-weight:700;
+      box-shadow:0 6px 14px rgba(0,0,0,.12);
+      transition:transform .15s ease, background-color .2s ease;
+    }
+    .btn:hover{background:var(--accent);transform:translateY(-1px)}
+    .btn.secondary{
+      background:rgba(0,107,177,.08); color:var(--brand);
+      box-shadow:none; border:1px solid rgba(0,107,177,.25);
+    }
+    .btn.secondary:hover{background:rgba(0,107,177,.12)}
+    .pill{
+      display:inline-flex;align-items:center;gap:8px;
+      border:1px solid var(--line);background:rgba(255,255,255,.7);
+      padding:8px 10px;border-radius:999px;color:var(--muted);
+      font-size:12px;
     }
 
-    body {
-      font-family: 'Roboto', sans-serif;
-      background-color: var(--light-bg);
-      color: #333;
-      line-height: 1.6;
+    /* Header */
+    header{
+      background:var(--primary); color:#fff;
+      position:sticky; top:0; z-index:2000;
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+    .headbar{
+      display:flex;align-items:center;justify-content:space-between;
+      padding:14px 0; position:relative;
+    }
+    .logo-wrapper{
+      display:flex;align-items:center;gap:14px;
+      text-decoration:none;color:inherit;
+    }
+    .logo-wrapper img{width:54px;height:auto}
+    .logo-wrapper h1{font-size:1.35rem;line-height:1.1}
+    .menu-toggle{
+      display:none;background:none;border:none;color:#fff;
+      font-size:1.7rem; cursor:pointer;
+      padding:10px;
     }
 
-    header {
-      background-color: var(--primary-color);
-      color: white;
-      padding: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+    nav.desktop{
+      background:var(--dark);
+      border-top:1px solid rgba(255,255,255,.08);
+    }
+    nav.desktop .navlinks{
+      display:flex;flex-wrap:wrap;justify-content:center;gap:16px;
+      padding:10px 0;
+    }
+    nav.desktop a{
+      color:#fff;text-decoration:none;font-weight:700;font-size:0.98rem;
+      opacity:.95;
+    }
+    nav.desktop a:hover{color:#cfe8ff}
+
+    nav.mobile{
+      display:none; flex-direction:column;
+      background:var(--dark);
+      border-top:1px solid rgba(255,255,255,.08);
+    }
+    nav.mobile a{
+      color:#fff;text-decoration:none;font-weight:700;
+      padding:12px 18px;
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+    nav.mobile.show{display:flex}
+
+    /* Hero */
+    .hero{
+      padding:26px 0 10px;
+    }
+    .hero-grid{
+      display:grid;grid-template-columns:1.2fr .8fr;gap:18px;
+      align-items:stretch;
+    }
+    .hero-card{
+      background:rgba(255,255,255,.8);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:22px;
+    }
+    .hero h2{
+      margin:10px 0 10px;
+      font-size:2.1rem; line-height:1.15;
+    }
+    .hero p{color:var(--muted); font-size:1.05rem; margin-bottom:14px}
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:10px}
+
+    /* Sections */
+    section{
+      margin:18px auto;
+    }
+    .section-card{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:26px 22px;
+    }
+    .section-title{
+      display:flex;align-items:center;gap:10px;margin-bottom:10px;
+    }
+    .section-title .bar{width:6px;height:28px;background:var(--accent);border-radius:999px}
+    .section-title h3{font-size:1.6rem}
+    .muted{color:var(--muted)}
+    .grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:14px}
+    .grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:14px}
+    .mini-card{
+      border:1px solid var(--line);
+      border-radius:14px;
+      padding:16px;
+      background:rgba(255,255,255,.7);
+    }
+    .mini-card b{display:block;margin-bottom:6px}
+    .thumb{
+      width:100%; height:130px;
+      object-fit:cover; border-radius:12px;
+      border:1px solid var(--line);
+      background:#eef3f8;
     }
 
-    header a.logo-wrapper {
-      display: flex;
-      align-items: center;
-      text-decoration: none;
-      color: inherit;
-      gap: 20px;
+    /* Floating social (desktop only) */
+    .social-floating{
+      position:fixed; top:50%; right:0;
+      transform:translateY(-50%);
+      z-index:1500; display:flex;flex-direction:column;gap:10px;
+    }
+    .social-floating a{
+      color:#fff;font-size:1.2rem;text-align:center;
+      width:40px;height:40px;display:flex;align-items:center;justify-content:center;
+      border-radius:8px 0 0 8px;
+      box-shadow:0 8px 18px rgba(0,0,0,.18);
+    }
+    .social-floating a.linkedin{background:#0077b5}
+    .social-floating a.instagram{background:#e4405f}
+    .social-floating a.facebook{background:#3b5998}
+    .social-floating a.youtube{background:#ff0000}
+    .social-floating a.whatsapp{background:#25d366}
+    .social-floating a.hotmart{background:#ff5c00;font-weight:900;font-family:Arial;font-size:1.1rem}
+    .social-floating a.tiktok{background:#000}
+
+    /* WhatsApp floating button */
+    .wa-fab{
+      position:fixed; right:16px; bottom:16px;
+      background:#25d366; color:#061022;
+      border:none; border-radius:999px;
+      padding:12px 14px;
+      font-weight:900;
+      box-shadow:0 14px 40px rgba(0,0,0,.25);
+      text-decoration:none;
+      z-index:1800;
+      display:flex;align-items:center;gap:10px;
     }
 
-    header img {
-      width: 70px;
-      height: auto;
+    /* Course banner (discreto) */
+    .course-banner{
+      margin-top:14px;
+      border:1px solid rgba(255,92,0,.35);
+      background:linear-gradient(90deg, rgba(255,92,0,.10), rgba(255,255,255,.7));
+      border-radius:14px;
+      padding:14px;
+      display:flex;align-items:center;justify-content:space-between;gap:12px;
+    }
+    .course-banner .left{display:flex;align-items:center;gap:12px}
+    .badge{
+      background:#ff5c00;color:#fff;font-weight:900;
+      padding:6px 10px;border-radius:999px;font-size:12px;
     }
 
-    header h1 {
-      font-size: 1.8rem;
+    footer{
+      background:var(--dark); color:#fff;
+      text-align:center; padding:22px 10px;
+      margin-top:26px; font-size:.92rem;
     }
 
-    .menu-toggle {
-      display: none;
-      background: none;
-      border: none;
-      color: white;
-      font-size: 1.8rem;
+    /* Responsive */
+    @media (max-width: 900px){
+      .hero-grid{grid-template-columns:1fr}
+      .grid3{grid-template-columns:1fr}
+      .grid2{grid-template-columns:1fr}
     }
-
-    nav {
-      background-color: var(--dark-bg);
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 15px;
-      padding: 10px 0;
-    }
-
-    nav a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 1rem;
-      transition: color 0.3s ease;
-      text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
-    }
-
-    nav a:hover {
-      color: var(--accent-color);
-    }
-
-    .mobile-menu {
-      display: none;
-      flex-direction: column;
-      background-color: var(--dark-bg);
-      padding: 10px;
-    }
-
-    .mobile-menu a {
-      padding: 10px;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-    }
-
-    .social-floating {
-      position: fixed;
-      top: 50%;
-      right: 0;
-      transform: translateY(-50%);
-      z-index: 1000;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .social-floating a {
-      color: white;
-      font-size: 1.3rem;
-      text-align: center;
-      width: 40px;
-      height: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 5px 0 0 5px;
-    }
-
-    .social-floating a.linkedin { background: #0077b5; }
-    .social-floating a.instagram { background: #e4405f; }
-    .social-floating a.facebook { background: #3b5998; }
-    .social-floating a.youtube { background: #ff0000; }
-    .social-floating a.whatsapp { background: #25d366; }
-    .social-floating a.hotmart { background: #ff5c00; font-weight: bold; font-family: Arial; font-size: 1.2rem; }
-    .social-floating a.tiktok { background: #000000; }
-
-    .floating-course-box {
-      position: fixed;
-      bottom: 20px;
-      left: 20px;
-      background-color: white;
-      padding: 15px;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-      max-width: 260px;
-      z-index: 1000;
-      animation: pulse 1.5s infinite;
-      text-align: center;
-    }
-
-    @keyframes pulse {
-      0% { box-shadow: 0 0 0 0 rgba(0,113,183, 0.4); }
-      70% { box-shadow: 0 0 0 10px rgba(0,113,183, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(0,113,183, 0); }
-    }
-
-    .floating-course-box h2 {
-      font-size: 1.1rem;
-      margin-bottom: 10px;
-      font-weight: bold;
-      color: #000;
-      white-space: pre-line;
-    }
-
-    .floating-course-box img {
-      width: 100%;
-      height: auto;
-      border-radius: 8px;
-      margin-top: 10px;
-    }
-
-    .mobile-offer-button {
-      display: none;
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: #ff5c00;
-      color: white;
-      font-weight: bold;
-      text-align: center;
-      padding: 14px;
-      font-size: 1rem;
-      z-index: 9999;
-    }
-
-    .mobile-offer-button a {
-      color: white;
-      text-decoration: none;
-      display: block;
-    }
-
-    section {
-      padding: 50px 20px;
-      max-width: 1000px;
-      margin: 30px auto;
-      background-color: white;
-      border-radius: 12px;
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
-    }
-
-    h2 {
-      color: var(--primary-color);
-      margin-bottom: 20px;
-      font-size: 2rem;
-      border-left: 6px solid var(--accent-color);
-      padding-left: 10px;
-    }
-
-    p {
-      font-size: 1.1rem;
-      margin-bottom: 20px;
-    }
-
-    .button {
-      display: inline-block;
-      background-color: var(--secondary-color);
-      color: white;
-      padding: 12px 25px;
-      border-radius: 6px;
-      text-decoration: none;
-      transition: background-color 0.3s ease;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    .button:hover {
-      background-color: var(--accent-color);
-    }
-
-    footer {
-      background-color: var(--dark-bg);
-      color: white;
-      text-align: center;
-      padding: 25px 10px;
-      margin-top: 40px;
-      font-size: 0.9rem;
-    }
-
-    @media (max-width: 768px) {
-      .social-floating,
-      .floating-course-box {
-        display: none;
-      }
-
-      .menu-toggle {
-        display: block;
-      }
-
-      nav {
-        display: none;
-      }
-
-      .mobile-menu {
-        display: flex;
-      }
-
-      .mobile-offer-button {
-        display: block;
-      }
-
-      header {
-        flex-direction: row;
-        text-align: center;
-      }
+    @media (max-width: 768px){
+      nav.desktop{display:none}
+      .menu-toggle{display:block}
+      .social-floating{display:none}
+      .logo-wrapper h1{font-size:1.15rem}
     }
   </style>
 
-<style>
-  .menu-toggle {
-    display: none;
-    font-size: 24px;
-    color: white;
-    background: none;
-    border: none;
-    cursor: pointer;
-    position: absolute;
-    right: 20px;
-    top: 25px;
-    z-index: 2000;
-  }
-
-  .mobile-menu {
-    display: none;
-    flex-direction: column;
-    background-color: var(--dark-bg);
-    padding: 15px;
-  }
-
-  .mobile-menu a {
-    color: white;
-    padding: 10px;
-    text-decoration: none;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-  }
-
-  .mobile-menu.show {
-    display: flex;
-  }
-
-  @media (max-width: 768px) {
-    nav {
-      display: none;
+  <script>
+    function toggleMobileMenu(){
+      const menu = document.querySelector('nav.mobile');
+      if(menu) menu.classList.toggle('show');
     }
-
-    .menu-toggle {
-      display: block;
-    }
-  }
-</style>
-
-<script>
-  function toggleMobileMenu() {
-    var menu = document.querySelector('.mobile-menu');
-    if (menu) {
-      menu.classList.toggle('show');
-    }
-  }
-</script>
-
-
-<style>
-  .mobile-offer-button {
-    display: none;
-  }
-
-  @media (max-width: 768px) {
-    .mobile-offer-button {
-      display: block;
-      position: fixed;
-      bottom: 15px;
-      left: 15px;
-      right: 15px;
-      background-color: #b30000;
-      color: white;
-      padding: 12px 20px;
-      border-radius: 8px;
-      text-align: center;
-      font-weight: bold;
-      z-index: 9999;
-      font-size: 0.95rem;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-      animation: slideIn 0.5s ease-in-out;
-    }
-
-    .mobile-offer-button a {
-      color: white;
-      text-decoration: none;
-    }
-
-    @keyframes slideIn {
-      from { transform: translateY(100%); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
-    }
-  }
-</style>
-
-
-<style>
-  @media (max-width: 768px) {
-    header h1 {
-      font-size: 1.3rem !important;
-      line-height: 1.2;
-    }
-
-    .mobile-offer-button {
-      font-size: 1.05rem !important;
-      padding: 15px 22px !important;
-    }
-  }
-</style>
-
-
-<style>
-  @media (max-width: 768px) {
-    header h1 {
-      font-size: 1.2rem !important;
-      line-height: 1.2;
-      text-align: left;
-    }
-
-    .menu-toggle {
-      font-size: 1.8rem !important;
-      padding: 10px;
-      background: none;
-      border: none;
-      color: white;
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      z-index: 2000;
-    }
-  }
-</style>
-
+  </script>
 </head>
+
 <body>
+  <header>
+    <div class="container headbar">
+      <a href="index.html" class="logo-wrapper">
+        <img src="logo-alogy.webp" alt="Logo ALOGY" />
+        <div>
+          <h1>ALOGY Engenharia</h1>
+          <div style="font-size:12px;opacity:.85">Automação • Instrumentação • Projetos</div>
+        </div>
+      </a>
 
-<!-- Botão de oferta fixo no mobile -->
-<div class="mobile-offer-button">
-  <a href="https://go.hotmart.com/V93269953X" target="_blank">
-    🎯 Curso de Instrumentação Industrial em Oferta - Clique Aqui
+      <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menu">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+
+    <nav class="desktop">
+      <div class="container navlinks">
+        <a href="#solucoes">Soluções</a>
+        <a href="#projetos">Projetos</a>
+        <a href="#consultoria">Consultoria</a>
+        <a href="#treinamentos">Treinamentos</a>
+        <a href="#blog">Blog</a>
+        <a href="#contato">Contato</a>
+      </div>
+    </nav>
+
+    <nav class="mobile">
+      <a href="#solucoes" onclick="toggleMobileMenu()">Soluções</a>
+      <a href="#projetos" onclick="toggleMobileMenu()">Projetos</a>
+      <a href="#consultoria" onclick="toggleMobileMenu()">Consultoria</a>
+      <a href="#treinamentos" onclick="toggleMobileMenu()">Treinamentos</a>
+      <a href="#blog" onclick="toggleMobileMenu()">Blog</a>
+      <a href="#contato" onclick="toggleMobileMenu()">Contato</a>
+      <a href="blog.html">Ver blog</a>
+    </nav>
+  </header>
+
+  <!-- Social floating (desktop) -->
+  <div class="social-floating" aria-label="Redes sociais">
+    <a href="https://www.linkedin.com/company/alogyengenharia" class="linkedin" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i></a>
+    <a href="https://www.instagram.com/alogyengenharia" class="instagram" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
+    <a href="https://www.facebook.com/alogyengenharia" class="facebook" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a>
+    <a href="https://www.youtube.com/@alogyengenharia" class="youtube" target="_blank" rel="noopener"><i class="fab fa-youtube"></i></a>
+    <a href="https://wa.me/5519991787430" class="whatsapp" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
+    <a href="https://hotmart.com/pt-br/club/alogyengenharia" class="hotmart" target="_blank" rel="noopener">H</a>
+    <a href="https://www.tiktok.com/@alogyengenharia" class="tiktok" target="_blank" rel="noopener"><i class="fab fa-tiktok"></i></a>
+  </div>
+
+  <!-- WhatsApp FAB -->
+  <a class="wa-fab" href="https://wa.me/5519991787430?text=Ol%C3%A1!%20Vim%20pelo%20site%20ALOGY%20e%20quero%20falar%20sobre%20um%20projeto." target="_blank" rel="noopener">
+    <i class="fab fa-whatsapp"></i> WhatsApp
   </a>
-</div>
 
-<header>
-  <a href="index.html" class="logo-wrapper">
-    <img src="logo-alogy.webp" alt="Logo ALOGY" />
-    <h1>ALOGY Engenharia</h1>
-  </a>
-  <button class="menu-toggle" onclick="toggleMobileMenu()">
-    <i class="fas fa-bars"></i>
-  </button>
-</header>
+  <main class="container">
+    <!-- HERO -->
+    <div class="hero">
+      <div class="hero-grid">
+        <div class="hero-card">
+          <span class="pill"><i class="fas fa-check-circle"></i> Atendimento objetivo + padrão técnico</span>
+          <h2>Automação e Instrumentação com foco em resultado real.</h2>
+          <p>
+            Projetos, consultoria e suporte técnico para indústria — com documentação, segurança e boas práticas.
+            Se você precisa tirar um projeto do papel, o caminho mais rápido é pelo WhatsApp.
+          </p>
+          <div class="hero-actions">
+            <a class="btn" href="https://wa.me/5519991787430?text=Ol%C3%A1!%20Quero%20um%20or%C3%A7amento%20para%20um%20projeto." target="_blank" rel="noopener">
+              <i class="fab fa-whatsapp"></i> Solicitar orçamento
+            </a>
+            <a class="btn secondary" href="#projetos">
+              <i class="fas fa-briefcase"></i> Ver projetos
+            </a>
+          </div>
 
-<nav>
-  <a href="#cursos">Cursos</a>
-  <a href="#projetos">Projetos</a>
-  <a href="#consultoria">Consultoria</a>
-  <a href="#servicos">Serviços</a>
-  <a href="#treinamentos">Treinamentos</a>
-  <a href="#contato">Contato</a>
-  <a href="blog.html">Blog</a>
-</nav>
+          <div class="course-banner">
+            <div class="left">
+              <span class="badge">OFERTA</span>
+              <div>
+                <b>Curso de Instrumentação Industrial</b><br/>
+                <span class="muted" style="font-size:13px">Acesso via Hotmart • foco prático</span>
+              </div>
+            </div>
+            <a class="btn" href="https://go.hotmart.com/V93269953X" target="_blank" rel="noopener">
+              Ver curso <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
 
-<nav class="mobile-menu">
-  <a href="#cursos">Cursos</a>
-  <a href="#projetos">Projetos</a>
-  <a href="#consultoria">Consultoria</a>
-  <a href="#servicos">Serviços</a>
-  <a href="#treinamentos">Treinamentos</a>
-  <a href="#contato">Contato</a>
-  <a href="blog.html">Blog</a>
-</nav>
+        <div class="hero-card">
+          <b>Para agilizar seu atendimento</b>
+          <p class="muted" style="margin-top:8px">
+            Me envie no WhatsApp:
+          </p>
+          <div style="display:grid;gap:10px;margin-top:10px">
+            <div class="pill">1) Cidade / local</div>
+            <div class="pill">2) O que precisa (ex.: pesagem, sensores, CLP, SCADA)</div>
+            <div class="pill">3) Prazo e contexto</div>
+          </div>
+          <p class="muted" style="margin-top:12px;font-size:13px">
+            *Se preferir e-mail, use: <a href="mailto:contato@alogy.com.br">contato@alogy.com.br</a>
+          </p>
+        </div>
+      </div>
+    </div>
 
-<div class="social-floating">
-  <a href="https://www.linkedin.com/company/alogyengenharia" class="linkedin" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-  <a href="https://www.instagram.com/alogyengenharia" class="instagram" target="_blank"><i class="fab fa-instagram"></i></a>
-  <a href="https://www.facebook.com/alogyengenharia" class="facebook" target="_blank"><i class="fab fa-facebook-f"></i></a>
-  <a href="https://www.youtube.com/@alogyengenharia" class="youtube" target="_blank"><i class="fab fa-youtube"></i></a>
-  <a href="https://wa.me/5519991787430" class="whatsapp" target="_blank"><i class="fab fa-whatsapp"></i></a>
-  <a href="https://hotmart.com/pt-br/club/alogyengenharia" class="hotmart" target="_blank">H</a>
-  <a href="https://www.tiktok.com/@alogyengenharia" class="tiktok" target="_blank"><i class="fab fa-tiktok"></i></a>
-</div>
+    <!-- SOLUÇÕES -->
+    <section id="solucoes" class="section-card">
+      <div class="section-title">
+        <div class="bar"></div><h3>Soluções</h3>
+      </div>
+      <p class="muted">
+        Serviços pensados para entregar confiabilidade, segurança e performance (sem “gambiarra”).
+      </p>
 
-<div class="floating-course-box">
-  <div style="background:#ff5c00; color:white; font-weight:bold; border-radius:4px; padding:4px 8px; display:inline-block; margin-bottom:8px;">OFERTA POR TEMPO LIMITADO</div>
-  <h2><i class="fas fa-tools"></i> Curso de Instrumentação Industrial</h2>
-  <a class="button" href="https://go.hotmart.com/V93269953X" target="_blank">Garanta sua Oferta agora!</a>
-  <img src="capa-instrumentacao.webp" alt="Curso Instrumentação" loading="lazy">
-</div>
+      <div class="grid3">
+        <div class="mini-card">
+          <b><i class="fas fa-industry"></i> Projetos Industriais</b>
+          <div class="muted">Instrumentação, automação, melhorias, especificações e documentação técnica.</div>
+        </div>
+        <div class="mini-card">
+          <b><i class="fas fa-user-cog"></i> Consultoria Técnica</b>
+          <div class="muted">Diagnóstico, recomendações, padronização e apoio em decisões técnicas.</div>
+        </div>
+        <div class="mini-card">
+          <b><i class="fas fa-chalkboard-teacher"></i> Treinamentos</b>
+          <div class="muted">Treinamentos práticos para equipes (presencial ou in company).</div>
+        </div>
+      </div>
+    </section>
 
-<section id="cursos">
-  <h2>Cursos</h2>
-  <p>Cursos 100% online com foco prático, voltados para formação de profissionais em automação, instrumentação e processos industriais.</p>
-  <a href="https://hotmart.com/pt-br/club/alogyengenharia" class="button" target="_blank">Veja nossos Cursos</a>
-</section>
+    <!-- PROJETOS (com fotos) -->
+    <section id="projetos" class="section-card">
+      <div class="section-title">
+        <div class="bar"></div><h3>Projetos e trabalhos</h3>
+      </div>
+      <p class="muted">
+        Coloque aqui fotos reais. (Sugestão: crie uma pasta <b>assets/img</b> e suba imagens otimizadas.)
+      </p>
 
-<section id="projetos">
-  <h2>Projetos</h2>
-  <p>Desenvolvemos soluções em automação e instrumentação industrial, com foco na eficiência operacional, segurança e conformidade com normas técnicas.</p>
-</section>
+      <div class="grid3">
+        <div class="mini-card">
+          <img class="thumb" src="assets/img/projeto1.webp" alt="Projeto 1" loading="lazy">
+          <div style="margin-top:10px">
+            <b>Case 1 — (título curto)</b>
+            <div class="muted" style="font-size:13px">Problema → Solução → Resultado (1–2 linhas).</div>
+          </div>
+        </div>
 
-<section id="consultoria">
-  <h2>Consultoria</h2>
-  <p>Oferecemos consultorias técnicas para indústrias que desejam otimizar processos, reduzir falhas e melhorar o desempenho de sistemas automatizados.</p>
-</section>
+        <div class="mini-card">
+          <img class="thumb" src="assets/img/projeto2.webp" alt="Projeto 2" loading="lazy">
+          <div style="margin-top:10px">
+            <b>Case 2 — (título curto)</b>
+            <div class="muted" style="font-size:13px">Ex.: pesagem, calibração, retrofit, integração.</div>
+          </div>
+        </div>
 
-<section id="servicos">
-  <h2>Serviços</h2>
-  <p>Realizamos serviços especializados de campo, incluindo comissionamento, calibrações, start-up de sistemas e adequações técnicas.</p>
-</section>
+        <div class="mini-card">
+          <img class="thumb" src="assets/img/projeto3.webp" alt="Projeto 3" loading="lazy">
+          <div style="margin-top:10px">
+            <b>Case 3 — (título curto)</b>
+            <div class="muted" style="font-size:13px">Ex.: comissionamento, melhoria, segurança.</div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<section id="treinamentos">
-  <h2>Treinamentos</h2>
-  <p>Treinamentos presenciais e in company com aplicação direta no chão de fábrica, voltados para eletricistas, instrumentistas e operadores.</p>
-</section>
+    <!-- CONSULTORIA -->
+    <section id="consultoria" class="section-card">
+      <div class="section-title">
+        <div class="bar"></div><h3>Consultoria</h3>
+      </div>
+      <p class="muted">
+        Apoio técnico para otimizar processos, reduzir falhas e melhorar desempenho de sistemas automatizados.
+      </p>
+      <a class="btn" href="https://wa.me/5519991787430?text=Ol%C3%A1!%20Quero%20falar%20sobre%20consultoria%20t%C3%A9cnica." target="_blank" rel="noopener">
+        <i class="fab fa-whatsapp"></i> Falar sobre consultoria
+      </a>
+    </section>
 
-<section>
-  <h2>Blog Técnico</h2>
-  <p>Confira artigos sobre automação, instrumentação industrial e as novas tendências da Indústria 5.0.</p>
-  <a href="blog.html" class="button">Acessar o Blog</a>
-</section>
+    <!-- TREINAMENTOS -->
+    <section id="treinamentos" class="section-card">
+      <div class="section-title">
+        <div class="bar"></div><h3>Treinamentos</h3>
+      </div>
+      <p class="muted">
+        Treinamentos presenciais e in company com aplicação prática (eletricistas, instrumentistas e operadores).
+      </p>
+    </section>
 
-<section id="contato">
-  <h2>Contato</h2>
-  <p>Entre em contato conosco para solicitar um orçamento ou tirar dúvidas.</p>
-  <p><strong>Email:</strong> <a href="mailto:contato@alogy.com.br">contato@alogy.com.br</a></p>
-</section>
+    <!-- BLOG -->
+    <section id="blog" class="section-card">
+      <div class="section-title">
+        <div class="bar"></div><h3>Blog Técnico</h3>
+      </div>
+      <p class="muted">
+        Artigos sobre automação, instrumentação e tendências. (No GitHub, o blog pode ser simples e organizado.)
+      </p>
+      <a class="btn secondary" href="blog.html"><i class="fas fa-book"></i> Acessar o Blog</a>
+    </section>
 
-<footer>
-  <p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p>
-</footer>
+    <!-- CONTATO (foco WhatsApp) -->
+    <section id="contato" class="section-card">
+      <div class="section-title">
+        <div class="bar"></div><h3>Contato</h3>
+      </div>
+      <p class="muted">
+        Canal preferencial: WhatsApp (mais rápido). Se precisar, e-mail abaixo.
+      </p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:10px">
+        <a class="btn" href="https://wa.me/5519991787430?text=Ol%C3%A1!%20Vim%20pelo%20site%20ALOGY%20e%20quero%20fazer%20um%20or%C3%A7amento." target="_blank" rel="noopener">
+          <i class="fab fa-whatsapp"></i> Chamar no WhatsApp
+        </a>
+        <a class="btn secondary" href="mailto:contato@alogy.com.br">
+          <i class="fas fa-envelope"></i> contato@alogy.com.br
+        </a>
+      </div>
+    </section>
+  </main>
 
+  <footer>
+    <p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p>
+  </footer>
 </body>
 </html>
