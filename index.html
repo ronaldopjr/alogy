@@ -273,8 +273,8 @@
       transform:scale(1.02);
       transition:opacity .5s ease, transform .8s ease;
 
-      /* ✅ pedido: imagem original (sem escurecer) */
-      background: var(--img, none);
+      /* ✅ ALTERADO: desktop usa --img-desktop */
+      background: var(--img-desktop, none);
       background-size: cover;
 
       /* ✅ pedido: ajustar enquadramento (menos corte no rosto) */
@@ -481,9 +481,9 @@
     border:1px solid rgba(255,255,255,.12);
   }
 
-  /* ✅ pedido: imagem original também no mobile + ajuste do enquadramento */
+  /* ✅ ALTERADO: mobile usa --img-mobile (fallback pro desktop) */
   .slide{
-    background: var(--img, none);
+    background: var(--img-mobile, var(--img-desktop, none));
     background-size: cover;
     background-position: 80% 14%;
   }
@@ -790,7 +790,9 @@
   <div class="banner-wrap banner-fullwidth">
     <div class="banner" aria-label="Banner principal com 3 destaques">
       <div class="slides">
-        <a class="slide active" href="industrial.html" style="--img:url('banner1.webp')" aria-label="Ir para Industrial">
+        <a class="slide active" href="industrial.html"
+           style="--img-desktop:url('banner1.webp'); --img-mobile:url('banner1_mobile.webp');"
+           aria-label="Ir para Industrial">
           <div class="banner-content">
             <div class="banner-card">
               <div class="banner-title">Engenharia Industrial</div>
@@ -806,7 +808,9 @@ Automação, instrumentação e projetos elétricos industriais — engenharia a
           </div>
         </a>
 
-        <a class="slide" href="residencial.html" style="--img:url('banner2.webp')" aria-label="Ir para Residencial">
+        <a class="slide" href="residencial.html"
+           style="--img-desktop:url('banner2.webp'); --img-mobile:url('banner2_mobile.webp');"
+           aria-label="Ir para Residencial">
           <div class="banner-content">
             <div class="banner-card">
               <div class="banner-title">Projetos Residenciais</div>
@@ -822,7 +826,9 @@ Projetos elétricos, diagramas técnicos, adequações NR10 e soluções de auto
           </div>
         </a>
 
-        <a class="slide" href="cursos.html" style="--img:url('banner3.webp')" aria-label="Ir para Cursos">
+        <a class="slide" href="cursos.html"
+           style="--img-desktop:url('banner3.webp'); --img-mobile:url('banner3_mobile.webp');"
+           aria-label="Ir para Cursos">
           <div class="banner-content">
             <div class="banner-card">
               <div class="banner-title">Cursos</div>
