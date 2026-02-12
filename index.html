@@ -95,7 +95,7 @@
       gap:14px;
       text-decoration:none;
       color:inherit;
-      margin-left:-250px;
+      margin-left:-300px;
     }
     .logo-wrapper img{width:54px;height:auto}
     .logo-wrapper h1{
@@ -515,25 +515,7 @@
     const FORM_ENDPOINT = "https://formsubmit.co/ajax/contato@alogy.com.br";
 
     function $(id){ return document.getElementById(id); }
-
-    function buildProfessionalMessage(data){
-      // deixa 100% “clean” no e-mail
-      // (sem duplicar os campos dentro do texto, e sem bagunça)
-      const lines = [
-        "Novo contato recebido pelo site ALOGY",
-        "------------------------------------",
-        `Nome: ${data.nome}`,
-        `Telefone: ${data.fone}`,
-        `E-mail: ${data.email}`,
-        `Cidade/Local: ${data.cidade}`,
-        `Assunto: ${data.assunto}`,
-        "",
-        "Mensagem:",
-        data.msg
-      ];
-      return lines.join("\n");
-    }
-
+    
     function setButtonState(){
       const nome = $("c_nome").value.trim();
       const email = $("c_email").value.trim();
@@ -588,12 +570,12 @@
         payload.append("Assunto", assunto);
 
         // Campo principal do FormSubmit (vai como "Mensagem")
-        payload.append("Mensagem", message);
+        payload.append("Mensagem", msg);
 
         // Campos especiais do FormSubmit
         payload.append("_subject", subject);
         payload.append("_template", "box");   // deixa o e-mail mais “organizado” e limpo
-        payload.append("_captcha", "false");
+        payload.append("_captcha", "true");
         payload.append("_replyto", email);    // responder direto para quem preencheu
 
         const res = await fetch(FORM_ENDPOINT, {
