@@ -430,58 +430,68 @@
 
   .banner-title{font-size:1.65rem}
 
-  /* Centraliza o card no meio do banner */
+  /* Centraliza card */
   .banner-content{
     padding:18px;
     justify-content:center;
     align-items:center;
   }
 
-  /* Card vira a “ilha” e já reserva espaço pras setas */
   .banner-card{
-    width: calc(100% - 24px);
-    max-width: 440px;
-    padding: 22px 78px 62px;
+    width: calc(100% - 40px);
+    max-width: 420px;
+    padding: 24px 24px 70px;
   }
 
-  /* ===== SETAS MOBILE (AJUSTADAS) ===== */
+  /* ===== SETAS CENTRALIZADAS NA METADE ===== */
   .banner-nav{
-    width:42px;
-    height:42px;
+    top:50%;
+    transform:translateY(-50%);
+    width:44px;
+    height:44px;
     border-radius:999px;
-    border:1px solid rgba(255,255,255,.14);
-    background: rgba(255,255,255,.05);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    box-shadow: 0 8px 22px rgba(0,0,0,.22);
 
-    opacity:.55;
-    transition: opacity .2s ease, background .2s ease, transform .15s ease;
+    border:1px solid rgba(255,255,255,.18);
+    background: rgba(255,255,255,.06);
+
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+
+    box-shadow: 0 8px 25px rgba(0,0,0,.25);
+    opacity:.65;
     z-index:10;
   }
 
+  .banner-nav.prev{ left:10px; }
+  .banner-nav.next{ right:10px; }
+
   .banner-nav:hover{
-    opacity:.95;
-    background: rgba(255,255,255,.12);
-    transform: translateY(-50%) scale(1.05);
+    opacity:1;
+    background: rgba(255,255,255,.14);
   }
-
-  .banner-nav:active{
-    transform: translateY(-50%) scale(0.96);
-  }
-
-  .banner-nav.prev{ left:18px; }
-  .banner-nav.next{ right:18px; }
 
   .banner-nav i{
     font-size:1rem;
-    opacity:.92;
   }
 
-  /* Bolinhas por cima e dentro da ilha */
+  /* ===== BOLINHAS MAIS DISCRETAS ===== */
   .banner-dots{
-    bottom:22px;
-    z-index:10;
+    bottom:18px;
+    background: rgba(0,0,0,.25);
+    border:1px solid rgba(255,255,255,.15);
+    padding:6px 10px;
+  }
+
+  .dot{
+    width:8px;
+    height:8px;
+    background: rgba(255,255,255,.35);
+    border:1px solid rgba(255,255,255,.5);
+  }
+
+  .dot.active{
+    background:#fff;
+    transform:scale(1.15);
   }
 
   .form-grid{grid-template-columns:1fr}
