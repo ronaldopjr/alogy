@@ -430,6 +430,11 @@
 
   .banner-title{font-size:1.65rem}
 
+  /* ===== Banner mostrando mais a imagem ===== */
+  .banner{
+    height:460px;
+  }
+
   /* Centraliza card */
   .banner-content{
     padding:18px;
@@ -437,13 +442,24 @@
     align-items:center;
   }
 
+  /* Card mais leve pra aparecer a imagem atrás */
   .banner-card{
     width: calc(100% - 40px);
     max-width: 420px;
-    padding: 24px 24px 70px;
+    padding:24px 24px 70px;
+
+    background: rgba(20,25,35,.65);
+    border:1px solid rgba(255,255,255,.12);
   }
 
-  /* ===== SETAS CENTRALIZADAS NA METADE ===== */
+  /* Gradient mais suave pra não esconder a foto */
+  .slide{
+    background:
+      linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.40)),
+      var(--img, none);
+  }
+
+  /* ===== SETAS CENTRALIZADAS ===== */
   .banner-nav{
     top:50%;
     transform:translateY(-50%);
@@ -462,8 +478,8 @@
     z-index:10;
   }
 
-  .banner-nav.prev{ left:10px; }
-  .banner-nav.next{ right:10px; }
+  .banner-nav.prev{ left:16px; }
+  .banner-nav.next{ right:16px; }
 
   .banner-nav:hover{
     opacity:1;
@@ -474,12 +490,13 @@
     font-size:1rem;
   }
 
-  /* ===== BOLINHAS MAIS DISCRETAS ===== */
+  /* ===== BOLINHAS ===== */
   .banner-dots{
     bottom:18px;
     background: rgba(0,0,0,.25);
     border:1px solid rgba(255,255,255,.15);
     padding:6px 10px;
+    z-index:10;
   }
 
   .dot{
