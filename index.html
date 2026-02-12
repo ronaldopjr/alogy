@@ -49,29 +49,16 @@
       line-height:1.6;
     }
 
-   a{color:inherit}
-.container{max-width:1100px;margin:0 auto;padding:0 18px}
+    a{color:inherit}
+    .container{max-width:1100px;margin:0 auto;padding:0 18px}
 
-/* ===== HEADER: logo mais à esquerda (só no header) ===== */
-header .container{
-  padding-left: 6px;   /* antes era 18px */
-  padding-right: 18px; /* mantém alinhado */
-}
-
-/* ===== BANNER: mais à esquerda (desktop) ===== */
-.banner-fullwidth{
-  width:100%;
-  padding: 18px calc(18px + var(--social-safe)) 10px 0px; /* left 0px */
-}
-
-
-@media (max-width: 768px){
-  header .container{
-    padding-left: 10px;
-    padding-right: 10px;
-  }
-}
-
+    /* =========================
+       HEADER (DESKTOP): logo um pouco mais à esquerda
+       ========================= */
+    header .container{
+      padding-left: 6px;
+      padding-right: 18px;
+    }
 
     .btn{
       display:inline-flex;align-items:center;gap:10px;
@@ -88,11 +75,7 @@ header .container{
       box-shadow:none; border:1px solid rgba(0,107,177,.25);
     }
     .btn.secondary:hover{background:rgba(0,107,177,.12)}
-    .btn:disabled{
-      opacity:.55;
-      cursor:not-allowed;
-      transform:none;
-    }
+    .btn:disabled{opacity:.55;cursor:not-allowed;transform:none;}
 
     header{
       background:var(--primary);
@@ -119,10 +102,10 @@ header .container{
     }
 
     .logo-wrapper img{
-  width:300px;
-  height:auto;
-  display:block;
-}
+      width:300px;
+      height:auto;
+      display:block;
+    }
 
     .menu-toggle{
       display:none;
@@ -162,10 +145,7 @@ header .container{
       transition:background .2s ease, opacity .2s ease;
     }
 
-    nav.desktop a:hover{
-      background:rgba(255,255,255,.08);
-      opacity:1;
-    }
+    nav.desktop a:hover{background:rgba(255,255,255,.08);opacity:1;}
 
     nav.desktop a::after{
       content:"";
@@ -211,8 +191,6 @@ header .container{
       box-shadow:0 8px 18px rgba(0,0,0,.18);
       transition: transform .15s ease, filter .2s ease, box-shadow .2s ease, opacity .2s ease;
       will-change: transform;
-
-      /* ✅ pedido: menos destacado */
       opacity: .72;
       filter: saturate(.95);
     }
@@ -220,8 +198,6 @@ header .container{
       transform: translateX(-2px) scale(1.03);
       filter: brightness(1.08) saturate(1.05);
       box-shadow:0 14px 30px rgba(0,0,0,.26);
-
-      /* ✅ pedido: hover volta ao normal */
       opacity: 1;
     }
 
@@ -255,15 +231,9 @@ header .container{
       transition: transform .15s ease, filter .2s ease;
       will-change: transform;
     }
-    .fab-btn:hover{
-      transform: translateY(-1px);
-      filter: brightness(1.03);
-    }
+    .fab-btn:hover{transform: translateY(-1px);filter: brightness(1.03);}
 
-    .fab-btn.wa{
-      background:#25d366;
-      color:#061022;
-    }
+    .fab-btn.wa{background:#25d366;color:#061022;}
     .fab-btn.mail{
       background:rgba(255,255,255,.92);
       color:#0b3a62;
@@ -272,11 +242,16 @@ header .container{
 
     .banner-wrap{ width:100%; padding: 22px 0 10px; }
 
+    /* =========================
+       BANNER (DESKTOP): alinhado mais à esquerda (bordas)
+       ========================= */
     .banner-fullwidth{
-  width:100%;
-  padding: 18px calc(18px + var(--social-safe)) 10px 0px;
-}
-
+      width:100%;
+      padding-left: 0 !important;
+      padding-right: calc(18px + var(--social-safe)) !important;
+      padding-top: 18px !important;
+      padding-bottom: 10px !important;
+    }
 
     .banner{
       position:relative;
@@ -295,11 +270,8 @@ header .container{
       transform:scale(1.02);
       transition:opacity .5s ease, transform .8s ease;
 
-      /* ✅ ALTERADO: desktop usa --img-desktop */
       background: var(--img-desktop, none);
       background-size: cover;
-
-      /* ✅ pedido: ajustar enquadramento (menos corte no rosto) */
       background-position: 78% 18%;
 
       text-decoration:none;
@@ -312,7 +284,7 @@ header .container{
       inset:0;
       display:flex;
       align-items:flex-end;
-      padding: 26px;
+      padding: 26px; /* isso só afeta o card/texto, não a borda do banner */
     }
 
     .banner-card{
@@ -339,9 +311,7 @@ header .container{
       margin-bottom: 12px;
     }
 
-    .banner-actions{
-      display:flex; gap:10px; flex-wrap:wrap;
-    }
+    .banner-actions{display:flex; gap:10px; flex-wrap:wrap;}
 
     .banner-nav{
       position:absolute;
@@ -450,139 +420,136 @@ header .container{
       margin-top:26px; font-size:.92rem;
     }
 
-@media (max-width: 768px){
+    /* =========================
+       MOBILE
+       ========================= */
+    @media (max-width: 768px){
 
-  /* ===== Header ===== */
+      /* Header: logo centralizado + hamburger à direita */
+      nav.desktop{display:none}
 
-  nav.desktop{display:none}
-  .menu-toggle{
-    display:block;
-    position:absolute;
-    right:12px;
-  }
+      header .container{
+        padding-left: 10px;
+        padding-right: 10px;
+      }
 
-  .social-floating{display:none}
+      .menu-toggle{
+        display:block;
+        position:absolute;
+        right:12px;
+      }
 
-  /* Centraliza o logo */
-  .headbar{
-    justify-content:center;
-    position:relative;
-  }
+      .social-floating{display:none}
 
-  .logo-wrapper img{
-    width:180px;   /* ajuste fino ideal pro mobile */
-  }
+      .headbar{
+        justify-content:center;
+        position:relative;
+      }
 
-  /* ===== Banner mostrando mais a imagem ===== */
-  .banner{
-    height:460px;
+      .logo-wrapper img{
+        width:180px;
+      }
 
-    --card-w: min(360px, calc(100% - 40px));
-    --arrow-w: 44px;
-    --arrow-gap: 6px;
-  }
+      /* Banner: alinhar mais à esquerda também */
+      .banner-fullwidth{
+        padding-left: 0 !important;
+        padding-right: 12px !important;
+        padding-top: 14px !important;
+        padding-bottom: 8px !important;
+      }
 
-  /* 🔥 Desce o glass */
-  .banner-content{
-    padding:18px;
-    justify-content:center;
-    align-items:flex-end;
-    padding-bottom:48px;
-  }
+      .banner{
+        height:460px;
+        --card-w: min(360px, calc(100% - 40px));
+        --arrow-w: 44px;
+        --arrow-gap: 6px;
+      }
 
-  /* ===== Texto menor ===== */
-  .banner-title{
-    font-size:1.25rem;
-    line-height:1.2;
-    margin:2px 0 8px;
-  }
+      .banner-content{
+        padding:18px;
+        justify-content:center;
+        align-items:flex-end;
+        padding-bottom:48px;
+      }
 
-  .banner-desc{
-    font-size:.86rem;
-    line-height:1.45;
-    margin-bottom:10px;
-  }
+      .banner-title{
+        font-size:1.25rem;
+        line-height:1.2;
+        margin:2px 0 8px;
+      }
 
-  .banner-actions .btn{
-    padding:9px 14px;
-    font-size:.9rem;
-  }
+      .banner-desc{
+        font-size:.86rem;
+        line-height:1.45;
+        margin-bottom:10px;
+      }
 
-  /* ===== Glass ===== */
-  .banner-card{
-    width: var(--card-w);
-    max-width:360px;
-    padding:16px 18px 20px;
-    background: rgba(20,25,35,.60);
-    border:1px solid rgba(255,255,255,.12);
-  }
+      .banner-actions .btn{
+        padding:9px 14px;
+        font-size:.9rem;
+      }
 
-  /* ===== Imagem ===== */
-  .slide{
-    background: var(--img-mobile, var(--img-desktop, none));
-    background-size: cover;
-    background-position: 80% 14%;
-  }
+      .banner-card{
+        width: var(--card-w);
+        max-width:360px;
+        padding:16px 18px 20px;
+        background: rgba(20,25,35,.60);
+        border:1px solid rgba(255,255,255,.12);
+      }
 
-  /* ===== Setas ===== */
-  .banner-nav{
-    top:50%;
-    transform:translateY(-50%);
-    width: var(--arrow-w);
-    height: var(--arrow-w);
-    border-radius:999px;
-    border:1px solid rgba(255,255,255,.18);
-    background: rgba(255,255,255,.07);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    box-shadow: 0 8px 25px rgba(0,0,0,.25);
-    opacity:.62;
-    z-index:10;
-  }
+      .slide{
+        background: var(--img-mobile, var(--img-desktop, none));
+        background-size: cover;
+        background-position: 80% 14%;
+      }
 
-  .banner-nav.prev{
-    left: calc(50% - (var(--card-w) / 2) - var(--arrow-gap) - (var(--arrow-w) / 2));
-  }
+      .banner-nav{
+        top:50%;
+        transform:translateY(-50%);
+        width: var(--arrow-w);
+        height: var(--arrow-w);
+        border-radius:999px;
+        border:1px solid rgba(255,255,255,.18);
+        background: rgba(255,255,255,.07);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        box-shadow: 0 8px 25px rgba(0,0,0,.25);
+        opacity:.62;
+        z-index:10;
+      }
 
-  .banner-nav.next{
-    left: calc(50% + (var(--card-w) / 2) + var(--arrow-gap) - (var(--arrow-w) / 2));
-  }
+      .banner-nav.prev{
+        left: calc(50% - (var(--card-w) / 2) - var(--arrow-gap) - (var(--arrow-w) / 2));
+      }
 
-  .banner-nav i{
-    font-size:.95rem;
-  }
+      .banner-nav.next{
+        left: calc(50% + (var(--card-w) / 2) + var(--arrow-gap) - (var(--arrow-w) / 2));
+      }
 
-  /* ===== Bolinhas ===== */
-  .banner-dots{
-    bottom:18px;
-    background: rgba(0,0,0,.22);
-    border:1px solid rgba(255,255,255,.14);
-    padding:6px 10px;
-    z-index:10;
-  }
+      .banner-nav i{font-size:.95rem;}
 
-  .dot{
-    width:8px;
-    height:8px;
-    background: rgba(255,255,255,.32);
-    border:1px solid rgba(255,255,255,.5);
-  }
+      .banner-dots{
+        bottom:18px;
+        background: rgba(0,0,0,.22);
+        border:1px solid rgba(255,255,255,.14);
+        padding:6px 10px;
+        z-index:10;
+      }
 
-  .dot.active{
-    background:#fff;
-    transform:scale(1.15);
-  }
+      .dot{
+        width:8px;
+        height:8px;
+        background: rgba(255,255,255,.32);
+        border:1px solid rgba(255,255,255,.5);
+      }
 
-  .form-grid{
-    grid-template-columns:1fr
-  }
+      .dot.active{
+        background:#fff;
+        transform:scale(1.15);
+      }
 
-  .banner-fullwidth{
-    padding:14px 12px 8px;
-  }
-}
-
-
+      .form-grid{grid-template-columns:1fr}
+    }
   </style>
 
   <script>
@@ -662,7 +629,7 @@ header .container{
     const FORM_ENDPOINT = "https://formsubmit.co/ajax/contato@alogy.com.br";
 
     function $(id){ return document.getElementById(id); }
-    
+
     function setButtonState(){
       const nome = $("c_nome").value.trim();
       const email = $("c_email").value.trim();
@@ -689,17 +656,13 @@ header .container{
       const assunto = $("c_assunto").value.trim();
       const msg = $("c_msg").value.trim();
 
-      // segurança extra (mesmo com botão desabilitado)
       if(!(nome && email && fone && cidade && assunto && msg)){
         alert("Preencha todos os campos para enviar.");
         return;
       }
 
-      // assunto do e-mail (padrão que você pediu)
       const subject = `FORMULARIO - ${assunto}`;
 
-     
-      // feedback UI
       if(success) success.classList.remove("show");
       if(btn){
         btn.disabled = true;
@@ -713,15 +676,12 @@ header .container{
         payload.append("E-mail", email);
         payload.append("Cidade/Local", cidade);
         payload.append("Assunto", assunto);
-
-        // Campo principal do FormSubmit (vai como "Mensagem")
         payload.append("Mensagem", msg);
 
-        // Campos especiais do FormSubmit
         payload.append("_subject", subject);
-        payload.append("_template", "box");   // deixa o e-mail mais “organizado” e limpo
+        payload.append("_template", "box");
         payload.append("_captcha", "true");
-        payload.append("_replyto", email);    // responder direto para quem preencheu
+        payload.append("_replyto", email);
 
         const res = await fetch(FORM_ENDPOINT, {
           method: "POST",
@@ -730,12 +690,8 @@ header .container{
         });
 
         const json = await res.json().catch(() => null);
+        if(!res.ok || (json && json.success === false)) throw new Error("Falha ao enviar.");
 
-        if(!res.ok || (json && json.success === false)){
-          throw new Error("Falha ao enviar.");
-        }
-
-        // sucesso
         if(success) success.classList.add("show");
         $("formContato").reset();
         setButtonState();
@@ -746,7 +702,6 @@ header .container{
       }finally{
         if(btn){
           btn.innerHTML = `<i class="fas fa-paper-plane"></i> Enviar`;
-          // o setButtonState vai definir se fica habilitado ou não
           setButtonState();
         }
       }
@@ -755,7 +710,6 @@ header .container{
     document.addEventListener('DOMContentLoaded', () => {
       initBanner();
 
-      // validação dinâmica: só habilita quando todos os campos preenchidos
       ["c_nome","c_email","c_fone","c_cidade","c_assunto","c_msg"].forEach((id) => {
         const el = $(id);
         if(el) el.addEventListener("input", setButtonState);
@@ -768,7 +722,6 @@ header .container{
 <body>
   <header>
     <div class="container headbar">
-      
       <a href="index.html" class="logo-wrapper" aria-label="Voltar para o início">
         <img src="logo-alogy.webp" alt="ALOGY Engenharia" />
       </a>
@@ -837,11 +790,9 @@ header .container{
           <div class="banner-content">
             <div class="banner-card">
               <div class="banner-title">Engenharia Industrial</div>
-
               <div class="banner-desc">
-Automação, instrumentação e projetos elétricos industriais — engenharia aplicada com foco em confiabilidade e resultado.
-</div>
-
+                Automação, instrumentação e projetos elétricos industriais — engenharia aplicada com foco em confiabilidade e resultado.
+              </div>
               <div class="banner-actions">
                 <span class="btn"><i class="fas fa-industry"></i> Entrar</span>
               </div>
@@ -855,11 +806,9 @@ Automação, instrumentação e projetos elétricos industriais — engenharia a
           <div class="banner-content">
             <div class="banner-card">
               <div class="banner-title">Projetos Residenciais</div>
-
               <div class="banner-desc">
-Projetos elétricos, diagramas técnicos, adequações NR10 e soluções de automação para residências e edifícios.
-</div>
-
+                Projetos elétricos, diagramas técnicos, adequações NR10 e soluções de automação para residências e edifícios.
+              </div>
               <div class="banner-actions">
                 <span class="btn"><i class="fas fa-house-signal"></i> Entrar</span>
               </div>
@@ -874,9 +823,8 @@ Projetos elétricos, diagramas técnicos, adequações NR10 e soluções de auto
             <div class="banner-card">
               <div class="banner-title">Cursos</div>
               <div class="banner-desc">
-Cursos online em automação e instrumentação para evolução técnica e profissional.
-</div>
-
+                Cursos online em automação e instrumentação para evolução técnica e profissional.
+              </div>
               <div class="banner-actions">
                 <span class="btn"><i class="fas fa-graduation-cap"></i> Entrar</span>
               </div>
@@ -909,7 +857,6 @@ Cursos online em automação e instrumentação para evolução técnica e profi
         Use o formulário para detalhar sua necessidade. O botão WhatsApp flutuante fica disponível o tempo todo para contato rápido.
       </p>
 
-      <!-- FORM -->
       <form id="formContato" onsubmit="enviarFormulario(event)" aria-label="Formulário de contato" novalidate>
         <div class="form-grid">
           <div class="field">
