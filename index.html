@@ -558,13 +558,17 @@
 
 
  .crea-panel img{
-  width:320px;        /* símbolo grande */
-  max-width:85%;
+  width:450px;          /* maior */
+  max-width:95%;
   height:auto;
-  opacity:.32;        /* suavidade */
-  filter: grayscale(100%);
+
+  opacity:.75;          /* mantém presença */
+  filter:none;          /* mantém cor original */
+  mix-blend-mode:multiply; /* integra com o fundo cinza */
   pointer-events:none;
 }
+
+
 
 
     @media (max-width: 1020px){
