@@ -53,7 +53,10 @@
       --banner-h: 520px;
       --banner-radius: 18px;
 
+      /* reserva da barra social (aproximar banner/valores dela) */
       --social-safe: 52px;
+
+      /* espaço à esquerda (pra não grudar) */
       --left-gutter: 22px;
     }
 
@@ -72,9 +75,33 @@
     a{color:inherit}
     .container{max-width:1100px;margin:0 auto;padding:0 18px}
 
-    /* ===== HEADER ===== */
+    /* =========================
+       HEADER (DESKTOP): logo centralizado
+       ========================= */
+    header .container{
+      padding-left: 14px;
+      padding-right: 18px;
+    }
+
+    .btn{
+      display:inline-flex;align-items:center;gap:10px;
+      background:var(--brand);color:#fff;text-decoration:none;
+      padding:12px 18px;border-radius:12px;font-weight:700;
+      box-shadow:0 6px 14px rgba(0,0,0,.12);
+      transition:transform .15s ease, background-color .2s ease, opacity .2s ease;
+      border:none;
+      cursor:pointer;
+    }
+    .btn:hover{background:var(--accent);transform:translateY(-1px)}
+    .btn.secondary{
+      background:rgba(0,107,177,.08); color:var(--brand);
+      box-shadow:none; border:1px solid rgba(0,107,177,.25);
+    }
+    .btn.secondary:hover{background:rgba(0,107,177,.12)}
+    .btn:disabled{opacity:.55;cursor:not-allowed;transform:none;}
+
     header{
-      background:#000;
+      background:var(--primary);
       color:#fff;
       position:sticky;
       top:0;
@@ -82,6 +109,7 @@
       border-bottom:1px solid rgba(255,255,255,.10);
     }
 
+    /* (ALTERADO) centraliza o logo e mantém botões absolutos */
     .headbar{
       display:flex;
       align-items:center;
@@ -91,7 +119,12 @@
     }
 
     .logo-wrapper{
-      margin:0 auto;
+      display:flex;
+      align-items:center;
+      gap:14px;
+      text-decoration:none;
+      color:inherit;
+      margin:0 auto; /* garante centralização */
     }
 
     .logo-wrapper img{
@@ -102,36 +135,19 @@
 
     .menu-toggle{
       display:none;
-      position:absolute;
-      right:12px;
-      top:50%;
-      transform:translateY(-50%);
       background:none;
       border:none;
       color:#fff;
       font-size:1.75rem;
       cursor:pointer;
-      z-index:3300;
+      padding:10px;
+      border-radius:10px;
+      transition:background .2s ease;
     }
-
-    /* ===== CREA (MAIOR E QUASE ENCOSTADO À DIREITA) ===== */
-    .crea-top{
-      position:absolute;
-      right:16px;
-      top:50%;
-      transform:translateY(-50%);
-      z-index:3200;
-      pointer-events:none;
-    }
-
-    .crea-top img{
-      height:72px; /* maior e proporcional ao logo ALOGY */
-      width:auto;
-      display:block;
-    }
+    .menu-toggle:hover{background:rgba(255,255,255,.08)}
 
     nav.desktop{
-      background:#004b80;
+      background:var(--dark);
       border-top:1px solid rgba(255,255,255,.10);
     }
 
@@ -144,20 +160,40 @@
     }
 
     nav.desktop a{
+      position:relative;
       color:#fff;
       text-decoration:none;
       font-weight:700;
       font-size:1.08rem;
+      opacity:.96;
       padding:12px 10px;
       border-radius:12px;
+      transition:background .2s ease, opacity .2s ease;
     }
 
-    nav.desktop a:hover{background:rgba(255,255,255,.08)}
+    nav.desktop a:hover{background:rgba(255,255,255,.08);opacity:1;}
+
+    nav.desktop a::after{
+      content:"";
+      position:absolute;
+      left:10px;
+      right:10px;
+      bottom:4px;
+      height:2px;
+      background:rgba(207,232,255,.0);
+      border-radius:999px;
+      transition:background .2s ease;
+    }
+
+    nav.desktop a:hover::after{
+      background:rgba(207,232,255,.85);
+    }
 
     nav.mobile{
       display:none;
       flex-direction:column;
-      background:#004b80;
+      background:var(--dark);
+      border-top:1px solid rgba(255,255,255,.10);
     }
     nav.mobile a{
       color:#fff;
@@ -166,7 +202,35 @@
       padding:14px 18px;
       border-bottom:1px solid rgba(255,255,255,.08);
     }
+    nav.mobile a:hover{background:rgba(255,255,255,.08)}
     nav.mobile.show{display:flex}
+
+    /* ====== (ALTERADO) CREA no topo direito: imagem estática, sem borda/caixa e sem clique ====== */
+    .crea-top{
+      position:absolute;
+      right:12px; /* (ALTERADO) quase encostado no canto direito */
+      top:50%;
+      transform:translateY(-50%);
+      z-index:3200;
+
+      display:flex;
+      align-items:center;
+      justify-content:center;
+
+      background:transparent;
+      border:none;
+      box-shadow:none;
+      width:auto;
+      height:auto;
+
+      pointer-events:none; /* impede clique */
+    }
+
+    .crea-top img{
+      height:72px; /* (ALTERADO) maior (altura visual parecida com o logo ALOGY) */
+      width:auto;
+      display:block;
+    }
 
     .social-floating{
       position:fixed; top:50%; right:0;
@@ -178,14 +242,23 @@
       width:40px;height:40px;display:flex;align-items:center;justify-content:center;
       border-radius:8px 0 0 8px;
       box-shadow:0 8px 18px rgba(0,0,0,.18);
-      opacity:.72;
+      transition: transform .15s ease, filter .2s ease, box-shadow .2s ease, opacity .2s ease;
+      will-change: transform;
+      opacity: .72;
+      filter: saturate(.95);
+    }
+    .social-floating a:hover{
+      transform: translateX(-2px) scale(1.03);
+      filter: brightness(1.08) saturate(1.05);
+      box-shadow:0 14px 30px rgba(0,0,0,.26);
+      opacity: 1;
     }
 
     .social-floating a.linkedin{background:#0077b5}
     .social-floating a.instagram{background:#e4405f}
     .social-floating a.facebook{background:#3b5998}
     .social-floating a.youtube{background:#ff0000}
-    .social-floating a.hotmart{background:#ff5c00;font-weight:900;font-family:Arial}
+    .social-floating a.hotmart{background:#ff5c00;font-weight:900;font-family:Arial;font-size:1.1rem}
     .social-floating a.tiktok{background:#000}
 
     .fab-wrap{
@@ -195,6 +268,7 @@
       z-index:1800;
       display:flex;
       gap:10px;
+      align-items:center;
     }
 
     .fab-btn{
@@ -207,7 +281,10 @@
       align-items:center;
       gap:10px;
       box-shadow:0 14px 40px rgba(0,0,0,.25);
+      transition: transform .15s ease, filter .2s ease;
+      will-change: transform;
     }
+    .fab-btn:hover{transform: translateY(-1px);filter: brightness(1.03);}
 
     .fab-btn.wa{background:#25d366;color:#061022;}
     .fab-btn.mail{
@@ -218,6 +295,9 @@
 
     .banner-wrap{ width:100%; padding: 22px 0 10px; }
 
+    /* =========================
+       BANNER + VALORES: com espaço à esquerda e perto dos ícones à direita
+       ========================= */
     .banner-fullwidth{
       width:100%;
       padding-left: var(--left-gutter) !important;
@@ -228,11 +308,11 @@
 
     .banner{
       position:relative;
-      height:520px;
-      border-radius:18px;
+      height:var(--banner-h);
+      border-radius:var(--banner-radius);
       overflow:hidden;
       border:1px solid rgba(0,0,0,.10);
-      box-shadow:0 10px 25px rgba(0,0,0,.08);
+      box-shadow:var(--shadow);
       background:#0b1220;
     }
 
@@ -242,8 +322,11 @@
       opacity:0;
       transform:scale(1.02);
       transition:opacity .5s ease, transform .8s ease;
+
+      background: var(--img-desktop, none);
       background-size: cover;
       background-position: 78% 18%;
+
       text-decoration:none;
       color:#fff;
     }
@@ -254,7 +337,7 @@
       inset:0;
       display:flex;
       align-items:flex-end;
-      padding:26px;
+      padding: 26px;
     }
 
     .banner-card{
@@ -263,79 +346,381 @@
       border:1px solid rgba(255,255,255,.18);
       border-radius:18px;
       backdrop-filter: blur(10px);
-      padding:16px;
-      box-shadow:0 18px 55px rgba(0,0,0,.35);
+      -webkit-backdrop-filter: blur(10px);
+      padding: 16px 16px 14px;
+      box-shadow: 0 18px 55px rgba(0,0,0,.35);
     }
 
-    .banner-title{font-size:2.05rem;margin-bottom:10px;}
-    .banner-desc{color: rgba(255,255,255,.88);margin-bottom:12px;}
+    .banner-title{
+      font-size:2.05rem;
+      line-height:1.1;
+      letter-spacing:.2px;
+      margin: 2px 0 10px;
+    }
 
-    .banner-actions .btn{
-      display:inline-flex;
-      gap:10px;
-      background:#006bb1;
+    .banner-desc{
+      color: rgba(255,255,255,.88);
+      font-size:1.02rem;
+      margin-bottom: 12px;
+    }
+
+    .banner-actions{display:flex; gap:10px; flex-wrap:wrap;}
+
+    .banner-nav{
+      position:absolute;
+      top:50%;
+      transform:translateY(-50%);
+      z-index:5;
+      width:52px;
+      height:52px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.25);
+      background: rgba(255,255,255,.10);
       color:#fff;
-      text-decoration:none;
-      padding:12px 18px;
-      border-radius:12px;
-      font-weight:700;
+      cursor:pointer;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 18px 45px rgba(0,0,0,.30);
+      transition: transform .15s ease, background .2s ease;
     }
+    .banner-nav:hover{
+      background: rgba(255,255,255,.16);
+      transform: translateY(-50%) scale(1.03);
+    }
+    .banner-nav.prev{left:14px}
+    .banner-nav.next{right:14px}
+
+    .banner-dots{
+      position:absolute;
+      z-index:6;
+      left:50%;
+      bottom:14px;
+      transform:translateX(-50%);
+      display:flex; gap:8px;
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.18);
+      background: rgba(0,0,0,.18);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+    .dot{
+      width:10px; height:10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.55);
+      background: rgba(255,255,255,.25);
+      cursor:pointer;
+      transition: transform .15s ease, background .2s ease;
+    }
+    .dot.active{ background: rgba(255,255,255,.95); transform: scale(1.1); }
 
     section{margin:18px auto;}
 
     .section-card{
-      background:#fff;
+      background:var(--card);
       border:1px solid rgba(0,0,0,.08);
-      border-radius:16px;
-      box-shadow:0 10px 25px rgba(0,0,0,.08);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
       padding:34px 30px;
     }
-
     .section-title{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
-    .section-title .bar{width:6px;height:28px;background:#0169b0;border-radius:999px}
-    .muted{color:#6b7280}
+    .section-title .bar{width:6px;height:28px;background:var(--accent);border-radius:999px}
+    .section-title h3{font-size:1.6rem}
+    .muted{color:var(--muted)}
 
     .form-grid{
       display:grid;
-      grid-template-columns:1fr 1fr;
+      grid-template-columns: 1fr 1fr;
       gap:12px;
       margin-top:12px;
     }
-
-    .field{display:flex;flex-direction:column;gap:6px;}
+    .field{ display:flex; flex-direction:column; gap:6px; }
     label{font-weight:700;color:#223}
     input, textarea{
+      width:100%;
       border:1px solid rgba(0,0,0,.12);
       border-radius:12px;
-      padding:12px;
-      font:inherit;
+      padding:12px 12px;
+      outline:none;
+      background: rgba(255,255,255,.92);
+      font: inherit;
+    }
+    textarea{min-height:120px; resize:vertical}
+    .form-actions{
+      display:flex; gap:12px; flex-wrap:wrap;
+      margin-top:12px;
+      align-items:center;
     }
 
-    textarea{min-height:120px}
+    .form-success{
+      display:none;
+      align-items:center;
+      gap:10px;
+      padding:12px 14px;
+      border-radius:12px;
+      border:1px solid rgba(34,197,94,.35);
+      background: rgba(34,197,94,.10);
+      color:#166534;
+      font-weight:800;
+    }
+    .form-success.show{display:flex}
 
     footer{
-      background:#004b80;
-      color:#fff;
-      text-align:center;
-      padding:22px 10px;
-      margin-top:26px;
+      background:var(--dark); color:#fff;
+      text-align:center; padding:22px 10px;
+      margin-top:26px; font-size:.92rem;
     }
 
-    /* ===== MOBILE ===== */
-    @media (max-width:768px){
+    /* =========================
+       NOSSOS VALORES (Tema A - azul/tech)
+       ========================= */
+    .values-wrap{
+      width:100%;
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+
+    .values{
+      width:100%;
+      border-radius: var(--banner-radius);
+      border:1px solid rgba(0,0,0,.10);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+
+      background:
+        radial-gradient(900px 500px at 15% 20%, rgba(0,107,177,.22), transparent 60%),
+        radial-gradient(800px 500px at 85% 0%, rgba(255,255,255,.10), transparent 55%),
+        linear-gradient(180deg, #071826 0%, #062138 55%, #041a2d 100%);
+      color:#fff;
+
+      padding: 34px 26px 28px;
+      text-align:center;
+    }
+
+    .values-title{
+      font-size: 2.55rem;
+      font-weight: 900;
+      letter-spacing: .3px;
+      margin-bottom: 18px;
+    }
+
+    .values-grid{
+      display:grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+      align-items: start;
+      margin: 0 auto 18px;
+      max-width: 980px;
+    }
+
+    .value-item{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap: 10px;
+      padding: 12px 10px;
+    }
+
+    .value-icon{
+      width: 58px;
+      height: 58px;
+      border-radius: 18px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      border: 1px solid rgba(207,232,255,.28);
+      background: rgba(0,107,177,.12);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      box-shadow: 0 14px 40px rgba(0,0,0,.18);
+      transition: all .25s ease;
+    }
+
+    .value-icon i{
+      font-size: 1.55rem;
+    }
+
+    .value-label{
+      font-weight: 900;
+      font-size: 1.05rem;
+      opacity: .98;
+    }
+
+    .values-text{
+      max-width: 900px;
+      margin: 0 auto;
+      font-size: 1.02rem;
+      line-height: 1.7;
+      color: rgba(255,255,255,.92);
+    }
+
+    .value-item:hover .value-icon{
+      transform: translateY(-3px) scale(1.05);
+      background: rgba(0,107,177,.18);
+    }
+
+    @media (max-width: 900px){
+      .values-grid{ grid-template-columns: repeat(2, 1fr); max-width: 680px; }
+      .values-title{ font-size: 2.1rem; }
+    }
+
+    /* =========================
+       MOBILE
+       ========================= */
+    @media (max-width: 768px){
+
       nav.desktop{display:none}
-      .menu-toggle{display:block}
+
+      header .container{
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+
+      .menu-toggle{
+        display:block;
+        position:absolute;
+        right:78px;  /* (ALTERADO) hambúrguer vai pra esquerda para deixar o CREA no canto */
+        top:50%;
+        transform:translateY(-50%);
+        z-index:3300; /* acima */
+      }
+
       .social-floating{display:none}
 
-      .logo-wrapper img{width:180px}
+      .headbar{
+        justify-content:center;
+        position:relative;
+      }
+
+      .logo-wrapper img{
+        width:180px;
+      }
 
       .crea-top{
-        right:58px; /* antes do hamburguer */
+        right:12px; /* (ALTERADO) no canto direito no mobile também */
       }
 
       .crea-top img{
-        height:48px;
+        height:50px; /* (ALTERADO) maior no mobile também */
+        width:auto;
       }
+
+      .banner-fullwidth{
+        padding-left: 12px !important;
+        padding-right: 12px !important;
+        padding-top: 14px !important;
+        padding-bottom: 8px !important;
+      }
+
+      .banner{
+        height:460px;
+        --card-w: min(360px, calc(100% - 40px));
+        --arrow-w: 44px;
+        --arrow-gap: 6px;
+      }
+
+      .banner-content{
+        padding:18px;
+        justify-content:center;
+        align-items:flex-end;
+        padding-bottom:48px;
+      }
+
+      .banner-title{
+        font-size:1.25rem;
+        line-height:1.2;
+        margin:2px 0 8px;
+      }
+
+      .banner-desc{
+        font-size:.86rem;
+        line-height:1.45;
+        margin-bottom:10px;
+      }
+
+      .banner-actions .btn{
+        padding:9px 14px;
+        font-size:.9rem;
+      }
+
+      .banner-card{
+        width: var(--card-w);
+        max-width:360px;
+        padding:16px 18px 20px;
+        background: rgba(20,25,35,.60);
+        border:1px solid rgba(255,255,255,.12);
+      }
+
+      .slide{
+        background: var(--img-mobile, var(--img-desktop, none));
+        background-size: cover;
+        background-position: 80% 14%;
+      }
+
+      .banner-nav{
+        top:50%;
+        transform:translateY(-50%);
+        width: var(--arrow-w);
+        height: var(--arrow-w);
+        border-radius:999px;
+        border:1px solid rgba(255,255,255,.18);
+        background: rgba(255,255,255,.07);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        box-shadow: 0 8px 25px rgba(0,0,0,.25);
+        opacity:.62;
+        z-index:10;
+      }
+
+      .banner-nav.prev{
+        left: calc(50% - (var(--card-w) / 2) - var(--arrow-gap) - (var(--arrow-w) / 2));
+      }
+
+      .banner-nav.next{
+        left: calc(50% + (var(--card-w) / 2) + var(--arrow-gap) - (var(--arrow-w) / 2));
+      }
+
+      .banner-nav i{font-size:.95rem;}
+
+      .banner-dots{
+        bottom:18px;
+        background: rgba(0,0,0,.22);
+        border:1px solid rgba(255,255,255,.14);
+        padding:6px 10px;
+        z-index:10;
+      }
+
+      .dot{
+        width:8px;
+        height:8px;
+        background: rgba(255,255,255,.32);
+        border:1px solid rgba(255,255,255,.5);
+      }
+
+      .dot.active{
+        background:#fff;
+        transform:scale(1.15);
+      }
+
+      .values{
+        padding: 26px 16px 22px;
+      }
+      .values-title{ font-size: 1.9rem; margin-bottom: 14px; }
+      .values-grid{ grid-template-columns: 1fr; gap: 12px; }
+
+      .value-item{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        gap: 10px;
+      }
+
+      .value-label{ font-size: 1.02rem; }
+      .values-text{ font-size: .95rem; }
 
       .form-grid{grid-template-columns:1fr}
     }
@@ -346,109 +731,402 @@
       const menu = document.querySelector('nav.mobile');
       if(menu) menu.classList.toggle('show');
     }
+
+    // ===== Banner slider =====
+    let currentSlide = 0;
+    let sliderTimer = null;
+
+    function getSlides(){ return Array.from(document.querySelectorAll('.slide')); }
+    function getDots(){ return Array.from(document.querySelectorAll('.dot')); }
+
+    function showSlide(index){
+      const slides = getSlides();
+      const dots = getDots();
+      if(!slides.length) return;
+
+      currentSlide = (index + slides.length) % slides.length;
+      slides.forEach((s, i) => s.classList.toggle('active', i === currentSlide));
+      dots.forEach((d, i) => d.classList.toggle('active', i === currentSlide));
+    }
+
+    function nextSlide(){ showSlide(currentSlide + 1); }
+    function prevSlide(){ showSlide(currentSlide - 1); }
+
+    function startAuto(){
+      stopAuto();
+      sliderTimer = setInterval(nextSlide, 6500);
+    }
+    function stopAuto(){
+      if(sliderTimer) clearInterval(sliderTimer);
+      sliderTimer = null;
+    }
+
+    function initBanner(){
+      const banner = document.querySelector('.banner');
+      if(!banner) return;
+
+      document.querySelectorAll('.dot').forEach((dot) => {
+        dot.addEventListener('click', () => {
+          const idx = Number(dot.getAttribute('data-idx'));
+          showSlide(idx);
+          startAuto();
+        });
+      });
+
+      const btnPrev = document.querySelector('.banner-nav.prev');
+      const btnNext = document.querySelector('.banner-nav.next');
+      if(btnPrev) btnPrev.addEventListener('click', () => { prevSlide(); startAuto(); });
+      if(btnNext) btnNext.addEventListener('click', () => { nextSlide(); startAuto(); });
+
+      banner.addEventListener('mouseenter', stopAuto);
+      banner.addEventListener('mouseleave', startAuto);
+
+      // Swipe mobile
+      let startX = 0, endX = 0;
+      banner.addEventListener('touchstart', (e) => { startX = e.touches[0].clientX; }, {passive:true});
+      banner.addEventListener('touchmove', (e) => { endX = e.touches[0].clientX; }, {passive:true});
+      banner.addEventListener('touchend', () => {
+        const diff = endX - startX;
+        if(Math.abs(diff) > 40){
+          if(diff > 0) prevSlide();
+          else nextSlide();
+          startAuto();
+        }
+        startX = 0; endX = 0;
+      });
+
+      showSlide(0);
+      startAuto();
+    }
+
+    // ===== FORM (FormSubmit) - envio profissional sem abrir outra página =====
+    const FORM_ENDPOINT = "https://formsubmit.co/ajax/contato@alogy.com.br";
+
+    function $(id){ return document.getElementById(id); }
+
+    function setButtonState(){
+      const nome = $("c_nome").value.trim();
+      const email = $("c_email").value.trim();
+      const fone = $("c_fone").value.trim();
+      const cidade = $("c_cidade").value.trim();
+      const assunto = $("c_assunto").value.trim();
+      const msg = $("c_msg").value.trim();
+
+      const allFilled = !!(nome && email && fone && cidade && assunto && msg);
+      const btn = $("btnEnviar");
+      if(btn) btn.disabled = !allFilled;
+    }
+
+    async function enviarFormulario(e){
+      e.preventDefault();
+
+      const btn = $("btnEnviar");
+      const success = $("formSuccess");
+
+      const nome = $("c_nome").value.trim();
+      const email = $("c_email").value.trim();
+      const fone = $("c_fone").value.trim();
+      const cidade = $("c_cidade").value.trim();
+      const assunto = $("c_assunto").value.trim();
+      const msg = $("c_msg").value.trim();
+
+      if(!(nome && email && fone && cidade && assunto && msg)){
+        alert("Preencha todos os campos para enviar.");
+        return;
+      }
+
+      const subject = `FORMULARIO - ${assunto}`;
+
+      if(success) success.classList.remove("show");
+      if(btn){
+        btn.disabled = true;
+        btn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Enviando...`;
+      }
+
+      try{
+        const payload = new FormData();
+        payload.append("Nome", nome);
+        payload.append("Telefone", fone);
+        payload.append("E-mail", email);
+        payload.append("Cidade/Local", cidade);
+        payload.append("Assunto", assunto);
+        payload.append("Mensagem", msg);
+
+        payload.append("_subject", subject);
+        payload.append("_template", "box");
+        payload.append("_captcha", "true");
+        payload.append("_replyto", email);
+
+        const res = await fetch(FORM_ENDPOINT, {
+          method: "POST",
+          body: payload,
+          headers: { "Accept": "application/json" }
+        });
+
+        const json = await res.json().catch(() => null);
+        if(!res.ok || (json && json.success === false)) throw new Error("Falha ao enviar.");
+
+        if(success) success.classList.add("show");
+        $("formContato").reset();
+        setButtonState();
+
+      }catch(err){
+        alert("Não foi possível enviar agora. Tente novamente em instantes.");
+        setButtonState();
+      }finally{
+        if(btn){
+          btn.innerHTML = `<i class="fas fa-paper-plane"></i> Enviar`;
+          setButtonState();
+        }
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      initBanner();
+
+      ["c_nome","c_email","c_fone","c_cidade","c_assunto","c_msg"].forEach((id) => {
+        const el = $(id);
+        if(el) el.addEventListener("input", setButtonState);
+      });
+      setButtonState();
+    });
   </script>
 </head>
 
 <body>
-<header>
-  <div class="container headbar">
-    <a href="index.html" class="logo-wrapper">
-      <img src="logo-alogy.webp" alt="ALOGY Engenharia" />
-    </a>
+  <header>
+    <div class="container headbar">
+      <a href="index.html" class="logo-wrapper" aria-label="Voltar para o início">
+        <img src="logo-alogy.webp" alt="ALOGY Engenharia" />
+      </a>
 
-    <!-- CREA grande, sem borda e quase no canto direito -->
-    <div class="crea-top">
-      <img src="crea.webp" alt="CREA-SP">
+      <!-- CREA no topo direito (apenas imagem estática, sem borda/caixa) -->
+      <div class="crea-top" aria-label="CREA-SP">
+        <img src="crea.webp" alt="CREA-SP">
+      </div>
+
+      <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menu">
+        <i class="fas fa-bars"></i>
+      </button>
     </div>
 
-    <button class="menu-toggle" onclick="toggleMobileMenu()">
-      <i class="fas fa-bars"></i>
-    </button>
+    <nav class="desktop" aria-label="Menu principal">
+      <div class="container navlinks">
+        <a href="industrial.html">Industrial</a>
+        <a href="residencial.html">Residencial</a>
+        <a href="cursos.html">Cursos</a>
+        <a href="sobre.html">Sobre</a>
+        <a href="cases.html">Cases</a>
+        <a href="#contato">Contato</a>
+      </div>
+    </nav>
+
+    <nav class="mobile" aria-label="Menu mobile">
+      <a href="industrial.html" onclick="toggleMobileMenu()">Industrial</a>
+      <a href="residencial.html" onclick="toggleMobileMenu()">Residencial</a>
+      <a href="cursos.html" onclick="toggleMobileMenu()">Cursos</a>
+      <a href="sobre.html" onclick="toggleMobileMenu()">Sobre</a>
+      <a href="cases.html" onclick="toggleMobileMenu()">Cases</a>
+      <a href="#contato" onclick="toggleMobileMenu()">Contato</a>
+    </nav>
+  </header>
+
+  <div class="social-floating" aria-label="Redes sociais">
+    <a href="https://www.linkedin.com/company/alogyengenharia" class="linkedin" target="_blank" rel="noopener" aria-label="LinkedIn">
+      <i class="fab fa-linkedin-in"></i>
+    </a>
+    <a href="https://www.instagram.com/alogyengenharia" class="instagram" target="_blank" rel="noopener" aria-label="Instagram">
+      <i class="fab fa-instagram"></i>
+    </a>
+    <a href="https://www.facebook.com/alogyengenharia" class="facebook" target="_blank" rel="noopener" aria-label="Facebook">
+      <i class="fab fa-facebook-f"></i>
+    </a>
+    <a href="https://www.youtube.com/@alogyengenharia" class="youtube" target="_blank" rel="noopener" aria-label="YouTube">
+      <i class="fab fa-youtube"></i>
+    </a>
+    <a href="https://hotmart.com/pt-br/club/alogyengenharia" class="hotmart" target="_blank" rel="noopener" aria-label="Hotmart">H</a>
+    <a href="https://www.tiktok.com/@alogyengenharia" class="tiktok" target="_blank" rel="noopener" aria-label="TikTok">
+      <i class="fab fa-tiktok"></i>
+    </a>
   </div>
 
-  <nav class="desktop">
-    <div class="container navlinks">
-      <a href="industrial.html">Industrial</a>
-      <a href="residencial.html">Residencial</a>
-      <a href="cursos.html">Cursos</a>
-      <a href="sobre.html">Sobre</a>
-      <a href="cases.html">Cases</a>
-      <a href="#contato">Contato</a>
+  <div class="fab-wrap" aria-label="Ações rápidas">
+    <a class="fab-btn mail" href="mailto:contato@alogy.com.br" aria-label="Enviar e-mail para contato@alogy.com.br">
+      <i class="fas fa-envelope"></i> contato@alogy.com.br
+    </a>
+
+    <a class="fab-btn wa" href="https://wa.me/5519981795468?text=Ol%C3%A1!%20Vim%20pelo%20site%20ALOGY.%20Poderia%20me%20ajudar%3F" target="_blank" rel="noopener" aria-label="Abrir WhatsApp">
+      <i class="fab fa-whatsapp"></i> WhatsApp
+    </a>
+  </div>
+
+  <div class="banner-wrap banner-fullwidth">
+    <div class="banner" aria-label="Banner principal com 3 destaques">
+      <div class="slides">
+        <a class="slide active" href="industrial.html"
+           style="--img-desktop:url('banner1.webp'); --img-mobile:url('banner1_mobile.webp');"
+           aria-label="Ir para Industrial">
+          <div class="banner-content">
+            <div class="banner-card">
+              <div class="banner-title">Engenharia Industrial</div>
+              <div class="banner-desc">
+                Automação, instrumentação e projetos elétricos industriais — engenharia aplicada com foco em confiabilidade e resultado.
+              </div>
+              <div class="banner-actions">
+                <span class="btn"><i class="fas fa-industry"></i> Entrar</span>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <a class="slide" href="residencial.html"
+           style="--img-desktop:url('banner2.webp'); --img-mobile:url('banner2_mobile.webp');"
+           aria-label="Ir para Residencial">
+          <div class="banner-content">
+            <div class="banner-card">
+              <div class="banner-title">Projetos Residenciais</div>
+              <div class="banner-desc">
+                Projetos elétricos, diagramas técnicos, adequações NR10 e soluções de automação para residências e edifícios.
+              </div>
+              <div class="banner-actions">
+                <span class="btn"><i class="fas fa-house-signal"></i> Entrar</span>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <a class="slide" href="cursos.html"
+           style="--img-desktop:url('banner3.webp'); --img-mobile:url('banner3_mobile.webp');"
+           aria-label="Ir para Cursos">
+          <div class="banner-content">
+            <div class="banner-card">
+              <div class="banner-title">Cursos</div>
+              <div class="banner-desc">
+                Cursos online em automação e instrumentação para evolução técnica e profissional.
+              </div>
+              <div class="banner-actions">
+                <span class="btn"><i class="fas fa-graduation-cap"></i> Entrar</span>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <button class="banner-nav prev" type="button" aria-label="Slide anterior">
+        <i class="fas fa-chevron-left"></i>
+      </button>
+      <button class="banner-nav next" type="button" aria-label="Próximo slide">
+        <i class="fas fa-chevron-right"></i>
+      </button>
+
+      <div class="banner-dots" aria-label="Indicadores do banner">
+        <span class="dot active" data-idx="0" aria-label="Ir para slide 1"></span>
+        <span class="dot" data-idx="1" aria-label="Ir para slide 2"></span>
+        <span class="dot" data-idx="2" aria-label="Ir para slide 3"></span>
+      </div>
     </div>
-  </nav>
+  </div>
 
-  <nav class="mobile">
-    <a href="industrial.html" onclick="toggleMobileMenu()">Industrial</a>
-    <a href="residencial.html" onclick="toggleMobileMenu()">Residencial</a>
-    <a href="cursos.html" onclick="toggleMobileMenu()">Cursos</a>
-    <a href="sobre.html" onclick="toggleMobileMenu()">Sobre</a>
-    <a href="cases.html" onclick="toggleMobileMenu()">Cases</a>
-    <a href="#contato" onclick="toggleMobileMenu()">Contato</a>
-  </nav>
-</header>
+  <!-- =========================
+       NOSSOS VALORES (entre banner e contato)
+       ========================= -->
+  <div class="values-wrap banner-fullwidth" aria-label="Seção Nossos Valores">
+    <section class="values">
+      <h2 class="values-title">Nossos Valores</h2>
 
-<div class="fab-wrap">
-  <a class="fab-btn mail" href="mailto:contato@alogy.com.br">
-    <i class="fas fa-envelope"></i> contato@alogy.com.br
-  </a>
-  <a class="fab-btn wa" href="https://wa.me/5519981795468" target="_blank">
-    <i class="fab fa-whatsapp"></i> WhatsApp
-  </a>
-</div>
+      <div class="values-grid" role="list">
+        <div class="value-item" role="listitem">
+          <div class="value-icon" aria-hidden="true">
+            <i class="fa-solid fa-hand-holding-heart"></i>
+          </div>
+          <div class="value-label">Responsabilidade</div>
+        </div>
 
-<div class="banner-wrap banner-fullwidth">
-  <div class="banner">
-    <a class="slide active" style="background-image:url('banner1.webp');">
-      <div class="banner-content">
-        <div class="banner-card">
-          <div class="banner-title">Engenharia Industrial</div>
-          <div class="banner-desc">
-            Automação, instrumentação e projetos elétricos industriais — engenharia aplicada com foco em confiabilidade e resultado.
+        <div class="value-item" role="listitem">
+          <div class="value-icon" aria-hidden="true">
+            <i class="fa-solid fa-gem"></i>
+          </div>
+          <div class="value-label">Qualidade</div>
+        </div>
+
+        <div class="value-item" role="listitem">
+          <div class="value-icon" aria-hidden="true">
+            <i class="fa-solid fa-shield-halved"></i>
+          </div>
+          <div class="value-label">Segurança</div>
+        </div>
+
+        <div class="value-item" role="listitem">
+          <div class="value-icon" aria-hidden="true">
+            <i class="fa-solid fa-user-gear"></i>
+          </div>
+          <div class="value-label">Competência</div>
+        </div>
+      </div>
+
+      <p class="values-text">
+        Entregamos projetos e serviços com rigor técnico, clareza e organização — do levantamento à documentação final.
+        Atuamos com responsabilidade e foco em segurança, priorizando a confiabilidade das soluções e a satisfação do cliente.
+      </p>
+    </section>
+  </div>
+
+  <main class="container">
+    <!-- CONTATO (CREA lateral removido conforme solicitado) -->
+    <section id="contato" class="section-card">
+      <div class="section-title">
+        <div class="bar"></div><h3>Contato</h3>
+      </div>
+      <p class="muted">
+        Use o formulário para detalhar sua necessidade. O WhatsApp flutuante fica disponível o tempo todo para contato rápido.
+      </p>
+
+      <form id="formContato" onsubmit="enviarFormulario(event)" aria-label="Formulário de contato" novalidate>
+        <div class="form-grid">
+          <div class="field">
+            <label for="c_nome">Nome</label>
+            <input id="c_nome" type="text" placeholder="Seu nome" required />
+          </div>
+          <div class="field">
+            <label for="c_fone">Telefone</label>
+            <input id="c_fone" type="tel" placeholder="(xx) xxxxx-xxxx" required />
+          </div>
+
+          <div class="field">
+            <label for="c_email">E-mail</label>
+            <input id="c_email" type="email" placeholder="seuemail@exemplo.com" required />
+          </div>
+          <div class="field">
+            <label for="c_cidade">Cidade / Local</label>
+            <input id="c_cidade" type="text" placeholder="Ex.: Americana/SP" required />
+          </div>
+
+          <div class="field" style="grid-column:1/-1">
+            <label for="c_assunto">Assunto</label>
+            <input id="c_assunto" type="text" placeholder="Industrial, residencial, curso, consultoria..." required />
+          </div>
+
+          <div class="field" style="grid-column:1/-1">
+            <label for="c_msg">Mensagem</label>
+            <textarea id="c_msg" placeholder="Explique o que precisa, prazo e contexto." required></textarea>
           </div>
         </div>
-      </div>
-    </a>
-  </div>
-</div>
 
-<main class="container">
-  <section id="contato" class="section-card">
-    <div class="section-title">
-      <div class="bar"></div><h3>Contato</h3>
-    </div>
-    <p class="muted">
-      Use o formulário para detalhar sua necessidade.
-    </p>
+        <div class="form-actions">
+          <button id="btnEnviar" class="btn" type="submit" disabled>
+            <i class="fas fa-paper-plane"></i> Enviar
+          </button>
 
-    <form>
-      <div class="form-grid">
-        <div class="field">
-          <label>Nome</label>
-          <input type="text"/>
+          <div id="formSuccess" class="form-success" role="status" aria-live="polite">
+            <i class="fas fa-check-circle"></i> Enviado com sucesso!
+          </div>
         </div>
-        <div class="field">
-          <label>Telefone</label>
-          <input type="tel"/>
-        </div>
-        <div class="field">
-          <label>E-mail</label>
-          <input type="email"/>
-        </div>
-        <div class="field">
-          <label>Cidade</label>
-          <input type="text"/>
-        </div>
-        <div class="field" style="grid-column:1/-1">
-          <label>Mensagem</label>
-          <textarea></textarea>
-        </div>
-      </div>
-    </form>
-  </section>
-</main>
+      </form>
+    </section>
+  </main>
 
-<footer>
-  <p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p>
-</footer>
+  <footer>
+    <p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p>
+  </footer>
 </body>
 </html>
