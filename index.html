@@ -508,31 +508,6 @@
       startAuto();
     }
 
-    // ===== Form -> e-mail =====
-    function enviarEmailContato(e){
-      e.preventDefault();
-
-      const nome = (document.getElementById('c_nome')?.value || '').trim();
-      const email = (document.getElementById('c_email')?.value || '').trim();
-      const fone = (document.getElementById('c_fone')?.value || '').trim();
-      const cidade = (document.getElementById('c_cidade')?.value || '').trim();
-      const assunto = (document.getElementById('c_assunto')?.value || '').trim();
-      const msg = (document.getElementById('c_msg')?.value || '').trim();
-
-      const subject = `Contato pelo site ALOGY - ${assunto || 'Solicitação'}`;
-      const body =
-        `Olá! Vim pelo site ALOGY e quero falar sobre um projeto.\n\n` +
-        `Nome: ${nome || '-'}\n` +
-        `Telefone: ${fone || '-'}\n` +
-        `E-mail: ${email || '-'}\n` +
-        `Cidade/Local: ${cidade || '-'}\n` +
-        `Assunto: ${assunto || '-'}\n\n` +
-        `Mensagem:\n${msg || '-'}`;
-
-      const mailto = `mailto:contato@alogy.com.br?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-      window.location.href = mailto;
-    }
-
     document.addEventListener('DOMContentLoaded', () => {
       initBanner();
     });
@@ -674,34 +649,42 @@
         Use o formulário para detalhar sua necessidade. O botão WhatsApp flutuante fica disponível o tempo todo para contato rápido.
       </p>
 
-      <form onsubmit="enviarEmailContato(event)" aria-label="Formulário de contato">
+      <!-- ✅ FORM SUBMIT (sem backend / sem worker / sem DKIM) -->
+      <form action="https://formsubmit.co/contato@alogy.com.br" method="POST" aria-label="Formulário de contato">
+        <!-- configurações -->
+        <input type="hidden" name="_subject" value="Novo contato pelo site ALOGY Engenharia">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_next" value="https://www.alogy.com.br/obrigado.html">
+
+        <!-- campos (mantém o layout igual, só adiciona name=...) -->
         <div class="form-grid">
           <div class="field">
             <label for="c_nome">Nome</label>
-            <input id="c_nome" type="text" placeholder="Seu nome" />
+            <input id="c_nome" name="Nome" type="text" placeholder="Seu nome" required />
           </div>
           <div class="field">
             <label for="c_fone">Telefone</label>
-            <input id="c_fone" type="tel" placeholder="(xx) xxxxx-xxxx" />
+            <input id="c_fone" name="Telefone" type="tel" placeholder="(xx) xxxxx-xxxx" />
           </div>
 
           <div class="field">
             <label for="c_email">E-mail</label>
-            <input id="c_email" type="email" placeholder="seuemail@exemplo.com" />
+            <input id="c_email" name="Email" type="email" placeholder="seuemail@exemplo.com" required />
           </div>
           <div class="field">
             <label for="c_cidade">Cidade / Local</label>
-            <input id="c_cidade" type="text" placeholder="Ex.: Americana/SP" />
+            <input id="c_cidade" name="Cidade/Local" type="text" placeholder="Ex.: Americana/SP" />
           </div>
 
           <div class="field" style="grid-column:1/-1">
             <label for="c_assunto">Assunto</label>
-            <input id="c_assunto" type="text" placeholder="Industrial, residencial, curso, consultoria..." />
+            <input id="c_assunto" name="Assunto" type="text" placeholder="Industrial, residencial, curso, consultoria..." />
           </div>
 
           <div class="field" style="grid-column:1/-1">
             <label for="c_msg">Mensagem</label>
-            <textarea id="c_msg" placeholder="Explique o que precisa, prazo e contexto."></textarea>
+            <textarea id="c_msg" name="Mensagem" placeholder="Explique o que precisa, prazo e contexto." required></textarea>
           </div>
         </div>
 
@@ -709,7 +692,7 @@
           <button class="btn" type="submit">
             <i class="fas fa-paper-plane"></i> Enviar por e-mail
           </button>
-                 </div>
+        </div>
       </form>
     </section>
   </main>
