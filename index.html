@@ -52,6 +52,20 @@
     a{color:inherit}
     .container{max-width:1100px;margin:0 auto;padding:0 18px}
 
+    /* ===== HEADER: logo mais à esquerda (só no header) ===== */
+header .container{
+  padding-left: 6px;   /* antes era 18px */
+  padding-right: 18px; /* mantém alinhado */
+}
+
+@media (max-width: 768px){
+  header .container{
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
+
+
     .btn{
       display:inline-flex;align-items:center;gap:10px;
       background:var(--brand);color:#fff;text-decoration:none;
@@ -430,11 +444,26 @@
 
 @media (max-width: 768px){
 
+  /* ===== Header ===== */
+
   nav.desktop{display:none}
-  .menu-toggle{display:block}
+  .menu-toggle{
+    display:block;
+    position:absolute;
+    right:12px;
+  }
+
   .social-floating{display:none}
 
-  .logo-wrapper img{ width:160px; }
+  /* Centraliza o logo */
+  .headbar{
+    justify-content:center;
+    position:relative;
+  }
+
+  .logo-wrapper img{
+    width:180px;   /* ajuste fino ideal pro mobile */
+  }
 
   /* ===== Banner mostrando mais a imagem ===== */
   .banner{
@@ -445,15 +474,15 @@
     --arrow-gap: 6px;
   }
 
-  /* 🔥 DESCE o glass um pouco */
+  /* 🔥 Desce o glass */
   .banner-content{
     padding:18px;
     justify-content:center;
-    align-items:flex-end;   /* antes estava center */
-    padding-bottom:48px;    /* aproxima das bolinhas */
+    align-items:flex-end;
+    padding-bottom:48px;
   }
 
-  /* ===== Texto menor (mobile mais profissional) ===== */
+  /* ===== Texto menor ===== */
   .banner-title{
     font-size:1.25rem;
     line-height:1.2;
@@ -471,37 +500,33 @@
     font-size:.9rem;
   }
 
-  /* 🔥 GLASS MENOR */
+  /* ===== Glass ===== */
   .banner-card{
     width: var(--card-w);
     max-width:360px;
     padding:16px 18px 20px;
-
     background: rgba(20,25,35,.60);
     border:1px solid rgba(255,255,255,.12);
   }
 
-  /* ✅ ALTERADO: mobile usa --img-mobile (fallback pro desktop) */
+  /* ===== Imagem ===== */
   .slide{
     background: var(--img-mobile, var(--img-desktop, none));
     background-size: cover;
     background-position: 80% 14%;
   }
 
-  /* ===== SETAS ANCORADAS NO CARD ===== */
+  /* ===== Setas ===== */
   .banner-nav{
     top:50%;
     transform:translateY(-50%);
     width: var(--arrow-w);
     height: var(--arrow-w);
     border-radius:999px;
-
     border:1px solid rgba(255,255,255,.18);
     background: rgba(255,255,255,.07);
-
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
-
     box-shadow: 0 8px 25px rgba(0,0,0,.25);
     opacity:.62;
     z-index:10;
@@ -519,7 +544,7 @@
     font-size:.95rem;
   }
 
-  /* ===== BOLINHAS ===== */
+  /* ===== Bolinhas ===== */
   .banner-dots{
     bottom:18px;
     background: rgba(0,0,0,.22);
@@ -540,9 +565,15 @@
     transform:scale(1.15);
   }
 
-  .form-grid{grid-template-columns:1fr}
-  .banner-fullwidth{padding:14px 12px 8px;}
+  .form-grid{
+    grid-template-columns:1fr
+  }
+
+  .banner-fullwidth{
+    padding:14px 12px 8px;
+  }
 }
+
 
   </style>
 
