@@ -53,8 +53,15 @@
       --banner-h: 520px;
       --banner-radius: 18px;
 
-      /* distância reservada da barra social (ajustada pra aproximar mais) */
+      /* reserva da barra social (aproximar banner/valores dela) */
       --social-safe: 52px;
+
+      /* espaço à esquerda (pra não grudar) */
+      --left-gutter: 22px;
+
+      /* reserva lateral no contato para o CREA */
+      --crea-col: 280px;
+      --crea-gap: 22px;
     }
 
     *{box-sizing:border-box;margin:0;padding:0}
@@ -73,10 +80,10 @@
     .container{max-width:1100px;margin:0 auto;padding:0 18px}
 
     /* =========================
-       HEADER (DESKTOP): logo um pouco mais à esquerda
+       HEADER (DESKTOP): logo mais à esquerda, mas com respiro
        ========================= */
     header .container{
-      padding-left: 6px;
+      padding-left: 14px;
       padding-right: 18px;
     }
 
@@ -263,11 +270,11 @@
     .banner-wrap{ width:100%; padding: 22px 0 10px; }
 
     /* =========================
-       BANNER (DESKTOP): aproximar mais da barra social (direita)
+       BANNER + VALORES: com espaço à esquerda e perto dos ícones à direita
        ========================= */
     .banner-fullwidth{
       width:100%;
-      padding-left: 0 !important;
+      padding-left: var(--left-gutter) !important;
       padding-right: calc(18px + var(--social-safe)) !important;
       padding-top: 18px !important;
       padding-bottom: 10px !important;
@@ -385,6 +392,7 @@
     .dot.active{ background: rgba(255,255,255,.95); transform: scale(1.1); }
 
     section{margin:18px auto;}
+
     .section-card{
       background:var(--card);
       border:1px solid rgba(0,0,0,.08);
@@ -528,14 +536,60 @@
       background: rgba(0,107,177,.18);
     }
 
+    /* =========================
+       CONTATO: criar coluna esquerda para o CREA (desktop)
+       ========================= */
+    .contact-shell{
+      display:grid;
+      grid-template-columns: var(--crea-col) 1fr;
+      gap: var(--crea-gap);
+      align-items: start;
+    }
+
+    .crea-panel{
+      min-height: 100%;
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.65);
+      border: 1px solid rgba(0,0,0,.06);
+      box-shadow: var(--shadow);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding: 24px 18px;
+    }
+
+    .crea-panel img{
+      width: min(220px, 90%);
+      height: auto;
+      display:block;
+      filter: none;
+    }
+
+    @media (max-width: 1020px){
+      .contact-shell{
+        grid-template-columns: 240px 1fr;
+      }
+    }
+
+    @media (max-width: 900px){
+      .contact-shell{
+        display:block;
+      }
+      .crea-panel{
+        display:none;
+      }
+    }
+
     @media (max-width: 900px){
       .values-grid{ grid-template-columns: repeat(2, 1fr); max-width: 680px; }
       .values-title{ font-size: 2.1rem; }
     }
 
+    /* =========================
+       MOBILE
+       ========================= */
     @media (max-width: 768px){
 
-      /* Header: logo centralizado + hamburger à direita */
       nav.desktop{display:none}
 
       header .container{
@@ -560,9 +614,8 @@
         width:180px;
       }
 
-      /* Banner: aproximar um pouco à direita também no mobile */
       .banner-fullwidth{
-        padding-left: 0 !important;
+        padding-left: 12px !important;
         padding-right: 12px !important;
         padding-top: 14px !important;
         padding-bottom: 8px !important;
@@ -1012,56 +1065,64 @@
   </div>
 
   <main class="container">
-    <section id="contato" class="section-card">
-      <div class="section-title">
-        <div class="bar"></div><h3>Contato</h3>
-      </div>
-      <p class="muted">
-        Use o formulário para detalhar sua necessidade. O WhatsApp flutuante fica disponível o tempo todo para contato rápido.
-      </p>
+    <!-- CONTATO + CREA (coluna lateral no desktop) -->
+    <div class="contact-shell" aria-label="Área de contato com selo CREA">
+      <aside class="crea-panel" aria-label="CREA">
+        <!-- Troque o arquivo abaixo pelo seu logo do CREA -->
+        <img src="crea-sp.png" alt="CREA-SP" loading="lazy" />
+      </aside>
 
-      <form id="formContato" onsubmit="enviarFormulario(event)" aria-label="Formulário de contato" novalidate>
-        <div class="form-grid">
-          <div class="field">
-            <label for="c_nome">Nome</label>
-            <input id="c_nome" type="text" placeholder="Seu nome" required />
-          </div>
-          <div class="field">
-            <label for="c_fone">Telefone</label>
-            <input id="c_fone" type="tel" placeholder="(xx) xxxxx-xxxx" required />
-          </div>
-
-          <div class="field">
-            <label for="c_email">E-mail</label>
-            <input id="c_email" type="email" placeholder="seuemail@exemplo.com" required />
-          </div>
-          <div class="field">
-            <label for="c_cidade">Cidade / Local</label>
-            <input id="c_cidade" type="text" placeholder="Ex.: Americana/SP" required />
-          </div>
-
-          <div class="field" style="grid-column:1/-1">
-            <label for="c_assunto">Assunto</label>
-            <input id="c_assunto" type="text" placeholder="Industrial, residencial, curso, consultoria..." required />
-          </div>
-
-          <div class="field" style="grid-column:1/-1">
-            <label for="c_msg">Mensagem</label>
-            <textarea id="c_msg" placeholder="Explique o que precisa, prazo e contexto." required></textarea>
-          </div>
+      <section id="contato" class="section-card">
+        <div class="section-title">
+          <div class="bar"></div><h3>Contato</h3>
         </div>
+        <p class="muted">
+          Use o formulário para detalhar sua necessidade. O WhatsApp flutuante fica disponível o tempo todo para contato rápido.
+        </p>
 
-        <div class="form-actions">
-          <button id="btnEnviar" class="btn" type="submit" disabled>
-            <i class="fas fa-paper-plane"></i> Enviar
-          </button>
+        <form id="formContato" onsubmit="enviarFormulario(event)" aria-label="Formulário de contato" novalidate>
+          <div class="form-grid">
+            <div class="field">
+              <label for="c_nome">Nome</label>
+              <input id="c_nome" type="text" placeholder="Seu nome" required />
+            </div>
+            <div class="field">
+              <label for="c_fone">Telefone</label>
+              <input id="c_fone" type="tel" placeholder="(xx) xxxxx-xxxx" required />
+            </div>
 
-          <div id="formSuccess" class="form-success" role="status" aria-live="polite">
-            <i class="fas fa-check-circle"></i> Enviado com sucesso!
+            <div class="field">
+              <label for="c_email">E-mail</label>
+              <input id="c_email" type="email" placeholder="seuemail@exemplo.com" required />
+            </div>
+            <div class="field">
+              <label for="c_cidade">Cidade / Local</label>
+              <input id="c_cidade" type="text" placeholder="Ex.: Americana/SP" required />
+            </div>
+
+            <div class="field" style="grid-column:1/-1">
+              <label for="c_assunto">Assunto</label>
+              <input id="c_assunto" type="text" placeholder="Industrial, residencial, curso, consultoria..." required />
+            </div>
+
+            <div class="field" style="grid-column:1/-1">
+              <label for="c_msg">Mensagem</label>
+              <textarea id="c_msg" placeholder="Explique o que precisa, prazo e contexto." required></textarea>
+            </div>
           </div>
-        </div>
-      </form>
-    </section>
+
+          <div class="form-actions">
+            <button id="btnEnviar" class="btn" type="submit" disabled>
+              <i class="fas fa-paper-plane"></i> Enviar
+            </button>
+
+            <div id="formSuccess" class="form-success" role="status" aria-live="polite">
+              <i class="fas fa-check-circle"></i> Enviado com sucesso!
+            </div>
+          </div>
+        </form>
+      </section>
+    </div>
   </main>
 
   <footer>
