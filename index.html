@@ -31,11 +31,9 @@
       --radius:16px;
       --shadow: 0 10px 25px rgba(0,0,0,.08);
 
-      /* Banner */
-      --banner-h: 520px; /* troque para 100vh se quiser full screen */
+      --banner-h: 520px;
       --banner-radius: 18px;
 
-      /* reserva do lado direito para NÃO atrapalhar os ícones */
       --social-safe: 72px;
     }
 
@@ -70,13 +68,11 @@
     }
     .btn.secondary:hover{background:rgba(0,107,177,.12)}
     .btn:disabled{
-      opacity:.45;
+      opacity:.55;
       cursor:not-allowed;
       transform:none;
-      background:rgba(0,107,177,.65);
     }
 
-    /* ===== HEADER ===== */
     header{
       background:var(--primary);
       color:#fff;
@@ -99,9 +95,7 @@
       gap:14px;
       text-decoration:none;
       color:inherit;
-
-      /* >>> ÚNICA alteração pedida aqui: logo mais para a esquerda <<< */
-      margin-left:-250px;
+      margin-left:-18px;
     }
     .logo-wrapper img{width:54px;height:auto}
     .logo-wrapper h1{
@@ -186,7 +180,6 @@
     nav.mobile a:hover{background:rgba(255,255,255,.08)}
     nav.mobile.show{display:flex}
 
-    /* ===== Social floating (direita) - VOLTOU COMPLETO (sem WhatsApp) ===== */
     .social-floating{
       position:fixed; top:50%; right:0;
       transform:translateY(-50%);
@@ -197,8 +190,6 @@
       width:40px;height:40px;display:flex;align-items:center;justify-content:center;
       border-radius:8px 0 0 8px;
       box-shadow:0 8px 18px rgba(0,0,0,.18);
-
-      /* efeito hover */
       transition: transform .15s ease, filter .2s ease, box-shadow .2s ease;
       will-change: transform;
     }
@@ -215,7 +206,6 @@
     .social-floating a.hotmart{background:#ff5c00;font-weight:900;font-family:Arial;font-size:1.1rem}
     .social-floating a.tiktok{background:#000}
 
-    /* ===== FABs (WhatsApp + Email lado a lado) ===== */
     .fab-wrap{
       position:fixed;
       right:16px;
@@ -254,13 +244,11 @@
       border:1px solid rgba(0,0,0,.12);
     }
 
-    /* ===== BANNER (SLIDER) ===== */
     .banner-wrap{ width:100%; padding: 22px 0 10px; }
 
-    /* largura menor do banner para não atrapalhar os ícones */
     .banner-fullwidth{
       width:100%;
-      padding: 18px calc(18px + var(--social-safe)) 10px 18px; /* reserva no lado direito */
+      padding: 18px calc(18px + var(--social-safe)) 10px 18px;
     }
 
     .banner{
@@ -378,7 +366,6 @@
     }
     .dot.active{ background: rgba(255,255,255,.95); transform: scale(1.1); }
 
-    /* ===== SECTIONS ===== */
     section{margin:18px auto;}
     .section-card{
       background:var(--card);
@@ -392,7 +379,6 @@
     .section-title h3{font-size:1.6rem}
     .muted{color:var(--muted)}
 
-    /* Form */
     .form-grid{
       display:grid;
       grid-template-columns: 1fr 1fr;
@@ -417,17 +403,18 @@
       align-items:center;
     }
 
-    .success-pill{
+    .form-success{
       display:none;
       align-items:center;
-      gap:8px;
-      padding:10px 12px;
+      gap:10px;
+      padding:12px 14px;
       border-radius:12px;
       border:1px solid rgba(34,197,94,.35);
-      background: rgba(34,197,94,.12);
+      background: rgba(34,197,94,.10);
       color:#166534;
-      font-weight:700;
+      font-weight:800;
     }
+    .form-success.show{display:flex}
 
     footer{
       background:var(--dark); color:#fff;
@@ -435,7 +422,6 @@
       margin-top:26px; font-size:.92rem;
     }
 
-    /* Responsive */
     @media (max-width: 768px){
       nav.desktop{display:none}
       .menu-toggle{display:block}
@@ -447,9 +433,8 @@
       .banner-nav{width:48px;height:48px;border-radius:14px}
       .form-grid{grid-template-columns:1fr}
 
-      /* no mobile, não precisa reservar espaço para ícones (eles somem) */
       .banner-fullwidth{padding: 14px 12px 8px;}
-      .logo-wrapper{margin-left:0;} /* pra não estourar no mobile */
+      .logo-wrapper{margin-left:0;}
     }
   </style>
 
@@ -526,60 +511,129 @@
       startAuto();
     }
 
-    // ===== FormSubmit (Opção A) + validação (habilita somente com TODOS preenchidos) =====
-    function initContatoForm(){
-      const form = document.getElementById('contatoForm');
-      if(!form) return;
+    // ===== FORM (FormSubmit) - envio profissional sem abrir outra página =====
+    const FORM_ENDPOINT = "https://formsubmit.co/ajax/contato@alogy.com.br";
 
-      const btn = document.getElementById('btnEnviarContato');
-      const success = document.getElementById('contatoSuccess');
-      const subjectHidden = document.getElementById('subjectHidden');
+    function $(id){ return document.getElementById(id); }
 
-      const fields = [
-        document.getElementById('c_nome'),
-        document.getElementById('c_fone'),
-        document.getElementById('c_email'),
-        document.getElementById('c_cidade'),
-        document.getElementById('c_assunto'),
-        document.getElementById('c_msg'),
-      ].filter(Boolean);
+    function buildProfessionalMessage(data){
+      // deixa 100% “clean” no e-mail
+      // (sem duplicar os campos dentro do texto, e sem bagunça)
+      const lines = [
+        "Novo contato recebido pelo site ALOGY",
+        "------------------------------------",
+        `Nome: ${data.nome}`,
+        `Telefone: ${data.fone}`,
+        `E-mail: ${data.email}`,
+        `Cidade/Local: ${data.cidade}`,
+        `Assunto: ${data.assunto}`,
+        "",
+        "Mensagem:",
+        data.msg
+      ];
+      return lines.join("\n");
+    }
 
-      function allFilled(){
-        return fields.every(el => String(el.value || '').trim() !== '');
+    function setButtonState(){
+      const nome = $("c_nome").value.trim();
+      const email = $("c_email").value.trim();
+      const fone = $("c_fone").value.trim();
+      const cidade = $("c_cidade").value.trim();
+      const assunto = $("c_assunto").value.trim();
+      const msg = $("c_msg").value.trim();
+
+      const allFilled = !!(nome && email && fone && cidade && assunto && msg);
+      const btn = $("btnEnviar");
+      if(btn) btn.disabled = !allFilled;
+    }
+
+    async function enviarFormulario(e){
+      e.preventDefault();
+
+      const btn = $("btnEnviar");
+      const success = $("formSuccess");
+
+      const nome = $("c_nome").value.trim();
+      const email = $("c_email").value.trim();
+      const fone = $("c_fone").value.trim();
+      const cidade = $("c_cidade").value.trim();
+      const assunto = $("c_assunto").value.trim();
+      const msg = $("c_msg").value.trim();
+
+      // segurança extra (mesmo com botão desabilitado)
+      if(!(nome && email && fone && cidade && assunto && msg)){
+        alert("Preencha todos os campos para enviar.");
+        return;
       }
 
-      function refreshButton(){
-        if(btn) btn.disabled = !allFilled();
+      // assunto do e-mail (padrão que você pediu)
+      const subject = `FORMULARIO - ${assunto}`;
+
+      // mensagem profissional (sem redundância)
+      const message = buildProfessionalMessage({ nome, email, fone, cidade, assunto, msg });
+
+      // feedback UI
+      if(success) success.classList.remove("show");
+      if(btn){
+        btn.disabled = true;
+        btn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Enviando...`;
       }
 
-      fields.forEach(el => el.addEventListener('input', refreshButton));
-      refreshButton();
+      try{
+        const payload = new FormData();
+        payload.append("Nome", nome);
+        payload.append("Telefone", fone);
+        payload.append("E-mail", email);
+        payload.append("Cidade/Local", cidade);
+        payload.append("Assunto", assunto);
 
-      form.addEventListener('submit', () => {
-        // assunto começa com "FORMULARIO - "
-        const assunto = (document.getElementById('c_assunto')?.value || '').trim();
-        if(subjectHidden){
-          subjectHidden.value = `FORMULARIO - ${assunto || 'Contato pelo site ALOGY'}`;
+        // Campo principal do FormSubmit (vai como "Mensagem")
+        payload.append("Mensagem", message);
+
+        // Campos especiais do FormSubmit
+        payload.append("_subject", subject);
+        payload.append("_template", "box");   // deixa o e-mail mais “organizado” e limpo
+        payload.append("_captcha", "false");
+        payload.append("_replyto", email);    // responder direto para quem preencheu
+
+        const res = await fetch(FORM_ENDPOINT, {
+          method: "POST",
+          body: payload,
+          headers: { "Accept": "application/json" }
+        });
+
+        const json = await res.json().catch(() => null);
+
+        if(!res.ok || (json && json.success === false)){
+          throw new Error("Falha ao enviar.");
         }
 
-        // feedback visual na página (mesmo abrindo nova guia)
-        if(success){
-          success.style.display = 'inline-flex';
-          setTimeout(() => { success.style.display = 'none'; }, 8000);
-        }
+        // sucesso
+        if(success) success.classList.add("show");
+        $("formContato").reset();
+        setButtonState();
 
-        // opcional: limpar campos após enviar
-        // (mantém a página "limpa", mas sem mexer no resto do site)
-        setTimeout(() => {
-          fields.forEach(el => el.value = '');
-          refreshButton();
-        }, 500);
-      });
+      }catch(err){
+        alert("Não foi possível enviar agora. Tente novamente em instantes.");
+        setButtonState();
+      }finally{
+        if(btn){
+          btn.innerHTML = `<i class="fas fa-paper-plane"></i> Enviar`;
+          // o setButtonState vai definir se fica habilitado ou não
+          setButtonState();
+        }
+      }
     }
 
     document.addEventListener('DOMContentLoaded', () => {
       initBanner();
-      initContatoForm();
+
+      // validação dinâmica: só habilita quando todos os campos preenchidos
+      ["c_nome","c_email","c_fone","c_cidade","c_assunto","c_msg"].forEach((id) => {
+        const el = $(id);
+        if(el) el.addEventListener("input", setButtonState);
+      });
+      setButtonState();
     });
   </script>
 </head>
@@ -616,7 +670,6 @@
     </nav>
   </header>
 
-  <!-- Social floating (desktop) - VOLTOU COMPLETO -->
   <div class="social-floating" aria-label="Redes sociais">
     <a href="https://www.linkedin.com/company/alogyengenharia" class="linkedin" target="_blank" rel="noopener" aria-label="LinkedIn">
       <i class="fab fa-linkedin-in"></i>
@@ -636,7 +689,6 @@
     </a>
   </div>
 
-  <!-- FABs: E-mail ao lado do WhatsApp -->
   <div class="fab-wrap" aria-label="Ações rápidas">
     <a class="fab-btn mail" href="mailto:contato@alogy.com.br" aria-label="Enviar e-mail para contato@alogy.com.br">
       <i class="fas fa-envelope"></i> contato@alogy.com.br
@@ -647,7 +699,6 @@
     </a>
   </div>
 
-  <!-- BANNER -->
   <div class="banner-wrap banner-fullwidth">
     <div class="banner" aria-label="Banner principal com 3 destaques">
       <div class="slides">
@@ -710,7 +761,6 @@
   </div>
 
   <main class="container">
-    <!-- CONTATO (fica no HOME) -->
     <section id="contato" class="section-card">
       <div class="section-title">
         <div class="bar"></div><h3>Contato</h3>
@@ -719,57 +769,46 @@
         Use o formulário para detalhar sua necessidade. O botão WhatsApp flutuante fica disponível o tempo todo para contato rápido.
       </p>
 
-      <!-- ✅ FORMULÁRIO COM FORM SUBMIT (OPÇÃO A) -->
-      <form
-        id="contatoForm"
-        action="https://formsubmit.co/contato@alogy.com.br"
-        method="POST"
-        target="_blank"
-        aria-label="Formulário de contato"
-      >
-        <!-- FormSubmit config -->
-        <input type="hidden" id="subjectHidden" name="_subject" value="FORMULARIO - Contato pelo site ALOGY">
-        <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_template" value="table">
-
+      <!-- FORM -->
+      <form id="formContato" onsubmit="enviarFormulario(event)" aria-label="Formulário de contato" novalidate>
         <div class="form-grid">
           <div class="field">
             <label for="c_nome">Nome</label>
-            <input id="c_nome" name="Nome" type="text" placeholder="Seu nome" required />
+            <input id="c_nome" type="text" placeholder="Seu nome" required />
           </div>
           <div class="field">
             <label for="c_fone">Telefone</label>
-            <input id="c_fone" name="Telefone" type="tel" placeholder="(xx) xxxxx-xxxx" required />
+            <input id="c_fone" type="tel" placeholder="(xx) xxxxx-xxxx" required />
           </div>
 
           <div class="field">
             <label for="c_email">E-mail</label>
-            <input id="c_email" name="E-mail" type="email" placeholder="seuemail@exemplo.com" required />
+            <input id="c_email" type="email" placeholder="seuemail@exemplo.com" required />
           </div>
           <div class="field">
             <label for="c_cidade">Cidade / Local</label>
-            <input id="c_cidade" name="Cidade/Local" type="text" placeholder="Ex.: Americana/SP" required />
+            <input id="c_cidade" type="text" placeholder="Ex.: Americana/SP" required />
           </div>
 
           <div class="field" style="grid-column:1/-1">
             <label for="c_assunto">Assunto</label>
-            <input id="c_assunto" name="Assunto" type="text" placeholder="Industrial, residencial, curso, consultoria..." required />
+            <input id="c_assunto" type="text" placeholder="Industrial, residencial, curso, consultoria..." required />
           </div>
 
           <div class="field" style="grid-column:1/-1">
             <label for="c_msg">Mensagem</label>
-            <textarea id="c_msg" name="Mensagem" placeholder="Explique o que precisa, prazo e contexto." required></textarea>
+            <textarea id="c_msg" placeholder="Explique o que precisa, prazo e contexto." required></textarea>
           </div>
         </div>
 
         <div class="form-actions">
-          <button class="btn" id="btnEnviarContato" type="submit" disabled>
+          <button id="btnEnviar" class="btn" type="submit" disabled>
             <i class="fas fa-paper-plane"></i> Enviar
           </button>
 
-          <span id="contatoSuccess" class="success-pill">
+          <div id="formSuccess" class="form-success" role="status" aria-live="polite">
             <i class="fas fa-check-circle"></i> Enviado com sucesso!
-          </span>
+          </div>
         </div>
       </form>
     </section>
