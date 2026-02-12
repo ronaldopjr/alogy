@@ -206,6 +206,31 @@
     nav.mobile a:hover{background:rgba(255,255,255,.08)}
     nav.mobile.show{display:flex}
 
+    /* ====== (NOVO) CREA no topo direito ====== */
+    .crea-top{
+      position:absolute;
+      right:64px; /* espaço antes do hamburguer */
+      top:50%;
+      transform:translateY(-50%);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      width:54px;
+      height:54px;
+      border-radius:12px;
+      background:rgba(255,255,255,.92);
+      border:1px solid rgba(0,0,0,.12);
+      box-shadow:0 10px 25px rgba(0,0,0,.18);
+      z-index:3200;
+      text-decoration:none;
+    }
+
+    .crea-top img{
+      width:38px;
+      height:auto;
+      display:block;
+    }
+
     .social-floating{
       position:fixed; top:50%; right:0;
       transform:translateY(-50%);
@@ -546,30 +571,25 @@
       align-items: start;
     }
 
-   .crea-panel{
-  position:relative;
-  min-height:100%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:0;        /* remove espaçamento do card */
-}
+    .crea-panel{
+      position:relative;
+      min-height:100%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:0;
+    }
 
+    .crea-panel img{
+      width:450px;
+      max-width:95%;
+      height:auto;
 
-
- .crea-panel img{
-  width:450px;          /* maior */
-  max-width:95%;
-  height:auto;
-
-  opacity:.75;          /* mantém presença */
-  filter:none;          /* mantém cor original */
-  mix-blend-mode:multiply; /* integra com o fundo cinza */
-  pointer-events:none;
-}
-
-
-
+      opacity:.75;
+      filter:none;
+      mix-blend-mode:multiply;
+      pointer-events:none;
+    }
 
     @media (max-width: 1020px){
       .contact-shell{
@@ -611,8 +631,9 @@
 
       .social-floating{display:none}
 
+      /* (ALTERADO) antes era justify-content:center */
       .headbar{
-        justify-content:center;
+        justify-content: space-between;
         position:relative;
       }
 
@@ -722,7 +743,16 @@
       }
       .values-title{ font-size: 1.9rem; margin-bottom: 14px; }
       .values-grid{ grid-template-columns: 1fr; gap: 12px; }
-      .value-item{ flex-direction:row; justify-content:center; gap: 12px; }
+
+      /* (ALTERADO) centralizar alinhamento dos valores no mobile */
+      .value-item{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        gap: 10px;
+      }
+
       .value-label{ font-size: 1.02rem; }
       .values-text{ font-size: .95rem; }
 
@@ -904,6 +934,11 @@
         <img src="logo-alogy.webp" alt="ALOGY Engenharia" />
       </a>
 
+      <!-- (NOVO) CREA no topo direito -->
+      <a class="crea-top" href="#" aria-label="CREA-SP">
+        <img src="crea.webp" alt="CREA-SP">
+      </a>
+
       <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menu">
         <i class="fas fa-bars"></i>
       </button>
@@ -1076,7 +1111,6 @@
       <aside class="crea-panel" aria-label="CREA">
         <!-- Troque o arquivo abaixo pelo seu logo do CREA -->
         <img src="crea.webp" alt="CREA-SP" loading="lazy" />
-
       </aside>
 
       <section id="contato" class="section-card">
