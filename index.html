@@ -3,19 +3,38 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>ALOGY Engenharia</title>
+  <title>ALOGY Engenharia | Automação, Instrumentação e Projetos Elétricos</title>
 
   <link rel="icon" href="logo-alogy.webp" type="image/webp" />
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+
+  <!-- Performance (Fonts) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
-  <meta name="description" content="Projetos industriais e residenciais com padrão técnico. Automação, instrumentação e projetos elétricos. Fale no WhatsApp."/>
+  <!-- SEO básico -->
+  <meta name="description" content="Projetos e consultoria em automação, instrumentação e elétrica industrial/residencial. Engenharia aplicada com foco em segurança, qualidade e confiabilidade. Fale no WhatsApp."/>
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://www.alogy.com.br/" />
+  <meta name="theme-color" content="#004b80" />
+  <meta name="keywords" content="engenharia, automação, instrumentação, elétrica, projetos industriais, projetos residenciais, NR10, SCADA, projetos elétricos" />
+
+  <!-- Open Graph / Social -->
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ALOGY Engenharia" />
   <meta property="og:title" content="ALOGY Engenharia" />
   <meta property="og:description" content="Projetos e consultoria em automação, instrumentação e elétrica industrial/residencial."/>
   <meta property="og:image" content="logo-alogy.webp" />
-  <meta property="og:url" content="https://www.alogy.com.br" />
+  <meta property="og:url" content="https://www.alogy.com.br/" />
+
   <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="ALOGY Engenharia" />
+  <meta name="twitter:description" content="Projetos e consultoria em automação, instrumentação e elétrica industrial/residencial." />
+  <meta name="twitter:image" content="logo-alogy.webp" />
 
   <style>
     :root{
@@ -34,7 +53,8 @@
       --banner-h: 520px;
       --banner-radius: 18px;
 
-      --social-safe: 72px;
+      /* distância reservada da barra social (ajustada pra aproximar mais) */
+      --social-safe: 52px;
     }
 
     *{box-sizing:border-box;margin:0;padding:0}
@@ -243,7 +263,7 @@
     .banner-wrap{ width:100%; padding: 22px 0 10px; }
 
     /* =========================
-       BANNER (DESKTOP): alinhado mais à esquerda (bordas)
+       BANNER (DESKTOP): aproximar mais da barra social (direita)
        ========================= */
     .banner-fullwidth{
       width:100%;
@@ -284,7 +304,7 @@
       inset:0;
       display:flex;
       align-items:flex-end;
-      padding: 26px; /* isso só afeta o card/texto, não a borda do banner */
+      padding: 26px;
     }
 
     .banner-card{
@@ -421,7 +441,7 @@
     }
 
     /* =========================
-       NOSSOS VALORES (faixa igual ao banner)
+       NOSSOS VALORES (Tema A - azul/tech)
        ========================= */
     .values-wrap{
       width:100%;
@@ -437,9 +457,9 @@
       overflow:hidden;
 
       background:
-        radial-gradient(900px 500px at 15% 20%, rgba(255,255,255,.18), transparent 60%),
-        radial-gradient(800px 500px at 85% 0%, rgba(0,0,0,.10), transparent 55%),
-        linear-gradient(180deg, #ff8a00 0%, #ff7a00 60%, #ff6b00 100%);
+        radial-gradient(900px 500px at 15% 20%, rgba(0,107,177,.22), transparent 60%),
+        radial-gradient(800px 500px at 85% 0%, rgba(255,255,255,.10), transparent 55%),
+        linear-gradient(180deg, #071826 0%, #062138 55%, #041a2d 100%);
       color:#fff;
 
       padding: 34px 26px 28px;
@@ -447,12 +467,10 @@
     }
 
     .values-title{
-      font-size: 3rem;
+      font-size: 2.55rem;
       font-weight: 900;
-      font-style: italic;
-      letter-spacing: .5px;
-      text-transform: lowercase;
-      margin-bottom: 22px;
+      letter-spacing: .3px;
+      margin-bottom: 18px;
     }
 
     .values-grid{
@@ -460,7 +478,7 @@
       grid-template-columns: repeat(4, 1fr);
       gap: 18px;
       align-items: start;
-      margin: 0 auto 22px;
+      margin: 0 auto 18px;
       max-width: 980px;
     }
 
@@ -479,8 +497,8 @@
       display:flex;
       align-items:center;
       justify-content:center;
-      border: 1px solid rgba(255,255,255,.45);
-      background: rgba(255,255,255,.10);
+      border: 1px solid rgba(207,232,255,.28);
+      background: rgba(0,107,177,.12);
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
       box-shadow: 0 14px 40px rgba(0,0,0,.18);
@@ -498,7 +516,7 @@
     }
 
     .values-text{
-      max-width: 860px;
+      max-width: 900px;
       margin: 0 auto;
       font-size: 1.02rem;
       line-height: 1.7;
@@ -507,28 +525,14 @@
 
     .value-item:hover .value-icon{
       transform: translateY(-3px) scale(1.05);
-      background: rgba(255,255,255,.18);
+      background: rgba(0,107,177,.18);
     }
 
     @media (max-width: 900px){
       .values-grid{ grid-template-columns: repeat(2, 1fr); max-width: 680px; }
-      .values-title{ font-size: 2.4rem; }
+      .values-title{ font-size: 2.1rem; }
     }
 
-    @media (max-width: 768px){
-      .values{
-        padding: 26px 16px 22px;
-      }
-      .values-title{ font-size: 2.05rem; margin-bottom: 16px; }
-      .values-grid{ grid-template-columns: 1fr; gap: 12px; }
-      .value-item{ flex-direction:row; justify-content:center; gap: 12px; }
-      .value-label{ font-size: 1.02rem; }
-      .values-text{ font-size: .95rem; }
-    }
-
-    /* =========================
-       MOBILE
-       ========================= */
     @media (max-width: 768px){
 
       /* Header: logo centralizado + hamburger à direita */
@@ -556,7 +560,7 @@
         width:180px;
       }
 
-      /* Banner: alinhar mais à esquerda também */
+      /* Banner: aproximar um pouco à direita também no mobile */
       .banner-fullwidth{
         padding-left: 0 !important;
         padding-right: 12px !important;
@@ -653,6 +657,15 @@
         background:#fff;
         transform:scale(1.15);
       }
+
+      .values{
+        padding: 26px 16px 22px;
+      }
+      .values-title{ font-size: 1.9rem; margin-bottom: 14px; }
+      .values-grid{ grid-template-columns: 1fr; gap: 12px; }
+      .value-item{ flex-direction:row; justify-content:center; gap: 12px; }
+      .value-label{ font-size: 1.02rem; }
+      .values-text{ font-size: .95rem; }
 
       .form-grid{grid-template-columns:1fr}
     }
@@ -959,7 +972,7 @@
        ========================= -->
   <div class="values-wrap banner-fullwidth" aria-label="Seção Nossos Valores">
     <section class="values">
-      <h2 class="values-title">nossos valores</h2>
+      <h2 class="values-title">Nossos Valores</h2>
 
       <div class="values-grid" role="list">
         <div class="value-item" role="listitem">
@@ -992,8 +1005,8 @@
       </div>
 
       <p class="values-text">
-        Trabalhamos todos os dias com o objetivo de entregar serviços e projetos com padrão técnico elevado.
-        Assumimos nossos compromissos com responsabilidade, priorizando a segurança e a satisfação dos nossos clientes.
+        Entregamos projetos e serviços com rigor técnico, clareza e organização — do levantamento à documentação final.
+        Atuamos com responsabilidade e foco em segurança, priorizando a confiabilidade das soluções e a satisfação do cliente.
       </p>
     </section>
   </div>
@@ -1004,7 +1017,7 @@
         <div class="bar"></div><h3>Contato</h3>
       </div>
       <p class="muted">
-        Use o formulário para detalhar sua necessidade. O botão WhatsApp flutuante fica disponível o tempo todo para contato rápido.
+        Use o formulário para detalhar sua necessidade. O WhatsApp flutuante fica disponível o tempo todo para contato rápido.
       </p>
 
       <form id="formContato" onsubmit="enviarFormulario(event)" aria-label="Formulário de contato" novalidate>
