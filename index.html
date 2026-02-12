@@ -1,794 +1,181 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>ALOGY Engenharia | Automação e Instrumentação</title>
-
-  <link rel="icon" href="logo-alogy.webp" type="image/webp" />
-  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-
-  <meta name="description" content="Projetos industriais e residenciais com padrão técnico. Automação, instrumentação e projetos elétricos. Fale no WhatsApp."/>
-  <meta property="og:title" content="ALOGY Engenharia" />
-  <meta property="og:description" content="Projetos e consultoria em automação, instrumentação e elétrica industrial/residencial."/>
-  <meta property="og:image" content="logo-alogy.webp" />
-  <meta property="og:url" content="https://www.alogy.com.br" />
-  <meta name="twitter:card" content="summary_large_image" />
-
-  <style>
-    :root{
-      --primary:#000;
-      --dark:#004b80;
-      --brand:#006bb1;
-      --accent:#0169b0;
-      --bg:#f4f7fa;
-      --text:#1f2937;
-      --muted:#6b7280;
-      --line:rgba(0,0,0,.10);
-      --card:#ffffff;
-      --radius:16px;
-      --shadow: 0 10px 25px rgba(0,0,0,.08);
-
-      /* Banner */
-      --banner-h: 520px; /* troque para 100vh se quiser full screen */
-      --banner-radius: 18px;
-
-      /* reserva do lado direito para NÃO atrapalhar os ícones */
-      --social-safe: 72px;
-    }
-
-    *{box-sizing:border-box;margin:0;padding:0}
-    html{scroll-behavior:smooth}
-    body{
-      font-family:'Roboto',sans-serif;
-      background:
-        radial-gradient(1100px 500px at 10% 10%, rgba(1,105,176,.14), transparent 60%),
-        radial-gradient(900px 450px at 85% 0%, rgba(0,107,177,.12), transparent 55%),
-        var(--bg);
-      color:var(--text);
-      line-height:1.6;
-    }
-
-    a{color:inherit}
-    .container{max-width:1100px;margin:0 auto;padding:0 18px}
-
-    .btn{
-      display:inline-flex;align-items:center;gap:10px;
-      background:var(--brand);color:#fff;text-decoration:none;
-      padding:12px 18px;border-radius:12px;font-weight:700;
-      box-shadow:0 6px 14px rgba(0,0,0,.12);
-      transition:transform .15s ease, background-color .2s ease;
-      border:none;
-      cursor:pointer;
-    }
-    .btn:hover{background:var(--accent);transform:translateY(-1px)}
-    .btn.secondary{
-      background:rgba(0,107,177,.08); color:var(--brand);
-      box-shadow:none; border:1px solid rgba(0,107,177,.25);
-    }
-    .btn.secondary:hover{background:rgba(0,107,177,.12)}
-
-    /* ===== HEADER ===== */
-    header{
-      background:var(--primary);
-      color:#fff;
-      position:sticky;
-      top:0;
-      z-index:3000;
-      border-bottom:1px solid rgba(255,255,255,.10);
-    }
-
-    .headbar{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      padding:12px 0;
-    }
-
-    .logo-wrapper{
-      display:flex;
-      align-items:center;
-      gap:14px;
-      text-decoration:none;
-      color:inherit;
-
-      /* >>> ÚNICA alteração pedida aqui: logo mais para a esquerda <<< */
-      margin-left:-300px;
-    }
-    .logo-wrapper img{width:54px;height:auto}
-    .logo-wrapper h1{
-      font-size:1.35rem;
-      line-height:1;
-      letter-spacing:.2px;
-      white-space:nowrap;
-    }
-
-    .menu-toggle{
-      display:none;
-      background:none;
-      border:none;
-      color:#fff;
-      font-size:1.75rem;
-      cursor:pointer;
-      padding:10px;
-      border-radius:10px;
-      transition:background .2s ease;
-    }
-    .menu-toggle:hover{background:rgba(255,255,255,.08)}
-
-    nav.desktop{
-      background:var(--dark);
-      border-top:1px solid rgba(255,255,255,.10);
-    }
-
-    nav.desktop .navlinks{
-      display:flex;
-      justify-content:center;
-      gap:18px;
-      padding:10px 0;
-      flex-wrap:wrap;
-    }
-
-    nav.desktop a{
-      position:relative;
-      color:#fff;
-      text-decoration:none;
-      font-weight:700;
-      font-size:0.98rem;
-      opacity:.96;
-      padding:8px 6px;
-      border-radius:10px;
-      transition:background .2s ease, opacity .2s ease;
-    }
-
-    nav.desktop a:hover{
-      background:rgba(255,255,255,.08);
-      opacity:1;
-    }
-
-    nav.desktop a::after{
-      content:"";
-      position:absolute;
-      left:10px;
-      right:10px;
-      bottom:4px;
-      height:2px;
-      background:rgba(207,232,255,.0);
-      border-radius:999px;
-      transition:background .2s ease;
-    }
-
-    nav.desktop a:hover::after{
-      background:rgba(207,232,255,.85);
-    }
-
-    nav.mobile{
-      display:none;
-      flex-direction:column;
-      background:var(--dark);
-      border-top:1px solid rgba(255,255,255,.10);
-    }
-    nav.mobile a{
-      color:#fff;
-      text-decoration:none;
-      font-weight:700;
-      padding:14px 18px;
-      border-bottom:1px solid rgba(255,255,255,.08);
-    }
-    nav.mobile a:hover{background:rgba(255,255,255,.08)}
-    nav.mobile.show{display:flex}
-
-    /* ===== Social floating (direita) - VOLTOU COMPLETO (sem WhatsApp) ===== */
-    .social-floating{
-      position:fixed; top:50%; right:0;
-      transform:translateY(-50%);
-      z-index:1500; display:flex;flex-direction:column;gap:10px;
-    }
-    .social-floating a{
-      color:#fff;font-size:1.2rem;text-align:center;
-      width:40px;height:40px;display:flex;align-items:center;justify-content:center;
-      border-radius:8px 0 0 8px;
-      box-shadow:0 8px 18px rgba(0,0,0,.18);
-
-      /* efeito hover */
-      transition: transform .15s ease, filter .2s ease, box-shadow .2s ease;
-      will-change: transform;
-    }
-    .social-floating a:hover{
-      transform: translateX(-2px) scale(1.03);
-      filter: brightness(1.08);
-      box-shadow:0 14px 30px rgba(0,0,0,.26);
-    }
-
-    .social-floating a.linkedin{background:#0077b5}
-    .social-floating a.instagram{background:#e4405f}
-    .social-floating a.facebook{background:#3b5998}
-    .social-floating a.youtube{background:#ff0000}
-    .social-floating a.hotmart{background:#ff5c00;font-weight:900;font-family:Arial;font-size:1.1rem}
-    .social-floating a.tiktok{background:#000}
-
-    /* ===== FABs (WhatsApp + Email lado a lado) ===== */
-    .fab-wrap{
-      position:fixed;
-      right:16px;
-      bottom:8px;
-      z-index:1800;
-      display:flex;
-      gap:10px;
-      align-items:center;
-    }
-
-    .fab-btn{
-      border:none;
-      border-radius:999px;
-      padding:12px 14px;
-      font-weight:900;
-      text-decoration:none;
-      display:flex;
-      align-items:center;
-      gap:10px;
-      box-shadow:0 14px 40px rgba(0,0,0,.25);
-      transition: transform .15s ease, filter .2s ease;
-      will-change: transform;
-    }
-    .fab-btn:hover{
-      transform: translateY(-1px);
-      filter: brightness(1.03);
-    }
-
-    .fab-btn.wa{
-      background:#25d366;
-      color:#061022;
-    }
-    .fab-btn.mail{
-      background:rgba(255,255,255,.92);
-      color:#0b3a62;
-      border:1px solid rgba(0,0,0,.12);
-    }
-
-    /* ===== BANNER (SLIDER) ===== */
-    .banner-wrap{ width:100%; padding: 22px 0 10px; }
-
-    /* largura menor do banner para não atrapalhar os ícones */
-    .banner-fullwidth{
-      width:100%;
-      padding: 18px calc(18px + var(--social-safe)) 10px 18px; /* reserva no lado direito */
-    }
-
-    .banner{
-      position:relative;
-      height:var(--banner-h);
-      border-radius:var(--banner-radius);
-      overflow:hidden;
-      border:1px solid rgba(0,0,0,.10);
-      box-shadow:var(--shadow);
-      background:#0b1220;
-    }
-
-    .slides{ position:absolute; inset:0; }
-
-    .slide{
-      position:absolute; inset:0;
-      display:block;
-      opacity:0;
-      transform:scale(1.02);
-      transition:opacity .5s ease, transform .8s ease;
-      background:
-        linear-gradient(180deg, rgba(0,0,0,.25), rgba(0,0,0,.55)),
-        var(--img, none);
-      background-size:cover;
-      background-position:center;
-      text-decoration:none;
-      color:#fff;
-    }
-    .slide.active{ opacity:1; transform:scale(1); z-index:2; }
-
-    .banner-content{
-      position:absolute;
-      inset:0;
-      display:flex;
-      align-items:flex-end;
-      padding: 26px;
-    }
-
-    .banner-card{
-      width:min(640px, 100%);
-      background: rgba(255,255,255,.10);
-      border:1px solid rgba(255,255,255,.18);
-      border-radius:18px;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      padding: 16px 16px 14px;
-      box-shadow: 0 18px 55px rgba(0,0,0,.35);
-    }
-
-    .banner-title{
-      font-size:2.05rem;
-      line-height:1.1;
-      letter-spacing:.2px;
-      margin: 2px 0 10px;
-    }
-
-    .banner-desc{
-      color: rgba(255,255,255,.88);
-      font-size:1.02rem;
-      margin-bottom: 12px;
-    }
-
-    .banner-actions{
-      display:flex; gap:10px; flex-wrap:wrap;
-    }
-
-    .banner-nav{
-      position:absolute;
-      top:50%;
-      transform:translateY(-50%);
-      z-index:5;
-      width:52px;
-      height:52px;
-      border-radius:16px;
-      border:1px solid rgba(255,255,255,.25);
-      background: rgba(255,255,255,.10);
-      color:#fff;
-      cursor:pointer;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      box-shadow: 0 18px 45px rgba(0,0,0,.30);
-      transition: transform .15s ease, background .2s ease;
-    }
-    .banner-nav:hover{
-      background: rgba(255,255,255,.16);
-      transform: translateY(-50%) scale(1.03);
-    }
-    .banner-nav.prev{left:14px}
-    .banner-nav.next{right:14px}
-
-    .banner-dots{
-      position:absolute;
-      z-index:6;
-      left:50%;
-      bottom:14px;
-      transform:translateX(-50%);
-      display:flex; gap:8px;
-      padding:8px 10px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.18);
-      background: rgba(0,0,0,.18);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-    }
-    .dot{
-      width:10px; height:10px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.55);
-      background: rgba(255,255,255,.25);
-      cursor:pointer;
-      transition: transform .15s ease, background .2s ease;
-    }
-    .dot.active{ background: rgba(255,255,255,.95); transform: scale(1.1); }
-
-    /* ===== SECTIONS ===== */
-    section{margin:18px auto;}
-    .section-card{
-      background:var(--card);
-      border:1px solid rgba(0,0,0,.08);
-      border-radius:var(--radius);
-      box-shadow:var(--shadow);
-      padding:34px 30px;
-    }
-    .section-title{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
-    .section-title .bar{width:6px;height:28px;background:var(--accent);border-radius:999px}
-    .section-title h3{font-size:1.6rem}
-    .muted{color:var(--muted)}
-
-    /* Form */
-    .form-grid{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:12px;
-      margin-top:12px;
-    }
-    .field{ display:flex; flex-direction:column; gap:6px; }
-    label{font-weight:700;color:#223}
-    input, textarea{
-      width:100%;
-      border:1px solid rgba(0,0,0,.12);
-      border-radius:12px;
-      padding:12px 12px;
-      outline:none;
-      background: rgba(255,255,255,.92);
-      font: inherit;
-    }
-    textarea{min-height:120px; resize:vertical}
-    .form-actions{
-      display:flex; gap:12px; flex-wrap:wrap;
-      margin-top:12px;
-      align-items:center;
-    }
-
-    /* status do form (adicionado - não muda layout geral) */
-    .form-status{
-      font-weight:700;
-      font-size:.95rem;
-      padding:10px 12px;
-      border-radius:12px;
-      border:1px solid rgba(0,0,0,.10);
-      background: rgba(255,255,255,.75);
-      color: #0b3a62;
-      display:none;
-    }
-    .form-status.show{display:inline-flex}
-    .form-status.ok{border-color: rgba(34,197,94,.35); color: #166534}
-    .form-status.err{border-color: rgba(239,68,68,.35); color: #991b1b}
-
-    footer{
-      background:var(--dark); color:#fff;
-      text-align:center; padding:22px 10px;
-      margin-top:26px; font-size:.92rem;
-    }
-
-    /* Responsive */
-    @media (max-width: 768px){
-      nav.desktop{display:none}
-      .menu-toggle{display:block}
-      .social-floating{display:none}
-
-      .logo-wrapper h1{font-size:1.15rem}
-      .banner-title{font-size:1.65rem}
-      .banner-content{padding:18px}
-      .banner-nav{width:48px;height:48px;border-radius:14px}
-      .form-grid{grid-template-columns:1fr}
-
-      /* no mobile, não precisa reservar espaço para ícones (eles somem) */
-      .banner-fullwidth{padding: 14px 12px 8px;}
-      .logo-wrapper{margin-left:0;} /* pra não estourar no mobile */
-    }
-  </style>
-
-  <script>
-    function toggleMobileMenu(){
-      const menu = document.querySelector('nav.mobile');
-      if(menu) menu.classList.toggle('show');
-    }
-
-    // ===== Banner slider =====
-    let currentSlide = 0;
-    let sliderTimer = null;
-
-    function getSlides(){ return Array.from(document.querySelectorAll('.slide')); }
-    function getDots(){ return Array.from(document.querySelectorAll('.dot')); }
-
-    function showSlide(index){
-      const slides = getSlides();
-      const dots = getDots();
-      if(!slides.length) return;
-
-      currentSlide = (index + slides.length) % slides.length;
-      slides.forEach((s, i) => s.classList.toggle('active', i === currentSlide));
-      dots.forEach((d, i) => d.classList.toggle('active', i === currentSlide));
-    }
-
-    function nextSlide(){ showSlide(currentSlide + 1); }
-    function prevSlide(){ showSlide(currentSlide - 1); }
-
-    function startAuto(){
-      stopAuto();
-      sliderTimer = setInterval(nextSlide, 6500);
-    }
-    function stopAuto(){
-      if(sliderTimer) clearInterval(sliderTimer);
-      sliderTimer = null;
-    }
-
-    function initBanner(){
-      const banner = document.querySelector('.banner');
-      if(!banner) return;
-
-      document.querySelectorAll('.dot').forEach((dot) => {
-        dot.addEventListener('click', () => {
-          const idx = Number(dot.getAttribute('data-idx'));
-          showSlide(idx);
-          startAuto();
-        });
-      });
-
-      const btnPrev = document.querySelector('.banner-nav.prev');
-      const btnNext = document.querySelector('.banner-nav.next');
-      if(btnPrev) btnPrev.addEventListener('click', () => { prevSlide(); startAuto(); });
-      if(btnNext) btnNext.addEventListener('click', () => { nextSlide(); startAuto(); });
-
-      banner.addEventListener('mouseenter', stopAuto);
-      banner.addEventListener('mouseleave', startAuto);
-
-      // Swipe mobile
-      let startX = 0, endX = 0;
-      banner.addEventListener('touchstart', (e) => { startX = e.touches[0].clientX; }, {passive:true});
-      banner.addEventListener('touchmove', (e) => { endX = e.touches[0].clientX; }, {passive:true});
-      banner.addEventListener('touchend', () => {
-        const diff = endX - startX;
-        if(Math.abs(diff) > 40){
-          if(diff > 0) prevSlide();
-          else nextSlide();
-          startAuto();
-        }
-        startX = 0; endX = 0;
-      });
-
-      showSlide(0);
-      startAuto();
-    }
-
-    // ===== Opção A: FormSubmit (envia para contato@alogy.com.br sem sair do site) =====
-    async function enviarFormularioFormSubmit(e){
-      e.preventDefault();
-
-      const btn = e.target.querySelector('button[type="submit"]');
-      const status = document.getElementById('formStatus');
-
-      const nome = (document.getElementById('c_nome')?.value || '').trim();
-      const email = (document.getElementById('c_email')?.value || '').trim();
-      const fone = (document.getElementById('c_fone')?.value || '').trim();
-      const cidade = (document.getElementById('c_cidade')?.value || '').trim();
-      const assunto = (document.getElementById('c_assunto')?.value || '').trim();
-      const msg = (document.getElementById('c_msg')?.value || '').trim();
-
-      const subject = `FORMULARIO - ${assunto || 'Sem assunto'}`;
-      const body =
-        `Nome: ${nome || '-'}\n` +
-        `Telefone: ${fone || '-'}\n` +
-        `E-mail: ${email || '-'}\n` +
-        `Cidade/Local: ${cidade || '-'}\n` +
-        `Assunto: ${assunto || '-'}\n\n` +
-        `Mensagem:\n${msg || '-'}`;
-
-      // Monta o payload do FormSubmit
-      const formData = new FormData();
-      formData.append("name", nome || "-");
-      formData.append("email", email || "-");
-      formData.append("telefone", fone || "-");
-      formData.append("cidade", cidade || "-");
-      formData.append("assunto", subject);
-      formData.append("mensagem", body);
-
-      // Configs
-      formData.append("_subject", subject);
-      formData.append("_captcha", "false");
-      // Se quiser "responder" para o e-mail do cliente quando clicar responder:
-      if(email) formData.append("_replyto", email);
-
-      // UI
-      if(btn){ btn.disabled = true; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...'; }
-      if(status){
-        status.className = "form-status show";
-        status.textContent = "Enviando mensagem...";
-      }
-
-      try{
-        const endpoint = "https://formsubmit.co/ajax/contato@alogy.com.br";
-        const res = await fetch(endpoint, { method: "POST", body: formData });
-
-        if(!res.ok){
-          throw new Error("Falha no envio");
-        }
-
-        // sucesso
-        if(status){
-          status.className = "form-status show ok";
-          status.textContent = "Enviado com sucesso! Em breve retornaremos.";
-        }
-
-        // limpa campos
-        ["c_nome","c_fone","c_email","c_cidade","c_assunto","c_msg"].forEach(id=>{
-          const el = document.getElementById(id);
-          if(el) el.value = "";
-        });
-
-      }catch(err){
-        // fallback: abre a página do FormSubmit em nova guia (sem tirar do site)
-        const fallbackUrl = "https://formsubmit.co/contato@alogy.com.br";
-        window.open(fallbackUrl, "_blank", "noopener");
-
-        if(status){
-          status.className = "form-status show err";
-          status.textContent = "Não foi possível enviar automaticamente. Abrimos uma nova guia para concluir o envio.";
-        }
-      }finally{
-        if(btn){ btn.disabled = false; btn.innerHTML = '<i class="fas fa-paper-plane"></i> Enviar por e-mail'; }
-      }
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-      initBanner();
-    });
-  </script>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>ALOGY Engenharia | Automação e Instrumentação</title>
+
+<link rel="icon" href="logo-alogy.webp" type="image/webp"/>
+<link rel="shortcut icon" href="favicon.ico"/>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
+<style>
+body{font-family:Roboto;background:#f4f7fa;margin:0}
+
+.btn{
+display:inline-flex;
+align-items:center;
+gap:10px;
+background:#006bb1;
+color:#fff;
+padding:12px 18px;
+border-radius:12px;
+font-weight:700;
+border:none;
+cursor:pointer;
+}
+
+.btn:disabled{
+opacity:.5;
+cursor:not-allowed;
+}
+
+.form-status{
+display:none;
+padding:12px 14px;
+border-radius:12px;
+font-weight:700;
+margin-top:10px;
+border:1px solid rgba(0,0,0,.10);
+background:#fff;
+}
+.form-status.show{display:block;}
+.form-status.ok{border-color:#22c55e;}
+.form-status.err{border-color:#ef4444;}
+
+.section-card{
+background:#fff;
+padding:34px 30px;
+margin:40px auto;
+max-width:900px;
+border-radius:16px;
+}
+
+.form-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:12px;
+}
+
+.field{display:flex;flex-direction:column}
+input,textarea{
+padding:12px;
+border-radius:10px;
+border:1px solid #ccc;
+font-family:inherit;
+}
+textarea{min-height:120px}
+</style>
+
+<script>
+function todosCamposPreenchidos(){
+const ids=["c_nome","c_fone","c_email","c_cidade","c_assunto","c_msg"];
+return ids.every(id=>(document.getElementById(id)?.value||"").trim().length>0);
+}
+
+function atualizarEstadoBotao(){
+const btn=document.getElementById("btnEnviar");
+if(!btn)return;
+btn.disabled=!todosCamposPreenchidos();
+}
+
+function initFormLock(){
+const ids=["c_nome","c_fone","c_email","c_cidade","c_assunto","c_msg"];
+ids.forEach(id=>{
+const el=document.getElementById(id);
+if(el)el.addEventListener("input",atualizarEstadoBotao);
+});
+atualizarEstadoBotao();
+}
+
+function enviarFormularioFormSubmit(e){
+e.preventDefault();
+
+const status=document.getElementById("formStatus");
+
+if(!todosCamposPreenchidos()){
+status.className="form-status show err";
+status.textContent="Preencha todos os campos.";
+return;
+}
+
+const nome=document.getElementById('c_nome').value.trim();
+const email=document.getElementById('c_email').value.trim();
+const fone=document.getElementById('c_fone').value.trim();
+const cidade=document.getElementById('c_cidade').value.trim();
+const assunto=document.getElementById('c_assunto').value.trim();
+const msg=document.getElementById('c_msg').value.trim();
+
+const subject=`FORMULÁRIO ALOGY - ${assunto}`;
+const body=
+`Nome: ${nome}
+Telefone: ${fone}
+Email: ${email}
+Cidade: ${cidade}
+
+Mensagem:
+${msg}`;
+
+window.location.href=`mailto:contato@alogy.com.br?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+status.className="form-status show ok";
+status.textContent="Enviado com sucesso!";
+}
+
+document.addEventListener("DOMContentLoaded",initFormLock);
+</script>
 </head>
 
 <body>
-  <header>
-    <div class="container headbar">
-      <a href="index.html" class="logo-wrapper" aria-label="Voltar para o início">
-        <img src="logo-alogy.webp" alt="Logo ALOGY" />
-        <h1>ALOGY Engenharia</h1>
-      </a>
 
-      <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menu">
-        <i class="fas fa-bars"></i>
-      </button>
-    </div>
+<section id="contato" class="section-card">
+<h2>Contato</h2>
 
-    <nav class="desktop" aria-label="Menu principal">
-      <div class="container navlinks">
-        <a href="industrial.html">Industrial</a>
-        <a href="residencial.html">Residencial</a>
-        <a href="cursos.html">Cursos</a>
-        <a href="sobre.html">Sobre</a>
-        <a href="#contato">Contato</a>
-      </div>
-    </nav>
+<form id="contatoForm" onsubmit="enviarFormularioFormSubmit(event)">
 
-    <nav class="mobile" aria-label="Menu mobile">
-      <a href="industrial.html" onclick="toggleMobileMenu()">Industrial</a>
-      <a href="residencial.html" onclick="toggleMobileMenu()">Residencial</a>
-      <a href="cursos.html" onclick="toggleMobileMenu()">Cursos</a>
-      <a href="sobre.html" onclick="toggleMobileMenu()">Sobre</a>
-      <a href="#contato" onclick="toggleMobileMenu()">Contato</a>
-    </nav>
-  </header>
+<div class="form-grid">
 
-  <!-- Social floating (desktop) - VOLTOU COMPLETO -->
-  <div class="social-floating" aria-label="Redes sociais">
-    <a href="https://www.linkedin.com/company/alogyengenharia" class="linkedin" target="_blank" rel="noopener" aria-label="LinkedIn">
-      <i class="fab fa-linkedin-in"></i>
-    </a>
-    <a href="https://www.instagram.com/alogyengenharia" class="instagram" target="_blank" rel="noopener" aria-label="Instagram">
-      <i class="fab fa-instagram"></i>
-    </a>
-    <a href="https://www.facebook.com/alogyengenharia" class="facebook" target="_blank" rel="noopener" aria-label="Facebook">
-      <i class="fab fa-facebook-f"></i>
-    </a>
-    <a href="https://www.youtube.com/@alogyengenharia" class="youtube" target="_blank" rel="noopener" aria-label="YouTube">
-      <i class="fab fa-youtube"></i>
-    </a>
-    <a href="https://hotmart.com/pt-br/club/alogyengenharia" class="hotmart" target="_blank" rel="noopener" aria-label="Hotmart">H</a>
-    <a href="https://www.tiktok.com/@alogyengenharia" class="tiktok" target="_blank" rel="noopener" aria-label="TikTok">
-      <i class="fab fa-tiktok"></i>
-    </a>
-  </div>
+<div class="field">
+<label>Nome</label>
+<input id="c_nome" type="text" placeholder="Seu nome"/>
+</div>
 
-  <!-- FABs: E-mail ao lado do WhatsApp -->
-  <div class="fab-wrap" aria-label="Ações rápidas">
-    <a class="fab-btn mail" href="mailto:contato@alogy.com.br" aria-label="Enviar e-mail para contato@alogy.com.br">
-      <i class="fas fa-envelope"></i> contato@alogy.com.br
-    </a>
+<div class="field">
+<label>Telefone</label>
+<input id="c_fone" type="tel" placeholder="(xx) xxxxx-xxxx"/>
+</div>
 
-    <a class="fab-btn wa" href="https://wa.me/5519991787430?text=Ol%C3%A1!%20Vim%20pelo%20site%20ALOGY%20e%20quero%20falar%20sobre%20um%20projeto." target="_blank" rel="noopener" aria-label="Abrir WhatsApp">
-      <i class="fab fa-whatsapp"></i> WhatsApp
-    </a>
-  </div>
+<div class="field">
+<label>E-mail</label>
+<input id="c_email" type="email" placeholder="seuemail@exemplo.com"/>
+</div>
 
-  <!-- BANNER -->
-  <div class="banner-wrap banner-fullwidth">
-    <div class="banner" aria-label="Banner principal com 3 destaques">
-      <div class="slides">
-        <a class="slide active" href="industrial.html" style="--img:url('banner1.webp')" aria-label="Ir para Industrial">
-          <div class="banner-content">
-            <div class="banner-card">
-              <div class="banner-title">Industrial</div>
-              <div class="banner-desc">
-                Automação, instrumentação e projetos — do levantamento à entrega, com documentação e foco em confiabilidade.
-              </div>
-              <div class="banner-actions">
-                <span class="btn"><i class="fas fa-industry"></i> Entrar</span>
-              </div>
-            </div>
-          </div>
-        </a>
+<div class="field">
+<label>Cidade / Local</label>
+<input id="c_cidade" type="text" placeholder="Ex.: Americana/SP"/>
+</div>
 
-        <a class="slide" href="residencial.html" style="--img:url('banner2.webp')" aria-label="Ir para Residencial">
-          <div class="banner-content">
-            <div class="banner-card">
-              <div class="banner-title">Residencial</div>
-              <div class="banner-desc">
-                Projetos elétricos, adequações e automação residencial com acabamento e responsabilidade.
-              </div>
-              <div class="banner-actions">
-                <span class="btn"><i class="fas fa-house-signal"></i> Entrar</span>
-              </div>
-            </div>
-          </div>
-        </a>
+<div class="field" style="grid-column:1/-1">
+<label>Assunto</label>
+<input id="c_assunto" type="text"/>
+</div>
 
-        <a class="slide" href="cursos.html" style="--img:url('banner3.webp')" aria-label="Ir para Cursos">
-          <div class="banner-content">
-            <div class="banner-card">
-              <div class="banner-title">Cursos</div>
-              <div class="banner-desc">
-                Formação técnica e evolução prática em automação e instrumentação.
-              </div>
-              <div class="banner-actions">
-                <span class="btn"><i class="fas fa-graduation-cap"></i> Entrar</span>
-              </div>
-            </div>
-          </div>
-        </a>
-      </div>
+<div class="field" style="grid-column:1/-1">
+<label>Mensagem</label>
+<textarea id="c_msg"></textarea>
+</div>
 
-      <button class="banner-nav prev" type="button" aria-label="Slide anterior">
-        <i class="fas fa-chevron-left"></i>
-      </button>
-      <button class="banner-nav next" type="button" aria-label="Próximo slide">
-        <i class="fas fa-chevron-right"></i>
-      </button>
+</div>
 
-      <div class="banner-dots" aria-label="Indicadores do banner">
-        <span class="dot active" data-idx="0" aria-label="Ir para slide 1"></span>
-        <span class="dot" data-idx="1" aria-label="Ir para slide 2"></span>
-        <span class="dot" data-idx="2" aria-label="Ir para slide 3"></span>
-      </div>
-    </div>
-  </div>
+<button id="btnEnviar" class="btn" type="submit" disabled>
+<i class="fas fa-paper-plane"></i> Enviar
+</button>
 
-  <main class="container">
-    <!-- CONTATO (fica no HOME) -->
-    <section id="contato" class="section-card">
-      <div class="section-title">
-        <div class="bar"></div><h3>Contato</h3>
-      </div>
-      <p class="muted">
-        Use o formulário para detalhar sua necessidade. O botão WhatsApp flutuante fica disponível o tempo todo para contato rápido.
-      </p>
+<div id="formStatus" class="form-status"></div>
 
-      <!-- ALTERAÇÃO: agora envia para o FormSubmit (Opção A) -->
-      <form onsubmit="enviarFormularioFormSubmit(event)" aria-label="Formulário de contato">
-        <div class="form-grid">
-          <div class="field">
-            <label for="c_nome">Nome</label>
-            <input id="c_nome" type="text" placeholder="Seu nome" />
-          </div>
-          <div class="field">
-            <label for="c_fone">Telefone</label>
-            <input id="c_fone" type="tel" placeholder="(xx) xxxxx-xxxx" />
-          </div>
+</form>
+</section>
 
-          <div class="field">
-            <label for="c_email">E-mail</label>
-            <input id="c_email" type="email" placeholder="seuemail@exemplo.com" />
-          </div>
-          <div class="field">
-            <label for="c_cidade">Cidade / Local</label>
-            <input id="c_cidade" type="text" placeholder="Ex.: Americana/SP" />
-          </div>
-
-          <div class="field" style="grid-column:1/-1">
-            <label for="c_assunto">Assunto</label>
-            <input id="c_assunto" type="text" placeholder="Industrial, residencial, curso, consultoria..." />
-          </div>
-
-          <div class="field" style="grid-column:1/-1">
-            <label for="c_msg">Mensagem</label>
-            <textarea id="c_msg" placeholder="Explique o que precisa, prazo e contexto."></textarea>
-          </div>
-        </div>
-
-        <div class="form-actions">
-          <button class="btn" type="submit">
-            <i class="fas fa-paper-plane"></i> Enviar por e-mail
-          </button>
-
-          <!-- status do envio (adicionado) -->
-          <span id="formStatus" class="form-status" aria-live="polite"></span>
-        </div>
-      </form>
-    </section>
-  </main>
-
-  <footer>
-    <p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p>
-  </footer>
 </body>
 </html>
