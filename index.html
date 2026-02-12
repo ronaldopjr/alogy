@@ -95,7 +95,7 @@
       color:inherit;
 
       /* >>> ÚNICA alteração pedida aqui: logo mais para a esquerda <<< */
-      margin-left:-18px;
+      margin-left:-50px;
     }
     .logo-wrapper img{width:54px;height:auto}
     .logo-wrapper h1{
@@ -411,6 +411,21 @@
       align-items:center;
     }
 
+    /* status do form (adicionado - não muda layout geral) */
+    .form-status{
+      font-weight:700;
+      font-size:.95rem;
+      padding:10px 12px;
+      border-radius:12px;
+      border:1px solid rgba(0,0,0,.10);
+      background: rgba(255,255,255,.75);
+      color: #0b3a62;
+      display:none;
+    }
+    .form-status.show{display:inline-flex}
+    .form-status.ok{border-color: rgba(34,197,94,.35); color: #166534}
+    .form-status.err{border-color: rgba(239,68,68,.35); color: #991b1b}
+
     footer{
       background:var(--dark); color:#fff;
       text-align:center; padding:22px 10px;
@@ -506,6 +521,85 @@
 
       showSlide(0);
       startAuto();
+    }
+
+    // ===== Opção A: FormSubmit (envia para contato@alogy.com.br sem sair do site) =====
+    async function enviarFormularioFormSubmit(e){
+      e.preventDefault();
+
+      const btn = e.target.querySelector('button[type="submit"]');
+      const status = document.getElementById('formStatus');
+
+      const nome = (document.getElementById('c_nome')?.value || '').trim();
+      const email = (document.getElementById('c_email')?.value || '').trim();
+      const fone = (document.getElementById('c_fone')?.value || '').trim();
+      const cidade = (document.getElementById('c_cidade')?.value || '').trim();
+      const assunto = (document.getElementById('c_assunto')?.value || '').trim();
+      const msg = (document.getElementById('c_msg')?.value || '').trim();
+
+      const subject = `FORMULARIO - ${assunto || 'Sem assunto'}`;
+      const body =
+        `Nome: ${nome || '-'}\n` +
+        `Telefone: ${fone || '-'}\n` +
+        `E-mail: ${email || '-'}\n` +
+        `Cidade/Local: ${cidade || '-'}\n` +
+        `Assunto: ${assunto || '-'}\n\n` +
+        `Mensagem:\n${msg || '-'}`;
+
+      // Monta o payload do FormSubmit
+      const formData = new FormData();
+      formData.append("name", nome || "-");
+      formData.append("email", email || "-");
+      formData.append("telefone", fone || "-");
+      formData.append("cidade", cidade || "-");
+      formData.append("assunto", subject);
+      formData.append("mensagem", body);
+
+      // Configs
+      formData.append("_subject", subject);
+      formData.append("_captcha", "false");
+      // Se quiser "responder" para o e-mail do cliente quando clicar responder:
+      if(email) formData.append("_replyto", email);
+
+      // UI
+      if(btn){ btn.disabled = true; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...'; }
+      if(status){
+        status.className = "form-status show";
+        status.textContent = "Enviando mensagem...";
+      }
+
+      try{
+        const endpoint = "https://formsubmit.co/ajax/contato@alogy.com.br";
+        const res = await fetch(endpoint, { method: "POST", body: formData });
+
+        if(!res.ok){
+          throw new Error("Falha no envio");
+        }
+
+        // sucesso
+        if(status){
+          status.className = "form-status show ok";
+          status.textContent = "Enviado com sucesso! Em breve retornaremos.";
+        }
+
+        // limpa campos
+        ["c_nome","c_fone","c_email","c_cidade","c_assunto","c_msg"].forEach(id=>{
+          const el = document.getElementById(id);
+          if(el) el.value = "";
+        });
+
+      }catch(err){
+        // fallback: abre a página do FormSubmit em nova guia (sem tirar do site)
+        const fallbackUrl = "https://formsubmit.co/contato@alogy.com.br";
+        window.open(fallbackUrl, "_blank", "noopener");
+
+        if(status){
+          status.className = "form-status show err";
+          status.textContent = "Não foi possível enviar automaticamente. Abrimos uma nova guia para concluir o envio.";
+        }
+      }finally{
+        if(btn){ btn.disabled = false; btn.innerHTML = '<i class="fas fa-paper-plane"></i> Enviar por e-mail'; }
+      }
     }
 
     document.addEventListener('DOMContentLoaded', () => {
@@ -649,42 +743,35 @@
         Use o formulário para detalhar sua necessidade. O botão WhatsApp flutuante fica disponível o tempo todo para contato rápido.
       </p>
 
-      <!-- ✅ FORM SUBMIT (sem backend / sem worker / sem DKIM) -->
-      <form action="https://formsubmit.co/contato@alogy.com.br" method="POST" aria-label="Formulário de contato">
-        <!-- configurações -->
-        <input type="hidden" name="_subject" value="Novo contato pelo site ALOGY Engenharia">
-        <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_template" value="table">
-        <input type="hidden" name="_next" value="https://www.alogy.com.br/obrigado.html">
-
-        <!-- campos (mantém o layout igual, só adiciona name=...) -->
+      <!-- ALTERAÇÃO: agora envia para o FormSubmit (Opção A) -->
+      <form onsubmit="enviarFormularioFormSubmit(event)" aria-label="Formulário de contato">
         <div class="form-grid">
           <div class="field">
             <label for="c_nome">Nome</label>
-            <input id="c_nome" name="Nome" type="text" placeholder="Seu nome" required />
+            <input id="c_nome" type="text" placeholder="Seu nome" />
           </div>
           <div class="field">
             <label for="c_fone">Telefone</label>
-            <input id="c_fone" name="Telefone" type="tel" placeholder="(xx) xxxxx-xxxx" />
+            <input id="c_fone" type="tel" placeholder="(xx) xxxxx-xxxx" />
           </div>
 
           <div class="field">
             <label for="c_email">E-mail</label>
-            <input id="c_email" name="Email" type="email" placeholder="seuemail@exemplo.com" required />
+            <input id="c_email" type="email" placeholder="seuemail@exemplo.com" />
           </div>
           <div class="field">
             <label for="c_cidade">Cidade / Local</label>
-            <input id="c_cidade" name="Cidade/Local" type="text" placeholder="Ex.: Americana/SP" />
+            <input id="c_cidade" type="text" placeholder="Ex.: Americana/SP" />
           </div>
 
           <div class="field" style="grid-column:1/-1">
             <label for="c_assunto">Assunto</label>
-            <input id="c_assunto" name="Assunto" type="text" placeholder="Industrial, residencial, curso, consultoria..." />
+            <input id="c_assunto" type="text" placeholder="Industrial, residencial, curso, consultoria..." />
           </div>
 
           <div class="field" style="grid-column:1/-1">
             <label for="c_msg">Mensagem</label>
-            <textarea id="c_msg" name="Mensagem" placeholder="Explique o que precisa, prazo e contexto." required></textarea>
+            <textarea id="c_msg" placeholder="Explique o que precisa, prazo e contexto."></textarea>
           </div>
         </div>
 
@@ -692,6 +779,9 @@
           <button class="btn" type="submit">
             <i class="fas fa-paper-plane"></i> Enviar por e-mail
           </button>
+
+          <!-- status do envio (adicionado) -->
+          <span id="formStatus" class="form-status" aria-live="polite"></span>
         </div>
       </form>
     </section>
