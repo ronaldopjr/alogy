@@ -546,24 +546,26 @@
       align-items: start;
     }
 
-    .crea-panel{
-      min-height: 100%;
-      border-radius: var(--radius);
-      background: rgba(255,255,255,.65);
-      border: 1px solid rgba(0,0,0,.06);
-      box-shadow: var(--shadow);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding: 24px 18px;
-    }
+   .crea-panel{
+  position:relative;
+  min-height:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:0;        /* remove espaçamento do card */
+}
 
-    .crea-panel img{
-      width: min(220px, 90%);
-      height: auto;
-      display:block;
-      filter: none;
-    }
+
+
+ .crea-panel img{
+  width:320px;        /* símbolo grande */
+  max-width:85%;
+  height:auto;
+  opacity:.32;        /* suavidade */
+  filter: grayscale(100%);
+  pointer-events:none;
+}
+
 
     @media (max-width: 1020px){
       .contact-shell{
