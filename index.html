@@ -243,12 +243,13 @@
     .banner-wrap{ width:100%; padding: 22px 0 10px; }
 
     /* =========================
-       BANNER (DESKTOP): alinhado mais à esquerda (bordas)
+       BANNER (DESKTOP): REVERTIDO para como era antes
+       (banner volta a seguir o padrão do container)
        ========================= */
     .banner-fullwidth{
       width:100%;
-      padding-left: 0 !important;
-      padding-right: calc(18px + var(--social-safe)) !important;
+      padding-left: 18px !important;
+      padding-right: 18px !important;
       padding-top: 18px !important;
       padding-bottom: 10px !important;
     }
@@ -284,7 +285,8 @@
       inset:0;
       display:flex;
       align-items:flex-end;
-      padding: 26px; /* isso só afeta o card/texto, não a borda do banner */
+      padding: 26px; /* afeta o card/texto, não a borda */
+      z-index: 3;
     }
 
     .banner-card{
@@ -377,6 +379,32 @@
     .section-title h3{font-size:1.6rem}
     .muted{color:var(--muted)}
 
+    .grid-3{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:14px;
+      margin-top:14px;
+    }
+    .card-mini{
+      border:1px solid rgba(0,0,0,.08);
+      border-radius:16px;
+      padding:16px 16px 14px;
+      background:rgba(255,255,255,.92);
+      box-shadow: 0 10px 24px rgba(0,0,0,.06);
+    }
+    .card-mini h4{font-size:1.08rem;margin-bottom:6px;color:#111827}
+    .card-mini p{color:var(--muted);font-size:.97rem}
+    .card-mini .tag{
+      display:inline-flex;align-items:center;gap:8px;
+      margin-bottom:10px;
+      font-weight:900;
+      color:#0b3a62;
+      background:rgba(0,107,177,.10);
+      border:1px solid rgba(0,107,177,.18);
+      padding:8px 10px;
+      border-radius:999px;
+    }
+
     .form-grid{
       display:grid;
       grid-template-columns: 1fr 1fr;
@@ -421,488 +449,518 @@
     }
 
     /* =========================
-       MOBILE
+       NOSSOS VALORES (faixa igual ao banner)
        ========================= */
-    @media (max-width: 768px){
+    .values-wrap{
+      width:100%;
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
 
-      /* Header: logo centralizado + hamburger à direita */
+    .values{
+      width:100%;
+      border-radius: var(--banner-radius);
+      border:1px solid rgba(0,0,0,.10);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+
+      background:
+        radial-gradient(900px 500px at 15% 20%, rgba(255,255,255,.18), transparent 60%),
+        radial-gradient(800px 500px at 85% 0%, rgba(0,0,0,.10), transparent 55%),
+        linear-gradient(180deg, #ff8a00 0%, #ff7a00 60%, #ff6b00 100%);
+      color:#fff;
+
+      padding: 34px 26px 28px;
+      text-align:center;
+    }
+
+    .values-title{
+      font-size: 3rem;
+      font-weight: 900;
+      font-style: italic;
+      letter-spacing: .5px;
+      text-transform: lowercase;
+      margin-bottom: 22px;
+    }
+
+    .values-grid{
+      display:grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+      align-items: start;
+      margin: 0 auto 22px;
+      max-width: 980px;
+    }
+
+    .value-item{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap: 10px;
+      padding: 12px 10px;
+    }
+
+    .value-icon{
+      width: 58px;
+      height: 58px;
+      border-radius: 18px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      border: 1px solid rgba(255,255,255,.45);
+      background: rgba(255,255,255,.10);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      box-shadow: 0 14px 40px rgba(0,0,0,.18);
+      transition: all .25s ease;
+    }
+
+    .value-icon i{ font-size: 1.55rem; }
+
+    .value-label{
+      font-weight: 900;
+      font-size: 1.05rem;
+      opacity: .98;
+    }
+
+    .values-text{
+      max-width: 860px;
+      margin: 0 auto;
+      font-size: 1.02rem;
+      line-height: 1.7;
+      color: rgba(255,255,255,.92);
+    }
+
+    .value-item:hover .value-icon{
+      transform: translateY(-3px) scale(1.05);
+      background: rgba(255,255,255,.18);
+    }
+
+    @media (max-width: 980px){
+      .logo-wrapper img{width:260px}
+      .grid-3{grid-template-columns:1fr; }
+    }
+
+    @media (max-width: 900px){
+      .values-grid{ grid-template-columns: repeat(2, 1fr); max-width: 680px; }
+      .values-title{ font-size: 2.4rem; }
+    }
+
+    @media (max-width: 820px){
       nav.desktop{display:none}
+      .menu-toggle{display:inline-flex}
+      .form-grid{grid-template-columns:1fr}
+      :root{ --banner-h: 460px; }
+    }
 
-      header .container{
-        padding-left: 10px;
-        padding-right: 10px;
-      }
-
-      .menu-toggle{
-        display:block;
-        position:absolute;
-        right:12px;
-      }
-
-      .social-floating{display:none}
-
-      .headbar{
-        justify-content:center;
-        position:relative;
-      }
-
-      .logo-wrapper img{
-        width:180px;
-      }
-
-      /* Banner: alinhar mais à esquerda também */
+    @media (max-width: 768px){
+      :root{ --banner-h: 520px; } /* mobile geralmente precisa mais altura */
       .banner-fullwidth{
-        padding-left: 0 !important;
-        padding-right: 12px !important;
-        padding-top: 14px !important;
-        padding-bottom: 8px !important;
+        padding-left: 18px !important;
+        padding-right: 18px !important;
       }
-
-      .banner{
-        height:460px;
-        --card-w: min(360px, calc(100% - 40px));
-        --arrow-w: 44px;
-        --arrow-gap: 6px;
-      }
-
-      .banner-content{
-        padding:18px;
-        justify-content:center;
-        align-items:flex-end;
-        padding-bottom:48px;
-      }
-
-      .banner-title{
-        font-size:1.25rem;
-        line-height:1.2;
-        margin:2px 0 8px;
-      }
-
-      .banner-desc{
-        font-size:.86rem;
-        line-height:1.45;
-        margin-bottom:10px;
-      }
-
-      .banner-actions .btn{
-        padding:9px 14px;
-        font-size:.9rem;
-      }
-
-      .banner-card{
-        width: var(--card-w);
-        max-width:360px;
-        padding:16px 18px 20px;
-        background: rgba(20,25,35,.60);
-        border:1px solid rgba(255,255,255,.12);
-      }
-
       .slide{
         background: var(--img-mobile, var(--img-desktop, none));
-        background-size: cover;
-        background-position: 80% 14%;
+        background-position: 60% 20%;
       }
-
-      .banner-nav{
-        top:50%;
-        transform:translateY(-50%);
-        width: var(--arrow-w);
-        height: var(--arrow-w);
-        border-radius:999px;
-        border:1px solid rgba(255,255,255,.18);
-        background: rgba(255,255,255,.07);
-        backdrop-filter: blur(8px);
-        -webkit-backdrop-filter: blur(8px);
-        box-shadow: 0 8px 25px rgba(0,0,0,.25);
-        opacity:.62;
-        z-index:10;
-      }
-
-      .banner-nav.prev{
-        left: calc(50% - (var(--card-w) / 2) - var(--arrow-gap) - (var(--arrow-w) / 2));
-      }
-
-      .banner-nav.next{
-        left: calc(50% + (var(--card-w) / 2) + var(--arrow-gap) - (var(--arrow-w) / 2));
-      }
-
-      .banner-nav i{font-size:.95rem;}
-
-      .banner-dots{
-        bottom:18px;
-        background: rgba(0,0,0,.22);
-        border:1px solid rgba(255,255,255,.14);
-        padding:6px 10px;
-        z-index:10;
-      }
-
-      .dot{
-        width:8px;
-        height:8px;
-        background: rgba(255,255,255,.32);
-        border:1px solid rgba(255,255,255,.5);
-      }
-
-      .dot.active{
-        background:#fff;
-        transform:scale(1.15);
-      }
-
-      .form-grid{grid-template-columns:1fr}
+      .banner-title{font-size:1.75rem}
+      .banner-content{padding:18px}
+      .values{ padding: 26px 16px 22px; }
+      .values-title{ font-size: 2.05rem; margin-bottom: 16px; }
+      .values-grid{ grid-template-columns: 1fr; gap: 12px; }
     }
   </style>
-
-  <script>
-    function toggleMobileMenu(){
-      const menu = document.querySelector('nav.mobile');
-      if(menu) menu.classList.toggle('show');
-    }
-
-    // ===== Banner slider =====
-    let currentSlide = 0;
-    let sliderTimer = null;
-
-    function getSlides(){ return Array.from(document.querySelectorAll('.slide')); }
-    function getDots(){ return Array.from(document.querySelectorAll('.dot')); }
-
-    function showSlide(index){
-      const slides = getSlides();
-      const dots = getDots();
-      if(!slides.length) return;
-
-      currentSlide = (index + slides.length) % slides.length;
-      slides.forEach((s, i) => s.classList.toggle('active', i === currentSlide));
-      dots.forEach((d, i) => d.classList.toggle('active', i === currentSlide));
-    }
-
-    function nextSlide(){ showSlide(currentSlide + 1); }
-    function prevSlide(){ showSlide(currentSlide - 1); }
-
-    function startAuto(){
-      stopAuto();
-      sliderTimer = setInterval(nextSlide, 6500);
-    }
-    function stopAuto(){
-      if(sliderTimer) clearInterval(sliderTimer);
-      sliderTimer = null;
-    }
-
-    function initBanner(){
-      const banner = document.querySelector('.banner');
-      if(!banner) return;
-
-      document.querySelectorAll('.dot').forEach((dot) => {
-        dot.addEventListener('click', () => {
-          const idx = Number(dot.getAttribute('data-idx'));
-          showSlide(idx);
-          startAuto();
-        });
-      });
-
-      const btnPrev = document.querySelector('.banner-nav.prev');
-      const btnNext = document.querySelector('.banner-nav.next');
-      if(btnPrev) btnPrev.addEventListener('click', () => { prevSlide(); startAuto(); });
-      if(btnNext) btnNext.addEventListener('click', () => { nextSlide(); startAuto(); });
-
-      banner.addEventListener('mouseenter', stopAuto);
-      banner.addEventListener('mouseleave', startAuto);
-
-      // Swipe mobile
-      let startX = 0, endX = 0;
-      banner.addEventListener('touchstart', (e) => { startX = e.touches[0].clientX; }, {passive:true});
-      banner.addEventListener('touchmove', (e) => { endX = e.touches[0].clientX; }, {passive:true});
-      banner.addEventListener('touchend', () => {
-        const diff = endX - startX;
-        if(Math.abs(diff) > 40){
-          if(diff > 0) prevSlide();
-          else nextSlide();
-          startAuto();
-        }
-        startX = 0; endX = 0;
-      });
-
-      showSlide(0);
-      startAuto();
-    }
-
-    // ===== FORM (FormSubmit) - envio profissional sem abrir outra página =====
-    const FORM_ENDPOINT = "https://formsubmit.co/ajax/contato@alogy.com.br";
-
-    function $(id){ return document.getElementById(id); }
-
-    function setButtonState(){
-      const nome = $("c_nome").value.trim();
-      const email = $("c_email").value.trim();
-      const fone = $("c_fone").value.trim();
-      const cidade = $("c_cidade").value.trim();
-      const assunto = $("c_assunto").value.trim();
-      const msg = $("c_msg").value.trim();
-
-      const allFilled = !!(nome && email && fone && cidade && assunto && msg);
-      const btn = $("btnEnviar");
-      if(btn) btn.disabled = !allFilled;
-    }
-
-    async function enviarFormulario(e){
-      e.preventDefault();
-
-      const btn = $("btnEnviar");
-      const success = $("formSuccess");
-
-      const nome = $("c_nome").value.trim();
-      const email = $("c_email").value.trim();
-      const fone = $("c_fone").value.trim();
-      const cidade = $("c_cidade").value.trim();
-      const assunto = $("c_assunto").value.trim();
-      const msg = $("c_msg").value.trim();
-
-      if(!(nome && email && fone && cidade && assunto && msg)){
-        alert("Preencha todos os campos para enviar.");
-        return;
-      }
-
-      const subject = `FORMULARIO - ${assunto}`;
-
-      if(success) success.classList.remove("show");
-      if(btn){
-        btn.disabled = true;
-        btn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Enviando...`;
-      }
-
-      try{
-        const payload = new FormData();
-        payload.append("Nome", nome);
-        payload.append("Telefone", fone);
-        payload.append("E-mail", email);
-        payload.append("Cidade/Local", cidade);
-        payload.append("Assunto", assunto);
-        payload.append("Mensagem", msg);
-
-        payload.append("_subject", subject);
-        payload.append("_template", "box");
-        payload.append("_captcha", "true");
-        payload.append("_replyto", email);
-
-        const res = await fetch(FORM_ENDPOINT, {
-          method: "POST",
-          body: payload,
-          headers: { "Accept": "application/json" }
-        });
-
-        const json = await res.json().catch(() => null);
-        if(!res.ok || (json && json.success === false)) throw new Error("Falha ao enviar.");
-
-        if(success) success.classList.add("show");
-        $("formContato").reset();
-        setButtonState();
-
-      }catch(err){
-        alert("Não foi possível enviar agora. Tente novamente em instantes.");
-        setButtonState();
-      }finally{
-        if(btn){
-          btn.innerHTML = `<i class="fas fa-paper-plane"></i> Enviar`;
-          setButtonState();
-        }
-      }
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-      initBanner();
-
-      ["c_nome","c_email","c_fone","c_cidade","c_assunto","c_msg"].forEach((id) => {
-        const el = $(id);
-        if(el) el.addEventListener("input", setButtonState);
-      });
-      setButtonState();
-    });
-  </script>
 </head>
 
 <body>
-  <header>
-    <div class="container headbar">
-      <a href="index.html" class="logo-wrapper" aria-label="Voltar para o início">
-        <img src="logo-alogy.webp" alt="ALOGY Engenharia" />
-      </a>
 
-      <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menu">
-        <i class="fas fa-bars"></i>
-      </button>
+  <!-- Social floating -->
+  <div class="social-floating" aria-label="Redes sociais">
+    <a class="linkedin" href="https://www.linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+    <a class="instagram" href="https://www.instagram.com" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+    <a class="facebook" href="https://www.facebook.com" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+    <a class="youtube" href="https://www.youtube.com" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+    <a class="hotmart" href="https://hotmart.com" target="_blank" rel="noopener" aria-label="Hotmart">H</a>
+    <a class="tiktok" href="https://www.tiktok.com" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+  </div>
+
+  <!-- Floating action buttons -->
+  <div class="fab-wrap">
+    <!-- Troque o número para o seu -->
+    <a class="fab-btn wa" href="https://wa.me/5519999999999?text=Olá!%20Quero%20um%20orçamento%20com%20a%20ALOGY." target="_blank" rel="noopener">
+      <i class="fab fa-whatsapp"></i> WhatsApp
+    </a>
+    <!-- Troque o e-mail para o seu -->
+    <a class="fab-btn mail" href="mailto:contato@alogy.com.br?subject=Contato%20-%20ALOGY%20Engenharia">
+      <i class="fa-solid fa-envelope"></i> E-mail
+    </a>
+  </div>
+
+  <header>
+    <div class="container">
+      <div class="headbar">
+        <a class="logo-wrapper" href="#top" aria-label="ALOGY Engenharia">
+          <img src="logo-alogy.webp" alt="ALOGY Engenharia" />
+        </a>
+
+        <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
     </div>
 
-    <nav class="desktop" aria-label="Menu principal">
-      <div class="container navlinks">
-        <a href="industrial.html">Industrial</a>
-        <a href="residencial.html">Residencial</a>
-        <a href="cursos.html">Cursos</a>
-        <a href="sobre.html">Sobre</a>
-        <a href="cases.html">Cases</a>
-        <a href="#contato">Contato</a>
+    <nav class="desktop" aria-label="Navegação principal">
+      <div class="container">
+        <div class="navlinks">
+          <a href="#servicos">Serviços</a>
+          <a href="#valores">Valores</a>
+          <a href="#sobre">Sobre</a>
+          <a href="#contato">Contato</a>
+        </div>
       </div>
     </nav>
 
-    <nav class="mobile" aria-label="Menu mobile">
-      <a href="industrial.html" onclick="toggleMobileMenu()">Industrial</a>
-      <a href="residencial.html" onclick="toggleMobileMenu()">Residencial</a>
-      <a href="cursos.html" onclick="toggleMobileMenu()">Cursos</a>
-      <a href="sobre.html" onclick="toggleMobileMenu()">Sobre</a>
-      <a href="cases.html" onclick="toggleMobileMenu()">Cases</a>
-      <a href="#contato" onclick="toggleMobileMenu()">Contato</a>
+    <nav class="mobile" id="mobileNav" aria-label="Navegação mobile">
+      <a href="#servicos">Serviços</a>
+      <a href="#valores">Valores</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#contato">Contato</a>
     </nav>
   </header>
 
-  <div class="social-floating" aria-label="Redes sociais">
-    <a href="https://www.linkedin.com/company/alogyengenharia" class="linkedin" target="_blank" rel="noopener" aria-label="LinkedIn">
-      <i class="fab fa-linkedin-in"></i>
-    </a>
-    <a href="https://www.instagram.com/alogyengenharia" class="instagram" target="_blank" rel="noopener" aria-label="Instagram">
-      <i class="fab fa-instagram"></i>
-    </a>
-    <a href="https://www.facebook.com/alogyengenharia" class="facebook" target="_blank" rel="noopener" aria-label="Facebook">
-      <i class="fab fa-facebook-f"></i>
-    </a>
-    <a href="https://www.youtube.com/@alogyengenharia" class="youtube" target="_blank" rel="noopener" aria-label="YouTube">
-      <i class="fab fa-youtube"></i>
-    </a>
-    <a href="https://hotmart.com/pt-br/club/alogyengenharia" class="hotmart" target="_blank" rel="noopener" aria-label="Hotmart">H</a>
-    <a href="https://www.tiktok.com/@alogyengenharia" class="tiktok" target="_blank" rel="noopener" aria-label="TikTok">
-      <i class="fab fa-tiktok"></i>
-    </a>
-  </div>
-
-  <div class="fab-wrap" aria-label="Ações rápidas">
-    <a class="fab-btn mail" href="mailto:contato@alogy.com.br" aria-label="Enviar e-mail para contato@alogy.com.br">
-      <i class="fas fa-envelope"></i> contato@alogy.com.br
-    </a>
-
-    <a class="fab-btn wa" href="https://wa.me/5519981795468?text=Ol%C3%A1!%20Vim%20pelo%20site%20ALOGY.%20Poderia%20me%20ajudar%3F" target="_blank" rel="noopener" aria-label="Abrir WhatsApp">
-      <i class="fab fa-whatsapp"></i> WhatsApp
-    </a>
-  </div>
-
-  <div class="banner-wrap banner-fullwidth">
-    <div class="banner" aria-label="Banner principal com 3 destaques">
-      <div class="slides">
-        <a class="slide active" href="industrial.html"
-           style="--img-desktop:url('banner1.webp'); --img-mobile:url('banner1_mobile.webp');"
-           aria-label="Ir para Industrial">
-          <div class="banner-content">
-            <div class="banner-card">
-              <div class="banner-title">Engenharia Industrial</div>
-              <div class="banner-desc">
-                Automação, instrumentação e projetos elétricos industriais — engenharia aplicada com foco em confiabilidade e resultado.
-              </div>
-              <div class="banner-actions">
-                <span class="btn"><i class="fas fa-industry"></i> Entrar</span>
-              </div>
-            </div>
-          </div>
+  <!-- BANNER / SLIDER -->
+  <div id="top" class="banner-wrap">
+    <div class="banner-fullwidth">
+      <div class="banner container" id="banner">
+        <!-- Slide 1: Industrial -->
+        <a class="slide active"
+           href="#servicos"
+           style="
+             --img-desktop: url('banner-industrial-1920x1080.webp');
+             --img-mobile: url('banner-industrial-mobile.webp');
+           "
+           aria-label="Projetos Industriais">
         </a>
 
-        <a class="slide" href="residencial.html"
-           style="--img-desktop:url('banner2.webp'); --img-mobile:url('banner2_mobile.webp');"
-           aria-label="Ir para Residencial">
-          <div class="banner-content">
-            <div class="banner-card">
-              <div class="banner-title">Projetos Residenciais</div>
-              <div class="banner-desc">
-                Projetos elétricos, diagramas técnicos, adequações NR10 e soluções de automação para residências e edifícios.
-              </div>
-              <div class="banner-actions">
-                <span class="btn"><i class="fas fa-house-signal"></i> Entrar</span>
-              </div>
-            </div>
-          </div>
+        <!-- Slide 2: Cursos -->
+        <a class="slide"
+           href="#servicos"
+           style="
+             --img-desktop: url('banner-cursos-1920x1080.webp');
+             --img-mobile: url('banner-cursos-mobile.webp');
+           "
+           aria-label="Cursos ALOGY">
         </a>
 
-        <a class="slide" href="cursos.html"
-           style="--img-desktop:url('banner3.webp'); --img-mobile:url('banner3_mobile.webp');"
-           aria-label="Ir para Cursos">
-          <div class="banner-content">
-            <div class="banner-card">
-              <div class="banner-title">Cursos</div>
-              <div class="banner-desc">
-                Cursos online em automação e instrumentação para evolução técnica e profissional.
-              </div>
-              <div class="banner-actions">
-                <span class="btn"><i class="fas fa-graduation-cap"></i> Entrar</span>
-              </div>
+        <!-- Slide 3: Residencial -->
+        <a class="slide"
+           href="#servicos"
+           style="
+             --img-desktop: url('banner-residencial-1920x1080.webp');
+             --img-mobile: url('banner-residencial-mobile.webp');
+           "
+           aria-label="Projetos Residenciais">
+        </a>
+
+        <!-- Conteúdo -->
+        <div class="banner-content">
+          <div class="banner-card" id="bannerCard">
+            <div class="banner-title" id="bannerTitle">Engenharia com padrão técnico</div>
+            <div class="banner-desc" id="bannerDesc">
+              Automação, instrumentação e projetos elétricos com foco em segurança, eficiência e documentação bem feita.
+            </div>
+            <div class="banner-actions">
+              <a class="btn" href="#contato"><i class="fa-solid fa-comment-dots"></i> Solicitar orçamento</a>
+              <a class="btn secondary" href="#servicos"><i class="fa-solid fa-list-check"></i> Ver serviços</a>
             </div>
           </div>
-        </a>
-      </div>
+        </div>
 
-      <button class="banner-nav prev" type="button" aria-label="Slide anterior">
-        <i class="fas fa-chevron-left"></i>
-      </button>
-      <button class="banner-nav next" type="button" aria-label="Próximo slide">
-        <i class="fas fa-chevron-right"></i>
-      </button>
+        <button class="banner-nav prev" id="prevBtn" aria-label="Slide anterior">
+          <i class="fa-solid fa-chevron-left"></i>
+        </button>
+        <button class="banner-nav next" id="nextBtn" aria-label="Próximo slide">
+          <i class="fa-solid fa-chevron-right"></i>
+        </button>
 
-      <div class="banner-dots" aria-label="Indicadores do banner">
-        <span class="dot active" data-idx="0" aria-label="Ir para slide 1"></span>
-        <span class="dot" data-idx="1" aria-label="Ir para slide 2"></span>
-        <span class="dot" data-idx="2" aria-label="Ir para slide 3"></span>
+        <div class="banner-dots" id="bannerDots" aria-label="Indicadores do banner">
+          <div class="dot active" data-i="0" aria-label="Slide 1"></div>
+          <div class="dot" data-i="1" aria-label="Slide 2"></div>
+          <div class="dot" data-i="2" aria-label="Slide 3"></div>
+        </div>
       </div>
     </div>
   </div>
 
+  <!-- SERVIÇOS -->
   <main class="container">
-    <section id="contato" class="section-card">
-      <div class="section-title">
-        <div class="bar"></div><h3>Contato</h3>
+    <section id="servicos">
+      <div class="section-card">
+        <div class="section-title">
+          <div class="bar"></div>
+          <h3>Serviços</h3>
+        </div>
+        <p class="muted">
+          Soluções completas para indústria e residência, com foco em conformidade, performance e execução bem documentada.
+        </p>
+
+        <div class="grid-3">
+          <div class="card-mini">
+            <div class="tag"><i class="fa-solid fa-industry"></i> Industrial</div>
+            <h4>Instrumentação & Automação</h4>
+            <p>P&ID, IO list, especificação de instrumentos, painéis, redes industriais, comissionamento e melhorias.</p>
+          </div>
+
+          <div class="card-mini">
+            <div class="tag"><i class="fa-solid fa-house"></i> Residencial</div>
+            <h4>Elétrica & Automação Residencial</h4>
+            <p>Projetos elétricos, distribuição, balanceamento de circuitos, automação e boas práticas de execução.</p>
+          </div>
+
+          <div class="card-mini">
+            <div class="tag"><i class="fa-solid fa-graduation-cap"></i> Cursos</div>
+            <h4>Treinamentos</h4>
+            <p>Conteúdo prático para capacitação em instrumentação, automação e rotinas de campo.</p>
+          </div>
+        </div>
       </div>
-      <p class="muted">
-        Use o formulário para detalhar sua necessidade. O botão WhatsApp flutuante fica disponível o tempo todo para contato rápido.
-      </p>
+    </section>
+  </main>
 
-      <form id="formContato" onsubmit="enviarFormulario(event)" aria-label="Formulário de contato" novalidate>
-        <div class="form-grid">
-          <div class="field">
-            <label for="c_nome">Nome</label>
-            <input id="c_nome" type="text" placeholder="Seu nome" required />
-          </div>
-          <div class="field">
-            <label for="c_fone">Telefone</label>
-            <input id="c_fone" type="tel" placeholder="(xx) xxxxx-xxxx" required />
-          </div>
+  <!-- VALORES -->
+  <div class="values-wrap" id="valores">
+    <div class="container">
+      <div class="values">
+        <div class="values-title">nossos valores</div>
 
-          <div class="field">
-            <label for="c_email">E-mail</label>
-            <input id="c_email" type="email" placeholder="seuemail@exemplo.com" required />
+        <div class="values-grid">
+          <div class="value-item">
+            <div class="value-icon"><i class="fa-solid fa-shield-halved"></i></div>
+            <div class="value-label">Segurança</div>
           </div>
-          <div class="field">
-            <label for="c_cidade">Cidade / Local</label>
-            <input id="c_cidade" type="text" placeholder="Ex.: Americana/SP" required />
+          <div class="value-item">
+            <div class="value-icon"><i class="fa-solid fa-sitemap"></i></div>
+            <div class="value-label">Organização</div>
           </div>
-
-          <div class="field" style="grid-column:1/-1">
-            <label for="c_assunto">Assunto</label>
-            <input id="c_assunto" type="text" placeholder="Industrial, residencial, curso, consultoria..." required />
+          <div class="value-item">
+            <div class="value-icon"><i class="fa-solid fa-bolt"></i></div>
+            <div class="value-label">Eficiência</div>
           </div>
-
-          <div class="field" style="grid-column:1/-1">
-            <label for="c_msg">Mensagem</label>
-            <textarea id="c_msg" placeholder="Explique o que precisa, prazo e contexto." required></textarea>
+          <div class="value-item">
+            <div class="value-icon"><i class="fa-solid fa-medal"></i></div>
+            <div class="value-label">Qualidade</div>
           </div>
         </div>
 
-        <div class="form-actions">
-          <button id="btnEnviar" class="btn" type="submit" disabled>
-            <i class="fas fa-paper-plane"></i> Enviar
-          </button>
-
-          <div id="formSuccess" class="form-success" role="status" aria-live="polite">
-            <i class="fas fa-check-circle"></i> Enviado com sucesso!
-          </div>
+        <div class="values-text">
+          Projetos claros, executáveis e bem documentados. A ALOGY prioriza segurança, padronização técnica e resultado.
         </div>
-      </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- SOBRE -->
+  <main class="container">
+    <section id="sobre">
+      <div class="section-card">
+        <div class="section-title">
+          <div class="bar"></div>
+          <h3>Sobre</h3>
+        </div>
+        <p class="muted">
+          A ALOGY entrega engenharia aplicada para indústria e residência, com foco em automação, instrumentação e elétrica.
+          A ideia é simples: fazer do jeito certo, com documentação e padrão técnico.
+        </p>
+      </div>
+    </section>
+
+    <!-- CONTATO -->
+    <section id="contato">
+      <div class="section-card">
+        <div class="section-title">
+          <div class="bar"></div>
+          <h3>Contato</h3>
+        </div>
+        <p class="muted">
+          Me diga rapidamente o que você precisa. Eu respondo pelo WhatsApp ou e-mail.
+        </p>
+
+        <form id="contactForm">
+          <div class="form-grid">
+            <div class="field">
+              <label for="nome">Nome</label>
+              <input id="nome" name="nome" type="text" placeholder="Seu nome" required />
+            </div>
+            <div class="field">
+              <label for="telefone">Telefone / WhatsApp</label>
+              <input id="telefone" name="telefone" type="text" placeholder="(19) 9xxxx-xxxx" required />
+            </div>
+            <div class="field">
+              <label for="email">E-mail</label>
+              <input id="email" name="email" type="email" placeholder="voce@exemplo.com" />
+            </div>
+            <div class="field">
+              <label for="assunto">Assunto</label>
+              <input id="assunto" name="assunto" type="text" placeholder="Industrial, residencial, curso..." required />
+            </div>
+          </div>
+
+          <div class="field" style="margin-top:12px;">
+            <label for="mensagem">Mensagem</label>
+            <textarea id="mensagem" name="mensagem" placeholder="Descreva o que você precisa (prazo, local, escopo...)" required></textarea>
+          </div>
+
+          <div class="form-actions">
+            <button class="btn" type="submit">
+              <i class="fa-solid fa-paper-plane"></i> Enviar
+            </button>
+            <a class="btn secondary" id="waQuick" href="#" target="_blank" rel="noopener">
+              <i class="fab fa-whatsapp"></i> Enviar no WhatsApp
+            </a>
+
+            <div class="form-success" id="formSuccess">
+              <i class="fa-solid fa-circle-check"></i> Mensagem pronta! Abrindo WhatsApp...
+            </div>
+          </div>
+        </form>
+      </div>
     </section>
   </main>
 
   <footer>
-    <p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p>
+    © <span id="year"></span> ALOGY Engenharia — Todos os direitos reservados.
   </footer>
+
+  <script>
+    // ===== Mobile menu =====
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileNav = document.getElementById('mobileNav');
+
+    menuToggle?.addEventListener('click', () => {
+      mobileNav.classList.toggle('show');
+    });
+
+    mobileNav?.querySelectorAll('a')?.forEach(a => {
+      a.addEventListener('click', () => mobileNav.classList.remove('show'));
+    });
+
+    // ===== Banner slider =====
+    const slides = Array.from(document.querySelectorAll('.slide'));
+    const dots = Array.from(document.querySelectorAll('.dot'));
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+
+    const bannerTitle = document.getElementById('bannerTitle');
+    const bannerDesc  = document.getElementById('bannerDesc');
+
+    const slideText = [
+      {
+        title: "Projetos industriais com padrão técnico",
+        desc: "Instrumentação, automação e elétrica industrial com foco em segurança, confiabilidade e documentação."
+      },
+      {
+        title: "Cursos práticos para instrumentistas",
+        desc: "Conteúdo direto ao ponto, com visão de campo, calibração, boas práticas e rotina de manutenção."
+      },
+      {
+        title: "Elétrica residencial bem feita e automação",
+        desc: "Projetos claros, execução segura e automação residencial para conforto e eficiência."
+      }
+    ];
+
+    let idx = 0;
+    let timer = null;
+
+    function setActive(i){
+      idx = (i + slides.length) % slides.length;
+      slides.forEach((s, k) => s.classList.toggle('active', k === idx));
+      dots.forEach((d, k) => d.classList.toggle('active', k === idx));
+
+      const t = slideText[idx] || slideText[0];
+      if (bannerTitle) bannerTitle.textContent = t.title;
+      if (bannerDesc) bannerDesc.textContent  = t.desc;
+    }
+
+    function next(){ setActive(idx + 1); }
+    function prev(){ setActive(idx - 1); }
+
+    function startAuto(){
+      stopAuto();
+      timer = setInterval(next, 6000);
+    }
+    function stopAuto(){
+      if (timer) clearInterval(timer);
+      timer = null;
+    }
+
+    nextBtn?.addEventListener('click', () => { next(); startAuto(); });
+    prevBtn?.addEventListener('click', () => { prev(); startAuto(); });
+
+    dots.forEach(d => {
+      d.addEventListener('click', () => {
+        const i = Number(d.getAttribute('data-i') || 0);
+        setActive(i);
+        startAuto();
+      });
+    });
+
+    // pause on hover (desktop)
+    const banner = document.getElementById('banner');
+    banner?.addEventListener('mouseenter', stopAuto);
+    banner?.addEventListener('mouseleave', startAuto);
+
+    setActive(0);
+    startAuto();
+
+    // ===== Contact form -> WhatsApp quick =====
+    const form = document.getElementById('contactForm');
+    const waQuick = document.getElementById('waQuick');
+    const formSuccess = document.getElementById('formSuccess');
+
+    function buildMessage(){
+      const nome = document.getElementById('nome')?.value?.trim() || '';
+      const tel  = document.getElementById('telefone')?.value?.trim() || '';
+      const email= document.getElementById('email')?.value?.trim() || '';
+      const ass  = document.getElementById('assunto')?.value?.trim() || '';
+      const msg  = document.getElementById('mensagem')?.value?.trim() || '';
+
+      const lines = [
+        "Olá! Quero um orçamento com a ALOGY.",
+        "",
+        `Nome: ${nome}`,
+        `WhatsApp: ${tel}`,
+        email ? `E-mail: ${email}` : null,
+        `Assunto: ${ass}`,
+        "",
+        msg
+      ].filter(Boolean);
+
+      return encodeURIComponent(lines.join("\n"));
+    }
+
+    function updateWaLink(){
+      // Troque para seu número
+      const phone = "5519999999999";
+      const text = buildMessage();
+      if (waQuick) waQuick.href = `https://wa.me/${phone}?text=${text}`;
+    }
+
+    form?.addEventListener('input', updateWaLink);
+    updateWaLink();
+
+    form?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      updateWaLink();
+      if (formSuccess) formSuccess.classList.add('show');
+      setTimeout(() => {
+        if (waQuick) window.open(waQuick.href, '_blank', 'noopener');
+        if (formSuccess) formSuccess.classList.remove('show');
+      }, 450);
+    });
+
+    // ===== Footer year =====
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+
 </body>
 </html>
