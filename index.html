@@ -430,31 +430,35 @@
 
   .banner-title{font-size:1.65rem}
 
-  /* centraliza conteúdo */
+  /* Centraliza o card no meio do banner */
   .banner-content{
     padding:18px;
     justify-content:center;
     align-items:center;
   }
 
-  /* 🔥 O PRÓPRIO CARD VIRA O FUNDO */
+  /* ✅ Card vira a “ilha” e já reserva espaço pras setas */
   .banner-card{
     width: calc(100% - 24px);
-    padding:22px 18px 60px; /* espaço pras bolinhas */
+    max-width: 440px;
+    padding: 22px 78px 62px; /* <-- 78px L/R (safe area das setas) + 62px embaixo (bolinhas) */
   }
 
-  /* traz setas para dentro do card */
+  /* Setas continuam nas bordas do banner, mas agora estão “dentro” visualmente */
+  .banner-nav{
+    width:48px;height:48px;border-radius:14px;
+    z-index: 10; /* garante por cima do card */
+  }
   .banner-nav.prev{ left:22px; }
   .banner-nav.next{ right:22px; }
 
-  /* sobe as bolinhas um pouco */
+  /* Bolinhas por cima e dentro da ilha */
   .banner-dots{
     bottom:22px;
+    z-index: 10;
   }
 
-  .banner-nav{width:48px;height:48px;border-radius:14px}
   .form-grid{grid-template-columns:1fr}
-
   .banner-fullwidth{padding: 14px 12px 8px;}
 }
 
