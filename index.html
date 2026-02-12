@@ -551,9 +551,7 @@
       // assunto do e-mail (padrão que você pediu)
       const subject = `FORMULARIO - ${assunto}`;
 
-      // mensagem profissional (sem redundância)
-      const message = buildProfessionalMessage({ nome, email, fone, cidade, assunto, msg });
-
+     
       // feedback UI
       if(success) success.classList.remove("show");
       if(btn){
