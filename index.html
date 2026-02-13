@@ -109,7 +109,7 @@
       border-bottom:1px solid rgba(255,255,255,.10);
     }
 
-    /* (ALTERADO) centraliza o logo e mantém botões absolutos */
+    /* centraliza o logo e mantém botões absolutos */
     .headbar{
       display:flex;
       align-items:center;
@@ -124,7 +124,7 @@
       gap:14px;
       text-decoration:none;
       color:inherit;
-      margin:0 auto; /* garante centralização */
+      margin:0 auto; /* garante centralização no desktop */
     }
 
     .logo-wrapper img{
@@ -205,10 +205,10 @@
     nav.mobile a:hover{background:rgba(255,255,255,.08)}
     nav.mobile.show{display:flex}
 
-    /* ====== (ALTERADO) CREA no topo direito: imagem estática, sem borda/caixa e sem clique ====== */
+    /* CREA no topo direito: imagem estática, sem borda/caixa e sem clique */
     .crea-top{
       position:absolute;
-      right:12px; /* (ALTERADO) quase encostado no canto direito */
+      right:4px;  /* ✅ mais pro canto direito (antes 12px) */
       top:50%;
       transform:translateY(-50%);
       z-index:3200;
@@ -227,7 +227,7 @@
     }
 
     .crea-top img{
-      height:72px; /* (ALTERADO) maior (altura visual parecida com o logo ALOGY) */
+      height:72px;
       width:auto;
       display:block;
     }
@@ -295,9 +295,7 @@
 
     .banner-wrap{ width:100%; padding: 22px 0 10px; }
 
-    /* =========================
-       BANNER + VALORES: com espaço à esquerda e perto dos ícones à direita
-       ========================= */
+    /* BANNER + VALORES: com espaço à esquerda e perto dos ícones à direita */
     .banner-fullwidth{
       width:100%;
       padding-left: var(--left-gutter) !important;
@@ -582,29 +580,36 @@
       .menu-toggle{
         display:block;
         position:absolute;
-        right:78px;  /* (ALTERADO) hambúrguer vai pra esquerda para deixar o CREA no canto */
+        right:78px;  /* hambúrguer vai pra esquerda para deixar o CREA no canto */
         top:50%;
         transform:translateY(-50%);
-        z-index:3300; /* acima */
+        z-index:3300;
       }
 
       .social-floating{display:none}
 
+      /* ✅ logo mais pra esquerda no mobile */
       .headbar{
-        justify-content:center;
+        justify-content:flex-start;
         position:relative;
+        padding-left:6px;
+      }
+
+      .logo-wrapper{
+        margin:0; /* remove centralização no mobile */
       }
 
       .logo-wrapper img{
         width:180px;
       }
 
+      /* ✅ CREA ainda mais no canto direito no mobile */
       .crea-top{
-        right:12px; /* (ALTERADO) no canto direito no mobile também */
+        right:4px;
       }
 
       .crea-top img{
-        height:50px; /* (ALTERADO) maior no mobile também */
+        height:50px;
         width:auto;
       }
 
@@ -1027,9 +1032,7 @@
     </div>
   </div>
 
-  <!-- =========================
-       NOSSOS VALORES (entre banner e contato)
-       ========================= -->
+  <!-- NOSSOS VALORES -->
   <div class="values-wrap banner-fullwidth" aria-label="Seção Nossos Valores">
     <section class="values">
       <h2 class="values-title">Nossos Valores</h2>
@@ -1072,7 +1075,7 @@
   </div>
 
   <main class="container">
-    <!-- CONTATO (CREA lateral removido conforme solicitado) -->
+    <!-- CONTATO -->
     <section id="contato" class="section-card">
       <div class="section-title">
         <div class="bar"></div><h3>Contato</h3>
