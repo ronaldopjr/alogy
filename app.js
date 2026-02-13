@@ -1,16 +1,14 @@
 /* =========================
    MENU MOBILE (abrir/fechar)
-   ========================= */
+========================= */
 function openMobileMenu(){
   const menu = document.querySelector('nav.mobile');
   if(menu) menu.classList.add('show');
 }
-
 function closeMobileMenu(){
   const menu = document.querySelector('nav.mobile');
   if(menu) menu.classList.remove('show');
 }
-
 function toggleMobileMenu(){
   const menu = document.querySelector('nav.mobile');
   if(!menu) return;
@@ -21,7 +19,6 @@ function toggleMobileMenu(){
 function bindMobileMenuAutoClose(){
   const menu = document.querySelector('nav.mobile');
   if(!menu) return;
-
   menu.querySelectorAll('a').forEach((a) => {
     a.addEventListener('click', () => {
       closeMobileMenu();
@@ -33,7 +30,7 @@ function bindMobileMenuAutoClose(){
 function bindMobileMenuClickOutside(){
   document.addEventListener('click', (e) => {
     const menu = document.querySelector('nav.mobile');
-    const btn  = document.querySelector('.menu-toggle');
+    const btn = document.querySelector('.menu-toggle');
     if(!menu || !btn) return;
 
     const clickedInsideMenu = menu.contains(e.target);
@@ -54,14 +51,14 @@ function bindMobileMenuEscClose(){
 
 /* =========================
    ✅ MENU ATIVO AUTOMÁTICO
-   - Desktop + Mobile
-   - Atualiza com hashchange (#contato)
-   ========================= */
+   Desktop + Mobile
+   (Atualiza com hashchange #contato)
+========================= */
 function setActiveNav(){
   const path = window.location.pathname.split('/').pop() || 'index.html';
   const hash = window.location.hash || '';
-
   const links = document.querySelectorAll('nav.desktop a, nav.mobile a');
+
   links.forEach(a => a.classList.remove('active'));
 
   const currentIsIndex = (path === '' || path === 'index.html');
@@ -69,6 +66,7 @@ function setActiveNav(){
   links.forEach(a => {
     const href = a.getAttribute('href') || '';
     const [hrefPathRaw, hrefHashRaw] = href.split('#');
+
     const hrefPath = (hrefPathRaw || '').split('/').pop();
     const hrefHash = hrefHashRaw ? `#${hrefHashRaw}` : '';
 
@@ -84,17 +82,20 @@ function setActiveNav(){
     }
   });
 }
-
 window.addEventListener('hashchange', setActiveNav);
 
 /* =========================
    BANNER SLIDER (home)
-   ========================= */
+========================= */
 let currentSlide = 0;
 let sliderTimer = null;
 
-function getSlides(){ return Array.from(document.querySelectorAll('.slide')); }
-function getDots(){ return Array.from(document.querySelectorAll('.dot')); }
+function getSlides(){
+  return Array.from(document.querySelectorAll('.slide'));
+}
+function getDots(){
+  return Array.from(document.querySelectorAll('.dot'));
+}
 
 function showSlide(index){
   const slides = getSlides();
@@ -102,9 +103,11 @@ function showSlide(index){
   if(!slides.length) return;
 
   currentSlide = (index + slides.length) % slides.length;
+
   slides.forEach((s, i) => s.classList.toggle('active', i === currentSlide));
   dots.forEach((d, i) => d.classList.toggle('active', i === currentSlide));
 }
+
 function nextSlide(){ showSlide(currentSlide + 1); }
 function prevSlide(){ showSlide(currentSlide - 1); }
 
@@ -131,6 +134,7 @@ function initBanner(){
 
   const btnPrev = document.querySelector('.banner-nav.prev');
   const btnNext = document.querySelector('.banner-nav.next');
+
   if(btnPrev) btnPrev.addEventListener('click', () => { prevSlide(); startAuto(); });
   if(btnNext) btnNext.addEventListener('click', () => { nextSlide(); startAuto(); });
 
@@ -139,8 +143,15 @@ function initBanner(){
 
   // Swipe no mobile
   let startX = 0, endX = 0;
-  banner.addEventListener('touchstart', (e) => { startX = e.touches[0].clientX; }, {passive:true});
-  banner.addEventListener('touchmove', (e) => { endX = e.touches[0].clientX; }, {passive:true});
+
+  banner.addEventListener('touchstart', (e) => {
+    startX = e.touches[0].clientX;
+  }, {passive:true});
+
+  banner.addEventListener('touchmove', (e) => {
+    endX = e.touches[0].clientX;
+  }, {passive:true});
+
   banner.addEventListener('touchend', () => {
     const diff = endX - startX;
     if(Math.abs(diff) > 40){
@@ -148,7 +159,8 @@ function initBanner(){
       else nextSlide();
       startAuto();
     }
-    startX = 0; endX = 0;
+    startX = 0;
+    endX = 0;
   });
 
   showSlide(0);
@@ -157,19 +169,25 @@ function initBanner(){
 
 /* =========================
    FORM (home) - FormSubmit
-   ========================= */
+========================= */
 const FORM_ENDPOINT = "https://formsubmit.co/ajax/contato@alogy.com.br";
 
-function $(id){ return document.getElementById(id); }
+function $(id){
+  return document.getElementById(id);
+}
 
 function phoneMask(v){
   v = (v || "").replace(/\D/g,'').slice(0,11);
+
   if(v.length <= 10){
-    return v.replace(/^(\d{2})(\d)/, '($1) $2')
-            .replace(/(\d{4})(\d)/, '$1-$2');
+    return v
+      .replace(/^(\d{2})(\d)/, '($1) $2')
+      .replace(/(\d{4})(\d)/, '$1-$2');
   }
-  return v.replace(/^(\d{2})(\d)/, '($1) $2')
-          .replace(/(\d{5})(\d)/, '$1-$2');
+
+  return v
+    .replace(/^(\d{2})(\d)/, '($1) $2')
+    .replace(/(\d{5})(\d)/, '$1-$2');
 }
 
 function setButtonState(){
@@ -209,6 +227,7 @@ async function enviarFormulario(e){
   const subject = `FORMULARIO - ${assunto}`;
 
   if(success) success.classList.remove("show");
+
   if(btn){
     btn.disabled = true;
     btn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Enviando...`;
@@ -238,12 +257,13 @@ async function enviarFormulario(e){
     if(!res.ok || (json && json.success === false)) throw new Error("Falha ao enviar.");
 
     if(success) success.classList.add("show");
-    $("formContato").reset();
+    $("formContato")?.reset();
     setButtonState();
 
   }catch(err){
     alert("Não foi possível enviar agora. Tente novamente em instantes.");
     setButtonState();
+
   }finally{
     if(btn){
       btn.innerHTML = `<i class="fas fa-paper-plane"></i> Enviar`;
@@ -254,7 +274,7 @@ async function enviarFormulario(e){
 
 /* =========================
    INIT
-   ========================= */
+========================= */
 document.addEventListener('DOMContentLoaded', () => {
   // menu ativo
   setActiveNav();
