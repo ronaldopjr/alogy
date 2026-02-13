@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Projetos | ALOGY Engenharia</title>
+
+  <!-- SEO: title mais específico -->
+  <title>Projetos Executados em Automação, Instrumentação e Elétrica | ALOGY Engenharia</title>
 
   <link rel="icon" href="logo-alogy.webp" type="image/webp" />
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
@@ -14,8 +16,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
-  <!-- SEO básico -->
-  <meta name="description" content="Projetos e serviços executados pela ALOGY Engenharia. Portfólio em automação, instrumentação e projetos elétricos."/>
+  <!-- SEO básico (refinado) -->
+  <meta name="description" content="Portfólio de projetos executados pela ALOGY Engenharia: automação industrial, instrumentação, projetos elétricos, documentação técnica e adequações NR10/NR12. Veja cases e resultados."/>
   <meta name="robots" content="index,follow" />
   <meta name="theme-color" content="#004b80" />
   <link rel="canonical" href="https://www.alogy.com.br/cases.html" />
@@ -23,6 +25,28 @@
   <!-- ✅ mesmo CSS/JS do index -->
   <link rel="stylesheet" href="style.css" />
   <script src="app.js" defer></script>
+
+  <!-- SEO: Schema.org (CollectionPage + Organization/ProfessionalService) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Projetos Executados | ALOGY Engenharia",
+    "url": "https://www.alogy.com.br/cases.html",
+    "description": "Portfólio de projetos executados em automação, instrumentação, elétrica e documentação técnica.",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "ALOGY Engenharia",
+      "url": "https://www.alogy.com.br/"
+    },
+    "about": [
+      { "@type": "Service", "name": "Automação Industrial" },
+      { "@type": "Service", "name": "Instrumentação Industrial" },
+      { "@type": "Service", "name": "Projetos Elétricos" },
+      { "@type": "Service", "name": "Adequações NR10 e NR12" }
+    ]
+  }
+  </script>
 </head>
 
 <body>
@@ -53,14 +77,13 @@
       </div>
     </nav>
 
-    <!-- ✅ sem onclick (app.js fecha sozinho) -->
     <nav class="mobile" aria-label="Menu mobile">
       <a href="industrial.html">Serviços Industriais</a>
       <a href="residencial.html">Serviços Residenciais</a>
       <a href="cases.html">Projetos</a>
       <a href="cursos.html">Cursos</a>
       <a href="sobre.html">Sobre</a>
-            <a href="index.html#contato">Contato</a>
+      <a href="index.html#contato">Contato</a>
     </nav>
   </header>
 
@@ -98,17 +121,22 @@
     <section class="page-hero">
       <h1>Projetos Executados</h1>
       <p>
-        Aqui você pode publicar seus projetos e serviços já executados. Comece com modelos e vá trocando pelos seus cases reais
-        (com fotos, descrição e resultado).
+        Portfólio de projetos e serviços executados em automação, instrumentação e engenharia elétrica.
+        Use os cards abaixo como modelo e substitua pelos seus cases reais com fotos, escopo e resultado.
       </p>
+    </section>
+
+    <!-- reforço semântico (SEO) sem alterar layout visual -->
+    <section>
+      <h2>Cases em Automação, Instrumentação e Projetos Elétricos</h2>
     </section>
 
     <section class="projects-grid" aria-label="Lista de projetos">
       <article class="proj">
         <div class="thumb">Projeto Elétrico Industrial</div>
         <div class="proj-body">
-          <h3>Quadro e diagramas – planta industrial</h3>
-          <p>Levantamento, dimensionamento, unifilar e documentação organizada para execução.</p>
+          <h3>Quadro elétrico e diagramas — planta industrial</h3>
+          <p>Levantamento em campo, dimensionamento de cargas, diagrama unifilar e documentação técnica organizada para execução e manutenção.</p>
           <div class="tags">
             <span class="tag">Elétrica</span><span class="tag">Documentação</span><span class="tag">Industrial</span>
           </div>
@@ -118,8 +146,8 @@
       <article class="proj">
         <div class="thumb">Automação</div>
         <div class="proj-body">
-          <h3>Melhoria de processo e integração</h3>
-          <p>Definição técnica e orientação de integração para elevar confiabilidade e operação.</p>
+          <h3>Melhoria de processo e integração de automação</h3>
+          <p>Definição técnica, revisão de lógica e orientação de integração visando elevar confiabilidade operacional e padronização do controle.</p>
           <div class="tags">
             <span class="tag">Automação</span><span class="tag">Confiabilidade</span>
           </div>
@@ -129,8 +157,8 @@
       <article class="proj">
         <div class="thumb">Instrumentação</div>
         <div class="proj-body">
-          <h3>Padronização de pontos e lista I/O</h3>
-          <p>Organização de instrumentos, identificação, lista de pontos e documentação.</p>
+          <h3>Padronização de pontos, tags e lista de I/O</h3>
+          <p>Organização de instrumentos, identificação de pontos, lista de I/O e documentação técnica para comissionamento e operação.</p>
           <div class="tags">
             <span class="tag">Instrumentação</span><span class="tag">I/O</span>
           </div>
@@ -140,8 +168,8 @@
       <article class="proj">
         <div class="thumb">Residencial</div>
         <div class="proj-body">
-          <h3>Projeto elétrico – residência</h3>
-          <p>Distribuição de cargas, circuitos, quadro e documentação de referência.</p>
+          <h3>Projeto elétrico — residência</h3>
+          <p>Distribuição de cargas e circuitos, definição de quadro, detalhamento e documentação de referência para execução e futuras ampliações.</p>
           <div class="tags">
             <span class="tag">Residencial</span><span class="tag">Projeto</span>
           </div>
@@ -151,8 +179,8 @@
       <article class="proj">
         <div class="thumb">NR10</div>
         <div class="proj-body">
-          <h3>Recomendações e segurança</h3>
-          <p>Adequações e orientações técnicas para reduzir riscos e melhorar conformidade.</p>
+          <h3>Adequações e recomendações de segurança</h3>
+          <p>Orientações técnicas e adequações para reduzir riscos, organizar documentação e elevar conformidade em segurança elétrica.</p>
           <div class="tags">
             <span class="tag">Segurança</span><span class="tag">NR10</span>
           </div>
@@ -162,8 +190,8 @@
       <article class="proj">
         <div class="thumb">Consultoria</div>
         <div class="proj-body">
-          <h3>Diagnóstico técnico</h3>
-          <p>Suporte na tomada de decisão com foco em melhorias e planejamento de execução.</p>
+          <h3>Diagnóstico técnico e planejamento</h3>
+          <p>Diagnóstico de sistemas existentes, priorização de melhorias e planejamento de execução com foco em confiabilidade e organização técnica.</p>
           <div class="tags">
             <span class="tag">Consultoria</span><span class="tag">Planejamento</span>
           </div>
@@ -175,7 +203,7 @@
       <div class="section-title">
         <div class="bar"></div><h3>Quer um orçamento?</h3>
       </div>
-      <p class="muted">Envie sua necessidade pelo formulário da home e eu retorno com o próximo passo.</p>
+      <p class="muted">Envie sua necessidade pelo formulário da home e eu retorno com orientação inicial e próximo passo.</p>
       <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
         <a class="btn" href="index.html#contato"><i class="fas fa-paper-plane"></i> Ir para contato</a>
         <a class="btn secondary" href="https://wa.me/5519981795468?text=Ol%C3%A1!%20Gostaria%20de%20um%20or%C3%A7amento%20para%20um%20projeto." target="_blank" rel="noopener">
