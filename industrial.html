@@ -6,7 +6,7 @@
 
   <title>Serviços Industriais em Automação, Instrumentação e Projetos Elétricos | ALOGY Engenharia</title>
 
-  <meta name="description" content="Engenharia elétrica industrial especializada em automação, instrumentação, projetos elétricos industriais, NR10, NR12, calibração de instrumentos e testes de malhas. Atuação técnica do levantamento à documentação final."/>
+  <meta name="description" content="Engenharia elétrica industrial especializada em automação industrial, instrumentação, projetos elétricos industriais, NR10, NR12, calibração de instrumentos e testes de malhas. Atuação técnica do levantamento à documentação final."/>
   <meta name="robots" content="index,follow" />
   <meta name="theme-color" content="#004b80" />
   <link rel="canonical" href="https://www.alogy.com.br/industrial.html" />
@@ -46,6 +46,67 @@
     }
   }
   </script>
+
+  <!-- ✅ Ajuste local: “thumb” preto no topo de cada card (igual Projetos) -->
+  <style>
+    .service-grid .svc{
+      display:flex;
+      flex-direction:column;
+      border-radius:18px;
+      overflow:hidden;
+      background:#fff;
+      box-shadow:0 10px 26px rgba(0,0,0,.10);
+      border:1px solid rgba(0,0,0,.06);
+    }
+
+    .service-grid .svc .svc-media{
+      height:120px; /* espaço reservado (preto) */
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.25), rgba(0,0,0,.70));
+      background-size:cover;
+      background-position:center;
+      position:relative;
+      display:flex;
+      align-items:flex-end;
+      padding:14px 14px 12px;
+    }
+
+    /* Se você colocar background-image inline, ela entra junto do gradiente */
+    .service-grid .svc .svc-media[style*="background-image"]{
+      background-blend-mode:multiply;
+    }
+
+    .service-grid .svc .svc-label{
+      color:#fff;
+      font-weight:800;
+      font-size:15px;
+      text-shadow:0 2px 10px rgba(0,0,0,.45);
+    }
+
+    .service-grid .svc .svc-content{
+      padding:14px 14px 16px;
+    }
+
+    .service-grid .svc .ico{
+      width:44px;
+      height:44px;
+      border-radius:12px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      margin-top:-22px; /* sobe por cima do “thumb” */
+      background:#fff;
+      box-shadow:0 10px 20px rgba(0,0,0,.12);
+      border:1px solid rgba(0,0,0,.08);
+    }
+
+    .service-grid .svc h3{ margin:10px 0 6px; }
+    .service-grid .svc p{ margin:0; }
+
+    @media (max-width: 720px){
+      .service-grid .svc .svc-media{ height:140px; }
+    }
+  </style>
 </head>
 
 <body>
@@ -145,54 +206,75 @@
       <h2>Soluções em Engenharia Elétrica e Automação Industrial</h2>
     </section>
 
+    <!-- ✅ Cards revisados com “thumb” preto (pronto pra imagem) -->
     <section class="service-grid">
+
       <div class="svc">
-        <div class="ico"><i class="fas fa-microchip"></i></div>
-        <div>
+        <div class="svc-media">
+          <span class="svc-label">Automação</span>
+        </div>
+        <div class="svc-content">
+          <div class="ico"><i class="fas fa-microchip"></i></div>
           <h3>Automação Industrial</h3>
           <p>Especificação e integração de sistemas de automação industrial, desenvolvimento e revisão de lógicas de controle e melhorias em processos visando estabilidade operacional.</p>
         </div>
       </div>
 
       <div class="svc">
-        <div class="ico"><i class="fas fa-gauge-high"></i></div>
-        <div>
+        <div class="svc-media">
+          <span class="svc-label">Instrumentação</span>
+        </div>
+        <div class="svc-content">
+          <div class="ico"><i class="fas fa-gauge-high"></i></div>
           <h3>Instrumentação Industrial</h3>
           <p>Seleção de instrumentos industriais, definição de malhas de controle, calibração em campo, testes de loop e apoio em comissionamento.</p>
         </div>
       </div>
 
       <div class="svc">
-        <div class="ico"><i class="fas fa-bolt"></i></div>
-        <div>
+        <div class="svc-media">
+          <span class="svc-label">Projeto Elétrico Industrial</span>
+        </div>
+        <div class="svc-content">
+          <div class="ico"><i class="fas fa-bolt"></i></div>
           <h3>Projetos Elétricos Industriais</h3>
           <p>Desenvolvimento e revisão de projetos elétricos industriais, diagramas elétricos e documentação estruturada para execução e manutenção.</p>
         </div>
       </div>
 
       <div class="svc">
-        <div class="ico"><i class="fas fa-diagram-project"></i></div>
-        <div>
+        <div class="svc-media">
+          <span class="svc-label">Documentação</span>
+        </div>
+        <div class="svc-content">
+          <div class="ico"><i class="fas fa-diagram-project"></i></div>
           <h3>Diagramas e Documentação Técnica</h3>
           <p>Padronização e organização de documentação elétrica e de automação para facilitar manutenção e auditorias.</p>
         </div>
       </div>
 
       <div class="svc">
-        <div class="ico"><i class="fas fa-shield-halved"></i></div>
-        <div>
+        <div class="svc-media">
+          <span class="svc-label">NR10 / NR12</span>
+        </div>
+        <div class="svc-content">
+          <div class="ico"><i class="fas fa-shield-halved"></i></div>
           <h3>NR10 e NR12 – Segurança e Adequação</h3>
           <p>Adequações técnicas em instalações elétricas e máquinas industriais conforme normas NR10 e NR12.</p>
         </div>
       </div>
 
       <div class="svc">
-        <div class="ico"><i class="fas fa-screwdriver-wrench"></i></div>
-        <div>
+        <div class="svc-media">
+          <span class="svc-label">Consultoria</span>
+        </div>
+        <div class="svc-content">
+          <div class="ico"><i class="fas fa-screwdriver-wrench"></i></div>
           <h3>Consultoria Técnica Industrial</h3>
           <p>Diagnóstico de sistemas elétricos e de automação existentes, análise de falhas e planejamento de melhorias técnicas.</p>
         </div>
       </div>
+
     </section>
 
     <section class="split">
