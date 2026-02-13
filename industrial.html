@@ -1,296 +1,207 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-  <title>Serviços Industriais em Automação, Instrumentação e Projetos Elétricos | ALOGY Engenharia</title>
+<title>Serviços Industriais em Automação, Instrumentação e Projetos Elétricos | ALOGY Engenharia</title>
 
-  <meta name="description" content="Engenharia industrial especializada em automação industrial, instrumentação, projetos elétricos industriais, NR10, NR12, calibração de instrumentos e testes de malhas. Atuação técnica do levantamento à documentação final."/>
-  <meta name="robots" content="index,follow" />
-  <meta name="theme-color" content="#004b80" />
-  <link rel="canonical" href="https://www.alogy.com.br/industrial.html" />
+<meta name="description" content="Engenharia industrial especializada em automação industrial, instrumentação, projetos elétricos industriais, NR10, NR12, calibração de instrumentos e testes de malhas."/>
+<meta name="robots" content="index,follow" />
+<meta name="theme-color" content="#004b80" />
+<link rel="canonical" href="https://www.alogy.com.br/industrial.html" />
 
-  <link rel="icon" href="logo-alogy.webp" type="image/webp" />
-  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<link rel="icon" href="logo-alogy.webp" type="image/webp" />
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
 
-  <!-- Performance (Fonts) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
-  <!-- CSS/JS global -->
-  <link rel="stylesheet" href="style.css" />
-  <script src="app.js" defer></script>
+<link rel="stylesheet" href="style.css" />
+<script src="app.js" defer></script>
 
-  <!-- Schema.org -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    "name": "ALOGY Engenharia",
-    "url": "https://www.alogy.com.br/industrial.html",
-    "description": "Serviços industriais em automação industrial, instrumentação, projetos elétricos industriais, NR10, NR12, calibração de instrumentos e testes de malhas.",
-    "areaServed": "BR",
-    "foundingDate": "2012",
-    "hasOfferCatalog": {
-      "@type": "OfferCatalog",
-      "name": "Serviços Industriais",
-      "itemListElement": [
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Automação Industrial" }},
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Instrumentação Industrial" }},
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Projetos Elétricos Industriais" }},
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Diagramas e Documentação Técnica" }},
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "NR10 e NR12 – Segurança e Adequação" }},
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Consultoria Técnica Industrial" }}
-      ]
-    }
-  }
-  </script>
+<style>
+.service-grid .svc{
+display:flex;
+flex-direction:column;
+border-radius:22px;
+overflow:hidden;
+background:#fff;
+box-shadow:0 12px 28px rgba(0,0,0,.08);
+border:1px solid rgba(0,0,0,.05);
+}
 
-  <!-- ✅ CSS local: TODOS os cards iguais ao “Automação” (thumb grande e sem texto no thumb) -->
-  <style>
-    .service-grid .svc{
-      display:flex;
-      flex-direction:column;
-      border-radius:22px;
-      overflow:hidden;
-      background:#fff;
-      box-shadow:0 12px 28px rgba(0,0,0,.08);
-      border:1px solid rgba(0,0,0,.05);
-    }
+.service-grid .svc .svc-media{
+height:190px;
+background-image:
+linear-gradient(180deg, rgba(43,43,43,.55), rgba(14,14,14,.85)),
+var(--svc-bg, none);
+background-size:cover;
+background-position:center;
+background-repeat:no-repeat;
+background-blend-mode:multiply;
+}
 
-    /* Thumb grande (espaço pra imagem) */
-    .service-grid .svc .svc-media{
-      height:190px;
-      background: linear-gradient(180deg, #2b2b2b, #0e0e0e);
-      background-size:cover;
-      background-position:center;
-      position:relative;
-      padding:0;              /* sem texto */
-    }
+.service-grid .svc .svc-content{
+padding:20px 22px 24px;
+}
 
-    /* Se você usar background-image inline, mantém o degradê “por cima” */
-    .service-grid .svc .svc-media[style*="background-image"]{
-      background-blend-mode:multiply;
-    }
+.service-grid .svc .ico{
+width:50px;
+height:50px;
+border-radius:14px;
+display:flex;
+align-items:center;
+justify-content:center;
+margin-top:-30px;
+background:#fff;
+box-shadow:0 12px 24px rgba(0,0,0,.12);
+border:1px solid rgba(0,0,0,.06);
+font-size:18px;
+}
 
-    /* Remove texto no thumb (todos) */
-    .service-grid .svc .svc-label{ display:none; }
+.service-grid .svc h3{margin:14px 0 8px;}
+.service-grid .svc p{margin:0;}
 
-    .service-grid .svc .svc-content{
-      padding:20px 22px 24px;
-    }
-
-    .service-grid .svc .ico{
-      width:50px;
-      height:50px;
-      border-radius:14px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      margin-top:-30px;
-      background:#fff;
-      box-shadow:0 12px 24px rgba(0,0,0,.12);
-      border:1px solid rgba(0,0,0,.06);
-      font-size:18px;
-    }
-
-    .service-grid .svc h3{ margin:14px 0 8px; }
-    .service-grid .svc p{ margin:0; }
-
-    @media (max-width: 720px){
-      .service-grid .svc .svc-media{ height:170px; }
-    }
-  </style>
+@media(max-width:720px){
+.service-grid .svc .svc-media{height:170px;}
+}
+</style>
 </head>
 
 <body>
-  <!-- ===== HEADER ===== -->
-  <header>
-    <div class="container headbar">
-      <a href="/" class="logo-wrapper" aria-label="Voltar para o início">
-        <img src="logo-alogy.webp" alt="ALOGY Engenharia" />
-      </a>
 
-      <div class="crea-top" aria-label="CREA-SP">
-        <img src="crea.webp" alt="CREA-SP">
-      </div>
+<header>
+<div class="container headbar">
+<a href="/" class="logo-wrapper">
+<img src="logo-alogy.webp" alt="ALOGY Engenharia" />
+</a>
 
-      <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menu">
-        <i class="fas fa-bars"></i>
-      </button>
-    </div>
+<div class="crea-top">
+<img src="crea.webp" alt="CREA-SP">
+</div>
 
-    <nav class="desktop" aria-label="Menu principal">
-      <div class="container navlinks">
-        <a href="industrial.html">Serviços Industriais</a>
-        <a href="residencial.html">Serviços Residenciais</a>
-        <a href="cases.html">Projetos</a>
-        <a href="cursos.html">Cursos</a>
-        <a href="sobre.html">Sobre</a>
-        <a href="index.html#contato">Contato</a>
-      </div>
-    </nav>
+<button class="menu-toggle" onclick="toggleMobileMenu()">
+<i class="fas fa-bars"></i>
+</button>
+</div>
 
-    <nav class="mobile" aria-label="Menu mobile">
-      <a href="industrial.html">Serviços Industriais</a>
-      <a href="residencial.html">Serviços Residenciais</a>
-      <a href="cases.html">Projetos</a>
-      <a href="cursos.html">Cursos</a>
-      <a href="sobre.html">Sobre</a>
-      <a href="index.html#contato">Contato</a>
-    </nav>
-  </header>
+<nav class="desktop">
+<div class="container navlinks">
+<a href="industrial.html">Serviços Industriais</a>
+<a href="residencial.html">Serviços Residenciais</a>
+<a href="cases.html">Projetos</a>
+<a href="cursos.html">Cursos</a>
+<a href="sobre.html">Sobre</a>
+<a href="index.html#contato">Contato</a>
+</div>
+</nav>
 
-  <!-- ===== Social Floating (PADRÃO) ===== -->
-  <div class="social-floating" aria-label="Redes sociais">
-    <a href="https://www.linkedin.com/company/alogyengenharia" class="linkedin" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i></a>
-    <a href="https://www.instagram.com/alogyengenharia" class="instagram" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
-    <a href="https://www.facebook.com/alogyengenharia" class="facebook" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a>
-    <a href="https://www.youtube.com/@alogyengenharia" class="youtube" target="_blank" rel="noopener"><i class="fab fa-youtube"></i></a>
-    <a href="https://hotmart.com/pt-br/club/alogyengenharia" class="hotmart" target="_blank" rel="noopener">H</a>
-    <a href="https://www.tiktok.com/@alogyengenharia" class="tiktok" target="_blank" rel="noopener"><i class="fab fa-tiktok"></i></a>
-  </div>
+<nav class="mobile">
+<a href="industrial.html">Serviços Industriais</a>
+<a href="residencial.html">Serviços Residenciais</a>
+<a href="cases.html">Projetos</a>
+<a href="cursos.html">Cursos</a>
+<a href="sobre.html">Sobre</a>
+<a href="index.html#contato">Contato</a>
+</nav>
+</header>
 
-  <!-- ===== FAB (PADRÃO) ===== -->
-  <div class="fab-wrap" aria-label="Ações rápidas">
-    <a class="fab-btn mail" href="mailto:contato@alogy.com.br">
-      <i class="fas fa-envelope"></i> contato@alogy.com.br
-    </a>
+<div class="social-floating">
+<a href="https://www.linkedin.com/company/alogyengenharia" class="linkedin" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.instagram.com/alogyengenharia" class="instagram" target="_blank"><i class="fab fa-instagram"></i></a>
+<a href="https://www.facebook.com/alogyengenharia" class="facebook" target="_blank"><i class="fab fa-facebook-f"></i></a>
+<a href="https://www.youtube.com/@alogyengenharia" class="youtube" target="_blank"><i class="fab fa-youtube"></i></a>
+<a href="https://hotmart.com/pt-br/club/alogyengenharia" class="hotmart" target="_blank">H</a>
+<a href="https://www.tiktok.com/@alogyengenharia" class="tiktok" target="_blank"><i class="fab fa-tiktok"></i></a>
+</div>
 
-    <a class="fab-btn wa"
-       href="https://wa.me/5519981795468?text=Ol%C3%A1!%20Vim%20pelo%20site%20ALOGY.%20Gostaria%20de%20um%20or%C3%A7amento%20para%20servi%C3%A7os%20industriais."
-       target="_blank" rel="noopener">
-      <i class="fab fa-whatsapp"></i> WhatsApp
-    </a>
-  </div>
+<main class="container" style="margin-top:18px">
 
-  <!-- ===== CONTEÚDO ===== -->
-  <main class="container" style="margin-top:18px">
+<section class="page-hero">
+<h1>Serviços Industriais</h1>
 
-    <section class="page-hero">
-      <h1>Serviços Industriais</h1>
+<p>
+Especializada em automação industrial, instrumentação e projetos elétricos industriais.
+Atuamos do levantamento em campo à entrega de documentação estruturada com foco em confiabilidade operacional e segurança normativa.
+</p>
 
-      <p>
-        specializada em automação industrial, instrumentação e projetos elétricos industriais.
-        Atuamos do levantamento em campo à entrega de documentação estruturada, com foco em confiabilidade operacional,
-        segurança normativa (NR10 e NR12) e organização técnica para manutenção e auditorias.
-      </p>
+<div class="cta-actions" style="margin-top:14px">
+<a href="cases.html" style="display:inline-flex;align-items:center;gap:10px;padding:14px 20px;background:#ffffff;color:#004b80;font-weight:700;border-radius:12px;text-decoration:none;box-shadow:0 8px 18px rgba(0,0,0,.15);">
+<i class="fas fa-folder-open"></i> Ver projetos
+</a>
+</div>
+</section>
 
-      <div class="cta-actions" style="margin-top:14px">
-        <a href="cases.html"
-           style="
-           display:inline-flex;
-           align-items:center;
-           gap:10px;
-           padding:14px 20px;
-           background:#ffffff;
-           color:#004b80;
-           font-weight:700;
-           border-radius:12px;
-           text-decoration:none;
-           box-shadow:0 8px 18px rgba(0,0,0,.15);
-           ">
-          <i class="fas fa-folder-open"></i> Ver projetos
-        </a>
-      </div>
-    </section>
+<section>
+<h2>Soluções em Engenharia Elétrica e Automação Industrial</h2>
+</section>
 
-    <section>
-      <h2>Soluções em Engenharia Elétrica e Automação Industrial</h2>
-    </section>
+<section class="service-grid">
 
-    <section class="service-grid">
+<div class="svc">
+<div class="svc-media" style="--svc-bg:url('automacao.webp')"></div>
+<div class="svc-content">
+<div class="ico"><i class="fas fa-microchip"></i></div>
+<h3>Automação Industrial</h3>
+<p>Especificação e integração de sistemas de automação industrial, revisão de lógicas de controle e melhorias em processos.</p>
+</div>
+</div>
 
-      <div class="svc">
-        <div class="svc-media" style="background-image:url('imgs/automacao.webp')"></div>
-        <div class="svc-content">
-          <div class="ico"><i class="fas fa-microchip"></i></div>
-          <h3>Automação Industrial</h3>
-          <p>Especificação e integração de sistemas de automação industrial, desenvolvimento e revisão de lógicas de controle e melhorias em processos visando estabilidade operacional.</p>
-        </div>
-      </div>
+<div class="svc">
+<div class="svc-media" style="--svc-bg:url('instrumentacao.webp')"></div>
+<div class="svc-content">
+<div class="ico"><i class="fas fa-gauge-high"></i></div>
+<h3>Instrumentação Industrial</h3>
+<p>Seleção de instrumentos, definição de malhas de controle, calibração em campo e apoio em comissionamento.</p>
+</div>
+</div>
 
-      <div class="svc">
-        <div class="svc-media" style="background-image:url('imgs/instrumentacao.webp')"></div>
-        <div class="svc-content">
-          <div class="ico"><i class="fas fa-gauge-high"></i></div>
-          <h3>Instrumentação Industrial</h3>
-          <p>Seleção de instrumentos industriais, definição de malhas de controle, calibração em campo, testes de loop e apoio em comissionamento.</p>
-        </div>
-      </div>
+<div class="svc">
+<div class="svc-media" style="--svc-bg:url('projetos-eletricos.webp')"></div>
+<div class="svc-content">
+<div class="ico"><i class="fas fa-bolt"></i></div>
+<h3>Projetos Elétricos Industriais</h3>
+<p>Desenvolvimento e revisão de projetos elétricos industriais e documentação estruturada.</p>
+</div>
+</div>
 
-      <div class="svc">
-        <div class="svc-media" style="background-image:url('imgs/projetos-eletricos.webp')"></div>
-        <div class="svc-content">
-          <div class="ico"><i class="fas fa-bolt"></i></div>
-          <h3>Projetos Elétricos Industriais</h3>
-          <p>Desenvolvimento e revisão de projetos elétricos industriais, diagramas elétricos e documentação estruturada para execução e manutenção.</p>
-        </div>
-      </div>
+<div class="svc">
+<div class="svc-media" style="--svc-bg:url('documentacao.webp')"></div>
+<div class="svc-content">
+<div class="ico"><i class="fas fa-diagram-project"></i></div>
+<h3>Diagramas e Documentação Técnica</h3>
+<p>Padronização e organização de documentação elétrica e automação para manutenção e auditorias.</p>
+</div>
+</div>
 
-      <div class="svc">
-        <div class="svc-media" style="background-image:url('imgs/documentacao.webp')"></div>
-        <div class="svc-content">
-          <div class="ico"><i class="fas fa-diagram-project"></i></div>
-          <h3>Diagramas e Documentação Técnica</h3>
-          <p>Padronização e organização de documentação elétrica e de automação para facilitar manutenção e auditorias.</p>
-        </div>
-      </div>
+<div class="svc">
+<div class="svc-media" style="--svc-bg:url('nr10-nr12.webp')"></div>
+<div class="svc-content">
+<div class="ico"><i class="fas fa-shield-halved"></i></div>
+<h3>NR10 e NR12 – Segurança e Adequação</h3>
+<p>Adequações técnicas conforme normas NR10 e NR12 em instalações e máquinas industriais.</p>
+</div>
+</div>
 
-      <div class="svc">
-        <div class="svc-media" style="background-image:url('imgs/nr10-nr12.webp')"></div>
-        <div class="svc-content">
-          <div class="ico"><i class="fas fa-shield-halved"></i></div>
-          <h3>NR10 e NR12 – Segurança e Adequação</h3>
-          <p>Adequações técnicas em instalações elétricas e máquinas industriais conforme normas NR10 e NR12.</p>
-        </div>
-      </div>
+<div class="svc">
+<div class="svc-media" style="--svc-bg:url('consultoria.webp')"></div>
+<div class="svc-content">
+<div class="ico"><i class="fas fa-screwdriver-wrench"></i></div>
+<h3>Consultoria Técnica Industrial</h3>
+<p>Diagnóstico técnico, análise de falhas e planejamento de melhorias em sistemas elétricos e automação.</p>
+</div>
+</div>
 
-      <div class="svc">
-        <div class="svc-media" style="background-image:url('imgs/consultoria.webp')"></div>
-        <div class="svc-content">
-          <div class="ico"><i class="fas fa-screwdriver-wrench"></i></div>
-          <h3>Consultoria Técnica Industrial</h3>
-          <p>Diagnóstico de sistemas elétricos e de automação existentes, análise de falhas e planejamento de melhorias técnicas.</p>
-        </div>
-      </div>
+</section>
 
-    </section>
+</main>
 
-    <section class="split">
-      <div class="bullet">
-        <h3><i class="fas fa-list-check"></i> Metodologia</h3>
-        <ul>
-          <li>Levantamento técnico em campo.</li>
-          <li>Definição técnica baseada em normas.</li>
-          <li>Entrega organizada com documentação revisada.</li>
-        </ul>
-      </div>
+<footer>
+<p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p>
+</footer>
 
-      <div class="bullet">
-        <h3><i class="fas fa-circle-check"></i> Diferenciais Técnicos</h3>
-        <ul>
-          <li>Rigor técnico e documentação clara.</li>
-          <li>Facilidade para manutenção preventiva.</li>
-          <li>Foco em segurança elétrica e confiabilidade.</li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="cta-bar">
-      <div>
-        <strong>Precisa de serviços de engenharia elétrica industrial?</strong><br/>
-        <span class="muted">Entre em contato para análise técnica inicial e definição do próximo passo.</span>
-      </div>
-    </section>
-
-  </main>
-
-  <footer>
-    <p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p>
-  </footer>
 </body>
 </html>
