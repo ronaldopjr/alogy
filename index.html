@@ -124,7 +124,7 @@
       gap:14px;
       text-decoration:none;
       color:inherit;
-      margin:0 auto; /* garante centralização no desktop */
+      margin:0 auto; /* desktop centralizado */
     }
 
     .logo-wrapper img{
@@ -208,22 +208,19 @@
     /* CREA no topo direito: imagem estática, sem borda/caixa e sem clique */
     .crea-top{
       position:absolute;
-      right:4px;  /* ✅ mais pro canto direito (antes 12px) */
+      right:4px;
       top:50%;
       transform:translateY(-50%);
       z-index:3200;
-
       display:flex;
       align-items:center;
       justify-content:center;
-
       background:transparent;
       border:none;
       box-shadow:none;
       width:auto;
       height:auto;
-
-      pointer-events:none; /* impede clique */
+      pointer-events:none;
     }
 
     .crea-top img{
@@ -314,21 +311,45 @@
       background:#0b1220;
     }
 
+    /* =========================
+       BANNER ULTRA PRO (IMG REAL)
+       - usa <picture><img> com object-fit
+       - mantém seu slider (opacity/scale no .slide)
+       ========================= */
     .slide{
       position:absolute; inset:0;
       display:block;
       opacity:0;
       transform:scale(1.02);
       transition:opacity .5s ease, transform .8s ease;
-
-      background: var(--img-desktop, none);
-      background-size: cover;
-     background-position: var(--pos-desktop, 50% 30%);
-
       text-decoration:none;
       color:#fff;
+      overflow:hidden; /* garante que a img respeite o raio */
     }
     .slide.active{ opacity:1; transform:scale(1); z-index:2; }
+
+    .slide-media{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      display:block;
+    }
+    .slide-media img{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+
+      /* ✅ DESKTOP: ajustável por slide (se quiser) */
+      object-position: var(--pos-desktop, 50% 30%);
+      transform: scale(1.02); /* leve “cinema” */
+    }
+    .slide.active .slide-media img{
+      transform: scale(1.00);
+      transition: transform .8s ease;
+    }
 
     .banner-content{
       position:absolute;
@@ -336,6 +357,7 @@
       display:flex;
       align-items:flex-end;
       padding: 26px;
+      z-index:3; /* acima da imagem */
     }
 
     .banner-card{
@@ -588,7 +610,7 @@
 
       .social-floating{display:none}
 
-      /* ✅ logo mais pra esquerda no mobile */
+      /* logo mais pra esquerda no mobile */
       .headbar{
         justify-content:flex-start;
         position:relative;
@@ -596,22 +618,15 @@
       }
 
       .logo-wrapper{
-        margin:0; /* remove centralização no mobile */
+        margin:0;
       }
 
       .logo-wrapper img{
         width:180px;
       }
 
-      /* ✅ CREA ainda mais no canto direito no mobile */
-      .crea-top{
-        right:4px;
-      }
-
-      .crea-top img{
-        height:50px;
-        width:auto;
-      }
+      .crea-top{ right:4px; }
+      .crea-top img{ height:50px; width:auto; }
 
       .banner-fullwidth{
         padding-left: 12px !important;
@@ -659,10 +674,9 @@
         border:1px solid rgba(255,255,255,.12);
       }
 
-      .slide{
-        background: var(--img-mobile, var(--img-desktop, none));
-        background-size: cover;
-        background-position: 80% 14%;
+      /* ✅ mantém seu “enquadramento perfeito” no mobile */
+      .slide-media img{
+        object-position: var(--pos-mobile, 80% 14%);
       }
 
       .banner-nav{
@@ -968,9 +982,16 @@
   <div class="banner-wrap banner-fullwidth">
     <div class="banner" aria-label="Banner principal com 3 destaques">
       <div class="slides">
-       <a class="slide active" href="industrial.html"
-style="--img-desktop:url('banner1.webp'); --img-mobile:url('banner1_mobile.webp'); --pos-desktop: 35% 25%;"
-aria-label="Ir para Industrial">
+
+        <!-- Slide 1 -->
+        <a class="slide active" href="industrial.html"
+           style="--pos-desktop: 50% 30%;"
+           aria-label="Ir para Industrial">
+          <picture class="slide-media" aria-hidden="true">
+            <source media="(max-width: 768px)" srcset="banner1_mobile.webp">
+            <img src="banner1.webp" alt="">
+          </picture>
+
           <div class="banner-content">
             <div class="banner-card">
               <div class="banner-title">Engenharia Industrial</div>
@@ -984,10 +1005,14 @@ aria-label="Ir para Industrial">
           </div>
         </a>
 
-     <a class="slide" href="residencial.html"
-style="--img-desktop:url('banner2.webp'); --img-mobile:url('banner2_mobile.webp'); --pos-desktop: 25% 40%;"
-aria-label="Ir para Residencial">
-
+        <!-- Slide 2 -->
+        <a class="slide" href="residencial.html"
+           style="--pos-desktop: 50% 35%;"
+           aria-label="Ir para Residencial">
+          <picture class="slide-media" aria-hidden="true">
+            <source media="(max-width: 768px)" srcset="banner2_mobile.webp">
+            <img src="banner2.webp" alt="">
+          </picture>
 
           <div class="banner-content">
             <div class="banner-card">
@@ -1002,9 +1027,14 @@ aria-label="Ir para Residencial">
           </div>
         </a>
 
-       <a class="slide" href="cursos.html"
-style="--img-desktop:url('banner3.webp'); --img-mobile:url('banner3_mobile.webp'); --pos-desktop: 60% 35%;"
-aria-label="Ir para Cursos">
+        <!-- Slide 3 -->
+        <a class="slide" href="cursos.html"
+           style="--pos-desktop: 50% 35%;"
+           aria-label="Ir para Cursos">
+          <picture class="slide-media" aria-hidden="true">
+            <source media="(max-width: 768px)" srcset="banner3_mobile.webp">
+            <img src="banner3.webp" alt="">
+          </picture>
 
           <div class="banner-content">
             <div class="banner-card">
@@ -1018,6 +1048,7 @@ aria-label="Ir para Cursos">
             </div>
           </div>
         </a>
+
       </div>
 
       <button class="banner-nav prev" type="button" aria-label="Slide anterior">
