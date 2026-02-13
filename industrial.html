@@ -41,28 +41,30 @@
         { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Automação Industrial" }},
         { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Instrumentação Industrial" }},
         { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Projetos Elétricos Industriais" }},
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Adequação NR10 e NR12" }}
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Diagramas e Documentação Técnica" }},
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "NR10 e NR12 – Segurança e Adequação" }},
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Consultoria Técnica Industrial" }}
       ]
     }
   }
   </script>
 
-  <!-- ✅ Ajuste local: “thumb” preto no topo de cada card (igual Projetos) -->
+  <!-- ✅ CSS local: só o 1º card com “thumb” maior e sem texto no thumb -->
   <style>
+    /* Base do card (mantém padrão pra todos) */
     .service-grid .svc{
       display:flex;
       flex-direction:column;
-      border-radius:18px;
+      border-radius:22px;
       overflow:hidden;
       background:#fff;
-      box-shadow:0 10px 26px rgba(0,0,0,.10);
-      border:1px solid rgba(0,0,0,.06);
+      box-shadow:0 12px 28px rgba(0,0,0,.08);
+      border:1px solid rgba(0,0,0,.05);
     }
 
     .service-grid .svc .svc-media{
-      height:120px; /* espaço reservado (preto) */
-      background:
-        linear-gradient(180deg, rgba(0,0,0,.25), rgba(0,0,0,.70));
+      height:120px; /* padrão */
+      background: linear-gradient(180deg, rgba(0,0,0,.20), rgba(0,0,0,.70));
       background-size:cover;
       background-position:center;
       position:relative;
@@ -71,7 +73,6 @@
       padding:14px 14px 12px;
     }
 
-    /* Se você colocar background-image inline, ela entra junto do gradiente */
     .service-grid .svc .svc-media[style*="background-image"]{
       background-blend-mode:multiply;
     }
@@ -84,27 +85,39 @@
     }
 
     .service-grid .svc .svc-content{
-      padding:14px 14px 16px;
+      padding:16px 16px 18px;
     }
 
     .service-grid .svc .ico{
-      width:44px;
-      height:44px;
-      border-radius:12px;
+      width:48px;
+      height:48px;
+      border-radius:14px;
       display:flex;
       align-items:center;
       justify-content:center;
-      margin-top:-22px; /* sobe por cima do “thumb” */
+      margin-top:-26px;
       background:#fff;
-      box-shadow:0 10px 20px rgba(0,0,0,.12);
+      box-shadow:0 12px 24px rgba(0,0,0,.12);
       border:1px solid rgba(0,0,0,.08);
+      font-size:18px;
     }
 
-    .service-grid .svc h3{ margin:10px 0 6px; }
+    .service-grid .svc h3{ margin:12px 0 8px; }
     .service-grid .svc p{ margin:0; }
+
+    /* ✅ Só o PRIMEIRO card (igual ao seu primeiro quadrado) */
+    .service-grid .svc.is-hero .svc-media{
+      height:190px;          /* maior */
+      padding:0;             /* sem texto */
+      align-items:stretch;
+    }
+    .service-grid .svc.is-hero .svc-label{ display:none; } /* remove texto do thumb */
+    .service-grid .svc.is-hero .svc-content{ padding:20px 22px 24px; }
+    .service-grid .svc.is-hero .ico{ margin-top:-30px; }
 
     @media (max-width: 720px){
       .service-grid .svc .svc-media{ height:140px; }
+      .service-grid .svc.is-hero .svc-media{ height:170px; }
     }
   </style>
 </head>
@@ -206,13 +219,14 @@
       <h2>Soluções em Engenharia Elétrica e Automação Industrial</h2>
     </section>
 
-    <!-- ✅ Cards revisados com “thumb” preto (pronto pra imagem) -->
     <section class="service-grid">
 
-      <div class="svc">
-        <div class="svc-media">
-          <span class="svc-label">Automação</span>
-        </div>
+      <!-- ✅ 1º (HERO) - maior e sem texto no thumb -->
+      <div class="svc is-hero">
+        <!-- quando tiver imagem, coloque aqui:
+             style="background-image:url('imgs/automacao.webp')" -->
+        <div class="svc-media"></div>
+
         <div class="svc-content">
           <div class="ico"><i class="fas fa-microchip"></i></div>
           <h3>Automação Industrial</h3>
@@ -220,6 +234,7 @@
         </div>
       </div>
 
+      <!-- 2º (normal) -->
       <div class="svc">
         <div class="svc-media">
           <span class="svc-label">Instrumentação</span>
@@ -231,6 +246,7 @@
         </div>
       </div>
 
+      <!-- 3º (normal) -->
       <div class="svc">
         <div class="svc-media">
           <span class="svc-label">Projeto Elétrico Industrial</span>
@@ -242,6 +258,7 @@
         </div>
       </div>
 
+      <!-- 4º (normal) -->
       <div class="svc">
         <div class="svc-media">
           <span class="svc-label">Documentação</span>
@@ -253,6 +270,7 @@
         </div>
       </div>
 
+      <!-- 5º (normal) -->
       <div class="svc">
         <div class="svc-media">
           <span class="svc-label">NR10 / NR12</span>
@@ -264,6 +282,7 @@
         </div>
       </div>
 
+      <!-- 6º (normal) -->
       <div class="svc">
         <div class="svc-media">
           <span class="svc-label">Consultoria</span>
