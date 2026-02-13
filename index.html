@@ -323,7 +323,7 @@
 
       background: var(--img-desktop, none);
       background-size: cover;
-      background-position: 78% 18%;
+     background-position: var(--pos-desktop, 50% 30%);
 
       text-decoration:none;
       color:#fff;
@@ -968,9 +968,9 @@
   <div class="banner-wrap banner-fullwidth">
     <div class="banner" aria-label="Banner principal com 3 destaques">
       <div class="slides">
-        <a class="slide active" href="industrial.html"
-           style="--img-desktop:url('banner1.webp'); --img-mobile:url('banner1_mobile.webp');"
-           aria-label="Ir para Industrial">
+       <a class="slide active" href="industrial.html"
+style="--img-desktop:url('banner1.webp'); --img-mobile:url('banner1_mobile.webp'); --pos-desktop: 35% 25%;"
+aria-label="Ir para Industrial">
           <div class="banner-content">
             <div class="banner-card">
               <div class="banner-title">Engenharia Industrial</div>
@@ -984,9 +984,11 @@
           </div>
         </a>
 
-        <a class="slide" href="residencial.html"
-           style="--img-desktop:url('banner2.webp'); --img-mobile:url('banner2_mobile.webp');"
-           aria-label="Ir para Residencial">
+     <a class="slide" href="residencial.html"
+style="--img-desktop:url('banner2.webp'); --img-mobile:url('banner2_mobile.webp'); --pos-desktop: 25% 40%;"
+aria-label="Ir para Residencial">
+
+
           <div class="banner-content">
             <div class="banner-card">
               <div class="banner-title">Projetos Residenciais</div>
@@ -1000,9 +1002,10 @@
           </div>
         </a>
 
-        <a class="slide" href="cursos.html"
-           style="--img-desktop:url('banner3.webp'); --img-mobile:url('banner3_mobile.webp');"
-           aria-label="Ir para Cursos">
+       <a class="slide" href="cursos.html"
+style="--img-desktop:url('banner3.webp'); --img-mobile:url('banner3_mobile.webp'); --pos-desktop: 60% 35%;"
+aria-label="Ir para Cursos">
+
           <div class="banner-content">
             <div class="banner-card">
               <div class="banner-title">Cursos</div>
