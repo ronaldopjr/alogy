@@ -535,26 +535,55 @@ footer{
   grid-template-columns: repeat(3, 1fr);
   gap:14px;
 }
-.svc{
+
+/* ✅ REVISAO: cards com imagem (svc-media + svc-content) */
+.service-grid .svc{
   background:var(--card);
   border:1px solid rgba(0,0,0,.08);
-  border-radius:var(--radius);
+  border-radius:22px;              /* mantém mais “premium” */
   box-shadow: var(--shadow);
-  padding:18px 16px;
+  overflow:hidden;
+
   display:flex;
-  gap:12px;
-  align-items:flex-start;
-  min-height: 120px;
+  flex-direction:column;           /* era row; agora coluna */
+  padding:0;                       /* era 18px 16px; agora conteúdo controla */
+  gap:0;
+  align-items:stretch;
 }
-.svc .ico{
-  width:44px;height:44px;border-radius:14px;
-  display:flex;align-items:center;justify-content:center;
-  background: rgba(0,107,177,.10);
-  border:1px solid rgba(0,107,177,.18);
-  flex:0 0 auto;
+
+/* thumb */
+.service-grid .svc .svc-media{
+  width:100%;
+  height:190px;
+  display:block;
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
 }
-.svc h3{font-size:1.05rem;margin-bottom:4px}
-.svc p{color:var(--muted);font-size:.95rem;line-height:1.45}
+
+/* conteúdo */
+.service-grid .svc .svc-content{
+  padding:20px 22px 24px;
+}
+
+/* ícone “saltado” (mantém seu visual) */
+.service-grid .svc .ico{
+  width:50px;
+  height:50px;
+  border-radius:14px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin-top:-30px;
+
+  background:#fff;
+  box-shadow:0 12px 24px rgba(0,0,0,.12);
+  border:1px solid rgba(0,0,0,.06);
+  font-size:18px;
+}
+
+.service-grid .svc h3{font-size:1.05rem;margin:14px 0 8px}
+.service-grid .svc p{color:var(--muted);font-size:.95rem;line-height:1.45;margin:0}
 
 .split{
   display:grid;
@@ -820,6 +849,11 @@ footer{
   .projects-grid{grid-template-columns:1fr}
 
   .page-hero h1{font-size:1.75rem}
+}
+
+/* ✅ ajuste thumb no mobile */
+@media (max-width: 720px){
+  .service-grid .svc .svc-media{ height:170px; }
 }
 
 @media (max-width: 900px){
