@@ -42,13 +42,66 @@
         { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Projeto Elétrico Residencial" } },
         { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Automação Residencial" } },
         { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Adequações e Segurança Elétrica" } },
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Padrão de Entrada" } },
         { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Diagramas e Detalhamento" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Padrão de Entrada" } },
         { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Consultoria Técnica" } }
       ]
     }
   }
   </script>
+
+  <!-- ✅ CSS local: cards residenciais com espaço para imagem (igual Industrial) -->
+  <style>
+    .service-grid .svc{
+      display:flex;
+      flex-direction:column;
+      border-radius:22px;
+      overflow:hidden;
+      background:#fff;
+      box-shadow:0 12px 28px rgba(0,0,0,.08);
+      border:1px solid rgba(0,0,0,.05);
+    }
+
+    /* Thumb grande (espaço pra imagem) */
+    .service-grid .svc .svc-media{
+      height:190px;
+      background: linear-gradient(180deg, #2b2b2b, #0e0e0e);
+      background-size:cover;
+      background-position:center;
+      position:relative;
+      padding:0;
+    }
+
+    /* Se houver background-image, mantém degradê por cima */
+    .service-grid .svc .svc-media[style*="background-image"]{
+      background-blend-mode:multiply;
+    }
+
+    .service-grid .svc .svc-content{
+      padding:20px 22px 24px;
+    }
+
+    .service-grid .svc .ico{
+      width:50px;
+      height:50px;
+      border-radius:14px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      margin-top:-30px;
+      background:#fff;
+      box-shadow:0 12px 24px rgba(0,0,0,.12);
+      border:1px solid rgba(0,0,0,.06);
+      font-size:18px;
+    }
+
+    .service-grid .svc h3{ margin:14px 0 8px; }
+    .service-grid .svc p{ margin:0; }
+
+    @media (max-width: 720px){
+      .service-grid .svc .svc-media{ height:170px; }
+    }
+  </style>
 </head>
 
 <body>
@@ -122,7 +175,6 @@
         Entregas estruturadas para execução, vistoria e manutenção.
       </p>
 
-      <!-- CTA ÚNICO -->
       <div class="cta-actions" style="margin-top:14px">
         <a href="cases.html"
            style="
@@ -146,78 +198,65 @@
       <h2>Soluções em Projeto Elétrico Residencial e Automação</h2>
     </section>
 
-    <!-- ✅ Revisado: estrutura consistente e sem excesso de wrappers -->
+    <!-- ✅ Agora com espaço de imagem em TODOS -->
     <section class="service-grid" aria-label="Lista de serviços residenciais">
 
       <div class="svc">
-        <div class="ico"><i class="fas fa-bolt"></i></div>
-        <div>
+        <div class="svc-media" style="background-image:url('imgs/res-projeto-eletrico.webp')"></div>
+        <div class="svc-content">
+          <div class="ico"><i class="fas fa-bolt"></i></div>
           <h3>Projeto Elétrico Residencial</h3>
-          <p>
-            Dimensionamento e distribuição de cargas, definição de circuitos e quadros, detalhamento de pontos
-            e documentação técnica organizada para execução, reforma e regularização do imóvel.
-          </p>
+          <p>Dimensionamento e distribuição de cargas, circuitos e quadros, com documentação organizada para execução, reforma e regularização do imóvel.</p>
         </div>
       </div>
 
       <div class="svc">
-        <div class="ico"><i class="fas fa-house-signal"></i></div>
-        <div>
+        <div class="svc-media" style="background-image:url('imgs/res-automacao.webp')"></div>
+        <div class="svc-content">
+          <div class="ico"><i class="fas fa-house-signal"></i></div>
           <h3>Automação Residencial</h3>
-          <p>
-            Orientação técnica e integração de automação residencial para iluminação, comandos, cenas e funcionalidades.
-            Planejamento de infraestrutura e pontos elétricos para uma instalação segura e escalável.
-          </p>
+          <p>Planejamento e orientação técnica para iluminação, comandos, cenas e infraestrutura, garantindo uma instalação segura e escalável.</p>
         </div>
       </div>
 
       <div class="svc">
-        <div class="ico"><i class="fas fa-clipboard-check"></i></div>
-        <div>
+        <div class="svc-media" style="background-image:url('imgs/res-seguranca.webp')"></div>
+        <div class="svc-content">
+          <div class="ico"><i class="fas fa-clipboard-check"></i></div>
           <h3>Adequações e Segurança Elétrica</h3>
-          <p>
-            Avaliação do sistema elétrico, recomendações técnicas para melhoria de segurança e organização,
-            correções de não conformidades, balanceamento de circuitos e orientações para reduzir riscos e sobrecargas.
-          </p>
+          <p>Avaliação do sistema elétrico e recomendações para reduzir riscos, corrigir não conformidades e melhorar organização e confiabilidade.</p>
         </div>
       </div>
 
       <div class="svc">
-        <div class="ico"><i class="fas fa-diagram-project"></i></div>
-        <div>
+        <div class="svc-media" style="background-image:url('imgs/res-diagramas.webp')"></div>
+        <div class="svc-content">
+          <div class="ico"><i class="fas fa-diagram-project"></i></div>
           <h3>Diagramas e Detalhamento</h3>
-          <p>
-            Diagrama unifilar, distribuição e identificação de circuitos, lista de materiais e orientações de execução,
-            facilitando entendimento da obra, futuras manutenções e ampliações.
-          </p>
+          <p>Diagrama unifilar, identificação de circuitos e orientações de execução para facilitar obra, manutenção e ampliações futuras.</p>
         </div>
       </div>
 
       <div class="svc">
-        <div class="ico"><i class="fas fa-plug-circle-bolt"></i></div>
-        <div>
+        <div class="svc-media" style="background-image:url('imgs/res-padrao-entrada.webp')"></div>
+        <div class="svc-content">
+          <div class="ico"><i class="fas fa-plug-circle-bolt"></i></div>
           <h3>Padrão de Entrada</h3>
-          <p>
-            Orientações e documentação para adequação de padrão de entrada conforme concessionária e necessidade do imóvel,
-            com organização técnica para aprovação, reforma ou aumento de carga.
-          </p>
+          <p>Orientações e documentação para adequação conforme concessionária e demanda do imóvel, visando aprovação e aumento de carga.</p>
         </div>
       </div>
 
       <div class="svc">
-        <div class="ico"><i class="fas fa-screwdriver-wrench"></i></div>
-        <div>
+        <div class="svc-media" style="background-image:url('imgs/res-consultoria.webp')"></div>
+        <div class="svc-content">
+          <div class="ico"><i class="fas fa-screwdriver-wrench"></i></div>
           <h3>Consultoria Técnica</h3>
-          <p>
-            Suporte técnico para tomada de decisão em reformas, ampliações e melhorias: avaliação de alternativas,
-            priorização de intervenções e orientação para execução segura e organizada.
-          </p>
+          <p>Suporte para reformas e melhorias: avaliação de alternativas, priorização de intervenções e orientação para execução segura e organizada.</p>
         </div>
       </div>
 
     </section>
 
-    <!-- CTA BAR sem botões duplicados -->
     <section class="cta-bar" aria-label="Chamada para contato">
       <div>
         <strong>Quer um orçamento para seu projeto residencial?</strong><br/>
@@ -226,7 +265,6 @@
     </section>
   </main>
 
-  <!-- ===== FOOTER ===== -->
   <footer>
     <p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p>
   </footer>
