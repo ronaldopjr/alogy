@@ -49,9 +49,8 @@
   }
   </script>
 
-  <!-- ✅ CSS local: só o 1º card com “thumb” maior e sem texto no thumb -->
+  <!-- ✅ CSS local: TODOS os cards iguais ao “Automação” (thumb grande e sem texto no thumb) -->
   <style>
-    /* Base do card (mantém padrão pra todos) */
     .service-grid .svc{
       display:flex;
       flex-direction:column;
@@ -62,62 +61,47 @@
       border:1px solid rgba(0,0,0,.05);
     }
 
+    /* Thumb grande (espaço pra imagem) */
     .service-grid .svc .svc-media{
-      height:120px; /* padrão */
-      background: linear-gradient(180deg, rgba(0,0,0,.20), rgba(0,0,0,.70));
+      height:190px;
+      background: linear-gradient(180deg, #2b2b2b, #0e0e0e);
       background-size:cover;
       background-position:center;
       position:relative;
-      display:flex;
-      align-items:flex-end;
-      padding:14px 14px 12px;
+      padding:0;              /* sem texto */
     }
 
+    /* Se você usar background-image inline, mantém o degradê “por cima” */
     .service-grid .svc .svc-media[style*="background-image"]{
       background-blend-mode:multiply;
     }
 
-    .service-grid .svc .svc-label{
-      color:#fff;
-      font-weight:800;
-      font-size:15px;
-      text-shadow:0 2px 10px rgba(0,0,0,.45);
-    }
+    /* Remove texto no thumb (todos) */
+    .service-grid .svc .svc-label{ display:none; }
 
     .service-grid .svc .svc-content{
-      padding:16px 16px 18px;
+      padding:20px 22px 24px;
     }
 
     .service-grid .svc .ico{
-      width:48px;
-      height:48px;
+      width:50px;
+      height:50px;
       border-radius:14px;
       display:flex;
       align-items:center;
       justify-content:center;
-      margin-top:-26px;
+      margin-top:-30px;
       background:#fff;
       box-shadow:0 12px 24px rgba(0,0,0,.12);
-      border:1px solid rgba(0,0,0,.08);
+      border:1px solid rgba(0,0,0,.06);
       font-size:18px;
     }
 
-    .service-grid .svc h3{ margin:12px 0 8px; }
+    .service-grid .svc h3{ margin:14px 0 8px; }
     .service-grid .svc p{ margin:0; }
 
-    /* ✅ Só o PRIMEIRO card (igual ao seu primeiro quadrado) */
-    .service-grid .svc.is-hero .svc-media{
-      height:190px;          /* maior */
-      padding:0;             /* sem texto */
-      align-items:stretch;
-    }
-    .service-grid .svc.is-hero .svc-label{ display:none; } /* remove texto do thumb */
-    .service-grid .svc.is-hero .svc-content{ padding:20px 22px 24px; }
-    .service-grid .svc.is-hero .ico{ margin-top:-30px; }
-
     @media (max-width: 720px){
-      .service-grid .svc .svc-media{ height:140px; }
-      .service-grid .svc.is-hero .svc-media{ height:170px; }
+      .service-grid .svc .svc-media{ height:170px; }
     }
   </style>
 </head>
@@ -195,7 +179,6 @@
         segurança normativa (NR10 e NR12) e organização técnica para manutenção e auditorias.
       </p>
 
-      <!-- BOTÃO ÚNICO (VISÍVEL EM CIMA DO HERO) -->
       <div class="cta-actions" style="margin-top:14px">
         <a href="cases.html"
            style="
@@ -221,12 +204,8 @@
 
     <section class="service-grid">
 
-      <!-- ✅ 1º (HERO) - maior e sem texto no thumb -->
-      <div class="svc is-hero">
-        <!-- quando tiver imagem, coloque aqui:
-             style="background-image:url('imgs/automacao.webp')" -->
-        <div class="svc-media"></div>
-
+      <div class="svc">
+        <div class="svc-media" style="background-image:url('imgs/automacao.webp')"></div>
         <div class="svc-content">
           <div class="ico"><i class="fas fa-microchip"></i></div>
           <h3>Automação Industrial</h3>
@@ -234,11 +213,8 @@
         </div>
       </div>
 
-      <!-- 2º (normal) -->
       <div class="svc">
-        <div class="svc-media">
-          <span class="svc-label">Instrumentação</span>
-        </div>
+        <div class="svc-media" style="background-image:url('imgs/instrumentacao.webp')"></div>
         <div class="svc-content">
           <div class="ico"><i class="fas fa-gauge-high"></i></div>
           <h3>Instrumentação Industrial</h3>
@@ -246,11 +222,8 @@
         </div>
       </div>
 
-      <!-- 3º (normal) -->
       <div class="svc">
-        <div class="svc-media">
-          <span class="svc-label">Projeto Elétrico Industrial</span>
-        </div>
+        <div class="svc-media" style="background-image:url('imgs/projetos-eletricos.webp')"></div>
         <div class="svc-content">
           <div class="ico"><i class="fas fa-bolt"></i></div>
           <h3>Projetos Elétricos Industriais</h3>
@@ -258,11 +231,8 @@
         </div>
       </div>
 
-      <!-- 4º (normal) -->
       <div class="svc">
-        <div class="svc-media">
-          <span class="svc-label">Documentação</span>
-        </div>
+        <div class="svc-media" style="background-image:url('imgs/documentacao.webp')"></div>
         <div class="svc-content">
           <div class="ico"><i class="fas fa-diagram-project"></i></div>
           <h3>Diagramas e Documentação Técnica</h3>
@@ -270,11 +240,8 @@
         </div>
       </div>
 
-      <!-- 5º (normal) -->
       <div class="svc">
-        <div class="svc-media">
-          <span class="svc-label">NR10 / NR12</span>
-        </div>
+        <div class="svc-media" style="background-image:url('imgs/nr10-nr12.webp')"></div>
         <div class="svc-content">
           <div class="ico"><i class="fas fa-shield-halved"></i></div>
           <h3>NR10 e NR12 – Segurança e Adequação</h3>
@@ -282,11 +249,8 @@
         </div>
       </div>
 
-      <!-- 6º (normal) -->
       <div class="svc">
-        <div class="svc-media">
-          <span class="svc-label">Consultoria</span>
-        </div>
+        <div class="svc-media" style="background-image:url('imgs/consultoria.webp')"></div>
         <div class="svc-content">
           <div class="ico"><i class="fas fa-screwdriver-wrench"></i></div>
           <h3>Consultoria Técnica Industrial</h3>
