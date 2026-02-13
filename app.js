@@ -72,9 +72,15 @@ function setActiveNav(){
 
     // HOME + #contato => marca Contato (href="#contato" ou "index.html#contato")
     if(currentIsIndex && hash === '#contato' && hrefHash === '#contato'){
-      a.classList.add('active');
-      return;
-    }
+  a.classList.add('active');
+  return;
+}
+
+// Se você estiver no index e o link for "index.html#contato", também marca
+if(currentIsIndex && hash === '#contato' && (hrefPath === 'index.html') && hrefHash === '#contato'){
+  a.classList.add('active');
+  return;
+}
 
     // páginas normais (industrial.html, residencial.html, sobre.html, cases.html)
     if(hrefPath && hrefPath === path && hrefHash === ''){
