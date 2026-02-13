@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -5,53 +6,222 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Cursos | ALOGY Engenharia</title>
 
+  <!-- SEO básico (página ponte) -->
+  <meta name="description" content="Cursos de automação e instrumentação da ALOGY Engenharia. Acesso via plataforma Hotmart."/>
+  <meta name="robots" content="noindex,follow" />
+  <link rel="canonical" href="https://www.alogy.com.br/cursos.html" />
+  <meta name="theme-color" content="#004b80" />
+
+  <!-- Redirect fallback (caso JS bloqueado) -->
   <meta http-equiv="refresh" content="3;url=https://hotmart.com/pt-br/club/alogyengenharia">
 
   <link rel="icon" href="logo-alogy.webp" type="image/webp" />
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+
+  <!-- Performance (Fonts) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
+  <!-- ✅ Mesmo CSS do site -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- ✅ Mesmo JS do site -->
+  <script src="app.js" defer></script>
+
   <style>
-    body{
-      font-family:'Roboto',sans-serif;
-      background:#f4f7fa;
-      color:#1f2937;
+    /* ===== Página ponte (usa tokens do seu :root) ===== */
+    .redirect-wrap{
+      min-height: calc(100vh - 0px);
       display:flex;
-      min-height:100vh;
       align-items:center;
       justify-content:center;
-      padding:18px;
+      padding: 18px 0 26px;
     }
-    .box{
-      width:min(820px, 100%);
-      background:#fff;
-      border:1px solid rgba(0,0,0,.08);
-      border-radius:16px;
-      box-shadow:0 10px 25px rgba(0,0,0,.08);
-      padding:26px;
+    .redirect-card{
+      width: min(920px, 100%);
+      background: var(--card);
+      border: 1px solid rgba(0,0,0,.08);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 26px;
       text-align:center;
     }
-    .logo{width:220px;max-width:80%;margin:0 auto 14px;display:block}
-    h1{margin-bottom:8px}
-    p{color:#6b7280;margin-bottom:14px}
-    a.btn{
-      display:inline-flex;gap:10px;align-items:center;
-      background:#006bb1;color:#fff;text-decoration:none;
-      padding:12px 18px;border-radius:12px;font-weight:800;
+    .redirect-logo{
+      width: 240px;
+      max-width: 85%;
+      height:auto;
+      display:block;
+      margin: 0 auto 14px;
+    }
+    .redirect-title{
+      font-size: 2.0rem;
+      line-height: 1.15;
+      margin-bottom: 8px;
+      color: var(--text);
+    }
+    .redirect-desc{
+      color: var(--muted);
+      margin: 0 auto 16px;
+      max-width: 760px;
+      font-size: 1.02rem;
+      line-height: 1.6;
+    }
+
+    /* Loader */
+    .loader{
+      width: 72px;
+      height: 72px;
+      border-radius: 999px;
+      border: 6px solid rgba(0,107,177,.18);
+      border-top-color: var(--brand);
+      margin: 10px auto 18px;
+      animation: spin 1.0s linear infinite;
+    }
+    @keyframes spin{
+      to { transform: rotate(360deg); }
+    }
+
+    /* Ajustes do botão da página (usa o .btn do seu CSS) */
+    .redirect-actions{
+      display:flex;
+      gap:10px;
+      justify-content:center;
+      flex-wrap:wrap;
+      margin-top: 10px;
+    }
+
+    .hint{
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: .95rem;
+    }
+
+    @media (max-width: 768px){
+      .redirect-title{ font-size: 1.55rem; }
+      .redirect-card{ padding: 20px; }
+      .loader{ width: 62px; height: 62px; }
     }
   </style>
+
+  <script>
+    // ✅ Redirect PRO (rápido e suave)
+    const HOTMART_URL = "https://hotmart.com/pt-br/club/alogyengenharia";
+
+    // 1) Atualiza o link do botão/âncora no DOM assim que carregar
+    document.addEventListener("DOMContentLoaded", () => {
+      const linkNow = document.getElementById("goNow");
+      if(linkNow) linkNow.href = HOTMART_URL;
+
+      // 2) Redireciona após um pequeno delay (tempo de ler + ver loader)
+      setTimeout(() => {
+        window.location.replace(HOTMART_URL);
+      }, 1400);
+    });
+  </script>
 </head>
+
 <body>
-  <div class="box">
-    <img class="logo" src="logo-alogy.webp" alt="ALOGY Engenharia">
-    <h1>Redirecionando para os Cursos</h1>
-    <p>Você será direcionado para a Hotmart em instantes.</p>
-    <a class="btn" href="https://hotmart.com/pt-br/club/alogyengenharia">
-      <i class="fas fa-arrow-right"></i> Acessar agora
+  <!-- ===== HEADER (igual ao site) ===== -->
+  <header>
+    <div class="container headbar">
+      <a href="index.html" class="logo-wrapper" aria-label="Voltar para o início">
+        <img src="logo-alogy.webp" alt="ALOGY Engenharia" />
+      </a>
+
+      <div class="crea-top" aria-label="CREA-SP">
+        <img src="crea.webp" alt="CREA-SP">
+      </div>
+
+      <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menu">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+
+    <nav class="desktop" aria-label="Menu principal">
+      <div class="container navlinks">
+        <a href="industrial.html">Serviços Industriais</a>
+        <a href="residencial.html">Serviços Residenciais</a>
+        <a href="cursos.html">Cursos</a>
+        <a href="sobre.html">Sobre</a>
+        <a href="cases.html">Projetos</a>
+        <a href="index.html#contato">Contato</a>
+      </div>
+    </nav>
+
+    <nav class="mobile" aria-label="Menu mobile">
+      <a href="industrial.html">Serviços Industriais</a>
+      <a href="residencial.html">Serviços Residenciais</a>
+      <a href="cursos.html">Cursos</a>
+      <a href="sobre.html">Sobre</a>
+      <a href="cases.html">Projetos</a>
+      <a href="index.html#contato">Contato</a>
+    </nav>
+  </header>
+
+  <!-- ===== Social Floating (igual ao index) ===== -->
+  <div class="social-floating" aria-label="Redes sociais">
+    <a href="https://www.linkedin.com/company/alogyengenharia" class="linkedin" target="_blank" rel="noopener" aria-label="LinkedIn">
+      <i class="fab fa-linkedin-in"></i>
+    </a>
+    <a href="https://www.instagram.com/alogyengenharia" class="instagram" target="_blank" rel="noopener" aria-label="Instagram">
+      <i class="fab fa-instagram"></i>
+    </a>
+    <a href="https://www.facebook.com/alogyengenharia" class="facebook" target="_blank" rel="noopener" aria-label="Facebook">
+      <i class="fab fa-facebook-f"></i>
+    </a>
+    <a href="https://www.youtube.com/@alogyengenharia" class="youtube" target="_blank" rel="noopener" aria-label="YouTube">
+      <i class="fab fa-youtube"></i>
+    </a>
+    <a href="https://hotmart.com/pt-br/club/alogyengenharia" class="hotmart" target="_blank" rel="noopener" aria-label="Hotmart">H</a>
+    <a href="https://www.tiktok.com/@alogyengenharia" class="tiktok" target="_blank" rel="noopener" aria-label="TikTok">
+      <i class="fab fa-tiktok"></i>
     </a>
   </div>
+
+  <!-- ===== FAB (igual ao index) ===== -->
+  <div class="fab-wrap" aria-label="Ações rápidas">
+    <a class="fab-btn mail" href="mailto:contato@alogy.com.br" aria-label="Enviar e-mail para contato@alogy.com.br">
+      <i class="fas fa-envelope"></i> contato@alogy.com.br
+    </a>
+
+    <a class="fab-btn wa" href="https://wa.me/5519981795468?text=Ol%C3%A1!%20Vim%20pelo%20site%20ALOGY.%20Gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20os%20cursos." target="_blank" rel="noopener" aria-label="Abrir WhatsApp">
+      <i class="fab fa-whatsapp"></i> WhatsApp
+    </a>
+  </div>
+
+  <!-- ===== CONTEÚDO ===== -->
+  <main class="container redirect-wrap" aria-label="Redirecionamento para cursos">
+    <section class="redirect-card">
+      <img class="redirect-logo" src="logo-alogy.webp" alt="ALOGY Engenharia">
+
+      <h1 class="redirect-title">Redirecionando para os Cursos</h1>
+      <p class="redirect-desc">
+        Você será direcionado para a Hotmart em instantes para acessar os cursos da ALOGY Engenharia.
+      </p>
+
+      <div class="loader" aria-hidden="true"></div>
+
+      <div class="redirect-actions">
+        <a id="goNow" class="btn" href="https://hotmart.com/pt-br/club/alogyengenharia">
+          <i class="fas fa-arrow-right"></i> Acessar agora
+        </a>
+        <a class="btn secondary" href="index.html">
+          <i class="fas fa-house"></i> Voltar ao site
+        </a>
+      </div>
+
+      <div class="hint">
+        Se não redirecionar automaticamente, clique em <strong>Acessar agora</strong>.
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p>
+  </footer>
 </body>
 </html>
+```
