@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-  <!-- SEO: title mais descritivo -->
   <title>Sobre a ALOGY Engenharia | Automação, Instrumentação e Elétrica</title>
 
   <link rel="icon" href="logo-alogy.webp" type="image/webp" />
@@ -16,165 +15,156 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
-  <!-- SEO básico (refinado) -->
-  <meta name="description" content="Conheça a ALOGY Engenharia. Atuamos com automação, instrumentação e projetos elétricos, com foco em segurança, qualidade, conformidade e documentação técnica organizada."/>
+  <!-- SEO -->
+  <meta name="description" content="Conheça a ALOGY Engenharia. Engenharia elétrica, automação industrial e instrumentação com atendimento técnico em Campinas e região."/>
   <meta name="robots" content="index,follow" />
   <meta name="theme-color" content="#004b80" />
   <link rel="canonical" href="https://www.alogy.com.br/sobre.html" />
 
-  <!-- ✅ mesmo CSS/JS do index -->
   <link rel="stylesheet" href="style.css" />
   <script src="app.js" defer></script>
 
-  <!-- SEO: Schema.org (AboutPage + Organization/ProfessionalService) -->
+  <!-- Schema -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "AboutPage",
     "name": "Sobre a ALOGY Engenharia",
     "url": "https://www.alogy.com.br/sobre.html",
-    "description": "Informações institucionais da ALOGY Engenharia: atuação em automação, instrumentação e projetos elétricos com foco em segurança e organização técnica.",
-    "isPartOf": {
-      "@type": "WebSite",
-      "name": "ALOGY Engenharia",
-      "url": "https://www.alogy.com.br/"
-    },
     "about": {
       "@type": "ProfessionalService",
       "name": "ALOGY Engenharia",
       "foundingDate": "2012",
-      "areaServed": "BR",
-      "description": "Engenharia aplicada em automação, instrumentação e projetos elétricos, com foco em segurança, qualidade, conformidade e documentação técnica."
+      "areaServed": {
+        "@type": "AdministrativeArea",
+        "name": "Campinas e região"
+      },
+      "description": "Engenharia aplicada em automação, instrumentação e projetos elétricos com atendimento técnico em Campinas e região."
     }
   }
   </script>
 </head>
 
 <body>
-  <!-- ===== HEADER (igual ao index) ===== -->
-  <header>
-    <div class="container headbar">
-      <a href="index.html" class="logo-wrapper" aria-label="Voltar para o início">
-        <img src="logo-alogy.webp" alt="ALOGY Engenharia" />
-      </a>
 
-      <div class="crea-top" aria-label="CREA-SP">
-        <img src="crea.webp" alt="CREA-SP">
-      </div>
+<header>
+  <div class="container headbar">
+    <a href="index.html" class="logo-wrapper">
+      <img src="logo-alogy.webp" alt="ALOGY Engenharia" />
+    </a>
 
-      <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menu">
-        <i class="fas fa-bars"></i>
-      </button>
+    <div class="crea-top">
+      <img src="crea.webp" alt="CREA-SP">
     </div>
 
-    <nav class="desktop" aria-label="Menu principal">
-      <div class="container navlinks">
-        <a href="industrial.html">Serviços Industriais</a>
-        <a href="residencial.html">Serviços Residenciais</a>
-        <a href="cases.html">Projetos</a>
-        <a href="cursos.html">Cursos</a>
-        <a href="sobre.html">Sobre</a>
-        <a href="index.html#contato">Contato</a>
-      </div>
-    </nav>
+    <button class="menu-toggle" onclick="toggleMobileMenu()">
+      <i class="fas fa-bars"></i>
+    </button>
+  </div>
 
-    <nav class="mobile" aria-label="Menu mobile">
+  <nav class="desktop">
+    <div class="container navlinks">
       <a href="industrial.html">Serviços Industriais</a>
       <a href="residencial.html">Serviços Residenciais</a>
       <a href="cases.html">Projetos</a>
       <a href="cursos.html">Cursos</a>
       <a href="sobre.html">Sobre</a>
       <a href="index.html#contato">Contato</a>
-    </nav>
-  </header>
+    </div>
+  </nav>
 
-  <!-- ===== Social Floating (igual ao index) ===== -->
-  <div class="social-floating" aria-label="Redes sociais">
-    <a href="https://www.linkedin.com/company/alogyengenharia" class="linkedin" target="_blank" rel="noopener" aria-label="LinkedIn">
-      <i class="fab fa-linkedin-in"></i>
-    </a>
-    <a href="https://www.instagram.com/alogyengenharia" class="instagram" target="_blank" rel="noopener" aria-label="Instagram">
-      <i class="fab fa-instagram"></i>
-    </a>
-    <a href="https://www.facebook.com/alogyengenharia" class="facebook" target="_blank" rel="noopener" aria-label="Facebook">
-      <i class="fab fa-facebook-f"></i>
-    </a>
-    <a href="https://www.youtube.com/@alogyengenharia" class="youtube" target="_blank" rel="noopener" aria-label="YouTube">
-      <i class="fab fa-youtube"></i>
-    </a>
-    <a href="https://hotmart.com/pt-br/club/alogyengenharia" class="hotmart" target="_blank" rel="noopener" aria-label="Hotmart">H</a>
-    <a href="https://www.tiktok.com/@alogyengenharia" class="tiktok" target="_blank" rel="noopener" aria-label="TikTok">
-      <i class="fab fa-tiktok"></i>
-    </a>
-  </div>
+  <nav class="mobile">
+    <a href="industrial.html">Serviços Industriais</a>
+    <a href="residencial.html">Serviços Residenciais</a>
+    <a href="cases.html">Projetos</a>
+    <a href="cursos.html">Cursos</a>
+    <a href="sobre.html">Sobre</a>
+    <a href="index.html#contato">Contato</a>
+  </nav>
+</header>
 
-  <!-- ===== FAB (igual ao index) ===== -->
-  <div class="fab-wrap" aria-label="Ações rápidas">
-    <a class="fab-btn mail" href="mailto:contato@alogy.com.br" aria-label="Enviar e-mail para contato@alogy.com.br">
-      <i class="fas fa-envelope"></i> contato@alogy.com.br
-    </a>
-    <a class="fab-btn wa" href="https://wa.me/5519981795468?text=Ol%C3%A1!%20Vim%20pelo%20site%20ALOGY.%20Gostaria%20de%20falar%20sobre%20um%20servi%C3%A7o." target="_blank" rel="noopener" aria-label="Abrir WhatsApp">
-      <i class="fab fa-whatsapp"></i> WhatsApp
-    </a>
-  </div>
+<div class="social-floating">
+  <a href="https://www.linkedin.com/company/alogyengenharia" class="linkedin" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+  <a href="https://www.instagram.com/alogyengenharia" class="instagram" target="_blank"><i class="fab fa-instagram"></i></a>
+  <a href="https://www.facebook.com/alogyengenharia" class="facebook" target="_blank"><i class="fab fa-facebook-f"></i></a>
+  <a href="https://www.youtube.com/@alogyengenharia" class="youtube" target="_blank"><i class="fab fa-youtube"></i></a>
+  <a href="https://hotmart.com/pt-br/club/alogyengenharia" class="hotmart" target="_blank">H</a>
+  <a href="https://www.tiktok.com/@alogyengenharia" class="tiktok" target="_blank"><i class="fab fa-tiktok"></i></a>
+</div>
 
-  <main class="container" style="margin-top:18px">
-    <section class="page-hero">
-      <h1>Sobre a ALOGY Engenharia</h1>
-      <p>
-        Engenharia aplicada em automação, instrumentação e projetos elétricos, com foco em segurança,
-        conformidade e confiabilidade. Entrega organizada e comunicação objetiva — do levantamento em campo
-        à documentação final pronta para execução, manutenção e auditorias.
+<div class="fab-wrap">
+  <a class="fab-btn mail" href="mailto:contato@alogy.com.br">
+    <i class="fas fa-envelope"></i> contato@alogy.com.br
+  </a>
+  <a class="fab-btn wa" href="https://wa.me/5519981795468?text=Ol%C3%A1!%20Vim%20pelo%20site%20ALOGY." target="_blank">
+    <i class="fab fa-whatsapp"></i> WhatsApp
+  </a>
+</div>
+
+<main class="container" style="margin-top:18px">
+
+  <section class="page-hero">
+    <h1>Sobre a ALOGY Engenharia</h1>
+    <p>
+      Engenharia aplicada em automação, instrumentação e projetos elétricos industriais,
+      com atendimento técnico em Campinas e região. Entrega organizada e comunicação objetiva —
+      do levantamento em campo à documentação final pronta para execução, manutenção e auditorias.
+    </p>
+  </section>
+
+  <section class="about-grid">
+
+    <div class="cardx">
+      <h2><i class="fas fa-building"></i> Quem somos</h2>
+      <p class="muted">
+        A ALOGY Engenharia atua em projetos e serviços para ambientes industriais e residenciais,
+        oferecendo soluções técnicas com foco em organização, clareza técnica e documentação padronizada.
       </p>
-    </section>
 
-    <section class="about-grid" aria-label="Conteúdo institucional">
-      <div class="cardx">
-        <h2><i class="fas fa-building"></i> Quem somos</h2>
-        <p class="muted">
-          A ALOGY Engenharia atua em projetos e serviços para ambientes industriais e residenciais, oferecendo soluções técnicas
-          orientadas a resultado, clareza na execução e documentação padronizada.
-        </p>
+      <h2 style="margin-top:14px"><i class="fas fa-bullseye"></i> Missão</h2>
+      <p class="muted">
+        Entregar projetos e serviços com rigor técnico e organização,
+        elevando a segurança, confiabilidade e qualidade das soluções.
+      </p>
 
-        <h2 style="margin-top:14px"><i class="fas fa-bullseye"></i> Missão</h2>
-        <p class="muted">
-          Entregar projetos e serviços com rigor técnico e organização, elevando a segurança, a confiabilidade e a qualidade das soluções.
-        </p>
-
-        <h2 style="margin-top:14px"><i class="fas fa-star"></i> Valores</h2>
-        <div>
-          <span class="pill"><i class="fa-solid fa-hand-holding-heart"></i> Responsabilidade</span>
-          <span class="pill"><i class="fa-solid fa-gem"></i> Qualidade</span>
-          <span class="pill"><i class="fa-solid fa-shield-halved"></i> Segurança</span>
-          <span class="pill"><i class="fa-solid fa-user-gear"></i> Competência</span>
-        </div>
+      <h2 style="margin-top:14px"><i class="fas fa-star"></i> Valores</h2>
+      <div>
+        <span class="pill"><i class="fa-solid fa-hand-holding-heart"></i> Responsabilidade</span>
+        <span class="pill"><i class="fa-solid fa-gem"></i> Qualidade</span>
+        <span class="pill"><i class="fa-solid fa-shield-halved"></i> Segurança</span>
+        <span class="pill"><i class="fa-solid fa-user-gear"></i> Competência</span>
       </div>
+    </div>
 
-      <div class="cardx">
-        <h2><i class="fas fa-circle-check"></i> Diferenciais</h2>
-        <ul style="margin-left:18px">
-          <li style="margin:8px 0">Documentação técnica clara, padronizada e rastreável.</li>
-          <li style="margin:8px 0">Foco em segurança, conformidade e boas práticas.</li>
-          <li style="margin:8px 0">Atendimento objetivo, organizado e com comunicação direta.</li>
-        </ul>
+    <div class="cardx">
+      <h2><i class="fas fa-circle-check"></i> Diferenciais</h2>
+      <ul style="margin-left:18px">
+        <li style="margin:8px 0">Documentação técnica clara e padronizada.</li>
+        <li style="margin:8px 0">Foco em segurança e conformidade.</li>
+        <li style="margin:8px 0">Atendimento objetivo e organizado.</li>
+      </ul>
 
-        <h2 style="margin-top:14px"><i class="fas fa-id-card"></i> CREA</h2>
-        <p class="muted">
-          Atuação com responsabilidade técnica e registro profissional.
-          <!-- Sugestão: substitua pelo dado real quando tiver -->
-          <!-- Ex.: CREA-SP nº 0000000000 -->
-        </p>
+      <h2 style="margin-top:14px"><i class="fas fa-id-card"></i> CREA</h2>
+      <p class="muted">
+        Atuação com responsabilidade técnica e registro profissional.
+      </p>
 
-        <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap">
-          <a class="btn" href="index.html#contato"><i class="fas fa-paper-plane"></i> Falar com a ALOGY</a>
-          <a class="btn secondary" href="cases.html"><i class="fas fa-folder-open"></i> Ver projetos</a>
-        </div>
+      <h2 style="margin-top:14px"><i class="fas fa-location-dot"></i> Atendimento</h2>
+      <p class="muted">
+        Atendimento técnico em Campinas e região, com atuação em projetos industriais e residenciais.
+      </p>
+
+      <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap">
+        <a class="btn secondary" href="cases.html"><i class="fas fa-folder-open"></i> Ver projetos</a>
       </div>
-    </section>
-  </main>
+    </div>
 
-  <footer>
-    <p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p>
-  </footer>
+  </section>
+</main>
+
+<footer>
+  <p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p>
+</footer>
+
 </body>
 </html>
