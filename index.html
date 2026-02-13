@@ -45,43 +45,41 @@
 
 <body>
   <header>
-    <div class="container headbar">
-      <a href="index.html" class="logo-wrapper" aria-label="Voltar para o início">
-        <img src="logo-alogy.webp" alt="ALOGY Engenharia" />
-      </a>
+  <div class="container headbar">
+    <a href="index.html" class="logo-wrapper" aria-label="Voltar para o início">
+      <img src="logo-alogy.webp" alt="ALOGY Engenharia" />
+    </a>
 
-      <!-- CREA no topo direito (apenas imagem estática, sem borda/caixa) -->
-      <div class="crea-top" aria-label="CREA-SP">
-        <img src="crea.webp" alt="CREA-SP">
-      </div>
-
-      <!-- ✅ mantém do mesmo jeito -->
-      <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menu">
-        <i class="fas fa-bars"></i>
-      </button>
+    <div class="crea-top" aria-label="CREA-SP">
+      <img src="crea.webp" alt="CREA-SP">
     </div>
 
-    <nav class="desktop" aria-label="Menu principal">
-      <div class="container navlinks">
-        <a href="industrial.html">Industrial</a>
-        <a href="residencial.html">Residencial</a>
-        <a href="cursos.html">Cursos</a>
-        <a href="sobre.html">Sobre</a>
-        <a href="cases.html">Cases</a>
-        <a href="#contato">Contato</a>
-      </div>
-    </nav>
+    <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menu">
+      <i class="fas fa-bars"></i>
+    </button>
+  </div>
 
-    <!-- ✅ REMOVIDO onclick dos links (auto-close já fecha sozinho) -->
-    <nav class="mobile" aria-label="Menu mobile">
-      <a href="industrial.html">Industrial</a>
-      <a href="residencial.html">Residencial</a>
+  <nav class="desktop" aria-label="Menu principal">
+    <div class="container navlinks">
+      <a href="industrial.html">Serviços Industriais</a>
+      <a href="residencial.html">Serviços Residenciais</a>
       <a href="cursos.html">Cursos</a>
       <a href="sobre.html">Sobre</a>
-      <a href="cases.html">Cases</a>
-      <a href="#contato">Contato</a>
-    </nav>
-  </header>
+      <a href="cases.html">Projetos</a>
+      <a href="index.html#contato">Contato</a>
+    </div>
+  </nav>
+
+  <nav class="mobile" aria-label="Menu mobile">
+    <a href="industrial.html">Serviços Industriais</a>
+    <a href="residencial.html">Serviços Residenciais</a>
+    <a href="cursos.html">Cursos</a>
+    <a href="sobre.html">Sobre</a>
+    <a href="cases.html">Projetos</a>
+    <a href="index.html#contato">Contato</a>
+  </nav>
+</header>
+
 
   <div class="social-floating" aria-label="Redes sociais">
     <a href="https://www.linkedin.com/company/alogyengenharia" class="linkedin" target="_blank" rel="noopener" aria-label="LinkedIn">
