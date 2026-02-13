@@ -1,0 +1,214 @@
+!DOCTYPE html
+html lang=pt-br
+head
+  meta charset=UTF-8 
+  meta name=viewport content=width=device-width, initial-scale=1.0
+  titleServiços Residenciais  ALOGY Engenhariatitle
+
+  link rel=icon href=logo-alogy.webp type=imagewebp 
+  link rel=shortcut icon href=favicon.ico type=imagex-icon 
+
+  link rel=preconnect href=httpsfonts.googleapis.com
+  link rel=preconnect href=httpsfonts.gstatic.com crossorigin
+  link href=httpsfonts.googleapis.comcss2family=Robotowght@400;700&display=swap rel=stylesheet 
+  link rel=stylesheet href=httpscdnjs.cloudflare.comajaxlibsfont-awesome6.4.0cssall.min.css 
+
+  meta name=description content=Serviços residenciais em projetos elétricos, automação e adequações. Segurança, organização e documentação técnica com a ALOGY Engenharia.
+  meta name=robots content=index,follow 
+  meta name=theme-color content=#004b80 
+  link rel=canonical href=httpswww.alogy.com.brresidencial.html 
+
+  style
+     ======= COLE O MESMO style DO SEU INDEX AQUI ======= 
+     ✅ EXTRA (igual ao industrial) 
+    .page-hero{
+      background linear-gradient(180deg, rgba(0,75,128,.92), rgba(0,75,128,.75));
+      color#fff;
+      border-radius var(--radius);
+      padding 34px 28px;
+      box-shadow var(--shadow);
+      border1px solid rgba(0,0,0,.08);
+      overflowhidden;
+    }
+    .page-hero h1{font-size2.2rem;line-height1.15;margin-bottom10px}
+    .page-hero p{opacity.95;max-width880px}
+
+    .service-grid{
+      margin-top18px;
+      displaygrid;
+      grid-template-columns repeat(3, 1fr);
+      gap14px;
+    }
+    .svc{
+      backgroundvar(--card);
+      border1px solid rgba(0,0,0,.08);
+      border-radiusvar(--radius);
+      box-shadow var(--shadow);
+      padding18px 16px;
+      displayflex;
+      gap12px;
+      align-itemsflex-start;
+      min-height 120px;
+    }
+    .svc .ico{
+      width44px;height44px;border-radius14px;
+      displayflex;align-itemscenter;justify-contentcenter;
+      background rgba(0,107,177,.10);
+      border1px solid rgba(0,107,177,.18);
+      flex0 0 auto;
+    }
+    .svc h3{font-size1.05rem;margin-bottom4px}
+    .svc p{colorvar(--muted);font-size.95rem;line-height1.45}
+
+    .cta-bar{
+      margin-top18px;
+      displayflex;
+      align-itemscenter;
+      justify-contentspace-between;
+      gap14px;
+      background rgba(0,107,177,.08);
+      border1px solid rgba(0,107,177,.18);
+      border-radius var(--radius);
+      padding16px;
+    }
+    .cta-actions{displayflex;gap10px;flex-wrapwrap}
+    @media (max-width 900px){ .service-grid{grid-template-columns repeat(2, 1fr);} }
+    @media (max-width 520px){ .service-grid{grid-template-columns 1fr;} .page-hero h1{font-size1.75rem} }
+  style
+
+  script
+    function toggleMobileMenu(){
+      const menu = document.querySelector('nav.mobile');
+      if(menu) menu.classList.toggle('show');
+    }
+  script
+head
+
+body
+  header
+    div class=container headbar
+      a href=index.html class=logo-wrapper aria-label=Voltar para o início
+        img src=logo-alogy.webp alt=ALOGY Engenharia 
+      a
+
+      div class=crea-top aria-label=CREA-SP
+        img src=crea.webp alt=CREA-SP
+      div
+
+      button class=menu-toggle onclick=toggleMobileMenu() aria-label=Abrir menu
+        i class=fas fa-barsi
+      button
+    div
+
+    nav class=desktop aria-label=Menu principal
+      div class=container navlinks
+        a href=industrial.htmlServiços Industriaisa
+        a href=residencial.htmlServiços Residenciaisa
+        a href=cursos.htmlCursosa
+        a href=sobre.htmlSobrea
+        a href=cases.htmlProjetosa
+        a href=index.html#contatoContatoa
+      div
+    nav
+
+    nav class=mobile aria-label=Menu mobile
+      a href=industrial.html onclick=toggleMobileMenu()Serviços Industriaisa
+      a href=residencial.html onclick=toggleMobileMenu()Serviços Residenciaisa
+      a href=cursos.html onclick=toggleMobileMenu()Cursosa
+      a href=sobre.html onclick=toggleMobileMenu()Sobrea
+      a href=cases.html onclick=toggleMobileMenu()Projetosa
+      a href=index.html#contato onclick=toggleMobileMenu()Contatoa
+    nav
+  header
+
+  div class=fab-wrap aria-label=Ações rápidas
+    a class=fab-btn mail href=mailtocontato@alogy.com.br aria-label=Enviar e-mail para contato@alogy.com.br
+      i class=fas fa-envelopei contato@alogy.com.br
+    a
+    a class=fab-btn wa href=httpswa.me5519981795468text=Ol%C3%A1!%20Vim%20pelo%20site%20ALOGY.%20Gostaria%20de%20or%C3%A7amento%20para%20servi%C3%A7os%20residenciais. target=_blank rel=noopener aria-label=Abrir WhatsApp
+      i class=fab fa-whatsappi WhatsApp
+    a
+  div
+
+  main class=container style=margin-top18px
+    section class=page-hero
+      h1Serviços Residenciaish1
+      p
+        Projetos elétricos e soluções técnicas para casas, apartamentos e edifícios.
+        Entregas organizadas, com documentação e foco em segurança.
+      p
+      div class=cta-actions style=margin-top14px
+        a class=btn href=index.html#contatoi class=fas fa-paper-planei Solicitar orçamentoa
+        a class=btn secondary href=cases.htmli class=fas fa-folder-openi Ver projetosa
+      div
+    section
+
+    section class=service-grid aria-label=Lista de serviços residenciais
+      div class=svc
+        div class=icoi class=fas fa-boltidiv
+        div
+          h3Projeto Elétrico Residencialh3
+          pDimensionamento, distribuição de cargas, circuitos, quadros e documentação técnica.p
+        div
+      div
+
+      div class=svc
+        div class=icoi class=fas fa-house-signalidiv
+        div
+          h3Automação Residencialh3
+          pIntegração e orientação técnica para automação, comandos, iluminação e funcionalidades.p
+        div
+      div
+
+      div class=svc
+        div class=icoi class=fas fa-clipboard-checkidiv
+        div
+          h3Adequações e Segurançah3
+          pRecomendações para melhorar segurança, organização e conformidade do sistema elétrico.p
+        div
+      div
+
+      div class=svc
+        div class=icoi class=fas fa-diagram-projectidiv
+        div
+          h3Diagramas e Detalhamentoh3
+          pUnifilar, distribuição, identificação, lista de materiais e orientações de execução.p
+        div
+      div
+
+      div class=svc
+        div class=icoi class=fas fa-plug-circle-boltidiv
+        div
+          h3Padrão de Entradah3
+          pOrientações e documentação para adequação de padrão conforme necessidade do imóvel.p
+        div
+      div
+
+      div class=svc
+        div class=icoi class=fas fa-screwdriver-wrenchidiv
+        div
+          h3Consultoria Técnicah3
+          pSuporte na tomada de decisão melhorias, reforma, ampliação e otimização do sistema.p
+        div
+      div
+    section
+
+    section class=cta-bar aria-label=Chamada para contato
+      div
+        strongQuer um orçamento para seu projeto residencialstrongbr
+        span class=mutedMe diga cidade, tipo de imóvel e objetivo (reforma, novo, adequação).span
+      div
+      div class=cta-actions
+        a class=btn href=index.html#contatoi class=fas fa-paper-planei Enviar detalhesa
+        a class=btn secondary href=httpswa.me5519981795468text=Ol%C3%A1!%20Preciso%20de%20servi%C3%A7os%20residenciais.%20Podemos%20conversar%3F target=_blank rel=noopener
+          i class=fab fa-whatsappi WhatsApp
+        a
+      div
+    section
+  main
+
+  footer
+    p&copy; Desde 2012 ALOGY Engenharia  www.alogy.com.brp
+  footer
+body
+html

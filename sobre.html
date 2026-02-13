@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sobre | ALOGY Engenharia</title>
+
+  <link rel="icon" href="logo-alogy.webp" type="image/webp" />
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <meta name="description" content="Conheça a ALOGY Engenharia. Atuamos com automação, instrumentação e projetos elétricos com foco em segurança, qualidade e confiabilidade."/>
+  <meta name="robots" content="index,follow" />
+  <meta name="theme-color" content="#004b80" />
+  <link rel="canonical" href="https://www.alogy.com.br/sobre.html" />
+
+  <style>
+    /* ======= COLE O MESMO <style> DO SEU INDEX AQUI ======= */
+    .about-hero{
+      background: linear-gradient(180deg, rgba(0,75,128,.92), rgba(0,75,128,.75));
+      color:#fff;
+      border-radius: var(--radius);
+      padding: 34px 28px;
+      box-shadow: var(--shadow);
+      border:1px solid rgba(0,0,0,.08);
+      overflow:hidden;
+    }
+    .about-hero h1{font-size:2.2rem;line-height:1.15;margin-bottom:10px}
+    .about-hero p{opacity:.95;max-width:900px}
+
+    .about-grid{
+      margin-top:18px;
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap:14px;
+    }
+    .cardx{
+      background:var(--card);
+      border:1px solid rgba(0,0,0,.08);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:18px 16px;
+    }
+    .cardx h3{margin-bottom:10px}
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 10px;
+      border-radius:999px;
+      background: rgba(0,107,177,.08);
+      border:1px solid rgba(0,107,177,.18);
+      margin: 6px 6px 0 0;
+      font-weight:700;
+      color:#0b3a62;
+    }
+
+    @media (max-width: 900px){
+      .about-grid{grid-template-columns:1fr;}
+    }
+  </style>
+
+  <script>
+    function toggleMobileMenu(){
+      const menu = document.querySelector('nav.mobile');
+      if(menu) menu.classList.toggle('show');
+    }
+  </script>
+</head>
+
+<body>
+  <header>
+    <div class="container headbar">
+      <a href="index.html" class="logo-wrapper" aria-label="Voltar para o início">
+        <img src="logo-alogy.webp" alt="ALOGY Engenharia" />
+      </a>
+
+      <div class="crea-top" aria-label="CREA-SP">
+        <img src="crea.webp" alt="CREA-SP">
+      </div>
+
+      <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menu">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+
+    <nav class="desktop" aria-label="Menu principal">
+      <div class="container navlinks">
+        <a href="industrial.html">Serviços Industriais</a>
+        <a href="residencial.html">Serviços Residenciais</a>
+        <a href="cursos.html">Cursos</a>
+        <a href="sobre.html">Sobre</a>
+        <a href="cases.html">Projetos</a>
+        <a href="index.html#contato">Contato</a>
+      </div>
+    </nav>
+
+    <nav class="mobile" aria-label="Menu mobile">
+      <a href="industrial.html" onclick="toggleMobileMenu()">Serviços Industriais</a>
+      <a href="residencial.html" onclick="toggleMobileMenu()">Serviços Residenciais</a>
+      <a href="cursos.html" onclick="toggleMobileMenu()">Cursos</a>
+      <a href="sobre.html" onclick="toggleMobileMenu()">Sobre</a>
+      <a href="cases.html" onclick="toggleMobileMenu()">Projetos</a>
+      <a href="index.html#contato" onclick="toggleMobileMenu()">Contato</a>
+    </nav>
+  </header>
+
+  <div class="fab-wrap" aria-label="Ações rápidas">
+    <a class="fab-btn mail" href="mailto:contato@alogy.com.br" aria-label="Enviar e-mail para contato@alogy.com.br">
+      <i class="fas fa-envelope"></i> contato@alogy.com.br
+    </a>
+    <a class="fab-btn wa" href="https://wa.me/5519981795468?text=Ol%C3%A1!%20Vim%20pelo%20site%20ALOGY.%20Gostaria%20de%20falar%20sobre%20um%20servi%C3%A7o." target="_blank" rel="noopener" aria-label="Abrir WhatsApp">
+      <i class="fab fa-whatsapp"></i> WhatsApp
+    </a>
+  </div>
+
+  <main class="container" style="margin-top:18px">
+    <section class="about-hero">
+      <h1>Sobre a ALOGY Engenharia</h1>
+      <p>
+        Atuamos com engenharia aplicada em automação, instrumentação e projetos elétricos,
+        com foco em segurança, qualidade e confiabilidade. Entrega organizada e comunicação objetiva
+        — do levantamento à documentação final.
+      </p>
+    </section>
+
+    <section class="about-grid" aria-label="Conteúdo institucional">
+      <div class="cardx">
+        <h3><i class="fas fa-building"></i> Quem somos</h3>
+        <p class="muted">
+          A ALOGY Engenharia oferece soluções técnicas para ambientes industriais e residenciais, com atuação orientada a resultado,
+          clareza técnica e documentação bem estruturada.
+        </p>
+
+        <h3 style="margin-top:14px"><i class="fas fa-bullseye"></i> Missão</h3>
+        <p class="muted">
+          Entregar projetos e serviços com rigor técnico e organização, aumentando a confiabilidade e a segurança das soluções.
+        </p>
+
+        <h3 style="margin-top:14px"><i class="fas fa-star"></i> Valores</h3>
+        <div>
+          <span class="pill"><i class="fa-solid fa-hand-holding-heart"></i> Responsabilidade</span>
+          <span class="pill"><i class="fa-solid fa-gem"></i> Qualidade</span>
+          <span class="pill"><i class="fa-solid fa-shield-halved"></i> Segurança</span>
+          <span class="pill"><i class="fa-solid fa-user-gear"></i> Competência</span>
+        </div>
+      </div>
+
+      <div class="cardx">
+        <h3><i class="fas fa-circle-check"></i> Diferenciais</h3>
+        <ul style="margin-left:18px">
+          <li style="margin:8px 0">Documentação técnica clara e padronizada.</li>
+          <li style="margin:8px 0">Foco em segurança e conformidade.</li>
+          <li style="margin:8px 0">Atendimento objetivo e organizado.</li>
+        </ul>
+
+        <h3 style="margin-top:14px"><i class="fas fa-id-card"></i> CREA</h3>
+        <p class="muted">
+          Atuação com responsabilidade técnica. (Se quiser, aqui você pode colocar o número e estado do CREA.)
+        </p>
+
+        <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap">
+          <a class="btn" href="index.html#contato"><i class="fas fa-paper-plane"></i> Falar com a ALOGY</a>
+          <a class="btn secondary" href="cases.html"><i class="fas fa-folder-open"></i> Ver projetos</a>
+        </div>
+      </div>
+    </sectio
