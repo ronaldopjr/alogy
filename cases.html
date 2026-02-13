@@ -8,85 +8,25 @@
   <link rel="icon" href="logo-alogy.webp" type="image/webp" />
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
 
+  <!-- Performance (Fonts) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
+  <!-- SEO básico -->
   <meta name="description" content="Projetos e serviços executados pela ALOGY Engenharia. Portfólio em automação, instrumentação e projetos elétricos."/>
   <meta name="robots" content="index,follow" />
   <meta name="theme-color" content="#004b80" />
   <link rel="canonical" href="https://www.alogy.com.br/cases.html" />
 
-  <style>
-    /* ======= COLE O MESMO <style> DO SEU INDEX AQUI ======= */
-
-    .page-hero{
-      background: linear-gradient(180deg, rgba(0,75,128,.92), rgba(0,75,128,.75));
-      color:#fff;
-      border-radius: var(--radius);
-      padding: 34px 28px;
-      box-shadow: var(--shadow);
-      border:1px solid rgba(0,0,0,.08);
-      overflow:hidden;
-    }
-    .page-hero h1{font-size:2.2rem;line-height:1.15;margin-bottom:10px}
-    .page-hero p{opacity:.95;max-width:900px}
-
-    .projects-grid{
-      margin-top:18px;
-      display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap:14px;
-    }
-    .proj{
-      background:var(--card);
-      border:1px solid rgba(0,0,0,.08);
-      border-radius:var(--radius);
-      box-shadow:var(--shadow);
-      overflow:hidden;
-      display:flex;
-      flex-direction:column;
-      min-height: 240px;
-    }
-    .thumb{
-      height:150px;
-      background:
-        radial-gradient(600px 220px at 20% 10%, rgba(1,105,176,.22), transparent 55%),
-        linear-gradient(180deg, #071826 0%, #062138 60%, #041a2d 100%);
-      display:flex;
-      align-items:flex-end;
-      padding:12px 12px;
-      color:#fff;
-      font-weight:900;
-    }
-    .proj-body{padding:14px 14px 16px}
-    .proj-body h3{margin-bottom:6px}
-    .proj-body p{color:var(--muted);font-size:.95rem;line-height:1.45}
-    .tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
-    .tag{
-      font-size:.82rem;
-      padding:6px 10px;
-      border-radius:999px;
-      background: rgba(0,107,177,.08);
-      border:1px solid rgba(0,107,177,.18);
-      color:#0b3a62;
-      font-weight:800;
-    }
-
-    @media (max-width: 900px){ .projects-grid{grid-template-columns: repeat(2, 1fr);} }
-    @media (max-width: 520px){ .projects-grid{grid-template-columns: 1fr;} .page-hero h1{font-size:1.75rem} }
-  </style>
-
-  <script>
-    function toggleMobileMenu(){
-      const menu = document.querySelector('nav.mobile');
-      if(menu) menu.classList.toggle('show');
-    }
-  </script>
+  <!-- ✅ mesmo CSS/JS do index -->
+  <link rel="stylesheet" href="style.css" />
+  <script src="app.js" defer></script>
 </head>
 
 <body>
+  <!-- ===== HEADER (igual ao index) ===== -->
   <header>
     <div class="container headbar">
       <a href="index.html" class="logo-wrapper" aria-label="Voltar para o início">
@@ -113,16 +53,38 @@
       </div>
     </nav>
 
+    <!-- ✅ sem onclick (app.js fecha sozinho) -->
     <nav class="mobile" aria-label="Menu mobile">
-      <a href="industrial.html" onclick="toggleMobileMenu()">Serviços Industriais</a>
-      <a href="residencial.html" onclick="toggleMobileMenu()">Serviços Residenciais</a>
-      <a href="cursos.html" onclick="toggleMobileMenu()">Cursos</a>
-      <a href="sobre.html" onclick="toggleMobileMenu()">Sobre</a>
-      <a href="cases.html" onclick="toggleMobileMenu()">Projetos</a>
-      <a href="index.html#contato" onclick="toggleMobileMenu()">Contato</a>
+      <a href="industrial.html">Serviços Industriais</a>
+      <a href="residencial.html">Serviços Residenciais</a>
+      <a href="cursos.html">Cursos</a>
+      <a href="sobre.html">Sobre</a>
+      <a href="cases.html">Projetos</a>
+      <a href="index.html#contato">Contato</a>
     </nav>
   </header>
 
+  <!-- ===== Social Floating (igual ao index) ===== -->
+  <div class="social-floating" aria-label="Redes sociais">
+    <a href="https://www.linkedin.com/company/alogyengenharia" class="linkedin" target="_blank" rel="noopener" aria-label="LinkedIn">
+      <i class="fab fa-linkedin-in"></i>
+    </a>
+    <a href="https://www.instagram.com/alogyengenharia" class="instagram" target="_blank" rel="noopener" aria-label="Instagram">
+      <i class="fab fa-instagram"></i>
+    </a>
+    <a href="https://www.facebook.com/alogyengenharia" class="facebook" target="_blank" rel="noopener" aria-label="Facebook">
+      <i class="fab fa-facebook-f"></i>
+    </a>
+    <a href="https://www.youtube.com/@alogyengenharia" class="youtube" target="_blank" rel="noopener" aria-label="YouTube">
+      <i class="fab fa-youtube"></i>
+    </a>
+    <a href="https://hotmart.com/pt-br/club/alogyengenharia" class="hotmart" target="_blank" rel="noopener" aria-label="Hotmart">H</a>
+    <a href="https://www.tiktok.com/@alogyengenharia" class="tiktok" target="_blank" rel="noopener" aria-label="TikTok">
+      <i class="fab fa-tiktok"></i>
+    </a>
+  </div>
+
+  <!-- ===== FAB (igual ao index) ===== -->
   <div class="fab-wrap" aria-label="Ações rápidas">
     <a class="fab-btn mail" href="mailto:contato@alogy.com.br" aria-label="Enviar e-mail para contato@alogy.com.br">
       <i class="fas fa-envelope"></i> contato@alogy.com.br
