@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Serviços Residenciais | ALOGY Engenharia</title>
+
+  <!-- SEO: título mais descritivo (sem mudar estrutura da página) -->
+  <title>Serviços Residenciais em Projetos Elétricos e Automação | ALOGY Engenharia</title>
 
   <link rel="icon" href="logo-alogy.webp" type="image/webp" />
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
@@ -14,8 +16,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
-  <!-- SEO básico -->
-  <meta name="description" content="Serviços residenciais em projetos elétricos, automação e adequações. Segurança, organização e documentação técnica com a ALOGY Engenharia."/>
+  <!-- SEO básico (refinado) -->
+  <meta name="description" content="Serviços residenciais em engenharia elétrica: projeto elétrico, automação residencial, adequações e segurança, padrão de entrada e documentação técnica. Atendimento para casas, apartamentos e edifícios."/>
   <meta name="robots" content="index,follow" />
   <meta name="theme-color" content="#004b80" />
   <link rel="canonical" href="https://www.alogy.com.br/residencial.html" />
@@ -23,6 +25,29 @@
   <!-- ✅ mesmo CSS/JS do index -->
   <link rel="stylesheet" href="style.css" />
   <script src="app.js" defer></script>
+
+  <!-- SEO: Schema.org (ajuda a indexação do serviço) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "ALOGY Engenharia",
+    "url": "https://www.alogy.com.br/residencial.html",
+    "description": "Serviços residenciais em engenharia elétrica: projeto elétrico residencial, automação residencial, adequações e segurança, padrão de entrada e documentação técnica.",
+    "areaServed": "BR",
+    "foundingDate": "2012",
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Serviços Residenciais",
+      "itemListElement": [
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Projeto Elétrico Residencial" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Automação Residencial" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Adequações e Segurança Elétrica" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Padrão de Entrada" } }
+      ]
+    }
+  }
+  </script>
 </head>
 
 <body>
@@ -49,18 +74,17 @@
         <a href="cases.html">Projetos</a>
         <a href="cursos.html">Cursos</a>
         <a href="sobre.html">Sobre</a>
-                <a href="index.html#contato">Contato</a>
+        <a href="index.html#contato">Contato</a>
       </div>
     </nav>
 
-    <!-- ✅ sem onclick nos links (app.js já fecha sozinho) -->
     <nav class="mobile" aria-label="Menu mobile">
       <a href="industrial.html">Serviços Industriais</a>
       <a href="residencial.html">Serviços Residenciais</a>
       <a href="cases.html">Projetos</a>
       <a href="cursos.html">Cursos</a>
       <a href="sobre.html">Sobre</a>
-            <a href="index.html#contato">Contato</a>
+      <a href="index.html#contato">Contato</a>
     </nav>
   </header>
 
@@ -94,13 +118,14 @@
     </a>
   </div>
 
-  <!-- ===== CONTEÚDO ===== -->
+  <!-- ===== CONTEÚDO (revisado) ===== -->
   <main class="container" style="margin-top:18px">
     <section class="page-hero">
       <h1>Serviços Residenciais</h1>
       <p>
-        Projetos elétricos e soluções técnicas para casas, apartamentos e edifícios.
-        Entregas organizadas, com documentação e foco em segurança.
+        Engenharia elétrica residencial para casas, apartamentos e edifícios: projetos elétricos,
+        automação residencial e adequações com foco em segurança, organização e documentação técnica.
+        Entregas estruturadas para execução, vistoria e manutenção.
       </p>
 
       <div class="cta-actions" style="margin-top:14px">
@@ -109,12 +134,20 @@
       </div>
     </section>
 
+    <!-- reforço semântico (SEO) sem mudar layout -->
+    <section>
+      <h2>Soluções em Projeto Elétrico Residencial e Automação</h2>
+    </section>
+
     <section class="service-grid" aria-label="Lista de serviços residenciais">
       <div class="svc">
         <div class="ico"><i class="fas fa-bolt"></i></div>
         <div>
           <h3>Projeto Elétrico Residencial</h3>
-          <p>Dimensionamento, distribuição de cargas, circuitos, quadros e documentação técnica.</p>
+          <p>
+            Dimensionamento e distribuição de cargas, definição de circuitos e quadros, detalhamento de pontos
+            e documentação técnica organizada para execução, reforma e regularização do imóvel.
+          </p>
         </div>
       </div>
 
@@ -122,15 +155,21 @@
         <div class="ico"><i class="fas fa-house-signal"></i></div>
         <div>
           <h3>Automação Residencial</h3>
-          <p>Integração e orientação técnica para automação, comandos, iluminação e funcionalidades.</p>
+          <p>
+            Orientação técnica e integração de automação residencial para iluminação, comandos, cenas e funcionalidades.
+            Planejamento de infraestrutura e pontos elétricos para uma instalação segura e escalável.
+          </p>
         </div>
       </div>
 
       <div class="svc">
         <div class="ico"><i class="fas fa-clipboard-check"></i></div>
         <div>
-          <h3>Adequações e Segurança</h3>
-          <p>Recomendações para melhorar segurança, organização e conformidade do sistema elétrico.</p>
+          <h3>Adequações e Segurança Elétrica</h3>
+          <p>
+            Avaliação do sistema elétrico, recomendações técnicas para melhoria de segurança e organização,
+            correções de não conformidades, balanceamento de circuitos e orientações para reduzir riscos e sobrecargas.
+          </p>
         </div>
       </div>
 
@@ -138,7 +177,10 @@
         <div class="ico"><i class="fas fa-diagram-project"></i></div>
         <div>
           <h3>Diagramas e Detalhamento</h3>
-          <p>Unifilar, distribuição, identificação, lista de materiais e orientações de execução.</p>
+          <p>
+            Diagrama unifilar, distribuição e identificação de circuitos, lista de materiais e orientações de execução,
+            facilitando entendimento da obra, futuras manutenções e ampliações.
+          </p>
         </div>
       </div>
 
@@ -146,7 +188,10 @@
         <div class="ico"><i class="fas fa-plug-circle-bolt"></i></div>
         <div>
           <h3>Padrão de Entrada</h3>
-          <p>Orientações e documentação para adequação de padrão conforme necessidade do imóvel.</p>
+          <p>
+            Orientações e documentação para adequação de padrão de entrada conforme concessionária e necessidade do imóvel,
+            com organização técnica para aprovação, reforma ou aumento de carga.
+          </p>
         </div>
       </div>
 
@@ -154,7 +199,10 @@
         <div class="ico"><i class="fas fa-screwdriver-wrench"></i></div>
         <div>
           <h3>Consultoria Técnica</h3>
-          <p>Suporte na tomada de decisão: melhorias, reforma, ampliação e otimização do sistema.</p>
+          <p>
+            Suporte técnico para tomada de decisão em reformas, ampliações e melhorias: avaliação de alternativas,
+            priorização de intervenções e orientação para execução segura e organizada.
+          </p>
         </div>
       </div>
     </section>
@@ -162,7 +210,7 @@
     <section class="cta-bar" aria-label="Chamada para contato">
       <div>
         <strong>Quer um orçamento para seu projeto residencial?</strong><br/>
-        <span class="muted">Me diga cidade, tipo de imóvel e objetivo (reforma, novo, adequação).</span>
+        <span class="muted">Informe cidade, tipo de imóvel e objetivo (reforma, obra nova, adequação, aumento de carga).</span>
       </div>
 
       <div class="cta-actions">
