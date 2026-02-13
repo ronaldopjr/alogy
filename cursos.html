@@ -3,16 +3,22 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <!-- SEO: página ponte -> objetivo é encaminhar, não ranquear -->
   <title>Cursos | ALOGY Engenharia</title>
 
   <!-- SEO básico (página ponte) -->
-  <meta name="description" content="Cursos de automação e instrumentação da ALOGY Engenharia. Acesso via plataforma Hotmart."/>
+  <meta name="description" content="Acesso aos cursos da ALOGY Engenharia na plataforma Hotmart. Você será redirecionado automaticamente."/>
   <meta name="robots" content="noindex,follow" />
   <link rel="canonical" href="https://www.alogy.com.br/cursos.html" />
   <meta name="theme-color" content="#004b80" />
 
   <!-- Redirect fallback (caso JS bloqueado) -->
-  <meta http-equiv="refresh" content="3;url=https://hotmart.com/pt-br/club/alogyengenharia">
+  <meta http-equiv="refresh" content="2;url=https://hotmart.com/pt-br/club/alogyengenharia">
+
+  <!-- Opcional/Útil: evita cache dessa página ponte -->
+  <meta http-equiv="Cache-Control" content="no-store, max-age=0">
+  <meta http-equiv="Pragma" content="no-cache">
 
   <link rel="icon" href="logo-alogy.webp" type="image/webp" />
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
@@ -21,14 +27,27 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
-
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
-  <!-- ✅ Mesmo CSS do site -->
+  <!-- ✅ Mesmo CSS/JS do site -->
   <link rel="stylesheet" href="style.css" />
-
-  <!-- ✅ Mesmo JS do site -->
   <script src="app.js" defer></script>
+
+  <!-- SEO: Schema mínimo (página de redirecionamento) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Cursos | ALOGY Engenharia",
+    "url": "https://www.alogy.com.br/cursos.html",
+    "description": "Página de acesso aos cursos da ALOGY Engenharia (redirecionamento para Hotmart).",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "ALOGY Engenharia",
+      "url": "https://www.alogy.com.br/"
+    }
+  }
+  </script>
 
   <style>
     /* ===== Página ponte (usa tokens do seu :root) ===== */
@@ -47,13 +66,6 @@
       box-shadow: var(--shadow);
       padding: 26px;
       text-align:center;
-    }
-    .redirect-logo{
-      width: 240px;
-      max-width: 85%;
-      height:auto;
-      display:block;
-      margin: 0 auto 14px;
     }
     .redirect-title{
       font-size: 2.0rem;
@@ -79,11 +91,8 @@
       margin: 10px auto 18px;
       animation: spin 1.0s linear infinite;
     }
-    @keyframes spin{
-      to { transform: rotate(360deg); }
-    }
+    @keyframes spin{ to { transform: rotate(360deg); } }
 
-    /* Ajustes do botão da página (usa o .btn do seu CSS) */
     .redirect-actions{
       display:flex;
       gap:10px;
@@ -109,15 +118,15 @@
     // ✅ Redirect PRO (rápido e suave)
     const HOTMART_URL = "https://hotmart.com/pt-br/club/alogyengenharia";
 
-    // 1) Atualiza o link do botão/âncora no DOM assim que carregar
+    // Diminui o delay pra página ponte: melhor UX e menos "página vazia"
     document.addEventListener("DOMContentLoaded", () => {
       const linkNow = document.getElementById("goNow");
-      if(linkNow) linkNow.href = HOTMART_URL;
+      if (linkNow) linkNow.href = HOTMART_URL;
 
-      // 2) Redireciona após um pequeno delay (tempo de ler + ver loader)
+      // Usar replace evita “voltar” cair novamente no redirect em alguns cenários
       setTimeout(() => {
         window.location.replace(HOTMART_URL);
-      }, 3000);
+      }, 2000);
     });
   </script>
 </head>
@@ -145,7 +154,7 @@
         <a href="residencial.html">Serviços Residenciais</a>
         <a href="cases.html">Projetos</a>
         <a href="cursos.html">Cursos</a>
-        <a href="sobre.html">Sobre</a>        
+        <a href="sobre.html">Sobre</a>
         <a href="index.html#contato">Contato</a>
       </div>
     </nav>
@@ -156,7 +165,7 @@
       <a href="cases.html">Projetos</a>
       <a href="cursos.html">Cursos</a>
       <a href="sobre.html">Sobre</a>
-            <a href="index.html#contato">Contato</a>
+      <a href="index.html#contato">Contato</a>
     </nav>
   </header>
 
@@ -194,12 +203,11 @@
   <!-- ===== CONTEÚDO ===== -->
   <main class="container redirect-wrap" aria-label="Redirecionamento para cursos">
     <section class="redirect-card">
-      
-
       <h1 class="redirect-title">Redirecionando para os Cursos</h1>
-      <p class="redirect-desc">
-        Você será direcionado em instantes para a nossa plataforma de cursos, onde poderá acessar os conteúdos da ALOGY Engenharia.
 
+      <p class="redirect-desc">
+        Você será direcionado para a plataforma de cursos da ALOGY Engenharia.
+        Se preferir, use o botão abaixo para acessar imediatamente.
       </p>
 
       <div class="loader" aria-hidden="true"></div>
@@ -224,4 +232,3 @@
   </footer>
 </body>
 </html>
-```
