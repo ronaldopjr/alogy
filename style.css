@@ -257,6 +257,14 @@ nav.mobile.show{display:flex}
   padding-bottom: 10px !important;
 }
 
+/* ✅ AJUSTE: estreita SOMENTE o banner e os valores, sem mudar o resto do site */
+.banner,
+.values{
+  width:100%;
+  max-width:1100px;  /* mesma largura do .container */
+  margin:0 auto;
+}
+
 .banner{
   position:relative;
   height:var(--banner-h);
