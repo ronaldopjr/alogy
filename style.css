@@ -11,9 +11,7 @@
   --radius:16px;
   --shadow: 0 10px 25px rgba(0,0,0,.08);
 
-  /* ✅ Ajuste: banner menos alto (era 520) */
-  --banner-h: 460px;
-
+  --banner-h: 520px;
   --banner-radius: 18px;
 
   /* reserva da barra social (aproximar banner/valores dela) */
@@ -79,10 +77,7 @@ header{
   display:flex;
   align-items:center;
   justify-content:center;
-
-  /* ✅ Ajuste: header mais baixo (era 14px 0) */
-  padding:10px 0;
-
+  padding:14px 0;
   position:relative;
 }
 
@@ -96,8 +91,7 @@ header{
 }
 
 .logo-wrapper img{
-  /* ✅ Ajuste: logo menor (era 300px) */
-  width:240px;
+  width:300px;
   height:auto;
   display:block;
 }
@@ -133,15 +127,9 @@ nav.desktop a{
   color:#fff;
   text-decoration:none;
   font-weight:700;
-
-  /* ✅ Ajuste: menu menor (era 1.08rem) */
-  font-size:1.00rem;
-
+  font-size:1.08rem;
   opacity:.96;
-
-  /* ✅ Ajuste: padding menor (era 12px 10px) */
-  padding:10px 8px;
-
+  padding:12px 10px;
   border-radius:12px;
   transition:background .2s ease, opacity .2s ease;
 }
@@ -193,8 +181,7 @@ nav.mobile.show{display:flex}
   pointer-events:none;
 }
 .crea-top img{
-  /* ✅ Ajuste: CREA menor (era 100px) */
-  height:86px;
+  height:100px;
   width:auto;
   display:block;
 }
@@ -270,14 +257,6 @@ nav.mobile.show{display:flex}
   padding-bottom: 10px !important;
 }
 
-/* ✅ AJUSTE: estreita SOMENTE o banner e os valores, sem mudar o resto do site */
-.banner,
-.values{
-  width:100%;
-  max-width:1100px;  /* mesma largura do .container */
-  margin:0 auto;
-}
-
 .banner{
   position:relative;
   height:var(--banner-h);
@@ -336,15 +315,14 @@ nav.mobile.show{display:flex}
   box-shadow: 0 18px 55px rgba(0,0,0,.35);
 }
 .banner-title{
-  /* ✅ ajuste sutil: um pouco menor pra “enxugar” */
-  font-size:1.90rem;
+  font-size:2.05rem;
   line-height:1.1;
   letter-spacing:.2px;
   margin: 2px 0 10px;
 }
 .banner-desc{
   color: rgba(255,255,255,.88);
-  font-size:1.00rem;
+  font-size:1.02rem;
   margin-bottom: 12px;
 }
 .banner-actions{display:flex; gap:10px; flex-wrap:wrap;}
@@ -475,29 +453,21 @@ footer{
     radial-gradient(800px 500px at 85% 0%, rgba(255,255,255,.10), transparent 55%),
     linear-gradient(180deg, #071826 0%, #062138 55%, #041a2d 100%);
   color:#fff;
-
-  /* ✅ Ajuste: mais compacto */
-  padding: 28px 22px 22px;
-
+  padding: 34px 26px 28px;
   text-align:center;
 }
 .values-title{
-  /* ✅ Ajuste: título menor (era 2.55rem) */
-  font-size: 2.10rem;
-
+  font-size: 2.55rem;
   font-weight: 900;
   letter-spacing: .3px;
-  margin-bottom: 14px;
+  margin-bottom: 18px;
 }
 .values-grid{
   display:grid;
   grid-template-columns: repeat(4, 1fr);
-
-  /* ✅ leve redução do espaço */
-  gap: 14px;
-
+  gap: 18px;
   align-items: start;
-  margin: 0 auto 14px;
+  margin: 0 auto 18px;
   max-width: 980px;
 }
 .value-item{
@@ -508,10 +478,8 @@ footer{
   padding: 12px 10px;
 }
 .value-icon{
-  /* ✅ ícone menor (era 58) */
-  width: 52px;
-  height: 52px;
-
+  width: 58px;
+  height: 58px;
   border-radius: 18px;
   display:flex;
   align-items:center;
@@ -523,7 +491,7 @@ footer{
   box-shadow: 0 14px 40px rgba(0,0,0,.18);
   transition: all .25s ease;
 }
-.value-icon i{ font-size: 1.35rem; }
+.value-icon i{ font-size: 1.55rem; }
 .value-label{
   font-weight: 900;
   font-size: 1.05rem;
@@ -543,7 +511,7 @@ footer{
 
 @media (max-width: 900px){
   .values-grid{ grid-template-columns: repeat(2, 1fr); max-width: 680px; }
-  .values-title{ font-size: 2.0rem; }
+  .values-title{ font-size: 2.1rem; }
 }
 
 /* =========================
@@ -572,13 +540,13 @@ footer{
 .service-grid .svc{
   background:var(--card);
   border:1px solid rgba(0,0,0,.08);
-  border-radius:22px;
+  border-radius:22px;              /* mantém mais “premium” */
   box-shadow: var(--shadow);
   overflow:hidden;
 
   display:flex;
-  flex-direction:column;
-  padding:0;
+  flex-direction:column;           /* era row; agora coluna */
+  padding:0;                       /* era 18px 16px; agora conteúdo controla */
   gap:0;
   align-items:stretch;
 }
@@ -598,7 +566,7 @@ footer{
   padding:20px 22px 24px;
 }
 
-/* ícone “saltado” */
+/* ícone “saltado” (mantém seu visual) */
 .service-grid .svc .ico{
   width:50px;
   height:50px;
@@ -695,7 +663,7 @@ footer{
 }
 .proj .thumb{
   width:100%;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 16 / 9;   /* deixa proporcional e maior */
   background-position:center;
   background-size:cover;
   background-repeat:no-repeat;
