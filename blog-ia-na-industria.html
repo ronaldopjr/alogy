@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>IA na Indústria: Manutenção, Qualidade e Produção | ALOGY Engenharia</title>
+
+  <meta name="description" content="Entenda como a IA na indústria usa dados industriais, sensores, instrumentação, CLP e supervisórios para melhorar manutenção, qualidade, produção e tomada de decisão."/>
+  <meta name="robots" content="index,follow" />
+  <meta name="theme-color" content="#004b80" />
+  <link rel="canonical" href="https://www.alogy.com.br/blog-ia-na-industria.html" />
+
+  <link rel="icon" href="logo-alogy.webp" type="image/webp" />
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <link rel="stylesheet" href="style.css" />
+  <script src="app.js" defer></script>
+
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="ALOGY Engenharia" />
+  <meta property="og:title" content="IA na Indústria: como melhorar manutenção, qualidade e produção" />
+  <meta property="og:description" content="Veja como a inteligência artificial industrial depende de dados confiáveis, instrumentação, automação e supervisórios bem estruturados." />
+  <meta property="og:image" content="https://www.alogy.com.br/img-ia-na-industria.webp" />
+  <meta property="og:url" content="https://www.alogy.com.br/blog-ia-na-industria.html" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="IA na Indústria: Manutenção, Qualidade e Produção" />
+  <meta name="twitter:description" content="Como a IA usa dados industriais para apoiar manutenção preditiva, qualidade, produção e decisões técnicas." />
+  <meta name="twitter:image" content="https://www.alogy.com.br/img-ia-na-industria.webp" />
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"BlogPosting",
+    "headline":"IA na Indústria: como a inteligência artificial melhora manutenção, qualidade e produção",
+    "description":"Entenda como a IA na indústria usa dados industriais, sensores, instrumentação, CLP e supervisórios para melhorar manutenção, qualidade, produção e tomada de decisão.",
+    "image":"https://www.alogy.com.br/img-ia-na-industria.webp",
+    "datePublished":"2026-06-26",
+    "dateModified":"2026-06-26",
+    "author":{
+      "@type":"Organization",
+      "name":"ALOGY Engenharia",
+      "url":"https://www.alogy.com.br/"
+    },
+    "publisher":{
+      "@type":"Organization",
+      "name":"ALOGY Engenharia",
+      "url":"https://www.alogy.com.br/",
+      "logo":{
+        "@type":"ImageObject",
+        "url":"https://www.alogy.com.br/logo-alogy.webp"
+      }
+    },
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://www.alogy.com.br/blog-ia-na-industria.html"
+    },
+    "inLanguage":"pt-BR"
+  }
+  </script>
+
+  <style>
+    .post-wrap{
+      max-width: 900px;
+      margin: 18px auto;
+    }
+
+    .post-card{
+      background: var(--card);
+      border: 1px solid rgba(0,0,0,.08);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .post-cover{
+      width: 100%;
+      height: auto;
+      display: block;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      background: #dbeafe;
+    }
+
+    .post-content{
+      padding: 30px;
+    }
+
+    .post-meta{
+      color: var(--muted);
+      font-size: .95rem;
+      margin-bottom: 12px;
+    }
+
+    .post-content h1{
+      font-size: 2.15rem;
+      line-height: 1.15;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+
+    .post-content h2{
+      font-size: 1.45rem;
+      line-height: 1.25;
+      margin: 26px 0 10px;
+      color: var(--text);
+    }
+
+    .post-content p{
+      color: var(--text);
+      margin: 0 0 16px;
+      font-size: 1.04rem;
+      line-height: 1.75;
+    }
+
+    .post-content ul{
+      margin: 0 0 18px 20px;
+    }
+
+    .post-content li{
+      margin: 8px 0;
+      line-height: 1.65;
+    }
+
+    .post-highlight{
+      background: rgba(0,107,177,.08);
+      border: 1px solid rgba(0,107,177,.18);
+      border-radius: 14px;
+      padding: 16px;
+      margin: 22px 0;
+    }
+
+    .post-highlight strong{
+      color: #0b3a62;
+    }
+
+    @media (max-width: 768px){
+      .post-content{
+        padding: 22px;
+      }
+
+      .post-content h1{
+        font-size: 1.65rem;
+      }
+
+      .post-content h2{
+        font-size: 1.25rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container headbar">
+      <a href="/" class="logo-wrapper" aria-label="Voltar para o início">
+        <img src="logo-alogy.webp" alt="ALOGY Engenharia" />
+      </a>
+
+      <div class="crea-top" aria-label="CREA-SP">
+        <img src="crea.webp" alt="CREA-SP">
+      </div>
+
+      <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menu">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+
+    <nav class="desktop" aria-label="Menu principal">
+      <div class="container navlinks">
+        <a href="industrial.html">Serviços Industriais</a>
+        <a href="residencial.html">Serviços Residenciais</a>
+        <a href="cases.html">Projetos</a>
+        <a href="cursos.html">Cursos</a>
+        <a href="blog.html">Blog</a>
+        <a href="sobre.html">Sobre</a>
+        <a href="index.html#contato">Contato</a>
+      </div>
+    </nav>
+
+    <nav class="mobile" aria-label="Menu mobile">
+      <a href="industrial.html">Serviços Industriais</a>
+      <a href="residencial.html">Serviços Residenciais</a>
+      <a href="cases.html">Projetos</a>
+      <a href="cursos.html">Cursos</a>
+      <a href="blog.html">Blog</a>
+      <a href="sobre.html">Sobre</a>
+      <a href="index.html#contato">Contato</a>
+    </nav>
+  </header>
+
+  <div class="social-floating" aria-label="Redes sociais">
+    <a href="https://www.linkedin.com/company/alogyengenharia" class="linkedin" target="_blank" rel="noopener" aria-label="LinkedIn">
+      <i class="fab fa-linkedin-in"></i>
+    </a>
+    <a href="https://www.instagram.com/alogyengenharia" class="instagram" target="_blank" rel="noopener" aria-label="Instagram">
+      <i class="fab fa-instagram"></i>
+    </a>
+    <a href="https://www.facebook.com/alogyengenharia" class="facebook" target="_blank" rel="noopener" aria-label="Facebook">
+      <i class="fab fa-facebook-f"></i>
+    </a>
+    <a href="https://www.youtube.com/@alogyengenharia" class="youtube" target="_blank" rel="noopener" aria-label="YouTube">
+      <i class="fab fa-youtube"></i>
+    </a>
+    <a href="https://hotmart.com/pt-br/club/alogyengenharia" class="hotmart" target="_blank" rel="noopener" aria-label="Hotmart">H</a>
+    <a href="https://www.tiktok.com/@alogyengenharia" class="tiktok" target="_blank" rel="noopener" aria-label="TikTok">
+      <i class="fab fa-tiktok"></i>
+    </a>
+  </div>
+
+  <div class="fab-wrap" aria-label="Ações rápidas">
+    <a class="fab-btn mail" href="mailto:contato@alogy.com.br">
+      <i class="fas fa-envelope"></i> contato@alogy.com.br
+    </a>
+
+    <a class="fab-btn wa"
+       href="https://wa.me/5519981795468?text=Ol%C3%A1!%20Li%20o%20artigo%20sobre%20IA%20na%20ind%C3%BAstria%20no%20blog%20da%20ALOGY%20e%20gostaria%20de%20atendimento."
+       target="_blank" rel="noopener">
+      <i class="fab fa-whatsapp"></i> WhatsApp
+    </a>
+  </div>
+
+  <main class="container post-wrap">
+
+    <article class="post-card">
+      <img
+        class="post-cover"
+        src="img-ia-na-industria.webp"
+        alt="IA na indústria com operador analisando dados industriais, manutenção preditiva e automação em fábrica"
+        width="1280"
+        height="720"
+        loading="eager"
+      />
+
+      <div class="post-content">
+        <div class="post-meta">
+          <time datetime="2026-06-26">Publicado em 26/06/2026</time> • IA Industrial • Automação • Dados Industriais
+        </div>
+
+        <div class="tags" style="margin-bottom:14px">
+          <span class="tag">IA na Indústria</span>
+          <span class="tag">Manutenção Preditiva</span>
+          <span class="tag">Dados Industriais</span>
+          <span class="tag">Automação Industrial</span>
+        </div>
+
+        <h1>IA na indústria: como a inteligência artificial melhora manutenção, qualidade e produção</h1>
+
+        <p>
+          A inteligência artificial está ganhando espaço na indústria porque ajuda a transformar dados
+          operacionais em decisões mais rápidas, seguras e assertivas. Em vez de depender apenas de análises
+          manuais ou da percepção do operador, a IA pode apoiar a equipe técnica na identificação de padrões,
+          desvios, tendências e possíveis falhas em equipamentos e processos.
+        </p>
+
+        <p>
+          Porém, existe um ponto essencial: a IA industrial não funciona bem sem dados confiáveis. Para que
+          algoritmos, dashboards e análises avancem, a planta precisa ter uma boa base de instrumentação,
+          automação, coleta de sinais, supervisório, histórico de processo e documentação técnica organizada.
+        </p>
+
+        <h2>O que é IA na indústria?</h2>
+
+        <p>
+          IA na indústria é o uso de recursos computacionais para analisar dados de processo, detectar padrões,
+          apoiar diagnósticos e orientar decisões técnicas. Ela pode ser aplicada em manutenção, qualidade,
+          produção, consumo de energia, segurança operacional e melhoria contínua.
+        </p>
+
+        <p>
+          Na prática, a IA pode analisar variáveis como temperatura, pressão, vazão, nível, corrente elétrica,
+          vibração, tempo de ciclo, alarmes, paradas, produtividade e qualidade do produto. A partir desses dados,
+          o sistema pode indicar situações fora do comportamento esperado e ajudar a equipe a agir antes que o
+          problema cause impacto maior.
+        </p>
+
+        <div class="post-highlight">
+          <strong>Resumo técnico:</strong> IA industrial não é apenas software. Ela depende de sensores,
+          instrumentos, CLP, supervisório, rede industrial, histórico de dados e conhecimento técnico de processo.
+        </div>
+
+        <h2>Manutenção preditiva com IA</h2>
+
+        <p>
+          Uma das aplicações mais conhecidas da IA na indústria é a manutenção preditiva. Nesse modelo,
+          os dados dos equipamentos são acompanhados continuamente para identificar sinais de desgaste,
+          aquecimento, instabilidade, consumo anormal ou comportamento fora do padrão.
+        </p>
+
+        <p>
+          Em vez de esperar uma falha acontecer, a equipe pode atuar com mais antecedência. Isso ajuda a reduzir
+          paradas inesperadas, organizar melhor as intervenções, melhorar a disponibilidade dos ativos e aumentar
+          a confiabilidade da operação.
+        </p>
+
+        <ul>
+          <li>Identificação de tendência de falha em motores, bombas, ventiladores e redutores.</li>
+          <li>Análise de variação de corrente, temperatura, pressão, vibração ou consumo.</li>
+          <li>Priorização de manutenção com base em risco operacional.</li>
+          <li>Redução de paradas corretivas e perdas de produção.</li>
+        </ul>
+
+        <h2>IA aplicada à qualidade e produção</h2>
+
+        <p>
+          A IA também pode apoiar o controle de qualidade e o desempenho produtivo. Quando os dados de processo
+          são bem coletados, é possível relacionar desvios de qualidade com variações de temperatura, pressão,
+          tempo de processo, vazão, dosagem, mistura, umidade, velocidade ou outras variáveis críticas.
+        </p>
+
+        <p>
+          Isso permite que a indústria entenda melhor as causas de refugos, retrabalhos, perdas e instabilidades.
+          Em muitos casos, pequenas variações de processo geram grande impacto no produto final. A IA ajuda a
+          encontrar esses padrões e orientar ajustes mais precisos.
+        </p>
+
+        <h2>A instrumentação industrial é a base da IA</h2>
+
+        <p>
+          Nenhuma análise inteligente é confiável se a medição estiver errada. Por isso, a instrumentação industrial
+          é uma base fundamental para qualquer projeto de IA, Indústria 4.0, Indústria 5.0 ou gêmeo digital.
+        </p>
+
+        <p>
+          Sensores e transmissores de pressão, temperatura, vazão, nível, peso, posição, corrente e outras variáveis
+          precisam estar bem especificados, instalados, calibrados e integrados ao sistema de automação. Se o sinal
+          chega errado ao CLP ou ao supervisório, a análise também será comprometida.
+        </p>
+
+        <div class="post-highlight">
+          <strong>Dado ruim gera decisão ruim:</strong> antes de falar em IA, a indústria precisa garantir qualidade
+          de medição, calibração, testes de loop, documentação de sinais e confiabilidade da automação.
+        </div>
+
+        <h2>O papel do CLP, supervisório e histórico de dados</h2>
+
+        <p>
+          O CLP é responsável por receber sinais de campo, executar lógicas de controle e comandar equipamentos.
+          O supervisório SCADA organiza a visualização das informações, alarmes, tendências, comandos e dados de
+          operação. Quando bem estruturados, esses sistemas formam uma base importante para análises mais avançadas.
+        </p>
+
+        <p>
+          Para usar IA de forma consistente, é importante definir quais variáveis serão coletadas, com qual frequência,
+          onde serão armazenadas, como serão validadas e como serão interpretadas pela equipe técnica. A tecnologia
+          precisa estar conectada ao conhecimento do processo.
+        </p>
+
+        <h2>Como começar um projeto de IA industrial?</h2>
+
+        <p>
+          Um erro comum é começar pela ferramenta antes de organizar a base técnica. O caminho mais seguro é começar
+          pelo processo, entender os problemas reais da planta e depois definir quais dados precisam ser monitorados.
+        </p>
+
+        <ul>
+          <li>Mapear equipamentos críticos e variáveis importantes.</li>
+          <li>Verificar sensores, instrumentos e qualidade dos sinais.</li>
+          <li>Revisar calibração, testes de loop e documentação técnica.</li>
+          <li>Organizar dados no supervisório, historiador ou sistema de análise.</li>
+          <li>Definir indicadores de manutenção, qualidade, produção e energia.</li>
+          <li>Aplicar análises e IA em problemas reais, com validação da equipe técnica.</li>
+        </ul>
+
+        <h2>IA não substitui pessoas: potencializa decisões</h2>
+
+        <p>
+          A IA não elimina a importância do operador, instrumentista, técnico de automação, eletricista, engenheiro
+          ou equipe de manutenção. Pelo contrário: ela fornece informações para que esses profissionais tomem decisões
+          melhores e mais rápidas.
+        </p>
+
+        <p>
+          A experiência de campo continua sendo essencial para interpretar alarmes, validar dados, entender o comportamento
+          dos equipamentos e definir ações práticas. A inteligência artificial deve ser vista como uma ferramenta de apoio
+          técnico, não como substituição do conhecimento humano.
+        </p>
+
+        <h2>Como a ALOGY Engenharia pode apoiar?</h2>
+
+        <p>
+          A ALOGY Engenharia atua com automação industrial, instrumentação, projetos elétricos, documentação técnica,
+          testes de malha e apoio em sistemas de controle. Essas frentes ajudam a criar uma base confiável para empresas
+          que desejam evoluir em direção a dados industriais mais organizados e decisões mais inteligentes.
+        </p>
+
+        <p>
+          Antes de aplicar IA, muitas plantas precisam revisar sinais, instrumentos, diagramas, lógica de CLP, telas de
+          supervisório, alarmes, tendências e documentação. Essa organização técnica é o que permite transformar dados
+          industriais em informação útil para manutenção, qualidade e produção.
+        </p>
+
+        <div class="post-highlight">
+          <strong>Quer preparar sua planta para dados industriais mais confiáveis?</strong><br>
+          A ALOGY pode apoiar na organização da automação, instrumentação, supervisório e documentação técnica.
+        </div>
+
+        <div class="cta-actions" style="margin-top:18px">
+          <a class="btn" href="industrial.html">
+            <i class="fas fa-industry"></i> Ver serviços industriais
+          </a>
+
+          <a class="btn secondary" href="index.html#contato">
+            <i class="fas fa-paper-plane"></i> Solicitar contato
+          </a>
+
+          <a class="btn secondary" href="blog.html">
+            <i class="fas fa-arrow-left"></i> Voltar ao blog
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <section class="cta-bar" aria-label="Chamada para atendimento">
+      <div>
+        <strong>Quer usar dados industriais para melhorar manutenção, qualidade ou produção?</strong><br/>
+        <span class="muted">Entre em contato para avaliação técnica e definição do próximo passo.</span>
+      </div>
+
+      <div class="cta-actions">
+        <a class="btn" href="index.html#contato">
+          <i class="fas fa-paper-plane"></i> Falar com a ALOGY
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p>
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      if (window.location.pathname.includes("blog-")) {
+        document.querySelectorAll('nav.desktop a[href="blog.html"], nav.mobile a[href="blog.html"]').forEach((link) => {
+          link.classList.add("active");
+        });
+      }
+    });
+  </script>
+</body>
+</html>
