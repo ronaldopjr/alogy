@@ -62,6 +62,7 @@ function setActiveNav(){
   links.forEach(a => a.classList.remove('active'));
 
   const currentIsIndex = (path === '' || path === 'index.html');
+  const currentIsBlogPost = path.startsWith('blog-') && path.endsWith('.html');
 
   links.forEach(a => {
     const href = a.getAttribute('href') || '';
@@ -70,19 +71,19 @@ function setActiveNav(){
     const hrefPath = (hrefPathRaw || '').split('/').pop();
     const hrefHash = hrefHashRaw ? `#${hrefHashRaw}` : '';
 
-    // HOME + #contato => marca Contato (href="#contato" ou "index.html#contato")
+    // Home + #contato => marca Contato ativo
     if(currentIsIndex && hash === '#contato' && hrefHash === '#contato'){
-  a.classList.add('active');
-  return;
-}
+      a.classList.add('active');
+      return;
+    }
 
-// Se você estiver no index e o link for "index.html#contato", também marca
-if(currentIsIndex && hash === '#contato' && (hrefPath === 'index.html') && hrefHash === '#contato'){
-  a.classList.add('active');
-  return;
-}
+    // Posts do blog => marca o menu Blog ativo
+    if(currentIsBlogPost && hrefPath === 'blog.html'){
+      a.classList.add('active');
+      return;
+    }
 
-    // páginas normais (industrial.html, residencial.html, sobre.html, cases.html)
+    // Páginas normais: industrial, residencial, cases, cursos, blog, sobre
     if(hrefPath && hrefPath === path && hrefHash === ''){
       a.classList.add('active');
     }
