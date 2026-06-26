@@ -284,7 +284,7 @@ async function enviarFormulario(e){
       );
 
       window.open(
-        `https://wa.me/5519981442448?text=${texto}`,
+        `https://wa.me/5519981795468?text=${texto}`,
         "_blank"
       );
     }
