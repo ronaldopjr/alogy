@@ -260,33 +260,35 @@ async function enviarFormulario(e){
     });
 
     const json = await res.json().catch(() => null);
-    if(!res.ok || (json && json.success === false)) throw new Error("Falha ao enviar.");
+
+    if(!res.ok || (json && json.success === false)){
+      throw new Error("Falha ao enviar.");
+    }
 
     if(success) success.classList.add("show");
+
     $("formContato")?.reset();
     setButtonState();
 
- }catch(err){
-  console.error("Erro no formulário:", err);
+  }catch(err){
+    console.error("Erro no formulário:", err);
 
-  const abrirWhatsapp = confirm(
-    "Não foi possível enviar pelo formulário. Isso pode acontecer em redes corporativas com bloqueio de segurança.\n\nDeseja enviar sua solicitação pelo WhatsApp?"
-  );
-
-  if(abrirWhatsapp){
-    const texto = encodeURIComponent(
-      "Olá! Vim pelo site ALOGY. Não consegui enviar o formulário e gostaria de atendimento."
+    const abrirWhatsapp = confirm(
+      "Não foi possível enviar pelo formulário. Isso pode acontecer em redes corporativas com bloqueio de segurança.\n\nDeseja enviar sua solicitação pelo WhatsApp?"
     );
 
-    window.open(
-      `https://wa.me/5519981795468?text=${texto}`,
-      "_blank"
-    );
-  }
+    if(abrirWhatsapp){
+      const texto = encodeURIComponent(
+        "Olá! Vim pelo site ALOGY. Não consegui enviar o formulário e gostaria de atendimento."
+      );
 
-  setButtonState();
+      window.open(
+        `https://wa.me/5519981795468?text=${texto}`,
+        "_blank"
+      );
+    }
 
-}finally{
+    setButtonState();
 
   }finally{
     if(btn){
