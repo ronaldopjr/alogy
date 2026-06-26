@@ -71,9 +71,9 @@ function setActiveNav(){
     const hrefPath = (hrefPathRaw || '').split('/').pop();
     const hrefHash = hrefHashRaw ? `#${hrefHashRaw}` : '';
 
-    // Home + #contato => marca Contato ativo
-    if(currentIsIndex && hash === '#contato' && hrefHash === '#contato'){
-      a.classList.add('active');
+    // Home + #contato => marca somente Contato ativo
+    if(currentIsIndex && hash === '#contato'){
+      if(hrefHash === '#contato') a.classList.add('active');
       return;
     }
 
