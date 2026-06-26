@@ -266,9 +266,27 @@ async function enviarFormulario(e){
     $("formContato")?.reset();
     setButtonState();
 
-  }catch(err){
-    alert("Não foi possível enviar agora. Tente novamente em instantes.");
-    setButtonState();
+ }catch(err){
+  console.error("Erro no formulário:", err);
+
+  const abrirWhatsapp = confirm(
+    "Não foi possível enviar pelo formulário. Isso pode acontecer em redes corporativas com bloqueio de segurança.\n\nDeseja enviar sua solicitação pelo WhatsApp?"
+  );
+
+  if(abrirWhatsapp){
+    const texto = encodeURIComponent(
+      "Olá! Vim pelo site ALOGY. Não consegui enviar o formulário e gostaria de atendimento."
+    );
+
+    window.open(
+      `https://wa.me/5519981795468?text=${texto}`,
+      "_blank"
+    );
+  }
+
+  setButtonState();
+
+}finally{
 
   }finally{
     if(btn){
