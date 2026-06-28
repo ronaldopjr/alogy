@@ -11,7 +11,7 @@
   --radius:16px;
   --shadow: 0 10px 25px rgba(0,0,0,.08);
 
-  --banner-h: 520px;
+  --banner-h: 410px;
   --banner-radius: 18px;
 
   /* reserva da barra social (aproximar banner/valores dela) */
@@ -181,9 +181,11 @@ nav.mobile.show{display:flex}
   pointer-events:none;
 }
 .crea-top img{
-  height:100px;
+  height:88px;
   width:auto;
   display:block;
+  opacity:.68;
+  filter:saturate(.82) brightness(.92);
 }
 
 .social-floating{
@@ -247,14 +249,17 @@ nav.mobile.show{display:flex}
 /* =========================
    BANNER + FULLWIDTH
    ========================= */
-.banner-wrap{ width:100%; padding: 22px 0 10px; }
+.banner-wrap{ width:100%; padding: 18px 0 10px; }
 
 .banner-fullwidth{
   width:100%;
-  padding-left: var(--left-gutter) !important;
-  padding-right: calc(18px + var(--social-safe)) !important;
-  padding-top: 18px !important;
-  padding-bottom: 10px !important;
+  max-width:1180px;
+  margin-left:auto;
+  margin-right:auto;
+  padding-left:18px !important;
+  padding-right:18px !important;
+  padding-top:18px !important;
+  padding-bottom:10px !important;
 }
 
 .banner{
@@ -301,12 +306,12 @@ nav.mobile.show{display:flex}
   inset:0;
   display:flex;
   align-items:flex-end;
-  padding: 26px 84px;
+  padding:24px 82px 62px 82px;
   z-index:3;
 }
 .banner-card{
-  width:min(580px, calc(100% - 20px));
-  margin: 0 0 28px 18px;
+  width:min(560px, calc(100% - 20px));
+  margin:0 0 0 24px;
   background: rgba(255,255,255,.10);
   border:1px solid rgba(255,255,255,.18);
   border-radius:18px;
@@ -316,7 +321,7 @@ nav.mobile.show{display:flex}
   box-shadow: 0 18px 55px rgba(0,0,0,.35);
 }
 .banner-title{
-  font-size:2.05rem;
+  font-size:1.92rem;
   line-height:1.1;
   letter-spacing:.2px;
   margin: 2px 0 10px;
@@ -352,24 +357,24 @@ nav.mobile.show{display:flex}
   background: rgba(255,255,255,.16);
   transform: translateY(-50%) scale(1.03);
 }
-.banner-nav.prev{left:16px}
-.banner-nav.next{right:16px}
+.banner-nav.prev{left:18px}
+.banner-nav.next{right:18px}
 
 @media (max-width: 1180px){
-  .banner-content{padding: 22px 72px;}
-  .banner-card{width:min(540px, calc(100% - 16px)); margin:0 0 24px 14px;}
+  .banner-content{padding:22px 74px 58px 74px;}
+  .banner-card{width:min(530px, calc(100% - 16px)); margin:0 0 0 18px;}
 }
 
 @media (max-width: 980px){
-  .banner-content{padding: 20px 64px;}
-  .banner-card{width:min(500px, calc(100% - 12px)); margin:0 0 20px 10px;}
+  .banner-content{padding:20px 66px 54px 66px;}
+  .banner-card{width:min(500px, calc(100% - 12px)); margin:0 0 0 10px;}
 }
 
 .banner-dots{
   position:absolute;
   z-index:6;
   left:50%;
-  bottom:14px;
+  bottom:18px;
   transform:translateX(-50%);
   display:flex; gap:8px;
   padding:8px 10px;
@@ -747,27 +752,27 @@ footer{
   .logo-wrapper img{ width:180px; }
 
   .crea-top{ right:4px; }
-  .crea-top img{ height:50px; width:auto; }
+  .crea-top img{ height:44px; width:auto; opacity:.62; filter:saturate(.78) brightness(.92); }
 
   .banner-fullwidth{
-    padding-left: 12px !important;
-    padding-right: 12px !important;
-    padding-top: 14px !important;
-    padding-bottom: 8px !important;
+    max-width:100%;
+    padding-left:12px !important;
+    padding-right:12px !important;
+    padding-top:14px !important;
+    padding-bottom:8px !important;
   }
 
   .banner{
-    height:460px;
+    height:330px;
     --card-w: min(360px, calc(100% - 40px));
     --arrow-w: 44px;
     --arrow-gap: 6px;
   }
 
   .banner-content{
-    padding:18px;
+    padding:16px 16px 54px;
     justify-content:center;
     align-items:flex-end;
-    padding-bottom:48px;
   }
 
   .banner-title{
@@ -790,6 +795,7 @@ footer{
   .banner-card{
     width: var(--card-w);
     max-width:360px;
+    margin:0;
     padding:16px 18px 20px;
     background: rgba(20,25,35,.60);
     border:1px solid rgba(255,255,255,.12);
@@ -814,12 +820,8 @@ footer{
     z-index:10;
   }
 
-  .banner-nav.prev{
-    left: calc(50% - (var(--card-w) / 2) - var(--arrow-gap) - (var(--arrow-w) / 2));
-  }
-  .banner-nav.next{
-    left: calc(50% + (var(--card-w) / 2) + var(--arrow-gap) - (var(--arrow-w) / 2));
-  }
+  .banner-nav.prev{left:12px;}
+  .banner-nav.next{right:12px; left:auto;}
   .banner-nav i{font-size:.95rem;}
 
   .banner-dots{
