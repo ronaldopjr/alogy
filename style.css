@@ -1032,3 +1032,16 @@ body.tools-page input:focus, body.tools-page textarea:focus, body.tools-page sel
 }
 @media print{header,.social-floating,.fab-wrap,.cta-bar,footer,.calc-actions,.tools-hero .btn,.no-print{display:none!important}body{background:#fff}.container{max-width:100%;padding:0}.calc-card,.tools-hero{box-shadow:none;border:1px solid #ddd}.calc-layout{display:block}.calc-card{margin:12px 0}.calc-table th{background:#eee!important;color:#111!important}}
 
+
+
+/* =========================
+   TABELAS E CORES - TEMPERATURA/CABOS
+========================= */
+.color-chip{display:inline-flex;align-items:center;gap:7px;font-weight:800;white-space:normal}
+.color-dot{width:18px;height:18px;border-radius:999px;border:1px solid rgba(0,0,0,.22);display:inline-block;flex:0 0 18px}
+.color-dot.white{box-shadow:inset 0 0 0 1px rgba(0,0,0,.12)}
+.color-dot.green{background:#16a34a}.color-dot.yellow{background:#facc15}.color-dot.red{background:#dc2626}.color-dot.black{background:#111827}.color-dot.blue{background:#2563eb}.color-dot.brown{background:#92400e}.color-dot.purple{background:#7e22ce}.color-dot.orange{background:#f97316}.color-dot.gray{background:#9ca3af}.color-dot.pink{background:#f9a8d4}.color-dot.white{background:#fff}.color-dot.none{background:repeating-linear-gradient(45deg,#ddd,#ddd 4px,#fff 4px,#fff 8px)}
+.tool-note-small{font-size:.88rem;color:#64748b;line-height:1.45;margin-top:8px}
+.table-caption{display:flex;gap:8px;flex-wrap:wrap;align-items:center;justify-content:space-between;margin:10px 0 8px;color:#596579;font-weight:800;font-size:.92rem}
+.calc-table td.good{color:#166534;font-weight:900}.calc-table td.warn{color:#92400e;font-weight:900}.calc-table td.danger{color:#991b1b;font-weight:900}
+@media(max-width:720px){.color-chip{justify-content:flex-end;text-align:right}.calc-table td::before{align-self:center}.table-caption{display:block}.table-caption span{display:block;margin-top:4px}}
