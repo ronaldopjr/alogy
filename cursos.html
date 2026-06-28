@@ -30,12 +30,12 @@
   <meta property="og:title" content="Curso de Instrumentação Industrial e Automação | ALOGY Engenharia" />
   <meta property="og:description" content="Aprenda instrumentação industrial, sensores, transmissores, calibração, teste de loop, CLP e SCADA com foco prático para campo." />
   <meta property="og:url" content="https://www.alogy.com.br/cursos.html" />
-  <meta property="og:image" content="https://www.alogy.com.br/logo-alogy.webp" />
+  <meta property="og:image" content="https://www.alogy.com.br/banner1.webp" />
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Curso de Instrumentação Industrial e Automação | ALOGY Engenharia" />
   <meta name="twitter:description" content="Curso online para quem deseja aprender instrumentação industrial e automação com aplicação prática." />
-  <meta name="twitter:image" content="https://www.alogy.com.br/logo-alogy.webp" />
+  <meta name="twitter:image" content="https://www.alogy.com.br/banner1.webp" />
 
   <script type="application/ld+json">
   {
@@ -279,6 +279,95 @@
       color:rgba(255,255,255,.84);
     }
 
+
+    .course-product-card{
+      background:#fff;
+      border:1px solid rgba(0,0,0,.09);
+      border-radius:18px;
+      overflow:hidden;
+      box-shadow:0 18px 42px rgba(0,0,0,.12);
+    }
+    .course-product-cover{
+      position:relative;
+      aspect-ratio:16/9;
+      background:#dbeafe;
+      overflow:hidden;
+    }
+    .course-product-cover img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+    .course-product-cover::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(180deg, transparent 55%, rgba(0,0,0,.22));
+      pointer-events:none;
+    }
+    .course-product-lock{
+      position:absolute;
+      top:12px;
+      left:12px;
+      z-index:2;
+      width:34px;
+      height:34px;
+      border-radius:10px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:rgba(0,0,0,.82);
+      color:#fff;
+      box-shadow:0 10px 22px rgba(0,0,0,.28);
+      font-size:.92rem;
+    }
+    .course-product-body{
+      padding:16px 16px 18px;
+    }
+    .course-product-label{
+      color:var(--muted);
+      font-size:.9rem;
+      margin-bottom:4px;
+      display:block;
+    }
+    .course-product-title{
+      color:var(--text);
+      font-size:1.12rem;
+      line-height:1.25;
+      margin:0 0 8px;
+      font-weight:900;
+    }
+    .course-product-price{
+      color:#059669;
+      font-size:1.02rem;
+      font-weight:900;
+      margin:8px 0 3px;
+    }
+    .course-product-note{
+      color:var(--muted);
+      font-size:.9rem;
+      margin:0 0 14px;
+      line-height:1.45;
+    }
+    .course-product-actions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:10px;
+    }
+    .course-product-actions .btn{
+      flex:1 1 180px;
+      justify-content:center;
+    }
+    .course-safe-note{
+      display:block;
+      color:var(--muted);
+      font-size:.82rem;
+      line-height:1.45;
+      margin-top:10px;
+    }
+
     @media(max-width:900px){
       .course-hero{grid-template-columns:1fr;}
       .course-layout{grid-template-columns:1fr;}
@@ -378,20 +467,27 @@
         </div>
       </div>
 
-      <div class="course-hero-actions">
-        <strong>Comece pelo acesso ao curso</strong>
-        <p>Abra a página de inscrição e veja os detalhes do conteúdo.</p>
-
-        <div class="course-hero-cta">
-          <a class="btn btn-course-primary" href="https://hotmart.com/pt-br/club/alogyengenharia" target="_blank" rel="noopener">
-            <i class="fas fa-graduation-cap"></i> Acessar o curso
-          </a>
-          <a class="btn btn-whatsapp-course" href="https://wa.me/5519981442448?text=Ol%C3%A1!%20Gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20o%20curso%20de%20Instrumenta%C3%A7%C3%A3o%20Industrial%20da%20ALOGY." target="_blank" rel="noopener">
-            <i class="fab fa-whatsapp"></i> Tirar dúvidas
-          </a>
+      <aside class="course-product-card" aria-label="Card de venda do curso">
+        <div class="course-product-cover">
+          <span class="course-product-lock" aria-hidden="true"><i class="fas fa-lock"></i></span>
+          <img src="banner1.webp" alt="Curso online de instrumentação industrial da ALOGY Engenharia" loading="eager" />
         </div>
-        <span class="cta-note">O botão abre a página oficial de inscrição do curso.</span>
-      </div>
+        <div class="course-product-body">
+          <span class="course-product-label">Cursos Online</span>
+          <h2 class="course-product-title">Guia Completo de Instrumentação Industrial – Do Zero ao Avançado</h2>
+          <div class="course-product-price">Ver preço e parcelamento na Hotmart</div>
+          <p class="course-product-note">Acesse a página oficial para consultar valor atualizado, formas de pagamento e disponibilidade.</p>
+          <div class="course-product-actions">
+            <a class="btn btn-course-primary" href="https://hotmart.com/pt-br/club/alogyengenharia" target="_blank" rel="noopener">
+              <i class="fas fa-graduation-cap"></i> Ver curso
+            </a>
+            <a class="btn btn-whatsapp-course" href="https://wa.me/5519981442448?text=Ol%C3%A1!%20Gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20o%20curso%20de%20Instrumenta%C3%A7%C3%A3o%20Industrial%20da%20ALOGY." target="_blank" rel="noopener">
+              <i class="fab fa-whatsapp"></i> Dúvidas
+            </a>
+          </div>
+          <span class="course-safe-note">*Condições, valores e parcelamento devem ser confirmados na página oficial da Hotmart.</span>
+        </div>
+      </aside>
     </section>
 
     <section class="course-layout">
