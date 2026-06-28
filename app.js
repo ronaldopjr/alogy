@@ -63,6 +63,7 @@ function setActiveNav(){
 
   const currentIsIndex = (path === '' || path === 'index.html');
   const currentIsBlogPost = path.startsWith('blog-') && path.endsWith('.html');
+  const currentIsToolPage = path === 'ferramentas.html' || path.startsWith('calculadora-') || path.startsWith('conversor-');
 
   links.forEach(a => {
     const href = a.getAttribute('href') || '';
@@ -79,6 +80,12 @@ function setActiveNav(){
 
     // Posts do blog => marca o menu Blog ativo
     if(currentIsBlogPost && hrefPath === 'blog.html'){
+      a.classList.add('active');
+      return;
+    }
+
+    // Ferramentas e calculadoras => marca o menu Ferramentas ativo
+    if(currentIsToolPage && hrefPath === 'ferramentas.html'){
       a.classList.add('active');
       return;
     }

@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Calculadora 4-20 mA com tabela de faixa | ALOGY Engenharia</title>
+  <meta name="description" content="Calculadora 4-20 mA online com conversão para 0-100%, valor de engenharia, tabela da faixa em mA, pontos de calibração, LRV, URV e span."/>
+  <meta name="robots" content="index,follow" />
+  <meta name="theme-color" content="#004b80" />
+  <link rel="canonical" href="https://www.alogy.com.br/calculadora-4-20ma.html" />
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png" />
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="app.js" defer></script>
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ALOGY Engenharia" />
+  <meta property="og:title" content="Calculadora 4-20 mA com tabela de faixa" />
+  <meta property="og:description" content="Converta 4-20 mA para percentual, valor de engenharia e gere tabela de referência da faixa configurada." />
+  <meta property="og:url" content="https://www.alogy.com.br/calculadora-4-20ma.html" />
+  <meta property="og:image" content="https://www.alogy.com.br/favicon-512x512.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebApplication",
+    "name":"Calculadora 4-20 mA com tabela de faixa",
+    "url":"https://www.alogy.com.br/calculadora-4-20ma.html",
+    "applicationCategory":"EngineeringApplication",
+    "operatingSystem":"Web",
+    "description":"Calculadora online para converter sinal 4-20 mA em porcentagem, valor de engenharia e tabela da faixa configurada do instrumento.",
+    "publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"}
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {"@type":"Question","name":"O que significa 4-20 mA?","acceptedAnswer":{"@type":"Answer","text":"4-20 mA é um padrão de sinal analógico usado em instrumentação industrial. Normalmente 4 mA representa 0% da escala e 20 mA representa 100% da escala configurada."}},
+      {"@type":"Question","name":"Quanto vale 12 mA em uma escala 4-20 mA?","acceptedAnswer":{"@type":"Answer","text":"12 mA equivale a 50% da escala. O valor de engenharia depende da faixa configurada no instrumento, como 0 a 10 bar ou 0 a 100 °C."}},
+      {"@type":"Question","name":"A calculadora serve para qualquer unidade?","acceptedAnswer":{"@type":"Answer","text":"Sim, desde que a relação entre o sinal 4-20 mA e a grandeza seja linear. Pode ser usada para pressão, temperatura, nível, vazão linear, porcentagem e outras grandezas."}},
+      {"@type":"Question","name":"Serve para vazão com placa de orifício?","acceptedAnswer":{"@type":"Answer","text":"Depende. Se o sinal já estiver linearizado, sim. Para aplicações com extração de raiz quadrada, compensação ou curvas especiais, o cálculo pode ser diferente."}}
+    ]
+  }
+  </script>
+  <style>
+    .calc-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+    .mini-btn{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(0,107,177,.25);background:rgba(0,107,177,.08);color:#0b3a62;border-radius:12px;padding:10px 12px;font-weight:900;cursor:pointer;text-decoration:none;font:inherit}
+    .mini-btn:hover{background:rgba(0,107,177,.12)}
+    .mini-btn.dark{background:#0b3a62;color:#fff;border-color:#0b3a62}
+    .tool-select{width:100%;border:1px solid rgba(0,0,0,.12);border-radius:12px;padding:12px;background:#fff;font:inherit}
+    .span-line{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+    .span-pill{display:inline-flex;align-items:center;gap:8px;border-radius:999px;background:rgba(0,107,177,.08);border:1px solid rgba(0,107,177,.18);color:#0b3a62;font-weight:900;padding:8px 11px;font-size:.9rem}
+    .example-grid{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+    .example-btn{border:1px solid rgba(0,107,177,.20);background:#fff;color:#0b3a62;border-radius:999px;padding:8px 10px;font-weight:900;cursor:pointer}
+    .example-btn:hover{background:rgba(0,107,177,.08)}
+    .status-ok{border-color:rgba(34,197,94,.35)!important;background:rgba(34,197,94,.10)!important;color:#166534!important}
+    .status-bad{border-color:rgba(239,68,68,.35)!important;background:rgba(239,68,68,.10)!important;color:#991b1b!important}
+    .classic-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:12px}
+    .classic-point{background:rgba(0,107,177,.06);border:1px solid rgba(0,107,177,.16);border-radius:14px;padding:12px;text-align:center}
+    .classic-point strong{display:block;color:#0b3a62;font-size:1.05rem}.classic-point span{color:var(--muted);font-weight:800;font-size:.88rem}
+    .faq details{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:14px;padding:14px;margin-top:10px;box-shadow:0 6px 16px rgba(0,0,0,.04)}
+    .faq summary{cursor:pointer;font-weight:900;color:#0b3a62}.faq p{margin:10px 0 0;color:var(--muted)}
+    .small-muted{color:var(--muted);font-size:.92rem;line-height:1.55}
+    @media(max-width:900px){.classic-grid{grid-template-columns:1fr 1fr}.calc-actions .mini-btn{width:100%;justify-content:center}}
+    @media print{header,.social-floating,.fab-wrap,.cta-bar,footer,.calc-actions,.tools-hero .btn,.no-print{display:none!important}body{background:#fff}.container{max-width:100%;padding:0}.calc-card,.tools-hero{box-shadow:none;border:1px solid #ddd}.calc-layout{display:block}.calc-card{margin:12px 0}.calc-table th{background:#eee!important;color:#111!important}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container headbar">
+      <a href="/" class="logo-wrapper" aria-label="Voltar para o início">
+        <img src="logo-alogy.webp" alt="ALOGY Engenharia" />
+      </a>
+
+      <div class="crea-top" aria-label="CREA-SP">
+        <img src="crea.webp" alt="CREA-SP">
+      </div>
+
+      <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menu">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+
+    <nav class="desktop" aria-label="Menu principal">
+      <div class="container navlinks">
+        <a href="index.html">Início</a>
+        <a href="industrial.html">Serviços Industriais</a>
+        <a href="residencial.html">Serviços Residenciais</a>
+        <a href="cases.html">Projetos</a>
+        <a href="cursos.html">Cursos</a>
+        <a href="blog.html">Blog</a>
+        <a href="ferramentas.html">Ferramentas</a>
+        <a href="sobre.html">Sobre</a>
+        <a href="index.html#contato">Contato</a>
+      </div>
+    </nav>
+
+    <nav class="mobile" aria-label="Menu mobile">
+      <a href="index.html">Início</a>
+      <a href="industrial.html">Serviços Industriais</a>
+      <a href="residencial.html">Serviços Residenciais</a>
+      <a href="cases.html">Projetos</a>
+      <a href="cursos.html">Cursos</a>
+      <a href="blog.html">Blog</a>
+      <a href="ferramentas.html">Ferramentas</a>
+      <a href="sobre.html">Sobre</a>
+      <a href="index.html#contato">Contato</a>
+    </nav>
+  </header>
+  <div class="social-floating" aria-label="Redes sociais">
+    <a href="https://www.linkedin.com/company/alogyengenharia" class="linkedin" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+    <a href="https://www.instagram.com/alogyengenharia" class="instagram" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+    <a href="https://www.facebook.com/alogyengenharia" class="facebook" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+    <a href="https://www.youtube.com/@alogyengenharia" class="youtube" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+    <a href="https://hotmart.com/pt-br/club/alogyengenharia" class="hotmart" target="_blank" rel="noopener" aria-label="Hotmart">H</a>
+    <a href="https://www.tiktok.com/@alogyengenharia" class="tiktok" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+  </div>
+
+  <div class="fab-wrap" aria-label="Ações rápidas">
+    <a class="fab-btn mail" href="mailto:contato@alogy.com.br">
+      <i class="fas fa-envelope"></i> contato@alogy.com.br
+    </a>
+    <a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1!%20Vim%20pelas%20ferramentas%20de%20instrumenta%C3%A7%C3%A3o%20da%20ALOGY.%20Gostaria%20de%20atendimento." target="_blank" rel="noopener">
+      <i class="fab fa-whatsapp"></i> WhatsApp
+    </a>
+  </div>
+
+  <main class="container" style="margin-top:18px">
+    <div style="margin-bottom:14px" class="no-print"><a class="btn secondary" href="ferramentas.html"><i class="fas fa-arrow-left"></i> Voltar para Ferramentas</a></div>
+    <section class="tools-hero">
+      <h1>Calculadora 4-20 mA</h1>
+      <p>Converta sinal 4-20 mA, percentual 0-100% e valor de engenharia conforme a faixa configurada no instrumento. A ferramenta também gera tabela de referência para teste de loop, calibração e consulta rápida em campo.</p>
+    </section>
+
+    <section class="calc-layout">
+      <div class="calc-card">
+        <h2>1. Faixa configurada do instrumento</h2>
+        <p>Informe a faixa mínima e máxima do transmissor. Em instrumentação, esses pontos também são conhecidos como LRV e URV.</p>
+        <form id="calc420Form" onsubmit="return false" aria-label="Calculadora 4-20 mA">
+          <div class="calc-grid">
+            <div class="field"><label for="lrv">Faixa mínima / LRV</label><input id="lrv" type="number" step="any" value="0" inputmode="decimal"></div>
+            <div class="field"><label for="urv">Faixa máxima / URV</label><input id="urv" type="number" step="any" value="1000" inputmode="decimal"></div>
+            <div class="field"><label for="unit">Unidade</label><input id="unit" type="text" value="°C" placeholder="Ex.: bar, °C, m³/h, mmH2O"></div>
+            <div class="field"><label for="mode">Calcular a partir de</label><select id="mode" class="tool-select"><option value="eng">Valor de engenharia</option><option value="ma">Sinal em mA</option><option value="percent">Percentual 0-100%</option></select></div>
+            <div class="field full"><label for="inputValue" id="inputLabel">Valor de engenharia</label><input id="inputValue" type="number" step="any" value="500" inputmode="decimal"></div>
+          </div>
+        </form>
+        <div class="span-line" aria-label="Dados da faixa">
+          <span class="span-pill" id="spanText">Span: 1000 °C</span>
+          <span class="span-pill" id="directionText">Faixa crescente</span>
+        </div>
+
+        <h2 style="margin-top:18px">2. Resultado da conversão</h2>
+        <div class="calc-result" aria-label="Resultado da conversão">
+          <div class="result-box"><span>Sinal</span><strong id="resMa">12,000 mA</strong></div>
+          <div class="result-box"><span>Percentual</span><strong id="resPercent">50,00%</strong></div>
+          <div class="result-box"><span>Valor na faixa</span><strong id="resEng">500,00 °C</strong></div>
+        </div>
+        <div id="calcNote" class="calc-note status-ok">Resultado dentro da faixa configurada.</div>
+
+        <div class="calc-actions">
+          <button class="mini-btn dark" type="button" id="copyResult"><i class="fas fa-copy"></i> Copiar resultado</button>
+          <button class="mini-btn" type="button" id="resetCalc"><i class="fas fa-rotate-left"></i> Restaurar exemplo</button>
+        </div>
+      </div>
+
+      <aside class="calc-card">
+        <h2>Exemplos rápidos</h2>
+        <p>Clique para preencher a calculadora com faixas comuns de campo.</p>
+        <div class="example-grid">
+          <button class="example-btn" type="button" data-lrv="0" data-urv="100" data-unit="°C" data-input="50">0 a 100 °C</button>
+          <button class="example-btn" type="button" data-lrv="0" data-urv="1000" data-unit="°C" data-input="500">0 a 1000 °C</button>
+          <button class="example-btn" type="button" data-lrv="0" data-urv="10" data-unit="bar" data-input="5">0 a 10 bar</button>
+          <button class="example-btn" type="button" data-lrv="-50" data-urv="150" data-unit="°C" data-input="50">-50 a 150 °C</button>
+          <button class="example-btn" type="button" data-lrv="0" data-urv="1000" data-unit="L/h" data-input="500">0 a 1000 L/h</button>
+          <button class="example-btn" type="button" data-lrv="100" data-urv="0" data-unit="%" data-input="50">Faixa invertida</button>
+        </div>
+        <div class="calc-note" style="margin-top:16px">
+          Esta calculadora considera relação linear entre 4-20 mA e a faixa configurada. Para extração de raiz quadrada, compensações ou curvas especiais, o cálculo pode ser diferente.
+        </div>
+      </aside>
+    </section>
+
+    <section class="calc-layout">
+      <div class="calc-card">
+        <h2>Tabela da faixa em 4-20 mA</h2>
+        <p>Referência automática em passos de 2 mA. Útil para calibração, simulação de sinal, teste de loop e conferência de indicação no CLP/IHM/SCADA.</p>
+        <div class="calc-table-wrap"><table class="calc-table" aria-label="Tabela 4-20 mA"><thead><tr><th>mA</th><th>Percentual</th><th>Valor da faixa</th></tr></thead><tbody id="rangeTable"></tbody></table></div>
+        <div class="calc-actions">
+          <button class="mini-btn dark" type="button" id="copyTable"><i class="fas fa-table"></i> Copiar tabela</button>
+          <button class="mini-btn" type="button" id="printPage"><i class="fas fa-print"></i> Imprimir tabela</button>
+        </div>
+      </div>
+
+      <div class="calc-card">
+        <h2>Pontos clássicos de calibração</h2>
+        <p>Pontos normalmente usados para verificação de escala em instrumentos lineares 4-20 mA.</p>
+        <div class="classic-grid" id="classicGrid"></div>
+        <p class="small-muted" style="margin-top:12px">Em uma escala linear: 4 mA = 0%, 8 mA = 25%, 12 mA = 50%, 16 mA = 75% e 20 mA = 100%.</p>
+      </div>
+    </section>
+
+    <section class="calc-layout">
+      <div class="calc-card">
+        <h2>Como é feito o cálculo 4-20 mA?</h2>
+        <p>Em uma escala linear de instrumentação, 4 mA representa 0% da faixa e 20 mA representa 100% da faixa. O valor intermediário é calculado proporcionalmente entre o LRV e o URV.</p>
+        <div class="formula-box">Percentual = ((mA - 4) / 16) × 100<br/>Valor de engenharia = LRV + (Percentual / 100) × (URV - LRV)<br/>mA = 4 + (Percentual / 100) × 16<br/>Span = URV - LRV</div>
+      </div>
+      <div class="calc-card">
+        <h2>Exemplo prático</h2>
+        <p>Se um transmissor de temperatura está configurado de 0 a 1000 °C e o sinal medido é 12 mA, o percentual é 50% e o valor de processo é 500 °C.</p>
+        <p>Se a leitura estiver abaixo da faixa ou acima da faixa, a calculadora mostra o resultado como extrapolação matemática. Em campo, isso pode indicar overrange, under-range, falha de sinal, saturação ou configuração incorreta.</p>
+      </div>
+    </section>
+
+    <section class="calc-card faq">
+      <h2>Perguntas frequentes sobre 4-20 mA</h2>
+      <details><summary>O que significa 4-20 mA?</summary><p>É um padrão de sinal analógico muito usado em instrumentação industrial. Normalmente 4 mA representa 0% da escala configurada e 20 mA representa 100%.</p></details>
+      <details><summary>Quanto vale 12 mA?</summary><p>12 mA equivale a 50% da escala. Em uma faixa de 0 a 1000 °C, por exemplo, 12 mA corresponde a 500 °C.</p></details>
+      <details><summary>Quanto vale 8 mA e 16 mA?</summary><p>8 mA equivale a 25% da escala e 16 mA equivale a 75% da escala.</p></details>
+      <details><summary>A calculadora aceita faixa invertida?</summary><p>Sim. Se você configurar LRV maior que URV, a tabela será calculada de forma inversa. Exemplo: 4 mA = 100% e 20 mA = 0%, dependendo da faixa informada.</p></details>
+      <details><summary>Serve para vazão com placa de orifício?</summary><p>Depende. Se o transmissor ou sistema já entrega sinal linearizado, sim. Se a aplicação depende de extração de raiz quadrada, use uma calculadora específica para raiz quadrada 4-20 mA.</p></details>
+    </section>
+
+    <section class="calc-card">
+      <h2>Outras ferramentas úteis</h2>
+      <p>Continue usando as ferramentas da ALOGY para cálculos de instrumentação industrial.</p>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px">
+        <a class="btn secondary" href="conversor-unidades-industriais.html"><i class="fas fa-ruler-combined"></i> Conversor de Unidades</a>
+        <a class="btn secondary" href="calculadora-erro-calibracao.html"><i class="fas fa-check-double"></i> Erro de Calibração</a>
+      </div>
+    </section>
+
+    <section class="cta-bar" aria-label="Chamada para atendimento em instrumentação">
+      <div><strong>Precisa validar uma malha 4-20 mA em campo?</strong><br/><span class="muted">A ALOGY Engenharia pode apoiar em teste de loop, calibração, comissionamento e diagnóstico de instrumentação industrial.</span></div>
+      <div class="cta-actions"><a class="btn" href="https://wa.me/5519981442448?text=Ol%C3%A1!%20Usei%20a%20calculadora%204-20%20mA%20da%20ALOGY%20e%20gostaria%20de%20apoio%20em%20instrumenta%C3%A7%C3%A3o." target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> Falar no WhatsApp</a></div>
+    </section>
+  </main>
+  <footer>
+    <p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p>
+  </footer>
+
+  <script>
+    (function(){
+      const $ = (id) => document.getElementById(id);
+      const lrv = $('lrv');
+      const urv = $('urv');
+      const unit = $('unit');
+      const mode = $('mode');
+      const inputValue = $('inputValue');
+      const inputLabel = $('inputLabel');
+      const resMa = $('resMa');
+      const resPercent = $('resPercent');
+      const resEng = $('resEng');
+      const note = $('calcNote');
+      const rangeTable = $('rangeTable');
+      const classicGrid = $('classicGrid');
+      const spanText = $('spanText');
+      const directionText = $('directionText');
+      let lastResultText = '';
+      let lastTableText = '';
+
+      function parseNumber(v){
+        if(typeof v !== 'string') return Number(v);
+        return Number(v.replace(',', '.'));
+      }
+      function formatNumber(n, decimals = 2){
+        if(!isFinite(n)) return '-';
+        return Number(n).toLocaleString('pt-BR', {minimumFractionDigits: decimals, maximumFractionDigits: decimals});
+      }
+      function unitText(){ return (unit.value || '').trim(); }
+      function withUnit(value, decimals = 2){ const u = unitText(); return `${formatNumber(value, decimals)}${u ? ' ' + u : ''}`; }
+      function getInputs(){
+        return {min:parseNumber(lrv.value), max:parseNumber(urv.value), raw:parseNumber(inputValue.value), u:unitText()};
+      }
+      function setLabel(){
+        if(mode.value === 'ma') inputLabel.textContent = 'Sinal em mA';
+        if(mode.value === 'percent') inputLabel.textContent = 'Percentual 0-100%';
+        if(mode.value === 'eng') inputLabel.textContent = 'Valor de engenharia';
+      }
+      function calculate(){
+        setLabel();
+        const {min, max, raw, u} = getInputs();
+        const span = max - min;
+        if(!isFinite(min) || !isFinite(max) || !isFinite(raw) || span === 0){
+          resMa.textContent = '-'; resPercent.textContent = '-'; resEng.textContent = '-';
+          note.className = 'calc-note status-bad';
+          note.textContent = 'Verifique os valores informados. A faixa mínima e máxima não podem ser iguais.';
+          rangeTable.innerHTML = ''; classicGrid.innerHTML = ''; spanText.textContent = 'Span: -'; directionText.textContent = 'Faixa inválida';
+          return;
+        }
+
+        let ma, percent, eng;
+        if(mode.value === 'ma'){
+          ma = raw;
+          percent = ((ma - 4) / 16) * 100;
+          eng = min + (percent / 100) * span;
+        }else if(mode.value === 'percent'){
+          percent = raw;
+          ma = 4 + (percent / 100) * 16;
+          eng = min + (percent / 100) * span;
+        }else{
+          eng = raw;
+          percent = ((eng - min) / span) * 100;
+          ma = 4 + (percent / 100) * 16;
+        }
+
+        resMa.textContent = `${formatNumber(ma, 3)} mA`;
+        resPercent.textContent = `${formatNumber(percent, 2)}%`;
+        resEng.textContent = `${formatNumber(eng, 2)}${u ? ' ' + u : ''}`;
+        spanText.textContent = `Span: ${formatNumber(span, 2)}${u ? ' ' + u : ''}`;
+        directionText.textContent = span < 0 ? 'Faixa invertida' : 'Faixa crescente';
+
+        const inRange = percent >= 0 && percent <= 100 && ma >= 4 && ma <= 20;
+        if(inRange){
+          note.className = 'calc-note status-ok';
+          note.textContent = 'Resultado dentro da faixa configurada.';
+        }else{
+          note.className = 'calc-note warn';
+          note.textContent = 'Atenção: o valor informado está fora da faixa configurada. O resultado representa uma extrapolação matemática.';
+        }
+
+        renderRangeTable(min, span, u);
+        renderClassic(min, span, u);
+        lastResultText = buildResultText(min, max, span, u, raw, ma, percent, eng, inRange);
+      }
+      function rowForPercent(p, min, span, u){
+        const ma = 4 + (p / 100) * 16;
+        const eng = min + (p / 100) * span;
+        return {p, ma, eng, u};
+      }
+      function renderRangeTable(min, span, u){
+        const mas = [4,6,8,10,12,14,16,18,20];
+        const rows = mas.map(ma => {
+          const p = ((ma - 4) / 16) * 100;
+          const eng = min + (p / 100) * span;
+          return `<tr><td>${formatNumber(ma, 3)} mA</td><td>${formatNumber(p, 2)}%</td><td>${formatNumber(eng, 2)}${u ? ' ' + u : ''}</td></tr>`;
+        }).join('');
+        rangeTable.innerHTML = rows;
+        lastTableText = [`Tabela 4-20 mA - ALOGY Engenharia`, `Faixa: ${formatNumber(min,2)} a ${formatNumber(min+span,2)}${u ? ' ' + u : ''}`, ''].concat(mas.map(ma => {
+          const p = ((ma - 4) / 16) * 100;
+          const eng = min + (p / 100) * span;
+          return `${formatNumber(ma,3)} mA = ${formatNumber(p,2)}% = ${formatNumber(eng,2)}${u ? ' ' + u : ''}`;
+        })).join('\n');
+      }
+      function renderClassic(min, span, u){
+        const points = [0,25,50,75,100];
+        classicGrid.innerHTML = points.map(p => {
+          const {ma, eng} = rowForPercent(p, min, span, u);
+          return `<div class="classic-point"><span>${p}%</span><strong>${formatNumber(ma,3)} mA</strong><span>${formatNumber(eng,2)}${u ? ' ' + u : ''}</span></div>`;
+        }).join('');
+      }
+      function buildResultText(min, max, span, u, raw, ma, percent, eng, inRange){
+        let entrada = '';
+        if(mode.value === 'ma') entrada = `${formatNumber(raw,3)} mA`;
+        if(mode.value === 'percent') entrada = `${formatNumber(raw,2)}%`;
+        if(mode.value === 'eng') entrada = `${formatNumber(raw,2)}${u ? ' ' + u : ''}`;
+        return [
+          'Calculadora 4-20 mA - ALOGY Engenharia',
+          `Faixa: ${formatNumber(min,2)} a ${formatNumber(max,2)}${u ? ' ' + u : ''}`,
+          `Span: ${formatNumber(span,2)}${u ? ' ' + u : ''}`,
+          `Entrada: ${entrada}`,
+          `Resultado: ${formatNumber(ma,3)} mA | ${formatNumber(percent,2)}% | ${formatNumber(eng,2)}${u ? ' ' + u : ''}`,
+          `Status: ${inRange ? 'dentro da faixa configurada' : 'fora da faixa configurada / extrapolação matemática'}`
+        ].join('\n');
+      }
+      function copyText(text, button){
+        if(navigator.clipboard && window.isSecureContext){
+          navigator.clipboard.writeText(text).then(() => flashButton(button));
+        }else{
+          const ta = document.createElement('textarea');
+          ta.value = text; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta); flashButton(button);
+        }
+      }
+      function flashButton(button){
+        const original = button.innerHTML;
+        button.innerHTML = '<i class="fas fa-check"></i> Copiado';
+        setTimeout(() => button.innerHTML = original, 1600);
+      }
+      $('copyResult').addEventListener('click', () => copyText(lastResultText, $('copyResult')));
+      $('copyTable').addEventListener('click', () => copyText(lastTableText, $('copyTable')));
+      function printTableOnly(){
+        calculate();
+        const {min, max, u} = getInputs();
+        const title = 'Tabela 4-20 mA - ALOGY Engenharia';
+        const faixa = `Faixa configurada: ${formatNumber(min,2)} a ${formatNumber(max,2)}${u ? ' ' + u : ''}`;
+        const span = max - min;
+        const direction = span < 0 ? 'Faixa invertida' : 'Faixa crescente';
+        const tableRows = Array.from(rangeTable.querySelectorAll('tr')).map(tr => tr.innerHTML).join('');
+        const classicRows = Array.from(classicGrid.querySelectorAll('.classic-point')).map(item => {
+          const parts = Array.from(item.querySelectorAll('span,strong')).map(el => el.textContent);
+          return `<tr><td>${parts[0] || ''}</td><td>${parts[1] || ''}</td><td>${parts[2] || ''}</td></tr>`;
+        }).join('');
+
+        const html = `<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>${title}</title>
+<style>
+  *{box-sizing:border-box}
+  body{font-family:Arial,sans-serif;color:#111;margin:28px;line-height:1.45}
+  .head{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;border-bottom:3px solid #004b80;padding-bottom:14px;margin-bottom:18px}
+  h1{font-size:22px;margin:0 0 8px;color:#004b80}
+  .meta{font-size:14px;color:#333;margin:3px 0}
+  .brand{font-weight:800;color:#004b80;text-align:right;white-space:nowrap}
+  h2{font-size:17px;margin:22px 0 8px;color:#004b80}
+  table{width:100%;border-collapse:collapse;margin-top:8px;font-size:14px}
+  th{background:#004b80;color:#fff;text-align:left;padding:9px;border:1px solid #004b80}
+  td{padding:8px;border:1px solid #bbb}
+  tr:nth-child(even) td{background:#f4f7fa}
+  .note{margin-top:18px;font-size:12px;color:#555;border-top:1px solid #ddd;padding-top:10px}
+  @media print{body{margin:14mm}.no-print{display:none!important}}
+</style>
+</head>
+<body>
+  <div class="head">
+    <div>
+      <h1>${title}</h1>
+      <div class="meta">${faixa}</div>
+      <div class="meta">Span: ${formatNumber(span,2)}${u ? ' ' + u : ''} • ${direction}</div>
+    </div>
+    <div class="brand">ALOGY<br>Engenharia</div>
+  </div>
+
+  <h2>Tabela de referência 4-20 mA</h2>
+  <table>
+    <thead><tr><th>Sinal</th><th>Percentual</th><th>Valor da faixa</th></tr></thead>
+    <tbody>${tableRows}</tbody>
+  </table>
+
+  <h2>Pontos clássicos de calibração</h2>
+  <table>
+    <thead><tr><th>Ponto</th><th>Sinal</th><th>Valor da faixa</th></tr></thead>
+    <tbody>${classicRows}</tbody>
+  </table>
+
+  <div class="note">Tabela gerada pela Calculadora 4-20 mA da ALOGY Engenharia. Cálculo linear: 4 mA = 0% e 20 mA = 100% da faixa configurada.</div>
+  <script>window.addEventListener('load',()=>{window.print(); setTimeout(()=>window.close(), 300);});<\/script>
+</body>
+</html>`;
+
+        const printWindow = window.open('', '_blank', 'width=900,height=700');
+        if(!printWindow){
+          alert('O navegador bloqueou a janela de impressão. Permita pop-ups para imprimir somente a tabela.');
+          return;
+        }
+        printWindow.document.open();
+        printWindow.document.write(html);
+        printWindow.document.close();
+      }
+      $('printPage').addEventListener('click', printTableOnly);
+      $('resetCalc').addEventListener('click', () => { lrv.value='0'; urv.value='1000'; unit.value='°C'; mode.value='eng'; inputValue.value='500'; calculate(); });
+      document.querySelectorAll('.example-btn').forEach(btn => {
+        btn.addEventListener('click', () => { lrv.value=btn.dataset.lrv; urv.value=btn.dataset.urv; unit.value=btn.dataset.unit; mode.value='eng'; inputValue.value=btn.dataset.input; calculate(); });
+      });
+      [lrv, urv, unit, mode, inputValue].forEach(el => el.addEventListener('input', calculate));
+      mode.addEventListener('change', () => {
+        if(mode.value === 'ma') inputValue.value = '12';
+        if(mode.value === 'percent') inputValue.value = '50';
+        if(mode.value === 'eng') inputValue.value = '500';
+        calculate();
+      });
+      calculate();
+    })();
+  </script>
+</body>
+</html>
