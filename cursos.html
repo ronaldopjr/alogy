@@ -76,6 +76,11 @@
         radial-gradient(680px 320px at 88% 10%, rgba(14,165,233,.22), transparent 58%),
         linear-gradient(135deg,#061827,#004b80 70%,#062138);
     }
+
+    .course-hero > div:first-child{
+      transform:translateY(-34px);
+    }
+
     .course-hero::after{
       content:"";
       position:absolute;
@@ -270,6 +275,10 @@
     @media(max-width:980px){.course-hero{grid-template-columns:1fr}.course-path-grid{grid-template-columns:1fr}.course-checklist{grid-template-columns:1fr}}
     @media(max-width:640px){.course-hero{gap:16px}.course-product-card{border-radius:18px}.course-product-cover{aspect-ratio:16/10}.course-product-body{padding:16px}.course-kicker{font-size:.78rem}.hero-badge{font-size:.84rem}.course-path-card,.course-benefit,.course-metric{padding:15px}.course-list{margin-left:16px}}
 
+  
+    @media(max-width:900px){
+      .course-hero > div:first-child{transform:none;}
+    }
   </style>
 </head>
 

@@ -1132,3 +1132,29 @@ nav.mobile a.active{
   .calc-table td::before{font-size:.75rem}
   .tc-colors-table .color-chip{justify-content:flex-start;text-align:left}
 }
+
+
+/* Botão flutuante: voltar para ferramentas */
+body.tools-page a.btn.secondary[href="ferramentas.html"]{
+  position:fixed;
+  left:18px;
+  bottom:18px;
+  z-index:1850;
+  background:#062138;
+  color:#fff;
+  border:1px solid rgba(255,255,255,.18);
+  box-shadow:0 16px 42px rgba(0,0,0,.28);
+}
+body.tools-page a.btn.secondary[href="ferramentas.html"]:hover{
+  background:#004b80;
+  transform:translateY(-2px);
+}
+@media(max-width:768px){
+  body.tools-page a.btn.secondary[href="ferramentas.html"]{
+    left:12px;
+    bottom:14px;
+    padding:10px 12px;
+    font-size:.9rem;
+    border-radius:999px;
+  }
+}
