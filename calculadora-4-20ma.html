@@ -73,7 +73,7 @@
     @media print{header,.social-floating,.fab-wrap,.cta-bar,footer,.calc-actions,.tools-hero .btn,.no-print{display:none!important}body{background:#fff}.container{max-width:100%;padding:0}.calc-card,.tools-hero{box-shadow:none;border:1px solid #ddd}.calc-layout{display:block}.calc-card{margin:12px 0}.calc-table th{background:#eee!important;color:#111!important}}
   </style>
 </head>
-<body>
+<body class="tools-page">
   <header>
     <div class="container headbar">
       <a href="/" class="logo-wrapper" aria-label="Voltar para o início">
@@ -193,7 +193,7 @@
       <div class="calc-card">
         <h2>Tabela da faixa em 4-20 mA</h2>
         <p>Referência automática em passos de 2 mA. Útil para calibração, simulação de sinal, teste de loop e conferência de indicação no CLP/IHM/SCADA.</p>
-        <div class="calc-table-wrap"><table class="calc-table" aria-label="Tabela 4-20 mA"><colgroup><col class="col-signal"><col class="col-percent"><col class="col-value"></colgroup><thead><tr><th class="num">mA</th><th class="num">Percentual</th><th class="num">Valor da faixa</th></tr></thead><tbody id="rangeTable"></tbody></table></div>
+        <div class="calc-table-wrap"><table class="calc-table" aria-label="Tabela 4-20 mA"><thead><tr><th>mA</th><th>Percentual</th><th>Valor da faixa</th></tr></thead><tbody id="rangeTable"></tbody></table></div>
         <div class="calc-actions">
           <button class="mini-btn dark" type="button" id="copyTable"><i class="fas fa-table"></i> Copiar tabela</button>
           <button class="mini-btn" type="button" id="printPage"><i class="fas fa-print"></i> Imprimir tabela</button>
@@ -236,6 +236,17 @@
       <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px">
         <a class="btn secondary" href="conversor-unidades-industriais.html"><i class="fas fa-ruler-combined"></i> Conversor de Unidades</a>
         <a class="btn secondary" href="calculadora-erro-calibracao.html"><i class="fas fa-check-double"></i> Erro de Calibração</a>
+      </div>
+    </section>
+
+
+    <section class="calc-card no-print">
+      <h2>Outras ferramentas técnicas</h2>
+      <div class="tags">
+        <a class="tag" href="calculadora-pt100.html">Calculadora PT100</a>
+        <a class="tag" href="calculadora-lrv-urv-span.html">LRV, URV e Span</a>
+        <a class="tag" href="calculadora-raiz-quadrada-4-20ma.html">Raiz Quadrada 4-20 mA</a>
+        <a class="tag" href="calculadora-dimensionamento-cabos.html">Dimensionamento de Cabos</a>
       </div>
     </section>
 
@@ -342,7 +353,7 @@
         const rows = mas.map(ma => {
           const p = ((ma - 4) / 16) * 100;
           const eng = min + (p / 100) * span;
-          return `<tr><td class="num">${formatNumber(ma, 3)} mA</td><td class="num">${formatNumber(p, 2)}%</td><td class="num">${formatNumber(eng, 2)}${u ? ' ' + u : ''}</td></tr>`;
+          return `<tr><td>${formatNumber(ma, 3)} mA</td><td>${formatNumber(p, 2)}%</td><td>${formatNumber(eng, 2)}${u ? ' ' + u : ''}</td></tr>`;
         }).join('');
         rangeTable.innerHTML = rows;
         lastTableText = [`Tabela 4-20 mA - ALOGY Engenharia`, `Faixa: ${formatNumber(min,2)} a ${formatNumber(min+span,2)}${u ? ' ' + u : ''}`, ''].concat(mas.map(ma => {
@@ -415,8 +426,7 @@
   h2{font-size:17px;margin:22px 0 8px;color:#004b80}
   table{width:100%;border-collapse:collapse;margin-top:8px;font-size:14px}
   th{background:#004b80;color:#fff;text-align:left;padding:9px;border:1px solid #004b80}
-  th:nth-child(2),th:nth-child(3),td:nth-child(2),td:nth-child(3){text-align:right}
-  td{padding:8px;border:1px solid #bbb;font-variant-numeric:tabular-nums}
+  td{padding:8px;border:1px solid #bbb}
   tr:nth-child(even) td{background:#f4f7fa}
   .note{margin-top:18px;font-size:12px;color:#555;border-top:1px solid #ddd;padding-top:10px}
   @media print{body{margin:14mm}.no-print{display:none!important}}

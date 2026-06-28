@@ -306,6 +306,24 @@ async function enviarFormulario(e){
   }
 }
 
+
+/* =========================
+   TABELAS RESPONSIVAS DAS FERRAMENTAS
+   (remove barra interna e transforma linhas em cards no mobile)
+========================= */
+function enhanceResponsiveToolTables(){
+  document.querySelectorAll('.calc-table').forEach((table) => {
+    const headers = Array.from(table.querySelectorAll('thead th')).map(th => th.textContent.trim());
+    table.querySelectorAll('tbody tr').forEach((tr) => {
+      Array.from(tr.children).forEach((td, idx) => {
+        if(headers[idx] && !td.getAttribute('data-label')){
+          td.setAttribute('data-label', headers[idx]);
+        }
+      });
+    });
+  });
+}
+
 /* =========================
    INIT
 ========================= */
@@ -320,6 +338,9 @@ document.addEventListener('DOMContentLoaded', () => {
   bindMobileMenuAutoClose();
   bindMobileMenuClickOutside();
   bindMobileMenuEscClose();
+
+  // tabelas responsivas das ferramentas
+  enhanceResponsiveToolTables();
 
   // form (só home)
   const fone = $("c_fone");
