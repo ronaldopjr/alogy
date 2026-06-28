@@ -246,6 +246,30 @@
     .course-cta strong{font-size:1.16rem}.course-cta-final{background:radial-gradient(700px 320px at 20% 20%,rgba(255,159,28,.22),transparent 60%),linear-gradient(135deg,#062138,#004b80);color:#fff;border:1px solid rgba(255,255,255,.18)}.course-cta-final .muted{color:rgba(255,255,255,.84)}
     @media(max-width:980px){.course-hero,.course-layout{grid-template-columns:1fr}.course-benefit-grid,.course-metrics{grid-template-columns:repeat(2,1fr)}.course-hero h1{font-size:2rem}.course-hero{padding:24px}.course-product-card{max-width:620px}}
     @media(max-width:640px){.course-hero{padding:20px;border-radius:20px}.course-hero h1{font-size:1.7rem}.course-product-benefits,.module-grid,.course-benefit-grid,.course-metrics,.course-tool-links{grid-template-columns:1fr}.course-hero-cta .btn,.course-secondary-link{width:100%;justify-content:center}.course-card{padding:18px}.course-cta .btn{width:100%;justify-content:center}}
+
+
+    /* revisão final curso: mais venda, melhor leitura e mobile */
+    .course-hero{margin-bottom:18px;grid-template-columns:minmax(0,1.05fr) minmax(320px,.82fr)}
+    .course-hero h1{font-size:clamp(1.9rem,3.6vw,2.62rem)}
+    .course-product-card{border:1px solid rgba(255,255,255,.34);transform:translateZ(0)}
+    .course-product-card:hover{box-shadow:0 30px 80px rgba(0,0,0,.28)}
+    .course-product-price{background:rgba(255,106,0,.10);border:1px solid rgba(255,106,0,.18);border-radius:12px;padding:10px 12px;color:#8a3a00}
+    .course-metric{border-top:4px solid rgba(255,106,0,.55)}
+    .course-path-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}
+    .course-path-card{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:18px;box-shadow:var(--shadow);padding:18px;position:relative;overflow:hidden}
+    .course-path-card::before{content:attr(data-step);position:absolute;right:14px;top:12px;color:rgba(0,75,128,.10);font-size:3rem;font-weight:950;line-height:1}
+    .course-path-card i{width:42px;height:42px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:rgba(0,107,177,.08);color:#0b3a62;margin-bottom:12px}
+    .course-path-card strong{display:block;color:var(--text);font-size:1.05rem;margin-bottom:6px;position:relative;z-index:2}
+    .course-path-card span{display:block;color:var(--muted);line-height:1.5;position:relative;z-index:2}
+    .course-checklist{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:12px}
+    .course-checklist span{display:flex;gap:9px;align-items:flex-start;background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:14px;padding:12px;color:var(--text);font-weight:800}
+    .course-checklist i{color:#16a34a;margin-top:3px}
+    .module{transition:transform .18s ease, box-shadow .18s ease}.module:hover{transform:translateY(-2px);box-shadow:0 14px 32px rgba(0,0,0,.09)}
+    .course-tool-links a{transition:transform .18s ease, background .18s ease}.course-tool-links a:hover{transform:translateY(-1px);background:rgba(0,107,177,.11)}
+    .course-cta-final{box-shadow:0 20px 55px rgba(0,75,128,.18)}
+    @media(max-width:980px){.course-hero{grid-template-columns:1fr}.course-path-grid{grid-template-columns:1fr}.course-checklist{grid-template-columns:1fr}}
+    @media(max-width:640px){.course-hero{gap:16px}.course-product-card{border-radius:18px}.course-product-cover{aspect-ratio:16/10}.course-product-body{padding:16px}.course-kicker{font-size:.78rem}.hero-badge{font-size:.84rem}.course-path-card,.course-benefit,.course-metric{padding:15px}.course-list{margin-left:16px}}
+
   </style>
 </head>
 
@@ -384,6 +408,24 @@
       <div class="course-benefit"><i class="fas fa-clipboard-check"></i><strong>Calibração e teste</strong><span>Noções de erro, tolerância, teste de loop e diagnóstico industrial.</span></div>
       <div class="course-benefit"><i class="fas fa-industry"></i><strong>Visão de automação</strong><span>Integração com CLP, IHM, SCADA e sistemas industriais.</span></div>
     </section>
+
+    <section class="course-path-grid" aria-label="Caminho de aprendizado do curso">
+      <div class="course-path-card" data-step="01"><i class="fas fa-layer-group"></i><strong>Base técnica primeiro</strong><span>Você começa entendendo variáveis de processo, sensores, transmissores, sinais industriais e leitura de instrumentos.</span></div>
+      <div class="course-path-card" data-step="02"><i class="fas fa-screwdriver-wrench"></i><strong>Aplicação de campo</strong><span>Depois entra em calibração, teste de loop, instalação, diagnóstico, documentação e rotina de manutenção.</span></div>
+      <div class="course-path-card" data-step="03"><i class="fas fa-network-wired"></i><strong>Integração com automação</strong><span>Por fim, conecta os instrumentos ao CLP, IHM, SCADA e à visão prática de automação industrial.</span></div>
+    </section>
+
+    <section class="course-card course-sale-focus">
+      <h2>O que você recebe na prática</h2>
+      <p>Uma trilha organizada para estudar instrumentação industrial com linguagem simples, exemplos técnicos e apoio das ferramentas gratuitas da ALOGY.</p>
+      <div class="course-checklist">
+        <span><i class="fas fa-check-circle"></i> Sequência pensada para quem está começando ou quer se reposicionar.</span>
+        <span><i class="fas fa-check-circle"></i> Conteúdo conectado com manutenção, projetos, campo e automação.</span>
+        <span><i class="fas fa-check-circle"></i> Conceitos essenciais: LRV, URV, span, 4-20 mA, erro, tolerância e malhas.</span>
+        <span><i class="fas fa-check-circle"></i> Direcionamento para evolução profissional na área técnica industrial.</span>
+      </div>
+    </section>
+
 
     <section class="course-layout">
       <div class="course-card">

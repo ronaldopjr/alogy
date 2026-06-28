@@ -316,7 +316,7 @@ function enhanceResponsiveToolTables(){
     const headers = Array.from(table.querySelectorAll('thead th')).map(th => th.textContent.trim());
     table.querySelectorAll('tbody tr').forEach((tr) => {
       Array.from(tr.children).forEach((td, idx) => {
-        if(headers[idx] && !td.getAttribute('data-label')){
+        if(headers[idx]){
           td.setAttribute('data-label', headers[idx]);
         }
       });
