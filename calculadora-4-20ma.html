@@ -193,7 +193,7 @@
       <div class="calc-card">
         <h2>Tabela da faixa em 4-20 mA</h2>
         <p>Referência automática em passos de 2 mA. Útil para calibração, simulação de sinal, teste de loop e conferência de indicação no CLP/IHM/SCADA.</p>
-        <div class="calc-table-wrap"><table class="calc-table" aria-label="Tabela 4-20 mA"><thead><tr><th>mA</th><th>Percentual</th><th>Valor da faixa</th></tr></thead><tbody id="rangeTable"></tbody></table></div>
+        <div class="calc-table-wrap"><table class="calc-table" aria-label="Tabela 4-20 mA"><colgroup><col class="col-signal"><col class="col-percent"><col class="col-value"></colgroup><thead><tr><th class="num">mA</th><th class="num">Percentual</th><th class="num">Valor da faixa</th></tr></thead><tbody id="rangeTable"></tbody></table></div>
         <div class="calc-actions">
           <button class="mini-btn dark" type="button" id="copyTable"><i class="fas fa-table"></i> Copiar tabela</button>
           <button class="mini-btn" type="button" id="printPage"><i class="fas fa-print"></i> Imprimir tabela</button>
@@ -342,7 +342,7 @@
         const rows = mas.map(ma => {
           const p = ((ma - 4) / 16) * 100;
           const eng = min + (p / 100) * span;
-          return `<tr><td>${formatNumber(ma, 3)} mA</td><td>${formatNumber(p, 2)}%</td><td>${formatNumber(eng, 2)}${u ? ' ' + u : ''}</td></tr>`;
+          return `<tr><td class="num">${formatNumber(ma, 3)} mA</td><td class="num">${formatNumber(p, 2)}%</td><td class="num">${formatNumber(eng, 2)}${u ? ' ' + u : ''}</td></tr>`;
         }).join('');
         rangeTable.innerHTML = rows;
         lastTableText = [`Tabela 4-20 mA - ALOGY Engenharia`, `Faixa: ${formatNumber(min,2)} a ${formatNumber(min+span,2)}${u ? ' ' + u : ''}`, ''].concat(mas.map(ma => {
@@ -415,7 +415,8 @@
   h2{font-size:17px;margin:22px 0 8px;color:#004b80}
   table{width:100%;border-collapse:collapse;margin-top:8px;font-size:14px}
   th{background:#004b80;color:#fff;text-align:left;padding:9px;border:1px solid #004b80}
-  td{padding:8px;border:1px solid #bbb}
+  th:nth-child(2),th:nth-child(3),td:nth-child(2),td:nth-child(3){text-align:right}
+  td{padding:8px;border:1px solid #bbb;font-variant-numeric:tabular-nums}
   tr:nth-child(even) td{background:#f4f7fa}
   .note{margin-top:18px;font-size:12px;color:#555;border-top:1px solid #ddd;padding-top:10px}
   @media print{body{margin:14mm}.no-print{display:none!important}}

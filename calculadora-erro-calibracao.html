@@ -157,7 +157,7 @@
 
       <div class="calc-card">
         <h2><i class="fas fa-square-poll-vertical"></i> Resultado</h2>
-        <div class="calc-result" style="grid-template-columns:1fr 1fr">
+        <div class="calc-result compact-result">
           <div class="result-box"><span>Erro absoluto</span><strong id="r_erro">-</strong></div>
           <div class="result-box"><span>Erro % do ponto</span><strong id="r_pct_ponto">-</strong></div>
           <div class="result-box"><span>Erro % do span</span><strong id="r_pct_span">-</strong></div>
@@ -178,7 +178,7 @@
     <section class="calc-card">
       <h2>Pontos de referência por faixa</h2>
       <p>Use esta tabela como apoio para organizar verificações em 0%, 25%, 50%, 75% e 100% da escala.</p>
-      <div class="calc-table-wrap"><table class="calc-table"><thead><tr><th>Ponto</th><th>Valor de referência</th></tr></thead><tbody id="pontos_cal"></tbody></table></div>
+      <div class="calc-table-wrap"><table class="calc-table"><colgroup><col class="col-point"><col class="col-ref"></colgroup><thead><tr><th class="center">Ponto</th><th class="num">Valor de referência</th></tr></thead><tbody id="pontos_cal"></tbody></table></div>
     </section>
 
     <section class="calc-card">
@@ -211,7 +211,14 @@ Critério de aprovação: |Erro| ≤ Limite permitido</div>
     <script>
       function n(id){ return parseFloat(document.getElementById(id).value); }
       function s(id){ return document.getElementById(id).value.trim(); }
-      function fmt(n, d=4){ if(!isFinite(n)) return '-'; return Number(n).toLocaleString('pt-BR',{maximumFractionDigits:d, minimumFractionDigits:0}); }
+      function fmt(n, d=3){
+        if(!isFinite(n)) return '-';
+        return Number(n).toLocaleString('pt-BR', {minimumFractionDigits:d, maximumFractionDigits:d});
+      }
+      function fmtPct(n){
+        if(!isFinite(n)) return '-';
+        return Number(n).toLocaleString('pt-BR', {minimumFractionDigits:2, maximumFractionDigits:2});
+      }
       function calcCalibracao(){
         const ref=n('c_ref'), ind=n('c_ind'), unidade=s('c_unidade')||'';
         const tipo=s('c_tol_tipo'), tol=n('c_tol'), lrv=n('c_lrv'), urv=n('c_urv');
@@ -229,8 +236,8 @@ Critério de aprovação: |Erro| ≤ Limite permitido</div>
           status = isFinite(limite) ? (Math.abs(erro) <= limite ? 'Aprovado' : 'Reprovado') : 'Atenção';
         }
         document.getElementById('r_erro').textContent = `${erro>=0?'+':''}${fmt(erro)} ${unidade}`;
-        document.getElementById('r_pct_ponto').textContent = isFinite(pctPonto) ? `${pctPonto>=0?'+':''}${fmt(pctPonto)}%` : 'N/A';
-        document.getElementById('r_pct_span').textContent = isFinite(pctSpan) ? `${pctSpan>=0?'+':''}${fmt(pctSpan)}%` : 'N/A';
+        document.getElementById('r_pct_ponto').textContent = isFinite(pctPonto) ? `${pctPonto>=0?'+':''}${fmtPct(pctPonto)}%` : 'N/A';
+        document.getElementById('r_pct_span').textContent = isFinite(pctSpan) ? `${pctSpan>=0?'+':''}${fmtPct(pctSpan)}%` : 'N/A';
         document.getElementById('r_correcao').textContent = `${correcao>=0?'+':''}${fmt(correcao)} ${unidade}`;
         document.getElementById('r_limite').textContent = limiteTxt;
         document.getElementById('r_status').textContent = status;
@@ -244,7 +251,7 @@ Critério de aprovação: |Erro| ≤ Limite permitido</div>
         const pts=[0,25,50,75,100];
         document.getElementById('pontos_cal').innerHTML = pts.map(p=>{
           const val = lrv + (p/100)*(urv-lrv);
-          return `<tr><td>${p}%</td><td>${fmt(val)} ${unidade}</td></tr>`;
+          return `<tr><td class="center">${p}%</td><td class="num">${fmt(val)} ${unidade}</td></tr>`;
         }).join('');
       }
       function copiarCalibracao(){

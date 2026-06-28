@@ -136,7 +136,7 @@
           </div>
         </div>
 
-        <div class="calc-result" style="grid-template-columns:1fr;margin-top:14px">
+        <div class="calc-result single-result" style="margin-top:14px">
           <div class="result-box">
             <span>Resultado</span>
             <strong id="u_resultado">-</strong>
@@ -168,13 +168,13 @@
         </div>
 
         <h3 style="margin-top:18px">Conversões comuns</h3>
-        <div class="calc-table-wrap"><table class="calc-table"><thead><tr><th>Referência</th><th>Equivalência aproximada</th></tr></thead><tbody>
-          <tr><td>1 bar</td><td>14,5038 psi</td></tr>
-          <tr><td>1 bar</td><td>100 kPa</td></tr>
-          <tr><td>1 kgf/cm²</td><td>0,980665 bar</td></tr>
-          <tr><td>1 mca</td><td>0,0980665 bar</td></tr>
-          <tr><td>1 m³/h</td><td>16,6667 L/min</td></tr>
-          <tr><td>1 L/s</td><td>3,6 m³/h</td></tr>
+        <div class="calc-table-wrap"><table class="calc-table"><colgroup><col class="col-label"><col class="col-equivalence"></colgroup><thead><tr><th>Referência</th><th>Equivalência aproximada</th></tr></thead><tbody>
+          <tr><td class="unit-cell">1 bar</td><td class="num">14,5038 psi</td></tr>
+          <tr><td class="unit-cell">1 bar</td><td class="num">100,0000 kPa</td></tr>
+          <tr><td class="unit-cell">1 kgf/cm²</td><td class="num">0,9807 bar</td></tr>
+          <tr><td class="unit-cell">1 mca</td><td class="num">0,0981 bar</td></tr>
+          <tr><td class="unit-cell">1 m³/h</td><td class="num">16,6667 L/min</td></tr>
+          <tr><td class="unit-cell">1 L/s</td><td class="num">3,6000 m³/h</td></tr>
         </tbody></table></div>
       </div>
     </section>
@@ -182,7 +182,7 @@
     <section class="calc-card">
       <h2>O que esta ferramenta converte?</h2>
       <p>Este conversor foi criado para unidades comuns em instrumentos de pressão, transmissores, manômetros, sensores de temperatura, medidores de vazão, bombas, linhas de processo e utilidades industriais.</p>
-      <div class="calc-table-wrap"><table class="calc-table"><thead><tr><th>Categoria</th><th>Unidades disponíveis</th></tr></thead><tbody>
+      <div class="calc-table-wrap"><table class="calc-table"><colgroup><col class="col-label"><col class="col-equivalence"></colgroup><thead><tr><th>Categoria</th><th>Unidades disponíveis</th></tr></thead><tbody>
         <tr><td>Pressão</td><td>bar, mbar, psi, Pa, kPa, MPa, kgf/cm², mca, mmH₂O, inH₂O e atm</td></tr>
         <tr><td>Temperatura</td><td>°C, °F e K</td></tr>
         <tr><td>Vazão volumétrica</td><td>m³/h, m³/min, L/min, L/s, L/h e GPM</td></tr>
@@ -236,10 +236,12 @@
         }
       };
       const tempUnits = ['°C','°F','K'];
-      function fmt(n){
+      const casasPorCategoria = {pressao:4, temperatura:2, vazao:4};
+      function fmt(n, decimals = 4){
         if(!isFinite(n)) return '-';
-        return Number(n).toLocaleString('pt-BR',{maximumFractionDigits:6, minimumFractionDigits:0});
+        return Number(n).toLocaleString('pt-BR', {minimumFractionDigits: decimals, maximumFractionDigits: decimals});
       }
+      function fmtCat(n, cat){ return fmt(n, casasPorCategoria[cat] ?? 4); }
       function popularUnidades(){
         const cat = document.getElementById('u_categoria').value;
         const de = document.getElementById('u_de');
@@ -272,7 +274,7 @@
           res = base / unidades[cat].items[para];
           nota.textContent = unidades[cat].nota;
         }
-        out.textContent = `${fmt(valor)} ${de} = ${fmt(res)} ${para}`;
+        out.textContent = `${fmtCat(valor, cat)} ${de} = ${fmtCat(res, cat)} ${para}`;
       }
       function copiarConversao(){
         const txt = document.getElementById('u_resultado').textContent + '\nConversor de Unidades Industriais - ALOGY Engenharia';

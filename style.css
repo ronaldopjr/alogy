@@ -930,3 +930,85 @@ nav.mobile a.active{
 @media(max-width:900px){.tools-grid{grid-template-columns:1fr}.calc-layout{grid-template-columns:1fr}.calc-result{grid-template-columns:1fr}.calc-grid{grid-template-columns:1fr}}
 
 .tags button.tag{cursor:pointer;font:inherit;}
+
+
+/* =========================
+   AJUSTES DE LAYOUT DAS FERRAMENTAS
+   ========================= */
+.calc-layout > *,
+.calc-card,
+.result-box,
+.calc-table-wrap{
+  min-width:0;
+}
+.calc-card{
+  overflow:hidden;
+}
+.result-box strong{
+  font-size:clamp(1.04rem, 1.8vw, 1.35rem);
+  word-break:break-word;
+  overflow-wrap:anywhere;
+  font-variant-numeric:tabular-nums;
+}
+.calc-table-wrap{
+  width:100%;
+  overflow-x:auto;
+  -webkit-overflow-scrolling:touch;
+  border:1px solid rgba(0,0,0,.08);
+  border-radius:14px;
+  background:#fff;
+}
+.calc-table{
+  width:100%;
+  min-width:560px;
+  table-layout:fixed;
+  border:0;
+  border-radius:0;
+  margin:0;
+}
+.calc-table th,
+.calc-table td{
+  vertical-align:middle;
+  line-height:1.35;
+  overflow-wrap:break-word;
+  word-break:normal;
+}
+.calc-table th.num,
+.calc-table td.num{
+  text-align:right;
+  white-space:nowrap;
+  font-variant-numeric:tabular-nums;
+}
+.calc-table th.center,
+.calc-table td.center{
+  text-align:center;
+  white-space:nowrap;
+}
+.calc-table td.unit-cell{
+  font-weight:800;
+  color:#0b3a62;
+}
+.calc-table col.col-signal{width:26%;}
+.calc-table col.col-percent{width:26%;}
+.calc-table col.col-value{width:48%;}
+.calc-table col.col-label{width:42%;}
+.calc-table col.col-equivalence{width:58%;}
+.calc-table col.col-point{width:32%;}
+.calc-table col.col-ref{width:68%;}
+.calc-result.compact-result{
+  grid-template-columns:1fr 1fr;
+}
+.calc-result.single-result{
+  grid-template-columns:1fr;
+}
+@media(max-width:600px){
+  .tools-hero{padding:26px 18px;}
+  .tools-hero h1{font-size:1.7rem;}
+  .calc-card{padding:18px 14px;}
+  .calc-table{min-width:520px;font-size:.92rem;}
+  .calc-table th,.calc-table td{padding:10px 10px;}
+  .result-box strong{font-size:1.05rem;}
+}
+@media(max-width:900px){
+  .calc-result.compact-result{grid-template-columns:1fr;}
+}
