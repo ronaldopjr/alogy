@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Calculadora de Erro de Calibração de Instrumentos | ALOGY Engenharia</title>
-  <meta name="description" content="Calcule erro absoluto, erro percentual, correção e aprovação por tolerância em calibração de instrumentos industriais."/>
+  <title>Calculadora de Calibração de Instrumentos | Erro, EMP e Tolerância</title>
+  <meta name="description" content="Monte pontos de calibração, informe referência, indicação, erro máximo permitido, tolerância, correção e status de aprovação para instrumentos industriais."/>
   <meta name="robots" content="index,follow" />
   <meta name="theme-color" content="#004b80" />
   <link rel="canonical" href="https://www.alogy.com.br/calculadora-erro-calibracao.html" />
@@ -21,20 +21,21 @@
   <meta property="og:locale" content="pt_BR" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="ALOGY Engenharia" />
-  <meta property="og:title" content="Calculadora de Erro de Calibração de Instrumentos" />
-  <meta property="og:description" content="Calcule erro de calibração, correção, tolerância e status matemático de aprovação ou reprovação." />
+  <meta property="og:title" content="Calculadora de Calibração de Instrumentos" />
+  <meta property="og:description" content="Calcule pontos de calibração, erro, correção, EMP e status de aprovação/reprovação matemática." />
   <meta property="og:url" content="https://www.alogy.com.br/calculadora-erro-calibracao.html" />
   <meta property="og:image" content="https://www.alogy.com.br/favicon-512x512.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
-    "@type":"WebPage",
-    "name":"Calculadora de Erro de Calibração de Instrumentos",
+    "@type":"WebApplication",
+    "name":"Calculadora de Calibração de Instrumentos",
     "url":"https://www.alogy.com.br/calculadora-erro-calibracao.html",
-    "description":"Calcule erro absoluto, erro percentual, correção e aprovação por tolerância em calibração de instrumentos industriais.",
-    "isPartOf":{"@type":"WebSite","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"},
-    "inLanguage":"pt-BR"
+    "applicationCategory":"EngineeringApplication",
+    "operatingSystem":"Web",
+    "description":"Ferramenta auxiliar para cálculo de pontos de calibração, erro, correção, EMP e tolerância em instrumentos industriais.",
+    "publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"}
   }
   </script>
 </head>
@@ -44,40 +45,16 @@
       <a href="/" class="logo-wrapper" aria-label="Voltar para o início">
         <img src="logo-alogy.webp" alt="ALOGY Engenharia" />
       </a>
-
-      <div class="crea-top" aria-label="CREA-SP">
-        <img src="crea.webp" alt="CREA-SP">
-      </div>
-
-      <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menu">
-        <i class="fas fa-bars"></i>
-      </button>
+      <div class="crea-top" aria-label="CREA-SP"><img src="crea.webp" alt="CREA-SP"></div>
+      <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menu"><i class="fas fa-bars"></i></button>
     </div>
-
     <nav class="desktop" aria-label="Menu principal">
       <div class="container navlinks">
-        <a href="index.html">Início</a>
-        <a href="industrial.html">Serviços Industriais</a>
-        <a href="residencial.html">Serviços Residenciais</a>
-        <a href="cases.html">Projetos</a>
-        <a href="cursos.html">Cursos</a>
-        <a href="blog.html">Blog</a>
-        <a href="ferramentas.html">Ferramentas</a>
-        <a href="sobre.html">Sobre</a>
-        <a href="index.html#contato">Contato</a>
+        <a href="index.html">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="index.html#contato">Contato</a>
       </div>
     </nav>
-
     <nav class="mobile" aria-label="Menu mobile">
-      <a href="index.html">Início</a>
-      <a href="industrial.html">Serviços Industriais</a>
-      <a href="residencial.html">Serviços Residenciais</a>
-      <a href="cases.html">Projetos</a>
-      <a href="cursos.html">Cursos</a>
-      <a href="blog.html">Blog</a>
-      <a href="ferramentas.html">Ferramentas</a>
-      <a href="sobre.html">Sobre</a>
-      <a href="index.html#contato">Contato</a>
+      <a href="index.html">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="index.html#contato">Contato</a>
     </nav>
   </header>
   <div class="social-floating" aria-label="Redes sociais">
@@ -88,189 +65,212 @@
     <a href="https://hotmart.com/pt-br/club/alogyengenharia" class="hotmart" target="_blank" rel="noopener" aria-label="Hotmart">H</a>
     <a href="https://www.tiktok.com/@alogyengenharia" class="tiktok" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
   </div>
-
   <div class="fab-wrap" aria-label="Ações rápidas">
-    <a class="fab-btn mail" href="mailto:contato@alogy.com.br">
-      <i class="fas fa-envelope"></i> contato@alogy.com.br
-    </a>
-    <a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1!%20Vim%20pelas%20ferramentas%20de%20instrumenta%C3%A7%C3%A3o%20da%20ALOGY.%20Gostaria%20de%20atendimento." target="_blank" rel="noopener">
-      <i class="fab fa-whatsapp"></i> WhatsApp
-    </a>
+    <a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a>
+    <a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1!%20Vim%20pela%20ferramenta%20de%20calibra%C3%A7%C3%A3o%20da%20ALOGY.%20Gostaria%20de%20atendimento." target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a>
   </div>
-
-  
   <main class="container" style="margin-top:18px">
+    <div style="margin-bottom:14px;display:flex;gap:10px;flex-wrap:wrap" class="no-print">
+      <a class="btn secondary" href="ferramentas.html"><i class="fas fa-arrow-left"></i> Voltar para Ferramentas</a>
+      <button class="btn secondary" type="button" onclick="window.print()"><i class="fas fa-print"></i> Imprimir</button>
+      <a class="btn secondary" href="blog-calibracao-instrumentos-industriais.html"><i class="fas fa-book-open"></i> Artigo sobre calibração</a>
+    </div>
+
     <section class="tools-hero">
-      <h1>Calculadora de Erro de Calibração</h1>
-      <p>Calcule erro absoluto, erro percentual, correção e avaliação matemática por tolerância para instrumentos industriais.</p>
-      <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap">
-        <a class="btn secondary" href="ferramentas.html"><i class="fas fa-arrow-left"></i> Voltar para Ferramentas</a>
-        <a class="btn secondary" href="blog-calibracao-instrumentos-industriais.html"><i class="fas fa-book-open"></i> Artigo sobre calibração</a>
+      <h1>Calculadora de Calibração de Instrumentos</h1>
+      <p>Monte os pontos que deseja calibrar, informe o valor de referência, a indicação do instrumento e o erro máximo permitido (EMP). A ferramenta calcula erro, correção, limite e status matemático por ponto.</p>
+    </section>
+
+    <section class="calc-layout">
+      <div class="calc-card">
+        <h2><i class="fas fa-clipboard-check"></i> Dados da calibração</h2>
+        <p>Identifique o instrumento e defina o critério de aceitação usado nos pontos de calibração.</p>
+        <div class="calc-grid">
+          <div class="field full"><label for="cal_nome">Nome, TAG ou instrumento calibrado</label><input id="cal_nome" type="text" value="Transmissor de temperatura TT-101" placeholder="Ex.: TT-101, transmissor de pressão, balança, indicador..." /></div>
+          <div class="field"><label for="cal_unidade">Unidade</label><input id="cal_unidade" type="text" value="°C" placeholder="°C, bar, kg, %, L/h..." /></div>
+          <div class="field"><label for="cal_tol_tipo">Tipo de EMP / tolerância</label><select id="cal_tol_tipo"><option value="abs">± valor absoluto</option><option value="pct_ponto">± % do ponto de referência</option><option value="pct_span">± % do span / fundo de escala</option><option value="none">Sem aprovação/reprovação</option></select></div>
+          <div class="field"><label for="cal_tol">Erro máximo permitido (EMP)</label><input id="cal_tol" type="number" step="any" value="2" /></div>
+          <div class="field"><label for="cal_lrv">LRV / faixa mínima</label><input id="cal_lrv" type="number" step="any" value="0" /></div>
+          <div class="field"><label for="cal_urv">URV / faixa máxima</label><input id="cal_urv" type="number" step="any" value="200" /></div>
+        </div>
+        <div class="calc-note" id="cal_nota">Use EMP em valor absoluto, % do ponto ou % do span conforme o critério do processo/procedimento.</div>
+        <div class="calc-actions">
+          <button class="mini-btn dark" type="button" onclick="gerarPontosPadrao()"><i class="fas fa-list-check"></i> Gerar 0-25-50-75-100%</button>
+          <button class="mini-btn" type="button" onclick="adicionarPonto()"><i class="fas fa-plus"></i> Adicionar ponto</button>
+          <button class="mini-btn" type="button" onclick="limparPontos()"><i class="fas fa-eraser"></i> Limpar pontos</button>
+        </div>
+      </div>
+
+      <div class="calc-card">
+        <h2><i class="fas fa-square-poll-vertical"></i> Resumo</h2>
+        <div class="calc-result" style="grid-template-columns:1fr 1fr">
+          <div class="result-box"><span>Instrumento</span><strong id="cal_res_nome">-</strong></div>
+          <div class="result-box"><span>Status geral</span><strong id="cal_status_geral">-</strong></div>
+          <div class="result-box"><span>Maior erro absoluto</span><strong id="cal_maior_erro">-</strong></div>
+          <div class="result-box"><span>Pontos avaliados</span><strong id="cal_pontos_resumo">-</strong></div>
+        </div>
+        <div class="calc-note warn">Resultado auxiliar. A aprovação final deve considerar procedimento, incerteza, rastreabilidade, resolução, condições de medição e critério formal de aceitação.</div>
+        <div class="calc-actions no-print">
+          <button class="mini-btn dark" type="button" onclick="copiarCalibracao()"><i class="fas fa-copy"></i> Copiar resultado</button>
+          <button class="mini-btn" type="button" onclick="window.print()"><i class="fas fa-print"></i> Imprimir</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="calc-card">
+      <h2>Pontos de calibração</h2>
+      <p>Insira os pontos que deseja verificar. Cada linha calcula erro, correção, limite permitido e status matemático.</p>
+      <div class="calc-table-wrap">
+        <table class="calc-table" aria-label="Tabela de pontos de calibração">
+          <thead><tr><th>Ponto</th><th>Referência</th><th>Indicação</th><th>Erro</th><th>Correção</th><th>Limite / EMP</th><th>Status</th><th class="no-print">Ação</th></tr></thead>
+          <tbody id="cal_tbody"></tbody>
+        </table>
       </div>
     </section>
 
     <section class="calc-layout">
       <div class="calc-card">
-        <h2><i class="fas fa-check-double"></i> Dados da verificação</h2>
-        <p>Informe o valor de referência aplicado pelo padrão e a indicação do instrumento em teste.</p>
-        <div class="calc-grid">
-          <div class="field">
-            <label for="c_ref">Valor de referência / padrão</label>
-            <input id="c_ref" type="number" step="any" value="100" />
-          </div>
-          <div class="field">
-            <label for="c_ind">Valor indicado pelo instrumento</label>
-            <input id="c_ind" type="number" step="any" value="101.5" />
-          </div>
-          <div class="field">
-            <label for="c_unidade">Unidade</label>
-            <input id="c_unidade" type="text" value="°C" placeholder="°C, bar, %, kg, L/h..." />
-          </div>
-          <div class="field">
-            <label for="c_tol_tipo">Critério de tolerância</label>
-            <select id="c_tol_tipo">
-              <option value="abs">± valor absoluto</option>
-              <option value="pct_ponto">± % do ponto de referência</option>
-              <option value="pct_span">± % do span / fundo de escala</option>
-              <option value="none">Sem avaliação</option>
-            </select>
-          </div>
-          <div class="field">
-            <label for="c_tol">Tolerância permitida</label>
-            <input id="c_tol" type="number" step="any" value="2" />
-          </div>
-          <div class="field">
-            <label for="c_lrv">LRV / faixa mínima</label>
-            <input id="c_lrv" type="number" step="any" value="0" />
-          </div>
-          <div class="field">
-            <label for="c_urv">URV / faixa máxima</label>
-            <input id="c_urv" type="number" step="any" value="200" />
-          </div>
-        </div>
-        <div class="calc-note" id="c_nota">A avaliação considera o erro matemático em relação ao critério escolhido.</div>
-        <div class="form-actions calc-actions">
-          <button class="btn" type="button" onclick="copiarCalibracao()"><i class="fas fa-copy"></i> Copiar resultado</button>
-          <button class="btn secondary" type="button" onclick="limparCalibracao()"><i class="fas fa-eraser"></i> Limpar</button>
-        </div>
+        <h2>Fórmulas usadas</h2>
+        <div class="formula-box">Erro = Indicação - Referência<br/>Correção = Referência - Indicação<br/>Erro % do ponto = (Erro / Referência) × 100<br/>EMP por % do span = (|URV - LRV| × EMP%) / 100</div>
       </div>
-
-      <div class="calc-card">
-        <h2><i class="fas fa-square-poll-vertical"></i> Resultado</h2>
-        <div class="calc-result" style="grid-template-columns:1fr 1fr">
-          <div class="result-box"><span>Erro absoluto</span><strong id="r_erro">-</strong></div>
-          <div class="result-box"><span>Erro % do ponto</span><strong id="r_pct_ponto">-</strong></div>
-          <div class="result-box"><span>Erro % do span</span><strong id="r_pct_span">-</strong></div>
-          <div class="result-box"><span>Correção</span><strong id="r_correcao">-</strong></div>
-          <div class="result-box"><span>Limite permitido</span><strong id="r_limite">-</strong></div>
-          <div class="result-box"><span>Status matemático</span><strong id="r_status">-</strong></div>
-        </div>
-        <h3 style="margin-top:18px">Exemplos rápidos</h3>
-        <div class="tags">
-          <button class="tag" type="button" onclick="exemploCal(100,101.5,'°C','abs',2,0,200)">100 °C / 101,5 °C / ±2 °C</button>
-          <button class="tag" type="button" onclick="exemploCal(10,9.8,'bar','pct_ponto',3,0,16)">10 bar / 9,8 bar / ±3% ponto</button>
-          <button class="tag" type="button" onclick="exemploCal(100,103,'°C','pct_ponto',2,0,200)">100 °C / 103 °C / ±2% ponto</button>
-          <button class="tag" type="button" onclick="exemploCal(50,51.5,'°C','pct_span',1,0,200)">0-200 °C / ±1% span</button>
-        </div>
+      <div class="calc-card faq">
+        <h2>Perguntas frequentes</h2>
+        <details><summary>O que é EMP?</summary><p>EMP é o erro máximo permitido. É o limite de erro aceito para aquele instrumento, ponto ou processo.</p></details>
+        <details><summary>Posso usar vários pontos?</summary><p>Sim. Adicione os pontos desejados ou gere automaticamente 0%, 25%, 50%, 75% e 100% da faixa.</p></details>
+        <details><summary>Essa ferramenta substitui certificado?</summary><p>Não. Ela auxilia no cálculo matemático. Certificado e decisão final dependem de procedimento, padrões rastreados, incerteza e responsável técnico.</p></details>
       </div>
     </section>
 
-    <section class="calc-card">
-      <h2>Pontos de referência por faixa</h2>
-      <p>Use esta tabela como apoio para organizar verificações em 0%, 25%, 50%, 75% e 100% da escala.</p>
-      <div class="calc-table-wrap"><table class="calc-table"><thead><tr><th>Ponto</th><th>Valor de referência</th></tr></thead><tbody id="pontos_cal"></tbody></table></div>
-    </section>
-
-    <section class="calc-card">
-      <h2>Fórmulas usadas</h2>
-      <div class="formula-box">Erro = Valor indicado - Valor de referência
-
-Correção = Valor de referência - Valor indicado
-
-Erro % do ponto = (Erro / Valor de referência) × 100
-
-Erro % do span = (Erro / (URV - LRV)) × 100
-
-Critério de aprovação: |Erro| ≤ Limite permitido</div>
-      <div class="calc-note warn">Esta calculadora é uma ferramenta auxiliar. Uma decisão formal de conformidade deve considerar procedimento interno, incerteza de medição, rastreabilidade, resolução, critério de aceitação e requisitos do processo.</div>
-    </section>
-
-    <section class="calc-card">
-      <h2>FAQ — Erro de calibração</h2>
-      <h3>O que é erro de calibração?</h3><p>É a diferença entre a indicação do instrumento em teste e o valor de referência aplicado pelo padrão.</p>
-      <h3>Qual é a diferença entre erro e correção?</h3><p>O erro indica quanto o instrumento desviou. A correção tem sinal oposto e indica quanto seria necessário corrigir a indicação para chegar ao valor de referência.</p>
-      <h3>O que significa tolerância em % do span?</h3><p>Significa que o limite permitido é calculado sobre a amplitude da faixa do instrumento, ou seja, URV menos LRV.</p>
-      <h3>Essa ferramenta substitui certificado de calibração?</h3><p>Não. Ela auxilia nos cálculos, mas não substitui procedimento, certificado, rastreabilidade e avaliação metrológica completa.</p>
-    </section>
-
-
-    <section class="calc-card no-print">
-      <h2>Outras ferramentas técnicas</h2>
-      <div class="tags">
-        <a class="tag" href="calculadora-temperatura-industrial.html">Temperatura Industrial</a>
-        <a class="tag" href="calculadora-raiz-quadrada-4-20ma.html">Raiz Quadrada 4-20 mA</a>
-        <a class="tag" href="calculadora-dimensionamento-cabos.html">Dimensionamento de Cabos</a>
-      </div>
-    </section>
-
-    <section class="cta-bar">
-      <div><strong>Precisa de apoio em calibração, teste de loop ou avaliação de instrumentos?</strong><br><span class="muted">A ALOGY Engenharia pode apoiar na análise técnica, documentação e validação de sinais industriais.</span></div>
-      <div class="cta-actions"><a class="btn" href="https://wa.me/5519981442448?text=Ol%C3%A1!%20Usei%20a%20calculadora%20de%20erro%20de%20calibra%C3%A7%C3%A3o%20da%20ALOGY%20e%20gostaria%20de%20atendimento." target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> Falar no WhatsApp</a></div>
-    </section>
-
-    <script>
-      function n(id){ return parseFloat(document.getElementById(id).value); }
-      function s(id){ return document.getElementById(id).value.trim(); }
-      function fmt(n, d=4){ if(!isFinite(n)) return '-'; return Number(n).toLocaleString('pt-BR',{maximumFractionDigits:d, minimumFractionDigits:0}); }
-      function calcCalibracao(){
-        const ref=n('c_ref'), ind=n('c_ind'), unidade=s('c_unidade')||'';
-        const tipo=s('c_tol_tipo'), tol=n('c_tol'), lrv=n('c_lrv'), urv=n('c_urv');
+    <section class="cta-bar no-print"><div><strong>Precisa validar calibração, teste de loop ou documentação técnica?</strong><br/><span class="muted">A ALOGY Engenharia pode apoiar em diagnóstico, calibração, comissionamento e validação de instrumentos industriais.</span></div><div class="cta-actions"><a class="btn" href="https://wa.me/5519981442448?text=Ol%C3%A1!%20Vim%20pela%20ferramenta%20de%20calibra%C3%A7%C3%A3o%20da%20ALOGY.%20Gostaria%20de%20atendimento." target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> Falar no WhatsApp</a></div></section>
+  </main>
+  <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p></footer>
+  <script>
+    const fmtCal = (n,d=3) => Number(n).toLocaleString('pt-BR',{minimumFractionDigits:d,maximumFractionDigits:d});
+    function el(id){ return document.getElementById(id); }
+    function spanAbs(){ return Math.abs((Number(el('cal_urv').value)||0) - (Number(el('cal_lrv').value)||0)); }
+    function limitePara(ref){
+      const tipo = el('cal_tol_tipo').value;
+      const tol = Math.abs(Number(el('cal_tol').value)||0);
+      if(tipo === 'none') return NaN;
+      if(tipo === 'abs') return tol;
+      if(tipo === 'pct_ponto') return Math.abs(ref) * tol / 100;
+      return spanAbs() * tol / 100;
+    }
+    function labelLimite(ref){
+      const tipo = el('cal_tol_tipo').value;
+      if(tipo === 'none') return 'Sem avaliação';
+      const unidade = el('cal_unidade').value || '';
+      const lim = limitePara(ref);
+      return '± ' + fmtCal(lim,3) + ' ' + unidade;
+    }
+    function rowTemplate(ref='', ind=''){
+      return `<tr>
+        <td><input type="text" class="ponto-label" value="" placeholder="Ex.: 0%, 25%, ponto 1" oninput="calcularCalibracao()"></td>
+        <td><input type="number" step="any" class="ponto-ref" value="${ref}" oninput="calcularCalibracao()"></td>
+        <td><input type="number" step="any" class="ponto-ind" value="${ind}" oninput="calcularCalibracao()"></td>
+        <td class="num ponto-erro">-</td>
+        <td class="num ponto-correcao">-</td>
+        <td class="num ponto-limite">-</td>
+        <td class="ponto-status">-</td>
+        <td class="no-print"><button class="row-btn" type="button" onclick="removerLinha(this)">Remover</button></td>
+      </tr>`;
+    }
+    function adicionarPonto(ref='', ind=''){
+      el('cal_tbody').insertAdjacentHTML('beforeend', rowTemplate(ref, ind));
+      calcularCalibracao();
+      enhanceResponsiveToolTables?.();
+    }
+    function removerLinha(btn){ btn.closest('tr').remove(); calcularCalibracao(); }
+    function limparPontos(){ el('cal_tbody').innerHTML=''; adicionarPonto(); }
+    function gerarPontosPadrao(){
+      const lrv = Number(el('cal_lrv').value)||0;
+      const urv = Number(el('cal_urv').value)||0;
+      const pts = [0,25,50,75,100];
+      el('cal_tbody').innerHTML = '';
+      pts.forEach(p => {
+        const ref = lrv + (p/100)*(urv-lrv);
+        adicionarPonto(fmtCal(ref,3).replace(/\./g,'').replace(',', '.'));
+        const last = el('cal_tbody').lastElementChild;
+        if(last) last.querySelector('.ponto-label').value = p + '%';
+      });
+      calcularCalibracao();
+    }
+    function exemploInicial(){
+      el('cal_tbody').innerHTML = '';
+      [[0,0],[50,50.8],[100,101.5],[150,149.2],[200,201.6]].forEach((p,i)=>{
+        adicionarPonto(p[0],p[1]);
+        const last = el('cal_tbody').lastElementChild;
+        if(last) last.querySelector('.ponto-label').value = [0,25,50,75,100][i] + '%';
+      });
+    }
+    function calcularCalibracao(){
+      const unidade = el('cal_unidade').value || '';
+      const rows = Array.from(el('cal_tbody').querySelectorAll('tr'));
+      let avaliados=0, aprov=0, repro=0, maior=0;
+      rows.forEach((tr,idx)=>{
+        const ref = Number(tr.querySelector('.ponto-ref').value);
+        const ind = Number(tr.querySelector('.ponto-ind').value);
+        const label = tr.querySelector('.ponto-label');
+        if(!label.value.trim()) label.placeholder = 'Ponto ' + (idx+1);
+        const oknum = Number.isFinite(ref) && Number.isFinite(ind);
+        if(!oknum) return;
         const erro = ind - ref;
         const correcao = ref - ind;
-        const span = urv - lrv;
-        const pctPonto = ref !== 0 ? (erro/ref)*100 : NaN;
-        const pctSpan = span !== 0 ? (erro/span)*100 : NaN;
-        let limite = NaN, limiteTxt='Sem avaliação', status='-';
-        if(tipo !== 'none'){
-          if(tipo === 'abs') limite = Math.abs(tol);
-          if(tipo === 'pct_ponto') limite = Math.abs(ref * tol / 100);
-          if(tipo === 'pct_span') limite = Math.abs(span * tol / 100);
-          limiteTxt = isFinite(limite) ? `±${fmt(limite)} ${unidade}` : 'Informe dados válidos';
-          status = isFinite(limite) ? (Math.abs(erro) <= limite ? 'Aprovado' : 'Reprovado') : 'Atenção';
+        const lim = limitePara(ref);
+        let status = 'Sem avaliação', cls='warn';
+        if(!Number.isNaN(lim)){
+          const ok = Math.abs(erro) <= lim + 1e-12;
+          status = ok ? 'Aprovado' : 'Reprovado';
+          cls = ok ? 'good' : 'danger';
+          if(ok) aprov++; else repro++;
+          avaliados++;
+        } else {
+          avaliados++;
         }
-        document.getElementById('r_erro').textContent = `${erro>=0?'+':''}${fmt(erro)} ${unidade}`;
-        document.getElementById('r_pct_ponto').textContent = isFinite(pctPonto) ? `${pctPonto>=0?'+':''}${fmt(pctPonto)}%` : 'N/A';
-        document.getElementById('r_pct_span').textContent = isFinite(pctSpan) ? `${pctSpan>=0?'+':''}${fmt(pctSpan)}%` : 'N/A';
-        document.getElementById('r_correcao').textContent = `${correcao>=0?'+':''}${fmt(correcao)} ${unidade}`;
-        document.getElementById('r_limite').textContent = limiteTxt;
-        document.getElementById('r_status').textContent = status;
-        const nota = document.getElementById('c_nota');
-        nota.classList.toggle('warn', status === 'Reprovado' || status === 'Atenção');
-        nota.textContent = status === 'Aprovado' ? 'Resultado dentro do limite informado.' : status === 'Reprovado' ? 'Resultado fora do limite informado. Verifique o critério de aceitação.' : 'Resultado calculado sem avaliação de tolerância.';
-        atualizarPontos();
+        maior = Math.max(maior, Math.abs(erro));
+        tr.querySelector('.ponto-erro').textContent = (erro>=0?'+':'') + fmtCal(erro,3) + ' ' + unidade;
+        tr.querySelector('.ponto-correcao').textContent = (correcao>=0?'+':'') + fmtCal(correcao,3) + ' ' + unidade;
+        tr.querySelector('.ponto-limite').textContent = labelLimite(ref);
+        const st = tr.querySelector('.ponto-status');
+        st.textContent = status;
+        st.className = 'ponto-status ' + cls;
+      });
+      el('cal_res_nome').textContent = el('cal_nome').value || '-';
+      el('cal_maior_erro').textContent = fmtCal(maior,3) + ' ' + unidade;
+      el('cal_pontos_resumo').textContent = avaliados + ' ponto(s)';
+      const statusG = el('cal_status_geral');
+      statusG.parentElement.classList.remove('status-approved','status-failed');
+      if(el('cal_tol_tipo').value === 'none'){
+        statusG.textContent = 'Sem avaliação';
+      } else if(repro > 0){
+        statusG.textContent = 'Reprovado (' + repro + ')';
+        statusG.parentElement.classList.add('status-failed');
+      } else if(avaliados > 0){
+        statusG.textContent = 'Aprovado';
+        statusG.parentElement.classList.add('status-approved');
+      } else {
+        statusG.textContent = '-';
       }
-      function atualizarPontos(){
-        const lrv=n('c_lrv'), urv=n('c_urv'), unidade=s('c_unidade')||'';
-        const pts=[0,25,50,75,100];
-        document.getElementById('pontos_cal').innerHTML = pts.map(p=>{
-          const val = lrv + (p/100)*(urv-lrv);
-          return `<tr><td>${p}%</td><td>${fmt(val)} ${unidade}</td></tr>`;
-        }).join('');
-      }
-      function copiarCalibracao(){
-        const txt = `Calculadora de Erro de Calibração - ALOGY Engenharia\nReferência: ${s('c_ref')} ${s('c_unidade')}\nIndicação: ${s('c_ind')} ${s('c_unidade')}\nErro: ${document.getElementById('r_erro').textContent}\nErro % ponto: ${document.getElementById('r_pct_ponto').textContent}\nErro % span: ${document.getElementById('r_pct_span').textContent}\nCorreção: ${document.getElementById('r_correcao').textContent}\nLimite: ${document.getElementById('r_limite').textContent}\nStatus: ${document.getElementById('r_status').textContent}`;
-        navigator.clipboard?.writeText(txt);
-        alert('Resultado copiado.');
-      }
-      function limparCalibracao(){ ['c_ref','c_ind','c_unidade','c_tol','c_lrv','c_urv'].forEach(id=>document.getElementById(id).value=''); calcCalibracao(); }
-      function exemploCal(ref,ind,un,tipo,tol,lrv,urv){
-        document.getElementById('c_ref').value=ref; document.getElementById('c_ind').value=ind; document.getElementById('c_unidade').value=un; document.getElementById('c_tol_tipo').value=tipo; document.getElementById('c_tol').value=tol; document.getElementById('c_lrv').value=lrv; document.getElementById('c_urv').value=urv; calcCalibracao();
-      }
-      document.addEventListener('DOMContentLoaded',()=>{ ['c_ref','c_ind','c_unidade','c_tol_tipo','c_tol','c_lrv','c_urv'].forEach(id=>document.getElementById(id).addEventListener('input', calcCalibracao)); document.getElementById('c_tol_tipo').addEventListener('change', calcCalibracao); calcCalibracao(); });
-    </script>
-  </main>
-  <footer>
-    <p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p>
-  </footer>
+      const tipo = el('cal_tol_tipo').options[el('cal_tol_tipo').selectedIndex].text;
+      el('cal_nota').textContent = 'Critério: ' + tipo + ' | EMP informado: ' + el('cal_tol').value + ' | Span: ' + fmtCal(spanAbs(),3) + ' ' + unidade;
+      enhanceResponsiveToolTables?.();
+    }
+    function copiarCalibracao(){
+      const linhas = Array.from(el('cal_tbody').querySelectorAll('tr')).map((tr,i)=>{
+        const lab = tr.querySelector('.ponto-label').value || ('Ponto ' + (i+1));
+        return `${lab} | Ref.: ${tr.querySelector('.ponto-ref').value} | Ind.: ${tr.querySelector('.ponto-ind').value} | Erro: ${tr.querySelector('.ponto-erro').textContent} | Status: ${tr.querySelector('.ponto-status').textContent}`;
+      }).join('\n');
+      const txt = `Calibração de Instrumentos - ALOGY
+Instrumento: ${el('cal_nome').value}
+Status geral: ${el('cal_status_geral').textContent}
+Maior erro: ${el('cal_maior_erro').textContent}
+
+${linhas}`;
+      navigator.clipboard?.writeText(txt);
+    }
+    ['cal_nome','cal_unidade','cal_tol_tipo','cal_tol','cal_lrv','cal_urv'].forEach(id=>el(id).addEventListener('input',calcularCalibracao));
+    exemploInicial();
+    calcularCalibracao();
+  </script>
 </body>
 </html>

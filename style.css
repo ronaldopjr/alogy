@@ -11,7 +11,7 @@
   --radius:16px;
   --shadow: 0 10px 25px rgba(0,0,0,.08);
 
-  --banner-h: 520px;
+  --banner-h: 420px;
   --banner-radius: 18px;
 
   /* reserva da barra social (aproximar banner/valores dela) */
@@ -251,10 +251,13 @@ nav.mobile.show{display:flex}
 
 .banner-fullwidth{
   width:100%;
-  padding-left: var(--left-gutter) !important;
-  padding-right: calc(18px + var(--social-safe)) !important;
-  padding-top: 18px !important;
-  padding-bottom: 10px !important;
+  max-width:1180px;
+  margin-left:auto;
+  margin-right:auto;
+  padding-left:18px !important;
+  padding-right:18px !important;
+  padding-top:18px !important;
+  padding-bottom:10px !important;
 }
 
 .banner{
@@ -703,6 +706,13 @@ footer{
   border:0;
 }
 
+
+@media (max-width: 1024px) and (min-width: 769px){
+  .banner{height:380px;}
+  .banner-title{font-size:1.75rem;}
+  .banner-desc{font-size:.96rem;}
+}
+
 /* =========================
    MOBILE
    ========================= */
@@ -746,7 +756,7 @@ footer{
   }
 
   .banner{
-    height:460px;
+    height:330px;
     --card-w: min(360px, calc(100% - 40px));
     --arrow-w: 44px;
     --arrow-gap: 6px;
@@ -1025,7 +1035,7 @@ body.tools-page input:focus, body.tools-page textarea:focus, body.tools-page sel
   .calc-table thead{display:none}
   .calc-table tbody,.calc-table tr,.calc-table td{display:block;width:100%}
   .calc-table tr{background:#fff;border:1px solid rgba(15,118,110,.16);border-radius:14px;margin:0 0 10px;overflow:hidden;box-shadow:0 8px 18px rgba(15,23,42,.06)}
-  .calc-table td{display:grid;grid-template-columns:minmax(112px,42%) minmax(0,1fr);gap:10px;border-bottom:1px solid rgba(15,118,110,.10);padding:10px 12px;text-align:right;white-space:normal;overflow-wrap:anywhere}
+  .calc-table td{display:grid;grid-template-columns:minmax(118px,40%) minmax(0,1fr);gap:10px;border-bottom:1px solid rgba(15,118,110,.10);padding:10px 12px;text-align:right;white-space:normal;overflow-wrap:anywhere}
   .calc-table td:last-child{border-bottom:0}
   .calc-table td::before{content:attr(data-label);font-weight:900;color:#0f4f48;text-align:left}
   .calc-table .num,.calc-table td.num{text-align:right;white-space:normal}
@@ -1045,3 +1055,31 @@ body.tools-page input:focus, body.tools-page textarea:focus, body.tools-page sel
 .table-caption{display:flex;gap:8px;flex-wrap:wrap;align-items:center;justify-content:space-between;margin:10px 0 8px;color:#596579;font-weight:800;font-size:.92rem}
 .calc-table td.good{color:#166534;font-weight:900}.calc-table td.warn{color:#92400e;font-weight:900}.calc-table td.danger{color:#991b1b;font-weight:900}
 @media(max-width:720px){.color-chip{justify-content:flex-end;text-align:right}.calc-table td::before{align-self:center}.table-caption{display:block}.table-caption span{display:block;margin-top:4px}}
+
+
+/* Ajustes adicionais de impressão e calibração */
+.print-title{display:none;}
+.point-actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center;}
+.row-btn{border:1px solid rgba(15,118,110,.22);background:#fff;color:#0f766e;border-radius:10px;padding:7px 10px;font-weight:900;cursor:pointer;}
+.row-btn:hover{background:rgba(20,184,166,.08)}
+.result-box.status-approved{background:rgba(34,197,94,.10);border-color:rgba(34,197,94,.30)}
+.result-box.status-failed{background:rgba(239,68,68,.10);border-color:rgba(239,68,68,.30)}
+@media(max-width:720px){
+  .point-actions{justify-content:flex-end;}
+  .row-btn{width:100%;}
+}
+@media print{
+  .print-title{display:block;margin:0 0 12px;color:#111;}
+  body.tools-page{background:#fff!important;color:#111;}
+  body.tools-page main.container{max-width:100%!important;padding:0!important;}
+  .tools-hero{background:#fff!important;color:#111!important;box-shadow:none!important;border:1px solid #ddd!important;padding:18px!important;}
+  .tools-hero::after{display:none!important;}
+  .calc-card{break-inside:avoid;box-shadow:none!important;border:1px solid #ddd!important;background:#fff!important;}
+  .calc-table{border-collapse:collapse!important;border-radius:0!important;table-layout:auto!important;}
+  .calc-table thead{display:table-header-group!important;}
+  .calc-table tbody{display:table-row-group!important;}
+  .calc-table tr{display:table-row!important;box-shadow:none!important;border:0!important;margin:0!important;}
+  .calc-table th,.calc-table td{display:table-cell!important;border:1px solid #ddd!important;padding:6px 8px!important;text-align:left!important;}
+  .calc-table td::before{display:none!important;content:none!important;}
+  .calc-table .num,.calc-table td.num{text-align:right!important;}
+}
