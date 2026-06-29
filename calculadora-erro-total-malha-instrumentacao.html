@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calculadora de Erro Total de Malha | ALOGY Engenharia</title>
+  <meta name="description" content="Calcule erro total de malha de instrumentação por RSS ou soma conservadora, com sensor, transmissor, CLP, indicador e tolerância." />
+  <meta name="robots" content="index,follow" />
+  <meta name="theme-color" content="#004b80" />
+  <link rel="canonical" href="https://www.alogy.com.br/calculadora-erro-total-malha-instrumentacao.html" />
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png" />
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="app.js" defer></script>
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ALOGY Engenharia" />
+  <meta property="og:title" content="Calculadora de Erro Total de Malha" />
+  <meta property="og:description" content="Some erros de sensor, transmissor, cartão analógico, indicador e referência para estimar erro total da malha." />
+  <meta property="og:url" content="https://www.alogy.com.br/calculadora-erro-total-malha-instrumentacao.html" />
+  <meta property="og:image" content="https://www.alogy.com.br/favicon-512x512.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebApplication","name":"Calculadora de Erro Total de Malha","url":"https://www.alogy.com.br/calculadora-erro-total-malha-instrumentacao.html","applicationCategory":"EngineeringApplication","operatingSystem":"Web","description":"Ferramenta auxiliar para estimar erro total de malha de instrumentação por RSS e soma conservadora, considerando componentes como sensor, transmissor, cartão analógico e indicador.","publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"}}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"O que é erro total de malha de instrumentação?","acceptedAnswer":{"@type":"Answer","text":"É uma estimativa do erro acumulado entre os componentes da medição, como sensor, transmissor, conversor, cartão analógico, indicador, supervisório e referência de calibração."}},{"@type":"Question","name":"Qual a diferença entre RSS e soma absoluta?","acceptedAnswer":{"@type":"Answer","text":"RSS combina os erros pela raiz da soma dos quadrados e costuma representar melhor erros independentes. Soma absoluta é mais conservadora, pois considera todos os erros no mesmo sentido."}},{"@type":"Question","name":"A calculadora substitui certificado de calibração?","acceptedAnswer":{"@type":"Answer","text":"Não. Ela é orientativa e serve para análise preliminar. Certificados, incertezas, procedimentos e critérios metrológicos devem ser avaliados conforme o sistema de qualidade aplicável."}},{"@type":"Question","name":"Posso usar para avaliar tolerância de processo?","acceptedAnswer":{"@type":"Answer","text":"Sim, como triagem inicial. Para decisão formal, confirme tolerância do processo, erro máximo permitido, incerteza de medição, criticidade e requisitos internos."}}]}
+  </script>
+  <style>
+    .small-muted{color:var(--muted);font-size:.92rem;line-height:1.55}.component-row{display:grid;grid-template-columns:1.1fr .75fr .6fr;gap:10px;align-items:end;margin-top:10px}.component-row .field{min-width:0}.method-pill{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:8px 11px;font-weight:900;background:rgba(0,107,177,.08);border:1px solid rgba(0,107,177,.18);color:#0b3a62;font-size:.9rem}.faq details{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:14px;padding:14px;margin-top:10px;box-shadow:0 6px 16px rgba(0,0,0,.04)}.faq summary{cursor:pointer;font-weight:900;color:#0b3a62}.faq p{margin:10px 0 0;color:var(--muted)}@media(max-width:900px){.component-row{grid-template-columns:1fr}.calc-actions .mini-btn{width:100%;justify-content:center}}@media print{header,.social-floating,.fab-wrap,.cta-bar,footer,.calc-actions,.tools-hero .btn,.no-print{display:none!important}body{background:#fff}.container{max-width:100%;padding:0}.calc-card,.tools-hero{box-shadow:none;border:1px solid #ddd}.calc-layout{display:block}.calc-card{margin:12px 0}.calc-table th{background:#eee!important;color:#111!important}}
+  </style>
+  <!-- Google AdSense - verificação de propriedade -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5586837114309500"
+     crossorigin="anonymous"></script>
+</head>
+<body class="tools-page">
+  <header>
+    <div class="container headbar"><a href="/" class="logo-wrapper" aria-label="Voltar para o início"><img src="logo-alogy.webp" alt="ALOGY Engenharia" /></a><div class="crea-top" aria-label="CREA-SP"><img src="crea.webp" alt="CREA-SP"></div><button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menu"><i class="fas fa-bars"></i></button></div>
+    <nav class="desktop" aria-label="Menu principal"><div class="container navlinks"><a href="index.html">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="index.html#contato">Contato</a></div></nav>
+    <nav class="mobile" aria-label="Menu mobile"><a href="index.html">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="index.html#contato">Contato</a></nav>
+  </header>
+  <div class="social-floating" aria-label="Redes sociais"><a href="https://www.linkedin.com/company/alogyengenharia" class="linkedin" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a><a href="https://www.instagram.com/alogyengenharia" class="instagram" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="https://www.facebook.com/alogyengenharia" class="facebook" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><a href="https://www.youtube.com/@alogyengenharia" class="youtube" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a><a href="https://hotmart.com/pt-br/club/alogyengenharia" class="hotmart" target="_blank" rel="noopener" aria-label="Hotmart">H</a><a href="https://www.tiktok.com/@alogyengenharia" class="tiktok" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a></div>
+  <div class="fab-wrap" aria-label="Ações rápidas"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1!%20Vim%20pela%20calculadora%20de%20erro%20total%20de%20malha%20da%20ALOGY.%20Gostaria%20de%20atendimento." target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
+
+  <main class="container" style="margin-top:18px">
+    <div style="margin-bottom:14px;display:flex;gap:10px;flex-wrap:wrap" class="no-print">
+      <a class="floating-back-tools no-print" href="ferramentas.html"><i class="fas fa-arrow-left"></i> Voltar para Ferramentas</a>
+      <button class="btn print" type="button" onclick="window.print()"><i class="fas fa-print"></i> Imprimir</button>
+      <a class="btn secondary" href="calculadora-erro-calibracao.html"><i class="fas fa-clipboard-check"></i> Calibração</a>
+      <a class="btn secondary" href="calculadora-incerteza-calibracao.html"><i class="fas fa-chart-simple"></i> Incerteza</a>
+    </div>
+
+    <section class="tools-hero">
+      <h1>Calculadora de Erro Total de Malha</h1>
+      <p>Estime o erro total de uma malha de instrumentação considerando sensor, transmissor, cartão analógico, indicador, supervisório, referência e outros componentes. Compare o resultado com a tolerância do processo.</p>
+    </section>
+
+    <section class="calc-card" aria-label="Aviso de uso">
+      <h2><i class="fas fa-triangle-exclamation"></i> Ferramenta orientativa</h2>
+      <p>Esta calculadora é apoio técnico para estudo e triagem. Ela não substitui certificado de calibração, análise de incerteza formal, procedimento interno, requisitos de qualidade, avaliação de criticidade ou validação por profissional habilitado.</p>
+    </section>
+
+    <section class="calc-layout">
+      <div class="calc-card">
+        <h2><i class="fas fa-ruler-combined"></i> Dados da malha</h2>
+        <p>Informe a faixa de engenharia, o ponto de operação e a tolerância máxima aceita no processo.</p>
+        <div class="calc-grid">
+          <div class="field full"><label for="tag">TAG ou descrição</label><input id="tag" type="text" value="TT-101 - Malha de temperatura" /></div>
+          <div class="field"><label for="lrv">LRV / início da faixa</label><input id="lrv" type="number" step="any" value="0"></div>
+          <div class="field"><label for="urv">URV / fim da faixa</label><input id="urv" type="number" step="any" value="200"></div>
+          <div class="field"><label for="unid">Unidade</label><input id="unid" type="text" value="°C" /></div>
+          <div class="field"><label for="ponto">Ponto avaliado</label><input id="ponto" type="number" step="any" value="100"></div>
+          <div class="field"><label for="casas">Casas decimais</label><select id="casas"><option value="1">1</option><option value="2" selected>2</option><option value="3">3</option></select></div>
+          <div class="field"><label for="tolTipo">Tolerância do processo</label><select id="tolTipo"><option value="abs">± valor absoluto</option><option value="pct_span">± % do span</option><option value="pct_ponto">± % do ponto</option></select></div>
+          <div class="field"><label for="tol">Valor da tolerância</label><input id="tol" type="number" step="any" value="2"></div>
+        </div>
+        <div class="calc-note">Exemplo: se a tolerância do processo é ±2 °C, use tipo “valor absoluto” e valor 2. Se for ±1% do span, use tipo “% do span” e valor 1.</div>
+      </div>
+
+      <div class="calc-card">
+        <h2><i class="fas fa-circle-info"></i> Método de combinação</h2>
+        <p><span class="method-pill">RSS</span> raiz da soma dos quadrados. É útil quando os erros são independentes e não necessariamente atuam todos no mesmo sentido.</p>
+        <p><span class="method-pill">Soma conservadora</span> soma todos os erros absolutos. É mais severa e representa o pior caso matemático.</p>
+        <div class="formula-box">erro RSS = raiz(e1² + e2² + e3² + ...)
+erro conservador = |e1| + |e2| + |e3| + ...</div>
+      </div>
+    </section>
+
+    <section class="calc-card">
+      <h2><i class="fas fa-layer-group"></i> Componentes da malha</h2>
+      <p>Informe a contribuição de cada elemento. Use % do span quando o erro for dado como “% FS”, “% fundo de escala” ou “% da faixa”. Use % do ponto quando a especificação for sobre a leitura. Use valor absoluto quando já estiver na unidade de engenharia.</p>
+      <div id="componentes">
+        <div class="component-row"><div class="field"><label for="n0">Componente</label><input id="n0" value="Sensor / elemento primário"></div><div class="field"><label for="t0">Tipo</label><select id="t0"><option value="pct_span">% do span</option><option value="pct_ponto">% do ponto</option><option value="abs">valor absoluto</option></select></div><div class="field"><label for="v0">Erro ±</label><input id="v0" type="number" step="any" value="0.25"></div></div>
+        <div class="component-row"><div class="field"><label for="n1">Componente</label><input id="n1" value="Transmissor"></div><div class="field"><label for="t1">Tipo</label><select id="t1"><option value="pct_span">% do span</option><option value="pct_ponto">% do ponto</option><option value="abs">valor absoluto</option></select></div><div class="field"><label for="v1">Erro ±</label><input id="v1" type="number" step="any" value="0.10"></div></div>
+        <div class="component-row"><div class="field"><label for="n2">Componente</label><input id="n2" value="Cartão analógico do CLP"></div><div class="field"><label for="t2">Tipo</label><select id="t2"><option value="pct_span">% do span</option><option value="pct_ponto">% do ponto</option><option value="abs">valor absoluto</option></select></div><div class="field"><label for="v2">Erro ±</label><input id="v2" type="number" step="any" value="0.15"></div></div>
+        <div class="component-row"><div class="field"><label for="n3">Componente</label><input id="n3" value="Indicador / supervisório"></div><div class="field"><label for="t3">Tipo</label><select id="t3"><option value="pct_span">% do span</option><option value="pct_ponto">% do ponto</option><option value="abs">valor absoluto</option></select></div><div class="field"><label for="v3">Erro ±</label><input id="v3" type="number" step="any" value="0.10"></div></div>
+        <div class="component-row"><div class="field"><label for="n4">Componente</label><input id="n4" value="Referência de calibração"></div><div class="field"><label for="t4">Tipo</label><select id="t4"><option value="pct_span">% do span</option><option value="pct_ponto">% do ponto</option><option value="abs">valor absoluto</option></select></div><div class="field"><label for="v4">Erro ±</label><input id="v4" type="number" step="any" value="0.05"></div></div>
+        <div class="component-row"><div class="field"><label for="n5">Componente</label><input id="n5" value="Ambiente, cabo ou conversão"></div><div class="field"><label for="t5">Tipo</label><select id="t5"><option value="pct_span">% do span</option><option value="pct_ponto">% do ponto</option><option value="abs">valor absoluto</option></select></div><div class="field"><label for="v5">Erro ±</label><input id="v5" type="number" step="any" value="0.00"></div></div>
+      </div>
+      <div class="calc-actions"><button class="mini-btn dark" type="button" onclick="exemploTemperatura()"><i class="fas fa-temperature-half"></i> Exemplo temperatura</button><button class="mini-btn" type="button" onclick="exemploPressao()"><i class="fas fa-gauge-high"></i> Exemplo pressão</button><button class="mini-btn" type="button" onclick="copiarResultado()"><i class="fas fa-copy"></i> Copiar resultado</button></div>
+    </section>
+
+    <section class="calc-layout">
+      <div class="calc-card">
+        <h2><i class="fas fa-square-poll-vertical"></i> Resultado</h2>
+        <div class="calc-result" style="grid-template-columns:1fr 1fr">
+          <div class="result-box"><span>Span da malha</span><strong id="outSpan">-</strong></div>
+          <div class="result-box"><span>Tolerância no ponto</span><strong id="outTol">-</strong></div>
+          <div class="result-box"><span>Erro total RSS</span><strong id="outRss">-</strong></div>
+          <div class="result-box"><span>Erro conservador</span><strong id="outAbs">-</strong></div>
+          <div class="result-box"><span>RSS em % do span</span><strong id="outRssPct">-</strong></div>
+          <div class="result-box"><span>Status</span><strong id="outStatus">-</strong></div>
+        </div>
+        <div class="calc-note" id="nota">-</div>
+      </div>
+
+      <div class="calc-card">
+        <h2><i class="fas fa-list-check"></i> Contribuições no ponto</h2>
+        <div class="calc-table-wrap"><table class="calc-table"><thead><tr><th>Componente</th><th>Tipo</th><th>Entrada</th><th>Erro convertido</th></tr></thead><tbody id="tblComp"></tbody></table></div>
+      </div>
+    </section>
+
+    <section class="calc-layout">
+      <div class="calc-card"><h2><i class="fas fa-table"></i> Tabela por ponto da faixa</h2><p class="small-muted">A tabela ajuda a enxergar como erros em % do ponto mudam conforme o valor de processo.</p><div class="calc-table-wrap"><table class="calc-table"><thead><tr><th>Ponto</th><th>Valor</th><th>RSS</th><th>Conservador</th><th>Status RSS</th></tr></thead><tbody id="tblPontos"></tbody></table></div></div>
+      <div class="calc-card"><h2><i class="fas fa-lightbulb"></i> Interpretação prática</h2><p><strong>RSS aprovado:</strong> a combinação provável dos erros está dentro da tolerância definida.</p><p><strong>Soma conservadora reprovada:</strong> não significa necessariamente reprovação real, mas indica que o pior caso matemático ultrapassa o limite.</p><p><strong>Erro total próximo da tolerância:</strong> vale revisar classe do instrumento, faixa configurada, incerteza da referência, cartão analógico e necessidade real do processo.</p><div class="calc-note"><strong>Dica:</strong> para avaliação metrológica formal, diferencie erro máximo permitido, incerteza expandida, resolução, repetibilidade e critério de aceitação.</div></div>
+    </section>
+
+    <section class="calc-card faq"><h2><i class="fas fa-circle-question"></i> Perguntas frequentes</h2>
+      <details open><summary>Erro total de malha é igual à incerteza de medição?</summary><p>Não. O erro total aqui é uma estimativa prática de contribuições máximas. Incerteza de medição exige modelo, distribuição, divisor, graus de liberdade, fator de abrangência e rastreabilidade.</p></details>
+      <details><summary>Devo usar RSS ou soma conservadora?</summary><p>Use RSS para uma análise mais realista quando os erros são independentes. Use soma conservadora quando quiser avaliar o pior caso ou quando o procedimento interno exigir abordagem mais severa.</p></details>
+      <details><summary>Posso somar erro do instrumento com erro do processo?</summary><p>O ideal é separar tolerância do processo, erro máximo permitido do instrumento e incerteza da calibração. A ferramenta ajuda a comparar a malha com o limite escolhido, mas o critério deve ser definido tecnicamente.</p></details>
+      <details><summary>Serve para balança, pressão, temperatura, vazão e nível?</summary><p>Sim, desde que os erros sejam convertidos para uma unidade comum da escala avaliada. Para vazão por DP, linearização, densidade e compensações podem exigir análise adicional.</p></details>
+    </section>
+
+    <section class="cta-bar"><h3>Precisa definir tolerância, erro permitido ou critério de calibração?</h3><p>A ALOGY Engenharia pode apoiar em instrumentação, calibração, documentação técnica, comissionamento e análise de malhas industriais.</p><a class="btn" href="https://wa.me/5519981442448?text=Ol%C3%A1!%20Vim%20pela%20calculadora%20de%20erro%20total%20de%20malha%20da%20ALOGY.%20Gostaria%20de%20apoio%20t%C3%A9cnico." target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> Falar com a ALOGY</a></section>
+  </main>
+  <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
+<script>
+const $=id=>document.getElementById(id);
+function fmt(n,d=2){ if(!isFinite(n)) return '-'; return Number(n).toLocaleString('pt-BR',{minimumFractionDigits:d,maximumFractionDigits:d}); }
+function tipoNome(t){ return t==='pct_span'?'% do span':t==='pct_ponto'?'% do ponto':'valor absoluto'; }
+function compErro(tipo, valor, ponto, span){
+  valor=Math.abs(Number(valor)||0); span=Math.abs(span); ponto=Math.abs(ponto);
+  if(tipo==='pct_span') return valor/100*span;
+  if(tipo==='pct_ponto') return valor/100*ponto;
+  return valor;
+}
+function toleranciaNoPonto(tipo, valor, ponto, span){ return compErro(tipo, valor, ponto, span); }
+function componentesParaPonto(ponto, span){
+  const arr=[];
+  for(let i=0;i<6;i++){
+    const nome=$('n'+i).value.trim()||('Componente '+(i+1));
+    const tipo=$('t'+i).value;
+    const entrada=Number($('v'+i).value)||0;
+    const erro=compErro(tipo, entrada, ponto, span);
+    arr.push({nome,tipo,entrada,erro});
+  }
+  return arr;
+}
+function calculaPonto(ponto, span){
+  const comps=componentesParaPonto(ponto,span);
+  const rss=Math.sqrt(comps.reduce((s,c)=>s+c.erro*c.erro,0));
+  const abs=comps.reduce((s,c)=>s+Math.abs(c.erro),0);
+  return {comps,rss,abs};
+}
+function calc(){
+  const lrv=+$('lrv').value, urv=+$('urv').value, span=urv-lrv, ponto=+$('ponto').value, unid=$('unid').value||'', d=+$('casas').value;
+  const tol=toleranciaNoPonto($('tolTipo').value, +$('tol').value, ponto, span);
+  const res=calculaPonto(ponto,span);
+  const rssPct=Math.abs(span)?res.rss/Math.abs(span)*100:NaN;
+  $('outSpan').textContent=fmt(span,d)+' '+unid;
+  $('outTol').textContent='± '+fmt(tol,d)+' '+unid;
+  $('outRss').textContent='± '+fmt(res.rss,d)+' '+unid;
+  $('outAbs').textContent='± '+fmt(res.abs,d)+' '+unid;
+  $('outRssPct').textContent=fmt(rssPct,3)+' %';
+  let status='Dentro da tolerância';
+  let classe='status-ok';
+  if(!isFinite(span)||span===0||!isFinite(tol)||tol<0){ status='Verifique faixa/tolerância'; classe='status-bad'; }
+  else if(res.rss>tol){ status='RSS acima da tolerância'; classe='status-bad'; }
+  else if(res.abs>tol){ status='RSS ok, pior caso acima'; classe='status-ok'; }
+  $('outStatus').textContent=status;
+  $('outStatus').parentElement.className='result-box '+classe;
+  $('nota').textContent = res.abs>tol && res.rss<=tol ? 'A combinação por RSS está dentro da tolerância, mas a soma conservadora ultrapassa o limite. Avalie criticidade e critério interno.' : (res.rss<=tol ? 'O erro total por RSS está dentro da tolerância informada para o ponto avaliado.' : 'O erro total por RSS ultrapassa a tolerância informada. Revise faixa, classe dos instrumentos ou critério do processo.');
+  $('tblComp').innerHTML=res.comps.map(c=>`<tr><td>${c.nome}</td><td>${tipoNome(c.tipo)}</td><td>± ${fmt(c.entrada,d)}</td><td>± ${fmt(c.erro,d)} ${unid}</td></tr>`).join('');
+  const pts=[0,25,50,75,100].map(p=>lrv+(p/100)*span);
+  $('tblPontos').innerHTML=pts.map((pv,idx)=>{const r=calculaPonto(pv,span);const t=toleranciaNoPonto($('tolTipo').value,+$('tol').value,pv,span);const ok=r.rss<=t;return `<tr><td>${idx*25}%</td><td>${fmt(pv,d)} ${unid}</td><td>± ${fmt(r.rss,d)} ${unid}</td><td>± ${fmt(r.abs,d)} ${unid}</td><td class="${ok?'good':'danger'}">${ok?'OK':'Acima'}</td></tr>`;}).join('');
+}
+function exemploTemperatura(){ $('tag').value='TT-101 - Malha de temperatura'; $('lrv').value=0; $('urv').value=200; $('unid').value='°C'; $('ponto').value=100; $('tolTipo').value='abs'; $('tol').value=2; const vals=[0.25,0.10,0.15,0.10,0.05,0]; vals.forEach((v,i)=>{$('v'+i).value=v; $('t'+i).value='pct_span';}); calc(); }
+function exemploPressao(){ $('tag').value='PT-204 - Malha de pressão'; $('lrv').value=0; $('urv').value=10; $('unid').value='bar'; $('ponto').value=6; $('tolTipo').value='pct_span'; $('tol').value=1; const vals=[0.20,0.075,0.10,0.05,0.03,0.02]; vals.forEach((v,i)=>{$('v'+i).value=v; $('t'+i).value='pct_span';}); calc(); }
+function copiarResultado(){ const texto=`Calculadora de Erro Total de Malha - ALOGY\nTAG: ${$('tag').value}\nPonto: ${$('ponto').value} ${$('unid').value}\nSpan: ${$('outSpan').textContent}\nTolerância: ${$('outTol').textContent}\nErro RSS: ${$('outRss').textContent}\nErro conservador: ${$('outAbs').textContent}\nStatus: ${$('outStatus').textContent}`; navigator.clipboard?.writeText(texto).then(()=>alert('Resultado copiado.')); }
+document.querySelectorAll('input,select').forEach(el=>el.addEventListener('input',calc));
+calc();
+</script>
+</body>
+</html>
