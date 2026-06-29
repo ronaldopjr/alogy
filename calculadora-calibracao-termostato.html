@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calculadora de Calibração de Termostato | ALOGY Engenharia</title>
+  <meta name="description" content="Calcule erro de atuação, retorno, histerese e repetibilidade na calibração de termostatos industriais." />
+  <meta name="robots" content="index,follow" />
+  <meta name="theme-color" content="#004b80" />
+  <link rel="canonical" href="https://www.alogy.com.br/calculadora-calibracao-termostato.html" />
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png" />
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="app.js" defer></script>
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ALOGY Engenharia" />
+  <meta property="og:title" content="Calculadora de Calibração de Termostato" />
+  <meta property="og:description" content="Calcule erro de atuação, retorno, histerese e repetibilidade na calibração de termostatos industriais." />
+  <meta property="og:url" content="https://www.alogy.com.br/calculadora-calibracao-termostato.html" />
+  <meta property="og:image" content="https://www.alogy.com.br/favicon-512x512.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Calculadora de Calibração de Termostato", "url": "https://www.alogy.com.br/calculadora-calibracao-termostato.html", "applicationCategory": "EngineeringApplication", "operatingSystem": "Web", "description": "Calcule erro de atuação, retorno, histerese e repetibilidade na calibração de termostatos industriais.", "publisher": {"@type": "Organization", "name": "ALOGY Engenharia", "url": "https://www.alogy.com.br/"}}</script>
+  <style>
+    .mini-help{color:var(--muted);font-size:.92rem;line-height:1.55;margin-top:8px}
+    .faq details{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:14px;padding:14px;margin-top:10px;box-shadow:0 6px 16px rgba(0,0,0,.04)}
+    .faq summary{cursor:pointer;font-weight:900;color:#0b3a62}.faq p{margin:10px 0 0;color:var(--muted)}
+    .calc-result.two{grid-template-columns:repeat(2,1fr)} .calc-result.three{grid-template-columns:repeat(3,1fr)} .calc-result.four{grid-template-columns:repeat(4,1fr)} .result-box strong.small{font-size:1.05rem}
+    .pill-ok{color:#146c2e;font-weight:900}.pill-warn{color:#a65f00;font-weight:900}.pill-bad{color:#a10000;font-weight:900}.pill-info{color:#0b3a62;font-weight:900}
+    .subcat-nav{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}.subcat-nav a{background:#fff;border:1px solid rgba(0,75,128,.18);border-radius:999px;padding:9px 12px;text-decoration:none;font-weight:800;color:#0b3a62}
+    @media(max-width:900px){.calc-result.two,.calc-result.three,.calc-result.four{grid-template-columns:1fr}}
+    @media print{header,.social-floating,.fab-wrap,.cta-bar,footer,.calc-actions,.tools-hero .btn,.no-print{display:none!important}body{background:#fff}.container{max-width:100%;padding:0}.calc-card,.tools-hero{box-shadow:none;border:1px solid #ddd}.calc-layout{display:block}.calc-card{margin:12px 0}.calc-table th{background:#eee!important;color:#111!important}}
+  </style>
+  <!-- Google AdSense - verificação de propriedade -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5586837114309500"
+     crossorigin="anonymous"></script>
+</head>
+<body class="tools-page">
+  <header>
+    <div class="container headbar"><a href="/" class="logo-wrapper" aria-label="Voltar para o início"><img src="logo-alogy.webp" alt="ALOGY Engenharia" /></a><div class="crea-top" aria-label="CREA-SP"><img src="crea.webp" alt="CREA-SP"></div><button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menu"><i class="fas fa-bars"></i></button></div>
+    <nav class="desktop" aria-label="Menu principal"><div class="container navlinks"><a href="index.html">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="index.html#contato">Contato</a></div></nav>
+    <nav class="mobile" aria-label="Menu mobile"><a href="index.html">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="index.html#contato">Contato</a></nav>
+  </header>
+  <div class="social-floating" aria-label="Redes sociais"><a href="https://www.linkedin.com/company/alogyengenharia" class="linkedin" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a><a href="https://www.instagram.com/alogyengenharia" class="instagram" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="https://www.facebook.com/alogyengenharia" class="facebook" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><a href="https://www.youtube.com/@alogyengenharia" class="youtube" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a><a href="https://hotmart.com/pt-br/club/alogyengenharia" class="hotmart" target="_blank" rel="noopener" aria-label="Hotmart">H</a><a href="https://www.tiktok.com/@alogyengenharia" class="tiktok" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a></div>
+  <div class="fab-wrap" aria-label="Ações rápidas"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1%21%20Vim%20pelas%20ferramentas%20da%20ALOGY.%20Gostaria%20de%20atendimento." target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
+  <main class="container" style="margin-top:18px">
+    <div style="margin-bottom:14px;display:flex;gap:10px;flex-wrap:wrap" class="no-print"><a class="floating-back-tools no-print" href="ferramentas.html"><i class="fas fa-arrow-left"></i> Voltar para Ferramentas</a><a class="floating-back-tools no-print" href="ferramentas-calibracao-instrumentacao.html"><i class="fas fa-check-double"></i> Calibração e metrologia</a></div>
+    <section class="tools-hero"><h1>Calculadora de Calibração de Termostato</h1><p>Calcule erro de atuação, retorno, histerese e repetibilidade na calibração de termostatos industriais.</p></section>
+    <section class="calc-card" aria-label="Aviso de uso"><h2><i class="fas fa-triangle-exclamation"></i> Ferramenta orientativa</h2><p>Use esta ferramenta para estudo, pré-avaliação e conferência de campo. A aprovação, ajuste ou reprovação deve seguir procedimento interno, padrões rastreáveis, incerteza da referência, condição de instalação e critério técnico da planta.</p></section>
+    <section class="calc-layout"><div class="calc-card"><h2><i class="fas fa-temperature-half"></i> Dados da calibração</h2><div class="calc-grid">
+<div class="field"><label for="setp">Ponto de atuação desejado (°C)</label><input id="setp" type="number" step="any" value="80"></div>
+<div class="field"><label for="resetp">Ponto de retorno desejado (°C)</label><input id="resetp" type="number" step="any" value="75"></div>
+<div class="field"><label for="setm">Atuação medida (°C)</label><input id="setm" type="number" step="any" value="80.1"></div>
+<div class="field"><label for="resetm">Retorno medido (°C)</label><input id="resetm" type="number" step="any" value="74.95"></div>
+<div class="field"><label for="tol">Tolerância admissível (°C)</label><input id="tol" type="number" step="any" value="0.2"></div>
+<div class="field"><label for="rep">Repetibilidade observada (°C)</label><input id="rep" type="number" step="any" value="0.05"></div>
+</div><p class="mini-help">Use valores médios de pelo menos três ciclos de subida e descida quando possível.</p><div class="calc-actions"><button class="mini-btn dark" onclick="copiar()" type="button"><i class="fas fa-copy"></i> Copiar resultado</button><button class="mini-btn" onclick="window.print()" type="button"><i class="fas fa-print"></i> Imprimir</button></div></div><div class="calc-card"><h2><i class="fas fa-chart-simple"></i> Resultado</h2><div class="calc-result four"><div class="result-box"><span>Erro atuação</span><strong id="r1">-</strong></div><div class="result-box"><span>Erro retorno</span><strong id="r2">-</strong></div><div class="result-box"><span>Histerese medida</span><strong id="r3">-</strong></div><div class="result-box"><span>Status</span><strong id="r4" class="small">-</strong></div></div><div class="calc-note" id="nota">Confira ajuste mecânico, contato elétrico e repetibilidade antes de liberar o instrumento.</div><div class="table-wrap"><table class="calc-table"><thead><tr><th>Item</th><th>Desejado</th><th>Medido</th><th>Erro</th></tr></thead><tbody id="tbl"></tbody></table></div></div></section>
+    <section class="calc-card faq"><h2><i class="fas fa-circle-question"></i> Perguntas frequentes</h2><details><summary>Pode usar em chave de temperatura?</summary><p>Sim, a lógica é a mesma para termostatos e chaves de temperatura ON/OFF.</p></details><details><summary>Por que medir subida e descida?</summary><p>Porque a histerese e o ponto de retorno fazem parte do comportamento real da chave.</p></details></section>
+  </main>
+  <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
+<script>
+
+function val(id){return parseFloat(String(document.getElementById(id).value).replace(',','.'))||0}
+function n(v,d=2){return Number.isFinite(v)?v.toLocaleString('pt-BR',{minimumFractionDigits:d,maximumFractionDigits:d}):'-'}
+function st(absErr,tol){if(!Number.isFinite(absErr)||!Number.isFinite(tol)||tol<=0)return '<span class="pill-warn">Verificar</span>'; if(absErr<=tol)return '<span class="pill-ok">Aprovado</span>'; if(absErr<=tol*1.25)return '<span class="pill-warn">Próximo do limite</span>'; return '<span class="pill-bad">Reprovado</span>'}
+function copiar(){const r=document.querySelector('.calc-layout'); const t=r?r.innerText:document.body.innerText; navigator.clipboard.writeText(t).then(()=>alert('Resultado copiado.'))}
+document.querySelectorAll('input,select').forEach(e=>e.addEventListener('input',calcular));
+
+
+function calcular(){let sp=val('setp'),rp=val('resetp'),sm=val('setm'),rm=val('resetm'),tol=val('tol'),rep=val('rep');let e1=sm-sp,e2=rm-rp,h=Math.abs(sm-rm),hd=Math.abs(sp-rp);let pior=Math.max(Math.abs(e1),Math.abs(e2),Math.abs(rep));document.getElementById('r1').innerHTML=n(e1,3)+' °C';document.getElementById('r2').innerHTML=n(e2,3)+' °C';document.getElementById('r3').innerHTML=n(h,3)+' °C';document.getElementById('r4').innerHTML=st(pior,Math.abs(tol));document.getElementById('tbl').innerHTML=`<tr><td>Atuação</td><td>${n(sp,3)} °C</td><td>${n(sm,3)} °C</td><td>${n(e1,3)} °C</td></tr><tr><td>Retorno</td><td>${n(rp,3)} °C</td><td>${n(rm,3)} °C</td><td>${n(e2,3)} °C</td></tr><tr><td>Histerese</td><td>${n(hd,3)} °C</td><td>${n(h,3)} °C</td><td>${n(h-hd,3)} °C</td></tr><tr><td>Repetibilidade</td><td>≤ ${n(tol,3)} °C</td><td>${n(rep,3)} °C</td><td>${n(rep,3)} °C</td></tr>`;}
+
+calcular();</script>
+</body>
+</html>
