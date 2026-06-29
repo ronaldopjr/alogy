@@ -1214,4 +1214,116 @@ nav.mobile a.active{
   .tc-colors-table .color-chip{justify-content:flex-start;text-align:left}
 }
 
+/* =========================
+   AJUSTE PONTUAL - BANNER MOBILE MAIS VISÍVEL + IMPRESSÃO DAS FERRAMENTAS SEM LOGO
+   Alteração segura: apenas responsivo do banner e impressão das páginas de ferramentas
+========================= */
+@media (max-width: 768px){
+  .banner{
+    height:350px;
+    --card-w:min(294px, calc(100% - 92px));
+  }
 
+  .banner-content{
+    padding:14px 16px 50px;
+    align-items:flex-end;
+    justify-content:center;
+  }
+
+  .banner-card{
+    width:var(--card-w);
+    max-width:294px;
+    padding:13px 13px 15px;
+    border-radius:16px;
+    background:rgba(12,18,28,.46);
+    border:1px solid rgba(255,255,255,.12);
+    box-shadow:0 14px 42px rgba(0,0,0,.28);
+    backdrop-filter:blur(7px);
+    -webkit-backdrop-filter:blur(7px);
+  }
+
+  .banner-title{
+    font-size:1.05rem;
+    line-height:1.13;
+    margin:0 0 5px;
+  }
+
+  .banner-desc{
+    font-size:.76rem;
+    line-height:1.34;
+    margin-bottom:8px;
+    display:-webkit-box;
+    -webkit-line-clamp:2;
+    -webkit-box-orient:vertical;
+    overflow:hidden;
+  }
+
+  .banner-actions .btn{
+    padding:8px 11px;
+    border-radius:12px;
+    font-size:.83rem;
+    gap:8px;
+  }
+
+  .banner-nav{
+    width:38px;
+    height:38px;
+    opacity:.50;
+  }
+
+  .banner-nav.prev{left:10px;}
+  .banner-nav.next{right:10px;}
+
+  .banner-dots{
+    bottom:14px;
+    padding:5px 9px;
+  }
+
+  .slide:nth-child(1) .slide-media img{object-position:70% 16%;}
+  .slide:nth-child(2) .slide-media img{object-position:58% 18%;}
+  .slide:nth-child(3) .slide-media img{object-position:64% 16%;}
+}
+
+@media (max-width: 420px){
+  .banner{
+    height:342px;
+    --card-w:min(286px, calc(100% - 88px));
+  }
+
+  .banner-card{
+    max-width:286px;
+    padding:12px 12px 14px;
+  }
+
+  .banner-title{
+    font-size:1rem;
+  }
+
+  .banner-desc{
+    font-size:.73rem;
+    line-height:1.32;
+  }
+
+  .banner-actions .btn{
+    padding:7px 10px;
+    font-size:.8rem;
+  }
+}
+
+@media print{
+  body.tools-page header,
+  body.tools-page .logo-wrapper,
+  body.tools-page .logo-wrapper img,
+  body.tools-page .crea-top,
+  body.tools-page .social-floating,
+  body.tools-page .fab-wrap,
+  body.tools-page .floating-back-tools,
+  body.tools-page .no-print,
+  body.tools-page footer{
+    display:none!important;
+  }
+
+  body.tools-page{
+    background:#fff!important;
+  }
+}
