@@ -226,8 +226,7 @@ function exemploGas(tipo){
   calcularGas();
 }
 function copiarGas(){
-  const txt=['Conversor Nm³/h, Sm³/h e m³/h - ALOGY', 'Operacional: '+document.getElementById('gas_qop').textContent, 'Normal: '+document.getElementById('gas_qn').textContent, 'Padrão: '+document.getElementById('gas_qs').textContent, 'Massa: '+document.getElementById('gas_massa').textContent, document.getElementById('gas_nota').textContent].join('
-');
+  const txt=['Conversor Nm³/h, Sm³/h e m³/h - ALOGY', 'Operacional: '+document.getElementById('gas_qop').textContent, 'Normal: '+document.getElementById('gas_qn').textContent, 'Padrão: '+document.getElementById('gas_qs').textContent, 'Massa: '+document.getElementById('gas_massa').textContent, document.getElementById('gas_nota').textContent].join('\n');
   navigator.clipboard?.writeText(txt).then(()=>alert('Resultado copiado.')).catch(()=>alert(txt));
 }
 document.addEventListener('DOMContentLoaded',()=>{ ['gas_modo','gas_q','gas_p','gas_ptipo','gas_t','gas_patm','gas_zop','gas_dens','gas_tn','gas_pn','gas_ts','gas_ps','gas_zn','gas_zs'].forEach(id=>document.getElementById(id)?.addEventListener('input', calcularGas)); calcularGas(); });

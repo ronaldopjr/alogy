@@ -367,6 +367,7 @@ function isAlogyToolArea(){
     path.startsWith('ferramentas-') ||
     path.startsWith('calculadora-') ||
     path.startsWith('conversor-') ||
+    path.startsWith('gerador-') ||
     path.startsWith('checklist-')
   );
 }
@@ -377,7 +378,7 @@ function hasAdsenseData(slot){
 
 function loadAlogyAdsenseScript(){
   if(!ALOGY_ADS_CONFIG.enabled || !ALOGY_ADS_CONFIG.adClient) return;
-  if(document.querySelector('script[data-alogy-adsense="true"]')) return;
+  if(document.querySelector('script[data-alogy-adsense="true"], script[src*="pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"]')) return;
 
   const script = document.createElement('script');
   script.async = true;
