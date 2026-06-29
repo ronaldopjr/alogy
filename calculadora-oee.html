@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Calculadora OEE Online | Disponibilidade, Performance e Qualidade</title>
+  <meta name="description" content="Calcule OEE online com disponibilidade, performance e qualidade. Ferramenta gratuita para manutenção industrial, produção, melhoria contínua e análise de eficiência."/>
+  <meta name="robots" content="index,follow" />
+  <meta name="theme-color" content="#062138" />
+  <link rel="canonical" href="https://www.alogy.com.br/calculadora-oee.html" />
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png" />
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="app.js" defer></script>
+
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ALOGY Engenharia" />
+  <meta property="og:title" content="Calculadora OEE Online | ALOGY Engenharia" />
+  <meta property="og:description" content="Calcule disponibilidade, performance, qualidade e OEE para manutenção industrial, produção e melhoria contínua." />
+  <meta property="og:url" content="https://www.alogy.com.br/calculadora-oee.html" />
+  <meta property="og:image" content="https://www.alogy.com.br/favicon-512x512.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebApplication",
+    "name":"Calculadora OEE Online",
+    "url":"https://www.alogy.com.br/calculadora-oee.html",
+    "applicationCategory":"EngineeringApplication",
+    "operatingSystem":"Web",
+    "description":"Ferramenta auxiliar para calcular OEE, disponibilidade, performance e qualidade em processos industriais.",
+    "publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"}
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {"@type":"Question","name":"O que é OEE?","acceptedAnswer":{"@type":"Answer","text":"OEE é um indicador de eficiência global do equipamento. Ele combina disponibilidade, performance e qualidade para mostrar quanto do potencial produtivo foi realmente aproveitado."}},
+      {"@type":"Question","name":"Como calcular OEE?","acceptedAnswer":{"@type":"Answer","text":"OEE é calculado multiplicando disponibilidade, performance e qualidade. Normalmente o resultado é apresentado em percentual."}},
+      {"@type":"Question","name":"Essa calculadora substitui análise de produção?","acceptedAnswer":{"@type":"Answer","text":"Não. Ela é uma ferramenta de apoio e estudo. A análise real deve considerar o processo, apontamentos de produção, paradas, qualidade dos dados, metodologia da empresa e validação técnica."}}
+    ]
+  }
+  </script>
+
+  <style>
+    .calc-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+    .mini-btn{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(0,107,177,.25);background:rgba(0,107,177,.08);color:#0b3a62;border-radius:12px;padding:10px 12px;font-weight:900;cursor:pointer;text-decoration:none;font:inherit}
+    .mini-btn:hover{background:rgba(0,107,177,.12)}
+    .mini-btn.dark{background:#0b3a62;color:#fff;border-color:#0b3a62}
+    .small-muted{color:var(--muted);font-size:.92rem;line-height:1.55}
+    .status-ok{border-color:rgba(34,197,94,.35)!important;background:rgba(34,197,94,.10)!important;color:#166534!important}
+    .status-warn{border-color:rgba(245,158,11,.38)!important;background:rgba(245,158,11,.12)!important;color:#92400e!important}
+    .status-bad{border-color:rgba(239,68,68,.35)!important;background:rgba(239,68,68,.10)!important;color:#991b1b!important}
+    .formula-box{background:rgba(0,107,177,.06);border:1px solid rgba(0,107,177,.16);border-radius:14px;padding:14px;margin-top:12px;color:#0b3a62;font-weight:900;line-height:1.7}
+    .oee-scale{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px}
+    .oee-scale div{border:1px solid rgba(0,107,177,.16);background:rgba(0,107,177,.06);border-radius:14px;padding:12px;text-align:center}
+    .oee-scale strong{display:block;color:#0b3a62}.oee-scale span{color:var(--muted);font-size:.86rem;font-weight:800}
+    .faq details{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:14px;padding:14px;margin-top:10px;box-shadow:0 6px 16px rgba(0,0,0,.04)}
+    .faq summary{cursor:pointer;font-weight:900;color:#0b3a62}.faq p{margin:10px 0 0;color:var(--muted)}
+    @media(max-width:900px){.oee-scale{grid-template-columns:1fr 1fr}.calc-actions .mini-btn{width:100%;justify-content:center}}
+  </style>
+</head>
+<body class="tools-page">
+  <header>
+    <div class="container headbar"><a href="/" class="logo-wrapper" aria-label="Voltar para o início"><img src="logo-alogy.webp" alt="ALOGY Engenharia" /></a><div class="crea-top" aria-label="CREA-SP"><img src="crea.webp" alt="CREA-SP"></div><button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menu"><i class="fas fa-bars"></i></button></div>
+    <nav class="desktop" aria-label="Menu principal"><div class="container navlinks"><a href="index.html">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="index.html#contato">Contato</a></div></nav>
+    <nav class="mobile" aria-label="Menu mobile"><a href="index.html">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="index.html#contato">Contato</a></nav>
+  </header>
+
+  <div class="social-floating" aria-label="Redes sociais"><a href="https://www.linkedin.com/company/alogyengenharia" class="linkedin" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a><a href="https://www.instagram.com/alogyengenharia" class="instagram" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="https://www.facebook.com/alogyengenharia" class="facebook" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><a href="https://www.youtube.com/@alogyengenharia" class="youtube" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a><a href="https://hotmart.com/pt-br/club/alogyengenharia" class="hotmart" target="_blank" rel="noopener" aria-label="Hotmart">H</a><a href="https://www.tiktok.com/@alogyengenharia" class="tiktok" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a></div>
+  <div class="fab-wrap" aria-label="Ações rápidas"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1!%20Vim%20pela%20calculadora%20OEE%20da%20ALOGY.%20Gostaria%20de%20atendimento." target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
+
+  <main class="container" style="margin-top:18px">
+    <div style="margin-bottom:14px;display:flex;gap:10px;flex-wrap:wrap" class="no-print">
+      <a class="floating-back-tools no-print" href="ferramentas.html"><i class="fas fa-arrow-left"></i> Voltar para Ferramentas</a>
+      <button class="btn print" type="button" onclick="window.print()"><i class="fas fa-print"></i> Imprimir</button>
+      <a class="btn secondary" href="calculadora-modbus.html"><i class="fas fa-network-wired"></i> Calculadora Modbus</a>
+    </div>
+
+    <section class="tools-hero">
+      <h1>Calculadora OEE Online</h1>
+      <p>Calcule a eficiência global do equipamento a partir de disponibilidade, performance e qualidade. A ferramenta ajuda em análises iniciais de manutenção industrial, produção, perdas, paradas e melhoria contínua.</p>
+    </section>
+
+    <section class="calc-card" aria-label="Aviso de responsabilidade">
+      <h2><i class="fas fa-triangle-exclamation"></i> Uso orientativo e responsabilidade técnica</h2>
+      <p>Esta ferramenta é apenas para estudo, apoio técnico e pré-análise. Os resultados podem conter simplificações, aproximações ou erros de preenchimento e não substituem normas aplicáveis, catálogos de fabricantes, procedimentos internos, medições em campo, projetos, laudos ou análise de profissional habilitado. A ALOGY Engenharia não se responsabiliza por decisões, instalações, ajustes, manobras, compras ou intervenções realizadas exclusivamente com base nesta ferramenta.</p>
+    </section>
+
+    <section class="calc-layout">
+      <div class="calc-card">
+        <h2><i class="fas fa-stopwatch"></i> Dados de disponibilidade</h2>
+        <p>Informe o tempo planejado de produção e as paradas ocorridas. A disponibilidade mostra quanto tempo o equipamento ficou realmente disponível para produzir.</p>
+        <div class="calc-grid">
+          <div class="field"><label for="tempo_planejado">Tempo planejado de produção</label><input id="tempo_planejado" type="number" step="any" value="480"></div>
+          <div class="field"><label for="paradas">Tempo de paradas</label><input id="paradas" type="number" step="any" value="60"></div>
+          <div class="field"><label for="unidade_tempo">Unidade de tempo</label><select id="unidade_tempo"><option value="min" selected>minutos</option><option value="h">horas</option></select></div>
+          <div class="field"><label for="meta_oee">Meta de OEE (%)</label><input id="meta_oee" type="number" step="any" value="85"></div>
+        </div>
+      </div>
+      <div class="calc-card">
+        <h2><i class="fas fa-industry"></i> Dados de produção</h2>
+        <p>Informe a produção total, peças boas e o tempo de ciclo ideal. A performance compara o ritmo real com o ritmo ideal do processo.</p>
+        <div class="calc-grid">
+          <div class="field"><label for="total_produzido">Produção total</label><input id="total_produzido" type="number" step="any" value="900"></div>
+          <div class="field"><label for="pecas_boas">Peças boas</label><input id="pecas_boas" type="number" step="any" value="870"></div>
+          <div class="field"><label for="ciclo_ideal">Tempo de ciclo ideal por peça</label><input id="ciclo_ideal" type="number" step="any" value="0.4"></div>
+          <div class="field"><label for="unidade_ciclo">Unidade do ciclo</label><select id="unidade_ciclo"><option value="min" selected>minutos/peça</option><option value="s">segundos/peça</option></select></div>
+        </div>
+        <div class="calc-actions">
+          <button class="mini-btn dark" type="button" onclick="copiarOEE()"><i class="fas fa-copy"></i> Copiar resultado</button>
+          <button class="mini-btn" type="button" onclick="exemploBasico()">Exemplo básico</button>
+          <button class="mini-btn" type="button" onclick="exemploBaixo()">Exemplo com perdas</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="calc-layout">
+      <div class="calc-card">
+        <h2><i class="fas fa-square-poll-vertical"></i> Resultado OEE</h2>
+        <div class="calc-result" style="grid-template-columns:1fr 1fr">
+          <div class="result-box"><span>Disponibilidade</span><strong id="res_disp">-</strong></div>
+          <div class="result-box"><span>Performance</span><strong id="res_perf">-</strong></div>
+          <div class="result-box"><span>Qualidade</span><strong id="res_qual">-</strong></div>
+          <div class="result-box"><span>OEE final</span><strong id="res_oee">-</strong></div>
+        </div>
+        <div class="calc-note" id="res_status" style="margin-top:14px">Preencha os dados para calcular.</div>
+        <div class="formula-box">
+          OEE = Disponibilidade × Performance × Qualidade<br>
+          Disponibilidade = Tempo operacional / Tempo planejado<br>
+          Performance = Tempo ideal para produção / Tempo operacional<br>
+          Qualidade = Peças boas / Peças totais
+        </div>
+      </div>
+      <div class="calc-card">
+        <h2><i class="fas fa-chart-pie"></i> Perdas estimadas</h2>
+        <div class="calc-result" style="grid-template-columns:1fr 1fr">
+          <div class="result-box"><span>Tempo operacional</span><strong id="res_operacional">-</strong></div>
+          <div class="result-box"><span>Peças rejeitadas</span><strong id="res_rejeito">-</strong></div>
+          <div class="result-box"><span>Perda por parada</span><strong id="res_p_parada">-</strong></div>
+          <div class="result-box"><span>Perda por qualidade</span><strong id="res_p_qual">-</strong></div>
+        </div>
+        <h3 style="margin-top:18px">Referência prática</h3>
+        <div class="oee-scale">
+          <div><strong>&lt; 60%</strong><span>baixo</span></div>
+          <div><strong>60–75%</strong><span>atenção</span></div>
+          <div><strong>75–85%</strong><span>bom</span></div>
+          <div><strong>&gt; 85%</strong><span>referência alta</span></div>
+        </div>
+        <p class="small-muted" style="margin-top:12px">A classificação é apenas indicativa. A meta real depende do tipo de processo, produto, linha, maturidade da manutenção e método de apontamento.</p>
+      </div>
+    </section>
+
+    <section class="calc-card">
+      <h2><i class="fas fa-table"></i> Tabela rápida de sensibilidade</h2>
+      <p>Veja como o OEE muda quando um dos três fatores melhora ou piora. Útil para identificar onde concentrar ações de manutenção e produção.</p>
+      <div class="calc-table-wrap">
+        <table class="calc-table">
+          <thead><tr><th>Cenário</th><th>Disponibilidade</th><th>Performance</th><th>Qualidade</th><th>OEE</th></tr></thead>
+          <tbody id="oee_table"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="calc-card faq">
+      <h2><i class="fas fa-circle-question"></i> Perguntas frequentes</h2>
+      <details><summary>O que é OEE?</summary><p>OEE significa eficiência global do equipamento. Ele combina disponibilidade, performance e qualidade para indicar quanto do potencial produtivo foi aproveitado.</p></details>
+      <details><summary>OEE alto sempre significa processo perfeito?</summary><p>Não. OEE alto é um bom sinal, mas depende da qualidade dos apontamentos, da meta do processo, do mix de produção e da forma como as paradas são classificadas.</p></details>
+      <details><summary>Essa ferramenta substitui análise de produção?</summary><p>Não. Ela é apenas uma ferramenta auxiliar de estudo e pré-análise. A avaliação real deve considerar dados confiáveis, procedimentos internos e análise técnica.</p></details>
+    </section>
+
+    <section class="cta-bar">
+      <h2>Quer melhorar coleta de dados, disponibilidade e confiabilidade do processo?</h2>
+      <p>A ALOGY Engenharia atua com automação industrial, instrumentação, CLP, supervisórios e soluções técnicas para dados confiáveis de produção e manutenção.</p>
+      <a class="btn" href="https://wa.me/5519981442448?text=Ol%C3%A1!%20Vim%20pela%20calculadora%20OEE%20da%20ALOGY.%20Gostaria%20de%20apoio%20com%20automa%C3%A7%C3%A3o%2C%20dados%20industriais%20ou%20manuten%C3%A7%C3%A3o." target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> Falar com a ALOGY</a>
+    </section>
+  </main>
+
+  <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p></footer>
+
+<script>
+const $ = (id) => document.getElementById(id);
+function n(v){ return Number(String(v ?? '').replace(',','.')); }
+function pct(v){ return Number.isFinite(v) ? (v*100).toLocaleString('pt-BR',{maximumFractionDigits:2}) + '%' : '-'; }
+function fmt(v,d=2){ return Number.isFinite(v) ? v.toLocaleString('pt-BR',{maximumFractionDigits:d}) : '-'; }
+function clamp(v,min,max){ return Math.min(Math.max(v,min),max); }
+function getTempoPlanejadoMin(){ const t=n($('tempo_planejado').value); return $('unidade_tempo').value==='h' ? t*60 : t; }
+function getParadasMin(){ const p=n($('paradas').value); return $('unidade_tempo').value==='h' ? p*60 : p; }
+function getCicloMin(){ const c=n($('ciclo_ideal').value); return $('unidade_ciclo').value==='s' ? c/60 : c; }
+function calcOEE(){
+  const planejado=getTempoPlanejadoMin(); const paradas=getParadasMin(); const total=n($('total_produzido').value); const boas=n($('pecas_boas').value); const ciclo=getCicloMin(); const meta=n($('meta_oee').value)/100;
+  const operacional = planejado - paradas;
+  let disp = operacional>0 && planejado>0 ? operacional/planejado : NaN;
+  let perf = operacional>0 && total>=0 && ciclo>=0 ? (total*ciclo)/operacional : NaN;
+  let qual = total>0 ? boas/total : NaN;
+  // OEE pode ficar acima de 100% se ciclo ideal estiver incorreto; mostra alerta e limita só em cenários da tabela.
+  let oee = disp*perf*qual;
+  $('res_disp').textContent=pct(disp); $('res_perf').textContent=pct(perf); $('res_qual').textContent=pct(qual); $('res_oee').textContent=pct(oee);
+  $('res_operacional').textContent = fmt(operacional,2)+' min';
+  $('res_rejeito').textContent = fmt(Math.max(total-boas,0),0)+' peças';
+  $('res_p_parada').textContent = planejado>0 ? pct(paradas/planejado) : '-';
+  $('res_p_qual').textContent = total>0 ? pct((total-boas)/total) : '-';
+  const status=$('res_status'); status.className='calc-note';
+  if(!Number.isFinite(oee)){ status.textContent='Informe valores válidos para calcular o OEE.'; status.classList.add('status-warn'); }
+  else if(perf>1.05){ status.textContent='Atenção: performance acima de 100%. Verifique se o tempo de ciclo ideal, produção total ou tempo operacional foram informados corretamente.'; status.classList.add('status-warn'); }
+  else if(oee>=meta){ status.textContent='OEE acima ou igual à meta informada. Verifique as perdas individuais para manter a estabilidade do processo.'; status.classList.add('status-ok'); }
+  else { status.textContent='OEE abaixo da meta informada. Avalie se a maior perda está em disponibilidade, performance ou qualidade.'; status.classList.add('status-warn'); }
+  renderTable(disp,perf,qual);
+}
+function renderTable(d,p,q){
+  const tb=$('oee_table'); tb.innerHTML='';
+  const rows=[
+    ['Atual',d,p,q],
+    ['Disponibilidade +5%',clamp(d+0.05,0,1),p,q],
+    ['Performance +5%',d,clamp(p+0.05,0,1.2),q],
+    ['Qualidade +2%',d,p,clamp(q+0.02,0,1)],
+    ['Meta 85%',0.90,0.95,0.995]
+  ];
+  rows.forEach(r=>{ const tr=document.createElement('tr'); const o=r[1]*r[2]*r[3]; tr.innerHTML=`<td>${r[0]}</td><td>${pct(r[1])}</td><td>${pct(r[2])}</td><td>${pct(r[3])}</td><td><strong>${pct(o)}</strong></td>`; tb.appendChild(tr); });
+}
+function copiarOEE(){
+  const txt=`OEE: ${$('res_oee').textContent}\nDisponibilidade: ${$('res_disp').textContent}\nPerformance: ${$('res_perf').textContent}\nQualidade: ${$('res_qual').textContent}\nTempo operacional: ${$('res_operacional').textContent}`;
+  navigator.clipboard?.writeText(txt); alert('Resultado OEE copiado.');
+}
+function exemploBasico(){ $('tempo_planejado').value=480; $('paradas').value=60; $('unidade_tempo').value='min'; $('total_produzido').value=900; $('pecas_boas').value=870; $('ciclo_ideal').value=0.4; $('unidade_ciclo').value='min'; $('meta_oee').value=85; calcOEE(); }
+function exemploBaixo(){ $('tempo_planejado').value=480; $('paradas').value=110; $('unidade_tempo').value='min'; $('total_produzido').value=710; $('pecas_boas').value=660; $('ciclo_ideal').value=0.4; $('unidade_ciclo').value='min'; $('meta_oee').value=85; calcOEE(); }
+['tempo_planejado','paradas','unidade_tempo','total_produzido','pecas_boas','ciclo_ideal','unidade_ciclo','meta_oee'].forEach(id=>$(id).addEventListener('input', calcOEE));
+calcOEE();
+</script>
+</body>
+</html>
