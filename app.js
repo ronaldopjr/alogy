@@ -343,6 +343,169 @@ function observeResponsiveToolTables(){
   });
 }
 
+
+/* =========================
+   ESPAÇOS PARA GOOGLE ADSENSE
+   Ferramentas + calculadoras/checklists
+   
+   Status inicial: DESATIVADO.
+   Quando o AdSense aprovar o site, basta informar o cliente e os slots abaixo
+   ou pedir para a ALOGY/ChatGPT gerar o arquivo com seus IDs reais.
+========================= */
+const ALOGY_ADS_CONFIG = {
+  enabled: false,
+  adClient: "", // Exemplo futuro: "ca-pub-0000000000000000"
+  desktopLeftSlot: "", // ID do bloco lateral esquerdo
+  desktopRightSlot: "", // ID do bloco lateral direito
+  mobileSlot: "" // ID do bloco horizontal responsivo para celular
+};
+
+function isAlogyToolArea(){
+  const path = window.location.pathname.split('/').pop() || 'index.html';
+  return document.body?.classList.contains('tools-page') && (
+    path === 'ferramentas.html' ||
+    path.startsWith('calculadora-') ||
+    path.startsWith('conversor-') ||
+    path.startsWith('checklist-')
+  );
+}
+
+function hasAdsenseData(slot){
+  return !!(ALOGY_ADS_CONFIG.enabled && ALOGY_ADS_CONFIG.adClient && slot);
+}
+
+function loadAlogyAdsenseScript(){
+  if(!ALOGY_ADS_CONFIG.enabled || !ALOGY_ADS_CONFIG.adClient) return;
+  if(document.querySelector('script[data-alogy-adsense="true"]')) return;
+
+  const script = document.createElement('script');
+  script.async = true;
+  script.crossOrigin = 'anonymous';
+  script.setAttribute('data-alogy-adsense', 'true');
+  script.src = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${encodeURIComponent(ALOGY_ADS_CONFIG.adClient)}`;
+  document.head.appendChild(script);
+}
+
+function createAlogyAdUnit(slot, type){
+  const wrap = document.createElement(type === 'mobile' ? 'div' : 'aside');
+  wrap.className = type === 'mobile' ? 'alogy-mobile-ad no-print' : `alogy-ad-rail alogy-ad-${type} no-print`;
+  wrap.setAttribute('aria-label', 'Publicidade');
+
+  const label = document.createElement('div');
+  label.className = 'alogy-ad-label';
+  label.textContent = 'Publicidade';
+
+  const slotBox = document.createElement('div');
+  slotBox.className = type === 'mobile' ? 'alogy-ad-slot alogy-ad-slot-mobile' : 'alogy-ad-slot alogy-ad-slot-vertical';
+
+  const ins = document.createElement('ins');
+  ins.className = 'adsbygoogle';
+  ins.style.display = 'block';
+  ins.setAttribute('data-ad-client', ALOGY_ADS_CONFIG.adClient);
+  ins.setAttribute('data-ad-slot', slot);
+  ins.setAttribute('data-full-width-responsive', 'true');
+
+  if(type === 'mobile'){
+    ins.setAttribute('data-ad-format', 'auto');
+  }else{
+    ins.style.width = '160px';
+    ins.style.height = '600px';
+  }
+
+  slotBox.appendChild(ins);
+  wrap.appendChild(label);
+  wrap.appendChild(slotBox);
+  return wrap;
+}
+
+function pushAlogyAds(){
+  if(!ALOGY_ADS_CONFIG.enabled) return;
+  window.adsbygoogle = window.adsbygoogle || [];
+  document.querySelectorAll('.alogy-ad-slot ins.adsbygoogle:not([data-alogy-pushed="true"])').forEach((ins) => {
+    try{
+      (window.adsbygoogle = window.adsbygoogle || []).push({});
+      ins.setAttribute('data-alogy-pushed', 'true');
+    }catch(err){
+      console.warn('AdSense ainda não disponível:', err);
+    }
+  });
+}
+
+function insertAlogyMobileAd(main){
+  if(!hasAdsenseData(ALOGY_ADS_CONFIG.mobileSlot)) return;
+  if(main.querySelector('.alogy-mobile-ad')) return;
+
+  const mobileAd = createAlogyAdUnit(ALOGY_ADS_CONFIG.mobileSlot, 'mobile');
+  const disclaimer = main.querySelector('.calc-card[aria-label*="Aviso"], .calc-card[aria-label*="aviso"]');
+  const hero = main.querySelector('.tools-hero, .tool-page-intro');
+  const ref = disclaimer || hero;
+
+  if(ref && ref.parentNode === main){
+    ref.insertAdjacentElement('afterend', mobileAd);
+  }else{
+    main.insertBefore(mobileAd, main.firstElementChild?.nextSibling || main.firstChild);
+  }
+}
+
+function initAlogyAdsLayout(){
+  if(!isAlogyToolArea()) return;
+
+  const main = document.querySelector('main.container');
+  if(!main || main.dataset.alogyAdsReady === 'true') return;
+
+  const desktopLeft = hasAdsenseData(ALOGY_ADS_CONFIG.desktopLeftSlot);
+  const desktopRight = hasAdsenseData(ALOGY_ADS_CONFIG.desktopRightSlot);
+  const mobile = hasAdsenseData(ALOGY_ADS_CONFIG.mobileSlot);
+
+  // Enquanto não houver ID real do AdSense, nada aparece e o layout atual fica preservado.
+  if(!desktopLeft && !desktopRight && !mobile) return;
+
+  loadAlogyAdsenseScript();
+  main.dataset.alogyAdsReady = 'true';
+
+  if(desktopLeft || desktopRight){
+    const wrapper = document.createElement('div');
+    wrapper.className = 'alogy-ad-layout no-print';
+
+    const content = document.createElement('div');
+    content.className = 'alogy-ad-main';
+
+    main.parentNode.insertBefore(wrapper, main);
+
+    if(desktopLeft){
+      wrapper.appendChild(createAlogyAdUnit(ALOGY_ADS_CONFIG.desktopLeftSlot, 'left'));
+    }else{
+      const spacer = document.createElement('div');
+      spacer.className = 'alogy-ad-rail alogy-ad-spacer';
+      wrapper.appendChild(spacer);
+    }
+
+    content.appendChild(main);
+    wrapper.appendChild(content);
+
+    if(desktopRight){
+      wrapper.appendChild(createAlogyAdUnit(ALOGY_ADS_CONFIG.desktopRightSlot, 'right'));
+    }else{
+      const spacer = document.createElement('div');
+      spacer.className = 'alogy-ad-rail alogy-ad-spacer';
+      wrapper.appendChild(spacer);
+    }
+  }
+
+  insertAlogyMobileAd(main);
+  setTimeout(pushAlogyAds, 700);
+}
+
+function ensurePrivacyFooterLink(){
+  document.querySelectorAll('footer').forEach((footer) => {
+    if(footer.querySelector('a[href="politica-de-privacidade.html"]')) return;
+    const line = document.createElement('p');
+    line.className = 'footer-legal-links no-print';
+    line.innerHTML = '<a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a>';
+    footer.appendChild(line);
+  });
+}
+
 /* =========================
    INIT
 ========================= */
@@ -357,6 +520,12 @@ document.addEventListener('DOMContentLoaded', () => {
   bindMobileMenuAutoClose();
   bindMobileMenuClickOutside();
   bindMobileMenuEscClose();
+
+  // espaços preparados para anúncios nas ferramentas
+  initAlogyAdsLayout();
+
+  // link de política de privacidade/cookies no rodapé
+  ensurePrivacyFooterLink();
 
   // tabelas responsivas das ferramentas
   enhanceResponsiveToolTables();
