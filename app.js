@@ -354,7 +354,7 @@ function observeResponsiveToolTables(){
 ========================= */
 const ALOGY_ADS_CONFIG = {
   enabled: false,
-  adClient: "", // Exemplo futuro: "ca-pub-0000000000000000"
+  adClient: "ca-pub-5586837114309500", // ID do editor AdSense
   desktopLeftSlot: "", // ID do bloco lateral esquerdo
   desktopRightSlot: "", // ID do bloco lateral direito
   mobileSlot: "" // ID do bloco horizontal responsivo para celular
