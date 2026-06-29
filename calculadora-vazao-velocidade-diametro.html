@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Calculadora de Vazão, Velocidade e Diâmetro de Tubulação | ALOGY Engenharia</title>
+  <meta name="description" content="Calcule vazão, velocidade e diâmetro interno de tubulação. Converta m³/h, L/min, L/s e GPM, estime área da seção e compare diâmetros comerciais para água, líquidos, ar e gases."/>
+  <meta name="robots" content="index,follow" />
+  <meta name="theme-color" content="#004b80" />
+  <link rel="canonical" href="https://www.alogy.com.br/calculadora-vazao-velocidade-diametro.html" />
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png" />
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="app.js" defer></script>
+
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ALOGY Engenharia" />
+  <meta property="og:title" content="Calculadora de Vazão, Velocidade e Diâmetro de Tubulação" />
+  <meta property="og:description" content="Calcule vazão, velocidade, diâmetro interno e área de tubulação com tabela comparativa por diâmetros comerciais." />
+  <meta property="og:url" content="https://www.alogy.com.br/calculadora-vazao-velocidade-diametro.html" />
+  <meta property="og:image" content="https://www.alogy.com.br/favicon-512x512.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebApplication",
+    "name":"Calculadora de Vazão, Velocidade e Diâmetro de Tubulação",
+    "url":"https://www.alogy.com.br/calculadora-vazao-velocidade-diametro.html",
+    "applicationCategory":"EngineeringApplication",
+    "operatingSystem":"Web",
+    "description":"Ferramenta auxiliar para calcular vazão, velocidade, diâmetro interno e área de tubulação em aplicações industriais, hidráulicas e de processo.",
+    "publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"}
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {"@type":"Question","name":"Como calcular velocidade em uma tubulação?","acceptedAnswer":{"@type":"Answer","text":"A velocidade média é calculada pela vazão volumétrica dividida pela área interna da tubulação. A área é calculada por pi multiplicado pelo diâmetro interno ao quadrado dividido por 4."}},
+      {"@type":"Question","name":"A calculadora usa diâmetro externo ou interno?","acceptedAnswer":{"@type":"Answer","text":"O cálculo usa diâmetro interno. Para seleção real de tubo, deve-se consultar tabela do fabricante, schedule, espessura, material, classe de pressão e norma aplicável."}},
+      {"@type":"Question","name":"A ferramenta dimensiona tubulação de forma definitiva?","acceptedAnswer":{"@type":"Answer","text":"Não. A ferramenta é orientativa e não substitui cálculo de perda de carga, cavitação, golpe de aríete, compressibilidade, viscosidade, rugosidade, norma, memorial de cálculo ou profissional habilitado."}}
+    ]
+  }
+  </script>
+</head>
+<body class="tools-page">
+  <header>
+    <div class="container headbar"><a href="/" class="logo-wrapper" aria-label="Voltar para o início"><img src="logo-alogy.webp" alt="ALOGY Engenharia" /></a><div class="crea-top" aria-label="CREA-SP"><img src="crea.webp" alt="CREA-SP"></div><button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menu"><i class="fas fa-bars"></i></button></div>
+    <nav class="desktop" aria-label="Menu principal"><div class="container navlinks"><a href="index.html">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="index.html#contato">Contato</a></div></nav>
+    <nav class="mobile" aria-label="Menu mobile"><a href="index.html">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="index.html#contato">Contato</a></nav>
+  </header>
+
+  <div class="social-floating" aria-label="Redes sociais"><a href="https://www.linkedin.com/company/alogyengenharia" class="linkedin" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a><a href="https://www.instagram.com/alogyengenharia" class="instagram" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="https://www.facebook.com/alogyengenharia" class="facebook" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><a href="https://www.youtube.com/@alogyengenharia" class="youtube" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a><a href="https://hotmart.com/pt-br/club/alogyengenharia" class="hotmart" target="_blank" rel="noopener" aria-label="Hotmart">H</a><a href="https://www.tiktok.com/@alogyengenharia" class="tiktok" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a></div>
+  <div class="fab-wrap" aria-label="Ações rápidas"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1!%20Vim%20pela%20calculadora%20de%20vaz%C3%A3o%2C%20velocidade%20e%20di%C3%A2metro%20da%20ALOGY.%20Gostaria%20de%20apoio%20t%C3%A9cnico." target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
+
+  <main class="container" style="margin-top:18px">
+    <div style="margin-bottom:14px;display:flex;gap:10px;flex-wrap:wrap" class="no-print">
+      <a class="floating-back-tools no-print" href="ferramentas.html"><i class="fas fa-arrow-left"></i> Voltar para Ferramentas</a>
+      <button class="btn print" type="button" onclick="window.print()"><i class="fas fa-print"></i> Imprimir</button>
+      <a class="btn secondary" href="conversor-unidades-industriais.html"><i class="fas fa-ruler-combined"></i> Conversor de unidades</a>
+    </div>
+
+    <section class="tools-hero">
+      <h1>Calculadora de Vazão, Velocidade e Diâmetro de Tubulação</h1>
+      <p>Calcule a relação entre vazão volumétrica, velocidade média e diâmetro interno da tubulação. Use para pré-análise de linhas de água, líquidos de processo, ar comprimido e gases em condição volumétrica informada.</p>
+    </section>
+
+    <section class="calc-card" aria-label="Aviso de uso da ferramenta">
+      <h2><i class="fas fa-triangle-exclamation"></i> Ferramenta para estudo e apoio técnico</h2>
+      <p>Esta ferramenta é orientativa e usa a relação geométrica básica Q = A × v. Não substitui cálculo de perda de carga, rugosidade, viscosidade, cavitação, NPSH, golpe de aríete, compressibilidade, regime de escoamento, normas, folha de dados, memorial de cálculo, laudo, ART/RRT ou profissional habilitado. A ALOGY Engenharia não se responsabiliza por decisões, compras, instalações, ajustes ou intervenções realizadas exclusivamente com base nesta ferramenta.</p>
+    </section>
+
+    <section class="calc-layout">
+      <div class="calc-card">
+        <h2><i class="fas fa-water"></i> Dados da tubulação</h2>
+        <p>Escolha o que deseja calcular e informe os dois dados principais. O cálculo usa sempre o <strong>diâmetro interno</strong> da tubulação.</p>
+        <div class="calc-grid">
+          <div class="field full"><label for="modo">Quero calcular</label><select id="modo"><option value="vel">Velocidade pela vazão e diâmetro</option><option value="vazao">Vazão pelo diâmetro e velocidade</option><option value="diam">Diâmetro pela vazão e velocidade</option></select></div>
+          <div class="field"><label for="q">Vazão</label><input id="q" type="number" step="any" value="10"></div>
+          <div class="field"><label for="qunit">Unidade da vazão</label><select id="qunit"><option value="m3h">m³/h</option><option value="lmin">L/min</option><option value="ls">L/s</option><option value="gpm">GPM</option></select></div>
+          <div class="field"><label for="d">Diâmetro interno</label><input id="d" type="number" step="any" value="50"></div>
+          <div class="field"><label for="dunit">Unidade do diâmetro</label><select id="dunit"><option value="mm">mm</option><option value="pol">polegada</option><option value="m">m</option></select></div>
+          <div class="field"><label for="v">Velocidade</label><input id="v" type="number" step="any" value="1.5"></div>
+          <div class="field"><label for="fluido">Referência para alerta</label><select id="fluido"><option value="liquido">Água / líquidos</option><option value="ar">Ar comprimido / gases</option><option value="vapor">Vapor / gases em alta velocidade</option><option value="livre">Sem referência</option></select></div>
+        </div>
+        <div class="calc-actions" style="margin-top:14px">
+          <button class="mini-btn dark" type="button" onclick="copiarResultado()"><i class="fas fa-copy"></i> Copiar resultado</button>
+          <button class="mini-btn" type="button" onclick="exemplo('agua')">Exemplo água</button>
+          <button class="mini-btn" type="button" onclick="exemplo('ar')">Exemplo ar</button>
+          <button class="mini-btn" type="button" onclick="exemplo('diam')">Exemplo diâmetro</button>
+        </div>
+      </div>
+
+      <div class="calc-card">
+        <h2><i class="fas fa-calculator"></i> Resultado</h2>
+        <div class="calc-result" style="grid-template-columns:1fr 1fr">
+          <div class="result-box"><span>Vazão</span><strong id="out_q">-</strong></div>
+          <div class="result-box"><span>Velocidade</span><strong id="out_v">-</strong></div>
+          <div class="result-box"><span>Diâmetro interno</span><strong id="out_d">-</strong></div>
+          <div class="result-box"><span>Área interna</span><strong id="out_a">-</strong></div>
+          <div class="result-box"><span>Diâmetro comercial próximo</span><strong id="out_dn">-</strong></div>
+          <div class="result-box"><span>Status da velocidade</span><strong id="out_status">-</strong></div>
+        </div>
+        <div class="calc-note" id="nota" style="margin-top:12px">-</div>
+      </div>
+    </section>
+
+    <section class="calc-card">
+      <h2><i class="fas fa-table"></i> Tabela por diâmetro interno aproximado</h2>
+      <p>Comparação usando a vazão informada/calculada. Os diâmetros abaixo são referências didáticas de diâmetro interno e não substituem tabela de tubo, schedule, classe, material e fabricante.</p>
+      <div class="calc-table-wrap">
+        <table class="calc-table">
+          <thead><tr><th>Referência</th><th>Diâmetro interno</th><th>Velocidade com a vazão atual</th><th>Status</th></tr></thead>
+          <tbody id="tbl_dn"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="calc-card">
+      <h2><i class="fas fa-gauge-simple-high"></i> Tabela por velocidade</h2>
+      <p>Comparação usando o diâmetro informado/calculado. Ajuda a visualizar a vazão aproximada para diferentes velocidades médias.</p>
+      <div class="calc-table-wrap">
+        <table class="calc-table">
+          <thead><tr><th>Velocidade</th><th>Vazão em m³/h</th><th>Vazão em L/min</th><th>Vazão em GPM</th></tr></thead>
+          <tbody id="tbl_vel"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="calc-card">
+      <h2><i class="fas fa-book-open"></i> Fórmulas usadas</h2>
+      <div class="calc-table-wrap">
+        <table class="calc-table">
+          <tbody>
+            <tr><td>Área da tubulação</td><td>A = π × D² / 4</td></tr>
+            <tr><td>Vazão</td><td>Q = A × v</td></tr>
+            <tr><td>Velocidade</td><td>v = Q / A</td></tr>
+            <tr><td>Diâmetro</td><td>D = raiz de (4 × Q / π × v)</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="calc-card faq">
+      <h2><i class="fas fa-circle-question"></i> Perguntas rápidas</h2>
+      <details><summary>Devo usar diâmetro interno ou externo?</summary><p>Use diâmetro interno. Dois tubos com o mesmo diâmetro nominal podem ter diâmetros internos diferentes conforme material, espessura, classe de pressão e schedule.</p></details>
+      <details><summary>A velocidade ideal é sempre a mesma?</summary><p>Não. A velocidade aceitável depende do fluido, material da tubulação, perda de carga, ruído, erosão, cavitação, golpe de aríete, custo de bombeamento e requisitos do processo.</p></details>
+      <details><summary>Serve para ar comprimido e gases?</summary><p>Serve apenas como cálculo geométrico de vazão volumétrica na condição informada. Para gases, a análise real pode precisar considerar pressão, temperatura, compressibilidade, vazão normalizada e perda de carga.</p></details>
+      <details><summary>Essa ferramenta calcula perda de carga?</summary><p>Não. Ela calcula vazão, velocidade e diâmetro pela área interna. A perda de carga exige dados adicionais como comprimento, rugosidade, viscosidade, conexões, válvulas e regime de escoamento.</p></details>
+    </section>
+
+    <section class="cta-bar"><h3>Precisa conferir vazão, tubulação ou instrumentação de processo?</h3><p>A ALOGY Engenharia pode apoiar em automação, instrumentação, comissionamento, testes e documentação técnica.</p><a class="btn" href="https://wa.me/5519981442448?text=Ol%C3%A1!%20Vim%20pela%20calculadora%20de%20vaz%C3%A3o%2C%20velocidade%20e%20di%C3%A2metro%20da%20ALOGY.%20Gostaria%20de%20apoio%20t%C3%A9cnico." target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> Falar com a ALOGY</a></section>
+  </main>
+
+  <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p></footer>
+
+<script>
+const $ = id => document.getElementById(id);
+const dnList = [
+  ['DN 15',15],['DN 20',20],['DN 25',25],['DN 32',32],['DN 40',40],['DN 50',50],['DN 65',65],['DN 80',80],['DN 100',100],['DN 125',125],['DN 150',150],['DN 200',200],['DN 250',250],['DN 300',300]
+];
+function fmt(v, casas=3){ if(!isFinite(v)) return '-'; return Number(v).toLocaleString('pt-BR',{maximumFractionDigits:casas, minimumFractionDigits:0}); }
+function qToM3s(v,u){ v=Number(v); if(u==='m3h') return v/3600; if(u==='lmin') return v/60000; if(u==='ls') return v/1000; if(u==='gpm') return v*0.003785411784/60; return v/3600; }
+function m3sTo(q,u){ if(u==='m3h') return q*3600; if(u==='lmin') return q*60000; if(u==='ls') return q*1000; if(u==='gpm') return q*60/0.003785411784; return q*3600; }
+function unitLabel(u){ return {m3h:'m³/h',lmin:'L/min',ls:'L/s',gpm:'GPM'}[u] || 'm³/h'; }
+function dToM(d,u){ d=Number(d); if(u==='mm') return d/1000; if(u==='pol') return d*0.0254; if(u==='m') return d; return d/1000; }
+function mToD(m,u){ if(u==='mm') return m*1000; if(u==='pol') return m/0.0254; if(u==='m') return m; return m*1000; }
+function area(d){ return Math.PI*d*d/4; }
+function statusVel(v, fluido){
+  if(!isFinite(v) || v<0) return ['Verificar','status-bad','Verifique os dados preenchidos.'];
+  if(fluido==='livre') return ['Sem referência','status-warn','Apenas cálculo geométrico, sem avaliação de velocidade.'];
+  if(fluido==='liquido'){
+    if(v<0.3) return ['Baixa','status-warn','Para água/líquidos, velocidade muito baixa pode indicar linha superdimensionada ou risco de sedimentação dependendo do fluido.'];
+    if(v<=3) return ['Faixa comum','status-ok','Para água/líquidos, esta velocidade costuma ser uma faixa inicial razoável para pré-análise.'];
+    if(v<=5) return ['Atenção','status-warn','Velocidade elevada para muitos líquidos. Verifique perda de carga, ruído, erosão, válvulas e bomba.'];
+    return ['Alta','status-bad','Velocidade alta para muitos líquidos. Exige verificação técnica detalhada.'];
+  }
+  if(fluido==='ar'){
+    if(v<5) return ['Baixa','status-warn','Para ar/gases, pode estar baixa dependendo da aplicação, pressão e rede.'];
+    if(v<=20) return ['Faixa comum','status-ok','Para ar comprimido/gases, esta pode ser uma faixa inicial de pré-análise, mas depende da pressão e perda de carga.'];
+    if(v<=30) return ['Atenção','status-warn','Velocidade elevada. Verifique ruído, perda de carga, pressão disponível e aplicação.'];
+    return ['Alta','status-bad','Velocidade alta. Para gases, confirme pressão, compressibilidade, perda de carga e critérios do projeto.'];
+  }
+  if(fluido==='vapor'){
+    if(v<10) return ['Baixa','status-warn','Para vapor/gases rápidos, pode estar baixa dependendo da aplicação.'];
+    if(v<=35) return ['Faixa comum','status-ok','Faixa inicial de pré-análise. Confirme pressão, regime, ruído e perda de carga.'];
+    if(v<=50) return ['Atenção','status-warn','Velocidade elevada. Verifique ruído, erosão, perda de carga e segurança.'];
+    return ['Alta','status-bad','Velocidade muito alta para muitas aplicações. Exige análise técnica detalhada.'];
+  }
+  return ['Verificar','status-warn','Confirme critérios do processo.'];
+}
+function setBox(id, cls){ const box=$(id).closest('.result-box'); if(box) box.className='result-box '+cls; }
+function nearestDN(dmm){
+  let n=dnList.find(x=>x[1]>=dmm);
+  if(!n) return 'Acima de DN 300';
+  return `${n[0]} aprox. (${fmt(n[1],0)} mm)`;
+}
+function calc(){
+  const modo=$('modo').value, qunit=$('qunit').value, dunit=$('dunit').value, fluido=$('fluido').value;
+  const qIn=Number($('q').value), dIn=Number($('d').value), vIn=Number($('v').value);
+  let q=qToM3s(qIn,qunit), d=dToM(dIn,dunit), v=vIn;
+  if(modo==='vel'){
+    if(!(q>0) || !(d>0)){ notaErro('Informe vazão e diâmetro maiores que zero.'); return; }
+    v=q/area(d);
+  } else if(modo==='vazao'){
+    if(!(d>0) || !(v>0)){ notaErro('Informe diâmetro e velocidade maiores que zero.'); return; }
+    q=area(d)*v;
+  } else if(modo==='diam'){
+    if(!(q>0) || !(v>0)){ notaErro('Informe vazão e velocidade maiores que zero.'); return; }
+    d=Math.sqrt((4*q)/(Math.PI*v));
+  }
+  const a=area(d), dmm=d*1000;
+  const st=statusVel(v,fluido);
+  $('out_q').textContent=`${fmt(m3sTo(q,qunit),3)} ${unitLabel(qunit)}`;
+  $('out_v').textContent=`${fmt(v,3)} m/s`;
+  $('out_d').textContent=`${fmt(dmm,2)} mm (${fmt(d/0.0254,3)} pol)`;
+  $('out_a').textContent=`${fmt(a,6)} m² (${fmt(a*10000,2)} cm²)`;
+  $('out_dn').textContent=nearestDN(dmm);
+  $('out_status').textContent=st[0];
+  setBox('out_status',st[1]);
+  $('nota').innerHTML=`Resultado calculado pela relação <strong>Q = A × v</strong>. ${st[2]} Use diâmetro interno real da tubulação.`;
+  montarDN(q,fluido);
+  montarVel(d);
+}
+function notaErro(txt){
+  ['out_q','out_v','out_d','out_a','out_dn','out_status'].forEach(id=>$(id).textContent='Verificar');
+  $('nota').textContent=txt; $('tbl_dn').innerHTML=''; $('tbl_vel').innerHTML='';
+}
+function montarDN(q,fluido){
+  $('tbl_dn').innerHTML = dnList.map(([nome,mm])=>{
+    const d=mm/1000, v=q/area(d), st=statusVel(v,fluido);
+    return `<tr><td>${nome}</td><td>${fmt(mm,0)} mm</td><td>${fmt(v,3)} m/s</td><td><strong class="${st[1]}">${st[0]}</strong></td></tr>`;
+  }).join('');
+}
+function montarVel(d){
+  const velocidades=[0.3,0.5,1,1.5,2,3,5,10,20];
+  $('tbl_vel').innerHTML = velocidades.map(v=>{
+    const q=area(d)*v;
+    return `<tr><td>${fmt(v,2)} m/s</td><td>${fmt(q*3600,3)} m³/h</td><td>${fmt(q*60000,2)} L/min</td><td>${fmt(q*60/0.003785411784,2)} GPM</td></tr>`;
+  }).join('');
+}
+function exemplo(tipo){
+  if(tipo==='agua'){
+    $('modo').value='vel'; $('q').value='10'; $('qunit').value='m3h'; $('d').value='50'; $('dunit').value='mm'; $('v').value='1.5'; $('fluido').value='liquido';
+  } else if(tipo==='ar'){
+    $('modo').value='vel'; $('q').value='1200'; $('qunit').value='m3h'; $('d').value='150'; $('dunit').value='mm'; $('v').value='15'; $('fluido').value='ar';
+  } else {
+    $('modo').value='diam'; $('q').value='25'; $('qunit').value='m3h'; $('v').value='2'; $('d').value='80'; $('dunit').value='mm'; $('fluido').value='liquido';
+  }
+  calc(); window.scrollTo({top:0,behavior:'smooth'});
+}
+function copiarResultado(){
+  const txt=[
+    'Resultado - Calculadora de Vazão, Velocidade e Diâmetro ALOGY',
+    `Modo: ${$('modo').selectedOptions[0].textContent}`,
+    `Vazão: ${$('out_q').textContent}`,
+    `Velocidade: ${$('out_v').textContent}`,
+    `Diâmetro interno: ${$('out_d').textContent}`,
+    `Área: ${$('out_a').textContent}`,
+    `Diâmetro comercial próximo: ${$('out_dn').textContent}`,
+    `Status: ${$('out_status').textContent}`,
+    'Observação: ferramenta orientativa, não substitui projeto, perda de carga, norma ou profissional habilitado.'
+  ].join('\n');
+  navigator.clipboard.writeText(txt).then(()=>alert('Resultado copiado.')).catch(()=>alert(txt));
+}
+['modo','q','qunit','d','dunit','v','fluido'].forEach(id=>{ $(id).addEventListener('input',calc); $(id).addEventListener('change',calc); });
+calc();
+</script>
+</body>
+</html>
