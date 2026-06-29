@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Calculadora Termopar Online | mV x Temperatura</title>
+  <meta name="description" content="Calculadora de termopar online para converter temperatura em mV e mV em temperatura nos tipos J, K, T, E, N, R, S e B, com compensação de junta fria e tabela rápida."/>
+  <meta name="robots" content="index,follow" />
+  <meta name="theme-color" content="#062138" />
+  <link rel="canonical" href="https://www.alogy.com.br/calculadora-termopar.html" />
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png" />
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="app.js" defer></script>
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ALOGY Engenharia" />
+  <meta property="og:title" content="Calculadora Termopar Online | mV x Temperatura" />
+  <meta property="og:description" content="Converta termopares J, K, T, E, N, R, S e B entre mV e temperatura, com compensação de junta fria e tabela rápida para campo." />
+  <meta property="og:url" content="https://www.alogy.com.br/calculadora-termopar.html" />
+  <meta property="og:image" content="https://www.alogy.com.br/favicon-512x512.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebApplication",
+    "name":"Calculadora Termopar Online",
+    "url":"https://www.alogy.com.br/calculadora-termopar.html",
+    "applicationCategory":"EngineeringApplication",
+    "operatingSystem":"Web",
+    "description":"Converta termopares industriais entre milivolts e temperatura, considerando tipo de termopar, compensação de junta fria e tabela rápida de referência.",
+    "publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"}
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {"@type":"Question","name":"O que é um termopar?","acceptedAnswer":{"@type":"Answer","text":"Termopar é um sensor formado por dois metais diferentes. A diferença de temperatura entre a junta quente e a junta fria gera uma pequena tensão em milivolts."}},
+      {"@type":"Question","name":"Por que existe compensação de junta fria?","acceptedAnswer":{"@type":"Answer","text":"As tabelas de termopar normalmente consideram a junta de referência em 0 °C. Quando a junta fria está em outra temperatura, é necessário compensar esse valor para estimar corretamente a temperatura da junta quente."}},
+      {"@type":"Question","name":"Qual termopar é mais comum na indústria?","acceptedAnswer":{"@type":"Answer","text":"O tipo K é um dos mais usados por cobrir uma ampla faixa de temperatura. Também são comuns os tipos J e T, dependendo da aplicação, ambiente e faixa de trabalho."}},
+      {"@type":"Question","name":"Essa calculadora substitui tabela oficial ou calibração?","acceptedAnswer":{"@type":"Answer","text":"Não. A ferramenta é apenas para estudo, apoio técnico e pré-análise. Decisões finais dependem de tabela técnica aplicável, certificado, procedimento, medição em campo e profissional habilitado."}}
+    ]
+  }
+  </script>
+  <style>
+    .mini-btn{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(0,107,177,.25);background:rgba(0,107,177,.08);color:#0b3a62;border-radius:12px;padding:10px 12px;font-weight:900;cursor:pointer;text-decoration:none;font:inherit}
+    .mini-btn:hover{background:rgba(0,107,177,.12)}.mini-btn.dark{background:#0b3a62;color:#fff;border-color:#0b3a62}
+    .small-muted{color:var(--muted);font-size:.92rem;line-height:1.55}.calc-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+    .status-ok{border-color:rgba(34,197,94,.35)!important;background:rgba(34,197,94,.10)!important;color:#166534!important}
+    .status-bad{border-color:rgba(239,68,68,.35)!important;background:rgba(239,68,68,.10)!important;color:#991b1b!important}
+    .span-pill{display:inline-flex;align-items:center;gap:8px;border-radius:999px;background:rgba(0,107,177,.08);border:1px solid rgba(0,107,177,.18);color:#0b3a62;font-weight:900;padding:8px 11px;font-size:.9rem;margin:4px 4px 0 0}
+    .faq details{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:14px;padding:14px;margin-top:10px;box-shadow:0 6px 16px rgba(0,0,0,.04)}.faq summary{cursor:pointer;font-weight:900;color:#0b3a62}.faq p{margin:10px 0 0;color:var(--muted)}
+    @media(max-width:900px){.calc-actions .mini-btn{width:100%;justify-content:center}}
+    @media print{header,.social-floating,.fab-wrap,.cta-bar,footer,.calc-actions,.tools-hero .btn,.no-print{display:none!important}body{background:#fff}.container{max-width:100%;padding:0}.calc-card,.tools-hero{box-shadow:none;border:1px solid #ddd}.calc-layout{display:block}.calc-card{margin:12px 0}.calc-table th{background:#eee!important;color:#111!important}}
+  </style>
+</head>
+<body class="tools-page">
+  <header>
+    <div class="container headbar"><a href="/" class="logo-wrapper" aria-label="Voltar para o início"><img src="logo-alogy.webp" alt="ALOGY Engenharia" /></a><div class="crea-top" aria-label="CREA-SP"><img src="crea.webp" alt="CREA-SP"></div><button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menu"><i class="fas fa-bars"></i></button></div>
+    <nav class="desktop" aria-label="Menu principal"><div class="container navlinks"><a href="index.html">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="index.html#contato">Contato</a></div></nav>
+    <nav class="mobile" aria-label="Menu mobile"><a href="index.html">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="index.html#contato">Contato</a></nav>
+  </header>
+  <div class="social-floating" aria-label="Redes sociais"><a href="https://www.linkedin.com/company/alogyengenharia" class="linkedin" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a><a href="https://www.instagram.com/alogyengenharia" class="instagram" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="https://www.facebook.com/alogyengenharia" class="facebook" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><a href="https://www.youtube.com/@alogyengenharia" class="youtube" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a><a href="https://hotmart.com/pt-br/club/alogyengenharia" class="hotmart" target="_blank" rel="noopener" aria-label="Hotmart">H</a><a href="https://www.tiktok.com/@alogyengenharia" class="tiktok" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a></div>
+  <div class="fab-wrap" aria-label="Ações rápidas"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1!%20Vim%20pela%20calculadora%20de%20termopar%20da%20ALOGY.%20Gostaria%20de%20atendimento." target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
+
+  <main class="container" style="margin-top:18px">
+    <div style="margin-bottom:14px;display:flex;gap:10px;flex-wrap:wrap" class="no-print">
+      <a class="floating-back-tools no-print" href="ferramentas.html"><i class="fas fa-arrow-left"></i> Voltar para Ferramentas</a>
+      <button class="btn print" type="button" onclick="window.print()"><i class="fas fa-print"></i> Imprimir</button>
+      <a class="btn secondary" href="calculadora-temperatura-industrial.html"><i class="fas fa-temperature-half"></i> Temperatura industrial</a>
+      <a class="btn secondary" href="calculadora-pt100.html"><i class="fas fa-thermometer-half"></i> PT100</a>
+    </div>
+
+    <section class="tools-hero"><h1>Calculadora Termopar Online</h1><p>Converta milivolts em temperatura e temperatura em milivolts para termopares J, K, T, E, N, R, S e B. Inclui compensação de junta fria, faixa de trabalho, tabela rápida e apoio para teste de campo, calibração e manutenção.</p></section>
+
+    <section class="calc-card" aria-label="Aviso de uso da ferramenta">
+      <h2><i class="fas fa-triangle-exclamation"></i> Ferramenta para estudo e apoio técnico</h2>
+      <p>Esta calculadora é orientativa e usa interpolação aproximada em tabela de referência para apoio técnico, estudo e pré-análise. Não substitui tabela oficial do fabricante ou norma aplicável, certificado rastreado, calibração, medição em campo, análise de incerteza, laudo ou profissional habilitado. A ALOGY Engenharia não se responsabiliza por decisões, ajustes, instalações ou intervenções realizadas exclusivamente com base nesta ferramenta.</p>
+    </section>
+
+    <section class="calc-layout">
+      <div class="calc-card"><h2><i class="fas fa-fire-flame-simple"></i> Dados do termopar</h2><p>Escolha o tipo de termopar e informe a temperatura ou o sinal medido em mV. A compensação de junta fria considera que o sinal medido equivale a E quente menos E junta fria.</p>
+        <div class="calc-grid">
+          <div class="field"><label for="tipo">Tipo de termopar</label><select id="tipo"><option value="K" selected>Tipo K - uso geral</option><option value="J">Tipo J - ferro/constantan</option><option value="T">Tipo T - baixa temperatura</option><option value="E">Tipo E - alta sensibilidade</option><option value="N">Tipo N - alta temperatura</option><option value="R">Tipo R - platina/ródio</option><option value="S">Tipo S - platina/ródio</option><option value="B">Tipo B - alta temperatura</option></select></div>
+          <div class="field"><label for="modo">Calcular a partir de</label><select id="modo"><option value="temp">Temperatura para mV</option><option value="mv">mV para temperatura</option></select></div>
+          <div class="field"><label for="valor" id="valorLabel">Temperatura da junta quente (°C)</label><input id="valor" type="number" step="any" value="300"></div>
+          <div class="field"><label for="jf">Temperatura da junta fria / ambiente (°C)</label><input id="jf" type="number" step="any" value="25"></div>
+          <div class="field"><label for="casas">Casas decimais</label><select id="casas"><option value="3" selected>3 casas</option><option value="2">2 casas</option><option value="4">4 casas</option></select></div>
+        </div>
+        <div class="calc-actions"><button class="mini-btn dark" type="button" onclick="copiarResultado()"><i class="fas fa-copy"></i> Copiar resultado</button><button class="mini-btn" type="button" onclick="exemplo('K','temp',300,25)">Exemplo K 300 °C</button><button class="mini-btn" type="button" onclick="exemplo('J','mv',15,25)">J 15 mV</button><button class="mini-btn" type="button" onclick="exemplo('T','temp',-50,20)">T -50 °C</button></div>
+      </div>
+
+      <div class="calc-card"><h2><i class="fas fa-square-poll-vertical"></i> Resultado</h2>
+        <div class="calc-result" style="grid-template-columns:1fr 1fr">
+          <div class="result-box"><span>Temperatura estimada</span><strong id="outTemp">-</strong></div>
+          <div class="result-box"><span>mV referência 0 °C</span><strong id="outMv0">-</strong></div>
+          <div class="result-box"><span>mV medido com junta fria</span><strong id="outMvMed">-</strong></div>
+          <div class="result-box"><span>Status</span><strong id="outStatus">-</strong></div>
+        </div>
+        <div style="margin-top:14px"><span class="span-pill" id="pillTipo">Tipo: -</span><span class="span-pill" id="pillFaixa">Faixa: -</span><span class="span-pill" id="pillJf">Junta fria: -</span></div>
+        <div class="calc-note" id="nota" style="margin-top:14px">A compensação da junta fria é aplicada de forma orientativa.</div>
+      </div>
+    </section>
+
+    <section class="calc-layout">
+      <div class="calc-card"><h2><i class="fas fa-table"></i> Tabela rápida do tipo selecionado</h2><p class="small-muted">Valores aproximados por interpolação para consulta inicial. Para calibração, use tabela oficial, certificado e procedimento metrológico.</p><div class="calc-table-wrap"><table class="calc-table"><thead><tr><th>Temperatura</th><th>mV ref. 0 °C</th><th>mV com junta fria</th></tr></thead><tbody id="tbl"></tbody></table></div></div>
+      <div class="calc-card"><h2><i class="fas fa-circle-info"></i> Aplicação e cuidados</h2><p id="aplicacao"><strong>Tipo K:</strong> muito usado em aplicações industriais gerais pela ampla faixa de temperatura.</p><p><strong>Junta fria:</strong> se a junta de referência não está em 0 °C, o instrumento precisa compensar essa temperatura para indicar corretamente.</p><p><strong>Polaridade:</strong> inversão dos fios pode causar leitura negativa ou comportamento incorreto.</p><div class="calc-note">Cores de cabos podem variar conforme padrão IEC, ANSI ou fabricante. Confirme a identificação no cabo, borne e documentação da instalação.</div></div>
+    </section>
+
+    <section class="calc-card faq"><h2><i class="fas fa-circle-question"></i> Perguntas frequentes</h2>
+      <details open><summary>O que o termopar mede?</summary><p>Ele gera uma tensão em milivolts relacionada à diferença de temperatura entre a junta quente e a junta fria. O instrumento converte esse mV em temperatura.</p></details>
+      <details><summary>12 mV em um tipo K significa a mesma temperatura em um tipo J?</summary><p>Não. Cada tipo de termopar tem curva própria. O mesmo valor em mV pode representar temperaturas diferentes conforme o tipo selecionado.</p></details>
+      <details><summary>O que acontece se a junta fria estiver errada?</summary><p>A indicação de temperatura pode ficar deslocada. Por isso, transmissores e indicadores costumam ter compensação de junta fria interna ou externa.</p></details>
+      <details><summary>Essa ferramenta serve para certificado?</summary><p>Não. Ela é apenas apoio técnico. Certificados de calibração exigem padrão rastreado, procedimento, cálculo de incerteza, condições ambientais e responsável técnico.</p></details>
+    </section>
+
+    <section class="cta-bar"><h3>Precisa avaliar termopares, transmissores de temperatura ou malhas de instrumentação?</h3><p>A ALOGY Engenharia pode apoiar em instrumentação, automação, calibração, teste de loop e documentação técnica.</p><a class="btn" href="https://wa.me/5519981442448?text=Ol%C3%A1!%20Vim%20pela%20calculadora%20de%20termopar%20da%20ALOGY.%20Gostaria%20de%20apoio%20t%C3%A9cnico." target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> Falar com a ALOGY</a></section>
+  </main>
+  <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p></footer>
+
+<script>
+const $=id=>document.getElementById(id);
+const dados={
+ K:{range:[-200,1372],desc:'Tipo K: uso geral, ampla faixa, comum em fornos, máquinas, processos térmicos e manutenção industrial.',pts:[[-200,-5.891],[-100,-3.554],[0,0],[100,4.096],[200,8.138],[300,12.209],[400,16.397],[500,20.644],[600,24.905],[700,29.129],[800,33.277],[900,37.326],[1000,41.276],[1100,45.108],[1200,48.838],[1300,52.410],[1372,54.886]]},
+ J:{range:[-210,1200],desc:'Tipo J: comum em aplicações industriais, indicado para faixas moderadas e ambientes compatíveis com ferro/constantan.',pts:[[-210,-8.095],[-100,-4.633],[0,0],[100,5.269],[200,10.779],[300,16.327],[400,21.848],[500,27.393],[600,33.102],[700,39.130],[800,45.498],[900,51.877],[1000,57.953],[1100,63.792],[1200,69.553]]},
+ T:{range:[-200,400],desc:'Tipo T: muito usado em baixas temperaturas e aplicações que exigem boa estabilidade em faixa reduzida.',pts:[[-200,-5.603],[-100,-3.379],[0,0],[100,4.279],[200,9.288],[300,14.862],[400,20.872]]},
+ E:{range:[-200,1000],desc:'Tipo E: alta sensibilidade em mV/°C, útil quando se deseja maior resposta elétrica por variação de temperatura.',pts:[[-200,-8.825],[-100,-5.237],[0,0],[100,6.319],[200,13.421],[300,21.033],[400,28.943],[500,37.005],[600,45.085],[700,53.110],[800,61.017],[900,68.787],[1000,76.373]]},
+ N:{range:[-200,1300],desc:'Tipo N: opção para temperaturas elevadas, com boa estabilidade em aplicações industriais severas.',pts:[[-200,-3.990],[-100,-2.407],[0,0],[100,2.774],[200,5.913],[300,9.341],[400,12.974],[500,16.748],[600,20.613],[700,24.527],[800,28.455],[900,32.371],[1000,36.256],[1100,40.087],[1200,43.846],[1300,47.513]]},
+ R:{range:[-50,1768],desc:'Tipo R: termopar nobre para altas temperaturas, comum em laboratório, fornos e processos especiais.',pts:[[-50,-0.226],[0,0],[100,0.647],[200,1.469],[300,2.401],[400,3.408],[500,4.471],[600,5.583],[700,6.743],[800,7.950],[900,9.205],[1000,10.506],[1100,11.850],[1200,13.228],[1300,14.624],[1400,16.040],[1500,17.471],[1600,18.915],[1700,20.356],[1768,21.103]]},
+ S:{range:[-50,1768],desc:'Tipo S: termopar nobre para altas temperaturas, usado em padrões, fornos e medições especiais.',pts:[[-50,-0.236],[0,0],[100,0.646],[200,1.441],[300,2.323],[400,3.260],[500,4.234],[600,5.239],[700,6.275],[800,7.345],[900,8.448],[1000,9.585],[1100,10.757],[1200,11.947],[1300,13.159],[1400,14.392],[1500,15.643],[1600,16.911],[1700,18.186],[1768,18.694]]},
+ B:{range:[0,1820],desc:'Tipo B: termopar nobre para temperaturas muito altas. Em baixas temperaturas a sensibilidade é pequena e a leitura deve ser avaliada com cuidado.',pts:[[0,0],[100,0.033],[200,0.178],[300,0.431],[400,0.787],[500,1.242],[600,1.792],[700,2.431],[800,3.154],[900,3.957],[1000,4.834],[1100,5.780],[1200,6.786],[1300,7.848],[1400,8.956],[1500,10.099],[1600,11.263],[1700,12.433],[1800,13.591],[1820,13.820]]}
+};
+function fmt(n,d){ if(!isFinite(n)) return '-'; return Number(n).toLocaleString('pt-BR',{minimumFractionDigits:d,maximumFractionDigits:d}); }
+function interp(x,pts){
+  if(x<=pts[0][0]) return pts[0][1];
+  if(x>=pts[pts.length-1][0]) return pts[pts.length-1][1];
+  for(let i=0;i<pts.length-1;i++){
+    const [x1,y1]=pts[i], [x2,y2]=pts[i+1];
+    if(x>=x1 && x<=x2) return y1+(y2-y1)*(x-x1)/(x2-x1);
+  }
+  return NaN;
+}
+function invInterp(y,pts){
+  const min=Math.min(...pts.map(p=>p[1])), max=Math.max(...pts.map(p=>p[1]));
+  if(y<=min) return pts[0][0];
+  if(y>=max) return pts[pts.length-1][0];
+  for(let i=0;i<pts.length-1;i++){
+    const [x1,y1]=pts[i], [x2,y2]=pts[i+1];
+    if((y>=y1 && y<=y2) || (y<=y1 && y>=y2)) return x1+(x2-x1)*(y-y1)/(y2-y1);
+  }
+  return NaN;
+}
+function calc(){
+  const tipo=$('tipo').value, d=+$('casas').value, modo=$('modo').value, val=+$('valor').value, jf=+$('jf').value||0, info=dados[tipo];
+  $('valorLabel').textContent = modo==='temp' ? 'Temperatura da junta quente (°C)' : 'mV medido pelo instrumento';
+  const eJf=interp(jf,info.pts);
+  let temp,mv0,mvMed;
+  if(modo==='temp'){ temp=val; mv0=interp(temp,info.pts); mvMed=mv0-eJf; }
+  else{ mvMed=val; mv0=mvMed+eJf; temp=invInterp(mv0,info.pts); }
+  const fora=temp<info.range[0] || temp>info.range[1] || !isFinite(temp) || !isFinite(mv0);
+  $('outTemp').textContent=`${fmt(temp,2)} °C`;
+  $('outMv0').textContent=`${fmt(mv0,d)} mV`;
+  $('outMvMed').textContent=`${fmt(mvMed,d)} mV`;
+  $('outStatus').textContent=fora?'Verificar faixa':'Dentro da faixa auxiliar';
+  $('outStatus').parentElement.classList.toggle('status-bad',fora);
+  $('outStatus').parentElement.classList.toggle('status-ok',!fora);
+  $('pillTipo').textContent=`Tipo ${tipo}`;
+  $('pillFaixa').textContent=`Faixa aprox.: ${info.range[0]} a ${info.range[1]} °C`;
+  $('pillJf').textContent=`Junta fria: ${fmt(jf,1)} °C`;
+  $('nota').textContent=`Compensação orientativa: E equivalente ref. 0 °C = mV medido + E da junta fria. Para ${fmt(jf,1)} °C, E junta fria ≈ ${fmt(eJf,d)} mV.`;
+  $('aplicacao').innerHTML='<strong>'+info.desc.split(':')[0]+':</strong>'+info.desc.substring(info.desc.indexOf(':')+1);
+  renderTable(info,jf,d);
+}
+function renderTable(info,jf,d){
+  const eJf=interp(jf,info.pts);
+  const pts=info.pts.filter((p,i)=> i===0 || i===info.pts.length-1 || p[0]%200===0 || p[0]===100 || p[0]===300 || p[0]===500 || p[0]===700 || p[0]===900 || p[0]===1100 || p[0]===1300 || p[0]===1500 || p[0]===1700).slice(0,18);
+  $('tbl').innerHTML=pts.map(p=>`<tr><td>${p[0]} °C</td><td>${fmt(p[1],d)} mV</td><td>${fmt(p[1]-eJf,d)} mV</td></tr>`).join('');
+}
+function exemplo(tipo,modo,valor,jf){ $('tipo').value=tipo; $('modo').value=modo; $('valor').value=valor; $('jf').value=jf; calc(); }
+function copiarResultado(){
+  const txt=`Calculadora Termopar ALOGY\n${$('pillTipo').textContent}\nTemperatura estimada: ${$('outTemp').textContent}\nmV referência 0 °C: ${$('outMv0').textContent}\nmV medido com junta fria: ${$('outMvMed').textContent}\n${$('pillJf').textContent}\n${$('pillFaixa').textContent}`;
+  navigator.clipboard?.writeText(txt).then(()=>alert('Resultado copiado.')).catch(()=>alert(txt));
+}
+['tipo','modo','valor','jf','casas'].forEach(id=>$(id).addEventListener('input',calc));
+calc();
+</script>
+</body>
+</html>
