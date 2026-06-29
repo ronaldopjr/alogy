@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nível de Caldeira por DP | ALOGY</title>
+  <meta name="description" content="Ferramenta completa para dimensionar nível de caldeira por transmissor DP, tomada alta/baixa, perna úmida, LRV, URV, alarmes e faixa 4-20 mA." />
+  <meta name="robots" content="index,follow" />
+  <meta name="theme-color" content="#004b80" />
+  <link rel="canonical" href="https://www.alogy.com.br/calculadora-nivel-caldeira-transmissor-dp.html" />
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png" />
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="app.js" defer></script>
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ALOGY Engenharia" />
+  <meta property="og:title" content="Calculadora de Nível de Caldeira por Transmissor DP" />
+  <meta property="og:description" content="Dimensione faixa LRV/URV, tomada alta e baixa, perna úmida, alarmes, 4-20 mA e checklist de instrumentação para nível de caldeira." />
+  <meta property="og:url" content="https://www.alogy.com.br/calculadora-nivel-caldeira-transmissor-dp.html" />
+  <meta property="og:image" content="https://www.alogy.com.br/favicon-512x512.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Calculadora de Nível de Caldeira por Transmissor DP","url":"https://www.alogy.com.br/calculadora-nivel-caldeira-transmissor-dp.html","applicationCategory":"EngineeringApplication","operatingSystem":"Web","description":"Ferramenta completa para dimensionar nível de caldeira por transmissor DP, tomada alta/baixa, perna úmida, LRV, URV, alarmes e faixa 4-20 mA.","publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"},"inLanguage":"pt-BR"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Qual lado do transmissor DP liga na tomada baixa da caldeira?","acceptedAnswer":{"@type":"Answer","text":"Na montagem mais comum com perna úmida de referência, a tomada baixa do tambor, em contato com a água, vai para o lado HP do transmissor, e a tomada alta, no vapor, com pote de condensado/perna úmida, vai para o lado LP."}},{"@type":"Question","name":"Por que o range de nível de caldeira pode ficar negativo?","acceptedAnswer":{"@type":"Answer","text":"Porque a perna úmida no lado LP gera uma coluna hidrostática constante que pode ser maior que a coluna variável do lado HP. O importante é configurar corretamente LRV e URV para que o sinal 4-20 mA aumente com o nível."}},{"@type":"Question","name":"A densidade da água da caldeira precisa ser corrigida?","acceptedAnswer":{"@type":"Answer","text":"Sim. A densidade da água no tambor varia com pressão e temperatura. Para especificação final, deve-se usar densidade real de operação e, quando aplicável, considerar densidade do vapor e da perna de referência."}},{"@type":"Question","name":"Essa ferramenta substitui projeto de segurança de caldeira?","acceptedAnswer":{"@type":"Answer","text":"Não. Ela é uma ferramenta de pré-dimensionamento e estudo. Caldeiras exigem validação por profissional habilitado, fabricante, normas aplicáveis, filosofia de controle e requisitos de segurança da instalação."}}]}</script>
+  <style>
+    .tech-page{background:linear-gradient(180deg,rgba(0,75,128,.05),rgba(255,255,255,0) 320px)}
+    .tech-wrap{max-width:1180px;margin:18px auto 36px}
+    .tech-back{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:900;color:#0b3a62;background:#fff;border:1px solid rgba(0,107,177,.18);border-radius:999px;padding:10px 14px;box-shadow:0 6px 18px rgba(0,0,0,.04);margin-bottom:14px}
+    .tech-hero{background:radial-gradient(circle at 90% 0%,rgba(255,255,255,.22),transparent 32%),linear-gradient(135deg,#0b3a62,#006bb1);color:#fff;border-radius:24px;padding:32px;box-shadow:0 18px 44px rgba(0,75,128,.24);overflow:hidden;position:relative}
+    .tech-hero h1{font-size:2.32rem;line-height:1.12;margin:0 0 12px;color:#fff;max-width:900px}
+    .tech-hero p{font-size:1.08rem;line-height:1.65;margin:0;max-width:920px;color:rgba(255,255,255,.94)}
+    .hero-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}
+    .hero-tags span,.hero-tags a{display:inline-flex;align-items:center;gap:7px;border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.13);color:#fff;text-decoration:none;border-radius:999px;padding:8px 10px;font-size:.88rem;font-weight:900}
+    .calc-grid{display:grid;grid-template-columns:minmax(0,1fr) 420px;gap:18px;margin-top:18px;align-items:start}
+    .tech-card{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:20px;box-shadow:0 12px 30px rgba(0,0,0,.06);padding:24px;margin-top:18px}
+    .tech-card.sticky{position:sticky;top:12px}
+    .tech-card h2{font-size:1.42rem;line-height:1.25;margin:0 0 12px;color:#0b3a62}
+    .tech-card h3{font-size:1.12rem;line-height:1.3;margin:20px 0 8px;color:#0b3a62}
+    .tech-card p,.tech-card li{font-size:1rem;line-height:1.72;color:#253243}
+    .tech-card ul,.tech-card ol{margin:0 0 16px 20px}
+    .field-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .field{display:flex;flex-direction:column;gap:6px}
+    .field label{font-weight:900;color:#0b3a62;font-size:.92rem}
+    .field input,.field select,.field textarea{border:1px solid rgba(0,0,0,.14);border-radius:12px;padding:12px;background:#fff;font:inherit;width:100%;box-sizing:border-box}
+    .field textarea{min-height:84px;resize:vertical}
+    .field small{color:#6b7280;line-height:1.4}
+    .wide{grid-column:1/-1}
+    .calc-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+    .btn-mini{display:inline-flex;align-items:center;gap:8px;border:none;border-radius:999px;padding:11px 14px;font-weight:900;cursor:pointer;text-decoration:none;background:#0b3a62;color:#fff;font:inherit}
+    .btn-mini.secondary{background:rgba(0,107,177,.09);color:#0b3a62;border:1px solid rgba(0,107,177,.18)}
+    .btn-mini.good{background:#166534;color:#fff}
+    .btn-mini.warn{background:#92400e;color:#fff}
+    .result-box{border-radius:18px;background:linear-gradient(180deg,rgba(0,107,177,.10),rgba(0,107,177,.04));border:1px solid rgba(0,107,177,.18);padding:18px}
+    .result-main{font-size:1.78rem;font-weight:900;color:#0b3a62;line-height:1.12;margin:10px 0}
+    .result-sub{color:#475569;line-height:1.6}
+    .pill-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+    .pill{display:inline-flex;align-items:center;gap:7px;border-radius:999px;background:#fff;border:1px solid rgba(0,107,177,.18);padding:8px 10px;font-size:.88rem;font-weight:900;color:#0b3a62}
+    .note{background:#fff7ed;border:1px solid #fed7aa;color:#7c2d12;border-radius:16px;padding:14px;line-height:1.6}
+    .ok{background:#ecfdf5;border-color:#bbf7d0;color:#166534}.warnbox{background:#fffbeb;border-color:#fde68a;color:#92400e}.bad{background:#fef2f2;border-color:#fecaca;color:#991b1b}
+    .table-wrap{overflow:auto;border-radius:16px;border:1px solid rgba(0,0,0,.08);margin-top:12px}
+    table.tech-table{width:100%;border-collapse:collapse;background:#fff;font-size:.94rem}
+    .tech-table th{background:#0b3a62;color:#fff;text-align:left;padding:11px;white-space:nowrap}
+    .tech-table td{padding:10px;border-bottom:1px solid rgba(0,0,0,.07);vertical-align:top}.tech-table tr:last-child td{border-bottom:none}
+    .diagram{background:#f8fafc;border:1px solid rgba(15,23,42,.1);border-radius:18px;padding:12px;margin-top:12px;overflow:auto}.diagram svg{max-width:100%;height:auto;display:block;margin:auto}
+    .formula{background:#0f172a;color:#e5e7eb;border-radius:16px;padding:16px;overflow:auto;line-height:1.7;font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;font-size:.92rem}
+    .mini-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.mini-kpi{border:1px solid rgba(0,107,177,.18);background:#fff;border-radius:16px;padding:14px}.mini-kpi b{display:block;color:#0b3a62;font-size:.86rem;margin-bottom:6px}.mini-kpi span{font-size:1.25rem;font-weight:900;color:#111827}
+    .faq details{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:14px;padding:14px;margin-top:10px}.faq summary{cursor:pointer;font-weight:900;color:#0b3a62}.faq p{margin:10px 0 0;color:#475569}
+    .copybox{white-space:pre-wrap;background:#0f172a;color:#e5e7eb;border-radius:16px;padding:16px;overflow:auto;font-size:.92rem;line-height:1.55}
+    .ad-note{display:none}
+    @media(max-width:940px){.calc-grid{grid-template-columns:1fr}.field-grid,.mini-grid{grid-template-columns:1fr}.tech-card.sticky{position:static}.tech-hero{padding:24px}.tech-hero h1{font-size:1.68rem}}
+    @media print{header,.social-floating,.fab-wrap,footer,.tech-back,.calc-actions,.no-print{display:none!important}body{background:#fff}.tech-card,.tech-hero{box-shadow:none;border:1px solid #ddd}.calc-grid{display:block}.tech-card.sticky{position:static}}
+  </style>
+  <!-- Google AdSense - script já compatível com o padrão atual do site. Inserir blocos <ins class="adsbygoogle"> somente após aprovação/configuração da conta. -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5586837114309500" crossorigin="anonymous"></script>
+</head>
+<body class="tech-page">
+  <header>
+    <div class="container headbar">
+      <a href="/" class="logo-wrapper" aria-label="Voltar para o início"><img src="logo-alogy.webp" alt="ALOGY Engenharia" width="878" height="308" decoding="async" /></a>
+      <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menu"><i class="fas fa-bars"></i></button>
+    </div>
+    <nav class="desktop" aria-label="Menu principal"><div class="container navlinks"><a href="index.html">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="index.html#contato">Contato</a></div></nav>
+    <nav class="mobile" aria-label="Menu mobile"><a href="index.html">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="index.html#contato">Contato</a></nav>
+  </header>
+  <div class="social-floating" aria-label="Redes sociais"><a href="https://www.linkedin.com/company/alogyengenharia" class="linkedin" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a><a href="https://www.instagram.com/alogyengenharia" class="instagram" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="https://www.facebook.com/alogyengenharia" class="facebook" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><a href="https://www.youtube.com/@alogyengenharia" class="youtube" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a><a href="https://hotmart.com/pt-br/club/alogyengenharia" class="hotmart" target="_blank" rel="noopener" aria-label="Hotmart">H</a><a href="https://www.tiktok.com/@alogyengenharia" class="tiktok" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a></div>
+  <div class="fab-wrap" aria-label="Ações rápidas"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1%21%20Vim%20pela%20ferramenta%20de%20n%C3%ADvel%20de%20caldeira%20da%20ALOGY.%20Gostaria%20de%20atendimento." target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
+
+  <main class="container tech-wrap">
+    <a class="tech-back no-print" href="ferramentas.html"><i class="fas fa-arrow-left"></i> Voltar para Ferramentas</a>
+
+    <section class="tech-hero">
+      <h1>Calculadora exclusiva de nível de caldeira por transmissor DP</h1>
+      <p>Dimensione a medição de nível do tambor de caldeira considerando <strong>tomada baixa</strong>, <strong>tomada alta</strong>, perna úmida de referência, densidade da água, densidade do vapor, LRV, URV, span, alarmes, 4-20 mA, raw do CLP e seleção preliminar dos equipamentos de instrumentação.</p>
+      <div class="hero-tags"><span><i class="fas fa-fire-flame-curved"></i> Caldeira / tambor</span><span><i class="fas fa-gauge-high"></i> Transmissor DP</span><span><i class="fas fa-ruler-vertical"></i> LRV e URV</span><span><i class="fas fa-water"></i> Perna úmida</span><span><i class="fas fa-list-check"></i> Checklist de seleção</span></div>
+    </section>
+
+    <section class="calc-grid">
+      <div>
+        <section class="tech-card">
+          <h2>1) Geometria das tomadas e faixa de nível</h2>
+          <p>Use uma referência vertical única: o centro dos diafragmas do transmissor DP. Se o transmissor estiver abaixo das tomadas, as elevações serão positivas. A faixa 0% e 100% deve ser informada em relação à <strong>tomada baixa</strong>.</p>
+          <div class="diagram" aria-label="Diagrama simplificado de nível de caldeira por DP">
+            <svg viewBox="0 0 820 430" role="img" aria-label="Tambor de caldeira com tomada alta, tomada baixa, perna úmida, transmissor DP, HP e LP">
+              <defs><linearGradient id="g1" x1="0" x2="1"><stop offset="0" stop-color="#dbeafe"/><stop offset="1" stop-color="#eff6ff"/></linearGradient></defs>
+              <rect x="40" y="80" width="440" height="230" rx="105" fill="url(#g1)" stroke="#0b3a62" stroke-width="4"/>
+              <path d="M52 210 H468 V305 H52 Z" fill="#60a5fa" opacity="0.72"/>
+              <line x1="55" y1="210" x2="465" y2="210" stroke="#1d4ed8" stroke-width="3" stroke-dasharray="8 6"/>
+              <text x="105" y="52" fill="#0b3a62" font-weight="700" font-size="18">Tambor de caldeira</text>
+              <text x="74" y="204" fill="#0b3a62" font-weight="700" font-size="14">nível operacional</text>
+              <circle cx="480" cy="120" r="8" fill="#ef4444"/><text x="500" y="125" fill="#0b3a62" font-weight="700" font-size="14">Tomada alta / vapor / LP</text>
+              <circle cx="480" cy="285" r="8" fill="#2563eb"/><text x="500" y="290" fill="#0b3a62" font-weight="700" font-size="14">Tomada baixa / água / HP</text>
+              <rect x="620" y="72" width="86" height="46" rx="10" fill="#fff7ed" stroke="#ea580c" stroke-width="3"/><text x="626" y="101" fill="#9a3412" font-weight="700" font-size="13">Pote cond.</text>
+              <line x1="488" y1="120" x2="620" y2="95" stroke="#ef4444" stroke-width="4" fill="none"/>
+              <line x1="663" y1="118" x2="663" y2="345" stroke="#ef4444" stroke-width="5" fill="none"/><text x="682" y="205" fill="#9a3412" font-weight="700" font-size="13">perna úmida</text>
+              <line x1="488" y1="285" x2="604" y2="345" stroke="#2563eb" stroke-width="5" fill="none"/>
+              <rect x="590" y="330" width="110" height="58" rx="14" fill="#f8fafc" stroke="#0b3a62" stroke-width="3"/><text x="613" y="354" fill="#0b3a62" font-weight="700" font-size="14">DP LT</text><text x="606" y="376" fill="#0b3a62" font-weight="700" font-size="12">HP ← baixa</text><text x="657" y="376" fill="#9a3412" font-weight="700" font-size="12">LP ← alta</text>
+              <line x1="170" y1="285" x2="170" y2="120" stroke="#111827" stroke-width="2" stroke-dasharray="5 5"/><text x="185" y="206" fill="#111827" font-weight="700" font-size="13">distância entre tomadas</text>
+              <line x1="250" y1="285" x2="250" y2="210" stroke="#16a34a" stroke-width="3"/><text x="265" y="252" fill="#166534" font-weight="700" font-size="13">nível acima da tomada baixa</text>
+            </svg>
+          </div>
+          <form class="field-grid" onsubmit="calcular();return false;">
+            <div class="field"><label>TAG do transmissor</label><input id="tag" type="text" value="LT-101"><small>Usado no memorial.</small></div>
+            <div class="field"><label>Serviço / caldeira</label><input id="servico" type="text" value="Nível do tambor da caldeira"><small>Descrição curta da aplicação.</small></div>
+            <div class="field"><label>Ligação do transmissor</label><select id="ligacao"><option value="padrao">Padrão: HP na tomada baixa e LP na tomada alta/perna úmida</option><option value="invertida">Invertida: HP na tomada alta e LP na tomada baixa</option></select><small>A ligação padrão geralmente faz o sinal aumentar com o nível.</small></div>
+            <div class="field"><label>Pressão de operação</label><input id="pressao" type="number" step="0.1" value="10"><small>bar(g), para checklist do equipamento.</small></div>
+            <div class="field"><label>Temperatura de operação</label><input id="temperatura" type="number" step="1" value="184"><small>°C, para compatibilidade de materiais e selagem.</small></div>
+            <div class="field"><label>MAWP / pressão máxima admissível</label><input id="mawp" type="number" step="0.1" value="13"><small>bar(g), quando conhecida.</small></div>
+            <div class="field"><label>Elevação da tomada baixa até o transmissor</label><input id="zBaixa" type="number" step="0.001" value="1.20"><small>m. Positivo se a tomada baixa está acima do transmissor.</small></div>
+            <div class="field"><label>Elevação da tomada alta/pote até o transmissor</label><input id="zAlta" type="number" step="0.001" value="1.80"><small>m. Altura da coluna de referência no lado LP.</small></div>
+            <div class="field"><label>0% do nível acima da tomada baixa</label><input id="nivel0" type="number" step="1" value="100"><small>mm acima da tomada baixa.</small></div>
+            <div class="field"><label>100% do nível acima da tomada baixa</label><input id="nivel100" type="number" step="1" value="500"><small>mm acima da tomada baixa.</small></div>
+            <div class="field"><label>Nível normal de operação</label><input id="nivelNormal" type="number" step="1" value="300"><small>mm acima da tomada baixa.</small></div>
+            <div class="field"><label>Tomada alta acima da tomada baixa</label><input id="distTomadas" type="number" step="1" value="600"><small>mm. Usado para checar se a faixa está entre as tomadas.</small></div>
+        </section>
+
+        <section class="tech-card">
+          <h2>2) Densidades, referência úmida e escala 4-20 mA</h2>
+          <div class="field-grid">
+            <div class="field"><label>Densidade da água no tambor</label><input id="rhoAgua" type="number" step="1" value="890"><small>kg/m³. Use densidade na pressão/temperatura de operação.</small></div>
+            <div class="field"><label>Densidade da perna úmida / condensado</label><input id="rhoRef" type="number" step="1" value="958"><small>kg/m³. Normalmente água condensada mais fria.</small></div>
+            <div class="field"><label>Densidade do vapor</label><input id="rhoVapor" type="number" step="0.01" value="5.2"><small>kg/m³. Pode usar 0 para desprezar.</small></div>
+            <div class="field"><label>Densidade do fluido na linha HP</label><input id="rhoHP" type="number" step="1" value="890"><small>kg/m³. Geralmente água/condensado na linha da tomada baixa.</small></div>
+            <div class="field"><label>Raw mínimo do CLP em 4 mA</label><input id="rawMin" type="number" step="1" value="0"><small>Ex.: 0, 5530, 4000.</small></div>
+            <div class="field"><label>Raw máximo do CLP em 20 mA</label><input id="rawMax" type="number" step="1" value="27648"><small>Ex.: 27648, 32000, 20000.</small></div>
+            <div class="field"><label>Unidade de engenharia no supervisório</label><select id="unidadeDisplay"><option value="percent">0 a 100 %</option><option value="mm">mm acima da tomada baixa</option></select><small>Define sugestão de escala no PLC/SCADA.</small></div>
+            <div class="field"><label>Margem mínima recomendada do sensor</label><input id="margemSensor" type="number" step="1" value="30"><small>% acima do maior módulo DP calculado.</small></div>
+          </div>
+        </section>
+
+        <section class="tech-card">
+          <h2>3) Alarmes, trips e pontos de teste</h2>
+          <p>Defina os pontos para gerar tabela de mA, DP e raw do CLP. Use a filosofia da planta e os requisitos de segurança reais para valores finais.</p>
+          <div class="field-grid">
+            <div class="field"><label>LLL / trip muito baixo</label><input id="lll" type="number" step="1" value="60"><small>mm acima da tomada baixa.</small></div>
+            <div class="field"><label>LL / alarme baixo</label><input id="ll" type="number" step="1" value="100"><small>mm acima da tomada baixa.</small></div>
+            <div class="field"><label>HH / alarme alto</label><input id="hh" type="number" step="1" value="500"><small>mm acima da tomada baixa.</small></div>
+            <div class="field"><label>HHH / trip muito alto</label><input id="hhh" type="number" step="1" value="540"><small>mm acima da tomada baixa.</small></div>
+            <div class="field wide"><label>Observações da instalação</label><textarea id="obs">Verificar água de selagem/perna úmida, isolamento térmico das linhas de impulso, manifold 5 válvulas, raiz das tomadas e comparação com visor/coluna de nível.</textarea><small>Vai para o memorial técnico gerado.</small></div>
+            <div class="wide calc-actions"><button class="btn-mini" type="submit"><i class="fas fa-calculator"></i> Calcular faixa e seleção</button><button class="btn-mini secondary" type="button" onclick="window.print()"><i class="fas fa-print"></i> Imprimir memorial</button><button class="btn-mini secondary" type="button" onclick="copiarMemorial()"><i class="fas fa-copy"></i> Copiar memorial</button><button class="btn-mini secondary" type="button" onclick="preencherExemploAltaPressao()"><i class="fas fa-wand-magic-sparkles"></i> Exemplo alta pressão</button></div>
+          </div>
+        </section>
+
+        <section class="tech-card">
+          <h2>Como o cálculo interpreta tomada alta e tomada baixa</h2>
+          <p>Na montagem tradicional de nível de tambor por DP, a <strong>tomada baixa</strong>, localizada na região de água, é ligada ao lado <strong>HP</strong> do transmissor. A <strong>tomada alta</strong>, localizada na região de vapor, alimenta uma <strong>perna úmida de referência</strong> ligada ao lado <strong>LP</strong>. Assim, o lado LP recebe uma coluna constante de condensado, enquanto o lado HP varia conforme o nível.</p>
+          <div class="formula">Convenção da ferramenta:
+DP = P_HP - P_LP
+
+Para HP na tomada baixa e LP na tomada alta/perna úmida:
+DP(nível) = ρágua·g·(znível - zbaixa) + ρHP·g·zbaixa + ρvapor·g·(zalta - znível) - ρref·g·zalta
+
+Onde:
+znível = zbaixa + nível acima da tomada baixa
+zalta = elevação da tomada alta / pote até o transmissor
+zbaixa = elevação da tomada baixa até o transmissor
+ρref = densidade da perna úmida / condensado
+
+Se a ligação for invertida, a ferramenta inverte o sinal do DP calculado.</div>
+          <p>Em muitos casos o resultado de LRV e URV fica negativo, principalmente quando a perna úmida é mais alta que a coluna de água medida. Isso não é erro: é uma característica da instalação. O essencial é documentar o range correto e garantir que o sinal 4-20 mA suba com o nível real.</p>
+        </section>
+
+        <section class="tech-card">
+          <h2>Critérios de seleção dos equipamentos</h2>
+          <div class="table-wrap"><table class="tech-table"><thead><tr><th>Item</th><th>O que especificar</th><th>Cuidados</th></tr></thead><tbody>
+            <tr><td>Transmissor DP</td><td>Range calculado LRV/URV, pressão estática compatível, 4-20 mA/HART, display local, damping, classe de exatidão.</td><td>Não escolher só pelo span; conferir pressão estática, temperatura ambiente, sobrepressão e material molhado.</td></tr>
+            <tr><td>Manifold</td><td>Preferencialmente manifold 5 válvulas para DP: bloqueio HP/LP, equalização e vent/drain.</td><td>Classe de pressão, material, conexão e procedimento de equalização devem ser compatíveis com a caldeira.</td></tr>
+            <tr><td>Tomadas de processo</td><td>Válvulas raiz na tomada alta e baixa, conexões adequadas, drenos e purgas quando aplicável.</td><td>Evitar obstrução, bolsões, vazamento, entupimento por sólidos e montagem que permita operação insegura.</td></tr>
+            <tr><td>Perna úmida / pote de condensado</td><td>Pote ou referência estável no lado LP, com coluna sempre cheia e protegida contra perda de selagem.</td><td>Perda de condensado altera o zero e pode indicar nível errado. Avaliar aquecimento/isolamento e rotina de partida.</td></tr>
+            <tr><td>Linhas de impulso</td><td>Tubo ou tubing compatível com pressão, temperatura, fluido e norma interna. Roteamento curto e protegido.</td><td>Inclinação, drenos, respiros, suporte mecânico, vibração, dilatação térmica e congelamento devem ser avaliados.</td></tr>
+            <tr><td>Indicação independente</td><td>Visor/coluna de nível e indicadores remotos independentes conforme exigência da instalação.</td><td>Transmissor DP não deve ser tratado como único recurso de segurança visual da caldeira.</td></tr>
+          </tbody></table></div>
+        </section>
+
+        <section class="tech-card">
+          <h2>Avisos técnicos importantes para caldeira</h2>
+          <p class="note"><strong>Atenção:</strong> nível de caldeira é uma aplicação crítica. Esta ferramenta gera pré-dimensionamento e memorial orientativo. Não substitui projeto, prontuário, análise de risco, requisitos legais, recomendações do fabricante, documentação NR-13, normas aplicáveis, validação por profissional habilitado, filosofia de controle, intertravamentos, inspeção, comissionamento e testes funcionais.</p>
+          <ul>
+            <li>Para caldeiras, não confunda <strong>medição de nível para controle</strong> com <strong>proteção de baixo nível</strong>.</li>
+            <li>Alarmes e trips devem ser independentes quando a análise de risco exigir.</li>
+            <li>A densidade da água no tambor pode mudar bastante com pressão e temperatura; usar 1000 kg/m³ sem correção pode gerar erro relevante.</li>
+            <li>Perna úmida parcialmente vazia, vaporizada ou mal isolada pode deslocar o zero e causar leitura falsa.</li>
+            <li>Durante partida, aquecimento e purga, a indicação pode se comportar diferente da condição estável.</li>
+          </ul>
+        </section>
+      </div>
+
+      <aside class="tech-card sticky result-box">
+        <h2>Resultado da ferramenta</h2>
+        <div id="resultadoRapido" class="result-sub">Preencha os dados e clique em calcular.</div>
+        <div class="mini-grid" id="kpis" style="margin-top:12px"></div>
+      </aside>
+    </section>
+
+    <section class="tech-card">
+      <h2>Faixa do transmissor, escala do PLC e alarmes</h2>
+      <div id="tabelasResultado" class="result-sub">Os resultados detalhados aparecerão aqui após o cálculo.</div>
+    </section>
+
+    <section class="tech-card">
+      <h2>Memorial de cálculo gerado</h2>
+      <p>Use o texto abaixo como base para documentação interna, estudo de campo ou solicitação de cotação. Revise antes de emitir qualquer documento oficial.</p>
+      <pre id="memorial" class="copybox">Clique em calcular para gerar o memorial.</pre>
+    </section>
+
+    <section class="tech-card faq">
+      <h2>Perguntas frequentes</h2>
+      <details open><summary>Qual é a ligação mais comum para nível de caldeira por DP?</summary><p>A montagem mais comum usa a tomada baixa do tambor no lado HP do transmissor e a tomada alta no lado LP com pote de condensado ou perna úmida. A perna úmida cria uma referência constante, enquanto o lado HP varia com o nível de água.</p></details>
+      <details><summary>Por que LRV e URV às vezes são negativos?</summary><p>Porque a coluna constante da perna úmida no lado LP pode ser maior que a coluna variável no lado HP. O transmissor mede HP menos LP, então o DP pode ficar negativo em toda a faixa. Isso é aceitável quando configurado corretamente.</p></details>
+      <details><summary>Posso usar densidade 1000 kg/m³?</summary><p>Para estimativa rápida, sim. Para caldeira em operação real, a densidade deve ser ajustada à pressão e temperatura do tambor. Em alta pressão, essa diferença pode alterar bastante o range.</p></details>
+      <details><summary>A ferramenta dimensiona intertravamento de segurança?</summary><p>Não. Ela ajuda no range e na seleção preliminar da instrumentação de nível. Intertravamentos, trips, redundância, independência e requisitos de segurança devem ser definidos por análise de risco, normas aplicáveis e profissional habilitado.</p></details>
+    </section>
+
+    <section class="tech-card no-print">
+      <h2>Ferramentas relacionadas</h2>
+      <p>Para complementar o estudo, use também as ferramentas de DP, linha de impulso, selo remoto e teste de loop.</p>
+      <div class="calc-actions"><a class="btn-mini secondary" href="calculadora-linha-impulso-transmissor-dp.html"><i class="fas fa-diagram-project"></i> Linha de impulso DP</a><a class="btn-mini secondary" href="calculadora-dp-nivel-tanque-fechado.html"><i class="fas fa-gauge-high"></i> DP para nível</a><a class="btn-mini secondary" href="calculadora-selo-remoto-capilar-dp.html"><i class="fas fa-vial-circle-check"></i> Selo remoto e capilar</a><a class="btn-mini secondary" href="checklist-teste-de-loop.html"><i class="fas fa-list-check"></i> Checklist de teste de loop</a></div>
+    </section>
+
+    <div class="ad-note"><!-- Espaço recomendado para AdSense após aprovação: um bloco responsivo após o hero e outro antes do FAQ. Evitar anúncio dentro do formulário para não prejudicar UX. --></div>
+  </main>
+
+  <script>
+    function el(id){return document.getElementById(id)}
+    function num(id){const v=parseFloat(String(el(id).value).replace(',','.'));return isFinite(v)?v:0}
+    function txt(id){return String(el(id).value||'').trim()}
+    function fmt(x,d=2){if(!isFinite(x)) return '-'; return x.toLocaleString('pt-BR',{minimumFractionDigits:d,maximumFractionDigits:d})}
+    function fmt0(x){if(!isFinite(x)) return '-'; return x.toLocaleString('pt-BR',{maximumFractionDigits:0})}
+    const g=9.80665;
+    function dpPa(levelMm){
+      const zLow=num('zBaixa');
+      const zHigh=num('zAlta');
+      const rhoL=num('rhoAgua');
+      const rhoRef=num('rhoRef');
+      const rhoV=num('rhoVapor');
+      const rhoHP=num('rhoHP');
+      const zLevel=zLow+(levelMm/1000);
+      let dp=(rhoL*g*(zLevel-zLow))+(rhoHP*g*zLow)+(rhoV*g*(zHigh-zLevel))-(rhoRef*g*zHigh);
+      if(el('ligacao').value==='invertida') dp=-dp;
+      return dp;
+    }
+    function paToMbar(pa){return pa/100}
+    function paToKpa(pa){return pa/1000}
+    function paToMmH2O(pa){return pa/9.80665}
+    function levelPct(levelMm){const a=num('nivel0'), b=num('nivel100'); return (levelMm-a)/(b-a)*100}
+    function mA(levelMm,dp0,dp100){const dp=dpPa(levelMm); return 4+16*((dp-dp0)/(dp100-dp0))}
+    function rawFromMa(ma){return num('rawMin')+(ma-4)/16*(num('rawMax')-num('rawMin'))}
+    function classeSensor(spanMbar,maxModMbar){
+      const req=maxModMbar*(1+num('margemSensor')/100);
+      let faixa='';
+      if(req<=25) faixa='cápsula/URL mínimo próximo de 25 mbar';
+      else if(req<=100) faixa='cápsula/URL próximo de 100 mbar';
+      else if(req<=500) faixa='cápsula/URL próximo de 500 mbar';
+      else if(req<=2000) faixa='cápsula/URL próximo de 2 bar DP';
+      else if(req<=10000) faixa='cápsula/URL próximo de 10 bar DP';
+      else faixa='verificar transmissor DP especial / range alto';
+      return {req, faixa};
+    }
+    function statusChecks(){
+      const msgs=[];
+      const nivel0=num('nivel0'), nivel100=num('nivel100'), dist=num('distTomadas');
+      const zHigh=num('zAlta'), zLow=num('zBaixa');
+      const pressao=num('pressao'), mawp=num('mawp');
+      if(nivel100<=nivel0) msgs.push(['bad','O nível 100% deve ser maior que o nível 0%.']);
+      if(nivel0<0) msgs.push(['warnbox','O 0% informado está abaixo da tomada baixa. Confirme se a geometria é realmente essa.']);
+      if(nivel100>dist) msgs.push(['warnbox','O 100% informado está acima da tomada alta. Confirme a posição das tomadas ou o range.']);
+      if(zHigh<=zLow) msgs.push(['warnbox','A elevação da tomada alta/pote deveria ser maior que a tomada baixa para a geometria usual.']);
+      if(num('rhoAgua')>970 && pressao>6) msgs.push(['warnbox','A densidade da água parece próxima da água fria. Para caldeira pressurizada, use densidade na condição de operação.']);
+      if(num('rhoVapor')===0 && pressao>10) msgs.push(['warnbox','A densidade do vapor foi desprezada. Em pressões maiores, considere informar a densidade do vapor.']);
+      if(mawp>0 && pressao>mawp) msgs.push(['bad','Pressão de operação maior que MAWP informada. Revise os dados.']);
+      return msgs;
+    }
+    function linhaTabela(nome, nivel, dp0, dp100){
+      const dp=dpPa(nivel); const ma=mA(nivel,dp0,dp100); const raw=rawFromMa(ma);
+      return `<tr><td>${nome}</td><td>${fmt(nivel,0)} mm</td><td>${fmt(levelPct(nivel),1)}%</td><td>${fmt(paToMbar(dp),2)} mbar</td><td>${fmt(ma,2)} mA</td><td>${fmt0(raw)}</td></tr>`;
+    }
+    function calcular(){
+      const n0=num('nivel0'), n100=num('nivel100'), nn=num('nivelNormal');
+      const dp0=dpPa(n0), dp100=dpPa(n100), spanPa=dp100-dp0;
+      const dp0m=paToMbar(dp0), dp100m=paToMbar(dp100), spanM=paToMbar(spanPa);
+      const maxMod=Math.max(Math.abs(dp0m),Math.abs(dp100m));
+      const sensor=classeSensor(Math.abs(spanM),maxMod);
+      const sentido=spanPa>0?'sobe com o nível':'desce com o nível';
+      const css=spanPa>0?'ok':'warnbox';
+      const lig=el('ligacao').value==='padrao'?'HP na tomada baixa e LP na tomada alta/perna úmida':'HP na tomada alta e LP na tomada baixa';
+      const checks=statusChecks();
+      const maNormal=mA(nn,dp0,dp100);
+      el('resultadoRapido').innerHTML=`<div class="note ${css}"><strong>Faixa recomendada do transmissor:</strong><div class="result-main">LRV ${fmt(dp0m,2)} mbar<br>URV ${fmt(dp100m,2)} mbar</div><div>Span: <strong>${fmt(Math.abs(spanM),2)} mbar</strong>. Com a ligação selecionada, o DP ${sentido}.</div></div><div class="pill-row"><span class="pill">Ligação: ${lig}</span><span class="pill">Nível normal: ${fmt(maNormal,2)} mA</span><span class="pill">Sensor: ${sensor.faixa}</span></div>`;
+      el('kpis').innerHTML=`<div class="mini-kpi"><b>Span DP</b><span>${fmt(Math.abs(spanM),2)} mbar</span></div><div class="mini-kpi"><b>URL mínimo orientativo</b><span>${fmt(sensor.req,1)} mbar</span></div><div class="mini-kpi"><b>Pressão estática</b><span>${fmt(num('pressao'),1)} bar(g)</span></div>`;
+      let alertRows='';
+      alertRows+=linhaTabela('LLL / Trip muito baixo',num('lll'),dp0,dp100);
+      alertRows+=linhaTabela('LL / Alarme baixo',num('ll'),dp0,dp100);
+      alertRows+=linhaTabela('0% / LRV',n0,dp0,dp100);
+      alertRows+=linhaTabela('Normal',nn,dp0,dp100);
+      alertRows+=linhaTabela('100% / URV',n100,dp0,dp100);
+      alertRows+=linhaTabela('HH / Alarme alto',num('hh'),dp0,dp100);
+      alertRows+=linhaTabela('HHH / Trip muito alto',num('hhh'),dp0,dp100);
+      const escalaDisplay=el('unidadeDisplay').value==='percent'?'Display/SCADA: 0 a 100 % para a faixa de nível configurada.':'Display/SCADA: '+fmt(n0,0)+' a '+fmt(n100,0)+' mm acima da tomada baixa.';
+      const checkHtml=checks.length?`<div class="note warnbox"><strong>Alertas de consistência:</strong><ul>${checks.map(m=>`<li>${m[1]}</li>`).join('')}</ul></div>`:`<div class="note ok"><strong>Consistência básica:</strong> não foram encontrados alertas geométricos principais nos dados informados.</div>`;
+      el('tabelasResultado').innerHTML=`${checkHtml}<h3>Range do transmissor DP</h3><div class="table-wrap"><table class="tech-table"><thead><tr><th>Parâmetro</th><th>Valor</th><th>Observação</th></tr></thead><tbody><tr><td>Conexão recomendada</td><td>${lig}</td><td>Verificar no desenho de montagem e no manifold.</td></tr><tr><td>LRV / 4 mA</td><td>${fmt(dp0m,2)} mbar = ${fmt(paToKpa(dp0),3)} kPa = ${fmt(paToMmH2O(dp0),0)} mmH2O</td><td>Nível ${fmt(n0,0)} mm acima da tomada baixa.</td></tr><tr><td>URV / 20 mA</td><td>${fmt(dp100m,2)} mbar = ${fmt(paToKpa(dp100),3)} kPa = ${fmt(paToMmH2O(dp100),0)} mmH2O</td><td>Nível ${fmt(n100,0)} mm acima da tomada baixa.</td></tr><tr><td>Span</td><td>${fmt(Math.abs(spanM),2)} mbar</td><td>${sentido}. Se o sinal ficar invertido em campo, revisar HP/LP ou configuração.</td></tr><tr><td>Escala do PLC/SCADA</td><td>${escalaDisplay}</td><td>Raw ${fmt0(num('rawMin'))} a ${fmt0(num('rawMax'))}; 4-20 mA linear.</td></tr><tr><td>Sensor/cápsula DP</td><td>${sensor.faixa}</td><td>URL orientativo ≥ ${fmt(sensor.req,1)} mbar, mais validação por catálogo.</td></tr><tr><td>Pressão estática mínima</td><td>Acima de ${fmt(num('pressao'),1)} bar(g), preferencialmente compatível com MAWP ${fmt(num('mawp'),1)} bar(g)</td><td>Conferir sobrepressão, teste hidrostático, classe do manifold e válvulas raiz.</td></tr></tbody></table></div><h3>Alarmes, trips e pontos de teste</h3><div class="table-wrap"><table class="tech-table"><thead><tr><th>Ponto</th><th>Nível</th><th>% da faixa</th><th>DP</th><th>Sinal</th><th>Raw CLP</th></tr></thead><tbody>${alertRows}</tbody></table></div>`;
+      gerarMemorial(dp0m,dp100m,spanM,sensor,checks);
+    }
+    function gerarMemorial(dp0m,dp100m,spanM,sensor,checks){
+      const lig=el('ligacao').value==='padrao'?'HP na tomada baixa do tambor e LP na tomada alta com perna úmida/pote de condensado':'HP na tomada alta e LP na tomada baixa (ligação invertida em relação ao padrão)';
+      const mem=`MEMORIAL PRELIMINAR - NÍVEL DE CALDEIRA POR TRANSMISSOR DP\n\nTAG: ${txt('tag')}\nServiço: ${txt('servico')}\nData: ${new Date().toLocaleDateString('pt-BR')}\n\n1. Configuração considerada\n- Ligação do transmissor: ${lig}.\n- Pressão de operação informada: ${fmt(num('pressao'),1)} bar(g).\n- Temperatura de operação informada: ${fmt(num('temperatura'),0)} °C.\n- MAWP informada: ${fmt(num('mawp'),1)} bar(g).\n\n2. Geometria\n- Tomada baixa acima do transmissor: ${fmt(num('zBaixa'),3)} m.\n- Tomada alta/pote acima do transmissor: ${fmt(num('zAlta'),3)} m.\n- Distância tomada alta - tomada baixa: ${fmt(num('distTomadas'),0)} mm.\n- 0% do nível: ${fmt(num('nivel0'),0)} mm acima da tomada baixa.\n- 100% do nível: ${fmt(num('nivel100'),0)} mm acima da tomada baixa.\n- Nível normal: ${fmt(num('nivelNormal'),0)} mm acima da tomada baixa.\n\n3. Densidades usadas\n- Água no tambor: ${fmt(num('rhoAgua'),1)} kg/m³.\n- Perna úmida/condensado de referência: ${fmt(num('rhoRef'),1)} kg/m³.\n- Vapor: ${fmt(num('rhoVapor'),2)} kg/m³.\n- Fluido na linha HP: ${fmt(num('rhoHP'),1)} kg/m³.\n\n4. Faixa calculada do transmissor\n- LRV / 4 mA: ${fmt(dp0m,2)} mbar.\n- URV / 20 mA: ${fmt(dp100m,2)} mbar.\n- Span DP: ${fmt(Math.abs(spanM),2)} mbar.\n- Sensor/cápsula orientativo: ${sensor.faixa}; URL mínimo orientativo com margem: ${fmt(sensor.req,1)} mbar.\n- Escala elétrica: 4 a 20 mA. Raw CLP: ${fmt0(num('rawMin'))} a ${fmt0(num('rawMax'))}.\n\n5. Pontos de alarme informados\n- LLL/trip muito baixo: ${fmt(num('lll'),0)} mm.\n- LL/alarme baixo: ${fmt(num('ll'),0)} mm.\n- HH/alarme alto: ${fmt(num('hh'),0)} mm.\n- HHH/trip muito alto: ${fmt(num('hhh'),0)} mm.\n\n6. Equipamentos recomendados para cotação/seleção\n- Transmissor de pressão diferencial para serviço em caldeira, 4-20 mA/HART, pressão estática compatível com a pressão/MAWP, range configurável conforme LRV/URV acima, display local e amortecimento configurável.\n- Manifold DP 5 válvulas, classe de pressão e material compatíveis com o serviço.\n- Válvulas raiz nas tomadas alta e baixa.\n- Pote de condensado/perna úmida no lado LP, com rotina de enchimento, drenagem e verificação.\n- Linhas de impulso/tubing compatíveis com pressão, temperatura, corrosão, vibração, dilatação térmica e norma interna da planta.\n- Indicação local/independente de nível e lógica de alarmes/trips conforme filosofia de segurança da instalação.\n\n7. Observações\n${txt('obs')}\n\n8. Alertas da ferramenta\n${checks.length?checks.map(c=>'- '+c[1]).join('\n'):'- Sem alertas geométricos principais nos dados informados.'}\n\nAviso: este memorial é preliminar. Nível de caldeira é aplicação crítica e deve ser validado por profissional habilitado, fabricante, normas aplicáveis, documentação NR-13, filosofia de controle, análise de risco e testes funcionais.`;
+      el('memorial').textContent=mem;
+    }
+    function copiarMemorial(){
+      const texto=el('memorial').textContent;
+      if(navigator.clipboard){navigator.clipboard.writeText(texto).then(()=>alert('Memorial copiado. Revise antes de usar em documento oficial.')).catch(()=>alert('Não foi possível copiar automaticamente. Selecione o texto e copie manualmente.'));}
+      else{alert('Selecione o texto do memorial e copie manualmente.');}
+    }
+    function preencherExemploAltaPressao(){
+      el('tag').value='LT-201'; el('servico').value='Nível do tambor de caldeira de alta pressão'; el('pressao').value='42'; el('temperatura').value='254'; el('mawp').value='48'; el('zBaixa').value='1.50'; el('zAlta').value='2.15'; el('nivel0').value='120'; el('nivel100').value='520'; el('nivelNormal').value='320'; el('distTomadas').value='700'; el('rhoAgua').value='790'; el('rhoRef').value='950'; el('rhoVapor').value='21'; el('rhoHP').value='790'; el('lll').value='70'; el('ll').value='120'; el('hh').value='520'; el('hhh').value='570'; calcular();
+    }
+    calcular();
+  </script>
+
+  <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
+</body>
+</html>
