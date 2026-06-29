@@ -63,7 +63,7 @@ function setActiveNav(){
 
   const currentIsIndex = (path === '' || path === 'index.html');
   const currentIsBlogPost = path.startsWith('blog-') && path.endsWith('.html');
-  const currentIsToolPage = path === 'ferramentas.html' || path.startsWith('calculadora-') || path.startsWith('conversor-') || path.startsWith('checklist-');
+  const currentIsToolPage = path === 'ferramentas.html' || path.startsWith('ferramentas-') || path.startsWith('calculadora-') || path.startsWith('conversor-') || path.startsWith('checklist-');
 
   links.forEach(a => {
     const href = a.getAttribute('href') || '';
@@ -364,6 +364,7 @@ function isAlogyToolArea(){
   const path = window.location.pathname.split('/').pop() || 'index.html';
   return document.body?.classList.contains('tools-page') && (
     path === 'ferramentas.html' ||
+    path.startsWith('ferramentas-') ||
     path.startsWith('calculadora-') ||
     path.startsWith('conversor-') ||
     path.startsWith('checklist-')
@@ -498,11 +499,25 @@ function initAlogyAdsLayout(){
 
 function ensurePrivacyFooterLink(){
   document.querySelectorAll('footer').forEach((footer) => {
-    if(footer.querySelector('a[href="politica-de-privacidade.html"]')) return;
-    const line = document.createElement('p');
-    line.className = 'footer-legal-links no-print';
-    line.innerHTML = '<a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a>';
-    footer.appendChild(line);
+    let line = footer.querySelector('.footer-legal-links');
+    if(!line){
+      line = document.createElement('p');
+      line.className = 'footer-legal-links no-print';
+      footer.appendChild(line);
+    }
+
+    const links = [];
+    if(!footer.querySelector('a[href="politica-de-privacidade.html"]')){
+      links.push('<a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a>');
+    }
+    if(!footer.querySelector('a[href="termos-de-uso-ferramentas.html"]')){
+      links.push('<a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a>');
+    }
+
+    if(links.length){
+      const current = line.innerHTML.trim();
+      line.innerHTML = current ? `${current} · ${links.join(' · ')}` : links.join(' · ');
+    }
   });
 }
 
