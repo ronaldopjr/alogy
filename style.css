@@ -174,30 +174,6 @@ nav.mobile a{
 nav.mobile a:hover{background:rgba(255,255,255,.08)}
 nav.mobile.show{display:flex}
 
-.crea-top{
-  position:absolute;
-  right:4px;
-  top:50%;
-  transform:translateY(-50%);
-  z-index:3200;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:transparent;
-  border:none;
-  box-shadow:none;
-  width:auto;
-  height:auto;
-  pointer-events:none;
-}
-.crea-top img{
-  height:88px;
-  width:auto;
-  display:block;
-  opacity:.68;
-  filter:saturate(.82) brightness(.92);
-}
-
 .social-floating{
   position:fixed; top:50%; right:0;
   transform:translateY(-50%);
@@ -760,11 +736,7 @@ footer{
 
   .logo-wrapper{ margin:0; }
   .logo-wrapper img{ width:180px; }
-
-  .crea-top{ right:4px; }
-  .crea-top img{ height:44px; width:auto; opacity:.62; filter:saturate(.78) brightness(.92); }
-
-  .banner-fullwidth{
+.banner-fullwidth{
     max-width:100%;
     padding-left:12px !important;
     padding-right:12px !important;
@@ -1314,7 +1286,6 @@ nav.mobile a.active{
   body.tools-page header,
   body.tools-page .logo-wrapper,
   body.tools-page .logo-wrapper img,
-  body.tools-page .crea-top,
   body.tools-page .social-floating,
   body.tools-page .fab-wrap,
   body.tools-page .floating-back-tools,
