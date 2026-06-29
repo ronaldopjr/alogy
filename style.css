@@ -1439,3 +1439,43 @@ nav.mobile a.active{
   .alogy-ad-slot,
   .footer-legal-links{display:none!important;}
 }
+
+
+/* Aviso simples de privacidade/cookies */
+.alogy-cookie-notice{
+  position:fixed;
+  left:18px;
+  right:18px;
+  bottom:18px;
+  z-index:9999;
+  max-width:980px;
+  margin:0 auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  padding:14px 16px;
+  background:#ffffff;
+  color:#102b44;
+  border:1px solid rgba(0,75,128,.18);
+  border-radius:18px;
+  box-shadow:0 18px 44px rgba(0,0,0,.18);
+}
+.alogy-cookie-notice span{color:#526273;font-size:.94rem;line-height:1.45;}
+.alogy-cookie-actions{display:flex;align-items:center;gap:10px;flex-shrink:0;}
+.alogy-cookie-actions a{font-weight:800;color:#004b80;text-decoration:none;}
+.alogy-cookie-actions a:hover{text-decoration:underline;}
+.alogy-cookie-actions button{
+  border:0;
+  border-radius:999px;
+  padding:10px 14px;
+  background:#004b80;
+  color:#fff;
+  font-weight:900;
+  cursor:pointer;
+}
+@media(max-width:720px){
+  .alogy-cookie-notice{display:block;left:12px;right:12px;bottom:12px;}
+  .alogy-cookie-actions{margin-top:10px;justify-content:flex-start;}
+}
+@media print{.alogy-cookie-notice{display:none!important;}}

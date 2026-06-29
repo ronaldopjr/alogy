@@ -521,6 +521,30 @@ function ensurePrivacyFooterLink(){
   });
 }
 
+
+
+function initAlogyCookieNotice(){
+  try{
+    if(localStorage.getItem('alogyCookieNoticeOk') === 'true') return;
+  }catch(e){}
+
+  if(document.querySelector('.alogy-cookie-notice')) return;
+
+  const notice = document.createElement('div');
+  notice.className = 'alogy-cookie-notice no-print';
+  notice.setAttribute('role', 'dialog');
+  notice.setAttribute('aria-label', 'Aviso de cookies');
+  notice.innerHTML = '<div><strong>Privacidade e cookies</strong><br><span>Usamos cookies e tecnologias semelhantes para melhorar a navegação, medir acessos e exibir anúncios quando aplicável.</span></div><div class="alogy-cookie-actions"><a href="politica-de-privacidade.html">Saiba mais</a><button type="button">Entendi</button></div>';
+
+  const btn = notice.querySelector('button');
+  btn.addEventListener('click', () => {
+    try{ localStorage.setItem('alogyCookieNoticeOk','true'); }catch(e){}
+    notice.remove();
+  });
+
+  document.body.appendChild(notice);
+}
+
 /* =========================
    INIT
 ========================= */
@@ -541,6 +565,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // link de política de privacidade/cookies no rodapé
   ensurePrivacyFooterLink();
+
+  // aviso simples de privacidade/cookies
+  initAlogyCookieNotice();
 
   // tabelas responsivas das ferramentas
   enhanceResponsiveToolTables();
