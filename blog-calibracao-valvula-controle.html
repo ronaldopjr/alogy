@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calibração de Válvula de Controle 4-20 mA | ALOGY Engenharia</title>
+  <meta name="description" content="Entenda como verificar sinal 4-20 mA, curso, abertura, posicionador, histerese e tolerância em válvulas de controle." />
+  <meta name="robots" content="index,follow" />
+  <meta name="theme-color" content="#004b80" />
+  <link rel="canonical" href="https://www.alogy.com.br/blog-calibracao-valvula-controle.html" />
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png" />
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="app.js" defer></script>
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="ALOGY Engenharia" />
+  <meta property="og:title" content="Calibração de Válvula de Controle 4-20 mA" />
+  <meta property="og:description" content="Veja pontos de calibração, teste de curso, histerese, posicionador e cuidados em válvulas de controle." />
+  <meta property="og:url" content="https://www.alogy.com.br/blog-calibracao-valvula-controle.html" />
+  <meta property="og:image" content="https://www.alogy.com.br/favicon-512x512.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BlogPosting","headline":"Calibração de Válvula de Controle 4-20 mA","description":"Entenda como verificar sinal 4-20 mA, curso, abertura, posicionador, histerese e tolerância em válvulas de controle.","datePublished":"2026-06-29","dateModified":"2026-06-29","author":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"},"publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/","logo":{"@type":"ImageObject","url":"https://www.alogy.com.br/logo-alogy.webp"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://www.alogy.com.br/blog-calibracao-valvula-controle.html"},"inLanguage":"pt-BR"}
+  </script>
+  <!-- Google AdSense - verificação de propriedade -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5586837114309500"
+     crossorigin="anonymous"></script>
+  <style>.post-wrap{max-width:900px;margin:18px auto}.post-card{background:var(--card);border:1px solid rgba(0,0,0,.08);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}.post-content{padding:30px}.post-meta{color:var(--muted);font-size:.95rem;margin-bottom:12px}.post-content h1{font-size:2.15rem;line-height:1.15;margin-bottom:12px;color:var(--text)}.post-content h2{font-size:1.45rem;line-height:1.25;margin:26px 0 10px;color:var(--text)}.post-content p{color:var(--text);margin:0 0 16px;font-size:1.04rem;line-height:1.75}.post-content ul{margin:0 0 18px 20px}.post-content li{margin:8px 0;line-height:1.65}.post-highlight{background:rgba(0,107,177,.08);border:1px solid rgba(0,107,177,.18);border-radius:14px;padding:16px;margin:22px 0}.post-highlight strong{color:#0b3a62}@media(max-width:768px){.post-content{padding:22px}.post-content h1{font-size:1.65rem}.post-content h2{font-size:1.25rem}}</style>
+</head>
+<body>
+  <header>
+    <div class="container headbar"><a href="/" class="logo-wrapper" aria-label="Voltar para o início"><img src="logo-alogy.webp" alt="ALOGY Engenharia" /></a><div class="crea-top" aria-label="CREA-SP"><img src="crea.webp" alt="CREA-SP"></div><button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menu"><i class="fas fa-bars"></i></button></div>
+    <nav class="desktop" aria-label="Menu principal"><div class="container navlinks"><a href="index.html">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="index.html#contato">Contato</a></div></nav>
+    <nav class="mobile" aria-label="Menu mobile"><a href="index.html">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="index.html#contato">Contato</a></nav>
+  </header>
+  <div class="social-floating" aria-label="Redes sociais"><a href="https://www.linkedin.com/company/alogyengenharia" class="linkedin" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a><a href="https://www.instagram.com/alogyengenharia" class="instagram" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="https://www.facebook.com/alogyengenharia" class="facebook" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><a href="https://www.youtube.com/@alogyengenharia" class="youtube" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a><a href="https://hotmart.com/pt-br/club/alogyengenharia" class="hotmart" target="_blank" rel="noopener" aria-label="Hotmart">H</a><a href="https://www.tiktok.com/@alogyengenharia" class="tiktok" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a></div>
+  <div class="fab-wrap" aria-label="Ações rápidas"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1!%20Vim%20pelo%20artigo%20sobre%20calibra%C3%A7%C3%A3o%20de%20v%C3%A1lvula%20de%20controle%20da%20ALOGY.%20Gostaria%20de%20atendimento." target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
+  <main class="container post-wrap">
+    <a class="floating-back-blog no-print" href="blog.html"><i class="fas fa-arrow-left"></i> Voltar ao Blog</a>
+    <article class="post-card">
+      <div class="post-content">
+        <div class="post-meta">Instrumentação Industrial • Calibração • Válvulas de Controle</div>
+        <h1>Calibração de válvula de controle 4-20 mA: o que conferir em campo</h1>
+        <p>A válvula de controle é o elemento final que transforma a decisão do controlador em ação no processo. Por isso, não basta conferir apenas se existe sinal 4-20 mA. É preciso verificar se a válvula realmente se move para a posição esperada, no sentido correto e dentro da tolerância definida.</p>
+        <p>Uma calibração simples costuma testar os pontos 0%, 25%, 50%, 75% e 100%. Em uma malha linear, esses pontos equivalem a 4, 8, 12, 16 e 20 mA. O técnico aplica o sinal, observa a posição real da haste ou feedback e registra o desvio.</p>
+        <div class="post-highlight"><strong>Exemplo rápido:</strong> com ação direta, 12 mA normalmente representa 50% de comando e 50% de abertura esperada. Se a válvula indicar 54%, o desvio é +4 pontos percentuais.</div>
+        <h2>O que verificar antes do teste</h2>
+        <p>Antes de atuar na válvula, confirme o processo liberado, permissões de trabalho, posição segura, alimentação pneumática, bloqueios, bypass, intertravamentos e orientação do responsável pela operação.</p>
+        <ul><li>TAG da válvula e da malha.</li><li>Faixa de sinal, normalmente 4-20 mA.</li><li>Ação direta ou reversa no posicionador.</li><li>Falha segura: falha abre, falha fecha ou falha mantém.</li><li>Condição da alimentação de ar e filtro regulador.</li><li>Escala do feedback de posição, quando existir.</li></ul>
+        <h2>Subida e descida</h2>
+        <p>Um erro comum é testar apenas subindo os pontos. O ideal é aplicar os pontos em subida e depois em descida. Se a posição em 50% for diferente na subida e na descida, pode haver histerese, atrito, folga mecânica, agarramento ou problema no posicionador.</p>
+        <h2>Sinal 3-15 psi e posicionador</h2>
+        <p>Em sistemas com conversor I/P ou posicionador pneumático, o sinal elétrico pode ser convertido para pressão pneumática, como 3-15 psi. Mesmo assim, o que importa para o processo é o comportamento final: abertura real, estabilidade e resposta da válvula.</p>
+        <h2>Tolerância de aceitação</h2>
+        <p>A tolerância não deve ser escolhida aleatoriamente. Ela depende do processo, criticidade, documentação técnica, especificação do projeto e procedimento interno. Em alguns casos, um erro de poucos pontos percentuais pode ser aceitável; em outros, pode comprometer qualidade, segurança ou estabilidade.</p>
+        <h2>Use a calculadora</h2>
+        <p>A ALOGY disponibilizou uma calculadora para apoiar o teste de curso de válvula de controle, comparando sinal aplicado, abertura esperada, posição real, curso da haste, referência pneumática e tolerância.</p>
+        <div class="calc-actions"><a class="mini-btn dark" href="calculadora-calibracao-valvula-controle.html"><i class="fas fa-calculator"></i> Abrir calculadora de válvula</a><a class="mini-btn" href="calculadora-split-range-4-20ma.html"><i class="fas fa-code-branch"></i> Split range 4-20 mA</a><a class="mini-btn" href="checklist-teste-de-loop.html"><i class="fas fa-list-check"></i> Checklist de teste de loop</a></div>
+      </div>
+    </article>
+  </main>
+  <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
+</body>
+</html>
