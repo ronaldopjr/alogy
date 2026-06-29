@@ -31,8 +31,8 @@
     .mini-help{color:var(--muted);font-size:.92rem;line-height:1.55;margin-top:8px}
     .calc-result.two{grid-template-columns:repeat(2,1fr)} .calc-result.four{grid-template-columns:repeat(4,1fr)} .result-box strong.small{font-size:1.05rem}
     .pill-ok{color:#146c2e;font-weight:900} .pill-warn{color:#a65f00;font-weight:900} .pill-bad{color:#a10000;font-weight:900}
-    .subcat-nav{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}.subcat-nav a{background:#fff;border:1px solid rgba(0,75,128,.18);border-radius:999px;padding:9px 12px;text-decoration:none;font-weight:800;color:#0b3a62}
-    @media(max-width:900px){.calc-result.two,.calc-result.four{grid-template-columns:1fr}}
+    .tool-search{margin-top:18px;background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.22);border-radius:18px;padding:16px}.tool-search label{display:block;font-weight:900;margin-bottom:8px;color:#fff}.tool-search input{width:100%;max-width:620px;border:0;border-radius:12px;padding:13px 14px;font-size:1rem;box-shadow:0 1px 8px rgba(0,0,0,.10)}.tool-search .mini-help{color:rgba(255,255,255,.88);margin:8px 0 0}.tool-search-count{font-weight:900}
+    @media(max-width:900px){.calc-result.two,.calc-result.four{grid-template-columns:1fr}.tool-search input{max-width:100%}}
     @media print{header,.social-floating,.fab-wrap,.cta-bar,footer,.calc-actions,.tools-hero .btn,.no-print{display:none!important}body{background:#fff}.container{max-width:100%;padding:0}.calc-card,.tools-hero{box-shadow:none;border:1px solid #ddd}.calc-layout{display:block}.calc-card{margin:12px 0}.calc-table th{background:#eee!important;color:#111!important}}
   </style>
   <!-- Google AdSense - verificação de propriedade -->
@@ -51,7 +51,11 @@
     <section class="tool-page-intro" aria-label="Introdução das ferramentas">
       <h1>Ferramentas técnicas gratuitas</h1>
       <p>Escolha a calculadora ou checklist por área técnica. A organização foi revisada para separar instrumentação, analítica, processo, utilidades, elétrica, automação, manutenção e segurança.</p>
-      <div class="subcat-nav no-print"><a href="#analitica">Analítica, pH e química</a><a href="#calibracao">Calibração e metrologia</a><a href="#sinais">Sinais, malhas e instrumentação</a><a href="#nivel">Vazão, nível e tanques</a><a href="#bombas">Bombas, válvulas e equipamentos de processo</a><a href="#tubulacao">Tubulação, flanges e montagem</a><a href="#utilidades">Utilidades: ar, exaustão, N₂ e vapor</a><a href="#temperatura">Temperatura e troca térmica</a><a href="#automacao">Automação, CLP e redes</a><a href="#eletrica">Elétrica industrial e 24 Vcc</a><a href="#manutencao">Manutenção, comissionamento e segurança</a><a href="#gerais">Conversores e ferramentas gerais</a></div>
+      <div class="tool-search no-print" aria-label="Busca rápida de ferramentas">
+        <label for="toolSearch"><i class="fas fa-magnifying-glass"></i> Buscar ferramenta</label>
+        <input id="toolSearch" type="search" placeholder="Digite: pH, 4-20 mA, HART, bomba, calibração, ar comprimido..." autocomplete="off" />
+        <p class="mini-help"><span id="toolSearchCount" class="tool-search-count">Mostrando todas as ferramentas.</span> A organização foi mantida por categorias principais, sem a faixa de botões repetidos no topo.</p>
+      </div>
     </section>
     <section class="calc-card" aria-label="Aviso de uso das ferramentas"><h2><i class="fas fa-triangle-exclamation"></i> Ferramentas para estudo e apoio técnico</h2><p>As ferramentas da ALOGY são materiais orientativos para estudo, conferência preliminar e apoio técnico. Os resultados podem conter simplificações, aproximações ou erros de preenchimento e não substituem normas aplicáveis, catálogos de fabricantes, procedimentos internos, medições em campo, projetos, laudos ou análise de profissional habilitado.</p></section>
     <section class="tool-group" aria-label="Categorias principais">
@@ -282,5 +286,39 @@
 
   </main>
   <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const input = document.getElementById('toolSearch');
+      const count = document.getElementById('toolSearchCount');
+      if (!input) return;
+      const cards = Array.from(document.querySelectorAll('.tool-card'));
+      const groups = Array.from(document.querySelectorAll('section.tool-group'));
+      const normalize = function (text) {
+        return (text || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+      };
+      const filterTools = function () {
+        const query = normalize(input.value.trim());
+        let visible = 0;
+        cards.forEach(function (card) {
+          const text = normalize(card.innerText);
+          const show = !query || text.includes(query);
+          card.style.display = show ? '' : 'none';
+          if (show) visible += 1;
+        });
+        groups.forEach(function (group) {
+          const groupCards = Array.from(group.querySelectorAll('.tool-card'));
+          const hasVisible = groupCards.some(function (card) { return card.style.display !== 'none'; });
+          group.style.display = (!query || hasVisible) ? '' : 'none';
+        });
+        if (count) {
+          count.textContent = query ? (visible + ' ferramenta(s) encontrada(s).') : 'Mostrando todas as ferramentas.';
+        }
+      };
+      input.addEventListener('input', filterTools);
+      filterTools();
+    });
+  </script>
+
 </body>
 </html>
