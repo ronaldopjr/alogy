@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Calculadora de Correção de Fator de Potência | Banco de Capacitores</title>
+  <meta name="description" content="Calcule kVAr necessário para correção de fator de potência, corrente antes e depois, banco de capacitores e capacitância aproximada para instalações industriais."/>
+  <meta name="robots" content="index,follow" />
+  <meta name="theme-color" content="#004b80" />
+  <link rel="canonical" href="https://www.alogy.com.br/calculadora-correcao-fator-potencia.html" />
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png" />
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="app.js" defer></script>
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ALOGY Engenharia" />
+  <meta property="og:title" content="Calculadora de Correção de Fator de Potência" />
+  <meta property="og:description" content="Calcule kVAr para correção de fator de potência, corrente antes/depois e banco de capacitores aproximado." />
+  <meta property="og:url" content="https://www.alogy.com.br/calculadora-correcao-fator-potencia.html" />
+  <meta property="og:image" content="https://www.alogy.com.br/favicon-512x512.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebApplication",
+    "name":"Calculadora de Correção de Fator de Potência",
+    "url":"https://www.alogy.com.br/calculadora-correcao-fator-potencia.html",
+    "applicationCategory":"EngineeringApplication",
+    "operatingSystem":"Web",
+    "description":"Ferramenta auxiliar para calcular kVAr de banco de capacitores, corrente antes e depois e correção de fator de potência em instalações elétricas.",
+    "publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"}
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {"@type":"Question","name":"O que é correção de fator de potência?","acceptedAnswer":{"@type":"Answer","text":"É a aplicação de potência reativa capacitiva para reduzir a potência reativa indutiva da instalação, melhorando o fator de potência e reduzindo corrente aparente em parte do sistema."}},
+      {"@type":"Question","name":"A ferramenta dimensiona o banco de capacitores final?","acceptedAnswer":{"@type":"Answer","text":"Não. A ferramenta faz uma estimativa inicial de kVAr. O dimensionamento final deve considerar medições, curva de carga, harmônicas, manobra de estágios, proteção, temperatura, normas aplicáveis e profissional habilitado."}},
+      {"@type":"Question","name":"Posso corrigir o fator de potência até 1,00?","acceptedAnswer":{"@type":"Answer","text":"Não é recomendado trabalhar sem análise técnica buscando exatamente 1,00, pois pode ocorrer sobrecorreção, comportamento capacitivo e problemas com cargas variáveis ou harmônicas."}},
+      {"@type":"Question","name":"Quando usar banco automático de capacitores?","acceptedAnswer":{"@type":"Answer","text":"Em instalações com carga variável, normalmente é mais adequado usar banco automático com estágios, controlador de fator de potência e proteção adequada."}}
+    ]
+  }
+  </script>
+  <style>
+    .mini-btn{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(0,107,177,.25);background:rgba(0,107,177,.08);color:#0b3a62;border-radius:12px;padding:10px 12px;font-weight:900;cursor:pointer;text-decoration:none;font:inherit}
+    .mini-btn:hover{background:rgba(0,107,177,.12)}.mini-btn.dark{background:#0b3a62;color:#fff;border-color:#0b3a62}
+    .calc-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}.small-muted{color:var(--muted);font-size:.92rem;line-height:1.55}
+    .status-good{border-color:rgba(34,197,94,.35)!important;background:rgba(34,197,94,.10)!important;color:#166534!important}.status-warn{border-color:rgba(245,158,11,.35)!important;background:rgba(245,158,11,.10)!important;color:#92400e!important}.status-bad{border-color:rgba(239,68,68,.35)!important;background:rgba(239,68,68,.10)!important;color:#991b1b!important}
+    .pill-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.pill{display:inline-flex;align-items:center;gap:8px;border-radius:999px;background:rgba(0,107,177,.08);border:1px solid rgba(0,107,177,.18);color:#0b3a62;font-weight:900;padding:8px 11px;font-size:.9rem}
+    .formula-box{background:rgba(0,107,177,.06);border:1px solid rgba(0,107,177,.14);border-radius:14px;padding:14px;margin-top:12px;color:#0b3a62;font-weight:800;line-height:1.6}
+    .faq details{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:14px;padding:14px;margin-top:10px;box-shadow:0 6px 16px rgba(0,0,0,.04)}.faq summary{cursor:pointer;font-weight:900;color:#0b3a62}.faq p{margin:10px 0 0;color:var(--muted)}
+    @media(max-width:900px){.calc-actions .mini-btn{width:100%;justify-content:center}}
+  </style>
+</head>
+<body class="tools-page">
+  <header>
+    <div class="container headbar"><a href="/" class="logo-wrapper" aria-label="Voltar para o início"><img src="logo-alogy.webp" alt="ALOGY Engenharia" /></a><div class="crea-top" aria-label="CREA-SP"><img src="crea.webp" alt="CREA-SP"></div><button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menu"><i class="fas fa-bars"></i></button></div>
+    <nav class="desktop" aria-label="Menu principal"><div class="container navlinks"><a href="index.html">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="index.html#contato">Contato</a></div></nav>
+    <nav class="mobile" aria-label="Menu mobile"><a href="index.html">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="index.html#contato">Contato</a></nav>
+  </header>
+  <div class="social-floating" aria-label="Redes sociais"><a href="https://www.linkedin.com/company/alogyengenharia" class="linkedin" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a><a href="https://www.instagram.com/alogyengenharia" class="instagram" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="https://www.facebook.com/alogyengenharia" class="facebook" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><a href="https://www.youtube.com/@alogyengenharia" class="youtube" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a><a href="https://hotmart.com/pt-br/club/alogyengenharia" class="hotmart" target="_blank" rel="noopener" aria-label="Hotmart">H</a><a href="https://www.tiktok.com/@alogyengenharia" class="tiktok" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a></div>
+  <div class="fab-wrap" aria-label="Ações rápidas"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1!%20Vim%20pela%20calculadora%20de%20fator%20de%20pot%C3%AAncia%20da%20ALOGY.%20Gostaria%20de%20atendimento." target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
+
+  <main class="container" style="margin-top:18px">
+    <div style="margin-bottom:14px;display:flex;gap:10px;flex-wrap:wrap" class="no-print"><a class="floating-back-tools no-print" href="ferramentas.html"><i class="fas fa-arrow-left"></i> Voltar para Ferramentas</a><button class="btn print" type="button" onclick="window.print()"><i class="fas fa-print"></i> Imprimir</button><a class="btn secondary" href="calculadora-energia-consumo-industrial.html"><i class="fas fa-bolt-lightning"></i> Energia e Consumo</a></div>
+    <section class="tools-hero"><h1>Calculadora de Correção de Fator de Potência</h1><p>Calcule a potência reativa capacitiva aproximada em kVAr para corrigir o fator de potência de uma instalação, estimando corrente antes/depois e capacitância básica do banco.</p></section>
+
+    <section class="calc-card" aria-label="Aviso de responsabilidade"><h2><i class="fas fa-triangle-exclamation"></i> Uso orientativo</h2><p>Esta ferramenta é apenas para estudo, apoio técnico e pré-análise. Não substitui medições reais, análise da concessionária, projeto elétrico, estudo de harmônicas, catálogos de fabricantes, normas aplicáveis, ART/RRT ou avaliação de profissional habilitado. A ALOGY Engenharia não se responsabiliza por decisões, compras, instalações, manobras ou intervenções realizadas exclusivamente com base nesta ferramenta.</p></section>
+
+    <section class="calc-layout">
+      <div class="calc-card"><h2><i class="fas fa-battery-half"></i> Dados da instalação</h2><p>Informe a potência ativa e o fator de potência atual/desejado. A ferramenta estima o kVAr capacitivo necessário para a correção.</p>
+        <div class="calc-grid">
+          <div class="field"><label for="fp_p">Potência ativa da carga (kW)</label><input id="fp_p" type="number" step="any" value="100"></div>
+          <div class="field"><label for="fp_atual">Fator de potência atual</label><input id="fp_atual" type="number" step="any" value="0.78"></div>
+          <div class="field"><label for="fp_desejado">Fator de potência desejado</label><input id="fp_desejado" type="number" step="any" value="0.95"></div>
+          <div class="field"><label for="fp_sistema">Sistema</label><select id="fp_sistema"><option value="tri" selected>Trifásico</option><option value="mono">Monofásico / bifásico</option></select></div>
+          <div class="field"><label for="fp_tensao">Tensão (V)</label><input id="fp_tensao" type="number" step="any" value="380"></div>
+          <div class="field"><label for="fp_freq">Frequência (Hz)</label><select id="fp_freq"><option value="60" selected>60 Hz</option><option value="50">50 Hz</option></select></div>
+          <div class="field"><label for="fp_ligacao">Ligação do banco</label><select id="fp_ligacao"><option value="delta" selected>Trifásico em delta</option><option value="estrela">Trifásico em estrela</option><option value="mono">Monofásico</option></select></div>
+          <div class="field"><label for="fp_meta">kVAr comercial mínimo</label><select id="fp_meta"><option value="acima" selected>Arredondar para valor comercial acima</option><option value="proximo">Valor comercial mais próximo</option><option value="exato">Não sugerir arredondamento</option></select></div>
+        </div>
+        <div class="calc-actions"><button class="mini-btn dark" type="button" onclick="copiarFP()"><i class="fas fa-copy"></i> Copiar resultado</button><button class="mini-btn" type="button" onclick="exFP(100,.78,.95,380)">Exemplo 100 kW</button><button class="mini-btn" type="button" onclick="exFP(250,.82,.96,440)">Exemplo 250 kW</button></div>
+        <div class="formula-box">Fórmula base: kVAr = kW × [tan(acos(FP atual)) - tan(acos(FP desejado))]</div>
+      </div>
+      <div class="calc-card"><h2><i class="fas fa-square-poll-vertical"></i> Resultado</h2>
+        <div class="calc-result" style="grid-template-columns:1fr 1fr">
+          <div class="result-box"><span>Banco calculado</span><strong id="r_qc">-</strong></div>
+          <div class="result-box"><span>Sugestão comercial</span><strong id="r_qcom">-</strong></div>
+          <div class="result-box"><span>Corrente antes</span><strong id="r_iantes">-</strong></div>
+          <div class="result-box"><span>Corrente depois</span><strong id="r_idepois">-</strong></div>
+          <div class="result-box"><span>kVA antes</span><strong id="r_santes">-</strong></div>
+          <div class="result-box"><span>kVA depois</span><strong id="r_sdepois">-</strong></div>
+          <div class="result-box"><span>Corrente do banco</span><strong id="r_icap">-</strong></div>
+          <div class="result-box"><span>Capacitância aprox.</span><strong id="r_cap">-</strong></div>
+        </div>
+        <div class="calc-note" id="r_nota">Informe os dados para calcular.</div>
+        <div class="pill-row"><span class="pill" id="r_status">Status: -</span><span class="pill" id="r_reducao">Redução de corrente: -</span></div>
+      </div>
+    </section>
+
+    <section class="calc-layout">
+      <div class="calc-card"><h2><i class="fas fa-layer-group"></i> Estágios sugeridos</h2><p>Para cargas variáveis, o banco automático em estágios costuma ser mais adequado do que um banco fixo único. Esta sugestão é apenas uma divisão inicial.</p><div class="calc-table-wrap"><table class="calc-table"><thead><tr><th>Opção</th><th>Composição aproximada</th><th>Total</th><th>Uso típico</th></tr></thead><tbody id="fp_estagios"></tbody></table></div></div>
+      <div class="calc-card"><h2><i class="fas fa-table"></i> Comparativo por FP desejado</h2><p>Veja como o kVAr necessário muda conforme o fator de potência alvo.</p><div class="calc-table-wrap"><table class="calc-table"><thead><tr><th>FP alvo</th><th>kVAr necessário</th><th>kVA após correção</th><th>Corrente após</th></tr></thead><tbody id="fp_tabela"></tbody></table></div></div>
+    </section>
+
+    <section class="calc-card"><h2><i class="fas fa-circle-info"></i> Observações técnicas importantes</h2><p>Correção de fator de potência em instalações industriais deve considerar perfil de carga, medição real, demanda, tensão, transformador, harmônicas, bancos automáticos, reatores dessintonizados, manobra de capacitores, proteção, ventilação, sobrecorrente e recomendações do fabricante. Em ambientes com inversores de frequência, retificadores, UPS, solda ou grande distorção harmônica, o banco de capacitores deve ser avaliado com cuidado adicional.</p></section>
+
+    <section class="calc-card faq"><h2><i class="fas fa-circle-question"></i> Perguntas frequentes</h2><details><summary>O que significa kVAr no banco de capacitores?</summary><p>kVAr é a potência reativa capacitiva fornecida pelo banco para compensar parte da potência reativa indutiva da instalação.</p></details><details><summary>Posso instalar exatamente o kVAr calculado?</summary><p>Não necessariamente. Em campo é comum usar valores comerciais, estágios automáticos e análise de carga. O cálculo é uma pré-estimativa.</p></details><details><summary>O banco reduz consumo em kWh?</summary><p>Normalmente a correção reduz potência aparente e corrente em parte da instalação, podendo evitar cobrança por baixo fator de potência. Ela não reduz automaticamente a energia ativa consumida pela carga.</p></details><details><summary>Preciso avaliar harmônicas?</summary><p>Sim, principalmente em instalações com inversores, retificadores, UPS, fontes chaveadas e cargas não lineares. Harmônicas podem exigir reatores ou soluções específicas.</p></details></section>
+  </main>
+  <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p></footer>
+<script>
+const $=id=>document.getElementById(id);
+const comerciais=[2.5,5,7.5,10,12.5,15,20,25,30,40,50,60,75,100,125,150,175,200,250,300,400,500];
+function n(v,d=2){return Number.isFinite(v)?v.toLocaleString('pt-BR',{maximumFractionDigits:d,minimumFractionDigits:d}):'-'}
+function fpValid(x){return x>0&&x<1}
+function qFromFp(p,fp){return p*Math.tan(Math.acos(fp))}
+function comercial(q,modo){if(!Number.isFinite(q)||q<=0)return 0;if(modo==='exato')return q;if(modo==='proximo')return comerciais.reduce((a,b)=>Math.abs(b-q)<Math.abs(a-q)?b:a,comerciais[0]);return comerciais.find(v=>v>=q)||q}
+function calcFP(){
+  const p=parseFloat($('fp_p').value), fpa=parseFloat($('fp_atual').value), fpd=parseFloat($('fp_desejado').value), v=parseFloat($('fp_tensao').value), freq=parseFloat($('fp_freq').value), sist=$('fp_sistema').value, lig=$('fp_ligacao').value, modo=$('fp_meta').value;
+  let nota=$('r_nota');
+  if(!(p>0)||!fpValid(fpa)||!fpValid(fpd)||!(v>0)){nota.textContent='Confira potência, tensão e fatores de potência. O FP deve estar entre 0 e 1.';nota.className='calc-note status-bad';return;}
+  const qAtual=qFromFp(p,fpa), qDesej=qFromFp(p,fpd), qc=Math.max(0,qAtual-qDesej), qcom=comercial(qc,modo);
+  const sAntes=p/fpa, sDepois=p/fpd;
+  const iAntes=sist==='tri'?sAntes*1000/(Math.sqrt(3)*v):sAntes*1000/v;
+  const iDepois=sist==='tri'?sDepois*1000/(Math.sqrt(3)*v):sDepois*1000/v;
+  const icap=sist==='tri'?qcom*1000/(Math.sqrt(3)*v):qcom*1000/v;
+  let capF=0;
+  if(lig==='delta') capF=(qcom*1000)/(3*2*Math.PI*freq*v*v);
+  else if(lig==='estrela'){const vf=v/Math.sqrt(3); capF=(qcom*1000)/(3*2*Math.PI*freq*vf*vf);}
+  else capF=(qcom*1000)/(2*Math.PI*freq*v*v);
+  $('r_qc').textContent=n(qc,2)+' kVAr'; $('r_qcom').textContent=modo==='exato'?n(qcom,2)+' kVAr':n(qcom,1)+' kVAr';
+  $('r_iantes').textContent=n(iAntes,1)+' A'; $('r_idepois').textContent=n(iDepois,1)+' A';
+  $('r_santes').textContent=n(sAntes,2)+' kVA'; $('r_sdepois').textContent=n(sDepois,2)+' kVA';
+  $('r_icap').textContent=n(icap,1)+' A'; $('r_cap').textContent=n(capF*1e6,1)+' µF '+(lig==='delta'?'por fase em delta':lig==='estrela'?'por fase em estrela':'total aproximado');
+  const red=(1-iDepois/iAntes)*100;
+  $('r_reducao').textContent='Redução de corrente: '+n(red,1)+'%';
+  if(qc<=0){$('r_status').textContent='Status: não precisa corrigir para esse alvo';$('r_status').className='pill status-good';nota.textContent='O fator de potência atual já é igual ou superior ao desejado.';nota.className='calc-note status-good';}
+  else if(fpd>0.98){$('r_status').textContent='Status: alvo muito alto';$('r_status').className='pill status-warn';nota.textContent='Alvos muito próximos de 1,00 exigem cuidado para evitar sobrecorreção, principalmente com carga variável.';nota.className='calc-note status-warn';}
+  else {$('r_status').textContent='Status: pré-estimativa calculada';$('r_status').className='pill status-good';nota.textContent='Resultado auxiliar para pré-análise. Dimensionamento final depende de medição, harmônicas, proteção e projeto.';nota.className='calc-note status-good';}
+  renderTabela(p,v,sist,fpa); renderEstagios(qcom);
+}
+function renderTabela(p,v,sist,fpa){
+  const alvos=[0.90,0.92,0.95,0.97,0.98]; const tbody=$('fp_tabela'); tbody.innerHTML=''; const qAtual=qFromFp(p,fpa);
+  alvos.forEach(fp=>{const q=Math.max(0,qAtual-qFromFp(p,fp)); const s=p/fp; const i=sist==='tri'?s*1000/(Math.sqrt(3)*v):s*1000/v; tbody.insertAdjacentHTML('beforeend',`<tr><td>${fp.toFixed(2).replace('.',',')}</td><td>${n(q,2)} kVAr</td><td>${n(s,2)} kVA</td><td>${n(i,1)} A</td></tr>`);});
+}
+function renderEstagios(q){
+  const tbody=$('fp_estagios'); tbody.innerHTML=''; if(!(q>0)){tbody.innerHTML='<tr><td>-</td><td>Sem correção necessária</td><td>-</td><td>-</td></tr>';return;}
+  const metade=Math.round((q/2)*10)/10, quarto=Math.round((q/4)*10)/10;
+  const linhas=[['Banco fixo',`${n(q,1)} kVAr`,`${n(q,1)} kVAr`,'Carga quase constante'],['2 estágios',`${n(metade,1)} + ${n(q-metade,1)} kVAr`,`${n(q,1)} kVAr`,'Variação moderada'],['4 estágios',`${n(quarto,1)} + ${n(quarto,1)} + ${n(quarto,1)} + ${n(q-3*quarto,1)} kVAr`,`${n(q,1)} kVAr`,'Carga variável']];
+  linhas.forEach(l=>tbody.insertAdjacentHTML('beforeend',`<tr><td>${l[0]}</td><td>${l[1]}</td><td>${l[2]}</td><td>${l[3]}</td></tr>`));
+}
+function exFP(p,a,d,v){$('fp_p').value=p;$('fp_atual').value=a;$('fp_desejado').value=d;$('fp_tensao').value=v;calcFP();}
+function copiarFP(){calcFP();const txt=`Correção de fator de potência - ALOGY\nBanco calculado: ${$('r_qc').textContent}\nSugestão comercial: ${$('r_qcom').textContent}\nCorrente antes: ${$('r_iantes').textContent}\nCorrente depois: ${$('r_idepois').textContent}\nObservação: uso orientativo, não substitui projeto, medição e profissional habilitado.`;navigator.clipboard&&navigator.clipboard.writeText(txt);}
+['fp_p','fp_atual','fp_desejado','fp_tensao','fp_freq','fp_sistema','fp_ligacao','fp_meta'].forEach(id=>$(id).addEventListener('input',calcFP));
+calcFP();
+</script>
+</body>
+</html>
