@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Calculadora Termopar Online | mV x Temperatura</title>
-  <meta name="description" content="Calculadora de termopar online para converter temperatura em mV e mV em temperatura nos tipos J, K, T, E, N, R, S e B, com compensação de junta fria e tabela rápida."/>
+  <meta name="description" content="Calculadora de termopar online para converter temperatura em mV e mV em temperatura nos tipos J, K, T, E, N, R, S e B, com compensação de junta fria, tabela rápida e cores comuns IEC/ANSI."/>
   <meta name="robots" content="index,follow" />
   <meta name="theme-color" content="#062138" />
   <link rel="canonical" href="https://www.alogy.com.br/calculadora-termopar.html" />
@@ -22,7 +22,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="ALOGY Engenharia" />
   <meta property="og:title" content="Calculadora Termopar Online | mV x Temperatura" />
-  <meta property="og:description" content="Converta termopares J, K, T, E, N, R, S e B entre mV e temperatura, com compensação de junta fria e tabela rápida para campo." />
+  <meta property="og:description" content="Converta termopares J, K, T, E, N, R, S e B entre mV e temperatura, com compensação de junta fria, tabela rápida e cores comuns de cabos IEC/ANSI para campo." />
   <meta property="og:url" content="https://www.alogy.com.br/calculadora-termopar.html" />
   <meta property="og:image" content="https://www.alogy.com.br/favicon-512x512.png" />
   <meta name="twitter:card" content="summary_large_image" />
@@ -113,6 +113,42 @@
     <section class="calc-layout">
       <div class="calc-card"><h2><i class="fas fa-table"></i> Tabela rápida do tipo selecionado</h2><p class="small-muted">Valores aproximados por interpolação para consulta inicial. Para calibração, use tabela oficial, certificado e procedimento metrológico.</p><div class="calc-table-wrap"><table class="calc-table"><thead><tr><th>Temperatura</th><th>mV ref. 0 °C</th><th>mV com junta fria</th></tr></thead><tbody id="tbl"></tbody></table></div></div>
       <div class="calc-card"><h2><i class="fas fa-circle-info"></i> Aplicação e cuidados</h2><p id="aplicacao"><strong>Tipo K:</strong> muito usado em aplicações industriais gerais pela ampla faixa de temperatura.</p><p><strong>Junta fria:</strong> se a junta de referência não está em 0 °C, o instrumento precisa compensar essa temperatura para indicar corretamente.</p><p><strong>Polaridade:</strong> inversão dos fios pode causar leitura negativa ou comportamento incorreto.</p><div class="calc-note">Cores de cabos podem variar conforme padrão IEC, ANSI ou fabricante. Confirme a identificação no cabo, borne e documentação da instalação.</div></div>
+    </section>
+
+
+
+    <section class="calc-card">
+      <h2><i class="fas fa-palette"></i> Tabela de cores comuns dos cabos de termopar</h2>
+      <p class="small-muted">As cores abaixo são uma referência prática de campo para os padrões mais encontrados. Elas podem variar por norma adotada, cabo de compensação/extensão, lote, fabricante e documentação do projeto. Sempre confirme a identificação gravada no cabo, no borne, no transmissor e no desenho da instalação.</p>
+      <div class="calc-layout" style="align-items:start;margin-top:14px">
+        <div>
+          <h3 style="color:#0b3a62;margin:0 0 10px">Padrão IEC mais comum</h3>
+          <div class="calc-table-wrap"><table class="calc-table"><thead><tr><th>Tipo</th><th>Condutor positivo +</th><th>Condutor negativo -</th><th>Capa/identificação comum</th></tr></thead><tbody>
+            <tr><td>J</td><td>Preto</td><td>Branco</td><td>Preto</td></tr>
+            <tr><td>K</td><td>Verde</td><td>Branco</td><td>Verde</td></tr>
+            <tr><td>T</td><td>Marrom</td><td>Branco</td><td>Marrom</td></tr>
+            <tr><td>E</td><td>Violeta / roxo</td><td>Branco</td><td>Violeta / roxo</td></tr>
+            <tr><td>N</td><td>Rosa</td><td>Branco</td><td>Rosa</td></tr>
+            <tr><td>R</td><td>Laranja</td><td>Branco</td><td>Laranja</td></tr>
+            <tr><td>S</td><td>Laranja</td><td>Branco</td><td>Laranja</td></tr>
+            <tr><td>B</td><td>Cinza</td><td>Branco</td><td>Cinza</td></tr>
+          </tbody></table></div>
+        </div>
+        <div>
+          <h3 style="color:#0b3a62;margin:0 0 10px">Padrão ANSI mais comum</h3>
+          <div class="calc-table-wrap"><table class="calc-table"><thead><tr><th>Tipo</th><th>Condutor positivo +</th><th>Condutor negativo -</th><th>Capa/identificação comum</th></tr></thead><tbody>
+            <tr><td>J</td><td>Branco</td><td>Vermelho</td><td>Preto</td></tr>
+            <tr><td>K</td><td>Amarelo</td><td>Vermelho</td><td>Amarelo</td></tr>
+            <tr><td>T</td><td>Azul</td><td>Vermelho</td><td>Azul</td></tr>
+            <tr><td>E</td><td>Roxo / violeta</td><td>Vermelho</td><td>Roxo / violeta</td></tr>
+            <tr><td>N</td><td>Laranja</td><td>Vermelho</td><td>Laranja</td></tr>
+            <tr><td>R</td><td>Preto</td><td>Vermelho</td><td>Verde</td></tr>
+            <tr><td>S</td><td>Preto</td><td>Vermelho</td><td>Verde</td></tr>
+            <tr><td>B</td><td>Cinza</td><td>Vermelho</td><td>Cinza</td></tr>
+          </tbody></table></div>
+        </div>
+      </div>
+      <div class="calc-note" style="margin-top:14px"><strong>Importante:</strong> não use somente cor para liberar ligação em campo. Em termopar, inversão de polaridade, cabo de compensação errado, emenda com material inadequado ou borne comum podem gerar erro de leitura. Confirme sempre o tipo do termopar, polaridade, continuidade, documentação e faixa do transmissor.</div>
     </section>
 
     <section class="calc-card faq"><h2><i class="fas fa-circle-question"></i> Perguntas frequentes</h2>
