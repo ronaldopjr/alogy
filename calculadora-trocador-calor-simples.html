@@ -61,6 +61,37 @@
 <div class="field"><label for="dtagua">ΔT água utilidade (°C)</label><input id="dtagua" type="number" step="any" value="10"></div>
 </div><div class="calc-actions"><button class="mini-btn dark" type="button" onclick="copiar()"><i class="fas fa-copy"></i> Copiar resultado</button><button class="mini-btn" type="button" onclick="exemplo()">Exemplo aquecimento</button></div></div><div class="calc-card"><h2><i class="fas fa-fire"></i> Resultado</h2><div class="calc-result"><div class="result-box"><span>Carga térmica</span><strong id="kw">-</strong></div><div class="result-box"><span>Equivalente</span><strong id="kcal">-</strong></div><div class="result-box"><span>Vazão água utilidade</span><strong id="agua">-</strong></div></div><div class="calc-note" id="nota">Informe os dados para calcular.</div><h3 style="margin-top:18px">Cenários por vazão</h3><div class="calc-table-wrap"><table class="calc-table"><thead><tr><th>Vazão</th><th>Carga</th><th>Água ΔT informado</th></tr></thead><tbody id="tbl"></tbody></table></div></div></section>
     <section class="calc-card faq"><h2><i class="fas fa-circle-question"></i> Perguntas frequentes</h2><details><summary>Isso dimensiona o trocador completo?</summary><p>Não. A ferramenta calcula carga térmica. Área de troca, LMTD, U, incrustação e perdas exigem cálculo específico.</p></details><details><summary>O que significa carga negativa?</summary><p>Indica que o fluido está sendo resfriado, pois a temperatura de saída é menor que a de entrada.</p></details><details><summary>Posso usar com vapor?</summary><p>Pode estimar a carga térmica do produto, mas o consumo de vapor deve considerar entalpia, condensado e perdas.</p></details></section>
+  
+    <!-- ALOGY_REVISAO_TECNICA_FERRAMENTA -->
+    <section class="calc-card" aria-label="Orientação técnica complementar">
+      <h2><i class="fas fa-clipboard-check"></i> Como usar esta ferramenta na prática</h2>
+      <p>Calcule carga térmica em kW e kcal/h para aquecimento ou resfriamento usando vazão, Cp e diferença de temperatura. Nesta revisão, o conteúdo foi ampliado para deixar mais claro quando usar a ferramenta, quais dados precisam ser conferidos e como transformar o número calculado em uma decisão técnica.</p>
+      <h3>Quando aplicar</h3>
+      <p>Use em processos com temperatura, troca térmica, sensores, termopoços, aquecimento, isolamento, perdas de calor e inspeção termográfica.</p>
+      <h3>Dados que merecem conferência</h3>
+      <p>Antes de confiar no resultado da ferramenta <strong>Calculadora de Carga Térmica para Trocador de Calor</strong>, confira principalmente: Fluido, Vazão mássica (kg/h), Cp (kJ/kg°C), Temperatura de entrada (°C), Temperatura de saída (°C), ΔT água utilidade (°C). Pequenos erros de unidade, ponto decimal ou condição de operação podem gerar conclusões erradas.</p>
+      <ul>
+          <li>Fluido</li>
+          <li>Vazão mássica (kg/h)</li>
+          <li>Cp (kJ/kg°C)</li>
+          <li>Temperatura de entrada (°C)</li>
+          <li>Temperatura de saída (°C)</li>
+          <li>ΔT água utilidade (°C)</li>
+      </ul>
+      <h3>Como interpretar o resultado</h3>
+      <p>O resultado depende muito de temperatura de referência, material, fluido, emissividade, isolamento, vazão e tempo de resposta. Em campo, valide sempre com medição estável e instrumento adequado.</p>
+      <p>Quando a página apresentar campos de resultado como Carga térmica, Equivalente, Vazão água utilidade, use esses valores para comparar o cenário calculado com limite operacional, tolerância do processo, histórico de manutenção ou especificação de fabricante.</p>
+      <h3>Checklist rápido de validação</h3>
+      <ul>
+          <li>Confirme unidade de temperatura, material e condição de instalação.</li>
+          <li>Em termografia, ajuste emissividade e evite reflexos antes de concluir.</li>
+          <li>Em troca térmica, confira vazão, Cp, ΔT e sentido de escoamento.</li>
+          <li>Use histórico de processo para saber se a variação é normal ou sintoma de falha.</li>
+      </ul>
+      <h3>Limites da estimativa</h3>
+      <p>Esta ferramenta é indicada para estudo, triagem, conferência de campo e apoio à manutenção. Para projeto final, laudo, especificação de compra, alteração de segurança ou liberação de equipamento crítico, valide as premissas com normas aplicáveis, documentação do fabricante e profissional habilitado.</p>
+    </section>
+
   </main>
   <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
 <script>

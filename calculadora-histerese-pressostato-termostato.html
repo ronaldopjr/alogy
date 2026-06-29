@@ -53,6 +53,37 @@
     <section class="calc-card" aria-label="Aviso de uso"><h2><i class="fas fa-triangle-exclamation"></i> Ferramenta orientativa</h2><p>Use esta ferramenta para estudo, estimativa e conferência preliminar. O resultado depende dos dados inseridos, hipóteses adotadas, normas aplicáveis, catálogos de fabricantes e validação de profissional habilitado.</p></section>
     <section class="calc-layout"><div class="calc-card"><h2><i class="fas fa-toggle-on"></i> Dados da chave</h2><div class="calc-grid"><div class="field"><label for="tipo">Tipo de atuação</label><select id="tipo"><option value="alta">Atua em alta</option><option value="baixa">Atua em baixa</option></select></div><div class="field"><label for="sp">Setpoint de atuação</label><input id="sp" type="number" step="any" value="6"></div><div class="field"><label for="reset">Reset / retorno</label><input id="reset" type="number" step="any" value="5.2"></div><div class="field"><label for="atual">Valor atual do processo</label><input id="atual" type="number" step="any" value="5.8"></div><div class="field"><label for="range">Span ou faixa de referência</label><input id="range" type="number" step="any" value="10"></div><div class="field"><label for="un">Unidade simbólica (não afeta cálculo)</label><input id="un" type="number" step="any" value="1"></div></div><div class="calc-actions"><button class="mini-btn dark" onclick="copiar()" type="button"><i class="fas fa-copy"></i> Copiar</button></div></div><div class="calc-card"><h2><i class="fas fa-sliders"></i> Resultado</h2><div class="calc-result four"><div class="result-box"><span>Diferencial</span><strong id="r1">-</strong></div><div class="result-box"><span>Banda em % span</span><strong id="r2">-</strong></div><div class="result-box"><span>Ponto de atuação</span><strong id="r3">-</strong></div><div class="result-box"><span>Estado provável</span><strong id="r4">-</strong></div></div><div class="calc-note">A condição real depende da lógica NA/NF, instalação elétrica e histórico do último estado.</div></div></section>
     
+  
+    <!-- ALOGY_REVISAO_TECNICA_FERRAMENTA -->
+    <section class="calc-card" aria-label="Orientação técnica complementar">
+      <h2><i class="fas fa-clipboard-check"></i> Como usar esta ferramenta na prática</h2>
+      <p>Calcule diferencial, reset, banda morta e estado de pressostato ou termostato por setpoint e valor atual. Nesta revisão, o conteúdo foi ampliado para deixar mais claro quando usar a ferramenta, quais dados precisam ser conferidos e como transformar o número calculado em uma decisão técnica.</p>
+      <h3>Quando aplicar</h3>
+      <p>Use em bancada, campo ou laboratório para preparar pontos de teste, comparar indicação do instrumento com referência rastreável e decidir se o equipamento está aprovado, reprovado ou se precisa de ajuste.</p>
+      <h3>Dados que merecem conferência</h3>
+      <p>Antes de confiar no resultado da ferramenta <strong>Calculadora de Histerese de Pressostato e Termostato</strong>, confira principalmente: Tipo de atuação, Setpoint de atuação, Reset / retorno, Valor atual do processo, Span ou faixa de referência, Unidade simbólica (não afeta cálculo). Pequenos erros de unidade, ponto decimal ou condição de operação podem gerar conclusões erradas.</p>
+      <ul>
+          <li>Tipo de atuação</li>
+          <li>Setpoint de atuação</li>
+          <li>Reset / retorno</li>
+          <li>Valor atual do processo</li>
+          <li>Span ou faixa de referência</li>
+          <li>Unidade simbólica (não afeta cálculo)</li>
+      </ul>
+      <h3>Como interpretar o resultado</h3>
+      <p>O resultado deve ser comparado com a tolerância do processo e com o erro máximo permitido definido no plano de calibração. Um erro pequeno no instrumento pode ser aceitável para utilidades, mas crítico em malhas de segurança, qualidade ou dosagem.</p>
+      <p>Quando a página apresentar campos de resultado como Diferencial, Banda em % span, Ponto de atuação, Estado provável, use esses valores para comparar o cenário calculado com limite operacional, tolerância do processo, histórico de manutenção ou especificação de fabricante.</p>
+      <h3>Checklist rápido de validação</h3>
+      <ul>
+          <li>Confirme TAG, faixa LRV/URV, unidade de engenharia e damping antes do teste.</li>
+          <li>Use padrão de referência com resolução e incerteza adequadas ao instrumento em teste.</li>
+          <li>Registre as leituras de subida e descida para observar histerese, repetibilidade e retorno ao zero.</li>
+          <li>Quando houver ajuste, repita o ciclo completo antes de liberar o instrumento.</li>
+      </ul>
+      <h3>Limites da estimativa</h3>
+      <p>Esta ferramenta é indicada para estudo, triagem, conferência de campo e apoio à manutenção. Para projeto final, laudo, especificação de compra, alteração de segurança ou liberação de equipamento crítico, valide as premissas com normas aplicáveis, documentação do fabricante e profissional habilitado.</p>
+    </section>
+
   </main>
   <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
 <script>function val(id){return parseFloat(document.getElementById(id).value)||0;}function txt(id){let e=document.getElementById(id);return e?e.value:'';}function fmt(x,d=2){return Number.isFinite(x)?x.toLocaleString('pt-BR',{maximumFractionDigits:d}):'-';}function set(id,v){document.getElementById(id).innerHTML=v;}function bind(){document.querySelectorAll('input,select').forEach(e=>e.addEventListener('input',calc));calc();}function copiar(){navigator.clipboard&&navigator.clipboard.writeText(document.body.innerText.slice(0,2600));}window.addEventListener('DOMContentLoaded',bind);function calc(){let tipo=txt('tipo'),sp=val('sp'),rs=val('reset'),at=val('atual'),rg=val('range')||1;let dif=Math.abs(sp-rs);let pct=dif/rg*100;let estado=tipo==='alta'?(at>=sp?'<span class="pill-bad">Atuado</span>':(at<=rs?'<span class="pill-ok">Resetado</span>':'<span class="pill-warn">Na histerese</span>')):(at<=sp?'<span class="pill-bad">Atuado</span>':(at>=rs?'<span class="pill-ok">Resetado</span>':'<span class="pill-warn">Na histerese</span>'));set('r1',fmt(dif,3));set('r2',fmt(pct,2)+' %');set('r3',fmt(sp,3));set('r4',estado);}</script>

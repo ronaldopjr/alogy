@@ -115,6 +115,36 @@ d = diâmetro nominal</div>
       <h2><i class="fas fa-circle-question"></i> Perguntas frequentes</h2>
       <details><summary>Por que o torque é apenas estimado?</summary><p>Porque a maior parte do torque é consumida no atrito da rosca e da face de apoio. Lubrificação, revestimento, arruela, junta e material alteram muito o resultado.</p></details><details><summary>Posso usar em flange pressurizado?</summary><p>Não como valor final. Flanges, juntas, vasos, tubulações pressurizadas e equipamentos críticos exigem procedimento, norma e torque do fabricante.</p></details>
     </section>
+  
+    <!-- ALOGY_REVISAO_TECNICA_FERRAMENTA -->
+    <section class="calc-card" aria-label="Orientação técnica complementar">
+      <h2><i class="fas fa-clipboard-check"></i> Como usar esta ferramenta na prática</h2>
+      <p>Calculadora orientativa de torque de aperto de parafusos métricos por diâmetro, classe, condição seca ou lubrificada e pré-carga para manutenção industrial. Nesta revisão, o conteúdo foi ampliado para deixar mais claro quando usar a ferramenta, quais dados precisam ser conferidos e como transformar o número calculado em uma decisão técnica.</p>
+      <h3>Quando aplicar</h3>
+      <p>Use para apoio em manutenção mecânica, montagem, alinhamento, transmissão, rolamentos, hidráulica, torque, roscas e componentes rotativos.</p>
+      <h3>Dados que merecem conferência</h3>
+      <p>Antes de confiar no resultado da ferramenta <strong>Calculadora de Torque de Aperto de Parafusos</strong>, confira principalmente: Parafuso métrico, Classe / material, Condição da rosca, Pré-carga alvo, Fator de segurança de aplicação. Pequenos erros de unidade, ponto decimal ou condição de operação podem gerar conclusões erradas.</p>
+      <ul>
+          <li>Parafuso métrico</li>
+          <li>Classe / material</li>
+          <li>Condição da rosca</li>
+          <li>Pré-carga alvo</li>
+          <li>Fator de segurança de aplicação</li>
+      </ul>
+      <h3>Como interpretar o resultado</h3>
+      <p>O resultado deve ser tratado como referência de manutenção. Folgas, lubrificação, condição superficial, rigidez da base, temperatura e carregamento real podem mudar o comportamento em campo.</p>
+      <p>Quando a página apresentar campos de resultado como Torque estimado, Pré-carga, Rosca, use esses valores para comparar o cenário calculado com limite operacional, tolerância do processo, histórico de manutenção ou especificação de fabricante.</p>
+      <h3>Checklist rápido de validação</h3>
+      <ul>
+          <li>Confirme medidas reais com instrumento adequado antes de executar serviço.</li>
+          <li>Compare torque, força, velocidade ou vida estimada com catálogo do fabricante.</li>
+          <li>Observe vibração, ruído, aquecimento e desgaste após a intervenção.</li>
+          <li>Registre antes e depois para criar histórico de confiabilidade.</li>
+      </ul>
+      <h3>Limites da estimativa</h3>
+      <p>Esta ferramenta é indicada para estudo, triagem, conferência de campo e apoio à manutenção. Para projeto final, laudo, especificação de compra, alteração de segurança ou liberação de equipamento crítico, valide as premissas com normas aplicáveis, documentação do fabricante e profissional habilitado.</p>
+    </section>
+
   </main>
 <script>
 const area={6:20.1,8:36.6,10:58,12:84.3,16:157,20:245,24:353,30:561};const passo={6:'1,0 mm',8:'1,25 mm',10:'1,5 mm',12:'1,75 mm',16:'2,0 mm',20:'2,5 mm',24:'3,0 mm',30:'3,5 mm'};const proof={'5.8':380,'8.8':600,'10.9':830,'12.9':970,'A2-70':450};function n(id){return parseFloat(document.getElementById(id).value)||0}function fmt(v,d=1){return isFinite(v)?v.toFixed(d).replace('.',','):'-'}function calcTorque(){let d=n('diam'),cl=document.getElementById('classe').value,K=n('cond'),pre=n('preload')/100,fs=n('fs');let F=proof[cl]*area[d]*pre/fs;let T=K*F*(d/1000);document.getElementById('torque').textContent=fmt(T)+' N·m';document.getElementById('carga').textContent=fmt(F/1000)+' kN';document.getElementById('passo').textContent=passo[d];let ks=[['Seca',0.20],['Lubrificada leve',0.15],['Lubrificada alta',0.12]];document.getElementById('tabTorque').innerHTML=ks.map(r=>`<tr><td>${r[0]}</td><td>${fmt(r[1]*F*(d/1000))} N·m</td></tr>`).join('');document.getElementById('nota').textContent='Torque real depende de atrito, lubrificante, arruela, flange, junta, revestimento, classe e fabricante. Para flange/equipamento crítico use procedimento aprovado.'}function copyResumo(){navigator.clipboard.writeText(`Torque de aperto estimado: ${document.getElementById('torque').textContent}; pré-carga ${document.getElementById('carga').textContent}.`)}document.querySelectorAll('input,select').forEach(e=>e.addEventListener('input',calcTorque));calcTorque();</script>

@@ -54,6 +54,36 @@
     <section class="calc-layout"><div class="calc-card"><h2><i class="fas fa-pen-to-square"></i> Dados de entrada</h2><div class="calc-grid"><label>Espessura inicial/nominal (mm)<input id="eini" type="number" step="any" value="8.0"></label><label>Espessura atual medida (mm)<input id="eatual" type="number" step="any" value="6.8"></label><label>Espessura mínima aceitável (mm)<input id="emin" type="number" step="any" value="4.5"></label><label>Tempo de operação entre medições (anos)<input id="anos" type="number" step="any" value="3.0"></label><label>Margem de segurança (%)<input id="margem" type="number" step="any" value="20"></label></div></div><div class="calc-card"><h2><i class="fas fa-chart-line"></i> Resultado</h2><div class="calc-result four"><div class="result-box"><span>Taxa de corrosão</span><strong id="r1">-</strong></div><div class="result-box"><span>Vida remanescente</span><strong id="r2">-</strong></div><div class="result-box"><span>Espessura útil</span><strong id="r3">-</strong></div><div class="result-box"><span>Status</span><strong id="r4">-</strong></div></div><p id="nota" class="mini-help"></p><div class="calc-actions no-print"><button class="mini-btn" onclick="window.print()"><i class="fas fa-print"></i> Imprimir</button></div></div></section>
     <script>function n(id){return parseFloat(document.getElementById(id).value)||0}function calc(){let ei=n('eini'),ea=n('eatual'),em=n('emin'),anos=n('anos'),mg=n('margem')/100;let taxa=(ei-ea)/Math.max(anos,.001);let util=ea-em;let vida=util/Math.max(taxa,.000001)*(1-mg);let st=ea<=em?'Abaixo do mínimo':vida<1?'Intervenção curta':vida<3?'Monitorar de perto':'Normal';document.getElementById('r1').textContent=taxa.toFixed(3)+' mm/ano';document.getElementById('r2').textContent=vida.toFixed(2)+' anos';document.getElementById('r3').textContent=util.toFixed(2)+' mm';document.getElementById('r4').textContent=st;document.getElementById('nota').innerHTML='Ferramenta orientativa. Para integridade, usar plano de inspeção, material, fluido, pressão, temperatura, códigos aplicáveis e profissional habilitado.'}document.querySelectorAll('input').forEach(e=>e.addEventListener('input',calc));calc();</script>
     <section class="cta-bar" aria-label="Chamada para contato"><div><strong>Precisa validar esse cálculo em campo?</strong><br><span class="muted">A ALOGY apoia engenharia, manutenção, instrumentação, automação e utilidades industriais.</span></div><div class="cta-actions"><a class="btn" href="index.html#contato"><i class="fas fa-paper-plane"></i> Solicitar contato</a></div></section>
+  
+    <!-- ALOGY_REVISAO_TECNICA_FERRAMENTA -->
+    <section class="calc-card" aria-label="Orientação técnica complementar">
+      <h2><i class="fas fa-clipboard-check"></i> Como usar esta ferramenta na prática</h2>
+      <p>Estime taxa de corrosão em mm/ano, vida remanescente e data provável de intervenção por espessura medida. Nesta revisão, o conteúdo foi ampliado para deixar mais claro quando usar a ferramenta, quais dados precisam ser conferidos e como transformar o número calculado em uma decisão técnica.</p>
+      <h3>Quando aplicar</h3>
+      <p>Use como apoio rápido para estimativa técnica, conferência de campo, estudo de engenharia ou validação preliminar antes de executar uma alteração no processo.</p>
+      <h3>Dados que merecem conferência</h3>
+      <p>Antes de confiar no resultado da ferramenta <strong>Calculadora de Taxa de Corrosão e Vida Remanescente</strong>, confira principalmente: Espessura inicial/nominal (mm), Espessura atual medida (mm), Espessura mínima aceitável (mm), Tempo de operação entre medições (anos), Margem de segurança (%). Pequenos erros de unidade, ponto decimal ou condição de operação podem gerar conclusões erradas.</p>
+      <ul>
+          <li>Espessura inicial/nominal (mm)</li>
+          <li>Espessura atual medida (mm)</li>
+          <li>Espessura mínima aceitável (mm)</li>
+          <li>Tempo de operação entre medições (anos)</li>
+          <li>Margem de segurança (%)</li>
+      </ul>
+      <h3>Como interpretar o resultado</h3>
+      <p>O resultado deve ser encarado como orientação. A decisão final precisa considerar dados reais, norma aplicável, especificação do fabricante, condição de instalação e responsabilidade técnica.</p>
+      <p>Quando a página apresentar campos de resultado como Taxa de corrosão, Vida remanescente, Espessura útil, Status, use esses valores para comparar o cenário calculado com limite operacional, tolerância do processo, histórico de manutenção ou especificação de fabricante.</p>
+      <h3>Checklist rápido de validação</h3>
+      <ul>
+          <li>Confira unidades e dados digitados antes de usar o resultado.</li>
+          <li>Compare com histórico, catálogo ou medição independente.</li>
+          <li>Use margem de segurança quando o resultado estiver perto do limite.</li>
+          <li>Documente premissas, data e responsável pela avaliação.</li>
+      </ul>
+      <h3>Limites da estimativa</h3>
+      <p>Esta ferramenta é indicada para estudo, triagem, conferência de campo e apoio à manutenção. Para projeto final, laudo, especificação de compra, alteração de segurança ou liberação de equipamento crítico, valide as premissas com normas aplicáveis, documentação do fabricante e profissional habilitado.</p>
+    </section>
+
   </main>
   <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
 </body>

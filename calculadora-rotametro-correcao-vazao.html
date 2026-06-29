@@ -54,6 +54,36 @@
     <section class="calc-card" aria-label="Aviso de uso"><h2><i class="fas fa-triangle-exclamation"></i> Ferramenta orientativa</h2><p>Use esta ferramenta para estudo, estimativa e conferência preliminar. O resultado depende dos dados inseridos, hipóteses adotadas, normas aplicáveis, catálogos de fabricantes e validação de profissional habilitado.</p></section>
     <section class="calc-layout"><div class="calc-card"><h2><i class="fas fa-gauge-high"></i> Dados do rotâmetro</h2><div class="calc-grid"><div class="field"><label for="qind">Vazão indicada</label><input id="qind" type="number" step="any" value="100"></div><div class="field"><label for="pcal">Pressão calibração abs (bar)</label><input id="pcal" type="number" step="any" value="1.013"></div><div class="field"><label for="tcal">Temperatura calibração (°C)</label><input id="tcal" type="number" step="any" value="20"></div><div class="field"><label for="pact">Pressão operação abs (bar)</label><input id="pact" type="number" step="any" value="2.0"></div><div class="field"><label for="tact">Temperatura operação (°C)</label><input id="tact" type="number" step="any" value="30"></div></div><div class="calc-actions"><button class="mini-btn dark" onclick="copiar()" type="button"><i class="fas fa-copy"></i> Copiar</button></div></div><div class="calc-card"><h2><i class="fas fa-chart-simple"></i> Resultado</h2><div class="calc-result"><div class="result-box"><span>Vazão corrigida</span><strong id="r1">-</strong></div><div class="result-box"><span>Fator de correção</span><strong id="r2">-</strong></div><div class="result-box"><span>Densidade relativa</span><strong id="r3">-</strong></div></div><div class="calc-note" id="nota">Para gás ideal: densidade proporcional a pressão absoluta dividida pela temperatura absoluta.</div></div></section>
     <section class="calc-card faq"><h2><i class="fas fa-circle-question"></i> Perguntas frequentes</h2><details><summary>Serve para rotâmetro de líquido?</summary><p>A lógica pode usar densidades, mas esta versão está simplificada para gases ideais por pressão e temperatura.</p></details><details><summary>A unidade da vazão indicada importa?</summary><p>O fator multiplica a leitura. Use a mesma unidade de entrada e saída.</p></details></section>
+  
+    <!-- ALOGY_REVISAO_TECNICA_FERRAMENTA -->
+    <section class="calc-card" aria-label="Orientação técnica complementar">
+      <h2><i class="fas fa-clipboard-check"></i> Como usar esta ferramenta na prática</h2>
+      <p>Corrija indicação de rotâmetro por densidade, pressão e temperatura para gases em condição diferente da calibração. Nesta revisão, o conteúdo foi ampliado para deixar mais claro quando usar a ferramenta, quais dados precisam ser conferidos e como transformar o número calculado em uma decisão técnica.</p>
+      <h3>Quando aplicar</h3>
+      <p>Use para avaliar vazão, nível, densidade, volume, regime de escoamento e comportamento de processo em tanques, tubulações, medidores e linhas industriais.</p>
+      <h3>Dados que merecem conferência</h3>
+      <p>Antes de confiar no resultado da ferramenta <strong>Calculadora de Correção de Vazão em Rotâmetro</strong>, confira principalmente: Vazão indicada, Pressão calibração abs (bar), Temperatura calibração (°C), Pressão operação abs (bar), Temperatura operação (°C). Pequenos erros de unidade, ponto decimal ou condição de operação podem gerar conclusões erradas.</p>
+      <ul>
+          <li>Vazão indicada</li>
+          <li>Pressão calibração abs (bar)</li>
+          <li>Temperatura calibração (°C)</li>
+          <li>Pressão operação abs (bar)</li>
+          <li>Temperatura operação (°C)</li>
+      </ul>
+      <h3>Como interpretar o resultado</h3>
+      <p>O resultado ajuda a conferir se a condição de processo é coerente com o instrumento instalado e com a faixa de operação. Mudanças de densidade, viscosidade, temperatura e pressão podem alterar a medição final.</p>
+      <p>Quando a página apresentar campos de resultado como Vazão corrigida, Fator de correção, Densidade relativa, use esses valores para comparar o cenário calculado com limite operacional, tolerância do processo, histórico de manutenção ou especificação de fabricante.</p>
+      <h3>Checklist rápido de validação</h3>
+      <ul>
+          <li>Confirme fluido, unidade, densidade, pressão, temperatura e condição normal ou operacional.</li>
+          <li>Verifique diâmetro interno real, geometria do tanque e posição das tomadas de impulso.</li>
+          <li>Compare o valor calculado com leitura de campo, histórico e balanço de massa.</li>
+          <li>Em medição fiscal, segurança ou qualidade, use método normalizado e documentação aprovada.</li>
+      </ul>
+      <h3>Limites da estimativa</h3>
+      <p>Esta ferramenta é indicada para estudo, triagem, conferência de campo e apoio à manutenção. Para projeto final, laudo, especificação de compra, alteração de segurança ou liberação de equipamento crítico, valide as premissas com normas aplicáveis, documentação do fabricante e profissional habilitado.</p>
+    </section>
+
   </main>
   <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
 <script>function n(v,d=3){return Number.isFinite(v)?v.toLocaleString('pt-BR',{maximumFractionDigits:d}):'-'}function g(id){return parseFloat(document.getElementById(id).value)||0}function calc(){let q=g('qind'),pc=g('pcal'),tc=g('tcal')+273.15,pa=g('pact'),ta=g('tact')+273.15;let rhoRel=(pa/pc)*(tc/ta);let fator=Math.sqrt(1/rhoRel);let qc=q*fator;r1.textContent=n(qc,3)+' unidades';r2.textContent=n(fator,4);r3.textContent=n(rhoRel,3)+' x';nota.textContent='Se a densidade real de operação for maior que a de calibração, a vazão corrigida tende a ser menor.'}function copiar(){navigator.clipboard&&navigator.clipboard.writeText('Rotâmetro: vazão corrigida '+r1.textContent+', fator '+r2.textContent)}document.querySelectorAll('input').forEach(e=>e.addEventListener('input',calc));calc();</script>

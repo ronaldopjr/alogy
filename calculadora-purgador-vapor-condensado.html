@@ -53,6 +53,35 @@
     <section class="calc-card" aria-label="Aviso de uso"><h2><i class="fas fa-triangle-exclamation"></i> Ferramenta orientativa</h2><p>Use esta ferramenta para estudo, estimativa e conferência preliminar. O resultado depende dos dados inseridos, hipóteses adotadas, normas aplicáveis, catálogos de fabricantes e validação de profissional habilitado.</p></section>
     <section class="calc-layout"><div class="calc-card"><h2><i class="fas fa-temperature-arrow-down"></i> Dados do condensado</h2><div class="calc-grid"><div class="field"><label for="carga">Carga térmica ou condensado estimado (kg/h)</label><input id="carga" type="number" step="any" value="250"></div><div class="field"><label for="fs">Fator de segurança</label><input id="fs" type="number" step="any" value="2"></div><div class="field"><label for="dp">Pressão diferencial disponível (bar)</label><input id="dp" type="number" step="any" value="3"></div><div class="field"><label for="back">Contrapressão na descarga (bar)</label><input id="back" type="number" step="any" value="0.5"></div></div><div class="calc-actions"><button class="mini-btn dark" onclick="copiar()" type="button"><i class="fas fa-copy"></i> Copiar</button></div></div><div class="calc-card"><h2><i class="fas fa-filter"></i> Resultado</h2><div class="calc-result four"><div class="result-box"><span>Capacidade mínima</span><strong id="r1">-</strong></div><div class="result-box"><span>DP efetivo</span><strong id="r2">-</strong></div><div class="result-box"><span>Classe sugerida</span><strong id="r3">-</strong></div><div class="result-box"><span>Atenção</span><strong id="r4" class="small">-</strong></div></div><div class="calc-note">Selecionar tipo de purgador conforme aplicação: linha, traço, trocador, panela, ar na partida e golpe de aríete.</div></div></section>
     
+  
+    <!-- ALOGY_REVISAO_TECNICA_FERRAMENTA -->
+    <section class="calc-card" aria-label="Orientação técnica complementar">
+      <h2><i class="fas fa-clipboard-check"></i> Como usar esta ferramenta na prática</h2>
+      <p>Estime carga de condensado, capacidade mínima de purgador e margem por fator de segurança. Nesta revisão, o conteúdo foi ampliado para deixar mais claro quando usar a ferramenta, quais dados precisam ser conferidos e como transformar o número calculado em uma decisão técnica.</p>
+      <h3>Quando aplicar</h3>
+      <p>Use para estimativas de utilidades industriais como ar comprimido, vapor, exaustão, nitrogênio, bombas e ventiladores, ajudando manutenção e engenharia a comparar consumo, perda, capacidade e segurança operacional.</p>
+      <h3>Dados que merecem conferência</h3>
+      <p>Antes de confiar no resultado da ferramenta <strong>Calculadora de Purgador de Vapor e Condensado</strong>, confira principalmente: Carga térmica ou condensado estimado (kg/h), Fator de segurança, Pressão diferencial disponível (bar), Contrapressão na descarga (bar). Pequenos erros de unidade, ponto decimal ou condição de operação podem gerar conclusões erradas.</p>
+      <ul>
+          <li>Carga térmica ou condensado estimado (kg/h)</li>
+          <li>Fator de segurança</li>
+          <li>Pressão diferencial disponível (bar)</li>
+          <li>Contrapressão na descarga (bar)</li>
+      </ul>
+      <h3>Como interpretar o resultado</h3>
+      <p>O resultado indica tendência e ordem de grandeza. Em utilidades, a condição real de operação costuma variar com pressão, temperatura, vazamentos, perdas de carga, rendimento e estado mecânico do equipamento.</p>
+      <p>Quando a página apresentar campos de resultado como Capacidade mínima, DP efetivo, Classe sugerida, Atenção, use esses valores para comparar o cenário calculado com limite operacional, tolerância do processo, histórico de manutenção ou especificação de fabricante.</p>
+      <h3>Checklist rápido de validação</h3>
+      <ul>
+          <li>Meça pressão, temperatura e vazão na condição mais próxima possível da operação real.</li>
+          <li>Considere perdas em filtros, curvas, válvulas, mangueiras, dutos e trocadores.</li>
+          <li>Compare o cálculo com placa do equipamento, curva do fabricante e histórico de consumo.</li>
+          <li>Se o resultado ficar próximo do limite, adote margem de segurança e valide com engenharia.</li>
+      </ul>
+      <h3>Limites da estimativa</h3>
+      <p>Esta ferramenta é indicada para estudo, triagem, conferência de campo e apoio à manutenção. Para projeto final, laudo, especificação de compra, alteração de segurança ou liberação de equipamento crítico, valide as premissas com normas aplicáveis, documentação do fabricante e profissional habilitado.</p>
+    </section>
+
   </main>
   <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
 <script>function val(id){return parseFloat(document.getElementById(id).value)||0;}function fmt(x,d=2){return Number.isFinite(x)?x.toLocaleString('pt-BR',{maximumFractionDigits:d}):'-';}function set(id,v){document.getElementById(id).innerHTML=v;}function bind(){document.querySelectorAll('input,select').forEach(e=>e.addEventListener('input',calc));calc();}function copiar(){navigator.clipboard&&navigator.clipboard.writeText(document.body.innerText.slice(0,2200));}window.addEventListener('DOMContentLoaded',bind);function calc(){let carga=val('carga'),fs=val('fs'),dp=val('dp'),back=val('back');let cap=carga*fs;let dpe=Math.max(dp-back,0);let cls=cap<100?'Pequeno':cap<1000?'Médio':'Alta capacidade';let st=dpe<=0?'<span class="pill-bad">Sem DP</span>':'<span class="pill-ok">Ver catálogo</span>';set('r1',fmt(cap,0)+' kg/h');set('r2',fmt(dpe,2)+' bar');set('r3',cls);set('r4',st);}</script>

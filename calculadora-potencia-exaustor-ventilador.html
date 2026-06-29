@@ -54,6 +54,37 @@
     <section class="calc-card" aria-label="Aviso de uso"><h2><i class="fas fa-triangle-exclamation"></i> Ferramenta orientativa</h2><p>Use esta ferramenta para estudo, estimativa e conferência preliminar. O resultado depende dos dados inseridos, hipóteses adotadas, normas aplicáveis, catálogos de fabricantes e validação de profissional habilitado.</p></section>
     <section class="calc-layout"><div class="calc-card"><h2><i class="fas fa-fan"></i> Dados do exaustor</h2><div class="calc-grid"><div class="field"><label for="q">Vazão (m³/h)</label><input id="q" type="number" step="any" value="1400"></div><div class="field"><label for="dp">Pressão total/estática (Pa)</label><input id="dp" type="number" step="any" value="150"></div><div class="field"><label for="ef">Rendimento ventilador (%)</label><input id="ef" type="number" step="any" value="55"></div><div class="field"><label for="margem">Margem motor (%)</label><input id="margem" type="number" step="any" value="20"></div><div class="field"><label for="tensao">Tensão trifásica (V)</label><input id="tensao" type="number" step="any" value="380"></div><div class="field"><label for="fp">FP x rendimento motor</label><input id="fp" type="number" step="any" value="0.75"></div></div><div class="calc-actions"><button class="mini-btn dark" type="button" onclick="copiar()"><i class="fas fa-copy"></i> Copiar</button></div></div><div class="calc-card"><h2><i class="fas fa-bolt"></i> Resultado</h2><div class="calc-result"><div class="result-box"><span>Potência no ar</span><strong id="par">-</strong></div><div class="result-box"><span>Potência no eixo</span><strong id="peixo">-</strong></div><div class="result-box"><span>Motor sugerido</span><strong id="pmotor">-</strong></div></div><div class="calc-result two"><div class="result-box"><span>Corrente estimada</span><strong id="corr">-</strong></div><div class="result-box"><span>Observação</span><strong class="small" id="obs">-</strong></div></div></div></section>
     <section class="calc-card faq"><h2><i class="fas fa-circle-question"></i> Perguntas frequentes</h2><details><summary>A fórmula é válida para qualquer ventilador?</summary><p>É uma estimativa energética. A seleção correta depende da curva do ventilador, rotação, densidade do ar, ruído e rendimento real.</p></details><details><summary>Preciso usar pressão estática ou total?</summary><p>Use o critério compatível com a curva e com a perda de carga do sistema. Em seleção técnica, a pressão total do sistema precisa ser validada.</p></details></section>
+  
+    <!-- ALOGY_REVISAO_TECNICA_FERRAMENTA -->
+    <section class="calc-card" aria-label="Orientação técnica complementar">
+      <h2><i class="fas fa-clipboard-check"></i> Como usar esta ferramenta na prática</h2>
+      <p>Calcule potência aproximada de exaustor ou ventilador industrial por vazão, pressão estática e rendimento. Nesta revisão, o conteúdo foi ampliado para deixar mais claro quando usar a ferramenta, quais dados precisam ser conferidos e como transformar o número calculado em uma decisão técnica.</p>
+      <h3>Quando aplicar</h3>
+      <p>Use para estimativas de utilidades industriais como ar comprimido, vapor, exaustão, nitrogênio, bombas e ventiladores, ajudando manutenção e engenharia a comparar consumo, perda, capacidade e segurança operacional.</p>
+      <h3>Dados que merecem conferência</h3>
+      <p>Antes de confiar no resultado da ferramenta <strong>Calculadora de Potência de Exaustor e Ventilador</strong>, confira principalmente: Vazão (m³/h), Pressão total/estática (Pa), Rendimento ventilador (%), Margem motor (%), Tensão trifásica (V), FP x rendimento motor. Pequenos erros de unidade, ponto decimal ou condição de operação podem gerar conclusões erradas.</p>
+      <ul>
+          <li>Vazão (m³/h)</li>
+          <li>Pressão total/estática (Pa)</li>
+          <li>Rendimento ventilador (%)</li>
+          <li>Margem motor (%)</li>
+          <li>Tensão trifásica (V)</li>
+          <li>FP x rendimento motor</li>
+      </ul>
+      <h3>Como interpretar o resultado</h3>
+      <p>O resultado indica tendência e ordem de grandeza. Em utilidades, a condição real de operação costuma variar com pressão, temperatura, vazamentos, perdas de carga, rendimento e estado mecânico do equipamento.</p>
+      <p>Quando a página apresentar campos de resultado como Potência no ar, Potência no eixo, Motor sugerido, Corrente estimada, Observação, use esses valores para comparar o cenário calculado com limite operacional, tolerância do processo, histórico de manutenção ou especificação de fabricante.</p>
+      <h3>Checklist rápido de validação</h3>
+      <ul>
+          <li>Meça pressão, temperatura e vazão na condição mais próxima possível da operação real.</li>
+          <li>Considere perdas em filtros, curvas, válvulas, mangueiras, dutos e trocadores.</li>
+          <li>Compare o cálculo com placa do equipamento, curva do fabricante e histórico de consumo.</li>
+          <li>Se o resultado ficar próximo do limite, adote margem de segurança e valide com engenharia.</li>
+      </ul>
+      <h3>Limites da estimativa</h3>
+      <p>Esta ferramenta é indicada para estudo, triagem, conferência de campo e apoio à manutenção. Para projeto final, laudo, especificação de compra, alteração de segurança ou liberação de equipamento crítico, valide as premissas com normas aplicáveis, documentação do fabricante e profissional habilitado.</p>
+    </section>
+
   </main>
   <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
 <script>function n(v,d=2){return Number.isFinite(v)?v.toLocaleString('pt-BR',{maximumFractionDigits:d}):'-'}function get(id){return +document.getElementById(id).value||0}function calc(){let q=get('q')/3600,dp=get('dp'),ef=get('ef')/100,mg=1+get('margem')/100,V=get('tensao'),fpe=get('fp');let pa=q*dp/1000,pe=ef>0?pa/ef:0,pm=pe*mg;let cv=pm/0.7355;let I=V>0&&fpe>0?pm*1000/(Math.sqrt(3)*V*fpe):0;par.textContent=n(pa,3)+' kW';peixo.textContent=n(pe,3)+' kW';pmotor.textContent=n(pm,2)+' kW / '+n(cv,2)+' cv';corr.textContent=n(I,1)+' A';obs.textContent=dp>1000?'Confira se pressão está em Pa, não mmca.':'Estimativa depende da curva do ventilador e ponto de operação.'}function copiar(){navigator.clipboard?.writeText(`Exaustor: ${pmotor.textContent}, corrente ${corr.textContent}`)}document.querySelectorAll('input').forEach(e=>e.addEventListener('input',calc));calc();</script>

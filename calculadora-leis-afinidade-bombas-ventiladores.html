@@ -54,6 +54,37 @@
     <section class="calc-layout"><div class="calc-card"><h2><i class="fas fa-pen-to-square"></i> Dados de entrada</h2><div class="calc-grid"><label>Vazão atual Q1 (m³/h)<input id="q1" type="number" step="any" value="100"></label><label>Altura/pressão atual H1 (m ou Pa)<input id="h1" type="number" step="any" value="30"></label><label>Potência atual P1 (kW)<input id="p1" type="number" step="any" value="15"></label><label>Rotação atual N1 (rpm)<input id="n1" type="number" step="any" value="1750"></label><label>Nova rotação N2 (rpm)<input id="n2" type="number" step="any" value="1450"></label><label>Diâmetro atual D1 (mm)<input id="d1" type="number" step="any" value="250"></label><label>Novo diâmetro D2 (mm)<input id="d2" type="number" step="any" value="250"></label></div></div><div class="calc-card"><h2><i class="fas fa-chart-line"></i> Resultado</h2><div class="calc-result four"><div class="result-box"><span>Nova vazão</span><strong id="r1">-</strong></div><div class="result-box"><span>Nova altura/pressão</span><strong id="r2">-</strong></div><div class="result-box"><span>Nova potência</span><strong id="r3">-</strong></div><div class="result-box"><span>Variação potência</span><strong id="r4">-</strong></div></div><p id="nota" class="mini-help"></p><div class="calc-actions no-print"><button class="mini-btn" onclick="window.print()"><i class="fas fa-print"></i> Imprimir</button></div></div></section>
     <script>function n(id){return parseFloat(document.getElementById(id).value)||0}function calc(){let q=n('q1'),h=n('h1'),p=n('p1'),N1=n('n1'),N2=n('n2'),D1=n('d1'),D2=n('d2');let rn=N2/Math.max(N1,.001),rd=D2/Math.max(D1,.001);let q2=q*rn*Math.pow(rd,3),h2=h*Math.pow(rn,2)*Math.pow(rd,2),p2=p*Math.pow(rn,3)*Math.pow(rd,5);document.getElementById('r1').textContent=q2.toFixed(2)+' m³/h';document.getElementById('r2').textContent=h2.toFixed(2);document.getElementById('r3').textContent=p2.toFixed(2)+' kW';document.getElementById('r4').textContent=((p2/p-1)*100||0).toFixed(1)+' %';document.getElementById('nota').innerHTML='Aproximação válida para máquinas centrífugas semelhantes e pequenas alterações. Confira curva do fabricante, NPSH, ponto de operação e limite do motor.'}document.querySelectorAll('input').forEach(e=>e.addEventListener('input',calc));calc();</script>
     <section class="cta-bar" aria-label="Chamada para contato"><div><strong>Precisa validar esse cálculo em campo?</strong><br><span class="muted">A ALOGY apoia engenharia, manutenção, instrumentação, automação e utilidades industriais.</span></div><div class="cta-actions"><a class="btn" href="index.html#contato"><i class="fas fa-paper-plane"></i> Solicitar contato</a></div></section>
+  
+    <!-- ALOGY_REVISAO_TECNICA_FERRAMENTA -->
+    <section class="calc-card" aria-label="Orientação técnica complementar">
+      <h2><i class="fas fa-clipboard-check"></i> Como usar esta ferramenta na prática</h2>
+      <p>Estime nova vazão, pressão/altura e potência ao alterar rotação ou diâmetro em bombas e ventiladores centrífugos. Nesta revisão, o conteúdo foi ampliado para deixar mais claro quando usar a ferramenta, quais dados precisam ser conferidos e como transformar o número calculado em uma decisão técnica.</p>
+      <h3>Quando aplicar</h3>
+      <p>Use para estimativas de utilidades industriais como ar comprimido, vapor, exaustão, nitrogênio, bombas e ventiladores, ajudando manutenção e engenharia a comparar consumo, perda, capacidade e segurança operacional.</p>
+      <h3>Dados que merecem conferência</h3>
+      <p>Antes de confiar no resultado da ferramenta <strong>Calculadora de Leis de Afinidade para Bombas e Ventiladores</strong>, confira principalmente: Vazão atual Q1 (m³/h), Altura/pressão atual H1 (m ou Pa), Potência atual P1 (kW), Rotação atual N1 (rpm), Nova rotação N2 (rpm), Diâmetro atual D1 (mm). Pequenos erros de unidade, ponto decimal ou condição de operação podem gerar conclusões erradas.</p>
+      <ul>
+          <li>Vazão atual Q1 (m³/h)</li>
+          <li>Altura/pressão atual H1 (m ou Pa)</li>
+          <li>Potência atual P1 (kW)</li>
+          <li>Rotação atual N1 (rpm)</li>
+          <li>Nova rotação N2 (rpm)</li>
+          <li>Diâmetro atual D1 (mm)</li>
+      </ul>
+      <h3>Como interpretar o resultado</h3>
+      <p>O resultado indica tendência e ordem de grandeza. Em utilidades, a condição real de operação costuma variar com pressão, temperatura, vazamentos, perdas de carga, rendimento e estado mecânico do equipamento.</p>
+      <p>Quando a página apresentar campos de resultado como Nova vazão, Nova altura/pressão, Nova potência, Variação potência, use esses valores para comparar o cenário calculado com limite operacional, tolerância do processo, histórico de manutenção ou especificação de fabricante.</p>
+      <h3>Checklist rápido de validação</h3>
+      <ul>
+          <li>Meça pressão, temperatura e vazão na condição mais próxima possível da operação real.</li>
+          <li>Considere perdas em filtros, curvas, válvulas, mangueiras, dutos e trocadores.</li>
+          <li>Compare o cálculo com placa do equipamento, curva do fabricante e histórico de consumo.</li>
+          <li>Se o resultado ficar próximo do limite, adote margem de segurança e valide com engenharia.</li>
+      </ul>
+      <h3>Limites da estimativa</h3>
+      <p>Esta ferramenta é indicada para estudo, triagem, conferência de campo e apoio à manutenção. Para projeto final, laudo, especificação de compra, alteração de segurança ou liberação de equipamento crítico, valide as premissas com normas aplicáveis, documentação do fabricante e profissional habilitado.</p>
+    </section>
+
   </main>
   <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
 </body>

@@ -54,6 +54,35 @@
     <section class="calc-card" aria-label="Aviso de uso"><h2><i class="fas fa-triangle-exclamation"></i> Ferramenta orientativa</h2><p>Use esta ferramenta para estudo, estimativa e conferência preliminar. O resultado depende dos dados inseridos, hipóteses adotadas, normas aplicáveis, catálogos de fabricantes e validação de profissional habilitado.</p></section>
     <section class="calc-layout"><div class="calc-card"><h2><i class="fas fa-hourglass-half"></i> Dados do tanque</h2><div class="calc-grid"><div class="field"><label for="vol">Volume geométrico (m³)</label><input id="vol" type="number" step="any" value="10"></div><div class="field"><label for="util">Volume útil (%)</label><input id="util" type="number" step="any" value="80"></div><div class="field"><label for="q">Vazão de entrada/saída (m³/h)</label><input id="q" type="number" step="any" value="2.5"></div><div class="field"><label for="fator">Fator de mistura/curto-circuito</label><input id="fator" type="number" step="any" value="1.0"></div></div><div class="calc-actions"><button class="mini-btn dark" onclick="copiar()" type="button"><i class="fas fa-copy"></i> Copiar</button></div></div><div class="calc-card"><h2><i class="fas fa-clock"></i> Resultado</h2><div class="calc-result"><div class="result-box"><span>Tempo teórico</span><strong id="r1">-</strong></div><div class="result-box"><span>Tempo ajustado</span><strong id="r2">-</strong></div><div class="result-box"><span>Renovações/dia</span><strong id="r3">-</strong></div></div><div class="calc-note" id="nota">Mistura real, geometria e curto-circuito hidráulico alteram o tempo efetivo.</div></div></section>
     <section class="calc-card faq"><h2><i class="fas fa-circle-question"></i> Perguntas frequentes</h2><details><summary>Tempo de residência é igual ao tempo de mistura?</summary><p>Não necessariamente. Tempo de residência é volume dividido pela vazão; mistura depende de agitador, geometria e regime de escoamento.</p></details><details><summary>O fator de mistura serve para quê?</summary><p>É uma correção prática para estimar perdas por curto-circuito ou eficiência de mistura.</p></details></section>
+  
+    <!-- ALOGY_REVISAO_TECNICA_FERRAMENTA -->
+    <section class="calc-card" aria-label="Orientação técnica complementar">
+      <h2><i class="fas fa-clipboard-check"></i> Como usar esta ferramenta na prática</h2>
+      <p>Calcule tempo de residência hidráulico em tanques, reservatórios e reatores por volume útil e vazão. Nesta revisão, o conteúdo foi ampliado para deixar mais claro quando usar a ferramenta, quais dados precisam ser conferidos e como transformar o número calculado em uma decisão técnica.</p>
+      <h3>Quando aplicar</h3>
+      <p>Use para avaliar vazão, nível, densidade, volume, regime de escoamento e comportamento de processo em tanques, tubulações, medidores e linhas industriais.</p>
+      <h3>Dados que merecem conferência</h3>
+      <p>Antes de confiar no resultado da ferramenta <strong>Calculadora de Tempo de Residência em Tanque</strong>, confira principalmente: Volume geométrico (m³), Volume útil (%), Vazão de entrada/saída (m³/h), Fator de mistura/curto-circuito. Pequenos erros de unidade, ponto decimal ou condição de operação podem gerar conclusões erradas.</p>
+      <ul>
+          <li>Volume geométrico (m³)</li>
+          <li>Volume útil (%)</li>
+          <li>Vazão de entrada/saída (m³/h)</li>
+          <li>Fator de mistura/curto-circuito</li>
+      </ul>
+      <h3>Como interpretar o resultado</h3>
+      <p>O resultado ajuda a conferir se a condição de processo é coerente com o instrumento instalado e com a faixa de operação. Mudanças de densidade, viscosidade, temperatura e pressão podem alterar a medição final.</p>
+      <p>Quando a página apresentar campos de resultado como Tempo teórico, Tempo ajustado, Renovações/dia, use esses valores para comparar o cenário calculado com limite operacional, tolerância do processo, histórico de manutenção ou especificação de fabricante.</p>
+      <h3>Checklist rápido de validação</h3>
+      <ul>
+          <li>Confirme fluido, unidade, densidade, pressão, temperatura e condição normal ou operacional.</li>
+          <li>Verifique diâmetro interno real, geometria do tanque e posição das tomadas de impulso.</li>
+          <li>Compare o valor calculado com leitura de campo, histórico e balanço de massa.</li>
+          <li>Em medição fiscal, segurança ou qualidade, use método normalizado e documentação aprovada.</li>
+      </ul>
+      <h3>Limites da estimativa</h3>
+      <p>Esta ferramenta é indicada para estudo, triagem, conferência de campo e apoio à manutenção. Para projeto final, laudo, especificação de compra, alteração de segurança ou liberação de equipamento crítico, valide as premissas com normas aplicáveis, documentação do fabricante e profissional habilitado.</p>
+    </section>
+
   </main>
   <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
 <script>function n(v,d=2){return Number.isFinite(v)?v.toLocaleString('pt-BR',{maximumFractionDigits:d}):'-'}function g(id){return parseFloat(document.getElementById(id).value)||0}function calc(){let V=g('vol')*g('util')/100,Q=g('q'),f=g('fator')||1;let tau=V/Q,adj=tau*f;r1.textContent=n(tau,2)+' h';r2.textContent=n(adj,2)+' h';r3.textContent=n(24/tau,2)+' vezes/dia';nota.textContent='Volume útil considerado: '+n(V,2)+' m³.'}function copiar(){navigator.clipboard&&navigator.clipboard.writeText('Tempo residência: teórico '+r1.textContent+', ajustado '+r2.textContent)}document.querySelectorAll('input').forEach(e=>e.addEventListener('input',calc));calc();</script>

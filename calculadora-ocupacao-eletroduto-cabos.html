@@ -53,6 +53,37 @@
     <section class="calc-card" aria-label="Aviso de uso"><h2><i class="fas fa-triangle-exclamation"></i> Ferramenta orientativa</h2><p>Use esta ferramenta para estudo, estimativa e conferência preliminar. O resultado depende dos dados inseridos, hipóteses adotadas, normas aplicáveis, catálogos de fabricantes e validação de profissional habilitado.</p></section>
     <section class="calc-layout"><div class="calc-card"><h2><i class="fas fa-route"></i> Dados dos cabos</h2><div class="calc-grid"><div class="field"><label for="di">Diâmetro interno do eletroduto/conduíte (mm)</label><input id="di" type="number" step="any" value="40"></div><div class="field"><label for="dc">Diâmetro externo médio do cabo (mm)</label><input id="dc" type="number" step="any" value="8"></div><div class="field"><label for="n">Quantidade de cabos</label><input id="n" type="number" step="any" value="8"></div><div class="field"><label for="lim">Limite de ocupação adotado (%)</label><input id="lim" type="number" step="any" value="40"></div><div class="field"><label for="res">Reserva futura desejada (%)</label><input id="res" type="number" step="any" value="20"></div><div class="field"><label for="mult">Fator de irregularidade (%)</label><input id="mult" type="number" step="any" value="10"></div></div><div class="calc-actions"><button class="mini-btn dark" onclick="copiar()" type="button"><i class="fas fa-copy"></i> Copiar</button></div></div><div class="calc-card"><h2><i class="fas fa-circle-nodes"></i> Resultado</h2><div class="calc-result four"><div class="result-box"><span>Área ocupada</span><strong id="r1">-</strong></div><div class="result-box"><span>Ocupação atual</span><strong id="r2">-</strong></div><div class="result-box"><span>Cabos máximos</span><strong id="r3">-</strong></div><div class="result-box"><span>Status</span><strong id="r4">-</strong></div></div><div class="calc-note">Ferramenta orientativa. Para projeto, seguir norma aplicável, método de instalação, raio de curvatura e aquecimento.</div></div></section>
     
+  
+    <!-- ALOGY_REVISAO_TECNICA_FERRAMENTA -->
+    <section class="calc-card" aria-label="Orientação técnica complementar">
+      <h2><i class="fas fa-clipboard-check"></i> Como usar esta ferramenta na prática</h2>
+      <p>Calcule ocupação de eletroduto, eletrocalha ou conduíte por diâmetro interno e quantidade de cabos. Nesta revisão, o conteúdo foi ampliado para deixar mais claro quando usar a ferramenta, quais dados precisam ser conferidos e como transformar o número calculado em uma decisão técnica.</p>
+      <h3>Quando aplicar</h3>
+      <p>Use para verificação preliminar de circuitos industriais, painéis, motores, alimentação 24 Vcc, proteção, qualidade de energia e segurança elétrica antes de especificar componentes ou liberar manutenção.</p>
+      <h3>Dados que merecem conferência</h3>
+      <p>Antes de confiar no resultado da ferramenta <strong>Calculadora de Ocupação de Eletroduto e Cabos</strong>, confira principalmente: Diâmetro interno do eletroduto/conduíte (mm), Diâmetro externo médio do cabo (mm), Quantidade de cabos, Limite de ocupação adotado (%), Reserva futura desejada (%), Fator de irregularidade (%). Pequenos erros de unidade, ponto decimal ou condição de operação podem gerar conclusões erradas.</p>
+      <ul>
+          <li>Diâmetro interno do eletroduto/conduíte (mm)</li>
+          <li>Diâmetro externo médio do cabo (mm)</li>
+          <li>Quantidade de cabos</li>
+          <li>Limite de ocupação adotado (%)</li>
+          <li>Reserva futura desejada (%)</li>
+          <li>Fator de irregularidade (%)</li>
+      </ul>
+      <h3>Como interpretar o resultado</h3>
+      <p>O resultado deve ser avaliado junto com corrente nominal, temperatura ambiente, método de instalação, capacidade de curto-circuito, proteção existente e normas aplicáveis. Um número isolado não substitui dimensionamento elétrico completo.</p>
+      <p>Quando a página apresentar campos de resultado como Área ocupada, Ocupação atual, Cabos máximos, Status, use esses valores para comparar o cenário calculado com limite operacional, tolerância do processo, histórico de manutenção ou especificação de fabricante.</p>
+      <h3>Checklist rápido de validação</h3>
+      <ul>
+          <li>Confirme tensão real, corrente de carga e regime de operação.</li>
+          <li>Verifique se cabos, bornes, disjuntores e fontes suportam a corrente calculada.</li>
+          <li>Considere temperatura, agrupamento, distância, queda de tensão e partida de motores.</li>
+          <li>Bloqueie e sinalize a energia antes de qualquer intervenção em campo.</li>
+      </ul>
+      <h3>Limites da estimativa</h3>
+      <p>Esta ferramenta é indicada para estudo, triagem, conferência de campo e apoio à manutenção. Para projeto final, laudo, especificação de compra, alteração de segurança ou liberação de equipamento crítico, valide as premissas com normas aplicáveis, documentação do fabricante e profissional habilitado.</p>
+    </section>
+
   </main>
   <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
 <script>function val(id){return parseFloat(document.getElementById(id).value)||0;}function txt(id){let e=document.getElementById(id);return e?e.value:'';}function fmt(x,d=2){return Number.isFinite(x)?x.toLocaleString('pt-BR',{maximumFractionDigits:d}):'-';}function set(id,v){document.getElementById(id).innerHTML=v;}function bind(){document.querySelectorAll('input,select').forEach(e=>e.addEventListener('input',calc));calc();}function copiar(){navigator.clipboard&&navigator.clipboard.writeText(document.body.innerText.slice(0,2600));}window.addEventListener('DOMContentLoaded',bind);function calc(){let di=val('di'),dc=val('dc'),n=val('n'),lim=val('lim')/100,res=val('res')/100,m=val('mult')/100;let A=Math.PI*di*di/4;let Ac=n*Math.PI*dc*dc/4*(1+m);let occ=Ac/A;let nmax=Math.floor(A*lim*(1-res)/(Math.PI*dc*dc/4*(1+m)));let st=occ<=lim*(1-res)?'<span class="pill-ok">Dentro da reserva</span>':(occ<=lim?'<span class="pill-warn">Sem reserva</span>':'<span class="pill-bad">Acima do limite</span>');set('r1',fmt(Ac,1)+' mm²');set('r2',fmt(occ*100,1)+' %');set('r3',fmt(nmax,0)+' cabos');set('r4',st);}</script>

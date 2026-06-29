@@ -53,6 +53,35 @@
     <section class="calc-card" aria-label="Aviso de uso"><h2><i class="fas fa-triangle-exclamation"></i> Ferramenta orientativa</h2><p>Use esta ferramenta para estudo, estimativa e conferência preliminar. O resultado depende dos dados inseridos, hipóteses adotadas, normas aplicáveis, catálogos de fabricantes e validação de profissional habilitado.</p></section>
     <section class="calc-layout"><div class="calc-card"><h2><i class="fas fa-flask-vial"></i> Dados da diluição</h2><div class="calc-grid"><div class="field"><label for="c1">Concentração estoque C1 (%)</label><input id="c1" type="number" step="any" value="12"></div><div class="field"><label for="c2">Concentração desejada C2 (%)</label><input id="c2" type="number" step="any" value="2"></div><div class="field"><label for="vf">Volume final desejado (L)</label><input id="vf" type="number" step="any" value="100"></div><div class="field"><label for="dens">Densidade aproximada (kg/L)</label><input id="dens" type="number" step="any" value="1.0"></div></div><div class="calc-actions"><button class="mini-btn dark" onclick="copiar()" type="button"><i class="fas fa-copy"></i> Copiar</button></div></div><div class="calc-card"><h2><i class="fas fa-vial"></i> Resultado</h2><div class="calc-result four"><div class="result-box"><span>Volume estoque</span><strong id="r1">-</strong></div><div class="result-box"><span>Água/diluente</span><strong id="r2">-</strong></div><div class="result-box"><span>Massa final aprox.</span><strong id="r3">-</strong></div><div class="result-box"><span>Status</span><strong id="r4" class="small">-</strong></div></div><div class="calc-note">Sempre verificar compatibilidade química, ordem de mistura, EPIs e ficha FISPQ/SDS do produto.</div></div></section>
     
+  
+    <!-- ALOGY_REVISAO_TECNICA_FERRAMENTA -->
+    <section class="calc-card" aria-label="Orientação técnica complementar">
+      <h2><i class="fas fa-clipboard-check"></i> Como usar esta ferramenta na prática</h2>
+      <p>Calcule volume de solução concentrada e água para preparar uma solução diluída por C1V1=C2V2. Nesta revisão, o conteúdo foi ampliado para deixar mais claro quando usar a ferramenta, quais dados precisam ser conferidos e como transformar o número calculado em uma decisão técnica.</p>
+      <h3>Quando aplicar</h3>
+      <p>Use para apoiar rotinas de processo químico, tratamento de água, efluentes, utilidades e analisadores industriais, principalmente quando o operador precisa converter leitura, dosagem ou resposta eletroquímica em uma decisão prática.</p>
+      <h3>Dados que merecem conferência</h3>
+      <p>Antes de confiar no resultado da ferramenta <strong>Calculadora de Mistura e Diluição de Soluções</strong>, confira principalmente: Concentração estoque C1 (%), Concentração desejada C2 (%), Volume final desejado (L), Densidade aproximada (kg/L). Pequenos erros de unidade, ponto decimal ou condição de operação podem gerar conclusões erradas.</p>
+      <ul>
+          <li>Concentração estoque C1 (%)</li>
+          <li>Concentração desejada C2 (%)</li>
+          <li>Volume final desejado (L)</li>
+          <li>Densidade aproximada (kg/L)</li>
+      </ul>
+      <h3>Como interpretar o resultado</h3>
+      <p>Em analítica, pequenas diferenças de temperatura, concentração, limpeza da sonda e tempo de estabilização podem alterar bastante o resultado. Por isso, o cálculo deve ser usado junto com amostragem correta e verificação do sensor.</p>
+      <p>Quando a página apresentar campos de resultado como Volume estoque, Água/diluente, Massa final aprox., Status, use esses valores para comparar o cenário calculado com limite operacional, tolerância do processo, histórico de manutenção ou especificação de fabricante.</p>
+      <h3>Checklist rápido de validação</h3>
+      <ul>
+          <li>Verifique limpeza, hidratação e condição da sonda antes de confiar na leitura.</li>
+          <li>Confirme unidade, temperatura de referência e concentração real da solução.</li>
+          <li>Aguarde estabilização da medição antes de registrar o valor final.</li>
+          <li>Compare o resultado com histórico do processo, não apenas com um ponto isolado.</li>
+      </ul>
+      <h3>Limites da estimativa</h3>
+      <p>Esta ferramenta é indicada para estudo, triagem, conferência de campo e apoio à manutenção. Para projeto final, laudo, especificação de compra, alteração de segurança ou liberação de equipamento crítico, valide as premissas com normas aplicáveis, documentação do fabricante e profissional habilitado.</p>
+    </section>
+
   </main>
   <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
 <script>function val(id){return parseFloat(document.getElementById(id).value)||0;}function fmt(x,d=2){return Number.isFinite(x)?x.toLocaleString('pt-BR',{maximumFractionDigits:d}):'-';}function set(id,v){document.getElementById(id).innerHTML=v;}function bind(){document.querySelectorAll('input,select').forEach(e=>e.addEventListener('input',calc));calc();}function copiar(){navigator.clipboard&&navigator.clipboard.writeText(document.body.innerText.slice(0,2200));}window.addEventListener('DOMContentLoaded',bind);function calc(){let c1=val('c1'),c2=val('c2'),vf=val('vf'),dens=val('dens');let v1=c1>0?vf*c2/c1:0;let agua=vf-v1;let st=c2<c1?'<span class="pill-ok">Diluição possível</span>':'<span class="pill-bad">C2 maior que C1</span>';set('r1',fmt(v1,2)+' L');set('r2',fmt(agua,2)+' L');set('r3',fmt(vf*dens,1)+' kg');set('r4',st);}</script>

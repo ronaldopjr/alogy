@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calculadora de Potência de Bomba | ALOGY Engenharia</title>
+  <meta name="description" content="Calcule potência hidráulica, potência no eixo, potência do motor e corrente estimada de bomba." />
+  <meta name="robots" content="index,follow" />
+  <meta name="theme-color" content="#004b80" />
+  <link rel="canonical" href="https://www.alogy.com.br/calculadora-potencia-bomba.html" />
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png" />
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="app.js" defer></script>
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ALOGY Engenharia" />
+  <meta property="og:title" content="Calculadora de Potência de Bomba | ALOGY Engenharia" />
+  <meta property="og:description" content="Calcule potência hidráulica, potência no eixo, potência do motor e corrente estimada de bomba." />
+  <meta property="og:url" content="https://www.alogy.com.br/calculadora-potencia-bomba.html" />
+  <meta property="og:image" content="https://www.alogy.com.br/favicon-512x512.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebApplication","name":"Calculadora de Potência de Bomba","url":"https://www.alogy.com.br/calculadora-potencia-bomba.html","applicationCategory":"EngineeringApplication","operatingSystem":"Web","description":"Calcule potência hidráulica, potência no eixo, potência do motor e corrente estimada de bomba.","publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"}}
+  </script>
+  <style>
+    .mini-help{color:var(--muted);font-size:.92rem;line-height:1.55;margin-top:8px}.faq details{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:14px;padding:14px;margin-top:10px;box-shadow:0 6px 16px rgba(0,0,0,.04)}.faq summary{cursor:pointer;font-weight:900;color:#0b3a62}.faq p{margin:10px 0 0;color:var(--muted)}@media print{header,.social-floating,.fab-wrap,.cta-bar,footer,.calc-actions,.tools-hero .btn,.no-print{display:none!important}body{background:#fff}.container{max-width:100%;padding:0}.calc-card,.tools-hero{box-shadow:none;border:1px solid #ddd}.calc-layout{display:block}.calc-card{margin:12px 0}.calc-table th{background:#eee!important;color:#111!important}}
+  </style>
+  <!-- Google AdSense - verificação de propriedade -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5586837114309500"
+     crossorigin="anonymous"></script>
+</head>
+<body class="tools-page">
+  <header>
+    <div class="container headbar"><a href="/" class="logo-wrapper" aria-label="Voltar para o início"><img src="logo-alogy.webp" alt="ALOGY Engenharia" /></a><div class="crea-top" aria-label="CREA-SP"><img src="crea.webp" alt="CREA-SP"></div><button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menu"><i class="fas fa-bars"></i></button></div>
+    <nav class="desktop" aria-label="Menu principal"><div class="container navlinks"><a href="index.html">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="index.html#contato">Contato</a></div></nav>
+    <nav class="mobile" aria-label="Menu mobile"><a href="index.html">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="index.html#contato">Contato</a></nav>
+  </header>
+  <div class="social-floating" aria-label="Redes sociais"><a href="https://www.linkedin.com/company/alogyengenharia" class="linkedin" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a><a href="https://www.instagram.com/alogyengenharia" class="instagram" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="https://www.facebook.com/alogyengenharia" class="facebook" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><a href="https://www.youtube.com/@alogyengenharia" class="youtube" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a><a href="https://hotmart.com/pt-br/club/alogyengenharia" class="hotmart" target="_blank" rel="noopener" aria-label="Hotmart">H</a><a href="https://www.tiktok.com/@alogyengenharia" class="tiktok" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a></div>
+  <div class="fab-wrap" aria-label="Ações rápidas"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1!%20Vim%20pela%20calculadora%20de%20potência%20de%20bomba%20da%20ALOGY.%20Gostaria%20de%20atendimento." target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
+  <main class="container" style="margin-top:18px">
+    <div style="margin-bottom:14px;display:flex;gap:10px;flex-wrap:wrap" class="no-print">
+      <a class="floating-back-tools no-print" href="ferramentas.html"><i class="fas fa-arrow-left"></i> Voltar para Ferramentas</a>
+      <button class="btn print" type="button" onclick="window.print()"><i class="fas fa-print"></i> Imprimir</button>
+      <a class="btn secondary" href="calculadora-npsh-bomba.html"><i class="fas fa-water"></i> NPSH</a><a class="btn secondary" href="calculadora-corrente-trifasica.html"><i class="fas fa-industry"></i> Corrente trifásica</a>
+    </div>
+    <section class="tools-hero">
+      <h1>Calculadora de Potência de Bomba</h1>
+      <p>Estime potência hidráulica, potência no eixo, potência elétrica aproximada e corrente do motor a partir de vazão, altura manométrica, densidade e rendimentos.</p>
+    </section>
+    <section class="calc-card" aria-label="Aviso de uso">
+      <h2><i class="fas fa-triangle-exclamation"></i> Ferramenta para apoio técnico</h2>
+      <p>Use como conferência preliminar, estudo e organização de dados. O resultado pode ter simplificações e depende das informações inseridas. Para projeto, compra, alteração de processo, segurança, comissionamento ou intervenção em campo, confirme com normas aplicáveis, catálogos de fabricantes, medições reais e profissional habilitado.</p>
+    </section>
+    <section class="calc-layout">
+      <div class="calc-card">
+        <h2><i class="fas fa-fan"></i> Dados hidráulicos e elétricos</h2>
+        <p>Informe a vazão e a altura manométrica total. A ferramenta estima a potência necessária e a corrente trifásica aproximada.</p>
+        <div class="calc-grid">
+          <div class="field"><label for="q">Vazão (m³/h)</label><input id="q" type="number" step="any" value="50"></div>
+          <div class="field"><label for="h">Altura manométrica total (m)</label><input id="h" type="number" step="any" value="35"></div>
+          <div class="field"><label for="rho">Densidade do fluido (kg/m³)</label><input id="rho" type="number" step="any" value="1000"></div>
+          <div class="field"><label for="ep">Rendimento da bomba (%)</label><input id="ep" type="number" step="any" value="70"></div>
+          <div class="field"><label for="em">Rendimento do motor (%)</label><input id="em" type="number" step="any" value="90"></div>
+          <div class="field"><label for="fs">Fator de serviço / folga (%)</label><input id="fs" type="number" step="any" value="15"></div>
+          <div class="field"><label for="v">Tensão trifásica (V)</label><input id="v" type="number" step="any" value="380"></div>
+          <div class="field"><label for="fp">Fator de potência</label><input id="fp" type="number" step="any" value="0.85"></div>
+        </div>
+        <div class="calc-actions"><button class="mini-btn dark" type="button" onclick="copiar()"><i class="fas fa-copy"></i> Copiar resultado</button><button class="mini-btn" type="button" onclick="exemplo(1)">Água 50 m³/h</button><button class="mini-btn" type="button" onclick="exemplo(2)">Alta vazão</button></div>
+      </div>
+      <div class="calc-card">
+        <h2><i class="fas fa-square-poll-vertical"></i> Resultado</h2>
+        <div class="calc-result" style="grid-template-columns:1fr 1fr">
+          <div class="result-box"><span>Potência hidráulica</span><strong id="rPh">-</strong></div>
+          <div class="result-box"><span>Potência no eixo</span><strong id="rPeixo">-</strong></div>
+          <div class="result-box"><span>Potência elétrica</span><strong id="rPel">-</strong></div>
+          <div class="result-box"><span>Motor sugerido</span><strong id="rMotor">-</strong></div>
+          <div class="result-box"><span>Corrente estimada</span><strong id="rI">-</strong></div>
+          <div class="result-box"><span>Potência em cv</span><strong id="rCv">-</strong></div>
+        </div>
+        <div class="calc-note" id="status">Informe os dados para calcular.</div>
+      </div>
+    </section>
+    <section class="calc-card">
+      <h2><i class="fas fa-table"></i> Tabela de sensibilidade por vazão</h2>
+      <p>A tabela mostra como a potência muda com variação de vazão, mantendo os demais dados.</p>
+      <div class="calc-table-wrap"><table class="calc-table"><thead><tr><th>Vazão</th><th>Potência eixo</th><th>Potência elétrica</th><th>Corrente</th></tr></thead><tbody id="tbody"></tbody></table></div>
+    </section>
+    <section class="calc-layout">
+      <div class="calc-card"><h2><i class="fas fa-gears"></i> Fórmula usada</h2><div class="formula-box">P hidráulica (kW) = ρ × g × Q × H / 1000\nQ em m³/s\nP eixo = P hidráulica / rendimento da bomba\nP elétrica = P eixo / rendimento do motor</div></div>
+      <div class="calc-card faq"><h2><i class="fas fa-circle-question"></i> Perguntas rápidas</h2><details open><summary>O resultado escolhe o motor final?</summary><p>Não. Ele dá uma estimativa inicial. A seleção final depende da curva da bomba, partida, regime, fluido, fabricante, fator de serviço e proteção elétrica.</p></details><details><summary>Altura manométrica é só altura vertical?</summary><p>Não. Deve incluir desnível, pressão requerida, perdas em tubulação, válvulas, filtros e acessórios.</p></details></div>
+    </section>
+  
+    <!-- ALOGY_REVISAO_TECNICA_FERRAMENTA -->
+    <section class="calc-card" aria-label="Orientação técnica complementar">
+      <h2><i class="fas fa-clipboard-check"></i> Como usar esta ferramenta na prática</h2>
+      <p>Calcule potência hidráulica, potência no eixo, potência do motor e corrente estimada de bomba. Nesta revisão, o conteúdo foi ampliado para deixar mais claro quando usar a ferramenta, quais dados precisam ser conferidos e como transformar o número calculado em uma decisão técnica.</p>
+      <h3>Quando aplicar</h3>
+      <p>Use para estimativas de utilidades industriais como ar comprimido, vapor, exaustão, nitrogênio, bombas e ventiladores, ajudando manutenção e engenharia a comparar consumo, perda, capacidade e segurança operacional.</p>
+      <h3>Dados que merecem conferência</h3>
+      <p>Antes de confiar no resultado da ferramenta <strong>Calculadora de Potência de Bomba</strong>, confira principalmente: Vazão (m³/h), Altura manométrica total (m), Densidade do fluido (kg/m³), Rendimento da bomba (%), Rendimento do motor (%), Fator de serviço / folga (%). Pequenos erros de unidade, ponto decimal ou condição de operação podem gerar conclusões erradas.</p>
+      <ul>
+          <li>Vazão (m³/h)</li>
+          <li>Altura manométrica total (m)</li>
+          <li>Densidade do fluido (kg/m³)</li>
+          <li>Rendimento da bomba (%)</li>
+          <li>Rendimento do motor (%)</li>
+          <li>Fator de serviço / folga (%)</li>
+      </ul>
+      <h3>Como interpretar o resultado</h3>
+      <p>O resultado indica tendência e ordem de grandeza. Em utilidades, a condição real de operação costuma variar com pressão, temperatura, vazamentos, perdas de carga, rendimento e estado mecânico do equipamento.</p>
+      <p>Quando a página apresentar campos de resultado como Potência hidráulica, Potência no eixo, Potência elétrica, Motor sugerido, Corrente estimada, Potência em cv, use esses valores para comparar o cenário calculado com limite operacional, tolerância do processo, histórico de manutenção ou especificação de fabricante.</p>
+      <h3>Checklist rápido de validação</h3>
+      <ul>
+          <li>Meça pressão, temperatura e vazão na condição mais próxima possível da operação real.</li>
+          <li>Considere perdas em filtros, curvas, válvulas, mangueiras, dutos e trocadores.</li>
+          <li>Compare o cálculo com placa do equipamento, curva do fabricante e histórico de consumo.</li>
+          <li>Se o resultado ficar próximo do limite, adote margem de segurança e valide com engenharia.</li>
+      </ul>
+      <h3>Limites da estimativa</h3>
+      <p>Esta ferramenta é indicada para estudo, triagem, conferência de campo e apoio à manutenção. Para projeto final, laudo, especificação de compra, alteração de segurança ou liberação de equipamento crítico, valide as premissas com normas aplicáveis, documentação do fabricante e profissional habilitado.</p>
+    </section>
+
+  </main>
+<script>
+function n(id){return Number(document.getElementById(id)?.value||0)}
+function fmt(v,d=2){return isFinite(v)?Number(v).toLocaleString('pt-BR',{minimumFractionDigits:d,maximumFractionDigits:d}):'-'}
+function motorPadrao(kw){const m=[0.37,0.55,0.75,1.1,1.5,2.2,3,4,5.5,7.5,11,15,18.5,22,30,37,45,55,75,90,110,132,160,200,250,315];return m.find(x=>x>=kw)||kw}
+function calc(){const q=n('q'),h=n('h'),rho=Math.max(1,n('rho')),ep=Math.max(1,n('ep'))/100,em=Math.max(1,n('em'))/100,fs=Math.max(0,n('fs'))/100,v=Math.max(1,n('v')),fp=Math.max(0.1,n('fp'));const qms=q/3600;const ph=rho*9.80665*qms*h/1000;const eixo=ph/ep;const eletr=eixo/em;const motor=motorPadrao(eletr*(1+fs));const corr=eletr*1000/(Math.sqrt(3)*v*fp);const cv=motor/0.7355; rPh.textContent=fmt(ph,2)+' kW';rPeixo.textContent=fmt(eixo,2)+' kW';rPel.textContent=fmt(eletr,2)+' kW';rMotor.textContent=fmt(motor,2)+' kW';rI.textContent=fmt(corr,1)+' A';rCv.textContent=fmt(cv,1)+' cv';status.className='calc-note status-ok';status.textContent='Estimativa calculada. Confirme com curva da bomba, ponto de operação e dados do motor.';montarTabela(q,h,rho,ep,em,v,fp)}
+function montarTabela(q,h,rho,ep,em,v,fp){tbody.innerHTML='';[0.5,0.75,1,1.25,1.5].forEach(f=>{const q2=q*f,qms=q2/3600,ph=rho*9.80665*qms*h/1000,eixo=ph/ep,eletr=eixo/em,c=eletr*1000/(Math.sqrt(3)*v*fp*em);const tr=document.createElement('tr');tr.innerHTML=`<td>${fmt(q2,2)} m³/h</td><td>${fmt(eixo,2)} kW</td><td>${fmt(eletr,2)} kW</td><td>${fmt(c,1)} A</td>`;tbody.appendChild(tr)}); if(window.enhanceResponsiveToolTables) window.enhanceResponsiveToolTables()}
+function exemplo(i){if(i===1){q.value=50;h.value=35;rho.value=1000;ep.value=70;em.value=90;fs.value=15;v.value=380;fp.value=0.85}else{q.value=180;h.value=42;rho.value=1000;ep.value=75;em.value=92;fs.value=15;v.value=440;fp.value=0.86}calc()}
+function copiar(){navigator.clipboard?.writeText(`Potência hidráulica: ${rPh.textContent}\nPotência eixo: ${rPeixo.textContent}\nMotor sugerido: ${rMotor.textContent}\nCorrente estimada: ${rI.textContent}`).then(()=>alert('Resultado copiado.'))}
+document.querySelectorAll('input').forEach(el=>el.addEventListener('input',calc));document.addEventListener('DOMContentLoaded',calc);
+</script>
+  <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
+</body>
+</html>

@@ -108,6 +108,35 @@
       <h2><i class="fas fa-circle-question"></i> Perguntas frequentes</h2>
       <details><summary>Posso usar essa tabela para comprar flange?</summary><p>Use apenas como referência inicial. A compra deve seguir norma, especificação da planta, material, classe, face, schedule, fluido e fabricante.</p></details><details><summary>A ferramenta define torque de flange?</summary><p>Não. Torque de flange depende de junta, parafuso, lubrificação, material e procedimento. Use procedimento aprovado.</p></details>
     </section>
+  
+    <!-- ALOGY_REVISAO_TECNICA_FERRAMENTA -->
+    <section class="calc-card" aria-label="Orientação técnica complementar">
+      <h2><i class="fas fa-clipboard-check"></i> Como usar esta ferramenta na prática</h2>
+      <p>Consulta orientativa de flanges industriais por DN/NPS, classe de pressão, junta e parafusos para apoio em tubulação, instrumentação e manutenção. Nesta revisão, o conteúdo foi ampliado para deixar mais claro quando usar a ferramenta, quais dados precisam ser conferidos e como transformar o número calculado em uma decisão técnica.</p>
+      <h3>Quando aplicar</h3>
+      <p>Use para apoio em manutenção mecânica, montagem, alinhamento, transmissão, rolamentos, hidráulica, torque, roscas e componentes rotativos.</p>
+      <h3>Dados que merecem conferência</h3>
+      <p>Antes de confiar no resultado da ferramenta <strong>Calculadora de Flanges, Juntas e Parafusos</strong>, confira principalmente: NPS, Classe de pressão, Tipo de junta, Criticidade. Pequenos erros de unidade, ponto decimal ou condição de operação podem gerar conclusões erradas.</p>
+      <ul>
+          <li>NPS</li>
+          <li>Classe de pressão</li>
+          <li>Tipo de junta</li>
+          <li>Criticidade</li>
+      </ul>
+      <h3>Como interpretar o resultado</h3>
+      <p>O resultado deve ser tratado como referência de manutenção. Folgas, lubrificação, condição superficial, rigidez da base, temperatura e carregamento real podem mudar o comportamento em campo.</p>
+      <p>Quando a página apresentar campos de resultado como DN aproximado, Parafusos, Aplicação, use esses valores para comparar o cenário calculado com limite operacional, tolerância do processo, histórico de manutenção ou especificação de fabricante.</p>
+      <h3>Checklist rápido de validação</h3>
+      <ul>
+          <li>Confirme medidas reais com instrumento adequado antes de executar serviço.</li>
+          <li>Compare torque, força, velocidade ou vida estimada com catálogo do fabricante.</li>
+          <li>Observe vibração, ruído, aquecimento e desgaste após a intervenção.</li>
+          <li>Registre antes e depois para criar histórico de confiabilidade.</li>
+      </ul>
+      <h3>Limites da estimativa</h3>
+      <p>Esta ferramenta é indicada para estudo, triagem, conferência de campo e apoio à manutenção. Para projeto final, laudo, especificação de compra, alteração de segurança ou liberação de equipamento crítico, valide as premissas com normas aplicáveis, documentação do fabricante e profissional habilitado.</p>
+    </section>
+
   </main>
 <script>const dn={'0.5':'DN 15','1':'DN 25','1.5':'DN 40','2':'DN 50','3':'DN 80','4':'DN 100','6':'DN 150','8':'DN 200','10':'DN 250','12':'DN 300'};const bolts150={'0.5':'4 x 1/2"','1':'4 x 1/2"','1.5':'4 x 1/2"','2':'4 x 5/8"','3':'4 x 5/8"','4':'8 x 5/8"','6':'8 x 3/4"','8':'8 x 3/4"','10':'12 x 7/8"','12':'12 x 7/8"'};const bolts300={'0.5':'4 x 1/2"','1':'4 x 5/8"','1.5':'4 x 3/4"','2':'8 x 5/8"','3':'8 x 3/4"','4':'8 x 3/4"','6':'12 x 3/4"','8':'12 x 7/8"','10':'16 x 1"','12':'16 x 1 1/8"'};const bolts600={'0.5':'4 x 1/2"','1':'4 x 5/8"','1.5':'4 x 3/4"','2':'8 x 5/8"','3':'8 x 3/4"','4':'8 x 7/8"','6':'12 x 1"','8':'12 x 1 1/8"','10':'16 x 1 1/4"','12':'20 x 1 1/4"'};function calcFlange(){let nps=document.getElementById('nps').value,cl=document.getElementById('classe').value,j=document.getElementById('junta').value,crit=document.getElementById('crit').value;let map=cl==='150'?bolts150:cl==='300'?bolts300:bolts600;document.getElementById('dn').textContent=dn[nps];document.getElementById('paraf').textContent=map[nps];document.getElementById('status').textContent=crit==='alta'?'Exigir norma/procedimento':'Pré-consulta';document.getElementById('tab').innerHTML=`<tr><td>Flange</td><td>NPS ${nps} / ${dn[nps]} / Classe ${cl}</td></tr><tr><td>Junta</td><td>${j}; confirmar material, temperatura, pressão e fluido</td></tr><tr><td>Parafusos</td><td>${map[nps]} como referência inicial, confirmar norma e face do flange</td></tr><tr><td>Montagem</td><td>Apertar em cruz, por etapas, com torque/procedimento aprovado</td></tr>`;document.getElementById('nota').textContent='Flange é item crítico. Confirme norma, classe, material, face, fluido, temperatura, pressão, junta, parafuso e torque do fabricante antes de qualquer montagem.'}function copyResumo(){navigator.clipboard.writeText(`Consulta flange: ${document.getElementById('dn').textContent}; parafusos orientativos ${document.getElementById('paraf').textContent}; status ${document.getElementById('status').textContent}.`)}document.querySelectorAll('select').forEach(e=>e.addEventListener('change',calcFlange));calcFlange();</script>
   <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p></footer>

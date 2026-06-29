@@ -110,6 +110,37 @@
       <h2><i class="fas fa-circle-question"></i> Perguntas frequentes</h2>
       <details><summary>Energia específica baixa é sempre melhor?</summary><p>Em geral, menor kW por m³/min indica melhor desempenho, mas a comparação deve considerar pressão, tecnologia, condições de medição e regime de operação.</p></details><details><summary>A ferramenta substitui auditoria de ar comprimido?</summary><p>Não. Auditoria real exige medições de vazão, pressão, potência, perfil de carga, vazamentos e condições da rede.</p></details>
     </section>
+  
+    <!-- ALOGY_REVISAO_TECNICA_FERRAMENTA -->
+    <section class="calc-card" aria-label="Orientação técnica complementar">
+      <h2><i class="fas fa-clipboard-check"></i> Como usar esta ferramenta na prática</h2>
+      <p>Calcule energia específica, consumo mensal, custo de energia e análise preliminar de eficiência de compressor de ar comprimido industrial. Nesta revisão, o conteúdo foi ampliado para deixar mais claro quando usar a ferramenta, quais dados precisam ser conferidos e como transformar o número calculado em uma decisão técnica.</p>
+      <h3>Quando aplicar</h3>
+      <p>Use para estimativas de utilidades industriais como ar comprimido, vapor, exaustão, nitrogênio, bombas e ventiladores, ajudando manutenção e engenharia a comparar consumo, perda, capacidade e segurança operacional.</p>
+      <h3>Dados que merecem conferência</h3>
+      <p>Antes de confiar no resultado da ferramenta <strong>Calculadora de Eficiência de Compressor de Ar</strong>, confira principalmente: Potência elétrica absorvida, Vazão de ar entregue, Pressão de operação, Horas carregado por dia, Custo da energia, Meta de energia específica. Pequenos erros de unidade, ponto decimal ou condição de operação podem gerar conclusões erradas.</p>
+      <ul>
+          <li>Potência elétrica absorvida</li>
+          <li>Vazão de ar entregue</li>
+          <li>Pressão de operação</li>
+          <li>Horas carregado por dia</li>
+          <li>Custo da energia</li>
+          <li>Meta de energia específica</li>
+      </ul>
+      <h3>Como interpretar o resultado</h3>
+      <p>O resultado indica tendência e ordem de grandeza. Em utilidades, a condição real de operação costuma variar com pressão, temperatura, vazamentos, perdas de carga, rendimento e estado mecânico do equipamento.</p>
+      <p>Quando a página apresentar campos de resultado como Energia específica, Custo mensal, Status, use esses valores para comparar o cenário calculado com limite operacional, tolerância do processo, histórico de manutenção ou especificação de fabricante.</p>
+      <h3>Checklist rápido de validação</h3>
+      <ul>
+          <li>Meça pressão, temperatura e vazão na condição mais próxima possível da operação real.</li>
+          <li>Considere perdas em filtros, curvas, válvulas, mangueiras, dutos e trocadores.</li>
+          <li>Compare o cálculo com placa do equipamento, curva do fabricante e histórico de consumo.</li>
+          <li>Se o resultado ficar próximo do limite, adote margem de segurança e valide com engenharia.</li>
+      </ul>
+      <h3>Limites da estimativa</h3>
+      <p>Esta ferramenta é indicada para estudo, triagem, conferência de campo e apoio à manutenção. Para projeto final, laudo, especificação de compra, alteração de segurança ou liberação de equipamento crítico, valide as premissas com normas aplicáveis, documentação do fabricante e profissional habilitado.</p>
+    </section>
+
   </main>
 <script>function n(id){return parseFloat(document.getElementById(id).value)||0}function fmt(v,d=2){return isFinite(v)?v.toFixed(d).replace('.',','):'-'}function calcComp(){let pot=n('pot'),q=n('vazao'),h=n('horas'),c=n('custo'),meta=n('meta');let esp=pot/q,kwh=pot*h*30,custo=kwh*c,st=esp<=meta?'Dentro da meta informada':'Acima da meta informada';document.getElementById('esp').textContent=fmt(esp)+' kW/(m³/min)';document.getElementById('custoM').textContent='R$ '+fmt(custo);document.getElementById('status').textContent=st;document.getElementById('nota').className='calc-note '+(esp>meta?'warn':'');document.getElementById('nota').textContent=st+'. Avalie vazamentos, pressão excessiva, filtros, secador, regime carga/alívio, perdas na rede e manutenção.';document.getElementById('tab').innerHTML=[8,12,16,20,24].map(x=>`<tr><td>${x}</td><td>${fmt(pot*x*30)} kWh</td><td>R$ ${fmt(pot*x*30*c)}</td></tr>`).join('')}function copyResumo(){navigator.clipboard.writeText(`Compressor: energia específica ${document.getElementById('esp').textContent}; custo mensal ${document.getElementById('custoM').textContent}; ${document.getElementById('status').textContent}.`)}document.querySelectorAll('input').forEach(e=>e.addEventListener('input',calcComp));calcComp();</script>
   <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p></footer>

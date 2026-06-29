@@ -56,6 +56,36 @@
     <section class="calc-layout"><div class="calc-card"><h2><i class="fas fa-pen-to-square"></i> Dados de entrada</h2><div class="calc-grid"><div class="field"><label for="bore">Diâmetro do pistão (mm)</label><input id="bore" type="number" step="any" value="80"></div><div class="field"><label for="rod">Diâmetro da haste (mm)</label><input id="rod" type="number" step="any" value="40"></div><div class="field"><label for="press">Pressão (bar)</label><input id="press" type="number" step="any" value="120"></div><div class="field"><label for="stroke">Curso (mm)</label><input id="stroke" type="number" step="any" value="500"></div><div class="field"><label for="flow">Vazão da bomba (L/min)</label><input id="flow" type="number" step="any" value="30"></div></div><p class="mini-help">Força = pressão x área. Resultado desconsidera perdas, atrito, contrapressão e rendimento.</p></div><div class="calc-card"><h2><i class="fas fa-chart-line"></i> Resultado</h2><div class="calc-result four"><div class="result-box"><span>Força avanço</span><strong id="r1">-</strong></div><div class="result-box"><span>Força retorno</span><strong id="r2">-</strong></div><div class="result-box"><span>Volume avanço</span><strong id="r3">-</strong></div><div class="result-box"><span>Tempo avanço</span><strong id="r4">-</strong></div></div><div id="nota" class="calc-note"></div></div></section>
     <script>function n(id){return parseFloat(document.getElementById(id).value)||0}function calc(){let bore=n('bore')/1000,rod=n('rod')/1000,P=n('press')*100000,stroke=n('stroke')/1000,flow=n('flow')/60000;let Ap=Math.PI*bore*bore/4,Ar=Ap-Math.PI*rod*rod/4;let F1=P*Ap/1000,F2=P*Ar/1000,V=Ap*stroke*1000,t=Ap*stroke/Math.max(flow,.000001);document.getElementById('r1').textContent=F1.toFixed(1)+' kN';document.getElementById('r2').textContent=F2.toFixed(1)+' kN';document.getElementById('r3').textContent=V.toFixed(2)+' L';document.getElementById('r4').textContent=t.toFixed(1)+' s';document.getElementById('nota').innerHTML='Para aplicação real, considerar perdas, válvulas, vazão útil, carga dinâmica, flambagem da haste e fator de segurança.'}document.querySelectorAll('input').forEach(e=>e.addEventListener('input',calc));calc();</script>
     <section class="cta-bar" aria-label="Chamada para contato"><div><strong>Precisa de apoio técnico em engenharia, manutenção ou instrumentação?</strong><br><span class="muted">Use as ferramentas como apoio e fale com a ALOGY para análise técnica aplicada ao seu processo.</span></div><div class="cta-actions"><a class="btn" href="index.html#contato"><i class="fas fa-paper-plane"></i> Solicitar contato</a></div></section>
+  
+    <!-- ALOGY_REVISAO_TECNICA_FERRAMENTA -->
+    <section class="calc-card" aria-label="Orientação técnica complementar">
+      <h2><i class="fas fa-clipboard-check"></i> Como usar esta ferramenta na prática</h2>
+      <p>Calcule força de avanço, força de retorno, volume por curso e tempo de movimento de cilindros hidráulicos. Nesta revisão, o conteúdo foi ampliado para deixar mais claro quando usar a ferramenta, quais dados precisam ser conferidos e como transformar o número calculado em uma decisão técnica.</p>
+      <h3>Quando aplicar</h3>
+      <p>Use para apoio em manutenção mecânica, montagem, alinhamento, transmissão, rolamentos, hidráulica, torque, roscas e componentes rotativos.</p>
+      <h3>Dados que merecem conferência</h3>
+      <p>Antes de confiar no resultado da ferramenta <strong>Calculadora de Força de Cilindro Hidráulico</strong>, confira principalmente: Diâmetro do pistão (mm), Diâmetro da haste (mm), Pressão (bar), Curso (mm), Vazão da bomba (L/min). Pequenos erros de unidade, ponto decimal ou condição de operação podem gerar conclusões erradas.</p>
+      <ul>
+          <li>Diâmetro do pistão (mm)</li>
+          <li>Diâmetro da haste (mm)</li>
+          <li>Pressão (bar)</li>
+          <li>Curso (mm)</li>
+          <li>Vazão da bomba (L/min)</li>
+      </ul>
+      <h3>Como interpretar o resultado</h3>
+      <p>O resultado deve ser tratado como referência de manutenção. Folgas, lubrificação, condição superficial, rigidez da base, temperatura e carregamento real podem mudar o comportamento em campo.</p>
+      <p>Quando a página apresentar campos de resultado como Força avanço, Força retorno, Volume avanço, Tempo avanço, use esses valores para comparar o cenário calculado com limite operacional, tolerância do processo, histórico de manutenção ou especificação de fabricante.</p>
+      <h3>Checklist rápido de validação</h3>
+      <ul>
+          <li>Confirme medidas reais com instrumento adequado antes de executar serviço.</li>
+          <li>Compare torque, força, velocidade ou vida estimada com catálogo do fabricante.</li>
+          <li>Observe vibração, ruído, aquecimento e desgaste após a intervenção.</li>
+          <li>Registre antes e depois para criar histórico de confiabilidade.</li>
+      </ul>
+      <h3>Limites da estimativa</h3>
+      <p>Esta ferramenta é indicada para estudo, triagem, conferência de campo e apoio à manutenção. Para projeto final, laudo, especificação de compra, alteração de segurança ou liberação de equipamento crítico, valide as premissas com normas aplicáveis, documentação do fabricante e profissional habilitado.</p>
+    </section>
+
   </main>
   <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
 </body>

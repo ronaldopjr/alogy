@@ -53,6 +53,37 @@
     <section class="calc-card" aria-label="Aviso de uso"><h2><i class="fas fa-triangle-exclamation"></i> Ferramenta orientativa</h2><p>Use esta ferramenta para estudo, estimativa e conferência preliminar. O resultado depende dos dados inseridos, hipóteses adotadas, normas aplicáveis, catálogos de fabricantes e validação de profissional habilitado.</p></section>
     <section class="calc-layout"><div class="calc-card"><h2><i class="fas fa-vials"></i> Dados da linha de amostra</h2><div class="calc-grid"><div class="field"><label for="l">Comprimento da linha (m)</label><input id="l" type="number" step="any" value="18"></div><div class="field"><label for="d">Diâmetro interno (mm)</label><input id="d" type="number" step="any" value="4"></div><div class="field"><label for="q">Vazão de amostra (L/min)</label><input id="q" type="number" step="any" value="1.2"></div><div class="field"><label for="vc">Volume da célula/câmara (mL)</label><input id="vc" type="number" step="any" value="80"></div><div class="field"><label for="ren">Renovações desejadas da célula</label><input id="ren" type="number" step="any" value="3"></div><div class="field"><label for="resp">Tempo de resposta do analisador T90 (s)</label><input id="resp" type="number" step="any" value="30"></div></div><div class="calc-actions"><button class="mini-btn dark" onclick="copiar()" type="button"><i class="fas fa-copy"></i> Copiar</button></div></div><div class="calc-card"><h2><i class="fas fa-stopwatch"></i> Resultado</h2><div class="calc-result four"><div class="result-box"><span>Volume da linha</span><strong id="r1">-</strong></div><div class="result-box"><span>Tempo transporte</span><strong id="r2">-</strong></div><div class="result-box"><span>Tempo renovação</span><strong id="r3">-</strong></div><div class="result-box"><span>Atraso total</span><strong id="r4">-</strong></div></div><div class="calc-note">Use para avaliar atraso de malha, posição do analisador e necessidade de by-pass de amostra.</div></div></section>
     
+  
+    <!-- ALOGY_REVISAO_TECNICA_FERRAMENTA -->
+    <section class="calc-card" aria-label="Orientação técnica complementar">
+      <h2><i class="fas fa-clipboard-check"></i> Como usar esta ferramenta na prática</h2>
+      <p>Estime tempo morto em linha de amostra de analisador por comprimento, diâmetro, vazão e volume da célula. Nesta revisão, o conteúdo foi ampliado para deixar mais claro quando usar a ferramenta, quais dados precisam ser conferidos e como transformar o número calculado em uma decisão técnica.</p>
+      <h3>Quando aplicar</h3>
+      <p>Use para apoiar rotinas de processo químico, tratamento de água, efluentes, utilidades e analisadores industriais, principalmente quando o operador precisa converter leitura, dosagem ou resposta eletroquímica em uma decisão prática.</p>
+      <h3>Dados que merecem conferência</h3>
+      <p>Antes de confiar no resultado da ferramenta <strong>Calculadora de Tempo de Amostragem para Analisador</strong>, confira principalmente: Comprimento da linha (m), Diâmetro interno (mm), Vazão de amostra (L/min), Volume da célula/câmara (mL), Renovações desejadas da célula, Tempo de resposta do analisador T90 (s). Pequenos erros de unidade, ponto decimal ou condição de operação podem gerar conclusões erradas.</p>
+      <ul>
+          <li>Comprimento da linha (m)</li>
+          <li>Diâmetro interno (mm)</li>
+          <li>Vazão de amostra (L/min)</li>
+          <li>Volume da célula/câmara (mL)</li>
+          <li>Renovações desejadas da célula</li>
+          <li>Tempo de resposta do analisador T90 (s)</li>
+      </ul>
+      <h3>Como interpretar o resultado</h3>
+      <p>Em analítica, pequenas diferenças de temperatura, concentração, limpeza da sonda e tempo de estabilização podem alterar bastante o resultado. Por isso, o cálculo deve ser usado junto com amostragem correta e verificação do sensor.</p>
+      <p>Quando a página apresentar campos de resultado como Volume da linha, Tempo transporte, Tempo renovação, Atraso total, use esses valores para comparar o cenário calculado com limite operacional, tolerância do processo, histórico de manutenção ou especificação de fabricante.</p>
+      <h3>Checklist rápido de validação</h3>
+      <ul>
+          <li>Verifique limpeza, hidratação e condição da sonda antes de confiar na leitura.</li>
+          <li>Confirme unidade, temperatura de referência e concentração real da solução.</li>
+          <li>Aguarde estabilização da medição antes de registrar o valor final.</li>
+          <li>Compare o resultado com histórico do processo, não apenas com um ponto isolado.</li>
+      </ul>
+      <h3>Limites da estimativa</h3>
+      <p>Esta ferramenta é indicada para estudo, triagem, conferência de campo e apoio à manutenção. Para projeto final, laudo, especificação de compra, alteração de segurança ou liberação de equipamento crítico, valide as premissas com normas aplicáveis, documentação do fabricante e profissional habilitado.</p>
+    </section>
+
   </main>
   <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
 <script>function val(id){return parseFloat(document.getElementById(id).value)||0;}function txt(id){let e=document.getElementById(id);return e?e.value:'';}function fmt(x,d=2){return Number.isFinite(x)?x.toLocaleString('pt-BR',{maximumFractionDigits:d}):'-';}function set(id,v){document.getElementById(id).innerHTML=v;}function bind(){document.querySelectorAll('input,select').forEach(e=>e.addEventListener('input',calc));calc();}function copiar(){navigator.clipboard&&navigator.clipboard.writeText(document.body.innerText.slice(0,2600));}window.addEventListener('DOMContentLoaded',bind);function calc(){let l=val('l'),d=val('d')/1000,q=val('q'),vc=val('vc'),ren=val('ren'),resp=val('resp');let vol=Math.PI*d*d/4*l*1000;let tline=q>0?vol/(q*1000)*60:0;let twash=q>0?(vc*ren)/(q*1000)*60:0;let tt=tline+twash+resp;set('r1',fmt(vol,1)+' mL');set('r2',fmt(tline,1)+' s');set('r3',fmt(twash,1)+' s');set('r4',fmt(tt,1)+' s');}</script>

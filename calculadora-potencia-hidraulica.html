@@ -54,6 +54,37 @@
     <section class="calc-layout"><div class="calc-card"><h2><i class="fas fa-pen-to-square"></i> Dados de entrada</h2><div class="calc-grid"><label>Vazão (L/min)<input id="q" type="number" step="any" value="40"></label><label>Pressão (bar)<input id="p" type="number" step="any" value="120"></label><label>Rendimento total (%)<input id="eta" type="number" step="any" value="80"></label><label>Rotação (rpm)<input id="rpm" type="number" step="any" value="1750"></label><label>Horas/mês<input id="horas" type="number" step="any" value="220"></label><label>Tarifa energia (R$/kWh)<input id="tarifa" type="number" step="any" value="0.85"></label></div></div><div class="calc-card"><h2><i class="fas fa-chart-line"></i> Resultado</h2><div class="calc-result four"><div class="result-box"><span>Potência hidráulica</span><strong id="r1">-</strong></div><div class="result-box"><span>Potência no motor</span><strong id="r2">-</strong></div><div class="result-box"><span>Torque estimado</span><strong id="r3">-</strong></div><div class="result-box"><span>Custo mensal</span><strong id="r4">-</strong></div></div><p id="nota" class="mini-help"></p><div class="calc-actions no-print"><button class="mini-btn" onclick="window.print()"><i class="fas fa-print"></i> Imprimir</button></div></div></section>
     <script>function n(id){return parseFloat(document.getElementById(id).value)||0}function calc(){let Q=n('q'),P=n('p'),eta=n('eta')/100,rpm=n('rpm'),h=n('horas'),tar=n('tarifa');let kh=Q*P/600,km=kh/Math.max(eta,.01),tor=9550*km/Math.max(rpm,.001),c=km*h*tar;document.getElementById('r1').textContent=kh.toFixed(2)+' kW';document.getElementById('r2').textContent=km.toFixed(2)+' kW';document.getElementById('r3').textContent=tor.toFixed(1)+' N.m';document.getElementById('r4').textContent='R$ '+c.toFixed(2);document.getElementById('nota').innerHTML='Para seleção final, considerar pico de pressão, alívio, aquecimento do óleo, rendimento volumétrico/mecânico e fator de serviço do motor.'}document.querySelectorAll('input').forEach(e=>e.addEventListener('input',calc));calc();</script>
     <section class="cta-bar" aria-label="Chamada para contato"><div><strong>Precisa validar esse cálculo em campo?</strong><br><span class="muted">A ALOGY apoia engenharia, manutenção, instrumentação, automação e utilidades industriais.</span></div><div class="cta-actions"><a class="btn" href="index.html#contato"><i class="fas fa-paper-plane"></i> Solicitar contato</a></div></section>
+  
+    <!-- ALOGY_REVISAO_TECNICA_FERRAMENTA -->
+    <section class="calc-card" aria-label="Orientação técnica complementar">
+      <h2><i class="fas fa-clipboard-check"></i> Como usar esta ferramenta na prática</h2>
+      <p>Calcule potência hidráulica, potência de motor, torque estimado e energia para bombas hidráulicas. Nesta revisão, o conteúdo foi ampliado para deixar mais claro quando usar a ferramenta, quais dados precisam ser conferidos e como transformar o número calculado em uma decisão técnica.</p>
+      <h3>Quando aplicar</h3>
+      <p>Use para estimativas de utilidades industriais como ar comprimido, vapor, exaustão, nitrogênio, bombas e ventiladores, ajudando manutenção e engenharia a comparar consumo, perda, capacidade e segurança operacional.</p>
+      <h3>Dados que merecem conferência</h3>
+      <p>Antes de confiar no resultado da ferramenta <strong>Calculadora de Potência Hidráulica</strong>, confira principalmente: Vazão (L/min), Pressão (bar), Rendimento total (%), Rotação (rpm), Horas/mês, Tarifa energia (R$/kWh). Pequenos erros de unidade, ponto decimal ou condição de operação podem gerar conclusões erradas.</p>
+      <ul>
+          <li>Vazão (L/min)</li>
+          <li>Pressão (bar)</li>
+          <li>Rendimento total (%)</li>
+          <li>Rotação (rpm)</li>
+          <li>Horas/mês</li>
+          <li>Tarifa energia (R$/kWh)</li>
+      </ul>
+      <h3>Como interpretar o resultado</h3>
+      <p>O resultado indica tendência e ordem de grandeza. Em utilidades, a condição real de operação costuma variar com pressão, temperatura, vazamentos, perdas de carga, rendimento e estado mecânico do equipamento.</p>
+      <p>Quando a página apresentar campos de resultado como Potência hidráulica, Potência no motor, Torque estimado, Custo mensal, use esses valores para comparar o cenário calculado com limite operacional, tolerância do processo, histórico de manutenção ou especificação de fabricante.</p>
+      <h3>Checklist rápido de validação</h3>
+      <ul>
+          <li>Meça pressão, temperatura e vazão na condição mais próxima possível da operação real.</li>
+          <li>Considere perdas em filtros, curvas, válvulas, mangueiras, dutos e trocadores.</li>
+          <li>Compare o cálculo com placa do equipamento, curva do fabricante e histórico de consumo.</li>
+          <li>Se o resultado ficar próximo do limite, adote margem de segurança e valide com engenharia.</li>
+      </ul>
+      <h3>Limites da estimativa</h3>
+      <p>Esta ferramenta é indicada para estudo, triagem, conferência de campo e apoio à manutenção. Para projeto final, laudo, especificação de compra, alteração de segurança ou liberação de equipamento crítico, valide as premissas com normas aplicáveis, documentação do fabricante e profissional habilitado.</p>
+    </section>
+
   </main>
   <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
 </body>

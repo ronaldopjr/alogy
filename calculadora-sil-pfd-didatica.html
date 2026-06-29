@@ -64,6 +64,37 @@
       <div class="calc-card"><h2><i class="fas fa-chart-simple"></i> Resultado</h2><div class="calc-result"><div class="result-box"><span>PFDavg estimado</span><strong id="pfd">-</strong></div><div class="result-box"><span>Faixa SIL didática</span><strong id="sil" class="small">-</strong></div><div class="result-box"><span>Comparação</span><strong id="comp" class="small">-</strong></div></div><div class="calc-note risk-note" id="nota">Cálculo didático simplificado. Segurança funcional real exige IEC 61508/61511, dados certificados e verificação completa.</div><h3 style="margin-top:18px">Faixas PFDavg em baixa demanda</h3><div class="calc-table-wrap"><table class="calc-table"><thead><tr><th>Faixa</th><th>PFDavg</th></tr></thead><tbody><tr><td>SIL 1</td><td>&ge; 0,01 e &lt; 0,1</td></tr><tr><td>SIL 2</td><td>&ge; 0,001 e &lt; 0,01</td></tr><tr><td>SIL 3</td><td>&ge; 0,0001 e &lt; 0,001</td></tr><tr><td>SIL 4</td><td>&ge; 0,00001 e &lt; 0,0001</td></tr></tbody></table></div></div>
     </section>
     
+  
+    <!-- ALOGY_REVISAO_TECNICA_FERRAMENTA -->
+    <section class="calc-card" aria-label="Orientação técnica complementar">
+      <h2><i class="fas fa-clipboard-check"></i> Como usar esta ferramenta na prática</h2>
+      <p>Calcule PFDavg estimado e faixa SIL didática para funções instrumentadas de segurança em baixa demanda, com avisos de limitação. Nesta revisão, o conteúdo foi ampliado para deixar mais claro quando usar a ferramenta, quais dados precisam ser conferidos e como transformar o número calculado em uma decisão técnica.</p>
+      <h3>Quando aplicar</h3>
+      <p>Use para priorizar manutenção, confiabilidade, inspeção, comissionamento, análise de falhas, sobressalentes e tomada de decisão entre corrigir, monitorar ou planejar parada.</p>
+      <h3>Dados que merecem conferência</h3>
+      <p>Antes de confiar no resultado da ferramenta <strong>Calculadora SIL e PFDavg Didática</strong>, confira principalmente: λDU total (falhas/h), Intervalo de teste - TI (meses), Crédito de diagnóstico (%), Arquitetura didática, Modo de demanda, PFD alvo opcional. Pequenos erros de unidade, ponto decimal ou condição de operação podem gerar conclusões erradas.</p>
+      <ul>
+          <li>λDU total (falhas/h)</li>
+          <li>Intervalo de teste - TI (meses)</li>
+          <li>Crédito de diagnóstico (%)</li>
+          <li>Arquitetura didática</li>
+          <li>Modo de demanda</li>
+          <li>PFD alvo opcional</li>
+      </ul>
+      <h3>Como interpretar o resultado</h3>
+      <p>O resultado deve ser analisado junto com criticidade, histórico de falhas, impacto na produção, segurança, meio ambiente, custo de parada e disponibilidade de peças.</p>
+      <p>Quando a página apresentar campos de resultado como PFDavg estimado, Faixa SIL didática, Comparação, use esses valores para comparar o cenário calculado com limite operacional, tolerância do processo, histórico de manutenção ou especificação de fabricante.</p>
+      <h3>Checklist rápido de validação</h3>
+      <ul>
+          <li>Use dados históricos confiáveis, não apenas percepção da equipe.</li>
+          <li>Separe falhas repetitivas, falhas aleatórias e falhas por modo comum.</li>
+          <li>Registre ação corretiva, causa provável e evidência encontrada.</li>
+          <li>Reavalie a criticidade sempre que processo, produção ou risco mudarem.</li>
+      </ul>
+      <h3>Limites da estimativa</h3>
+      <p>Esta ferramenta é indicada para estudo, triagem, conferência de campo e apoio à manutenção. Para projeto final, laudo, especificação de compra, alteração de segurança ou liberação de equipamento crítico, valide as premissas com normas aplicáveis, documentação do fabricante e profissional habilitado.</p>
+    </section>
+
   </main>
   <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
 <script>

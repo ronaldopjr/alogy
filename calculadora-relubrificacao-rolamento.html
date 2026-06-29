@@ -56,6 +56,36 @@
     <section class="calc-layout"><div class="calc-card"><h2><i class="fas fa-pen-to-square"></i> Dados de entrada</h2><div class="calc-grid"><div class="field"><label for="d">Diâmetro externo D do rolamento (mm)</label><input id="d" type="number" step="any" value="90"></div><div class="field"><label for="b">Largura B do rolamento (mm)</label><input id="b" type="number" step="any" value="23"></div><div class="field"><label for="rpm">Rotação (rpm)</label><input id="rpm" type="number" step="any" value="1750"></div><div class="field"><label for="temp">Temperatura de operação (°C)</label><input id="temp" type="number" step="any" value="70"></div><div class="field"><label for="amb">Ambiente</label><select id="amb"><option value="1">Limpo</option><option value="1.6">Poeira moderada</option><option value="2.5">Úmido/contaminado</option></select></div></div><p class="mini-help">Quantidade orientativa: G = 0,005 x D x B em gramas. O intervalo é aproximado e deve seguir o fabricante.</p></div><div class="calc-card"><h2><i class="fas fa-chart-line"></i> Resultado</h2><div class="calc-result four"><div class="result-box"><span>Graxa por aplicação</span><strong id="r1">-</strong></div><div class="result-box"><span>Intervalo</span><strong id="r2">-</strong></div><div class="result-box"><span>Aplicações/ano</span><strong id="r3">-</strong></div><div class="result-box"><span>Alerta</span><strong id="r4">-</strong></div></div><div id="nota" class="calc-note"></div></div></section>
     <script>function n(id){return parseFloat(document.getElementById(id).value)||0}function calc(){let D=n('d'),B=n('b'),rpm=n('rpm'),T=n('temp'),amb=n('amb');let g=.005*D*B;let tf=T<=70?1:T<=90?.5:T<=110?.25:.1;let base=14000000/(Math.max(rpm,1)*Math.sqrt(Math.max(D,1)));let h=base*tf/Math.max(amb,1);let apps=8760/Math.max(h,1);document.getElementById('r1').textContent=g.toFixed(1)+' g';document.getElementById('r2').textContent=h.toFixed(0)+' h';document.getElementById('r3').textContent=apps.toFixed(1)+' / ano';document.getElementById('r4').textContent=T>100?'Temperatura alta':'Orientativo';document.getElementById('nota').innerHTML='Evite excesso de graxa. Confirme tipo de graxa, vedação, velocidade limite e recomendação do fabricante.'}document.querySelectorAll('input,select').forEach(e=>e.addEventListener('input',calc));calc();</script>
     <section class="cta-bar" aria-label="Chamada para contato"><div><strong>Precisa de apoio técnico em engenharia, manutenção ou instrumentação?</strong><br><span class="muted">Use as ferramentas como apoio e fale com a ALOGY para análise técnica aplicada ao seu processo.</span></div><div class="cta-actions"><a class="btn" href="index.html#contato"><i class="fas fa-paper-plane"></i> Solicitar contato</a></div></section>
+  
+    <!-- ALOGY_REVISAO_TECNICA_FERRAMENTA -->
+    <section class="calc-card" aria-label="Orientação técnica complementar">
+      <h2><i class="fas fa-clipboard-check"></i> Como usar esta ferramenta na prática</h2>
+      <p>Estime quantidade de graxa e intervalo orientativo de relubrificação para rolamentos industriais. Nesta revisão, o conteúdo foi ampliado para deixar mais claro quando usar a ferramenta, quais dados precisam ser conferidos e como transformar o número calculado em uma decisão técnica.</p>
+      <h3>Quando aplicar</h3>
+      <p>Use para apoio em manutenção mecânica, montagem, alinhamento, transmissão, rolamentos, hidráulica, torque, roscas e componentes rotativos.</p>
+      <h3>Dados que merecem conferência</h3>
+      <p>Antes de confiar no resultado da ferramenta <strong>Calculadora de Relubrificação de Rolamento</strong>, confira principalmente: Diâmetro externo D do rolamento (mm), Largura B do rolamento (mm), Rotação (rpm), Temperatura de operação (°C), Ambiente. Pequenos erros de unidade, ponto decimal ou condição de operação podem gerar conclusões erradas.</p>
+      <ul>
+          <li>Diâmetro externo D do rolamento (mm)</li>
+          <li>Largura B do rolamento (mm)</li>
+          <li>Rotação (rpm)</li>
+          <li>Temperatura de operação (°C)</li>
+          <li>Ambiente</li>
+      </ul>
+      <h3>Como interpretar o resultado</h3>
+      <p>O resultado deve ser tratado como referência de manutenção. Folgas, lubrificação, condição superficial, rigidez da base, temperatura e carregamento real podem mudar o comportamento em campo.</p>
+      <p>Quando a página apresentar campos de resultado como Graxa por aplicação, Intervalo, Aplicações/ano, Alerta, use esses valores para comparar o cenário calculado com limite operacional, tolerância do processo, histórico de manutenção ou especificação de fabricante.</p>
+      <h3>Checklist rápido de validação</h3>
+      <ul>
+          <li>Confirme medidas reais com instrumento adequado antes de executar serviço.</li>
+          <li>Compare torque, força, velocidade ou vida estimada com catálogo do fabricante.</li>
+          <li>Observe vibração, ruído, aquecimento e desgaste após a intervenção.</li>
+          <li>Registre antes e depois para criar histórico de confiabilidade.</li>
+      </ul>
+      <h3>Limites da estimativa</h3>
+      <p>Esta ferramenta é indicada para estudo, triagem, conferência de campo e apoio à manutenção. Para projeto final, laudo, especificação de compra, alteração de segurança ou liberação de equipamento crítico, valide as premissas com normas aplicáveis, documentação do fabricante e profissional habilitado.</p>
+    </section>
+
   </main>
   <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
 </body>

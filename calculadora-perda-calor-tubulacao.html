@@ -53,6 +53,37 @@
     <section class="calc-card" aria-label="Aviso de uso"><h2><i class="fas fa-triangle-exclamation"></i> Ferramenta orientativa</h2><p>Use esta ferramenta para estudo, estimativa e conferência preliminar. O resultado depende dos dados inseridos, hipóteses adotadas, normas aplicáveis, catálogos de fabricantes e validação de profissional habilitado.</p></section>
     <section class="calc-layout"><div class="calc-card"><h2><i class="fas fa-temperature-arrow-down"></i> Dados térmicos</h2><div class="calc-grid"><div class="field"><label for="d">Diâmetro externo do tubo (mm)</label><input id="d" type="number" step="any" value="60.3"></div><div class="field"><label for="l">Comprimento (m)</label><input id="l" type="number" step="any" value="50"></div><div class="field"><label for="tp">Temperatura da superfície/tubo (°C)</label><input id="tp" type="number" step="any" value="120"></div><div class="field"><label for="ta">Temperatura ambiente (°C)</label><input id="ta" type="number" step="any" value="25"></div><div class="field"><label for="esp">Espessura do isolamento (mm)</label><input id="esp" type="number" step="any" value="25"></div><div class="field"><label for="k">Condutividade do isolamento k (W/m.K)</label><input id="k" type="number" step="any" value="0.045"></div><div class="field"><label for="h">Coef. convecção externo h (W/m².K)</label><input id="h" type="number" step="any" value="8"></div><div class="field"><label for="horas">Horas por mês</label><input id="horas" type="number" step="any" value="720"></div></div><div class="calc-actions"><button class="mini-btn dark" onclick="copiar()" type="button"><i class="fas fa-copy"></i> Copiar</button></div></div><div class="calc-card"><h2><i class="fas fa-fire-flame-simple"></i> Resultado</h2><div class="calc-result four"><div class="result-box"><span>Perda total</span><strong id="r1">-</strong></div><div class="result-box"><span>Perda por metro</span><strong id="r2">-</strong></div><div class="result-box"><span>Energia mensal</span><strong id="r3">-</strong></div><div class="result-box"><span>Custo estimado</span><strong id="r4">-</strong></div></div><div class="field" style="margin-top:12px"><label for="tarifa">Tarifa de energia térmica estimada (R$/kWh)</label><input id="tarifa" type="number" step="any" value="0.55"></div><div class="calc-note">Modelo radial simplificado com condução no isolamento e convecção externa.</div></div></section>
     
+  
+    <!-- ALOGY_REVISAO_TECNICA_FERRAMENTA -->
+    <section class="calc-card" aria-label="Orientação técnica complementar">
+      <h2><i class="fas fa-clipboard-check"></i> Como usar esta ferramenta na prática</h2>
+      <p>Estime perda térmica em tubulação isolada ou não isolada por diâmetro, comprimento, temperatura e isolamento. Nesta revisão, o conteúdo foi ampliado para deixar mais claro quando usar a ferramenta, quais dados precisam ser conferidos e como transformar o número calculado em uma decisão técnica.</p>
+      <h3>Quando aplicar</h3>
+      <p>Use para avaliar vazão, nível, densidade, volume, regime de escoamento e comportamento de processo em tanques, tubulações, medidores e linhas industriais.</p>
+      <h3>Dados que merecem conferência</h3>
+      <p>Antes de confiar no resultado da ferramenta <strong>Calculadora de Perda de Calor em Tubulação</strong>, confira principalmente: Diâmetro externo do tubo (mm), Comprimento (m), Temperatura da superfície/tubo (°C), Temperatura ambiente (°C), Espessura do isolamento (mm), Condutividade do isolamento k (W/m.K). Pequenos erros de unidade, ponto decimal ou condição de operação podem gerar conclusões erradas.</p>
+      <ul>
+          <li>Diâmetro externo do tubo (mm)</li>
+          <li>Comprimento (m)</li>
+          <li>Temperatura da superfície/tubo (°C)</li>
+          <li>Temperatura ambiente (°C)</li>
+          <li>Espessura do isolamento (mm)</li>
+          <li>Condutividade do isolamento k (W/m.K)</li>
+      </ul>
+      <h3>Como interpretar o resultado</h3>
+      <p>O resultado ajuda a conferir se a condição de processo é coerente com o instrumento instalado e com a faixa de operação. Mudanças de densidade, viscosidade, temperatura e pressão podem alterar a medição final.</p>
+      <p>Quando a página apresentar campos de resultado como Perda total, Perda por metro, Energia mensal, Custo estimado, use esses valores para comparar o cenário calculado com limite operacional, tolerância do processo, histórico de manutenção ou especificação de fabricante.</p>
+      <h3>Checklist rápido de validação</h3>
+      <ul>
+          <li>Confirme fluido, unidade, densidade, pressão, temperatura e condição normal ou operacional.</li>
+          <li>Verifique diâmetro interno real, geometria do tanque e posição das tomadas de impulso.</li>
+          <li>Compare o valor calculado com leitura de campo, histórico e balanço de massa.</li>
+          <li>Em medição fiscal, segurança ou qualidade, use método normalizado e documentação aprovada.</li>
+      </ul>
+      <h3>Limites da estimativa</h3>
+      <p>Esta ferramenta é indicada para estudo, triagem, conferência de campo e apoio à manutenção. Para projeto final, laudo, especificação de compra, alteração de segurança ou liberação de equipamento crítico, valide as premissas com normas aplicáveis, documentação do fabricante e profissional habilitado.</p>
+    </section>
+
   </main>
   <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
 <script>function val(id){return parseFloat(document.getElementById(id).value)||0;}function txt(id){let e=document.getElementById(id);return e?e.value:'';}function fmt(x,d=2){return Number.isFinite(x)?x.toLocaleString('pt-BR',{maximumFractionDigits:d}):'-';}function set(id,v){document.getElementById(id).innerHTML=v;}function bind(){document.querySelectorAll('input,select').forEach(e=>e.addEventListener('input',calc));calc();}function copiar(){navigator.clipboard&&navigator.clipboard.writeText(document.body.innerText.slice(0,2600));}window.addEventListener('DOMContentLoaded',bind);function calc(){let d=val('d')/1000,l=val('l'),tp=val('tp'),ta=val('ta'),e=val('esp')/1000,k=val('k'),h=val('h'),hrs=val('horas'),tar=val('tarifa');let r1=d/2,r2=r1+Math.max(e,0.0001);let dt=tp-ta;let R=Math.log(r2/r1)/(2*Math.PI*k*l)+1/(h*2*Math.PI*r2*l);let q=dt/R;let kwh=q*hrs/1000;set('r1',fmt(q,1)+' W');set('r2',fmt(q/l,1)+' W/m');set('r3',fmt(kwh,1)+' kWh/mês');set('r4','R$ '+fmt(kwh*tar,2));}</script>

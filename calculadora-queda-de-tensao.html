@@ -62,6 +62,37 @@
 
     <section class="calc-card"><h2><i class="fas fa-triangle-exclamation"></i> Observações importantes</h2><p class="small-muted">Esta ferramenta é uma estimativa simplificada para apoio em campo e estudo preliminar. O dimensionamento final deve considerar método de instalação, agrupamento, temperatura ambiente, capacidade de condução, curto-circuito, proteção, seletividade, queda de tensão admissível e responsabilidade técnica.</p></section>
     <section class="calc-card faq"><h2><i class="fas fa-circle-question"></i> Perguntas frequentes</h2><details open><summary>O que é queda de tensão?</summary><p>É a redução da tensão entre a origem e a carga causada pela impedância do cabo. Quanto maior a corrente e a distância, maior tende a ser a queda.</p></details><details><summary>Por que existe diferença entre monofásico e trifásico?</summary><p>Porque a forma de circulação de corrente e a relação entre tensões e fases muda. Por isso a fórmula trifásica usa √3 e a monofásica/bifásica considera ida e volta do circuito.</p></details><details><summary>Essa calculadora substitui projeto elétrico?</summary><p>Não. Ela auxilia no cálculo preliminar. Projeto elétrico deve ser feito por profissional habilitado, considerando todos os critérios técnicos e normativos aplicáveis.</p></details></section>
+  
+    <!-- ALOGY_REVISAO_TECNICA_FERRAMENTA -->
+    <section class="calc-card" aria-label="Orientação técnica complementar">
+      <h2><i class="fas fa-clipboard-check"></i> Como usar esta ferramenta na prática</h2>
+      <p>Calcule queda de tensão em cabos elétricos de baixa tensão por corrente, potência, distância, seção, material, tensão, fator de potência e sistema monofásico ou trifásico. Nesta revisão, o conteúdo foi ampliado para deixar mais claro quando usar a ferramenta, quais dados precisam ser conferidos e como transformar o número calculado em uma decisão técnica.</p>
+      <h3>Quando aplicar</h3>
+      <p>Use para verificação preliminar de circuitos industriais, painéis, motores, alimentação 24 Vcc, proteção, qualidade de energia e segurança elétrica antes de especificar componentes ou liberar manutenção.</p>
+      <h3>Dados que merecem conferência</h3>
+      <p>Antes de confiar no resultado da ferramenta <strong>Calculadora de Queda de Tensão</strong>, confira principalmente: Entrada de carga, Corrente (A), Sistema, Tensão nominal (V), Fator de potência, Comprimento do circuito (m). Pequenos erros de unidade, ponto decimal ou condição de operação podem gerar conclusões erradas.</p>
+      <ul>
+          <li>Entrada de carga</li>
+          <li>Corrente (A)</li>
+          <li>Sistema</li>
+          <li>Tensão nominal (V)</li>
+          <li>Fator de potência</li>
+          <li>Comprimento do circuito (m)</li>
+      </ul>
+      <h3>Como interpretar o resultado</h3>
+      <p>O resultado deve ser avaliado junto com corrente nominal, temperatura ambiente, método de instalação, capacidade de curto-circuito, proteção existente e normas aplicáveis. Um número isolado não substitui dimensionamento elétrico completo.</p>
+      <p>Quando a página apresentar campos de resultado como Corrente usada, Queda de tensão, Queda percentual, Status, use esses valores para comparar o cenário calculado com limite operacional, tolerância do processo, histórico de manutenção ou especificação de fabricante.</p>
+      <h3>Checklist rápido de validação</h3>
+      <ul>
+          <li>Confirme tensão real, corrente de carga e regime de operação.</li>
+          <li>Verifique se cabos, bornes, disjuntores e fontes suportam a corrente calculada.</li>
+          <li>Considere temperatura, agrupamento, distância, queda de tensão e partida de motores.</li>
+          <li>Bloqueie e sinalize a energia antes de qualquer intervenção em campo.</li>
+      </ul>
+      <h3>Limites da estimativa</h3>
+      <p>Esta ferramenta é indicada para estudo, triagem, conferência de campo e apoio à manutenção. Para projeto final, laudo, especificação de compra, alteração de segurança ou liberação de equipamento crítico, valide as premissas com normas aplicáveis, documentação do fabricante e profissional habilitado.</p>
+    </section>
+
   </main><footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p></footer>
 <script>
 const $id=(id)=>document.getElementById(id); const fmt=(n,d=2)=>Number(n).toLocaleString('pt-BR',{maximumFractionDigits:d,minimumFractionDigits:d});

@@ -54,6 +54,36 @@
     <section class="calc-card" aria-label="Aviso de uso"><h2><i class="fas fa-triangle-exclamation"></i> Ferramenta orientativa</h2><p>Use esta ferramenta para estudo, estimativa e conferência preliminar. O resultado depende dos dados inseridos, hipóteses adotadas, normas aplicáveis, catálogos de fabricantes e validação de profissional habilitado.</p></section>
     <section class="calc-layout"><div class="calc-card"><h2><i class="fas fa-bolt"></i> Dados de ORP</h2><div class="calc-grid"><div class="field"><label for="mv">ORP medido (mV)</label><input id="mv" type="number" step="any" value="650"></div><div class="field"><label for="sp">Setpoint (mV)</label><input id="sp" type="number" step="any" value="700"></div><div class="field"><label for="db">Banda morta ± (mV)</label><input id="db" type="number" step="any" value="25"></div><div class="field"><label for="lo">Mínimo da escala (mV)</label><input id="lo" type="number" step="any" value="0"></div><div class="field"><label for="hi">Máximo da escala (mV)</label><input id="hi" type="number" step="any" value="1000"></div></div><div class="calc-actions"><button class="mini-btn dark" onclick="copiar()" type="button"><i class="fas fa-copy"></i> Copiar</button></div></div><div class="calc-card"><h2><i class="fas fa-chart-simple"></i> Resultado</h2><div class="calc-result"><div class="result-box"><span>Desvio</span><strong id="r1">-</strong></div><div class="result-box"><span>Percentual da escala</span><strong id="r2">-</strong></div><div class="result-box"><span>Status</span><strong id="r3" class="small">-</strong></div></div><div class="calc-note" id="nota">ORP depende de processo, eletrodo, referência e temperatura.</div></div></section>
     <section class="calc-card faq"><h2><i class="fas fa-circle-question"></i> Perguntas frequentes</h2><details><summary>ORP é o mesmo que pH?</summary><p>Não. pH mede atividade de hidrogênio; ORP mede potencial de oxidação/redução em mV.</p></details><details><summary>Posso comparar ORP de processos diferentes?</summary><p>Com cuidado. O significado do mV depende da química do processo, eletrodo e condições de operação.</p></details></section>
+  
+    <!-- ALOGY_REVISAO_TECNICA_FERRAMENTA -->
+    <section class="calc-card" aria-label="Orientação técnica complementar">
+      <h2><i class="fas fa-clipboard-check"></i> Como usar esta ferramenta na prática</h2>
+      <p>Avalie leitura de ORP em mV, desvio do setpoint, banda morta e percentual dentro da faixa de controle. Nesta revisão, o conteúdo foi ampliado para deixar mais claro quando usar a ferramenta, quais dados precisam ser conferidos e como transformar o número calculado em uma decisão técnica.</p>
+      <h3>Quando aplicar</h3>
+      <p>Use para apoiar rotinas de processo químico, tratamento de água, efluentes, utilidades e analisadores industriais, principalmente quando o operador precisa converter leitura, dosagem ou resposta eletroquímica em uma decisão prática.</p>
+      <h3>Dados que merecem conferência</h3>
+      <p>Antes de confiar no resultado da ferramenta <strong>Calculadora ORP mV e Faixa de Controle</strong>, confira principalmente: ORP medido (mV), Setpoint (mV), Banda morta ± (mV), Mínimo da escala (mV), Máximo da escala (mV). Pequenos erros de unidade, ponto decimal ou condição de operação podem gerar conclusões erradas.</p>
+      <ul>
+          <li>ORP medido (mV)</li>
+          <li>Setpoint (mV)</li>
+          <li>Banda morta ± (mV)</li>
+          <li>Mínimo da escala (mV)</li>
+          <li>Máximo da escala (mV)</li>
+      </ul>
+      <h3>Como interpretar o resultado</h3>
+      <p>Em analítica, pequenas diferenças de temperatura, concentração, limpeza da sonda e tempo de estabilização podem alterar bastante o resultado. Por isso, o cálculo deve ser usado junto com amostragem correta e verificação do sensor.</p>
+      <p>Quando a página apresentar campos de resultado como Desvio, Percentual da escala, Status, use esses valores para comparar o cenário calculado com limite operacional, tolerância do processo, histórico de manutenção ou especificação de fabricante.</p>
+      <h3>Checklist rápido de validação</h3>
+      <ul>
+          <li>Verifique limpeza, hidratação e condição da sonda antes de confiar na leitura.</li>
+          <li>Confirme unidade, temperatura de referência e concentração real da solução.</li>
+          <li>Aguarde estabilização da medição antes de registrar o valor final.</li>
+          <li>Compare o resultado com histórico do processo, não apenas com um ponto isolado.</li>
+      </ul>
+      <h3>Limites da estimativa</h3>
+      <p>Esta ferramenta é indicada para estudo, triagem, conferência de campo e apoio à manutenção. Para projeto final, laudo, especificação de compra, alteração de segurança ou liberação de equipamento crítico, valide as premissas com normas aplicáveis, documentação do fabricante e profissional habilitado.</p>
+    </section>
+
   </main>
   <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
 <script>function n(v,d=2){return Number.isFinite(v)?v.toLocaleString('pt-BR',{maximumFractionDigits:d}):'-'}function g(id){return parseFloat(document.getElementById(id).value)||0}function calc(){let mv=g('mv'),sp=g('sp'),db=g('db'),lo=g('lo'),hi=g('hi');let dev=mv-sp,pct=(mv-lo)/(hi-lo)*100;let st=Math.abs(dev)<=db?'Dentro da banda':(dev<0?'Abaixo do setpoint':'Acima do setpoint');r1.textContent=n(dev,1)+' mV';r2.textContent=n(pct,1)+' %';r3.textContent=st;r3.className='small '+(Math.abs(dev)<=db?'pill-ok':'pill-warn');nota.textContent= dev<0?'Tendência de menor potencial oxidante em relação ao setpoint.':'Tendência de maior potencial oxidante em relação ao setpoint.'}function copiar(){navigator.clipboard&&navigator.clipboard.writeText('ORP: desvio '+r1.textContent+', escala '+r2.textContent+', '+r3.textContent)}document.querySelectorAll('input').forEach(e=>e.addEventListener('input',calc));calc();</script>

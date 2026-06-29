@@ -72,6 +72,37 @@ function exemplo(i){if(i===1){aplicacao.value='sucao';q.value=80;qun.value='m3h'
 function copiar(){navigator.clipboard?.writeText(`Velocidade: ${rVel.textContent}\nFaixa: ${rFaixa.textContent}\nDiâmetro alvo: ${rDia.textContent}\nStatus: ${rStatus.textContent}`).then(()=>alert('Resultado copiado.'))}
 document.addEventListener('DOMContentLoaded',()=>{document.querySelectorAll('input,select').forEach(el=>el.addEventListener('input',calc));calc()});
 </script>
+  
+    <!-- ALOGY_REVISAO_TECNICA_FERRAMENTA -->
+    <section class="calc-card" aria-label="Orientação técnica complementar">
+      <h2><i class="fas fa-clipboard-check"></i> Como usar esta ferramenta na prática</h2>
+      <p>Calcule velocidade em tubulação por vazão e diâmetro e compare com faixas recomendadas para água, sucção, recalque, ar, vapor e óleo. Nesta revisão, o conteúdo foi ampliado para deixar mais claro quando usar a ferramenta, quais dados precisam ser conferidos e como transformar o número calculado em uma decisão técnica.</p>
+      <h3>Quando aplicar</h3>
+      <p>Use para avaliar vazão, nível, densidade, volume, regime de escoamento e comportamento de processo em tanques, tubulações, medidores e linhas industriais.</p>
+      <h3>Dados que merecem conferência</h3>
+      <p>Antes de confiar no resultado da ferramenta <strong>Calculadora de Velocidade Recomendada em Tubulação</strong>, confira principalmente: Aplicação, Vazão, Unidade da vazão, Diâmetro interno (mm), Velocidade alvo para sugestão (m/s), Observação do fluido. Pequenos erros de unidade, ponto decimal ou condição de operação podem gerar conclusões erradas.</p>
+      <ul>
+          <li>Aplicação</li>
+          <li>Vazão</li>
+          <li>Unidade da vazão</li>
+          <li>Diâmetro interno (mm)</li>
+          <li>Velocidade alvo para sugestão (m/s)</li>
+          <li>Observação do fluido</li>
+      </ul>
+      <h3>Como interpretar o resultado</h3>
+      <p>O resultado ajuda a conferir se a condição de processo é coerente com o instrumento instalado e com a faixa de operação. Mudanças de densidade, viscosidade, temperatura e pressão podem alterar a medição final.</p>
+      <p>Quando a página apresentar campos de resultado como Velocidade calculada, Faixa orientativa, Diâmetro para alvo, Status, use esses valores para comparar o cenário calculado com limite operacional, tolerância do processo, histórico de manutenção ou especificação de fabricante.</p>
+      <h3>Checklist rápido de validação</h3>
+      <ul>
+          <li>Confirme fluido, unidade, densidade, pressão, temperatura e condição normal ou operacional.</li>
+          <li>Verifique diâmetro interno real, geometria do tanque e posição das tomadas de impulso.</li>
+          <li>Compare o valor calculado com leitura de campo, histórico e balanço de massa.</li>
+          <li>Em medição fiscal, segurança ou qualidade, use método normalizado e documentação aprovada.</li>
+      </ul>
+      <h3>Limites da estimativa</h3>
+      <p>Esta ferramenta é indicada para estudo, triagem, conferência de campo e apoio à manutenção. Para projeto final, laudo, especificação de compra, alteração de segurança ou liberação de equipamento crítico, valide as premissas com normas aplicáveis, documentação do fabricante e profissional habilitado.</p>
+    </section>
+
   </main>
   <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
 </body>

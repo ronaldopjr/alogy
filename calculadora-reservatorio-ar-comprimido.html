@@ -64,6 +64,37 @@
       <div class="calc-card"><h2><i class="fas fa-gauge-high"></i> Resultado</h2><div class="calc-result"><div class="result-box"><span>Ar utilizável</span><strong id="ar">-</strong></div><div class="result-box"><span>Consumo líquido</span><strong id="liq">-</strong></div><div class="result-box"><span>Autonomia</span><strong id="auto" class="small">-</strong></div></div><div class="calc-note" id="nota">Preencha os dados para calcular.</div><h3 style="margin-top:18px">Sensibilidade por pressão mínima</h3><div class="calc-table-wrap"><table class="calc-table"><thead><tr><th>P mín.</th><th>Ar útil</th><th>Autonomia</th></tr></thead><tbody id="tbody"></tbody></table></div></div>
     </section>
     
+  
+    <!-- ALOGY_REVISAO_TECNICA_FERRAMENTA -->
+    <section class="calc-card" aria-label="Orientação técnica complementar">
+      <h2><i class="fas fa-clipboard-check"></i> Como usar esta ferramenta na prática</h2>
+      <p>Estime ar utilizável e autonomia de reservatório de ar comprimido com volume, pressão máxima, pressão mínima e consumo da linha. Nesta revisão, o conteúdo foi ampliado para deixar mais claro quando usar a ferramenta, quais dados precisam ser conferidos e como transformar o número calculado em uma decisão técnica.</p>
+      <h3>Quando aplicar</h3>
+      <p>Use em partida, manutenção e diagnóstico de malhas, painéis, cartões analógicos, redes industriais e sinais de controle quando for necessário conferir escala, carga, resolução, tempo de resposta ou comunicação.</p>
+      <h3>Dados que merecem conferência</h3>
+      <p>Antes de confiar no resultado da ferramenta <strong>Calculadora de Reservatório de Ar Comprimido</strong>, confira principalmente: Volume do reservatório (L), Pressão máxima (bar g), Pressão mínima útil (bar g), Pressão atmosférica (bar), Consumo da linha (Nm³/min), Produção do compressor (Nm³/min). Pequenos erros de unidade, ponto decimal ou condição de operação podem gerar conclusões erradas.</p>
+      <ul>
+          <li>Volume do reservatório (L)</li>
+          <li>Pressão máxima (bar g)</li>
+          <li>Pressão mínima útil (bar g)</li>
+          <li>Pressão atmosférica (bar)</li>
+          <li>Consumo da linha (Nm³/min)</li>
+          <li>Produção do compressor (Nm³/min)</li>
+      </ul>
+      <h3>Como interpretar o resultado</h3>
+      <p>O resultado ajuda a separar erro de configuração, limitação do cartão, queda na malha, ruído elétrico ou problema de instrumento. Em automação, a conferência deve considerar o sinal físico e também a escala configurada no CLP, supervisório ou controlador.</p>
+      <p>Quando a página apresentar campos de resultado como Ar utilizável, Consumo líquido, Autonomia, use esses valores para comparar o cenário calculado com limite operacional, tolerância do processo, histórico de manutenção ou especificação de fabricante.</p>
+      <h3>Checklist rápido de validação</h3>
+      <ul>
+          <li>Confirme se a escala do campo é igual à escala configurada no CLP ou supervisório.</li>
+          <li>Verifique alimentação, aterramento funcional, blindagem e carga total da malha.</li>
+          <li>Em redes, confira endereço, baud rate, paridade, terminação e polaridade.</li>
+          <li>Registre o valor físico e o valor visto no sistema para facilitar diagnóstico.</li>
+      </ul>
+      <h3>Limites da estimativa</h3>
+      <p>Esta ferramenta é indicada para estudo, triagem, conferência de campo e apoio à manutenção. Para projeto final, laudo, especificação de compra, alteração de segurança ou liberação de equipamento crítico, valide as premissas com normas aplicáveis, documentação do fabricante e profissional habilitado.</p>
+    </section>
+
   </main>
   <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
 <script>

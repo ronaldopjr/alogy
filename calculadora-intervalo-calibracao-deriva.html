@@ -54,6 +54,36 @@
     <section class="calc-layout"><div class="calc-card"><h2><i class="fas fa-pen-to-square"></i> Dados de entrada</h2><div class="calc-grid"><label>Erro anterior (% span)<input id="e1" type="number" step="any" value="0.15"></label><label>Erro atual (% span)<input id="e2" type="number" step="any" value="0.45"></label><label>Meses entre calibrações<input id="meses" type="number" step="any" value="12"></label><label>Tolerância permitida (% span)<input id="tol" type="number" step="any" value="1.0"></label><label>Fator de segurança (%)<input id="fs" type="number" step="any" value="80"></label></div></div><div class="calc-card"><h2><i class="fas fa-chart-line"></i> Resultado</h2><div class="calc-result four"><div class="result-box"><span>Deriva mensal</span><strong id="r1">-</strong></div><div class="result-box"><span>Intervalo estimado</span><strong id="r2">-</strong></div><div class="result-box"><span>Uso da tolerância</span><strong id="r3">-</strong></div><div class="result-box"><span>Recomendação</span><strong id="r4">-</strong></div></div><p id="nota" class="mini-help"></p><div class="calc-actions no-print"><button class="mini-btn" onclick="window.print()"><i class="fas fa-print"></i> Imprimir</button></div></div></section>
     <script>function n(id){return parseFloat(document.getElementById(id).value)||0}function calc(){let e1=n('e1'),e2=n('e2'),m=n('meses'),tol=Math.abs(n('tol')),fs=n('fs')/100;let drift=Math.abs(e2-e1)/Math.max(m,.001);let interval=tol*fs/Math.max(drift,.000001);let uso=Math.abs(e2)/Math.max(tol,.0001)*100;let rec=uso>100?'Reduzir urgente':interval<m?'Reduzir intervalo':'Intervalo aceitável';document.getElementById('r1').textContent=drift.toFixed(4)+' %/mês';document.getElementById('r2').textContent=interval.toFixed(1)+' meses';document.getElementById('r3').textContent=uso.toFixed(1)+' %';document.getElementById('r4').textContent=rec;document.getElementById('nota').innerHTML='Use histórico de várias calibrações quando possível. Mudanças de processo, criticidade, segurança e qualidade podem exigir intervalo menor.'}document.querySelectorAll('input').forEach(e=>e.addEventListener('input',calc));calc();</script>
     <section class="cta-bar" aria-label="Chamada para contato"><div><strong>Precisa validar esse cálculo em campo?</strong><br><span class="muted">A ALOGY apoia engenharia, manutenção, instrumentação, automação e utilidades industriais.</span></div><div class="cta-actions"><a class="btn" href="index.html#contato"><i class="fas fa-paper-plane"></i> Solicitar contato</a></div></section>
+  
+    <!-- ALOGY_REVISAO_TECNICA_FERRAMENTA -->
+    <section class="calc-card" aria-label="Orientação técnica complementar">
+      <h2><i class="fas fa-clipboard-check"></i> Como usar esta ferramenta na prática</h2>
+      <p>Estime intervalo orientativo de calibração usando deriva histórica, tolerância e margem de segurança. Nesta revisão, o conteúdo foi ampliado para deixar mais claro quando usar a ferramenta, quais dados precisam ser conferidos e como transformar o número calculado em uma decisão técnica.</p>
+      <h3>Quando aplicar</h3>
+      <p>Use em bancada, campo ou laboratório para preparar pontos de teste, comparar indicação do instrumento com referência rastreável e decidir se o equipamento está aprovado, reprovado ou se precisa de ajuste.</p>
+      <h3>Dados que merecem conferência</h3>
+      <p>Antes de confiar no resultado da ferramenta <strong>Calculadora de Intervalo de Calibração por Deriva</strong>, confira principalmente: Erro anterior (% span), Erro atual (% span), Meses entre calibrações, Tolerância permitida (% span), Fator de segurança (%). Pequenos erros de unidade, ponto decimal ou condição de operação podem gerar conclusões erradas.</p>
+      <ul>
+          <li>Erro anterior (% span)</li>
+          <li>Erro atual (% span)</li>
+          <li>Meses entre calibrações</li>
+          <li>Tolerância permitida (% span)</li>
+          <li>Fator de segurança (%)</li>
+      </ul>
+      <h3>Como interpretar o resultado</h3>
+      <p>O resultado deve ser comparado com a tolerância do processo e com o erro máximo permitido definido no plano de calibração. Um erro pequeno no instrumento pode ser aceitável para utilidades, mas crítico em malhas de segurança, qualidade ou dosagem.</p>
+      <p>Quando a página apresentar campos de resultado como Deriva mensal, Intervalo estimado, Uso da tolerância, Recomendação, use esses valores para comparar o cenário calculado com limite operacional, tolerância do processo, histórico de manutenção ou especificação de fabricante.</p>
+      <h3>Checklist rápido de validação</h3>
+      <ul>
+          <li>Confirme TAG, faixa LRV/URV, unidade de engenharia e damping antes do teste.</li>
+          <li>Use padrão de referência com resolução e incerteza adequadas ao instrumento em teste.</li>
+          <li>Registre as leituras de subida e descida para observar histerese, repetibilidade e retorno ao zero.</li>
+          <li>Quando houver ajuste, repita o ciclo completo antes de liberar o instrumento.</li>
+      </ul>
+      <h3>Limites da estimativa</h3>
+      <p>Esta ferramenta é indicada para estudo, triagem, conferência de campo e apoio à manutenção. Para projeto final, laudo, especificação de compra, alteração de segurança ou liberação de equipamento crítico, valide as premissas com normas aplicáveis, documentação do fabricante e profissional habilitado.</p>
+    </section>
+
   </main>
   <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
 </body>

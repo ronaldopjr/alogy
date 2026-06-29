@@ -54,6 +54,36 @@
     <section class="calc-card" aria-label="Aviso de uso"><h2><i class="fas fa-triangle-exclamation"></i> Ferramenta orientativa</h2><p>Use esta ferramenta para estudo, estimativa e conferência preliminar. O resultado depende dos dados inseridos, hipóteses adotadas, normas aplicáveis, catálogos de fabricantes e validação de profissional habilitado.</p></section>
     <section class="calc-layout"><div class="calc-card"><h2><i class="fas fa-diagram-project"></i> Dados Modbus</h2><div class="calc-grid"><div class="field"><label for="baud">Baud rate</label><input id="baud" type="number" step="any" value="19200"></div><div class="field"><label for="dev">Quantidade de escravos</label><input id="dev" type="number" step="any" value="10"></div><div class="field"><label for="regs">Registros por escravo</label><input id="regs" type="number" step="any" value="20"></div><div class="field"><label for="bits">Bits por caractere</label><select id="bits"><option value="10">10 bits (8N1)</option><option value="11">11 bits</option></select></div><div class="field"><label for="gap">Gap/latência por escravo (ms)</label><input id="gap" type="number" step="any" value="30"></div></div></div><div class="calc-card"><h2><i class="fas fa-chart-line"></i> Resultado</h2><div class="calc-result"><div class="result-box"><span>Bytes por escravo</span><strong id="bytes">-</strong></div><div class="result-box"><span>Ciclo de polling</span><strong id="ciclo">-</strong></div><div class="result-box"><span>Atualização por escravo</span><strong id="upd">-</strong></div></div><div class="calc-note" id="nota">Separar leituras grandes em blocos pode melhorar ou piorar o ciclo conforme o equipamento.</div></div></section>
     <section class="calc-card faq"><h2><i class="fas fa-circle-question"></i> Perguntas frequentes</h2><details><summary>Quantos registros posso ler de uma vez?</summary><p>Depende do equipamento e da função Modbus. Mesmo quando permitido, blocos muito grandes podem aumentar timeout em redes ruins.</p></details><details><summary>Isso substitui teste em campo?</summary><p>Não. É uma estimativa; ruído, terminação, cabos, repetidores e firmware influenciam o ciclo real.</p></details></section>
+  
+    <!-- ALOGY_REVISAO_TECNICA_FERRAMENTA -->
+    <section class="calc-card" aria-label="Orientação técnica complementar">
+      <h2><i class="fas fa-clipboard-check"></i> Como usar esta ferramenta na prática</h2>
+      <p>Estime tempo de varredura Modbus RTU por baud rate, quantidade de escravos, registros e intervalo entre mensagens. Nesta revisão, o conteúdo foi ampliado para deixar mais claro quando usar a ferramenta, quais dados precisam ser conferidos e como transformar o número calculado em uma decisão técnica.</p>
+      <h3>Quando aplicar</h3>
+      <p>Use em partida, manutenção e diagnóstico de malhas, painéis, cartões analógicos, redes industriais e sinais de controle quando for necessário conferir escala, carga, resolução, tempo de resposta ou comunicação.</p>
+      <h3>Dados que merecem conferência</h3>
+      <p>Antes de confiar no resultado da ferramenta <strong>Calculadora de Ciclo de Polling Modbus RTU</strong>, confira principalmente: Baud rate, Quantidade de escravos, Registros por escravo, Bits por caractere, Gap/latência por escravo (ms). Pequenos erros de unidade, ponto decimal ou condição de operação podem gerar conclusões erradas.</p>
+      <ul>
+          <li>Baud rate</li>
+          <li>Quantidade de escravos</li>
+          <li>Registros por escravo</li>
+          <li>Bits por caractere</li>
+          <li>Gap/latência por escravo (ms)</li>
+      </ul>
+      <h3>Como interpretar o resultado</h3>
+      <p>O resultado ajuda a separar erro de configuração, limitação do cartão, queda na malha, ruído elétrico ou problema de instrumento. Em automação, a conferência deve considerar o sinal físico e também a escala configurada no CLP, supervisório ou controlador.</p>
+      <p>Quando a página apresentar campos de resultado como Bytes por escravo, Ciclo de polling, Atualização por escravo, use esses valores para comparar o cenário calculado com limite operacional, tolerância do processo, histórico de manutenção ou especificação de fabricante.</p>
+      <h3>Checklist rápido de validação</h3>
+      <ul>
+          <li>Confirme se a escala do campo é igual à escala configurada no CLP ou supervisório.</li>
+          <li>Verifique alimentação, aterramento funcional, blindagem e carga total da malha.</li>
+          <li>Em redes, confira endereço, baud rate, paridade, terminação e polaridade.</li>
+          <li>Registre o valor físico e o valor visto no sistema para facilitar diagnóstico.</li>
+      </ul>
+      <h3>Limites da estimativa</h3>
+      <p>Esta ferramenta é indicada para estudo, triagem, conferência de campo e apoio à manutenção. Para projeto final, laudo, especificação de compra, alteração de segurança ou liberação de equipamento crítico, valide as premissas com normas aplicáveis, documentação do fabricante e profissional habilitado.</p>
+    </section>
+
   </main>
   <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
 <script>function n(v,d=2){return Number.isFinite(v)?v.toLocaleString('pt-BR',{maximumFractionDigits:d}):'-'}function g(id){return +document.getElementById(id).value||0}function calc(){let baud=g('baud'),dev=g('dev'),regs=g('regs'),bits=g('bits'),gap=g('gap');let req=8, resp=5+regs*2;let by=req+resp;let t=baud>0?by*bits/baud*1000+gap:0;let cyc=t*dev;bytes.textContent=by+' bytes';ciclo.textContent=n(cyc,0)+' ms';upd.textContent=n(cyc/1000,2)+' s';nota.textContent=cyc>2000?'Polling lento. Considere baud maior, menos registros, mais redes ou comunicação Ethernet.':'Estimativa útil para validar taxa de atualização esperada.'}document.querySelectorAll('input,select').forEach(e=>e.addEventListener('input',calc));calc();</script>

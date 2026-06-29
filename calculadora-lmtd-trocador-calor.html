@@ -54,6 +54,37 @@
     <section class="calc-card" aria-label="Aviso de uso"><h2><i class="fas fa-triangle-exclamation"></i> Ferramenta orientativa</h2><p>Use esta ferramenta para estudo, estimativa e conferência preliminar. O resultado depende dos dados inseridos, hipóteses adotadas, normas aplicáveis, catálogos de fabricantes e validação de profissional habilitado.</p></section>
     <section class="calc-layout"><div class="calc-card"><h2><i class="fas fa-temperature-arrow-up"></i> Temperaturas e dados</h2><div class="calc-grid"><div class="field"><label for="th_in">Quente entrada (°C)</label><input id="th_in" type="number" step="any" value="90"></div><div class="field"><label for="th_out">Quente saída (°C)</label><input id="th_out" type="number" step="any" value="60"></div><div class="field"><label for="tc_in">Frio entrada (°C)</label><input id="tc_in" type="number" step="any" value="25"></div><div class="field"><label for="tc_out">Frio saída (°C)</label><input id="tc_out" type="number" step="any" value="45"></div><div class="field"><label for="u">U global (W/m².K)</label><input id="u" type="number" step="any" value="800"></div><div class="field"><label for="area">Área de troca (m²)</label><input id="area" type="number" step="any" value="5"></div><div class="field"><label for="fcor">Fator de correção F</label><input id="fcor" type="number" step="any" value="1"></div></div></div><div class="calc-card"><h2><i class="fas fa-chart-line"></i> Resultado</h2><div class="calc-result"><div class="result-box"><span>ΔT1</span><strong id="dt1">-</strong></div><div class="result-box"><span>ΔT2</span><strong id="dt2">-</strong></div><div class="result-box"><span>LMTD corrigido</span><strong id="lmtd">-</strong></div></div><div class="calc-result two"><div class="result-box"><span>Carga estimada</span><strong id="qres">-</strong></div><div class="result-box"><span>Status</span><strong class="small" id="status">-</strong></div></div></div></section>
     <section class="calc-card faq"><h2><i class="fas fa-circle-question"></i> Perguntas frequentes</h2><details><summary>O que é LMTD?</summary><p>É a diferença média logarítmica de temperatura, usada para estimar a força motriz térmica em trocadores.</p></details><details><summary>Essa ferramenta dimensiona o trocador?</summary><p>Não. O dimensionamento completo exige geometria, coeficiente global real, incrustação, perda de carga e arranjo do trocador.</p></details></section>
+  
+    <!-- ALOGY_REVISAO_TECNICA_FERRAMENTA -->
+    <section class="calc-card" aria-label="Orientação técnica complementar">
+      <h2><i class="fas fa-clipboard-check"></i> Como usar esta ferramenta na prática</h2>
+      <p>Calcule diferença média logarítmica de temperatura, LMTD corrigido e carga estimada de trocador de calor. Nesta revisão, o conteúdo foi ampliado para deixar mais claro quando usar a ferramenta, quais dados precisam ser conferidos e como transformar o número calculado em uma decisão técnica.</p>
+      <h3>Quando aplicar</h3>
+      <p>Use em processos com temperatura, troca térmica, sensores, termopoços, aquecimento, isolamento, perdas de calor e inspeção termográfica.</p>
+      <h3>Dados que merecem conferência</h3>
+      <p>Antes de confiar no resultado da ferramenta <strong>Calculadora LMTD para Trocador de Calor</strong>, confira principalmente: Quente entrada (°C), Quente saída (°C), Frio entrada (°C), Frio saída (°C), U global (W/m².K), Área de troca (m²). Pequenos erros de unidade, ponto decimal ou condição de operação podem gerar conclusões erradas.</p>
+      <ul>
+          <li>Quente entrada (°C)</li>
+          <li>Quente saída (°C)</li>
+          <li>Frio entrada (°C)</li>
+          <li>Frio saída (°C)</li>
+          <li>U global (W/m².K)</li>
+          <li>Área de troca (m²)</li>
+      </ul>
+      <h3>Como interpretar o resultado</h3>
+      <p>O resultado depende muito de temperatura de referência, material, fluido, emissividade, isolamento, vazão e tempo de resposta. Em campo, valide sempre com medição estável e instrumento adequado.</p>
+      <p>Quando a página apresentar campos de resultado como ΔT1, ΔT2, LMTD corrigido, Carga estimada, Status, use esses valores para comparar o cenário calculado com limite operacional, tolerância do processo, histórico de manutenção ou especificação de fabricante.</p>
+      <h3>Checklist rápido de validação</h3>
+      <ul>
+          <li>Confirme unidade de temperatura, material e condição de instalação.</li>
+          <li>Em termografia, ajuste emissividade e evite reflexos antes de concluir.</li>
+          <li>Em troca térmica, confira vazão, Cp, ΔT e sentido de escoamento.</li>
+          <li>Use histórico de processo para saber se a variação é normal ou sintoma de falha.</li>
+      </ul>
+      <h3>Limites da estimativa</h3>
+      <p>Esta ferramenta é indicada para estudo, triagem, conferência de campo e apoio à manutenção. Para projeto final, laudo, especificação de compra, alteração de segurança ou liberação de equipamento crítico, valide as premissas com normas aplicáveis, documentação do fabricante e profissional habilitado.</p>
+    </section>
+
   </main>
   <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
 <script>function n(v,d=2){return Number.isFinite(v)?v.toLocaleString('pt-BR',{maximumFractionDigits:d}):'-'}function g(id){return +document.getElementById(id).value||0}function calc(){let Thi=g('th_in'),Tho=g('th_out'),Tci=g('tc_in'),Tco=g('tc_out'),U=g('u'),A=g('area'),F=g('fcor');let d1=Thi-Tco,d2=Tho-Tci;let L;if(d1>0&&d2>0){L=Math.abs(d1-d2)<1e-9?d1:(d1-d2)/Math.log(d1/d2)}else L=NaN;let Lc=L*F;dt1.textContent=n(d1,2)+' °C';dt2.textContent=n(d2,2)+' °C';lmtd.textContent=n(Lc,2)+' °C';qres.textContent=n(U*A*Lc/1000,2)+' kW';status.textContent=!Number.isFinite(L)?'Cruzamento de temperatura inválido ou aproximação pinch.':F<0.75?'Fator F baixo; revisar arranjo do trocador.':'Estimativa preliminar.'}document.querySelectorAll('input').forEach(e=>e.addEventListener('input',calc));calc();</script>

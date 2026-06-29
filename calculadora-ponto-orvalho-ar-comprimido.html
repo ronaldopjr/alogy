@@ -53,6 +53,35 @@
     <section class="calc-card" aria-label="Aviso de uso"><h2><i class="fas fa-triangle-exclamation"></i> Ferramenta orientativa</h2><p>Use esta ferramenta para estudo, estimativa e conferência preliminar. O resultado depende dos dados inseridos, hipóteses adotadas, normas aplicáveis, catálogos de fabricantes e validação de profissional habilitado.</p></section>
     <section class="calc-layout"><div class="calc-card"><h2><i class="fas fa-droplet-slash"></i> Dados de umidade</h2><div class="calc-grid"><div class="field"><label for="td">Ponto de orvalho informado (°C)</label><input id="td" type="number" step="any" value="-20"></div><div class="field"><label for="p">Pressão da linha (barg)</label><input id="p" type="number" step="any" value="7"></div><div class="field"><label for="t">Temperatura da linha (°C)</label><input id="t" type="number" step="any" value="25"></div><div class="field"><label for="lim">Limite desejado de ponto de orvalho (°C)</label><input id="lim" type="number" step="any" value="-20"></div></div><div class="calc-actions"><button class="mini-btn dark" onclick="copiar()" type="button"><i class="fas fa-copy"></i> Copiar</button></div></div><div class="calc-card"><h2><i class="fas fa-chart-simple"></i> Resultado</h2><div class="calc-result four"><div class="result-box"><span>Pressão vapor saturado</span><strong id="r1">-</strong></div><div class="result-box"><span>Umidade aproximada</span><strong id="r2">-</strong></div><div class="result-box"><span>ppmV aproximado</span><strong id="r3">-</strong></div><div class="result-box"><span>Status</span><strong id="r4" class="small">-</strong></div></div><div class="calc-note">Cálculo simplificado usando ponto de orvalho informado. Para especificação, seguir ISO 8573 e manual do secador/analisador.</div></div></section>
     
+  
+    <!-- ALOGY_REVISAO_TECNICA_FERRAMENTA -->
+    <section class="calc-card" aria-label="Orientação técnica complementar">
+      <h2><i class="fas fa-clipboard-check"></i> Como usar esta ferramenta na prática</h2>
+      <p>Calcule referência de ponto de orvalho, vapor de água e umidade estimada em linhas de ar comprimido. Nesta revisão, o conteúdo foi ampliado para deixar mais claro quando usar a ferramenta, quais dados precisam ser conferidos e como transformar o número calculado em uma decisão técnica.</p>
+      <h3>Quando aplicar</h3>
+      <p>Use para estimativas de utilidades industriais como ar comprimido, vapor, exaustão, nitrogênio, bombas e ventiladores, ajudando manutenção e engenharia a comparar consumo, perda, capacidade e segurança operacional.</p>
+      <h3>Dados que merecem conferência</h3>
+      <p>Antes de confiar no resultado da ferramenta <strong>Calculadora de Ponto de Orvalho em Ar Comprimido</strong>, confira principalmente: Ponto de orvalho informado (°C), Pressão da linha (barg), Temperatura da linha (°C), Limite desejado de ponto de orvalho (°C). Pequenos erros de unidade, ponto decimal ou condição de operação podem gerar conclusões erradas.</p>
+      <ul>
+          <li>Ponto de orvalho informado (°C)</li>
+          <li>Pressão da linha (barg)</li>
+          <li>Temperatura da linha (°C)</li>
+          <li>Limite desejado de ponto de orvalho (°C)</li>
+      </ul>
+      <h3>Como interpretar o resultado</h3>
+      <p>O resultado indica tendência e ordem de grandeza. Em utilidades, a condição real de operação costuma variar com pressão, temperatura, vazamentos, perdas de carga, rendimento e estado mecânico do equipamento.</p>
+      <p>Quando a página apresentar campos de resultado como Pressão vapor saturado, Umidade aproximada, ppmV aproximado, Status, use esses valores para comparar o cenário calculado com limite operacional, tolerância do processo, histórico de manutenção ou especificação de fabricante.</p>
+      <h3>Checklist rápido de validação</h3>
+      <ul>
+          <li>Meça pressão, temperatura e vazão na condição mais próxima possível da operação real.</li>
+          <li>Considere perdas em filtros, curvas, válvulas, mangueiras, dutos e trocadores.</li>
+          <li>Compare o cálculo com placa do equipamento, curva do fabricante e histórico de consumo.</li>
+          <li>Se o resultado ficar próximo do limite, adote margem de segurança e valide com engenharia.</li>
+      </ul>
+      <h3>Limites da estimativa</h3>
+      <p>Esta ferramenta é indicada para estudo, triagem, conferência de campo e apoio à manutenção. Para projeto final, laudo, especificação de compra, alteração de segurança ou liberação de equipamento crítico, valide as premissas com normas aplicáveis, documentação do fabricante e profissional habilitado.</p>
+    </section>
+
   </main>
   <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
 <script>function val(id){return parseFloat(document.getElementById(id).value)||0;}function fmt(x,d=2){return Number.isFinite(x)?x.toLocaleString('pt-BR',{maximumFractionDigits:d}):'-';}function set(id,v){document.getElementById(id).innerHTML=v;}function bind(){document.querySelectorAll('input,select').forEach(e=>e.addEventListener('input',calc));calc();}function copiar(){navigator.clipboard&&navigator.clipboard.writeText(document.body.innerText.slice(0,2200));}window.addEventListener('DOMContentLoaded',bind);function es(T){return 0.61094*Math.exp((17.625*T)/(T+243.04));}function calc(){let td=val('td'),p=val('p'),lim=val('lim');let pv=es(td);let pabs=(p+1.013)*100;let ppm=(pv/pabs)*1e6;let gm3=216.7*pv/(td+273.15);let st=td<=lim?'<span class="pill-ok">Dentro do limite</span>':'<span class="pill-bad">Acima do limite</span>';set('r1',fmt(pv,4)+' kPa');set('r2',fmt(gm3,3)+' g/m³');set('r3',fmt(ppm,0)+' ppmV');set('r4',st);}</script>
