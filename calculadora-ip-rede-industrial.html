@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Calculadora de IP e Máscara de Rede Industrial | ALOGY Engenharia</title>
+  <meta name="description" content="Calculadora de IP e máscara de rede industrial para CLP, IHM, inversor, supervisório e redes Ethernet industriais. Calcule rede, broadcast, faixa de hosts, gateway e se dois IPs estão na mesma rede."/>
+  <meta name="robots" content="index,follow" />
+  <meta name="theme-color" content="#062138" />
+  <link rel="canonical" href="https://www.alogy.com.br/calculadora-ip-rede-industrial.html" />
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png" />
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="app.js" defer></script>
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ALOGY Engenharia" />
+  <meta property="og:title" content="Calculadora de IP e Máscara de Rede Industrial" />
+  <meta property="og:description" content="Calcule rede, broadcast, faixa de hosts, máscara, wildcard, gateway e verifique se CLP, IHM, inversor e supervisório estão na mesma rede." />
+  <meta property="og:url" content="https://www.alogy.com.br/calculadora-ip-rede-industrial.html" />
+  <meta property="og:image" content="https://www.alogy.com.br/favicon-512x512.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebApplication",
+    "name":"Calculadora de IP e Máscara de Rede Industrial",
+    "url":"https://www.alogy.com.br/calculadora-ip-rede-industrial.html",
+    "applicationCategory":"EngineeringApplication",
+    "operatingSystem":"Web",
+    "description":"Calculadora para redes industriais Ethernet: IP, máscara, prefixo CIDR, rede, broadcast, faixa de hosts, gateway e verificação de mesma sub-rede.",
+    "publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"}
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {"@type":"Question","name":"Para que serve uma calculadora de IP industrial?","acceptedAnswer":{"@type":"Answer","text":"Ela ajuda a conferir se CLP, IHM, inversor, remota, switch gerenciável, supervisório e notebook de manutenção estão configurados dentro da mesma rede ou sub-rede."}},
+      {"@type":"Question","name":"O que é máscara /24?","acceptedAnswer":{"@type":"Answer","text":"/24 significa que os primeiros 24 bits identificam a rede. A máscara equivalente é 255.255.255.0, comum em redes industriais simples."}},
+      {"@type":"Question","name":"Dois equipamentos precisam estar na mesma rede para comunicar?","acceptedAnswer":{"@type":"Answer","text":"Para comunicação direta na mesma LAN, normalmente sim. Se estiverem em redes diferentes, será necessário roteamento, gateway, VLAN ou outra configuração de rede."}},
+      {"@type":"Question","name":"Posso usar qualquer IP em rede de CLP?","acceptedAnswer":{"@type":"Answer","text":"Não. É importante seguir o plano de endereçamento da planta, evitar conflitos de IP, conferir gateway, VLANs, documentação, política de segurança e requisitos do fabricante."}},
+      {"@type":"Question","name":"Esta ferramenta substitui análise de rede industrial?","acceptedAnswer":{"@type":"Answer","text":"Não. A ferramenta é apenas para estudo, apoio técnico e pré-análise. Não substitui projeto de rede, análise de cibersegurança, configuração de switches, VLANs, firewall, documentação ou profissional habilitado."}}
+    ]
+  }
+  </script>
+  <style>
+    .mini-btn{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(0,107,177,.25);background:rgba(0,107,177,.08);color:#0b3a62;border-radius:12px;padding:10px 12px;font-weight:900;cursor:pointer;text-decoration:none;font:inherit}
+    .mini-btn:hover{background:rgba(0,107,177,.12)}.mini-btn.dark{background:#0b3a62;color:#fff;border-color:#0b3a62}
+    .small-muted{color:var(--muted);font-size:.92rem;line-height:1.55}.calc-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+    .status-ok{border-color:rgba(34,197,94,.35)!important;background:rgba(34,197,94,.10)!important;color:#166534!important}
+    .status-warn{border-color:rgba(245,158,11,.40)!important;background:rgba(245,158,11,.12)!important;color:#92400e!important}
+    .status-bad{border-color:rgba(239,68,68,.35)!important;background:rgba(239,68,68,.10)!important;color:#991b1b!important}
+    .ip-pill{display:inline-flex;align-items:center;gap:8px;border-radius:999px;background:rgba(0,107,177,.08);border:1px solid rgba(0,107,177,.18);color:#0b3a62;font-weight:900;padding:8px 11px;font-size:.9rem;margin:4px 4px 0 0}
+    .binary-box{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;background:#f7fbff;border:1px solid rgba(0,107,177,.14);border-radius:14px;padding:13px;margin-top:12px;color:#14324a;line-height:1.7;word-break:break-word;font-size:.9rem}
+    .faq details{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:14px;padding:14px;margin-top:10px;box-shadow:0 6px 16px rgba(0,0,0,.04)}.faq summary{cursor:pointer;font-weight:900;color:#0b3a62}.faq p{margin:10px 0 0;color:var(--muted)}
+    .preset-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:12px}.preset-grid .mini-btn{justify-content:center;text-align:center}
+    @media(max-width:900px){.calc-actions .mini-btn,.preset-grid .mini-btn{width:100%;justify-content:center}.preset-grid{grid-template-columns:1fr}}
+    @media print{header,.social-floating,.fab-wrap,.cta-bar,footer,.calc-actions,.tools-hero .btn,.no-print{display:none!important}body{background:#fff}.container{max-width:100%;padding:0}.calc-card,.tools-hero{box-shadow:none;border:1px solid #ddd}.calc-layout{display:block}.calc-card{margin:12px 0}.calc-table th{background:#eee!important;color:#111!important}}
+  </style>
+</head>
+<body class="tools-page">
+  <header>
+    <div class="container headbar"><a href="/" class="logo-wrapper" aria-label="Voltar para o início"><img src="logo-alogy.webp" alt="ALOGY Engenharia" /></a><div class="crea-top" aria-label="CREA-SP"><img src="crea.webp" alt="CREA-SP"></div><button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menu"><i class="fas fa-bars"></i></button></div>
+    <nav class="desktop" aria-label="Menu principal"><div class="container navlinks"><a href="index.html">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="index.html#contato">Contato</a></div></nav>
+    <nav class="mobile" aria-label="Menu mobile"><a href="index.html">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="index.html#contato">Contato</a></nav>
+  </header>
+  <div class="social-floating" aria-label="Redes sociais"><a href="https://www.linkedin.com/company/alogyengenharia" class="linkedin" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a><a href="https://www.instagram.com/alogyengenharia" class="instagram" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="https://www.facebook.com/alogyengenharia" class="facebook" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><a href="https://www.youtube.com/@alogyengenharia" class="youtube" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a><a href="https://hotmart.com/pt-br/club/alogyengenharia" class="hotmart" target="_blank" rel="noopener" aria-label="Hotmart">H</a><a href="https://www.tiktok.com/@alogyengenharia" class="tiktok" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a></div>
+  <div class="fab-wrap" aria-label="Ações rápidas"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1!%20Vim%20pela%20calculadora%20de%20IP%20e%20rede%20industrial%20da%20ALOGY.%20Gostaria%20de%20atendimento." target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
+
+  <main class="container" style="margin-top:18px">
+    <div style="margin-bottom:14px;display:flex;gap:10px;flex-wrap:wrap" class="no-print">
+      <a class="floating-back-tools no-print" href="ferramentas.html"><i class="fas fa-arrow-left"></i> Voltar para Ferramentas</a>
+      <button class="btn print" type="button" onclick="window.print()"><i class="fas fa-print"></i> Imprimir</button>
+      <a class="btn secondary" href="calculadora-modbus.html"><i class="fas fa-network-wired"></i> Modbus</a>
+      <a class="btn secondary" href="calculadora-escala-clp.html"><i class="fas fa-ruler-combined"></i> Escala CLP</a>
+      <a class="btn secondary" href="checklist-teste-de-loop.html"><i class="fas fa-list-check"></i> Teste de Loop</a>
+    </div>
+
+    <section class="tools-hero"><h1>Calculadora de IP e Máscara de Rede Industrial</h1><p>Calcule rede, broadcast, faixa de hosts, wildcard, gateway e verifique se CLP, IHM, inversor, supervisório e notebook estão na mesma sub-rede.</p><a class="btn" href="#calc"><i class="fas fa-calculator"></i> Calcular IP</a></section>
+
+    <section class="calc-card" aria-label="Aviso de responsabilidade"><h2><i class="fas fa-triangle-exclamation"></i> Uso orientativo</h2><p>Esta ferramenta é apenas para estudo, apoio técnico e pré-análise. Não substitui projeto de rede industrial, plano de endereçamento, análise de cibersegurança, configuração de switches, VLANs, firewall, documentação do fabricante, validação em campo ou profissional habilitado. A ALOGY Engenharia não se responsabiliza por decisões tomadas exclusivamente com base nesta ferramenta.</p></section>
+
+    <section class="calc-layout" id="calc">
+      <div class="calc-card"><h2><i class="fas fa-ethernet"></i> Dados da rede</h2>
+        <label>IP principal</label><input id="ip" type="text" value="192.168.1.10" placeholder="Ex.: 192.168.1.10" oninput="calc()">
+        <label>Prefixo CIDR</label><select id="prefix" onchange="syncMaskFromPrefix();calc()">
+          <option value="8">/8 - 255.0.0.0</option><option value="16">/16 - 255.255.0.0</option><option value="20">/20 - 255.255.240.0</option><option value="21">/21 - 255.255.248.0</option><option value="22">/22 - 255.255.252.0</option><option value="23">/23 - 255.255.254.0</option><option value="24" selected>/24 - 255.255.255.0</option><option value="25">/25 - 255.255.255.128</option><option value="26">/26 - 255.255.255.192</option><option value="27">/27 - 255.255.255.224</option><option value="28">/28 - 255.255.255.240</option><option value="29">/29 - 255.255.255.248</option><option value="30">/30 - 255.255.255.252</option><option value="31">/31 - ponto a ponto</option><option value="32">/32 - host único</option>
+        </select>
+        <label>Máscara decimal</label><input id="mask" type="text" value="255.255.255.0" placeholder="Ex.: 255.255.255.0" oninput="syncPrefixFromMask();calc()">
+        <label>Gateway informado</label><input id="gateway" type="text" value="192.168.1.1" placeholder="Ex.: 192.168.1.1" oninput="calc()">
+        <label>Segundo IP para comparar</label><input id="ip2" type="text" value="192.168.1.20" placeholder="Ex.: IP da IHM, CLP, inversor ou notebook" oninput="calc()">
+        <div class="calc-actions"><button class="mini-btn dark" onclick="calc()"><i class="fas fa-calculator"></i> Calcular</button><button class="mini-btn" onclick="copiarResultado()"><i class="fas fa-copy"></i> Copiar resultado</button></div>
+        <div class="preset-grid">
+          <button class="mini-btn" onclick="preset('local')">192.168.1.10 /24</button>
+          <button class="mini-btn" onclick="preset('planta')">10.10.10.20 /24</button>
+          <button class="mini-btn" onclick="preset('linha')">172.16.5.10 /24</button>
+          <button class="mini-btn" onclick="preset('maior')">192.168.10.50 /23</button>
+          <button class="mini-btn" onclick="preset('clpihm')">CLP + IHM</button>
+          <button class="mini-btn" onclick="preset('fora')">Exemplo fora da rede</button>
+        </div>
+      </div>
+
+      <div class="calc-card"><h2><i class="fas fa-square-poll-vertical"></i> Resultado</h2>
+        <div class="results-grid">
+          <div class="result-box"><span>Rede</span><strong id="outRede">-</strong></div>
+          <div class="result-box"><span>Broadcast</span><strong id="outBroadcast">-</strong></div>
+          <div class="result-box"><span>Faixa utilizável</span><strong id="outFaixa">-</strong></div>
+          <div class="result-box"><span>Hosts utilizáveis</span><strong id="outHosts">-</strong></div>
+          <div class="result-box"><span>Máscara</span><strong id="outMask">-</strong></div>
+          <div class="result-box"><span>Wildcard</span><strong id="outWildcard">-</strong></div>
+          <div class="result-box"><span>Mesmo range?</span><strong id="outSame">-</strong></div>
+          <div class="result-box"><span>Status</span><strong id="outStatus">-</strong></div>
+        </div>
+        <p class="small-muted" style="margin-top:12px">Resumo rápido:</p>
+        <div id="pills"><span class="ip-pill">Aguardando cálculo</span></div>
+        <div class="binary-box" id="binario">Binário: -</div>
+      </div>
+    </section>
+
+    <section class="calc-card"><h2><i class="fas fa-list-check"></i> Diagnóstico de rede industrial</h2><div class="calc-table-wrap"><table class="calc-table"><thead><tr><th>Item</th><th>Resultado</th><th>Comentário</th></tr></thead><tbody id="diag"></tbody></table></div><div class="calc-note"><strong>Dica:</strong> em rede industrial, além do IP e máscara, confira duplicidade de endereço, gateway, VLAN, switch, porta bloqueada, cabo, conector, aterramento/blindagem, firewall do notebook e protocolo usado, como Modbus TCP, Profinet, Ethernet/IP ou supervisório.</div></section>
+
+    <section class="calc-card"><h2><i class="fas fa-table"></i> Tabela rápida de sub-redes comuns</h2><p class="small-muted">Valores úteis para escolher uma máscara em redes simples de CLP, IHM, inversores, remotas, switches e supervisório.</p><div class="calc-table-wrap"><table class="calc-table"><thead><tr><th>Prefixo</th><th>Máscara</th><th>Total de endereços</th><th>Hosts utilizáveis típicos</th><th>Uso comum</th></tr></thead><tbody id="tblSubnets"></tbody></table></div></section>
+
+    <section class="calc-card"><h2><i class="fas fa-industry"></i> Exemplo de plano simples de IP industrial</h2><div class="calc-table-wrap"><table class="calc-table"><thead><tr><th>Equipamento</th><th>Exemplo de IP</th><th>Observação</th></tr></thead><tbody><tr><td>Gateway / roteador industrial</td><td>192.168.1.1</td><td>Ponto de saída para outra rede, quando existir.</td></tr><tr><td>CLP principal</td><td>192.168.1.10</td><td>Manter fixo, documentado e sem DHCP.</td></tr><tr><td>IHM</td><td>192.168.1.20</td><td>Na mesma sub-rede do CLP quando a comunicação for direta.</td></tr><tr><td>Inversor de frequência</td><td>192.168.1.30</td><td>Evitar conflito com remotas, switches e notebooks.</td></tr><tr><td>Supervisório / SCADA</td><td>192.168.1.100</td><td>Validar firewall, portas e protocolo.</td></tr><tr><td>Notebook manutenção</td><td>192.168.1.200</td><td>Usar IP temporário livre e registrado durante intervenção.</td></tr></tbody></table></div></section>
+
+    <section class="calc-card faq"><h2><i class="fas fa-circle-question"></i> Perguntas frequentes</h2>
+      <details open><summary>O que significa IP, máscara e gateway?</summary><p>O IP identifica o equipamento na rede. A máscara define qual parte do endereço pertence à rede e qual parte pertence ao host. O gateway é o caminho usado para sair para outra rede.</p></details>
+      <details><summary>CLP e IHM precisam estar na mesma sub-rede?</summary><p>Na maioria das aplicações com comunicação direta, sim. Se estiverem em sub-redes diferentes, será necessário roteamento correto, gateway, VLAN ou configuração específica da arquitetura.</p></details>
+      <details><summary>Por que consigo pingar um equipamento e outro não?</summary><p>Pode ser IP fora da rede, máscara diferente, gateway incorreto, firewall, cabo, porta de switch, VLAN, duplicidade de IP, equipamento desligado ou protocolo bloqueado.</p></details>
+      <details><summary>Posso misturar rede corporativa com rede de automação?</summary><p>Não é recomendado sem projeto. A integração deve considerar segmentação, VLAN, firewall, política de segurança, acesso remoto, documentação e suporte de TI/automação.</p></details>
+      <details><summary>Esta calculadora faz varredura ou teste de cibersegurança?</summary><p>Não. Ela apenas calcula endereçamento IP. Não faz varredura, não identifica portas abertas e não substitui análise de cibersegurança industrial.</p></details>
+    </section>
+
+    <section class="cta-bar"><h3>Precisa organizar rede de CLP, IHM, inversores ou supervisório?</h3><p>A ALOGY Engenharia pode apoiar em automação, instrumentação, comissionamento, testes e documentação técnica.</p><a class="btn" href="https://wa.me/5519981442448?text=Ol%C3%A1!%20Vim%20pela%20calculadora%20de%20IP%20e%20rede%20industrial%20da%20ALOGY.%20Gostaria%20de%20apoio%20t%C3%A9cnico." target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> Falar com a ALOGY</a></section>
+  </main>
+  <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p></footer>
+
+<script>
+const $=id=>document.getElementById(id);
+function parseIp(str){ const p=String(str||'').trim().split('.'); if(p.length!==4) return null; const nums=p.map(x=>Number(x)); if(nums.some(n=>!Number.isInteger(n)||n<0||n>255)) return null; return nums; }
+function ipToInt(arr){ return (((arr[0]<<24)>>>0) + (arr[1]<<16) + (arr[2]<<8) + arr[3])>>>0; }
+function intToIp(n){ return [(n>>>24)&255,(n>>>16)&255,(n>>>8)&255,n&255].join('.'); }
+function prefixToMask(prefix){ prefix=Number(prefix); if(prefix===0) return 0; return (0xffffffff << (32-prefix))>>>0; }
+function maskToPrefix(maskArr){ if(!maskArr) return null; const m=ipToInt(maskArr); let seenZero=false, count=0; for(let i=31;i>=0;i--){ const bit=(m>>>i)&1; if(bit){ if(seenZero) return null; count++; } else seenZero=true; } return count; }
+function binIp(n){ return [24,16,8,0].map(s=>String((n>>>s)&255).padStart(8,'0')).join('.'); }
+function fmtNum(n){ return Number(n).toLocaleString('pt-BR'); }
+function usableCount(prefix){ if(prefix>=32) return 1; if(prefix===31) return 2; return Math.max(0, Math.pow(2,32-prefix)-2); }
+function totalCount(prefix){ return Math.pow(2,32-prefix); }
+function isPrivate(n){ const a=(n>>>24)&255, b=(n>>>16)&255; if(a===10) return true; if(a===172 && b>=16 && b<=31) return true; if(a===192 && b===168) return true; return false; }
+function ipType(n){ const a=(n>>>24)&255, b=(n>>>16)&255; if(a===10 || (a===172&&b>=16&&b<=31) || (a===192&&b===168)) return 'Privado'; if(a===169&&b===254) return 'Link-local'; if(a===127) return 'Loopback'; if(a>=224) return 'Multicast/reservado'; return 'Público'; }
+function syncMaskFromPrefix(){ $('mask').value=intToIp(prefixToMask(Number($('prefix').value))); }
+function syncPrefixFromMask(){ const arr=parseIp($('mask').value); const p=maskToPrefix(arr); if(p!==null){ $('prefix').value=String(p); } }
+function setBox(id, cls){ const box=$(id).parentElement; box.className='result-box '+cls; }
+function calc(){
+  const ipArr=parseIp($('ip').value), maskArr=parseIp($('mask').value), gwArr=parseIp($('gateway').value), ip2Arr=parseIp($('ip2').value);
+  const pFromMask=maskToPrefix(maskArr); const prefix=pFromMask!==null ? pFromMask : Number($('prefix').value); const mask=prefixToMask(prefix);
+  if(!ipArr || pFromMask===null || prefix<0 || prefix>32){
+    ['outRede','outBroadcast','outFaixa','outHosts','outMask','outWildcard','outSame','outStatus'].forEach(id=>$(id).textContent='Verificar');
+    $('pills').innerHTML='<span class="ip-pill">IP ou máscara inválida</span>'; $('binario').textContent='Binário: verificar IP e máscara.'; $('diag').innerHTML=''; return;
+  }
+  const ip=ipToInt(ipArr), network=(ip & mask)>>>0, wildcard=(~mask)>>>0, broadcast=(network | wildcard)>>>0;
+  const first = prefix>=31 ? network : (network+1)>>>0; const last = prefix>=31 ? broadcast : (broadcast-1)>>>0;
+  const hosts=usableCount(prefix); const total=totalCount(prefix);
+  const ipIsNetwork=ip===network && prefix<31; const ipIsBroadcast=ip===broadcast && prefix<31;
+  let same='-'; let sameCls='';
+  if(ip2Arr){ const ip2=ipToInt(ip2Arr); same=((ip2 & mask)>>>0)===network ? 'Sim' : 'Não'; sameCls=same==='Sim'?'status-ok':'status-bad'; } else { same='Não informado'; sameCls='status-warn'; }
+  let status='Configuração coerente'; let statusCls='status-ok';
+  if(ipIsNetwork){ status='IP principal é o endereço de rede'; statusCls='status-bad'; }
+  else if(ipIsBroadcast){ status='IP principal é broadcast'; statusCls='status-bad'; }
+  else if(prefix>30){ status='Máscara pouco usual para equipamentos'; statusCls='status-warn'; }
+  else if(!isPrivate(ip)){ status='IP não privado; verificar aplicação'; statusCls='status-warn'; }
+  $('outRede').textContent=intToIp(network)+'/'+prefix; $('outBroadcast').textContent=intToIp(broadcast); $('outFaixa').textContent=intToIp(first)+' até '+intToIp(last); $('outHosts').textContent=fmtNum(hosts); $('outMask').textContent=intToIp(mask); $('outWildcard').textContent=intToIp(wildcard); $('outSame').textContent=same; $('outStatus').textContent=status;
+  setBox('outSame',sameCls); setBox('outStatus',statusCls);
+  $('pills').innerHTML=[`IP: ${intToIp(ip)}`,`Tipo: ${ipType(ip)}`,`Total: ${fmtNum(total)} endereços`,`Gateway: ${gwArr?intToIp(ipToInt(gwArr)):'não informado'}`].map(t=>`<span class="ip-pill">${t}</span>`).join('');
+  $('binario').innerHTML=`IP: ${binIp(ip)}<br>Máscara: ${binIp(mask)}<br>Rede: ${binIp(network)}`;
+  montarDiag(ip,network,broadcast,mask,prefix,gwArr,ip2Arr,ipIsNetwork,ipIsBroadcast,same,statusCls);
+  montarTabelaSubnets();
+}
+function row(item,res,com,cls){ return `<tr><td>${item}</td><td><strong class="${cls||''}">${res}</strong></td><td>${com}</td></tr>`; }
+function montarDiag(ip,network,broadcast,mask,prefix,gwArr,ip2Arr,ipIsNetwork,ipIsBroadcast,same,statusCls){
+  let rows='';
+  rows += row('IP principal', ipIsNetwork?'Atenção':ipIsBroadcast?'Atenção':'OK', ipIsNetwork?'O IP informado é o endereço de rede e normalmente não deve ser usado em equipamento.':ipIsBroadcast?'O IP informado é broadcast e normalmente não deve ser usado em equipamento.':'O IP pode ser usado como host, desde que não exista duplicidade.', ipIsNetwork||ipIsBroadcast?'status-bad':'status-ok');
+  rows += row('Faixa privada', isPrivate(ip)?'OK':'Verificar', isPrivate(ip)?'Faixa privada adequada para redes internas industriais.':'Endereço não privado. Em rede industrial interna, normalmente usam-se faixas 10.x.x.x, 172.16-31.x.x ou 192.168.x.x.', isPrivate(ip)?'status-ok':'status-warn');
+  if(gwArr){ const gw=ipToInt(gwArr), gwSame=((gw & mask)>>>0)===network, gwBad=(gw===network||gw===broadcast)&&prefix<31; rows += row('Gateway', gwSame&&!gwBad?'OK':'Verificar', gwSame&&!gwBad?'Gateway está dentro da mesma sub-rede e não é rede/broadcast.':gwBad?'Gateway informado é rede ou broadcast.':'Gateway está fora da sub-rede do IP principal.', gwSame&&!gwBad?'status-ok':'status-bad'); }
+  else rows += row('Gateway','Não informado','Pode ser desnecessário em comunicação local direta, mas deve ser definido quando houver roteamento entre redes.','status-warn');
+  if(ip2Arr){ const ip2=ipToInt(ip2Arr), eq=ip2===ip, sameNet=((ip2 & mask)>>>0)===network; rows += row('Segundo IP', eq?'Conflito':sameNet?'Mesma rede':'Rede diferente', eq?'O segundo IP é igual ao IP principal. Isso causaria conflito.':sameNet?'O segundo IP está na mesma sub-rede.':'O segundo IP está fora da sub-rede. Pode exigir gateway, roteamento ou ajuste de máscara.', eq?'status-bad':sameNet?'status-ok':'status-bad'); }
+  else rows += row('Segundo IP','Não informado','Informe um IP de CLP, IHM, inversor ou notebook para comparar se está na mesma rede.','status-warn');
+  rows += row('Máscara', prefix>=24&&prefix<=30?'Comum':'Verificar', prefix>=24&&prefix<=30?'Máscara comum para células e máquinas industriais pequenas ou médias.':'Pode estar correta, mas confirme o plano de endereçamento e a arquitetura da planta.', prefix>=24&&prefix<=30?'status-ok':'status-warn');
+  $('diag').innerHTML=rows;
+}
+function montarTabelaSubnets(){
+  const uses={16:'Rede grande/planta, exige cuidado',20:'Muitos dispositivos',21:'Muitos dispositivos',22:'Rede média/grande',23:'Rede média',24:'Célula/máquina comum',25:'Metade de uma /24',26:'Pequena rede',27:'Pequena máquina',28:'Poucos dispositivos',29:'Até 6 hosts',30:'Link ponto a ponto'};
+  const prefs=[16,20,21,22,23,24,25,26,27,28,29,30];
+  $('tblSubnets').innerHTML=prefs.map(p=>`<tr><td>/${p}</td><td>${intToIp(prefixToMask(p))}</td><td>${fmtNum(totalCount(p))}</td><td>${fmtNum(usableCount(p))}</td><td>${uses[p]}</td></tr>`).join('');
+}
+function preset(tipo){
+  if(tipo==='local'){ $('ip').value='192.168.1.10'; $('prefix').value='24'; $('gateway').value='192.168.1.1'; $('ip2').value='192.168.1.20'; }
+  if(tipo==='planta'){ $('ip').value='10.10.10.20'; $('prefix').value='24'; $('gateway').value='10.10.10.1'; $('ip2').value='10.10.10.50'; }
+  if(tipo==='linha'){ $('ip').value='172.16.5.10'; $('prefix').value='24'; $('gateway').value='172.16.5.1'; $('ip2').value='172.16.5.30'; }
+  if(tipo==='maior'){ $('ip').value='192.168.10.50'; $('prefix').value='23'; $('gateway').value='192.168.10.1'; $('ip2').value='192.168.11.20'; }
+  if(tipo==='clpihm'){ $('ip').value='192.168.0.10'; $('prefix').value='24'; $('gateway').value='192.168.0.1'; $('ip2').value='192.168.0.20'; }
+  if(tipo==='fora'){ $('ip').value='192.168.1.10'; $('prefix').value='24'; $('gateway').value='192.168.1.1'; $('ip2').value='192.168.2.20'; }
+  syncMaskFromPrefix(); calc(); window.scrollTo({top:0,behavior:'smooth'});
+}
+function copiarResultado(){
+  const txt=[
+    'Resultado - Calculadora de IP e Máscara de Rede Industrial ALOGY',
+    `IP principal: ${$('ip').value}`,
+    `Máscara/prefixo: ${$('outMask').textContent}`,
+    `Rede: ${$('outRede').textContent}`,
+    `Broadcast: ${$('outBroadcast').textContent}`,
+    `Faixa utilizável: ${$('outFaixa').textContent}`,
+    `Hosts utilizáveis: ${$('outHosts').textContent}`,
+    `Gateway: ${$('gateway').value}`,
+    `Segundo IP: ${$('ip2').value}`,
+    `Mesmo range: ${$('outSame').textContent}`,
+    `Status: ${$('outStatus').textContent}`,
+    'Observação: resultado orientativo; não substitui projeto de rede, plano de endereçamento, análise de cibersegurança, configuração de campo ou profissional habilitado.'
+  ].join('\n');
+  navigator.clipboard?.writeText(txt).then(()=>alert('Resultado copiado.')).catch(()=>alert(txt));
+}
+['ip','mask','gateway','ip2','prefix'].forEach(id=>$(id).addEventListener('change',calc)); syncMaskFromPrefix(); calc();
+</script>
+</body>
+</html>
