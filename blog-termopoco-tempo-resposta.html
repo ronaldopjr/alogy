@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Termopoço e tempo de resposta: por que a medição atrasa</title>
+  <meta name="description" content="Entenda como poço termométrico, fluido, velocidade e montagem influenciam o tempo de resposta de sensores de temperatura industriais."/>
+  <meta name="robots" content="index,follow" />
+  <meta name="theme-color" content="#004b80" />
+  <link rel="canonical" href="https://www.alogy.com.br/blog-termopoco-tempo-resposta.html" />
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png" />
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="app.js" defer></script>
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="ALOGY Engenharia" />
+  <meta property="og:title" content="Termopoço e tempo de resposta: por que a medição atrasa" />
+  <meta property="og:description" content="Entenda como poço termométrico, fluido, velocidade e montagem influenciam o tempo de resposta de sensores de temperatura industriais." />
+  <meta property="og:url" content="https://www.alogy.com.br/blog-termopoco-tempo-resposta.html" />
+  <meta property="og:image" content="https://www.alogy.com.br/favicon-512x512.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BlogPosting","headline":"Termopoço e tempo de resposta: por que a medição atrasa","description":"Entenda como poço termométrico, fluido, velocidade e montagem influenciam o tempo de resposta de sensores de temperatura industriais.","author":{"@type":"Organization","name":"ALOGY Engenharia"},"publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://www.alogy.com.br/blog-termopoco-tempo-resposta.html"},"inLanguage":"pt-BR"}
+  </script>
+  <style>.post-wrap{max-width:900px;margin:18px auto}.post-card{background:var(--card);border:1px solid rgba(0,0,0,.08);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}.post-content{padding:30px}.post-meta{color:var(--muted);font-size:.95rem;margin-bottom:12px}.post-content h1{font-size:2.05rem;line-height:1.15;margin-bottom:12px;color:var(--text)}.post-content p{color:var(--text);margin:0 0 16px;font-size:1.04rem;line-height:1.75}.post-highlight{background:rgba(0,107,177,.08);border:1px solid rgba(0,107,177,.18);border-radius:14px;padding:16px;margin:22px 0}@media(max-width:768px){.post-content{padding:22px}.post-content h1{font-size:1.65rem}}</style>
+  <!-- Google AdSense - verificação de propriedade -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5586837114309500"
+     crossorigin="anonymous"></script>
+</head>
+<body>
+  <header>
+    <div class="container headbar"><a href="/" class="logo-wrapper" aria-label="Voltar para o início"><img src="logo-alogy.webp" alt="ALOGY Engenharia" /></a><div class="crea-top" aria-label="CREA-SP"><img src="crea.webp" alt="CREA-SP"></div><button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menu"><i class="fas fa-bars"></i></button></div>
+    <nav class="desktop" aria-label="Menu principal"><div class="container navlinks"><a href="index.html">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="index.html#contato">Contato</a></div></nav>
+    <nav class="mobile" aria-label="Menu mobile"><a href="index.html">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="index.html#contato">Contato</a></nav>
+  </header>
+  <div class="social-floating" aria-label="Redes sociais"><a href="https://www.linkedin.com/company/alogyengenharia" class="linkedin" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a><a href="https://www.instagram.com/alogyengenharia" class="instagram" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="https://www.facebook.com/alogyengenharia" class="facebook" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><a href="https://www.youtube.com/@alogyengenharia" class="youtube" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a><a href="https://hotmart.com/pt-br/club/alogyengenharia" class="hotmart" target="_blank" rel="noopener" aria-label="Hotmart">H</a><a href="https://www.tiktok.com/@alogyengenharia" class="tiktok" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a></div>
+  <div class="fab-wrap" aria-label="Ações rápidas"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1%21%20Vim%20pela%20artigo%20t%C3%A9cnico%20da%20ALOGY.%20Gostaria%20de%20atendimento." target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
+  <main class="container" style="margin-top:18px">
+    <a class="floating-back-blog no-print" href="blog.html"><i class="fas fa-arrow-left"></i> Voltar ao Blog</a>
+    <article class="post-wrap post-card">
+      <div class="post-content">
+        <div class="post-meta">Artigo técnico • ALOGY Engenharia</div>
+        <h1>Termopoço e tempo de resposta: por que a medição atrasa</h1>
+        <p>Um sensor de temperatura pode estar calibrado e mesmo assim responder devagar. Em processos dinâmicos, o atraso do conjunto sensor, poço termométrico e montagem pode prejudicar controle, alarme e diagnóstico.</p>
+        <div class="tags" style="margin-bottom:16px"><span class="tag">Temperatura</span><span class="tag">Termopoço</span><span class="tag">RTD</span></div>
+        <div class="post-highlight"><strong>Ferramenta relacionada:</strong> use a <a href="calculadora-termopoco-tempo-resposta.html">Calculadora de Tempo de Resposta de Termopoço</a> para simular casos práticos.</div>
+      </div>
+    </article>
+    <section class="calc-card"><h2>O papel do poço termométrico</h2><p>O poço protege o sensor contra pressão, corrosão e desgaste, mas adiciona massa térmica e uma barreira de transferência de calor.</p></section>
+<section class="calc-card"><h2>Constante de tempo</h2><p>Em um modelo de primeira ordem, uma constante de tempo representa cerca de 63% da resposta. Três constantes chegam próximo de 95%.</p></section>
+<section class="calc-card"><h2>Como reduzir atraso</h2><p>Use inserção adequada, bom contato térmico, ponta reduzida quando aplicável, fluido com velocidade suficiente e verifique se o ponto de medição representa o processo.</p></section>
+  </main>
+    <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
+</body>
+</html>
