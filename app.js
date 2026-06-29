@@ -63,7 +63,7 @@ function setActiveNav(){
 
   const currentIsIndex = (path === '' || path === 'index.html');
   const currentIsBlogPost = path.startsWith('blog-') && path.endsWith('.html');
-  const currentIsToolPage = path === 'ferramentas.html' || path.startsWith('calculadora-') || path.startsWith('conversor-');
+  const currentIsToolPage = path === 'ferramentas.html' || path.startsWith('calculadora-') || path.startsWith('conversor-') || path.startsWith('checklist-');
 
   links.forEach(a => {
     const href = a.getAttribute('href') || '';

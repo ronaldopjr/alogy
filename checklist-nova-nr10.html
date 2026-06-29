@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Checklist Nova NR-10 2026 Online | Adequação até 2027</title>
+  <meta name="description" content="Checklist interativo gratuito para diagnóstico inicial de adequação à Nova NR-10 2026: GRO, arco elétrico, PIE, treinamento, documentação e permissões de trabalho."/>
+  <meta name="robots" content="index,follow" />
+  <meta name="theme-color" content="#004b80" />
+  <link rel="canonical" href="https://www.alogy.com.br/checklist-nova-nr10.html" />
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png" />
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="app.js" defer></script>
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ALOGY Engenharia" />
+  <meta property="og:title" content="Checklist Nova NR-10 2026 Online" />
+  <meta property="og:description" content="Ferramenta orientativa para pré-diagnóstico de adequação à Nova NR-10 2026." />
+  <meta property="og:url" content="https://www.alogy.com.br/checklist-nova-nr10.html" />
+  <meta property="og:image" content="https://www.alogy.com.br/logo-alogy.webp" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebApplication",
+    "name":"Checklist Nova NR-10 2026 Online",
+    "url":"https://www.alogy.com.br/checklist-nova-nr10.html",
+    "applicationCategory":"EngineeringApplication",
+    "operatingSystem":"Web",
+    "description":"Checklist interativo orientativo para diagnóstico inicial de adequação à Nova NR-10 2026, com foco em GRO, arco elétrico, PIE, permissões de trabalho e treinamentos.",
+    "publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"}
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"HowTo",
+    "name":"Como usar o checklist Nova NR-10 2026",
+    "description":"Passo a passo para fazer um autodiagnóstico inicial de adequação à Nova NR-10 2026.",
+    "step":[
+      {"@type":"HowToStep","name":"Leia o aviso orientativo","text":"Confirme que a ferramenta é apenas um apoio inicial e não substitui avaliação de profissional habilitado."},
+      {"@type":"HowToStep","name":"Classifique cada item","text":"Marque cada item como conforme, atenção ou não iniciado."},
+      {"@type":"HowToStep","name":"Revise o resultado","text":"Analise o percentual de conformidade e a lista de prioridades gerada pela ferramenta."}
+    ]
+  }
+  </script>
+  <style>
+    .timeline-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}
+    .timeline-item{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);border-radius:15px;padding:14px;color:#fff}
+    .timeline-item strong{display:block;font-size:1.05rem;margin-bottom:4px}.timeline-item span{opacity:.9;font-size:.95rem;line-height:1.45}
+    .check-section{margin-top:18px}.check-header{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:10px}.check-header h2{margin:0;color:var(--text)}
+    .check-item{display:grid;grid-template-columns:1fr 190px;gap:12px;align-items:center;border:1px solid rgba(0,0,0,.08);border-radius:14px;background:#fff;padding:13px;margin-top:10px}
+    .check-item label{font-weight:800;color:var(--text);line-height:1.45}.check-item small{display:block;color:var(--muted);font-weight:400;margin-top:4px;line-height:1.45}.check-item select{font-weight:800}
+    .progress-wrap{background:#e5e7eb;border-radius:999px;height:14px;overflow:hidden;margin-top:12px}.progress-bar{height:100%;width:0;background:linear-gradient(90deg,#16a34a,#0ea5e9);transition:width .2s ease}.result-priority{margin-top:12px;padding:14px;border-radius:14px;background:rgba(0,107,177,.08);border:1px solid rgba(0,107,177,.18);color:#0b3a62;font-weight:800;line-height:1.55}
+    .legend{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.legend span{display:inline-flex;align-items:center;gap:7px;border:1px solid rgba(0,0,0,.08);background:#fff;border-radius:999px;padding:7px 10px;font-weight:800;font-size:.9rem}.status-dot{width:10px;height:10px;border-radius:999px;display:inline-block}.ok{background:#16a34a}.warn{background:#f59e0b}.bad{background:#dc2626}
+    .actions-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}.source-note{color:var(--muted);font-size:.92rem;line-height:1.55;margin-top:10px}
+    @media(max-width:900px){.timeline-grid{grid-template-columns:1fr}.check-item{grid-template-columns:1fr}.check-item select{width:100%}}
+    @media print{.actions-row,.floating-back-tools,.no-print{display:none!important}.timeline-item{color:#111;background:#fff;border:1px solid #ddd}.tools-hero{color:#111!important;background:#fff!important}}
+  </style>
+</head>
+<body class="tools-page">
+  <header>
+    <div class="container headbar"><a href="/" class="logo-wrapper" aria-label="Voltar para o início"><img src="logo-alogy.webp" alt="ALOGY Engenharia" /></a><div class="crea-top" aria-label="CREA-SP"><img src="crea.webp" alt="CREA-SP"></div><button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menu"><i class="fas fa-bars"></i></button></div>
+    <nav class="desktop" aria-label="Menu principal"><div class="container navlinks"><a href="index.html">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="index.html#contato">Contato</a></div></nav>
+    <nav class="mobile" aria-label="Menu mobile"><a href="index.html">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="index.html#contato">Contato</a></nav>
+  </header>
+  <div class="social-floating" aria-label="Redes sociais"><a href="https://www.linkedin.com/company/alogyengenharia" class="linkedin" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a><a href="https://www.instagram.com/alogyengenharia" class="instagram" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="https://www.facebook.com/alogyengenharia" class="facebook" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><a href="https://www.youtube.com/@alogyengenharia" class="youtube" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a><a href="https://hotmart.com/pt-br/club/alogyengenharia" class="hotmart" target="_blank" rel="noopener" aria-label="Hotmart">H</a><a href="https://www.tiktok.com/@alogyengenharia" class="tiktok" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a></div>
+  <div class="fab-wrap" aria-label="Ações rápidas"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1!%20Vim%20pelo%20checklist%20Nova%20NR-10%202026%20da%20ALOGY.%20Gostaria%20de%20atendimento." target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
+  <main class="container" style="margin-top:18px">
+    <div style="margin-bottom:14px;display:flex;gap:10px;flex-wrap:wrap" class="no-print"><a class="floating-back-tools no-print" href="ferramentas.html"><i class="fas fa-arrow-left"></i> Voltar para Ferramentas</a><button class="btn print" type="button" onclick="window.print()"><i class="fas fa-print"></i> Imprimir</button><a class="btn secondary" href="blog-nova-nr10-2026.html"><i class="fas fa-book-open"></i> Artigo Nova NR-10</a></div>
+
+    <section class="tools-hero">
+      <h1>Checklist Nova NR-10 2026</h1>
+      <p>Ferramenta orientativa para diagnóstico inicial de adequação à nova redação da NR-10, com foco em risco elétrico, GRO/PGR, arco elétrico, documentação técnica, PIE, treinamento, sinalização e permissões de trabalho.</p>
+      <div class="timeline-grid">
+        <div class="timeline-item"><strong>Publicação</strong><span>Portaria MTE nº 737/2026, publicada em junho de 2026.</span></div>
+        <div class="timeline-item"><strong>Transição</strong><span>Entrada em vigor prevista após período de transição de um ano.</span></div>
+        <div class="timeline-item"><strong>Preparação</strong><span>Use este checklist como pré-avaliação para mapear lacunas antes da adequação formal.</span></div>
+      </div>
+    </section>
+
+    <section class="calc-card">
+      <h2><i class="fas fa-triangle-exclamation"></i> Aviso importante</h2>
+      <p>Esta ferramenta é um guia de apoio para autodiagnóstico inicial e não substitui análise de profissional legalmente habilitado, SESMT, responsável técnico ou a leitura completa do texto oficial da NR-10 e da Portaria MTE nº 737/2026.</p>
+      <p class="source-note">Fonte de referência: <a href="https://www.legisweb.com.br/legislacao/?id=496402" target="_blank" rel="noopener">Portaria MTE nº 737/2026</a> e notícia do <a href="https://www.gov.br/trabalho-e-emprego/pt-br/noticias-e-conteudo/2026/maio/mte-moderniza-nr-10-e-instala-mesa-estadual-do-trabalho-decente-no-meio-rural-em-sp" target="_blank" rel="noopener">Ministério do Trabalho e Emprego</a>.</p>
+      <div class="legend"><span><i class="status-dot ok"></i> Conforme</span><span><i class="status-dot warn"></i> Atenção</span><span><i class="status-dot bad"></i> Não iniciado</span></div>
+    </section>
+
+    <section class="calc-layout">
+      <div class="calc-card">
+        <h2><i class="fas fa-chart-simple"></i> Resultado do diagnóstico</h2>
+        <div class="calc-result" style="grid-template-columns:1fr 1fr"><div class="result-box"><span>Itens conformes</span><strong id="nr10_ok">0</strong></div><div class="result-box"><span>Progresso</span><strong id="nr10_pct">0%</strong></div></div>
+        <div class="progress-wrap"><div class="progress-bar" id="nr10_bar"></div></div>
+        <div class="result-priority" id="nr10_resumo">Marque os itens do checklist para gerar uma visão inicial de prioridade.</div>
+        <div class="actions-row"><button class="mini-btn dark" type="button" onclick="copiarResumoNR10()"><i class="fas fa-copy"></i> Copiar resumo</button><button class="mini-btn" type="button" onclick="limparChecklistNR10()"><i class="fas fa-eraser"></i> Limpar marcações</button></div>
+      </div>
+      <div class="calc-card">
+        <h2><i class="fas fa-clipboard-list"></i> Como interpretar</h2>
+        <p><strong>Conforme:</strong> item já tratado e documentado internamente.</p>
+        <p><strong>Atenção:</strong> existe alguma prática, mas precisa de revisão, evidência ou atualização.</p>
+        <p><strong>Não iniciado:</strong> item ainda não foi avaliado ou não há evidência disponível.</p>
+      </div>
+    </section>
+
+    <form id="nr10Form" onsubmit="return false" aria-label="Checklist Nova NR-10 2026">
+      <section class="check-section calc-card">
+        <div class="check-header"><h2><i class="fas fa-shield-halved"></i> Gestão de riscos, GRO e PGR</h2></div>
+        <div class="check-item"><label>O risco elétrico está identificado no inventário de riscos do PGR?<small>Verifique se as atividades elétricas aparecem com perigos, avaliação e controles definidos.</small></label><select data-item="Risco elétrico no PGR"><option value="bad">Não iniciado</option><option value="warn">Atenção</option><option value="ok">Conforme</option></select></div>
+        <div class="check-item"><label>Existe plano de ação específico para riscos elétricos?<small>Inclua responsáveis, prazos, medidas de controle e acompanhamento.</small></label><select data-item="Plano de ação de risco elétrico"><option value="bad">Não iniciado</option><option value="warn">Atenção</option><option value="ok">Conforme</option></select></div>
+      </section>
+
+      <section class="check-section calc-card">
+        <div class="check-header"><h2><i class="fas fa-power-off"></i> Hierarquia de controle e desenergização</h2></div>
+        <div class="check-item"><label>A desenergização é tratada como primeira alternativa antes da intervenção?<small>EPI não deve ser a única barreira de proteção.</small></label><select data-item="Desenergização como prioridade"><option value="bad">Não iniciado</option><option value="warn">Atenção</option><option value="ok">Conforme</option></select></div>
+        <div class="check-item"><label>Há procedimento formal de bloqueio, teste de ausência de tensão e sinalização?<small>Confirme se existe procedimento escrito e evidência de aplicação em campo.</small></label><select data-item="Bloqueio e sinalização"><option value="bad">Não iniciado</option><option value="warn">Atenção</option><option value="ok">Conforme</option></select></div>
+      </section>
+
+      <section class="check-section calc-card">
+        <div class="check-header"><h2><i class="fas fa-bolt-lightning"></i> Arco elétrico e classificação de tensão</h2></div>
+        <div class="check-item"><label>Os procedimentos consideram risco de arco elétrico nos pontos críticos?<small>Avalie painéis, CCMs, manobras, intervenções e atividades com exposição relevante.</small></label><select data-item="Análise de arco elétrico"><option value="bad">Não iniciado</option><option value="warn">Atenção</option><option value="ok">Conforme</option></select></div>
+        <div class="check-item"><label>As instalações foram revisadas considerando baixa, média e alta tensão?<small>Reveja classificação, treinamentos, sinalização e procedimentos conforme o nível de tensão.</small></label><select data-item="Classificação de tensão"><option value="bad">Não iniciado</option><option value="warn">Atenção</option><option value="ok">Conforme</option></select></div>
+      </section>
+
+      <section class="check-section calc-card">
+        <div class="check-header"><h2><i class="fas fa-folder-open"></i> Documentação e PIE</h2></div>
+        <div class="check-item"><label>O Prontuário das Instalações Elétricas está atualizado e disponível?<small>Inclua diagramas, procedimentos, inspeções, especificações e registros aplicáveis.</small></label><select data-item="PIE atualizado"><option value="bad">Não iniciado</option><option value="warn">Atenção</option><option value="ok">Conforme</option></select></div>
+        <div class="check-item"><label>Os diagramas unifilares refletem a instalação real?<small>Conferir se alterações de campo foram incorporadas aos documentos.</small></label><select data-item="Diagramas unifilares atualizados"><option value="bad">Não iniciado</option><option value="warn">Atenção</option><option value="ok">Conforme</option></select></div>
+      </section>
+
+      <section class="check-section calc-card">
+        <div class="check-header"><h2><i class="fas fa-file-signature"></i> Permissão de trabalho e análise de risco</h2></div>
+        <div class="check-item"><label>Existe permissão de trabalho para atividades com risco elétrico?<small>Confirme validade, responsável, revalidação e condições reais da atividade.</small></label><select data-item="Permissão de trabalho"><option value="bad">Não iniciado</option><option value="warn">Atenção</option><option value="ok">Conforme</option></select></div>
+        <div class="check-item"><label>A análise de risco considera local, entorno, isolamento, sinalização, EPC e EPI?<small>Esse é um ponto essencial para segurança operacional e rastreabilidade.</small></label><select data-item="Análise de risco mínima"><option value="bad">Não iniciado</option><option value="warn">Atenção</option><option value="ok">Conforme</option></select></div>
+      </section>
+
+      <section class="check-section calc-card">
+        <div class="check-header"><h2><i class="fas fa-user-graduate"></i> Treinamento, sinalização e indumentária</h2></div>
+        <div class="check-item"><label>Os treinamentos estão alinhados à atividade real, tensão e setor de atuação?<small>Evite certificado genérico desconectado da prática executada.</small></label><select data-item="Treinamento aderente à atividade"><option value="bad">Não iniciado</option><option value="warn">Atenção</option><option value="ok">Conforme</option></select></div>
+        <div class="check-item"><label>Sinalização, EPC, EPI e indumentária foram revisados para riscos elétricos?<small>Inclua materiais condutivos, arco elétrico, bloqueio, sinalização e proteção coletiva.</small></label><select data-item="Sinalização e proteção"><option value="bad">Não iniciado</option><option value="warn">Atenção</option><option value="ok">Conforme</option></select></div>
+      </section>
+    </form>
+
+    <section class="cta-bar">
+      <div><strong>Precisa de apoio técnico para adequação NR-10?</strong><br><span class="muted">A ALOGY pode apoiar sua empresa na análise técnica, documentação elétrica, diagramas, prontuário e planejamento de adequações.</span></div>
+      <div class="cta-actions"><a class="btn" href="index.html#contato"><i class="fas fa-paper-plane"></i> Solicitar análise</a><a class="btn secondary" href="industrial.html"><i class="fas fa-industry"></i> Serviços industriais</a></div>
+    </section>
+  </main>
+  <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p></footer>
+  <script>
+    function calcularNR10(){
+      const selects = Array.from(document.querySelectorAll('#nr10Form select'));
+      const total = selects.length;
+      const ok = selects.filter(s => s.value === 'ok').length;
+      const warn = selects.filter(s => s.value === 'warn').length;
+      const bad = selects.filter(s => s.value === 'bad').length;
+      const pct = total ? Math.round((ok / total) * 100) : 0;
+      document.getElementById('nr10_ok').textContent = `${ok} de ${total}`;
+      document.getElementById('nr10_pct').textContent = `${pct}%`;
+      document.getElementById('nr10_bar').style.width = `${pct}%`;
+      let msg = '';
+      if(bad > 0) msg = `Prioridade alta: existem ${bad} item(ns) não iniciado(s). Comece por documentação, análise de risco e procedimentos críticos.`;
+      else if(warn > 0) msg = `Boa base inicial, mas ${warn} item(ns) ainda precisam de revisão, evidência ou atualização antes de uma adequação formal.`;
+      else msg = 'Todos os itens foram marcados como conformes. Mesmo assim, mantenha evidências atualizadas e valide com profissional habilitado.';
+      document.getElementById('nr10_resumo').textContent = msg;
+    }
+    function copiarResumoNR10(){
+      const selects = Array.from(document.querySelectorAll('#nr10Form select'));
+      const linhas = selects.map(s => `${s.dataset.item}: ${s.options[s.selectedIndex].text}`);
+      const texto = `Checklist Nova NR-10 2026 - ALOGY Engenharia\n${document.getElementById('nr10_resumo').textContent}\n\n${linhas.join('\n')}\n\nFerramenta orientativa. Não substitui avaliação técnica/legal.`;
+      navigator.clipboard?.writeText(texto);
+      alert('Resumo copiado.');
+    }
+    function limparChecklistNR10(){
+      document.querySelectorAll('#nr10Form select').forEach(s => s.value = 'bad');
+      calcularNR10();
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('#nr10Form select').forEach(s => s.addEventListener('change', calcularNR10));
+      calcularNR10();
+    });
+  </script>
+</body>
+</html>

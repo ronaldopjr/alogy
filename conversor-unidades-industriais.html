@@ -29,12 +29,25 @@
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
-    "@type":"WebPage",
-    "name":"Conversor de Unidades Industriais | ALOGY Engenharia",
+    "@type":"WebApplication",
+    "name":"Conversor de Unidades Industriais",
     "url":"https://www.alogy.com.br/conversor-unidades-industriais.html",
+    "applicationCategory":"EngineeringApplication",
+    "operatingSystem":"Web",
     "description":"Converta unidades industriais de pressão, temperatura e vazão. Ferramenta gratuita para instrumentação, automação, calibração e manutenção industrial.",
-    "isPartOf":{"@type":"WebSite","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"},
-    "inLanguage":"pt-BR"
+    "publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"}
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {"@type":"Question","name":"Quantos psi tem 1 bar?","acceptedAnswer":{"@type":"Answer","text":"1 bar equivale a aproximadamente 14,5038 psi."}},
+      {"@type":"Question","name":"Quantos bar tem 1 kgf/cm²?","acceptedAnswer":{"@type":"Answer","text":"1 kgf/cm² equivale a aproximadamente 0,980665 bar."}},
+      {"@type":"Question","name":"Como converter m³/h para L/min?","acceptedAnswer":{"@type":"Answer","text":"Multiplique o valor em m³/h por 16,6667. Por exemplo, 1 m³/h equivale a 16,6667 L/min."}},
+      {"@type":"Question","name":"Esse conversor serve para calibração?","acceptedAnswer":{"@type":"Answer","text":"Serve como apoio matemático para conversão de unidades. A calibração real deve considerar procedimento, padrão utilizado, incerteza e critério de aceitação."}}
+    ]
   }
   </script>
 </head>
@@ -98,11 +111,10 @@
     </a>
   </div>
 
-  <a class="floating-back-tools" href="ferramentas.html"><i class="fas fa-arrow-left"></i> Voltar para Ferramentas</a>
 
-  
   <main class="container" style="margin-top:18px">
     <div style="margin-bottom:14px;display:flex;gap:10px;flex-wrap:wrap" class="no-print">
+      <a class="floating-back-tools no-print" href="ferramentas.html"><i class="fas fa-arrow-left"></i> Voltar para Ferramentas</a>
       <button class="btn print" type="button" onclick="window.print()"><i class="fas fa-print"></i> Imprimir</button>
       <a class="btn secondary" href="calculadora-4-20ma.html"><i class="fas fa-wave-square"></i> Calculadora 4-20 mA</a>
     </div>
