@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calculadora de Incerteza de Calibração | ALOGY</title>
+  <meta name="description" content="Calcule erro, incerteza expandida, TUR, TAR, guard band, aprovação e memorial técnico para calibração de instrumentos industriais." />
+  <meta name="robots" content="index,follow" />
+  <meta name="theme-color" content="#004b80" />
+  <link rel="canonical" href="https://www.alogy.com.br/calculadora-incerteza-calibracao-tur-tar.html" />
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png" />
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="app.js" defer></script>
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ALOGY Engenharia" />
+  <meta property="og:title" content="Calculadora de Incerteza de Calibração" />
+  <meta property="og:description" content="Calcule erro, incerteza, TUR/TAR, guard band, status de calibração e memorial técnico preliminar." />
+  <meta property="og:url" content="https://www.alogy.com.br/calculadora-incerteza-calibracao-tur-tar.html" />
+  <meta property="og:image" content="https://www.alogy.com.br/logo-alogy.webp" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Calculadora de Incerteza de Calibração" />
+  <meta name="twitter:description" content="Ferramenta para calibração industrial com erro, incerteza expandida, TUR, TAR e guard band." />
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebApplication",
+    "name":"Calculadora de Incerteza de Calibração, TUR e TAR",
+    "url":"https://www.alogy.com.br/calculadora-incerteza-calibracao-tur-tar.html",
+    "applicationCategory":"EngineeringApplication",
+    "operatingSystem":"Web",
+    "description":"Ferramenta para cálculo preliminar de erro, tolerância, incerteza expandida, TUR, TAR, guard band e status de calibração de instrumentos industriais.",
+    "provider":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"}
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {"@type":"Question","name":"O que é TUR em calibração?","acceptedAnswer":{"@type":"Answer","text":"TUR é uma relação usada para comparar a tolerância do item calibrado com a incerteza ou capacidade do padrão usado. Relações maiores indicam maior margem metrológica."}},
+      {"@type":"Question","name":"O que é guard band?","acceptedAnswer":{"@type":"Answer","text":"Guard band é uma regra de decisão que considera a incerteza no julgamento de aprovação. Nesta ferramenta, o ponto só é aprovado com segurança quando o erro absoluto somado à incerteza expandida permanece dentro da tolerância."}},
+      {"@type":"Question","name":"Essa ferramenta substitui certificado de calibração?","acceptedAnswer":{"@type":"Answer","text":"Não. A ferramenta gera uma estimativa e um memorial preliminar. Certificados, rastreabilidade, procedimento, condições ambientais, padrão utilizado e regra de decisão devem ser controlados pelo laboratório ou responsável técnico."}}
+    ]
+  }
+  </script>
+  <style>
+    .mini-help{color:var(--muted);font-size:.92rem;line-height:1.55;margin-top:8px}
+    .calc-result.two{grid-template-columns:repeat(2,1fr)} .calc-result.three{grid-template-columns:repeat(3,1fr)} .calc-result.four{grid-template-columns:repeat(4,1fr)}
+    .result-box strong.small{font-size:1.05rem}.notice.ok{border-left-color:#1f8f45;background:#f0fff5}.notice.warn{border-left-color:#b36b00;background:#fff8eb}.notice.bad{border-left-color:#b00020;background:#fff1f1}
+    .table-wrap{overflow-x:auto}.data-table{width:100%;border-collapse:collapse;margin-top:12px;background:#fff}.data-table th,.data-table td{border:1px solid rgba(0,0,0,.08);padding:8px;text-align:left;vertical-align:top}.data-table th{background:#f3f8fc;color:#0b3a62;font-weight:900}.data-table input,.data-table select{width:100%;min-width:90px;padding:8px;border:1px solid rgba(0,0,0,.18);border-radius:8px}.data-table .small-cell{min-width:70px}
+    .status-pill{display:inline-block;border-radius:999px;padding:5px 8px;font-weight:900;font-size:.85rem}.status-ok{background:#e9fff0;color:#146c2e}.status-warn{background:#fff4db;color:#9a5b00}.status-bad{background:#ffecec;color:#a10000}
+    .copy-box{white-space:pre-wrap;background:#0b1f33;color:#f3f8fc;border-radius:14px;padding:14px;overflow:auto}.pill-row{display:flex;flex-wrap:wrap;gap:10px}.pill{display:inline-flex;gap:8px;align-items:center;border:1px solid rgba(0,75,128,.18);border-radius:999px;padding:9px 12px;text-decoration:none;background:#fff;font-weight:800;color:#004b80}.pill:hover{background:#eef7ff}
+    @media(max-width:760px){.calc-result.two,.calc-result.three,.calc-result.four{grid-template-columns:1fr}.data-table th,.data-table td{font-size:.9rem}}
+  </style>
+</head>
+<body class="tech-page">
+  <header>
+    <div class="container headbar">
+      <a href="/" class="logo-wrapper" aria-label="Voltar para o início"><img src="logo-alogy.webp" alt="ALOGY Engenharia" width="878" height="308" decoding="async" /></a>
+      <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menu"><i class="fas fa-bars"></i></button>
+    </div>
+    <nav class="desktop" aria-label="Menu principal"><div class="container navlinks"><a href="index.html">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="index.html#contato">Contato</a></div></nav>
+    <nav class="mobile" aria-label="Menu mobile"><a href="index.html">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="index.html#contato">Contato</a></nav>
+  </header>
+  <div class="social-floating" aria-label="Redes sociais"><a href="https://www.linkedin.com/company/alogyengenharia" class="linkedin" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a><a href="https://www.instagram.com/alogyengenharia" class="instagram" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="https://www.facebook.com/alogyengenharia" class="facebook" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><a href="https://www.youtube.com/@alogyengenharia" class="youtube" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a><a href="https://hotmart.com/pt-br/club/alogyengenharia" class="hotmart" target="_blank" rel="noopener" aria-label="Hotmart">H</a><a href="https://www.tiktok.com/@alogyengenharia" class="tiktok" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a></div>
+  <div class="fab-wrap" aria-label="Ações rápidas"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1%21%20Vim%20pela%20calculadora%20de%20incerteza%20de%20calibra%C3%A7%C3%A3o%20da%20ALOGY.%20Gostaria%20de%20apoio%20em%20calibra%C3%A7%C3%A3o%20e%20instrumenta%C3%A7%C3%A3o." target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
+
+  <main class="container tech-wrap">
+    <a class="tech-back no-print" href="ferramentas.html"><i class="fas fa-arrow-left"></i> Voltar para Ferramentas</a>
+    <section class="tech-hero">
+      <h1>Calculadora de Incerteza de Calibração, TUR e TAR</h1>
+      <p>Calcule erro de medição, tolerância por ponto, incerteza combinada, incerteza expandida, TUR, TAR, regra de decisão com guard band e status preliminar de calibração para instrumentos industriais. A ferramenta ajuda a montar um memorial técnico para transmissores, indicadores, manômetros, sensores de temperatura, vazão, nível, balanças e malhas de processo.</p>
+      <div class="hero-tags"><span><i class="fas fa-scale-balanced"></i> Incerteza</span><span><i class="fas fa-check-double"></i> TUR/TAR</span><span><i class="fas fa-ruler-combined"></i> Calibração</span><span><i class="fas fa-shield-halved"></i> Guard band</span><span><i class="fas fa-file-lines"></i> Memorial</span></div>
+    </section>
+
+    <section class="tech-card">
+      <h2>Aviso técnico importante</h2>
+      <p>Esta ferramenta fornece uma estimativa preliminar para apoio técnico e didático. Ela não substitui procedimento de calibração aprovado, certificado rastreável, avaliação de incerteza formal, regra de decisão contratual, análise metrológica do laboratório ou validação do responsável técnico.</p>
+      <p>Use os dados reais do padrão de referência, certificado, resolução do instrumento, repetibilidade, condições ambientais, tolerância do processo e critério de aceitação definido pela planta. Em medições críticas, segurança, qualidade, faturamento, batelada, área classificada ou requisitos regulatórios, valide o resultado por procedimento formal.</p>
+    </section>
+
+    <div class="calc-grid">
+      <section class="calc-card">
+        <h2><i class="fas fa-tag"></i> Identificação e escala</h2>
+        <div class="field-grid">
+          <div class="field"><label for="tag">Tag / instrumento</label><input id="tag" value="PT-101" /></div>
+          <div class="field"><label for="servico">Serviço</label><input id="servico" value="Transmissor de pressão" /></div>
+          <div class="field"><label for="unidade">Unidade de engenharia</label><input id="unidade" value="bar" /></div>
+          <div class="field"><label for="lrv">LRV / início de escala</label><input id="lrv" type="number" step="any" value="0" /></div>
+          <div class="field"><label for="urv">URV / fim de escala</label><input id="urv" type="number" step="any" value="10" /></div>
+          <div class="field"><label for="criterio">Regra de decisão</label><select id="criterio"><option value="guard" selected>Guard band: |erro| + U ≤ tolerância</option><option value="simples">Simples: |erro| ≤ tolerância</option><option value="informativo">Informativo: não julgar aprovação</option></select></div>
+        </div>
+      </section>
+      <aside class="tech-card">
+        <h2>Como interpretar</h2>
+        <p><strong>Erro</strong> é a diferença entre valor indicado pelo instrumento e valor de referência do padrão. <strong>Incerteza expandida</strong> representa a dúvida estimada do processo de medição com fator de cobertura k. <strong>TUR</strong> compara a tolerância com a incerteza expandida. <strong>TAR</strong> compara a tolerância com a exatidão/especificação do padrão.</p>
+        <p class="mini-help">Para aprovação conservadora, a ferramenta usa: erro absoluto + incerteza expandida ≤ tolerância. Se o erro passa no critério simples, mas não passa com incerteza, o ponto fica como indeterminado/atenção.</p>
+      </aside>
+    </div>
+
+    <div class="calc-grid">
+      <section class="calc-card">
+        <h2><i class="fas fa-bullseye"></i> Tolerância de aceitação</h2>
+        <div class="field-grid">
+          <div class="field"><label for="tolAbs">Tolerância absoluta ±</label><input id="tolAbs" type="number" step="any" value="0.05" /><small>Na unidade de engenharia.</small></div>
+          <div class="field"><label for="tolSpan">Tolerância ± % do span</label><input id="tolSpan" type="number" step="any" value="0" /></div>
+          <div class="field"><label for="tolLeitura">Tolerância ± % da leitura</label><input id="tolLeitura" type="number" step="any" value="0" /></div>
+          <div class="field"><label for="tolMin">Tolerância mínima prática ±</label><input id="tolMin" type="number" step="any" value="0" /><small>Opcional. A ferramenta usa a maior entre tolerância calculada e mínima.</small></div>
+        </div>
+      </section>
+      <section class="calc-card">
+        <h2><i class="fas fa-flask-vial"></i> Padrão e componentes de incerteza</h2>
+        <div class="field-grid">
+          <div class="field"><label for="uPadrao">Incerteza expandida do padrão ±</label><input id="uPadrao" type="number" step="any" value="0.01" /></div>
+          <div class="field"><label for="kPadrao">k do certificado do padrão</label><input id="kPadrao" type="number" step="any" value="2" /></div>
+          <div class="field"><label for="accPadrao">Exatidão/especificação do padrão ±</label><input id="accPadrao" type="number" step="any" value="0.02" /><small>Usado para TAR.</small></div>
+          <div class="field"><label for="resPadrao">Resolução do padrão</label><input id="resPadrao" type="number" step="any" value="0.001" /></div>
+          <div class="field"><label for="resUut">Resolução do instrumento calibrado</label><input id="resUut" type="number" step="any" value="0.01" /></div>
+          <div class="field"><label for="repStd">Desvio padrão de repetibilidade</label><input id="repStd" type="number" step="any" value="0.005" /></div>
+          <div class="field"><label for="nRep">Número de leituras repetidas</label><input id="nRep" type="number" step="1" value="3" /></div>
+          <div class="field"><label for="uAmb">Outros efeitos padrão</label><input id="uAmb" type="number" step="any" value="0.002" /><small>Temperatura, montagem, estabilidade etc. em incerteza padrão.</small></div>
+          <div class="field"><label for="kExp">Fator k para incerteza expandida</label><input id="kExp" type="number" step="any" value="2" /></div>
+        </div>
+      </section>
+    </div>
+
+    <section class="tech-card">
+      <h2>Pontos de calibração</h2>
+      <p>Preencha os pontos em porcentagem do span e o valor indicado/medido pelo instrumento. A referência é calculada pela escala LRV/URV. Para calibração reversa, use os mesmos pontos e compare as leituras conforme seu procedimento.</p>
+      <div class="table-wrap">
+        <table class="data-table" id="pointsTable">
+          <thead><tr><th>Ponto %</th><th>Referência calculada</th><th>Valor medido/indicado</th><th>Observação</th><th>Status</th></tr></thead>
+          <tbody id="pointsBody"></tbody>
+        </table>
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:14px" class="no-print">
+        <button class="btn" type="button" onclick="setPontosPadrao()"><i class="fas fa-list-ol"></i> Usar 0-25-50-75-100%</button>
+        <button class="btn secondary" type="button" onclick="adicionarPonto()"><i class="fas fa-plus"></i> Adicionar ponto</button>
+        <button class="btn secondary" type="button" onclick="removerPonto()"><i class="fas fa-minus"></i> Remover último</button>
+      </div>
+    </section>
+
+    <section class="calc-card">
+      <h2><i class="fas fa-calculator"></i> Calcular incerteza e status</h2>
+      <button class="btn" type="button" onclick="calcularIncerteza()"><i class="fas fa-calculator"></i> Calcular calibração</button>
+      <button class="btn secondary" type="button" onclick="copiarMemorial()"><i class="fas fa-copy"></i> Copiar memorial</button>
+      <button class="btn secondary" type="button" onclick="window.print()"><i class="fas fa-print"></i> Imprimir</button>
+    </section>
+
+    <section class="calc-result four" aria-live="polite">
+      <div class="result-box" id="statusBox"><span>Status geral</span><strong>Informe os dados</strong><small>Resultado preliminar.</small></div>
+      <div class="result-box"><span>Incerteza expandida U</span><strong id="uExpOut">--</strong><small id="ucOut">uc: --</small></div>
+      <div class="result-box"><span>Pior erro absoluto</span><strong id="erroMaxOut">--</strong><small id="pontoCriticoOut">Ponto crítico: --</small></div>
+      <div class="result-box"><span>Menor TUR / TAR</span><strong id="turTarOut">--</strong><small>Quanto maior, melhor.</small></div>
+    </section>
+
+    <section class="tech-card">
+      <h2>Resultados por ponto</h2>
+      <div id="avisos" class="notice warn">Calcule para gerar os alertas.</div>
+      <div class="table-wrap">
+        <table class="data-table" id="resultTable">
+          <thead><tr><th>Ponto</th><th>Referência</th><th>Medido</th><th>Erro</th><th>Tolerância ±</th><th>U expandida ±</th><th>TUR</th><th>TAR</th><th>Decisão</th></tr></thead>
+          <tbody id="resultBody"><tr><td colspan="9">Aguardando cálculo.</td></tr></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="tech-card">
+      <h2>Como usar esta ferramenta na rotina de calibração</h2>
+      <ol>
+        <li>Defina a escala real do instrumento, unidade de engenharia e tolerância de aceitação do processo.</li>
+        <li>Preencha os dados do padrão a partir do certificado: incerteza expandida, k, resolução e especificação.</li>
+        <li>Informe a resolução do instrumento calibrado, repetibilidade e efeitos adicionais conhecidos.</li>
+        <li>Digite os pontos de calibração e o valor indicado pelo instrumento em cada ponto.</li>
+        <li>Analise erro, tolerância, incerteza, TUR, TAR e regra de decisão antes de liberar o instrumento.</li>
+      </ol>
+      <p>Para instrumentos 4-20 mA, a escala pode ser a grandeza de processo ou a corrente. Se usar corrente, configure LRV = 4 mA e URV = 20 mA. Se usar engenharia, informe diretamente pressão, temperatura, vazão, nível, pH, condutividade ou outra variável.</p>
+    </section>
+
+    <section class="tech-card">
+      <h2>Critérios e cuidados técnicos</h2>
+      <ul>
+        <li><strong>TUR baixo:</strong> se TUR ficar abaixo de 4:1, existe pouca margem entre tolerância e incerteza. Isso não significa reprovação automática, mas exige critério metrológico.</li>
+        <li><strong>Guard band:</strong> reduz risco de aprovar ponto próximo do limite quando a incerteza é relevante.</li>
+        <li><strong>Indeterminado:</strong> ocorre quando o ponto pode passar no critério simples, mas não passa com margem considerando a incerteza.</li>
+        <li><strong>Tolerância por leitura:</strong> em alguns instrumentos, a tolerância cresce com o valor medido. Verifique sempre o manual ou procedimento.</li>
+        <li><strong>Rastreabilidade:</strong> o padrão usado deve ter certificado válido, faixa compatível e incerteza adequada para o serviço.</li>
+      </ul>
+    </section>
+
+    <section class="tech-card">
+      <h2>Checklist rápido antes de fechar a calibração</h2>
+      <ul>
+        <li>Procedimento e critério de aceitação definidos antes do ensaio.</li>
+        <li>Padrão compatível com a faixa e incerteza necessária.</li>
+        <li>Condições ambientais registradas quando relevantes.</li>
+        <li>Pontos de subida e descida avaliados quando há histerese.</li>
+        <li>Instrumento estabilizado antes da leitura.</li>
+        <li>Unidades, casas decimais, resolução e arredondamento conferidos.</li>
+        <li>Ajuste documentado quando o instrumento foi recalibrado após reprovação.</li>
+      </ul>
+    </section>
+
+    <section class="tech-card">
+      <h2>Memorial técnico preliminar</h2>
+      <pre id="memorial" class="copy-box">Calcule para gerar o memorial.</pre>
+    </section>
+
+    <section class="tech-card faq">
+      <h2>Perguntas frequentes</h2>
+      <details open><summary>Qual é a diferença entre erro e incerteza?</summary><p>Erro é a diferença observada entre o instrumento e o valor de referência. Incerteza é a dúvida associada ao resultado de medição, considerando padrão, resolução, repetibilidade e outros efeitos.</p></details>
+      <details><summary>Por que um ponto pode ficar indeterminado?</summary><p>Porque o erro sozinho pode estar dentro da tolerância, mas a soma do erro com a incerteza não garante aprovação conservadora. Nesse caso, a decisão depende da regra de decisão contratual ou do procedimento da planta.</p></details>
+      <details><summary>Posso usar TUR menor que 4:1?</summary><p>Pode existir aplicação com TUR menor, mas a decisão exige avaliação metrológica. TUR baixo indica que a incerteza do processo de calibração está consumindo parte significativa da tolerância disponível.</p></details>
+    </section>
+
+    <section class="tech-card no-print">
+      <h2>Ferramentas relacionadas</h2>
+      <div class="pill-row">
+        <a class="pill" href="ferramentas-calibracao-instrumentacao.html"><i class="fas fa-check-double"></i> Calibração e metrologia</a>
+        <a class="pill" href="calculadora-erro-calibracao.html"><i class="fas fa-ruler"></i> Erro de instrumentação</a>
+        <a class="pill" href="calculadora-intervalo-calibracao-deriva.html"><i class="fas fa-calendar-check"></i> Intervalo por deriva</a>
+        <a class="pill" href="calculadora-malha-4-20ma-hart-completa.html"><i class="fas fa-wave-square"></i> Malha 4-20 mA/HART</a>
+        <a class="pill" href="blog-calibracao-instrumentos-industriais.html"><i class="fas fa-book-open"></i> Blog de calibração</a>
+      </div>
+    </section>
+  </main>
+  <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
+
+<script>
+function num(id){return parseFloat(String(document.getElementById(id).value).replace(',', '.'));}
+function val(id){return document.getElementById(id).value.trim();}
+function fmt(n,d=3){return Number.isFinite(n)?n.toLocaleString('pt-BR',{minimumFractionDigits:d,maximumFractionDigits:d}):'--';}
+function esc(s){return String(s).replace(/[&<>'"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));}
+function statusHtml(status){
+  const cls = status==='Aprovado' ? 'status-ok' : (status==='Reprovado' ? 'status-bad' : 'status-warn');
+  return `<span class="status-pill ${cls}">${status}</span>`;
+}
+function setPontosPadrao(){
+  const body=document.getElementById('pointsBody'); body.innerHTML='';
+  [0,25,50,75,100].forEach((p,i)=>adicionarPonto(p, null, i===0?'Zero':(i===4?'Span':'Ponto intermediário')));
+  atualizarRefs();
+}
+function adicionarPonto(pct='', med=null, obs=''){
+  const body=document.getElementById('pointsBody');
+  const idx=body.children.length+1;
+  const tr=document.createElement('tr');
+  tr.innerHTML=`<td><input class="ptPct" type="number" step="any" value="${pct}"></td><td class="refCell">--</td><td><input class="ptMed" type="number" step="any" value="${med===null?'':med}"></td><td><input class="ptObs" value="${esc(obs)}"></td><td class="ptStatus">--</td>`;
+  body.appendChild(tr);
+  tr.querySelector('.ptPct').addEventListener('input', atualizarRefs);
+  atualizarRefs();
+}
+function removerPonto(){
+  const body=document.getElementById('pointsBody');
+  if(body.children.length>1){body.removeChild(body.lastElementChild); atualizarRefs();}
+}
+function atualizarRefs(){
+  const lrv=num('lrv'), urv=num('urv'); const unidade=val('unidade')||'un';
+  const span=urv-lrv;
+  document.querySelectorAll('#pointsBody tr').forEach(tr=>{
+    const pct=parseFloat(tr.querySelector('.ptPct').value);
+    const ref=Number.isFinite(lrv)&&Number.isFinite(span)&&Number.isFinite(pct)? lrv + span*pct/100 : NaN;
+    tr.querySelector('.refCell').textContent=Number.isFinite(ref)?`${fmt(ref)} ${unidade}`:'--';
+    const med=tr.querySelector('.ptMed');
+    if(med.value===''){ med.placeholder=Number.isFinite(ref)?String(Number(ref.toFixed(6))):''; }
+  });
+}
+function calcularIncerteza(){
+  atualizarRefs();
+  const tag=val('tag')||'Instrumento'; const servico=val('servico')||'Serviço não informado'; const unidade=val('unidade')||'un';
+  const lrv=num('lrv'), urv=num('urv'), span=urv-lrv;
+  const tolAbs=Math.abs(num('tolAbs')), tolSpan=Math.abs(num('tolSpan')), tolLeitura=Math.abs(num('tolLeitura')), tolMin=Math.abs(num('tolMin'));
+  const uPadrao=Math.abs(num('uPadrao')), kPadrao=Math.abs(num('kPadrao')), accPadrao=Math.abs(num('accPadrao'));
+  const resPadrao=Math.abs(num('resPadrao')), resUut=Math.abs(num('resUut')), repStd=Math.abs(num('repStd')), nRep=Math.max(1, Math.round(Math.abs(num('nRep'))));
+  const uAmb=Math.abs(num('uAmb')), kExp=Math.abs(num('kExp')); const criterio=val('criterio');
+  const campos=[lrv,urv,span,tolAbs,tolSpan,tolLeitura,tolMin,uPadrao,kPadrao,accPadrao,resPadrao,resUut,repStd,nRep,uAmb,kExp];
+  if(campos.some(x=>!Number.isFinite(x)) || span===0 || kPadrao<=0 || kExp<=0){
+    document.getElementById('statusBox').className='result-box bad';
+    document.getElementById('statusBox').innerHTML='<span>Status geral</span><strong>Dados inválidos</strong><small>Revise escala, k, tolerância e incerteza.</small>';
+    return;
+  }
+  const uCert = uPadrao/kPadrao;
+  const uResPadrao = resPadrao/Math.sqrt(12);
+  const uResUut = resUut/Math.sqrt(12);
+  const uRep = repStd/Math.sqrt(nRep);
+  const uc = Math.sqrt(uCert*uCert + uResPadrao*uResPadrao + uResUut*uResUut + uRep*uRep + uAmb*uAmb);
+  const U = kExp*uc;
+  const rows=[]; let piorErro=-1, pontoCrit='--', minTur=Infinity, minTar=Infinity, aprov=0, repro=0, ind=0, alertas=[];
+  document.querySelectorAll('#pointsBody tr').forEach((tr,idx)=>{
+    const pct=parseFloat(tr.querySelector('.ptPct').value); const med=parseFloat(tr.querySelector('.ptMed').value); const obs=tr.querySelector('.ptObs').value||'';
+    if(!Number.isFinite(pct) || !Number.isFinite(med)) return;
+    const ref=lrv + span*pct/100; const erro=med-ref; const erroAbs=Math.abs(erro);
+    const tolCalc = tolAbs + Math.abs(span)*tolSpan/100 + Math.abs(ref)*tolLeitura/100;
+    const tol = Math.max(tolCalc, tolMin);
+    const tur = U>0 ? tol/U : Infinity;
+    const tar = accPadrao>0 ? tol/accPadrao : Infinity;
+    let status='Informativo';
+    if(criterio==='simples') status = erroAbs <= tol ? 'Aprovado' : 'Reprovado';
+    else if(criterio==='guard'){
+      if(erroAbs + U <= tol) status='Aprovado';
+      else if(erroAbs - U > tol) status='Reprovado';
+      else status='Indeterminado';
+    }
+    if(status==='Aprovado') aprov++; else if(status==='Reprovado') repro++; else ind++;
+    if(erroAbs>piorErro){piorErro=erroAbs; pontoCrit=`${fmt(pct,1)}%`;}
+    if(Number.isFinite(tur)) minTur=Math.min(minTur,tur); if(Number.isFinite(tar)) minTar=Math.min(minTar,tar);
+    rows.push({pct,ref,med,erro,tol,U,tur,tar,status,obs});
+    tr.querySelector('.ptStatus').innerHTML=statusHtml(status);
+  });
+  if(rows.length===0){
+    document.getElementById('statusBox').className='result-box bad';
+    document.getElementById('statusBox').innerHTML='<span>Status geral</span><strong>Sem pontos válidos</strong><small>Preencha porcentagem e valor medido.</small>';
+    return;
+  }
+  if(repro>0) alertas.push(`${repro} ponto(s) reprovado(s) pelo critério selecionado.`);
+  if(ind>0) alertas.push(`${ind} ponto(s) indeterminado(s) ou sem aprovação conservadora.`);
+  if(minTur<4) alertas.push(`Menor TUR abaixo de 4:1 (${fmt(minTur,2)}:1). Avalie incerteza, tolerância e padrão utilizado.`);
+  if(minTar<4) alertas.push(`Menor TAR abaixo de 4:1 (${fmt(minTar,2)}:1). Verifique a especificação do padrão.`);
+  if(U > Math.abs(span)*0.01) alertas.push('A incerteza expandida é maior que 1% do span. Confira padrão, resolução, repetibilidade e unidades.');
+  if(alertas.length===0) alertas.push('Nenhum alerta crítico encontrado com os dados informados. Ainda assim, valide procedimento, rastreabilidade e regra de decisão.');
+  const geral = repro>0 ? 'Reprovado' : (ind>0 ? 'Atenção' : 'Aprovado');
+  document.getElementById('statusBox').className='result-box '+(geral==='Aprovado'?'ok':(geral==='Atenção'?'warn':'bad'));
+  document.getElementById('statusBox').innerHTML=`<span>Status geral</span><strong>${geral}</strong><small>${aprov} aprovados, ${ind} atenção, ${repro} reprovados.</small>`;
+  document.getElementById('uExpOut').textContent=`± ${fmt(U)} ${unidade}`;
+  document.getElementById('ucOut').textContent=`uc: ${fmt(uc)} ${unidade} | k=${fmt(kExp,1)}`;
+  document.getElementById('erroMaxOut').textContent=`${fmt(piorErro)} ${unidade}`;
+  document.getElementById('pontoCriticoOut').textContent=`Ponto crítico: ${pontoCrit}`;
+  document.getElementById('turTarOut').textContent=`${fmt(minTur,2)} : 1 / ${fmt(minTar,2)} : 1`;
+  document.getElementById('avisos').className='notice '+(repro>0?'bad':(ind>0 || minTur<4 || minTar<4?'warn':'ok'));
+  document.getElementById('avisos').innerHTML='<strong>Alertas:</strong><ul>'+alertas.map(a=>`<li>${esc(a)}</li>`).join('')+'</ul>';
+  document.getElementById('resultBody').innerHTML=rows.map(r=>`<tr><td>${fmt(r.pct,1)}%</td><td>${fmt(r.ref)} ${unidade}</td><td>${fmt(r.med)} ${unidade}</td><td>${r.erro>=0?'+':''}${fmt(r.erro)} ${unidade}</td><td>± ${fmt(r.tol)} ${unidade}</td><td>± ${fmt(r.U)} ${unidade}</td><td>${fmt(r.tur,2)}:1</td><td>${fmt(r.tar,2)}:1</td><td>${statusHtml(r.status)}</td></tr>`).join('');
+  const mem = [];
+  mem.push('MEMORIAL PRELIMINAR - INCERTEZA DE CALIBRAÇÃO / TUR / TAR');
+  mem.push('Tag: '+tag); mem.push('Serviço: '+servico); mem.push('Escala: '+fmt(lrv)+' a '+fmt(urv)+' '+unidade+' | Span: '+fmt(Math.abs(span))+' '+unidade);
+  mem.push('Critério: '+(criterio==='guard'?'Guard band: |erro| + U <= tolerância':(criterio==='simples'?'Simples: |erro| <= tolerância':'Informativo')));
+  mem.push('Tolerância: ±('+fmt(tolAbs)+' '+unidade+' + '+fmt(tolSpan,3)+'% span + '+fmt(tolLeitura,3)+'% leitura), mínimo ± '+fmt(tolMin)+' '+unidade);
+  mem.push('Componentes: U padrão certificado ± '+fmt(uPadrao)+' '+unidade+' k='+fmt(kPadrao,1)+'; resolução padrão '+fmt(resPadrao)+'; resolução UUT '+fmt(resUut)+'; repetibilidade '+fmt(repStd)+' com n='+nRep+'; outros efeitos u='+fmt(uAmb));
+  mem.push('Incerteza padrão combinada uc: '+fmt(uc)+' '+unidade); mem.push('Incerteza expandida U: ± '+fmt(U)+' '+unidade+' (k='+fmt(kExp,1)+')');
+  mem.push('Pior erro absoluto: '+fmt(piorErro)+' '+unidade+' em '+pontoCrit); mem.push('Menor TUR: '+fmt(minTur,2)+':1 | Menor TAR: '+fmt(minTar,2)+':1'); mem.push('Status geral: '+geral); mem.push('');
+  mem.push('Pontos avaliados:');
+  rows.forEach(r=>mem.push(`- ${fmt(r.pct,1)}% | Ref ${fmt(r.ref)} ${unidade} | Med ${fmt(r.med)} ${unidade} | Erro ${r.erro>=0?'+':''}${fmt(r.erro)} ${unidade} | Tol ±${fmt(r.tol)} | U ±${fmt(r.U)} | TUR ${fmt(r.tur,2)}:1 | TAR ${fmt(r.tar,2)}:1 | ${r.status}`));
+  mem.push(''); mem.push('Observações/alertas:'); alertas.forEach(a=>mem.push('- '+a));
+  mem.push(''); mem.push('Aviso: memorial preliminar. Não substitui certificado de calibração, procedimento aprovado, rastreabilidade metrológica, regra de decisão formal ou validação profissional.');
+  document.getElementById('memorial').textContent=mem.join('\n');
+}
+function copiarMemorial(){
+  const txt=document.getElementById('memorial').textContent;
+  if(!txt || txt.includes('Calcule para gerar')){alert('Calcule antes de copiar.'); return;}
+  navigator.clipboard.writeText(txt).then(()=>alert('Memorial copiado.')).catch(()=>alert('Não foi possível copiar automaticamente.'));
+}
+setPontosPadrao();
+['lrv','urv','unidade'].forEach(id=>document.getElementById(id).addEventListener('input', atualizarRefs));
+</script>
+</body>
+</html>
