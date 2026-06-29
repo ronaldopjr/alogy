@@ -54,6 +54,37 @@
     <section class="calc-card" aria-label="Aviso de uso"><h2><i class="fas fa-triangle-exclamation"></i> Ferramenta orientativa</h2><p>Use esta ferramenta para estudo, estimativa e conferência preliminar. O resultado depende dos dados inseridos, hipóteses adotadas, normas aplicáveis, catálogos de fabricantes e validação de profissional habilitado.</p></section>
     <section class="calc-layout"><div class="calc-card"><h2><i class="fas fa-vial"></i> Dados da calibração</h2><div class="calc-grid"><div class="field"><label for="ph1">Buffer 1 pH</label><input id="ph1" type="number" step="any" value="7.00"></div><div class="field"><label for="mv1">Leitura no buffer 1 (mV)</label><input id="mv1" type="number" step="any" value="0"></div><div class="field"><label for="ph2">Buffer 2 pH</label><input id="ph2" type="number" step="any" value="4.01"></div><div class="field"><label for="mv2">Leitura no buffer 2 (mV)</label><input id="mv2" type="number" step="any" value="177"></div><div class="field"><label for="temp">Temperatura (°C)</label><input id="temp" type="number" step="any" value="25"></div><div class="field"><label for="tol">Tolerância de offset (mV)</label><input id="tol" type="number" step="any" value="30"></div></div><div class="calc-actions"><button class="mini-btn dark" onclick="copiar()" type="button"><i class="fas fa-copy"></i> Copiar</button></div></div><div class="calc-card"><h2><i class="fas fa-chart-simple"></i> Resultado</h2><div class="calc-result four"><div class="result-box"><span>Slope medido</span><strong id="r1">-</strong></div><div class="result-box"><span>Eficiência</span><strong id="r2">-</strong></div><div class="result-box"><span>Offset em pH 7</span><strong id="r3">-</strong></div><div class="result-box"><span>Status</span><strong id="r4" class="small">-</strong></div></div><div class="calc-note" id="nota">Use buffers novos e aguarde estabilização.</div></div></section>
     <section class="calc-card faq"><h2><i class="fas fa-circle-question"></i> Perguntas frequentes</h2><details><summary>Qual slope é aceitável?</summary><p>Em campo é comum aceitar aproximadamente 95% a 105%, mas o critério real depende do procedimento, fabricante e criticidade do processo.</p></details><details><summary>Offset alto reprova a calibração?</summary><p>Pode indicar eletrodo envelhecido, junção contaminada, cabo ruim, buffer inadequado ou falta de estabilização.</p></details></section>
+  
+    <!-- ALOGY_REVISAO_TECNICA_FERRAMENTA -->
+    <section class="calc-card" aria-label="Orientação técnica complementar">
+      <h2><i class="fas fa-clipboard-check"></i> Como usar esta ferramenta na prática</h2>
+      <p>Calcule slope, eficiência e offset de pHmetro usando buffers de calibração e leituras em mV. Nesta revisão, o conteúdo foi ampliado para deixar mais claro quando usar a ferramenta, quais dados precisam ser conferidos e como transformar o número calculado em uma decisão técnica.</p>
+      <h3>Quando aplicar</h3>
+      <p>Use em bancada, campo ou laboratório para preparar pontos de teste, comparar indicação do instrumento com referência rastreável e decidir se o equipamento está aprovado, reprovado ou se precisa de ajuste.</p>
+      <h3>Dados que merecem conferência</h3>
+      <p>Antes de confiar no resultado da ferramenta <strong>Calculadora de Calibração de pHmetro</strong>, confira principalmente: Buffer 1 pH, Leitura no buffer 1 (mV), Buffer 2 pH, Leitura no buffer 2 (mV), Temperatura (°C), Tolerância de offset (mV). Pequenos erros de unidade, ponto decimal ou condição de operação podem gerar conclusões erradas.</p>
+      <ul>
+          <li>Buffer 1 pH</li>
+          <li>Leitura no buffer 1 (mV)</li>
+          <li>Buffer 2 pH</li>
+          <li>Leitura no buffer 2 (mV)</li>
+          <li>Temperatura (°C)</li>
+          <li>Tolerância de offset (mV)</li>
+      </ul>
+      <h3>Como interpretar o resultado</h3>
+      <p>O resultado deve ser comparado com a tolerância do processo e com o erro máximo permitido definido no plano de calibração. Um erro pequeno no instrumento pode ser aceitável para utilidades, mas crítico em malhas de segurança, qualidade ou dosagem.</p>
+      <p>Quando a página apresentar campos de resultado como Slope medido, Eficiência, Offset em pH 7, Status, use esses valores para comparar o cenário calculado com limite operacional, tolerância do processo, histórico de manutenção ou especificação de fabricante.</p>
+      <h3>Checklist rápido de validação</h3>
+      <ul>
+          <li>Confirme TAG, faixa LRV/URV, unidade de engenharia e damping antes do teste.</li>
+          <li>Use padrão de referência com resolução e incerteza adequadas ao instrumento em teste.</li>
+          <li>Registre as leituras de subida e descida para observar histerese, repetibilidade e retorno ao zero.</li>
+          <li>Quando houver ajuste, repita o ciclo completo antes de liberar o instrumento.</li>
+      </ul>
+      <h3>Limites da estimativa</h3>
+      <p>Esta ferramenta é indicada para estudo, triagem, conferência de campo e apoio à manutenção. Para projeto final, laudo, especificação de compra, alteração de segurança ou liberação de equipamento crítico, valide as premissas com normas aplicáveis, documentação do fabricante e profissional habilitado.</p>
+    </section>
+
   </main>
   <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
 <script>function n(v,d=2){return Number.isFinite(v)?v.toLocaleString('pt-BR',{maximumFractionDigits:d}):'-'}function g(id){return parseFloat(document.getElementById(id).value)||0}function calc(){let ph1=g('ph1'),ph2=g('ph2'),mv1=g('mv1'),mv2=g('mv2'),T=g('temp')+273.15,tol=g('tol');let ideal=59.16*T/298.15;let slope=Math.abs((mv2-mv1)/(ph2-ph1));let eff=slope/ideal*100;let offset=mv1+(7-ph1)*(mv2-mv1)/(ph2-ph1);let st=(eff>=95&&eff<=105&&Math.abs(offset)<=tol)?'Aprovado':(eff>=90&&eff<=110&&Math.abs(offset)<=tol*1.5?'Atenção':'Reprovado');r1.textContent=n(slope,2)+' mV/pH';r2.textContent=n(eff,1)+' %';r3.textContent=n(offset,1)+' mV';r4.textContent=st;r4.className='small '+(st==='Aprovado'?'pill-ok':st==='Atenção'?'pill-warn':'pill-bad');nota.textContent='Slope ideal nesta temperatura: '+n(ideal,2)+' mV/pH.'}function copiar(){navigator.clipboard&&navigator.clipboard.writeText('Calibração pHmetro: '+r1.textContent+', eficiência '+r2.textContent+', offset '+r3.textContent+', status '+r4.textContent)}document.querySelectorAll('input,select').forEach(e=>e.addEventListener('input',calc));calc();</script>

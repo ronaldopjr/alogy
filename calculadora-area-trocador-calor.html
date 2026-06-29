@@ -53,6 +53,37 @@
     <section class="calc-card" aria-label="Aviso de uso"><h2><i class="fas fa-triangle-exclamation"></i> Ferramenta orientativa</h2><p>Use esta ferramenta para estudo, estimativa e conferência preliminar. O resultado depende dos dados inseridos, hipóteses adotadas, normas aplicáveis, catálogos de fabricantes e validação de profissional habilitado.</p></section>
     <section class="calc-layout"><div class="calc-card"><h2><i class="fas fa-temperature-high"></i> Dados do trocador</h2><div class="calc-grid"><div class="field"><label for="q">Carga térmica (kW)</label><input id="q" type="number" step="any" value="250"></div><div class="field"><label for="u">Coeficiente global U (W/m².K)</label><input id="u" type="number" step="any" value="650"></div><div class="field"><label for="thi">Quente entrada (°C)</label><input id="thi" type="number" step="any" value="120"></div><div class="field"><label for="tho">Quente saída (°C)</label><input id="tho" type="number" step="any" value="80"></div><div class="field"><label for="tci">Frio entrada (°C)</label><input id="tci" type="number" step="any" value="25"></div><div class="field"><label for="tco">Frio saída (°C)</label><input id="tco" type="number" step="any" value="60"></div><div class="field"><label for="f">Fator de correção F</label><input id="f" type="number" step="any" value="0.9"></div><div class="field"><label for="marg">Margem de área (%)</label><input id="marg" type="number" step="any" value="15"></div></div><div class="calc-actions"><button class="mini-btn dark" onclick="copiar()" type="button"><i class="fas fa-copy"></i> Copiar</button></div></div><div class="calc-card"><h2><i class="fas fa-chart-area"></i> Resultado</h2><div class="calc-result four"><div class="result-box"><span>LMTD</span><strong id="r1">-</strong></div><div class="result-box"><span>Área calculada</span><strong id="r2">-</strong></div><div class="result-box"><span>Área com margem</span><strong id="r3">-</strong></div><div class="result-box"><span>UA requerido</span><strong id="r4">-</strong></div></div><div class="calc-note">Para seleção final, validar arranjo, incrustação, perda de carga e dados do fabricante.</div></div></section>
     
+  
+    <!-- ALOGY_REVISAO_TECNICA_FERRAMENTA -->
+    <section class="calc-card" aria-label="Orientação técnica complementar">
+      <h2><i class="fas fa-clipboard-check"></i> Como usar esta ferramenta na prática</h2>
+      <p>Calcule área estimada de trocador de calor por carga térmica, U, LMTD e fator de correção. Nesta revisão, o conteúdo foi ampliado para deixar mais claro quando usar a ferramenta, quais dados precisam ser conferidos e como transformar o número calculado em uma decisão técnica.</p>
+      <h3>Quando aplicar</h3>
+      <p>Use em processos com temperatura, troca térmica, sensores, termopoços, aquecimento, isolamento, perdas de calor e inspeção termográfica.</p>
+      <h3>Dados que merecem conferência</h3>
+      <p>Antes de confiar no resultado da ferramenta <strong>Calculadora de Área de Trocador de Calor</strong>, confira principalmente: Carga térmica (kW), Coeficiente global U (W/m².K), Quente entrada (°C), Quente saída (°C), Frio entrada (°C), Frio saída (°C). Pequenos erros de unidade, ponto decimal ou condição de operação podem gerar conclusões erradas.</p>
+      <ul>
+          <li>Carga térmica (kW)</li>
+          <li>Coeficiente global U (W/m².K)</li>
+          <li>Quente entrada (°C)</li>
+          <li>Quente saída (°C)</li>
+          <li>Frio entrada (°C)</li>
+          <li>Frio saída (°C)</li>
+      </ul>
+      <h3>Como interpretar o resultado</h3>
+      <p>O resultado depende muito de temperatura de referência, material, fluido, emissividade, isolamento, vazão e tempo de resposta. Em campo, valide sempre com medição estável e instrumento adequado.</p>
+      <p>Quando a página apresentar campos de resultado como LMTD, Área calculada, Área com margem, UA requerido, use esses valores para comparar o cenário calculado com limite operacional, tolerância do processo, histórico de manutenção ou especificação de fabricante.</p>
+      <h3>Checklist rápido de validação</h3>
+      <ul>
+          <li>Confirme unidade de temperatura, material e condição de instalação.</li>
+          <li>Em termografia, ajuste emissividade e evite reflexos antes de concluir.</li>
+          <li>Em troca térmica, confira vazão, Cp, ΔT e sentido de escoamento.</li>
+          <li>Use histórico de processo para saber se a variação é normal ou sintoma de falha.</li>
+      </ul>
+      <h3>Limites da estimativa</h3>
+      <p>Esta ferramenta é indicada para estudo, triagem, conferência de campo e apoio à manutenção. Para projeto final, laudo, especificação de compra, alteração de segurança ou liberação de equipamento crítico, valide as premissas com normas aplicáveis, documentação do fabricante e profissional habilitado.</p>
+    </section>
+
   </main>
   <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
 <script>function val(id){return parseFloat(document.getElementById(id).value)||0;}function txt(id){let e=document.getElementById(id);return e?e.value:'';}function fmt(x,d=2){return Number.isFinite(x)?x.toLocaleString('pt-BR',{maximumFractionDigits:d}):'-';}function set(id,v){document.getElementById(id).innerHTML=v;}function bind(){document.querySelectorAll('input,select').forEach(e=>e.addEventListener('input',calc));calc();}function copiar(){navigator.clipboard&&navigator.clipboard.writeText(document.body.innerText.slice(0,2600));}window.addEventListener('DOMContentLoaded',bind);function calc(){let q=val('q')*1000,u=val('u'),thi=val('thi'),tho=val('tho'),tci=val('tci'),tco=val('tco'),f=val('f'),m=val('marg')/100;let dt1=thi-tco,dt2=tho-tci;let lm=(dt1>0&&dt2>0&&Math.abs(dt1-dt2)>0.0001)?(dt1-dt2)/Math.log(dt1/dt2):dt1;let a=q/((u||1)*(lm||1)*(f||1));set('r1',fmt(lm,2)+' °C');set('r2',fmt(a,2)+' m²');set('r3',fmt(a*(1+m),2)+' m²');set('r4',fmt(q/(lm||1),1)+' W/K');}</script>

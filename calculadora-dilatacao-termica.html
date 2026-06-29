@@ -114,6 +114,37 @@ Resultado convertido para mm</div>
       <h2><i class="fas fa-circle-question"></i> Perguntas frequentes</h2>
       <details><summary>Onde isso ajuda na instrumentação?</summary><p>Ajuda em suportes, tubing, tomadas de impulso, hastes, tubulações próximas a instrumentos e montagens sujeitas a temperatura.</p></details><details><summary>A dilatação calculada garante que a instalação está correta?</summary><p>Não. É uma estimativa linear simples. Instalações reais exigem análise de suportação, flexibilidade, vibração e normas de tubulação.</p></details>
     </section>
+  
+    <!-- ALOGY_REVISAO_TECNICA_FERRAMENTA -->
+    <section class="calc-card" aria-label="Orientação técnica complementar">
+      <h2><i class="fas fa-clipboard-check"></i> Como usar esta ferramenta na prática</h2>
+      <p>Calculadora de dilatação térmica linear para tubos, hastes, suportes, bases e estruturas industriais em aço carbono, inox, alumínio, cobre e PVC. Nesta revisão, o conteúdo foi ampliado para deixar mais claro quando usar a ferramenta, quais dados precisam ser conferidos e como transformar o número calculado em uma decisão técnica.</p>
+      <h3>Quando aplicar</h3>
+      <p>Use em processos com temperatura, troca térmica, sensores, termopoços, aquecimento, isolamento, perdas de calor e inspeção termográfica.</p>
+      <h3>Dados que merecem conferência</h3>
+      <p>Antes de confiar no resultado da ferramenta <strong>Calculadora de Dilatação Térmica</strong>, confira principalmente: Material, Coeficiente α, Comprimento inicial, Temperatura inicial, Temperatura final, Folga disponível. Pequenos erros de unidade, ponto decimal ou condição de operação podem gerar conclusões erradas.</p>
+      <ul>
+          <li>Material</li>
+          <li>Coeficiente α</li>
+          <li>Comprimento inicial</li>
+          <li>Temperatura inicial</li>
+          <li>Temperatura final</li>
+          <li>Folga disponível</li>
+      </ul>
+      <h3>Como interpretar o resultado</h3>
+      <p>O resultado depende muito de temperatura de referência, material, fluido, emissividade, isolamento, vazão e tempo de resposta. Em campo, valide sempre com medição estável e instrumento adequado.</p>
+      <p>Quando a página apresentar campos de resultado como Variação de temperatura, Dilatação linear, Status da folga, use esses valores para comparar o cenário calculado com limite operacional, tolerância do processo, histórico de manutenção ou especificação de fabricante.</p>
+      <h3>Checklist rápido de validação</h3>
+      <ul>
+          <li>Confirme unidade de temperatura, material e condição de instalação.</li>
+          <li>Em termografia, ajuste emissividade e evite reflexos antes de concluir.</li>
+          <li>Em troca térmica, confira vazão, Cp, ΔT e sentido de escoamento.</li>
+          <li>Use histórico de processo para saber se a variação é normal ou sintoma de falha.</li>
+      </ul>
+      <h3>Limites da estimativa</h3>
+      <p>Esta ferramenta é indicada para estudo, triagem, conferência de campo e apoio à manutenção. Para projeto final, laudo, especificação de compra, alteração de segurança ou liberação de equipamento crítico, valide as premissas com normas aplicáveis, documentação do fabricante e profissional habilitado.</p>
+    </section>
+
   </main>
 <script>function n(id){return parseFloat(document.getElementById(id).value)||0}function fmt(v,d=2){return isFinite(v)?v.toFixed(d).replace('.',','):'-'}const mats=[['Aço carbono',12],['Aço inox',17],['Alumínio',23],['Cobre',17.5],['PVC',70]];document.getElementById('mat').addEventListener('change',()=>{let v=document.getElementById('mat').value;if(v!='custom')document.getElementById('alpha').value=v;calcDil();});function calcDil(){let a=n('alpha'),L=n('L'),dt=n('t2')-n('t1'),folga=n('folga');let dl=a*1e-6*L*dt*1000;document.getElementById('dt').textContent=fmt(dt)+' °C';document.getElementById('dl').textContent=fmt(dl)+' mm';let st=Math.abs(dl)<=folga?'Folga aparentemente suficiente':'Verificar suportes/folgas';document.getElementById('status').textContent=st;document.getElementById('nota').className='calc-note '+(Math.abs(dl)>folga?'warn':'');document.getElementById('nota').textContent=st+'. Em tubulações e instrumentos, verifique suportação, vibração, selo, tomada de impulso, juntas e flexibilidade.';document.getElementById('tab').innerHTML=mats.map(m=>`<tr><td>${m[0]}</td><td>${fmt(m[1]*1e-6*L*dt*1000)} mm</td></tr>`).join('')}function copyResumo(){navigator.clipboard.writeText(`Dilatação térmica: ΔT ${document.getElementById('dt').textContent}; ΔL ${document.getElementById('dl').textContent}; ${document.getElementById('status').textContent}.`)}document.querySelectorAll('input,select').forEach(e=>e.addEventListener('input',calcDil));calcDil();</script>
   <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p></footer>

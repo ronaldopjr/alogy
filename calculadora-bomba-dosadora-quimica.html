@@ -53,6 +53,37 @@
     <section class="calc-card" aria-label="Aviso de uso"><h2><i class="fas fa-triangle-exclamation"></i> Ferramenta orientativa</h2><p>Use esta ferramenta para estudo, estimativa e conferência preliminar. O resultado depende dos dados inseridos, hipóteses adotadas, normas aplicáveis, catálogos de fabricantes e validação de profissional habilitado.</p></section>
     <section class="calc-layout"><div class="calc-card"><h2><i class="fas fa-flask-vial"></i> Dados de dosagem</h2><div class="calc-grid"><div class="field"><label for="ppm">Dosagem desejada (ppm ou mg/L)</label><input id="ppm" type="number" step="any" value="25"></div><div class="field"><label for="q">Vazão do processo (m³/h)</label><input id="q" type="number" step="any" value="80"></div><div class="field"><label for="conc">Concentração do produto ativo (% m/m)</label><input id="conc" type="number" step="any" value="12"></div><div class="field"><label for="dens">Densidade do produto (kg/L)</label><input id="dens" type="number" step="any" value="1.15"></div><div class="field"><label for="strokes">Volume por curso da bomba (mL/curso)</label><input id="strokes" type="number" step="any" value="2.5"></div><div class="field"><label for="margem">Margem operacional (%)</label><input id="margem" type="number" step="any" value="20"></div></div><div class="calc-actions"><button class="mini-btn dark" onclick="copiar()" type="button"><i class="fas fa-copy"></i> Copiar</button></div></div><div class="calc-card"><h2><i class="fas fa-chart-simple"></i> Resultado</h2><div class="calc-result four"><div class="result-box"><span>Ativo requerido</span><strong id="r1">-</strong></div><div class="result-box"><span>Produto requerido</span><strong id="r2">-</strong></div><div class="result-box"><span>Vazão com margem</span><strong id="r3">-</strong></div><div class="result-box"><span>Frequência da bomba</span><strong id="r4">-</strong></div></div><div class="calc-note">Para produtos comerciais, use a concentração real do certificado/ficha técnica.</div></div></section>
     
+  
+    <!-- ALOGY_REVISAO_TECNICA_FERRAMENTA -->
+    <section class="calc-card" aria-label="Orientação técnica complementar">
+      <h2><i class="fas fa-clipboard-check"></i> Como usar esta ferramenta na prática</h2>
+      <p>Calcule vazão de bomba dosadora em L/h, mL/min e consumo de produto para dosagem química em ppm. Nesta revisão, o conteúdo foi ampliado para deixar mais claro quando usar a ferramenta, quais dados precisam ser conferidos e como transformar o número calculado em uma decisão técnica.</p>
+      <h3>Quando aplicar</h3>
+      <p>Use para estimativas de utilidades industriais como ar comprimido, vapor, exaustão, nitrogênio, bombas e ventiladores, ajudando manutenção e engenharia a comparar consumo, perda, capacidade e segurança operacional.</p>
+      <h3>Dados que merecem conferência</h3>
+      <p>Antes de confiar no resultado da ferramenta <strong>Calculadora de Bomba Dosadora Química</strong>, confira principalmente: Dosagem desejada (ppm ou mg/L), Vazão do processo (m³/h), Concentração do produto ativo (% m/m), Densidade do produto (kg/L), Volume por curso da bomba (mL/curso), Margem operacional (%). Pequenos erros de unidade, ponto decimal ou condição de operação podem gerar conclusões erradas.</p>
+      <ul>
+          <li>Dosagem desejada (ppm ou mg/L)</li>
+          <li>Vazão do processo (m³/h)</li>
+          <li>Concentração do produto ativo (% m/m)</li>
+          <li>Densidade do produto (kg/L)</li>
+          <li>Volume por curso da bomba (mL/curso)</li>
+          <li>Margem operacional (%)</li>
+      </ul>
+      <h3>Como interpretar o resultado</h3>
+      <p>O resultado indica tendência e ordem de grandeza. Em utilidades, a condição real de operação costuma variar com pressão, temperatura, vazamentos, perdas de carga, rendimento e estado mecânico do equipamento.</p>
+      <p>Quando a página apresentar campos de resultado como Ativo requerido, Produto requerido, Vazão com margem, Frequência da bomba, use esses valores para comparar o cenário calculado com limite operacional, tolerância do processo, histórico de manutenção ou especificação de fabricante.</p>
+      <h3>Checklist rápido de validação</h3>
+      <ul>
+          <li>Meça pressão, temperatura e vazão na condição mais próxima possível da operação real.</li>
+          <li>Considere perdas em filtros, curvas, válvulas, mangueiras, dutos e trocadores.</li>
+          <li>Compare o cálculo com placa do equipamento, curva do fabricante e histórico de consumo.</li>
+          <li>Se o resultado ficar próximo do limite, adote margem de segurança e valide com engenharia.</li>
+      </ul>
+      <h3>Limites da estimativa</h3>
+      <p>Esta ferramenta é indicada para estudo, triagem, conferência de campo e apoio à manutenção. Para projeto final, laudo, especificação de compra, alteração de segurança ou liberação de equipamento crítico, valide as premissas com normas aplicáveis, documentação do fabricante e profissional habilitado.</p>
+    </section>
+
   </main>
   <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
 <script>function val(id){return parseFloat(document.getElementById(id).value)||0;}function txt(id){let e=document.getElementById(id);return e?e.value:'';}function fmt(x,d=2){return Number.isFinite(x)?x.toLocaleString('pt-BR',{maximumFractionDigits:d}):'-';}function set(id,v){document.getElementById(id).innerHTML=v;}function bind(){document.querySelectorAll('input,select').forEach(e=>e.addEventListener('input',calc));calc();}function copiar(){navigator.clipboard&&navigator.clipboard.writeText(document.body.innerText.slice(0,2600));}window.addEventListener('DOMContentLoaded',bind);function calc(){let ppm=val('ppm'),q=val('q'),c=val('conc')/100,d=val('dens'),st=val('strokes'),m=val('margem')/100;let kgAt=ppm*q/1000;let kgProd=kgAt/(c||1);let lh=kgProd/(d||1);let lhm=lh*(1+m);let mlmin=lhm*1000/60;let spm=st>0?mlmin/st:0;set('r1',fmt(kgAt,3)+' kg/h');set('r2',fmt(lh,3)+' L/h');set('r3',fmt(lhm,3)+' L/h');set('r4',fmt(spm,1)+' cursos/min');}</script>

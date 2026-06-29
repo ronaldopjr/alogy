@@ -54,6 +54,37 @@
     <section class="calc-layout"><div class="calc-card"><h2><i class="fas fa-pen-to-square"></i> Dados de entrada</h2><div class="calc-grid"><label>Fonte da malha (Vcc)<input id="vs" type="number" step="any" value="24"></label><label>Tensão mínima do transmissor (V)<input id="vmin" type="number" step="any" value="12"></label><label>Entrada/AI/resistor (Ω)<input id="rinput" type="number" step="any" value="250"></label><label>Barreira/isolador total (Ω)<input id="rbar" type="number" step="any" value="100"></label><label>Resistência do cabo por condutor (Ω/km)<input id="rkm" type="number" step="any" value="39"></label><label>Distância ida (m)<input id="dist" type="number" step="any" value="200"></label></div></div><div class="calc-card"><h2><i class="fas fa-chart-line"></i> Resultado</h2><div class="calc-result four"><div class="result-box"><span>Carga total</span><strong id="r1">-</strong></div><div class="result-box"><span>Carga máxima</span><strong id="r2">-</strong></div><div class="result-box"><span>Margem de tensão</span><strong id="r3">-</strong></div><div class="result-box"><span>Status</span><strong id="r4">-</strong></div></div><p id="nota" class="mini-help"></p><div class="calc-actions no-print"><button class="mini-btn" onclick="window.print()"><i class="fas fa-print"></i> Imprimir</button></div></div></section>
     <script>function n(id){return parseFloat(document.getElementById(id).value)||0}function calc(){let Vs=n('vs'),Vmin=n('vmin'),Rin=n('rinput'),Rb=n('rbar'),Rkm=n('rkm'),dist=n('dist');let Rc=2*dist*Rkm/1000,Rtot=Rin+Rb+Rc,Rmax=(Vs-Vmin)/0.02,margin=Vs-Vmin-0.02*Rtot;let hart=Rtot>=230&&Rtot<=1100;let st=margin>=0?(hart?'OK / HART':'OK sem faixa HART típica'):'Sem margem';document.getElementById('r1').textContent=Rtot.toFixed(1)+' Ω';document.getElementById('r2').textContent=Rmax.toFixed(1)+' Ω';document.getElementById('r3').textContent=margin.toFixed(2)+' V';document.getElementById('r4').textContent=st;document.getElementById('nota').innerHTML='Confirme a tensão mínima do transmissor, cargas de barreiras/isoladores, cabo real e requisitos HART do fabricante.'}document.querySelectorAll('input').forEach(e=>e.addEventListener('input',calc));calc();</script>
     <section class="cta-bar" aria-label="Chamada para contato"><div><strong>Precisa validar esse cálculo em campo?</strong><br><span class="muted">A ALOGY apoia engenharia, manutenção, instrumentação, automação e utilidades industriais.</span></div><div class="cta-actions"><a class="btn" href="index.html#contato"><i class="fas fa-paper-plane"></i> Solicitar contato</a></div></section>
+  
+    <!-- ALOGY_REVISAO_TECNICA_FERRAMENTA -->
+    <section class="calc-card" aria-label="Orientação técnica complementar">
+      <h2><i class="fas fa-clipboard-check"></i> Como usar esta ferramenta na prática</h2>
+      <p>Verifique orçamento de tensão, carga total, queda em cabos, resistor HART e margem da malha 4-20 mA. Nesta revisão, o conteúdo foi ampliado para deixar mais claro quando usar a ferramenta, quais dados precisam ser conferidos e como transformar o número calculado em uma decisão técnica.</p>
+      <h3>Quando aplicar</h3>
+      <p>Use em partida, manutenção e diagnóstico de malhas, painéis, cartões analógicos, redes industriais e sinais de controle quando for necessário conferir escala, carga, resolução, tempo de resposta ou comunicação.</p>
+      <h3>Dados que merecem conferência</h3>
+      <p>Antes de confiar no resultado da ferramenta <strong>Calculadora de Carga de Malha 4-20 mA</strong>, confira principalmente: Fonte da malha (Vcc), Tensão mínima do transmissor (V), Entrada/AI/resistor (Ω), Barreira/isolador total (Ω), Resistência do cabo por condutor (Ω/km), Distância ida (m). Pequenos erros de unidade, ponto decimal ou condição de operação podem gerar conclusões erradas.</p>
+      <ul>
+          <li>Fonte da malha (Vcc)</li>
+          <li>Tensão mínima do transmissor (V)</li>
+          <li>Entrada/AI/resistor (Ω)</li>
+          <li>Barreira/isolador total (Ω)</li>
+          <li>Resistência do cabo por condutor (Ω/km)</li>
+          <li>Distância ida (m)</li>
+      </ul>
+      <h3>Como interpretar o resultado</h3>
+      <p>O resultado ajuda a separar erro de configuração, limitação do cartão, queda na malha, ruído elétrico ou problema de instrumento. Em automação, a conferência deve considerar o sinal físico e também a escala configurada no CLP, supervisório ou controlador.</p>
+      <p>Quando a página apresentar campos de resultado como Carga total, Carga máxima, Margem de tensão, Status, use esses valores para comparar o cenário calculado com limite operacional, tolerância do processo, histórico de manutenção ou especificação de fabricante.</p>
+      <h3>Checklist rápido de validação</h3>
+      <ul>
+          <li>Confirme se a escala do campo é igual à escala configurada no CLP ou supervisório.</li>
+          <li>Verifique alimentação, aterramento funcional, blindagem e carga total da malha.</li>
+          <li>Em redes, confira endereço, baud rate, paridade, terminação e polaridade.</li>
+          <li>Registre o valor físico e o valor visto no sistema para facilitar diagnóstico.</li>
+      </ul>
+      <h3>Limites da estimativa</h3>
+      <p>Esta ferramenta é indicada para estudo, triagem, conferência de campo e apoio à manutenção. Para projeto final, laudo, especificação de compra, alteração de segurança ou liberação de equipamento crítico, valide as premissas com normas aplicáveis, documentação do fabricante e profissional habilitado.</p>
+    </section>
+
   </main>
   <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
 </body>

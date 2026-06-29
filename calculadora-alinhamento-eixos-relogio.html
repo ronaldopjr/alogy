@@ -56,6 +56,36 @@
     <section class="calc-layout"><div class="calc-card"><h2><i class="fas fa-pen-to-square"></i> Dados de entrada</h2><div class="calc-grid"><div class="field"><label for="offset">Offset no acoplamento (mm)</label><input id="offset" type="number" step="any" value="0.15"></div><div class="field"><label for="gap">Diferença angular no diâmetro (mm)</label><input id="gap" type="number" step="any" value="0.1"></div><div class="field"><label for="diam">Diâmetro de leitura do acoplamento (mm)</label><input id="diam" type="number" step="any" value="150"></div><div class="field"><label for="front">Distância até pé dianteiro (mm)</label><input id="front" type="number" step="any" value="300"></div><div class="field"><label for="rear">Distância até pé traseiro (mm)</label><input id="rear" type="number" step="any" value="650"></div></div><p class="mini-help">Cálculo didático para pré-ajuste. Use convenção de sinal do seu procedimento de alinhamento.</p></div><div class="calc-card"><h2><i class="fas fa-chart-line"></i> Resultado</h2><div class="calc-result four"><div class="result-box"><span>Ângulo</span><strong id="r1">-</strong></div><div class="result-box"><span>Pé dianteiro</span><strong id="r2">-</strong></div><div class="result-box"><span>Pé traseiro</span><strong id="r3">-</strong></div><div class="result-box"><span>Diferença</span><strong id="r4">-</strong></div></div><div id="nota" class="calc-note"></div></div></section>
     <script>function n(id){return parseFloat(document.getElementById(id).value)||0}function calc(){let off=n('offset'),gap=n('gap'),diam=n('diam'),front=n('front'),rear=n('rear');let ang=gap/Math.max(diam,.0001);let cf=off+ang*front;let cr=off+ang*rear;document.getElementById('r1').textContent=(ang*1000).toFixed(3)+' mm/m';document.getElementById('r2').textContent=cf.toFixed(3)+' mm';document.getElementById('r3').textContent=cr.toFixed(3)+' mm';document.getElementById('r4').textContent=(cr-cf).toFixed(3)+' mm';document.getElementById('nota').innerHTML='Resultado orientativo. Confirme pé manco, base, crescimento térmico e convenção de sinal antes de movimentar a máquina.'}document.querySelectorAll('input').forEach(e=>e.addEventListener('input',calc));calc();</script>
     <section class="cta-bar" aria-label="Chamada para contato"><div><strong>Precisa de apoio técnico em engenharia, manutenção ou instrumentação?</strong><br><span class="muted">Use as ferramentas como apoio e fale com a ALOGY para análise técnica aplicada ao seu processo.</span></div><div class="cta-actions"><a class="btn" href="index.html#contato"><i class="fas fa-paper-plane"></i> Solicitar contato</a></div></section>
+  
+    <!-- ALOGY_REVISAO_TECNICA_FERRAMENTA -->
+    <section class="calc-card" aria-label="Orientação técnica complementar">
+      <h2><i class="fas fa-clipboard-check"></i> Como usar esta ferramenta na prática</h2>
+      <p>Estime correções de pés em alinhamento de eixos usando offset, leitura angular e distâncias do acoplamento. Nesta revisão, o conteúdo foi ampliado para deixar mais claro quando usar a ferramenta, quais dados precisam ser conferidos e como transformar o número calculado em uma decisão técnica.</p>
+      <h3>Quando aplicar</h3>
+      <p>Use em partida, manutenção e diagnóstico de malhas, painéis, cartões analógicos, redes industriais e sinais de controle quando for necessário conferir escala, carga, resolução, tempo de resposta ou comunicação.</p>
+      <h3>Dados que merecem conferência</h3>
+      <p>Antes de confiar no resultado da ferramenta <strong>Calculadora de Alinhamento de Eixos por Relógio</strong>, confira principalmente: Offset no acoplamento (mm), Diferença angular no diâmetro (mm), Diâmetro de leitura do acoplamento (mm), Distância até pé dianteiro (mm), Distância até pé traseiro (mm). Pequenos erros de unidade, ponto decimal ou condição de operação podem gerar conclusões erradas.</p>
+      <ul>
+          <li>Offset no acoplamento (mm)</li>
+          <li>Diferença angular no diâmetro (mm)</li>
+          <li>Diâmetro de leitura do acoplamento (mm)</li>
+          <li>Distância até pé dianteiro (mm)</li>
+          <li>Distância até pé traseiro (mm)</li>
+      </ul>
+      <h3>Como interpretar o resultado</h3>
+      <p>O resultado ajuda a separar erro de configuração, limitação do cartão, queda na malha, ruído elétrico ou problema de instrumento. Em automação, a conferência deve considerar o sinal físico e também a escala configurada no CLP, supervisório ou controlador.</p>
+      <p>Quando a página apresentar campos de resultado como Ângulo, Pé dianteiro, Pé traseiro, Diferença, use esses valores para comparar o cenário calculado com limite operacional, tolerância do processo, histórico de manutenção ou especificação de fabricante.</p>
+      <h3>Checklist rápido de validação</h3>
+      <ul>
+          <li>Confirme se a escala do campo é igual à escala configurada no CLP ou supervisório.</li>
+          <li>Verifique alimentação, aterramento funcional, blindagem e carga total da malha.</li>
+          <li>Em redes, confira endereço, baud rate, paridade, terminação e polaridade.</li>
+          <li>Registre o valor físico e o valor visto no sistema para facilitar diagnóstico.</li>
+      </ul>
+      <h3>Limites da estimativa</h3>
+      <p>Esta ferramenta é indicada para estudo, triagem, conferência de campo e apoio à manutenção. Para projeto final, laudo, especificação de compra, alteração de segurança ou liberação de equipamento crítico, valide as premissas com normas aplicáveis, documentação do fabricante e profissional habilitado.</p>
+    </section>
+
   </main>
   <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
 </body>

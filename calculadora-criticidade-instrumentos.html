@@ -54,6 +54,37 @@
     <section class="calc-card" aria-label="Aviso de uso"><h2><i class="fas fa-triangle-exclamation"></i> Ferramenta orientativa</h2><p>Use esta ferramenta para estudo, estimativa e conferência preliminar. O resultado depende dos dados inseridos, hipóteses adotadas, normas aplicáveis, catálogos de fabricantes e validação de profissional habilitado.</p></section>
     <section class="calc-layout"><div class="calc-card"><h2><i class="fas fa-ranking-star"></i> Critérios</h2><p>Use notas de 1 a 5 para cada impacto.</p><div class="calc-grid"><div class="field"><label for="seg">Segurança</label><input id="seg" type="number" min="1" max="5" value="5"></div><div class="field"><label for="qual">Qualidade/produto</label><input id="qual" type="number" min="1" max="5" value="4"></div><div class="field"><label for="prod">Produção/parada</label><input id="prod" type="number" min="1" max="5" value="4"></div><div class="field"><label for="amb">Meio ambiente</label><input id="amb" type="number" min="1" max="5" value="3"></div><div class="field"><label for="hist">Histórico de falha</label><input id="hist" type="number" min="1" max="5" value="3"></div><div class="field"><label for="acesso">Dificuldade de acesso</label><input id="acesso" type="number" min="1" max="5" value="2"></div></div></div><div class="calc-card"><h2><i class="fas fa-gauge-high"></i> Resultado</h2><div class="calc-result"><div class="result-box"><span>Pontuação</span><strong id="score">-</strong></div><div class="result-box"><span>Classe</span><strong id="classe">-</strong></div><div class="result-box"><span>Ação sugerida</span><strong class="small" id="acao">-</strong></div></div><div class="calc-note" id="nota">A matriz deve ser ajustada à política da empresa.</div></div></section>
     <section class="calc-card faq"><h2><i class="fas fa-circle-question"></i> Perguntas frequentes</h2><details><summary>Serve para definir intervalo de calibração?</summary><p>Ajuda na priorização, mas o intervalo deve considerar histórico, requisito legal, processo, risco e estabilidade metrológica.</p></details><details><summary>Instrumento de segurança sempre é classe A?</summary><p>Funções de segurança devem ser avaliadas por critérios próprios, mesmo que a pontuação aparente seja menor.</p></details></section>
+  
+    <!-- ALOGY_REVISAO_TECNICA_FERRAMENTA -->
+    <section class="calc-card" aria-label="Orientação técnica complementar">
+      <h2><i class="fas fa-clipboard-check"></i> Como usar esta ferramenta na prática</h2>
+      <p>Classifique criticidade de instrumentos industriais por segurança, qualidade, produção, ambiente e histórico. Nesta revisão, o conteúdo foi ampliado para deixar mais claro quando usar a ferramenta, quais dados precisam ser conferidos e como transformar o número calculado em uma decisão técnica.</p>
+      <h3>Quando aplicar</h3>
+      <p>Use para priorizar manutenção, confiabilidade, inspeção, comissionamento, análise de falhas, sobressalentes e tomada de decisão entre corrigir, monitorar ou planejar parada.</p>
+      <h3>Dados que merecem conferência</h3>
+      <p>Antes de confiar no resultado da ferramenta <strong>Calculadora de Criticidade de Instrumentos</strong>, confira principalmente: Segurança, Qualidade/produto, Produção/parada, Meio ambiente, Histórico de falha, Dificuldade de acesso. Pequenos erros de unidade, ponto decimal ou condição de operação podem gerar conclusões erradas.</p>
+      <ul>
+          <li>Segurança</li>
+          <li>Qualidade/produto</li>
+          <li>Produção/parada</li>
+          <li>Meio ambiente</li>
+          <li>Histórico de falha</li>
+          <li>Dificuldade de acesso</li>
+      </ul>
+      <h3>Como interpretar o resultado</h3>
+      <p>O resultado deve ser analisado junto com criticidade, histórico de falhas, impacto na produção, segurança, meio ambiente, custo de parada e disponibilidade de peças.</p>
+      <p>Quando a página apresentar campos de resultado como Pontuação, Classe, Ação sugerida, use esses valores para comparar o cenário calculado com limite operacional, tolerância do processo, histórico de manutenção ou especificação de fabricante.</p>
+      <h3>Checklist rápido de validação</h3>
+      <ul>
+          <li>Use dados históricos confiáveis, não apenas percepção da equipe.</li>
+          <li>Separe falhas repetitivas, falhas aleatórias e falhas por modo comum.</li>
+          <li>Registre ação corretiva, causa provável e evidência encontrada.</li>
+          <li>Reavalie a criticidade sempre que processo, produção ou risco mudarem.</li>
+      </ul>
+      <h3>Limites da estimativa</h3>
+      <p>Esta ferramenta é indicada para estudo, triagem, conferência de campo e apoio à manutenção. Para projeto final, laudo, especificação de compra, alteração de segurança ou liberação de equipamento crítico, valide as premissas com normas aplicáveis, documentação do fabricante e profissional habilitado.</p>
+    </section>
+
   </main>
   <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
 <script>function g(id){let v=+document.getElementById(id).value||1;return Math.max(1,Math.min(5,v))}function calc(){let sc=g('seg')*3+g('qual')*2+g('prod')*2+g('amb')*2+g('hist')+g('acesso');score.textContent=sc+' pontos';let c=sc>=38?'A - Crítico':sc>=26?'B - Importante':'C - Baixo/Médio';classe.textContent=c;acao.textContent=sc>=38?'plano robusto, sobressalente e calibração prioritária':sc>=26?'plano preventivo e revisão periódica':'monitorar por rotina padrão';nota.textContent='Use como triagem. Instrumentos SIS, legais ou de segurança podem ser críticos independentemente da pontuação.'}document.querySelectorAll('input').forEach(e=>e.addEventListener('input',calc));calc();</script>

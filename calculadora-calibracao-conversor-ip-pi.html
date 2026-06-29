@@ -55,6 +55,37 @@
     <section class="calc-card" aria-label="Aviso de uso"><h2><i class="fas fa-triangle-exclamation"></i> Ferramenta orientativa</h2><p>Use esta ferramenta para estudo, pré-avaliação e conferência de campo. A decisão de aprovação, ajuste, reprovação ou emissão de certificado deve seguir procedimento interno, norma aplicável, classe do instrumento, incerteza da referência, condição do processo e validação de profissional habilitado.</p></section>
     <section class="calc-layout"><div class="calc-card"><h2><i class="fas fa-wind"></i> Dados do conversor</h2><div class="calc-grid"><div class="field"><label for="modo">Tipo de conversor</label><select id="modo"><option value="ip">I/P: 4-20 mA para 3-15 psi</option><option value="pi">P/I: 3-15 psi para 4-20 mA</option></select></div><div class="field"><label for="entrada">Entrada aplicada</label><input id="entrada" type="number" step="any" value="12"></div><div class="field"><label for="saida">Saída medida</label><input id="saida" type="number" step="any" value="9"></div><div class="field"><label for="inMin">Entrada mínima</label><input id="inMin" type="number" step="any" value="4"></div><div class="field"><label for="inMax">Entrada máxima</label><input id="inMax" type="number" step="any" value="20"></div><div class="field"><label for="outMin">Saída mínima</label><input id="outMin" type="number" step="any" value="3"></div><div class="field"><label for="outMax">Saída máxima</label><input id="outMax" type="number" step="any" value="15"></div><div class="field"><label for="tol">Tolerância (% do span de saída)</label><input id="tol" type="number" step="any" value="0.5"></div></div><div class="calc-actions"><button class="mini-btn dark" onclick="copiar()" type="button"><i class="fas fa-copy"></i> Copiar resultado</button><button class="mini-btn" onclick="window.print()" type="button"><i class="fas fa-print"></i> Imprimir</button></div></div><div class="calc-card"><h2><i class="fas fa-chart-simple"></i> Resultado</h2><div class="calc-result four"><div class="result-box"><span>Saída esperada</span><strong id="r1">-</strong></div><div class="result-box"><span>Erro saída</span><strong id="r2">-</strong></div><div class="result-box"><span>Erro % span</span><strong id="r3">-</strong></div><div class="result-box"><span>Status</span><strong id="r4" class="small">-</strong></div></div><div class="calc-note">Verifique ar de instrumentação, filtro regulador, vazamentos, orientação e pressão de alimentação antes de ajustar zero/span.</div></div></section>
     <section class="calc-card faq"><h2><i class="fas fa-circle-question"></i> Perguntas frequentes</h2><details><summary>Posso usar para faixa 3-15 psi diferente?</summary><p>Sim. Edite entrada mínima/máxima e saída mínima/máxima conforme a aplicação.</p></details><details><summary>O que mais afeta o I/P?</summary><p>Suprimento de ar, vazamentos, filtro regulador, restrição pneumática, vibração e ajuste mecânico interno.</p></details></section>
+  
+    <!-- ALOGY_REVISAO_TECNICA_FERRAMENTA -->
+    <section class="calc-card" aria-label="Orientação técnica complementar">
+      <h2><i class="fas fa-clipboard-check"></i> Como usar esta ferramenta na prática</h2>
+      <p>Calcule sinal esperado, erro e status na calibração de conversor I/P 4-20 mA para 3-15 psi ou P/I pneumático para corrente. Nesta revisão, o conteúdo foi ampliado para deixar mais claro quando usar a ferramenta, quais dados precisam ser conferidos e como transformar o número calculado em uma decisão técnica.</p>
+      <h3>Quando aplicar</h3>
+      <p>Use em bancada, campo ou laboratório para preparar pontos de teste, comparar indicação do instrumento com referência rastreável e decidir se o equipamento está aprovado, reprovado ou se precisa de ajuste.</p>
+      <h3>Dados que merecem conferência</h3>
+      <p>Antes de confiar no resultado da ferramenta <strong>Calculadora de Calibração de Conversor I/P e P/I</strong>, confira principalmente: Tipo de conversor, Entrada aplicada, Saída medida, Entrada mínima, Entrada máxima, Saída mínima. Pequenos erros de unidade, ponto decimal ou condição de operação podem gerar conclusões erradas.</p>
+      <ul>
+          <li>Tipo de conversor</li>
+          <li>Entrada aplicada</li>
+          <li>Saída medida</li>
+          <li>Entrada mínima</li>
+          <li>Entrada máxima</li>
+          <li>Saída mínima</li>
+      </ul>
+      <h3>Como interpretar o resultado</h3>
+      <p>O resultado deve ser comparado com a tolerância do processo e com o erro máximo permitido definido no plano de calibração. Um erro pequeno no instrumento pode ser aceitável para utilidades, mas crítico em malhas de segurança, qualidade ou dosagem.</p>
+      <p>Quando a página apresentar campos de resultado como Saída esperada, Erro saída, Erro % span, Status, use esses valores para comparar o cenário calculado com limite operacional, tolerância do processo, histórico de manutenção ou especificação de fabricante.</p>
+      <h3>Checklist rápido de validação</h3>
+      <ul>
+          <li>Confirme TAG, faixa LRV/URV, unidade de engenharia e damping antes do teste.</li>
+          <li>Use padrão de referência com resolução e incerteza adequadas ao instrumento em teste.</li>
+          <li>Registre as leituras de subida e descida para observar histerese, repetibilidade e retorno ao zero.</li>
+          <li>Quando houver ajuste, repita o ciclo completo antes de liberar o instrumento.</li>
+      </ul>
+      <h3>Limites da estimativa</h3>
+      <p>Esta ferramenta é indicada para estudo, triagem, conferência de campo e apoio à manutenção. Para projeto final, laudo, especificação de compra, alteração de segurança ou liberação de equipamento crítico, valide as premissas com normas aplicáveis, documentação do fabricante e profissional habilitado.</p>
+    </section>
+
   </main>
   <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
 <script>

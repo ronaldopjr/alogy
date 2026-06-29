@@ -53,6 +53,37 @@
     <section class="calc-card" aria-label="Aviso de uso"><h2><i class="fas fa-triangle-exclamation"></i> Ferramenta orientativa</h2><p>Use esta ferramenta para estudo, estimativa e conferência preliminar. O resultado depende dos dados inseridos, hipóteses adotadas, normas aplicáveis, catálogos de fabricantes e validação de profissional habilitado.</p></section>
     <section class="calc-layout"><div class="calc-card"><h2><i class="fas fa-bottle-droplet"></i> Dados do cilindro</h2><div class="calc-grid"><div class="field"><label for="v">Volume hidráulico do cilindro (L)</label><input id="v" type="number" step="any" value="50"></div><div class="field"><label for="pi">Pressão inicial (barg)</label><input id="pi" type="number" step="any" value="200"></div><div class="field"><label for="pf">Pressão mínima/residual (barg)</label><input id="pf" type="number" step="any" value="20"></div><div class="field"><label for="cons">Consumo normal (NL/min)</label><input id="cons" type="number" step="any" value="35"></div><div class="field"><label for="fs">Reserva de segurança (%)</label><input id="fs" type="number" step="any" value="15"></div><div class="field"><label for="n">Número de cilindros</label><input id="n" type="number" step="any" value="1"></div></div><div class="calc-actions"><button class="mini-btn dark" onclick="copiar()" type="button"><i class="fas fa-copy"></i> Copiar</button></div></div><div class="calc-card"><h2><i class="fas fa-clock"></i> Resultado</h2><div class="calc-result four"><div class="result-box"><span>Gás disponível</span><strong id="r1">-</strong></div><div class="result-box"><span>Autonomia bruta</span><strong id="r2">-</strong></div><div class="result-box"><span>Autonomia útil</span><strong id="r3">-</strong></div><div class="result-box"><span>Consumo por hora</span><strong id="r4">-</strong></div></div><div class="calc-note">Estimativa ideal simplificada. Gases específicos, reguladores e variação térmica podem alterar o resultado.</div></div></section>
     
+  
+    <!-- ALOGY_REVISAO_TECNICA_FERRAMENTA -->
+    <section class="calc-card" aria-label="Orientação técnica complementar">
+      <h2><i class="fas fa-clipboard-check"></i> Como usar esta ferramenta na prática</h2>
+      <p>Estime autonomia de cilindros de nitrogênio, ar comprimido ou gases industriais por pressão, volume e consumo. Nesta revisão, o conteúdo foi ampliado para deixar mais claro quando usar a ferramenta, quais dados precisam ser conferidos e como transformar o número calculado em uma decisão técnica.</p>
+      <h3>Quando aplicar</h3>
+      <p>Use para estimativas de utilidades industriais como ar comprimido, vapor, exaustão, nitrogênio, bombas e ventiladores, ajudando manutenção e engenharia a comparar consumo, perda, capacidade e segurança operacional.</p>
+      <h3>Dados que merecem conferência</h3>
+      <p>Antes de confiar no resultado da ferramenta <strong>Calculadora de Autonomia de Cilindro de Gás</strong>, confira principalmente: Volume hidráulico do cilindro (L), Pressão inicial (barg), Pressão mínima/residual (barg), Consumo normal (NL/min), Reserva de segurança (%), Número de cilindros. Pequenos erros de unidade, ponto decimal ou condição de operação podem gerar conclusões erradas.</p>
+      <ul>
+          <li>Volume hidráulico do cilindro (L)</li>
+          <li>Pressão inicial (barg)</li>
+          <li>Pressão mínima/residual (barg)</li>
+          <li>Consumo normal (NL/min)</li>
+          <li>Reserva de segurança (%)</li>
+          <li>Número de cilindros</li>
+      </ul>
+      <h3>Como interpretar o resultado</h3>
+      <p>O resultado indica tendência e ordem de grandeza. Em utilidades, a condição real de operação costuma variar com pressão, temperatura, vazamentos, perdas de carga, rendimento e estado mecânico do equipamento.</p>
+      <p>Quando a página apresentar campos de resultado como Gás disponível, Autonomia bruta, Autonomia útil, Consumo por hora, use esses valores para comparar o cenário calculado com limite operacional, tolerância do processo, histórico de manutenção ou especificação de fabricante.</p>
+      <h3>Checklist rápido de validação</h3>
+      <ul>
+          <li>Meça pressão, temperatura e vazão na condição mais próxima possível da operação real.</li>
+          <li>Considere perdas em filtros, curvas, válvulas, mangueiras, dutos e trocadores.</li>
+          <li>Compare o cálculo com placa do equipamento, curva do fabricante e histórico de consumo.</li>
+          <li>Se o resultado ficar próximo do limite, adote margem de segurança e valide com engenharia.</li>
+      </ul>
+      <h3>Limites da estimativa</h3>
+      <p>Esta ferramenta é indicada para estudo, triagem, conferência de campo e apoio à manutenção. Para projeto final, laudo, especificação de compra, alteração de segurança ou liberação de equipamento crítico, valide as premissas com normas aplicáveis, documentação do fabricante e profissional habilitado.</p>
+    </section>
+
   </main>
   <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
 <script>function val(id){return parseFloat(document.getElementById(id).value)||0;}function txt(id){let e=document.getElementById(id);return e?e.value:'';}function fmt(x,d=2){return Number.isFinite(x)?x.toLocaleString('pt-BR',{maximumFractionDigits:d}):'-';}function set(id,v){document.getElementById(id).innerHTML=v;}function bind(){document.querySelectorAll('input,select').forEach(e=>e.addEventListener('input',calc));calc();}function copiar(){navigator.clipboard&&navigator.clipboard.writeText(document.body.innerText.slice(0,2600));}window.addEventListener('DOMContentLoaded',bind);function calc(){let v=val('v'),pi=val('pi'),pf=val('pf'),c=val('cons'),fs=val('fs')/100,n=val('n')||1;let nl=Math.max(0,(pi-pf))*v*n;let h=c>0?nl/c/60:0;let hu=h*(1-fs);set('r1',fmt(nl/1000,2)+' Nm³');set('r2',fmt(h,2)+' h');set('r3',fmt(hu,2)+' h');set('r4',fmt(c*60/1000,2)+' Nm³/h');}</script>

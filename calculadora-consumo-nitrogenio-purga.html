@@ -53,6 +53,36 @@
     <section class="calc-card" aria-label="Aviso de uso"><h2><i class="fas fa-triangle-exclamation"></i> Ferramenta orientativa</h2><p>Use esta ferramenta para estudo, estimativa e conferência preliminar. O resultado depende dos dados inseridos, hipóteses adotadas, normas aplicáveis, catálogos de fabricantes e validação de profissional habilitado.</p></section>
     <section class="calc-layout"><div class="calc-card"><h2><i class="fas fa-gas-pump"></i> Dados da purga</h2><div class="calc-grid"><div class="field"><label for="vol">Volume do vaso/linha (m³)</label><input id="vol" type="number" step="any" value="10"></div><div class="field"><label for="trocas">Trocas de volume</label><input id="trocas" type="number" step="any" value="5"></div><div class="field"><label for="p">Pressão final ou média (barg)</label><input id="p" type="number" step="any" value="0.2"></div><div class="field"><label for="ciclos">Ciclos por mês</label><input id="ciclos" type="number" step="any" value="20"></div><div class="field"><label for="custo">Custo do N₂ (R$/Nm³)</label><input id="custo" type="number" step="any" value="2.50"></div></div><div class="calc-actions"><button class="mini-btn dark" onclick="copiar()" type="button"><i class="fas fa-copy"></i> Copiar</button></div></div><div class="calc-card"><h2><i class="fas fa-chart-line"></i> Resultado</h2><div class="calc-result four"><div class="result-box"><span>Consumo por ciclo</span><strong id="r1">-</strong></div><div class="result-box"><span>Consumo mensal</span><strong id="r2">-</strong></div><div class="result-box"><span>Custo mensal</span><strong id="r3">-</strong></div><div class="result-box"><span>Observação</span><strong id="r4" class="small">-</strong></div></div><div class="calc-note">Purga real depende de estratégia: varredura contínua, pressurização/despressurização, teor de O₂ alvo e eficiência de mistura.</div></div></section>
     
+  
+    <!-- ALOGY_REVISAO_TECNICA_FERRAMENTA -->
+    <section class="calc-card" aria-label="Orientação técnica complementar">
+      <h2><i class="fas fa-clipboard-check"></i> Como usar esta ferramenta na prática</h2>
+      <p>Estime consumo de nitrogênio em purga, inertização e blanketing por volume, pressão e ciclos. Nesta revisão, o conteúdo foi ampliado para deixar mais claro quando usar a ferramenta, quais dados precisam ser conferidos e como transformar o número calculado em uma decisão técnica.</p>
+      <h3>Quando aplicar</h3>
+      <p>Use em partida, manutenção e diagnóstico de malhas, painéis, cartões analógicos, redes industriais e sinais de controle quando for necessário conferir escala, carga, resolução, tempo de resposta ou comunicação.</p>
+      <h3>Dados que merecem conferência</h3>
+      <p>Antes de confiar no resultado da ferramenta <strong>Calculadora de Consumo de Nitrogênio para Purga</strong>, confira principalmente: Volume do vaso/linha (m³), Trocas de volume, Pressão final ou média (barg), Ciclos por mês, Custo do N₂ (R$/Nm³). Pequenos erros de unidade, ponto decimal ou condição de operação podem gerar conclusões erradas.</p>
+      <ul>
+          <li>Volume do vaso/linha (m³)</li>
+          <li>Trocas de volume</li>
+          <li>Pressão final ou média (barg)</li>
+          <li>Ciclos por mês</li>
+          <li>Custo do N₂ (R$/Nm³)</li>
+      </ul>
+      <h3>Como interpretar o resultado</h3>
+      <p>O resultado ajuda a separar erro de configuração, limitação do cartão, queda na malha, ruído elétrico ou problema de instrumento. Em automação, a conferência deve considerar o sinal físico e também a escala configurada no CLP, supervisório ou controlador.</p>
+      <p>Quando a página apresentar campos de resultado como Consumo por ciclo, Consumo mensal, Custo mensal, Observação, use esses valores para comparar o cenário calculado com limite operacional, tolerância do processo, histórico de manutenção ou especificação de fabricante.</p>
+      <h3>Checklist rápido de validação</h3>
+      <ul>
+          <li>Confirme se a escala do campo é igual à escala configurada no CLP ou supervisório.</li>
+          <li>Verifique alimentação, aterramento funcional, blindagem e carga total da malha.</li>
+          <li>Em redes, confira endereço, baud rate, paridade, terminação e polaridade.</li>
+          <li>Registre o valor físico e o valor visto no sistema para facilitar diagnóstico.</li>
+      </ul>
+      <h3>Limites da estimativa</h3>
+      <p>Esta ferramenta é indicada para estudo, triagem, conferência de campo e apoio à manutenção. Para projeto final, laudo, especificação de compra, alteração de segurança ou liberação de equipamento crítico, valide as premissas com normas aplicáveis, documentação do fabricante e profissional habilitado.</p>
+    </section>
+
   </main>
   <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
 <script>function val(id){return parseFloat(document.getElementById(id).value)||0;}function fmt(x,d=2){return Number.isFinite(x)?x.toLocaleString('pt-BR',{maximumFractionDigits:d}):'-';}function set(id,v){document.getElementById(id).innerHTML=v;}function bind(){document.querySelectorAll('input,select').forEach(e=>e.addEventListener('input',calc));calc();}function copiar(){navigator.clipboard&&navigator.clipboard.writeText(document.body.innerText.slice(0,2200));}window.addEventListener('DOMContentLoaded',bind);function calc(){let vol=val('vol'),trocas=val('trocas'),p=val('p'),ciclos=val('ciclos'),custo=val('custo');let nm3=vol*trocas*(p+1.013)/1.013;let mes=nm3*ciclos;set('r1',fmt(nm3,1)+' Nm³');set('r2',fmt(mes,0)+' Nm³/mês');set('r3','R$ '+fmt(mes*custo,2));set('r4',trocas>=5?'<span class="pill-warn">Purga intensa</span>':'<span class="pill-ok">Estimativa básica</span>');}</script>

@@ -62,6 +62,37 @@
 <div class="field"><label for="nivel">Nível atual (%)</label><input id="nivel" type="number" step="any" value="50"></div>
 </div><div class="calc-actions"><button class="mini-btn dark" type="button" onclick="copiar()"><i class="fas fa-copy"></i> Copiar resultado</button><button class="mini-btn" type="button" onclick="exemploMolhado()">Exemplo perna molhada</button></div></div><div class="calc-card"><h2><i class="fas fa-ruler-vertical"></i> Resultado</h2><div class="calc-result"><div class="result-box"><span>LRV</span><strong id="lrv">-</strong></div><div class="result-box"><span>URV</span><strong id="urv">-</strong></div><div class="result-box"><span>Span</span><strong id="span">-</strong></div></div><div class="calc-result two"><div class="result-box"><span>DP no nível atual</span><strong id="dpAtual">-</strong></div><div class="result-box"><span>Sinal 4-20 mA</span><strong id="ma">-</strong></div></div><div class="calc-note" id="nota">Informe os dados da aplicação.</div><h3 style="margin-top:18px">Pontos de teste</h3><div class="calc-table-wrap"><table class="calc-table"><thead><tr><th>Nível</th><th>DP</th><th>Sinal</th></tr></thead><tbody id="tbl"></tbody></table></div></div></section>
     <section class="calc-card faq"><h2><i class="fas fa-circle-question"></i> Perguntas frequentes</h2><details><summary>Por que o LRV pode ser negativo?</summary><p>Em perna molhada, a coluna fixa no lado de baixa pressão pode gerar DP negativo no nível mínimo.</p></details><details><summary>Serve para interface de líquidos?</summary><p>A lógica básica muda quando há duas densidades no processo. Para interface, o cálculo precisa considerar as duas fases.</p></details><details><summary>Preciso conferir lado alto e lado baixo?</summary><p>Sim. Inverter conexões ou sinais muda completamente a interpretação do transmissor.</p></details></section>
+  
+    <!-- ALOGY_REVISAO_TECNICA_FERRAMENTA -->
+    <section class="calc-card" aria-label="Orientação técnica complementar">
+      <h2><i class="fas fa-clipboard-check"></i> Como usar esta ferramenta na prática</h2>
+      <p>Calcule LRV, URV, span e sinal 4-20 mA para transmissor de pressão diferencial em nível com perna seca ou molhada. Nesta revisão, o conteúdo foi ampliado para deixar mais claro quando usar a ferramenta, quais dados precisam ser conferidos e como transformar o número calculado em uma decisão técnica.</p>
+      <h3>Quando aplicar</h3>
+      <p>Use para avaliar vazão, nível, densidade, volume, regime de escoamento e comportamento de processo em tanques, tubulações, medidores e linhas industriais.</p>
+      <h3>Dados que merecem conferência</h3>
+      <p>Antes de confiar no resultado da ferramenta <strong>Calculadora DP para Nível em Tanque Fechado</strong>, confira principalmente: Aplicação, Altura de medição / span de nível (m), Densidade do produto (kg/m³), Elevação/supressão no lado alto (m), Altura da perna molhada (m), Densidade da perna molhada (kg/m³). Pequenos erros de unidade, ponto decimal ou condição de operação podem gerar conclusões erradas.</p>
+      <ul>
+          <li>Aplicação</li>
+          <li>Altura de medição / span de nível (m)</li>
+          <li>Densidade do produto (kg/m³)</li>
+          <li>Elevação/supressão no lado alto (m)</li>
+          <li>Altura da perna molhada (m)</li>
+          <li>Densidade da perna molhada (kg/m³)</li>
+      </ul>
+      <h3>Como interpretar o resultado</h3>
+      <p>O resultado ajuda a conferir se a condição de processo é coerente com o instrumento instalado e com a faixa de operação. Mudanças de densidade, viscosidade, temperatura e pressão podem alterar a medição final.</p>
+      <p>Quando a página apresentar campos de resultado como LRV, URV, Span, DP no nível atual, Sinal 4-20 mA, use esses valores para comparar o cenário calculado com limite operacional, tolerância do processo, histórico de manutenção ou especificação de fabricante.</p>
+      <h3>Checklist rápido de validação</h3>
+      <ul>
+          <li>Confirme fluido, unidade, densidade, pressão, temperatura e condição normal ou operacional.</li>
+          <li>Verifique diâmetro interno real, geometria do tanque e posição das tomadas de impulso.</li>
+          <li>Compare o valor calculado com leitura de campo, histórico e balanço de massa.</li>
+          <li>Em medição fiscal, segurança ou qualidade, use método normalizado e documentação aprovada.</li>
+      </ul>
+      <h3>Limites da estimativa</h3>
+      <p>Esta ferramenta é indicada para estudo, triagem, conferência de campo e apoio à manutenção. Para projeto final, laudo, especificação de compra, alteração de segurança ou liberação de equipamento crítico, valide as premissas com normas aplicáveis, documentação do fabricante e profissional habilitado.</p>
+    </section>
+
   </main>
   <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
 <script>

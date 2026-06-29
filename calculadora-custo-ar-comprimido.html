@@ -63,6 +63,37 @@
 <div class="field"><label for="perda">Percentual de perda/vazamento (%)</label><input id="perda" type="number" step="any" value="20"></div>
 </div><div class="calc-actions"><button class="mini-btn dark" type="button" onclick="copiar()"><i class="fas fa-copy"></i> Copiar resultado</button><button class="mini-btn" type="button" onclick="exemplo()">Exemplo</button></div></div><div class="calc-card"><h2><i class="fas fa-bolt"></i> Resultado</h2><div class="calc-result"><div class="result-box"><span>Energia mensal</span><strong id="kwh">-</strong></div><div class="result-box"><span>Custo mensal</span><strong id="custo">-</strong></div><div class="result-box"><span>Custo da perda estimada</span><strong id="perdaCusto">-</strong></div></div><div class="calc-note" id="nota">Informe os dados para calcular.</div><h3 style="margin-top:18px">Cenários por perda</h3><div class="calc-table-wrap"><table class="calc-table"><thead><tr><th>Perda</th><th>Custo/mês</th><th>Custo/ano</th></tr></thead><tbody id="tbl"></tbody></table></div></div></section>
     <section class="calc-card faq"><h2><i class="fas fa-circle-question"></i> Perguntas frequentes</h2><details><summary>Por que ar comprimido é caro?</summary><p>Porque a conversão de energia elétrica em ar comprimido tem perdas significativas e o sistema costuma operar muitas horas por mês.</p></details><details><summary>Energia específica varia?</summary><p>Sim. Depende do compressor, pressão, controle, secador, perdas e manutenção.</p></details><details><summary>Posso usar para justificar correção de vazamentos?</summary><p>Sim, como estimativa inicial de retorno financeiro, mas confirme com medições reais.</p></details></section>
+  
+    <!-- ALOGY_REVISAO_TECNICA_FERRAMENTA -->
+    <section class="calc-card" aria-label="Orientação técnica complementar">
+      <h2><i class="fas fa-clipboard-check"></i> Como usar esta ferramenta na prática</h2>
+      <p>Estime consumo de energia, custo mensal e custo de perdas em sistemas de ar comprimido industrial. Nesta revisão, o conteúdo foi ampliado para deixar mais claro quando usar a ferramenta, quais dados precisam ser conferidos e como transformar o número calculado em uma decisão técnica.</p>
+      <h3>Quando aplicar</h3>
+      <p>Use para estimativas de utilidades industriais como ar comprimido, vapor, exaustão, nitrogênio, bombas e ventiladores, ajudando manutenção e engenharia a comparar consumo, perda, capacidade e segurança operacional.</p>
+      <h3>Dados que merecem conferência</h3>
+      <p>Antes de confiar no resultado da ferramenta <strong>Calculadora de Custo de Ar Comprimido</strong>, confira principalmente: Modo de cálculo, Vazão consumida (Nm³/min), Energia específica (kWh/Nm³), Potência média do compressor (kW), Horas por dia, Dias por mês. Pequenos erros de unidade, ponto decimal ou condição de operação podem gerar conclusões erradas.</p>
+      <ul>
+          <li>Modo de cálculo</li>
+          <li>Vazão consumida (Nm³/min)</li>
+          <li>Energia específica (kWh/Nm³)</li>
+          <li>Potência média do compressor (kW)</li>
+          <li>Horas por dia</li>
+          <li>Dias por mês</li>
+      </ul>
+      <h3>Como interpretar o resultado</h3>
+      <p>O resultado indica tendência e ordem de grandeza. Em utilidades, a condição real de operação costuma variar com pressão, temperatura, vazamentos, perdas de carga, rendimento e estado mecânico do equipamento.</p>
+      <p>Quando a página apresentar campos de resultado como Energia mensal, Custo mensal, Custo da perda estimada, use esses valores para comparar o cenário calculado com limite operacional, tolerância do processo, histórico de manutenção ou especificação de fabricante.</p>
+      <h3>Checklist rápido de validação</h3>
+      <ul>
+          <li>Meça pressão, temperatura e vazão na condição mais próxima possível da operação real.</li>
+          <li>Considere perdas em filtros, curvas, válvulas, mangueiras, dutos e trocadores.</li>
+          <li>Compare o cálculo com placa do equipamento, curva do fabricante e histórico de consumo.</li>
+          <li>Se o resultado ficar próximo do limite, adote margem de segurança e valide com engenharia.</li>
+      </ul>
+      <h3>Limites da estimativa</h3>
+      <p>Esta ferramenta é indicada para estudo, triagem, conferência de campo e apoio à manutenção. Para projeto final, laudo, especificação de compra, alteração de segurança ou liberação de equipamento crítico, valide as premissas com normas aplicáveis, documentação do fabricante e profissional habilitado.</p>
+    </section>
+
   </main>
   <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
 <script>

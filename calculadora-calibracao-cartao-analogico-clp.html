@@ -55,6 +55,37 @@
     <section class="calc-card" aria-label="Aviso de uso"><h2><i class="fas fa-triangle-exclamation"></i> Ferramenta orientativa</h2><p>Use esta ferramenta para estudo, pré-avaliação e conferência de campo. A decisão de aprovação, ajuste, reprovação ou emissão de certificado deve seguir procedimento interno, norma aplicável, classe do instrumento, incerteza da referência, condição do processo e validação de profissional habilitado.</p></section>
     <section class="calc-layout"><div class="calc-card"><h2><i class="fas fa-microchip"></i> Dados do cartão</h2><div class="calc-grid"><div class="field"><label for="sigMin">Sinal mínimo</label><input id="sigMin" type="number" step="any" value="4"></div><div class="field"><label for="sigMax">Sinal máximo</label><input id="sigMax" type="number" step="any" value="20"></div><div class="field"><label for="rawMin">Raw mínimo</label><input id="rawMin" type="number" step="any" value="0"></div><div class="field"><label for="rawMax">Raw máximo</label><input id="rawMax" type="number" step="any" value="27648"></div><div class="field"><label for="engMin">Engenharia mínima</label><input id="engMin" type="number" step="any" value="0"></div><div class="field"><label for="engMax">Engenharia máxima</label><input id="engMax" type="number" step="any" value="100"></div><div class="field"><label for="sig">Sinal aplicado</label><input id="sig" type="number" step="any" value="12"></div><div class="field"><label for="raw">Raw lido no CLP/DCS</label><input id="raw" type="number" step="any" value="13820"></div><div class="field"><label for="tol">Tolerância em counts</label><input id="tol" type="number" step="any" value="30"></div></div><div class="calc-actions"><button class="mini-btn dark" onclick="copiar()" type="button"><i class="fas fa-copy"></i> Copiar resultado</button><button class="mini-btn" onclick="window.print()" type="button"><i class="fas fa-print"></i> Imprimir</button></div></div><div class="calc-card"><h2><i class="fas fa-chart-simple"></i> Resultado</h2><div class="calc-result four"><div class="result-box"><span>Raw esperado</span><strong id="r1">-</strong></div><div class="result-box"><span>Erro raw</span><strong id="r2">-</strong></div><div class="result-box"><span>Engenharia lida</span><strong id="r3">-</strong></div><div class="result-box"><span>Status</span><strong id="r4" class="small">-</strong></div></div><div class="calc-note">Útil para comissionamento de AI em CLP/DCS, diagnóstico de escala e conferência de cartões analógicos.</div><div class="table-wrap"><table class="calc-table"><thead><tr><th>Ponto</th><th>Sinal</th><th>Raw esperado</th><th>Engenharia</th></tr></thead><tbody id="tbl"></tbody></table></div></div></section>
     <section class="calc-card faq"><h2><i class="fas fa-circle-question"></i> Perguntas frequentes</h2><details><summary>Serve para Siemens 0-27648?</summary><p>Sim. Já vem com 0 a 27648 como exemplo, mas você pode alterar para 0-32767, 0-4095 ou outra faixa.</p></details><details><summary>É calibração do instrumento de campo?</summary><p>Não. É conferência/calibração do canal analógico e da escala no CLP/DCS.</p></details></section>
+  
+    <!-- ALOGY_REVISAO_TECNICA_FERRAMENTA -->
+    <section class="calc-card" aria-label="Orientação técnica complementar">
+      <h2><i class="fas fa-clipboard-check"></i> Como usar esta ferramenta na prática</h2>
+      <p>Calcule contagem esperada, erro em raw counts, engenharia e porcentagem na calibração de entrada analógica de CLP ou DCS. Nesta revisão, o conteúdo foi ampliado para deixar mais claro quando usar a ferramenta, quais dados precisam ser conferidos e como transformar o número calculado em uma decisão técnica.</p>
+      <h3>Quando aplicar</h3>
+      <p>Use em bancada, campo ou laboratório para preparar pontos de teste, comparar indicação do instrumento com referência rastreável e decidir se o equipamento está aprovado, reprovado ou se precisa de ajuste.</p>
+      <h3>Dados que merecem conferência</h3>
+      <p>Antes de confiar no resultado da ferramenta <strong>Calculadora de Calibração de Cartão Analógico CLP/DCS</strong>, confira principalmente: Sinal mínimo, Sinal máximo, Raw mínimo, Raw máximo, Engenharia mínima, Engenharia máxima. Pequenos erros de unidade, ponto decimal ou condição de operação podem gerar conclusões erradas.</p>
+      <ul>
+          <li>Sinal mínimo</li>
+          <li>Sinal máximo</li>
+          <li>Raw mínimo</li>
+          <li>Raw máximo</li>
+          <li>Engenharia mínima</li>
+          <li>Engenharia máxima</li>
+      </ul>
+      <h3>Como interpretar o resultado</h3>
+      <p>O resultado deve ser comparado com a tolerância do processo e com o erro máximo permitido definido no plano de calibração. Um erro pequeno no instrumento pode ser aceitável para utilidades, mas crítico em malhas de segurança, qualidade ou dosagem.</p>
+      <p>Quando a página apresentar campos de resultado como Raw esperado, Erro raw, Engenharia lida, Status, use esses valores para comparar o cenário calculado com limite operacional, tolerância do processo, histórico de manutenção ou especificação de fabricante.</p>
+      <h3>Checklist rápido de validação</h3>
+      <ul>
+          <li>Confirme TAG, faixa LRV/URV, unidade de engenharia e damping antes do teste.</li>
+          <li>Use padrão de referência com resolução e incerteza adequadas ao instrumento em teste.</li>
+          <li>Registre as leituras de subida e descida para observar histerese, repetibilidade e retorno ao zero.</li>
+          <li>Quando houver ajuste, repita o ciclo completo antes de liberar o instrumento.</li>
+      </ul>
+      <h3>Limites da estimativa</h3>
+      <p>Esta ferramenta é indicada para estudo, triagem, conferência de campo e apoio à manutenção. Para projeto final, laudo, especificação de compra, alteração de segurança ou liberação de equipamento crítico, valide as premissas com normas aplicáveis, documentação do fabricante e profissional habilitado.</p>
+    </section>
+
   </main>
   <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
 <script>

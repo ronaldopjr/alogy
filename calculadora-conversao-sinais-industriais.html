@@ -114,6 +114,37 @@ valor engenharia = LRV + (% / 100) × (URV - LRV)</div>
       <h2><i class="fas fa-circle-question"></i> Perguntas frequentes</h2>
       <details><summary>Essa ferramenta é redundante com as outras de 4-20 mA?</summary><p>Ela foi criada como conversor rápido unificado. Para diagnóstico profundo, use as ferramentas específicas de 4-20 mA, HART, escala de CLP, LRV/URV e 3-15 psi.</p></details><details><summary>O que significa sinal fora da faixa?</summary><p>Indica que o sinal está abaixo ou acima do range normal configurado. Isso pode ser falha, saturação, erro de escala ou condição de processo fora da faixa.</p></details>
     </section>
+  
+    <!-- ALOGY_REVISAO_TECNICA_FERRAMENTA -->
+    <section class="calc-card" aria-label="Orientação técnica complementar">
+      <h2><i class="fas fa-clipboard-check"></i> Como usar esta ferramenta na prática</h2>
+      <p>Conversor online de sinais industriais: 4-20 mA, 0-20 mA, 0-10 V, 1-5 V, 3-15 psi, percentual e valor de engenharia para instrumentação e CLP. Nesta revisão, o conteúdo foi ampliado para deixar mais claro quando usar a ferramenta, quais dados precisam ser conferidos e como transformar o número calculado em uma decisão técnica.</p>
+      <h3>Quando aplicar</h3>
+      <p>Use como apoio rápido para estimativa técnica, conferência de campo, estudo de engenharia ou validação preliminar antes de executar uma alteração no processo.</p>
+      <h3>Dados que merecem conferência</h3>
+      <p>Antes de confiar no resultado da ferramenta <strong>Calculadora de Conversão de Sinais Industriais</strong>, confira principalmente: Tipo de sinal, Valor medido do sinal, Sinal mínimo, Sinal máximo, LRV / valor mínimo de engenharia, URV / valor máximo de engenharia. Pequenos erros de unidade, ponto decimal ou condição de operação podem gerar conclusões erradas.</p>
+      <ul>
+          <li>Tipo de sinal</li>
+          <li>Valor medido do sinal</li>
+          <li>Sinal mínimo</li>
+          <li>Sinal máximo</li>
+          <li>LRV / valor mínimo de engenharia</li>
+          <li>URV / valor máximo de engenharia</li>
+      </ul>
+      <h3>Como interpretar o resultado</h3>
+      <p>O resultado deve ser encarado como orientação. A decisão final precisa considerar dados reais, norma aplicável, especificação do fabricante, condição de instalação e responsabilidade técnica.</p>
+      <p>Quando a página apresentar campos de resultado como Percentual, Valor engenharia, Status, use esses valores para comparar o cenário calculado com limite operacional, tolerância do processo, histórico de manutenção ou especificação de fabricante.</p>
+      <h3>Checklist rápido de validação</h3>
+      <ul>
+          <li>Confira unidades e dados digitados antes de usar o resultado.</li>
+          <li>Compare com histórico, catálogo ou medição independente.</li>
+          <li>Use margem de segurança quando o resultado estiver perto do limite.</li>
+          <li>Documente premissas, data e responsável pela avaliação.</li>
+      </ul>
+      <h3>Limites da estimativa</h3>
+      <p>Esta ferramenta é indicada para estudo, triagem, conferência de campo e apoio à manutenção. Para projeto final, laudo, especificação de compra, alteração de segurança ou liberação de equipamento crítico, valide as premissas com normas aplicáveis, documentação do fabricante e profissional habilitado.</p>
+    </section>
+
   </main>
 
 <script>

@@ -54,6 +54,37 @@
     <section class="calc-card" aria-label="Aviso de uso"><h2><i class="fas fa-triangle-exclamation"></i> Ferramenta orientativa</h2><p>Use esta ferramenta para estudo, estimativa e conferência preliminar. O resultado depende dos dados inseridos, hipóteses adotadas, normas aplicáveis, catálogos de fabricantes e validação de profissional habilitado.</p></section>
     <section class="calc-layout"><div class="calc-card"><h2><i class="fas fa-clipboard-check"></i> Checklist Ex</h2><p>Marque os itens verificados em campo. O checklist não substitui inspeção formal por profissional qualificado.</p><div class="checklist-list" id="lista"><label class="check-item"><input type="checkbox"><span>Identificação da área classificada e zona/grupo/temperatura disponível</span></label><label class="check-item"><input type="checkbox"><span>Instrumento possui marcação Ex compatível com a área</span></label><label class="check-item"><input type="checkbox"><span>Certificado e manual do fabricante disponíveis</span></label><label class="check-item"><input type="checkbox"><span>Prensa-cabos, bujões e adaptadores compatíveis com o método de proteção</span></label><label class="check-item"><input type="checkbox"><span>Aterramento/equipotencialização verificados conforme projeto</span></label><label class="check-item"><input type="checkbox"><span>Invólucro sem trincas, corrosão crítica ou roscas danificadas</span></label><label class="check-item"><input type="checkbox"><span>Tampa, junta, rosca e torque conforme orientação do fabricante</span></label><label class="check-item"><input type="checkbox"><span>Circuito intrinsecamente seguro confere barreira, entidade e segregação</span></label><label class="check-item"><input type="checkbox"><span>Cabos e eletrodutos sem danos, entradas livres vedadas</span></label><label class="check-item"><input type="checkbox"><span>TAG, documentação, loop drawing e inspeção registrados</span></label></div><div class="calc-actions"><button class="mini-btn dark" onclick="copiar()" type="button"><i class="fas fa-copy"></i> Copiar resumo</button><button class="mini-btn" onclick="limpar()" type="button">Limpar</button></div></div><div class="calc-card"><h2><i class="fas fa-chart-pie"></i> Progresso</h2><div class="calc-result two"><div class="result-box"><span>Itens OK</span><strong id="ok">-</strong></div><div class="result-box"><span>Conclusão</span><strong class="small" id="status">-</strong></div></div><div class="calc-note" id="nota">Registre não conformidades e evidências fotográficas quando aplicável.</div></div></section>
     <section class="calc-card faq"><h2><i class="fas fa-circle-question"></i> Perguntas frequentes</h2><details><summary>Esse checklist substitui inspeção Ex formal?</summary><p>Não. É um apoio orientativo. Inspeções Ex devem seguir requisitos aplicáveis, documentação do fabricante e profissional qualificado.</p></details><details><summary>Pode usar em qualquer tipo de proteção?</summary><p>O checklist é geral. Ex d, Ex e, Ex i, Ex t e outros métodos exigem verificações específicas.</p></details></section>
+  
+    <!-- ALOGY_REVISAO_TECNICA_FERRAMENTA -->
+    <section class="calc-card" aria-label="Orientação técnica complementar">
+      <h2><i class="fas fa-clipboard-check"></i> Como usar esta ferramenta na prática</h2>
+      <p>Checklist orientativo para inspeção de instrumentos em área classificada, marcação Ex, prensa-cabos e documentação. Nesta revisão, o conteúdo foi ampliado para deixar mais claro quando usar a ferramenta, quais dados precisam ser conferidos e como transformar o número calculado em uma decisão técnica.</p>
+      <h3>Quando aplicar</h3>
+      <p>Use para priorizar manutenção, confiabilidade, inspeção, comissionamento, análise de falhas, sobressalentes e tomada de decisão entre corrigir, monitorar ou planejar parada.</p>
+      <h3>Dados que merecem conferência</h3>
+      <p>Antes de confiar no resultado da ferramenta <strong>Checklist de Inspeção de Instrumentos em Área Classificada</strong>, confira principalmente: Identificação da área classificada e zona/grupo/temperatura disponível, Instrumento possui marcação Ex compatível com a área, Certificado e manual do fabricante disponíveis, Prensa-cabos, bujões e adaptadores compatíveis com o método de proteção, Aterramento/equipotencialização verificados conforme projeto, Invólucro sem trincas, corrosão crítica ou roscas danificadas. Pequenos erros de unidade, ponto decimal ou condição de operação podem gerar conclusões erradas.</p>
+      <ul>
+          <li>Identificação da área classificada e zona/grupo/temperatura disponível</li>
+          <li>Instrumento possui marcação Ex compatível com a área</li>
+          <li>Certificado e manual do fabricante disponíveis</li>
+          <li>Prensa-cabos, bujões e adaptadores compatíveis com o método de proteção</li>
+          <li>Aterramento/equipotencialização verificados conforme projeto</li>
+          <li>Invólucro sem trincas, corrosão crítica ou roscas danificadas</li>
+      </ul>
+      <h3>Como interpretar o resultado</h3>
+      <p>O resultado deve ser analisado junto com criticidade, histórico de falhas, impacto na produção, segurança, meio ambiente, custo de parada e disponibilidade de peças.</p>
+      <p>Quando a página apresentar campos de resultado como Itens OK, Conclusão, use esses valores para comparar o cenário calculado com limite operacional, tolerância do processo, histórico de manutenção ou especificação de fabricante.</p>
+      <h3>Checklist rápido de validação</h3>
+      <ul>
+          <li>Use dados históricos confiáveis, não apenas percepção da equipe.</li>
+          <li>Separe falhas repetitivas, falhas aleatórias e falhas por modo comum.</li>
+          <li>Registre ação corretiva, causa provável e evidência encontrada.</li>
+          <li>Reavalie a criticidade sempre que processo, produção ou risco mudarem.</li>
+      </ul>
+      <h3>Limites da estimativa</h3>
+      <p>Esta ferramenta é indicada para estudo, triagem, conferência de campo e apoio à manutenção. Para projeto final, laudo, especificação de compra, alteração de segurança ou liberação de equipamento crítico, valide as premissas com normas aplicáveis, documentação do fabricante e profissional habilitado.</p>
+    </section>
+
   </main>
   <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
 <script>function calc(){let all=[...document.querySelectorAll('#lista input')],c=all.filter(x=>x.checked).length,p=c/all.length*100;ok.textContent=c+'/'+all.length+' ('+p.toFixed(0)+'%)';status.textContent=p===100?'Checklist completo':p>=70?'Parcialmente verificado':'Verificação inicial';nota.textContent=p<100?'Existem itens pendentes. Não libere como conforme sem avaliar pendências.':'Todos os itens foram marcados como verificados.'}function copiar(){let all=[...document.querySelectorAll('.check-item')].map((l,i)=>(l.querySelector('input').checked?'[OK] ':'[ ] ')+l.innerText.trim()).join('\n');navigator.clipboard?.writeText('Checklist Ex - instrumentos em área classificada\n'+all+'\nResultado: '+ok.textContent)}function limpar(){document.querySelectorAll('#lista input').forEach(i=>i.checked=false);calc()}document.querySelectorAll('#lista input').forEach(e=>e.addEventListener('change',calc));calc();</script>

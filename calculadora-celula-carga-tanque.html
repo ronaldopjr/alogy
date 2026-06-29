@@ -61,6 +61,37 @@
 <div class="field"><label for="op">Carga operacional atual (kg)</label><input id="op" type="number" step="any" value="6000"></div>
 </div><div class="calc-actions"><button class="mini-btn dark" type="button" onclick="copiar()"><i class="fas fa-copy"></i> Copiar resultado</button><button class="mini-btn" type="button" onclick="exemplo()">Exemplo 3 células</button></div></div><div class="calc-card"><h2><i class="fas fa-scale-balanced"></i> Resultado</h2><div class="calc-result"><div class="result-box"><span>Capacidade total</span><strong id="total">-</strong></div><div class="result-box"><span>Carga de projeto</span><strong id="proj">-</strong></div><div class="result-box"><span>Margem</span><strong id="margem">-</strong></div></div><div class="calc-result two"><div class="result-box"><span>Carga por célula no máximo</span><strong id="celmax">-</strong></div><div class="result-box"><span>Carga por célula atual</span><strong id="celatual">-</strong></div></div><div class="calc-note" id="nota">Informe os dados para avaliar margem.</div></div></section>
     <section class="calc-card faq"><h2><i class="fas fa-circle-question"></i> Perguntas frequentes</h2><details><summary>A carga se divide igualmente entre as células?</summary><p>Na prática não necessariamente. Desnivelamento, tubulações, agitadores e apoios podem concentrar carga.</p></details><details><summary>Qual fator de segurança usar?</summary><p>Depende da aplicação. Valores como 1,25 ou 1,5 são apenas referências iniciais; confirme com fabricante e projeto.</p></details><details><summary>Serve para balança fiscal?</summary><p>Não. Sistemas fiscais/metrológicos exigem requisitos e aprovação específicos.</p></details></section>
+  
+    <!-- ALOGY_REVISAO_TECNICA_FERRAMENTA -->
+    <section class="calc-card" aria-label="Orientação técnica complementar">
+      <h2><i class="fas fa-clipboard-check"></i> Como usar esta ferramenta na prática</h2>
+      <p>Estime capacidade total, carga por célula e margem de segurança para tanques, silos, reatores e sistemas de pesagem. Nesta revisão, o conteúdo foi ampliado para deixar mais claro quando usar a ferramenta, quais dados precisam ser conferidos e como transformar o número calculado em uma decisão técnica.</p>
+      <h3>Quando aplicar</h3>
+      <p>Use para avaliar vazão, nível, densidade, volume, regime de escoamento e comportamento de processo em tanques, tubulações, medidores e linhas industriais.</p>
+      <h3>Dados que merecem conferência</h3>
+      <p>Antes de confiar no resultado da ferramenta <strong>Calculadora de Célula de Carga para Tanque</strong>, confira principalmente: Número de células, Capacidade de cada célula (kg), Tara / peso morto do conjunto (kg), Carga máxima de produto (kg), Fator dinâmico / segurança, Carga operacional atual (kg). Pequenos erros de unidade, ponto decimal ou condição de operação podem gerar conclusões erradas.</p>
+      <ul>
+          <li>Número de células</li>
+          <li>Capacidade de cada célula (kg)</li>
+          <li>Tara / peso morto do conjunto (kg)</li>
+          <li>Carga máxima de produto (kg)</li>
+          <li>Fator dinâmico / segurança</li>
+          <li>Carga operacional atual (kg)</li>
+      </ul>
+      <h3>Como interpretar o resultado</h3>
+      <p>O resultado ajuda a conferir se a condição de processo é coerente com o instrumento instalado e com a faixa de operação. Mudanças de densidade, viscosidade, temperatura e pressão podem alterar a medição final.</p>
+      <p>Quando a página apresentar campos de resultado como Capacidade total, Carga de projeto, Margem, Carga por célula no máximo, Carga por célula atual, use esses valores para comparar o cenário calculado com limite operacional, tolerância do processo, histórico de manutenção ou especificação de fabricante.</p>
+      <h3>Checklist rápido de validação</h3>
+      <ul>
+          <li>Confirme fluido, unidade, densidade, pressão, temperatura e condição normal ou operacional.</li>
+          <li>Verifique diâmetro interno real, geometria do tanque e posição das tomadas de impulso.</li>
+          <li>Compare o valor calculado com leitura de campo, histórico e balanço de massa.</li>
+          <li>Em medição fiscal, segurança ou qualidade, use método normalizado e documentação aprovada.</li>
+      </ul>
+      <h3>Limites da estimativa</h3>
+      <p>Esta ferramenta é indicada para estudo, triagem, conferência de campo e apoio à manutenção. Para projeto final, laudo, especificação de compra, alteração de segurança ou liberação de equipamento crítico, valide as premissas com normas aplicáveis, documentação do fabricante e profissional habilitado.</p>
+    </section>
+
   </main>
   <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
 <script>

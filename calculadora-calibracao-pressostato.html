@@ -62,6 +62,37 @@
 <div class="field"><label for="rep">Repetibilidade observada (bar)</label><input id="rep" type="number" step="any" value="0.05"></div>
 </div><p class="mini-help">Use valores médios de pelo menos três ciclos de subida e descida quando possível.</p><div class="calc-actions"><button class="mini-btn dark" onclick="copiar()" type="button"><i class="fas fa-copy"></i> Copiar resultado</button><button class="mini-btn" onclick="window.print()" type="button"><i class="fas fa-print"></i> Imprimir</button></div></div><div class="calc-card"><h2><i class="fas fa-chart-simple"></i> Resultado</h2><div class="calc-result four"><div class="result-box"><span>Erro atuação</span><strong id="r1">-</strong></div><div class="result-box"><span>Erro retorno</span><strong id="r2">-</strong></div><div class="result-box"><span>Histerese medida</span><strong id="r3">-</strong></div><div class="result-box"><span>Status</span><strong id="r4" class="small">-</strong></div></div><div class="calc-note" id="nota">Confira ajuste mecânico, contato elétrico e repetibilidade antes de liberar o instrumento.</div><div class="table-wrap"><table class="calc-table"><thead><tr><th>Item</th><th>Desejado</th><th>Medido</th><th>Erro</th></tr></thead><tbody id="tbl"></tbody></table></div></div></section>
     <section class="calc-card faq"><h2><i class="fas fa-circle-question"></i> Perguntas frequentes</h2><details><summary>Serve para pressostato diferencial?</summary><p>Sim, desde que todos os valores estejam na mesma unidade de pressão diferencial.</p></details><details><summary>O que observar além do erro?</summary><p>Observe repetibilidade, estado dos contatos, vibração, vazamento e sentido de atuação.</p></details></section>
+  
+    <!-- ALOGY_REVISAO_TECNICA_FERRAMENTA -->
+    <section class="calc-card" aria-label="Orientação técnica complementar">
+      <h2><i class="fas fa-clipboard-check"></i> Como usar esta ferramenta na prática</h2>
+      <p>Calcule erro de atuação, retorno, histerese e repetibilidade na calibração de pressostatos industriais. Nesta revisão, o conteúdo foi ampliado para deixar mais claro quando usar a ferramenta, quais dados precisam ser conferidos e como transformar o número calculado em uma decisão técnica.</p>
+      <h3>Quando aplicar</h3>
+      <p>Use em bancada, campo ou laboratório para preparar pontos de teste, comparar indicação do instrumento com referência rastreável e decidir se o equipamento está aprovado, reprovado ou se precisa de ajuste.</p>
+      <h3>Dados que merecem conferência</h3>
+      <p>Antes de confiar no resultado da ferramenta <strong>Calculadora de Calibração de Pressostato</strong>, confira principalmente: Ponto de atuação desejado (bar), Ponto de retorno desejado (bar), Atuação medida (bar), Retorno medido (bar), Tolerância admissível (bar), Repetibilidade observada (bar). Pequenos erros de unidade, ponto decimal ou condição de operação podem gerar conclusões erradas.</p>
+      <ul>
+          <li>Ponto de atuação desejado (bar)</li>
+          <li>Ponto de retorno desejado (bar)</li>
+          <li>Atuação medida (bar)</li>
+          <li>Retorno medido (bar)</li>
+          <li>Tolerância admissível (bar)</li>
+          <li>Repetibilidade observada (bar)</li>
+      </ul>
+      <h3>Como interpretar o resultado</h3>
+      <p>O resultado deve ser comparado com a tolerância do processo e com o erro máximo permitido definido no plano de calibração. Um erro pequeno no instrumento pode ser aceitável para utilidades, mas crítico em malhas de segurança, qualidade ou dosagem.</p>
+      <p>Quando a página apresentar campos de resultado como Erro atuação, Erro retorno, Histerese medida, Status, use esses valores para comparar o cenário calculado com limite operacional, tolerância do processo, histórico de manutenção ou especificação de fabricante.</p>
+      <h3>Checklist rápido de validação</h3>
+      <ul>
+          <li>Confirme TAG, faixa LRV/URV, unidade de engenharia e damping antes do teste.</li>
+          <li>Use padrão de referência com resolução e incerteza adequadas ao instrumento em teste.</li>
+          <li>Registre as leituras de subida e descida para observar histerese, repetibilidade e retorno ao zero.</li>
+          <li>Quando houver ajuste, repita o ciclo completo antes de liberar o instrumento.</li>
+      </ul>
+      <h3>Limites da estimativa</h3>
+      <p>Esta ferramenta é indicada para estudo, triagem, conferência de campo e apoio à manutenção. Para projeto final, laudo, especificação de compra, alteração de segurança ou liberação de equipamento crítico, valide as premissas com normas aplicáveis, documentação do fabricante e profissional habilitado.</p>
+    </section>
+
   </main>
   <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
 <script>

@@ -54,6 +54,37 @@
     <section class="calc-card" aria-label="Aviso de uso"><h2><i class="fas fa-triangle-exclamation"></i> Ferramenta orientativa</h2><p>Use esta ferramenta para estudo, estimativa e conferência preliminar. O resultado depende dos dados inseridos, hipóteses adotadas, normas aplicáveis, catálogos de fabricantes e validação de profissional habilitado.</p></section>
     <section class="calc-layout"><div class="calc-card"><h2><i class="fas fa-wind"></i> Dados do duto</h2><div class="calc-grid"><div class="field"><label for="q">Vazão (m³/h)</label><input id="q" type="number" step="any" value="1400"></div><div class="field"><label for="tipo">Tipo de duto</label><select id="tipo"><option value="circ">Circular</option><option value="ret">Retangular</option></select></div><div class="field"><label for="d">Diâmetro circular (mm)</label><input id="d" type="number" step="any" value="160"></div><div class="field"><label for="a">Largura retangular (mm)</label><input id="a" type="number" step="any" value="400"></div><div class="field"><label for="b">Altura retangular (mm)</label><input id="b" type="number" step="any" value="250"></div><div class="field"><label for="vref">Velocidade alvo (m/s)</label><input id="vref" type="number" step="any" value="10"></div></div><div class="calc-actions"><button class="mini-btn dark" onclick="copiar()" type="button"><i class="fas fa-copy"></i> Copiar</button></div></div><div class="calc-card"><h2><i class="fas fa-chart-simple"></i> Resultado</h2><div class="calc-result"><div class="result-box"><span>Velocidade</span><strong id="vel">-</strong></div><div class="result-box"><span>Área</span><strong id="area">-</strong></div><div class="result-box"><span>Diâmetro sugerido</span><strong id="dsug">-</strong></div></div><div class="calc-note" id="nota">Informe os dados.</div><h3 style="margin-top:18px">Tabela por diâmetro</h3><div class="calc-table-wrap"><table class="calc-table"><thead><tr><th>Diâmetro</th><th>Velocidade</th><th>Status</th></tr></thead><tbody id="tbl"></tbody></table></div></div></section>
     <section class="calc-card faq"><h2><i class="fas fa-circle-question"></i> Perguntas frequentes</h2><details><summary>Qual velocidade usar em duto de exaustão?</summary><p>Depende do contaminante, ruído, perda de carga e tipo de captação. A ferramenta usa faixas orientativas para triagem.</p></details><details><summary>Serve para projeto final?</summary><p>Não. Para projeto final é necessário calcular perdas, bocas, curvas, filtros, chaminé, ruído e requisitos ambientais.</p></details></section>
+  
+    <!-- ALOGY_REVISAO_TECNICA_FERRAMENTA -->
+    <section class="calc-card" aria-label="Orientação técnica complementar">
+      <h2><i class="fas fa-clipboard-check"></i> Como usar esta ferramenta na prática</h2>
+      <p>Calcule área, velocidade e diâmetro equivalente de dutos de exaustão industrial por vazão e dimensão do duto. Nesta revisão, o conteúdo foi ampliado para deixar mais claro quando usar a ferramenta, quais dados precisam ser conferidos e como transformar o número calculado em uma decisão técnica.</p>
+      <h3>Quando aplicar</h3>
+      <p>Use para estimativas de utilidades industriais como ar comprimido, vapor, exaustão, nitrogênio, bombas e ventiladores, ajudando manutenção e engenharia a comparar consumo, perda, capacidade e segurança operacional.</p>
+      <h3>Dados que merecem conferência</h3>
+      <p>Antes de confiar no resultado da ferramenta <strong>Calculadora de Duto de Exaustão Industrial</strong>, confira principalmente: Vazão (m³/h), Tipo de duto, Diâmetro circular (mm), Largura retangular (mm), Altura retangular (mm), Velocidade alvo (m/s). Pequenos erros de unidade, ponto decimal ou condição de operação podem gerar conclusões erradas.</p>
+      <ul>
+          <li>Vazão (m³/h)</li>
+          <li>Tipo de duto</li>
+          <li>Diâmetro circular (mm)</li>
+          <li>Largura retangular (mm)</li>
+          <li>Altura retangular (mm)</li>
+          <li>Velocidade alvo (m/s)</li>
+      </ul>
+      <h3>Como interpretar o resultado</h3>
+      <p>O resultado indica tendência e ordem de grandeza. Em utilidades, a condição real de operação costuma variar com pressão, temperatura, vazamentos, perdas de carga, rendimento e estado mecânico do equipamento.</p>
+      <p>Quando a página apresentar campos de resultado como Velocidade, Área, Diâmetro sugerido, use esses valores para comparar o cenário calculado com limite operacional, tolerância do processo, histórico de manutenção ou especificação de fabricante.</p>
+      <h3>Checklist rápido de validação</h3>
+      <ul>
+          <li>Meça pressão, temperatura e vazão na condição mais próxima possível da operação real.</li>
+          <li>Considere perdas em filtros, curvas, válvulas, mangueiras, dutos e trocadores.</li>
+          <li>Compare o cálculo com placa do equipamento, curva do fabricante e histórico de consumo.</li>
+          <li>Se o resultado ficar próximo do limite, adote margem de segurança e valide com engenharia.</li>
+      </ul>
+      <h3>Limites da estimativa</h3>
+      <p>Esta ferramenta é indicada para estudo, triagem, conferência de campo e apoio à manutenção. Para projeto final, laudo, especificação de compra, alteração de segurança ou liberação de equipamento crítico, valide as premissas com normas aplicáveis, documentação do fabricante e profissional habilitado.</p>
+    </section>
+
   </main>
   <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
 <script>function n(v,d=2){return Number.isFinite(v)?v.toLocaleString('pt-BR',{maximumFractionDigits:d}):'-'}function calc(){let q=+qv('q')/3600,t=qv('tipo'),d=+qv('d')/1000,a=+qv('a')/1000,b=+qv('b')/1000,vref=+qv('vref');let ar=t==='circ'?Math.PI*d*d/4:a*b;let v=q/ar;let ds=Math.sqrt(4*q/(Math.PI*vref));vel.textContent=n(v,2)+' m/s';area.textContent=n(ar,4)+' m²';dsug.textContent=n(ds*1000,0)+' mm';nota.textContent=v<6?'Velocidade baixa para muitas exaustões; pode aumentar deposição em dutos com particulado.':v>18?'Velocidade alta; confira ruído, perda de carga e potência do exaustor.':'Faixa usual para muitas aplicações de exaustão/ventilação industrial.';let rows='';[100,125,150,160,200,250,300,350,400,500].forEach(mm=>{let vv=q/(Math.PI*(mm/1000)**2/4);rows+=`<tr><td>${mm} mm</td><td>${n(vv,2)} m/s</td><td>${vv<6?'Baixa':vv>18?'Alta':'Usual'}</td></tr>`});tbl.innerHTML=rows;if(window.enhanceResponsiveToolTables)enhanceResponsiveToolTables()}function qv(id){return document.getElementById(id).value}function copiar(){navigator.clipboard?.writeText(`Duto: velocidade ${vel.textContent}, área ${area.textContent}, diâmetro sugerido ${dsug.textContent}`)}document.querySelectorAll('input,select').forEach(e=>e.addEventListener('input',calc));calc();</script>

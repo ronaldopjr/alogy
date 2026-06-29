@@ -112,6 +112,37 @@
       <h2><i class="fas fa-circle-question"></i> Perguntas frequentes</h2>
       <details><summary>Essa ferramenta substitui a fonte 24 Vcc?</summary><p>Não. Ela é focada em bobinas e válvulas solenoides. Para dimensionar a fonte completa do painel, use a calculadora de Fonte 24 Vcc.</p></details><details><summary>Bobina AC e DC consomem igual?</summary><p>Não necessariamente. Bobinas AC podem ter corrente de partida/inrush e comportamento diferente. Confirme catálogo do fabricante.</p></details>
     </section>
+  
+    <!-- ALOGY_REVISAO_TECNICA_FERRAMENTA -->
+    <section class="calc-card" aria-label="Orientação técnica complementar">
+      <h2><i class="fas fa-clipboard-check"></i> Como usar esta ferramenta na prática</h2>
+      <p>Calcule corrente, potência e consumo de válvulas solenoides e bobinas 24 Vcc, 110 Vca ou 220 Vca para painéis, CLP e automação industrial. Nesta revisão, o conteúdo foi ampliado para deixar mais claro quando usar a ferramenta, quais dados precisam ser conferidos e como transformar o número calculado em uma decisão técnica.</p>
+      <h3>Quando aplicar</h3>
+      <p>Use para avaliar válvulas de controle, atuadores, CV, cavitação, tempo de atuação e relação entre sinal de comando e resposta mecânica da válvula.</p>
+      <h3>Dados que merecem conferência</h3>
+      <p>Antes de confiar no resultado da ferramenta <strong>Calculadora de Consumo de Válvula Solenoide e Bobina</strong>, confira principalmente: Tipo de alimentação, Tensão nominal, Entrada, Valor por bobina, Quantidade de bobinas, Simultaneidade. Pequenos erros de unidade, ponto decimal ou condição de operação podem gerar conclusões erradas.</p>
+      <ul>
+          <li>Tipo de alimentação</li>
+          <li>Tensão nominal</li>
+          <li>Entrada</li>
+          <li>Valor por bobina</li>
+          <li>Quantidade de bobinas</li>
+          <li>Simultaneidade</li>
+      </ul>
+      <h3>Como interpretar o resultado</h3>
+      <p>A leitura deve considerar se a válvula está linear, igual porcentagem ou abertura rápida, além de atrito, histerese, alimentação pneumática, posicionador e condição do processo.</p>
+      <p>Quando a página apresentar campos de resultado como Corrente simultânea, Potência simultânea, Consumo mensal, use esses valores para comparar o cenário calculado com limite operacional, tolerância do processo, histórico de manutenção ou especificação de fabricante.</p>
+      <h3>Checklist rápido de validação</h3>
+      <ul>
+          <li>Confirme ar de instrumento, sentido de falha e ação direta ou reversa.</li>
+          <li>Registre comando, posição real, pressão no atuador e resposta do processo.</li>
+          <li>Observe agarramento, overshoot, oscilação e diferença entre abertura e fechamento.</li>
+          <li>Para dimensionamento final, use dados completos de processo e catálogo do fabricante.</li>
+      </ul>
+      <h3>Limites da estimativa</h3>
+      <p>Esta ferramenta é indicada para estudo, triagem, conferência de campo e apoio à manutenção. Para projeto final, laudo, especificação de compra, alteração de segurança ou liberação de equipamento crítico, valide as premissas com normas aplicáveis, documentação do fabricante e profissional habilitado.</p>
+    </section>
+
   </main>
 <script>function n(id){return parseFloat(document.getElementById(id).value)||0}function fmt(v,d=2){return isFinite(v)?v.toFixed(d).replace('.',','):'-'}function calcSol(){let V=n('tensao'),val=n('valor'),q=n('qtd'),sim=n('sim')/100,duty=n('duty')/100,h=n('horas'),entrada=document.getElementById('entrada').value;let Iunit=entrada==='corr'?val:val/V;let Punit=entrada==='corr'?val*V:val;let Isim=Iunit*q*sim,Psim=Punit*q*sim,Em=Punit*q*duty*h*30/1000;document.getElementById('corr').textContent=fmt(Isim)+' A';document.getElementById('pot').textContent=fmt(Psim)+' W/VA';document.getElementById('kwh').textContent=fmt(Em)+' kWh/mês';document.getElementById('tab').innerHTML=`<tr><td>Corrente por bobina</td><td>${fmt(Iunit,3)} A</td></tr><tr><td>Potência por bobina</td><td>${fmt(Punit)} W/VA</td></tr><tr><td>Corrente total se todas ligarem</td><td>${fmt(Iunit*q)} A</td></tr><tr><td>Reserva sugerida</td><td>dimensionar fonte/circuito com margem e corrente de partida quando aplicável</td></tr>`;document.getElementById('nota').textContent='Para 24 Vcc, conferir queda de tensão, fonte, proteção, surto de bobina, diodo/varistor, temperatura do painel e simultaneidade real.'}function copyResumo(){navigator.clipboard.writeText(`Bobinas/solenoides: corrente simultânea ${document.getElementById('corr').textContent}; potência ${document.getElementById('pot').textContent}; consumo ${document.getElementById('kwh').textContent}.`)}document.querySelectorAll('input,select').forEach(e=>e.addEventListener('input',calcSol));calcSol();</script>
   <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p></footer>

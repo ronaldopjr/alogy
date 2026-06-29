@@ -54,6 +54,34 @@
     <section class="calc-card" aria-label="Aviso de uso"><h2><i class="fas fa-triangle-exclamation"></i> Ferramenta orientativa</h2><p>Use esta ferramenta para estudo, estimativa e conferência preliminar. O resultado depende dos dados inseridos, hipóteses adotadas, normas aplicáveis, catálogos de fabricantes e validação de profissional habilitado.</p></section>
     <section class="calc-layout"><div class="calc-card"><h2><i class="fas fa-shield-halved"></i> Código de proteção</h2><div class="calc-grid"><div class="field"><label for="ip1">Primeiro dígito IP</label><select id="ip1"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option selected>6</option></select></div><div class="field"><label for="ip2">Segundo dígito IP</label><select id="ip2"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option selected>6</option><option>7</option><option>8</option><option>9K</option></select></div><div class="field full"><label for="nema">NEMA/Nível orientativo</label><select id="nema"><option>NEMA 1</option><option>NEMA 3R</option><option>NEMA 4</option><option>NEMA 4X</option><option>NEMA 12</option><option>NEMA 13</option></select></div></div></div><div class="calc-card"><h2><i class="fas fa-circle-info"></i> Interpretação</h2><div class="calc-result two"><div class="result-box"><span>Código IP</span><strong id="codigo">-</strong></div><div class="result-box"><span>Resumo</span><strong class="small" id="resumo">-</strong></div></div><div class="calc-note" id="desc">Selecione o código.</div><h3 style="margin-top:18px">Observação NEMA</h3><p class="mini-help" id="nemadesc">NEMA não é conversão direta de IP. Use como referência orientativa e confirme no catálogo.</p></div></section>
     <section class="calc-card faq"><h2><i class="fas fa-circle-question"></i> Perguntas frequentes</h2><details><summary>IP66 é igual a NEMA 4X?</summary><p>Não necessariamente. IP e NEMA usam critérios diferentes. A equivalência deve ser confirmada pelo fabricante.</p></details><details><summary>Prensa-cabo afeta o IP?</summary><p>Sim. O grau de proteção do conjunto depende do invólucro, prensa-cabos, tampas, juntas, respiros e montagem.</p></details></section>
+  
+    <!-- ALOGY_REVISAO_TECNICA_FERRAMENTA -->
+    <section class="calc-card" aria-label="Orientação técnica complementar">
+      <h2><i class="fas fa-clipboard-check"></i> Como usar esta ferramenta na prática</h2>
+      <p>Consulte o significado de códigos IP, proteção contra poeira, água e equivalência orientativa com NEMA. Nesta revisão, o conteúdo foi ampliado para deixar mais claro quando usar a ferramenta, quais dados precisam ser conferidos e como transformar o número calculado em uma decisão técnica.</p>
+      <h3>Quando aplicar</h3>
+      <p>Use como apoio rápido para estimativa técnica, conferência de campo, estudo de engenharia ou validação preliminar antes de executar uma alteração no processo.</p>
+      <h3>Dados que merecem conferência</h3>
+      <p>Antes de confiar no resultado da ferramenta <strong>Conversor Grau de Proteção IP e NEMA</strong>, confira principalmente: Primeiro dígito IP, Segundo dígito IP, NEMA/Nível orientativo. Pequenos erros de unidade, ponto decimal ou condição de operação podem gerar conclusões erradas.</p>
+      <ul>
+          <li>Primeiro dígito IP</li>
+          <li>Segundo dígito IP</li>
+          <li>NEMA/Nível orientativo</li>
+      </ul>
+      <h3>Como interpretar o resultado</h3>
+      <p>O resultado deve ser encarado como orientação. A decisão final precisa considerar dados reais, norma aplicável, especificação do fabricante, condição de instalação e responsabilidade técnica.</p>
+      <p>Quando a página apresentar campos de resultado como Código IP, Resumo, use esses valores para comparar o cenário calculado com limite operacional, tolerância do processo, histórico de manutenção ou especificação de fabricante.</p>
+      <h3>Checklist rápido de validação</h3>
+      <ul>
+          <li>Confira unidades e dados digitados antes de usar o resultado.</li>
+          <li>Compare com histórico, catálogo ou medição independente.</li>
+          <li>Use margem de segurança quando o resultado estiver perto do limite.</li>
+          <li>Documente premissas, data e responsável pela avaliação.</li>
+      </ul>
+      <h3>Limites da estimativa</h3>
+      <p>Esta ferramenta é indicada para estudo, triagem, conferência de campo e apoio à manutenção. Para projeto final, laudo, especificação de compra, alteração de segurança ou liberação de equipamento crítico, valide as premissas com normas aplicáveis, documentação do fabricante e profissional habilitado.</p>
+    </section>
+
   </main>
   <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
 <script>const s={0:'sem proteção contra sólidos',1:'proteção contra objetos maiores que 50 mm',2:'objetos maiores que 12,5 mm',3:'objetos maiores que 2,5 mm',4:'objetos maiores que 1 mm',5:'proteção contra poeira prejudicial',6:'totalmente protegido contra poeira'};const a={'0':'sem proteção contra água','1':'gotejamento vertical','2':'gotejamento com inclinação','3':'aspersão de água','4':'projeção de água','5':'jatos de água','6':'jatos potentes de água','7':'imersão temporária','8':'imersão contínua conforme fabricante','9K':'jato de alta pressão/temperatura'};const nm={'NEMA 1':'uso interno básico, proteção contra contato acidental','NEMA 3R':'uso externo com chuva e gelo externo','NEMA 4':'jatos de água e uso externo, sem foco em corrosão','NEMA 4X':'similar ao NEMA 4 com resistência adicional à corrosão','NEMA 12':'uso interno contra poeira, sujeira e gotejamento não corrosivo','NEMA 13':'uso interno contra poeira, água pulverizada, óleo e refrigerantes não corrosivos'};function calc(){let x=ip1.value,y=ip2.value;codigo.textContent='IP'+x+y;resumo.textContent=s[x]+'; '+a[y];desc.textContent='IP'+x+y+': '+s[x]+' e '+a[y]+'. Confirme sempre condições de instalação, prensa-cabos, respiros e montagem.';nemadesc.textContent=nema.value+': '+nm[nema.value]+'. Não é equivalência normativa direta.'}document.querySelectorAll('select').forEach(e=>e.addEventListener('input',calc));calc();</script>
