@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Calculadora de Perda de Carga em Tubulação | ALOGY Engenharia</title>
+  <meta name="description" content="Calcule perda de carga distribuída e localizada em tubulações usando vazão, diâmetro interno, comprimento, rugosidade, conexões e válvulas. Resultado em mca, kPa e bar."/>
+  <meta name="robots" content="index,follow" />
+  <meta name="theme-color" content="#004b80" />
+  <link rel="canonical" href="https://www.alogy.com.br/calculadora-perda-carga.html" />
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png" />
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="app.js" defer></script>
+
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ALOGY Engenharia" />
+  <meta property="og:title" content="Calculadora de Perda de Carga em Tubulação" />
+  <meta property="og:description" content="Estime perda de carga distribuída, perda localizada, velocidade, Reynolds e potência hidráulica para tubulações industriais." />
+  <meta property="og:url" content="https://www.alogy.com.br/calculadora-perda-carga.html" />
+  <meta property="og:image" content="https://www.alogy.com.br/favicon-512x512.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebApplication",
+    "name":"Calculadora de Perda de Carga em Tubulação",
+    "url":"https://www.alogy.com.br/calculadora-perda-carga.html",
+    "applicationCategory":"EngineeringApplication",
+    "operatingSystem":"Web",
+    "description":"Ferramenta auxiliar para estimar perda de carga distribuída e localizada em tubulações com base em vazão, diâmetro interno, comprimento, rugosidade, conexões e válvulas.",
+    "publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"}
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {"@type":"Question","name":"O que é perda de carga em tubulação?","acceptedAnswer":{"@type":"Answer","text":"Perda de carga é a perda de energia do fluido ao escoar pela tubulação, causada pelo atrito nas paredes do tubo e por perdas localizadas em curvas, válvulas, reduções, entradas, saídas e acessórios."}},
+      {"@type":"Question","name":"A calculadora usa diâmetro interno ou externo?","acceptedAnswer":{"@type":"Answer","text":"O cálculo usa diâmetro interno. Para seleção real, deve-se consultar o diâmetro interno do tubo conforme material, classe, schedule, espessura e fabricante."}},
+      {"@type":"Question","name":"Esta calculadora substitui projeto hidráulico?","acceptedAnswer":{"@type":"Answer","text":"Não. A ferramenta é orientativa e não substitui projeto, memorial de cálculo, seleção de bomba, verificação de NPSH, cavitação, golpe de aríete, compressibilidade, norma aplicável ou profissional habilitado."}}
+    ]
+  }
+  </script>
+</head>
+<body class="tools-page">
+  <header>
+    <div class="container headbar"><a href="/" class="logo-wrapper" aria-label="Voltar para o início"><img src="logo-alogy.webp" alt="ALOGY Engenharia" /></a><div class="crea-top" aria-label="CREA-SP"><img src="crea.webp" alt="CREA-SP"></div><button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menu"><i class="fas fa-bars"></i></button></div>
+    <nav class="desktop" aria-label="Menu principal"><div class="container navlinks"><a href="index.html">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="index.html#contato">Contato</a></div></nav>
+    <nav class="mobile" aria-label="Menu mobile"><a href="index.html">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="index.html#contato">Contato</a></nav>
+  </header>
+
+  <div class="social-floating" aria-label="Redes sociais"><a href="https://www.linkedin.com/company/alogyengenharia" class="linkedin" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a><a href="https://www.instagram.com/alogyengenharia" class="instagram" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="https://www.facebook.com/alogyengenharia" class="facebook" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><a href="https://www.youtube.com/@alogyengenharia" class="youtube" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a><a href="https://hotmart.com/pt-br/club/alogyengenharia" class="hotmart" target="_blank" rel="noopener" aria-label="Hotmart">H</a><a href="https://www.tiktok.com/@alogyengenharia" class="tiktok" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a></div>
+  <div class="fab-wrap" aria-label="Ações rápidas"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1!%20Vim%20pela%20calculadora%20de%20perda%20de%20carga%20da%20ALOGY.%20Gostaria%20de%20apoio%20t%C3%A9cnico." target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
+
+  <main class="container" style="margin-top:18px">
+    <div style="margin-bottom:14px;display:flex;gap:10px;flex-wrap:wrap" class="no-print">
+      <a class="floating-back-tools no-print" href="ferramentas.html"><i class="fas fa-arrow-left"></i> Voltar para Ferramentas</a>
+      <button class="btn print" type="button" onclick="window.print()"><i class="fas fa-print"></i> Imprimir</button>
+      <a class="btn secondary" href="calculadora-vazao-velocidade-diametro.html"><i class="fas fa-water"></i> Vazão e diâmetro</a>
+      <a class="btn secondary" href="conversor-unidades-industriais.html"><i class="fas fa-ruler-combined"></i> Conversor de unidades</a>
+    </div>
+
+    <section class="tools-hero">
+      <h1>Calculadora de Perda de Carga em Tubulação</h1>
+      <p>Estime a perda de carga distribuída e localizada em uma linha de processo usando vazão, diâmetro interno, comprimento, rugosidade, curvas, válvulas e acessórios. Resultado em mca, kPa e bar.</p>
+    </section>
+
+    <section class="calc-card" aria-label="Aviso de uso da ferramenta">
+      <h2><i class="fas fa-triangle-exclamation"></i> Ferramenta para estudo e apoio técnico</h2>
+      <p>Esta ferramenta é orientativa e usa aproximações simplificadas. Não substitui projeto hidráulico, seleção de bomba, curva de bomba, verificação de NPSH, cavitação, golpe de aríete, regime transiente, compressibilidade, normas, memorial de cálculo, laudo, ART/RRT ou profissional habilitado. A ALOGY Engenharia não se responsabiliza por decisões, compras, instalações, ajustes ou intervenções realizadas exclusivamente com base nesta ferramenta.</p>
+    </section>
+
+    <section class="calc-layout">
+      <div class="calc-card">
+        <h2><i class="fas fa-droplet"></i> Dados da linha</h2>
+        <p>Informe a vazão, o diâmetro interno e o comprimento da tubulação. O cálculo principal usa Darcy-Weisbach com fator de atrito aproximado por Swamee-Jain para regime turbulento e 64/Re para regime laminar.</p>
+        <div class="calc-grid">
+          <div class="field"><label for="q">Vazão</label><input id="q" type="number" step="any" value="10"></div>
+          <div class="field"><label for="qunit">Unidade da vazão</label><select id="qunit"><option value="m3h">m³/h</option><option value="lmin">L/min</option><option value="ls">L/s</option><option value="gpm">GPM</option></select></div>
+          <div class="field"><label for="d">Diâmetro interno</label><input id="d" type="number" step="any" value="50"></div>
+          <div class="field"><label for="dunit">Unidade do diâmetro</label><select id="dunit"><option value="mm">mm</option><option value="pol">polegada</option><option value="m">m</option></select></div>
+          <div class="field"><label for="l">Comprimento reto</label><input id="l" type="number" step="any" value="80"></div>
+          <div class="field"><label for="lunit">Unidade do comprimento</label><select id="lunit"><option value="m">m</option><option value="ft">ft</option></select></div>
+          <div class="field"><label for="rho">Densidade do fluido</label><input id="rho" type="number" step="any" value="998"></div>
+          <div class="field"><label for="mu">Viscosidade dinâmica</label><input id="mu" type="number" step="any" value="1.0"></div>
+          <div class="field"><label for="munit">Unidade da viscosidade</label><select id="munit"><option value="cp">cP</option><option value="pas">Pa·s</option></select></div>
+          <div class="field"><label for="material">Material / rugosidade</label><select id="material"><option value="0.0015">PVC, PEAD ou tubo muito liso</option><option value="0.015">Aço inox / tubo liso</option><option value="0.045" selected>Aço carbono comercial</option><option value="0.15">Aço envelhecido moderado</option><option value="0.26">Ferro fundido</option><option value="custom">Personalizada</option></select></div>
+          <div class="field"><label for="rough">Rugosidade absoluta</label><input id="rough" type="number" step="any" value="0.045"></div>
+          <div class="field"><label for="roughunit">Unidade da rugosidade</label><select id="roughunit"><option value="mm">mm</option><option value="m">m</option></select></div>
+        </div>
+      </div>
+
+      <div class="calc-card result-card" aria-live="polite">
+        <h2><i class="fas fa-chart-line"></i> Resultado</h2>
+        <div class="result-main" id="hTotal">-- mca</div>
+        <p class="muted" id="status">Preencha os dados para calcular.</p>
+        <div class="result-list">
+          <div><span>Perda distribuída</span><strong id="hDist">--</strong></div>
+          <div><span>Perda localizada</span><strong id="hLocal">--</strong></div>
+          <div><span>Perda total</span><strong id="pressao">--</strong></div>
+          <div><span>Velocidade média</span><strong id="vel">--</strong></div>
+          <div><span>Reynolds</span><strong id="reynolds">--</strong></div>
+          <div><span>Fator de atrito</span><strong id="fator">--</strong></div>
+          <div><span>Comprimento equivalente</span><strong id="leq">--</strong></div>
+          <div><span>Potência hidráulica</span><strong id="pot">--</strong></div>
+        </div>
+        <div class="calc-actions" style="margin-top:14px">
+          <button class="mini-btn dark" type="button" onclick="copiarResultado()"><i class="fas fa-copy"></i> Copiar resultado</button>
+          <button class="mini-btn" type="button" onclick="exemploAgua()">Exemplo água</button>
+          <button class="mini-btn" type="button" onclick="limpar()">Limpar</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="calc-card">
+      <h2><i class="fas fa-screwdriver-wrench"></i> Perdas localizadas</h2>
+      <p>Informe quantidades aproximadas de conexões. A soma dos coeficientes K é usada como pré-estimativa da perda localizada.</p>
+      <div class="calc-grid">
+        <div class="field"><label for="el90">Curvas 90° padrão</label><input id="el90" type="number" step="1" value="4"></div>
+        <div class="field"><label for="el45">Curvas 45°</label><input id="el45" type="number" step="1" value="0"></div>
+        <div class="field"><label for="gate">Válvula gaveta aberta</label><input id="gate" type="number" step="1" value="1"></div>
+        <div class="field"><label for="ball">Válvula esfera aberta</label><input id="ball" type="number" step="1" value="1"></div>
+        <div class="field"><label for="globe">Válvula globo</label><input id="globe" type="number" step="1" value="0"></div>
+        <div class="field"><label for="checkv">Válvula retenção</label><input id="checkv" type="number" step="1" value="1"></div>
+        <div class="field"><label for="entrance">Entrada da tubulação</label><input id="entrance" type="number" step="1" value="1"></div>
+        <div class="field"><label for="exit">Saída da tubulação</label><input id="exit" type="number" step="1" value="1"></div>
+        <div class="field"><label for="kcustom">K adicional manual</label><input id="kcustom" type="number" step="any" value="0"></div>
+        <div class="field"><label for="eta">Rendimento bomba/motor para potência</label><input id="eta" type="number" step="any" value="70"></div>
+      </div>
+    </section>
+
+    <section class="calc-card">
+      <h2><i class="fas fa-table"></i> Comparativo por diâmetro interno</h2>
+      <p>Veja como a mesma vazão e o mesmo comprimento se comportam em outros diâmetros internos aproximados.</p>
+      <div class="table-wrap">
+        <table class="calc-table">
+          <thead><tr><th>Diâmetro interno</th><th>Velocidade</th><th>Reynolds</th><th>Perda total</th><th>Pressão</th><th>Status</th></tr></thead>
+          <tbody id="tbodyTabela"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="calc-card">
+      <h2><i class="fas fa-circle-info"></i> Como interpretar</h2>
+      <ul class="nice-list">
+        <li><strong>Perda distribuída:</strong> perda por atrito ao longo do comprimento reto da tubulação.</li>
+        <li><strong>Perda localizada:</strong> perda causada por curvas, válvulas, entradas, saídas e acessórios.</li>
+        <li><strong>Velocidade alta:</strong> pode aumentar ruído, erosão, vibração, golpe de aríete e consumo de energia.</li>
+        <li><strong>Diâmetro interno:</strong> use o valor real do tubo, não apenas o diâmetro nominal.</li>
+        <li><strong>Regime de escoamento:</strong> Reynolds baixo indica regime laminar; Reynolds alto indica regime turbulento.</li>
+      </ul>
+    </section>
+
+    <section class="calc-card faq-section">
+      <h2>Perguntas frequentes</h2>
+      <details><summary>Qual fórmula a calculadora usa?</summary><p>Ela usa Darcy-Weisbach: h = f × L/D × v²/(2g) para perda distribuída e h = K × v²/(2g) para perdas localizadas. O fator de atrito é estimado por 64/Re em regime laminar e por Swamee-Jain em regime turbulento.</p></details>
+      <details><summary>Posso usar para vapor, ar ou gás?</summary><p>Com cuidado. Para gases e vapor, a compressibilidade, temperatura, pressão absoluta e variação de densidade podem ser relevantes. A ferramenta é melhor para água e líquidos em pré-análise.</p></details>
+      <details><summary>O resultado serve para escolher bomba?</summary><p>Serve apenas como apoio inicial. Para escolher bomba é necessário considerar curva da bomba, ponto de operação, altura estática, NPSH, margem, perdas variáveis, válvulas, filtros, trocadores e condição real da instalação.</p></details>
+    </section>
+  </main>
+
+  <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p></footer>
+
+  <script>
+    const $ = id => document.getElementById(id);
+    const g = 9.80665;
+    const diametros = [15,20,25,32,40,50,65,80,100,125,150,200,250,300];
+
+    function n(id){ const v = parseFloat($(id).value); return isFinite(v) ? v : 0; }
+    function fmt(x, d=2){ return isFinite(x) ? x.toLocaleString('pt-BR',{maximumFractionDigits:d, minimumFractionDigits:d}) : '--'; }
+    function fmt0(x){ return isFinite(x) ? x.toLocaleString('pt-BR',{maximumFractionDigits:0}) : '--'; }
+
+    function qToM3s(q, unit){
+      if(unit === 'm3h') return q / 3600;
+      if(unit === 'lmin') return q / 60000;
+      if(unit === 'ls') return q / 1000;
+      if(unit === 'gpm') return q * 0.003785411784 / 60;
+      return q;
+    }
+    function dToM(d, unit){
+      if(unit === 'mm') return d / 1000;
+      if(unit === 'pol') return d * 0.0254;
+      return d;
+    }
+    function lToM(l, unit){ return unit === 'ft' ? l * 0.3048 : l; }
+    function muToPas(mu, unit){ return unit === 'cp' ? mu / 1000 : mu; }
+    function roughToM(r, unit){ return unit === 'mm' ? r / 1000 : r; }
+
+    function frictionFactor(Re, eps, D){
+      if(Re <= 0 || D <= 0) return NaN;
+      if(Re < 2300) return 64 / Re;
+      const term = (eps / (3.7 * D)) + (5.74 / Math.pow(Re, 0.9));
+      return 0.25 / Math.pow(Math.log10(term), 2);
+    }
+
+    function calcFor(Dm){
+      const Q = qToM3s(n('q'), $('qunit').value);
+      const L = lToM(n('l'), $('lunit').value);
+      const rho = n('rho') || 998;
+      const mu = muToPas(n('mu') || 1, $('munit').value);
+      const eps = roughToM(n('rough') || 0.045, $('roughunit').value);
+      const A = Math.PI * Dm * Dm / 4;
+      const v = Q / A;
+      const Re = rho * v * Dm / mu;
+      const f = frictionFactor(Re, eps, Dm);
+      const kSum = 0.9*n('el90') + 0.4*n('el45') + 0.15*n('gate') + 0.05*n('ball') + 10*n('globe') + 2*n('checkv') + 0.5*n('entrance') + 1.0*n('exit') + n('kcustom');
+      const hv = (v*v)/(2*g);
+      const hDist = f * (L / Dm) * hv;
+      const hLoc = kSum * hv;
+      const hTotal = hDist + hLoc;
+      const dpPa = rho * g * hTotal;
+      const Leq = f > 0 ? (kSum * Dm / f) : 0;
+      const eta = Math.max(n('eta'), 1) / 100;
+      const pHyd = rho * g * Q * hTotal / 1000;
+      const pShaft = pHyd / eta;
+      return {Q,L,rho,mu,eps,Dm,A,v,Re,f,kSum,hv,hDist,hLoc,hTotal,dpPa,Leq,pHyd,pShaft};
+    }
+
+    function statusVel(v){
+      if(!isFinite(v) || v <= 0) return 'Verificar dados';
+      if(v < 0.3) return 'Velocidade baixa';
+      if(v <= 2.5) return 'Faixa usual para líquidos';
+      if(v <= 4.0) return 'Atenção à velocidade';
+      return 'Velocidade alta';
+    }
+
+    function calcular(){
+      const material = $('material').value;
+      if(material !== 'custom'){
+        $('rough').value = material;
+        $('rough').disabled = true;
+        $('roughunit').value = 'mm';
+        $('roughunit').disabled = true;
+      } else {
+        $('rough').disabled = false;
+        $('roughunit').disabled = false;
+      }
+      const D = dToM(n('d'), $('dunit').value);
+      const r = calcFor(D);
+      if(!isFinite(r.hTotal) || r.Q <= 0 || D <= 0 || r.L < 0){
+        $('hTotal').textContent = '-- mca';
+        $('status').textContent = 'Informe vazão, diâmetro interno e comprimento válidos.';
+        return;
+      }
+      const regime = r.Re < 2300 ? 'laminar' : (r.Re < 4000 ? 'transição' : 'turbulento');
+      $('hTotal').textContent = fmt(r.hTotal,2) + ' mca';
+      $('status').textContent = statusVel(r.v) + ' · Regime ' + regime + ' · K total ' + fmt(r.kSum,2);
+      $('hDist').textContent = fmt(r.hDist,2) + ' mca';
+      $('hLocal').textContent = fmt(r.hLoc,2) + ' mca';
+      $('pressao').textContent = fmt(r.dpPa/1000,2) + ' kPa / ' + fmt(r.dpPa/100000,3) + ' bar';
+      $('vel').textContent = fmt(r.v,2) + ' m/s';
+      $('reynolds').textContent = fmt0(r.Re);
+      $('fator').textContent = fmt(r.f,4);
+      $('leq').textContent = fmt(r.Leq,1) + ' m';
+      $('pot').textContent = fmt(r.pHyd,2) + ' kW hidráulico / ' + fmt(r.pShaft,2) + ' kW estimado';
+      montarTabela();
+    }
+
+    function montarTabela(){
+      const body = $('tbodyTabela');
+      body.innerHTML = '';
+      diametros.forEach(mm => {
+        const r = calcFor(mm/1000);
+        if(!isFinite(r.hTotal)) return;
+        const tr = document.createElement('tr');
+        tr.innerHTML = '<td>'+mm+' mm</td><td>'+fmt(r.v,2)+' m/s</td><td>'+fmt0(r.Re)+'</td><td>'+fmt(r.hTotal,2)+' mca</td><td>'+fmt(r.dpPa/100000,3)+' bar</td><td>'+statusVel(r.v)+'</td>';
+        body.appendChild(tr);
+      });
+    }
+
+    function copiarResultado(){
+      const texto = 'Calculadora de Perda de Carga - ALOGY\n' +
+        'Perda total: ' + $('hTotal').textContent + '\n' +
+        'Perda distribuída: ' + $('hDist').textContent + '\n' +
+        'Perda localizada: ' + $('hLocal').textContent + '\n' +
+        'Pressão equivalente: ' + $('pressao').textContent + '\n' +
+        'Velocidade: ' + $('vel').textContent + '\n' +
+        'Reynolds: ' + $('reynolds').textContent + '\n' +
+        'Observação: cálculo orientativo, não substitui projeto ou profissional habilitado.';
+      navigator.clipboard.writeText(texto).then(()=>alert('Resultado copiado.'));
+    }
+
+    function exemploAgua(){
+      $('q').value = 10; $('qunit').value = 'm3h'; $('d').value = 50; $('dunit').value = 'mm'; $('l').value = 80; $('lunit').value = 'm'; $('rho').value = 998; $('mu').value = 1; $('munit').value = 'cp'; $('material').value = '0.045'; $('el90').value = 4; $('el45').value = 0; $('gate').value = 1; $('ball').value = 1; $('globe').value = 0; $('checkv').value = 1; $('entrance').value = 1; $('exit').value = 1; $('kcustom').value = 0; $('eta').value = 70; calcular();
+    }
+    function limpar(){
+      ['q','d','l','rho','mu','rough','el90','el45','gate','ball','globe','checkv','entrance','exit','kcustom','eta'].forEach(id=>$(id).value='');
+      calcular();
+    }
+
+    document.querySelectorAll('input,select').forEach(el=>el.addEventListener('input', calcular));
+    calcular();
+  </script>
+</body>
+</html>
