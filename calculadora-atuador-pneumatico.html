@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Calculadora de Atuador Pneumático e Força por Pressão | ALOGY Engenharia</title>
+  <meta name="description" content="Calculadora online de atuador pneumático para estimar força de cilindro pneumático, pressão necessária, diâmetro do pistão, força de avanço e retorno em N, kgf e lbf." />
+  <meta name="robots" content="index,follow" />
+  <meta name="theme-color" content="#004b80" />
+  <link rel="canonical" href="https://www.alogy.com.br/calculadora-atuador-pneumatico.html" />
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png" />
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="app.js" defer></script>
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ALOGY Engenharia" />
+  <meta property="og:title" content="Calculadora de Atuador Pneumático e Força por Pressão" />
+  <meta property="og:description" content="Estime força de avanço e retorno de cilindros pneumáticos, pressão necessária, diâmetro do pistão e margem de aplicação." />
+  <meta property="og:url" content="https://www.alogy.com.br/calculadora-atuador-pneumatico.html" />
+  <meta property="og:image" content="https://www.alogy.com.br/favicon-512x512.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <style>
+    .tool-hero{background:linear-gradient(135deg,#004b80,#0b6fa4);color:#fff;border-radius:18px;padding:28px;margin:22px 0;box-shadow:0 12px 28px rgba(0,0,0,.16)}
+    .tool-hero h1{color:#fff;margin:8px 0 10px;font-size:clamp(1.8rem,3.2vw,2.6rem)}
+    .tool-hero p{font-size:1.05rem;max-width:980px;opacity:.96}.breadcrumb{font-size:.92rem;opacity:.9}.breadcrumb a{color:#fff;text-decoration:underline}
+    .calc-layout{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(320px,.92fr);gap:20px;align-items:start}.calc-card{background:#fff;border:1px solid #e5edf3;border-radius:16px;padding:20px;box-shadow:0 10px 26px rgba(0,0,0,.08);margin-bottom:18px}.calc-card h2{margin-top:0;color:#004b80;font-size:1.25rem}.calc-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.field{display:flex;flex-direction:column;gap:6px}.field label{font-weight:700;color:#243746}.field input,.field select{border:1px solid #c9d7e1;border-radius:10px;padding:11px;font:inherit;background:#fff}.field small{color:#5d6b76;font-size:.82rem}.span-2{grid-column:1/-1}.result-main{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:12px 0}.result-box{background:#f5f9fc;border:1px solid #dceaf2;border-radius:14px;padding:14px}.result-box strong{display:block;color:#004b80;font-size:1.45rem;margin-top:4px}.result-box small{color:#5d6b76}.status{border-radius:12px;padding:12px;margin-top:12px;font-weight:700}.ok{background:#e9f8ef;color:#146c2e;border:1px solid #bfe8cc}.warn{background:#fff7e6;color:#8a5a00;border:1px solid #f4d38a}.bad{background:#fdecec;color:#9d1c1c;border:1px solid #f4b6b6}.info{background:#eef6ff;color:#004b80;border:1px solid #c8dfff}.table-wrap{overflow-x:auto}.tool-table{width:100%;border-collapse:collapse;margin-top:12px}.tool-table th,.tool-table td{border:1px solid #d9e5ec;padding:10px;text-align:left}.tool-table th{background:#eef6fb;color:#004b80}.notice{border-left:6px solid #f0ad4e}.calc-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}.btn.secondary{background:#eef6fb;color:#004b80}.formula{background:#f7fbfe;border:1px solid #dbeaf2;border-radius:12px;padding:12px;color:#314656;line-height:1.55}.muted{color:#5d6b76}.faq details{border:1px solid #dfeaf1;border-radius:12px;padding:12px;margin:10px 0;background:#fff}.faq summary{font-weight:700;color:#004b80;cursor:pointer}.example-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.example-btn{border:1px solid #cfe0eb;background:#f8fbfd;border-radius:12px;padding:11px;text-align:left;cursor:pointer;color:#004b80;font-weight:700}.example-btn:hover{background:#eef6fb}.copybox{width:100%;min-height:132px;border:1px solid #c9d7e1;border-radius:12px;padding:12px;font:inherit;resize:vertical;background:#fbfdff}@media (max-width:900px){.calc-layout{grid-template-columns:1fr}.calc-grid,.result-main,.example-grid{grid-template-columns:1fr}.span-2{grid-column:auto}.tool-hero{padding:22px}}
+    @media print{header,.social-floating,.fab-wrap,.no-print,.calc-actions{display:none!important}.calc-card,.tool-hero{box-shadow:none}.tool-hero{color:#111;background:#fff;border:1px solid #ddd}.tool-hero h1{color:#111}}
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebApplication",
+    "name":"Calculadora de Atuador Pneumático e Força por Pressão",
+    "url":"https://www.alogy.com.br/calculadora-atuador-pneumatico.html",
+    "applicationCategory":"EngineeringApplication",
+    "operatingSystem":"Web",
+    "description":"Calculadora orientativa para estimar força de cilindros e atuadores pneumáticos, pressão necessária, diâmetro do pistão, força de avanço e retorno em N, kgf e lbf.",
+    "provider":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"}
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {"@type":"Question","name":"Como calcular a força de um cilindro pneumático?","acceptedAnswer":{"@type":"Answer","text":"De forma orientativa, multiplica-se a pressão manométrica pela área efetiva do pistão. No retorno de cilindro dupla ação, desconta-se a área ocupada pela haste."}},
+      {"@type":"Question","name":"Por que a força de retorno é menor que a de avanço?","acceptedAnswer":{"@type":"Answer","text":"Porque no retorno a haste ocupa parte da área útil do pistão. A área efetiva no retorno é a área do pistão menos a área da haste."}},
+      {"@type":"Question","name":"A calculadora substitui seleção de atuador pelo fabricante?","acceptedAnswer":{"@type":"Answer","text":"Não. A ferramenta é orientativa e não substitui catálogo do fabricante, análise de atrito, velocidade, carga dinâmica, válvula direcional, pressão real disponível, fator de segurança e avaliação técnica da aplicação."}}
+    ]
+  }
+  </script>
+</head>
+<body class="tools-page">
+  <header>
+    <div class="container headbar">
+      <a href="/" class="logo-wrapper" aria-label="Voltar para o início"><img src="logo-alogy.webp" alt="ALOGY Engenharia" /></a>
+      <div class="crea-top" aria-label="CREA-SP"><img src="crea.webp" alt="CREA-SP"></div>
+      <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menu"><i class="fas fa-bars"></i></button>
+    </div>
+    <nav class="desktop" aria-label="Menu principal"><div class="container navlinks"><a href="index.html">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="index.html#contato">Contato</a></div></nav>
+    <nav class="mobile" aria-label="Menu mobile"><a href="index.html">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="index.html#contato">Contato</a></nav>
+  </header>
+  <div class="social-floating" aria-label="Redes sociais"><a href="https://www.linkedin.com/company/alogyengenharia" class="linkedin" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a><a href="https://www.instagram.com/alogyengenharia" class="instagram" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="https://www.facebook.com/alogyengenharia" class="facebook" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><a href="https://www.youtube.com/@alogyengenharia" class="youtube" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a><a href="https://hotmart.com/pt-br/club/alogyengenharia" class="hotmart" target="_blank" rel="noopener" aria-label="Hotmart">H</a><a href="https://www.tiktok.com/@alogyengenharia" class="tiktok" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a></div>
+  <div class="fab-wrap" aria-label="Ações rápidas"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1!%20Vim%20pela%20calculadora%20de%20atuador%20pneum%C3%A1tico%20da%20ALOGY.%20Gostaria%20de%20atendimento." target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
+
+  <main class="container">
+    <section class="tool-hero">
+      <div class="breadcrumb"><a href="ferramentas.html">Ferramentas</a> / Pneumática e ar comprimido</div>
+      <h1>Calculadora de Atuador Pneumático e Força por Pressão</h1>
+      <p>Estime força de avanço, força de retorno, pressão necessária e diâmetro aproximado de cilindros e atuadores pneumáticos. Útil para pré-análise de válvulas, dispositivos, automação pneumática, máquinas e manutenção industrial.</p>
+    </section>
+
+    <section class="calc-card notice" aria-label="Aviso de responsabilidade">
+      <h2><i class="fas fa-triangle-exclamation"></i> Ferramenta orientativa</h2>
+      <p>Esta calculadora é apenas para estudo, apoio técnico e pré-análise. Não substitui catálogo do fabricante, verificação de carga dinâmica, atrito, velocidade, impacto, flambagem da haste, curso, válvula direcional, pressão real disponível, fator de segurança, normas aplicáveis, projeto ou avaliação de profissional habilitado. A ALOGY não se responsabiliza por decisões tomadas exclusivamente com base nesta ferramenta.</p>
+    </section>
+
+    <section class="calc-layout">
+      <form class="calc-card" id="actForm">
+        <h2><i class="fas fa-compress-arrows-alt"></i> Dados do atuador</h2>
+        <div class="calc-grid">
+          <div class="field">
+            <label for="mode">Tipo de cálculo</label>
+            <select id="mode">
+              <option value="force">Calcular força pelo diâmetro e pressão</option>
+              <option value="pressure">Calcular pressão necessária</option>
+              <option value="diameter">Calcular diâmetro necessário</option>
+            </select>
+            <small>Escolha o resultado principal desejado.</small>
+          </div>
+          <div class="field">
+            <label for="actType">Tipo de atuador</label>
+            <select id="actType">
+              <option value="double">Cilindro dupla ação</option>
+              <option value="single">Cilindro simples ação</option>
+              <option value="generic">Atuador genérico sem haste</option>
+            </select>
+            <small>Em dupla ação, o retorno desconta a área da haste.</small>
+          </div>
+          <div class="field input-force input-pressure">
+            <label for="bore">Diâmetro do pistão / êmbolo (mm)</label>
+            <input id="bore" type="number" value="50" min="1" step="0.1" />
+            <small>Exemplo: 32, 40, 50, 63, 80 ou 100 mm.</small>
+          </div>
+          <div class="field rod-field input-force input-pressure input-diameter">
+            <label for="rod">Diâmetro da haste (mm)</label>
+            <input id="rod" type="number" value="20" min="0" step="0.1" />
+            <small>Usado para força de retorno em cilindro dupla ação.</small>
+          </div>
+          <div class="field input-force input-diameter">
+            <label for="pressure">Pressão disponível</label>
+            <input id="pressure" type="number" value="6" min="0" step="0.01" />
+            <small>Pressão manométrica de trabalho.</small>
+          </div>
+          <div class="field input-force input-diameter">
+            <label for="pressureUnit">Unidade da pressão</label>
+            <select id="pressureUnit">
+              <option value="bar">bar(g)</option>
+              <option value="kpa">kPa(g)</option>
+              <option value="psi">psi(g)</option>
+            </select>
+          </div>
+          <div class="field input-pressure input-diameter">
+            <label for="targetForce">Força necessária</label>
+            <input id="targetForce" type="number" value="1000" min="0" step="0.1" />
+            <small>Força exigida pela aplicação.</small>
+          </div>
+          <div class="field input-pressure input-diameter">
+            <label for="forceUnit">Unidade da força necessária</label>
+            <select id="forceUnit">
+              <option value="n">N</option>
+              <option value="kgf">kgf</option>
+              <option value="lbf">lbf</option>
+            </select>
+          </div>
+          <div class="field input-force input-pressure input-diameter">
+            <label for="eff">Eficiência / perdas mecânicas (%)</label>
+            <input id="eff" type="number" value="85" min="1" max="100" step="1" />
+            <small>Valor orientativo para perdas por atrito e vedação.</small>
+          </div>
+          <div class="field input-force input-pressure input-diameter">
+            <label for="safety">Fator de segurança desejado</label>
+            <input id="safety" type="number" value="1.3" min="1" step="0.05" />
+            <small>Exemplo: 1,2 a 2,0 conforme criticidade.</small>
+          </div>
+          <div class="field input-force">
+            <label for="loadForce">Força/carga a vencer para comparar</label>
+            <input id="loadForce" type="number" value="800" min="0" step="0.1" />
+            <small>Opcional. Use zero se não quiser comparar.</small>
+          </div>
+          <div class="field input-force">
+            <label for="loadUnit">Unidade da carga a vencer</label>
+            <select id="loadUnit">
+              <option value="n">N</option>
+              <option value="kgf">kgf</option>
+              <option value="lbf">lbf</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="qty">Quantidade de atuadores iguais</label>
+            <input id="qty" type="number" value="1" min="1" step="1" />
+            <small>Calcula força total quando há mais de um atuador.</small>
+          </div>
+          <div class="field">
+            <label for="stroke">Curso aproximado (mm)</label>
+            <input id="stroke" type="number" value="100" min="0" step="0.1" />
+            <small>Informativo para observações de montagem e haste.</small>
+          </div>
+          <div class="field span-2">
+            <label for="notes">Observação da aplicação</label>
+            <input id="notes" type="text" value="Acionamento pneumático industrial" />
+          </div>
+        </div>
+        <div class="calc-actions no-print">
+          <button class="btn" type="button" onclick="calcActuator()"><i class="fas fa-calculator"></i> Calcular</button>
+          <button class="btn secondary" type="button" onclick="resetActuator()"><i class="fas fa-rotate-left"></i> Limpar</button>
+          <button class="btn secondary" type="button" onclick="window.print()"><i class="fas fa-print"></i> Imprimir</button>
+        </div>
+      </form>
+
+      <aside class="calc-card" aria-label="Resultado">
+        <h2><i class="fas fa-gauge-high"></i> Resultado</h2>
+        <div class="result-main">
+          <div class="result-box"><small>Força de avanço</small><strong id="advanceForce">-</strong><small id="advanceConv">-</small></div>
+          <div class="result-box"><small>Força de retorno</small><strong id="returnForce">-</strong><small id="returnConv">-</small></div>
+          <div class="result-box"><small>Pressão necessária</small><strong id="reqPressure">-</strong><small>para a força informada</small></div>
+          <div class="result-box"><small>Diâmetro necessário</small><strong id="reqDiameter">-</strong><small>com pressão e segurança</small></div>
+        </div>
+        <div id="status" class="status info">Preencha os dados e clique em calcular.</div>
+        <div class="formula" id="explain" style="margin-top:12px">Fórmula base: força = pressão manométrica x área efetiva x eficiência.</div>
+      </aside>
+    </section>
+
+    <section class="calc-card">
+      <h2><i class="fas fa-table"></i> Tabela rápida por pressão</h2>
+      <p class="muted">Comparativo usando o diâmetro de pistão informado. Ajuda a visualizar a força disponível em diferentes pressões de rede.</p>
+      <div class="table-wrap"><table class="tool-table" id="pressureTable"><thead><tr><th>Pressão</th><th>Força avanço</th><th>Força retorno</th><th>Observação</th></tr></thead><tbody></tbody></table></div>
+    </section>
+
+    <section class="calc-card">
+      <h2><i class="fas fa-lightbulb"></i> Exemplos rápidos</h2>
+      <div class="example-grid">
+        <button class="example-btn" type="button" onclick="setExample(1)">Cilindro Ø50 mm a 6 bar</button>
+        <button class="example-btn" type="button" onclick="setExample(2)">Selecionar pressão para 100 kgf</button>
+        <button class="example-btn" type="button" onclick="setExample(3)">Selecionar diâmetro para 2000 N</button>
+        <button class="example-btn" type="button" onclick="setExample(4)">Atuador genérico sem haste</button>
+      </div>
+    </section>
+
+    <section class="calc-card">
+      <h2><i class="fas fa-copy"></i> Resumo para copiar</h2>
+      <textarea class="copybox" id="copyText" readonly></textarea>
+      <div class="calc-actions no-print"><button class="btn secondary" type="button" onclick="copySummary()"><i class="fas fa-copy"></i> Copiar resumo</button></div>
+    </section>
+
+    <section class="calc-card faq">
+      <h2><i class="fas fa-circle-question"></i> Perguntas frequentes</h2>
+      <details><summary>Essa calculadora serve para válvula de controle pneumática?</summary><p>Serve apenas para uma estimativa básica de força por pressão e área. A seleção de atuador de válvula de controle depende de torque/força da válvula, diferencial de pressão, tipo de obturador, curso, sede, mola, falha segura, posicionador e dados do fabricante.</p></details>
+      <details><summary>Devo usar pressão absoluta ou manométrica?</summary><p>Para força pneumática de cilindro, usa-se a pressão manométrica aplicada ao pistão, pois a atmosfera atua como referência externa. A calculadora usa bar(g), kPa(g) ou psi(g).</p></details>
+      <details><summary>Por que aplicar eficiência e fator de segurança?</summary><p>Porque existem perdas por atrito, vedação, desalinhamento, variação de pressão, desgaste e dinâmica da carga. O fator de segurança evita selecionar um atuador no limite.</p></details>
+    </section>
+
+    <section class="calc-card">
+      <h2><i class="fas fa-link"></i> Ferramentas relacionadas</h2>
+      <p>Para estimar o consumo de ar do cilindro, use também a <a href="calculadora-consumo-ar-comprimido.html">Calculadora de Consumo de Ar Comprimido</a>. Para sinal pneumático de controle, veja a <a href="calculadora-sinal-pneumatico-3-15psi.html">Calculadora de Sinal Pneumático 3-15 psi</a>.</p>
+      <div class="calc-actions no-print"><a class="btn secondary" href="ferramentas.html"><i class="fas fa-arrow-left"></i> Voltar para ferramentas</a></div>
+    </section>
+  </main>
+
+  <footer><div class="container"><p>&copy; 2026 ALOGY Engenharia. Todos os direitos reservados.</p></div></footer>
+
+  <script>
+    const $ = (id)=>document.getElementById(id);
+    const fmt = (v,d=2)=>Number.isFinite(v) ? v.toLocaleString('pt-BR',{maximumFractionDigits:d,minimumFractionDigits:d}) : '-';
+    const kgf = 9.80665;
+    const lbfN = 4.4482216153;
+    function pToPa(v,u){ v=Number(v)||0; if(u==='bar') return v*100000; if(u==='kpa') return v*1000; if(u==='psi') return v*6894.757293; return v; }
+    function paToBar(pa){return pa/100000}
+    function forceToN(v,u){ v=Number(v)||0; if(u==='kgf') return v*kgf; if(u==='lbf') return v*lbfN; return v; }
+    function areaCircleMm(d){ return Math.PI*Math.pow((Number(d)||0)/1000,2)/4; }
+    function showMode(){
+      const mode=$('mode').value;
+      document.querySelectorAll('.input-force,.input-pressure,.input-diameter').forEach(el=>el.style.display='none');
+      document.querySelectorAll('.input-'+mode).forEach(el=>el.style.display='flex');
+      const generic=$('actType').value==='generic' || $('actType').value==='single';
+      document.querySelectorAll('.rod-field').forEach(el=>{ if(generic){el.style.opacity=.55}else{el.style.opacity=1} });
+    }
+    function calcValues(customPressurePa){
+      const type=$('actType').value;
+      const bore=Number($('bore').value)||0;
+      const rod=Number($('rod').value)||0;
+      const eff=Math.max(0.01,Math.min(1,(Number($('eff').value)||100)/100));
+      const qty=Math.max(1,Number($('qty').value)||1);
+      const pPa=Number.isFinite(customPressurePa) ? customPressurePa : pToPa($('pressure').value,$('pressureUnit').value);
+      const aAdv=areaCircleMm(bore);
+      const aRod=areaCircleMm(rod);
+      let aRet=aAdv;
+      if(type==='double') aRet=Math.max(0,aAdv-aRod);
+      if(type==='single') aRet=0;
+      const fAdv=pPa*aAdv*eff;
+      const fRet=pPa*aRet*eff;
+      return {type,bore,rod,eff,qty,pPa,aAdv,aRet,fAdv,fRet,totalAdv:fAdv*qty,totalRet:fRet*qty};
+    }
+    function calcActuator(){
+      showMode();
+      const mode=$('mode').value;
+      const v=calcValues();
+      const safety=Math.max(1,Number($('safety').value)||1);
+      const targetN=forceToN($('targetForce').value,$('forceUnit').value)*safety;
+      const loadN=forceToN($('loadForce').value,$('loadUnit').value)*safety;
+      let reqPressurePa=NaN, reqDiameterMm=NaN;
+      if(v.aAdv>0) reqPressurePa=targetN/(v.aAdv*v.eff);
+      if(v.pPa>0) reqDiameterMm=Math.sqrt((4*targetN)/(Math.PI*v.pPa*v.eff))*1000;
+      $('advanceForce').textContent=fmt(v.totalAdv,1)+' N';
+      $('advanceConv').textContent=fmt(v.totalAdv/kgf,1)+' kgf | '+fmt(v.totalAdv/lbfN,1)+' lbf';
+      if(v.type==='single'){
+        $('returnForce').textContent='-'; $('returnConv').textContent='simples ação / retorno por mola ou carga';
+      } else {
+        $('returnForce').textContent=fmt(v.totalRet,1)+' N'; $('returnConv').textContent=fmt(v.totalRet/kgf,1)+' kgf | '+fmt(v.totalRet/lbfN,1)+' lbf';
+      }
+      $('reqPressure').textContent=Number.isFinite(reqPressurePa) ? fmt(paToBar(reqPressurePa),2)+' bar' : '-';
+      $('reqDiameter').textContent=Number.isFinite(reqDiameterMm) ? fmt(reqDiameterMm,1)+' mm' : '-';
+      let statusClass='info', statusText='Resultado orientativo calculado. Confirme catálogo do fabricante e condições reais de aplicação.';
+      if(mode==='force' && loadN>0){
+        const margin=v.totalAdv/loadN;
+        if(margin>=1.2){statusClass='ok'; statusText='Força de avanço acima da carga informada com margem orientativa. Ainda assim, confirme velocidade, atrito, curso, haste e fabricante.';}
+        else if(margin>=1){statusClass='warn'; statusText='Força de avanço atende no limite. Recomenda-se aumentar diâmetro, pressão disponível ou fator de segurança.';}
+        else {statusClass='bad'; statusText='Força de avanço menor que a carga informada com segurança. Verifique atuador maior, pressão ou aplicação.';}
+      } else if(mode==='pressure'){
+        if(Number.isFinite(reqPressurePa) && paToBar(reqPressurePa)<=8) {statusClass='ok'; statusText='Pressão necessária dentro de uma faixa comum de ar comprimido industrial, mas confirme a pressão real disponível no ponto de uso.';}
+        else if(Number.isFinite(reqPressurePa) && paToBar(reqPressurePa)<=10) {statusClass='warn'; statusText='Pressão necessária elevada. Verifique queda de pressão, regulador, válvula, mangueiras e margem.';}
+        else {statusClass='bad'; statusText='Pressão necessária muito alta para muitas redes industriais. Considere diâmetro maior ou outra solução.';}
+      } else if(mode==='diameter'){
+        if(Number.isFinite(reqDiameterMm) && reqDiameterMm>0){statusClass='info'; statusText='Escolha um diâmetro comercial acima do valor calculado e confirme curso, haste, fixação e fabricante.';}
+      }
+      $('status').className='status '+statusClass;
+      $('status').textContent=statusText;
+      $('explain').innerHTML='Área avanço: <b>'+fmt(v.aAdv*1e6,1)+' mm²</b>. Área retorno: <b>'+fmt(v.aRet*1e6,1)+' mm²</b>. Eficiência usada: <b>'+fmt(v.eff*100,0)+'%</b>. Pressão usada: <b>'+fmt(paToBar(v.pPa),2)+' bar(g)</b>.';
+      makeTable(); makeSummary(v, reqPressurePa, reqDiameterMm, statusText);
+    }
+    function makeTable(){
+      const tb=$('pressureTable').querySelector('tbody'); tb.innerHTML='';
+      [2,3,4,5,6,7,8].forEach(p=>{
+        const v=calcValues(p*100000);
+        const ret=v.type==='single' ? 'simples ação' : fmt(v.totalRet,1)+' N / '+fmt(v.totalRet/kgf,1)+' kgf';
+        const tr=document.createElement('tr');
+        tr.innerHTML='<td>'+p+' bar</td><td>'+fmt(v.totalAdv,1)+' N / '+fmt(v.totalAdv/kgf,1)+' kgf</td><td>'+ret+'</td><td>'+((p<=6)?'faixa comum':'pressão mais elevada')+'</td>';
+        tb.appendChild(tr);
+      });
+    }
+    function makeSummary(v, reqPressurePa, reqDiameterMm, statusText){
+      const lines=[
+        'Resumo orientativo - Atuador pneumático / força por pressão',
+        'Aplicação: '+($('notes').value || '-'),
+        'Tipo: '+$('actType').selectedOptions[0].text,
+        'Modo: '+$('mode').selectedOptions[0].text,
+        'Diâmetro do pistão: '+fmt(v.bore,1)+' mm',
+        'Diâmetro da haste: '+fmt(v.rod,1)+' mm',
+        'Pressão considerada: '+fmt(paToBar(v.pPa),2)+' bar(g)',
+        'Eficiência considerada: '+fmt(v.eff*100,0)+'%',
+        'Quantidade: '+v.qty,
+        'Força de avanço total: '+fmt(v.totalAdv,1)+' N / '+fmt(v.totalAdv/kgf,1)+' kgf / '+fmt(v.totalAdv/lbfN,1)+' lbf',
+        'Força de retorno total: '+(v.type==='single' ? 'simples ação / retorno por mola ou carga' : fmt(v.totalRet,1)+' N / '+fmt(v.totalRet/kgf,1)+' kgf / '+fmt(v.totalRet/lbfN,1)+' lbf'),
+        'Pressão necessária estimada: '+(Number.isFinite(reqPressurePa)?fmt(paToBar(reqPressurePa),2)+' bar':'-'),
+        'Diâmetro necessário estimado: '+(Number.isFinite(reqDiameterMm)?fmt(reqDiameterMm,1)+' mm':'-'),
+        'Status: '+statusText,
+        'Aviso: cálculo para estudo e pré-análise. Confirmar catálogo, carga dinâmica, atrito, velocidade, haste, válvula, pressão real e profissional habilitado.'
+      ];
+      $('copyText').value=lines.join('\n');
+    }
+    function copySummary(){ $('copyText').select(); document.execCommand('copy'); }
+    function setExample(n){
+      if(n===1){$('mode').value='force';$('actType').value='double';$('bore').value=50;$('rod').value=20;$('pressure').value=6;$('pressureUnit').value='bar';$('eff').value=85;$('safety').value=1.3;$('loadForce').value=800;$('loadUnit').value='N';$('qty').value=1;$('stroke').value=200;$('notes').value='Cilindro pneumático dupla ação Ø50 mm a 6 bar';}
+      if(n===2){$('mode').value='pressure';$('actType').value='double';$('bore').value=50;$('rod').value=20;$('targetForce').value=100;$('forceUnit').value='kgf';$('eff').value=85;$('safety').value=1.3;$('qty').value=1;$('notes').value='Pressão necessária para força de 100 kgf';}
+      if(n===3){$('mode').value='diameter';$('actType').value='generic';$('pressure').value=6;$('pressureUnit').value='bar';$('targetForce').value=2000;$('forceUnit').value='N';$('eff').value=85;$('safety').value=1.5;$('qty').value=1;$('notes').value='Diâmetro aproximado para 2000 N';}
+      if(n===4){$('mode').value='force';$('actType').value='generic';$('bore').value=80;$('rod').value=0;$('pressure').value=5;$('pressureUnit').value='bar';$('eff').value=80;$('safety').value=1.3;$('loadForce').value=1500;$('loadUnit').value='N';$('qty').value=1;$('notes').value='Atuador pneumático genérico sem haste';}
+      calcActuator();
+    }
+    function resetActuator(){ $('actForm').reset(); calcActuator(); }
+    ['mode','actType','bore','rod','pressure','pressureUnit','targetForce','forceUnit','eff','safety','loadForce','loadUnit','qty','stroke','notes'].forEach(id=>$(id).addEventListener('input',calcActuator));
+    document.addEventListener('DOMContentLoaded',calcActuator);
+  </script>
+</body>
+</html>
