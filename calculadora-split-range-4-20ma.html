@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calculadora Split Range 4-20 mA | ALOGY Engenharia</title>
+  <meta name="description" content="Calcule split range 4-20 mA para duas válvulas, abertura, faixa de atuação, sinal global e tabela de teste de loop." />
+  <meta name="robots" content="index,follow" />
+  <meta name="theme-color" content="#004b80" />
+  <link rel="canonical" href="https://www.alogy.com.br/calculadora-split-range-4-20ma.html" />
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png" />
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="app.js" defer></script>
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ALOGY Engenharia" />
+  <meta property="og:title" content="Calculadora Split Range 4-20 mA" />
+  <meta property="og:description" content="Calcule abertura de duas válvulas em split range, sinal global 4-20 mA e tabela para teste de loop." />
+  <meta property="og:url" content="https://www.alogy.com.br/calculadora-split-range-4-20ma.html" />
+  <meta property="og:image" content="https://www.alogy.com.br/favicon-512x512.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebApplication","name":"Calculadora Split Range 4-20 mA","url":"https://www.alogy.com.br/calculadora-split-range-4-20ma.html","applicationCategory":"EngineeringApplication","operatingSystem":"Web","description":"Ferramenta auxiliar para calcular split range em malhas 4-20 mA com duas válvulas ou elementos finais de controle.","publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"}}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"O que é split range em 4-20 mA?","acceptedAnswer":{"@type":"Answer","text":"Split range é uma estratégia em que um mesmo comando de controle é dividido entre dois ou mais elementos finais, como duas válvulas, cada um atuando em uma parte da faixa do sinal."}},{"@type":"Question","name":"12 mA é sempre o ponto de split?","acceptedAnswer":{"@type":"Answer","text":"Não necessariamente. Em uma divisão 50/50 de 4-20 mA, 12 mA representa 50% e costuma ser o ponto de transição. Porém a faixa pode ter sobreposição, zona morta ou divisão diferente."}},{"@type":"Question","name":"A ferramenta serve para válvula de aquecimento e resfriamento?","acceptedAnswer":{"@type":"Answer","text":"Sim, pode apoiar a análise de estratégias com válvula de aquecimento e resfriamento, válvulas pequena e grande, dosagem por baixa e alta vazão ou outras combinações."}},{"@type":"Question","name":"A calculadora substitui comissionamento da malha?","acceptedAnswer":{"@type":"Answer","text":"Não. Ela é orientativa. O comissionamento deve validar sentido de ação, falha segura, intertravamentos, posicionadores, CLP, supervisório e comportamento real do processo."}}]}
+  </script>
+  <style>
+    .split-diagram{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}.split-bar{background:rgba(0,107,177,.06);border:1px solid rgba(0,107,177,.16);border-radius:14px;padding:12px}.split-track{height:18px;border-radius:999px;background:#e5e7eb;overflow:hidden;margin-top:8px}.split-fill{height:100%;width:0%;background:#0b3a62;border-radius:999px;transition:width .2s ease}.small-muted{color:var(--muted);font-size:.92rem;line-height:1.55}.faq details{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:14px;padding:14px;margin-top:10px;box-shadow:0 6px 16px rgba(0,0,0,.04)}.faq summary{cursor:pointer;font-weight:900;color:#0b3a62}.faq p{margin:10px 0 0;color:var(--muted)}@media(max-width:900px){.split-diagram{grid-template-columns:1fr}.calc-actions .mini-btn{width:100%;justify-content:center}}@media print{header,.social-floating,.fab-wrap,.cta-bar,footer,.calc-actions,.tools-hero .btn,.no-print{display:none!important}body{background:#fff}.container{max-width:100%;padding:0}.calc-card,.tools-hero{box-shadow:none;border:1px solid #ddd}.calc-layout{display:block}.calc-card{margin:12px 0}.calc-table th{background:#eee!important;color:#111!important}}
+  </style>
+  <!-- Google AdSense - verificação de propriedade -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5586837114309500"
+     crossorigin="anonymous"></script>
+</head>
+<body class="tools-page">
+  <header>
+    <div class="container headbar"><a href="/" class="logo-wrapper" aria-label="Voltar para o início"><img src="logo-alogy.webp" alt="ALOGY Engenharia" /></a><div class="crea-top" aria-label="CREA-SP"><img src="crea.webp" alt="CREA-SP"></div><button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menu"><i class="fas fa-bars"></i></button></div>
+    <nav class="desktop" aria-label="Menu principal"><div class="container navlinks"><a href="index.html">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="index.html#contato">Contato</a></div></nav>
+    <nav class="mobile" aria-label="Menu mobile"><a href="index.html">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="index.html#contato">Contato</a></nav>
+  </header>
+  <div class="social-floating" aria-label="Redes sociais"><a href="https://www.linkedin.com/company/alogyengenharia" class="linkedin" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a><a href="https://www.instagram.com/alogyengenharia" class="instagram" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="https://www.facebook.com/alogyengenharia" class="facebook" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><a href="https://www.youtube.com/@alogyengenharia" class="youtube" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a><a href="https://hotmart.com/pt-br/club/alogyengenharia" class="hotmart" target="_blank" rel="noopener" aria-label="Hotmart">H</a><a href="https://www.tiktok.com/@alogyengenharia" class="tiktok" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a></div>
+  <div class="fab-wrap" aria-label="Ações rápidas"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1!%20Vim%20pela%20calculadora%20split%20range%204-20%20mA%20da%20ALOGY.%20Gostaria%20de%20atendimento." target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
+
+  <main class="container" style="margin-top:18px">
+    <div style="margin-bottom:14px;display:flex;gap:10px;flex-wrap:wrap" class="no-print">
+      <a class="floating-back-tools no-print" href="ferramentas.html"><i class="fas fa-arrow-left"></i> Voltar para Ferramentas</a>
+      <button class="btn print" type="button" onclick="window.print()"><i class="fas fa-print"></i> Imprimir</button>
+      <a class="btn secondary" href="calculadora-4-20ma.html"><i class="fas fa-wave-square"></i> 4-20 mA</a>
+      <a class="btn secondary" href="checklist-teste-de-loop.html"><i class="fas fa-list-check"></i> Teste de loop</a>
+    </div>
+
+    <section class="tools-hero">
+      <h1>Calculadora Split Range 4-20 mA</h1>
+      <p>Calcule a divisão de uma malha 4-20 mA entre duas válvulas ou elementos finais de controle. Use para simular abertura, ponto de transição, sobreposição, zona morta e tabela de apoio para teste de loop.</p>
+    </section>
+
+    <section class="calc-card" aria-label="Aviso de uso">
+      <h2><i class="fas fa-triangle-exclamation"></i> Ferramenta para estudo e apoio técnico</h2>
+      <p>Esta calculadora é orientativa. Split range real depende da estratégia do processo, sentido de ação, falha segura, posicionador, conversor I/P, CLP, intertravamentos, curva da válvula e teste em campo. Não substitui projeto, análise de risco, procedimento de comissionamento ou validação por profissional habilitado.</p>
+    </section>
+
+    <section class="calc-layout">
+      <div class="calc-card">
+        <h2><i class="fas fa-sliders"></i> Comando da malha</h2>
+        <p>Informe o comando global da malha e a escala de engenharia. A faixa padrão 4-20 mA pode ser ajustada se necessário.</p>
+        <div class="calc-grid">
+          <div class="field"><label for="modo">Calcular a partir de</label><select id="modo"><option value="ma">Sinal global em mA</option><option value="pct">Percentual global</option><option value="eng">Valor de engenharia</option></select></div>
+          <div class="field"><label for="valor" id="valorLabel">Sinal global medido (mA)</label><input id="valor" type="number" step="any" value="12"></div>
+          <div class="field"><label for="sig0">Sinal em 0% (mA)</label><input id="sig0" type="number" step="any" value="4"></div>
+          <div class="field"><label for="sig100">Sinal em 100% (mA)</label><input id="sig100" type="number" step="any" value="20"></div>
+          <div class="field"><label for="lrv">LRV / valor em 0%</label><input id="lrv" type="number" step="any" value="0"></div>
+          <div class="field"><label for="urv">URV / valor em 100%</label><input id="urv" type="number" step="any" value="100"></div>
+          <div class="field"><label for="unid">Unidade de engenharia</label><input id="unid" type="text" value="% demanda"></div>
+          <div class="field"><label for="casas">Casas decimais</label><select id="casas"><option value="1">1 casa</option><option value="2" selected>2 casas</option><option value="3">3 casas</option></select></div>
+        </div>
+        <div class="calc-actions"><button class="mini-btn dark" type="button" onclick="copiarResultado()"><i class="fas fa-copy"></i> Copiar resultado</button><button class="mini-btn" type="button" onclick="exemploPadrao()">A 4-12 / B 12-20</button><button class="mini-btn" type="button" onclick="exemploSobreposicao()">Sobreposição 45-55%</button><button class="mini-btn" type="button" onclick="exemploZonaMorta()">Zona morta 48-52%</button></div>
+      </div>
+
+      <div class="calc-card">
+        <h2><i class="fas fa-code-branch"></i> Faixas de atuação</h2>
+        <p>Configure em qual parte do comando global cada elemento começa e termina sua atuação.</p>
+        <div class="calc-grid">
+          <div class="field"><label for="aNome">Nome válvula A</label><input id="aNome" type="text" value="Válvula A"></div>
+          <div class="field"><label for="aDir">Ação da válvula A</label><select id="aDir"><option value="direta">Direta: abre ao subir</option><option value="reversa">Reversa: fecha ao subir</option></select></div>
+          <div class="field"><label for="aIni">A começa em (%)</label><input id="aIni" type="number" step="any" value="0"></div>
+          <div class="field"><label for="aFim">A termina em (%)</label><input id="aFim" type="number" step="any" value="50"></div>
+          <div class="field"><label for="bNome">Nome válvula B</label><input id="bNome" type="text" value="Válvula B"></div>
+          <div class="field"><label for="bDir">Ação da válvula B</label><select id="bDir"><option value="direta">Direta: abre ao subir</option><option value="reversa">Reversa: fecha ao subir</option></select></div>
+          <div class="field"><label for="bIni">B começa em (%)</label><input id="bIni" type="number" step="any" value="50"></div>
+          <div class="field"><label for="bFim">B termina em (%)</label><input id="bFim" type="number" step="any" value="100"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="calc-layout">
+      <div class="calc-card">
+        <h2><i class="fas fa-square-poll-vertical"></i> Resultado do comando</h2>
+        <div class="calc-result" style="grid-template-columns:1fr 1fr">
+          <div class="result-box"><span>Comando global</span><strong id="outPct">-</strong></div>
+          <div class="result-box"><span>Sinal global</span><strong id="outMa">-</strong></div>
+          <div class="result-box"><span>Valor de engenharia</span><strong id="outEng">-</strong></div>
+          <div class="result-box"><span>Condição</span><strong id="outCond">-</strong></div>
+        </div>
+        <div class="split-diagram">
+          <div class="split-bar"><strong id="aTitulo">Válvula A</strong><div class="split-track"><div class="split-fill" id="aFill"></div></div><p class="small-muted" id="aInfo">-</p></div>
+          <div class="split-bar"><strong id="bTitulo">Válvula B</strong><div class="split-track"><div class="split-fill" id="bFill"></div></div><p class="small-muted" id="bInfo">-</p></div>
+        </div>
+        <div class="calc-note" id="nota">Em uma divisão 50/50, a válvula A atua de 4 a 12 mA e a válvula B atua de 12 a 20 mA.</div>
+      </div>
+
+      <div class="calc-card">
+        <h2><i class="fas fa-screwdriver-wrench"></i> Saídas dos elementos finais</h2>
+        <div class="calc-result" style="grid-template-columns:1fr 1fr">
+          <div class="result-box"><span id="aLabel">Abertura A</span><strong id="outA">-</strong></div>
+          <div class="result-box"><span>Equiv. bancada A</span><strong id="outAMa">-</strong></div>
+          <div class="result-box"><span id="bLabel">Abertura B</span><strong id="outB">-</strong></div>
+          <div class="result-box"><span>Equiv. bancada B</span><strong id="outBMa">-</strong></div>
+        </div>
+        <p class="small-muted" style="margin-top:12px"><strong>Equiv. bancada:</strong> valor 4-20 mA equivalente à abertura local do elemento. Em muitos split ranges reais, o posicionador recebe o sinal global, mas é calibrado para atuar apenas dentro da sua faixa.</p>
+      </div>
+    </section>
+
+    <section class="calc-layout">
+      <div class="calc-card"><h2><i class="fas fa-table"></i> Tabela de teste de loop</h2><p class="small-muted">Use a tabela para conferir pontos de comando global e resposta esperada de cada válvula.</p><div class="calc-table-wrap"><table class="calc-table"><thead><tr><th>Comando</th><th>Sinal global</th><th>Valor</th><th>Válvula A</th><th>Válvula B</th></tr></thead><tbody id="tbl"></tbody></table></div></div>
+      <div class="calc-card"><h2><i class="fas fa-circle-info"></i> Como interpretar</h2><p><strong>Split range sem sobreposição:</strong> uma válvula atua até determinado ponto e a outra começa depois dele, como 4-12 mA e 12-20 mA.</p><p><strong>Sobreposição:</strong> as duas válvulas atuam juntas em uma pequena região para suavizar transição.</p><p><strong>Zona morta:</strong> existe intervalo em que nenhuma válvula altera abertura. Pode ser intencional ou consequência de ajuste incorreto.</p><div class="calc-note"><strong>Atenção:</strong> antes de aplicar no processo, confirme o sentido de ação no CLP, no posicionador e na falha segura de cada válvula.</div></div>
+    </section>
+
+    <section class="calc-card faq"><h2><i class="fas fa-circle-question"></i> Perguntas frequentes</h2>
+      <details open><summary>Split range é usado para quê?</summary><p>É usado quando uma única malha precisa comandar dois elementos finais, por exemplo válvula pequena e grande, aquecimento e resfriamento, dosagem baixa e alta ou duas válvulas em sequência.</p></details>
+      <details><summary>Posso usar com válvula de controle real?</summary><p>Sim, como conferência inicial. O ajuste real depende do posicionador, da curva da válvula, do processo, da lógica do CLP e do teste de loop.</p></details>
+      <details><summary>O ponto de split precisa ser 50%?</summary><p>Não. Pode ser 30/70, 40/60, com sobreposição ou zona morta. A ferramenta permite configurar início e fim de atuação de cada válvula.</p></details>
+      <details><summary>Qual a diferença entre sinal global e equivalente de bancada?</summary><p>O sinal global é o comando da malha. O equivalente de bancada é uma conversão local de abertura para 4-20 mA, útil para simulação e entendimento, mas não representa obrigatoriamente a fiação real.</p></details>
+    </section>
+
+    <section class="cta-bar"><h3>Precisa revisar estratégia split range, válvulas ou teste de loop?</h3><p>A ALOGY Engenharia pode apoiar em instrumentação, automação, calibração, comissionamento e documentação técnica.</p><a class="btn" href="https://wa.me/5519981442448?text=Ol%C3%A1!%20Vim%20pela%20calculadora%20split%20range%204-20%20mA%20da%20ALOGY.%20Gostaria%20de%20apoio%20t%C3%A9cnico." target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> Falar com a ALOGY</a></section>
+  </main>
+  <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
+<script>
+const $=id=>document.getElementById(id);
+function fmt(n,d=2){ if(!isFinite(n)) return '-'; return Number(n).toLocaleString('pt-BR',{minimumFractionDigits:d,maximumFractionDigits:d}); }
+function clamp(n,min,max){ return Math.max(min,Math.min(max,n)); }
+function localPct(globalPct, ini, fim, dir){
+  const span=fim-ini;
+  if(span===0) return NaN;
+  let p=(globalPct-ini)/span*100;
+  p=clamp(p,0,100);
+  return dir==='reversa' ? 100-p : p;
+}
+function status(p){ if(!isFinite(p)) return 'Erro'; if(p<=0.01) return 'Fechada'; if(p>=99.99) return 'Aberta'; return 'Modulando'; }
+function pctToMa(p,s0,s100){return s0+(p/100)*(s100-s0);} 
+function calc(){
+  const modo=$('modo').value, valor=+$('valor').value, sig0=+$('sig0').value, sig100=+$('sig100').value, lrv=+$('lrv').value, urv=+$('urv').value, unid=$('unid').value||'', d=+$('casas').value;
+  const aNome=$('aNome').value||'Válvula A', bNome=$('bNome').value||'Válvula B';
+  const aIni=+$('aIni').value, aFim=+$('aFim').value, bIni=+$('bIni').value, bFim=+$('bFim').value, aDir=$('aDir').value, bDir=$('bDir').value;
+  $('valorLabel').textContent = modo==='ma'?'Sinal global medido (mA)':modo==='pct'?'Comando global (%)':'Valor de engenharia';
+  const spanSig=sig100-sig0, spanEng=urv-lrv;
+  let pct;
+  if(modo==='ma') pct=(valor-sig0)/spanSig*100;
+  else if(modo==='pct') pct=valor;
+  else pct=(valor-lrv)/spanEng*100;
+  const ma=pctToMa(pct,sig0,sig100), eng=lrv+(pct/100)*spanEng;
+  const ap=localPct(pct,aIni,aFim,aDir), bp=localPct(pct,bIni,bFim,bDir);
+  const ama=4+(ap/100)*16, bma=4+(bp/100)*16;
+  $('outPct').textContent=fmt(pct,d)+' %'; $('outMa').textContent=fmt(ma,d)+' mA'; $('outEng').textContent=fmt(eng,d)+' '+unid;
+  let cond='Dentro da faixa'; if(pct<0||pct>100) cond='Fora de 0-100%';
+  if(aFim===aIni||bFim===bIni||spanSig===0||spanEng===0) cond='Verifique spans';
+  $('outCond').textContent=cond;
+  $('aLabel').textContent=aNome; $('bLabel').textContent=bNome; $('aTitulo').textContent=aNome; $('bTitulo').textContent=bNome;
+  $('outA').textContent=fmt(ap,d)+' %'; $('outB').textContent=fmt(bp,d)+' %'; $('outAMa').textContent=fmt(ama,d)+' mA'; $('outBMa').textContent=fmt(bma,d)+' mA';
+  $('aFill').style.width=clamp(ap,0,100)+'%'; $('bFill').style.width=clamp(bp,0,100)+'%';
+  const aMi=pctToMa(aIni,sig0,sig100), aMf=pctToMa(aFim,sig0,sig100), bMi=pctToMa(bIni,sig0,sig100), bMf=pctToMa(bFim,sig0,sig100);
+  $('aInfo').textContent=`${status(ap)} • faixa global ${fmt(aIni,1)}% a ${fmt(aFim,1)}% (${fmt(aMi,d)} a ${fmt(aMf,d)} mA)`;
+  $('bInfo').textContent=`${status(bp)} • faixa global ${fmt(bIni,1)}% a ${fmt(bFim,1)}% (${fmt(bMi,d)} a ${fmt(bMf,d)} mA)`;
+  const overlap=Math.min(aFim,bFim)-Math.max(aIni,bIni);
+  let msg='Sem sobreposição evidente entre as faixas configuradas.';
+  if(overlap>0) msg=`Existe sobreposição de ${fmt(overlap,1)}% entre as faixas. As duas válvulas podem modular juntas nessa região.`;
+  if(aFim < bIni || bFim < aIni){ const gap=Math.max(aIni,bIni)-Math.min(aFim,bFim); if(gap>0) msg=`Existe zona morta de ${fmt(gap,1)}% entre as faixas. Confira se isso é intencional.`; }
+  $('nota').textContent=msg;
+  const pts=[0,25,50,75,100,aIni,aFim,bIni,bFim,pct].filter(x=>isFinite(x));
+  const uniq=[...new Set(pts.map(x=>Math.round(x*100)/100))].sort((x,y)=>x-y);
+  $('tbl').innerHTML=uniq.map(p=>{const _ma=pctToMa(p,sig0,sig100), _eng=lrv+(p/100)*spanEng, _ap=localPct(p,aIni,aFim,aDir), _bp=localPct(p,bIni,bFim,bDir);return `<tr><td>${fmt(p,1)}%</td><td>${fmt(_ma,d)} mA</td><td>${fmt(_eng,d)} ${unid}</td><td>${fmt(_ap,d)}%</td><td>${fmt(_bp,d)}%</td></tr>`;}).join('');
+}
+function exemploPadrao(){ $('modo').value='ma'; $('valor').value=12; $('sig0').value=4; $('sig100').value=20; $('lrv').value=0; $('urv').value=100; $('unid').value='% demanda'; $('aIni').value=0; $('aFim').value=50; $('bIni').value=50; $('bFim').value=100; $('aDir').value='direta'; $('bDir').value='direta'; calc(); }
+function exemploSobreposicao(){ exemploPadrao(); $('valor').value=12; $('aFim').value=55; $('bIni').value=45; calc(); }
+function exemploZonaMorta(){ exemploPadrao(); $('valor').value=12; $('aFim').value=48; $('bIni').value=52; calc(); }
+function copiarResultado(){ const texto=`Calculadora Split Range 4-20 mA - ALOGY\nComando: ${$('outPct').textContent}\nSinal global: ${$('outMa').textContent}\nValor: ${$('outEng').textContent}\n${$('aLabel').textContent}: ${$('outA').textContent}\n${$('bLabel').textContent}: ${$('outB').textContent}\nObservação: ${$('nota').textContent}`; navigator.clipboard?.writeText(texto).then(()=>alert('Resultado copiado.')); }
+document.querySelectorAll('input,select').forEach(el=>el.addEventListener('input',calc));
+calc();
+</script>
+</body>
+</html>

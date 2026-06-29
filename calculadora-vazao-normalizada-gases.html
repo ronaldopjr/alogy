@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Conversor Nm³/h, Sm³/h e m³/h para Gases</title>
+  <meta name="description" content="Converta vazão de gases entre m³/h, Nm³/h e Sm³/h usando pressão, temperatura e fator de compressibilidade." />
+  <meta name="robots" content="index,follow" />
+  <meta name="theme-color" content="#004b80" />
+  <link rel="canonical" href="https://www.alogy.com.br/calculadora-vazao-normalizada-gases.html" />
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png" />
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+    <!-- Google AdSense - verificação de propriedade -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5586837114309500"
+     crossorigin="anonymous"></script>
+  <script src="app.js" defer></script>
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ALOGY Engenharia" />
+  <meta property="og:title" content="Conversor Nm³/h, Sm³/h e m³/h para Gases" />
+  <meta property="og:description" content="Calcule vazão normalizada e padrão para gás natural, ar comprimido e gases industriais usando pressão e temperatura." />
+  <meta property="og:url" content="https://www.alogy.com.br/calculadora-vazao-normalizada-gases.html" />
+  <meta property="og:image" content="https://www.alogy.com.br/favicon-512x512.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebApplication",
+    "name":"Conversor Nm³/h, Sm³/h e m³/h para Gases",
+    "url":"https://www.alogy.com.br/calculadora-vazao-normalizada-gases.html",
+    "applicationCategory":"EngineeringApplication",
+    "operatingSystem":"Web",
+    "description":"Ferramenta auxiliar para converter vazão de gases entre condição operacional, normal e padrão usando pressão, temperatura e fator de compressibilidade.",
+    "publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"}
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {"@type":"Question","name":"Qual a diferença entre m³/h e Nm³/h?","acceptedAnswer":{"@type":"Answer","text":"m³/h representa a vazão volumétrica na condição de operação. Nm³/h representa a vazão corrigida para uma condição normal de referência, normalmente 0 °C e 1,01325 bar absoluto."}},
+      {"@type":"Question","name":"Sm³/h é igual a Nm³/h?","acceptedAnswer":{"@type":"Answer","text":"Não necessariamente. Sm³/h usa uma condição padrão definida pelo usuário ou pela empresa, frequentemente 15 °C e 1,01325 bar absoluto. Nm³/h normalmente usa 0 °C e 1,01325 bar absoluto."}},
+      {"@type":"Question","name":"Posso usar para gás natural e ar comprimido?","acceptedAnswer":{"@type":"Answer","text":"Sim, como estimativa preliminar, desde que pressão, temperatura e condição de referência estejam corretamente definidos. Para medições fiscais ou projeto final, confirme normas, contrato, composição do gás e compressibilidade."}}
+    ]
+  }
+  </script>
+</head>
+<body class="tools-page">
+  <header>
+    <div class="container headbar"><a href="/" class="logo-wrapper" aria-label="Voltar para o início"><img src="logo-alogy.webp" alt="ALOGY Engenharia" /></a><div class="crea-top" aria-label="CREA-SP"><img src="crea.webp" alt="CREA-SP"></div><button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menu"><i class="fas fa-bars"></i></button></div>
+    <nav class="desktop" aria-label="Menu principal"><div class="container navlinks"><a href="index.html">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="index.html#contato">Contato</a></div></nav>
+    <nav class="mobile" aria-label="Menu mobile"><a href="index.html">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="index.html#contato">Contato</a></nav>
+  </header>
+  <div class="social-floating" aria-label="Redes sociais"><a href="https://www.linkedin.com/company/alogyengenharia" class="linkedin" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a><a href="https://www.instagram.com/alogyengenharia" class="instagram" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="https://www.facebook.com/alogyengenharia" class="facebook" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><a href="https://www.youtube.com/@alogyengenharia" class="youtube" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a><a href="https://hotmart.com/pt-br/club/alogyengenharia" class="hotmart" target="_blank" rel="noopener" aria-label="Hotmart">H</a><a href="https://www.tiktok.com/@alogyengenharia" class="tiktok" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a></div>
+  <div class="fab-wrap" aria-label="Ações rápidas"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1!%20Vim%20pelas%20ferramentas%20da%20ALOGY.%20Gostaria%20de%20atendimento." target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
+  <main class="container" style="margin-top:18px">
+    <div style="margin-bottom:14px" class="no-print"><a class="floating-back-tools no-print" href="ferramentas.html"><i class="fas fa-arrow-left"></i> Voltar para Ferramentas</a><button class="btn print" type="button" onclick="window.print()"><i class="fas fa-print"></i> Imprimir</button></div>
+    <section class="tools-hero">
+      <h1>Conversor Nm³/h, Sm³/h e m³/h para gases</h1>
+      <p>Converta vazão volumétrica de gases entre condição operacional, normal e padrão usando pressão, temperatura e fator de compressibilidade. Útil para gás natural, ar comprimido, nitrogênio, linhas de utilidades e conferências de instrumentação.</p>
+    </section>
+
+    <section class="calc-card" aria-label="Aviso de uso">
+      <h2><i class="fas fa-triangle-exclamation"></i> Uso orientativo</h2>
+      <p>Esta ferramenta faz uma conversão simplificada baseada na relação dos gases. Para medição fiscal, faturamento, segurança de processo, projeto de tubulação, queimadores, válvulas ou compressores, confirme as condições contratuais, composição do gás, fator de compressibilidade, normas aplicáveis e dados do fabricante.</p>
+    </section>
+
+    <section class="calc-layout">
+      <div class="calc-card">
+        <h2><i class="fas fa-gauge-high"></i> Dados da vazão e condição operacional</h2>
+        <p>Informe a vazão conhecida e as condições reais da linha. Pressão manométrica é a pressão lida no manômetro; pressão absoluta já inclui a atmosfera.</p>
+        <div class="calc-grid">
+          <div class="field"><label for="gas_modo">Vazão informada</label><select id="gas_modo"><option value="op">m³/h na condição operacional</option><option value="n">Nm³/h na condição normal</option><option value="s">Sm³/h na condição padrão</option></select></div>
+          <div class="field"><label for="gas_q">Valor da vazão</label><input id="gas_q" type="number" step="any" value="518" inputmode="decimal"></div>
+          <div class="field"><label for="gas_p">Pressão da linha</label><input id="gas_p" type="number" step="any" value="2" inputmode="decimal"></div>
+          <div class="field"><label for="gas_ptipo">Tipo de pressão</label><select id="gas_ptipo"><option value="g">bar(g) - manométrica</option><option value="abs">bar(a) - absoluta</option></select></div>
+          <div class="field"><label for="gas_t">Temperatura da linha (°C)</label><input id="gas_t" type="number" step="any" value="25" inputmode="decimal"></div>
+          <div class="field"><label for="gas_patm">Pressão atmosférica local (bar)</label><input id="gas_patm" type="number" step="any" value="1.01325" inputmode="decimal"></div>
+          <div class="field"><label for="gas_zop">Fator Z na operação</label><input id="gas_zop" type="number" step="any" value="1" inputmode="decimal"></div>
+          <div class="field"><label for="gas_dens">Densidade em condição normal (kg/Nm³)</label><input id="gas_dens" type="number" step="any" value="0" inputmode="decimal"></div>
+        </div>
+        <div class="calc-actions">
+          <button class="mini-btn dark" type="button" onclick="calcularGas()"><i class="fas fa-calculator"></i> Calcular</button>
+          <button class="mini-btn" type="button" onclick="exemploGas('gn')">Gás natural</button>
+          <button class="mini-btn" type="button" onclick="exemploGas('ar')">Ar comprimido</button>
+          <button class="mini-btn" type="button" onclick="copiarGas()"><i class="fas fa-copy"></i> Copiar resultado</button>
+        </div>
+      </div>
+
+      <div class="calc-card">
+        <h2><i class="fas fa-square-poll-vertical"></i> Resultado</h2>
+        <div class="calc-result" style="grid-template-columns:1fr">
+          <div class="result-box"><span>Vazão operacional</span><strong id="gas_qop">-</strong></div>
+          <div class="result-box"><span>Vazão normal</span><strong id="gas_qn">-</strong></div>
+          <div class="result-box"><span>Vazão padrão</span><strong id="gas_qs">-</strong></div>
+          <div class="result-box"><span>Vazão mássica estimada</span><strong id="gas_massa">-</strong></div>
+        </div>
+        <div class="calc-note" id="gas_nota">Preencha os dados e clique em calcular.</div>
+      </div>
+    </section>
+
+    <section class="calc-layout">
+      <div class="calc-card">
+        <h2><i class="fas fa-sliders"></i> Condições de referência</h2>
+        <p>Ajuste se sua empresa, contrato ou medidor usa outra condição de referência. Em muitos contextos, Nm³/h usa 0 °C e 1,01325 bar(a), enquanto Sm³/h pode usar 15 °C e 1,01325 bar(a).</p>
+        <div class="calc-grid">
+          <div class="field"><label for="gas_tn">Temperatura normal (°C)</label><input id="gas_tn" type="number" step="any" value="0"></div>
+          <div class="field"><label for="gas_pn">Pressão normal (bar abs)</label><input id="gas_pn" type="number" step="any" value="1.01325"></div>
+          <div class="field"><label for="gas_ts">Temperatura padrão (°C)</label><input id="gas_ts" type="number" step="any" value="15"></div>
+          <div class="field"><label for="gas_ps">Pressão padrão (bar abs)</label><input id="gas_ps" type="number" step="any" value="1.01325"></div>
+          <div class="field"><label for="gas_zn">Fator Z normal</label><input id="gas_zn" type="number" step="any" value="1"></div>
+          <div class="field"><label for="gas_zs">Fator Z padrão</label><input id="gas_zs" type="number" step="any" value="1"></div>
+        </div>
+      </div>
+      <div class="calc-card">
+        <h2><i class="fas fa-flask"></i> Fórmula usada</h2>
+        <div class="formula-box">Qref = Qop × (Pop_abs / Pref_abs) × (Tref_K / Top_K) × (Zref / Zop)</div>
+        <p style="margin-top:12px">Onde Qop é a vazão na condição real da linha, Pop_abs é a pressão absoluta da linha, Top_K é a temperatura absoluta da linha e Z é o fator de compressibilidade.</p>
+        <p>Se você informar Nm³/h ou Sm³/h, a ferramenta primeiro calcula a vazão operacional equivalente e depois converte para as demais condições.</p>
+      </div>
+    </section>
+
+    <section class="calc-card">
+      <h2><i class="fas fa-lightbulb"></i> Exemplo prático</h2>
+      <p>Uma linha de gás informa 518 m³/h a 2 bar(g) e 25 °C. Considerando pressão atmosférica de 1,01325 bar e comportamento ideal, a ferramenta corrige a vazão para condição normal e padrão. Isso ajuda a comparar consumo, medidores e especificações que usam bases diferentes.</p>
+      <p>Na prática, sempre confirme se o valor recebido está em m³/h operacional, Nm³/h ou Sm³/h, porque usar a base errada pode gerar grande diferença no resultado.</p>
+    </section>
+
+    <section class="calc-card faq">
+      <h2><i class="fas fa-circle-question"></i> Perguntas frequentes</h2>
+      <details><summary>O que significa Nm³/h?</summary><p>Significa metro cúbico normal por hora. É a vazão volumétrica corrigida para uma condição normal de pressão e temperatura, geralmente 0 °C e 1,01325 bar absoluto.</p></details>
+      <details><summary>O que significa Sm³/h?</summary><p>Significa metro cúbico padrão por hora. A condição padrão pode variar conforme empresa, contrato, norma ou fabricante. Por isso a ferramenta deixa temperatura e pressão padrão editáveis.</p></details>
+      <details><summary>Posso usar pressão manométrica?</summary><p>Sim. Se selecionar bar(g), a ferramenta soma a pressão atmosférica informada para obter a pressão absoluta. Se você já tem bar(a), selecione pressão absoluta.</p></details>
+      <details><summary>Por que existe fator Z?</summary><p>O fator Z corrige o desvio do comportamento ideal do gás. Para estimativas simples e baixas pressões, pode-se usar Z igual a 1, mas aplicações críticas exigem dados reais do gás.</p></details>
+    </section>
+
+    <section class="calc-card">
+      <h2><i class="fas fa-link"></i> Ferramentas relacionadas</h2>
+      <div class="calc-actions">
+        <a class="mini-btn" href="conversor-unidades-industriais.html"><i class="fas fa-ruler-combined"></i> Conversor de unidades</a>
+        <a class="mini-btn" href="calculadora-vazao-velocidade-diametro.html"><i class="fas fa-water"></i> Vazão, velocidade e diâmetro</a>
+        <a class="mini-btn" href="calculadora-vazao-pressao-diferencial.html"><i class="fas fa-gauge-high"></i> Vazão por DP</a>
+        <a class="mini-btn dark" href="blog-vazao-normalizada-gases.html"><i class="fas fa-book-open"></i> Ler explicação completa</a>
+      </div>
+    </section>
+  </main>
+  <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
+<script>
+function gnum(id){ return Number(String(document.getElementById(id)?.value || '').replace(',', '.')); }
+function fmt(v, dec=2){ if(!Number.isFinite(v)) return '-'; return v.toLocaleString('pt-BR', {maximumFractionDigits:dec, minimumFractionDigits:dec}); }
+function setVal(id, txt){ const el=document.getElementById(id); if(el) el.textContent=txt; }
+function calcularGas(){
+  const modo=document.getElementById('gas_modo').value;
+  const q=gnum('gas_q'), p=gnum('gas_p'), t=gnum('gas_t'), patm=gnum('gas_patm');
+  const ptipo=document.getElementById('gas_ptipo').value;
+  const zop=gnum('gas_zop') || 1, zn=gnum('gas_zn') || 1, zs=gnum('gas_zs') || 1;
+  const tn=gnum('gas_tn'), pn=gnum('gas_pn'), ts=gnum('gas_ts'), ps=gnum('gas_ps'), dens=gnum('gas_dens');
+  const nota=document.getElementById('gas_nota');
+  nota.className='calc-note';
+  if(!(q>0) || !(patm>0) || !(pn>0) || !(ps>0) || !Number.isFinite(t) || !Number.isFinite(tn) || !Number.isFinite(ts)){
+    setVal('gas_qop','-'); setVal('gas_qn','-'); setVal('gas_qs','-'); setVal('gas_massa','-');
+    nota.className='calc-note warn'; nota.textContent='Preencha vazão, pressão e temperaturas válidas.'; return;
+  }
+  const pabs = ptipo === 'g' ? p + patm : p;
+  const topK=t+273.15, tnK=tn+273.15, tsK=ts+273.15;
+  if(!(pabs>0) || !(topK>0) || !(tnK>0) || !(tsK>0) || !(zop>0) || !(zn>0) || !(zs>0)){
+    nota.className='calc-note warn'; nota.textContent='Confira pressão absoluta, temperatura em Kelvin e fatores Z maiores que zero.'; return;
+  }
+  const fn = (pabs/pn) * (tnK/topK) * (zn/zop);
+  const fs = (pabs/ps) * (tsK/topK) * (zs/zop);
+  let qop;
+  if(modo === 'op') qop = q;
+  if(modo === 'n') qop = q / fn;
+  if(modo === 's') qop = q / fs;
+  const qn=qop*fn, qs=qop*fs;
+  const massa = dens>0 ? qn*dens : NaN;
+  setVal('gas_qop', fmt(qop,2)+' m³/h');
+  setVal('gas_qn', fmt(qn,2)+' Nm³/h');
+  setVal('gas_qs', fmt(qs,2)+' Sm³/h');
+  setVal('gas_massa', Number.isFinite(massa) ? fmt(massa,2)+' kg/h' : 'Informe densidade');
+  nota.textContent = 'Pressão absoluta usada: ' + fmt(pabs,5) + ' bar(a). Fator operacional→normal: ' + fmt(fn,5) + '. Fator operacional→padrão: ' + fmt(fs,5) + '.';
+}
+function exemploGas(tipo){
+  if(tipo==='gn'){ document.getElementById('gas_modo').value='op'; document.getElementById('gas_q').value='518'; document.getElementById('gas_p').value='2'; document.getElementById('gas_ptipo').value='g'; document.getElementById('gas_t').value='25'; document.getElementById('gas_dens').value='0.78'; }
+  if(tipo==='ar'){ document.getElementById('gas_modo').value='op'; document.getElementById('gas_q').value='100'; document.getElementById('gas_p').value='7'; document.getElementById('gas_ptipo').value='g'; document.getElementById('gas_t').value='35'; document.getElementById('gas_dens').value='1.293'; }
+  calcularGas();
+}
+function copiarGas(){
+  const txt=['Conversor Nm³/h, Sm³/h e m³/h - ALOGY', 'Operacional: '+document.getElementById('gas_qop').textContent, 'Normal: '+document.getElementById('gas_qn').textContent, 'Padrão: '+document.getElementById('gas_qs').textContent, 'Massa: '+document.getElementById('gas_massa').textContent, document.getElementById('gas_nota').textContent].join('
+');
+  navigator.clipboard?.writeText(txt).then(()=>alert('Resultado copiado.')).catch(()=>alert(txt));
+}
+document.addEventListener('DOMContentLoaded',()=>{ ['gas_modo','gas_q','gas_p','gas_ptipo','gas_t','gas_patm','gas_zop','gas_dens','gas_tn','gas_pn','gas_ts','gas_ps','gas_zn','gas_zs'].forEach(id=>document.getElementById(id)?.addEventListener('input', calcularGas)); calcularGas(); });
+</script>
+</body>
+</html>
