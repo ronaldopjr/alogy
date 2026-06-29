@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Calculadora DN, NPS, Polegadas e Schedule | ALOGY Engenharia</title>
+  <meta name="description" content="Calculadora online DN, NPS, polegadas e Schedule para tubulações industriais: converta DN para NPS, consulte diâmetro externo, espessura, diâmetro interno, área e volume por metro de tubo."/>
+  <meta name="robots" content="index,follow" />
+  <meta name="theme-color" content="#004b80" />
+  <link rel="canonical" href="https://www.alogy.com.br/calculadora-dn-nps-schedule.html" />
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png" />
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="app.js" defer></script>
+
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ALOGY Engenharia" />
+  <meta property="og:title" content="Calculadora DN, NPS, Polegadas e Schedule" />
+  <meta property="og:description" content="Converta DN, NPS e polegadas, consulte diâmetros, Schedule, área interna e volume por metro para tubulações industriais." />
+  <meta property="og:url" content="https://www.alogy.com.br/calculadora-dn-nps-schedule.html" />
+  <meta property="og:image" content="https://www.alogy.com.br/favicon-512x512.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebApplication",
+    "name":"Calculadora DN, NPS, Polegadas e Schedule",
+    "url":"https://www.alogy.com.br/calculadora-dn-nps-schedule.html",
+    "applicationCategory":"EngineeringApplication",
+    "operatingSystem":"Web",
+    "description":"Calculadora orientativa para conversão de DN, NPS, polegadas, Schedule, diâmetro externo, espessura, diâmetro interno, área de passagem e volume por metro em tubulações industriais.",
+    "publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"}
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {"@type":"Question","name":"DN e NPS são a mesma coisa?","acceptedAnswer":{"@type":"Answer","text":"Não exatamente. DN é a designação nominal métrica e NPS é a designação nominal em polegadas. Eles são equivalências nominais usadas para identificar tubulações e conexões, mas não representam diretamente o diâmetro interno real."}},
+      {"@type":"Question","name":"Schedule é o diâmetro da tubulação?","acceptedAnswer":{"@type":"Answer","text":"Não. Schedule indica uma série de espessura de parede. Para um mesmo NPS, o diâmetro externo costuma permanecer o mesmo e o diâmetro interno varia conforme a espessura do Schedule."}},
+      {"@type":"Question","name":"Posso usar esta calculadora para comprar tubos e conexões?","acceptedAnswer":{"@type":"Answer","text":"A ferramenta é orientativa. Antes de comprar, instalar ou especificar tubos e conexões, confirme norma, material, classe de pressão, temperatura, Schedule, fabricante, aplicação e projeto técnico."}}
+    ]
+  }
+  </script>
+</head>
+<body class="tools-page">
+  <header>
+    <div class="container headbar"><a href="/" class="logo-wrapper" aria-label="Voltar para o início"><img src="logo-alogy.webp" alt="ALOGY Engenharia" /></a><div class="crea-top" aria-label="CREA-SP"><img src="crea.webp" alt="CREA-SP"></div><button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menu"><i class="fas fa-bars"></i></button></div>
+    <nav class="desktop" aria-label="Menu principal"><div class="container navlinks"><a href="index.html">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="index.html#contato">Contato</a></div></nav>
+    <nav class="mobile" aria-label="Menu mobile"><a href="index.html">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="index.html#contato">Contato</a></nav>
+  </header>
+
+  <div class="social-floating" aria-label="Redes sociais"><a href="https://www.linkedin.com/company/alogyengenharia" class="linkedin" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a><a href="https://www.instagram.com/alogyengenharia" class="instagram" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="https://www.facebook.com/alogyengenharia" class="facebook" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><a href="https://www.youtube.com/@alogyengenharia" class="youtube" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a><a href="https://hotmart.com/pt-br/club/alogyengenharia" class="hotmart" target="_blank" rel="noopener" aria-label="Hotmart">H</a><a href="https://www.tiktok.com/@alogyengenharia" class="tiktok" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a></div>
+  <div class="fab-wrap" aria-label="Ações rápidas"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1!%20Vim%20pela%20calculadora%20DN%2C%20NPS%20e%20Schedule%20da%20ALOGY.%20Gostaria%20de%20apoio%20t%C3%A9cnico." target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
+
+  <main class="container" style="margin-top:18px">
+    <div style="margin-bottom:14px;display:flex;gap:10px;flex-wrap:wrap" class="no-print">
+      <a class="floating-back-tools no-print" href="ferramentas.html"><i class="fas fa-arrow-left"></i> Voltar para Ferramentas</a>
+      <button class="btn print" type="button" onclick="window.print()"><i class="fas fa-print"></i> Imprimir</button>
+      <a class="btn secondary" href="calculadora-vazao-velocidade-diametro.html"><i class="fas fa-water"></i> Vazão e diâmetro</a>
+      <a class="btn secondary" href="calculadora-perda-carga.html"><i class="fas fa-droplet"></i> Perda de carga</a>
+      <a class="btn secondary" href="calculadora-cv-valvula-controle.html"><i class="fas fa-gauge"></i> Cv de válvula</a>
+    </div>
+
+    <section class="tools-hero">
+      <h1>Calculadora DN, NPS, Polegadas e Schedule</h1>
+      <p>Consulte equivalências nominais de tubulação industrial, diâmetro externo, espessura, diâmetro interno, área interna e volume por metro. Útil para processo, instrumentação, conexões, linhas de impulso, utilidades e pré-análise de montagem.</p>
+    </section>
+
+    <section class="calc-card" aria-label="Aviso de uso da ferramenta">
+      <h2><i class="fas fa-triangle-exclamation"></i> Ferramenta para estudo e apoio técnico</h2>
+      <p>Esta calculadora é orientativa e usa tabelas técnicas simplificadas para pré-análise. Não substitui norma aplicável, catálogo do fabricante, especificação de material, classe de pressão, temperatura, corrosão, ensaio, projeto de tubulação, laudo, ART/RRT ou profissional habilitado. A ALOGY Engenharia não se responsabiliza por compras, instalações, adaptações ou decisões tomadas exclusivamente com base nesta ferramenta.</p>
+    </section>
+
+    <section class="calc-layout">
+      <div class="calc-card">
+        <h2><i class="fas fa-ruler-combined"></i> Dados da tubulação</h2>
+        <div class="calc-grid">
+          <div class="field"><label for="nps">NPS / polegada nominal</label><select id="nps"></select></div>
+          <div class="field"><label for="sch">Schedule</label><select id="sch"><option value="5S">5S</option><option value="10S">10S</option><option value="10">10</option><option value="40" selected>40 / STD</option><option value="80">80 / XS</option><option value="160">160</option></select></div>
+          <div class="field"><label for="comprimento">Comprimento do trecho (m)</label><input id="comprimento" type="number" min="0" step="0.1" value="10"></div>
+          <div class="field"><label for="material">Material para peso estimado</label><select id="material"><option value="7850" selected>Aço carbono/inox aprox. 7850 kg/m³</option><option value="2700">Alumínio aprox. 2700 kg/m³</option><option value="8960">Cobre aprox. 8960 kg/m³</option><option value="1400">PVC/CPVC aprox. 1400 kg/m³</option></select></div>
+        </div>
+      </div>
+
+      <div class="calc-card">
+        <h2><i class="fas fa-search"></i> Buscar por DN ou diâmetro</h2>
+        <p>Use para encontrar a medida nominal mais próxima.</p>
+        <div class="calc-grid">
+          <div class="field"><label for="dnBusca">Buscar DN</label><select id="dnBusca"></select></div>
+          <div class="field"><label for="diamBusca">Buscar por diâmetro interno desejado (mm)</label><input id="diamBusca" type="number" min="0" step="0.1" value="50"></div>
+          <div class="field"><label for="schBusca">Schedule da busca por diâmetro</label><select id="schBusca"><option value="10S">10S</option><option value="10">10</option><option value="40" selected>40 / STD</option><option value="80">80 / XS</option><option value="160">160</option></select></div>
+        </div>
+        <div class="calc-actions" style="margin-top:14px">
+          <button class="mini-btn dark" type="button" onclick="buscarDn()"><i class="fas fa-magnifying-glass"></i> Buscar DN</button>
+          <button class="mini-btn" type="button" onclick="buscarDiametro()">Buscar diâmetro próximo</button>
+        </div>
+        <p class="muted" id="buscaMsg" style="margin-top:10px">Informe um DN ou diâmetro para buscar.</p>
+      </div>
+    </section>
+
+    <section class="calc-layout">
+      <div class="calc-card result-card" aria-live="polite">
+        <h2><i class="fas fa-circle-info"></i> Resultado principal</h2>
+        <div class="result-main" id="principal">NPS 2&quot; / DN 50</div>
+        <p class="muted" id="status">Schedule 40 selecionado.</p>
+        <div class="result-list">
+          <div><span>Diâmetro externo OD</span><strong id="od">0 mm</strong></div>
+          <div><span>Espessura da parede</span><strong id="wall">0 mm</strong></div>
+          <div><span>Diâmetro interno ID</span><strong id="idpipe">0 mm</strong></div>
+          <div><span>Área interna</span><strong id="area">0 cm²</strong></div>
+          <div><span>Volume interno</span><strong id="volumeMetro">0 L/m</strong></div>
+          <div><span>Volume no trecho</span><strong id="volumeTrecho">0 L</strong></div>
+          <div><span>Peso estimado do tubo vazio</span><strong id="pesoMetro">0 kg/m</strong></div>
+          <div><span>Peso estimado no trecho</span><strong id="pesoTrecho">0 kg</strong></div>
+        </div>
+        <div class="calc-actions" style="margin-top:14px">
+          <button class="mini-btn dark" type="button" onclick="copiarResumo()"><i class="fas fa-copy"></i> Copiar resumo</button>
+          <button class="mini-btn" type="button" onclick="exemploInstrumentacao()">Exemplo instrumento</button>
+          <button class="mini-btn" type="button" onclick="exemploProcesso()">Exemplo processo</button>
+        </div>
+      </div>
+
+      <div class="calc-card">
+        <h2><i class="fas fa-lightbulb"></i> Como interpretar</h2>
+        <ul class="nice-list">
+          <li><strong>DN/NPS:</strong> são designações nominais. Não são o diâmetro interno exato do tubo.</li>
+          <li><strong>OD:</strong> diâmetro externo. Em tubos de aço, para um mesmo NPS, normalmente o OD permanece igual.</li>
+          <li><strong>Schedule:</strong> altera a espessura da parede e, por consequência, o diâmetro interno.</li>
+          <li><strong>ID:</strong> diâmetro interno aproximado, útil para pré-análise de vazão, velocidade e perda de carga.</li>
+          <li><strong>Conexões:</strong> confirme sempre norma, classe, material, face, rosca, solda, flange e fabricante.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="calc-card">
+      <h2><i class="fas fa-table"></i> Tabela do NPS selecionado por Schedule</h2>
+      <div class="table-wrap">
+        <table class="calc-table">
+          <thead><tr><th>NPS</th><th>DN</th><th>Schedule</th><th>OD mm</th><th>Espessura mm</th><th>ID mm</th><th>Área cm²</th><th>Volume L/m</th></tr></thead>
+          <tbody id="tbodySch"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="calc-card">
+      <h2><i class="fas fa-table-list"></i> Tabela rápida DN, NPS e diâmetro externo</h2>
+      <div class="table-wrap">
+        <table class="calc-table">
+          <thead><tr><th>DN</th><th>NPS</th><th>Polegada nominal</th><th>OD externo aprox.</th><th>ID Schedule 40 aprox.</th><th>Observação</th></tr></thead>
+          <tbody id="tbodyRapida"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="calc-card">
+      <h2><i class="fas fa-file-lines"></i> Resumo automático</h2>
+      <textarea id="resumo" rows="9" style="width:100%;padding:12px;border:1px solid #d7e2ea;border-radius:12px" readonly></textarea>
+    </section>
+
+    <section class="calc-card">
+      <h2><i class="fas fa-question-circle"></i> Perguntas frequentes</h2>
+      <div class="faq-list">
+        <details open><summary>DN 50 é igual a 2 polegadas?</summary><p>Na prática de tubulação, DN 50 costuma corresponder ao NPS 2&quot;. Porém isso é uma equivalência nominal, não o diâmetro interno real. O diâmetro interno muda conforme o Schedule.</p></details>
+        <details><summary>Por que o tubo de 2&quot; não mede 50,8 mm por dentro?</summary><p>Porque a polegada do NPS é uma designação nominal histórica. O diâmetro externo do NPS 2&quot; é aproximadamente 60,3 mm e o diâmetro interno depende da espessura da parede.</p></details>
+        <details><summary>Schedule 40 e STD são sempre iguais?</summary><p>Em muitos diâmetros pequenos e médios são tratados de forma equivalente na prática, mas a equivalência deve ser confirmada com a norma e o fabricante, principalmente em aplicações críticas.</p></details>
+        <details><summary>Esta ferramenta serve para linha de impulso de instrumento?</summary><p>Ela ajuda em consultas gerais de DN/NPS/Schedule. Para tubing de instrumentação, conexões compressão, NPT/BSP ou tubos milimétricos, confirme a especificação própria do fabricante e a norma interna da planta.</p></details>
+      </div>
+    </section>
+
+    <section class="cta-card no-print">
+      <h2>Precisa especificar tubulação, instrumentos ou conexões?</h2>
+      <p>A ALOGY Engenharia pode apoiar em levantamento de campo, instrumentação, válvulas, tubulação de processo, linhas de impulso, painéis, automação e comissionamento industrial.</p>
+      <a class="btn" href="index.html#contato"><i class="fas fa-envelope"></i> Falar com a ALOGY</a>
+    </section>
+  </main>
+
+  <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p></footer>
+
+  <script>
+    const tubos = [
+      {nps:'1/8', dn:6, od:10.3, w:{'5S':1.24,'10S':1.24,'10':1.73,'40':2.41,'80':2.41,'160':null}},
+      {nps:'1/4', dn:8, od:13.7, w:{'5S':1.65,'10S':1.65,'10':2.24,'40':3.02,'80':3.02,'160':null}},
+      {nps:'3/8', dn:10, od:17.1, w:{'5S':1.65,'10S':1.65,'10':2.31,'40':3.20,'80':3.20,'160':null}},
+      {nps:'1/2', dn:15, od:21.3, w:{'5S':1.65,'10S':2.11,'10':2.11,'40':2.77,'80':3.73,'160':4.78}},
+      {nps:'3/4', dn:20, od:26.7, w:{'5S':1.65,'10S':2.11,'10':2.11,'40':2.87,'80':3.91,'160':5.56}},
+      {nps:'1', dn:25, od:33.4, w:{'5S':1.65,'10S':2.77,'10':2.77,'40':3.38,'80':4.55,'160':6.35}},
+      {nps:'1 1/4', dn:32, od:42.2, w:{'5S':1.65,'10S':2.77,'10':2.77,'40':3.56,'80':4.85,'160':6.35}},
+      {nps:'1 1/2', dn:40, od:48.3, w:{'5S':1.65,'10S':2.77,'10':2.77,'40':3.68,'80':5.08,'160':7.14}},
+      {nps:'2', dn:50, od:60.3, w:{'5S':1.65,'10S':2.77,'10':2.77,'40':3.91,'80':5.54,'160':8.74}},
+      {nps:'2 1/2', dn:65, od:73.0, w:{'5S':2.11,'10S':3.05,'10':3.05,'40':5.16,'80':7.01,'160':9.53}},
+      {nps:'3', dn:80, od:88.9, w:{'5S':2.11,'10S':3.05,'10':3.05,'40':5.49,'80':7.62,'160':11.13}},
+      {nps:'3 1/2', dn:90, od:101.6, w:{'5S':2.11,'10S':3.05,'10':3.05,'40':5.74,'80':8.08,'160':null}},
+      {nps:'4', dn:100, od:114.3, w:{'5S':2.11,'10S':3.05,'10':3.05,'40':6.02,'80':8.56,'160':13.49}},
+      {nps:'5', dn:125, od:141.3, w:{'5S':2.77,'10S':3.40,'10':3.40,'40':6.55,'80':9.53,'160':15.88}},
+      {nps:'6', dn:150, od:168.3, w:{'5S':2.77,'10S':3.40,'10':3.40,'40':7.11,'80':10.97,'160':18.26}},
+      {nps:'8', dn:200, od:219.1, w:{'5S':2.77,'10S':3.76,'10':3.76,'40':8.18,'80':12.70,'160':23.01}},
+      {nps:'10', dn:250, od:273.1, w:{'5S':3.40,'10S':4.19,'10':4.19,'40':9.27,'80':12.70,'160':28.58}},
+      {nps:'12', dn:300, od:323.9, w:{'5S':3.96,'10S':4.57,'10':4.57,'40':10.31,'80':12.70,'160':33.32}},
+      {nps:'14', dn:350, od:355.6, w:{'5S':3.96,'10S':4.78,'10':6.35,'40':11.13,'80':19.05,'160':35.71}},
+      {nps:'16', dn:400, od:406.4, w:{'5S':4.19,'10S':4.78,'10':6.35,'40':12.70,'80':21.44,'160':40.49}},
+      {nps:'18', dn:450, od:457.0, w:{'5S':4.19,'10S':4.78,'10':6.35,'40':14.27,'80':23.83,'160':45.24}},
+      {nps:'20', dn:500, od:508.0, w:{'5S':4.78,'10S':5.54,'10':6.35,'40':15.09,'80':26.19,'160':50.01}},
+      {nps:'24', dn:600, od:610.0, w:{'5S':5.54,'10S':6.35,'10':6.35,'40':17.48,'80':30.96,'160':59.54}}
+    ];
+
+    const $ = id => document.getElementById(id);
+    const fmt = (v, casas=2) => isFinite(v) ? v.toLocaleString('pt-BR',{minimumFractionDigits:casas,maximumFractionDigits:casas}) : '—';
+    const inch = mm => mm / 25.4;
+    function getSel(){ return tubos.find(t => t.nps === $('nps').value) || tubos[8]; }
+    function dados(t, sch){
+      const wall = t.w[sch];
+      if(!wall) return null;
+      const id = Math.max(0, t.od - 2 * wall);
+      const areaM2 = Math.PI * Math.pow(id / 1000, 2) / 4;
+      const areaCm2 = areaM2 * 10000;
+      const volumeLm = areaM2 * 1000;
+      const metalAreaM2 = (Math.PI / 4) * (Math.pow(t.od/1000,2) - Math.pow(id/1000,2));
+      const dens = parseFloat($('material').value) || 7850;
+      const pesoKgM = metalAreaM2 * dens;
+      return {wall, id, areaCm2, volumeLm, pesoKgM};
+    }
+    function popular(){
+      $('nps').innerHTML = tubos.map(t => `<option value="${t.nps}" ${t.nps==='2'?'selected':''}>NPS ${t.nps}&quot; / DN ${t.dn}</option>`).join('');
+      $('dnBusca').innerHTML = tubos.map(t => `<option value="${t.dn}">DN ${t.dn} / NPS ${t.nps}&quot;</option>`).join('');
+      $('dnBusca').value = '50';
+      renderTabelaRapida();
+    }
+    function calcular(){
+      const t = getSel();
+      const sch = $('sch').value;
+      const d = dados(t, sch);
+      const comp = Math.max(0, parseFloat($('comprimento').value) || 0);
+      $('principal').textContent = `NPS ${t.nps}\" / DN ${t.dn}`;
+      if(!d){
+        $('status').textContent = `Schedule ${sch} não está disponível nesta tabela simplificada para NPS ${t.nps}\".`;
+        ['od','wall','idpipe','area','volumeMetro','volumeTrecho','pesoMetro','pesoTrecho'].forEach(x => $(x).textContent = '—');
+        $('resumo').value = `Consulta DN/NPS/Schedule - ALOGY\nNPS ${t.nps}\" / DN ${t.dn}\nSchedule: ${sch}\nStatus: sem dado disponível nesta tabela simplificada. Confirmar norma e fabricante.`;
+      } else {
+        $('status').textContent = `Schedule ${sch}. OD ${fmt(t.od,1)} mm (${fmt(inch(t.od),3)}\").`;
+        $('od').textContent = `${fmt(t.od,1)} mm / ${fmt(inch(t.od),3)}\"`;
+        $('wall').textContent = `${fmt(d.wall,2)} mm`;
+        $('idpipe').textContent = `${fmt(d.id,2)} mm / ${fmt(inch(d.id),3)}\"`;
+        $('area').textContent = `${fmt(d.areaCm2,2)} cm²`;
+        $('volumeMetro').textContent = `${fmt(d.volumeLm,3)} L/m`;
+        $('volumeTrecho').textContent = `${fmt(d.volumeLm * comp,2)} L`;
+        $('pesoMetro').textContent = `${fmt(d.pesoKgM,2)} kg/m`;
+        $('pesoTrecho').textContent = `${fmt(d.pesoKgM * comp,2)} kg`;
+        $('resumo').value = `Consulta DN/NPS/Schedule - ALOGY\nNPS: ${t.nps}\"\nDN: ${t.dn}\nSchedule: ${sch}\nDiâmetro externo OD: ${fmt(t.od,1)} mm\nEspessura: ${fmt(d.wall,2)} mm\nDiâmetro interno ID: ${fmt(d.id,2)} mm\nÁrea interna: ${fmt(d.areaCm2,2)} cm²\nVolume interno: ${fmt(d.volumeLm,3)} L/m\nComprimento: ${fmt(comp,2)} m\nVolume no trecho: ${fmt(d.volumeLm * comp,2)} L\nPeso estimado vazio: ${fmt(d.pesoKgM,2)} kg/m\nObservação: cálculo orientativo. Confirmar norma, material, Schedule, classe de pressão, fabricante e projeto.`;
+      }
+      renderTabelaSch(t);
+    }
+    function renderTabelaSch(t){
+      const schedules = ['5S','10S','10','40','80','160'];
+      $('tbodySch').innerHTML = schedules.map(s => {
+        const d = dados(t, s);
+        if(!d) return `<tr><td>${t.nps}\"</td><td>${t.dn}</td><td>${s}</td><td>${fmt(t.od,1)}</td><td colspan="4">Não disponível nesta tabela simplificada</td></tr>`;
+        return `<tr><td>${t.nps}\"</td><td>${t.dn}</td><td>${s}</td><td>${fmt(t.od,1)}</td><td>${fmt(d.wall,2)}</td><td>${fmt(d.id,2)}</td><td>${fmt(d.areaCm2,2)}</td><td>${fmt(d.volumeLm,3)}</td></tr>`;
+      }).join('');
+    }
+    function renderTabelaRapida(){
+      const rows = tubos.map(t => {
+        const d = (() => { const w = t.w['40']; if(!w) return null; const id = t.od - 2*w; return id; })();
+        const obs = t.dn <= 50 ? 'Comum em instrumentos, utilidades e linhas menores' : (t.dn <= 150 ? 'Comum em processo e utilidades' : 'Comum em linhas principais e processo');
+        return `<tr><td>DN ${t.dn}</td><td>NPS ${t.nps}</td><td>${t.nps}\"</td><td>${fmt(t.od,1)} mm</td><td>${d ? fmt(d,2)+' mm' : '—'}</td><td>${obs}</td></tr>`;
+      });
+      $('tbodyRapida').innerHTML = rows.join('');
+    }
+    function buscarDn(){
+      const dn = parseInt($('dnBusca').value, 10);
+      const t = tubos.find(x => x.dn === dn);
+      if(t){ $('nps').value = t.nps; $('buscaMsg').textContent = `DN ${dn} corresponde nominalmente a NPS ${t.nps}\". Seleção aplicada.`; calcular(); }
+    }
+    function buscarDiametro(){
+      const alvo = parseFloat($('diamBusca').value) || 0;
+      const sch = $('schBusca').value;
+      let melhor = null;
+      tubos.forEach(t => {
+        const d = dados(t, sch);
+        if(!d) return;
+        const dif = Math.abs(d.id - alvo);
+        if(!melhor || dif < melhor.dif) melhor = {t, d, dif};
+      });
+      if(melhor){
+        $('nps').value = melhor.t.nps;
+        $('sch').value = sch;
+        $('buscaMsg').textContent = `Mais próximo: NPS ${melhor.t.nps}\" / DN ${melhor.t.dn}, ID ${fmt(melhor.d.id,2)} mm no Schedule ${sch}.`;
+        calcular();
+      } else {
+        $('buscaMsg').textContent = 'Não foi encontrado dado para esse Schedule na tabela simplificada.';
+      }
+    }
+    function copiarResumo(){
+      $('resumo').select();
+      document.execCommand('copy');
+    }
+    function exemploInstrumentacao(){
+      $('nps').value = '1/2';
+      $('sch').value = '80';
+      $('comprimento').value = 6;
+      $('material').value = '7850';
+      calcular();
+    }
+    function exemploProcesso(){
+      $('nps').value = '4';
+      $('sch').value = '40';
+      $('comprimento').value = 25;
+      $('material').value = '7850';
+      calcular();
+    }
+    ['nps','sch','comprimento','material','diamBusca','schBusca'].forEach(id => document.addEventListener('input', e => { if(e.target && e.target.id === id) calcular(); }));
+    document.addEventListener('DOMContentLoaded', () => { popular(); calcular(); });
+  </script>
+</body>
+</html>
