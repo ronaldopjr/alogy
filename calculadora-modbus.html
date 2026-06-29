@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Calculadora Modbus | Endereços, Registradores e Word Order</title>
+  <meta name="description" content="Converta endereços Modbus, referência 40001/30001, offset do protocolo, decimal, hexadecimal, registradores, word order e escala linear para CLP, SCADA e automação industrial."/>
+  <meta name="robots" content="index,follow" />
+  <meta name="theme-color" content="#062138" />
+  <link rel="canonical" href="https://www.alogy.com.br/calculadora-modbus.html" />
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png" />
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="app.js" defer></script>
+
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ALOGY Engenharia" />
+  <meta property="og:title" content="Calculadora Modbus | Endereços e Registradores" />
+  <meta property="og:description" content="Converta endereços Modbus, offsets, decimal, hexadecimal, referência 40001/30001, word order e escala linear para automação industrial." />
+  <meta property="og:url" content="https://www.alogy.com.br/calculadora-modbus.html" />
+  <meta property="og:image" content="https://www.alogy.com.br/favicon-512x512.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebApplication",
+    "name":"Calculadora Modbus | Endereços e Registradores",
+    "url":"https://www.alogy.com.br/calculadora-modbus.html",
+    "applicationCategory":"EngineeringApplication",
+    "operatingSystem":"Web",
+    "description":"Ferramenta auxiliar para converter endereços Modbus, referência 40001/30001, offset do protocolo, decimal, hexadecimal, registradores, word order e escala linear em automação industrial.",
+    "publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"}
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {"@type":"Question","name":"Qual a diferença entre 40001 e offset 0 no Modbus?","acceptedAnswer":{"@type":"Answer","text":"40001 é uma forma de referência usada por muitos softwares para indicar holding register. No frame Modbus, normalmente o primeiro registrador é enviado como offset 0. Alguns fabricantes usam base 1, por isso é importante conferir o manual do equipamento."}},
+      {"@type":"Question","name":"O que é word order em Modbus?","acceptedAnswer":{"@type":"Answer","text":"Word order é a ordem dos registradores usados para formar valores de 32 bits, como inteiro longo ou float. Equipamentos diferentes podem usar ordens diferentes, como AB CD, CD AB, BA DC ou DC BA."}},
+      {"@type":"Question","name":"Essa calculadora configura automaticamente o CLP ou supervisório?","acceptedAnswer":{"@type":"Answer","text":"Não. Ela é uma ferramenta auxiliar para conversão e conferência. A configuração final deve seguir o manual do equipamento, o mapa Modbus do fabricante e os testes de comunicação em campo."}}
+    ]
+  }
+  </script>
+
+  <style>
+    .calc-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+    .mini-btn{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(0,107,177,.25);background:rgba(0,107,177,.08);color:#0b3a62;border-radius:12px;padding:10px 12px;font-weight:900;cursor:pointer;text-decoration:none;font:inherit}
+    .mini-btn:hover{background:rgba(0,107,177,.12)}
+    .mini-btn.dark{background:#0b3a62;color:#fff;border-color:#0b3a62}
+    .small-muted{color:var(--muted);font-size:.92rem;line-height:1.55}
+    .status-ok{border-color:rgba(34,197,94,.35)!important;background:rgba(34,197,94,.10)!important;color:#166534!important}
+    .status-warn{border-color:rgba(245,158,11,.38)!important;background:rgba(245,158,11,.12)!important;color:#92400e!important}
+    .mono{font-family:Consolas,Monaco,monospace;letter-spacing:.01em}
+    .ref-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px}
+    .ref-box{border:1px solid rgba(0,107,177,.16);background:rgba(0,107,177,.06);border-radius:14px;padding:12px;text-align:center}
+    .ref-box strong{display:block;color:#0b3a62;font-size:1.05rem}.ref-box span{color:var(--muted);font-size:.86rem;font-weight:800}
+    .faq details{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:14px;padding:14px;margin-top:10px;box-shadow:0 6px 16px rgba(0,0,0,.04)}
+    .faq summary{cursor:pointer;font-weight:900;color:#0b3a62}.faq p{margin:10px 0 0;color:var(--muted)}
+    @media(max-width:900px){.ref-grid{grid-template-columns:1fr 1fr}.calc-actions .mini-btn{width:100%;justify-content:center}}
+  </style>
+</head>
+<body class="tools-page">
+  <header>
+    <div class="container headbar"><a href="/" class="logo-wrapper" aria-label="Voltar para o início"><img src="logo-alogy.webp" alt="ALOGY Engenharia" /></a><div class="crea-top" aria-label="CREA-SP"><img src="crea.webp" alt="CREA-SP"></div><button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menu"><i class="fas fa-bars"></i></button></div>
+    <nav class="desktop" aria-label="Menu principal"><div class="container navlinks"><a href="index.html">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="index.html#contato">Contato</a></div></nav>
+    <nav class="mobile" aria-label="Menu mobile"><a href="index.html">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="index.html#contato">Contato</a></nav>
+  </header>
+
+  <div class="social-floating" aria-label="Redes sociais"><a href="https://www.linkedin.com/company/alogyengenharia" class="linkedin" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a><a href="https://www.instagram.com/alogyengenharia" class="instagram" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="https://www.facebook.com/alogyengenharia" class="facebook" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><a href="https://www.youtube.com/@alogyengenharia" class="youtube" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a><a href="https://hotmart.com/pt-br/club/alogyengenharia" class="hotmart" target="_blank" rel="noopener" aria-label="Hotmart">H</a><a href="https://www.tiktok.com/@alogyengenharia" class="tiktok" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a></div>
+  <div class="fab-wrap" aria-label="Ações rápidas"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1!%20Vim%20pela%20calculadora%20Modbus%20da%20ALOGY.%20Gostaria%20de%20atendimento." target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
+
+  <main class="container" style="margin-top:18px">
+    <div style="margin-bottom:14px;display:flex;gap:10px;flex-wrap:wrap" class="no-print">
+      <a class="floating-back-tools no-print" href="ferramentas.html"><i class="fas fa-arrow-left"></i> Voltar para Ferramentas</a>
+      <button class="btn print" type="button" onclick="window.print()"><i class="fas fa-print"></i> Imprimir</button>
+      <a class="btn secondary" href="calculadora-sintonia-pid.html"><i class="fas fa-sliders"></i> Calculadora PID</a>
+    </div>
+
+    <section class="tools-hero">
+      <h1>Calculadora Modbus</h1>
+      <p>Converta endereços Modbus usados em CLP, inversores, medidores, gateways e supervisórios. A ferramenta ajuda a conferir referência 40001/30001, offset do protocolo, decimal, hexadecimal, function code, word order de 32 bits e escala linear.</p>
+    </section>
+
+    <section class="calc-layout">
+      <div class="calc-card">
+        <h2><i class="fas fa-network-wired"></i> Endereço Modbus</h2>
+        <p>Use para converter o endereço mostrado no manual ou supervisório para o offset usado no protocolo Modbus.</p>
+        <div class="calc-grid">
+          <div class="field"><label for="mb_area">Área / tipo de dado</label><select id="mb_area"><option value="coil">Coil - 00001 / FC01</option><option value="discrete">Discrete Input - 10001 / FC02</option><option value="input">Input Register - 30001 / FC04</option><option value="holding" selected>Holding Register - 40001 / FC03</option></select></div>
+          <div class="field"><label for="mb_modo">Entrada informada</label><select id="mb_modo"><option value="ref" selected>Endereço de referência, ex.: 40001</option><option value="offset0">Offset do protocolo, base 0</option><option value="offset1">Número do registrador, base 1</option></select></div>
+          <div class="field"><label for="mb_valor">Valor do endereço</label><input id="mb_valor" type="number" step="1" value="40001"></div>
+          <div class="field"><label for="mb_qtd">Quantidade de registradores/bits</label><input id="mb_qtd" type="number" step="1" value="2"></div>
+        </div>
+        <div class="calc-actions">
+          <button class="mini-btn dark" type="button" onclick="copiarEndereco()"><i class="fas fa-copy"></i> Copiar endereço</button>
+          <button class="mini-btn" type="button" onclick="exEndereco('holding', 'ref', 40001, 2)">Ex.: 40001</button>
+          <button class="mini-btn" type="button" onclick="exEndereco('input', 'ref', 30010, 1)">Ex.: 30010</button>
+          <button class="mini-btn" type="button" onclick="exEndereco('holding', 'offset0', 100, 2)">Offset 100</button>
+        </div>
+      </div>
+
+      <div class="calc-card">
+        <h2><i class="fas fa-square-poll-vertical"></i> Resultado do endereço</h2>
+        <div class="calc-result" style="grid-template-columns:1fr 1fr">
+          <div class="result-box"><span>Function code comum</span><strong id="mb_fc">-</strong></div>
+          <div class="result-box"><span>Referência usual</span><strong id="mb_ref">-</strong></div>
+          <div class="result-box"><span>Offset protocolo base 0</span><strong id="mb_offset0">-</strong></div>
+          <div class="result-box"><span>Hexadecimal</span><strong id="mb_hex">-</strong></div>
+        </div>
+        <div class="calc-note status-warn" id="mb_nota" style="margin-top:14px">Atenção: fabricantes e softwares podem usar base 0 ou base 1. Sempre confirme no mapa Modbus do equipamento.</div>
+        <h3 style="margin-top:18px">Referências comuns</h3>
+        <div class="ref-grid">
+          <div class="ref-box"><strong>0xxxx</strong><span>Coils / FC01</span></div>
+          <div class="ref-box"><strong>1xxxx</strong><span>Discrete Inputs / FC02</span></div>
+          <div class="ref-box"><strong>3xxxx</strong><span>Input Registers / FC04</span></div>
+          <div class="ref-box"><strong>4xxxx</strong><span>Holding Registers / FC03</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="calc-layout">
+      <div class="calc-card">
+        <h2><i class="fas fa-layer-group"></i> Word order 32 bits</h2>
+        <p>Use quando dois registradores Modbus formam um valor de 32 bits, como float, inteiro longo ou totalizador.</p>
+        <div class="calc-grid">
+          <div class="field"><label for="w1">Registrador 1</label><input id="w1" type="text" value="0x41C8" placeholder="Ex.: 16840 ou 0x41C8"></div>
+          <div class="field"><label for="w2">Registrador 2</label><input id="w2" type="text" value="0x0000" placeholder="Ex.: 0 ou 0x0000"></div>
+          <div class="field"><label for="word_order">Ordem dos bytes</label><select id="word_order"><option value="ABCD" selected>ABCD - Big-endian</option><option value="CDAB">CDAB - word swap</option><option value="BADC">BADC - byte swap por word</option><option value="DCBA">DCBA - byte + word swap</option></select></div>
+          <div class="field"><label for="data_type">Tipo de leitura</label><select id="data_type"><option value="float" selected>Float 32 bits</option><option value="uint32">UInt32</option><option value="int32">Int32</option></select></div>
+        </div>
+        <div class="calc-actions">
+          <button class="mini-btn dark" type="button" onclick="copiarWord()"><i class="fas fa-copy"></i> Copiar word order</button>
+          <button class="mini-btn" type="button" onclick="exWord('0x41C8','0x0000','ABCD','float')">Float 25.0</button>
+          <button class="mini-btn" type="button" onclick="exWord('0x0001','0x86A0','ABCD','uint32')">UInt32 100000</button>
+        </div>
+      </div>
+      <div class="calc-card">
+        <h2><i class="fas fa-code"></i> Resultado 32 bits</h2>
+        <div class="calc-result" style="grid-template-columns:1fr 1fr">
+          <div class="result-box"><span>Bytes aplicados</span><strong id="w_bytes" class="mono">-</strong></div>
+          <div class="result-box"><span>Hex 32 bits</span><strong id="w_hex" class="mono">-</strong></div>
+          <div class="result-box"><span>Decimal bruto</span><strong id="w_dec">-</strong></div>
+          <div class="result-box"><span>Valor interpretado</span><strong id="w_val">-</strong></div>
+        </div>
+        <div class="calc-note" style="margin-top:14px">Se o valor parece absurdo no supervisório, teste outra ordem de words/bytes e confirme a documentação do equipamento.</div>
+      </div>
+    </section>
+
+    <section class="calc-layout">
+      <div class="calc-card">
+        <h2><i class="fas fa-ruler-combined"></i> Escala linear de registrador</h2>
+        <p>Converta valor bruto do registrador para valor de engenharia. Útil para sinais como 0-10000, 0-32767, 4-20 mA interno ou porcentagem.</p>
+        <div class="calc-grid">
+          <div class="field"><label for="raw_val">Valor bruto lido</label><input id="raw_val" type="number" step="any" value="5000"></div>
+          <div class="field"><label for="raw_min">Bruto mínimo</label><input id="raw_min" type="number" step="any" value="0"></div>
+          <div class="field"><label for="raw_max">Bruto máximo</label><input id="raw_max" type="number" step="any" value="10000"></div>
+          <div class="field"><label for="eng_min">Engenharia mínima</label><input id="eng_min" type="number" step="any" value="0"></div>
+          <div class="field"><label for="eng_max">Engenharia máxima</label><input id="eng_max" type="number" step="any" value="100"></div>
+          <div class="field"><label for="eng_unit">Unidade</label><input id="eng_unit" type="text" value="%"></div>
+        </div>
+        <div class="calc-actions"><button class="mini-btn dark" type="button" onclick="copiarEscala()"><i class="fas fa-copy"></i> Copiar escala</button><button class="mini-btn" type="button" onclick="exEscala(16384,0,32767,0,10,'bar')">0-32767 para 0-10 bar</button><button class="mini-btn" type="button" onclick="exEscala(12000,4000,20000,0,100,'%')">4000-20000 para 0-100%</button></div>
+      </div>
+      <div class="calc-card">
+        <h2><i class="fas fa-chart-line"></i> Resultado da escala</h2>
+        <div class="calc-result" style="grid-template-columns:1fr 1fr"><div class="result-box"><span>Valor de engenharia</span><strong id="eng_result">-</strong></div><div class="result-box"><span>Percentual da faixa</span><strong id="eng_pct">-</strong></div></div>
+        <h3 style="margin-top:18px">Tabela rápida</h3>
+        <div class="calc-table-wrap"><table class="calc-table"><thead><tr><th>Percentual</th><th>Bruto</th><th>Engenharia</th></tr></thead><tbody id="scale_table"></tbody></table></div>
+      </div>
+    </section>
+
+    <section class="calc-card faq">
+      <h2><i class="fas fa-circle-question"></i> Perguntas frequentes</h2>
+      <details><summary>Qual a diferença entre 40001 e offset 0 no Modbus?</summary><p>40001 é uma referência usada por muitos softwares para indicar holding register. No frame Modbus, normalmente o primeiro registrador é enviado como offset 0. Alguns fabricantes usam base 1, então sempre confira o manual.</p></details>
+      <details><summary>O que é word order?</summary><p>É a ordem dos registradores/bytes usados para formar valores maiores que 16 bits, como float 32 bits ou inteiro longo. Se a ordem estiver errada, o valor lido pode aparecer totalmente incorreto.</p></details>
+      <details><summary>Essa ferramenta substitui o mapa Modbus do fabricante?</summary><p>Não. Ela ajuda na conferência e conversão, mas a configuração final deve seguir o mapa Modbus do equipamento, manual do fabricante e testes de comunicação em campo.</p></details>
+    </section>
+
+    <section class="cta-bar">
+      <h2>Precisa integrar CLP, supervisório, inversor ou medidor via Modbus?</h2>
+      <p>A ALOGY Engenharia atua com automação industrial, instrumentação, comunicação, CLP, SCADA e suporte técnico para integração de dados de campo.</p>
+      <a class="btn" href="https://wa.me/5519981442448?text=Ol%C3%A1!%20Vim%20pela%20calculadora%20Modbus%20da%20ALOGY.%20Preciso%20de%20apoio%20com%20automa%C3%A7%C3%A3o%20e%20comunica%C3%A7%C3%A3o%20industrial." target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> Falar com a ALOGY</a>
+    </section>
+  </main>
+
+  <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p></footer>
+
+<script>
+const $ = (id) => document.getElementById(id);
+const areaInfo = {
+  coil:{prefix:0, label:'Coil', fc:'FC01', base:1},
+  discrete:{prefix:10000, label:'Discrete Input', fc:'FC02', base:10001},
+  input:{prefix:30000, label:'Input Register', fc:'FC04', base:30001},
+  holding:{prefix:40000, label:'Holding Register', fc:'FC03', base:40001}
+};
+function n(v){return Number(String(v).replace(',','.'))}
+function fmt(v,d=4){return Number.isFinite(v)?v.toLocaleString('pt-BR',{maximumFractionDigits:d}):'-'}
+function parseWord(v){let s=String(v||'').trim();let out=0;if(/^0x/i.test(s)){out=parseInt(s,16)}else{out=parseInt(s,10)}; if(!Number.isFinite(out)||out<0) out=0; return out & 0xFFFF;}
+function hex4(v){return '0x'+(v&0xFFFF).toString(16).toUpperCase().padStart(4,'0')}
+function hexAddr(v){return '0x'+(v&0xFFFF).toString(16).toUpperCase().padStart(4,'0')}
+function calcEndereco(){
+  const area = areaInfo[$('mb_area').value];
+  const modo = $('mb_modo').value;
+  let valor = parseInt($('mb_valor').value||0,10);
+  if(!Number.isFinite(valor)) valor=0;
+  let offset0=0;
+  if(modo==='ref') offset0 = valor - area.base;
+  else if(modo==='offset0') offset0 = valor;
+  else offset0 = valor - 1;
+  if(offset0 < 0){ $('mb_nota').textContent='Atenção: o endereço informado ficou abaixo da base esperada para esta área.'; $('mb_nota').className='calc-note status-warn'; }
+  else { $('mb_nota').textContent='Atenção: fabricantes e softwares podem usar base 0 ou base 1. Sempre confirme no mapa Modbus do equipamento.'; $('mb_nota').className='calc-note status-warn'; }
+  const ref = area.base + offset0;
+  $('mb_fc').textContent = area.fc + ' - ' + area.label;
+  $('mb_ref').textContent = ref.toString();
+  $('mb_offset0').textContent = offset0.toString();
+  $('mb_hex').textContent = hexAddr(offset0);
+}
+function exEndereco(area,modo,valor,qtd){$('mb_area').value=area;$('mb_modo').value=modo;$('mb_valor').value=valor;$('mb_qtd').value=qtd;calcEndereco();}
+function copiarEndereco(){const txt=`Modbus: ${$('mb_fc').textContent} | referência ${$('mb_ref').textContent} | offset base 0 ${$('mb_offset0').textContent} | hex ${$('mb_hex').textContent}`;navigator.clipboard?.writeText(txt);}
+function calcWord(){
+  const a=parseWord($('w1').value), b=parseWord($('w2').value);
+  const bytes=[(a>>8)&255,a&255,(b>>8)&255,b&255];
+  const ord=$('word_order').value;
+  const map={ABCD:[0,1,2,3],CDAB:[2,3,0,1],BADC:[1,0,3,2],DCBA:[3,2,1,0]};
+  const arr=map[ord].map(i=>bytes[i]);
+  const buf=new ArrayBuffer(4); const dv=new DataView(buf); arr.forEach((x,i)=>dv.setUint8(i,x));
+  const u32=dv.getUint32(0,false); const i32=dv.getInt32(0,false); const f32=dv.getFloat32(0,false);
+  const type=$('data_type').value;
+  const val = type==='float' ? f32 : (type==='int32' ? i32 : u32);
+  $('w_bytes').textContent = arr.map(x=>x.toString(16).toUpperCase().padStart(2,'0')).join(' ');
+  $('w_hex').textContent = '0x'+u32.toString(16).toUpperCase().padStart(8,'0');
+  $('w_dec').textContent = type==='int32' ? i32.toString() : u32.toString();
+  $('w_val').textContent = type==='float' ? fmt(f32,6) : val.toString();
+}
+function exWord(a,b,ord,type){$('w1').value=a;$('w2').value=b;$('word_order').value=ord;$('data_type').value=type;calcWord();}
+function copiarWord(){const txt=`Word order ${$('word_order').value}: bytes ${$('w_bytes').textContent}, hex ${$('w_hex').textContent}, valor ${$('w_val').textContent}`;navigator.clipboard?.writeText(txt);}
+function calcEscala(){
+  const raw=n($('raw_val').value), rmin=n($('raw_min').value), rmax=n($('raw_max').value), emin=n($('eng_min').value), emax=n($('eng_max').value), unit=$('eng_unit').value||'';
+  const pct=(raw-rmin)/(rmax-rmin);
+  const eng=emin+pct*(emax-emin);
+  $('eng_result').textContent = fmt(eng,5)+' '+unit;
+  $('eng_pct').textContent = fmt(pct*100,3)+' %';
+  const tb=$('scale_table'); tb.innerHTML='';
+  [0,25,50,75,100].forEach(p=>{const rb=rmin+(p/100)*(rmax-rmin); const ev=emin+(p/100)*(emax-emin); const tr=document.createElement('tr'); tr.innerHTML=`<td>${p}%</td><td>${fmt(rb,3)}</td><td>${fmt(ev,5)} ${unit}</td>`; tb.appendChild(tr);});
+}
+function exEscala(raw,rmin,rmax,emin,emax,unit){$('raw_val').value=raw;$('raw_min').value=rmin;$('raw_max').value=rmax;$('eng_min').value=emin;$('eng_max').value=emax;$('eng_unit').value=unit;calcEscala();}
+function copiarEscala(){const txt=`Escala Modbus: bruto ${$('raw_val').value} = ${$('eng_result').textContent} (${$('eng_pct').textContent})`;navigator.clipboard?.writeText(txt);}
+['mb_area','mb_modo','mb_valor','mb_qtd'].forEach(id=>$(id).addEventListener('input',calcEndereco));
+['w1','w2','word_order','data_type'].forEach(id=>$(id).addEventListener('input',calcWord));
+['raw_val','raw_min','raw_max','eng_min','eng_max','eng_unit'].forEach(id=>$(id).addEventListener('input',calcEscala));
+calcEndereco(); calcWord(); calcEscala();
+</script>
+</body>
+</html>
