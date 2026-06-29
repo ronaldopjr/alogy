@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Calculadora de Inversor de Frequência | ALOGY Engenharia</title>
+  <meta name="description" content="Calcule RPM por frequência, rotação síncrona, escorregamento, tensão V/f, corrente estimada, torque e frequência desejada para motores com inversor de frequência."/>
+  <meta name="robots" content="index,follow" />
+  <meta name="theme-color" content="#004b80" />
+  <link rel="canonical" href="https://www.alogy.com.br/calculadora-inversor-frequencia.html" />
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png" />
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="app.js" defer></script>
+
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ALOGY Engenharia" />
+  <meta property="og:title" content="Calculadora de Inversor de Frequência" />
+  <meta property="og:description" content="Calcule RPM, frequência, tensão V/f, corrente estimada, torque, escorregamento e regime de operação para motores com inversor de frequência." />
+  <meta property="og:url" content="https://www.alogy.com.br/calculadora-inversor-frequencia.html" />
+  <meta property="og:image" content="https://www.alogy.com.br/favicon-512x512.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebApplication",
+    "name":"Calculadora de Inversor de Frequência",
+    "url":"https://www.alogy.com.br/calculadora-inversor-frequencia.html",
+    "applicationCategory":"EngineeringApplication",
+    "operatingSystem":"Web",
+    "description":"Ferramenta auxiliar para estimar RPM, rotação síncrona, escorregamento, tensão V/f, corrente, torque e frequência desejada em motores acionados por inversor de frequência.",
+    "publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"}
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {"@type":"Question","name":"Como calcular RPM de motor com inversor de frequência?","acceptedAnswer":{"@type":"Answer","text":"Uma estimativa simples é calcular a rotação síncrona por RPM = 120 × frequência ÷ número de polos e depois descontar o escorregamento do motor."}},
+      {"@type":"Question","name":"O que significa relação V/f em inversor?","acceptedAnswer":{"@type":"Answer","text":"A relação V/f é a proporção entre tensão e frequência aplicada ao motor. Abaixo da frequência base, muitos acionamentos mantêm essa relação aproximadamente constante para preservar o fluxo magnético."}},
+      {"@type":"Question","name":"Esta calculadora dimensiona o inversor de frequência?","acceptedAnswer":{"@type":"Answer","text":"Não. A ferramenta é orientativa e não substitui catálogo do fabricante, análise de corrente nominal, sobrecarga, regime de trabalho, frenagem, harmônicos, EMC, cabos, aterramento, proteção, parametrização ou profissional habilitado."}}
+    ]
+  }
+  </script>
+</head>
+<body class="tools-page">
+  <header>
+    <div class="container headbar"><a href="/" class="logo-wrapper" aria-label="Voltar para o início"><img src="logo-alogy.webp" alt="ALOGY Engenharia" /></a><div class="crea-top" aria-label="CREA-SP"><img src="crea.webp" alt="CREA-SP"></div><button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menu"><i class="fas fa-bars"></i></button></div>
+    <nav class="desktop" aria-label="Menu principal"><div class="container navlinks"><a href="index.html">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="index.html#contato">Contato</a></div></nav>
+    <nav class="mobile" aria-label="Menu mobile"><a href="index.html">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="index.html#contato">Contato</a></nav>
+  </header>
+
+  <div class="social-floating" aria-label="Redes sociais"><a href="https://www.linkedin.com/company/alogyengenharia" class="linkedin" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a><a href="https://www.instagram.com/alogyengenharia" class="instagram" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="https://www.facebook.com/alogyengenharia" class="facebook" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><a href="https://www.youtube.com/@alogyengenharia" class="youtube" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a><a href="https://hotmart.com/pt-br/club/alogyengenharia" class="hotmart" target="_blank" rel="noopener" aria-label="Hotmart">H</a><a href="https://www.tiktok.com/@alogyengenharia" class="tiktok" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a></div>
+  <div class="fab-wrap" aria-label="Ações rápidas"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1!%20Vim%20pela%20calculadora%20de%20inversor%20de%20frequ%C3%AAncia%20da%20ALOGY.%20Gostaria%20de%20apoio%20t%C3%A9cnico." target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
+
+  <main class="container" style="margin-top:18px">
+    <div style="margin-bottom:14px;display:flex;gap:10px;flex-wrap:wrap" class="no-print">
+      <a class="floating-back-tools no-print" href="ferramentas.html"><i class="fas fa-arrow-left"></i> Voltar para Ferramentas</a>
+      <button class="btn print" type="button" onclick="window.print()"><i class="fas fa-print"></i> Imprimir</button>
+      <a class="btn secondary" href="calculadora-corrente-trifasica.html"><i class="fas fa-industry"></i> Corrente trifásica</a>
+      <a class="btn secondary" href="calculadora-rpm-polias-reducao.html"><i class="fas fa-gears"></i> RPM e redução</a>
+    </div>
+
+    <section class="tools-hero">
+      <h1>Calculadora de Inversor de Frequência</h1>
+      <p>Estime rotação do motor por frequência, tensão pela relação V/f, corrente, torque, frequência necessária para um RPM desejado e regime de operação em motores acionados por inversor.</p>
+    </section>
+
+    <section class="calc-card" aria-label="Aviso de uso da ferramenta">
+      <h2><i class="fas fa-triangle-exclamation"></i> Ferramenta para estudo e apoio técnico</h2>
+      <p>Esta ferramenta é orientativa e usa fórmulas simplificadas. Não substitui dimensionamento do inversor, catálogo do fabricante, análise de corrente nominal, sobrecarga, regime de trabalho, torque de partida, frenagem, resistor de frenagem, harmônicos, EMC, aterramento, cabo blindado, proteção, parametrização, normas, laudo, ART/RRT ou profissional habilitado. A ALOGY Engenharia não se responsabiliza por decisões, compras, instalações, ajustes ou intervenções realizadas exclusivamente com base nesta ferramenta.</p>
+    </section>
+
+    <section class="calc-layout">
+      <div class="calc-card">
+        <h2><i class="fas fa-sliders"></i> Dados do motor e do inversor</h2>
+        <p>Informe a frequência de operação, polos, escorregamento, tensão base e potência/corrente do motor. Os resultados são uma pré-análise para entendimento da aplicação.</p>
+        <div class="calc-grid">
+          <div class="field"><label for="freq">Frequência de saída do inversor</label><input id="freq" type="number" step="any" value="45"></div>
+          <div class="field"><label for="freqBase">Frequência base do motor</label><input id="freqBase" type="number" step="any" value="60"></div>
+          <div class="field"><label for="polos">Número de polos</label><select id="polos"><option value="2">2 polos</option><option value="4" selected>4 polos</option><option value="6">6 polos</option><option value="8">8 polos</option><option value="10">10 polos</option><option value="12">12 polos</option></select></div>
+          <div class="field"><label for="slip">Escorregamento estimado</label><input id="slip" type="number" step="any" value="3"></div>
+          <div class="field"><label for="tensao">Tensão base / tensão do motor</label><input id="tensao" type="number" step="any" value="380"></div>
+          <div class="field"><label for="tipoPot">Entrada de potência</label><select id="tipoPot"><option value="kw">kW mecânico/eixo</option><option value="cv" selected>CV mecânico/eixo</option><option value="hp">HP mecânico/eixo</option><option value="kva">kVA elétrico</option><option value="corrente">Corrente medida/nominal</option></select></div>
+          <div class="field"><label for="pot">Valor da potência/corrente</label><input id="pot" type="number" step="any" value="5"></div>
+          <div class="field"><label for="fp">Fator de potência</label><input id="fp" type="number" step="any" value="0.85"></div>
+          <div class="field"><label for="eta">Rendimento do motor</label><input id="eta" type="number" step="any" value="88"></div>
+          <div class="field"><label for="carga">Carga estimada no eixo</label><input id="carga" type="number" step="any" value="100"></div>
+          <div class="field"><label for="correnteNom">Corrente nominal do motor/inversor</label><input id="correnteNom" type="number" step="any" value="10"></div>
+          <div class="field"><label for="rpmDesejado">RPM desejado no eixo</label><input id="rpmDesejado" type="number" step="any" value="1200"></div>
+          <div class="field"><label for="fatorInv">Margem mínima para inversor</label><select id="fatorInv"><option value="1.00">1,00 × corrente nominal</option><option value="1.10" selected>1,10 × corrente nominal</option><option value="1.20">1,20 × corrente nominal</option><option value="1.50">1,50 × corrente nominal</option></select></div>
+        </div>
+      </div>
+
+      <div class="calc-card result-card" aria-live="polite">
+        <h2><i class="fas fa-gauge-high"></i> Resultado</h2>
+        <div class="result-main" id="rpmOut">-- rpm</div>
+        <p class="muted" id="status">Preencha os dados para calcular.</p>
+        <div class="result-list">
+          <div><span>Rotação síncrona</span><strong id="rpmSync">--</strong></div>
+          <div><span>Percentual da velocidade base</span><strong id="percVel">--</strong></div>
+          <div><span>Tensão estimada V/f</span><strong id="vout">--</strong></div>
+          <div><span>Relação V/f</span><strong id="vf">--</strong></div>
+          <div><span>Corrente estimada</span><strong id="iout">--</strong></div>
+          <div><span>Potência mecânica considerada</span><strong id="pmech">--</strong></div>
+          <div><span>Torque estimado no eixo</span><strong id="torque">--</strong></div>
+          <div><span>Frequência para RPM desejado</span><strong id="freqDesejada">--</strong></div>
+          <div><span>Corrente mínima sugerida do inversor</span><strong id="invMin">--</strong></div>
+          <div><span>Regime provável</span><strong id="regime">--</strong></div>
+        </div>
+        <div class="calc-actions" style="margin-top:14px">
+          <button class="mini-btn dark" type="button" onclick="copiarResultado()"><i class="fas fa-copy"></i> Copiar resultado</button>
+          <button class="mini-btn" type="button" onclick="exemploBomba()">Exemplo bomba</button>
+          <button class="mini-btn" type="button" onclick="limpar()">Limpar</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="calc-card">
+      <h2><i class="fas fa-table"></i> Tabela rápida por frequência</h2>
+      <p>A tabela compara rotação estimada, tensão V/f e regime para frequências comuns. Use como apoio inicial para parametrização e conversa técnica.</p>
+      <div class="table-wrap">
+        <table class="calc-table">
+          <thead><tr><th>Frequência</th><th>RPM síncrono</th><th>RPM eixo</th><th>Tensão V/f</th><th>Velocidade</th><th>Comentário</th></tr></thead>
+          <tbody id="tbodyTabela"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="calc-card">
+      <h2><i class="fas fa-circle-info"></i> Como interpretar</h2>
+      <ul class="nice-list">
+        <li><strong>RPM síncrono:</strong> depende da frequência e do número de polos. Um motor de 4 polos em 60 Hz tem rotação síncrona de 1800 rpm.</li>
+        <li><strong>RPM no eixo:</strong> é menor que a rotação síncrona por causa do escorregamento do motor.</li>
+        <li><strong>V/f:</strong> abaixo da frequência base, o inversor normalmente reduz a tensão junto com a frequência para manter a relação V/f.</li>
+        <li><strong>Acima da frequência base:</strong> a tensão tende a ficar limitada na tensão nominal e o motor entra em região de enfraquecimento de campo, com menor torque disponível.</li>
+        <li><strong>Baixa frequência:</strong> pode exigir ventilação forçada, ajuste de torque boost, controle vetorial ou validação térmica do motor.</li>
+      </ul>
+    </section>
+
+    <section class="calc-card">
+      <h2><i class="fas fa-screwdriver-wrench"></i> Exemplos práticos</h2>
+      <div class="faq-list">
+        <details open><summary>Motor 4 polos em 30 Hz</summary><p>A rotação síncrona aproximada é 900 rpm. Com 3% de escorregamento, a rotação no eixo fica perto de 873 rpm.</p></details>
+        <details><summary>Motor 60 Hz operando em 45 Hz</summary><p>A velocidade fica próxima de 75% da velocidade base. Em muitas aplicações abaixo da frequência base, a região é tratada como torque aproximadamente constante.</p></details>
+        <details><summary>Operação acima de 60 Hz</summary><p>Pode aumentar a velocidade, mas a tensão não sobe indefinidamente. O motor pode perder torque disponível e precisa de validação mecânica, térmica e do fabricante.</p></details>
+      </div>
+    </section>
+
+    <section class="calc-card">
+      <h2><i class="fas fa-question-circle"></i> Perguntas frequentes</h2>
+      <div class="faq-list">
+        <details><summary>Posso dimensionar o inversor apenas pela potência em CV?</summary><p>Não é o ideal. A seleção deve considerar principalmente corrente nominal do motor, tensão, regime de sobrecarga, tipo de carga, ambiente, frenagem, altitude, temperatura, filtros, cabos e recomendações do fabricante.</p></details>
+        <details><summary>Inversor de frequência economiza energia?</summary><p>Pode economizar em aplicações com variação de velocidade, principalmente bombas e ventiladores. Em carga de torque constante, a economia depende do processo e do regime de operação.</p></details>
+        <details><summary>Posso ligar qualquer motor em baixa frequência?</summary><p>É necessário cuidado. Em baixa rotação, a ventilação própria do motor diminui e pode haver aquecimento. Alguns casos exigem ventilação independente ou motor adequado para inversor.</p></details>
+      </div>
+    </section>
+
+    <section class="cta-card no-print">
+      <h2>Precisa validar inversor, motor ou parametrização?</h2>
+      <p>A ALOGY Engenharia pode apoiar em elétrica industrial, automação, instrumentação, comissionamento, testes e diagnóstico de acionamentos.</p>
+      <a class="btn" href="index.html#contato"><i class="fas fa-envelope"></i> Falar com a ALOGY</a>
+    </section>
+  </main>
+
+  <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p></footer>
+
+  <script>
+    const $ = id => document.getElementById(id);
+    const n = id => parseFloat($(id).value) || 0;
+    const fmt = (v,d=2) => isFinite(v) ? v.toLocaleString('pt-BR',{maximumFractionDigits:d, minimumFractionDigits:d}) : '--';
+    const fmtFlex = (v,d=2) => isFinite(v) ? v.toLocaleString('pt-BR',{maximumFractionDigits:d}) : '--';
+
+    function potenciaBase(){
+      const tipo = $('tipoPot').value;
+      const valor = n('pot');
+      const tensao = n('tensao');
+      const fp = Math.max(n('fp'), 0.01);
+      const eta = Math.max(n('eta') / 100, 0.01);
+      let pMec = 0, pEle = 0, kva = 0, corrente = 0;
+      if(tipo === 'kw'){
+        pMec = valor;
+        pEle = pMec / eta;
+        kva = pEle / fp;
+      } else if(tipo === 'cv'){
+        pMec = valor * 0.7355;
+        pEle = pMec / eta;
+        kva = pEle / fp;
+      } else if(tipo === 'hp'){
+        pMec = valor * 0.7457;
+        pEle = pMec / eta;
+        kva = pEle / fp;
+      } else if(tipo === 'kva'){
+        kva = valor;
+        pEle = kva * fp;
+        pMec = pEle * eta;
+      } else if(tipo === 'corrente'){
+        corrente = valor;
+        kva = Math.sqrt(3) * tensao * corrente / 1000;
+        pEle = kva * fp;
+        pMec = pEle * eta;
+      }
+      if(tipo !== 'corrente') corrente = tensao > 0 ? (kva * 1000) / (Math.sqrt(3) * tensao) : NaN;
+      return {pMec, pEle, kva, corrente};
+    }
+
+    function calcParaFreq(freq){
+      const base = Math.max(n('freqBase'), 0.01);
+      const polos = Math.max(parseInt($('polos').value, 10), 2);
+      const slip = Math.max(n('slip'), 0) / 100;
+      const tensao = n('tensao');
+      const rpmSync = 120 * freq / polos;
+      const rpmEixo = rpmSync * (1 - slip);
+      const perc = freq / base * 100;
+      const v = freq <= base ? tensao * freq / base : tensao;
+      let comentario = 'Torque constante aproximado';
+      if(freq < 5) comentario = 'Muito baixa: validar refrigeração e torque';
+      else if(freq < 20) comentario = 'Baixa frequência: verificar aquecimento';
+      else if(freq > base) comentario = 'Acima da base: enfraquecimento de campo';
+      return {rpmSync, rpmEixo, perc, v, comentario};
+    }
+
+    function calcular(){
+      const freq = n('freq');
+      const base = Math.max(n('freqBase'), 0.01);
+      const tensao = n('tensao');
+      const carga = Math.max(n('carga'), 0) / 100;
+      const correnteNom = n('correnteNom');
+      const fatorInv = parseFloat($('fatorInv').value) || 1.1;
+      const c = calcParaFreq(freq);
+      const p = potenciaBase();
+      const pMecCarga = p.pMec * carga;
+      const correnteCarga = p.corrente * carga;
+      const torque = c.rpmEixo > 0 ? 9550 * pMecCarga / c.rpmEixo : NaN;
+      const rpmDesejado = n('rpmDesejado');
+      const slip = Math.max(n('slip'), 0) / 100;
+      const polos = Math.max(parseInt($('polos').value, 10), 2);
+      const freqDesejada = rpmDesejado > 0 && (1 - slip) > 0 ? rpmDesejado * polos / (120 * (1 - slip)) : NaN;
+      const vf = base > 0 ? tensao / base : NaN;
+      const invMin = correnteNom > 0 ? correnteNom * fatorInv : p.corrente * fatorInv;
+      let regime = c.comentario;
+      let status = 'Resultado estimado para estudo e pré-análise.';
+      if(freq <= 0 || base <= 0 || tensao <= 0){
+        status = 'Informe frequência, frequência base e tensão maiores que zero.';
+      } else if(freq > base){
+        status = 'Atenção: acima da frequência base pode haver redução de torque disponível.';
+      } else if(freq < 20){
+        status = 'Atenção: em baixa frequência, valide refrigeração e torque do motor.';
+      }
+      if(correnteNom > 0 && correnteCarga > correnteNom){
+        status += ' Corrente estimada acima da corrente nominal informada.';
+        regime += ' / sobrecarga provável';
+      }
+
+      $('rpmOut').textContent = fmtFlex(c.rpmEixo,1) + ' rpm';
+      $('status').textContent = status;
+      $('rpmSync').textContent = fmtFlex(c.rpmSync,1) + ' rpm';
+      $('percVel').textContent = fmtFlex(c.perc,1) + ' %';
+      $('vout').textContent = fmtFlex(c.v,1) + ' V';
+      $('vf').textContent = fmtFlex(vf,2) + ' V/Hz';
+      $('iout').textContent = fmtFlex(correnteCarga,2) + ' A';
+      $('pmech').textContent = fmtFlex(pMecCarga,2) + ' kW';
+      $('torque').textContent = fmtFlex(torque,2) + ' N·m';
+      $('freqDesejada').textContent = fmtFlex(freqDesejada,2) + ' Hz';
+      $('invMin').textContent = fmtFlex(invMin,2) + ' A';
+      $('regime').textContent = regime;
+      gerarTabela();
+    }
+
+    function gerarTabela(){
+      const base = Math.max(n('freqBase'), 0.01);
+      const lista = [5,10,20,30,40,50,60,70,80];
+      const atual = n('freq');
+      if(atual > 0 && !lista.includes(Math.round(atual))) lista.push(atual);
+      lista.sort((a,b)=>a-b);
+      $('tbodyTabela').innerHTML = lista.map(f => {
+        const c = calcParaFreq(f);
+        const mark = Math.abs(f - atual) < 0.001 ? 'Atual' : '';
+        return `<tr><td>${fmtFlex(f,1)} Hz ${mark}</td><td>${fmtFlex(c.rpmSync,0)} rpm</td><td>${fmtFlex(c.rpmEixo,0)} rpm</td><td>${fmtFlex(c.v,1)} V</td><td>${fmtFlex(c.perc,1)} %</td><td>${c.comentario}</td></tr>`;
+      }).join('');
+    }
+
+    function exemploBomba(){
+      $('freq').value = 35;
+      $('freqBase').value = 60;
+      $('polos').value = 4;
+      $('slip').value = 3;
+      $('tensao').value = 380;
+      $('tipoPot').value = 'cv';
+      $('pot').value = 10;
+      $('fp').value = 0.86;
+      $('eta').value = 90;
+      $('carga').value = 85;
+      $('correnteNom').value = 15;
+      $('rpmDesejado').value = 1000;
+      $('fatorInv').value = '1.10';
+      calcular();
+    }
+
+    function limpar(){
+      ['freq','freqBase','slip','tensao','pot','fp','eta','carga','correnteNom','rpmDesejado'].forEach(id => $(id).value = '');
+      calcular();
+    }
+
+    function copiarResultado(){
+      const txt = `Calculadora de Inversor de Frequência - ALOGY\nRPM eixo: ${$('rpmOut').textContent}\nRotação síncrona: ${$('rpmSync').textContent}\nVelocidade base: ${$('percVel').textContent}\nTensão V/f: ${$('vout').textContent}\nCorrente estimada: ${$('iout').textContent}\nTorque estimado: ${$('torque').textContent}\nFrequência para RPM desejado: ${$('freqDesejada').textContent}\nObservação: resultado orientativo, não substitui projeto, catálogo, parametrização ou profissional habilitado.`;
+      navigator.clipboard.writeText(txt).then(()=>alert('Resultado copiado.')).catch(()=>alert(txt));
+    }
+
+    document.querySelectorAll('input,select').forEach(el => el.addEventListener('input', calcular));
+    document.addEventListener('DOMContentLoaded', calcular);
+    calcular();
+  </script>
+</body>
+</html>
