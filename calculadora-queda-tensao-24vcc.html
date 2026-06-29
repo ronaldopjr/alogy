@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Calculadora de Queda de Tensão 24 Vcc | Instrumentação e CLP | ALOGY Engenharia</title>
+  <meta name="description" content="Calculadora de queda de tensão 24 Vcc para sensores, transmissores, válvulas solenoides, CLP, remotas, IHM e instrumentação industrial. Estime tensão na carga, perda em volts, percentual, potência perdida e seção de cabo."/>
+  <meta name="robots" content="index,follow" />
+  <meta name="theme-color" content="#004b80" />
+  <link rel="canonical" href="https://www.alogy.com.br/calculadora-queda-tensao-24vcc.html" />
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png" />
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="app.js" defer></script>
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ALOGY Engenharia" />
+  <meta property="og:title" content="Calculadora de Queda de Tensão 24 Vcc | ALOGY Engenharia" />
+  <meta property="og:description" content="Calcule queda de tensão em circuitos 24 Vcc de instrumentação, sensores, transmissores, solenoides, CLP e remotas industriais." />
+  <meta property="og:url" content="https://www.alogy.com.br/calculadora-queda-tensao-24vcc.html" />
+  <meta property="og:image" content="https://www.alogy.com.br/favicon-512x512.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <style>
+    .tool-hero{background:linear-gradient(135deg,#003b66,#006aa6);color:#fff;border-radius:18px;padding:28px;margin:22px 0;box-shadow:0 12px 30px rgba(0,0,0,.14)}
+    .tool-hero h1{margin:0 0 8px;font-size:clamp(1.8rem,3vw,2.7rem);line-height:1.12;color:#fff}.tool-hero p{max-width:920px;margin:0;color:#e8f6ff;font-size:1.05rem}.breadcrumb{font-size:.92rem;margin-bottom:10px;color:#cdefff}.breadcrumb a{color:#fff;text-decoration:underline}.calc-layout{display:grid;grid-template-columns:1.05fr .95fr;gap:18px;align-items:start}.calc-card{background:#fff;border:1px solid #e6eef5;border-radius:16px;padding:20px;margin:18px 0;box-shadow:0 8px 24px rgba(0,45,80,.07)}.calc-card h2{margin-top:0;color:#004b80}.calc-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.field label{display:block;font-weight:700;color:#17344d;margin-bottom:6px}.field input,.field select{width:100%;padding:11px 12px;border:1px solid #cad8e4;border-radius:10px;font-size:1rem;background:#fff}.field small{display:block;color:#637789;margin-top:5px;line-height:1.35}.result-card{position:sticky;top:14px}.result-main{font-size:2.2rem;line-height:1;font-weight:800;color:#004b80;margin:8px 0}.muted{color:#647789}.result-list{display:grid;gap:8px}.result-list div{display:flex;justify-content:space-between;gap:12px;border-bottom:1px dashed #d8e4ee;padding:8px 0}.result-list span{color:#536b7d}.result-list strong{text-align:right;color:#17344d}.calc-actions{display:flex;flex-wrap:wrap;gap:8px}.mini-btn{border:1px solid #c8d8e5;background:#f6fbff;color:#004b80;border-radius:999px;padding:9px 13px;font-weight:700;cursor:pointer}.mini-btn.dark{background:#004b80;color:#fff;border-color:#004b80}.table-wrap{overflow-x:auto}.calc-table{width:100%;border-collapse:collapse}.calc-table th,.calc-table td{border:1px solid #dce8f2;padding:10px;text-align:left}.calc-table th{background:#f1f7fc;color:#004b80}.status-ok{color:#0a7a3d;font-weight:800}.status-warn{color:#b56b00;font-weight:800}.status-bad{color:#b00020;font-weight:800}.notice{border-left:5px solid #f0a500;background:#fff8e8}.nice-list{padding-left:20px}.nice-list li{margin:8px 0}.faq-list details{border:1px solid #e2ebf3;border-radius:12px;padding:12px;margin:10px 0;background:#fbfdff}.faq-list summary{cursor:pointer;font-weight:800;color:#17344d}.cta-card{background:linear-gradient(135deg,#f6fbff,#e9f6ff);border:1px solid #d7ebf8;border-radius:16px;padding:22px;text-align:center;margin:22px 0}@media(max-width:850px){.calc-layout{grid-template-columns:1fr}.calc-grid{grid-template-columns:1fr}.result-card{position:static}.result-main{font-size:1.8rem}}
+    @media print{header,.social-floating,.fab-wrap,.no-print,.calc-actions{display:none!important}.calc-card,.tool-hero{box-shadow:none}.tool-hero{color:#111;background:#fff;border:1px solid #ddd}.tool-hero h1{color:#111}}
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebApplication",
+    "name":"Calculadora de Queda de Tensão 24 Vcc",
+    "url":"https://www.alogy.com.br/calculadora-queda-tensao-24vcc.html",
+    "applicationCategory":"EngineeringApplication",
+    "operatingSystem":"Web",
+    "description":"Calculadora orientativa para estimar queda de tensão em circuitos 24 Vcc de instrumentação, sensores, transmissores, solenoides, CLP e remotas industriais.",
+    "provider":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"}
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {"@type":"Question","name":"Por que 24 Vcc sofre mais com queda de tensão?","acceptedAnswer":{"@type":"Answer","text":"Como a tensão nominal é baixa, poucos volts de perda representam percentual alto. Um cabo longo ou carga elevada pode fazer a tensão chegar insuficiente em sensores, válvulas, remotas ou instrumentos."}},
+      {"@type":"Question","name":"A distância informada deve ser ida e volta?","acceptedAnswer":{"@type":"Answer","text":"Nesta ferramenta, informe a distância de ida entre a fonte e a carga. A calculadora considera automaticamente o caminho de ida e volta do circuito DC."}},
+      {"@type":"Question","name":"A ferramenta substitui projeto elétrico?","acceptedAnswer":{"@type":"Answer","text":"Não. O cálculo é orientativo e não substitui normas, catálogo do fabricante, medições, seletividade, proteção, projeto, ART/RRT ou análise de profissional habilitado."}}
+    ]
+  }
+  </script>
+</head>
+<body class="tools-page">
+  <header>
+    <div class="container headbar">
+      <a href="/" class="logo-wrapper" aria-label="Voltar para o início"><img src="logo-alogy.webp" alt="ALOGY Engenharia" /></a>
+      <div class="crea-top" aria-label="CREA-SP"><img src="crea.webp" alt="CREA-SP"></div>
+      <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menu"><i class="fas fa-bars"></i></button>
+    </div>
+    <nav class="desktop" aria-label="Menu principal"><div class="container navlinks"><a href="index.html">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="index.html#contato">Contato</a></div></nav>
+    <nav class="mobile" aria-label="Menu mobile"><a href="index.html">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="index.html#contato">Contato</a></nav>
+  </header>
+  <div class="social-floating" aria-label="Redes sociais"><a href="https://www.linkedin.com/company/alogyengenharia" class="linkedin" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a><a href="https://www.instagram.com/alogyengenharia" class="instagram" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="https://www.facebook.com/alogyengenharia" class="facebook" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><a href="https://www.youtube.com/@alogyengenharia" class="youtube" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a><a href="https://hotmart.com/pt-br/club/alogyengenharia" class="hotmart" target="_blank" rel="noopener" aria-label="Hotmart">H</a><a href="https://www.tiktok.com/@alogyengenharia" class="tiktok" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a></div>
+  <div class="fab-wrap" aria-label="Ações rápidas"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1!%20Vim%20pela%20calculadora%20de%20queda%2024%20Vcc%20da%20ALOGY.%20Gostaria%20de%20atendimento." target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
+
+  <main class="container">
+    <section class="tool-hero">
+      <div class="breadcrumb"><a href="ferramentas.html">Ferramentas</a> / Automação e controle</div>
+      <h1>Calculadora de Queda de Tensão 24 Vcc</h1>
+      <p>Estime a queda de tensão em circuitos 24 Vcc de sensores, transmissores 4-20 mA, válvulas solenoides, CLP, IHM, remotas e cargas de instrumentação em campo.</p>
+    </section>
+
+    <section class="calc-card notice" aria-label="Aviso de responsabilidade">
+      <h2><i class="fas fa-triangle-exclamation"></i> Ferramenta orientativa</h2>
+      <p>Esta calculadora é apenas para estudo, apoio técnico e pré-análise. Não substitui projeto elétrico, normas aplicáveis, catálogos de fabricantes, proteção por circuito, medições em campo, ART/RRT ou profissional habilitado. A ALOGY não se responsabiliza por decisões tomadas exclusivamente com base nesta ferramenta.</p>
+    </section>
+
+    <section class="calc-layout">
+      <div class="calc-card">
+        <h2><i class="fas fa-sliders"></i> Dados do circuito 24 Vcc</h2>
+        <div class="calc-grid">
+          <div class="field"><label for="tensaoFonte">Tensão da fonte</label><input id="tensaoFonte" type="number" step="any" min="1" value="24"><small>Normalmente 24 Vcc.</small></div>
+          <div class="field"><label for="tensaoMin">Tensão mínima aceitável na carga</label><input id="tensaoMin" type="number" step="any" min="0" value="20.4"><small>Exemplo comum: 20,4 V para -15%.</small></div>
+          <div class="field"><label for="entrada">Entrada da carga</label><select id="entrada"><option value="A" selected>Corrente total em A</option><option value="mA">Corrente total em mA</option><option value="W">Potência total em W</option><option value="porCarga">Quantidade x corrente unitária</option></select></div>
+          <div class="field"><label for="tipoCarga">Tipo de carga</label><select id="tipoCarga"><option value="instrumento" selected>Instrumento / transmissor</option><option value="sensor">Sensor digital</option><option value="solenoide">Válvula solenoide</option><option value="clp">CLP / remota / I/O</option><option value="mista">Cargas mistas</option></select></div>
+          <div class="field"><label for="corrente">Corrente total</label><input id="corrente" type="number" step="any" min="0" value="0.5"><small>Use A, mA ou W conforme a opção acima.</small></div>
+          <div class="field"><label for="quantidade">Quantidade de cargas</label><input id="quantidade" type="number" step="1" min="1" value="4"><small>Usado na opção quantidade x corrente.</small></div>
+          <div class="field"><label for="correnteUnitaria">Corrente unitária por carga</label><input id="correnteUnitaria" type="number" step="any" min="0" value="100"><small>Em mA por carga.</small></div>
+          <div class="field"><label for="distancia">Distância fonte até a carga</label><input id="distancia" type="number" step="any" min="0" value="80"><small>Informe só a ida. A volta é considerada.</small></div>
+          <div class="field"><label for="secao">Seção do cabo</label><select id="secao"><option value="0.5">0,5 mm²</option><option value="0.75">0,75 mm²</option><option value="1">1,0 mm²</option><option value="1.5" selected>1,5 mm²</option><option value="2.5">2,5 mm²</option><option value="4">4 mm²</option><option value="6">6 mm²</option><option value="10">10 mm²</option><option value="16">16 mm²</option></select></div>
+          <div class="field"><label for="material">Material do condutor</label><select id="material"><option value="0.0175" selected>Cobre</option><option value="0.0282">Alumínio</option></select></div>
+          <div class="field"><label for="temperatura">Temperatura estimada do condutor</label><select id="temperatura"><option value="20">20 °C</option><option value="40" selected>40 °C</option><option value="70">70 °C</option><option value="90">90 °C</option></select></div>
+          <div class="field"><label for="limitePct">Limite de queda desejado</label><input id="limitePct" type="number" step="any" min="0" value="5"><small>Pré-análise: 3% a 5% costuma ser usado como referência conservadora.</small></div>
+        </div>
+      </div>
+
+      <div class="calc-card result-card" aria-live="polite">
+        <h2><i class="fas fa-gauge-high"></i> Resultado</h2>
+        <div class="result-main" id="quedaOut">-- V</div>
+        <p class="muted" id="status">Preencha os dados para calcular.</p>
+        <div class="result-list">
+          <div><span>Corrente calculada</span><strong id="correnteOut">--</strong></div>
+          <div><span>Resistência do circuito</span><strong id="resOut">--</strong></div>
+          <div><span>Queda de tensão</span><strong id="quedaVOut">--</strong></div>
+          <div><span>Queda percentual</span><strong id="quedaPctOut">--</strong></div>
+          <div><span>Tensão estimada na carga</span><strong id="cargaOut">--</strong></div>
+          <div><span>Potência perdida no cabo</span><strong id="perdaOut">--</strong></div>
+          <div><span>Comprimento máximo pelo limite</span><strong id="lmaxOut">--</strong></div>
+          <div><span>Corrente máxima pelo limite</span><strong id="imaxOut">--</strong></div>
+          <div><span>Seção sugerida</span><strong id="secSugOut">--</strong></div>
+          <div><span>Observação</span><strong id="obsOut">--</strong></div>
+        </div>
+        <div class="calc-actions" style="margin-top:14px">
+          <button class="mini-btn dark" type="button" onclick="copiarResultado()"><i class="fas fa-copy"></i> Copiar resultado</button>
+          <button class="mini-btn" type="button" onclick="exemploSolenoide()">Exemplo solenoide</button>
+          <button class="mini-btn" type="button" onclick="exemploTransmissor()">Exemplo transmissor</button>
+          <button class="mini-btn" type="button" onclick="limpar()">Limpar</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="calc-card">
+      <h2><i class="fas fa-table"></i> Tabela comparativa por seção de cabo</h2>
+      <p>A tabela considera a mesma distância, corrente, material e temperatura informados acima, mudando apenas a seção do cabo.</p>
+      <div class="table-wrap">
+        <table class="calc-table">
+          <thead><tr><th>Seção</th><th>Resistência do circuito</th><th>Queda</th><th>Tensão na carga</th><th>Status</th></tr></thead>
+          <tbody id="tbodySecoes"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="calc-card">
+      <h2><i class="fas fa-circle-info"></i> Como interpretar</h2>
+      <ul class="nice-list">
+        <li><strong>Distância:</strong> informe a distância de ida entre a fonte 24 Vcc e a carga. A ferramenta calcula automaticamente ida e volta.</li>
+        <li><strong>Corrente:</strong> use a corrente real da carga. Solenoides, sensores e módulos podem ter picos ou consumo diferente conforme fabricante.</li>
+        <li><strong>Tensão mínima:</strong> confira no catálogo do equipamento. Muitos dispositivos 24 Vcc aceitam uma faixa, mas não se deve assumir sem verificar.</li>
+        <li><strong>Seção sugerida:</strong> é apenas uma referência pela queda de tensão. Não substitui capacidade de corrente, proteção, agrupamento, instalação e norma.</li>
+        <li><strong>Cargas críticas:</strong> para CLP, remotas, instrumentos de segurança e válvulas importantes, valide com medição em campo e margem adequada.</li>
+      </ul>
+    </section>
+
+    <section class="calc-card">
+      <h2><i class="fas fa-screwdriver-wrench"></i> Exemplos práticos</h2>
+      <div class="faq-list">
+        <details open><summary>Transmissor 4-20 mA distante do painel</summary><p>Um transmissor consome pouca corrente, mas cabos longos, barreiras, resistor HART e fonte fraca podem reduzir a tensão disponível no loop. Para diagnóstico HART, também confira a carga da malha.</p></details>
+        <details><summary>Válvula solenoide 24 Vcc em campo</summary><p>Solenoides normalmente consomem mais corrente que sensores. Distância longa e cabo fino podem fazer a bobina não atuar corretamente ou aquecer de forma inadequada.</p></details>
+        <details><summary>Remota de CLP ou caixa de I/O</summary><p>Em remotas, considere consumo do módulo, sensores conectados, saídas digitais, margem de expansão e queda no cabo de alimentação principal.</p></details>
+      </div>
+    </section>
+
+    <section class="calc-card">
+      <h2><i class="fas fa-question-circle"></i> Perguntas frequentes</h2>
+      <div class="faq-list">
+        <details><summary>Posso usar a mesma calculadora para 12 Vcc ou 48 Vcc?</summary><p>Sim, para pré-análise básica. Altere a tensão da fonte e a tensão mínima aceitável. Mesmo assim, valide os limites no catálogo do equipamento.</p></details>
+        <details><summary>Por que a ferramenta considera ida e volta?</summary><p>Em corrente contínua, a corrente precisa sair da fonte e retornar. Por isso, a resistência do circuito considera o comprimento dos dois condutores.</p></details>
+        <details><summary>Qual queda de tensão é aceitável em 24 Vcc?</summary><p>Depende do equipamento e do projeto. Em pré-análise, muitos técnicos usam metas como 3% ou 5%, mas a referência correta é a tensão mínima de operação da carga e os critérios do projeto.</p></details>
+      </div>
+    </section>
+
+    <section class="cta-card no-print">
+      <h2>Precisa validar alimentação 24 Vcc em painel ou campo?</h2>
+      <p>A ALOGY Engenharia pode apoiar em automação, instrumentação, painéis, sensores, diagnóstico de falhas, teste de loop e comissionamento.</p>
+      <a class="btn" href="index.html#contato"><i class="fas fa-envelope"></i> Falar com a ALOGY</a>
+    </section>
+  </main>
+
+  <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p></footer>
+
+  <script>
+    const $ = id => document.getElementById(id);
+    const fmt = (v,d=2) => isFinite(v) ? v.toLocaleString('pt-BR',{minimumFractionDigits:d, maximumFractionDigits:d}) : '--';
+    const fmtFlex = (v,d=2) => isFinite(v) ? v.toLocaleString('pt-BR',{maximumFractionDigits:d}) : '--';
+    const secoes = [0.5,0.75,1,1.5,2.5,4,6,10,16];
+
+    function n(id){ return parseFloat(($(id).value || '').replace(',','.')) || 0; }
+    function tempFactor(rho20, temp){
+      const alpha = rho20 < 0.02 ? 0.00393 : 0.00403;
+      return rho20 * (1 + alpha * (temp - 20));
+    }
+    function correnteA(){
+      const modo = $('entrada').value;
+      const tensao = Math.max(n('tensaoFonte'), 0.001);
+      if(modo === 'mA') return Math.max(n('corrente'),0) / 1000;
+      if(modo === 'W') return Math.max(n('corrente'),0) / tensao;
+      if(modo === 'porCarga') return Math.max(n('quantidade'),0) * Math.max(n('correnteUnitaria'),0) / 1000;
+      return Math.max(n('corrente'),0);
+    }
+    function dados(secaoAlt){
+      const V = Math.max(n('tensaoFonte'),0);
+      const Vmin = Math.max(n('tensaoMin'),0);
+      const I = correnteA();
+      const L = Math.max(n('distancia'),0);
+      const sec = secaoAlt || Math.max(n('secao'),0.001);
+      const rho = tempFactor(parseFloat($('material').value)||0.0175, parseFloat($('temperatura').value)||20);
+      const R = (2 * L * rho) / sec;
+      const queda = I * R;
+      const pct = V > 0 ? queda / V * 100 : NaN;
+      const Vcarga = V - queda;
+      const perda = I * I * R;
+      const limitePct = Math.max(n('limitePct'),0);
+      const quedaLimitePorPct = V * limitePct / 100;
+      const quedaLimitePorMin = Math.max(V - Vmin, 0);
+      let quedaLimite = quedaLimitePorPct > 0 ? quedaLimitePorPct : quedaLimitePorMin;
+      if(quedaLimitePorMin > 0) quedaLimite = Math.min(quedaLimite || quedaLimitePorMin, quedaLimitePorMin);
+      const Lmax = (I > 0 && rho > 0) ? (quedaLimite * sec / (2 * rho * I)) : NaN;
+      const Imax = (R > 0) ? quedaLimite / R : NaN;
+      return {V,Vmin,I,L,sec,rho,R,queda,pct,Vcarga,perda,limitePct,quedaLimite,Lmax,Imax};
+    }
+    function classeStatus(d){
+      if(!isFinite(d.Vcarga) || !isFinite(d.pct)) return {txt:'Verificar dados', cls:'status-warn'};
+      if(d.Vcarga < d.Vmin) return {txt:'Abaixo da tensão mínima', cls:'status-bad'};
+      if(d.limitePct > 0 && d.pct > d.limitePct) return {txt:'Acima do limite %', cls:'status-warn'};
+      if(d.pct > 7) return {txt:'Queda elevada', cls:'status-warn'};
+      return {txt:'Dentro da pré-análise', cls:'status-ok'};
+    }
+    function secaoSugerida(){
+      for(const s of secoes){
+        const d = dados(s);
+        const st = classeStatus(d);
+        if(st.cls === 'status-ok') return s;
+      }
+      return null;
+    }
+    function calcular(){
+      const d = dados();
+      const st = classeStatus(d);
+      const sSug = secaoSugerida();
+      $('quedaOut').textContent = fmt(d.queda,2) + ' V';
+      $('status').innerHTML = '<span class="'+st.cls+'">'+st.txt+'</span>';
+      $('correnteOut').textContent = fmt(d.I,3) + ' A';
+      $('resOut').textContent = fmt(d.R,4) + ' Ω';
+      $('quedaVOut').textContent = fmt(d.queda,2) + ' V';
+      $('quedaPctOut').textContent = fmt(d.pct,2) + ' %';
+      $('cargaOut').textContent = fmt(d.Vcarga,2) + ' Vcc';
+      $('perdaOut').textContent = fmt(d.perda,2) + ' W';
+      $('lmaxOut').textContent = isFinite(d.Lmax) ? fmtFlex(d.Lmax,1) + ' m' : '--';
+      $('imaxOut').textContent = isFinite(d.Imax) ? fmt(d.Imax,3) + ' A' : '--';
+      $('secSugOut').textContent = sSug ? fmtFlex(sSug,2) + ' mm²' : 'Acima de 16 mm² / revisar';
+      let obs = 'OK para pré-análise';
+      if(st.cls === 'status-bad') obs = 'Aumentar seção, reduzir distância ou rever fonte';
+      else if(st.cls === 'status-warn') obs = 'Atenção: revisar seção, carga ou limite';
+      if($('tipoCarga').value === 'solenoide' && d.pct > 5) obs = 'Solenoide pode falhar com queda elevada';
+      $('obsOut').textContent = obs;
+      tabela();
+    }
+    function tabela(){
+      const tb = $('tbodySecoes');
+      tb.innerHTML = '';
+      secoes.forEach(s=>{
+        const d = dados(s);
+        const st = classeStatus(d);
+        const tr = document.createElement('tr');
+        tr.innerHTML = `<td>${fmtFlex(s,2)} mm²</td><td>${fmt(d.R,4)} Ω</td><td>${fmt(d.queda,2)} V / ${fmt(d.pct,2)}%</td><td>${fmt(d.Vcarga,2)} Vcc</td><td><span class="${st.cls}">${st.txt}</span></td>`;
+        tb.appendChild(tr);
+      });
+    }
+    function copiarResultado(){
+      const texto = `Calculadora de Queda de Tensão 24 Vcc - ALOGY\nCorrente: ${$('correnteOut').textContent}\nDistância ida: ${fmtFlex(n('distancia'),1)} m\nSeção: ${$('secao').value} mm²\nQueda: ${$('quedaVOut').textContent} (${$('quedaPctOut').textContent})\nTensão na carga: ${$('cargaOut').textContent}\nSeção sugerida: ${$('secSugOut').textContent}\nStatus: ${$('status').innerText}\nObservação: ferramenta orientativa, não substitui projeto, normas, catálogo, medição ou profissional habilitado.`;
+      navigator.clipboard.writeText(texto).then(()=>alert('Resultado copiado.'));
+    }
+    function exemploSolenoide(){
+      $('tensaoFonte').value = 24; $('tensaoMin').value = 21.6; $('entrada').value = 'A'; $('tipoCarga').value = 'solenoide'; $('corrente').value = 0.5; $('distancia').value = 70; $('secao').value = 1.5; $('material').value = 0.0175; $('temperatura').value = 40; $('limitePct').value = 5; calcular();
+    }
+    function exemploTransmissor(){
+      $('tensaoFonte').value = 24; $('tensaoMin').value = 12; $('entrada').value = 'mA'; $('tipoCarga').value = 'instrumento'; $('corrente').value = 20; $('distancia').value = 150; $('secao').value = 0.75; $('material').value = 0.0175; $('temperatura').value = 40; $('limitePct').value = 5; calcular();
+    }
+    function limpar(){
+      $('tensaoFonte').value = 24; $('tensaoMin').value = 20.4; $('entrada').value = 'A'; $('tipoCarga').value = 'instrumento'; $('corrente').value = 0.5; $('quantidade').value = 4; $('correnteUnitaria').value = 100; $('distancia').value = 80; $('secao').value = 1.5; $('material').value = 0.0175; $('temperatura').value = 40; $('limitePct').value = 5; calcular();
+    }
+    document.querySelectorAll('input,select').forEach(el=>el.addEventListener('input',calcular));
+    calcular();
+  </script>
+</body>
+</html>
