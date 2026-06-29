@@ -324,6 +324,25 @@ function enhanceResponsiveToolTables(){
   });
 }
 
+
+function observeResponsiveToolTables(){
+  const tables = document.querySelectorAll('.calc-table');
+  if(!tables.length) return;
+
+  let timer = null;
+  const schedule = () => {
+    clearTimeout(timer);
+    timer = setTimeout(enhanceResponsiveToolTables, 60);
+  };
+
+  tables.forEach((table) => {
+    const body = table.querySelector('tbody');
+    if(!body) return;
+    const observer = new MutationObserver(schedule);
+    observer.observe(body, {childList:true, subtree:true});
+  });
+}
+
 /* =========================
    INIT
 ========================= */
@@ -341,6 +360,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // tabelas responsivas das ferramentas
   enhanceResponsiveToolTables();
+  observeResponsiveToolTables();
 
   // form (só home)
   const fone = $("c_fone");
