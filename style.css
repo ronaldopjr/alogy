@@ -1450,3 +1450,46 @@ nav.mobile a.active{
   .alogy-cookie-actions{margin-top:10px;justify-content:flex-start;}
 }
 @media print{.alogy-cookie-notice{display:none!important;}}
+
+
+/* ALOGY tools UI standardization: top action bar and safe floating back button */
+.tool-page-actions{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex-wrap:wrap;
+  margin:0 0 18px;
+}
+.tool-page-actions .btn,
+.tool-page-actions .tool-category-link,
+.tool-page-actions button{
+  min-height:42px;
+}
+.tool-page-actions .tool-category-link{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:10px 14px;
+  border-radius:999px;
+  background:#fff;
+  color:#0b3a62;
+  border:1px solid rgba(0,107,177,.18);
+  text-decoration:none;
+  font-weight:900;
+  box-shadow:0 6px 18px rgba(0,0,0,.04);
+}
+.tool-page-actions .tool-category-link:hover{
+  color:#004b80;
+  border-color:rgba(0,107,177,.38);
+  transform:translateY(-1px);
+}
+@media(max-width:768px){
+  .tool-page-actions{gap:8px;margin-bottom:14px;}
+  .tool-page-actions .btn,
+  .tool-page-actions .tool-category-link,
+  .tool-page-actions button{width:100%;justify-content:center;}
+  .floating-back-tools{bottom:12px;left:10px;max-width:calc(100vw - 20px);white-space:normal;text-align:center;}
+}
+@media print{
+  .tool-page-actions{display:none!important;}
+}

@@ -1,34 +1,35 @@
 <!DOCTYPE html>
+
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nível DP para Tanque Pressurizado | ALOGY</title>
-  <meta name="description" content="Calcule LRV, URV, span, perna seca ou úmida, densidades, 4-20 mA, alarmes e memorial para nível DP em tanque pressurizado." />
-  <meta name="robots" content="index,follow" />
-  <meta name="theme-color" content="#004b80" />
-  <link rel="canonical" href="https://www.alogy.com.br/calculadora-nivel-dp-tanque-pressurizado.html" />
-  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
-  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png" />
-  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <link rel="stylesheet" href="style.css" />
-  <script src="app.js" defer></script>
-  <meta property="og:locale" content="pt_BR" />
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="ALOGY Engenharia" />
-  <meta property="og:title" content="Calculadora de Nível DP para Tanque Pressurizado" />
-  <meta property="og:description" content="Dimensione LRV/URV, tomada superior/inferior, perna seca ou úmida, 4-20 mA, alarmes e memorial técnico para tanque fechado." />
-  <meta property="og:url" content="https://www.alogy.com.br/calculadora-nivel-dp-tanque-pressurizado.html" />
-  <meta property="og:image" content="https://www.alogy.com.br/logo-alogy.webp" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Calculadora de Nível DP para Tanque Pressurizado", "url": "https://www.alogy.com.br/calculadora-nivel-dp-tanque-pressurizado.html", "applicationCategory": "EngineeringApplication", "operatingSystem": "Web", "description": "Ferramenta para calcular LRV, URV, span, perna seca ou úmida, densidades, 4-20 mA e alarmes em transmissores DP aplicados a tanques pressurizados.", "provider": {"@type": "Organization", "name": "ALOGY Engenharia", "url": "https://www.alogy.com.br/"}}</script>
-  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Como calcular LRV e URV em tanque pressurizado por DP?", "acceptedAnswer": {"@type": "Answer", "text": "A pressão comum do gás/vapor tende a se cancelar. O LRV e o URV dependem das colunas hidrostáticas no lado HP e no lado LP, das densidades, das elevações das tomadas, da perna seca ou úmida e de eventuais offsets de selos remotos."}}, {"@type": "Question", "name": "Quando usar perna seca e quando usar perna úmida?", "acceptedAnswer": {"@type": "Answer", "text": "Perna seca pode ser usada quando o lado superior permanece gasoso e não condensante. Perna úmida é comum quando há vapor condensável ou necessidade de coluna constante no lado LP. A escolha depende do fluido, temperatura, condensação, segurança e boas práticas da planta."}}, {"@type": "Question", "name": "O lado HP deve ir na tomada inferior?", "acceptedAnswer": {"@type": "Answer", "text": "Na configuração clássica de nível por DP em tanque fechado, o lado HP é ligado à tomada inferior e o lado LP à tomada superior. A ferramenta usa esta convenção e mostra os resultados de LRV e URV conforme essa montagem."}}, {"@type": "Question", "name": "A ferramenta substitui projeto ou especificação final?", "acceptedAnswer": {"@type": "Answer", "text": "Não. A ferramenta fornece estimativa preliminar e memorial de apoio. A especificação final deve considerar dados reais de processo, certificados, materiais, pressão/temperatura, normas aplicáveis, segurança e validação profissional."}}]}</script>
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Nível DP para Tanque Pressurizado | ALOGY</title>
+<meta content="Calcule LRV, URV, span, perna seca ou úmida, densidades, 4-20 mA, alarmes e memorial para nível DP em tanque pressurizado." name="description"/>
+<meta content="index,follow" name="robots"/>
+<meta content="#004b80" name="theme-color"/>
+<link href="https://www.alogy.com.br/calculadora-nivel-dp-tanque-pressurizado.html" rel="canonical"/>
+<link href="/favicon-48x48.png" rel="icon" sizes="48x48" type="image/png"/>
+<link href="/favicon-192x192.png" rel="icon" sizes="192x192" type="image/png"/>
+<link href="/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+<link href="/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<link href="style.css" rel="stylesheet"/>
+<script defer="" src="app.js"></script>
+<meta content="pt_BR" property="og:locale"/>
+<meta content="website" property="og:type"/>
+<meta content="ALOGY Engenharia" property="og:site_name"/>
+<meta content="Calculadora de Nível DP para Tanque Pressurizado" property="og:title"/>
+<meta content="Dimensione LRV/URV, tomada superior/inferior, perna seca ou úmida, 4-20 mA, alarmes e memorial técnico para tanque fechado." property="og:description"/>
+<meta content="https://www.alogy.com.br/calculadora-nivel-dp-tanque-pressurizado.html" property="og:url"/>
+<meta content="https://www.alogy.com.br/logo-alogy.webp" property="og:image"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Calculadora de Nível DP para Tanque Pressurizado", "url": "https://www.alogy.com.br/calculadora-nivel-dp-tanque-pressurizado.html", "applicationCategory": "EngineeringApplication", "operatingSystem": "Web", "description": "Ferramenta para calcular LRV, URV, span, perna seca ou úmida, densidades, 4-20 mA e alarmes em transmissores DP aplicados a tanques pressurizados.", "provider": {"@type": "Organization", "name": "ALOGY Engenharia", "url": "https://www.alogy.com.br/"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Como calcular LRV e URV em tanque pressurizado por DP?", "acceptedAnswer": {"@type": "Answer", "text": "A pressão comum do gás/vapor tende a se cancelar. O LRV e o URV dependem das colunas hidrostáticas no lado HP e no lado LP, das densidades, das elevações das tomadas, da perna seca ou úmida e de eventuais offsets de selos remotos."}}, {"@type": "Question", "name": "Quando usar perna seca e quando usar perna úmida?", "acceptedAnswer": {"@type": "Answer", "text": "Perna seca pode ser usada quando o lado superior permanece gasoso e não condensante. Perna úmida é comum quando há vapor condensável ou necessidade de coluna constante no lado LP. A escolha depende do fluido, temperatura, condensação, segurança e boas práticas da planta."}}, {"@type": "Question", "name": "O lado HP deve ir na tomada inferior?", "acceptedAnswer": {"@type": "Answer", "text": "Na configuração clássica de nível por DP em tanque fechado, o lado HP é ligado à tomada inferior e o lado LP à tomada superior. A ferramenta usa esta convenção e mostra os resultados de LRV e URV conforme essa montagem."}}, {"@type": "Question", "name": "A ferramenta substitui projeto ou especificação final?", "acceptedAnswer": {"@type": "Answer", "text": "Não. A ferramenta fornece estimativa preliminar e memorial de apoio. A especificação final deve considerar dados reais de processo, certificados, materiais, pressão/temperatura, normas aplicáveis, segurança e validação profissional."}}]}</script>
+<style>
     .calc-layout{display:grid;grid-template-columns:1.15fr .85fr;gap:22px;align-items:start}
     .calc-box,.result-box,.info-box{background:#fff;border:1px solid #dfe7ef;border-radius:14px;padding:20px;box-shadow:0 6px 18px rgba(0,0,0,.06)}
     .form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
@@ -53,148 +54,136 @@
 </head>
 <body>
 <header>
-  <nav class="navbar">
-    <a class="logo" href="index.html" aria-label="ALOGY Engenharia"><img src="logo-alogy.webp" alt="Logo ALOGY Engenharia" width="130" height="44" decoding="async" /></a>
-    <button class="menu-toggle" aria-label="Abrir menu"><i class="fas fa-bars"></i></button>
-    <ul class="nav-menu">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="industrial.html">Serviços Industriais</a></li>
-      <li><a href="residencial.html">Serviços Residenciais</a></li>
-      <li><a href="cursos.html">Cursos</a></li>
-      <li><a href="ferramentas.html">Ferramentas</a></li>
-      <li><a href="blog.html">Blog</a></li>
-      <li><a href="sobre.html">Sobre</a></li>
-      <li><a href="index.html#contato">Contato</a></li>
-    </ul>
-  </nav>
+<nav class="navbar">
+<a aria-label="ALOGY Engenharia" class="logo" href="index.html"><img alt="Logo ALOGY Engenharia" decoding="async" height="44" src="logo-alogy.webp" width="130"/></a>
+<button aria-label="Abrir menu" class="menu-toggle"><i class="fas fa-bars"></i></button>
+<ul class="nav-menu">
+<li><a href="index.html">Home</a></li>
+<li><a href="industrial.html">Serviços Industriais</a></li>
+<li><a href="residencial.html">Serviços Residenciais</a></li>
+<li><a href="cursos.html">Cursos</a></li>
+<li><a href="ferramentas.html">Ferramentas</a></li>
+<li><a href="blog.html">Blog</a></li>
+<li><a href="sobre.html">Sobre</a></li>
+<li><a href="index.html#contato">Contato</a></li>
+</ul>
+</nav>
 </header>
-<main>
-  <section class="hero compact-hero">
-    <div class="container">
-      <span class="badge">Ferramenta de Instrumentação e Processo</span>
-      <h1>Calculadora de Nível DP para Tanque Pressurizado</h1>
-      <p>Calcule a faixa de um transmissor diferencial de pressão para tanque fechado: <strong>tomada inferior no HP</strong>, <strong>tomada superior no LP</strong>, perna seca ou úmida, LRV, URV, span, escala 4-20 mA, alarmes e memorial técnico.</p>
-    </div>
-  </section>
-
-  <section class="container section">
-    <div class="info-box" style="border-left:5px solid #b35b00">
-      <h2><i class="fas fa-triangle-exclamation"></i> Atenção técnica</h2>
-      <p>Esta ferramenta é uma estimativa preliminar para apoio a especificação e comissionamento. Ela não substitui folha de dados do fabricante, projeto de instrumentação, análise de segurança, validação de materiais, pressão/temperatura, instalação real, normas aplicáveis ou verificação por profissional habilitado.</p>
-      <p>A convenção usada é: <strong>HP na tomada inferior</strong> e <strong>LP na tomada superior</strong>. Não confunda tomada superior/inferior do tanque com lado HP/LP do transmissor.</p>
-    </div>
-  </section>
-
-  <section class="container section calc-layout">
-    <form class="calc-box" id="dpTankForm">
-      <h2>Dados do tanque, tomadas e transmissor</h2>
-      <div class="form-grid">
-        <div class="form-group"><label for="tag">Tag do instrumento</label><input id="tag" value="LIT-101" /></div>
-        <div class="form-group"><label for="service">Serviço / equipamento</label><input id="service" value="Tanque pressurizado TQ-101" /></div>
-        <div class="form-group"><label for="mount">Configuração do lado LP</label><select id="mount"><option value="dry">Perna seca / gás não condensante</option><option value="wet" selected>Perna úmida / coluna constante no LP</option><option value="seal">Selos remotos / offset informado</option></select></div>
-        <div class="form-group"><label for="staticPressure">Pressão máxima do tanque (bar g)</label><input id="staticPressure" type="number" step="0.1" value="6" /></div>
-
-        <div class="form-group"><label for="lowerElev">Tomada inferior acima do transmissor (m)</label><input id="lowerElev" type="number" step="0.01" value="1.20" /></div>
-        <div class="form-group"><label for="upperElev">Tomada superior acima do transmissor (m)</label><input id="upperElev" type="number" step="0.01" value="3.20" /></div>
-        <div class="form-group"><label for="level0">Nível de 0% acima da tomada inferior (mm)</label><input id="level0" type="number" step="1" value="200" /></div>
-        <div class="form-group"><label for="level100">Nível de 100% acima da tomada inferior (mm)</label><input id="level100" type="number" step="1" value="1800" /></div>
-
-        <div class="form-group"><label for="rhoLiq">Densidade do líquido de processo (kg/m³)</label><input id="rhoLiq" type="number" step="1" value="950" /></div>
-        <div class="form-group"><label for="rhoGas">Densidade do gás/vapor no lado superior (kg/m³)</label><input id="rhoGas" type="number" step="0.1" value="8" /></div>
-        <div class="form-group"><label for="rhoWet">Densidade da perna úmida / fluido de enchimento (kg/m³)</label><input id="rhoWet" type="number" step="1" value="1000" /></div>
-        <div class="form-group"><label for="sealOffset">Offset adicional de selos/capilares (mbar)</label><input id="sealOffset" type="number" step="0.1" value="0" /></div>
-
-        <div class="form-group"><label for="normalPct">Nível normal operacional (%)</label><input id="normalPct" type="number" step="1" value="50" /></div>
-        <div class="form-group"><label for="selectedCapsule">Cápsula DP prevista (mbar)</label><input id="selectedCapsule" type="number" step="1" value="250" /></div>
-        <div class="form-group"><label for="rawMin">Raw mínimo do CLP/DCS</label><input id="rawMin" type="number" step="1" value="0" /></div>
-        <div class="form-group"><label for="rawMax">Raw máximo do CLP/DCS</label><input id="rawMax" type="number" step="1" value="27648" /></div>
-
-        <div class="form-group"><label for="lll">Alarme LLL / trip baixo (%)</label><input id="lll" type="number" step="1" value="5" /></div>
-        <div class="form-group"><label for="ll">Alarme LL (%)</label><input id="ll" type="number" step="1" value="15" /></div>
-        <div class="form-group"><label for="hh">Alarme HH (%)</label><input id="hh" type="number" step="1" value="85" /></div>
-        <div class="form-group"><label for="hhh">Alarme HHH / trip alto (%)</label><input id="hhh" type="number" step="1" value="95" /></div>
-        <div class="form-group full"><span class="mini-note">Alturas positivas indicam tomada acima do transmissor. Se o transmissor estiver acima de alguma tomada, use valor negativo com cuidado e valide a montagem em campo.</span></div>
-      </div>
-      <button class="btn primary" type="submit"><i class="fas fa-calculator"></i> Calcular faixa DP</button>
-    </form>
-
-    <aside class="result-box" id="resultBox">
-      <h2>Resultado</h2>
-      <p>Preencha os dados e clique em calcular para gerar LRV, URV, span, alarmes e memorial técnico.</p>
-    </aside>
-  </section>
-
-  <section class="container section">
-    <div class="diagram" aria-label="Diagrama simplificado de nível DP em tanque pressurizado">
-      <svg viewBox="0 0 760 300" width="100%" height="260" role="img">
-        <rect x="110" y="35" width="300" height="210" rx="40" fill="#eaf3fb" stroke="#004b80" stroke-width="4"/>
-        <path d="M112 150 H410 V245 H112 Z" fill="#9cc7e8" opacity="0.75"/>
-        <line x1="410" y1="80" x2="560" y2="80" stroke="#34495e" stroke-width="4"/>
-        <line x1="410" y1="210" x2="560" y2="210" stroke="#34495e" stroke-width="4"/>
-        <rect x="560" y="150" width="95" height="70" rx="10" fill="#fff" stroke="#004b80" stroke-width="4"/>
-        <text x="575" y="190" font-size="22" fill="#004b80" font-weight="700">DP</text>
-        <text x="520" y="72" font-size="16" fill="#333">LP</text>
-        <text x="520" y="203" font-size="16" fill="#333">HP</text>
-        <text x="135" y="70" font-size="16" fill="#333">Gás/vapor</text>
-        <text x="145" y="205" font-size="16" fill="#333">Líquido</text>
-        <line x1="455" y1="80" x2="455" y2="210" stroke="#b35b00" stroke-width="6" stroke-dasharray="8 8"/>
-        <text x="470" y="142" font-size="15" fill="#b35b00">perna seca ou úmida</text>
-      </svg>
-    </div>
-  </section>
-
-  <section class="container section two-columns">
-    <div class="info-box">
-      <h2>Como a ferramenta calcula</h2>
-      <p>Em tanque pressurizado, a pressão comum do espaço de vapor tende a se cancelar entre as tomadas. A medição passa a depender principalmente da coluna variável de líquido no lado HP e da coluna existente no lado LP.</p>
-      <p>Na configuração clássica, o lado HP do transmissor é ligado à tomada inferior. O lado LP é ligado à tomada superior. Se o lado LP ficar seco, a densidade usada é a do gás/vapor. Se houver perna úmida, usa-se a densidade do fluido que preenche essa coluna.</p>
-      <p>A fórmula preliminar usada é: DP = g × [densidade do líquido × coluna no HP − densidade do lado LP × coluna no LP] + offset. O resultado é convertido para mbar, kPa e mmH2O.</p>
-    </div>
-    <div class="info-box">
-      <h2>Quando usar perna seca, perna úmida ou selo remoto</h2>
-      <p><strong>Perna seca</strong> é mais indicada quando o gás não condensa e a linha superior permanece realmente seca. <strong>Perna úmida</strong> é comum em vapor condensável ou quando a planta mantém uma coluna constante no lado LP. <strong>Selos remotos</strong> são usados em fluido incrustante, corrosivo, viscoso, quente, sanitário ou quando não se deseja linha de impulso convencional.</p>
-      <p>Em selos remotos, a ferramenta permite informar um offset em mbar, mas a especificação final deve considerar fluido de enchimento, temperatura ambiente, comprimento de capilar, pressão estática e dados do fabricante.</p>
-    </div>
-  </section>
-
-  <section class="container section">
-    <h2>Limitações e boas práticas</h2>
-    <div class="cards-grid">
-      <article class="info-box"><h3>Dados de densidade</h3><p>Use densidades na condição real de operação. Temperatura e pressão podem alterar significativamente o span e o zero, principalmente em líquidos quentes, vapor e fluidos leves.</p></article>
-      <article class="info-box"><h3>Instalação física</h3><p>Confirme elevação real das tomadas, elevação do transmissor, inclinação das linhas, purgas, bloqueios, equalização e acessibilidade para calibração.</p></article>
-      <article class="info-box"><h3>Segurança e alarme</h3><p>Alarmes e trips devem ser definidos pelo processo. Esta ferramenta apenas converte níveis em DP, mA e raw; ela não define lógica de segurança.</p></article>
-    </div>
-  </section>
-
-  <section class="container section">
-    <h2>Ferramentas relacionadas</h2>
-    <div class="related-links">
-      <a class="btn secondary" href="calculadora-nivel-caldeira-transmissor-dp.html">Nível de Caldeira por DP</a>
-      <a class="btn secondary" href="calculadora-linha-impulso-transmissor-dp.html">Linha de Impulso DP</a>
-      <a class="btn secondary" href="calculadora-selo-remoto-capilar-dp.html">Selo Remoto e Capilar</a>
-      <a class="btn secondary" href="calculadora-malha-4-20ma-hart-completa.html">Malha 4-20 mA / HART</a>
-      <a class="btn secondary" href="calculadora-volume-tanque-vertical-horizontal.html">Volume de Tanque</a>
-    </div>
-  </section>
-
-  <section class="container section faq">
-    <h2>Perguntas frequentes</h2>
-    <details><summary>LRV negativo é erro?</summary><p>Não necessariamente. Em montagens com perna úmida, a coluna constante no lado LP pode gerar uma pressão maior do que o lado HP em 0%, resultando em LRV negativo. O importante é configurar corretamente LRV, URV e sentido de medição.</p></details>
-    <details><summary>A perna seca sempre funciona em tanque pressurizado?</summary><p>Não. Ela só é adequada quando o gás não condensa e a linha superior permanece seca. Se houver condensação, acúmulo de líquido ou variação de composição, a leitura pode ficar instável.</p></details>
-    <details><summary>O transmissor deve ser calibrado em nível ou em pressão diferencial?</summary><p>Normalmente o transmissor DP é configurado em unidades de pressão diferencial correspondentes ao nível desejado. O CLP/DCS pode exibir em %, mm, m, litros ou outra unidade de engenharia.</p></details>
-    <details><summary>Posso usar esta ferramenta para vaso crítico?</summary><p>Use apenas como estimativa preliminar. Aplicações críticas exigem análise de processo, documentação de projeto, materiais compatíveis, proteção, alarmes, redundância quando aplicável e validação técnica.</p></details>
-  </section>
+<main><div aria-label="Ações da ferramenta" class="tool-page-actions no-print"><button class="btn print" onclick="window.print()" type="button"><i class="fas fa-print"></i> Imprimir página</button></div>
+<section class="hero compact-hero">
+<div class="container">
+<span class="badge">Ferramenta de Instrumentação e Processo</span>
+<h1>Calculadora de Nível DP para Tanque Pressurizado</h1>
+<p>Calcule a faixa de um transmissor diferencial de pressão para tanque fechado: <strong>tomada inferior no HP</strong>, <strong>tomada superior no LP</strong>, perna seca ou úmida, LRV, URV, span, escala 4-20 mA, alarmes e memorial técnico.</p>
+</div>
+</section>
+<section class="container section">
+<div class="info-box" style="border-left:5px solid #b35b00">
+<h2><i class="fas fa-triangle-exclamation"></i> Atenção técnica</h2>
+<p>Esta ferramenta é uma estimativa preliminar para apoio a especificação e comissionamento. Ela não substitui folha de dados do fabricante, projeto de instrumentação, análise de segurança, validação de materiais, pressão/temperatura, instalação real, normas aplicáveis ou verificação por profissional habilitado.</p>
+<p>A convenção usada é: <strong>HP na tomada inferior</strong> e <strong>LP na tomada superior</strong>. Não confunda tomada superior/inferior do tanque com lado HP/LP do transmissor.</p>
+</div>
+</section>
+<section class="container section calc-layout">
+<form class="calc-box" id="dpTankForm">
+<h2>Dados do tanque, tomadas e transmissor</h2>
+<div class="form-grid">
+<div class="form-group"><label for="tag">Tag do instrumento</label><input id="tag" value="LIT-101"/></div>
+<div class="form-group"><label for="service">Serviço / equipamento</label><input id="service" value="Tanque pressurizado TQ-101"/></div>
+<div class="form-group"><label for="mount">Configuração do lado LP</label><select id="mount"><option value="dry">Perna seca / gás não condensante</option><option selected="" value="wet">Perna úmida / coluna constante no LP</option><option value="seal">Selos remotos / offset informado</option></select></div>
+<div class="form-group"><label for="staticPressure">Pressão máxima do tanque (bar g)</label><input id="staticPressure" step="0.1" type="number" value="6"/></div>
+<div class="form-group"><label for="lowerElev">Tomada inferior acima do transmissor (m)</label><input id="lowerElev" step="0.01" type="number" value="1.20"/></div>
+<div class="form-group"><label for="upperElev">Tomada superior acima do transmissor (m)</label><input id="upperElev" step="0.01" type="number" value="3.20"/></div>
+<div class="form-group"><label for="level0">Nível de 0% acima da tomada inferior (mm)</label><input id="level0" step="1" type="number" value="200"/></div>
+<div class="form-group"><label for="level100">Nível de 100% acima da tomada inferior (mm)</label><input id="level100" step="1" type="number" value="1800"/></div>
+<div class="form-group"><label for="rhoLiq">Densidade do líquido de processo (kg/m³)</label><input id="rhoLiq" step="1" type="number" value="950"/></div>
+<div class="form-group"><label for="rhoGas">Densidade do gás/vapor no lado superior (kg/m³)</label><input id="rhoGas" step="0.1" type="number" value="8"/></div>
+<div class="form-group"><label for="rhoWet">Densidade da perna úmida / fluido de enchimento (kg/m³)</label><input id="rhoWet" step="1" type="number" value="1000"/></div>
+<div class="form-group"><label for="sealOffset">Offset adicional de selos/capilares (mbar)</label><input id="sealOffset" step="0.1" type="number" value="0"/></div>
+<div class="form-group"><label for="normalPct">Nível normal operacional (%)</label><input id="normalPct" step="1" type="number" value="50"/></div>
+<div class="form-group"><label for="selectedCapsule">Cápsula DP prevista (mbar)</label><input id="selectedCapsule" step="1" type="number" value="250"/></div>
+<div class="form-group"><label for="rawMin">Raw mínimo do CLP/DCS</label><input id="rawMin" step="1" type="number" value="0"/></div>
+<div class="form-group"><label for="rawMax">Raw máximo do CLP/DCS</label><input id="rawMax" step="1" type="number" value="27648"/></div>
+<div class="form-group"><label for="lll">Alarme LLL / trip baixo (%)</label><input id="lll" step="1" type="number" value="5"/></div>
+<div class="form-group"><label for="ll">Alarme LL (%)</label><input id="ll" step="1" type="number" value="15"/></div>
+<div class="form-group"><label for="hh">Alarme HH (%)</label><input id="hh" step="1" type="number" value="85"/></div>
+<div class="form-group"><label for="hhh">Alarme HHH / trip alto (%)</label><input id="hhh" step="1" type="number" value="95"/></div>
+<div class="form-group full"><span class="mini-note">Alturas positivas indicam tomada acima do transmissor. Se o transmissor estiver acima de alguma tomada, use valor negativo com cuidado e valide a montagem em campo.</span></div>
+</div>
+<button class="btn primary" type="submit"><i class="fas fa-calculator"></i> Calcular faixa DP</button>
+</form>
+<aside class="result-box" id="resultBox">
+<h2>Resultado</h2>
+<p>Preencha os dados e clique em calcular para gerar LRV, URV, span, alarmes e memorial técnico.</p>
+</aside>
+</section>
+<section class="container section">
+<div aria-label="Diagrama simplificado de nível DP em tanque pressurizado" class="diagram">
+<svg height="260" role="img" viewbox="0 0 760 300" width="100%">
+<rect fill="#eaf3fb" height="210" rx="40" stroke="#004b80" stroke-width="4" width="300" x="110" y="35"></rect>
+<path d="M112 150 H410 V245 H112 Z" fill="#9cc7e8" opacity="0.75"></path>
+<line stroke="#34495e" stroke-width="4" x1="410" x2="560" y1="80" y2="80"></line>
+<line stroke="#34495e" stroke-width="4" x1="410" x2="560" y1="210" y2="210"></line>
+<rect fill="#fff" height="70" rx="10" stroke="#004b80" stroke-width="4" width="95" x="560" y="150"></rect>
+<text fill="#004b80" font-size="22" font-weight="700" x="575" y="190">DP</text>
+<text fill="#333" font-size="16" x="520" y="72">LP</text>
+<text fill="#333" font-size="16" x="520" y="203">HP</text>
+<text fill="#333" font-size="16" x="135" y="70">Gás/vapor</text>
+<text fill="#333" font-size="16" x="145" y="205">Líquido</text>
+<line stroke="#b35b00" stroke-dasharray="8 8" stroke-width="6" x1="455" x2="455" y1="80" y2="210"></line>
+<text fill="#b35b00" font-size="15" x="470" y="142">perna seca ou úmida</text>
+</svg>
+</div>
+</section>
+<section class="container section two-columns">
+<div class="info-box">
+<h2>Como a ferramenta calcula</h2>
+<p>Em tanque pressurizado, a pressão comum do espaço de vapor tende a se cancelar entre as tomadas. A medição passa a depender principalmente da coluna variável de líquido no lado HP e da coluna existente no lado LP.</p>
+<p>Na configuração clássica, o lado HP do transmissor é ligado à tomada inferior. O lado LP é ligado à tomada superior. Se o lado LP ficar seco, a densidade usada é a do gás/vapor. Se houver perna úmida, usa-se a densidade do fluido que preenche essa coluna.</p>
+<p>A fórmula preliminar usada é: DP = g × [densidade do líquido × coluna no HP − densidade do lado LP × coluna no LP] + offset. O resultado é convertido para mbar, kPa e mmH2O.</p>
+</div>
+<div class="info-box">
+<h2>Quando usar perna seca, perna úmida ou selo remoto</h2>
+<p><strong>Perna seca</strong> é mais indicada quando o gás não condensa e a linha superior permanece realmente seca. <strong>Perna úmida</strong> é comum em vapor condensável ou quando a planta mantém uma coluna constante no lado LP. <strong>Selos remotos</strong> são usados em fluido incrustante, corrosivo, viscoso, quente, sanitário ou quando não se deseja linha de impulso convencional.</p>
+<p>Em selos remotos, a ferramenta permite informar um offset em mbar, mas a especificação final deve considerar fluido de enchimento, temperatura ambiente, comprimento de capilar, pressão estática e dados do fabricante.</p>
+</div>
+</section>
+<section class="container section">
+<h2>Limitações e boas práticas</h2>
+<div class="cards-grid">
+<article class="info-box"><h3>Dados de densidade</h3><p>Use densidades na condição real de operação. Temperatura e pressão podem alterar significativamente o span e o zero, principalmente em líquidos quentes, vapor e fluidos leves.</p></article>
+<article class="info-box"><h3>Instalação física</h3><p>Confirme elevação real das tomadas, elevação do transmissor, inclinação das linhas, purgas, bloqueios, equalização e acessibilidade para calibração.</p></article>
+<article class="info-box"><h3>Segurança e alarme</h3><p>Alarmes e trips devem ser definidos pelo processo. Esta ferramenta apenas converte níveis em DP, mA e raw; ela não define lógica de segurança.</p></article>
+</div>
+</section>
+<section class="container section">
+<h2>Ferramentas relacionadas</h2>
+<div class="related-links">
+<a class="btn secondary" href="calculadora-nivel-caldeira-transmissor-dp.html">Nível de Caldeira por DP</a>
+<a class="btn secondary" href="calculadora-linha-impulso-transmissor-dp.html">Linha de Impulso DP</a>
+<a class="btn secondary" href="calculadora-selo-remoto-capilar-dp.html">Selo Remoto e Capilar</a>
+<a class="btn secondary" href="calculadora-malha-4-20ma-hart-completa.html">Malha 4-20 mA / HART</a>
+<a class="btn secondary" href="calculadora-volume-tanque-vertical-horizontal.html">Volume de Tanque</a>
+</div>
+</section>
+<section class="container section faq">
+<h2>Perguntas frequentes</h2>
+<details><summary>LRV negativo é erro?</summary><p>Não necessariamente. Em montagens com perna úmida, a coluna constante no lado LP pode gerar uma pressão maior do que o lado HP em 0%, resultando em LRV negativo. O importante é configurar corretamente LRV, URV e sentido de medição.</p></details>
+<details><summary>A perna seca sempre funciona em tanque pressurizado?</summary><p>Não. Ela só é adequada quando o gás não condensa e a linha superior permanece seca. Se houver condensação, acúmulo de líquido ou variação de composição, a leitura pode ficar instável.</p></details>
+<details><summary>O transmissor deve ser calibrado em nível ou em pressão diferencial?</summary><p>Normalmente o transmissor DP é configurado em unidades de pressão diferencial correspondentes ao nível desejado. O CLP/DCS pode exibir em %, mm, m, litros ou outra unidade de engenharia.</p></details>
+<details><summary>Posso usar esta ferramenta para vaso crítico?</summary><p>Use apenas como estimativa preliminar. Aplicações críticas exigem análise de processo, documentação de projeto, materiais compatíveis, proteção, alarmes, redundância quando aplicável e validação técnica.</p></details>
+</section>
 </main>
 <footer>
-  <div class="footer-content">
-    <div>
-      <strong>ALOGY Engenharia</strong>
-      <p>Automação, instrumentação, elétrica e soluções técnicas para aplicações industriais.</p>
-    </div>
-    <div>
-      <a href="politica-de-privacidade.html">Política de Privacidade</a> · <a href="termos-de-uso-ferramentas.html">Termos das Ferramentas</a>
-    </div>
-  </div>
+<div class="footer-content">
+<div>
+<strong>ALOGY Engenharia</strong>
+<p>Automação, instrumentação, elétrica e soluções técnicas para aplicações industriais.</p>
+</div>
+<div>
+<a href="politica-de-privacidade.html">Política de Privacidade</a> · <a href="termos-de-uso-ferramentas.html">Termos das Ferramentas</a>
+</div>
+</div>
 </footer>
 <script>
 (function(){
@@ -322,5 +311,7 @@
   });
 })();
 </script>
+
+<a aria-label="Voltar para Ferramentas" class="floating-back-tools no-print" href="ferramentas.html"><i class="fas fa-arrow-left"></i> Voltar para Ferramentas</a>
 </body>
 </html>
