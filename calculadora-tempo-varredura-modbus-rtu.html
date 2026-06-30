@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calculadora de Tempo de Varredura Modbus RTU | ALOGY</title>
+  <meta name="description" content="Calcule tempo de polling Modbus RTU, baud rate, bytes, ocupação da rede RS-485, timeout, retries e memorial técnico para CLP e IHM." />
+  <meta name="robots" content="index,follow" />
+  <meta name="theme-color" content="#004b80" />
+  <link rel="canonical" href="https://www.alogy.com.br/calculadora-tempo-varredura-modbus-rtu.html" />
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png" />
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="app.js" defer></script>
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ALOGY Engenharia" />
+  <meta property="og:title" content="Calculadora de Tempo de Varredura Modbus RTU" />
+  <meta property="og:description" content="Dimensione polling Modbus RTU em RS-485 com tempo de ciclo, bytes, baud rate, ocupação de rede, timeout e retries." />
+  <meta property="og:url" content="https://www.alogy.com.br/calculadora-tempo-varredura-modbus-rtu.html" />
+  <meta property="og:image" content="https://www.alogy.com.br/logo-alogy.webp" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Calculadora de Tempo de Varredura Modbus RTU" />
+  <meta name="twitter:description" content="Calcule tempo de varredura Modbus RTU, transações, bytes, taxa de ocupação, timeout e baud rate recomendado." />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Calculadora de Tempo de Varredura Modbus RTU",
+    "applicationCategory": "EngineeringApplication",
+    "operatingSystem": "Web",
+    "url": "https://www.alogy.com.br/calculadora-tempo-varredura-modbus-rtu.html",
+    "description": "Ferramenta para estimar tempo de polling Modbus RTU em redes RS-485, considerando baud rate, formato serial, quantidade de escravos, registradores, coils, blocos por requisição, delay de resposta, timeout, retries e ocupação da rede.",
+    "creator": {"@type": "Organization", "name": "ALOGY Engenharia", "url": "https://www.alogy.com.br/"}
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {"@type":"Question","name":"Como calcular o tempo de varredura Modbus RTU?","acceptedAnswer":{"@type":"Answer","text":"Some o tempo de transmissão da requisição, o atraso de resposta do escravo, o tempo de transmissão da resposta e o intervalo entre mensagens para cada transação. Multiplique pelo número de blocos consultados e pela quantidade de escravos. O tempo depende fortemente do baud rate, quantidade de bytes e organização dos registradores."}},
+      {"@type":"Question","name":"Por que uma rede Modbus RTU fica lenta?","acceptedAnswer":{"@type":"Answer","text":"As causas mais comuns são baud rate baixo, muitos escravos, muitos blocos pequenos, endereços não agrupados, timeout alto, retries excessivos, resposta lenta de equipamentos, ruído em RS-485, falta de terminação, polarização inadequada e excesso de tráfego de escrita."}},
+      {"@type":"Question","name":"Qual baud rate usar em Modbus RTU?","acceptedAnswer":{"@type":"Answer","text":"Depende da distância, qualidade do cabo, quantidade de dispositivos e ambiente eletromagnético. Taxas como 9600 e 19200 bps são comuns em redes longas ou antigas; 38400, 57600 e 115200 bps podem reduzir o tempo de ciclo, mas exigem instalação adequada e equipamentos compatíveis."}},
+      {"@type":"Question","name":"Esta ferramenta substitui teste de comunicação em campo?","acceptedAnswer":{"@type":"Answer","text":"Não. A ferramenta faz uma estimativa preliminar. O desempenho real deve ser validado em campo com configuração do mestre, osciloscópio/analisador quando necessário, logs de timeout, qualidade do aterramento, blindagem, terminação, polarização e topologia da rede."}}
+    ]
+  }
+  </script>
+  <style>
+    .tech-page{background:linear-gradient(180deg,rgba(0,75,128,.04),rgba(255,255,255,0) 260px)}
+    .tech-wrap{max-width:1120px;margin:18px auto 34px}
+    .tech-back{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:900;color:#0b3a62;background:#fff;border:1px solid rgba(0,107,177,.18);border-radius:999px;padding:10px 14px;box-shadow:0 6px 18px rgba(0,0,0,.04);margin-bottom:14px}
+    .tech-hero{background:linear-gradient(135deg,#0b3a62,#006bb1);color:#fff;border-radius:22px;padding:30px;box-shadow:0 18px 42px rgba(0,75,128,.22);overflow:hidden;position:relative}
+    .tech-hero:after{content:"";position:absolute;right:-80px;top:-80px;width:240px;height:240px;border-radius:50%;background:rgba(255,255,255,.13)}
+    .tech-hero h1{font-size:2.25rem;line-height:1.12;margin:0 0 12px;max-width:900px;color:#fff}
+    .tech-hero p{font-size:1.08rem;line-height:1.65;margin:0;max-width:930px;color:rgba(255,255,255,.92)}
+    .hero-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}.hero-tags span{display:inline-flex;align-items:center;gap:7px;border:1px solid rgba(255,255,255,.26);background:rgba(255,255,255,.12);color:#fff;border-radius:999px;padding:8px 10px;font-size:.88rem;font-weight:900}
+    .calc-grid{display:grid;grid-template-columns:minmax(0,1fr) 390px;gap:18px;margin-top:18px}
+    .tech-card{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:20px;box-shadow:0 12px 30px rgba(0,0,0,.06);padding:24px;margin-top:18px}
+    .tech-card h2{font-size:1.45rem;line-height:1.25;margin:0 0 12px;color:#0b3a62}.tech-card h3{font-size:1.12rem;line-height:1.3;margin:20px 0 8px;color:#0b3a62}
+    .tech-card p,.tech-card li{font-size:1rem;line-height:1.72;color:#253243}.tech-card ul,.tech-card ol{margin:0 0 16px 20px}
+    .field-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.field{display:flex;flex-direction:column;gap:6px}.field label{font-weight:900;color:#0b3a62;font-size:.92rem}.field input,.field select,.field textarea{border:1px solid rgba(0,0,0,.14);border-radius:12px;padding:12px;background:#fff;font:inherit;width:100%;box-sizing:border-box}.field small{color:#6b7280;line-height:1.4}.wide{grid-column:1/-1}
+    .calc-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}.btn-mini{display:inline-flex;align-items:center;gap:8px;border:none;border-radius:999px;padding:11px 14px;font-weight:900;cursor:pointer;text-decoration:none;background:#0b3a62;color:#fff;font:inherit}.btn-mini.secondary{background:rgba(0,107,177,.09);color:#0b3a62;border:1px solid rgba(0,107,177,.18)}
+    .result-box{border-radius:18px;background:linear-gradient(180deg,rgba(0,107,177,.10),rgba(0,107,177,.04));border:1px solid rgba(0,107,177,.18);padding:18px}.result-main{font-size:2rem;font-weight:900;color:#0b3a62;line-height:1.15;margin:8px 0}.result-sub{color:#5b6472;margin:8px 0 0;line-height:1.55}
+    .pill-row{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.pill{display:inline-flex;align-items:center;gap:6px;border-radius:999px;background:#fff;border:1px solid rgba(0,107,177,.18);padding:7px 10px;font-weight:900;color:#0b3a62;font-size:.88rem}
+    .note{border-left:5px solid #006bb1;background:rgba(0,107,177,.07);padding:12px 14px;border-radius:14px;color:#253243;line-height:1.6}.note.warn{border-left-color:#f59e0b;background:rgba(245,158,11,.10)}.note.bad{border-left-color:#dc2626;background:rgba(220,38,38,.10)}.note.ok{border-left-color:#16a34a;background:rgba(22,163,74,.10)}.note.info{border-left-color:#006bb1;background:rgba(0,107,177,.08)}
+    .table-wrap{overflow:auto;border:1px solid rgba(0,0,0,.08);border-radius:16px;margin-top:10px;background:#fff}.tech-table{border-collapse:collapse;width:100%;min-width:760px}.tech-table th,.tech-table td{border-bottom:1px solid rgba(0,0,0,.07);padding:10px;text-align:left;vertical-align:top;font-size:.95rem}.tech-table th{background:rgba(0,75,128,.07);color:#0b3a62;font-weight:900}.tech-table tr:last-child td{border-bottom:none}
+    .formula-box{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;background:#0f172a;color:#e5e7eb;border-radius:16px;padding:16px;overflow:auto;line-height:1.65;font-size:.92rem}.memorial{white-space:pre-wrap;background:#0f172a;color:#e5e7eb;border-radius:16px;padding:16px;min-height:210px;line-height:1.5;font-size:.92rem;overflow:auto}
+    .diagram{width:100%;height:auto;border:1px solid rgba(0,0,0,.08);border-radius:18px;background:#fff;margin-top:10px}.related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.related-grid a{text-decoration:none;border:1px solid rgba(0,107,177,.16);border-radius:16px;padding:14px;background:rgba(0,107,177,.05);color:#0b3a62;font-weight:900;line-height:1.35}.related-grid a span{display:block;color:#4b5563;font-weight:400;margin-top:6px;font-size:.9rem}
+    @media(max-width:940px){.calc-grid{grid-template-columns:1fr}.field-grid{grid-template-columns:1fr}.related-grid{grid-template-columns:1fr}.tech-hero h1{font-size:1.85rem}.tech-card{padding:18px}}
+  </style>
+</head>
+<body class="tech-page">
+  <header>
+    <div class="container headbar"><a href="/" class="logo-wrapper" aria-label="Voltar para o início"><img src="logo-alogy.webp" alt="ALOGY Engenharia" width="878" height="308" decoding="async" /></a><button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menu"><i class="fas fa-bars"></i></button></div>
+    <nav class="desktop" aria-label="Menu principal"><div class="container navlinks"><a href="index.html">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="index.html#contato">Contato</a></div></nav>
+    <nav class="mobile" aria-label="Menu mobile"><a href="index.html">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="index.html#contato">Contato</a></nav>
+  </header>
+  <div class="social-floating" aria-label="Redes sociais"><a href="https://www.linkedin.com/company/alogyengenharia" class="linkedin" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a><a href="https://www.instagram.com/alogyengenharia" class="instagram" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="https://www.facebook.com/alogyengenharia" class="facebook" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><a href="https://www.youtube.com/@alogyengenharia" class="youtube" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a><a href="https://hotmart.com/pt-br/club/alogyengenharia" class="hotmart" target="_blank" rel="noopener" aria-label="Hotmart">H</a><a href="https://www.tiktok.com/@alogyengenharia" class="tiktok" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a></div>
+  <div class="fab-wrap" aria-label="Ações rápidas"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1%21%20Vim%20pela%20calculadora%20de%20tempo%20Modbus%20RTU%20da%20ALOGY.%20Gostaria%20de%20apoio%20em%20automa%C3%A7%C3%A3o%20industrial." target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
+
+  <main class="container tech-wrap">
+    <a class="tech-back no-print" href="ferramentas.html"><i class="fas fa-arrow-left"></i> Voltar para Ferramentas</a>
+    <section class="tech-hero">
+      <h1>Calculadora de Tempo de Varredura Modbus RTU</h1>
+      <p>Estime o tempo de polling de uma rede Modbus RTU em RS-485, considerando baud rate, formato serial, quantidade de escravos, registradores, coils, blocos de leitura, delay de resposta, timeout, retries e ocupação do barramento. Ideal para CLP, IHM, supervisório, inversores, medidores, remotas e instrumentos inteligentes.</p>
+      <div class="hero-tags"><span><i class="fas fa-network-wired"></i> Modbus RTU</span><span><i class="fas fa-plug-circle-bolt"></i> RS-485</span><span><i class="fas fa-stopwatch"></i> Tempo de polling</span><span><i class="fas fa-gauge-high"></i> Baud rate</span><span><i class="fas fa-file-lines"></i> Memorial técnico</span></div>
+    </section>
+
+    <section class="tech-card">
+      <h2>Aviso de segurança e uso correto</h2>
+      <p class="note"><strong>Atenção:</strong> esta ferramenta fornece uma estimativa preliminar de desempenho. Ela não substitui teste em campo, documentação dos fabricantes, ajuste real do CLP/IHM, análise com osciloscópio ou analisador serial, validação de aterramento, blindagem, terminação, polarização, topologia RS-485, segregação de cabos ou requisitos de disponibilidade da planta. Em redes críticas, intertravamentos, segurança de processo ou paradas de produção, valide o comportamento real com logs de comunicação e testes operacionais.</p>
+    </section>
+
+    <section class="calc-grid">
+      <div class="tech-card">
+        <h2>Dados da rede e do polling</h2>
+        <form onsubmit="calcularModbus();return false;">
+          <div class="field-grid">
+            <div class="field"><label>Tag / rede</label><input id="tag" type="text" value="MB-RTU-01" /><small>Opcional para o memorial.</small></div>
+            <div class="field"><label>Aplicação</label><input id="servico" type="text" value="CLP lendo inversores e medidores" /><small>Ex.: CLP, IHM, supervisório ou gateway.</small></div>
+            <div class="field"><label>Baud rate</label><select id="baud"><option value="9600">9600 bps</option><option value="19200" selected>19200 bps</option><option value="38400">38400 bps</option><option value="57600">57600 bps</option><option value="115200">115200 bps</option></select><small>Taxa configurada em todos os dispositivos.</small></div>
+            <div class="field"><label>Formato serial</label><select id="bitsChar"><option value="10">8N1 - 10 bits/caractere</option><option value="11" selected>8E1 / 8O1 - 11 bits/caractere</option><option value="12">8E2 / 8O2 - 12 bits/caractere</option></select><small>Start + dados + paridade + stop.</small></div>
+            <div class="field"><label>Número de escravos</label><input id="escravos" type="number" min="1" step="1" value="12" /><small>Dispositivos consultados pelo mestre.</small></div>
+            <div class="field"><label>Tempo de ciclo desejado</label><input id="cicloDesejado" type="number" step="0.1" value="2.0" /><small>Tempo alvo de atualização em segundos.</small></div>
+            <div class="field"><label>Registradores por escravo</label><input id="regs" type="number" min="0" step="1" value="20" /><small>Holding/input registers lidos por ciclo.</small></div>
+            <div class="field"><label>Máx. registradores por requisição</label><input id="maxRegs" type="number" min="1" step="1" value="60" /><small>Agrupe endereços próximos para reduzir transações.</small></div>
+            <div class="field"><label>Coils/discrete inputs por escravo</label><input id="coils" type="number" min="0" step="1" value="16" /><small>Bits lidos por ciclo, se houver.</small></div>
+            <div class="field"><label>Máx. coils por requisição</label><input id="maxCoils" type="number" min="1" step="1" value="120" /><small>Quantidade agrupada por leitura de bits.</small></div>
+            <div class="field"><label>Escritas por ciclo</label><input id="writes" type="number" min="0" step="1" value="0" /><small>Comandos FC06/FC16 por ciclo, em média.</small></div>
+            <div class="field"><label>Registradores por escrita</label><input id="writeRegs" type="number" min="1" step="1" value="1" /><small>Para FC06 use 1; para FC16 informe a média.</small></div>
+            <div class="field"><label>Delay médio do escravo</label><input id="delay" type="number" min="0" step="0.1" value="10" /><small>Tempo entre requisição e resposta em ms.</small></div>
+            <div class="field"><label>Intervalo entre polls</label><input id="gapMs" type="number" min="0" step="0.1" value="5" /><small>Espera programada entre mensagens em ms.</small></div>
+            <div class="field"><label>Timeout de comunicação</label><input id="timeout" type="number" min="1" step="1" value="1000" /><small>Tempo que o mestre aguarda em falha, em ms.</small></div>
+            <div class="field"><label>Retries por falha</label><input id="retries" type="number" min="0" step="1" value="1" /><small>Tentativas adicionais após timeout.</small></div>
+            <div class="field"><label>Reserva operacional</label><input id="reserva" type="number" min="0" max="80" step="1" value="30" /><small>Folga desejada para crescimento, retries e variação.</small></div>
+            <div class="field"><label>Ocupação máxima desejada</label><input id="ocupMax" type="number" min="10" max="95" step="1" value="60" /><small>Meta conservadora de uso do barramento.</small></div>
+          </div>
+          <div class="calc-actions"><button class="btn-mini" type="submit"><i class="fas fa-calculator"></i> Calcular</button><button class="btn-mini secondary" type="button" onclick="carregarExemplo()"><i class="fas fa-rotate-left"></i> Exemplo</button><button class="btn-mini secondary" type="button" onclick="copiarMemorial()"><i class="fas fa-copy"></i> Copiar memorial</button></div>
+        </form>
+      </div>
+
+      <aside class="tech-card result-box">
+        <h2>Resultado rápido</h2>
+        <div id="resultadoRapido"></div>
+        <svg class="diagram" viewBox="0 0 420 230" role="img" aria-label="Diagrama simplificado de rede Modbus RTU RS-485">
+          <rect x="25" y="80" width="80" height="55" rx="12" fill="#0b3a62"/><text x="65" y="113" text-anchor="middle" fill="#fff" font-size="14" font-weight="700">Mestre</text>
+          <line x1="105" y1="108" x2="370" y2="108" stroke="#006bb1" stroke-width="5"/>
+          <circle cx="150" cy="108" r="8" fill="#16a34a"/><circle cx="220" cy="108" r="8" fill="#16a34a"/><circle cx="290" cy="108" r="8" fill="#16a34a"/><circle cx="360" cy="108" r="8" fill="#16a34a"/>
+          <text x="150" y="145" text-anchor="middle" fill="#0b3a62" font-size="12" font-weight="700">Escravo 1</text><text x="220" y="145" text-anchor="middle" fill="#0b3a62" font-size="12" font-weight="700">Escravo 2</text><text x="290" y="145" text-anchor="middle" fill="#0b3a62" font-size="12" font-weight="700">...</text><text x="360" y="145" text-anchor="middle" fill="#0b3a62" font-size="12" font-weight="700">N</text>
+          <text x="210" y="55" text-anchor="middle" fill="#0b3a62" font-size="15" font-weight="700">Polling sequencial: requisição → resposta → próxima requisição</text>
+          <text x="210" y="188" text-anchor="middle" fill="#4b5563" font-size="12">O tempo de ciclo cresce com bytes, delay, escravos, blocos e retries.</text>
+        </svg>
+      </aside>
+    </section>
+
+    <section class="tech-card" id="detalhes"><div id="resultadoDetalhado"></div></section>
+    <section class="tech-card"><h2>Memorial técnico gerado</h2><pre id="memorial" class="memorial"></pre></section>
+
+    <section class="tech-card">
+      <h2>Como interpretar o cálculo</h2>
+      <p>Em Modbus RTU o mestre normalmente consulta um escravo por vez. Cada transação tem uma requisição, um tempo de processamento do escravo, uma resposta e um intervalo de silêncio/espera antes da próxima mensagem. Por isso, a rede pode ficar lenta mesmo quando a quantidade de dados parece pequena.</p>
+      <p>O desempenho melhora quando os registradores são agrupados em blocos contínuos, quando o baud rate é adequado à instalação, quando o timeout não é exagerado e quando há poucos retries por falha. Por outro lado, redes longas, com ruído, aterramento ruim, falta de terminação ou muitos equipamentos podem exigir baud rate menor e tempos mais conservadores.</p>
+      <h3>Erros comuns em campo</h3>
+      <ul>
+        <li>Ler registradores um a um em vez de ler blocos contínuos.</li>
+        <li>Usar timeout de 1 ou 2 segundos para muitos escravos, gerando travamento perceptível quando um dispositivo falha.</li>
+        <li>Configurar baud rate alto em rede longa, sem validar cabo, terminação e aterramento.</li>
+        <li>Misturar muitos tipos de mensagens, escritas frequentes e leituras de diagnóstico no mesmo ciclo crítico.</li>
+        <li>Não deixar reserva para expansão, variação de resposta dos escravos e ruído de campo.</li>
+      </ul>
+      <p class="note info"><strong>Dica prática:</strong> para ciclos rápidos, revise primeiro o agrupamento dos endereços. Muitas vezes reduzir a quantidade de transações melhora mais do que simplesmente aumentar o baud rate.</p>
+    </section>
+
+    <section class="tech-card">
+      <h2>Checklist de revisão de rede Modbus RTU</h2>
+      <ul>
+        <li>Confirmar baud rate, paridade, stop bits e endereço de todos os dispositivos.</li>
+        <li>Verificar se os registradores estão agrupados em blocos próximos.</li>
+        <li>Conferir timeout, retries e intervalo entre polls configurados no mestre.</li>
+        <li>Validar terminação nas extremidades da rede RS-485 e polarização quando necessária.</li>
+        <li>Evitar derivações longas, topologia estrela e passagem junto a cabos de potência sem segregação.</li>
+        <li>Usar cabo adequado, blindagem aterrada conforme padrão do projeto e documentação dos fabricantes.</li>
+        <li>Registrar logs de timeout, CRC error, exception response e tempo real de atualização.</li>
+      </ul>
+    </section>
+
+    <section class="tech-card">
+      <h2>Ferramentas relacionadas</h2>
+      <div class="related-grid">
+        <a href="calculadora-malha-4-20ma-hart-completa.html">Malha 4-20 mA / HART<span>Valide fonte, carga, cabo, raw e diagnóstico de corrente.</span></a>
+        <a href="calculadora-cabo-instrumentacao-24vcc.html">Cabo de Instrumentação 24 Vcc<span>Calcule queda de tensão e comprimento máximo em campo.</span></a>
+        <a href="calculadora-fonte-24vcc-painel-automacao.html">Fonte 24 Vcc para Painel<span>Dimensione fonte para CLP, I/O, instrumentos e rede.</span></a>
+        <a href="calculadora-comprimento-cabo-hart.html">Comprimento de Cabo HART<span>Confira limites preliminares de comunicação HART.</span></a>
+        <a href="calculadora-calibracao-cartao-analogico-clp.html">Cartão Analógico CLP/DCS<span>Confira escala, raw e resolução de sinais analógicos.</span></a>
+        <a href="ferramentas-automacao-clp.html">Ferramentas de Automação<span>Veja outras ferramentas para CLP, redes e comissionamento.</span></a>
+      </div>
+    </section>
+  </main>
+
+<script>
+function n(id){const v=parseFloat(String(document.getElementById(id).value).replace(',','.'));return Number.isFinite(v)?v:0;}
+function s(id){return String(document.getElementById(id).value||'').trim();}
+function fmt(x,d=2){return Number(x).toLocaleString('pt-BR',{minimumFractionDigits:d,maximumFractionDigits:d});}
+function ceildiv(a,b){return b>0?Math.ceil(Math.max(0,a)/b):0;}
+function charTimeMs(baud,bitsChar){return bitsChar/baud*1000;}
+function bytesRegRequest(){return 8;}
+function bytesRegResponse(regs){return 5+2*regs;}
+function bytesCoilRequest(){return 8;}
+function bytesCoilResponse(coils){return 5+Math.ceil(coils/8);}
+function bytesWriteReq(regs){return regs<=1?8:(9+2*regs);}
+function bytesWriteResp(){return 8;}
+function statusClasse(alerts){if(alerts.some(a=>a.cls==='bad'))return 'bad'; if(alerts.some(a=>a.cls==='warn'))return 'warn'; return 'ok';}
+function carregarExemplo(){
+  document.getElementById('tag').value='MB-RTU-01';document.getElementById('servico').value='CLP lendo 12 inversores e medidores';document.getElementById('baud').value='19200';document.getElementById('bitsChar').value='11';document.getElementById('escravos').value='12';document.getElementById('cicloDesejado').value='2';document.getElementById('regs').value='20';document.getElementById('maxRegs').value='60';document.getElementById('coils').value='16';document.getElementById('maxCoils').value='120';document.getElementById('writes').value='0';document.getElementById('writeRegs').value='1';document.getElementById('delay').value='10';document.getElementById('gapMs').value='5';document.getElementById('timeout').value='1000';document.getElementById('retries').value='1';document.getElementById('reserva').value='30';document.getElementById('ocupMax').value='60';calcularModbus();
+}
+function calcPerfil(baud,bitsChar,escravos,regs,maxRegs,coils,maxCoils,writes,writeRegs,delay,gapMs){
+  const ct=charTimeMs(baud,bitsChar);
+  const gruposRegs=ceildiv(regs,maxRegs); const gruposCoils=ceildiv(coils,maxCoils);
+  const regsUlt=gruposRegs? (regs-(gruposRegs-1)*maxRegs):0;
+  const coilsUlt=gruposCoils? (coils-(gruposCoils-1)*maxCoils):0;
+  let transPorEscravo=0, bytesReq=0, bytesResp=0, txMs=0, totalMs=0;
+  for(let g=1; g<=gruposRegs; g++){const qtd=(g<gruposRegs?maxRegs:regsUlt); const br=bytesRegRequest(); const bp=bytesRegResponse(qtd); bytesReq+=br; bytesResp+=bp; txMs+=(br+bp)*ct; totalMs+=(br+bp)*ct+delay+gapMs; transPorEscravo++;}
+  for(let g=1; g<=gruposCoils; g++){const qtd=(g<gruposCoils?maxCoils:coilsUlt); const br=bytesCoilRequest(); const bp=bytesCoilResponse(qtd); bytesReq+=br; bytesResp+=bp; txMs+=(br+bp)*ct; totalMs+=(br+bp)*ct+delay+gapMs; transPorEscravo++;}
+  for(let w=0; w<writes; w++){const br=bytesWriteReq(writeRegs); const bp=bytesWriteResp(); bytesReq+=br; bytesResp+=bp; txMs+=(br+bp)*ct; totalMs+=(br+bp)*ct+delay+gapMs; transPorEscravo++;}
+  return {ct,gruposRegs,gruposCoils,transPorEscravo,transTotal:transPorEscravo*escravos,bytesReq:bytesReq*escravos,bytesResp:bytesResp*escravos,txMs:txMs*escravos,totalMs:totalMs*escravos};
+}
+function calcularModbus(){
+  const tag=s('tag'), servico=s('servico'), baud=n('baud'), bitsChar=n('bitsChar'), escravos=n('escravos'), cicloDesejado=n('cicloDesejado'), regs=n('regs'), maxRegs=n('maxRegs'), coils=n('coils'), maxCoils=n('maxCoils'), writes=n('writes'), writeRegs=n('writeRegs'), delay=n('delay'), gapMs=n('gapMs'), timeout=n('timeout'), retries=n('retries'), reserva=n('reserva'), ocupMax=n('ocupMax');
+  if(baud<=0||bitsChar<=0||escravos<=0||cicloDesejado<=0||maxRegs<=0||maxCoils<=0||delay<0||gapMs<0||timeout<=0||retries<0||reserva<0||ocupMax<=0){document.getElementById('resultadoRapido').innerHTML='<p class="note bad"><strong>Dados inválidos.</strong> Revise baud rate, escravos, blocos, tempos e reserva.</p>';return;}
+  if(regs<=0&&coils<=0&&writes<=0){document.getElementById('resultadoRapido').innerHTML='<p class="note bad"><strong>Nenhuma transação configurada.</strong> Informe registradores, coils ou escritas por ciclo.</p>';return;}
+  const p=calcPerfil(baud,bitsChar,escravos,regs,maxRegs,coils,maxCoils,writes,writeRegs,delay,gapMs);
+  const cicloS=p.totalMs/1000; const txS=p.txMs/1000; const ocup=p.totalMs>0?p.txMs/p.totalMs*100:0; const folga=(cicloDesejado-cicloS)/cicloDesejado*100; const recomendado=cicloS/(1-reserva/100); const acrescimoFalha=(timeout*(1+retries))/1000; const cicloComFalha=cicloS+acrescimoFalha; const pollsMin=60/cicloS;
+  const alerts=[];
+  if(cicloS>cicloDesejado) alerts.push({cls:'bad',txt:`Tempo estimado de ciclo (${fmt(cicloS,3)} s) acima do alvo de ${fmt(cicloDesejado,2)} s.`});
+  else if(folga<reserva) alerts.push({cls:'warn',txt:`A rede atende o ciclo desejado, mas a folga de ${fmt(folga,1)}% fica abaixo da reserva desejada de ${fmt(reserva,0)}%.`});
+  else alerts.push({cls:'ok',txt:`Tempo estimado atende o ciclo desejado com folga de ${fmt(folga,1)}%.`});
+  if(ocup>ocupMax) alerts.push({cls:'warn',txt:`Ocupação serial estimada (${fmt(ocup,1)}%) acima da meta de ${fmt(ocupMax,0)}%. A rede pode ficar sensível a retries e escravos lentos.`});
+  if(p.transTotal>80) alerts.push({cls:'warn',txt:`Quantidade alta de transações por ciclo (${p.transTotal}). Agrupar endereços ou separar redes pode melhorar muito o desempenho.`});
+  if(timeout>cicloDesejado*1000/2) alerts.push({cls:'warn',txt:`Timeout de ${fmt(timeout,0)} ms é alto em relação ao ciclo desejado. Uma falha pode atrasar bastante a atualização.`});
+  if(baud>=57600 && escravos>20) alerts.push({cls:'info',txt:'Baud rate alto com muitos dispositivos exige boa instalação RS-485: terminação, blindagem, cabo adequado e topologia linear.'});
+  if(regs>maxRegs*4 || coils>maxCoils*4) alerts.push({cls:'warn',txt:'Muitos blocos por escravo. Verifique se os endereços podem ser reorganizados para leituras contínuas.'});
+  const cls=statusClasse(alerts); const titulo=cls==='ok'?'Rede adequada na triagem':(cls==='warn'?'Rede com pontos de atenção':'Rede lenta ou crítica');
+  document.getElementById('resultadoRapido').innerHTML=`<div class="note ${cls}"><strong>${titulo}</strong><div class="result-main">${fmt(cicloS,3)} s</div><div>Tempo estimado de varredura normal. Com reserva de ${fmt(reserva,0)}%, planeje até <strong>${fmt(recomendado,3)} s</strong>.</div></div><div class="pill-row"><span class="pill">Transações: ${p.transTotal}</span><span class="pill">Bytes/ciclo: ${fmt(p.bytesReq+p.bytesResp,0)}</span><span class="pill">Ocupação: ${fmt(ocup,1)}%</span><span class="pill">Falha +${fmt(acrescimoFalha,2)} s</span></div><p class="result-sub">${alerts.map(a=>a.txt).join(' ')}</p>`;
+  const baudRates=[9600,19200,38400,57600,115200];
+  const baudRows=baudRates.map(b=>{const pp=calcPerfil(b,bitsChar,escravos,regs,maxRegs,coils,maxCoils,writes,writeRegs,delay,gapMs); const cs=pp.totalMs/1000; const oc=pp.txMs/pp.totalMs*100; return `<tr><td>${fmt(b,0)} bps</td><td>${fmt(cs,3)} s</td><td>${fmt(oc,1)}%</td><td>${cs<=cicloDesejado?'Atende':'Não atende'}</td></tr>`;}).join('');
+  const alertHtml=alerts.map(a=>`<p class="note ${a.cls}">${a.txt}</p>`).join('');
+  document.getElementById('resultadoDetalhado').innerHTML=`<h2>Resultado detalhado</h2><div class="table-wrap"><table class="tech-table"><tbody><tr><th>Tempo de caractere</th><td>${fmt(p.ct,4)} ms/caractere</td></tr><tr><th>Blocos de registradores por escravo</th><td>${p.gruposRegs}</td></tr><tr><th>Blocos de coils por escravo</th><td>${p.gruposCoils}</td></tr><tr><th>Transações por escravo</th><td>${p.transPorEscravo}</td></tr><tr><th>Transações totais por ciclo</th><td>${p.transTotal}</td></tr><tr><th>Bytes de requisição por ciclo</th><td>${fmt(p.bytesReq,0)} bytes</td></tr><tr><th>Bytes de resposta por ciclo</th><td>${fmt(p.bytesResp,0)} bytes</td></tr><tr><th>Tempo serial puro</th><td>${fmt(txS,3)} s</td></tr><tr><th>Tempo total normal estimado</th><td>${fmt(cicloS,3)} s</td></tr><tr><th>Ocupação serial</th><td>${fmt(ocup,1)}%</td></tr><tr><th>Atualizações por minuto</th><td>${fmt(pollsMin,1)}</td></tr><tr><th>Tempo com 1 escravo em timeout</th><td>${fmt(cicloComFalha,3)} s</td></tr></tbody></table></div><h3>Comparativo por baud rate</h3><div class="table-wrap"><table class="tech-table"><thead><tr><th>Baud rate</th><th>Tempo de ciclo</th><th>Ocupação serial</th><th>Status vs. ciclo alvo</th></tr></thead><tbody>${baudRows}</tbody></table></div><h3>Alertas técnicos</h3>${alertHtml}`;
+  document.getElementById('memorial').textContent=gerarMemorial({tag,servico,baud,bitsChar,escravos,cicloDesejado,regs,maxRegs,coils,maxCoils,writes,writeRegs,delay,gapMs,timeout,retries,reserva,ocupMax,p,cicloS,txS,ocup,folga,recomendado,acrescimoFalha,cicloComFalha,alerts});
+}
+function gerarMemorial(c){return `MEMORIAL PRELIMINAR - TEMPO DE VARREDURA MODBUS RTU\n\nRede/tag: ${c.tag||'não informado'}\nAplicação: ${c.servico||'não informado'}\n\nDados de entrada:\n- Baud rate: ${fmt(c.baud,0)} bps\n- Formato serial: ${fmt(c.bitsChar,0)} bits por caractere\n- Escravos consultados: ${fmt(c.escravos,0)}\n- Ciclo desejado: ${fmt(c.cicloDesejado,3)} s\n- Registradores por escravo: ${fmt(c.regs,0)}\n- Máx. registradores por requisição: ${fmt(c.maxRegs,0)}\n- Coils/discrete inputs por escravo: ${fmt(c.coils,0)}\n- Máx. coils por requisição: ${fmt(c.maxCoils,0)}\n- Escritas por ciclo: ${fmt(c.writes,0)}\n- Registradores por escrita: ${fmt(c.writeRegs,0)}\n- Delay médio do escravo: ${fmt(c.delay,1)} ms\n- Intervalo entre polls: ${fmt(c.gapMs,1)} ms\n- Timeout: ${fmt(c.timeout,0)} ms\n- Retries: ${fmt(c.retries,0)}\n- Reserva operacional desejada: ${fmt(c.reserva,0)}%\n- Ocupação máxima desejada: ${fmt(c.ocupMax,0)}%\n\nResultados:\n- Tempo de caractere: ${fmt(c.p.ct,4)} ms\n- Blocos de registradores por escravo: ${c.p.gruposRegs}\n- Blocos de coils por escravo: ${c.p.gruposCoils}\n- Transações por escravo: ${c.p.transPorEscravo}\n- Transações totais por ciclo: ${c.p.transTotal}\n- Bytes de requisição por ciclo: ${fmt(c.p.bytesReq,0)} bytes\n- Bytes de resposta por ciclo: ${fmt(c.p.bytesResp,0)} bytes\n- Tempo serial puro: ${fmt(c.txS,3)} s\n- Tempo total normal estimado: ${fmt(c.cicloS,3)} s\n- Ocupação serial estimada: ${fmt(c.ocup,1)}%\n- Folga em relação ao ciclo desejado: ${fmt(c.folga,1)}%\n- Tempo recomendado com reserva: ${fmt(c.recomendado,3)} s\n- Acréscimo aproximado se 1 escravo entrar em timeout: ${fmt(c.acrescimoFalha,3)} s\n- Ciclo estimado com 1 timeout: ${fmt(c.cicloComFalha,3)} s\n\nAlertas e recomendações:\n${c.alerts.map(a=>'- '+a.txt).join('\n')}\n\nObservações:\nEsta estimativa considera polling sequencial e mensagens típicas Modbus RTU. O desempenho real depende da implementação do mestre, tempo real de resposta dos escravos, organização dos endereços, qualidade da instalação RS-485, ruído, terminação, polarização, aterramento, cabo, topologia e configuração de timeout/retries. Valide em campo antes de usar como critério de projeto definitivo.`;}
+function copiarMemorial(){const txt=document.getElementById('memorial').textContent;navigator.clipboard.writeText(txt).then(()=>alert('Memorial copiado.')).catch(()=>alert('Não foi possível copiar automaticamente. Selecione o texto manualmente.'));}
+calcularModbus();
+</script>
+  <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
+</body>
+</html>
