@@ -1493,3 +1493,155 @@ nav.mobile a.active{
 @media print{
   .tool-page-actions{display:none!important;}
 }
+
+/* =========================
+   ETAPA 3 - USABILIDADE CONSERVADORA DOS FORMULÁRIOS DAS FERRAMENTAS
+   Escopo: somente páginas com body.alogy-stage3-forms.
+   Observação: calculadora-dimensionamento-cabos.html ficou fora desta classe.
+========================= */
+body.alogy-stage3-forms .calc-grid,
+body.alogy-stage3-forms .form-grid,
+body.alogy-stage3-forms .field-grid{
+  grid-template-columns:repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+  align-items:end;
+  gap:14px;
+}
+
+body.alogy-stage3-forms .calc-grid .full,
+body.alogy-stage3-forms .form-grid .full,
+body.alogy-stage3-forms .field-grid .full,
+body.alogy-stage3-forms .field.wide,
+body.alogy-stage3-forms .form-group.wide{
+  grid-column:1 / -1;
+}
+
+body.alogy-stage3-forms .field,
+body.alogy-stage3-forms .form-group{
+  min-width:0;
+}
+
+body.alogy-stage3-forms .calc-grid > .field,
+body.alogy-stage3-forms .form-grid > .field,
+body.alogy-stage3-forms .field-grid > .field,
+body.alogy-stage3-forms .calc-grid > .form-group,
+body.alogy-stage3-forms .form-grid > .form-group,
+body.alogy-stage3-forms .field-grid > .form-group{
+  background:rgba(248,250,252,.72);
+  border:1px solid rgba(15,23,42,.075);
+  border-radius:14px;
+  padding:10px;
+}
+
+body.alogy-stage3-forms .field > label,
+body.alogy-stage3-forms .form-group > label,
+body.alogy-stage3-forms .checkline > label,
+body.alogy-stage3-forms .check-item > label{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  line-height:1.35;
+  margin-bottom:2px;
+}
+
+body.alogy-stage3-forms input:not([type="checkbox"]):not([type="radio"]):not([type="hidden"]),
+body.alogy-stage3-forms select,
+body.alogy-stage3-forms textarea{
+  min-height:46px;
+  font-size:1rem;
+  line-height:1.35;
+}
+
+body.alogy-stage3-forms input[type="checkbox"],
+body.alogy-stage3-forms input[type="radio"]{
+  width:auto;
+  min-width:18px;
+  min-height:18px;
+  padding:0;
+  accent-color:#004b80;
+  flex:0 0 auto;
+}
+
+body.alogy-stage3-forms input:not([type="checkbox"]):not([type="radio"]):not([type="hidden"]):focus,
+body.alogy-stage3-forms select:focus,
+body.alogy-stage3-forms textarea:focus{
+  border-color:rgba(0,107,177,.58);
+  box-shadow:0 0 0 4px rgba(0,107,177,.12);
+  background:#fff;
+}
+
+body.alogy-stage3-forms input::placeholder,
+body.alogy-stage3-forms textarea::placeholder{
+  color:#64748b;
+  opacity:.86;
+}
+
+body.alogy-stage3-forms .tool-form-note{
+  margin:0 0 12px;
+  padding:10px 12px;
+  border-radius:12px;
+  background:rgba(0,107,177,.055);
+  border:1px solid rgba(0,107,177,.14);
+  color:#0b3a62;
+  font-size:.92rem;
+  line-height:1.45;
+  font-weight:700;
+}
+
+body.alogy-stage3-forms .tool-form-note strong{
+  font-weight:950;
+}
+
+body.alogy-stage3-forms .tool-field-hint,
+body.alogy-stage3-forms .field small,
+body.alogy-stage3-forms .form-group small{
+  color:#64748b;
+  font-size:.84rem;
+  line-height:1.35;
+  margin-top:2px;
+}
+
+body.alogy-stage3-forms .calc-actions,
+body.alogy-stage3-forms .form-actions{
+  align-items:center;
+  gap:10px;
+}
+
+body.alogy-stage3-forms .calc-actions button,
+body.alogy-stage3-forms .calc-actions a,
+body.alogy-stage3-forms .form-actions button,
+body.alogy-stage3-forms .form-actions a{
+  min-height:44px;
+}
+
+body.alogy-stage3-forms details{
+  scroll-margin-top:90px;
+}
+
+@media(max-width:760px){
+  body.alogy-stage3-forms .calc-grid,
+  body.alogy-stage3-forms .form-grid,
+  body.alogy-stage3-forms .field-grid{
+    grid-template-columns:1fr!important;
+    gap:11px;
+  }
+
+  body.alogy-stage3-forms .calc-grid > .field,
+  body.alogy-stage3-forms .form-grid > .field,
+  body.alogy-stage3-forms .field-grid > .field,
+  body.alogy-stage3-forms .calc-grid > .form-group,
+  body.alogy-stage3-forms .form-grid > .form-group,
+  body.alogy-stage3-forms .field-grid > .form-group{
+    padding:10px;
+  }
+
+  body.alogy-stage3-forms input:not([type="checkbox"]):not([type="radio"]):not([type="hidden"]),
+  body.alogy-stage3-forms select,
+  body.alogy-stage3-forms textarea{
+    min-height:48px;
+  }
+
+  body.alogy-stage3-forms .tool-form-note{
+    font-size:.88rem;
+  }
+}
+
