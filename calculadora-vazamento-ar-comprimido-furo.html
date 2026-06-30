@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calculadora de Vazamento de Ar Comprimido | ALOGY</title>
+  <meta name="description" content="Calcule vazão perdida, custo mensal, custo anual e CO₂ de vazamento de ar comprimido por furo, pressão, horas de operação e energia." />
+  <meta name="robots" content="index,follow" />
+  <meta name="theme-color" content="#004b80" />
+  <link rel="canonical" href="https://www.alogy.com.br/calculadora-vazamento-ar-comprimido-furo.html" />
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png" />
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="app.js" defer></script>
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ALOGY Engenharia" />
+  <meta property="og:title" content="Calculadora de Vazamento de Ar Comprimido" />
+  <meta property="og:description" content="Estime vazão perdida, custo mensal e custo anual de vazamentos de ar comprimido por furo, pressão e horas de operação." />
+  <meta property="og:url" content="https://www.alogy.com.br/calculadora-vazamento-ar-comprimido-furo.html" />
+  <meta property="og:image" content="https://www.alogy.com.br/logo-alogy.webp" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Calculadora de Vazamento de Ar Comprimido" />
+  <meta name="twitter:description" content="Calcule vazão perdida, custo de energia, custo anual, CO₂ e priorização de reparo para vazamentos em redes de ar comprimido." />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Calculadora de Vazamento de Ar Comprimido por Furo",
+    "applicationCategory": "EngineeringApplication",
+    "operatingSystem": "Web",
+    "url": "https://www.alogy.com.br/calculadora-vazamento-ar-comprimido-furo.html",
+    "description": "Ferramenta para estimar vazão perdida, custo mensal, custo anual, potência equivalente e emissão indireta de CO2 em vazamentos de ar comprimido por furo.",
+    "creator": {"@type": "Organization", "name": "ALOGY Engenharia", "url": "https://www.alogy.com.br/"}
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {"@type":"Question","name":"Como calcular o custo de vazamento de ar comprimido?","acceptedAnswer":{"@type":"Answer","text":"Uma forma preliminar é estimar a vazão perdida pelo diâmetro do furo e pela pressão da rede, converter essa vazão para demanda equivalente de compressor, multiplicar pelas horas de operação e pelo custo do kWh. O resultado indica o custo mensal e anual aproximado do vazamento."}},
+      {"@type":"Question","name":"A calculadora substitui medição com detector ultrassônico?","acceptedAnswer":{"@type":"Answer","text":"Não. A ferramenta é uma estimativa preliminar. Vazamentos reais podem ter geometria irregular, ruído, pulsação, restrições internas e variações de pressão. A confirmação deve ser feita com inspeção de campo, detector ultrassônico, medição de compressor e análise da rede."}},
+      {"@type":"Question","name":"Por que vazamentos pequenos de ar comprimido custam caro?","acceptedAnswer":{"@type":"Answer","text":"Ar comprimido normalmente exige energia elétrica para compressão, tratamento, secagem e distribuição. Um furo pequeno operando 24 horas por dia pode representar muitos metros cúbicos normais por mês, aumentando consumo de energia, horas de compressor e custo de manutenção."}},
+      {"@type":"Question","name":"Qual é a melhor forma de reduzir perda de ar comprimido?","acceptedAnswer":{"@type":"Answer","text":"A melhor prática é combinar inspeção periódica, classificação dos vazamentos por custo, reparo planejado, controle de pressão, manutenção de purgadores, melhoria de conexões e acompanhamento do consumo específico do sistema de ar comprimido."}}
+    ]
+  }
+  </script>
+  <style>
+    .tech-page{background:linear-gradient(180deg,rgba(0,75,128,.04),rgba(255,255,255,1));}
+    .calc-hero{padding:42px 0 24px;background:linear-gradient(135deg,#003b66,#006aa6);color:#fff;}
+    .calc-hero .breadcrumb{font-size:.92rem;margin-bottom:12px;opacity:.95}.calc-hero a{color:#fff;text-decoration:underline}.calc-hero h1{font-size:2.35rem;line-height:1.15;margin:0 0 12px}.calc-hero p{max-width:980px;font-size:1.08rem;opacity:.98}.tag-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}.tag-pill{display:inline-flex;align-items:center;gap:6px;border:1px solid rgba(255,255,255,.35);border-radius:999px;padding:7px 11px;background:rgba(255,255,255,.12);font-size:.92rem}
+    .calc-layout{display:grid;grid-template-columns:1.05fr .95fr;gap:22px;align-items:start;margin:26px 0}.calc-card{background:#fff;border:1px solid rgba(0,75,128,.16);border-radius:16px;box-shadow:0 12px 28px rgba(0,0,0,.06);padding:22px;margin-bottom:20px}.calc-card h2{color:#004b80;margin-top:0}.calc-card h3{color:#004b80}.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.form-grid .full{grid-column:1/-1}.field label{font-weight:700;display:block;margin-bottom:6px;color:#17324d}.field input,.field select,.field textarea{width:100%;border:1px solid #cbd8e3;border-radius:10px;padding:10px 11px;font-size:1rem;background:#fff}.field small{display:block;color:#5d6b78;margin-top:4px;line-height:1.35}.btn-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}.primary-btn,.secondary-btn{border:0;border-radius:999px;padding:11px 16px;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:8px;text-decoration:none}.primary-btn{background:#006aa6;color:#fff}.secondary-btn{background:#e8f2f8;color:#004b80}.result-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.metric{border:1px solid #d8e4ee;border-radius:13px;padding:14px;background:#f9fcff}.metric b{display:block;font-size:.84rem;text-transform:uppercase;color:#456;letter-spacing:.02em;margin-bottom:6px}.metric strong{font-size:1.42rem;color:#004b80}.metric span{display:block;font-size:.88rem;color:#5d6b78;margin-top:4px}.status-box{border-radius:14px;padding:14px 16px;margin:14px 0;border-left:6px solid #4d90fe;background:#f4f9ff}.status-ok{border-left-color:#2e7d32;background:#f1f8f3}.status-warn{border-left-color:#f59e0b;background:#fff8e6}.status-bad{border-left-color:#c62828;background:#fff2f2}.alert-list{margin:0;padding-left:18px}.table-wrap{overflow:auto;border:1px solid #d8e4ee;border-radius:14px}.data-table{width:100%;border-collapse:collapse;min-width:760px}.data-table th,.data-table td{padding:10px;border-bottom:1px solid #e6eef5;text-align:right}.data-table th:first-child,.data-table td:first-child{text-align:left}.data-table th{background:#f0f6fb;color:#17324d}.mini-note{font-size:.92rem;color:#5d6b78}.formula-box{background:#f7fbff;border:1px dashed #9fc4df;border-radius:12px;padding:14px}.memorial{white-space:pre-wrap;background:#0f172a;color:#e2e8f0;border-radius:14px;padding:16px;overflow:auto;font-family:Consolas,monospace;font-size:.9rem;line-height:1.45}.related-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.related-card{border:1px solid #d8e4ee;border-radius:13px;padding:14px;text-decoration:none;color:#17324d;background:#fff}.related-card:hover{border-color:#006aa6;box-shadow:0 8px 20px rgba(0,75,128,.08)}.related-card b{color:#004b80;display:block;margin-bottom:6px}.svg-box{background:#f9fcff;border:1px solid #d8e4ee;border-radius:14px;padding:10px;text-align:center}.svg-box svg{max-width:100%;height:auto}.faq details{border:1px solid #d8e4ee;border-radius:12px;padding:12px;margin:10px 0;background:#fff}.faq summary{font-weight:700;color:#004b80;cursor:pointer}@media(max-width:900px){.calc-layout{grid-template-columns:1fr}.form-grid,.result-grid,.related-grid{grid-template-columns:1fr}.calc-hero h1{font-size:1.85rem}}
+  </style>
+</head>
+<body class="tech-page">
+  <header>
+    <div class="container headbar">
+      <a href="/" class="logo-wrapper" aria-label="Voltar para o início"><img src="logo-alogy.webp" alt="ALOGY Engenharia" width="878" height="308" decoding="async" /></a>
+      <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menu"><i class="fas fa-bars"></i></button>
+    </div>
+    <nav class="desktop" aria-label="Menu principal"><div class="container navlinks"><a href="index.html">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="index.html#contato">Contato</a></div></nav>
+    <nav class="mobile" aria-label="Menu mobile"><a href="index.html">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="index.html#contato">Contato</a></nav>
+  </header>
+  <div class="social-floating" aria-label="Redes sociais"><a href="https://www.linkedin.com/company/alogyengenharia" class="linkedin" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a><a href="https://www.instagram.com/alogyengenharia" class="instagram" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="https://www.facebook.com/alogyengenharia" class="facebook" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><a href="https://www.youtube.com/@alogyengenharia" class="youtube" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a><a href="https://hotmart.com/pt-br/club/alogyengenharia" class="hotmart" target="_blank" rel="noopener" aria-label="Hotmart">H</a><a href="https://www.tiktok.com/@alogyengenharia" class="tiktok" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a></div>
+  <div class="fab-wrap" aria-label="Ações rápidas"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1%21%20Vim%20pela%20calculadora%20de%20vazamento%20de%20ar%20comprimido%20da%20ALOGY." target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
+  <section class="calc-hero">
+    <div class="container">
+      <div class="breadcrumb"><a href="ferramentas.html">Ferramentas</a> / Manutenção / Ar comprimido</div>
+      <h1>Calculadora de Vazamento de Ar Comprimido por Furo</h1>
+      <p>Estime a vazão perdida, potência equivalente do compressor, custo mensal, custo anual e emissão indireta de CO₂ de vazamentos em redes de ar comprimido. A ferramenta usa uma modelagem preliminar de escoamento compressível por orifício e gera um memorial técnico para priorização de reparos.</p>
+      <div class="tag-row"><span class="tag-pill"><i class="fas fa-wind"></i> Ar comprimido</span><span class="tag-pill"><i class="fas fa-coins"></i> Custo de energia</span><span class="tag-pill"><i class="fas fa-screwdriver-wrench"></i> Manutenção</span><span class="tag-pill"><i class="fas fa-chart-line"></i> Eficiência energética</span></div>
+    </div>
+  </section>
+  <main class="container">
+    <section class="calc-card" style="margin-top:24px">
+      <h2><i class="fas fa-triangle-exclamation"></i> Uso correto da ferramenta</h2>
+      <p>Esta calculadora é indicada para <strong>estimativa preliminar</strong> de vazamentos para atmosfera em redes de ar comprimido. Ela ajuda a transformar um furo aparentemente pequeno em vazão, energia e dinheiro perdido. Para auditoria final, use inspeção em campo, detector ultrassônico, histórico de consumo do compressor, medição de vazão e validação das condições reais da planta.</p>
+      <p class="mini-note"><strong>Não use como único critério para contrato, garantia de economia, laudo energético, segurança de processo ou dimensionamento definitivo.</strong> Frestas, conexões danificadas, válvulas parcialmente abertas, purgadores, mangueiras e bicos podem ter comportamento diferente de um orifício circular ideal.</p>
+    </section>
+    <div class="calc-layout">
+      <section class="calc-card">
+        <h2><i class="fas fa-calculator"></i> Dados do vazamento</h2>
+        <div class="form-grid">
+          <div class="field full"><label for="tag">Identificação / área</label><input id="tag" value="Rede de ar - Linha de utilidades" /><small>Use a tag, setor, máquina, ponto de inspeção ou localização do vazamento.</small></div>
+          <div class="field"><label for="diam">Diâmetro estimado do furo</label><input id="diam" type="number" step="0.1" min="0.1" value="2" /><small>mm. Estimativa visual ou equivalente ultrassônico.</small></div>
+          <div class="field"><label for="pressao">Pressão da rede</label><input id="pressao" type="number" step="0.1" min="0.1" value="7" /><small>bar(g), pressão manométrica próxima ao vazamento.</small></div>
+          <div class="field"><label for="temp">Temperatura do ar</label><input id="temp" type="number" step="1" value="25" /><small>°C. Use temperatura aproximada da rede/ambiente.</small></div>
+          <div class="field"><label for="cd">Coeficiente de descarga</label><input id="cd" type="number" step="0.01" min="0.2" max="1" value="0.72" /><small>0,62 a 0,85 é comum para estimativas conservadoras.</small></div>
+          <div class="field"><label for="fatorOperacao">Fator de ocorrência</label><input id="fatorOperacao" type="number" step="1" min="1" max="100" value="100" /><small>% do tempo em que o vazamento realmente fica aberto.</small></div>
+          <div class="field"><label for="horasDia">Horas de operação por dia</label><input id="horasDia" type="number" step="0.5" min="0" value="24" /></div>
+          <div class="field"><label for="diasMes">Dias de operação por mês</label><input id="diasMes" type="number" step="1" min="0" value="26" /></div>
+          <div class="field"><label for="custoKwh">Custo de energia</label><input id="custoKwh" type="number" step="0.01" min="0" value="0.80" /><small>R$/kWh, incluindo encargos quando aplicável.</small></div>
+          <div class="field"><label for="potEsp">Potência específica do sistema</label><input id="potEsp" type="number" step="0.1" min="1" value="6.5" /><small>kW por Nm³/min de ar. Use valor medido se tiver.</small></div>
+          <div class="field"><label for="co2">Fator de emissão indireta</label><input id="co2" type="number" step="0.001" min="0" value="0.05" /><small>kg CO₂/kWh. Ajuste conforme inventário ou fator local.</small></div>
+          <div class="field"><label for="pressaoMin">Pressão mínima aceitável</label><input id="pressaoMin" type="number" step="0.1" min="0" value="6" /><small>bar(g). Ajuda a avaliar se a rede já está no limite.</small></div>
+        </div>
+        <div class="btn-row"><button class="primary-btn" onclick="calcularVazamento()"><i class="fas fa-bolt"></i> Calcular vazamento</button><button class="secondary-btn" onclick="copiarMemorial()"><i class="fas fa-copy"></i> Copiar memorial</button></div>
+      </section>
+      <aside class="calc-card">
+        <h2><i class="fas fa-gauge-high"></i> Resultado principal</h2>
+        <div id="status" class="status-box"><strong>Aguardando cálculo.</strong><br />Preencha os dados e clique em calcular.</div>
+        <div class="result-grid">
+          <div class="metric"><b>Vazão perdida</b><strong id="qNm3h">-</strong><span>Nm³/h</span></div>
+          <div class="metric"><b>Vazão equivalente</b><strong id="qNlmin">-</strong><span>NL/min</span></div>
+          <div class="metric"><b>Potência equivalente</b><strong id="kwEq">-</strong><span>kW estimados</span></div>
+          <div class="metric"><b>Custo mensal</b><strong id="custoMes">-</strong><span>R$/mês</span></div>
+          <div class="metric"><b>Custo anual</b><strong id="custoAno">-</strong><span>R$/ano</span></div>
+          <div class="metric"><b>CO₂ indireto anual</b><strong id="co2Ano">-</strong><span>kg CO₂/ano</span></div>
+        </div>
+      </aside>
+    </div>
+    <section class="calc-card">
+      <h2><i class="fas fa-table"></i> Detalhamento técnico</h2>
+      <div class="result-grid">
+        <div class="metric"><b>Regime estimado</b><strong id="regime">-</strong><span>Crítico/choked ou subcrítico</span></div>
+        <div class="metric"><b>Vazão mássica</b><strong id="mdot">-</strong><span>kg/h</span></div>
+        <div class="metric"><b>Volume mensal perdido</b><strong id="volMes">-</strong><span>Nm³/mês</span></div>
+        <div class="metric"><b>Energia mensal</b><strong id="kwhMes">-</strong><span>kWh/mês</span></div>
+      </div>
+      <div id="alerts" class="status-box"><strong>Alertas:</strong><ul class="alert-list"><li>Aguardando cálculo.</li></ul></div>
+    </section>
+    <section class="calc-card">
+      <h2><i class="fas fa-list-ol"></i> Comparativo por tamanho de furo</h2>
+      <p>Use a tabela para priorizar inspeções. Pequenas diferenças de diâmetro aumentam muito a vazão perdida, porque a área do furo cresce com o quadrado do diâmetro.</p>
+      <div class="table-wrap"><table class="data-table" id="tabelaFuross"><thead><tr><th>Furo</th><th>Vazão</th><th>Potência</th><th>Custo mensal</th><th>Custo anual</th><th>Prioridade</th></tr></thead><tbody><tr><td colspan="6">Aguardando cálculo.</td></tr></tbody></table></div>
+    </section>
+    <section class="calc-card">
+      <h2><i class="fas fa-diagram-project"></i> Como interpretar o resultado</h2>
+      <div class="formula-box">
+        <p><strong>Vazão perdida:</strong> representa o ar que escapa para atmosfera em condição normalizada. É uma estimativa útil para comparar perdas e calcular impacto energético.</p>
+        <p><strong>Potência equivalente:</strong> é a potência aproximada de compressor necessária para repor o ar perdido. O valor depende do consumo específico real do sistema, pressão de trabalho, eficiência, secador, filtros e controle do compressor.</p>
+        <p><strong>Custo mensal/anual:</strong> considera horas de operação, dias por mês, custo do kWh e fator de ocorrência. Se o vazamento existe 24 horas por dia, inclusive fora do turno produtivo, o custo tende a crescer muito.</p>
+      </div>
+    </section>
+    <section class="calc-card">
+      <h2><i class="fas fa-clipboard-check"></i> Checklist de campo para vazamentos</h2>
+      <ul>
+        <li>Inspecione conexões rápidas, mangueiras, válvulas, purgadores, atuadores, FRLs e pontos de uso.</li>
+        <li>Marque cada vazamento com etiqueta, foto, localização, pressão da rede e criticidade.</li>
+        <li>Priorize reparos com maior custo anual, maior ruído, maior impacto de pressão e maior facilidade de manutenção.</li>
+        <li>Compare a estimativa da ferramenta com medição por detector ultrassônico quando disponível.</li>
+        <li>Após o reparo, confirme redução de consumo no compressor ou queda do tempo em carga.</li>
+        <li>Evite compensar vazamentos aumentando a pressão da rede; isso pode elevar ainda mais perdas e consumo.</li>
+      </ul>
+    </section>
+    <section class="calc-card">
+      <h2><i class="fas fa-file-lines"></i> Memorial técnico preliminar</h2>
+      <pre id="memorial" class="memorial">Clique em calcular para gerar o memorial.</pre>
+    </section>
+    <section class="calc-card">
+      <h2><i class="fas fa-link"></i> Ferramentas relacionadas</h2>
+      <div class="related-grid">
+        <a class="related-card" href="calculadora-consumo-ar-comprimido.html"><b>Consumo de Ar Comprimido</b><span>Consumo de cilindros, ciclos pneumáticos e custo mensal.</span></a>
+        <a class="related-card" href="calculadora-perda-carga-ar-comprimido.html"><b>Perda de Carga em Ar Comprimido</b><span>Rede, tubulação, vazão, pressão e queda admissível.</span></a>
+        <a class="related-card" href="calculadora-reservatorio-ar-comprimido.html"><b>Reservatório de Ar Comprimido</b><span>Volume, autonomia, pressão e apoio a picos de demanda.</span></a>
+        <a class="related-card" href="calculadora-consumo-ar-instrumentos.html"><b>Consumo de Ar de Instrumentos</b><span>Posicionadores, válvulas, purgas e atuadores pneumáticos.</span></a>
+        <a class="related-card" href="calculadora-ponto-orvalho-ar-comprimido.html"><b>Ponto de Orvalho</b><span>Qualidade do ar seco para instrumentos e pneumática.</span></a>
+        <a class="related-card" href="ferramentas-manutencao-industrial.html"><b>Ferramentas de Manutenção</b><span>Checklists e calculadoras para confiabilidade industrial.</span></a>
+      </div>
+    </section>
+    <section class="calc-card faq">
+      <h2><i class="fas fa-circle-question"></i> Perguntas frequentes</h2>
+      <details><summary>Um furo de 1 ou 2 mm realmente pode custar caro?</summary><p>Sim. Como a rede de ar comprimido opera pressurizada, um vazamento pequeno pode ficar ativo 24 horas por dia e exigir energia contínua do compressor. O custo cresce com a pressão, diâmetro do furo, horas de operação e custo de energia.</p></details>
+      <details><summary>Como estimar o diâmetro do vazamento?</summary><p>O ideal é usar detector ultrassônico com estimativa de vazão ou fazer medição por queda de pressão/consumo. A estimativa visual por diâmetro do furo é apenas uma triagem para priorização.</p></details>
+      <details><summary>A pressão da rede influencia muito?</summary><p>Sim. Pressões mais altas elevam a vazão perdida e podem aumentar vazamentos existentes. Em muitos sistemas, reduzir pressão excessiva e reparar vazamentos gera economia significativa.</p></details>
+      <details><summary>Por que usar Nm³/h em vez de m³/h?</summary><p>Nm³/h normaliza o volume para uma condição de referência e facilita comparar vazões de ar independentemente da pressão e temperatura do ponto de medição.</p></details>
+    </section>
+  </main>
+  <script>
+const $=id=>document.getElementById(id);
+const fmt=(n,d=2)=>Number.isFinite(n)?n.toLocaleString('pt-BR',{minimumFractionDigits:d,maximumFractionDigits:d}):'-';
+function n(id){return parseFloat($(id).value.toString().replace(',','.'));}
+function brl(v){return Number.isFinite(v)?v.toLocaleString('pt-BR',{style:'currency',currency:'BRL'}):'-';}
+function calcLeak(diamMm, PbarG, tempC, Cd){
+  const gamma=1.4, R=287.05, atmBar=1.01325, Pn=101325, Tn=273.15;
+  const P1=(PbarG+atmBar)*100000;
+  const P2=atmBar*100000;
+  const T=273.15+tempC;
+  const A=Math.PI*Math.pow(diamMm/1000,2)/4;
+  const ratio=P2/P1;
+  const critical=Math.pow(2/(gamma+1),gamma/(gamma-1));
+  let mdot, regime;
+  if(ratio<=critical){
+    mdot=Cd*A*P1*Math.sqrt(gamma/(R*T))*Math.pow(2/(gamma+1),(gamma+1)/(2*(gamma-1)));
+    regime='Crítico / choked';
+  }else{
+    const term=Math.pow(ratio,2/gamma)-Math.pow(ratio,(gamma+1)/gamma);
+    mdot=Cd*A*P1*Math.sqrt((2*gamma/(R*T*(gamma-1)))*Math.max(term,0));
+    regime='Subcrítico';
+  }
+  const rhoN=Pn/(R*Tn);
+  const qNm3h=mdot*3600/rhoN;
+  return {mdot, mdotKgH:mdot*3600, qNm3h, qNlMin:qNm3h*1000/60, scfm:qNm3h*0.588577, regime, ratio, critical};
+}
+function prioridade(custoAno){
+  if(custoAno>=15000) return 'Alta';
+  if(custoAno>=5000) return 'Média';
+  if(custoAno>=1000) return 'Baixa/Média';
+  return 'Baixa';
+}
+function calcularVazamento(){
+  const c={tag:$('tag').value.trim(), diam:n('diam'), pressao:n('pressao'), temp:n('temp'), cd:n('cd'), fator:n('fatorOperacao')/100, horas:n('horasDia'), dias:n('diasMes'), custo:n('custoKwh'), potEsp:n('potEsp'), co2:n('co2'), pmin:n('pressaoMin')};
+  const erros=[];
+  if(!(c.diam>0)) erros.push('Informe diâmetro de furo maior que zero.');
+  if(!(c.pressao>0)) erros.push('Informe pressão manométrica maior que zero.');
+  if(!(c.temp>-50 && c.temp<150)) erros.push('Temperatura fora da faixa esperada para estimativa.');
+  if(!(c.cd>0 && c.cd<=1)) erros.push('Coeficiente de descarga deve ficar entre 0 e 1.');
+  if(!(c.horas>=0 && c.dias>=0)) erros.push('Horas por dia e dias por mês não podem ser negativos.');
+  if(!(c.potEsp>0)) erros.push('Potência específica deve ser maior que zero.');
+  if(erros.length){
+    $('status').className='status-box status-bad';
+    $('status').innerHTML='<strong>Não foi possível calcular.</strong><br>'+erros.join('<br>');
+    return;
+  }
+  const r=calcLeak(c.diam,c.pressao,c.temp,c.cd);
+  const horasMes=c.horas*c.dias*c.fator;
+  const qNm3min=r.qNm3h/60;
+  const kw=qNm3min*c.potEsp;
+  const kwhMes=kw*horasMes;
+  const custoMes=kwhMes*c.custo;
+  const custoAno=custoMes*12;
+  const co2Ano=kwhMes*12*c.co2;
+  const volMes=r.qNm3h*horasMes;
+  $('qNm3h').textContent=fmt(r.qNm3h,2);
+  $('qNlmin').textContent=fmt(r.qNlMin,0);
+  $('kwEq').textContent=fmt(kw,2);
+  $('custoMes').textContent=brl(custoMes);
+  $('custoAno').textContent=brl(custoAno);
+  $('co2Ano').textContent=fmt(co2Ano,1);
+  $('regime').textContent=r.regime;
+  $('mdot').textContent=fmt(r.mdotKgH,2);
+  $('volMes').textContent=fmt(volMes,0);
+  $('kwhMes').textContent=fmt(kwhMes,0);
+  const prio=prioridade(custoAno);
+  const status=$('status');
+  status.className='status-box '+(prio==='Alta'?'status-bad':prio==='Média'?'status-warn':'status-ok');
+  status.innerHTML=`<strong>Prioridade ${prio} para reparo.</strong><br>Este vazamento pode representar ${brl(custoMes)} por mês e ${brl(custoAno)} por ano, considerando os dados informados.`;
+  const alerts=[];
+  alerts.push(`Escoamento estimado: ${r.regime}.`);
+  if(c.pressao<c.pmin) alerts.push('A pressão informada está abaixo da pressão mínima aceitável. Investigue demanda, perda de carga e vazamentos antes de elevar setpoint.');
+  if(c.diam>=3) alerts.push('Furo igual ou acima de 3 mm tende a ter impacto financeiro relevante em operação contínua. Priorize reparo.');
+  if(c.horas*c.dias>=600) alerts.push('Operação mensal elevada: vazamentos pequenos podem gerar alto custo anual.');
+  if(c.potEsp<4 || c.potEsp>10) alerts.push('Potência específica fora de faixa comum. Confirme valor real do sistema de compressores.');
+  alerts.push('Confirme a estimativa com inspeção ultrassônica, medição de compressor ou auditoria de ar comprimido.');
+  $('alerts').className='status-box '+(alerts.length>3?'status-warn':'');
+  $('alerts').innerHTML='<strong>Alertas e recomendações:</strong><ul class="alert-list">'+alerts.map(a=>`<li>${a}</li>`).join('')+'</ul>';
+  gerarTabela(c);
+  $('memorial').textContent=memorial(c,r,kw,kwhMes,custoMes,custoAno,volMes,co2Ano,alerts,prio);
+}
+function gerarTabela(c){
+  const tbody=$('tabelaFuross').querySelector('tbody');
+  const diametros=[0.5,1,1.5,2,2.5,3,4,5,6,8,10];
+  const horasMes=c.horas*c.dias*c.fator;
+  tbody.innerHTML=diametros.map(d=>{
+    const r=calcLeak(d,c.pressao,c.temp,c.cd);
+    const kw=(r.qNm3h/60)*c.potEsp;
+    const custoMes=kw*horasMes*c.custo;
+    const custoAno=custoMes*12;
+    return `<tr><td>${fmt(d,1)} mm</td><td>${fmt(r.qNm3h,2)} Nm³/h</td><td>${fmt(kw,2)} kW</td><td>${brl(custoMes)}</td><td>${brl(custoAno)}</td><td>${prioridade(custoAno)}</td></tr>`;
+  }).join('');
+}
+function memorial(c,r,kw,kwhMes,custoMes,custoAno,volMes,co2Ano,alerts,prio){
+  return `MEMORIAL PRELIMINAR - VAZAMENTO DE AR COMPRIMIDO\n\nIdentificação/local: ${c.tag||'não informado'}\n\nDados de entrada:\n- Diâmetro estimado do furo: ${fmt(c.diam,2)} mm\n- Pressão da rede: ${fmt(c.pressao,2)} bar(g)\n- Temperatura do ar: ${fmt(c.temp,0)} °C\n- Coeficiente de descarga: ${fmt(c.cd,2)}\n- Operação: ${fmt(c.horas,1)} h/dia, ${fmt(c.dias,0)} dias/mês\n- Fator de ocorrência: ${fmt(c.fator*100,0)}%\n- Custo de energia: ${brl(c.custo)}/kWh\n- Potência específica: ${fmt(c.potEsp,2)} kW por Nm³/min\n- Fator de CO2: ${fmt(c.co2,3)} kg CO2/kWh\n\nResultados estimados:\n- Regime de escoamento: ${r.regime}\n- Vazão mássica: ${fmt(r.mdotKgH,2)} kg/h\n- Vazão perdida: ${fmt(r.qNm3h,2)} Nm³/h\n- Vazão equivalente: ${fmt(r.qNlMin,0)} NL/min (${fmt(r.scfm,2)} SCFM)\n- Volume mensal perdido: ${fmt(volMes,0)} Nm³/mês\n- Potência equivalente: ${fmt(kw,2)} kW\n- Energia mensal estimada: ${fmt(kwhMes,0)} kWh/mês\n- Custo mensal estimado: ${brl(custoMes)}\n- Custo anual estimado: ${brl(custoAno)}\n- CO2 indireto anual: ${fmt(co2Ano,1)} kg CO2/ano\n- Prioridade preliminar de reparo: ${prio}\n\nAlertas e recomendações:\n${alerts.map(a=>'- '+a).join('\n')}\n\nObservação importante: este cálculo é uma estimativa preliminar baseada em escoamento compressível por orifício circular para atmosfera. Vazamentos reais podem envolver frestas, roscas, conexões, válvulas, purgadores, mangueiras e geometrias irregulares. Confirme com inspeção de campo, detector ultrassônico, medição de consumo do compressor e critérios internos de manutenção. A ferramenta não substitui laudo, auditoria energética, medição certificada ou validação profissional.`;
+}
+function copiarMemorial(){const txt=$('memorial').textContent;navigator.clipboard.writeText(txt).then(()=>alert('Memorial copiado.')).catch(()=>alert('Não foi possível copiar automaticamente. Selecione o texto manualmente.'));}
+calcularVazamento();
+  </script>
+  <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
+</body>
+</html>
