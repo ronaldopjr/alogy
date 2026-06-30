@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calculadora de Cabo de Instrumentação 24 Vcc | ALOGY</title>
+  <meta name="description" content="Dimensione cabo de instrumentação 24 Vcc por queda de tensão, distância, corrente, seção, malha 4-20 mA, HART, barreira e memorial técnico." />
+  <meta name="robots" content="index,follow" />
+  <meta name="theme-color" content="#004b80" />
+  <link rel="canonical" href="https://www.alogy.com.br/calculadora-cabo-instrumentacao-24vcc.html" />
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png" />
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="app.js" defer></script>
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ALOGY Engenharia" />
+  <meta property="og:title" content="Calculadora de Cabo de Instrumentação 24 Vcc" />
+  <meta property="og:description" content="Calcule queda de tensão, comprimento máximo, seção recomendada e tensão disponível em transmissores, sensores, solenóides e malhas 4-20 mA/HART." />
+  <meta property="og:url" content="https://www.alogy.com.br/calculadora-cabo-instrumentacao-24vcc.html" />
+  <meta property="og:image" content="https://www.alogy.com.br/logo-alogy.webp" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Calculadora de Cabo de Instrumentação 24 Vcc" />
+  <meta name="twitter:description" content="Dimensionamento preliminar de cabo 24 Vcc para instrumentação industrial, com queda de tensão, HART, barreira, comprimento máximo e memorial." />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Calculadora de Cabo de Instrumentação 24 Vcc",
+    "applicationCategory": "EngineeringApplication",
+    "operatingSystem": "Web",
+    "url": "https://www.alogy.com.br/calculadora-cabo-instrumentacao-24vcc.html",
+    "description": "Ferramenta para pré-dimensionamento de cabo de instrumentação 24 Vcc, considerando corrente, distância, seção, temperatura, queda de tensão, malha 4-20 mA, HART, barreira, isolador e tensão mínima do instrumento.",
+    "creator": {"@type": "Organization", "name": "ALOGY Engenharia", "url": "https://www.alogy.com.br/"}
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {"@type":"Question","name":"Como dimensionar cabo de instrumentação 24 Vcc?","acceptedAnswer":{"@type":"Answer","text":"Levante a corrente do dispositivo ou da malha, a distância física, a seção e o material do cabo, a temperatura estimada, a tensão da fonte e a tensão mínima do equipamento. A queda de tensão é calculada pela resistência de ida e volta do cabo multiplicada pela corrente. A tensão restante deve atender ao instrumento na pior condição de operação."}},
+      {"@type":"Question","name":"Em uma malha 4-20 mA com HART, a queda de tensão do cabo importa?","acceptedAnswer":{"@type":"Answer","text":"Sim. Em transmissores 2 fios, a fonte precisa vencer a queda no cabo, a carga de entrada analógica, resistor HART, barreiras, isoladores e ainda deixar tensão suficiente nos terminais do transmissor. Se a tensão disponível for baixa, a malha pode saturar em 20 mA ou falhar em corrente de alarme."}},
+      {"@type":"Question","name":"Qual seção usar para cabo de instrumento 24 Vcc?","acceptedAnswer":{"@type":"Answer","text":"A seção depende da corrente, distância, queda admissível, condições de instalação, temperatura e requisitos mecânicos. Em instrumentação são comuns cabos de 0,5 mm², 0,75 mm², 1,0 mm² e 1,5 mm², mas a escolha deve ser validada com especificação do projeto, fabricante e normas aplicáveis."}},
+      {"@type":"Question","name":"Esta ferramenta substitui projeto elétrico ou especificação de cabo?","acceptedAnswer":{"@type":"Answer","text":"Não. A calculadora fornece uma estimativa preliminar para apoio técnico. A especificação final deve considerar normas aplicáveis, segregação, blindagem, aterramento, área classificada, eletrocalha/eletroduto, temperatura, interferência eletromagnética e documentação dos fabricantes."}}
+    ]
+  }
+  </script>
+  <style>
+
+    .tech-page{background:linear-gradient(180deg,rgba(0,75,128,.04),rgba(255,255,255,0) 260px)}
+    .tech-wrap{max-width:1120px;margin:18px auto 34px}
+    .tech-back{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:900;color:#0b3a62;background:#fff;border:1px solid rgba(0,107,177,.18);border-radius:999px;padding:10px 14px;box-shadow:0 6px 18px rgba(0,0,0,.04);margin-bottom:14px}
+    .tech-hero{background:linear-gradient(135deg,#0b3a62,#006bb1);color:#fff;border-radius:22px;padding:30px;box-shadow:0 18px 42px rgba(0,75,128,.22);overflow:hidden;position:relative}
+    .tech-hero:after{content:"";position:absolute;right:-80px;top:-80px;width:240px;height:240px;border-radius:50%;background:rgba(255,255,255,.13)}
+    .tech-hero h1{font-size:2.25rem;line-height:1.12;margin:0 0 12px;max-width:900px;color:#fff}
+    .tech-hero p{font-size:1.08rem;line-height:1.65;margin:0;max-width:930px;color:rgba(255,255,255,.92)}
+    .hero-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+    .hero-tags span,.hero-tags a{display:inline-flex;align-items:center;gap:7px;border:1px solid rgba(255,255,255,.26);background:rgba(255,255,255,.12);color:#fff;text-decoration:none;border-radius:999px;padding:8px 10px;font-size:.88rem;font-weight:900}
+    .calc-grid{display:grid;grid-template-columns:minmax(0,1fr) 390px;gap:18px;margin-top:18px}
+    .tech-card{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:20px;box-shadow:0 12px 30px rgba(0,0,0,.06);padding:24px;margin-top:18px}
+    .tech-card h2{font-size:1.45rem;line-height:1.25;margin:0 0 12px;color:#0b3a62}
+    .tech-card h3{font-size:1.12rem;line-height:1.3;margin:20px 0 8px;color:#0b3a62}
+    .tech-card p,.tech-card li{font-size:1rem;line-height:1.72;color:#253243}
+    .tech-card ul,.tech-card ol{margin:0 0 16px 20px}
+    .field-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .field{display:flex;flex-direction:column;gap:6px}
+    .field label{font-weight:900;color:#0b3a62;font-size:.92rem}
+    .field input,.field select,.field textarea{border:1px solid rgba(0,0,0,.14);border-radius:12px;padding:12px;background:#fff;font:inherit;width:100%;box-sizing:border-box}
+    .field small{color:#6b7280;line-height:1.4}
+    .wide{grid-column:1/-1}
+    .calc-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+    .btn-mini{display:inline-flex;align-items:center;gap:8px;border:none;border-radius:999px;padding:11px 14px;font-weight:900;cursor:pointer;text-decoration:none;background:#0b3a62;color:#fff;font:inherit}
+    .btn-mini.secondary{background:rgba(0,107,177,.09);color:#0b3a62;border:1px solid rgba(0,107,177,.18)}
+    .result-box{border-radius:18px;background:linear-gradient(180deg,rgba(0,107,177,.10),rgba(0,107,177,.04));border:1px solid rgba(0,107,177,.18);padding:18px}
+    .result-main{font-size:2rem;font-weight:900;color:#0b3a62;line-height:1.15;margin:8px 0}
+    .result-sub{color:#5b6472;margin:8px 0 0;line-height:1.55}
+    .pill-row{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+    .pill{display:inline-flex;align-items:center;gap:6px;border-radius:999px;background:#fff;border:1px solid rgba(0,107,177,.18);padding:7px 10px;font-weight:900;color:#0b3a62;font-size:.88rem}
+    .note{border-left:5px solid #006bb1;background:rgba(0,107,177,.07);padding:12px 14px;border-radius:14px;color:#253243;line-height:1.6}
+    .note.warn{border-left-color:#f59e0b;background:rgba(245,158,11,.10)}
+    .note.bad{border-left-color:#dc2626;background:rgba(220,38,38,.10)}
+    .note.ok{border-left-color:#16a34a;background:rgba(22,163,74,.10)}
+    .note.info{border-left-color:#006bb1;background:rgba(0,107,177,.08)}
+    .table-wrap{overflow:auto;border:1px solid rgba(0,0,0,.08);border-radius:16px;margin-top:10px;background:#fff}
+    .tech-table{border-collapse:collapse;width:100%;min-width:760px}
+    .tech-table th,.tech-table td{border-bottom:1px solid rgba(0,0,0,.07);padding:10px;text-align:left;vertical-align:top;font-size:.95rem}
+    .tech-table th{background:rgba(0,75,128,.07);color:#0b3a62;font-weight:900}
+    .tech-table tr:last-child td{border-bottom:none}
+    .formula-box{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;background:#0f172a;color:#e5e7eb;border-radius:16px;padding:16px;overflow:auto;line-height:1.65;font-size:.92rem}
+    .memorial{white-space:pre-wrap;background:#0f172a;color:#e5e7eb;border-radius:16px;padding:16px;min-height:210px;line-height:1.5;font-size:.92rem;overflow:auto}
+    .diagram{width:100%;height:auto;border:1px solid rgba(0,0,0,.08);border-radius:18px;background:#fff;margin-top:10px}
+    .related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    .related-grid a{text-decoration:none;border:1px solid rgba(0,107,177,.16);border-radius:16px;padding:14px;background:rgba(0,107,177,.05);color:#0b3a62;font-weight:900;line-height:1.35}
+    .related-grid a span{display:block;color:#4b5563;font-weight:400;margin-top:6px;font-size:.9rem}
+    @media(max-width:940px){.calc-grid{grid-template-columns:1fr}.field-grid{grid-template-columns:1fr}.related-grid{grid-template-columns:1fr}.tech-hero h1{font-size:1.85rem}.tech-card{padding:18px}
+
+  </style>
+</head>
+<body class="tech-page">
+  <header>
+    <div class="container headbar">
+      <a href="/" class="logo-wrapper" aria-label="Voltar para o início"><img src="logo-alogy.webp" alt="ALOGY Engenharia" width="878" height="308" decoding="async" /></a>
+      <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menu"><i class="fas fa-bars"></i></button>
+    </div>
+    <nav class="desktop" aria-label="Menu principal"><div class="container navlinks"><a href="index.html">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="index.html#contato">Contato</a></div></nav>
+    <nav class="mobile" aria-label="Menu mobile"><a href="index.html">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="index.html#contato">Contato</a></nav>
+  </header>
+  <div class="social-floating" aria-label="Redes sociais"><a href="https://www.linkedin.com/company/alogyengenharia" class="linkedin" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a><a href="https://www.instagram.com/alogyengenharia" class="instagram" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="https://www.facebook.com/alogyengenharia" class="facebook" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><a href="https://www.youtube.com/@alogyengenharia" class="youtube" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a><a href="https://hotmart.com/pt-br/club/alogyengenharia" class="hotmart" target="_blank" rel="noopener" aria-label="Hotmart">H</a><a href="https://www.tiktok.com/@alogyengenharia" class="tiktok" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a></div>
+  <div class="fab-wrap" aria-label="Ações rápidas"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1%21%20Vim%20pela%20calculadora%20de%20cabo%2024%20Vcc%20da%20ALOGY.%20Gostaria%20de%20apoio%20em%20instrumenta%C3%A7%C3%A3o%20ou%20automa%C3%A7%C3%A3o." target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
+
+  <main class="container tech-wrap">
+    <a class="tech-back no-print" href="ferramentas.html"><i class="fas fa-arrow-left"></i> Voltar para Ferramentas</a>
+    <section class="tech-hero">
+      <h1>Calculadora de Cabo de Instrumentação 24 Vcc</h1>
+      <p>Dimensione de forma preliminar cabos de instrumentação para transmissores 2 fios, sensores 3 fios, solenóides, remotas, válvulas, malhas 4-20 mA e HART. A ferramenta calcula queda de tensão, tensão disponível no equipamento, comprimento máximo, seção recomendada, carga de malha e gera um memorial técnico para projeto ou manutenção.</p>
+      <div class="hero-tags"><span><i class="fas fa-cable-car"></i> Cabo 24 Vcc</span><span><i class="fas fa-wave-square"></i> 4-20 mA / HART</span><span><i class="fas fa-bolt"></i> Queda de tensão</span><span><i class="fas fa-ruler-combined"></i> Comprimento máximo</span><span><i class="fas fa-file-lines"></i> Memorial técnico</span></div>
+    </section>
+
+    <section class="tech-card">
+      <h2>Aviso de segurança e uso correto</h2>
+      <p class="note"><strong>Atenção:</strong> esta calculadora é uma ferramenta de pré-dimensionamento. Ela não substitui projeto elétrico, especificação de cabos, diagrama de malha, estudo de área classificada, documentação do fabricante, análise de interferência eletromagnética, requisitos de blindagem/aterramento, NR-10, normas aplicáveis ou validação profissional. Para sistemas críticos, segurança de processo, intertravamentos, áreas classificadas, máquinas ou longas distâncias, valide o cálculo com dados reais de campo e documentação técnica completa.</p>
+    </section>
+
+    <section class="calc-grid">
+      <div class="tech-card">
+        <h2>Dados de entrada</h2>
+        <form onsubmit="calcularCabo24();return false;">
+          <div class="field-grid">
+            <div class="field"><label>Tag / malha</label><input id="tag" type="text" value="LT-101" /><small>Opcional para o memorial.</small></div>
+            <div class="field"><label>Aplicação</label><input id="servico" type="text" value="Transmissor 4-20 mA com HART" /><small>Ex.: transmissor DP, sensor 3 fios, solenoide, remote I/O.</small></div>
+            <div class="field"><label>Tipo de circuito</label><select id="tipoCircuito"><option value="loop2">Transmissor 2 fios / malha 4-20 mA</option><option value="sensor3">Sensor 3 fios alimentado em 24 Vcc</option><option value="atuador">Solenoide / carga discreta 24 Vcc</option><option value="remota">Remote I/O, switch ou equipamento eletrônico</option></select><small>Define interpretação dos alertas.</small></div>
+            <div class="field"><label>Tensão da fonte</label><input id="vFonte" type="number" step="0.1" value="24.0" /><small>Vcc na origem da malha ou borne do painel.</small></div>
+            <div class="field"><label>Tensão mínima no equipamento</label><input id="vMin" type="number" step="0.1" value="12.0" /><small>Para transmissor 2 fios, informe tensão mínima nos terminais. Para sensor/carga, use datasheet.</small></div>
+            <div class="field"><label>Corrente de operação</label><input id="corrente" type="number" step="0.1" value="20" /><small>mA. Para malha 4-20 mA, use 20 mA como pior caso normal.</small></div>
+            <div class="field"><label>Corrente de falha / pico</label><input id="correntePico" type="number" step="0.1" value="22" /><small>mA. Ex.: falha alta 21-22 mA ou pico de carga discreta.</small></div>
+            <div class="field"><label>Distância física até o campo</label><input id="distancia" type="number" step="1" value="300" /><small>m em uma direção. A ferramenta considera ida e volta.</small></div>
+            <div class="field"><label>Seção do condutor</label><input id="secao" type="number" step="0.01" value="0.75" /><small>mm² por condutor. Ex.: 0,5 / 0,75 / 1,0 / 1,5.</small></div>
+            <div class="field"><label>Material do condutor</label><select id="material"><option value="cobre">Cobre</option><option value="aluminio">Alumínio</option></select><small>Instrumentação normalmente usa cobre.</small></div>
+            <div class="field"><label>Temperatura estimada do cabo</label><input id="temperatura" type="number" step="1" value="40" /><small>°C. A resistência aumenta com a temperatura.</small></div>
+            <div class="field"><label>Queda máxima desejada</label><input id="quedaMax" type="number" step="0.1" value="5" /><small>% da tensão da fonte para triagem.</small></div>
+            <div class="field"><label>Carga série da malha</label><input id="rSerie" type="number" step="1" value="250" /><small>Ω. Entrada analógica/resistor HART/barreira/isolador em série.</small></div>
+            <div class="field"><label>Queda fixa adicional</label><input id="vFixo" type="number" step="0.1" value="0" /><small>V. Use para isolador, diodo, módulo ou barreira com queda fixa conhecida.</small></div>
+            <div class="field"><label>Blindagem / cabo</label><select id="blindagem"><option value="blindado">Par blindado individual ou geral</option><option value="sem">Sem blindagem</option><option value="armado">Cabo armado/blindado para rota severa</option></select><small>Usado nos alertas de boas práticas.</small></div>
+            <div class="field"><label>Ambiente</label><select id="ambiente"><option value="normal">Área industrial geral</option><option value="ruido">Alta interferência eletromagnética</option><option value="ex">Área classificada / Ex</option><option value="longa">Rota longa / campo remoto</option></select><small>Não substitui análise de instalação.</small></div>
+          </div>
+          <div class="calc-actions"><button class="btn-mini" type="submit"><i class="fas fa-calculator"></i> Calcular cabo</button><button class="btn-mini secondary" type="button" onclick="carregarExemplo()"><i class="fas fa-rotate"></i> Exemplo</button><button class="btn-mini secondary" type="button" onclick="copiarMemorial()"><i class="fas fa-copy"></i> Copiar memorial</button></div>
+        </form>
+      </div>
+
+      <aside class="tech-card">
+        <h2>Resultado rápido</h2>
+        <div id="resultadoRapido" class="result-box"><p>Preencha os dados e clique em calcular.</p></div>
+        <svg class="diagram" viewBox="0 0 760 310" role="img" aria-label="Diagrama de malha 24 Vcc com cabo e instrumento">
+          <rect x="25" y="55" width="155" height="90" rx="16" fill="#e0f2fe" stroke="#0b3a62" stroke-width="3"/>
+          <text x="102" y="88" text-anchor="middle" font-size="20" font-weight="700" fill="#0b3a62">Painel</text>
+          <text x="102" y="118" text-anchor="middle" font-size="15" fill="#0b3a62">Fonte / AI</text>
+          <line x1="180" y1="82" x2="590" y2="82" stroke="#006bb1" stroke-width="8"/>
+          <line x1="590" y1="128" x2="180" y2="128" stroke="#006bb1" stroke-width="8"/>
+          <text x="385" y="62" text-anchor="middle" font-size="16" font-weight="700" fill="#0b3a62">Cabo ida e volta</text>
+          <rect x="590" y="55" width="145" height="100" rx="16" fill="#dcfce7" stroke="#166534" stroke-width="3"/>
+          <text x="662" y="88" text-anchor="middle" font-size="19" font-weight="700" fill="#166534">Campo</text>
+          <text x="662" y="118" text-anchor="middle" font-size="15" fill="#166534">Instrumento</text>
+          <rect x="250" y="195" width="260" height="68" rx="14" fill="#fff7ed" stroke="#f97316" stroke-width="3"/>
+          <text x="380" y="224" text-anchor="middle" font-size="17" font-weight="700" fill="#9a3412">Queda = I × R loop</text>
+          <text x="380" y="249" text-anchor="middle" font-size="14" fill="#9a3412">V disponível = fonte - cabo - cargas série</text>
+        </svg>
+      </aside>
+    </section>
+
+    <section id="resultadoDetalhado" class="tech-card"><h2>Resultado detalhado</h2><p>Os resultados completos aparecerão aqui após o cálculo.</p></section>
+
+    <section class="tech-card">
+      <h2>Memorial técnico preliminar</h2>
+      <p>Use este bloco como apoio para estudo, manutenção ou pré-projeto. Antes de comprar cabo ou liberar instalação, valide as condições reais de campo.</p>
+      <div id="memorial" class="memorial">Memorial ainda não calculado.</div>
+    </section>
+
+    <section class="tech-card">
+      <h2>Como interpretar o cálculo</h2>
+      <p>O cabo de instrumentação 24 Vcc precisa garantir que a tensão no equipamento de campo continue acima do mínimo do fabricante na condição mais crítica. Em uma malha 4-20 mA de transmissor 2 fios, a fonte alimenta o transmissor, a resistência do cabo, a entrada analógica, resistor HART, barreiras, isoladores e indicadores em série. Se a tensão restante nos terminais do transmissor for baixa, a malha pode não atingir 20 mA, perder comunicação HART ou apresentar falhas intermitentes.</p>
+      <div class="formula-box">R loop = 2 × distância × resistividade corrigida / seção\nΔV cabo = corrente × R loop\nΔV série = corrente × resistência série + queda fixa\nV disponível no instrumento = V fonte - ΔV cabo - ΔV série</div>
+      <h3>Boas práticas de campo</h3>
+      <ul>
+        <li>Use cabo adequado para instrumentação, com blindagem quando houver ruído, inversores, motores ou longas rotas.</li>
+        <li>Não misture cabos de sinais analógicos com potência ou cargas ruidosas sem segregação adequada.</li>
+        <li>Em HART, garanta carga mínima de comunicação e evite capacitância excessiva de cabo em rotas muito longas.</li>
+        <li>Em área classificada, valide barreira/isolador, parâmetros de entidade, aterramento, certificados e documentação Ex.</li>
+        <li>Para solenóides, válvulas e cargas discretas, considere corrente de partida, simultaneidade e queda de tensão no pico.</li>
+      </ul>
+    </section>
+
+    <section class="tech-card">
+      <h2>Checklist rápido</h2>
+      <ul>
+        <li>Conferir tensão mínima e máxima permitida no instrumento.</li>
+        <li>Confirmar corrente normal, corrente de alarme e corrente de partida, quando aplicável.</li>
+        <li>Medir ou estimar distância real da rota, incluindo subidas, descidas, bandejas e sobra técnica.</li>
+        <li>Validar seção do cabo, blindagem, isolamento, temperatura, raio de curvatura e método de instalação.</li>
+        <li>Verificar carga da entrada analógica, resistor HART, barreira, isolador, indicador local e outros elementos em série.</li>
+        <li>Confirmar segregação de sinais, aterramento de blindagem e proteção contra surtos quando necessário.</li>
+      </ul>
+    </section>
+
+    <section class="tech-card">
+      <h2>Ferramentas relacionadas</h2>
+      <div class="related-grid">
+        <a href="calculadora-malha-4-20ma-hart-completa.html">Malha 4-20 mA / HART<span>Valide carga, fonte, resistor HART e diagnóstico de corrente.</span></a>
+        <a href="calculadora-fonte-24vcc-painel-automacao.html">Fonte 24 Vcc para Painel<span>Dimensione a fonte e a distribuição 24 Vcc do painel.</span></a>
+        <a href="calculadora-barreira-intrinseca-area-classificada.html">Barreira Intrínseca<span>Faça triagem de entidade, Co/Lo, Ci/Li e queda da malha.</span></a>
+        <a href="calculadora-queda-tensao-24vcc.html">Queda de Tensão 24 Vcc<span>Ferramenta simples de queda em circuitos de campo.</span></a>
+        <a href="calculadora-comprimento-cabo-hart.html">Comprimento de Cabo HART<span>Confira limite preliminar por resistência e capacitância.</span></a>
+        <a href="calculadora-dimensionamento-cabos.html">Dimensionamento de Cabos<span>Apoio para circuitos elétricos de baixa tensão.</span></a>
+      </div>
+    </section>
+  </main>
+
+<script>
+function n(id){const v=parseFloat(String(document.getElementById(id).value).replace(',','.'));return Number.isFinite(v)?v:0;}
+function s(id){return String(document.getElementById(id).value||'').trim();}
+function fmt(x,d=2){return Number(x).toLocaleString('pt-BR',{minimumFractionDigits:d,maximumFractionDigits:d});}
+function pct(x,d=1){return fmt(x,d)+'%';}
+function materialProps(material){return material==='aluminio'?{rho20:0.0282,alpha:0.00403,nome:'Alumínio'}:{rho20:0.01724,alpha:0.00393,nome:'Cobre'};}
+const secoes=[0.34,0.5,0.75,1.0,1.5,2.5,4.0,6.0];
+function classe(alerts){if(alerts.some(a=>a.cls==='bad')) return 'bad'; if(alerts.some(a=>a.cls==='warn')) return 'warn'; return 'ok';}
+function calcForSection(secao,dist,iA,temp,mat){const r=2*dist*mat.rho20*(1+mat.alpha*(temp-20))/secao;return {secao,r,vDrop:iA*r};}
+function carregarExemplo(){
+  document.getElementById('tag').value='LT-101';
+  document.getElementById('servico').value='Transmissor DP 4-20 mA/HART em campo';
+  document.getElementById('tipoCircuito').value='loop2';
+  document.getElementById('vFonte').value='24';
+  document.getElementById('vMin').value='12';
+  document.getElementById('corrente').value='20';
+  document.getElementById('correntePico').value='22';
+  document.getElementById('distancia').value='300';
+  document.getElementById('secao').value='0.75';
+  document.getElementById('material').value='cobre';
+  document.getElementById('temperatura').value='40';
+  document.getElementById('quedaMax').value='5';
+  document.getElementById('rSerie').value='250';
+  document.getElementById('vFixo').value='0';
+  document.getElementById('blindagem').value='blindado';
+  document.getElementById('ambiente').value='normal';
+  calcularCabo24();
+}
+function calcularCabo24(){
+  const tag=s('tag'), servico=s('servico'), tipo=s('tipoCircuito');
+  const vFonte=n('vFonte'), vMin=n('vMin'), iMA=n('corrente'), iPicoMA=n('correntePico'), dist=n('distancia'), secao=n('secao'), temp=n('temperatura'), quedaMax=n('quedaMax'), rSerie=n('rSerie'), vFixo=n('vFixo');
+  const material=document.getElementById('material').value, blind=s('blindagem'), ambiente=s('ambiente');
+  const mat=materialProps(material);
+  const alerts=[];
+  if(vFonte<=0||vMin<0||iMA<=0||iPicoMA<=0||dist<=0||secao<=0||quedaMax<=0){
+    document.getElementById('resultadoRapido').innerHTML='<p class="note bad"><strong>Dados inválidos.</strong> Revise tensão, corrente, distância, seção e queda máxima.</p>';
+    return;
+  }
+  const iA=iMA/1000, iPicoA=iPicoMA/1000;
+  const base=calcForSection(secao,dist,iA,temp,mat);
+  const pico=calcForSection(secao,dist,iPicoA,temp,mat);
+  const vSerie=iA*rSerie+vFixo;
+  const vSeriePico=iPicoA*rSerie+vFixo;
+  const vDisp=vFonte-base.vDrop-vSerie;
+  const vDispPico=vFonte-pico.vDrop-vSeriePico;
+  const dropPct=base.vDrop/vFonte*100;
+  const dropPctPico=pico.vDrop/vFonte*100;
+  const margem=vDisp-vMin, margemPico=vDispPico-vMin;
+  const margemFonte=vFonte-vMin-vSerie;
+  const lMaxTensao=margemFonte>0 ? margemFonte*secao/(2*mat.rho20*(1+mat.alpha*(temp-20))*iA) : 0;
+  const lMaxQueda=(vFonte*quedaMax/100)*secao/(2*mat.rho20*(1+mat.alpha*(temp-20))*iA);
+  const lMax=Math.max(0, Math.min(lMaxTensao,lMaxQueda));
+  const tabela=secoes.map(sc=>{const c=calcForSection(sc,dist,iA,temp,mat); const cp=calcForSection(sc,dist,iPicoA,temp,mat); return {secao:sc,r:c.r,vDrop:c.vDrop,vDisp:vFonte-c.vDrop-vSerie,vDropPico:cp.vDrop,vDispPico:vFonte-cp.vDrop-vSeriePico,dropPct:c.vDrop/vFonte*100};});
+  const recomendada=(tabela.find(t=>t.vDisp>=vMin && t.dropPct<=quedaMax)||tabela[tabela.length-1]).secao;
+  if(vDisp<vMin) alerts.push({cls:'bad',txt:`Tensão disponível normal (${fmt(vDisp,2)} V) abaixo da tensão mínima informada (${fmt(vMin,2)} V). Aumente a seção, reduza distância/carga ou revise elementos em série.`});
+  else if(margem<1) alerts.push({cls:'warn',txt:`Margem de tensão baixa: apenas ${fmt(margem,2)} V acima do mínimo no regime normal.`});
+  else alerts.push({cls:'ok',txt:`Tensão disponível normal adequada: ${fmt(vDisp,2)} V no equipamento.`});
+  if(vDispPico<vMin) alerts.push({cls:'bad',txt:`Na corrente de falha/pico, a tensão disponível cai para ${fmt(vDispPico,2)} V, abaixo do mínimo informado.`});
+  else if(margemPico<1) alerts.push({cls:'warn',txt:`Na corrente de falha/pico, a margem de tensão fica baixa: ${fmt(margemPico,2)} V.`});
+  if(dropPct>quedaMax) alerts.push({cls:'warn',txt:`Queda de tensão normal (${fmt(dropPct,2)}%) acima da queda desejada de ${fmt(quedaMax,1)}%.`});
+  if(tipo==='loop2' && rSerie<230) alerts.push({cls:'warn',txt:'Para HART, a carga série informada está abaixo de 230 Ω. Confirme resistor/entrada analógica compatível com comunicação HART.'});
+  if(tipo==='loop2' && rSerie>1100) alerts.push({cls:'warn',txt:'Carga série muito alta para malha 4-20 mA/HART. Verifique limite do transmissor e da fonte.'});
+  if(blind==='sem' && (ambiente==='ruido'||ambiente==='longa')) alerts.push({cls:'warn',txt:'Cabo sem blindagem em rota ruidosa/longa pode aumentar risco de ruído, instabilidade e falha de comunicação.'});
+  if(ambiente==='ex') alerts.push({cls:'warn',txt:'Área classificada exige validação de barreira/isolador, parâmetros de entidade, certificados, aterramento e documentação Ex. Use esta ferramenta apenas como apoio de queda de tensão.'});
+  if(tipo==='atuador' && iPicoMA<100) alerts.push({cls:'info',txt:'Para solenóides e cargas discretas, confirme corrente real de partida/energização no datasheet; ela pode ser muito maior que a corrente mantida.'});
+  const cls=classe(alerts);
+  const titulo=cls==='ok'?'Cabo adequado na triagem':(cls==='warn'?'Cabo com pontos de atenção':'Cabo insuficiente ou crítico');
+  document.getElementById('resultadoRapido').innerHTML=`<div class="note ${cls}"><strong>${titulo}</strong><div class="result-main">${fmt(vDisp,2)} V</div><div>Tensão disponível normal no equipamento. Seção recomendada mínima: <strong>${fmt(recomendada,2)} mm²</strong>.</div></div><div class="pill-row"><span class="pill">ΔV normal: ${fmt(base.vDrop,2)} V</span><span class="pill">Queda: ${fmt(dropPct,2)}%</span><span class="pill">Compr. máx.: ${fmt(lMax,0)} m</span><span class="pill">R loop: ${fmt(base.r,3)} Ω</span></div><p class="result-sub">${alerts.map(a=>a.txt).join(' ')}</p>`;
+  const rowsHtml=tabela.map(t=>`<tr><td>${fmt(t.secao,2)} mm²</td><td>${fmt(t.r,3)} Ω</td><td>${fmt(t.vDrop,2)} V</td><td>${fmt(t.dropPct,2)}%</td><td>${fmt(t.vDisp,2)} V</td><td>${fmt(t.vDispPico,2)} V</td><td>${t.vDisp>=vMin && t.dropPct<=quedaMax?'OK':'Atenção'}</td></tr>`).join('');
+  const alertHtml=alerts.map(a=>`<p class="note ${a.cls}">${a.txt}</p>`).join('');
+  document.getElementById('resultadoDetalhado').innerHTML=`
+    <h2>Resultado detalhado</h2>
+    <div class="table-wrap"><table class="tech-table"><tbody>
+      <tr><th>Tipo de circuito</th><td>${labelTipo(tipo)}</td></tr>
+      <tr><th>Resistência do loop do cabo atual</th><td>${fmt(base.r,4)} Ω</td></tr>
+      <tr><th>Queda de tensão normal no cabo</th><td>${fmt(base.vDrop,2)} V / ${fmt(dropPct,2)}%</td></tr>
+      <tr><th>Queda de tensão em falha/pico no cabo</th><td>${fmt(pico.vDrop,2)} V / ${fmt(dropPctPico,2)}%</td></tr>
+      <tr><th>Queda nos elementos série</th><td>${fmt(vSerie,2)} V normal / ${fmt(vSeriePico,2)} V em falha/pico</td></tr>
+      <tr><th>Tensão disponível normal</th><td>${fmt(vDisp,2)} Vcc</td></tr>
+      <tr><th>Tensão disponível em falha/pico</th><td>${fmt(vDispPico,2)} Vcc</td></tr>
+      <tr><th>Comprimento máximo por tensão/queda</th><td>${fmt(lMax,0)} m</td></tr>
+    </tbody></table></div>
+    <h3>Comparativo por seção comercial</h3>
+    <div class="table-wrap"><table class="tech-table"><thead><tr><th>Seção</th><th>R loop</th><th>ΔV normal</th><th>Queda %</th><th>V disponível</th><th>V pico/falha</th><th>Status</th></tr></thead><tbody>${rowsHtml}</tbody></table></div>
+    <h3>Alertas técnicos</h3>${alertHtml}`;
+  document.getElementById('memorial').textContent=gerarMemorial({tag,servico,tipo,vFonte,vMin,iMA,iPicoMA,dist,secao,mat,temp,quedaMax,rSerie,vFixo,blind,ambiente,base,pico,vSerie,vSeriePico,vDisp,vDispPico,dropPct,dropPctPico,margem,margemPico,lMax,recomendada,alerts});
+}
+function labelTipo(tipo){return {loop2:'Transmissor 2 fios / malha 4-20 mA',sensor3:'Sensor 3 fios alimentado em 24 Vcc',atuador:'Solenoide ou carga discreta 24 Vcc',remota:'Remote I/O, switch ou equipamento eletrônico'}[tipo]||tipo;}
+function gerarMemorial(c){
+  const alertas=c.alerts.map(a=>`- ${a.txt}`).join('\n');
+  return `MEMORIAL PRELIMINAR - CABO DE INSTRUMENTAÇÃO 24 Vcc\n\nTag/malha: ${c.tag||'não informado'}\nAplicação: ${c.servico||'não informado'}\nTipo de circuito: ${labelTipo(c.tipo)}\n\nDados de entrada:\n- Tensão da fonte: ${fmt(c.vFonte,1)} Vcc\n- Tensão mínima no equipamento: ${fmt(c.vMin,1)} Vcc\n- Corrente normal considerada: ${fmt(c.iMA,1)} mA\n- Corrente de falha/pico considerada: ${fmt(c.iPicoMA,1)} mA\n- Distância física em uma direção: ${fmt(c.dist,1)} m\n- Seção atual do condutor: ${fmt(c.secao,2)} mm²\n- Material: ${c.mat.nome}\n- Temperatura estimada do cabo: ${fmt(c.temp,0)} °C\n- Queda máxima desejada: ${fmt(c.quedaMax,1)}%\n- Carga série da malha: ${fmt(c.rSerie,0)} ohm\n- Queda fixa adicional: ${fmt(c.vFixo,2)} V\n- Cabo/blindagem: ${c.blind}\n- Ambiente: ${c.ambiente}\n\nResultados:\n- Resistência do loop do cabo: ${fmt(c.base.r,4)} ohm\n- Queda normal no cabo: ${fmt(c.base.vDrop,2)} V (${fmt(c.dropPct,2)}%)\n- Queda em falha/pico no cabo: ${fmt(c.pico.vDrop,2)} V (${fmt(c.dropPctPico,2)}%)\n- Queda nos elementos série normal: ${fmt(c.vSerie,2)} V\n- Queda nos elementos série em falha/pico: ${fmt(c.vSeriePico,2)} V\n- Tensão disponível normal no equipamento: ${fmt(c.vDisp,2)} Vcc\n- Tensão disponível em falha/pico: ${fmt(c.vDispPico,2)} Vcc\n- Margem normal até tensão mínima: ${fmt(c.margem,2)} V\n- Margem em falha/pico até tensão mínima: ${fmt(c.margemPico,2)} V\n- Comprimento máximo preliminar: ${fmt(c.lMax,0)} m\n- Seção comercial mínima sugerida pela triagem: ${fmt(c.recomendada,2)} mm²\n\nAlertas e recomendações:\n${alertas}\n\nObservação importante: este memorial é preliminar. A especificação final deve validar datasheets, classe de isolação, temperatura, blindagem, aterramento, segregação, rota real, método de instalação, queda admissível, requisitos HART, barreiras/isoladores, área classificada e normas aplicáveis.`;
+}
+function copiarMemorial(){const txt=document.getElementById('memorial').textContent;navigator.clipboard.writeText(txt).then(()=>alert('Memorial copiado.')).catch(()=>alert('Não foi possível copiar automaticamente. Selecione o texto manualmente.'));}
+calcularCabo24();
+</script>
+  <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
+</body>
+</html>
