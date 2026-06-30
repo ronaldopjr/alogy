@@ -1,34 +1,35 @@
 <!DOCTYPE html>
+
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Comprimento Máximo de Cabo HART | ALOGY</title>
-  <meta name="description" content="Calcule comprimento máximo de cabo HART por queda de tensão, resistência de loop e capacitância da malha 4-20 mA." />
-  <meta name="robots" content="index,follow" />
-  <meta name="theme-color" content="#004b80" />
-  <link rel="canonical" href="https://www.alogy.com.br/calculadora-comprimento-cabo-hart.html" />
-  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
-  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png" />
-  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <link rel="stylesheet" href="style.css" />
-  <script src="app.js" defer></script>
-  <meta property="og:locale" content="pt_BR" />
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="ALOGY Engenharia" />
-  <meta property="og:title" content="Comprimento Máximo de Cabo HART" />
-  <meta property="og:description" content="Calcule comprimento máximo de cabo HART por queda de tensão, resistência de loop e capacitância da malha 4-20 mA." />
-  <meta property="og:url" content="https://www.alogy.com.br/calculadora-comprimento-cabo-hart.html" />
-  <meta property="og:image" content="https://www.alogy.com.br/favicon-512x512.png" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Calculadora de Comprimento Máximo de Cabo HART","url":"https://www.alogy.com.br/calculadora-comprimento-cabo-hart.html","applicationCategory":"EngineeringApplication","operatingSystem":"Web","description":"Calcule comprimento máximo de cabo HART por queda de tensão, resistência de loop e capacitância da malha 4-20 mA.","publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"},"inLanguage":"pt-BR"}</script>
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"HART usa o mesmo cabo do 4-20 mA?","acceptedAnswer":{"@type":"Answer","text":"Sim. O sinal digital é sobreposto à malha analógica, desde que a malha atenda requisitos elétricos e de comunicação."}},{"@type":"Question","name":"Sempre preciso de resistor de 250 Ω?","acceptedAnswer":{"@type":"Answer","text":"Muitas aplicações precisam de carga adequada para comunicação, frequentemente próxima de 250 Ω, mas cartões modernos podem ter impedância interna."}},{"@type":"Question","name":"Capacitância do cabo importa?","acceptedAnswer":{"@type":"Answer","text":"Sim. Cabos longos e barreiras podem aumentar capacitância e atenuar o sinal HART."}},{"@type":"Question","name":"A calculadora serve para área classificada?","acceptedAnswer":{"@type":"Answer","text":"Serve como triagem elétrica, mas circuitos em área classificada exigem validação de entidade, barreiras e documentação específica."}}]}</script>
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Comprimento Máximo de Cabo HART | ALOGY</title>
+<meta content="Calcule comprimento máximo de cabo HART por queda de tensão, resistência de loop e capacitância da malha 4-20 mA." name="description"/>
+<meta content="index,follow" name="robots"/>
+<meta content="#004b80" name="theme-color"/>
+<link href="https://www.alogy.com.br/calculadora-comprimento-cabo-hart.html" rel="canonical"/>
+<link href="/favicon-48x48.png" rel="icon" sizes="48x48" type="image/png"/>
+<link href="/favicon-192x192.png" rel="icon" sizes="192x192" type="image/png"/>
+<link href="/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+<link href="/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<link href="style.css" rel="stylesheet"/>
+<script defer="" src="app.js"></script>
+<meta content="pt_BR" property="og:locale"/>
+<meta content="website" property="og:type"/>
+<meta content="ALOGY Engenharia" property="og:site_name"/>
+<meta content="Comprimento Máximo de Cabo HART" property="og:title"/>
+<meta content="Calcule comprimento máximo de cabo HART por queda de tensão, resistência de loop e capacitância da malha 4-20 mA." property="og:description"/>
+<meta content="https://www.alogy.com.br/calculadora-comprimento-cabo-hart.html" property="og:url"/>
+<meta content="https://www.alogy.com.br/favicon-512x512.png" property="og:image"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Calculadora de Comprimento Máximo de Cabo HART","url":"https://www.alogy.com.br/calculadora-comprimento-cabo-hart.html","applicationCategory":"EngineeringApplication","operatingSystem":"Web","description":"Calcule comprimento máximo de cabo HART por queda de tensão, resistência de loop e capacitância da malha 4-20 mA.","publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"},"inLanguage":"pt-BR"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"HART usa o mesmo cabo do 4-20 mA?","acceptedAnswer":{"@type":"Answer","text":"Sim. O sinal digital é sobreposto à malha analógica, desde que a malha atenda requisitos elétricos e de comunicação."}},{"@type":"Question","name":"Sempre preciso de resistor de 250 Ω?","acceptedAnswer":{"@type":"Answer","text":"Muitas aplicações precisam de carga adequada para comunicação, frequentemente próxima de 250 Ω, mas cartões modernos podem ter impedância interna."}},{"@type":"Question","name":"Capacitância do cabo importa?","acceptedAnswer":{"@type":"Answer","text":"Sim. Cabos longos e barreiras podem aumentar capacitância e atenuar o sinal HART."}},{"@type":"Question","name":"A calculadora serve para área classificada?","acceptedAnswer":{"@type":"Answer","text":"Serve como triagem elétrica, mas circuitos em área classificada exigem validação de entidade, barreiras e documentação específica."}}]}</script>
+<style>
     .tech-page{background:linear-gradient(180deg,rgba(0,75,128,.04),rgba(255,255,255,0) 260px)}
     .tech-wrap{max-width:1120px;margin:18px auto 34px}
     .tech-back{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:900;color:#0b3a62;background:#fff;border:1px solid rgba(0,107,177,.18);border-radius:999px;padding:10px 14px;box-shadow:0 6px 18px rgba(0,0,0,.04);margin-bottom:14px}
@@ -87,66 +88,68 @@
     @media(max-width:900px){.calc-grid{grid-template-columns:1fr}.field-grid{grid-template-columns:1fr}.tech-hero{padding:24px}.tech-hero h1,.post-content h1{font-size:1.65rem}.post-content{padding:22px}}
     @media print{header,.social-floating,.fab-wrap,footer,.tech-back,.calc-actions,.no-print{display:none!important}body{background:#fff}.tech-card,.tech-hero,.post-card{box-shadow:none;border:1px solid #ddd}.calc-grid{display:block}}
   </style>
-  <!-- Google AdSense - verificação de propriedade -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5586837114309500" crossorigin="anonymous"></script>
+<!-- Google AdSense - verificação de propriedade -->
+<script async="" crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5586837114309500"></script>
 </head>
 <body class="tech-page">
-  <header>
-    <div class="container headbar">
-      <a href="/" class="logo-wrapper" aria-label="Voltar para o início"><img src="logo-alogy.webp" alt="ALOGY Engenharia" width="878" height="308" decoding="async" /></a>
-      <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menu"><i class="fas fa-bars"></i></button>
-    </div>
-    <nav class="desktop" aria-label="Menu principal"><div class="container navlinks"><a href="index.html">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="index.html#contato">Contato</a></div></nav>
-    <nav class="mobile" aria-label="Menu mobile"><a href="index.html">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="index.html#contato">Contato</a></nav>
-  </header>
-  <div class="social-floating" aria-label="Redes sociais"><a href="https://www.linkedin.com/company/alogyengenharia" class="linkedin" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a><a href="https://www.instagram.com/alogyengenharia" class="instagram" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="https://www.facebook.com/alogyengenharia" class="facebook" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><a href="https://www.youtube.com/@alogyengenharia" class="youtube" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a><a href="https://hotmart.com/pt-br/club/alogyengenharia" class="hotmart" target="_blank" rel="noopener" aria-label="Hotmart">H</a><a href="https://www.tiktok.com/@alogyengenharia" class="tiktok" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a></div>
-  <div class="fab-wrap" aria-label="Ações rápidas"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1%21%20Vim%20pelas%20ferramentas%20de%20instrumenta%C3%A7%C3%A3o%20da%20ALOGY.%20Gostaria%20de%20atendimento." target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
-  <main class="container tech-wrap">
-    <a class="tech-back no-print" href="ferramentas.html"><i class="fas fa-arrow-left"></i> Voltar para Ferramentas</a>
-    <section class="tech-hero">
-      <h1>Calculadora de Comprimento Máximo de Cabo HART</h1>
-      <p>Verifique se uma malha 4-20 mA com HART tem margem de tensão, resistência e capacitância adequadas para comunicação confiável.</p>
-      <div class="hero-tags"><span><i class="fas fa-check"></i> HART</span><span><i class="fas fa-check"></i> 4-20 mA</span><span><i class="fas fa-check"></i> Cabo</span><span><i class="fas fa-check"></i> Capacitância</span></div>
-    </section>
-    <section class="calc-grid">
-      <div class="tech-card">
-        <h2>Dados de entrada</h2>
-        <form class="field-grid" onsubmit="calcular();return false;">
-  <div class="field"><label>Tensão da fonte</label><input id="vs" type="number" step="0.1" value="24"><small>Vcc</small></div>
-  <div class="field"><label>Tensão mínima no instrumento</label><input id="vdev" type="number" step="0.1" value="12"><small>Vcc no pior caso</small></div>
-  <div class="field"><label>Corrente máxima da malha</label><input id="i" type="number" step="0.1" value="20"><small>mA</small></div>
-  <div class="field"><label>Resistor/carga HART</label><input id="rload" type="number" step="1" value="250"><small>Ω</small></div>
-  <div class="field"><label>Outras cargas da malha</label><input id="rother" type="number" step="1" value="0"><small>Ω: barreira, cartão, indicadores.</small></div>
-  <div class="field"><label>Resistência do cabo por condutor</label><input id="rkm" type="number" step="0.1" value="36.6"><small>Ω/km por condutor</small></div>
-  <div class="field"><label>Capacitância do cabo</label><input id="ckm" type="number" step="1" value="100"><small>nF/km</small></div>
-  <div class="field"><label>Capacitância máxima admissível</label><input id="cmax" type="number" step="1" value="200"><small>nF. Use limite do sistema/barreira.</small></div>
-  <div class="field"><label>Capacitância de equipamento/barreira</label><input id="cdev" type="number" step="1" value="20"><small>nF</small></div>
-  <div class="field"><label>Comprimento instalado a verificar</label><input id="linst" type="number" step="1" value="800"><small>m</small></div>
-  <div class="wide calc-actions"><button class="btn-mini" type="submit"><i class="fas fa-calculator"></i> Calcular</button><button class="btn-mini secondary" type="button" onclick="window.print()"><i class="fas fa-print"></i> Imprimir</button></div>
+<header>
+<div class="container headbar">
+<a aria-label="Voltar para o início" class="logo-wrapper" href="/"><img alt="ALOGY Engenharia" decoding="async" height="308" src="logo-alogy.webp" width="878"/></a>
+<button aria-label="Abrir menu" class="menu-toggle" onclick="toggleMobileMenu()"><i class="fas fa-bars"></i></button>
+</div>
+<nav aria-label="Menu principal" class="desktop"><div class="container navlinks"><a href="index.html">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="index.html#contato">Contato</a></div></nav>
+<nav aria-label="Menu mobile" class="mobile"><a href="index.html">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="index.html#contato">Contato</a></nav>
+</header>
+<div aria-label="Redes sociais" class="social-floating"><a aria-label="LinkedIn" class="linkedin" href="https://www.linkedin.com/company/alogyengenharia" rel="noopener" target="_blank"><i class="fab fa-linkedin-in"></i></a><a aria-label="Instagram" class="instagram" href="https://www.instagram.com/alogyengenharia" rel="noopener" target="_blank"><i class="fab fa-instagram"></i></a><a aria-label="Facebook" class="facebook" href="https://www.facebook.com/alogyengenharia" rel="noopener" target="_blank"><i class="fab fa-facebook-f"></i></a><a aria-label="YouTube" class="youtube" href="https://www.youtube.com/@alogyengenharia" rel="noopener" target="_blank"><i class="fab fa-youtube"></i></a><a aria-label="Hotmart" class="hotmart" href="https://hotmart.com/pt-br/club/alogyengenharia" rel="noopener" target="_blank">H</a><a aria-label="TikTok" class="tiktok" href="https://www.tiktok.com/@alogyengenharia" rel="noopener" target="_blank"><i class="fab fa-tiktok"></i></a></div>
+<div aria-label="Ações rápidas" class="fab-wrap"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1%21%20Vim%20pelas%20ferramentas%20de%20instrumenta%C3%A7%C3%A3o%20da%20ALOGY.%20Gostaria%20de%20atendimento." rel="noopener" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
+<main class="container tech-wrap"><div aria-label="Ações da ferramenta" class="tool-page-actions no-print"><button class="btn print" onclick="window.print()" type="button"><i class="fas fa-print"></i> Imprimir página</button></div>
+
+<section class="tech-hero">
+<h1>Calculadora de Comprimento Máximo de Cabo HART</h1>
+<p>Verifique se uma malha 4-20 mA com HART tem margem de tensão, resistência e capacitância adequadas para comunicação confiável.</p>
+<div class="hero-tags"><span><i class="fas fa-check"></i> HART</span><span><i class="fas fa-check"></i> 4-20 mA</span><span><i class="fas fa-check"></i> Cabo</span><span><i class="fas fa-check"></i> Capacitância</span></div>
+</section>
+<section class="calc-grid">
+<div class="tech-card">
+<h2>Dados de entrada</h2>
+<form class="field-grid" onsubmit="calcular();return false;">
+<div class="field"><label>Tensão da fonte</label><input id="vs" step="0.1" type="number" value="24"/><small>Vcc</small></div>
+<div class="field"><label>Tensão mínima no instrumento</label><input id="vdev" step="0.1" type="number" value="12"/><small>Vcc no pior caso</small></div>
+<div class="field"><label>Corrente máxima da malha</label><input id="i" step="0.1" type="number" value="20"/><small>mA</small></div>
+<div class="field"><label>Resistor/carga HART</label><input id="rload" step="1" type="number" value="250"/><small>Ω</small></div>
+<div class="field"><label>Outras cargas da malha</label><input id="rother" step="1" type="number" value="0"/><small>Ω: barreira, cartão, indicadores.</small></div>
+<div class="field"><label>Resistência do cabo por condutor</label><input id="rkm" step="0.1" type="number" value="36.6"/><small>Ω/km por condutor</small></div>
+<div class="field"><label>Capacitância do cabo</label><input id="ckm" step="1" type="number" value="100"/><small>nF/km</small></div>
+<div class="field"><label>Capacitância máxima admissível</label><input id="cmax" step="1" type="number" value="200"/><small>nF. Use limite do sistema/barreira.</small></div>
+<div class="field"><label>Capacitância de equipamento/barreira</label><input id="cdev" step="1" type="number" value="20"/><small>nF</small></div>
+<div class="field"><label>Comprimento instalado a verificar</label><input id="linst" step="1" type="number" value="800"/><small>m</small></div>
+<div class="wide calc-actions"><button class="btn-mini" type="submit"><i class="fas fa-calculator"></i> Calcular</button></div>
 </form>
-      </div>
-      <aside class="tech-card result-box">
-        <h2>Resultado</h2>
-        <div id="resultado" class="result-sub">Preencha os dados e clique em calcular.</div>
-      </aside>
-    </section>
-    <section class="tech-card"><h2>Aviso técnico importante</h2><p class="note">Esta ferramenta fornece uma estimativa preliminar para estudo, manutenção, orçamento e triagem de campo. Para aplicações críticas, segurança de processo, áreas classificadas, sistemas instrumentados de segurança, vasos pressurizados, contratos ou emissão de documentação oficial, valide o dimensionamento com normas aplicáveis, dados do fabricante e profissional habilitado.</p></section>
+</div>
+<aside class="tech-card result-box">
+<h2>Resultado</h2>
+<div class="result-sub" id="resultado">Preencha os dados e clique em calcular.</div>
+</aside>
+</section>
+<section class="tech-card"><h2>Aviso técnico importante</h2><p class="note">Esta ferramenta fornece uma estimativa preliminar para estudo, manutenção, orçamento e triagem de campo. Para aplicações críticas, segurança de processo, áreas classificadas, sistemas instrumentados de segurança, vasos pressurizados, contratos ou emissão de documentação oficial, valide o dimensionamento com normas aplicáveis, dados do fabricante e profissional habilitado.</p></section>
 <section class="tech-card"><h2>O que pode derrubar a comunicação HART?</h2><p>O HART usa comunicação digital sobre a mesma fiação 4-20 mA. Problemas comuns são falta de carga mínima, fonte insuficiente, queda de tensão em cabos longos, barreira com impedância inadequada, capacitância excessiva, blindagem aterrada em mais de um ponto e ruído elétrico próximo a inversores.</p><h3>Checklist rápido</h3><ul><li>Confirmar se há carga adequada para o comunicador.</li><li>Medir tensão no instrumento com a malha em 20 mA.</li><li>Verificar resistência de cabo considerando ida e volta.</li><li>Conferir limites de barreira isoladora ou zener em área classificada.</li><li>Evitar passar cabo de instrumento junto a potência ou VFD.</li></ul></section>
-    <section class="tech-card faq">
-      <h2>Perguntas frequentes</h2>
-      <details><summary>HART usa o mesmo cabo do 4-20 mA?</summary><p>Sim. O sinal digital é sobreposto à malha analógica, desde que a malha atenda requisitos elétricos e de comunicação.</p></details><details><summary>Sempre preciso de resistor de 250 Ω?</summary><p>Muitas aplicações precisam de carga adequada para comunicação, frequentemente próxima de 250 Ω, mas cartões modernos podem ter impedância interna.</p></details><details><summary>Capacitância do cabo importa?</summary><p>Sim. Cabos longos e barreiras podem aumentar capacitância e atenuar o sinal HART.</p></details><details><summary>A calculadora serve para área classificada?</summary><p>Serve como triagem elétrica, mas circuitos em área classificada exigem validação de entidade, barreiras e documentação específica.</p></details>
-    </section>
-    <section class="tech-card no-print">
-      <h2>Conteúdos e ferramentas relacionados</h2>
-      <p>Use os links abaixo para aprofundar o tema ou continuar o dimensionamento.</p>
-      <div class="calc-actions"><a class="btn-mini secondary" href="blog-comunicacao-hart-falhas-cabo-resistencia.html"><i class="fas fa-link"></i> Artigo: falhas de comunicação HART</a><a class="btn-mini secondary" href="calculadora-carga-malha-4-20ma.html"><i class="fas fa-link"></i> Calculadora carga malha 4-20 mA</a></div>
-    </section>
-  </main>
-  <script>
+<section class="tech-card faq">
+<h2>Perguntas frequentes</h2>
+<details><summary>HART usa o mesmo cabo do 4-20 mA?</summary><p>Sim. O sinal digital é sobreposto à malha analógica, desde que a malha atenda requisitos elétricos e de comunicação.</p></details><details><summary>Sempre preciso de resistor de 250 Ω?</summary><p>Muitas aplicações precisam de carga adequada para comunicação, frequentemente próxima de 250 Ω, mas cartões modernos podem ter impedância interna.</p></details><details><summary>Capacitância do cabo importa?</summary><p>Sim. Cabos longos e barreiras podem aumentar capacitância e atenuar o sinal HART.</p></details><details><summary>A calculadora serve para área classificada?</summary><p>Serve como triagem elétrica, mas circuitos em área classificada exigem validação de entidade, barreiras e documentação específica.</p></details>
+</section>
+<section class="tech-card no-print">
+<h2>Conteúdos e ferramentas relacionados</h2>
+<p>Use os links abaixo para aprofundar o tema ou continuar o dimensionamento.</p>
+<div class="calc-actions"><a class="btn-mini secondary" href="blog-comunicacao-hart-falhas-cabo-resistencia.html"><i class="fas fa-link"></i> Artigo: falhas de comunicação HART</a><a class="btn-mini secondary" href="calculadora-carga-malha-4-20ma.html"><i class="fas fa-link"></i> Calculadora carga malha 4-20 mA</a></div>
+</section>
+</main>
+<script>
 function n(id){return parseFloat(document.getElementById(id).value)||0} function fmt(x,d=2){return x.toLocaleString('pt-BR',{maximumFractionDigits:d,minimumFractionDigits:d})}
 function calcular(){const vs=n('vs'), vdev=n('vdev'), imA=n('i'), I=imA/1000, rload=n('rload'), rother=n('rother'), rkm=n('rkm'), ckm=n('ckm'), cmax=n('cmax'), cdev=n('cdev'), linst=n('linst'); const margin=vs-vdev-I*(rload+rother); const maxRloop=margin/I; const maxKmR=maxRloop/(2*rkm); const maxKmC=Math.max(cmax-cdev,0)/ckm; const maxM=Math.min(maxKmR,maxKmC)*1000; const Rinst=2*rkm*linst/1000; const Cinst=ckm*linst/1000+cdev; const vDevice=vs-I*(rload+rother+Rinst); const ok=linst<=maxM && vDevice>=vdev && Cinst<=cmax; const status=ok?'ok':(linst<=maxM*1.2?'warn':'bad'); document.getElementById('resultado').innerHTML=`<div class="note ${status}"><strong>Comprimento máximo preliminar:</strong><div class="result-main">${fmt(maxM,0)} m</div><div>Limite por resistência: <strong>${fmt(maxKmR*1000,0)} m</strong>. Limite por capacitância: <strong>${fmt(maxKmC*1000,0)} m</strong>.</div></div><div class="pill-row"><span class="pill">Tensão no instrumento: ${fmt(vDevice,2)} V</span><span class="pill">Cabo instalado: R ${fmt(Rinst,1)} Ω</span><span class="pill">Capacitância total: ${fmt(Cinst,1)} nF</span><span class="pill">Status: ${ok?'aceitável':'verificar'}</span></div><p class="result-sub">Para HART, além da tensão, confirme resistor/carga mínima, aterramento, blindagem, barreiras de segurança intrínseca e limite de capacitância/indutância do circuito.</p>`}
 calcular();
 </script>
-  <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
+<footer><p>© Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
+
+<a aria-label="Voltar para Ferramentas" class="floating-back-tools no-print" href="ferramentas.html"><i class="fas fa-arrow-left"></i> Voltar para Ferramentas</a>
 </body>
 </html>

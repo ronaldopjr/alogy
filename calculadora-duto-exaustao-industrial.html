@@ -1,33 +1,34 @@
 <!DOCTYPE html>
+
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Calculadora de Duto de Exaustão Industrial | ALOGY Engenharia</title>
-  <meta name="description" content="Calcule área, velocidade e diâmetro equivalente de dutos de exaustão industrial por vazão e dimensão do duto." />
-  <meta name="robots" content="index,follow" />
-  <meta name="theme-color" content="#004b80" />
-  <link rel="canonical" href="https://www.alogy.com.br/calculadora-duto-exaustao-industrial.html" />
-  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
-  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png" />
-  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <link rel="stylesheet" href="style.css" />
-  <script src="app.js" defer></script>
-  <meta property="og:locale" content="pt_BR" />
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="ALOGY Engenharia" />
-  <meta property="og:title" content="Calculadora de Duto de Exaustão Industrial" />
-  <meta property="og:description" content="Calcule área, velocidade e diâmetro equivalente de dutos de exaustão industrial por vazão e dimensão do duto." />
-  <meta property="og:url" content="https://www.alogy.com.br/calculadora-duto-exaustao-industrial.html" />
-  <meta property="og:image" content="https://www.alogy.com.br/favicon-512x512.png" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Calculadora de Duto de Exaustão Industrial","url":"https://www.alogy.com.br/calculadora-duto-exaustao-industrial.html","applicationCategory":"EngineeringApplication","operatingSystem":"Web","description":"Calcule área, velocidade e diâmetro equivalente de dutos de exaustão industrial por vazão e dimensão do duto.","publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"}}</script>
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Calculadora de Duto de Exaustão Industrial | ALOGY Engenharia</title>
+<meta content="Calcule área, velocidade e diâmetro equivalente de dutos de exaustão industrial por vazão e dimensão do duto." name="description"/>
+<meta content="index,follow" name="robots"/>
+<meta content="#004b80" name="theme-color"/>
+<link href="https://www.alogy.com.br/calculadora-duto-exaustao-industrial.html" rel="canonical"/>
+<link href="/favicon-48x48.png" rel="icon" sizes="48x48" type="image/png"/>
+<link href="/favicon-192x192.png" rel="icon" sizes="192x192" type="image/png"/>
+<link href="/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+<link href="/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<link href="style.css" rel="stylesheet"/>
+<script defer="" src="app.js"></script>
+<meta content="pt_BR" property="og:locale"/>
+<meta content="website" property="og:type"/>
+<meta content="ALOGY Engenharia" property="og:site_name"/>
+<meta content="Calculadora de Duto de Exaustão Industrial" property="og:title"/>
+<meta content="Calcule área, velocidade e diâmetro equivalente de dutos de exaustão industrial por vazão e dimensão do duto." property="og:description"/>
+<meta content="https://www.alogy.com.br/calculadora-duto-exaustao-industrial.html" property="og:url"/>
+<meta content="https://www.alogy.com.br/favicon-512x512.png" property="og:image"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Calculadora de Duto de Exaustão Industrial","url":"https://www.alogy.com.br/calculadora-duto-exaustao-industrial.html","applicationCategory":"EngineeringApplication","operatingSystem":"Web","description":"Calcule área, velocidade e diâmetro equivalente de dutos de exaustão industrial por vazão e dimensão do duto.","publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"}}</script>
+<style>
     .mini-help{color:var(--muted);font-size:.92rem;line-height:1.55;margin-top:8px}
     .faq details{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:14px;padding:14px;margin-top:10px;box-shadow:0 6px 16px rgba(0,0,0,.04)}
     .faq summary{cursor:pointer;font-weight:900;color:#0b3a62}.faq p{margin:10px 0 0;color:var(--muted)}
@@ -36,58 +37,57 @@
     @media(max-width:900px){.calc-result.two{grid-template-columns:1fr}}
     @media print{header,.social-floating,.fab-wrap,.cta-bar,footer,.calc-actions,.tools-hero .btn,.no-print{display:none!important}body{background:#fff}.container{max-width:100%;padding:0}.calc-card,.tools-hero{box-shadow:none;border:1px solid #ddd}.calc-layout{display:block}.calc-card{margin:12px 0}.calc-table th{background:#eee!important;color:#111!important}}
   </style>
-  <!-- Google AdSense - verificação de propriedade -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5586837114309500"
-     crossorigin="anonymous"></script>
-</head>
+<!-- Google AdSense - verificação de propriedade -->
+<script async="" crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5586837114309500"></script>
+</link></link></head>
 <body class="tools-page">
-  <header>
-    <div class="container headbar"><a href="/" class="logo-wrapper" aria-label="Voltar para o início"><img src="logo-alogy.webp" alt="ALOGY Engenharia"  width="878"  height="308"  decoding="async" /></a>
-<button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menu"><i class="fas fa-bars"></i></button></div>
-    <nav class="desktop" aria-label="Menu principal"><div class="container navlinks"><a href="index.html">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="index.html#contato">Contato</a></div></nav>
-    <nav class="mobile" aria-label="Menu mobile"><a href="index.html">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="index.html#contato">Contato</a></nav>
-  </header>
-  <div class="social-floating" aria-label="Redes sociais"><a href="https://www.linkedin.com/company/alogyengenharia" class="linkedin" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a><a href="https://www.instagram.com/alogyengenharia" class="instagram" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="https://www.facebook.com/alogyengenharia" class="facebook" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><a href="https://www.youtube.com/@alogyengenharia" class="youtube" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a><a href="https://hotmart.com/pt-br/club/alogyengenharia" class="hotmart" target="_blank" rel="noopener" aria-label="Hotmart">H</a><a href="https://www.tiktok.com/@alogyengenharia" class="tiktok" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a></div>
-  <div class="fab-wrap" aria-label="Ações rápidas"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1%21%20Vim%20pelas%20ferramentas%20da%20ALOGY.%20Gostaria%20de%20atendimento." target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
-  <main class="container" style="margin-top:18px">
-    <div style="margin-bottom:14px;display:flex;gap:10px;flex-wrap:wrap" class="no-print"><a class="floating-back-tools no-print" href="ferramentas.html"><i class="fas fa-arrow-left"></i> Voltar para Ferramentas</a><button class="btn print" type="button" onclick="window.print()"><i class="fas fa-print"></i> Imprimir</button></div>
-    <section class="tools-hero"><h1>Calculadora de Duto de Exaustão Industrial</h1><p>Calcule velocidade no duto, área, diâmetro equivalente e compare com faixas orientativas para exaustão, ventilação e captação industrial.</p></section>
-    <section class="calc-card" aria-label="Aviso de uso"><h2><i class="fas fa-triangle-exclamation"></i> Ferramenta orientativa</h2><p>Use esta ferramenta para estudo, estimativa e conferência preliminar. O resultado depende dos dados inseridos, hipóteses adotadas, normas aplicáveis, catálogos de fabricantes e validação de profissional habilitado.</p></section>
-    <section class="calc-layout"><div class="calc-card"><h2><i class="fas fa-wind"></i> Dados do duto</h2><div class="calc-grid"><div class="field"><label for="q">Vazão (m³/h)</label><input id="q" type="number" step="any" value="1400"></div><div class="field"><label for="tipo">Tipo de duto</label><select id="tipo"><option value="circ">Circular</option><option value="ret">Retangular</option></select></div><div class="field"><label for="d">Diâmetro circular (mm)</label><input id="d" type="number" step="any" value="160"></div><div class="field"><label for="a">Largura retangular (mm)</label><input id="a" type="number" step="any" value="400"></div><div class="field"><label for="b">Altura retangular (mm)</label><input id="b" type="number" step="any" value="250"></div><div class="field"><label for="vref">Velocidade alvo (m/s)</label><input id="vref" type="number" step="any" value="10"></div></div><div class="calc-actions"><button class="mini-btn dark" onclick="copiar()" type="button"><i class="fas fa-copy"></i> Copiar</button></div></div><div class="calc-card"><h2><i class="fas fa-chart-simple"></i> Resultado</h2><div class="calc-result"><div class="result-box"><span>Velocidade</span><strong id="vel">-</strong></div><div class="result-box"><span>Área</span><strong id="area">-</strong></div><div class="result-box"><span>Diâmetro sugerido</span><strong id="dsug">-</strong></div></div><div class="calc-note" id="nota">Informe os dados.</div><h3 style="margin-top:18px">Tabela por diâmetro</h3><div class="calc-table-wrap"><table class="calc-table"><thead><tr><th>Diâmetro</th><th>Velocidade</th><th>Status</th></tr></thead><tbody id="tbl"></tbody></table></div></div></section>
-    <section class="calc-card faq"><h2><i class="fas fa-circle-question"></i> Perguntas frequentes</h2><details><summary>Qual velocidade usar em duto de exaustão?</summary><p>Depende do contaminante, ruído, perda de carga e tipo de captação. A ferramenta usa faixas orientativas para triagem.</p></details><details><summary>Serve para projeto final?</summary><p>Não. Para projeto final é necessário calcular perdas, bocas, curvas, filtros, chaminé, ruído e requisitos ambientais.</p></details></section>
-  
-    <!-- ALOGY_REVISAO_TECNICA_FERRAMENTA -->
-    <section class="calc-card" aria-label="Orientação técnica complementar">
-      <h2><i class="fas fa-clipboard-check"></i> Como usar esta ferramenta na prática</h2>
-      <p>Calcule área, velocidade e diâmetro equivalente de dutos de exaustão industrial por vazão e dimensão do duto. Nesta revisão, o conteúdo foi ampliado para deixar mais claro quando usar a ferramenta, quais dados precisam ser conferidos e como transformar o número calculado em uma decisão técnica.</p>
-      <h3>Quando aplicar</h3>
-      <p>Use para estimativas de utilidades industriais como ar comprimido, vapor, exaustão, nitrogênio, bombas e ventiladores, ajudando manutenção e engenharia a comparar consumo, perda, capacidade e segurança operacional.</p>
-      <h3>Dados que merecem conferência</h3>
-      <p>Antes de confiar no resultado da ferramenta <strong>Calculadora de Duto de Exaustão Industrial</strong>, confira principalmente: Vazão (m³/h), Tipo de duto, Diâmetro circular (mm), Largura retangular (mm), Altura retangular (mm), Velocidade alvo (m/s). Pequenos erros de unidade, ponto decimal ou condição de operação podem gerar conclusões erradas.</p>
-      <ul>
-          <li>Vazão (m³/h)</li>
-          <li>Tipo de duto</li>
-          <li>Diâmetro circular (mm)</li>
-          <li>Largura retangular (mm)</li>
-          <li>Altura retangular (mm)</li>
-          <li>Velocidade alvo (m/s)</li>
-      </ul>
-      <h3>Como interpretar o resultado</h3>
-      <p>O resultado indica tendência e ordem de grandeza. Em utilidades, a condição real de operação costuma variar com pressão, temperatura, vazamentos, perdas de carga, rendimento e estado mecânico do equipamento.</p>
-      <p>Quando a página apresentar campos de resultado como Velocidade, Área, Diâmetro sugerido, use esses valores para comparar o cenário calculado com limite operacional, tolerância do processo, histórico de manutenção ou especificação de fabricante.</p>
-      <h3>Checklist rápido de validação</h3>
-      <ul>
-          <li>Meça pressão, temperatura e vazão na condição mais próxima possível da operação real.</li>
-          <li>Considere perdas em filtros, curvas, válvulas, mangueiras, dutos e trocadores.</li>
-          <li>Compare o cálculo com placa do equipamento, curva do fabricante e histórico de consumo.</li>
-          <li>Se o resultado ficar próximo do limite, adote margem de segurança e valide com engenharia.</li>
-      </ul>
-      <h3>Limites da estimativa</h3>
-      <p>Esta ferramenta é indicada para estudo, triagem, conferência de campo e apoio à manutenção. Para projeto final, laudo, especificação de compra, alteração de segurança ou liberação de equipamento crítico, valide as premissas com normas aplicáveis, documentação do fabricante e profissional habilitado.</p>
-    </section>
-
-  </main>
-  <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
+<header>
+<div class="container headbar"><a aria-label="Voltar para o início" class="logo-wrapper" href="/"><img alt="ALOGY Engenharia" decoding="async" height="308" src="logo-alogy.webp" width="878"/></a>
+<button aria-label="Abrir menu" class="menu-toggle" onclick="toggleMobileMenu()"><i class="fas fa-bars"></i></button></div>
+<nav aria-label="Menu principal" class="desktop"><div class="container navlinks"><a href="index.html">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="index.html#contato">Contato</a></div></nav>
+<nav aria-label="Menu mobile" class="mobile"><a href="index.html">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="index.html#contato">Contato</a></nav>
+</header>
+<div aria-label="Redes sociais" class="social-floating"><a aria-label="LinkedIn" class="linkedin" href="https://www.linkedin.com/company/alogyengenharia" rel="noopener" target="_blank"><i class="fab fa-linkedin-in"></i></a><a aria-label="Instagram" class="instagram" href="https://www.instagram.com/alogyengenharia" rel="noopener" target="_blank"><i class="fab fa-instagram"></i></a><a aria-label="Facebook" class="facebook" href="https://www.facebook.com/alogyengenharia" rel="noopener" target="_blank"><i class="fab fa-facebook-f"></i></a><a aria-label="YouTube" class="youtube" href="https://www.youtube.com/@alogyengenharia" rel="noopener" target="_blank"><i class="fab fa-youtube"></i></a><a aria-label="Hotmart" class="hotmart" href="https://hotmart.com/pt-br/club/alogyengenharia" rel="noopener" target="_blank">H</a><a aria-label="TikTok" class="tiktok" href="https://www.tiktok.com/@alogyengenharia" rel="noopener" target="_blank"><i class="fab fa-tiktok"></i></a></div>
+<div aria-label="Ações rápidas" class="fab-wrap"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1%21%20Vim%20pelas%20ferramentas%20da%20ALOGY.%20Gostaria%20de%20atendimento." rel="noopener" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
+<main class="container" style="margin-top:18px"><div aria-label="Ações da ferramenta" class="tool-page-actions no-print"><button class="btn print" onclick="window.print()" type="button"><i class="fas fa-print"></i> Imprimir página</button></div>
+<div class="no-print" style="margin-bottom:14px;display:flex;gap:10px;flex-wrap:wrap"><button class="btn print" onclick="window.print()" type="button"><i class="fas fa-print"></i> Imprimir</button></div>
+<section class="tools-hero"><h1>Calculadora de Duto de Exaustão Industrial</h1><p>Calcule velocidade no duto, área, diâmetro equivalente e compare com faixas orientativas para exaustão, ventilação e captação industrial.</p></section>
+<section aria-label="Aviso de uso" class="calc-card"><h2><i class="fas fa-triangle-exclamation"></i> Ferramenta orientativa</h2><p>Use esta ferramenta para estudo, estimativa e conferência preliminar. O resultado depende dos dados inseridos, hipóteses adotadas, normas aplicáveis, catálogos de fabricantes e validação de profissional habilitado.</p></section>
+<section class="calc-layout"><div class="calc-card"><h2><i class="fas fa-wind"></i> Dados do duto</h2><div class="calc-grid"><div class="field"><label for="q">Vazão (m³/h)</label><input id="q" step="any" type="number" value="1400"/></div><div class="field"><label for="tipo">Tipo de duto</label><select id="tipo"><option value="circ">Circular</option><option value="ret">Retangular</option></select></div><div class="field"><label for="d">Diâmetro circular (mm)</label><input id="d" step="any" type="number" value="160"/></div><div class="field"><label for="a">Largura retangular (mm)</label><input id="a" step="any" type="number" value="400"/></div><div class="field"><label for="b">Altura retangular (mm)</label><input id="b" step="any" type="number" value="250"/></div><div class="field"><label for="vref">Velocidade alvo (m/s)</label><input id="vref" step="any" type="number" value="10"/></div></div><div class="calc-actions"><button class="mini-btn dark" onclick="copiar()" type="button"><i class="fas fa-copy"></i> Copiar</button></div></div><div class="calc-card"><h2><i class="fas fa-chart-simple"></i> Resultado</h2><div class="calc-result"><div class="result-box"><span>Velocidade</span><strong id="vel">-</strong></div><div class="result-box"><span>Área</span><strong id="area">-</strong></div><div class="result-box"><span>Diâmetro sugerido</span><strong id="dsug">-</strong></div></div><div class="calc-note" id="nota">Informe os dados.</div><h3 style="margin-top:18px">Tabela por diâmetro</h3><div class="calc-table-wrap"><table class="calc-table"><thead><tr><th>Diâmetro</th><th>Velocidade</th><th>Status</th></tr></thead><tbody id="tbl"></tbody></table></div></div></section>
+<section class="calc-card faq"><h2><i class="fas fa-circle-question"></i> Perguntas frequentes</h2><details><summary>Qual velocidade usar em duto de exaustão?</summary><p>Depende do contaminante, ruído, perda de carga e tipo de captação. A ferramenta usa faixas orientativas para triagem.</p></details><details><summary>Serve para projeto final?</summary><p>Não. Para projeto final é necessário calcular perdas, bocas, curvas, filtros, chaminé, ruído e requisitos ambientais.</p></details></section>
+<!-- ALOGY_REVISAO_TECNICA_FERRAMENTA -->
+<section aria-label="Orientação técnica complementar" class="calc-card">
+<h2><i class="fas fa-clipboard-check"></i> Como usar esta ferramenta na prática</h2>
+<p>Calcule área, velocidade e diâmetro equivalente de dutos de exaustão industrial por vazão e dimensão do duto. Nesta revisão, o conteúdo foi ampliado para deixar mais claro quando usar a ferramenta, quais dados precisam ser conferidos e como transformar o número calculado em uma decisão técnica.</p>
+<h3>Quando aplicar</h3>
+<p>Use para estimativas de utilidades industriais como ar comprimido, vapor, exaustão, nitrogênio, bombas e ventiladores, ajudando manutenção e engenharia a comparar consumo, perda, capacidade e segurança operacional.</p>
+<h3>Dados que merecem conferência</h3>
+<p>Antes de confiar no resultado da ferramenta <strong>Calculadora de Duto de Exaustão Industrial</strong>, confira principalmente: Vazão (m³/h), Tipo de duto, Diâmetro circular (mm), Largura retangular (mm), Altura retangular (mm), Velocidade alvo (m/s). Pequenos erros de unidade, ponto decimal ou condição de operação podem gerar conclusões erradas.</p>
+<ul>
+<li>Vazão (m³/h)</li>
+<li>Tipo de duto</li>
+<li>Diâmetro circular (mm)</li>
+<li>Largura retangular (mm)</li>
+<li>Altura retangular (mm)</li>
+<li>Velocidade alvo (m/s)</li>
+</ul>
+<h3>Como interpretar o resultado</h3>
+<p>O resultado indica tendência e ordem de grandeza. Em utilidades, a condição real de operação costuma variar com pressão, temperatura, vazamentos, perdas de carga, rendimento e estado mecânico do equipamento.</p>
+<p>Quando a página apresentar campos de resultado como Velocidade, Área, Diâmetro sugerido, use esses valores para comparar o cenário calculado com limite operacional, tolerância do processo, histórico de manutenção ou especificação de fabricante.</p>
+<h3>Checklist rápido de validação</h3>
+<ul>
+<li>Meça pressão, temperatura e vazão na condição mais próxima possível da operação real.</li>
+<li>Considere perdas em filtros, curvas, válvulas, mangueiras, dutos e trocadores.</li>
+<li>Compare o cálculo com placa do equipamento, curva do fabricante e histórico de consumo.</li>
+<li>Se o resultado ficar próximo do limite, adote margem de segurança e valide com engenharia.</li>
+</ul>
+<h3>Limites da estimativa</h3>
+<p>Esta ferramenta é indicada para estudo, triagem, conferência de campo e apoio à manutenção. Para projeto final, laudo, especificação de compra, alteração de segurança ou liberação de equipamento crítico, valide as premissas com normas aplicáveis, documentação do fabricante e profissional habilitado.</p>
+</section>
+</main>
+<footer><p>© Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
 <script>function n(v,d=2){return Number.isFinite(v)?v.toLocaleString('pt-BR',{maximumFractionDigits:d}):'-'}function calc(){let q=+qv('q')/3600,t=qv('tipo'),d=+qv('d')/1000,a=+qv('a')/1000,b=+qv('b')/1000,vref=+qv('vref');let ar=t==='circ'?Math.PI*d*d/4:a*b;let v=q/ar;let ds=Math.sqrt(4*q/(Math.PI*vref));vel.textContent=n(v,2)+' m/s';area.textContent=n(ar,4)+' m²';dsug.textContent=n(ds*1000,0)+' mm';nota.textContent=v<6?'Velocidade baixa para muitas exaustões; pode aumentar deposição em dutos com particulado.':v>18?'Velocidade alta; confira ruído, perda de carga e potência do exaustor.':'Faixa usual para muitas aplicações de exaustão/ventilação industrial.';let rows='';[100,125,150,160,200,250,300,350,400,500].forEach(mm=>{let vv=q/(Math.PI*(mm/1000)**2/4);rows+=`<tr><td>${mm} mm</td><td>${n(vv,2)} m/s</td><td>${vv<6?'Baixa':vv>18?'Alta':'Usual'}</td></tr>`});tbl.innerHTML=rows;if(window.enhanceResponsiveToolTables)enhanceResponsiveToolTables()}function qv(id){return document.getElementById(id).value}function copiar(){navigator.clipboard?.writeText(`Duto: velocidade ${vel.textContent}, área ${area.textContent}, diâmetro sugerido ${dsug.textContent}`)}document.querySelectorAll('input,select').forEach(e=>e.addEventListener('input',calc));calc();</script>
+
+<a aria-label="Voltar para Ferramentas" class="floating-back-tools no-print" href="ferramentas.html"><i class="fas fa-arrow-left"></i> Voltar para Ferramentas</a>
 </body>
 </html>

@@ -1,89 +1,89 @@
 <!DOCTYPE html>
+
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Calculadora Resistor Shunt 4-20 mA | ALOGY Engenharia</title>
-  <meta name="description" content="Calcule tensão, corrente, potência e carga de resistor shunt em sinais 4-20 mA, 1-5 V, 2-10 V e malhas HART." />
-  <meta name="robots" content="index,follow" />
-  <meta name="theme-color" content="#004b80" />
-  <link rel="canonical" href="https://www.alogy.com.br/calculadora-resistor-shunt-sinal-instrumentacao.html" />
-  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
-  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png" />
-  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <link rel="stylesheet" href="style.css" />
-  <script src="app.js" defer></script>
-  <meta property="og:locale" content="pt_BR" />
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="ALOGY Engenharia" />
-  <meta property="og:title" content="Calculadora Resistor Shunt 4-20 mA" />
-  <meta property="og:description" content="Calcule tensão, corrente, potência e carga de resistor shunt em sinais 4-20 mA, 1-5 V, 2-10 V e malhas HART." />
-  <meta property="og:url" content="https://www.alogy.com.br/calculadora-resistor-shunt-sinal-instrumentacao.html" />
-  <meta property="og:image" content="https://www.alogy.com.br/favicon-512x512.png" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <script type="application/ld+json">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Calculadora Resistor Shunt 4-20 mA | ALOGY Engenharia</title>
+<meta content="Calcule tensão, corrente, potência e carga de resistor shunt em sinais 4-20 mA, 1-5 V, 2-10 V e malhas HART." name="description"/>
+<meta content="index,follow" name="robots"/>
+<meta content="#004b80" name="theme-color"/>
+<link href="https://www.alogy.com.br/calculadora-resistor-shunt-sinal-instrumentacao.html" rel="canonical"/>
+<link href="/favicon-48x48.png" rel="icon" sizes="48x48" type="image/png"/>
+<link href="/favicon-192x192.png" rel="icon" sizes="192x192" type="image/png"/>
+<link href="/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+<link href="/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<link href="style.css" rel="stylesheet"/>
+<script defer="" src="app.js"></script>
+<meta content="pt_BR" property="og:locale"/>
+<meta content="website" property="og:type"/>
+<meta content="ALOGY Engenharia" property="og:site_name"/>
+<meta content="Calculadora Resistor Shunt 4-20 mA" property="og:title"/>
+<meta content="Calcule tensão, corrente, potência e carga de resistor shunt em sinais 4-20 mA, 1-5 V, 2-10 V e malhas HART." property="og:description"/>
+<meta content="https://www.alogy.com.br/calculadora-resistor-shunt-sinal-instrumentacao.html" property="og:url"/>
+<meta content="https://www.alogy.com.br/favicon-512x512.png" property="og:image"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<script type="application/ld+json">
   {"@context":"https://schema.org","@type":"WebApplication","name":"Calculadora Resistor Shunt 4-20 mA","url":"https://www.alogy.com.br/calculadora-resistor-shunt-sinal-instrumentacao.html","applicationCategory":"EngineeringApplication","operatingSystem":"Web","description":"Calcule tensão, corrente, potência e carga de resistor shunt em sinais 4-20 mA, 1-5 V, 2-10 V e malhas HART.","publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"}}
   </script>
-  <script type="application/ld+json">
+<script type="application/ld+json">
   {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Quanto dá 4-20 mA em 250 ohms?","acceptedAnswer":{"@type":"Answer","text":"Com resistor de 250 Ω, 4 mA gera 1 V, 12 mA gera 3 V e 20 mA gera 5 V."}},{"@type":"Question","name":"Resistor shunt serve para HART?","acceptedAnswer":{"@type":"Answer","text":"Em muitas malhas, 250 Ω é usado para garantir carga mínima de comunicação HART, mas o valor deve ser confirmado com o transmissor e comunicador."}},{"@type":"Question","name":"Posso converter 4-20 mA para 0-10 V com resistor?","acceptedAnswer":{"@type":"Answer","text":"Com resistor simples, 4-20 mA gera uma faixa deslocada, como 2-10 V em 500 Ω. Para 0-10 V real pode ser necessário condicionador de sinal."}}]}
   </script>
-  <style>
+<style>
     .mini-help{color:var(--muted);font-size:.92rem;line-height:1.55;margin-top:8px}.faq details{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:14px;padding:14px;margin-top:10px;box-shadow:0 6px 16px rgba(0,0,0,.04)}.faq summary{cursor:pointer;font-weight:900;color:#0b3a62}.faq p{margin:10px 0 0;color:var(--muted)}.result-box strong.small{font-size:1.08rem}@media print{header,.social-floating,.fab-wrap,.cta-bar,footer,.calc-actions,.tools-hero .btn,.no-print{display:none!important}body{background:#fff}.container{max-width:100%;padding:0}.calc-card,.tools-hero{box-shadow:none;border:1px solid #ddd}.calc-layout{display:block}.calc-card{margin:12px 0}.calc-table th{background:#eee!important;color:#111!important}}
   </style>
-  <!-- Google AdSense - verificação de propriedade -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5586837114309500"
-     crossorigin="anonymous"></script>
-</head>
+<!-- Google AdSense - verificação de propriedade -->
+<script async="" crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5586837114309500"></script>
+</link></link></head>
 <body class="tools-page">
-  <header>
-    <div class="container headbar"><a href="/" class="logo-wrapper" aria-label="Voltar para o início"><img src="logo-alogy.webp" alt="ALOGY Engenharia"  width="878"  height="308"  decoding="async" /></a>
-<button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menu"><i class="fas fa-bars"></i></button></div>
-    <nav class="desktop" aria-label="Menu principal"><div class="container navlinks"><a href="index.html">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="index.html#contato">Contato</a></div></nav>
-    <nav class="mobile" aria-label="Menu mobile"><a href="index.html">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="index.html#contato">Contato</a></nav>
-  </header>
-  <div class="social-floating" aria-label="Redes sociais"><a href="https://www.linkedin.com/company/alogyengenharia" class="linkedin" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a><a href="https://www.instagram.com/alogyengenharia" class="instagram" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="https://www.facebook.com/alogyengenharia" class="facebook" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><a href="https://www.youtube.com/@alogyengenharia" class="youtube" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a><a href="https://hotmart.com/pt-br/club/alogyengenharia" class="hotmart" target="_blank" rel="noopener" aria-label="Hotmart">H</a><a href="https://www.tiktok.com/@alogyengenharia" class="tiktok" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a></div>
-  <div class="fab-wrap" aria-label="Ações rápidas"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1%21%20Vim%20pela%20calculadora%20resistor%20shunt%204-20%20mA%20da%20ALOGY.%20Gostaria%20de%20atendimento." target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
-  <main class="container" style="margin-top:18px">
-    <div style="margin-bottom:14px;display:flex;gap:10px;flex-wrap:wrap" class="no-print">
-      <a class="floating-back-tools no-print" href="ferramentas.html"><i class="fas fa-arrow-left"></i> Voltar para Ferramentas</a>
-      <button class="btn print" type="button" onclick="window.print()"><i class="fas fa-print"></i> Imprimir</button>
-    </div>
-    <section class="tools-hero"><h1>Calculadora Resistor Shunt 4-20 mA</h1><p>Converta sinal 4-20 mA para tensão, estime potência no resistor, carga da malha e referência para 1-5 V, 2-10 V e comunicação HART.</p></section>
-    <section class="calc-card" aria-label="Aviso de uso"><h2><i class="fas fa-triangle-exclamation"></i> Ferramenta para apoio técnico</h2><p>Use como conferência preliminar, estudo e organização de dados. O resultado pode ter simplificações e depende das informações inseridas. Para projeto, compra, alteração de processo, segurança, comissionamento ou intervenção em campo, confirme com normas aplicáveis, catálogos de fabricantes, medições reais e profissional habilitado.</p></section>
-    <section class="calc-layout">
-      <div class="calc-card">
-        <h2><i class="fas fa-wave-square"></i> Dados do sinal</h2>
-        <p>Use para converter 4-20 mA em tensão, conferir resistor de 250 Ω para HART ou calcular resistor para uma faixa de tensão.</p>
-        <div class="calc-grid">
-          <div class="field"><label for="modo">Calcular</label><select id="modo"><option value="iv">Corrente + resistor → tensão</option><option value="vi">Tensão + resistor → corrente</option><option value="rv">Tensão desejada em 20 mA → resistor</option></select></div>
-          <div class="field"><label for="i">Corrente medida (mA)</label><input id="i" type="number" step="any" value="12"></div>
-          <div class="field"><label for="r">Resistor shunt (Ω)</label><input id="r" type="number" step="any" value="250"></div>
-          <div class="field"><label for="v">Tensão medida/desejada (V)</label><input id="v" type="number" step="any" value="3"></div>
-          <div class="field"><label for="fonte">Fonte da malha (Vcc)</label><input id="fonte" type="number" step="any" value="24"></div>
-          <div class="field"><label for="carga">Outras cargas da malha (Ω)</label><input id="carga" type="number" step="any" value="0"></div>
-        </div>
-        <div class="calc-actions"><button class="mini-btn dark" type="button" onclick="copiar()"><i class="fas fa-copy"></i> Copiar resultado</button><button class="mini-btn" type="button" onclick="exemplo(1)">250 Ω / HART</button><button class="mini-btn" type="button" onclick="exemplo(2)">1-5 V</button></div>
-      </div>
-      <div class="calc-card">
-        <h2><i class="fas fa-square-poll-vertical"></i> Resultado</h2>
-        <div class="calc-result" style="grid-template-columns:1fr 1fr">
-          <div class="result-box"><span>Tensão no shunt</span><strong id="rV">-</strong></div>
-          <div class="result-box"><span>Corrente calculada</span><strong id="rI">-</strong></div>
-          <div class="result-box"><span>Potência no resistor</span><strong id="rP">-</strong></div>
-          <div class="result-box"><span>Faixa 4-20 mA</span><strong id="rFaixa" class="small">-</strong></div>
-        </div>
-        <div class="calc-note" id="nota">Informe os dados para calcular.</div>
-      </div>
-    </section>
-    <section class="calc-card"><h2><i class="fas fa-table"></i> Resistores comuns em 4-20 mA</h2><div class="calc-table-wrap"><table class="calc-table"><thead><tr><th>Resistor</th><th>4 mA</th><th>12 mA</th><th>20 mA</th><th>Uso comum</th></tr></thead><tbody id="tbody"></tbody></table></div></section>
-    <section class="calc-layout"><div class="calc-card"><h2><i class="fas fa-gears"></i> Fórmulas usadas</h2><div class="formula-box">Tensão (V) = Corrente (A) × Resistência (Ω)
+<header>
+<div class="container headbar"><a aria-label="Voltar para o início" class="logo-wrapper" href="/"><img alt="ALOGY Engenharia" decoding="async" height="308" src="logo-alogy.webp" width="878"/></a>
+<button aria-label="Abrir menu" class="menu-toggle" onclick="toggleMobileMenu()"><i class="fas fa-bars"></i></button></div>
+<nav aria-label="Menu principal" class="desktop"><div class="container navlinks"><a href="index.html">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="index.html#contato">Contato</a></div></nav>
+<nav aria-label="Menu mobile" class="mobile"><a href="index.html">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="index.html#contato">Contato</a></nav>
+</header>
+<div aria-label="Redes sociais" class="social-floating"><a aria-label="LinkedIn" class="linkedin" href="https://www.linkedin.com/company/alogyengenharia" rel="noopener" target="_blank"><i class="fab fa-linkedin-in"></i></a><a aria-label="Instagram" class="instagram" href="https://www.instagram.com/alogyengenharia" rel="noopener" target="_blank"><i class="fab fa-instagram"></i></a><a aria-label="Facebook" class="facebook" href="https://www.facebook.com/alogyengenharia" rel="noopener" target="_blank"><i class="fab fa-facebook-f"></i></a><a aria-label="YouTube" class="youtube" href="https://www.youtube.com/@alogyengenharia" rel="noopener" target="_blank"><i class="fab fa-youtube"></i></a><a aria-label="Hotmart" class="hotmart" href="https://hotmart.com/pt-br/club/alogyengenharia" rel="noopener" target="_blank">H</a><a aria-label="TikTok" class="tiktok" href="https://www.tiktok.com/@alogyengenharia" rel="noopener" target="_blank"><i class="fab fa-tiktok"></i></a></div>
+<div aria-label="Ações rápidas" class="fab-wrap"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1%21%20Vim%20pela%20calculadora%20resistor%20shunt%204-20%20mA%20da%20ALOGY.%20Gostaria%20de%20atendimento." rel="noopener" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
+<main class="container" style="margin-top:18px"><div aria-label="Ações da ferramenta" class="tool-page-actions no-print"><button class="btn print" onclick="window.print()" type="button"><i class="fas fa-print"></i> Imprimir página</button></div>
+<div class="no-print" style="margin-bottom:14px;display:flex;gap:10px;flex-wrap:wrap">
+
+<button class="btn print" onclick="window.print()" type="button"><i class="fas fa-print"></i> Imprimir</button>
+</div>
+<section class="tools-hero"><h1>Calculadora Resistor Shunt 4-20 mA</h1><p>Converta sinal 4-20 mA para tensão, estime potência no resistor, carga da malha e referência para 1-5 V, 2-10 V e comunicação HART.</p></section>
+<section aria-label="Aviso de uso" class="calc-card"><h2><i class="fas fa-triangle-exclamation"></i> Ferramenta para apoio técnico</h2><p>Use como conferência preliminar, estudo e organização de dados. O resultado pode ter simplificações e depende das informações inseridas. Para projeto, compra, alteração de processo, segurança, comissionamento ou intervenção em campo, confirme com normas aplicáveis, catálogos de fabricantes, medições reais e profissional habilitado.</p></section>
+<section class="calc-layout">
+<div class="calc-card">
+<h2><i class="fas fa-wave-square"></i> Dados do sinal</h2>
+<p>Use para converter 4-20 mA em tensão, conferir resistor de 250 Ω para HART ou calcular resistor para uma faixa de tensão.</p>
+<div class="calc-grid">
+<div class="field"><label for="modo">Calcular</label><select id="modo"><option value="iv">Corrente + resistor → tensão</option><option value="vi">Tensão + resistor → corrente</option><option value="rv">Tensão desejada em 20 mA → resistor</option></select></div>
+<div class="field"><label for="i">Corrente medida (mA)</label><input id="i" step="any" type="number" value="12"/></div>
+<div class="field"><label for="r">Resistor shunt (Ω)</label><input id="r" step="any" type="number" value="250"/></div>
+<div class="field"><label for="v">Tensão medida/desejada (V)</label><input id="v" step="any" type="number" value="3"/></div>
+<div class="field"><label for="fonte">Fonte da malha (Vcc)</label><input id="fonte" step="any" type="number" value="24"/></div>
+<div class="field"><label for="carga">Outras cargas da malha (Ω)</label><input id="carga" step="any" type="number" value="0"/></div>
+</div>
+<div class="calc-actions"><button class="mini-btn dark" onclick="copiar()" type="button"><i class="fas fa-copy"></i> Copiar resultado</button><button class="mini-btn" onclick="exemplo(1)" type="button">250 Ω / HART</button><button class="mini-btn" onclick="exemplo(2)" type="button">1-5 V</button></div>
+</div>
+<div class="calc-card">
+<h2><i class="fas fa-square-poll-vertical"></i> Resultado</h2>
+<div class="calc-result" style="grid-template-columns:1fr 1fr">
+<div class="result-box"><span>Tensão no shunt</span><strong id="rV">-</strong></div>
+<div class="result-box"><span>Corrente calculada</span><strong id="rI">-</strong></div>
+<div class="result-box"><span>Potência no resistor</span><strong id="rP">-</strong></div>
+<div class="result-box"><span>Faixa 4-20 mA</span><strong class="small" id="rFaixa">-</strong></div>
+</div>
+<div class="calc-note" id="nota">Informe os dados para calcular.</div>
+</div>
+</section>
+<section class="calc-card"><h2><i class="fas fa-table"></i> Resistores comuns em 4-20 mA</h2><div class="calc-table-wrap"><table class="calc-table"><thead><tr><th>Resistor</th><th>4 mA</th><th>12 mA</th><th>20 mA</th><th>Uso comum</th></tr></thead><tbody id="tbody"></tbody></table></div></section>
+<section class="calc-layout"><div class="calc-card"><h2><i class="fas fa-gears"></i> Fórmulas usadas</h2><div class="formula-box">Tensão (V) = Corrente (A) × Resistência (Ω)
 Corrente (mA) = Tensão (V) / Resistência (Ω) × 1000
-Potência (W) = Corrente² × Resistência</div></div><div class="calc-card faq"><h2><i class="fas fa-circle-question"></i> Perguntas rápidas</h2><details open><summary>Por que 250 Ω é tão usado?</summary><p>Com 250 Ω, o sinal 4-20 mA vira 1-5 V. Além disso, muitas malhas HART precisam de carga mínima próxima de 250 Ω para comunicação adequada.</p></details><details><summary>Posso colocar resistor muito alto?</summary><p>Não sem verificar a fonte e a carga total da malha. Resistência alta aumenta a queda de tensão e pode fazer o transmissor saturar ou perder alimentação.</p></details></div></section>
+Potência (W) = Corrente² × Resistência</div></div><div class="calc-card faq"><h2><i class="fas fa-circle-question"></i> Perguntas rápidas</h2><details open=""><summary>Por que 250 Ω é tão usado?</summary><p>Com 250 Ω, o sinal 4-20 mA vira 1-5 V. Além disso, muitas malhas HART precisam de carga mínima próxima de 250 Ω para comunicação adequada.</p></details><details><summary>Posso colocar resistor muito alto?</summary><p>Não sem verificar a fonte e a carga total da malha. Resistência alta aumenta a queda de tensão e pode fazer o transmissor saturar ou perder alimentação.</p></details></div></section>
 <script>
 function n(id){return Number(document.getElementById(id)?.value||0)}
 function fmt(x,d=3){return isFinite(x)?Number(x).toLocaleString('pt-BR',{minimumFractionDigits:d,maximumFractionDigits:d}):'-'}
@@ -94,38 +94,38 @@ function iEl(){return document.getElementById('i')}
 function copiar(){navigator.clipboard?.writeText(`Tensão: ${rV.textContent}\nCorrente: ${rI.textContent}\nPotência: ${rP.textContent}\nFaixa: ${rFaixa.textContent}`).then(()=>alert('Resultado copiado.'))}
 document.addEventListener('DOMContentLoaded',()=>{document.querySelectorAll('input,select').forEach(el=>el.addEventListener('input',calc));calc()});
 </script>
-  
-    <!-- ALOGY_REVISAO_TECNICA_FERRAMENTA -->
-    <section class="calc-card" aria-label="Orientação técnica complementar">
-      <h2><i class="fas fa-clipboard-check"></i> Como usar esta ferramenta na prática</h2>
-      <p>Calcule tensão, corrente, potência e carga de resistor shunt em sinais 4-20 mA, 1-5 V, 2-10 V e malhas HART. Nesta revisão, o conteúdo foi ampliado para deixar mais claro quando usar a ferramenta, quais dados precisam ser conferidos e como transformar o número calculado em uma decisão técnica.</p>
-      <h3>Quando aplicar</h3>
-      <p>Use em partida, manutenção e diagnóstico de malhas, painéis, cartões analógicos, redes industriais e sinais de controle quando for necessário conferir escala, carga, resolução, tempo de resposta ou comunicação.</p>
-      <h3>Dados que merecem conferência</h3>
-      <p>Antes de confiar no resultado da ferramenta <strong>Calculadora Resistor Shunt 4-20 mA</strong>, confira principalmente: Calcular, Corrente medida (mA), Resistor shunt (Ω), Tensão medida/desejada (V), Fonte da malha (Vcc), Outras cargas da malha (Ω). Pequenos erros de unidade, ponto decimal ou condição de operação podem gerar conclusões erradas.</p>
-      <ul>
-          <li>Calcular</li>
-          <li>Corrente medida (mA)</li>
-          <li>Resistor shunt (Ω)</li>
-          <li>Tensão medida/desejada (V)</li>
-          <li>Fonte da malha (Vcc)</li>
-          <li>Outras cargas da malha (Ω)</li>
-      </ul>
-      <h3>Como interpretar o resultado</h3>
-      <p>O resultado ajuda a separar erro de configuração, limitação do cartão, queda na malha, ruído elétrico ou problema de instrumento. Em automação, a conferência deve considerar o sinal físico e também a escala configurada no CLP, supervisório ou controlador.</p>
-      <p>Quando a página apresentar campos de resultado como Tensão no shunt, Corrente calculada, Potência no resistor, Faixa 4-20 mA, use esses valores para comparar o cenário calculado com limite operacional, tolerância do processo, histórico de manutenção ou especificação de fabricante.</p>
-      <h3>Checklist rápido de validação</h3>
-      <ul>
-          <li>Confirme se a escala do campo é igual à escala configurada no CLP ou supervisório.</li>
-          <li>Verifique alimentação, aterramento funcional, blindagem e carga total da malha.</li>
-          <li>Em redes, confira endereço, baud rate, paridade, terminação e polaridade.</li>
-          <li>Registre o valor físico e o valor visto no sistema para facilitar diagnóstico.</li>
-      </ul>
-      <h3>Limites da estimativa</h3>
-      <p>Esta ferramenta é indicada para estudo, triagem, conferência de campo e apoio à manutenção. Para projeto final, laudo, especificação de compra, alteração de segurança ou liberação de equipamento crítico, valide as premissas com normas aplicáveis, documentação do fabricante e profissional habilitado.</p>
-    </section>
+<!-- ALOGY_REVISAO_TECNICA_FERRAMENTA -->
+<section aria-label="Orientação técnica complementar" class="calc-card">
+<h2><i class="fas fa-clipboard-check"></i> Como usar esta ferramenta na prática</h2>
+<p>Calcule tensão, corrente, potência e carga de resistor shunt em sinais 4-20 mA, 1-5 V, 2-10 V e malhas HART. Nesta revisão, o conteúdo foi ampliado para deixar mais claro quando usar a ferramenta, quais dados precisam ser conferidos e como transformar o número calculado em uma decisão técnica.</p>
+<h3>Quando aplicar</h3>
+<p>Use em partida, manutenção e diagnóstico de malhas, painéis, cartões analógicos, redes industriais e sinais de controle quando for necessário conferir escala, carga, resolução, tempo de resposta ou comunicação.</p>
+<h3>Dados que merecem conferência</h3>
+<p>Antes de confiar no resultado da ferramenta <strong>Calculadora Resistor Shunt 4-20 mA</strong>, confira principalmente: Calcular, Corrente medida (mA), Resistor shunt (Ω), Tensão medida/desejada (V), Fonte da malha (Vcc), Outras cargas da malha (Ω). Pequenos erros de unidade, ponto decimal ou condição de operação podem gerar conclusões erradas.</p>
+<ul>
+<li>Calcular</li>
+<li>Corrente medida (mA)</li>
+<li>Resistor shunt (Ω)</li>
+<li>Tensão medida/desejada (V)</li>
+<li>Fonte da malha (Vcc)</li>
+<li>Outras cargas da malha (Ω)</li>
+</ul>
+<h3>Como interpretar o resultado</h3>
+<p>O resultado ajuda a separar erro de configuração, limitação do cartão, queda na malha, ruído elétrico ou problema de instrumento. Em automação, a conferência deve considerar o sinal físico e também a escala configurada no CLP, supervisório ou controlador.</p>
+<p>Quando a página apresentar campos de resultado como Tensão no shunt, Corrente calculada, Potência no resistor, Faixa 4-20 mA, use esses valores para comparar o cenário calculado com limite operacional, tolerância do processo, histórico de manutenção ou especificação de fabricante.</p>
+<h3>Checklist rápido de validação</h3>
+<ul>
+<li>Confirme se a escala do campo é igual à escala configurada no CLP ou supervisório.</li>
+<li>Verifique alimentação, aterramento funcional, blindagem e carga total da malha.</li>
+<li>Em redes, confira endereço, baud rate, paridade, terminação e polaridade.</li>
+<li>Registre o valor físico e o valor visto no sistema para facilitar diagnóstico.</li>
+</ul>
+<h3>Limites da estimativa</h3>
+<p>Esta ferramenta é indicada para estudo, triagem, conferência de campo e apoio à manutenção. Para projeto final, laudo, especificação de compra, alteração de segurança ou liberação de equipamento crítico, valide as premissas com normas aplicáveis, documentação do fabricante e profissional habilitado.</p>
+</section>
+</main>
+<footer><p>© Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
 
-  </main>
-  <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
+<a aria-label="Voltar para Ferramentas" class="floating-back-tools no-print" href="ferramentas.html"><i class="fas fa-arrow-left"></i> Voltar para Ferramentas</a>
 </body>
 </html>

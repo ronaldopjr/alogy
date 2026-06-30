@@ -1,33 +1,34 @@
 <!DOCTYPE html>
+
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Calculadora Pareto de Falhas de Manutenção | ALOGY Engenharia</title>
-  <meta name="description" content="Monte um Pareto por quantidade ou horas de parada e identifique os maiores ofensores de manutenção." />
-  <meta name="robots" content="index,follow" />
-  <meta name="theme-color" content="#004b80" />
-  <link rel="canonical" href="https://www.alogy.com.br/calculadora-pareto-falhas-manutencao.html" />
-  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
-  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png" />
-  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <link rel="stylesheet" href="style.css" />
-  <script src="app.js" defer></script>
-  <meta property="og:locale" content="pt_BR" />
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="ALOGY Engenharia" />
-  <meta property="og:title" content="Calculadora Pareto de Falhas de Manutenção" />
-  <meta property="og:description" content="Monte um Pareto por quantidade ou horas de parada e identifique os maiores ofensores de manutenção." />
-  <meta property="og:url" content="https://www.alogy.com.br/calculadora-pareto-falhas-manutencao.html" />
-  <meta property="og:image" content="https://www.alogy.com.br/favicon-512x512.png" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Calculadora Pareto de Falhas de Manutenção", "url": "https://www.alogy.com.br/calculadora-pareto-falhas-manutencao.html", "description": "Monte um Pareto por quantidade ou horas de parada e identifique os maiores ofensores de manutenção.", "publisher": {"@type": "Organization", "name": "ALOGY Engenharia", "url": "https://www.alogy.com.br/"}, "applicationCategory": "EngineeringApplication", "operatingSystem": "Web"}</script>
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Calculadora Pareto de Falhas de Manutenção | ALOGY Engenharia</title>
+<meta content="Monte um Pareto por quantidade ou horas de parada e identifique os maiores ofensores de manutenção." name="description"/>
+<meta content="index,follow" name="robots"/>
+<meta content="#004b80" name="theme-color"/>
+<link href="https://www.alogy.com.br/calculadora-pareto-falhas-manutencao.html" rel="canonical"/>
+<link href="/favicon-48x48.png" rel="icon" sizes="48x48" type="image/png"/>
+<link href="/favicon-192x192.png" rel="icon" sizes="192x192" type="image/png"/>
+<link href="/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+<link href="/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<link href="style.css" rel="stylesheet"/>
+<script defer="" src="app.js"></script>
+<meta content="pt_BR" property="og:locale"/>
+<meta content="website" property="og:type"/>
+<meta content="ALOGY Engenharia" property="og:site_name"/>
+<meta content="Calculadora Pareto de Falhas de Manutenção" property="og:title"/>
+<meta content="Monte um Pareto por quantidade ou horas de parada e identifique os maiores ofensores de manutenção." property="og:description"/>
+<meta content="https://www.alogy.com.br/calculadora-pareto-falhas-manutencao.html" property="og:url"/>
+<meta content="https://www.alogy.com.br/favicon-512x512.png" property="og:image"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Calculadora Pareto de Falhas de Manutenção", "url": "https://www.alogy.com.br/calculadora-pareto-falhas-manutencao.html", "description": "Monte um Pareto por quantidade ou horas de parada e identifique os maiores ofensores de manutenção.", "publisher": {"@type": "Organization", "name": "ALOGY Engenharia", "url": "https://www.alogy.com.br/"}, "applicationCategory": "EngineeringApplication", "operatingSystem": "Web"}</script>
+<style>
     .mini-help{color:var(--muted);font-size:.92rem;line-height:1.55;margin-top:8px}
     .faq details{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:14px;padding:14px;margin-top:10px;box-shadow:0 6px 16px rgba(0,0,0,.04)}
     .faq summary{cursor:pointer;font-weight:900;color:#0b3a62}.faq p{margin:10px 0 0;color:var(--muted)}
@@ -37,60 +38,59 @@
     @media(max-width:900px){.calc-result.two,.calc-result.three,.calc-result.four{grid-template-columns:1fr}}
     @media print{header,.social-floating,.fab-wrap,.cta-bar,footer,.calc-actions,.tools-hero .btn,.no-print{display:none!important}body{background:#fff}.container{max-width:100%;padding:0}.calc-card,.tools-hero{box-shadow:none;border:1px solid #ddd}.calc-layout{display:block}.calc-card{margin:12px 0}.calc-table th{background:#eee!important;color:#111!important}}
   </style>
-  <!-- Google AdSense - verificação de propriedade -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5586837114309500"
-     crossorigin="anonymous"></script>
-</head>
+<!-- Google AdSense - verificação de propriedade -->
+<script async="" crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5586837114309500"></script>
+</link></link></head>
 <body class="tools-page">
-  <header>
-    <div class="container headbar"><a href="/" class="logo-wrapper" aria-label="Voltar para o início"><img src="logo-alogy.webp" alt="ALOGY Engenharia"  width="878"  height="308"  decoding="async" /></a>
-<button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menu"><i class="fas fa-bars"></i></button></div>
-    <nav class="desktop" aria-label="Menu principal"><div class="container navlinks"><a href="index.html">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="index.html#contato">Contato</a></div></nav>
-    <nav class="mobile" aria-label="Menu mobile"><a href="index.html">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="index.html#contato">Contato</a></nav>
-  </header>
-  <div class="social-floating" aria-label="Redes sociais"><a href="https://www.linkedin.com/company/alogyengenharia" class="linkedin" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a><a href="https://www.instagram.com/alogyengenharia" class="instagram" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="https://www.facebook.com/alogyengenharia" class="facebook" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><a href="https://www.youtube.com/@alogyengenharia" class="youtube" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a><a href="https://hotmart.com/pt-br/club/alogyengenharia" class="hotmart" target="_blank" rel="noopener" aria-label="Hotmart">H</a><a href="https://www.tiktok.com/@alogyengenharia" class="tiktok" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a></div>
-  <div class="fab-wrap" aria-label="Ações rápidas"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1%21%20Vim%20pelas%20ferramentas%20da%20ALOGY.%20Gostaria%20de%20atendimento." target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
-  <main class="container" style="margin-top:18px">
-    <div style="margin-bottom:14px;display:flex;gap:10px;flex-wrap:wrap" class="no-print"><a class="floating-back-tools no-print" href="ferramentas.html"><i class="fas fa-arrow-left"></i> Voltar para Ferramentas</a><a class="floating-back-tools no-print" href="ferramentas-manutencao-industrial.html"><i class="fas fa-layer-group"></i> Manutenção industrial</a></div>
-    <section class="tools-hero"><h1>Calculadora Pareto de Falhas de Manutenção</h1><p>Monte um Pareto por quantidade ou horas de parada e identifique os maiores ofensores de manutenção.</p></section>
-    <section class="calc-card" aria-label="Aviso de uso"><h2><i class="fas fa-triangle-exclamation"></i> Ferramenta orientativa</h2><p>Use como apoio técnico para triagem, estudo, manutenção e engenharia. A decisão final deve seguir procedimento interno, normas aplicáveis, manual do fabricante, análise de risco e responsável técnico da planta.</p></section>
-    <section class="calc-layout"><div class="calc-card"><h2><i class="fas fa-table"></i> Dados das falhas</h2><div class="field"><label for="dados">Digite uma linha por falha: Falha; quantidade; horas de parada por ocorrência</label><textarea id="dados" class="textarea-lines">Vazamento em selo; 8; 1.5
+<header>
+<div class="container headbar"><a aria-label="Voltar para o início" class="logo-wrapper" href="/"><img alt="ALOGY Engenharia" decoding="async" height="308" src="logo-alogy.webp" width="878"/></a>
+<button aria-label="Abrir menu" class="menu-toggle" onclick="toggleMobileMenu()"><i class="fas fa-bars"></i></button></div>
+<nav aria-label="Menu principal" class="desktop"><div class="container navlinks"><a href="index.html">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="index.html#contato">Contato</a></div></nav>
+<nav aria-label="Menu mobile" class="mobile"><a href="index.html">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="index.html#contato">Contato</a></nav>
+</header>
+<div aria-label="Redes sociais" class="social-floating"><a aria-label="LinkedIn" class="linkedin" href="https://www.linkedin.com/company/alogyengenharia" rel="noopener" target="_blank"><i class="fab fa-linkedin-in"></i></a><a aria-label="Instagram" class="instagram" href="https://www.instagram.com/alogyengenharia" rel="noopener" target="_blank"><i class="fab fa-instagram"></i></a><a aria-label="Facebook" class="facebook" href="https://www.facebook.com/alogyengenharia" rel="noopener" target="_blank"><i class="fab fa-facebook-f"></i></a><a aria-label="YouTube" class="youtube" href="https://www.youtube.com/@alogyengenharia" rel="noopener" target="_blank"><i class="fab fa-youtube"></i></a><a aria-label="Hotmart" class="hotmart" href="https://hotmart.com/pt-br/club/alogyengenharia" rel="noopener" target="_blank">H</a><a aria-label="TikTok" class="tiktok" href="https://www.tiktok.com/@alogyengenharia" rel="noopener" target="_blank"><i class="fab fa-tiktok"></i></a></div>
+<div aria-label="Ações rápidas" class="fab-wrap"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1%21%20Vim%20pelas%20ferramentas%20da%20ALOGY.%20Gostaria%20de%20atendimento." rel="noopener" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
+<main class="container" style="margin-top:18px"><div aria-label="Ações da ferramenta" class="tool-page-actions no-print"><a class="tool-category-link" href="ferramentas-manutencao-industrial.html"><i class="fas fa-layer-group"></i> Manutenção industrial</a><button class="btn print" onclick="window.print()" type="button"><i class="fas fa-print"></i> Imprimir página</button></div>
+
+<section class="tools-hero"><h1>Calculadora Pareto de Falhas de Manutenção</h1><p>Monte um Pareto por quantidade ou horas de parada e identifique os maiores ofensores de manutenção.</p></section>
+<section aria-label="Aviso de uso" class="calc-card"><h2><i class="fas fa-triangle-exclamation"></i> Ferramenta orientativa</h2><p>Use como apoio técnico para triagem, estudo, manutenção e engenharia. A decisão final deve seguir procedimento interno, normas aplicáveis, manual do fabricante, análise de risco e responsável técnico da planta.</p></section>
+<section class="calc-layout"><div class="calc-card"><h2><i class="fas fa-table"></i> Dados das falhas</h2><div class="field"><label for="dados">Digite uma linha por falha: Falha; quantidade; horas de parada por ocorrência</label><textarea class="textarea-lines" id="dados">Vazamento em selo; 8; 1.5
 Falha de sensor; 12; 0.5
 Entupimento de filtro; 5; 3
 Queima de inversor; 2; 8
-Falha pneumática; 9; 1</textarea></div><p class="mini-help">O impacto é quantidade × horas por ocorrência. Use ponto ou vírgula para decimal.</p></div><div class="calc-card"><h2><i class="fas fa-chart-column"></i> Pareto calculado</h2><div class="calc-result three"><div class="result-box"><span>Maior ofensor</span><strong id="r1" class="small">-</strong></div><div class="result-box"><span>Impacto total</span><strong id="r2">-</strong></div><div class="result-box"><span>Top 3</span><strong id="r3">-</strong></div></div><div class="table-wrap"><table class="calc-table"><thead><tr><th>Falha</th><th>Qtd.</th><th>Impacto h</th><th>% acum.</th></tr></thead><tbody id="tbl"></tbody></table></div></div></section>
-  <script>function num(x){return parseFloat(String(x).replace(',','.'))||0}function calc(){let rows=document.getElementById('dados').value.split(/\n+/).map(l=>l.split(';').map(s=>s.trim())).filter(a=>a[0]);let arr=rows.map(a=>({n:a[0],q:num(a[1]||1),h:num(a[2]||1)})).map(o=>({...o,imp:o.q*o.h})).sort((a,b)=>b.imp-a.imp);let total=arr.reduce((s,o)=>s+o.imp,0)||1,ac=0;document.getElementById('tbl').innerHTML=arr.map(o=>{ac+=o.imp;return `<tr><td>${o.n}</td><td>${o.q}</td><td>${o.imp.toFixed(2)}</td><td>${(ac/total*100).toFixed(1)}%</td></tr>`}).join('');document.getElementById('r1').textContent=arr[0]?arr[0].n:'-';document.getElementById('r2').textContent=total.toFixed(2)+' h';document.getElementById('r3').textContent=(arr.slice(0,3).reduce((s,o)=>s+o.imp,0)/total*100).toFixed(1)+' %'}document.getElementById('dados').addEventListener('input',calc);calc();</script>
-    <section class="cta-bar" aria-label="Chamada para contato">
-      <div><strong>Precisa de apoio técnico em engenharia, manutenção ou instrumentação?</strong><br><span class="muted">Use as ferramentas como apoio e fale com a ALOGY para análise técnica aplicada ao seu processo.</span></div>
-      <div class="cta-actions"><a class="btn" href="index.html#contato"><i class="fas fa-paper-plane"></i> Solicitar contato</a></div>
-    </section>
-  
-    <!-- ALOGY_REVISAO_TECNICA_FERRAMENTA -->
-    <section class="calc-card" aria-label="Orientação técnica complementar">
-      <h2><i class="fas fa-clipboard-check"></i> Como usar esta ferramenta na prática</h2>
-      <p>Monte um Pareto por quantidade ou horas de parada e identifique os maiores ofensores de manutenção. Nesta revisão, o conteúdo foi ampliado para deixar mais claro quando usar a ferramenta, quais dados precisam ser conferidos e como transformar o número calculado em uma decisão técnica.</p>
-      <h3>Quando aplicar</h3>
-      <p>Use para priorizar manutenção, confiabilidade, inspeção, comissionamento, análise de falhas, sobressalentes e tomada de decisão entre corrigir, monitorar ou planejar parada.</p>
-      <h3>Dados que merecem conferência</h3>
-      <p>Antes de confiar no resultado da ferramenta <strong>Calculadora Pareto de Falhas de Manutenção</strong>, confira principalmente: Digite uma linha por falha: Falha; quantidade; horas de parada por ocorrência. Pequenos erros de unidade, ponto decimal ou condição de operação podem gerar conclusões erradas.</p>
-      <ul>
-          <li>Digite uma linha por falha: Falha; quantidade; horas de parada por ocorrência</li>
-      </ul>
-      <h3>Como interpretar o resultado</h3>
-      <p>O resultado deve ser analisado junto com criticidade, histórico de falhas, impacto na produção, segurança, meio ambiente, custo de parada e disponibilidade de peças.</p>
-      <p>Quando a página apresentar campos de resultado como Maior ofensor, Impacto total, Top 3, use esses valores para comparar o cenário calculado com limite operacional, tolerância do processo, histórico de manutenção ou especificação de fabricante.</p>
-      <h3>Checklist rápido de validação</h3>
-      <ul>
-          <li>Use dados históricos confiáveis, não apenas percepção da equipe.</li>
-          <li>Separe falhas repetitivas, falhas aleatórias e falhas por modo comum.</li>
-          <li>Registre ação corretiva, causa provável e evidência encontrada.</li>
-          <li>Reavalie a criticidade sempre que processo, produção ou risco mudarem.</li>
-      </ul>
-      <h3>Limites da estimativa</h3>
-      <p>Esta ferramenta é indicada para estudo, triagem, conferência de campo e apoio à manutenção. Para projeto final, laudo, especificação de compra, alteração de segurança ou liberação de equipamento crítico, valide as premissas com normas aplicáveis, documentação do fabricante e profissional habilitado.</p>
-    </section>
+Falha pneumática; 9; 1</textarea></div><p class="mini-help">O impacto é quantidade × horas por ocorrência. Use ponto ou vírgula para decimal.</p></div><div class="calc-card"><h2><i class="fas fa-chart-column"></i> Pareto calculado</h2><div class="calc-result three"><div class="result-box"><span>Maior ofensor</span><strong class="small" id="r1">-</strong></div><div class="result-box"><span>Impacto total</span><strong id="r2">-</strong></div><div class="result-box"><span>Top 3</span><strong id="r3">-</strong></div></div><div class="table-wrap"><table class="calc-table"><thead><tr><th>Falha</th><th>Qtd.</th><th>Impacto h</th><th>% acum.</th></tr></thead><tbody id="tbl"></tbody></table></div></div></section>
+<script>function num(x){return parseFloat(String(x).replace(',','.'))||0}function calc(){let rows=document.getElementById('dados').value.split(/\n+/).map(l=>l.split(';').map(s=>s.trim())).filter(a=>a[0]);let arr=rows.map(a=>({n:a[0],q:num(a[1]||1),h:num(a[2]||1)})).map(o=>({...o,imp:o.q*o.h})).sort((a,b)=>b.imp-a.imp);let total=arr.reduce((s,o)=>s+o.imp,0)||1,ac=0;document.getElementById('tbl').innerHTML=arr.map(o=>{ac+=o.imp;return `<tr><td>${o.n}</td><td>${o.q}</td><td>${o.imp.toFixed(2)}</td><td>${(ac/total*100).toFixed(1)}%</td></tr>`}).join('');document.getElementById('r1').textContent=arr[0]?arr[0].n:'-';document.getElementById('r2').textContent=total.toFixed(2)+' h';document.getElementById('r3').textContent=(arr.slice(0,3).reduce((s,o)=>s+o.imp,0)/total*100).toFixed(1)+' %'}document.getElementById('dados').addEventListener('input',calc);calc();</script>
+<section aria-label="Chamada para contato" class="cta-bar">
+<div><strong>Precisa de apoio técnico em engenharia, manutenção ou instrumentação?</strong><br/><span class="muted">Use as ferramentas como apoio e fale com a ALOGY para análise técnica aplicada ao seu processo.</span></div>
+<div class="cta-actions"><a class="btn" href="index.html#contato"><i class="fas fa-paper-plane"></i> Solicitar contato</a></div>
+</section>
+<!-- ALOGY_REVISAO_TECNICA_FERRAMENTA -->
+<section aria-label="Orientação técnica complementar" class="calc-card">
+<h2><i class="fas fa-clipboard-check"></i> Como usar esta ferramenta na prática</h2>
+<p>Monte um Pareto por quantidade ou horas de parada e identifique os maiores ofensores de manutenção. Nesta revisão, o conteúdo foi ampliado para deixar mais claro quando usar a ferramenta, quais dados precisam ser conferidos e como transformar o número calculado em uma decisão técnica.</p>
+<h3>Quando aplicar</h3>
+<p>Use para priorizar manutenção, confiabilidade, inspeção, comissionamento, análise de falhas, sobressalentes e tomada de decisão entre corrigir, monitorar ou planejar parada.</p>
+<h3>Dados que merecem conferência</h3>
+<p>Antes de confiar no resultado da ferramenta <strong>Calculadora Pareto de Falhas de Manutenção</strong>, confira principalmente: Digite uma linha por falha: Falha; quantidade; horas de parada por ocorrência. Pequenos erros de unidade, ponto decimal ou condição de operação podem gerar conclusões erradas.</p>
+<ul>
+<li>Digite uma linha por falha: Falha; quantidade; horas de parada por ocorrência</li>
+</ul>
+<h3>Como interpretar o resultado</h3>
+<p>O resultado deve ser analisado junto com criticidade, histórico de falhas, impacto na produção, segurança, meio ambiente, custo de parada e disponibilidade de peças.</p>
+<p>Quando a página apresentar campos de resultado como Maior ofensor, Impacto total, Top 3, use esses valores para comparar o cenário calculado com limite operacional, tolerância do processo, histórico de manutenção ou especificação de fabricante.</p>
+<h3>Checklist rápido de validação</h3>
+<ul>
+<li>Use dados históricos confiáveis, não apenas percepção da equipe.</li>
+<li>Separe falhas repetitivas, falhas aleatórias e falhas por modo comum.</li>
+<li>Registre ação corretiva, causa provável e evidência encontrada.</li>
+<li>Reavalie a criticidade sempre que processo, produção ou risco mudarem.</li>
+</ul>
+<h3>Limites da estimativa</h3>
+<p>Esta ferramenta é indicada para estudo, triagem, conferência de campo e apoio à manutenção. Para projeto final, laudo, especificação de compra, alteração de segurança ou liberação de equipamento crítico, valide as premissas com normas aplicáveis, documentação do fabricante e profissional habilitado.</p>
+</section>
+</main>
+<footer><p>© Desde 2012 ALOGY Engenharia | www.alogy.com.br</p></footer>
 
-  </main>
-  <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p></footer>
+<a aria-label="Voltar para Ferramentas" class="floating-back-tools no-print" href="ferramentas.html"><i class="fas fa-arrow-left"></i> Voltar para Ferramentas</a>
 </body>
 </html>

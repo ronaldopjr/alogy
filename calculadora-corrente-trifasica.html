@@ -1,38 +1,39 @@
 <!DOCTYPE html>
+
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Calculadora de Corrente Trifásica | kW, kVA, CV e HP</title>
-  <meta name="description" content="Calcule corrente trifásica, potência ativa, potência aparente, CV, HP, fator de potência e rendimento para motores e cargas industriais."/>
-  <meta name="robots" content="index,follow" />
-  <meta name="theme-color" content="#062138" />
-  <link rel="canonical" href="https://www.alogy.com.br/calculadora-corrente-trifasica.html" />
-  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
-  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png" />
-  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <link rel="stylesheet" href="style.css" />
-  <script src="app.js" defer></script>
-  <meta property="og:locale" content="pt_BR" />
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="ALOGY Engenharia" />
-  <meta property="og:title" content="Calculadora de Corrente Trifásica | ALOGY Engenharia" />
-  <meta property="og:description" content="Calcule corrente de motores e cargas trifásicas por kW, kVA, CV, HP, tensão, fator de potência e rendimento." />
-  <meta property="og:url" content="https://www.alogy.com.br/calculadora-corrente-trifasica.html" />
-  <meta property="og:image" content="https://www.alogy.com.br/favicon-512x512.png" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <script type="application/ld+json">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Calculadora de Corrente Trifásica | kW, kVA, CV e HP</title>
+<meta content="Calcule corrente trifásica, potência ativa, potência aparente, CV, HP, fator de potência e rendimento para motores e cargas industriais." name="description"/>
+<meta content="index,follow" name="robots"/>
+<meta content="#062138" name="theme-color"/>
+<link href="https://www.alogy.com.br/calculadora-corrente-trifasica.html" rel="canonical"/>
+<link href="/favicon-48x48.png" rel="icon" sizes="48x48" type="image/png"/>
+<link href="/favicon-192x192.png" rel="icon" sizes="192x192" type="image/png"/>
+<link href="/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+<link href="/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<link href="style.css" rel="stylesheet"/>
+<script defer="" src="app.js"></script>
+<meta content="pt_BR" property="og:locale"/>
+<meta content="website" property="og:type"/>
+<meta content="ALOGY Engenharia" property="og:site_name"/>
+<meta content="Calculadora de Corrente Trifásica | ALOGY Engenharia" property="og:title"/>
+<meta content="Calcule corrente de motores e cargas trifásicas por kW, kVA, CV, HP, tensão, fator de potência e rendimento." property="og:description"/>
+<meta content="https://www.alogy.com.br/calculadora-corrente-trifasica.html" property="og:url"/>
+<meta content="https://www.alogy.com.br/favicon-512x512.png" property="og:image"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<script type="application/ld+json">
   {"@context":"https://schema.org","@type":"WebApplication","name":"Calculadora de Corrente Trifásica","url":"https://www.alogy.com.br/calculadora-corrente-trifasica.html","applicationCategory":"EngineeringApplication","operatingSystem":"Web","description":"Calcule corrente trifásica, potência ativa, potência aparente, CV, HP, fator de potência e rendimento para motores e cargas industriais.","publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"}}
   </script>
-  <script type="application/ld+json">
+<script type="application/ld+json">
   {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Como calcular corrente trifásica em kW?","acceptedAnswer":{"@type":"Answer","text":"Para carga trifásica equilibrada, a corrente pode ser estimada por I = P / (raiz de 3 × V × FP), considerando P em watts, tensão entre fases e fator de potência."}},{"@type":"Question","name":"CV e HP são iguais?","acceptedAnswer":{"@type":"Answer","text":"Não exatamente. Nesta ferramenta, 1 CV é considerado aproximadamente 735,5 W e 1 HP aproximadamente 745,7 W."}},{"@type":"Question","name":"Preciso informar rendimento do motor?","acceptedAnswer":{"@type":"Answer","text":"Sim, para estimar a corrente a partir da potência mecânica em CV ou HP. O rendimento converte a potência no eixo para potência elétrica aproximada de entrada."}},{"@type":"Question","name":"Essa ferramenta dimensiona disjuntor e proteção?","acceptedAnswer":{"@type":"Answer","text":"Não. Ela calcula corrente e potências de forma auxiliar. Dimensionamento de proteção, cabo, partida, coordenação e curto-circuito deve ser feito por profissional habilitado e considerando as normas aplicáveis."}}]}
   </script>
-  <style>
+<style>
     .calc-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
     .mini-btn{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(0,107,177,.25);background:rgba(0,107,177,.08);color:#0b3a62;border-radius:12px;padding:10px 12px;font-weight:900;cursor:pointer;text-decoration:none;font:inherit}
     .mini-btn:hover{background:rgba(0,107,177,.12)}
@@ -50,87 +51,79 @@
     .faq summary{cursor:pointer;font-weight:900;color:#0b3a62}.faq p{margin:10px 0 0;color:var(--muted)}
     @media(max-width:900px){.quick-grid{grid-template-columns:1fr 1fr}.calc-actions .mini-btn{width:100%;justify-content:center}}
   </style>
-  <!-- Google AdSense - verificação de propriedade -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5586837114309500"
-     crossorigin="anonymous"></script>
-</head>
+<!-- Google AdSense - verificação de propriedade -->
+<script async="" crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5586837114309500"></script>
+</link></link></head>
 <body class="tools-page">
-  <header>
-    <div class="container headbar"><a href="/" class="logo-wrapper" aria-label="Voltar para o início"><img src="logo-alogy.webp" alt="ALOGY Engenharia"  width="878"  height="308"  decoding="async" /></a>
-<button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menu"><i class="fas fa-bars"></i></button></div>
-    <nav class="desktop" aria-label="Menu principal"><div class="container navlinks"><a href="index.html">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="index.html#contato">Contato</a></div></nav>
-    <nav class="mobile" aria-label="Menu mobile"><a href="index.html">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="index.html#contato">Contato</a></nav>
-  </header>
-  <div class="social-floating" aria-label="Redes sociais"><a href="https://www.linkedin.com/company/alogyengenharia" class="linkedin" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a><a href="https://www.instagram.com/alogyengenharia" class="instagram" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="https://www.facebook.com/alogyengenharia" class="facebook" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><a href="https://www.youtube.com/@alogyengenharia" class="youtube" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a><a href="https://hotmart.com/pt-br/club/alogyengenharia" class="hotmart" target="_blank" rel="noopener" aria-label="Hotmart">H</a><a href="https://www.tiktok.com/@alogyengenharia" class="tiktok" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a></div>
-  <div class="fab-wrap" aria-label="Ações rápidas"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1!%20Vim%20pela%20calculadora%20de%20corrente%20trif%C3%A1sica%20da%20ALOGY.%20Gostaria%20de%20atendimento." target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
-  <main class="container" style="margin-top:18px">
-    <div style="margin-bottom:14px;display:flex;gap:10px;flex-wrap:wrap" class="no-print"><a class="floating-back-tools no-print" href="ferramentas.html"><i class="fas fa-arrow-left"></i> Voltar para Ferramentas</a><button class="btn print" type="button" onclick="window.print()"><i class="fas fa-print"></i> Imprimir</button><a class="btn secondary" href="calculadora-dimensionamento-cabos.html"><i class="fas fa-plug-circle-bolt"></i> Dimensionamento de Cabos</a></div>
-    <section class="tools-hero"><h1>Calculadora de Corrente Trifásica</h1><p>Calcule corrente, potência ativa, potência aparente, CV, HP, fator de potência e rendimento para motores e cargas industriais. Ferramenta auxiliar para manutenção elétrica, automação, painéis e pré-análise de circuitos.</p></section>
-
-    <section class="calc-layout">
-      <div class="calc-card"><h2><i class="fas fa-bolt"></i> Dados da carga</h2><p>Escolha o tipo de entrada e informe os dados elétricos. Para motor em CV ou HP, o rendimento é usado para estimar a potência elétrica de entrada.</p>
-        <div class="calc-grid">
-          <div class="field"><label for="ct_modo">Calcular a partir de</label><select id="ct_modo"><option value="kw">Potência ativa (kW)</option><option value="kva">Potência aparente (kVA)</option><option value="cv" selected>Potência do motor (CV)</option><option value="hp">Potência do motor (HP)</option><option value="corrente">Corrente medida (A)</option></select></div>
-          <div class="field"><label for="ct_valor" id="ct_label">Potência do motor (CV)</label><input id="ct_valor" type="number" step="any" value="10"></div>
-          <div class="field"><label for="ct_sistema">Sistema</label><select id="ct_sistema"><option value="tri" selected>Trifásico</option><option value="mono">Monofásico / bifásico</option></select></div>
-          <div class="field"><label for="ct_tensao">Tensão do circuito (V)</label><input id="ct_tensao" type="number" step="any" value="380"></div>
-          <div class="field"><label for="ct_fp">Fator de potência</label><input id="ct_fp" type="number" step="any" value="0.86"></div>
-          <div class="field"><label for="ct_rend">Rendimento do motor (%)</label><input id="ct_rend" type="number" step="any" value="90"></div>
-        </div>
-        <div class="calc-actions"><button class="mini-btn dark" type="button" onclick="copiarCorrente()"><i class="fas fa-copy"></i> Copiar resultado</button><button class="mini-btn" type="button" onclick="exemploCorrente('cv',10,380,0.86,90)">Motor 10 CV 380 V</button><button class="mini-btn" type="button" onclick="exemploCorrente('kw',15,440,0.88,92)">Carga 15 kW 440 V</button><button class="mini-btn" type="button" onclick="exemploCorrente('corrente',80,380,0.92,90)">Corrente 80 A</button></div>
-      </div>
-      <div class="calc-card"><h2><i class="fas fa-square-poll-vertical"></i> Resultado</h2>
-        <div class="calc-result" style="grid-template-columns:1fr 1fr"><div class="result-box"><span>Corrente estimada</span><strong id="ct_i">-</strong></div><div class="result-box"><span>Potência ativa</span><strong id="ct_kw">-</strong></div><div class="result-box"><span>Potência aparente</span><strong id="ct_kva">-</strong></div><div class="result-box"><span>Potência mecânica</span><strong id="ct_mec">-</strong></div></div>
-        <div class="calc-note" id="ct_status" style="margin-top:12px">Informe os dados para calcular.</div>
-        <div class="formula-box"><strong>Fórmula base:</strong><br><span id="ct_formula">Trifásico: I = P / (√3 × V × FP)</span></div>
-      </div>
-    </section>
-
-    <section class="calc-card" aria-label="Aviso de responsabilidade">
-      <h2><i class="fas fa-triangle-exclamation"></i> Uso orientativo e responsabilidade técnica</h2>
-      <p>Esta ferramenta é apenas para estudo, apoio técnico e pré-análise. Os resultados podem conter simplificações, aproximações ou erros de preenchimento e não substituem normas aplicáveis, catálogos de fabricantes, procedimentos internos, medições em campo, projetos, laudos ou análise de profissional habilitado. A ALOGY Engenharia não se responsabiliza por decisões, instalações, ajustes, manobras, compras ou intervenções realizadas exclusivamente com base nesta ferramenta.</p>
-    </section>
-
-
-    <section class="calc-layout">
-      <div class="calc-card"><h2><i class="fas fa-table"></i> Tabela rápida de motores</h2><p>Referência aproximada usando a tensão, fator de potência e rendimento informados acima. Útil para comparação rápida em campo.</p><div class="calc-table-wrap"><table class="calc-table"><thead><tr><th>Motor</th><th>Potência elétrica estimada</th><th>Corrente estimada</th></tr></thead><tbody id="ct_table"></tbody></table></div><p class="small-muted">Valores aproximados. Corrente real depende de placa do motor, rendimento real, fator de potência, tensão, carregamento e tipo de partida.</p></div>
-      <div class="calc-card"><h2><i class="fas fa-circle-info"></i> Observações técnicas</h2><div class="quick-grid"><div class="quick-box"><strong>kW</strong><span>potência ativa</span></div><div class="quick-box"><strong>kVA</strong><span>potência aparente</span></div><div class="quick-box"><strong>FP</strong><span>fator de potência</span></div><div class="quick-box"><strong>η</strong><span>rendimento</span></div></div><div class="calc-note" style="margin-top:14px"><strong>Atenção:</strong> esta ferramenta não dimensiona disjuntor, contator, relé, fusível, cabo ou partida. Ela auxilia no cálculo elétrico inicial. O projeto deve considerar corrente de partida, curto-circuito, queda de tensão, agrupamento, temperatura, coordenação de proteção e norma aplicável.</div></div>
-    </section>
-
-    <section class="section-card faq"><div class="section-title"><span class="bar"></span><h3>Perguntas frequentes</h3></div><details open><summary>Como calcular corrente trifásica em kW?</summary><p>Para carga trifásica equilibrada, use I = P / (√3 × V × FP), com P em watts, V como tensão entre fases e FP como fator de potência.</p></details><details><summary>CV e HP são iguais?</summary><p>Não exatamente. Nesta ferramenta, 1 CV é considerado aproximadamente 735,5 W e 1 HP aproximadamente 745,7 W.</p></details><details><summary>Por que informar rendimento?</summary><p>Quando a entrada é CV ou HP, normalmente estamos falando da potência mecânica no eixo do motor. O rendimento estima a potência elétrica necessária na entrada.</p></details><details><summary>Essa calculadora dimensiona proteção?</summary><p>Não. Ela calcula corrente e potências de forma auxiliar. Proteção, cabo, partida e coordenação devem ser definidos por profissional habilitado.</p></details></section>
-  
-    <!-- ALOGY_REVISAO_TECNICA_FERRAMENTA -->
-    <section class="calc-card" aria-label="Orientação técnica complementar">
-      <h2><i class="fas fa-clipboard-check"></i> Como usar esta ferramenta na prática</h2>
-      <p>Calcule corrente trifásica, potência ativa, potência aparente, CV, HP, fator de potência e rendimento para motores e cargas industriais. Nesta revisão, o conteúdo foi ampliado para deixar mais claro quando usar a ferramenta, quais dados precisam ser conferidos e como transformar o número calculado em uma decisão técnica.</p>
-      <h3>Quando aplicar</h3>
-      <p>Use para verificação preliminar de circuitos industriais, painéis, motores, alimentação 24 Vcc, proteção, qualidade de energia e segurança elétrica antes de especificar componentes ou liberar manutenção.</p>
-      <h3>Dados que merecem conferência</h3>
-      <p>Antes de confiar no resultado da ferramenta <strong>Calculadora de Corrente Trifásica</strong>, confira principalmente: Calcular a partir de, Potência do motor (CV), Sistema, Tensão do circuito (V), Fator de potência, Rendimento do motor (%). Pequenos erros de unidade, ponto decimal ou condição de operação podem gerar conclusões erradas.</p>
-      <ul>
-          <li>Calcular a partir de</li>
-          <li>Potência do motor (CV)</li>
-          <li>Sistema</li>
-          <li>Tensão do circuito (V)</li>
-          <li>Fator de potência</li>
-          <li>Rendimento do motor (%)</li>
-      </ul>
-      <h3>Como interpretar o resultado</h3>
-      <p>O resultado deve ser avaliado junto com corrente nominal, temperatura ambiente, método de instalação, capacidade de curto-circuito, proteção existente e normas aplicáveis. Um número isolado não substitui dimensionamento elétrico completo.</p>
-      <p>Quando a página apresentar campos de resultado como Corrente estimada, Potência ativa, Potência aparente, Potência mecânica, use esses valores para comparar o cenário calculado com limite operacional, tolerância do processo, histórico de manutenção ou especificação de fabricante.</p>
-      <h3>Checklist rápido de validação</h3>
-      <ul>
-          <li>Confirme tensão real, corrente de carga e regime de operação.</li>
-          <li>Verifique se cabos, bornes, disjuntores e fontes suportam a corrente calculada.</li>
-          <li>Considere temperatura, agrupamento, distância, queda de tensão e partida de motores.</li>
-          <li>Bloqueie e sinalize a energia antes de qualquer intervenção em campo.</li>
-      </ul>
-      <h3>Limites da estimativa</h3>
-      <p>Esta ferramenta é indicada para estudo, triagem, conferência de campo e apoio à manutenção. Para projeto final, laudo, especificação de compra, alteração de segurança ou liberação de equipamento crítico, valide as premissas com normas aplicáveis, documentação do fabricante e profissional habilitado.</p>
-    </section>
-
-  </main>
-  <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p></footer>
+<header>
+<div class="container headbar"><a aria-label="Voltar para o início" class="logo-wrapper" href="/"><img alt="ALOGY Engenharia" decoding="async" height="308" src="logo-alogy.webp" width="878"/></a>
+<button aria-label="Abrir menu" class="menu-toggle" onclick="toggleMobileMenu()"><i class="fas fa-bars"></i></button></div>
+<nav aria-label="Menu principal" class="desktop"><div class="container navlinks"><a href="index.html">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="index.html#contato">Contato</a></div></nav>
+<nav aria-label="Menu mobile" class="mobile"><a href="index.html">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="index.html#contato">Contato</a></nav>
+</header>
+<div aria-label="Redes sociais" class="social-floating"><a aria-label="LinkedIn" class="linkedin" href="https://www.linkedin.com/company/alogyengenharia" rel="noopener" target="_blank"><i class="fab fa-linkedin-in"></i></a><a aria-label="Instagram" class="instagram" href="https://www.instagram.com/alogyengenharia" rel="noopener" target="_blank"><i class="fab fa-instagram"></i></a><a aria-label="Facebook" class="facebook" href="https://www.facebook.com/alogyengenharia" rel="noopener" target="_blank"><i class="fab fa-facebook-f"></i></a><a aria-label="YouTube" class="youtube" href="https://www.youtube.com/@alogyengenharia" rel="noopener" target="_blank"><i class="fab fa-youtube"></i></a><a aria-label="Hotmart" class="hotmart" href="https://hotmart.com/pt-br/club/alogyengenharia" rel="noopener" target="_blank">H</a><a aria-label="TikTok" class="tiktok" href="https://www.tiktok.com/@alogyengenharia" rel="noopener" target="_blank"><i class="fab fa-tiktok"></i></a></div>
+<div aria-label="Ações rápidas" class="fab-wrap"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1!%20Vim%20pela%20calculadora%20de%20corrente%20trif%C3%A1sica%20da%20ALOGY.%20Gostaria%20de%20atendimento." rel="noopener" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
+<main class="container" style="margin-top:18px"><div aria-label="Ações da ferramenta" class="tool-page-actions no-print"><button class="btn print" onclick="window.print()" type="button"><i class="fas fa-print"></i> Imprimir página</button></div>
+<div class="no-print" style="margin-bottom:14px;display:flex;gap:10px;flex-wrap:wrap"><button class="btn print" onclick="window.print()" type="button"><i class="fas fa-print"></i> Imprimir</button><a class="btn secondary" href="calculadora-dimensionamento-cabos.html"><i class="fas fa-plug-circle-bolt"></i> Dimensionamento de Cabos</a></div>
+<section class="tools-hero"><h1>Calculadora de Corrente Trifásica</h1><p>Calcule corrente, potência ativa, potência aparente, CV, HP, fator de potência e rendimento para motores e cargas industriais. Ferramenta auxiliar para manutenção elétrica, automação, painéis e pré-análise de circuitos.</p></section>
+<section class="calc-layout">
+<div class="calc-card"><h2><i class="fas fa-bolt"></i> Dados da carga</h2><p>Escolha o tipo de entrada e informe os dados elétricos. Para motor em CV ou HP, o rendimento é usado para estimar a potência elétrica de entrada.</p>
+<div class="calc-grid">
+<div class="field"><label for="ct_modo">Calcular a partir de</label><select id="ct_modo"><option value="kw">Potência ativa (kW)</option><option value="kva">Potência aparente (kVA)</option><option selected="" value="cv">Potência do motor (CV)</option><option value="hp">Potência do motor (HP)</option><option value="corrente">Corrente medida (A)</option></select></div>
+<div class="field"><label for="ct_valor" id="ct_label">Potência do motor (CV)</label><input id="ct_valor" step="any" type="number" value="10"/></div>
+<div class="field"><label for="ct_sistema">Sistema</label><select id="ct_sistema"><option selected="" value="tri">Trifásico</option><option value="mono">Monofásico / bifásico</option></select></div>
+<div class="field"><label for="ct_tensao">Tensão do circuito (V)</label><input id="ct_tensao" step="any" type="number" value="380"/></div>
+<div class="field"><label for="ct_fp">Fator de potência</label><input id="ct_fp" step="any" type="number" value="0.86"/></div>
+<div class="field"><label for="ct_rend">Rendimento do motor (%)</label><input id="ct_rend" step="any" type="number" value="90"/></div>
+</div>
+<div class="calc-actions"><button class="mini-btn dark" onclick="copiarCorrente()" type="button"><i class="fas fa-copy"></i> Copiar resultado</button><button class="mini-btn" onclick="exemploCorrente('cv',10,380,0.86,90)" type="button">Motor 10 CV 380 V</button><button class="mini-btn" onclick="exemploCorrente('kw',15,440,0.88,92)" type="button">Carga 15 kW 440 V</button><button class="mini-btn" onclick="exemploCorrente('corrente',80,380,0.92,90)" type="button">Corrente 80 A</button></div>
+</div>
+<div class="calc-card"><h2><i class="fas fa-square-poll-vertical"></i> Resultado</h2>
+<div class="calc-result" style="grid-template-columns:1fr 1fr"><div class="result-box"><span>Corrente estimada</span><strong id="ct_i">-</strong></div><div class="result-box"><span>Potência ativa</span><strong id="ct_kw">-</strong></div><div class="result-box"><span>Potência aparente</span><strong id="ct_kva">-</strong></div><div class="result-box"><span>Potência mecânica</span><strong id="ct_mec">-</strong></div></div>
+<div class="calc-note" id="ct_status" style="margin-top:12px">Informe os dados para calcular.</div>
+<div class="formula-box"><strong>Fórmula base:</strong><br/><span id="ct_formula">Trifásico: I = P / (√3 × V × FP)</span></div>
+</div>
+</section>
+<section aria-label="Aviso de responsabilidade" class="calc-card">
+<h2><i class="fas fa-triangle-exclamation"></i> Uso orientativo e responsabilidade técnica</h2>
+<p>Esta ferramenta é apenas para estudo, apoio técnico e pré-análise. Os resultados podem conter simplificações, aproximações ou erros de preenchimento e não substituem normas aplicáveis, catálogos de fabricantes, procedimentos internos, medições em campo, projetos, laudos ou análise de profissional habilitado. A ALOGY Engenharia não se responsabiliza por decisões, instalações, ajustes, manobras, compras ou intervenções realizadas exclusivamente com base nesta ferramenta.</p>
+</section>
+<section class="calc-layout">
+<div class="calc-card"><h2><i class="fas fa-table"></i> Tabela rápida de motores</h2><p>Referência aproximada usando a tensão, fator de potência e rendimento informados acima. Útil para comparação rápida em campo.</p><div class="calc-table-wrap"><table class="calc-table"><thead><tr><th>Motor</th><th>Potência elétrica estimada</th><th>Corrente estimada</th></tr></thead><tbody id="ct_table"></tbody></table></div><p class="small-muted">Valores aproximados. Corrente real depende de placa do motor, rendimento real, fator de potência, tensão, carregamento e tipo de partida.</p></div>
+<div class="calc-card"><h2><i class="fas fa-circle-info"></i> Observações técnicas</h2><div class="quick-grid"><div class="quick-box"><strong>kW</strong><span>potência ativa</span></div><div class="quick-box"><strong>kVA</strong><span>potência aparente</span></div><div class="quick-box"><strong>FP</strong><span>fator de potência</span></div><div class="quick-box"><strong>η</strong><span>rendimento</span></div></div><div class="calc-note" style="margin-top:14px"><strong>Atenção:</strong> esta ferramenta não dimensiona disjuntor, contator, relé, fusível, cabo ou partida. Ela auxilia no cálculo elétrico inicial. O projeto deve considerar corrente de partida, curto-circuito, queda de tensão, agrupamento, temperatura, coordenação de proteção e norma aplicável.</div></div>
+</section>
+<section class="section-card faq"><div class="section-title"><span class="bar"></span><h3>Perguntas frequentes</h3></div><details open=""><summary>Como calcular corrente trifásica em kW?</summary><p>Para carga trifásica equilibrada, use I = P / (√3 × V × FP), com P em watts, V como tensão entre fases e FP como fator de potência.</p></details><details><summary>CV e HP são iguais?</summary><p>Não exatamente. Nesta ferramenta, 1 CV é considerado aproximadamente 735,5 W e 1 HP aproximadamente 745,7 W.</p></details><details><summary>Por que informar rendimento?</summary><p>Quando a entrada é CV ou HP, normalmente estamos falando da potência mecânica no eixo do motor. O rendimento estima a potência elétrica necessária na entrada.</p></details><details><summary>Essa calculadora dimensiona proteção?</summary><p>Não. Ela calcula corrente e potências de forma auxiliar. Proteção, cabo, partida e coordenação devem ser definidos por profissional habilitado.</p></details></section>
+<!-- ALOGY_REVISAO_TECNICA_FERRAMENTA -->
+<section aria-label="Orientação técnica complementar" class="calc-card">
+<h2><i class="fas fa-clipboard-check"></i> Como usar esta ferramenta na prática</h2>
+<p>Calcule corrente trifásica, potência ativa, potência aparente, CV, HP, fator de potência e rendimento para motores e cargas industriais. Nesta revisão, o conteúdo foi ampliado para deixar mais claro quando usar a ferramenta, quais dados precisam ser conferidos e como transformar o número calculado em uma decisão técnica.</p>
+<h3>Quando aplicar</h3>
+<p>Use para verificação preliminar de circuitos industriais, painéis, motores, alimentação 24 Vcc, proteção, qualidade de energia e segurança elétrica antes de especificar componentes ou liberar manutenção.</p>
+<h3>Dados que merecem conferência</h3>
+<p>Antes de confiar no resultado da ferramenta <strong>Calculadora de Corrente Trifásica</strong>, confira principalmente: Calcular a partir de, Potência do motor (CV), Sistema, Tensão do circuito (V), Fator de potência, Rendimento do motor (%). Pequenos erros de unidade, ponto decimal ou condição de operação podem gerar conclusões erradas.</p>
+<ul>
+<li>Calcular a partir de</li>
+<li>Potência do motor (CV)</li>
+<li>Sistema</li>
+<li>Tensão do circuito (V)</li>
+<li>Fator de potência</li>
+<li>Rendimento do motor (%)</li>
+</ul>
+<h3>Como interpretar o resultado</h3>
+<p>O resultado deve ser avaliado junto com corrente nominal, temperatura ambiente, método de instalação, capacidade de curto-circuito, proteção existente e normas aplicáveis. Um número isolado não substitui dimensionamento elétrico completo.</p>
+<p>Quando a página apresentar campos de resultado como Corrente estimada, Potência ativa, Potência aparente, Potência mecânica, use esses valores para comparar o cenário calculado com limite operacional, tolerância do processo, histórico de manutenção ou especificação de fabricante.</p>
+<h3>Checklist rápido de validação</h3>
+<ul>
+<li>Confirme tensão real, corrente de carga e regime de operação.</li>
+<li>Verifique se cabos, bornes, disjuntores e fontes suportam a corrente calculada.</li>
+<li>Considere temperatura, agrupamento, distância, queda de tensão e partida de motores.</li>
+<li>Bloqueie e sinalize a energia antes de qualquer intervenção em campo.</li>
+</ul>
+<h3>Limites da estimativa</h3>
+<p>Esta ferramenta é indicada para estudo, triagem, conferência de campo e apoio à manutenção. Para projeto final, laudo, especificação de compra, alteração de segurança ou liberação de equipamento crítico, valide as premissas com normas aplicáveis, documentação do fabricante e profissional habilitado.</p>
+</section>
+</main>
+<footer><p>© Desde 2012 ALOGY Engenharia | www.alogy.com.br</p></footer>
 <script>
 function n(v){return Number(String(v).replace(',','.'))||0}
 function fmt(v,d=2){if(!isFinite(v))return '-';return v.toLocaleString('pt-BR',{maximumFractionDigits:d,minimumFractionDigits:d})}
@@ -193,5 +186,7 @@ function copiarCorrente(){const txt=`Calculadora de Corrente Trifásica ALOGY\nC
 ['ct_modo','ct_valor','ct_sistema','ct_tensao','ct_fp','ct_rend'].forEach(id=>document.getElementById(id).addEventListener('input',calcCorrente));
 calcCorrente();
 </script>
+
+<a aria-label="Voltar para Ferramentas" class="floating-back-tools no-print" href="ferramentas.html"><i class="fas fa-arrow-left"></i> Voltar para Ferramentas</a>
 </body>
 </html>
