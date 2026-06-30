@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nível Radar e Ultrassônico | ALOGY</title>
+  <meta name="description" content="Calcule faixa de nível radar ou ultrassônico: distância vazia/cheia, zona morta, bocal, 4-20 mA, raw do CLP, alarmes e memorial." />
+  <meta name="robots" content="index,follow" />
+  <meta name="theme-color" content="#004b80" />
+  <link rel="canonical" href="https://www.alogy.com.br/calculadora-nivel-radar-ultrassonico.html" />
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png" />
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="app.js" defer></script>
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ALOGY Engenharia" />
+  <meta property="og:title" content="Calculadora de Nível Radar e Ultrassônico" />
+  <meta property="og:description" content="Configure distância vazia, distância cheia, zona morta, 4-20 mA, raw, alarmes e memorial para nível sem contato." />
+  <meta property="og:url" content="https://www.alogy.com.br/calculadora-nivel-radar-ultrassonico.html" />
+  <meta property="og:image" content="https://www.alogy.com.br/logo-alogy.webp" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Calculadora de Nível Radar e Ultrassônico", "url": "https://www.alogy.com.br/calculadora-nivel-radar-ultrassonico.html", "applicationCategory": "EngineeringApplication", "operatingSystem": "Web", "description": "Ferramenta para configurar nível por radar ou ultrassônico com distância vazia, distância cheia, zona morta, faixa 4-20 mA, raw do CLP, alarmes e memorial técnico.", "provider": {"@type": "Organization", "name": "ALOGY Engenharia", "url": "https://www.alogy.com.br/"}}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Como configurar 0% e 100% em um transmissor de nível radar?", "acceptedAnswer": {"@type": "Answer", "text": "Normalmente mede-se a distância da referência do sensor até a superfície. A distância vazia corresponde ao 0% de nível e a distância cheia corresponde ao 100%. Como a distância diminui quando o nível sobe, a ferramenta mostra a faixa em nível e também a faixa reversa em distância."}}, {"@type": "Question", "name": "Qual a diferença entre radar e ultrassônico para nível?", "acceptedAnswer": {"@type": "Answer", "text": "O radar usa onda eletromagnética e tende a ser mais robusto em vapor, pressão, vácuo, temperatura e variação de atmosfera. O ultrassônico usa som e pode sofrer mais com espuma, vapor, poeira, temperatura, vento e mudanças na velocidade do som."}}, {"@type": "Question", "name": "O que é zona morta ou blocking distance?", "acceptedAnswer": {"@type": "Answer", "text": "É a distância mínima próxima ao sensor onde a medição não deve ser usada. O nível máximo precisa respeitar essa distância, incluindo efeitos de bocal, antena, obstáculos e recomendações do fabricante."}}, {"@type": "Question", "name": "A ferramenta substitui a folha de dados do fabricante?", "acceptedAnswer": {"@type": "Answer", "text": "Não. A ferramenta fornece pré-dimensionamento e memorial de apoio. A especificação final deve considerar fluido, espuma, turbulência, temperatura, pressão, vapor, poeira, bocal, certificado, material, normas aplicáveis e validação técnica."}}]}</script>
+  <style>
+    .calc-layout{display:grid;grid-template-columns:1.15fr .85fr;gap:22px;align-items:start}
+    .calc-box,.result-box,.info-box{background:#fff;border:1px solid #dfe7ef;border-radius:14px;padding:20px;box-shadow:0 6px 18px rgba(0,0,0,.06)}
+    .form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+    .form-group{display:flex;flex-direction:column;gap:6px}
+    .form-group label{font-weight:700;color:#17324d}
+    .form-group input,.form-group select{padding:10px 12px;border:1px solid #b9c7d6;border-radius:8px;font-size:1rem}
+    .full{grid-column:1/-1}
+    .mini-note{font-size:.92rem;color:#536b82}
+    .kpi-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:14px 0}
+    .kpi{background:#f4f8fb;border-left:4px solid #004b80;border-radius:10px;padding:12px}
+    .kpi strong{display:block;font-size:1.22rem;color:#004b80}
+    .ok{color:#176b3a;font-weight:700} .warn{color:#9a6500;font-weight:700} .bad{color:#a02b2b;font-weight:700}
+    .alert-list{padding-left:18px}
+    .table-wrap{overflow-x:auto;margin:14px 0}
+    table.calc-table{width:100%;border-collapse:collapse;background:#fff}
+    table.calc-table th,table.calc-table td{border:1px solid #d8e2ec;padding:8px;text-align:left}
+    table.calc-table th{background:#eef5fb;color:#12324c}
+    .diagram{background:#f7fafc;border:1px solid #dce7f0;border-radius:12px;padding:10px;margin:14px 0}
+    textarea{width:100%;min-height:300px;border:1px solid #b9c7d6;border-radius:10px;padding:12px;font-family:Consolas,monospace}
+    .badge-soft{display:inline-block;background:#eef5fb;border:1px solid #cfe0ef;border-radius:999px;padding:5px 10px;margin:3px;font-size:.9rem}
+    @media(max-width:900px){.calc-layout{grid-template-columns:1fr}.form-grid{grid-template-columns:1fr}.kpi-grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body class="tech-page">
+<header>
+  <nav class="navbar">
+    <a class="logo" href="index.html" aria-label="ALOGY Engenharia"><img src="logo-alogy.webp" alt="Logo ALOGY Engenharia" width="130" height="44" decoding="async" /></a>
+    <button class="menu-toggle" aria-label="Abrir menu"><i class="fas fa-bars"></i></button>
+    <ul class="nav-menu">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="industrial.html">Serviços Industriais</a></li>
+      <li><a href="residencial.html">Serviços Residenciais</a></li>
+      <li><a href="cursos.html">Cursos</a></li>
+      <li><a href="ferramentas.html">Ferramentas</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="sobre.html">Sobre</a></li>
+      <li><a href="index.html#contato">Contato</a></li>
+    </ul>
+  </nav>
+</header>
+<main>
+  <section class="hero compact-hero">
+    <div class="container">
+      <span class="badge">Ferramenta de Instrumentação e Nível</span>
+      <h1>Calculadora de Nível Radar e Ultrassônico</h1>
+      <p>Configure transmissores de nível sem contato: <strong>distância vazia</strong>, <strong>distância cheia</strong>, zona morta, bocal, range do sensor, escala 4-20 mA, raw do CLP/DCS, alarmes e memorial técnico.</p>
+    </div>
+  </section>
+
+  <section class="container section">
+    <div class="info-box" style="border-left:5px solid #b35b00">
+      <h2><i class="fas fa-triangle-exclamation"></i> Atenção técnica</h2>
+      <p>Esta ferramenta fornece uma estimativa preliminar para apoio à configuração e seleção de transmissores de nível radar, radar guiado e ultrassônico. Ela não substitui manual do fabricante, folha de dados, levantamento dimensional em campo, validação de processo, materiais, certificados, segurança ou normas aplicáveis.</p>
+      <p>Em medição sem contato, o transmissor normalmente mede <strong>distância</strong> da referência do sensor até a superfície. Quando o nível sobe, a distância diminui. Por isso a ferramenta mostra a configuração em <strong>nível direto</strong> e também em <strong>distância reversa</strong>.</p>
+    </div>
+  </section>
+
+  <section class="container section calc-layout">
+    <form class="calc-box" id="levelRadarForm">
+      <h2>Dados de instalação e processo</h2>
+      <div class="form-grid">
+        <div class="form-group"><label for="tag">Tag do instrumento</label><input id="tag" value="LIT-201" /></div>
+        <div class="form-group"><label for="service">Serviço / equipamento</label><input id="service" value="Tanque TQ-201" /></div>
+        <div class="form-group"><label for="tech">Tecnologia prevista</label><select id="tech"><option value="radar80" selected>Radar 80 GHz sem contato</option><option value="radar26">Radar 24/26 GHz sem contato</option><option value="gwr">Radar guiado (GWR)</option><option value="ultra">Ultrassônico</option></select></div>
+        <div class="form-group"><label for="medium">Aplicação</label><select id="medium"><option value="liquid" selected>Líquido</option><option value="solid">Sólido / pó / granel</option><option value="interface">Interface / aplicação especial</option></select></div>
+
+        <div class="form-group"><label for="sensorHeight">Referência do sensor acima do fundo (mm)</label><input id="sensorHeight" type="number" step="1" value="6000" /></div>
+        <div class="form-group"><label for="tankDiameter">Diâmetro/largura útil do tanque (mm)</label><input id="tankDiameter" type="number" step="1" value="2500" /></div>
+        <div class="form-group"><label for="level0">Nível de 0% acima do fundo (mm)</label><input id="level0" type="number" step="1" value="200" /></div>
+        <div class="form-group"><label for="level100">Nível de 100% acima do fundo (mm)</label><input id="level100" type="number" step="1" value="5500" /></div>
+
+        <div class="form-group"><label for="blocking">Zona morta / blocking distance do sensor (mm)</label><input id="blocking" type="number" step="1" value="300" /></div>
+        <div class="form-group"><label for="rangeMax">Range máximo nominal do sensor (m)</label><input id="rangeMax" type="number" step="0.1" value="15" /></div>
+        <div class="form-group"><label for="nozzleLength">Altura/comprimento do bocal (mm)</label><input id="nozzleLength" type="number" step="1" value="150" /></div>
+        <div class="form-group"><label for="nozzleDiameter">Diâmetro interno do bocal (mm)</label><input id="nozzleDiameter" type="number" step="1" value="100" /></div>
+        <div class="form-group"><label for="antennaProjection">Antena/probe projetada dentro do tanque (mm)</label><input id="antennaProjection" type="number" step="1" value="50" /></div>
+        <div class="form-group"><label for="beamAngle">Ângulo de feixe aproximado (graus)</label><input id="beamAngle" type="number" step="0.1" value="4" /></div>
+
+        <div class="form-group"><label for="dielectric">Constante dielétrica estimada do produto</label><input id="dielectric" type="number" step="0.1" value="2.5" /></div>
+        <div class="form-group"><label for="temperature">Temperatura da atmosfera no tanque (°C)</label><input id="temperature" type="number" step="1" value="25" /></div>
+        <div class="form-group"><label for="pressure">Pressão do tanque (bar g)</label><input id="pressure" type="number" step="0.1" value="0" /></div>
+        <div class="form-group"><label for="rawMin">Raw mínimo do CLP/DCS</label><input id="rawMin" type="number" step="1" value="0" /></div>
+        <div class="form-group"><label for="rawMax">Raw máximo do CLP/DCS</label><input id="rawMax" type="number" step="1" value="27648" /></div>
+        <div class="form-group"><label for="foam">Espuma</label><select id="foam"><option value="none" selected>Sem espuma relevante</option><option value="light">Espuma leve</option><option value="strong">Espuma forte / persistente</option></select></div>
+        <div class="form-group"><label for="turbulence">Turbulência / agitador</label><select id="turbulence"><option value="none" selected>Baixa</option><option value="medium">Média</option><option value="high">Alta / agitador / enchimento direto</option></select></div>
+        <div class="form-group"><label for="vaporDust">Vapor, névoa ou poeira</label><select id="vaporDust"><option value="none" selected>Baixo</option><option value="medium">Médio</option><option value="high">Alto / atmosfera difícil</option></select></div>
+        <div class="form-group"><label for="condensation">Condensação/incrustação na antena</label><select id="condensation"><option value="no" selected>Não esperada</option><option value="yes">Possível / recorrente</option></select></div>
+
+        <div class="form-group"><label for="lll">Alarme LLL / trip baixo (%)</label><input id="lll" type="number" step="1" value="5" /></div>
+        <div class="form-group"><label for="ll">Alarme LL (%)</label><input id="ll" type="number" step="1" value="15" /></div>
+        <div class="form-group"><label for="hh">Alarme HH (%)</label><input id="hh" type="number" step="1" value="85" /></div>
+        <div class="form-group"><label for="hhh">Alarme HHH / trip alto (%)</label><input id="hhh" type="number" step="1" value="95" /></div>
+        <div class="form-group full"><span class="mini-note">Referência do sensor é o ponto usado pelo fabricante para medir a distância. Em muitos equipamentos é a face da flange, rosca ou referência indicada no manual.</span></div>
+      </div>
+      <button class="btn primary" type="submit"><i class="fas fa-calculator"></i> Calcular configuração</button>
+    </form>
+
+    <aside class="result-box" id="resultBox">
+      <h2>Resultado</h2>
+      <p>Preencha os dados e clique em calcular para gerar a faixa, checagens de instalação, alarmes e memorial técnico.</p>
+    </aside>
+  </section>
+
+  <section class="container section">
+    <div class="diagram" aria-label="Diagrama simplificado de nível por radar ou ultrassônico">
+      <svg viewBox="0 0 820 330" width="100%" height="280" role="img">
+        <rect x="180" y="80" width="320" height="210" rx="28" fill="#eaf3fb" stroke="#004b80" stroke-width="4"/>
+        <path d="M183 205 H497 V290 H183 Z" fill="#7fb7dd" opacity="0.8"/>
+        <rect x="300" y="35" width="80" height="45" rx="8" fill="#fff" stroke="#004b80" stroke-width="4"/>
+        <line x1="340" y1="80" x2="340" y2="205" stroke="#b35b00" stroke-width="4" stroke-dasharray="8 8"/>
+        <line x1="340" y1="80" x2="300" y2="205" stroke="#b35b00" stroke-width="2" opacity="0.8"/>
+        <line x1="340" y1="80" x2="380" y2="205" stroke="#b35b00" stroke-width="2" opacity="0.8"/>
+        <text x="388" y="130" font-size="16" fill="#333">Distância até superfície</text>
+        <text x="220" y="238" font-size="16" fill="#333">Nível do produto</text>
+        <text x="535" y="100" font-size="16" fill="#333">Zona morta</text>
+        <line x1="505" y1="80" x2="575" y2="80" stroke="#a02b2b" stroke-width="3"/>
+        <line x1="505" y1="120" x2="575" y2="120" stroke="#a02b2b" stroke-width="3"/>
+        <line x1="540" y1="80" x2="540" y2="120" stroke="#a02b2b" stroke-width="3"/>
+        <text x="215" y="310" font-size="15" fill="#004b80">0% = distância vazia</text>
+        <text x="420" y="205" font-size="15" fill="#004b80">100% = distância cheia</text>
+      </svg>
+    </div>
+  </section>
+
+  <section class="container section two-columns">
+    <div class="info-box">
+      <h2>Como interpretar distância vazia e distância cheia</h2>
+      <p>O transmissor no topo do tanque mede a distância entre a referência do sensor e a superfície do produto. Quando o tanque está vazio, essa distância é maior. Quando o tanque está cheio, essa distância é menor. Por isso uma configuração por distância costuma ser uma faixa reversa: 4 mA na distância vazia e 20 mA na distância cheia.</p>
+      <p>Quando o equipamento é configurado diretamente em nível, o 0% corresponde ao nível baixo e o 100% ao nível alto. A ferramenta mostra as duas leituras para evitar erro de configuração em campo.</p>
+    </div>
+    <div class="info-box">
+      <h2>Radar, radar guiado ou ultrassônico?</h2>
+      <p>Radar sem contato costuma ser preferido em aplicações com vapor, pressão, vácuo, temperatura variável, atmosfera agressiva ou tanques altos. Radar guiado é muito útil em baixa constante dielétrica, espuma, interface ou medições com tubo acalmador. Ultrassônico pode ser uma alternativa econômica em tanques atmosféricos limpos, sem pressão, sem vapor denso e com superfície estável.</p>
+      <p>Espuma, poeira, turbulência, agitador, bocal inadequado, obstáculos internos e condensação na antena podem prejudicar a medição. Esses fatores devem ser avaliados antes da compra e no comissionamento.</p>
+    </div>
+  </section>
+
+  <section class="container section">
+    <div class="info-box">
+      <h2>Checklist rápido de campo</h2>
+      <ul>
+        <li>Confirmar referência de medição do sensor no manual do fabricante.</li>
+        <li>Medir distância real da referência até o fundo e até os níveis de 0% e 100%.</li>
+        <li>Garantir que o nível máximo não entra na zona morta do sensor.</li>
+        <li>Verificar se o range máximo do sensor cobre a distância vazia com margem.</li>
+        <li>Checar bocal: altura, diâmetro, rebarbas, antena projetada e ecos falsos.</li>
+        <li>Evitar jato de enchimento direto, agitador, escada, serpentinas e obstáculos no feixe.</li>
+        <li>Em ultrassônico, avaliar temperatura, vapor, vento, espuma, poeira e pressão.</li>
+        <li>Testar 4 mA, 20 mA, raw do CLP, alarmes e tendência em operação real.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="container section two-columns">
+    <div class="info-box">
+      <h2>Ferramentas relacionadas</h2>
+      <p>Depois de configurar a faixa do transmissor, estas ferramentas ajudam a completar a análise:</p>
+      <p><a href="calculadora-volume-tanque-vertical-horizontal.html">Volume de tanque vertical/horizontal</a> · <a href="calculadora-malha-4-20ma-hart-completa.html">Malha 4-20 mA/HART</a> · <a href="calculadora-cabo-instrumentacao-24vcc.html">Cabo de instrumentação 24 Vcc</a> · <a href="calculadora-nivel-dp-tanque-pressurizado.html">Nível DP em tanque pressurizado</a></p>
+    </div>
+    <div class="info-box">
+      <h2>Aviso de responsabilidade</h2>
+      <p>Use os resultados como referência preliminar. A especificação final deve considerar aplicação real, fluido, pressão, temperatura, compatibilidade química, ambiente, área classificada, boas práticas de instalação, documentação do fabricante, testes em campo e validação técnica.</p>
+    </div>
+  </section>
+
+  <section class="container section">
+    <div class="info-box">
+      <h2>Perguntas frequentes</h2>
+      <h3>Por que o 100% tem distância menor que o 0%?</h3>
+      <p>Porque o sensor está no topo. Quanto mais alto o nível, menor a distância entre o sensor e a superfície.</p>
+      <h3>Posso usar ultrassônico em tanque pressurizado?</h3>
+      <p>Em geral, ultrassônico é mais indicado para aplicações atmosféricas simples. Pressão, vapor, gases, temperatura e condensação podem inviabilizar ou reduzir muito a confiabilidade. Valide sempre com o fabricante.</p>
+      <h3>O bocal pode atrapalhar o radar?</h3>
+      <p>Sim. Bocal alto, estreito, com rebarbas, soldas internas ou antena recolhida pode gerar ecos falsos e perda de sinal. A geometria precisa seguir o manual do sensor.</p>
+    </div>
+  </section>
+</main>
+<footer>
+  <div class="footer-content">
+    <div>
+      <strong>ALOGY Engenharia</strong>
+      <p>Automação, instrumentação, elétrica e soluções técnicas para aplicações industriais.</p>
+    </div>
+    <div>
+      <a href="politica-de-privacidade.html">Política de Privacidade</a> · <a href="termos-de-uso-ferramentas.html">Termos das Ferramentas</a>
+    </div>
+  </div>
+</footer>
+<script>
+(function(){
+  const $ = id => document.getElementById(id);
+  const fmt = (v,d=2) => Number.isFinite(v) ? v.toLocaleString('pt-BR',{minimumFractionDigits:d, maximumFractionDigits:d}) : '-';
+  const num = id => { const el=$(id); if(!el) return NaN; const s=String(el.value).trim().replace(/\./g,'').replace(',','.'); return parseFloat(s); };
+  const rawFor = (mA, rawMin, rawMax) => rawMin + ((mA - 4) / 16) * (rawMax - rawMin);
+  const mAForPct = pct => 4 + 16 * pct / 100;
+  const clamp = (v,a,b) => Math.max(a, Math.min(b, v));
+
+  function techName(t){
+    return {radar80:'Radar 80 GHz sem contato', radar26:'Radar 24/26 GHz sem contato', gwr:'Radar guiado (GWR)', ultra:'Ultrassônico'}[t] || t;
+  }
+  function mediumName(m){
+    return {liquid:'Líquido', solid:'Sólido/pó/granel', interface:'Interface/aplicação especial'}[m] || m;
+  }
+  function severityClass(text){
+    if(text.startsWith('CRÍTICO') || text.startsWith('INVÁLIDO')) return 'bad';
+    if(text.startsWith('ATENÇÃO') || text.startsWith('REVISAR')) return 'warn';
+    return 'ok';
+  }
+
+  function addSuitabilityWarnings(data, warnings){
+    if(data.tech === 'ultra'){
+      if(data.pressure > 0.2) warnings.push('ATENÇÃO: ultrassônico normalmente não é a melhor opção para tanque pressurizado. Validar com fabricante.');
+      if(data.temperature > 60) warnings.push('ATENÇÃO: temperatura elevada altera a velocidade do som e pode afetar ultrassônico.');
+      if(data.vaporDust !== 'none') warnings.push('ATENÇÃO: vapor, névoa ou poeira prejudicam ultrassônico. Avaliar radar.');
+      if(data.foam !== 'none') warnings.push('ATENÇÃO: espuma pode absorver/refletir som de forma instável em ultrassônico.');
+    }
+    if((data.tech === 'radar80' || data.tech === 'radar26') && data.dielectric < 1.8) warnings.push('ATENÇÃO: constante dielétrica baixa. Avaliar radar guiado, antena adequada ou sensor de alta sensibilidade.');
+    if(data.tech === 'radar26' && data.nozzleRatio > 2) warnings.push('REVISAR: radar de menor frequência em bocal alto/estreito pode exigir antena maior ou extensão.');
+    if(data.tech === 'gwr' && data.turbulence === 'high') warnings.push('ATENÇÃO: radar guiado com agitador exige cuidado com ancoragem, tração e contato mecânico.');
+    if(data.foam === 'strong') warnings.push('ATENÇÃO: espuma forte pode exigir radar guiado, tubo acalmador, ajuste de eco ou outra tecnologia.');
+    if(data.turbulence === 'high') warnings.push('ATENÇÃO: turbulência/agitação alta. Evitar jato direto no feixe e considerar tubo acalmador.');
+    if(data.vaporDust === 'high') warnings.push('ATENÇÃO: atmosfera difícil. Preferir tecnologia robusta e validar frequência/antena/purga.');
+    if(data.condensation === 'yes') warnings.push('ATENÇÃO: condensação ou incrustação na antena pode causar perda de eco; avaliar purga, antena apropriada ou radar guiado.');
+    if(data.medium === 'solid') warnings.push('ATENÇÃO: sólidos exigem avaliação de ângulo de repouso, poeira, enchimento, empoeiramento e posição do sensor.');
+    if(data.medium === 'interface') warnings.push('ATENÇÃO: interface é aplicação especial; nem todo radar/ultrassônico mede interface de forma confiável.');
+  }
+
+  $('levelRadarForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    const data = {
+      tag: $('tag').value.trim() || 'LIT',
+      service: $('service').value.trim() || 'Tanque',
+      tech: $('tech').value,
+      medium: $('medium').value,
+      sensorHeight: num('sensorHeight'), tankDiameter: num('tankDiameter'), level0: num('level0'), level100: num('level100'),
+      blocking: num('blocking'), rangeMax: num('rangeMax'), nozzleLength: num('nozzleLength'), nozzleDiameter: num('nozzleDiameter'), antennaProjection: num('antennaProjection'), beamAngle: num('beamAngle'),
+      dielectric: num('dielectric'), temperature: num('temperature'), pressure: num('pressure'), rawMin: num('rawMin'), rawMax: num('rawMax'),
+      foam: $('foam').value, turbulence: $('turbulence').value, vaporDust: $('vaporDust').value, condensation: $('condensation').value,
+      lll: num('lll'), ll: num('ll'), hh: num('hh'), hhh: num('hhh')
+    };
+    const errors=[]; const warnings=[];
+    if(!(data.sensorHeight > 0)) errors.push('Informe a altura da referência do sensor acima do fundo.');
+    if(!(data.level100 > data.level0)) errors.push('O nível de 100% deve ser maior que o nível de 0%.');
+    if(!(data.sensorHeight > data.level100)) errors.push('A referência do sensor deve estar acima do nível de 100%.');
+    if(!(data.level0 >= 0)) errors.push('O nível de 0% não deve ser negativo.');
+    if(!(data.rangeMax > 0)) errors.push('Informe o range máximo do sensor.');
+    if(!(data.blocking >= 0)) errors.push('Informe a zona morta/blocking distance.');
+    if(!(data.rawMax > data.rawMin)) errors.push('Raw máximo deve ser maior que raw mínimo.');
+    if(!(data.nozzleDiameter > 0)) errors.push('Informe diâmetro interno de bocal positivo.');
+    if(!(data.tankDiameter > 0)) errors.push('Informe diâmetro/largura útil do tanque.');
+    if(!(data.beamAngle > 0 && data.beamAngle < 60)) errors.push('Informe ângulo de feixe válido.');
+    if(!(data.lll < data.ll && data.ll < data.hh && data.hh < data.hhh)) warnings.push('REVISAR: sequência de alarmes deve ser LLL < LL < HH < HHH.');
+
+    if(errors.length){
+      $('resultBox').innerHTML = '<h2>Corrija os dados</h2><ul class="alert-list">' + errors.map(x=>'<li class="bad">'+x+'</li>').join('') + '</ul>';
+      return;
+    }
+
+    const level0M = data.level0/1000, level100M = data.level100/1000, sensorHM = data.sensorHeight/1000;
+    const spanM = level100M - level0M;
+    const emptyDistanceM = sensorHM - level0M;
+    const fullDistanceM = sensorHM - level100M;
+    const effectiveBlockingMm = data.blocking + Math.max(0, data.nozzleLength - data.antennaProjection) * 0.35;
+    const fullMarginMm = fullDistanceM*1000 - effectiveBlockingMm;
+    const rangeMarginMm = data.rangeMax*1000 - emptyDistanceM*1000;
+    const nozzleRatio = data.nozzleLength / data.nozzleDiameter;
+    const beamRad = data.beamAngle * Math.PI / 180;
+    const footprintEmptyMm = 2 * emptyDistanceM * Math.tan(beamRad/2) * 1000;
+    const footprintFullMm = 2 * fullDistanceM * Math.tan(beamRad/2) * 1000;
+    const speedSound = 331.3 + 0.606 * data.temperature;
+    const ultraTransitEmptyMs = data.tech === 'ultra' ? (2 * emptyDistanceM / speedSound * 1000) : NaN;
+    const ultraTransitFullMs = data.tech === 'ultra' ? (2 * fullDistanceM / speedSound * 1000) : NaN;
+
+    if(fullMarginMm < 0) warnings.push('CRÍTICO: nível de 100% invade a zona morta efetiva. Reduza o nível máximo ou altere a montagem.');
+    else if(fullMarginMm < 150) warnings.push('ATENÇÃO: margem entre 100% e zona morta é pequena. Recomenda-se aumentar folga.');
+    if(rangeMarginMm < 0) warnings.push('CRÍTICO: range máximo nominal do sensor não cobre a distância vazia.');
+    else if(rangeMarginMm < 500) warnings.push('ATENÇÃO: range máximo do sensor tem pouca margem para a distância vazia.');
+    if(nozzleRatio > 2.0) warnings.push('ATENÇÃO: bocal alto em relação ao diâmetro pode gerar eco falso. Validar bocal no manual do sensor.');
+    if(data.nozzleDiameter < 80 && data.tech !== 'gwr') warnings.push('ATENÇÃO: bocal estreito pode limitar antena e gerar ecos. Validar diâmetro mínimo.');
+    if(footprintEmptyMm > data.tankDiameter * 0.8) warnings.push('ATENÇÃO: feixe estimado ocupa grande parte do tanque no vazio. Verificar obstáculos e parede.');
+    addSuitabilityWarnings(data, warnings);
+    if(warnings.length === 0) warnings.push('OK: dados preliminares não indicaram restrição evidente. Ainda assim, validar com o fabricante e com as condições reais de campo.');
+
+    const points = [0,25,50,75,100].map(p => {
+      const level = level0M + spanM * p/100;
+      const dist = sensorHM - level;
+      const ma = mAForPct(p);
+      return {p, level, dist, ma, raw: rawFor(ma, data.rawMin, data.rawMax)};
+    });
+    const alarms = [
+      ['LLL', data.lll], ['LL', data.ll], ['HH', data.hh], ['HHH', data.hhh]
+    ].map(a => {
+      const p = a[1]; const level = level0M + spanM * p/100; const dist = sensorHM - level; const ma = mAForPct(p);
+      return {name:a[0], p, level, dist, ma, raw: rawFor(ma, data.rawMin, data.rawMax)};
+    });
+
+    const status = warnings.some(w=>w.startsWith('CRÍTICO') || w.startsWith('INVÁLIDO')) ? 'Reprovado preliminarmente' : (warnings.some(w=>w.startsWith('ATENÇÃO') || w.startsWith('REVISAR')) ? 'Atenção / revisar aplicação' : 'Preliminarmente aceitável');
+    const statusClassName = status.startsWith('Reprovado') ? 'bad' : (status.startsWith('Atenção') ? 'warn' : 'ok');
+
+    const tableRows = points.map(r => '<tr><td>'+r.p+'%</td><td>'+fmt(r.level,3)+' m</td><td>'+fmt(r.dist,3)+' m</td><td>'+fmt(r.ma,2)+' mA</td><td>'+fmt(r.raw,0)+'</td></tr>').join('');
+    const alarmRows = alarms.map(r => '<tr><td>'+r.name+'</td><td>'+fmt(r.p,1)+'%</td><td>'+fmt(r.level,3)+' m</td><td>'+fmt(r.dist,3)+' m</td><td>'+fmt(r.ma,2)+' mA</td><td>'+fmt(r.raw,0)+'</td></tr>').join('');
+    const warnHtml = warnings.map(w => '<li class="'+severityClass(w)+'">'+w+'</li>').join('');
+
+    const recommendation = (function(){
+      if(data.tech === 'ultra' && (data.pressure > 0.2 || data.vaporDust !== 'none' || data.foam !== 'none')) return 'Avaliar radar sem contato ou radar guiado em vez de ultrassônico.';
+      if(data.dielectric < 1.8 || data.foam === 'strong') return 'Avaliar radar guiado, antena de alta sensibilidade ou tubo acalmador.';
+      if(fullMarginMm < 0 || rangeMarginMm < 0) return 'A geometria precisa ser revisada antes de selecionar o sensor.';
+      if(nozzleRatio > 2) return 'Validar bocal/antena no manual e considerar extensão de antena.';
+      return 'Tecnologia informada pode ser avaliada, desde que compatível com processo e manual do fabricante.';
+    })();
+
+    const memorial = `MEMORIAL PRELIMINAR - NÍVEL RADAR/ULTRASSÔNICO
+` +
+`Tag: ${data.tag}
+Serviço: ${data.service}
+Tecnologia prevista: ${techName(data.tech)}
+Aplicação: ${mediumName(data.medium)}
+
+` +
+`GEOMETRIA
+Referência do sensor acima do fundo: ${fmt(sensorHM,3)} m
+Nível 0% acima do fundo: ${fmt(level0M,3)} m
+Nível 100% acima do fundo: ${fmt(level100M,3)} m
+Span de nível: ${fmt(spanM,3)} m
+Distância vazia (4 mA em nível direto): ${fmt(emptyDistanceM,3)} m
+Distância cheia (20 mA em nível direto): ${fmt(fullDistanceM,3)} m
+
+` +
+`INSTALAÇÃO
+Zona morta informada: ${fmt(data.blocking,0)} mm
+Zona morta efetiva estimada: ${fmt(effectiveBlockingMm,0)} mm
+Margem no nível 100%: ${fmt(fullMarginMm,0)} mm
+Range máximo nominal: ${fmt(data.rangeMax,2)} m
+Margem de range no vazio: ${fmt(rangeMarginMm,0)} mm
+Bocal: ${fmt(data.nozzleLength,0)} mm x Ø ${fmt(data.nozzleDiameter,0)} mm | H/D = ${fmt(nozzleRatio,2)}
+Feixe estimado no vazio: ${fmt(footprintEmptyMm,0)} mm
+
+` +
+`CONFIGURAÇÃO 4-20 mA
+Modo nível direto: LRV = ${fmt(level0M,3)} m | URV = ${fmt(level100M,3)} m
+Modo distância reversa: 4 mA = ${fmt(emptyDistanceM,3)} m | 20 mA = ${fmt(fullDistanceM,3)} m
+Raw CLP/DCS: ${fmt(data.rawMin,0)} a ${fmt(data.rawMax,0)}
+
+` +
+`PROCESSO
+Dielétrica: ${fmt(data.dielectric,1)} | Temperatura: ${fmt(data.temperature,0)} °C | Pressão: ${fmt(data.pressure,1)} bar g
+Espuma: ${data.foam} | Turbulência: ${data.turbulence} | Vapor/poeira: ${data.vaporDust} | Condensação: ${data.condensation}
+
+` +
+`STATUS: ${status}
+Recomendação: ${recommendation}
+
+` +
+`OBSERVAÇÕES
+- Validar referência exata de medição no manual do sensor.
+- Confirmar zona morta, range, bocal, antena, materiais e limites de processo com o fabricante.
+- Verificar ecos falsos, obstáculos, espuma, poeira, vapor, agitador e jato de enchimento.
+- Esta ferramenta não substitui projeto, comissionamento, inspeção e validação técnica.`;
+
+    const ultraExtra = data.tech === 'ultra' ? '<div class="kpi"><span>Tempo de ida e volta ultrassônico</span><strong>'+fmt(ultraTransitEmptyMs,1)+' ms</strong><small>no vazio; '+fmt(ultraTransitFullMs,1)+' ms no cheio</small></div>' : '';
+
+    $('resultBox').innerHTML = `
+      <h2>Resultado preliminar</h2>
+      <p class="${statusClassName}"><strong>${status}</strong></p>
+      <div class="kpi-grid">
+        <div class="kpi"><span>Distância vazia</span><strong>${fmt(emptyDistanceM,3)} m</strong><small>distância no 0%</small></div>
+        <div class="kpi"><span>Distância cheia</span><strong>${fmt(fullDistanceM,3)} m</strong><small>distância no 100%</small></div>
+        <div class="kpi"><span>Span de nível</span><strong>${fmt(spanM,3)} m</strong><small>${fmt(spanM*1000,0)} mm</small></div>
+        <div class="kpi"><span>Margem para zona morta</span><strong>${fmt(fullMarginMm,0)} mm</strong><small>no nível de 100%</small></div>
+        <div class="kpi"><span>Margem de range</span><strong>${fmt(rangeMarginMm,0)} mm</strong><small>no tanque vazio</small></div>
+        <div class="kpi"><span>Feixe no vazio</span><strong>${fmt(footprintEmptyMm,0)} mm</strong><small>estimativa geométrica</small></div>
+        ${ultraExtra}
+      </div>
+      <h3>Configuração recomendada</h3>
+      <p><span class="badge-soft">Nível direto: 4 mA = ${fmt(level0M,3)} m</span><span class="badge-soft">20 mA = ${fmt(level100M,3)} m</span></p>
+      <p><span class="badge-soft">Distância reversa: 4 mA = ${fmt(emptyDistanceM,3)} m</span><span class="badge-soft">20 mA = ${fmt(fullDistanceM,3)} m</span></p>
+      <p><strong>Recomendação:</strong> ${recommendation}</p>
+      <h3>Alertas</h3><ul class="alert-list">${warnHtml}</ul>
+      <h3>Tabela 4-20 mA</h3>
+      <div class="table-wrap"><table class="calc-table"><thead><tr><th>Ponto</th><th>Nível</th><th>Distância</th><th>Sinal</th><th>Raw</th></tr></thead><tbody>${tableRows}</tbody></table></div>
+      <h3>Alarmes</h3>
+      <div class="table-wrap"><table class="calc-table"><thead><tr><th>Alarme</th><th>%</th><th>Nível</th><th>Distância</th><th>mA</th><th>Raw</th></tr></thead><tbody>${alarmRows}</tbody></table></div>
+      <h3>Memorial técnico</h3>
+      <textarea id="memorialText" readonly>${memorial.replace(/</g,'&lt;')}</textarea>
+      <button class="btn secondary" type="button" id="copyMemorial"><i class="fas fa-copy"></i> Copiar memorial</button>
+    `;
+    const copyBtn = $('copyMemorial');
+    if(copyBtn){
+      copyBtn.addEventListener('click', async function(){
+        const text = $('memorialText').value;
+        try{ await navigator.clipboard.writeText(text); copyBtn.textContent='Memorial copiado'; }
+        catch(err){ $('memorialText').select(); document.execCommand('copy'); copyBtn.textContent='Memorial copiado'; }
+      });
+    }
+  });
+})();
+</script>
+</body>
+</html>
