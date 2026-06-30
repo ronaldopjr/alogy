@@ -546,6 +546,79 @@ function initAlogyCookieNotice(){
   document.body.appendChild(notice);
 }
 
+
+
+/* =========================
+   ETAPA 3 - MELHORIA CONSERVADORA DE USABILIDADE DOS FORMULÁRIOS
+   Não altera fórmulas, funções de cálculo nem eventos existentes.
+========================= */
+function enhanceToolFormsUsability(){
+  const path = window.location.pathname.split('/').pop() || 'index.html';
+  if(path === 'calculadora-dimensionamento-cabos.html') return;
+  if(!document.body?.classList.contains('alogy-stage3-forms')) return;
+
+  const isVisibleControl = (el) => {
+    if(!el) return false;
+    const type = (el.getAttribute('type') || '').toLowerCase();
+    return !['hidden','button','submit','reset'].includes(type);
+  };
+
+  const controlSelector = 'input, select, textarea';
+  document.querySelectorAll(`main ${controlSelector}`).forEach((el) => {
+    if(!isVisibleControl(el)) return;
+
+    el.classList.add('alogy-control');
+
+    const type = (el.getAttribute('type') || '').toLowerCase();
+    if(type === 'number' && !el.hasAttribute('inputmode')){
+      el.setAttribute('inputmode', 'decimal');
+    }
+
+    if(!el.hasAttribute('aria-label')){
+      let labelText = '';
+      if(el.id){
+        const safeId = (window.CSS && CSS.escape) ? CSS.escape(el.id) : el.id.replace(/"/g, '\\"');
+        const label = document.querySelector(`label[for="${safeId}"]`);
+        if(label) labelText = label.textContent.trim();
+      }
+      if(!labelText){
+        const parentLabel = el.closest('label');
+        if(parentLabel) labelText = parentLabel.textContent.trim();
+      }
+      if(labelText) el.setAttribute('aria-label', labelText.replace(/\s+/g, ' '));
+    }
+  });
+
+  const addNote = (container) => {
+    if(!container || container.dataset.alogyStage3Note === 'true') return;
+    if(container.querySelector(':scope > .tool-form-note')) return;
+
+    const controls = Array.from(container.querySelectorAll(controlSelector)).filter(isVisibleControl);
+    if(controls.length < 8) return;
+
+    const note = document.createElement('p');
+    note.className = 'tool-form-note no-print';
+    note.innerHTML = '<strong>Dica de preenchimento:</strong> confira as unidades dos campos e preencha primeiro os dados principais antes de calcular.';
+
+    const firstGrid = container.querySelector('.calc-grid, .form-grid, .field-grid');
+    if(firstGrid && firstGrid.parentElement === container){
+      container.insertBefore(note, firstGrid);
+    }else{
+      container.insertBefore(note, container.firstChild);
+    }
+    container.dataset.alogyStage3Note = 'true';
+  };
+
+  document.querySelectorAll('main form').forEach(addNote);
+
+  document.querySelectorAll('main .calc-card').forEach((card) => {
+    if(card.querySelector('form')) return;
+    if(!card.querySelector('.calc-grid, .form-grid, .field-grid')) return;
+    addNote(card);
+  });
+}
+
+
 /* =========================
    INIT
 ========================= */
@@ -569,6 +642,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // aviso simples de privacidade/cookies
   initAlogyCookieNotice();
+
+  // usabilidade conservadora dos formulários das ferramentas
+  enhanceToolFormsUsability();
 
   // tabelas responsivas das ferramentas
   enhanceResponsiveToolTables();
