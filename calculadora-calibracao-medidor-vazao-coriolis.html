@@ -97,16 +97,40 @@
   </main>
   <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
 <script>
-
-function val(id){return parseFloat(String(document.getElementById(id).value).replace(',','.'))||0}
+function parseBR(v){
+  const s=String(v ?? '').trim().replace(/\s/g,'');
+  if(!s) return NaN;
+  const norm=s.includes(',') ? s.replace(/\./g,'').replace(',','.') : s;
+  const num=Number(norm);
+  return Number.isFinite(num) ? num : NaN;
+}
+function val(id){return parseBR(document.getElementById(id).value)}
 function n(v,d=2){return Number.isFinite(v)?v.toLocaleString('pt-BR',{minimumFractionDigits:d,maximumFractionDigits:d}):'-'}
-function st(absErr,tol){if(!Number.isFinite(absErr)||!Number.isFinite(tol)||tol<=0)return '<span class="pill-warn">Verificar</span>'; if(absErr<=tol)return '<span class="pill-ok">Aprovado</span>'; if(absErr<=tol*1.25)return '<span class="pill-warn">Próximo do limite</span>'; return '<span class="pill-bad">Reprovado</span>'}
-function copiar(){const r=document.querySelector('.calc-layout'); const t=r?r.innerText:document.body.innerText; navigator.clipboard.writeText(t).then(()=>alert('Resultado copiado.'))}
+function n0(v,d=2){return Number.isFinite(v)?v.toLocaleString('pt-BR',{maximumFractionDigits:d}):'-'}
+function setStatus(id,txt,cls){const el=document.getElementById(id); el.textContent=txt; el.className='small '+cls;}
+function warnStatus(msg){return '<span class="pill-warn">'+msg+'</span>'}
+function okWarn(absErr,tol){if(!Number.isFinite(absErr)||!Number.isFinite(tol)||tol<=0)return warnStatus('Verificar'); if(absErr<=tol)return '<span class="pill-ok">Aprovado</span>'; if(absErr<=tol*1.25)return '<span class="pill-warn">Próximo do limite</span>'; return '<span class="pill-bad">Reprovado</span>'}
+function copiar(){const r=document.querySelector('.calc-layout')||document.querySelector('.calc-card:nth-of-type(2)'); const t=r?r.innerText:document.body.innerText; navigator.clipboard&&navigator.clipboard.writeText(t).then(()=>alert('Resultado copiado.'))}
+
 document.querySelectorAll('input,select').forEach(e=>e.addEventListener('input',calcular));
-
-
-function calcular(){let qr=val('qref'),qi=val('qind'),vr=val('vref'),vi=val('vind'),t=val('tempo'),tol=val('tol');let eq=(qi-qr)/qr*100;let ev=(vi-vr)/vr*100;let fator=vi?vr/vi:NaN;let pior=Math.max(Math.abs(eq),Math.abs(ev));document.getElementById('r1').innerHTML=n(eq,3)+' %';document.getElementById('r2').innerHTML=n(ev,3)+' %';document.getElementById('r3').innerHTML=n(fator,6);document.getElementById('r4').innerHTML=st(pior,Math.abs(tol));document.getElementById('tbl').innerHTML=`<tr><td>Vazão</td><td>${n(qr,3)} m³/h</td><td>${n(qi,3)} m³/h</td><td>${n(eq,3)} %</td></tr><tr><td>Totalização</td><td>${n(vr,3)} kg</td><td>${n(vi,3)} kg</td><td>${n(ev,3)} %</td></tr><tr><td>Vazão média pelo volume</td><td>${n(vr/(t/60),3)} m³/h</td><td>${n(vi/(t/60),3)} m³/h</td><td>${n(((vi-vr)/vr)*100,3)} %</td></tr>`;}
-
-calcular();</script>
+function calcular(){
+  const qr=val('qref'), qi=val('qind'), vr=val('vref'), vi=val('vind'), t=val('tempo'), tol=val('tol');
+  if(![qr,qi,vr,vi,t,tol].every(Number.isFinite) || qr<=0 || qi<0 || vr<=0 || vi<=0 || t<=0 || tol<=0){
+    r1.innerHTML='-'; r2.innerHTML='-'; r3.innerHTML='-'; r4.innerHTML=warnStatus('Verificar dados'); tbl.innerHTML=''; return;
+  }
+  const eq=(qi-qr)/qr*100;
+  const ev=(vi-vr)/vr*100;
+  const fator=vr/vi;
+  const pior=Math.max(Math.abs(eq),Math.abs(ev));
+  const medRef=vr/(t/60);
+  const medInd=vi/(t/60);
+  r1.innerHTML=n(eq,3)+' %';
+  r2.innerHTML=n(ev,3)+' %';
+  r3.innerHTML=n(fator,6);
+  r4.innerHTML=okWarn(pior,Math.abs(tol));
+  tbl.innerHTML=`<tr><td>Vazão</td><td>${n(qr,3)} m³/h</td><td>${n(qi,3)} m³/h</td><td>${n(eq,3)} %</td></tr><tr><td>Totalização</td><td>${n(vr,3)} kg</td><td>${n(vi,3)} kg</td><td>${n(ev,3)} %</td></tr><tr><td>Vazão mássica média pelo total</td><td>${n(medRef,3)} kg/h</td><td>${n(medInd,3)} kg/h</td><td>${n(ev,3)} %</td></tr>`;
+}
+calcular();
+</script>
 </body>
 </html>

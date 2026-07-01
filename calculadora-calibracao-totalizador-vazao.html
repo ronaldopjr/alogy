@@ -89,15 +89,36 @@
   </main>
   <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
 <script>
-function val(id){return parseFloat(String(document.getElementById(id).value).replace(',','.'))||0}
-function txt(id){return document.getElementById(id).value}
+function parseBR(v){
+  const s=String(v ?? '').trim().replace(/\s/g,'');
+  if(!s) return NaN;
+  const norm=s.includes(',') ? s.replace(/\./g,'').replace(',','.') : s;
+  const num=Number(norm);
+  return Number.isFinite(num) ? num : NaN;
+}
+function val(id){return parseBR(document.getElementById(id).value)}
 function n(v,d=2){return Number.isFinite(v)?v.toLocaleString('pt-BR',{minimumFractionDigits:d,maximumFractionDigits:d}):'-'}
-function cls(ok){return ok?'pill-ok':'pill-bad'}
-function st(absErr,tol){if(!Number.isFinite(absErr)||!Number.isFinite(tol))return '<span class="pill-warn">Verificar</span>'; if(absErr<=tol)return '<span class="pill-ok">Aprovado</span>'; if(absErr<=tol*1.25)return '<span class="pill-warn">Próximo do limite</span>'; return '<span class="pill-bad">Reprovado</span>'}
-function copiar(){const r=document.querySelector('.calc-card:nth-of-type(2)'); const t=r?r.innerText:document.body.innerText; navigator.clipboard.writeText(t).then(()=>alert('Resultado copiado.'))}
-document.querySelectorAll('input,select').forEach(e=>e.addEventListener('input',calcular));
+function n0(v,d=2){return Number.isFinite(v)?v.toLocaleString('pt-BR',{maximumFractionDigits:d}):'-'}
+function setStatus(id,txt,cls){const el=document.getElementById(id); el.textContent=txt; el.className='small '+cls;}
+function warnStatus(msg){return '<span class="pill-warn">'+msg+'</span>'}
+function okWarn(absErr,tol){if(!Number.isFinite(absErr)||!Number.isFinite(tol)||tol<=0)return warnStatus('Verificar'); if(absErr<=tol)return '<span class="pill-ok">Aprovado</span>'; if(absErr<=tol*1.25)return '<span class="pill-warn">Próximo do limite</span>'; return '<span class="pill-bad">Reprovado</span>'}
+function copiar(){const r=document.querySelector('.calc-layout')||document.querySelector('.calc-card:nth-of-type(2)'); const t=r?r.innerText:document.body.innerText; navigator.clipboard&&navigator.clipboard.writeText(t).then(()=>alert('Resultado copiado.'))}
 
-function calcular(){let k=val('k'),p=val('pulsos'),vr=val('volref'),vi=val('volind'),tol=val('tol');let vp=p/k;let err=(vi-vr)/vr*100;let knew=k*(vi/vr);document.getElementById('r1').innerHTML=n(vp,4);document.getElementById('r2').innerHTML=n(err,3)+' %';document.getElementById('r3').innerHTML=n(knew,3)+' pulsos/unid';document.getElementById('r4').innerHTML=st(Math.abs(err),Math.abs(tol));}
-calcular();</script>
+document.querySelectorAll('input,select').forEach(e=>e.addEventListener('input',calcular));
+function calcular(){
+  const k=val('k'), p=val('pulsos'), vr=val('volref'), vi=val('volind'), tol=val('tol');
+  if(![k,p,vr,vi,tol].every(Number.isFinite) || k<=0 || p<0 || vr<=0 || vi<=0 || tol<=0){
+    r1.innerHTML='-'; r2.innerHTML='-'; r3.innerHTML='-'; r4.innerHTML=warnStatus('Verificar dados'); return;
+  }
+  const vp=p/k;
+  const err=(vi-vr)/vr*100;
+  const knew=k*(vi/vr);
+  r1.innerHTML=n(vp,4);
+  r2.innerHTML=n(err,3)+' %';
+  r3.innerHTML=n(knew,3)+' pulsos/unid';
+  r4.innerHTML=okWarn(Math.abs(err),Math.abs(tol));
+}
+calcular();
+</script>
 </body>
 </html>

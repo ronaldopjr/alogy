@@ -95,17 +95,41 @@
 </main>
 <footer><p>© Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
 <script>
-
-function val(id){return parseFloat(String(document.getElementById(id).value).replace(',','.'))||0}
+function parseBR(v){
+  const s=String(v ?? '').trim().replace(/\s/g,'');
+  if(!s) return NaN;
+  const norm=s.includes(',') ? s.replace(/\./g,'').replace(',','.') : s;
+  const num=Number(norm);
+  return Number.isFinite(num) ? num : NaN;
+}
+function val(id){return parseBR(document.getElementById(id).value)}
 function n(v,d=2){return Number.isFinite(v)?v.toLocaleString('pt-BR',{minimumFractionDigits:d,maximumFractionDigits:d}):'-'}
-function st(absErr,tol){if(!Number.isFinite(absErr)||!Number.isFinite(tol)||tol<=0)return '<span class="pill-warn">Verificar</span>'; if(absErr<=tol)return '<span class="pill-ok">Aprovado</span>'; if(absErr<=tol*1.25)return '<span class="pill-warn">Próximo do limite</span>'; return '<span class="pill-bad">Reprovado</span>'}
-function copiar(){const r=document.querySelector('.calc-layout'); const t=r?r.innerText:document.body.innerText; navigator.clipboard.writeText(t).then(()=>alert('Resultado copiado.'))}
+function n0(v,d=2){return Number.isFinite(v)?v.toLocaleString('pt-BR',{maximumFractionDigits:d}):'-'}
+function setStatus(id,txt,cls){const el=document.getElementById(id); el.textContent=txt; el.className='small '+cls;}
+function warnStatus(msg){return '<span class="pill-warn">'+msg+'</span>'}
+function okWarn(absErr,tol){if(!Number.isFinite(absErr)||!Number.isFinite(tol)||tol<=0)return warnStatus('Verificar'); if(absErr<=tol)return '<span class="pill-ok">Aprovado</span>'; if(absErr<=tol*1.25)return '<span class="pill-warn">Próximo do limite</span>'; return '<span class="pill-bad">Reprovado</span>'}
+function copiar(){const r=document.querySelector('.calc-layout')||document.querySelector('.calc-card:nth-of-type(2)'); const t=r?r.innerText:document.body.innerText; navigator.clipboard&&navigator.clipboard.writeText(t).then(()=>alert('Resultado copiado.'))}
+
 document.querySelectorAll('input,select').forEach(e=>e.addEventListener('input',calcular));
-
-
-function calcular(){let l=val('lrv'),u=val('urv'),p=val('padrao'),le=val('leitura'),ma=val('ma'),tol=val('tol');let span=u-l;let mExp=4+16*(p-l)/span;let err=le-p;let mErr=ma-mExp;let mvPorMa=span/16;let saidaMv=mErr*mvPorMa;let pior=Math.max(Math.abs(err),Math.abs(saidaMv));document.getElementById('r1').innerHTML=n(mExp,3)+' mA';document.getElementById('r2').innerHTML=n(err,2)+' mV';document.getElementById('r3').innerHTML=n(mErr,3)+' mA ≈ '+n(saidaMv,2)+' mV';document.getElementById('r4').innerHTML=st(pior,Math.abs(tol));}
-
-calcular();</script>
+function calcular(){
+  const l=val('lrv'), u=val('urv'), p=val('padrao'), le=val('leitura'), ma=val('ma'), tol=val('tol');
+  const span=u-l;
+  if(![l,u,p,le,ma,tol].every(Number.isFinite) || Math.abs(span)<1e-12 || tol<=0){
+    r1.innerHTML='-'; r2.innerHTML='-'; r3.innerHTML='-'; r4.innerHTML=warnStatus('Verificar dados'); return;
+  }
+  const mExp=4+16*(p-l)/span;
+  const err=le-p;
+  const mErr=ma-mExp;
+  const mvPorMa=span/16;
+  const saidaMv=mErr*mvPorMa;
+  const pior=Math.max(Math.abs(err),Math.abs(saidaMv));
+  r1.innerHTML=n(mExp,3)+' mA';
+  r2.innerHTML=n(err,2)+' mV';
+  r3.innerHTML=n(mErr,3)+' mA ≈ '+n(saidaMv,2)+' mV';
+  r4.innerHTML=okWarn(pior,Math.abs(tol));
+}
+calcular();
+</script>
 
 <a aria-label="Voltar para Ferramentas" class="floating-back-tools no-print" href="ferramentas.html"><i class="fas fa-arrow-left"></i> Voltar para Ferramentas</a>
 </body>

@@ -85,7 +85,43 @@
 </section>
 </main>
 <footer><p>© Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
-<script>function n(v,d=2){return Number.isFinite(v)?v.toLocaleString('pt-BR',{maximumFractionDigits:d}):'-'}function g(id){return parseFloat(document.getElementById(id).value)||0}function calc(){let c=g('cond'),t=g('temp'),ref=g('ref'),a=g('alpha')/100,f=g('fator');let corr=c/(1+a*(t-ref));let tds=corr*f;r1.textContent=n(corr,1)+' µS/cm';r2.textContent=n(tds,1)+' mg/L';r3.textContent=n((corr/c-1)*100,1)+' %';nota.textContent='Coeficiente usado: '+n(a*100,2)+' %/°C e fator TDS '+n(f,2)+'.'}function copiar(){navigator.clipboard&&navigator.clipboard.writeText('Condutividade corrigida '+r1.textContent+', TDS '+r2.textContent)}document.querySelectorAll('input').forEach(e=>e.addEventListener('input',calc));calc();</script>
+<script>
+function parseBR(v){
+  const s=String(v ?? '').trim().replace(/\s/g,'');
+  if(!s) return NaN;
+  const norm=s.includes(',') ? s.replace(/\./g,'').replace(',','.') : s;
+  const num=Number(norm);
+  return Number.isFinite(num) ? num : NaN;
+}
+function val(id){return parseBR(document.getElementById(id).value)}
+function n(v,d=2){return Number.isFinite(v)?v.toLocaleString('pt-BR',{minimumFractionDigits:d,maximumFractionDigits:d}):'-'}
+function n0(v,d=2){return Number.isFinite(v)?v.toLocaleString('pt-BR',{maximumFractionDigits:d}):'-'}
+function setStatus(id,txt,cls){const el=document.getElementById(id); el.textContent=txt; el.className='small '+cls;}
+function warnStatus(msg){return '<span class="pill-warn">'+msg+'</span>'}
+function okWarn(absErr,tol){if(!Number.isFinite(absErr)||!Number.isFinite(tol)||tol<=0)return warnStatus('Verificar'); if(absErr<=tol)return '<span class="pill-ok">Aprovado</span>'; if(absErr<=tol*1.25)return '<span class="pill-warn">Próximo do limite</span>'; return '<span class="pill-bad">Reprovado</span>'}
+function copiar(){const r=document.querySelector('.calc-layout')||document.querySelector('.calc-card:nth-of-type(2)'); const t=r?r.innerText:document.body.innerText; navigator.clipboard&&navigator.clipboard.writeText(t).then(()=>alert('Resultado copiado.'))}
+
+function limpar(){r1.textContent='-';r2.textContent='-';r3.textContent='-'}
+function calc(){
+  const c=val('cond'), t=val('temp'), ref=val('ref'), alphaPct=val('alpha'), fator=val('fator');
+  if(![c,t,ref,alphaPct,fator].every(Number.isFinite) || c<=0 || t<=-273.15 || ref<=-273.15 || fator<0){
+    limpar(); nota.textContent='Verifique condutividade, temperatura e fator TDS. A condutividade deve ser maior que zero e o fator TDS não pode ser negativo.'; return;
+  }
+  const a=alphaPct/100;
+  const denom=1+a*(t-ref);
+  if(!Number.isFinite(denom) || denom<=0){
+    limpar(); nota.textContent='Correção de temperatura inválida. Revise o coeficiente e as temperaturas informadas.'; return;
+  }
+  const corr=c/denom;
+  const tds=corr*fator;
+  r1.textContent=n0(corr,1)+' µS/cm';
+  r2.textContent=n0(tds,1)+' mg/L';
+  r3.textContent=n0((corr/c-1)*100,1)+' %';
+  nota.textContent='Coeficiente usado: '+n0(alphaPct,2)+' %/°C e fator TDS '+n0(fator,2)+'.';
+}
+function copiar(){navigator.clipboard&&navigator.clipboard.writeText('Condutividade corrigida '+r1.textContent+', TDS '+r2.textContent)}
+document.querySelectorAll('input').forEach(e=>e.addEventListener('input',calc));calc();
+</script>
 
 <a aria-label="Voltar para Ferramentas" class="floating-back-tools no-print" href="ferramentas.html"><i class="fas fa-arrow-left"></i> Voltar para Ferramentas</a>
 </body>

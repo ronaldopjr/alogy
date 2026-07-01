@@ -90,7 +90,15 @@
   </main>
   <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
 <script>
-function val(id){return parseFloat(String(document.getElementById(id).value).replace(',','.'))||0}
+function parseBrNumber(value){
+  const raw = String(value ?? '').trim();
+  if(!raw) return NaN;
+  const cleaned = raw.replace(/\s/g,'');
+  const normalized = cleaned.includes(',') ? cleaned.replace(/\./g,'').replace(',', '.') : cleaned;
+  const num = Number(normalized);
+  return Number.isFinite(num) ? num : NaN;
+}
+function val(id){const v=parseBrNumber(document.getElementById(id).value); return Number.isFinite(v)?v:0}
 function txt(id){return document.getElementById(id).value}
 function n(v,d=2){return Number.isFinite(v)?v.toLocaleString('pt-BR',{minimumFractionDigits:d,maximumFractionDigits:d}):'-'}
 function cls(ok){return ok?'pill-ok':'pill-bad'}
@@ -98,7 +106,9 @@ function st(absErr,tol){if(!Number.isFinite(absErr)||!Number.isFinite(tol))retur
 function copiar(){const r=document.querySelector('.calc-card:nth-of-type(2)'); const t=r?r.innerText:document.body.innerText; navigator.clipboard.writeText(t).then(()=>alert('Resultado copiado.'))}
 document.querySelectorAll('input,select').forEach(e=>e.addEventListener('input',calcular));
 
-function calcular(){let cap=val('cap'),m=val('massa'),ind=val('ind'),z=val('zero'),tol=val('tol'),c=Math.max(1,val('celulas'));let err=(ind-z)-m;document.getElementById('r1').innerHTML=n(err,3)+' kg';document.getElementById('r2').innerHTML=n(err/cap*100,4)+' %';document.getElementById('r3').innerHTML=n(m/c,2)+' kg/célula';document.getElementById('r4').innerHTML=st(Math.abs(err),Math.abs(tol));}
+function calcular(){let cap=val('cap'),m=val('massa'),ind=val('ind'),z=val('zero'),tol=val('tol'),c=Math.round(val('celulas'));
+  if(cap<=0||m<0||tol<0||c<1){document.getElementById('r1').innerHTML='-';document.getElementById('r2').innerHTML='-';document.getElementById('r3').innerHTML='-';document.getElementById('r4').innerHTML='<span class="pill-warn">Verificar capacidade/massa/tolerância</span>';return;}
+  let err=(ind-z)-m;document.getElementById('r1').innerHTML=n(err,3)+' kg';document.getElementById('r2').innerHTML=n(err/cap*100,4)+' %';document.getElementById('r3').innerHTML=n(m/c,2)+' kg/célula';document.getElementById('r4').innerHTML=st(Math.abs(err),Math.abs(tol));}
 calcular();</script>
 </body>
 </html>

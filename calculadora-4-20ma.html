@@ -150,11 +150,11 @@
         <p>Informe a faixa mínima e máxima do transmissor. Em instrumentação, esses pontos também são conhecidos como LRV e URV.</p>
         <form id="calc420Form" onsubmit="return false" aria-label="Calculadora 4-20 mA">
           <div class="calc-grid">
-            <div class="field"><label for="lrv">Faixa mínima / LRV</label><input id="lrv" type="number" step="any" value="0" inputmode="decimal"></div>
-            <div class="field"><label for="urv">Faixa máxima / URV</label><input id="urv" type="number" step="any" value="1000" inputmode="decimal"></div>
+            <div class="field"><label for="lrv">Faixa mínima / LRV</label><input id="lrv" type="text" step="any" value="0" inputmode="decimal"></div>
+            <div class="field"><label for="urv">Faixa máxima / URV</label><input id="urv" type="text" step="any" value="1000" inputmode="decimal"></div>
             <div class="field"><label for="unit">Unidade</label><input id="unit" type="text" value="°C" placeholder="Ex.: bar, °C, m³/h, mmH2O"></div>
             <div class="field"><label for="mode">Calcular a partir de</label><select id="mode" class="tool-select"><option value="eng">Valor de engenharia</option><option value="ma">Sinal em mA</option><option value="percent">Percentual 0-100%</option></select></div>
-            <div class="field full"><label for="inputValue" id="inputLabel">Valor de engenharia</label><input id="inputValue" type="number" step="any" value="500" inputmode="decimal"></div>
+            <div class="field full"><label for="inputValue" id="inputLabel">Valor de engenharia</label><input id="inputValue" type="text" step="any" value="500" inputmode="decimal"></div>
           </div>
         </form>
         <div class="span-line" aria-label="Dados da faixa">
@@ -320,7 +320,11 @@
 
       function parseNumber(v){
         if(typeof v !== 'string') return Number(v);
-        return Number(v.replace(',', '.'));
+        const raw = String(v).trim();
+        if(!raw) return NaN;
+        const normalized = raw.includes(',') ? raw.replace(/\./g, '').replace(',', '.') : raw;
+        const n = Number(normalized);
+        return Number.isFinite(n) ? n : NaN;
       }
       function formatNumber(n, decimals = 2){
         if(!isFinite(n)) return '-';

@@ -113,16 +113,16 @@
 <div class="tech-card">
 <h2>Dados de entrada</h2>
 <form class="field-grid" onsubmit="calcular();return false;">
-<div class="field"><label>Tensão da fonte</label><input id="vs" step="0.1" type="number" value="24"/><small>Vcc</small></div>
-<div class="field"><label>Tensão mínima no instrumento</label><input id="vdev" step="0.1" type="number" value="12"/><small>Vcc no pior caso</small></div>
-<div class="field"><label>Corrente máxima da malha</label><input id="i" step="0.1" type="number" value="20"/><small>mA</small></div>
-<div class="field"><label>Resistor/carga HART</label><input id="rload" step="1" type="number" value="250"/><small>Ω</small></div>
-<div class="field"><label>Outras cargas da malha</label><input id="rother" step="1" type="number" value="0"/><small>Ω: barreira, cartão, indicadores.</small></div>
-<div class="field"><label>Resistência do cabo por condutor</label><input id="rkm" step="0.1" type="number" value="36.6"/><small>Ω/km por condutor</small></div>
-<div class="field"><label>Capacitância do cabo</label><input id="ckm" step="1" type="number" value="100"/><small>nF/km</small></div>
-<div class="field"><label>Capacitância máxima admissível</label><input id="cmax" step="1" type="number" value="200"/><small>nF. Use limite do sistema/barreira.</small></div>
-<div class="field"><label>Capacitância de equipamento/barreira</label><input id="cdev" step="1" type="number" value="20"/><small>nF</small></div>
-<div class="field"><label>Comprimento instalado a verificar</label><input id="linst" step="1" type="number" value="800"/><small>m</small></div>
+<div class="field"><label>Tensão da fonte</label><input id="vs" step="0.1" type="text" inputmode="decimal" value="24"/><small>Vcc</small></div>
+<div class="field"><label>Tensão mínima no instrumento</label><input id="vdev" step="0.1" type="text" inputmode="decimal" value="12"/><small>Vcc no pior caso</small></div>
+<div class="field"><label>Corrente máxima da malha</label><input id="i" step="0.1" type="text" inputmode="decimal" value="20"/><small>mA</small></div>
+<div class="field"><label>Resistor/carga HART</label><input id="rload" step="1" type="text" inputmode="decimal" value="250"/><small>Ω</small></div>
+<div class="field"><label>Outras cargas da malha</label><input id="rother" step="1" type="text" inputmode="decimal" value="0"/><small>Ω: barreira, cartão, indicadores.</small></div>
+<div class="field"><label>Resistência do cabo por condutor</label><input id="rkm" step="0.1" type="text" inputmode="decimal" value="36.6"/><small>Ω/km por condutor</small></div>
+<div class="field"><label>Capacitância do cabo</label><input id="ckm" step="1" type="text" inputmode="decimal" value="100"/><small>nF/km</small></div>
+<div class="field"><label>Capacitância máxima admissível</label><input id="cmax" step="1" type="text" inputmode="decimal" value="200"/><small>nF. Use limite do sistema/barreira.</small></div>
+<div class="field"><label>Capacitância de equipamento/barreira</label><input id="cdev" step="1" type="text" inputmode="decimal" value="20"/><small>nF</small></div>
+<div class="field"><label>Comprimento instalado a verificar</label><input id="linst" step="1" type="text" inputmode="decimal" value="800"/><small>m</small></div>
 <div class="wide calc-actions"><button class="btn-mini" type="submit"><i class="fas fa-calculator"></i> Calcular</button></div>
 </form>
 </div>
@@ -144,8 +144,34 @@
 </section>
 </main>
 <script>
-function n(id){return parseFloat(document.getElementById(id).value)||0} function fmt(x,d=2){return x.toLocaleString('pt-BR',{maximumFractionDigits:d,minimumFractionDigits:d})}
-function calcular(){const vs=n('vs'), vdev=n('vdev'), imA=n('i'), I=imA/1000, rload=n('rload'), rother=n('rother'), rkm=n('rkm'), ckm=n('ckm'), cmax=n('cmax'), cdev=n('cdev'), linst=n('linst'); const margin=vs-vdev-I*(rload+rother); const maxRloop=margin/I; const maxKmR=maxRloop/(2*rkm); const maxKmC=Math.max(cmax-cdev,0)/ckm; const maxM=Math.min(maxKmR,maxKmC)*1000; const Rinst=2*rkm*linst/1000; const Cinst=ckm*linst/1000+cdev; const vDevice=vs-I*(rload+rother+Rinst); const ok=linst<=maxM && vDevice>=vdev && Cinst<=cmax; const status=ok?'ok':(linst<=maxM*1.2?'warn':'bad'); document.getElementById('resultado').innerHTML=`<div class="note ${status}"><strong>Comprimento máximo preliminar:</strong><div class="result-main">${fmt(maxM,0)} m</div><div>Limite por resistência: <strong>${fmt(maxKmR*1000,0)} m</strong>. Limite por capacitância: <strong>${fmt(maxKmC*1000,0)} m</strong>.</div></div><div class="pill-row"><span class="pill">Tensão no instrumento: ${fmt(vDevice,2)} V</span><span class="pill">Cabo instalado: R ${fmt(Rinst,1)} Ω</span><span class="pill">Capacitância total: ${fmt(Cinst,1)} nF</span><span class="pill">Status: ${ok?'aceitável':'verificar'}</span></div><p class="result-sub">Para HART, além da tensão, confirme resistor/carga mínima, aterramento, blindagem, barreiras de segurança intrínseca e limite de capacitância/indutância do circuito.</p>`}
+function n(id){
+  const raw=String(document.getElementById(id).value||'').trim();
+  if(raw==='') return NaN;
+  const norm=raw.includes(',')?raw.replace(/\./g,'').replace(',','.') : raw;
+  const v=Number(norm);
+  return Number.isFinite(v)?v:NaN;
+}
+function fmt(x,d=2){return Number.isFinite(x)?Number(x).toLocaleString('pt-BR',{maximumFractionDigits:d,minimumFractionDigits:d}):'-'}
+function calcular(){
+  const vs=n('vs'), vdev=n('vdev'), imA=n('i'), I=imA/1000, rload=n('rload'), rother=n('rother'), rkm=n('rkm'), ckm=n('ckm'), cmax=n('cmax'), cdev=n('cdev'), linst=n('linst');
+  const resultado=document.getElementById('resultado');
+  const vals=[vs,vdev,imA,rload,rother,rkm,ckm,cmax,cdev,linst];
+  if(vals.some(v=>!Number.isFinite(v)) || vs<=0 || vdev<=0 || vs<=vdev || imA<=0 || rkm<=0 || ckm<=0 || cmax<cdev || [rload,rother,cdev,linst].some(v=>v<0)){
+    resultado.innerHTML='<div class="note bad"><strong>Revisar dados.</strong><div>Use valores positivos e coerentes. A fonte precisa ser maior que a tensão mínima, a corrente deve ser maior que zero e a capacitância máxima deve ser maior ou igual à capacitância de equipamento/barreira.</div></div>';
+    return;
+  }
+  const margin=vs-vdev-I*(rload+rother);
+  const maxRloop=margin/I;
+  const maxKmR=maxRloop/(2*rkm);
+  const maxKmC=Math.max(cmax-cdev,0)/ckm;
+  const maxM=Math.max(Math.min(maxKmR,maxKmC)*1000,0);
+  const Rinst=2*rkm*linst/1000;
+  const Cinst=ckm*linst/1000+cdev;
+  const vDevice=vs-I*(rload+rother+Rinst);
+  const ok=linst<=maxM && vDevice>=vdev && Cinst<=cmax;
+  const status=ok?'ok':(linst<=maxM*1.2?'warn':'bad');
+  resultado.innerHTML=`<div class="note ${status}"><strong>Comprimento máximo preliminar:</strong><div class="result-main">${fmt(maxM,0)} m</div><div>Limite por resistência: <strong>${fmt(Math.max(maxKmR*1000,0),0)} m</strong>. Limite por capacitância: <strong>${fmt(Math.max(maxKmC*1000,0),0)} m</strong>.</div></div><div class="pill-row"><span class="pill">Tensão no instrumento: ${fmt(vDevice,2)} V</span><span class="pill">Cabo instalado: R ${fmt(Rinst,1)} Ω</span><span class="pill">Capacitância total: ${fmt(Cinst,1)} nF</span><span class="pill">Status: ${ok?'aceitável':'verificar'}</span></div><p class="result-sub">Para HART, além da tensão, confirme resistor/carga mínima, aterramento, blindagem, barreiras de segurança intrínseca e limite de capacitância/indutância do circuito.</p>`;
+}
 calcular();
 </script>
 <footer><p>© Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>

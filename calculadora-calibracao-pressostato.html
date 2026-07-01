@@ -98,14 +98,24 @@
   <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
 <script>
 
-function val(id){return parseFloat(String(document.getElementById(id).value).replace(',','.'))||0}
+function parseBrNumber(value){
+  const raw = String(value ?? '').trim();
+  if(!raw) return NaN;
+  const cleaned = raw.replace(/\s/g,'');
+  const normalized = cleaned.includes(',') ? cleaned.replace(/\./g,'').replace(',', '.') : cleaned;
+  const num = Number(normalized);
+  return Number.isFinite(num) ? num : NaN;
+}
+function val(id){const v=parseBrNumber(document.getElementById(id).value); return Number.isFinite(v)?v:0}
 function n(v,d=2){return Number.isFinite(v)?v.toLocaleString('pt-BR',{minimumFractionDigits:d,maximumFractionDigits:d}):'-'}
 function st(absErr,tol){if(!Number.isFinite(absErr)||!Number.isFinite(tol)||tol<=0)return '<span class="pill-warn">Verificar</span>'; if(absErr<=tol)return '<span class="pill-ok">Aprovado</span>'; if(absErr<=tol*1.25)return '<span class="pill-warn">Próximo do limite</span>'; return '<span class="pill-bad">Reprovado</span>'}
 function copiar(){const r=document.querySelector('.calc-layout'); const t=r?r.innerText:document.body.innerText; navigator.clipboard.writeText(t).then(()=>alert('Resultado copiado.'))}
 document.querySelectorAll('input,select').forEach(e=>e.addEventListener('input',calcular));
 
 
-function calcular(){let sp=val('setp'),rp=val('resetp'),sm=val('setm'),rm=val('resetm'),tol=val('tol'),rep=val('rep');let e1=sm-sp,e2=rm-rp,h=Math.abs(sm-rm),hd=Math.abs(sp-rp);let pior=Math.max(Math.abs(e1),Math.abs(e2),Math.abs(rep));document.getElementById('r1').innerHTML=n(e1,3)+' bar';document.getElementById('r2').innerHTML=n(e2,3)+' bar';document.getElementById('r3').innerHTML=n(h,3)+' bar';document.getElementById('r4').innerHTML=st(pior,Math.abs(tol));document.getElementById('tbl').innerHTML=`<tr><td>Atuação</td><td>${n(sp,3)} bar</td><td>${n(sm,3)} bar</td><td>${n(e1,3)} bar</td></tr><tr><td>Retorno</td><td>${n(rp,3)} bar</td><td>${n(rm,3)} bar</td><td>${n(e2,3)} bar</td></tr><tr><td>Histerese</td><td>${n(hd,3)} bar</td><td>${n(h,3)} bar</td><td>${n(h-hd,3)} bar</td></tr><tr><td>Repetibilidade</td><td>≤ ${n(tol,3)} bar</td><td>${n(rep,3)} bar</td><td>${n(rep,3)} bar</td></tr>`;}
+function calcular(){let sp=val('setp'),rp=val('resetp'),sm=val('setm'),rm=val('resetm'),tol=val('tol'),rep=val('rep');
+  if(tol<=0||rep<0){document.getElementById('r1').innerHTML='-';document.getElementById('r2').innerHTML='-';document.getElementById('r3').innerHTML='-';document.getElementById('r4').innerHTML='<span class="pill-warn">Verificar tolerância/repetibilidade</span>';document.getElementById('tbl').innerHTML='';return;}
+  let e1=sm-sp,e2=rm-rp,h=Math.abs(sm-rm),hd=Math.abs(sp-rp);let pior=Math.max(Math.abs(e1),Math.abs(e2),Math.abs(rep));document.getElementById('r1').innerHTML=n(e1,3)+' bar';document.getElementById('r2').innerHTML=n(e2,3)+' bar';document.getElementById('r3').innerHTML=n(h,3)+' bar';document.getElementById('r4').innerHTML=st(pior,Math.abs(tol));document.getElementById('tbl').innerHTML=`<tr><td>Atuação</td><td>${n(sp,3)} bar</td><td>${n(sm,3)} bar</td><td>${n(e1,3)} bar</td></tr><tr><td>Retorno</td><td>${n(rp,3)} bar</td><td>${n(rm,3)} bar</td><td>${n(e2,3)} bar</td></tr><tr><td>Histerese</td><td>${n(hd,3)} bar</td><td>${n(h,3)} bar</td><td>${n(h-hd,3)} bar</td></tr><tr><td>Repetibilidade</td><td>≤ ${n(tol,3)} bar</td><td>${n(rep,3)} bar</td><td>${n(rep,3)} bar</td></tr>`;}
 
 calcular();</script>
 </body>

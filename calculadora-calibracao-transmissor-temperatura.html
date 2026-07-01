@@ -88,7 +88,15 @@
 </main>
 <footer><p>© Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
 <script>
-function val(id){return parseFloat(String(document.getElementById(id).value).replace(',','.'))||0}
+function parseBrNumber(value){
+  const raw = String(value ?? '').trim();
+  if(!raw) return NaN;
+  const cleaned = raw.replace(/\s/g,'');
+  const normalized = cleaned.includes(',') ? cleaned.replace(/\./g,'').replace(',', '.') : cleaned;
+  const num = Number(normalized);
+  return Number.isFinite(num) ? num : NaN;
+}
+function val(id){const v=parseBrNumber(document.getElementById(id).value); return Number.isFinite(v)?v:0}
 function txt(id){return document.getElementById(id).value}
 function n(v,d=2){return Number.isFinite(v)?v.toLocaleString('pt-BR',{minimumFractionDigits:d,maximumFractionDigits:d}):'-'}
 function cls(ok){return ok?'pill-ok':'pill-bad'}
@@ -96,7 +104,9 @@ function st(absErr,tol){if(!Number.isFinite(absErr)||!Number.isFinite(tol))retur
 function copiar(){const r=document.querySelector('.calc-card:nth-of-type(2)'); const t=r?r.innerText:document.body.innerText; navigator.clipboard.writeText(t).then(()=>alert('Resultado copiado.'))}
 document.querySelectorAll('input,select').forEach(e=>e.addEventListener('input',calcular));
 
-function calcular(){let l=val('lrv'),u=val('urv'),span=u-l,ref=val('ref'),ind=val('ind'),ma=val('ma'),tol=val('tol');let pct=(ref-l)/span*100, maExp=4+16*pct/100, err=ind-ref, maErr=ma-maExp;document.getElementById('r1').innerHTML=n(maExp,3)+' mA';document.getElementById('r2').innerHTML=n(err,3)+' °C';document.getElementById('r3').innerHTML=n(maErr,3)+' mA';document.getElementById('r4').innerHTML=st(Math.abs(err),Math.abs(tol));document.getElementById('tbl').innerHTML=[0,25,50,75,100].map(p=>`<tr><td>${p}%</td><td>${n(l+span*p/100,2)} °C</td><td>${n(4+16*p/100,3)} mA</td></tr>`).join('');}
+function calcular(){let l=val('lrv'),u=val('urv'),span=u-l,ref=val('ref'),ind=val('ind'),ma=val('ma'),tol=val('tol');
+  if(!Number.isFinite(span)||span===0||tol<0){document.getElementById('r1').innerHTML='-';document.getElementById('r2').innerHTML='-';document.getElementById('r3').innerHTML='-';document.getElementById('r4').innerHTML='<span class="pill-warn">Verificar escala/tolerância</span>';document.getElementById('tbl').innerHTML='';return;}
+  let pct=(ref-l)/span*100, maExp=4+16*pct/100, err=ind-ref, maErr=ma-maExp;document.getElementById('r1').innerHTML=n(maExp,3)+' mA';document.getElementById('r2').innerHTML=n(err,3)+' °C';document.getElementById('r3').innerHTML=n(maErr,3)+' mA';document.getElementById('r4').innerHTML=st(Math.abs(err),Math.abs(tol));document.getElementById('tbl').innerHTML=[0,25,50,75,100].map(p=>`<tr><td>${p}%</td><td>${n(l+span*p/100,2)} °C</td><td>${n(4+16*p/100,3)} mA</td></tr>`).join('');}
 calcular();</script>
 
 <a aria-label="Voltar para Ferramentas" class="floating-back-tools no-print" href="ferramentas.html"><i class="fas fa-arrow-left"></i> Voltar para Ferramentas</a>

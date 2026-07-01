@@ -273,10 +273,17 @@
     const fmt = (v,d=2)=>Number.isFinite(v) ? v.toLocaleString('pt-BR',{maximumFractionDigits:d,minimumFractionDigits:d}) : '-';
     const kgf = 9.80665;
     const lbfN = 4.4482216153;
-    function pToPa(v,u){ v=Number(v)||0; if(u==='bar') return v*100000; if(u==='kpa') return v*1000; if(u==='psi') return v*6894.757293; return v; }
+    function parseBR(value){
+      const raw=String(value ?? '').trim();
+      if(!raw) return NaN;
+      const norm=raw.includes(',') ? raw.replace(/\./g,'').replace(',','.') : raw;
+      const v=Number(norm);
+      return Number.isFinite(v) ? v : NaN;
+    }
+    function pToPa(v,u){ v=parseBR(v); if(!Number.isFinite(v)) v=0; if(u==='bar') return v*100000; if(u==='kpa') return v*1000; if(u==='psi') return v*6894.757293; return v; }
     function paToBar(pa){return pa/100000}
-    function forceToN(v,u){ v=Number(v)||0; if(u==='kgf') return v*kgf; if(u==='lbf') return v*lbfN; return v; }
-    function areaCircleMm(d){ return Math.PI*Math.pow((Number(d)||0)/1000,2)/4; }
+    function forceToN(v,u){ v=parseBR(v); if(!Number.isFinite(v)) v=0; if(u==='kgf') return v*kgf; if(u==='lbf') return v*lbfN; return v; }
+    function areaCircleMm(d){ d=parseBR(d); return Math.PI*Math.pow((Number.isFinite(d)?d:0)/1000,2)/4; }
     function showMode(){
       const mode=$('mode').value;
       document.querySelectorAll('.input-force,.input-pressure,.input-diameter').forEach(el=>el.style.display='none');
@@ -286,10 +293,10 @@
     }
     function calcValues(customPressurePa){
       const type=$('actType').value;
-      const bore=Number($('bore').value)||0;
-      const rod=Number($('rod').value)||0;
-      const eff=Math.max(0.01,Math.min(1,(Number($('eff').value)||100)/100));
-      const qty=Math.max(1,Number($('qty').value)||1);
+      const bore=parseBR($('bore').value)||0;
+      const rod=parseBR($('rod').value)||0;
+      const eff=Math.max(0.01,Math.min(1,(parseBR($('eff').value)||100)/100));
+      const qty=Math.max(1,parseBR($('qty').value)||1);
       const pPa=Number.isFinite(customPressurePa) ? customPressurePa : pToPa($('pressure').value,$('pressureUnit').value);
       const aAdv=areaCircleMm(bore);
       const aRod=areaCircleMm(rod);
@@ -304,7 +311,7 @@
       showMode();
       const mode=$('mode').value;
       const v=calcValues();
-      const safety=Math.max(1,Number($('safety').value)||1);
+      const safety=Math.max(1,parseBR($('safety').value)||1);
       const targetN=forceToN($('targetForce').value,$('forceUnit').value)*safety;
       const loadN=forceToN($('loadForce').value,$('loadUnit').value)*safety;
       let reqPressurePa=NaN, reqDiameterMm=NaN;
@@ -320,7 +327,11 @@
       $('reqPressure').textContent=Number.isFinite(reqPressurePa) ? fmt(paToBar(reqPressurePa),2)+' bar' : '-';
       $('reqDiameter').textContent=Number.isFinite(reqDiameterMm) ? fmt(reqDiameterMm,1)+' mm' : '-';
       let statusClass='info', statusText='Resultado orientativo calculado. Confirme catálogo do fabricante e condições reais de aplicação.';
-      if(mode==='force' && loadN>0){
+      if(v.bore <= 0 || v.pPa <= 0){
+        statusClass='bad'; statusText='Revise os dados: diâmetro do pistão e pressão devem ser maiores que zero.';
+      } else if(v.type==='double' && v.rod >= v.bore){
+        statusClass='bad'; statusText='Revise a geometria: em cilindro dupla ação, a haste deve ser menor que o diâmetro do pistão.';
+      } else if(mode==='force' && loadN>0){
         const margin=v.totalAdv/loadN;
         if(margin>=1.2){statusClass='ok'; statusText='Força de avanço acima da carga informada com margem orientativa. Ainda assim, confirme velocidade, atrito, curso, haste e fabricante.';}
         else if(margin>=1){statusClass='warn'; statusText='Força de avanço atende no limite. Recomenda-se aumentar diâmetro, pressão disponível ou fator de segurança.';}
