@@ -1,0 +1,192 @@
+{
+  "stage": "Etapa 23 - Auditoria e melhoria controlada de instrumentação crítica",
+  "base": "Etapa 22",
+  "scope": {
+    "changed_files": [],
+    "home_changed": false,
+    "industrial_changed": false,
+    "residential_changed": false,
+    "formulas_changed": "Somente validações/entrada numérica; nenhuma fórmula principal de dimensionamento foi reescrita."
+  },
+  "checks": [
+    {
+      "name": "Carga de malha 4-20 mA - resistência total",
+      "expected": "365.6 Ω",
+      "got": 365.6,
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Carga de malha 4-20 mA - margem",
+      "expected": "4.69 V",
+      "got": 4.69,
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "LRV/URV - conversão 12,5 mA",
+      "expected": "53.125 % / 53.125 eng",
+      "got": [
+        53.125,
+        53.125
+      ],
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "DP tanque fechado - perna molhada 50%",
+      "expected": "12 mA",
+      "got": 12.0,
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Cv gases - cenário válido produz Cv positivo",
+      "expected": "Cv > 0",
+      "got": 7.749,
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Cv gases - rejeita P2 >= P1",
+      "expected": "Revisar dados",
+      "got": "Revisar dados",
+      "ok": true,
+      "detail": "Validação adicionada para não calcular com queda de pressão inexistente."
+    },
+    {
+      "name": "Cavitação válvula - razão ΔP/ΔP crítico",
+      "expected": "≈0.382",
+      "got": 0.382,
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Cavitação válvula - rejeita P2 >= P1",
+      "expected": "Revisar dados",
+      "got": "Revisar dados",
+      "ok": true,
+      "detail": "Validação adicionada para evitar falso baixo risco."
+    }
+  ],
+  "script_syntax": [
+    {
+      "file": "calculadora-lrv-urv-span.html",
+      "script_index": 0,
+      "ok": true,
+      "stderr": ""
+    },
+    {
+      "file": "calculadora-lrv-urv-span.html",
+      "script_index": 3,
+      "ok": true,
+      "stderr": ""
+    },
+    {
+      "file": "calculadora-lrv-urv-span.html",
+      "script_index": 4,
+      "ok": true,
+      "stderr": ""
+    },
+    {
+      "file": "calculadora-carga-malha-4-20ma.html",
+      "script_index": 0,
+      "ok": true,
+      "stderr": ""
+    },
+    {
+      "file": "calculadora-carga-malha-4-20ma.html",
+      "script_index": 2,
+      "ok": true,
+      "stderr": ""
+    },
+    {
+      "file": "calculadora-carga-malha-4-20ma.html",
+      "script_index": 3,
+      "ok": true,
+      "stderr": ""
+    },
+    {
+      "file": "calculadora-diagnostico-4-20ma-hart.html",
+      "script_index": 0,
+      "ok": true,
+      "stderr": ""
+    },
+    {
+      "file": "calculadora-diagnostico-4-20ma-hart.html",
+      "script_index": 3,
+      "ok": true,
+      "stderr": ""
+    },
+    {
+      "file": "calculadora-diagnostico-4-20ma-hart.html",
+      "script_index": 4,
+      "ok": true,
+      "stderr": ""
+    },
+    {
+      "file": "calculadora-dp-nivel-tanque-fechado.html",
+      "script_index": 0,
+      "ok": true,
+      "stderr": ""
+    },
+    {
+      "file": "calculadora-dp-nivel-tanque-fechado.html",
+      "script_index": 2,
+      "ok": true,
+      "stderr": ""
+    },
+    {
+      "file": "calculadora-dp-nivel-tanque-fechado.html",
+      "script_index": 3,
+      "ok": true,
+      "stderr": ""
+    },
+    {
+      "file": "calculadora-cv-gases-valvula-controle.html",
+      "script_index": 0,
+      "ok": true,
+      "stderr": ""
+    },
+    {
+      "file": "calculadora-cv-gases-valvula-controle.html",
+      "script_index": 2,
+      "ok": true,
+      "stderr": ""
+    },
+    {
+      "file": "calculadora-cv-gases-valvula-controle.html",
+      "script_index": 3,
+      "ok": true,
+      "stderr": ""
+    },
+    {
+      "file": "calculadora-indice-cavitacao-valvula.html",
+      "script_index": 0,
+      "ok": true,
+      "stderr": ""
+    },
+    {
+      "file": "calculadora-indice-cavitacao-valvula.html",
+      "script_index": 2,
+      "ok": true,
+      "stderr": ""
+    },
+    {
+      "file": "calculadora-indice-cavitacao-valvula.html",
+      "script_index": 3,
+      "ok": true,
+      "stderr": ""
+    }
+  ],
+  "app_js_ok": true,
+  "modified_files": [
+    "calculadora-lrv-urv-span.html",
+    "calculadora-carga-malha-4-20ma.html",
+    "calculadora-diagnostico-4-20ma-hart.html",
+    "calculadora-dp-nivel-tanque-fechado.html",
+    "calculadora-cv-gases-valvula-controle.html",
+    "calculadora-indice-cavitacao-valvula.html"
+  ],
+  "all_checks_ok": true
+}

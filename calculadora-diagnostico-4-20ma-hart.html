@@ -83,13 +83,13 @@
 <h2><i class="fas fa-wave-square"></i> Dados do sinal e da faixa</h2>
 <p>Informe a corrente medida e a faixa configurada do instrumento. A ferramenta calcula o percentual e o valor de engenharia para uma escala linear 4-20 mA.</p>
 <div class="calc-grid">
-<div class="field"><label for="ha_ma">Corrente medida (mA)</label><input id="ha_ma" inputmode="decimal" step="any" type="number" value="12"/></div>
-<div class="field"><label for="ha_lrv">LRV / 0%</label><input id="ha_lrv" inputmode="decimal" step="any" type="number" value="0"/></div>
-<div class="field"><label for="ha_urv">URV / 100%</label><input id="ha_urv" inputmode="decimal" step="any" type="number" value="100"/></div>
+<div class="field"><label for="ha_ma">Corrente medida (mA)</label><input id="ha_ma" inputmode="decimal" step="any" type="text" value="12"/></div>
+<div class="field"><label for="ha_lrv">LRV / 0%</label><input id="ha_lrv" inputmode="decimal" step="any" type="text" value="0"/></div>
+<div class="field"><label for="ha_urv">URV / 100%</label><input id="ha_urv" inputmode="decimal" step="any" type="text" value="100"/></div>
 <div class="field"><label for="ha_unidade">Unidade</label><input id="ha_unidade" placeholder="bar, °C, m³/h, mmH2O..." type="text" value="%"/></div>
-<div class="field"><label for="ha_vfonte">Fonte da malha (Vcc)</label><input id="ha_vfonte" inputmode="decimal" step="any" type="number" value="24"/></div>
-<div class="field"><label for="ha_vtx">Tensão mínima do transmissor (V)</label><input id="ha_vtx" inputmode="decimal" step="any" type="number" value="12"/></div>
-<div class="field"><label for="ha_rcarga">Carga/entrada/cabos sem HART (Ω)</label><input id="ha_rcarga" inputmode="decimal" step="any" type="number" value="250"/></div>
+<div class="field"><label for="ha_vfonte">Fonte da malha (Vcc)</label><input id="ha_vfonte" inputmode="decimal" step="any" type="text" value="24"/></div>
+<div class="field"><label for="ha_vtx">Tensão mínima do transmissor (V)</label><input id="ha_vtx" inputmode="decimal" step="any" type="text" value="12"/></div>
+<div class="field"><label for="ha_rcarga">Carga/entrada/cabos sem HART (Ω)</label><input id="ha_rcarga" inputmode="decimal" step="any" type="text" value="250"/></div>
 <div class="field"><label for="ha_hart">Resistor HART adicional</label><select id="ha_hart"><option value="0">Não adicionar</option><option selected="" value="250">Adicionar 250 Ω</option></select></div>
 </div>
 <div class="pill-row"><button class="mini-btn dark" onclick="copiarHart()" type="button"><i class="fas fa-copy"></i> Copiar resultado</button><button class="mini-btn" onclick="exHart(12,0,100,'%',24,12,250,250)" type="button">12 mA / 50%</button><button class="mini-btn" onclick="exHart(3.6,0,10,'bar',24,12,250,0)" type="button">Falha baixa</button><button class="mini-btn" onclick="exHart(20,0,1000,'mmH₂O',24,12,400,250)" type="button">20 mA com HART</button></div>
@@ -160,6 +160,7 @@
 <footer><p>© Desde 2012 ALOGY Engenharia | www.alogy.com.br</p></footer>
 <script>
 function n(id){return document.getElementById(id)}
+function parseNum(v){const raw=String(v??'').trim();if(!raw)return NaN;const norm=raw.includes(',')?raw.replace(/\./g,'').replace(',','.') : raw;const num=Number(norm);return Number.isFinite(num)?num:NaN}
 function fmt(v,d=2){return isFinite(v)?Number(v).toLocaleString('pt-BR',{maximumFractionDigits:d,minimumFractionDigits:d}):'-'}
 function diagStatus(ma){
   if(ma<=0.2) return ['Sem sinal','status-bad','possível circuito aberto, sem alimentação ou ligação incorreta'];
@@ -170,8 +171,19 @@ function diagStatus(ma){
   return ['Falha alta','status-bad','corrente acima da faixa normal de operação'];
 }
 function calcHart(){
-  const ma=parseFloat(n('ha_ma').value)||0, lrv=parseFloat(n('ha_lrv').value)||0, urv=parseFloat(n('ha_urv').value)||0, unit=n('ha_unidade').value||'';
-  const vf=parseFloat(n('ha_vfonte').value)||0, vtx=parseFloat(n('ha_vtx').value)||0, rbase=Math.max(parseFloat(n('ha_rcarga').value)||0,0), rhart=parseFloat(n('ha_hart').value)||0;
+  const ma=parseNum(n('ha_ma').value), lrv=parseNum(n('ha_lrv').value), urv=parseNum(n('ha_urv').value), unit=n('ha_unidade').value||'';
+  const vf=parseNum(n('ha_vfonte').value), vtx=parseNum(n('ha_vtx').value), rbase=Math.max(parseNum(n('ha_rcarga').value),0), rhart=parseNum(n('ha_hart').value);
+  const dadosInvalidos=[ma,lrv,urv,vf,vtx,rbase,rhart].some(v=>!Number.isFinite(v)) || urv===lrv || vf<=0 || vtx<=0 || vf<=vtx;
+  if(dadosInvalidos){
+    n('ha_pct').textContent='-'; n('ha_eng').textContent='-';
+    n('ha_status').textContent='Revisar dados'; n('ha_status').className='status-bad';
+    n('ha_rtotal').textContent='-'; n('ha_rmax').textContent='-'; n('ha_margem').textContent='-'; n('ha_margem').className='status-bad';
+    n('ha_vnec').textContent='V necessária: -'; n('ha_hart_status').textContent='HART: revisar dados'; n('ha_hart_status').className='pill status-bad';
+    n('ha_fault').textContent='Falha: dados inválidos'; n('ha_fault').className='pill status-bad';
+    n('ha_aviso').innerHTML='<strong>Atenção:</strong> informe uma escala válida, fonte maior que a tensão mínima e valores numéricos coerentes.';
+    n('ha_tabela').innerHTML='';
+    return;
+  }
   const rtot=rbase+rhart, pct=(ma-4)/16*100, eng=lrv+(pct/100)*(urv-lrv);
   const st=diagStatus(ma);
   const imax=22; const vqueda=imax/1000*rtot; const vnec=vtx+vqueda; const margem=vf-vnec; const rmax=(vf-vtx)>0?(vf-vtx)/0.022:0;

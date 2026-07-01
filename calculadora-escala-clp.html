@@ -167,7 +167,14 @@
 const $=id=>document.getElementById(id);
 function fmt(n,d){ if(!isFinite(n)) return '-'; return Number(n).toLocaleString('pt-BR',{minimumFractionDigits:d,maximumFractionDigits:d}); }
 function fmtRaw(n){ if(!isFinite(n)) return '-'; return Number(n).toLocaleString('pt-BR',{maximumFractionDigits:0}); }
-function rawVal(id){ const v=$(id).value; return v==='' ? NaN : Number(v); }
+function parsePtNumber(value){
+  const s=String(value ?? '').trim().replace(/\s/g,'');
+  if(!s) return NaN;
+  const normalized=s.includes(',') ? s.replace(/\./g,'').replace(',', '.') : s;
+  const v=Number(normalized);
+  return Number.isFinite(v) ? v : NaN;
+}
+function rawVal(id){ return parsePtNumber($(id).value); }
 function signalFromPct(pct){
   const tipo=$('sinal').value;
   if(!isFinite(pct) || tipo==='none') return '-';
@@ -188,7 +195,7 @@ function pctFromSignal(valor){
   return NaN;
 }
 function calc(){
-  const modo=$('modo').value, val=rawVal('valor'), r0=rawVal('rawMin'), r1=rawVal('rawMax'), e0=rawVal('engMin'), e1=rawVal('engMax'), unid=$('unid').value||'', d=Number($('casas').value);
+  const modo=$('modo').value, val=rawVal('valor'), r0=rawVal('rawMin'), r1=rawVal('rawMax'), e0=rawVal('engMin'), e1=rawVal('engMax'), unid=$('unid').value||'', d=Math.max(0, Math.min(6, Math.round(parsePtNumber($('casas').value) || 2)));
   $('valorLabel').textContent = modo==='raw' ? 'Valor bruto / raw' : modo==='eng' ? 'Valor de engenharia' : modo==='pct' ? 'Percentual da escala (%)' : `Valor do sinal físico (${$('sinal').options[$('sinal').selectedIndex].text})`;
   const rSpan=r1-r0, eSpan=e1-e0;
   let pct, raw, eng;

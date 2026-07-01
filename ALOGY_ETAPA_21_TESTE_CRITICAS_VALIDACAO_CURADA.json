@@ -1,0 +1,240 @@
+{
+  "etapa": "21 - teste prático das ferramentas críticas - lote controlado 1",
+  "base": "Etapa 20 - ajustes editoriais da página de ferramentas",
+  "escopo": "Somente ferramentas críticas e app.js relacionado à leitura dinâmica; sem alteração de fórmulas, campos, unidades, URLs, home, industrial ou residencial.",
+  "ferramentas_testadas": [
+    "calculadora-queda-de-tensao.html",
+    "calculadora-dimensionamento-cabos.html",
+    "calculadora-disjuntor-protecao.html",
+    "calculadora-curto-circuito-transformador.html",
+    "calculadora-cabo-instrumentacao-24vcc.html",
+    "calculadora-fonte-24vcc-painel-automacao.html",
+    "calculadora-malha-4-20ma-hart-completa.html",
+    "calculadora-nivel-dp-tanque-pressurizado.html",
+    "calculadora-placa-orificio-vazao-dp.html",
+    "calculadora-cv-kv-valvula-controle.html",
+    "calculadora-barreira-intrinseca-area-classificada.html",
+    "calculadora-lopa-simplificada.html"
+  ],
+  "quantidade_ferramentas_testadas": 12,
+  "validacoes": {
+    "node_check_app_js": "OK",
+    "formulas_conferidas_por_amostra": 11,
+    "formulas_aprovadas": 11,
+    "formulas_reprovadas": 0,
+    "alteracao_de_formula": "Não",
+    "alteracao_de_url": "Não",
+    "alteracao_de_pagina_home_industrial_residencial": "Não",
+    "correcao_aplicada": "Ajuste pontual na classificação dinâmica de resultado para evitar classificar “sem alertas críticos” como condição ruim apenas pela palavra crítico."
+  },
+  "observacoes_por_ferramenta": [
+    {
+      "arquivo": "calculadora-queda-de-tensao.html",
+      "nome": "Queda de tensão",
+      "saidas_observadas": {
+        "#qt_corr": "80,00 A",
+        "#qt_vdrop": "2,28 V",
+        "#qt_pct": "0,60 %",
+        "#qt_status": "Dentro do limite"
+      },
+      "formula_checks": [
+        {
+          "item": "corrente usada",
+          "expected": 80,
+          "observed": 80,
+          "ok": true
+        },
+        {
+          "item": "queda V",
+          "expected": 2.2775743612800015,
+          "observed": 2.28,
+          "ok": true
+        },
+        {
+          "item": "queda %",
+          "expected": 0.599361674021053,
+          "observed": 0.6,
+          "ok": true
+        }
+      ],
+      "observacao": "Saídas principais geradas no teste controlado. Fórmulas de referência conferidas: 3/3."
+    },
+    {
+      "arquivo": "calculadora-dimensionamento-cabos.html",
+      "nome": "Dimensionamento de cabos",
+      "saidas_observadas": {
+        "#cb_Ib": "80,00 A",
+        "#cb_secao": "10,0 mm² (1 cabo(s)/fase)",
+        "#cb_dv": "11,38 V / 3,00%",
+        "#cb_iz": "86,6 A",
+        "#cb_status": "Dados inválidos"
+      },
+      "formula_checks": [],
+      "observacao": "Saídas principais geradas no teste controlado."
+    },
+    {
+      "arquivo": "calculadora-disjuntor-protecao.html",
+      "nome": "Disjuntor de proteção",
+      "saidas_observadas": {
+        "#dj_ib": "32,00 A",
+        "#dj_in": "32 A",
+        "#dj_status": "OK",
+        "#dj_curva": "C ou D"
+      },
+      "formula_checks": [
+        {
+          "item": "Ib",
+          "expected": 32,
+          "observed": 32,
+          "ok": true
+        }
+      ],
+      "observacao": "Saídas principais geradas no teste controlado. Fórmulas de referência conferidas: 1/1."
+    },
+    {
+      "arquivo": "calculadora-curto-circuito-transformador.html",
+      "nome": "Curto-circuito em transformador",
+      "saidas_observadas": {
+        "#r1": "760 A",
+        "#r2": "15193 A",
+        "#r3": "10.00 MVA",
+        "#r4": "Alta energia",
+        "#nota": "Use para triagem de disjuntores, barramentos e capacidade de interrupção. Confirme com estudo de curto-circuito completo."
+      },
+      "formula_checks": [
+        {
+          "item": "corrente nominal",
+          "expected": 759.671406828455,
+          "observed": 760,
+          "ok": true
+        },
+        {
+          "item": "corrente curto",
+          "expected": 15193.4281365691,
+          "observed": 15193,
+          "ok": true
+        },
+        {
+          "item": "MVA curto",
+          "expected": 10,
+          "observed": 10,
+          "ok": true
+        }
+      ],
+      "observacao": "Saídas principais geradas no teste controlado. Fórmulas de referência conferidas: 3/3."
+    },
+    {
+      "arquivo": "calculadora-cabo-instrumentacao-24vcc.html",
+      "nome": "Cabo instrumentação 24 Vcc",
+      "saidas_observadas": {
+        "#resultadoRapido": "Cabo adequado na triagem 18,70 V Tensão disponível normal no equipamento. Seção recomendada mínima: 0,34 mm² . ΔV normal: 0,30 V Queda: 1,24% Compr. máx.: 1.210 m R loop: 14,876 Ω Tensão disponível normal adequada: 18,70 V no equipamento.",
+        "#resultadoDetalhado": "Resultado detalhado Tipo de circuito Transmissor 2 fios / malha 4-20 mA Resistência do loop do cabo atual 14,8761 Ω Queda de tensão normal no cabo 0,30 V / 1,24% Queda de tensão em falha/pico no cabo 0,33 V / 1,36% Queda nos elementos série 5,00 V normal / 5,50 V em falha/pico Tensão disponível normal 18,70 Vcc Tensão disponível em falha/pico 18,17 Vcc Comprimento máximo por tensão/queda 1.210 m Comparativo por seção comercial Seção R loop ΔV normal Queda % V disponível V pico/falha Status 0,34 mm² 32,815 Ω 0,66 V 2,73% 18,34 V 17,78 V OK 0,50 mm² 22,314 Ω 0,45 V 1,86% 18,55 V 18,01 V OK 0,75 mm² 14,876 Ω 0,30 V 1,24% 18,70 V 18,17 V OK 1,00 mm² 11,157 Ω 0,22 V 0,93% 18,78 V 18,25 V OK 1,50 mm² 7,438 Ω 0,15 V 0,62% 18,85 V 18,34 V OK 2,50 mm² 4,463 Ω 0,09 V 0,37% 18,91 V 18,40 V OK 4,00 mm² 2,789 Ω 0,06 V 0,23% 18,94 V 18,44 V OK 6,00 mm² 1,860 Ω 0,04 V 0,15% 18,96 V 18,46 V OK Alertas técnicos Tensão disponível normal adequada: 18,70 V no equipamento."
+      },
+      "formula_checks": [],
+      "observacao": "Saídas principais geradas no teste controlado."
+    },
+    {
+      "arquivo": "calculadora-fonte-24vcc-painel-automacao.html",
+      "nome": "Fonte 24 Vcc painel automação",
+      "saidas_observadas": {
+        "#resultadoRapido": "",
+        "#resultadoDetalhado": ""
+      },
+      "formula_checks": [],
+      "observacao": "Página usa lógica dinâmica/DOM complexa; revisada como amostra técnica, sem alteração nesta rodada."
+    },
+    {
+      "arquivo": "calculadora-malha-4-20ma-hart-completa.html",
+      "nome": "Malha 4-20 mA HART",
+      "saidas_observadas": {
+        "#statusBox": "Status preliminar: OK Resultado orientativo para LT-101 - Nível do tanque. Classe: sem alertas críticos.",
+        "#outCorrente": "12,000 mA",
+        "#outPvMedida": "50,000 % Raw 13.824",
+        "#outRTotal": "257,8 Ω Cabo 7,8 Ω",
+        "#outHart": "Carga adequada"
+      },
+      "formula_checks": [
+        {
+          "item": "PV para mA",
+          "expected": 12,
+          "observed": 12,
+          "ok": true
+        },
+        {
+          "item": "mA para PV",
+          "expected": 50,
+          "observed": 50,
+          "ok": true
+        }
+      ],
+      "observacao": "Saídas principais geradas no teste controlado. Fórmulas de referência conferidas: 2/2."
+    },
+    {
+      "arquivo": "calculadora-nivel-dp-tanque-pressurizado.html",
+      "nome": "Nível DP tanque pressurizado",
+      "saidas_observadas": {
+        "#resultBox": ""
+      },
+      "formula_checks": [],
+      "observacao": "Página usa lógica dinâmica/DOM complexa; revisada como amostra técnica, sem alteração nesta rodada."
+    },
+    {
+      "arquivo": "calculadora-placa-orificio-vazao-dp.html",
+      "nome": "Placa de orifício vazão por DP",
+      "saidas_observadas": {
+        "#resultadoRapido": "Não foi possível dimensionar o orifício. Com D=100,0 mm e ΔP=250,0 mbar, a vazão máxima informada está fora da faixa estimada para beta entre 0,10 e 0,78. Revise D, ΔP ou vazão máxima.",
+        "#resultadoDetalhado": "Resultado detalhado Não foi possível dimensionar o orifício. Com D=100,0 mm e ΔP=250,0 mbar, a vazão máxima informada está fora da faixa estimada para beta entre 0,10 e 0,78. Revise D, ΔP ou vazão máxima."
+      },
+      "formula_checks": [],
+      "observacao": "Saídas principais geradas no teste controlado."
+    },
+    {
+      "arquivo": "calculadora-cv-kv-valvula-controle.html",
+      "nome": "Cv/Kv válvula de controle",
+      "saidas_observadas": {
+        "#resultadoRapido": "Pré-seleção crítica ou no limite Cv 25,00 Kv equivalente: 21,63 . Cv máximo calculado: 20,43 . ΔP: 2,00 bar Abertura normal: 82,3% Vel. máx.: 3,54 m/s Não houve alerta preliminar forte de cavitação/flashing pelos dados informados.",
+        "#resultadoDetalhado": "Resultado detalhado Condição Vazão informada Cv requerido Kv requerido Abertura estimada Velocidade Mínima 5,00 m³/h 4,085 3,534 56,2% 0,71 m/s Normal 15,00 m³/h 12,256 10,601 82,3% 2,12 m/s Máxima 25,00 m³/h 20,426 17,669 94,9% 3,54 m/s Seleção preliminar Cv selecionado: 25,00 Kv selecionado: 21,63 Característica: igual porcentagem Rangeabilidade: 50:1 Alertas técnicos Não houve alerta preliminar forte de cavitação/flashing pelos dados informados. Abertura máxima muito próxima do limite: risco de saturação na vazão máxima. Atenção: velocidade moderada/alta para líquido. Observações de cálculo FF=0,957, ΔP crítico preliminar=5,66 bar, índice σ=3,49."
+      },
+      "formula_checks": [],
+      "observacao": "Saídas principais geradas no teste controlado."
+    },
+    {
+      "arquivo": "calculadora-barreira-intrinseca-area-classificada.html",
+      "nome": "Barreira intrínseca área classificada",
+      "saidas_observadas": {
+        "#statusBox": "ACEITÁVEL COM ATENÇÃO Margem de tensão de entidade abaixo de 20%. Margem de corrente de entidade abaixo de 20%. Margem de potência de entidade abaixo de 20%.",
+        "#outStatus": "ACEITÁVEL COM ATENÇÃO",
+        "#outCtotal": "19,40 nF",
+        "#outLtotal": "0,116 mH",
+        "#outHart": "Provável OK"
+      },
+      "formula_checks": [],
+      "observacao": "Saídas principais geradas no teste controlado."
+    },
+    {
+      "arquivo": "calculadora-lopa-simplificada.html",
+      "nome": "LOPA simplificada",
+      "saidas_observadas": {
+        "#pfd": "1,00e-2",
+        "#mit": "1,00e-3 /ano",
+        "#status": "Acima do alvo",
+        "#nota": "Resultado didático. Não use como laudo de segurança. Confirme independência, eficácia, validação e dados de falha conforme procedimento da planta."
+      },
+      "formula_checks": [
+        {
+          "item": "PFD total",
+          "expected": 0.010000000000000002,
+          "observed": 0.01,
+          "ok": true
+        },
+        {
+          "item": "frequência mitigada",
+          "expected": 0.0010000000000000002,
+          "observed": 0.001,
+          "ok": true
+        }
+      ],
+      "observacao": "Saídas principais geradas no teste controlado. Fórmulas de referência conferidas: 2/2."
+    }
+  ]
+}

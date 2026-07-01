@@ -175,7 +175,13 @@
 <script>
 const $=id=>document.getElementById(id);
 function fmt(n,d){ if(!isFinite(n)) return '-'; return Number(n).toLocaleString('pt-BR',{minimumFractionDigits:d,maximumFractionDigits:d}); }
-function rawVal(id){ const v=$(id).value; return v==='' ? NaN : Number(v); }
+function parseNum(v){
+  const s=String(v ?? '').trim();
+  if(s==='') return NaN;
+  const normalizado = s.includes(',') ? s.replace(/\./g,'').replace(',', '.') : s;
+  return Number(normalizado);
+}
+function rawVal(id){ return parseNum($(id).value); }
 function calc(){
   const modo=$('modo').value, val=rawVal('valor'), lrv=rawVal('lrv'), urv=rawVal('urv'), unid=$('unid').value||'', d=Number($('casas').value);
   $('valorLabel').textContent = modo==='ma' ? 'Corrente medida (mA)' : modo==='eng' ? 'Valor de engenharia' : 'Percentual da faixa (%)';

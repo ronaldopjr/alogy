@@ -182,7 +182,7 @@ const $=id=>document.getElementById(id);
 function parseIp(str){ const p=String(str||'').trim().split('.'); if(p.length!==4) return null; const nums=p.map(x=>Number(x)); if(nums.some(n=>!Number.isInteger(n)||n<0||n>255)) return null; return nums; }
 function ipToInt(arr){ return (((arr[0]<<24)>>>0) + (arr[1]<<16) + (arr[2]<<8) + arr[3])>>>0; }
 function intToIp(n){ return [(n>>>24)&255,(n>>>16)&255,(n>>>8)&255,n&255].join('.'); }
-function prefixToMask(prefix){ prefix=Number(prefix); if(prefix===0) return 0; return (0xffffffff << (32-prefix))>>>0; }
+function prefixToMask(prefix){ prefix=Number(prefix); if(!Number.isInteger(prefix)||prefix<0||prefix>32) return null; if(prefix===0) return 0; return (0xffffffff << (32-prefix))>>>0; }
 function maskToPrefix(maskArr){ if(!maskArr) return null; const m=ipToInt(maskArr); let seenZero=false, count=0; for(let i=31;i>=0;i--){ const bit=(m>>>i)&1; if(bit){ if(seenZero) return null; count++; } else seenZero=true; } return count; }
 function binIp(n){ return [24,16,8,0].map(s=>String((n>>>s)&255).padStart(8,'0')).join('.'); }
 function fmtNum(n){ return Number(n).toLocaleString('pt-BR'); }
@@ -190,16 +190,17 @@ function usableCount(prefix){ if(prefix>=32) return 1; if(prefix===31) return 2;
 function totalCount(prefix){ return Math.pow(2,32-prefix); }
 function isPrivate(n){ const a=(n>>>24)&255, b=(n>>>16)&255; if(a===10) return true; if(a===172 && b>=16 && b<=31) return true; if(a===192 && b===168) return true; return false; }
 function ipType(n){ const a=(n>>>24)&255, b=(n>>>16)&255; if(a===10 || (a===172&&b>=16&&b<=31) || (a===192&&b===168)) return 'Privado'; if(a===169&&b===254) return 'Link-local'; if(a===127) return 'Loopback'; if(a>=224) return 'Multicast/reservado'; return 'Público'; }
-function syncMaskFromPrefix(){ $('mask').value=intToIp(prefixToMask(Number($('prefix').value))); }
+function syncMaskFromPrefix(){ const p=Number($('prefix').value); const mask=prefixToMask(p); if(mask!==null){ $('mask').value=intToIp(mask); } }
 function syncPrefixFromMask(){ const arr=parseIp($('mask').value); const p=maskToPrefix(arr); if(p!==null){ $('prefix').value=String(p); } }
 function setBox(id, cls){ const box=$(id).parentElement; box.className='result-box '+cls; }
 function calc(){
   const ipArr=parseIp($('ip').value), maskArr=parseIp($('mask').value), gwArr=parseIp($('gateway').value), ip2Arr=parseIp($('ip2').value);
-  const pFromMask=maskToPrefix(maskArr); const prefix=pFromMask!==null ? pFromMask : Number($('prefix').value); const mask=prefixToMask(prefix);
-  if(!ipArr || pFromMask===null || prefix<0 || prefix>32){
+  const pFromMask=maskToPrefix(maskArr); const prefix=pFromMask!==null ? pFromMask : Number($('prefix').value);
+  if(!ipArr || pFromMask===null || !Number.isInteger(prefix) || prefix<0 || prefix>32){
     ['outRede','outBroadcast','outFaixa','outHosts','outMask','outWildcard','outSame','outStatus'].forEach(id=>$(id).textContent='Verificar');
-    $('pills').innerHTML='<span class="ip-pill">IP ou máscara inválida</span>'; $('binario').textContent='Binário: verificar IP e máscara.'; $('diag').innerHTML=''; return;
+    $('pills').innerHTML='<span class="ip-pill">IP, máscara ou prefixo inválido</span>'; $('binario').textContent='Binário: verificar IP, máscara e prefixo.'; $('diag').innerHTML=''; return;
   }
+  const mask=prefixToMask(prefix);
   const ip=ipToInt(ipArr), network=(ip & mask)>>>0, wildcard=(~mask)>>>0, broadcast=(network | wildcard)>>>0;
   const first = prefix>=31 ? network : (network+1)>>>0; const last = prefix>=31 ? broadcast : (broadcast-1)>>>0;
   const hosts=usableCount(prefix); const total=totalCount(prefix);

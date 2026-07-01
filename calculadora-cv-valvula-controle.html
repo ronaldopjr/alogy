@@ -198,7 +198,14 @@
 </main>
 <footer><p>© Desde 2012 ALOGY Engenharia | www.alogy.com.br</p></footer>
 <script>
-    function n(id){ const el = document.getElementById(id); return Number(String(el?.value || '0').replace(',', '.')); }
+    function parseBR(value){
+      const raw = String(value ?? '').trim();
+      if(!raw) return NaN;
+      const norm = raw.includes(',') ? raw.replace(/\./g,'').replace(',','.') : raw;
+      const v = Number(norm);
+      return Number.isFinite(v) ? v : NaN;
+    }
+    function n(id){ const el = document.getElementById(id); const v = parseBR(el?.value || '0'); return Number.isFinite(v) ? v : 0; }
     function setTxt(id, txt){ const el = document.getElementById(id); if(el) el.textContent = txt; }
     function fmt(v, d=3){ if(!Number.isFinite(v)) return '-'; return v.toLocaleString('pt-BR', {maximumFractionDigits:d, minimumFractionDigits:0}); }
     function qParaGpm(q, unidade){ if(unidade === 'gpm') return q; if(unidade === 'lmin') return q * 0.264172052; return q * 4.40286754; }

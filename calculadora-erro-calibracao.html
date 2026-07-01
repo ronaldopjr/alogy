@@ -185,12 +185,21 @@
 </main>
 <footer><p>© Desde 2012 ALOGY Engenharia | www.alogy.com.br</p></footer>
 <script>
+    function parseBrNumber(value){
+  const raw = String(value ?? '').trim();
+  if(!raw) return NaN;
+  const cleaned = raw.replace(/\s/g,'');
+  const normalized = cleaned.includes(',') ? cleaned.replace(/\./g,'').replace(',', '.') : cleaned;
+  const num = Number(normalized);
+  return Number.isFinite(num) ? num : NaN;
+}
     const fmtCal = (n,d=3) => Number(n).toLocaleString('pt-BR',{minimumFractionDigits:d,maximumFractionDigits:d});
     function el(id){ return document.getElementById(id); }
-    function spanAbs(){ return Math.abs((Number(el('cal_urv').value)||0) - (Number(el('cal_lrv').value)||0)); }
+    function numCal(id){ const v=parseBrNumber(el(id).value); return Number.isFinite(v)?v:0; }
+    function spanAbs(){ return Math.abs(numCal('cal_urv') - numCal('cal_lrv')); }
     function limitePara(ref){
       const tipo = el('cal_tol_tipo').value;
-      const tol = Math.abs(Number(el('cal_tol').value)||0);
+      const tol = Math.abs(numCal('cal_tol'));
       if(tipo === 'none') return NaN;
       if(tipo === 'abs') return tol;
       if(tipo === 'pct_ponto') return Math.abs(ref) * tol / 100;
@@ -223,8 +232,8 @@
     function removerLinha(btn){ btn.closest('tr').remove(); calcularCalibracao(); }
     function limparPontos(){ el('cal_tbody').innerHTML=''; adicionarPonto(); }
     function gerarPontosPadrao(){
-      const lrv = Number(el('cal_lrv').value)||0;
-      const urv = Number(el('cal_urv').value)||0;
+      const lrv = numCal('cal_lrv');
+      const urv = numCal('cal_urv');
       const pts = [0,25,50,75,100];
       el('cal_tbody').innerHTML = '';
       pts.forEach(p => {
@@ -248,8 +257,8 @@
       const rows = Array.from(el('cal_tbody').querySelectorAll('tr'));
       let avaliados=0, aprov=0, repro=0, maior=0;
       rows.forEach((tr,idx)=>{
-        const ref = Number(tr.querySelector('.ponto-ref').value);
-        const ind = Number(tr.querySelector('.ponto-ind').value);
+        const ref = parseBrNumber(tr.querySelector('.ponto-ref').value);
+        const ind = parseBrNumber(tr.querySelector('.ponto-ind').value);
         const label = tr.querySelector('.ponto-label');
         if(!label.value.trim()) label.placeholder = 'Ponto ' + (idx+1);
         const oknum = Number.isFinite(ref) && Number.isFinite(ind);

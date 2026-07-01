@@ -241,7 +241,14 @@
   document.getElementById('gasUnit').addEventListener('change', atualizarModo);
 })();
 
-function n(id){ return parseFloat(String(document.getElementById(id).value).replace(',','.')) || 0; }
+function parseBR(value){
+  const raw=String(value ?? '').trim();
+  if(!raw) return NaN;
+  const norm=raw.includes(',') ? raw.replace(/\./g,'').replace(',','.') : raw;
+  const v=Number(norm);
+  return Number.isFinite(v) ? v : NaN;
+}
+function n(id){ const v=parseBR(document.getElementById(id).value); return Number.isFinite(v) ? v : 0; }
 function s(id){ return (document.getElementById(id).value || '').trim(); }
 function fmt(x,d=2){ if(!isFinite(x)) return '-'; return x.toLocaleString('pt-BR',{minimumFractionDigits:d,maximumFractionDigits:d}); }
 function clamp(x,a,b){ return Math.max(a, Math.min(b,x)); }
@@ -321,6 +328,8 @@ function calcularValvula(){
   if(!(qs[0].val <= qs[1].val && qs[1].val <= qs[2].val)) erros.push('Use vazões em ordem crescente: mínima ≤ normal ≤ máxima.');
   if(!gas && n('rho')<=0) erros.push('A densidade do líquido deve ser maior que zero.');
   if(gas && n('gg')<=0) erros.push('A gravidade específica do gás deve ser maior que zero.');
+  if(gas && n('z')<=0) erros.push('O fator Z do gás deve ser maior que zero.');
+  if(gas && tempC<=-273.15) erros.push('A temperatura do gás deve ser maior que -273,15 °C.');
   if(gas && document.getElementById('gasUnit').value==='kgh' && n('mw')<=0) erros.push('Para kg/h, informe massa molar maior que zero.');
   if(erros.length){
     const html = `<div class="note bad"><strong>Não foi possível calcular.</strong><ul>${erros.map(e=>`<li>${e}</li>`).join('')}</ul></div>`;

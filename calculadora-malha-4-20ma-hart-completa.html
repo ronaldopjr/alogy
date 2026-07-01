@@ -139,27 +139,27 @@
         <label>Tag da malha<input id="tag" value="LT-101" /></label>
         <label>Variável / serviço<input id="servico" value="Nível do tanque" /></label>
         <label>Unidade de engenharia<input id="unidade" value="%" /></label>
-        <label>LRV - valor em 4 mA<input id="lrv" type="number" step="0.001" value="0" /></label>
-        <label>URV - valor em 20 mA<input id="urv" type="number" step="0.001" value="100" /></label>
-        <label>Valor normal de processo<input id="pvNormal" type="number" step="0.001" value="50" /></label>
-        <label>Corrente medida em campo (mA)<input id="correnteMedida" type="number" step="0.001" value="12" /></label>
-        <label>Raw mínimo do CLP/DCS<input id="rawMin" type="number" step="1" value="0" /></label>
-        <label>Raw máximo do CLP/DCS<input id="rawMax" type="number" step="1" value="27648" /></label>
+        <label>LRV - valor em 4 mA<input id="lrv" type="text" inputmode="decimal" step="0.001" value="0" /></label>
+        <label>URV - valor em 20 mA<input id="urv" type="text" inputmode="decimal" step="0.001" value="100" /></label>
+        <label>Valor normal de processo<input id="pvNormal" type="text" inputmode="decimal" step="0.001" value="50" /></label>
+        <label>Corrente medida em campo (mA)<input id="correnteMedida" type="text" inputmode="decimal" step="0.001" value="12" /></label>
+        <label>Raw mínimo do CLP/DCS<input id="rawMin" type="text" inputmode="decimal" step="1" value="0" /></label>
+        <label>Raw máximo do CLP/DCS<input id="rawMax" type="text" inputmode="decimal" step="1" value="27648" /></label>
       </div>
     </section>
 
     <section class="calc-card">
       <h2><i class="fas fa-bolt"></i> Fonte, carga, cabo e HART</h2>
       <div class="calc-grid">
-        <label>Tensão da fonte (Vcc)<input id="fonte" type="number" step="0.01" value="24" /></label>
-        <label>Tensão mínima no transmissor (V)<input id="vminTx" type="number" step="0.01" value="12" /></label>
-        <label>Resistência da entrada analógica (Ω)<input id="rAi" type="number" step="0.1" value="250" /></label>
-        <label>Resistor HART adicional (Ω)<input id="rHart" type="number" step="0.1" value="0" /></label>
-        <label>Barreira / isolador / indicador (Ω)<input id="rBarreira" type="number" step="0.1" value="0" /></label>
-        <label>Outras cargas em série (Ω)<input id="rExtra" type="number" step="0.1" value="0" /></label>
-        <label>Comprimento do cabo - ida (m)<input id="comprimento" type="number" step="0.1" value="150" /></label>
-        <label>Resistência por condutor (Ω/km)<input id="rCond" type="number" step="0.01" value="26" /></label>
-        <label>Corrente de verificação/falha alta (mA)<input id="iFalhaAlta" type="number" step="0.1" value="21" /></label>
+        <label>Tensão da fonte (Vcc)<input id="fonte" type="text" inputmode="decimal" step="0.01" value="24" /></label>
+        <label>Tensão mínima no transmissor (V)<input id="vminTx" type="text" inputmode="decimal" step="0.01" value="12" /></label>
+        <label>Resistência da entrada analógica (Ω)<input id="rAi" type="text" inputmode="decimal" step="0.1" value="250" /></label>
+        <label>Resistor HART adicional (Ω)<input id="rHart" type="text" inputmode="decimal" step="0.1" value="0" /></label>
+        <label>Barreira / isolador / indicador (Ω)<input id="rBarreira" type="text" inputmode="decimal" step="0.1" value="0" /></label>
+        <label>Outras cargas em série (Ω)<input id="rExtra" type="text" inputmode="decimal" step="0.1" value="0" /></label>
+        <label>Comprimento do cabo - ida (m)<input id="comprimento" type="text" inputmode="decimal" step="0.1" value="150" /></label>
+        <label>Resistência por condutor (Ω/km)<input id="rCond" type="text" inputmode="decimal" step="0.01" value="26" /></label>
+        <label>Corrente de verificação/falha alta (mA)<input id="iFalhaAlta" type="text" inputmode="decimal" step="0.1" value="21" /></label>
         <label>HART requerido?
           <select id="hartReq"><option value="sim" selected>Sim</option><option value="nao">Não</option></select>
         </label>
@@ -238,7 +238,13 @@
   </main>
 
 <script>
-function num(id){return parseFloat(String(document.getElementById(id).value).replace(',','.'));}
+function num(id){
+  const raw = String(document.getElementById(id).value ?? '').trim();
+  if(raw === '') return NaN;
+  const normalized = raw.includes(',') ? raw.replace(/\./g, '').replace(',', '.') : raw;
+  const value = Number(normalized);
+  return Number.isFinite(value) ? value : NaN;
+}
 function txt(id){return document.getElementById(id).value.trim();}
 function fmt(v,d=2){return Number.isFinite(v)?v.toLocaleString('pt-BR',{minimumFractionDigits:d,maximumFractionDigits:d}):'--';}
 function set(id,html){document.getElementById(id).innerHTML=html;}

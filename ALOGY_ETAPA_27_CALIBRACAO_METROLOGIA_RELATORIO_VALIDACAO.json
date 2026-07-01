@@ -1,0 +1,268 @@
+{
+  "stage": "Etapa 27 - Calibração e metrologia de instrumentação",
+  "base": "Etapa 26",
+  "changed_files": [
+    "calculadora-calibracao-balanca-industrial.html",
+    "calculadora-calibracao-manometro.html",
+    "calculadora-calibracao-pressostato.html",
+    "calculadora-calibracao-transmissor-pressao.html",
+    "calculadora-calibracao-transmissor-temperatura.html",
+    "calculadora-erro-calibracao.html",
+    "calculadora-incerteza-calibracao-tur-tar.html",
+    "calculadora-incerteza-calibracao.html"
+  ],
+  "changed_files_count": 8,
+  "scope_ok": true,
+  "numeric_checks": [
+    {
+      "name": "parseBrNumber 12,5",
+      "got": 12.5,
+      "expected": 12.5,
+      "ok": true,
+      "note": ""
+    },
+    {
+      "name": "parseBrNumber 1.234,56",
+      "got": 1234.56,
+      "expected": 1234.56,
+      "ok": true,
+      "note": ""
+    },
+    {
+      "name": "parseBrNumber 0,85",
+      "got": 0.85,
+      "expected": 0.85,
+      "ok": true,
+      "note": ""
+    },
+    {
+      "name": "transmissor pressão mA esperado",
+      "got": 12.0,
+      "expected": 12.0,
+      "ok": true,
+      "note": ""
+    },
+    {
+      "name": "transmissor pressão erro %",
+      "got": 0.4,
+      "expected": 0.4,
+      "ok": true,
+      "note": ""
+    },
+    {
+      "name": "transmissor pressão aprovado",
+      "got": true,
+      "expected": true,
+      "ok": true,
+      "note": ""
+    },
+    {
+      "name": "transmissor pressão bloqueia span zero",
+      "got": true,
+      "expected": true,
+      "ok": true,
+      "note": "script agora retorna Verificar escala/tolerância antes de dividir por zero"
+    },
+    {
+      "name": "transmissor temperatura mA esperado",
+      "got": 12.0,
+      "expected": 12.0,
+      "ok": true,
+      "note": ""
+    },
+    {
+      "name": "transmissor temperatura erro processo",
+      "got": 0.4,
+      "expected": 0.4,
+      "ok": true,
+      "note": ""
+    },
+    {
+      "name": "transmissor temperatura erro mA",
+      "got": 0.04,
+      "expected": 0.04,
+      "ok": true,
+      "note": ""
+    },
+    {
+      "name": "transmissor temperatura aprovado",
+      "got": true,
+      "expected": true,
+      "ok": true,
+      "note": ""
+    },
+    {
+      "name": "manômetro EMP",
+      "got": 0.1,
+      "expected": 0.1,
+      "ok": true,
+      "note": ""
+    },
+    {
+      "name": "manômetro erro subida",
+      "got": 0.05,
+      "expected": 0.05,
+      "ok": true,
+      "note": ""
+    },
+    {
+      "name": "manômetro histerese",
+      "got": 0.07,
+      "expected": 0.07,
+      "ok": true,
+      "note": ""
+    },
+    {
+      "name": "manômetro aprovado",
+      "got": true,
+      "expected": true,
+      "ok": true,
+      "note": ""
+    },
+    {
+      "name": "pressostato erro atuação",
+      "got": 0.1,
+      "expected": 0.1,
+      "ok": true,
+      "note": ""
+    },
+    {
+      "name": "pressostato histerese medida",
+      "got": 0.75,
+      "expected": 0.75,
+      "ok": true,
+      "note": ""
+    },
+    {
+      "name": "pressostato aprovado",
+      "got": true,
+      "expected": true,
+      "ok": true,
+      "note": ""
+    },
+    {
+      "name": "balança erro kg",
+      "got": 4,
+      "expected": 4,
+      "ok": true,
+      "note": ""
+    },
+    {
+      "name": "balança erro percentual",
+      "got": 0.066667,
+      "expected": 0.066667,
+      "ok": true,
+      "note": ""
+    },
+    {
+      "name": "balança carga por célula",
+      "got": 1000.0,
+      "expected": 1000,
+      "ok": true,
+      "note": ""
+    },
+    {
+      "name": "balança aprovada",
+      "got": true,
+      "expected": true,
+      "ok": true,
+      "note": ""
+    },
+    {
+      "name": "erro calibração tolerância 2% span",
+      "got": 4.0,
+      "expected": 4,
+      "ok": true,
+      "note": ""
+    },
+    {
+      "name": "erro calibração ponto aprovado",
+      "got": true,
+      "expected": true,
+      "ok": true,
+      "note": ""
+    },
+    {
+      "name": "incerteza uc exemplo temperatura",
+      "got": 0.061441,
+      "expected": 0.061441,
+      "ok": true,
+      "note": ""
+    },
+    {
+      "name": "incerteza U exemplo temperatura",
+      "got": 0.122882,
+      "expected": 0.122882,
+      "ok": true,
+      "note": ""
+    },
+    {
+      "name": "incerteza TUR maior que 4",
+      "got": true,
+      "expected": true,
+      "ok": true,
+      "note": ""
+    }
+  ],
+  "numeric_checks_passed": 27,
+  "numeric_checks_total": 27,
+  "script_syntax": [
+    {
+      "file": "calculadora-calibracao-balanca-industrial.html",
+      "script": 0,
+      "ok": true,
+      "stderr": ""
+    },
+    {
+      "file": "calculadora-calibracao-manometro.html",
+      "script": 0,
+      "ok": true,
+      "stderr": ""
+    },
+    {
+      "file": "calculadora-calibracao-pressostato.html",
+      "script": 0,
+      "ok": true,
+      "stderr": ""
+    },
+    {
+      "file": "calculadora-calibracao-transmissor-pressao.html",
+      "script": 0,
+      "ok": true,
+      "stderr": ""
+    },
+    {
+      "file": "calculadora-calibracao-transmissor-temperatura.html",
+      "script": 0,
+      "ok": true,
+      "stderr": ""
+    },
+    {
+      "file": "calculadora-erro-calibracao.html",
+      "script": 0,
+      "ok": true,
+      "stderr": ""
+    },
+    {
+      "file": "calculadora-incerteza-calibracao-tur-tar.html",
+      "script": 0,
+      "ok": true,
+      "stderr": ""
+    },
+    {
+      "file": "calculadora-incerteza-calibracao.html",
+      "script": 0,
+      "ok": true,
+      "stderr": ""
+    }
+  ],
+  "script_syntax_ok": true,
+  "app_js_syntax_ok": true,
+  "app_js_syntax_stderr": "",
+  "home_industrial_residential_changed": false,
+  "notes": [
+    "Não foram reescritas fórmulas principais; foram adicionadas proteções contra dados inválidos e leitura decimal pt-BR.",
+    "Cálculos com span zero, capacidade zero, classe/tolerância inválida e k inválido deixam de gerar resultado artificial.",
+    "Mantidos URLs, categorias e páginas comerciais sem alteração."
+  ]
+}

@@ -235,7 +235,16 @@
   <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
 
 <script>
-function num(id){return parseFloat(String(document.getElementById(id).value).replace(',', '.'));}
+function parseBrNumber(value){
+  const raw = String(value ?? '').trim();
+  if(!raw) return NaN;
+  const cleaned = raw.replace(/\s/g,'');
+  const normalized = cleaned.includes(',') ? cleaned.replace(/\./g,'').replace(',', '.') : cleaned;
+  const num = Number(normalized);
+  return Number.isFinite(num) ? num : NaN;
+}
+function num(id){return parseBrNumber(document.getElementById(id).value);}
+function numFrom(value){return parseBrNumber(value);}
 function val(id){return document.getElementById(id).value.trim();}
 function fmt(n,d=3){return Number.isFinite(n)?n.toLocaleString('pt-BR',{minimumFractionDigits:d,maximumFractionDigits:d}):'--';}
 function esc(s){return String(s).replace(/[&<>'"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));}
@@ -265,7 +274,7 @@ function atualizarRefs(){
   const lrv=num('lrv'), urv=num('urv'); const unidade=val('unidade')||'un';
   const span=urv-lrv;
   document.querySelectorAll('#pointsBody tr').forEach(tr=>{
-    const pct=parseFloat(tr.querySelector('.ptPct').value);
+    const pct=numFrom(tr.querySelector('.ptPct').value);
     const ref=Number.isFinite(lrv)&&Number.isFinite(span)&&Number.isFinite(pct)? lrv + span*pct/100 : NaN;
     tr.querySelector('.refCell').textContent=Number.isFinite(ref)?`${fmt(ref)} ${unidade}`:'--';
     const med=tr.querySelector('.ptMed');
@@ -294,7 +303,7 @@ function calcularIncerteza(){
   const U = kExp*uc;
   const rows=[]; let piorErro=-1, pontoCrit='--', minTur=Infinity, minTar=Infinity, aprov=0, repro=0, ind=0, alertas=[];
   document.querySelectorAll('#pointsBody tr').forEach((tr,idx)=>{
-    const pct=parseFloat(tr.querySelector('.ptPct').value); const med=parseFloat(tr.querySelector('.ptMed').value); const obs=tr.querySelector('.ptObs').value||'';
+    const pct=numFrom(tr.querySelector('.ptPct').value); const med=parseFloat(tr.querySelector('.ptMed').value); const obs=tr.querySelector('.ptObs').value||'';
     if(!Number.isFinite(pct) || !Number.isFinite(med)) return;
     const ref=lrv + span*pct/100; const erro=med-ref; const erroAbs=Math.abs(erro);
     const tolCalc = tolAbs + Math.abs(span)*tolSpan/100 + Math.abs(ref)*tolLeitura/100;

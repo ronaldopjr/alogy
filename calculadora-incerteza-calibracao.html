@@ -172,11 +172,19 @@
   <footer><p>&copy; 2026 ALOGY Engenharia. Todos os direitos reservados.</p></footer>
   <script>
     const SQRT3=Math.sqrt(3), SQRT12=Math.sqrt(12);
-    function n(id){const v=parseFloat(document.getElementById(id).value);return Number.isFinite(v)?v:0}
+    function parseBrNumber(value){
+  const raw = String(value ?? '').trim();
+  if(!raw) return NaN;
+  const cleaned = raw.replace(/\s/g,'');
+  const normalized = cleaned.includes(',') ? cleaned.replace(/\./g,'').replace(',', '.') : cleaned;
+  const num = Number(normalized);
+  return Number.isFinite(num) ? num : NaN;
+}
+    function n(id){const v=parseBrNumber(document.getElementById(id).value);return Number.isFinite(v)?v:0}
     function txt(id){return document.getElementById(id).value||''}
     function fmt(v){const c=Math.max(0,Math.min(8,parseInt(document.getElementById('casas').value||4,10))); if(!Number.isFinite(v)) return '-'; return v.toLocaleString('pt-BR',{maximumFractionDigits:c,minimumFractionDigits:Math.min(c,4)}).replace(/,?0+$/,'')}
     function calcInc(){
-      const unidade=txt('unidade')||'un'; const valor=n('valor_ref'); const k=n('k_final')||2; const tol=Math.abs(n('tolerancia'));
+      const unidade=txt('unidade')||'un'; const valor=n('valor_ref'); const k=Math.abs(n('k_final'))||2; const tol=Math.abs(n('tolerancia'));
       const uPad = document.getElementById('tipo_padrao').value==='cert' ? Math.abs(n('u_padrao'))/(Math.abs(n('k_cert'))||2) : Math.abs(n('u_padrao'));
       const uRes = Math.abs(n('resolucao'))/SQRT12;
       const nleit = Math.max(1,Math.round(n('n_leituras')||1));

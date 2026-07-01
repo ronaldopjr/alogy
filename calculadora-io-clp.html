@@ -224,9 +224,16 @@
   <script>
     const ids = ['di','do','ai','ao','reserva','capDi','capDo','capAi','capAo','slotsRack','slotsSistema','nome'];
     const $ = id => document.getElementById(id);
+    function parsePtNumber(value){
+      const s = String(value ?? '').trim().replace(/\s/g,'');
+      if(!s) return NaN;
+      const normalized = s.includes(',') ? s.replace(/\./g,'').replace(',', '.') : s;
+      const v = Number(normalized);
+      return Number.isFinite(v) ? v : NaN;
+    }
     const n = id => {
-      const v = parseFloat($(id).value);
-      return isFinite(v) ? v : 0;
+      const v = parsePtNumber($(id).value);
+      return Number.isFinite(v) ? v : 0;
     };
     function ceilDiv(a,b){ return b > 0 ? Math.ceil(a / b) : 0; }
     function calcParaReserva(res){

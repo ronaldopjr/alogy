@@ -1,0 +1,175 @@
+{
+  "stage": "Etapa 25 - Automação, CLP e Redes Industriais",
+  "base": "alogy-main-etapa-24-instrumentacao-4-20ma-hart.zip",
+  "scope": "auditoria e melhorias controladas em ferramentas de automação, CLP, redes industriais, UPS e PID",
+  "modified_files": [
+    "calculadora-escala-clp.html",
+    "calculadora-io-clp.html",
+    "calculadora-resolucao-clp-analogico.html",
+    "calculadora-modbus.html",
+    "calculadora-modbus-polling.html",
+    "calculadora-tempo-varredura-modbus-rtu.html",
+    "calculadora-ip-rede-industrial.html",
+    "calculadora-ups-automacao-clp-instrumentos.html",
+    "calculadora-bateria-ups-24vcc.html",
+    "calculadora-cabo-profibus-rs485.html",
+    "calculadora-sintonia-pid.html",
+    "calculadora-tempo-resposta-malha-controle.html"
+  ],
+  "links_broken_in_modified_pages": [],
+  "script_checks": [
+    {
+      "file": "calculadora-escala-clp.html",
+      "inline_scripts_checked": 1,
+      "syntax_ok": true,
+      "errors": []
+    },
+    {
+      "file": "calculadora-io-clp.html",
+      "inline_scripts_checked": 1,
+      "syntax_ok": true,
+      "errors": []
+    },
+    {
+      "file": "calculadora-resolucao-clp-analogico.html",
+      "inline_scripts_checked": 1,
+      "syntax_ok": true,
+      "errors": []
+    },
+    {
+      "file": "calculadora-modbus.html",
+      "inline_scripts_checked": 1,
+      "syntax_ok": true,
+      "errors": []
+    },
+    {
+      "file": "calculadora-modbus-polling.html",
+      "inline_scripts_checked": 1,
+      "syntax_ok": true,
+      "errors": []
+    },
+    {
+      "file": "calculadora-tempo-varredura-modbus-rtu.html",
+      "inline_scripts_checked": 1,
+      "syntax_ok": true,
+      "errors": []
+    },
+    {
+      "file": "calculadora-ip-rede-industrial.html",
+      "inline_scripts_checked": 1,
+      "syntax_ok": true,
+      "errors": []
+    },
+    {
+      "file": "calculadora-ups-automacao-clp-instrumentos.html",
+      "inline_scripts_checked": 1,
+      "syntax_ok": true,
+      "errors": []
+    },
+    {
+      "file": "calculadora-bateria-ups-24vcc.html",
+      "inline_scripts_checked": 1,
+      "syntax_ok": true,
+      "errors": []
+    },
+    {
+      "file": "calculadora-cabo-profibus-rs485.html",
+      "inline_scripts_checked": 1,
+      "syntax_ok": true,
+      "errors": []
+    },
+    {
+      "file": "calculadora-sintonia-pid.html",
+      "inline_scripts_checked": 1,
+      "syntax_ok": true,
+      "errors": []
+    },
+    {
+      "file": "calculadora-tempo-resposta-malha-controle.html",
+      "inline_scripts_checked": 1,
+      "syntax_ok": true,
+      "errors": []
+    }
+  ],
+  "numeric_checks": [
+    {
+      "name": "Escala CLP: raw 13824 em 0-27648 para 0-10 bar",
+      "expected": 5,
+      "observed": 5.0,
+      "passed": true,
+      "note": ""
+    },
+    {
+      "name": "Resolução CLP: contagens 0-32767",
+      "expected": 32767,
+      "observed": 32767,
+      "passed": true,
+      "note": ""
+    },
+    {
+      "name": "Resolução CLP: valor raw 16384 em 0-100",
+      "expected": 50.0015259254738,
+      "observed": 50.0015259254738,
+      "passed": true,
+      "note": ""
+    },
+    {
+      "name": "Polling Modbus: bytes por escravo",
+      "expected": 53,
+      "observed": 53,
+      "passed": true,
+      "note": ""
+    },
+    {
+      "name": "Polling Modbus: ciclo ms exemplo",
+      "expected": 603.6458333333334,
+      "observed": 603.6458333333333,
+      "passed": true,
+      "note": ""
+    },
+    {
+      "name": "Bateria UPS 24V: Ah 2A 1h DoD80 der20 rend90",
+      "expected": 3.333333333333333,
+      "observed": 3.333333333333333,
+      "passed": true,
+      "note": ""
+    },
+    {
+      "name": "Cabo PROFIBUS: uso 850m em limite 1000m",
+      "expected": 85,
+      "observed": 85.0,
+      "passed": true,
+      "note": ""
+    },
+    {
+      "name": "Tempo resposta: tau eq 60+5+8",
+      "expected": 73,
+      "observed": 73,
+      "passed": true,
+      "note": ""
+    },
+    {
+      "name": "Tempo resposta: t95 10+3*tau",
+      "expected": 229,
+      "observed": 229,
+      "passed": true,
+      "note": ""
+    },
+    {
+      "name": "IP industrial: /24 hosts utilizáveis",
+      "expected": 254,
+      "observed": 254,
+      "passed": true,
+      "note": ""
+    }
+  ],
+  "summary": {
+    "modified_file_count": 12,
+    "broken_link_count": 0,
+    "inline_script_syntax_failures": 0,
+    "numeric_checks_total": 10,
+    "numeric_checks_passed": 10,
+    "formulas_rewritten": 0,
+    "main_changes": "Leitura de números pt-BR, validação de spans/valores inválidos e proteção contra cenários negativos ou incoerentes."
+  }
+}

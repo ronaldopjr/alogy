@@ -1,0 +1,986 @@
+{
+  "etapa": "24 - instrumentação 4-20 mA e HART",
+  "arquivos_alterados": [
+    "calculadora-4-20ma.html",
+    "calculadora-carga-malha-4-20ma.html",
+    "calculadora-diagnostico-4-20ma-hart.html",
+    "calculadora-malha-4-20ma-hart-completa.html",
+    "calculadora-raiz-quadrada-4-20ma.html",
+    "calculadora-split-range-4-20ma.html",
+    "calculadora-comprimento-cabo-hart.html"
+  ],
+  "checks_numericos": [
+    {
+      "ferramenta": "calculadora-4-20ma.html",
+      "teste": "500 em 0-1000 => 12 mA e 50%",
+      "ok": true,
+      "resultado": {
+        "ma": 12.0,
+        "percentual": 50.0
+      }
+    },
+    {
+      "ferramenta": "parse decimal brasileiro",
+      "teste": "1.234,56 => 1234.56",
+      "ok": true,
+      "resultado": 1234.56
+    },
+    {
+      "ferramenta": "calculadora-carga-malha-4-20ma.html",
+      "teste": "exemplo padrão",
+      "ok": true,
+      "resultado": {
+        "Rc": 15.6,
+        "Rtot": 365.6,
+        "Rmax": 600.0,
+        "margem": 4.688
+      }
+    },
+    {
+      "ferramenta": "calculadora-diagnostico-4-20ma-hart.html",
+      "teste": "12 mA, 0-100%, fonte 24 V, tx 12 V, carga 500 ohm",
+      "ok": true,
+      "resultado": {
+        "percentual": 50.0,
+        "eng": 50.0,
+        "vnecessaria": 23.0,
+        "margem": 1.0
+      }
+    },
+    {
+      "ferramenta": "calculadora-malha-4-20ma-hart-completa.html",
+      "teste": "exemplo padrão LT-101",
+      "ok": true,
+      "resultado": {
+        "correnteNormal": 12.0,
+        "rCabo": 7.8,
+        "rTotal": 257.8,
+        "vTx20": 18.844
+      }
+    },
+    {
+      "ferramenta": "calculadora-raiz-quadrada-4-20ma.html",
+      "teste": "12 mA em raiz quadrada => 50% DP e 70,71% vazão",
+      "ok": true,
+      "resultado": {
+        "dpPct": 50.0,
+        "flowPct": 70.71067811865476,
+        "flow": 707.1067811865476
+      }
+    },
+    {
+      "ferramenta": "calculadora-split-range-4-20ma.html",
+      "teste": "12 mA com A 0-50% e B 50-100%",
+      "ok": true,
+      "resultado": {
+        "comandoPct": 50.0,
+        "valvulaA": 100,
+        "valvulaB": 0
+      }
+    },
+    {
+      "ferramenta": "calculadora-comprimento-cabo-hart.html",
+      "teste": "exemplo padrão limitado por capacitância",
+      "ok": true,
+      "resultado": {
+        "maxM": 1800.0,
+        "vDevice": 17.8288,
+        "Cinst": 100.0
+      }
+    }
+  ],
+  "scripts_inline": [
+    {
+      "arquivo": "calculadora-4-20ma.html",
+      "script": 1,
+      "ok": true,
+      "erro": ""
+    },
+    {
+      "arquivo": "calculadora-carga-malha-4-20ma.html",
+      "script": 1,
+      "ok": true,
+      "erro": ""
+    },
+    {
+      "arquivo": "calculadora-diagnostico-4-20ma-hart.html",
+      "script": 1,
+      "ok": true,
+      "erro": ""
+    },
+    {
+      "arquivo": "calculadora-malha-4-20ma-hart-completa.html",
+      "script": 1,
+      "ok": true,
+      "erro": ""
+    },
+    {
+      "arquivo": "calculadora-raiz-quadrada-4-20ma.html",
+      "script": 1,
+      "ok": true,
+      "erro": ""
+    },
+    {
+      "arquivo": "calculadora-split-range-4-20ma.html",
+      "script": 1,
+      "ok": true,
+      "erro": ""
+    },
+    {
+      "arquivo": "calculadora-comprimento-cabo-hart.html",
+      "script": 1,
+      "ok": true,
+      "erro": ""
+    }
+  ],
+  "app_js": {
+    "ok": true,
+    "erro": ""
+  },
+  "links_internos_paginas_alteradas": [
+    {
+      "origem": "calculadora-4-20ma.html",
+      "href": "https://www.alogy.com.br/calculadora-4-20ma.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-4-20ma.html",
+      "href": "index.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-4-20ma.html",
+      "href": "industrial.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-4-20ma.html",
+      "href": "residencial.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-4-20ma.html",
+      "href": "cases.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-4-20ma.html",
+      "href": "cursos.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-4-20ma.html",
+      "href": "blog.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-4-20ma.html",
+      "href": "ferramentas.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-4-20ma.html",
+      "href": "sobre.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-4-20ma.html",
+      "href": "index.html#contato",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-4-20ma.html",
+      "href": "index.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-4-20ma.html",
+      "href": "industrial.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-4-20ma.html",
+      "href": "residencial.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-4-20ma.html",
+      "href": "cases.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-4-20ma.html",
+      "href": "cursos.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-4-20ma.html",
+      "href": "blog.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-4-20ma.html",
+      "href": "ferramentas.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-4-20ma.html",
+      "href": "sobre.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-4-20ma.html",
+      "href": "index.html#contato",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-4-20ma.html",
+      "href": "ferramentas.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-4-20ma.html",
+      "href": "conversor-unidades-industriais.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-4-20ma.html",
+      "href": "calculadora-erro-calibracao.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-4-20ma.html",
+      "href": "calculadora-temperatura-industrial.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-4-20ma.html",
+      "href": "calculadora-raiz-quadrada-4-20ma.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-4-20ma.html",
+      "href": "calculadora-dimensionamento-cabos.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-4-20ma.html",
+      "href": "blog-teste-de-loop-instrumentacao.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-4-20ma.html",
+      "href": "ferramentas.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-carga-malha-4-20ma.html",
+      "href": "https://www.alogy.com.br/calculadora-carga-malha-4-20ma.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-carga-malha-4-20ma.html",
+      "href": "index.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-carga-malha-4-20ma.html",
+      "href": "industrial.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-carga-malha-4-20ma.html",
+      "href": "residencial.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-carga-malha-4-20ma.html",
+      "href": "cases.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-carga-malha-4-20ma.html",
+      "href": "cursos.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-carga-malha-4-20ma.html",
+      "href": "blog.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-carga-malha-4-20ma.html",
+      "href": "ferramentas.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-carga-malha-4-20ma.html",
+      "href": "sobre.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-carga-malha-4-20ma.html",
+      "href": "index.html#contato",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-carga-malha-4-20ma.html",
+      "href": "index.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-carga-malha-4-20ma.html",
+      "href": "industrial.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-carga-malha-4-20ma.html",
+      "href": "residencial.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-carga-malha-4-20ma.html",
+      "href": "cases.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-carga-malha-4-20ma.html",
+      "href": "cursos.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-carga-malha-4-20ma.html",
+      "href": "blog.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-carga-malha-4-20ma.html",
+      "href": "ferramentas.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-carga-malha-4-20ma.html",
+      "href": "sobre.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-carga-malha-4-20ma.html",
+      "href": "index.html#contato",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-carga-malha-4-20ma.html",
+      "href": "ferramentas-instrumentacao-industrial.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-carga-malha-4-20ma.html",
+      "href": "index.html#contato",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-carga-malha-4-20ma.html",
+      "href": "politica-de-privacidade.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-carga-malha-4-20ma.html",
+      "href": "termos-de-uso-ferramentas.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-carga-malha-4-20ma.html",
+      "href": "ferramentas.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-diagnostico-4-20ma-hart.html",
+      "href": "https://www.alogy.com.br/calculadora-diagnostico-4-20ma-hart.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-diagnostico-4-20ma-hart.html",
+      "href": "index.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-diagnostico-4-20ma-hart.html",
+      "href": "industrial.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-diagnostico-4-20ma-hart.html",
+      "href": "residencial.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-diagnostico-4-20ma-hart.html",
+      "href": "cases.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-diagnostico-4-20ma-hart.html",
+      "href": "cursos.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-diagnostico-4-20ma-hart.html",
+      "href": "blog.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-diagnostico-4-20ma-hart.html",
+      "href": "ferramentas.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-diagnostico-4-20ma-hart.html",
+      "href": "sobre.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-diagnostico-4-20ma-hart.html",
+      "href": "index.html#contato",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-diagnostico-4-20ma-hart.html",
+      "href": "index.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-diagnostico-4-20ma-hart.html",
+      "href": "industrial.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-diagnostico-4-20ma-hart.html",
+      "href": "residencial.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-diagnostico-4-20ma-hart.html",
+      "href": "cases.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-diagnostico-4-20ma-hart.html",
+      "href": "cursos.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-diagnostico-4-20ma-hart.html",
+      "href": "blog.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-diagnostico-4-20ma-hart.html",
+      "href": "ferramentas.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-diagnostico-4-20ma-hart.html",
+      "href": "sobre.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-diagnostico-4-20ma-hart.html",
+      "href": "index.html#contato",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-diagnostico-4-20ma-hart.html",
+      "href": "calculadora-4-20ma.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-diagnostico-4-20ma-hart.html",
+      "href": "ferramentas.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-malha-4-20ma-hart-completa.html",
+      "href": "https://www.alogy.com.br/calculadora-malha-4-20ma-hart-completa.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-malha-4-20ma-hart-completa.html",
+      "href": "index.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-malha-4-20ma-hart-completa.html",
+      "href": "industrial.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-malha-4-20ma-hart-completa.html",
+      "href": "residencial.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-malha-4-20ma-hart-completa.html",
+      "href": "cases.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-malha-4-20ma-hart-completa.html",
+      "href": "cursos.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-malha-4-20ma-hart-completa.html",
+      "href": "blog.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-malha-4-20ma-hart-completa.html",
+      "href": "ferramentas.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-malha-4-20ma-hart-completa.html",
+      "href": "sobre.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-malha-4-20ma-hart-completa.html",
+      "href": "index.html#contato",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-malha-4-20ma-hart-completa.html",
+      "href": "index.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-malha-4-20ma-hart-completa.html",
+      "href": "industrial.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-malha-4-20ma-hart-completa.html",
+      "href": "residencial.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-malha-4-20ma-hart-completa.html",
+      "href": "cases.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-malha-4-20ma-hart-completa.html",
+      "href": "cursos.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-malha-4-20ma-hart-completa.html",
+      "href": "blog.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-malha-4-20ma-hart-completa.html",
+      "href": "ferramentas.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-malha-4-20ma-hart-completa.html",
+      "href": "sobre.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-malha-4-20ma-hart-completa.html",
+      "href": "index.html#contato",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-malha-4-20ma-hart-completa.html",
+      "href": "ferramentas.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-malha-4-20ma-hart-completa.html",
+      "href": "index.html#contato",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-malha-4-20ma-hart-completa.html",
+      "href": "calculadora-fonte-24vcc-painel-automacao.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-malha-4-20ma-hart-completa.html",
+      "href": "calculadora-comprimento-cabo-hart.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-malha-4-20ma-hart-completa.html",
+      "href": "politica-de-privacidade.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-malha-4-20ma-hart-completa.html",
+      "href": "termos-de-uso-ferramentas.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-raiz-quadrada-4-20ma.html",
+      "href": "https://www.alogy.com.br/calculadora-raiz-quadrada-4-20ma.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-raiz-quadrada-4-20ma.html",
+      "href": "index.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-raiz-quadrada-4-20ma.html",
+      "href": "industrial.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-raiz-quadrada-4-20ma.html",
+      "href": "residencial.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-raiz-quadrada-4-20ma.html",
+      "href": "cases.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-raiz-quadrada-4-20ma.html",
+      "href": "cursos.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-raiz-quadrada-4-20ma.html",
+      "href": "blog.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-raiz-quadrada-4-20ma.html",
+      "href": "ferramentas.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-raiz-quadrada-4-20ma.html",
+      "href": "sobre.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-raiz-quadrada-4-20ma.html",
+      "href": "index.html#contato",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-raiz-quadrada-4-20ma.html",
+      "href": "index.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-raiz-quadrada-4-20ma.html",
+      "href": "industrial.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-raiz-quadrada-4-20ma.html",
+      "href": "residencial.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-raiz-quadrada-4-20ma.html",
+      "href": "cases.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-raiz-quadrada-4-20ma.html",
+      "href": "cursos.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-raiz-quadrada-4-20ma.html",
+      "href": "blog.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-raiz-quadrada-4-20ma.html",
+      "href": "ferramentas.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-raiz-quadrada-4-20ma.html",
+      "href": "sobre.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-raiz-quadrada-4-20ma.html",
+      "href": "index.html#contato",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-raiz-quadrada-4-20ma.html",
+      "href": "calculadora-4-20ma.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-raiz-quadrada-4-20ma.html",
+      "href": "ferramentas.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-raiz-quadrada-4-20ma.html",
+      "href": "ferramentas.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-split-range-4-20ma.html",
+      "href": "https://www.alogy.com.br/calculadora-split-range-4-20ma.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-split-range-4-20ma.html",
+      "href": "index.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-split-range-4-20ma.html",
+      "href": "industrial.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-split-range-4-20ma.html",
+      "href": "residencial.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-split-range-4-20ma.html",
+      "href": "cases.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-split-range-4-20ma.html",
+      "href": "cursos.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-split-range-4-20ma.html",
+      "href": "blog.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-split-range-4-20ma.html",
+      "href": "ferramentas.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-split-range-4-20ma.html",
+      "href": "sobre.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-split-range-4-20ma.html",
+      "href": "index.html#contato",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-split-range-4-20ma.html",
+      "href": "index.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-split-range-4-20ma.html",
+      "href": "industrial.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-split-range-4-20ma.html",
+      "href": "residencial.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-split-range-4-20ma.html",
+      "href": "cases.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-split-range-4-20ma.html",
+      "href": "cursos.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-split-range-4-20ma.html",
+      "href": "blog.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-split-range-4-20ma.html",
+      "href": "ferramentas.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-split-range-4-20ma.html",
+      "href": "sobre.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-split-range-4-20ma.html",
+      "href": "index.html#contato",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-split-range-4-20ma.html",
+      "href": "ferramentas.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-split-range-4-20ma.html",
+      "href": "calculadora-4-20ma.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-split-range-4-20ma.html",
+      "href": "checklist-teste-de-loop.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-split-range-4-20ma.html",
+      "href": "politica-de-privacidade.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-split-range-4-20ma.html",
+      "href": "termos-de-uso-ferramentas.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-comprimento-cabo-hart.html",
+      "href": "https://www.alogy.com.br/calculadora-comprimento-cabo-hart.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-comprimento-cabo-hart.html",
+      "href": "index.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-comprimento-cabo-hart.html",
+      "href": "industrial.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-comprimento-cabo-hart.html",
+      "href": "residencial.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-comprimento-cabo-hart.html",
+      "href": "cases.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-comprimento-cabo-hart.html",
+      "href": "cursos.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-comprimento-cabo-hart.html",
+      "href": "blog.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-comprimento-cabo-hart.html",
+      "href": "ferramentas.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-comprimento-cabo-hart.html",
+      "href": "sobre.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-comprimento-cabo-hart.html",
+      "href": "index.html#contato",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-comprimento-cabo-hart.html",
+      "href": "index.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-comprimento-cabo-hart.html",
+      "href": "industrial.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-comprimento-cabo-hart.html",
+      "href": "residencial.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-comprimento-cabo-hart.html",
+      "href": "cases.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-comprimento-cabo-hart.html",
+      "href": "cursos.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-comprimento-cabo-hart.html",
+      "href": "blog.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-comprimento-cabo-hart.html",
+      "href": "ferramentas.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-comprimento-cabo-hart.html",
+      "href": "sobre.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-comprimento-cabo-hart.html",
+      "href": "index.html#contato",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-comprimento-cabo-hart.html",
+      "href": "blog-comunicacao-hart-falhas-cabo-resistencia.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-comprimento-cabo-hart.html",
+      "href": "calculadora-carga-malha-4-20ma.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-comprimento-cabo-hart.html",
+      "href": "politica-de-privacidade.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-comprimento-cabo-hart.html",
+      "href": "termos-de-uso-ferramentas.html",
+      "ok": true
+    },
+    {
+      "origem": "calculadora-comprimento-cabo-hart.html",
+      "href": "ferramentas.html",
+      "ok": true
+    }
+  ],
+  "resumo": {
+    "checks_numericos_total": 8,
+    "checks_numericos_ok": 8,
+    "scripts_inline_total": 7,
+    "scripts_inline_ok": 7,
+    "links_total": 167,
+    "links_ok": 167,
+    "home_industrial_residencial_alterados": false
+  }
+}

@@ -87,7 +87,7 @@
 <div class="field"><label for="dj_sistema">Sistema</label><select id="dj_sistema"><option value="mono">Monofásico / bifásico</option><option selected="" value="tri">Trifásico</option></select></div>
 <div class="field"><label for="dj_tensao">Tensão (V)</label><input id="dj_tensao" inputmode="decimal" step="any" type="number" value="380"/></div>
 <div class="field"><label for="dj_fp">Fator de potência</label><input id="dj_fp" inputmode="decimal" step="any" type="number" value="0.92"/></div>
-<div class="field"><label for="dj_rend">Rendimento do motor/carga</label><input id="dj_rend" inputmode="decimal" step="any" type="number" value="0.90"/></div>
+<div class="field"><label for="dj_rend">Rendimento do motor (0,90 ou 90%)</label><input id="dj_rend" inputmode="decimal" step="any" type="number" value="0.90"/></div>
 <div class="field"><label for="dj_iz">Capacidade corrigida do cabo Iz (A)</label><input id="dj_iz" inputmode="decimal" step="any" type="number" value="50"/></div>
 <div class="field"><label for="dj_tipo">Tipo de carga</label><select id="dj_tipo"><option value="geral">Carga geral / tomada</option><option value="resistiva">Carga resistiva</option><option selected="" value="motor">Motor</option><option value="trafo">Transformador</option></select></div>
 </div>
@@ -131,14 +131,14 @@
 <h3>Quando aplicar</h3>
 <p>Use para verificação preliminar de circuitos industriais, painéis, motores, alimentação 24 Vcc, proteção, qualidade de energia e segurança elétrica antes de especificar componentes ou liberar manutenção.</p>
 <h3>Dados que merecem conferência</h3>
-<p>Antes de confiar no resultado da ferramenta <strong>Calculadora de Disjuntor e Proteção Elétrica</strong>, confira principalmente: Entrada de carga, Corrente (A), Sistema, Tensão (V), Fator de potência, Rendimento do motor/carga. Pequenos erros de unidade, ponto decimal ou condição de operação podem gerar conclusões erradas.</p>
+<p>Antes de confiar no resultado da ferramenta <strong>Calculadora de Disjuntor e Proteção Elétrica</strong>, confira principalmente: Entrada de carga, Corrente (A), Sistema, Tensão (V), Fator de potência, Rendimento do motor (apenas CV/HP). Pequenos erros de unidade, ponto decimal ou condição de operação podem gerar conclusões erradas.</p>
 <ul>
 <li>Entrada de carga</li>
 <li>Corrente (A)</li>
 <li>Sistema</li>
 <li>Tensão (V)</li>
 <li>Fator de potência</li>
-<li>Rendimento do motor/carga</li>
+<li>Rendimento do motor (apenas CV/HP)</li>
 </ul>
 <h3>Como interpretar o resultado</h3>
 <p>O resultado deve ser avaliado junto com corrente nominal, temperatura ambiente, método de instalação, capacidade de curto-circuito, proteção existente e normas aplicáveis. Um número isolado não substitui dimensionamento elétrico completo.</p>
@@ -159,21 +159,23 @@
 const djStd=[2,4,6,10,16,20,25,32,40,50,63,70,80,100,125,150,160,175,200,225,250,300,315,350,400,500,630,800];
 function n(id){return document.getElementById(id)}
 function fmt(v,d=2){return isFinite(v)?Number(v).toLocaleString('pt-BR',{maximumFractionDigits:d,minimumFractionDigits:d}):'-'}
+function normalizaRendimento(v){v=parseFloat(v); if(!isFinite(v)||v<=0)return 1; if(v>1.5)v=v/100; return Math.max(0.01,Math.min(1,v));}
 function getCurve(tipo){if(tipo==='resistiva')return 'B ou C'; if(tipo==='motor')return 'C ou D'; if(tipo==='trafo')return 'D'; return 'C'}
 function calcIb(){
   const modo=n('dj_modo').value, val=parseFloat(n('dj_valor').value)||0, sis=n('dj_sistema').value;
-  const V=parseFloat(n('dj_tensao').value)||0, fp=parseFloat(n('dj_fp').value)||1, rend=parseFloat(n('dj_rend').value)||1;
+  const V=parseFloat(n('dj_tensao').value)||0, fp=parseFloat(n('dj_fp').value)||1, rend=normalizaRendimento(n('dj_rend').value);
   let ib=0,kW=0,kVA=0;
   if(modo==='corrente'){ib=val; kVA=(sis==='tri'?Math.sqrt(3)*V*ib:V*ib)/1000; kW=kVA*fp;}
   if(modo==='kva'){kVA=val; ib=(sis==='tri'? kVA*1000/(Math.sqrt(3)*V): kVA*1000/V); kW=kVA*fp;}
-  if(modo==='kw'){kW=val; kVA=kW/Math.max(fp*rend,.0001); ib=(sis==='tri'? kVA*1000/(Math.sqrt(3)*V): kVA*1000/V);}
-  if(modo==='cv'){kW=val*0.7355; kVA=kW/Math.max(fp*rend,.0001); ib=(sis==='tri'? kVA*1000/(Math.sqrt(3)*V): kVA*1000/V);}
-  if(modo==='hp'){kW=val*0.7457; kVA=kW/Math.max(fp*rend,.0001); ib=(sis==='tri'? kVA*1000/(Math.sqrt(3)*V): kVA*1000/V);}
+  if(modo==='kw'){kW=val; kVA=kW/Math.max(fp,.0001); ib=(sis==='tri'? kVA*1000/(Math.sqrt(3)*V): kVA*1000/V);}
+  if(modo==='cv'){kW=(val*0.7355)/Math.max(rend,.0001); kVA=kW/Math.max(fp,.0001); ib=(sis==='tri'? kVA*1000/(Math.sqrt(3)*V): kVA*1000/V);}
+  if(modo==='hp'){kW=(val*0.7457)/Math.max(rend,.0001); kVA=kW/Math.max(fp,.0001); ib=(sis==='tri'? kVA*1000/(Math.sqrt(3)*V): kVA*1000/V);}
   return {ib,kW,kVA};
 }
 function calcDJ(){
   const modo=n('dj_modo').value;
   n('dj_label').textContent = modo==='corrente'?'Corrente (A)':modo==='kw'?'Potência ativa (kW)':modo==='kva'?'Potência aparente (kVA)':modo==='cv'?'Potência do motor (CV)':'Potência do motor (HP)';
+  n('dj_rend').disabled = !(modo==='cv'||modo==='hp');
   const {ib,kW,kVA}=calcIb(); const iz=parseFloat(n('dj_iz').value)||0; const tipo=n('dj_tipo').value;
   let rec=djStd.find(d=>d>=ib && (!iz || d<=iz));
   let status='Verificar'; let cls='status-warn';

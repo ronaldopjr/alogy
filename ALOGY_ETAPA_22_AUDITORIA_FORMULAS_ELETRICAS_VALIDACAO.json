@@ -1,0 +1,130 @@
+{
+  "stage": "Etapa 22 - auditoria e correcao controlada de formulas eletricas criticas",
+  "base": "Etapa 21",
+  "audited_tools": 12,
+  "changed_files": [
+    "calculadora-corrente-partida-motor.html",
+    "calculadora-disjuntor-protecao.html",
+    "calculadora-queda-tensao-partida-motor.html",
+    "ALOGY_ETAPA_22_AUDITORIA_FORMULAS_ELETRICAS_VALIDACAO.json",
+    "ALOGY_ETAPA_22_AUDITORIA_FORMULAS_ELETRICAS_RELATORIO.md"
+  ],
+  "checks": [
+    {
+      "tool": "calculadora-disjuntor-protecao.html",
+      "case": "Potência ativa elétrica 10 kW, 380 V, FP 0,80",
+      "expected_formula": "Ib = P / (raiz(3) x V x FP)",
+      "expected_A": 18.9918,
+      "old_behavior_A": 21.102,
+      "passed": true
+    },
+    {
+      "tool": "calculadora-disjuntor-protecao.html",
+      "case": "Motor 10 CV, 380 V, FP 0,86, rendimento 90%",
+      "expected_formula": "Ib = (CV x 0,7355 / rendimento) / (raiz(3) x V x FP)",
+      "expected_A": 14.4377,
+      "passed": true
+    },
+    {
+      "tool": "calculadora-disjuntor-protecao.html",
+      "case": "Normalização de rendimento decimal ou percentual",
+      "pattern_found": true,
+      "passed": true
+    },
+    {
+      "tool": "calculadora-curto-circuito-transformador.html",
+      "case": "Trafo 500 kVA, 380 V, Z=5,5%",
+      "expected_In_A": 759.67,
+      "expected_Icc_A": 13812.21,
+      "expected_MVA": 9.0909,
+      "passed": true
+    },
+    {
+      "tool": "calculadora-corrente-partida-motor.html",
+      "case": "Motor 55 kW mecânico, 380 V, FP 0,86, eta 92%, direta 7x",
+      "expected_In_A": 105.62,
+      "expected_Ip_A": 739.32,
+      "expected_kVA_partida": 486.6,
+      "expected_drop_pct": 3.568,
+      "passed": true
+    },
+    {
+      "tool": "calculadora-partida-estrela-triangulo-corrente.html",
+      "case": "In=100 A, DOL=7x, 380 V",
+      "expected_DOL_A": 700,
+      "expected_star_A": 233.33,
+      "expected_kVA": 153.58,
+      "passed": true
+    },
+    {
+      "tool": "calculadora-queda-tensao-partida-motor.html",
+      "case": "Trafo 500 kVA, Z=5,5%, Ip=350 A",
+      "expected_Scc_kVA": 9090.91,
+      "expected_start_kVA": 230.36,
+      "expected_drop_pct": 2.534,
+      "fp_clarification_present": true,
+      "passed": true
+    },
+    {
+      "tool": "calculadora-desequilibrio-tensao-motor.html",
+      "case": "380/390/370 V",
+      "expected_avg_V": 380.0,
+      "expected_unbalance_pct": 2.6316,
+      "expected_current_unbalance_pct_est": 18.42,
+      "passed": true
+    },
+    {
+      "tool": "calculadora-kva-transformador-carga.html",
+      "case": "300 kW, demanda 80%, FP 0,85, margem 25%",
+      "expected_base_kVA": 282.35,
+      "expected_with_margin_kVA": 352.94,
+      "expected_secondary_A": 536.24,
+      "passed": true
+    },
+    {
+      "tool": "calculadora-thd-distorcao-harmonica.html",
+      "case": "Fundamental 100, harmônicas 5/3/2 RMS",
+      "expected_THD_pct": 6.1644,
+      "expected_total_RMS": 100.1898,
+      "passed": true
+    },
+    {
+      "tool": "calculadora-correcao-fator-potencia.html",
+      "case": "100 kW, FP 0,82 para 0,95",
+      "expected_kVAr": 36.932,
+      "expected_kVA_before": 121.9512,
+      "expected_kVA_after": 105.2632,
+      "passed": true
+    },
+    {
+      "tool": "calculadora-queda-de-tensao.html",
+      "case": "100 A, 60 m, Cu 35 mm², 70 °C, FP 0,90, X=0,08 Ω/km",
+      "expected_drop_V": 5.8751,
+      "expected_drop_pct": 1.5461,
+      "passed": true
+    }
+  ],
+  "syntax": [
+    {
+      "file": "app.js",
+      "passed": true,
+      "stderr": ""
+    },
+    {
+      "file": "calculadora-disjuntor-protecao.html inline script",
+      "passed": true,
+      "stderr": ""
+    },
+    {
+      "file": "calculadora-corrente-partida-motor.html inline script",
+      "passed": true,
+      "stderr": ""
+    },
+    {
+      "file": "calculadora-queda-tensao-partida-motor.html inline script",
+      "passed": true,
+      "stderr": ""
+    }
+  ],
+  "all_passed": true
+}

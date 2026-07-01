@@ -243,7 +243,13 @@ const areaInfo = {
   input:{prefix:30000, label:'Input Register', fc:'FC04', base:30001},
   holding:{prefix:40000, label:'Holding Register', fc:'FC03', base:40001}
 };
-function n(v){return Number(String(v).replace(',','.'))}
+function n(v){
+  const s=String(v ?? '').trim().replace(/\s/g,'');
+  if(!s) return NaN;
+  const normalized=s.includes(',') ? s.replace(/\./g,'').replace(',', '.') : s;
+  const out=Number(normalized);
+  return Number.isFinite(out) ? out : NaN;
+}
 function fmt(v,d=4){return Number.isFinite(v)?v.toLocaleString('pt-BR',{maximumFractionDigits:d}):'-'}
 function parseWord(v){let s=String(v||'').trim();let out=0;if(/^0x/i.test(s)){out=parseInt(s,16)}else{out=parseInt(s,10)}; if(!Number.isFinite(out)||out<0) out=0; return out & 0xFFFF;}
 function hex4(v){return '0x'+(v&0xFFFF).toString(16).toUpperCase().padStart(4,'0')}
@@ -286,11 +292,17 @@ function exWord(a,b,ord,type){$('w1').value=a;$('w2').value=b;$('word_order').va
 function copiarWord(){const txt=`Word order ${$('word_order').value}: bytes ${$('w_bytes').textContent}, hex ${$('w_hex').textContent}, valor ${$('w_val').textContent}`;navigator.clipboard?.writeText(txt);}
 function calcEscala(){
   const raw=n($('raw_val').value), rmin=n($('raw_min').value), rmax=n($('raw_max').value), emin=n($('eng_min').value), emax=n($('eng_max').value), unit=$('eng_unit').value||'';
+  const tb=$('scale_table'); tb.innerHTML='';
+  if(![raw,rmin,rmax,emin,emax].every(Number.isFinite) || Math.abs(rmax-rmin)<1e-12 || Math.abs(emax-emin)<1e-12){
+    $('eng_result').textContent='Verificar dados';
+    $('eng_pct').textContent='Verificar dados';
+    tb.innerHTML='<tr><td colspan="3">Revise raw mínimo/máximo e escala de engenharia. Os spans não podem ser iguais a zero.</td></tr>';
+    return;
+  }
   const pct=(raw-rmin)/(rmax-rmin);
   const eng=emin+pct*(emax-emin);
   $('eng_result').textContent = fmt(eng,5)+' '+unit;
   $('eng_pct').textContent = fmt(pct*100,3)+' %';
-  const tb=$('scale_table'); tb.innerHTML='';
   [0,25,50,75,100].forEach(p=>{const rb=rmin+(p/100)*(rmax-rmin); const ev=emin+(p/100)*(emax-emin); const tr=document.createElement('tr'); tr.innerHTML=`<td>${p}%</td><td>${fmt(rb,3)}</td><td>${fmt(ev,5)} ${unit}</td>`; tb.appendChild(tr);});
 }
 function exEscala(raw,rmin,rmax,emin,emax,unit){$('raw_val').value=raw;$('raw_min').value=rmin;$('raw_max').value=rmax;$('eng_min').value=emin;$('eng_max').value=emax;$('eng_unit').value=unit;calcEscala();}
