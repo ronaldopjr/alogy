@@ -1645,3 +1645,335 @@ body.alogy-stage3-forms details{
   }
 }
 
+
+/* =========================
+   CAMADA PADRÃO DE SEGURANÇA DAS FERRAMENTAS
+   Etapa: avisos, risco, premissas, limitações, memória e resultado orientativo.
+   Não altera fórmulas nem categorias.
+========================= */
+.alogy-safety-layer{
+  margin:16px 0 18px;
+}
+.alogy-safety-card{
+  background:var(--card);
+  border:1px solid rgba(0,0,0,.08);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  padding:20px;
+  overflow:hidden;
+}
+.alogy-safety-card + .alogy-safety-card{margin-top:12px}
+.alogy-risk-banner{
+  display:flex;
+  gap:14px;
+  align-items:flex-start;
+  border-left:5px solid var(--brand);
+  background:linear-gradient(180deg,rgba(0,107,177,.075),rgba(0,107,177,.035));
+}
+.alogy-risk-banner .alogy-risk-icon{
+  width:42px;
+  height:42px;
+  border-radius:14px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex:0 0 42px;
+  background:#fff;
+  color:#0b3a62;
+  border:1px solid rgba(0,107,177,.18);
+}
+.alogy-risk-banner h2{
+  margin:0 0 6px;
+  color:#0b3a62;
+  line-height:1.22;
+  font-size:1.12rem;
+}
+.alogy-risk-banner p{
+  margin:0;
+  color:#405166;
+  line-height:1.58;
+}
+.alogy-risk-banner.alogy-risk-low{
+  border-left-color:#0ea5e9;
+  background:linear-gradient(180deg,rgba(14,165,233,.09),rgba(14,165,233,.035));
+}
+.alogy-risk-banner.alogy-risk-medium{
+  border-left-color:#f59e0b;
+  background:linear-gradient(180deg,rgba(245,158,11,.13),rgba(245,158,11,.045));
+}
+.alogy-risk-banner.alogy-risk-high{
+  border-left-color:#dc2626;
+  background:linear-gradient(180deg,rgba(220,38,38,.12),rgba(220,38,38,.045));
+}
+.alogy-risk-banner.alogy-risk-high .alogy-risk-icon{color:#991b1b;border-color:rgba(220,38,38,.22)}
+.alogy-risk-banner.alogy-risk-medium .alogy-risk-icon{color:#92400e;border-color:rgba(245,158,11,.25)}
+.alogy-safety-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px;
+  margin-top:12px;
+}
+.alogy-safety-box{
+  background:#fff;
+  border:1px solid rgba(0,0,0,.08);
+  border-radius:16px;
+  padding:16px;
+}
+.alogy-safety-box h3{
+  margin:0 0 8px;
+  color:#0b3a62;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-size:1rem;
+  line-height:1.25;
+}
+.alogy-safety-box p,
+.alogy-safety-box li{
+  color:var(--muted);
+  font-size:.95rem;
+  line-height:1.55;
+}
+.alogy-safety-box ul{
+  margin:8px 0 0 18px;
+  padding:0;
+}
+.alogy-safety-box li + li{margin-top:5px}
+.alogy-safety-details{
+  margin-top:12px;
+  border:1px solid rgba(0,107,177,.15);
+  background:rgba(0,107,177,.045);
+  border-radius:16px;
+  overflow:hidden;
+}
+.alogy-safety-details summary{
+  cursor:pointer;
+  padding:14px 16px;
+  font-weight:900;
+  color:#0b3a62;
+  list-style:none;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+}
+.alogy-safety-details summary::-webkit-details-marker{display:none}
+.alogy-safety-details summary:after{
+  content:"+";
+  width:26px;
+  height:26px;
+  border-radius:999px;
+  background:#fff;
+  color:#0b3a62;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  border:1px solid rgba(0,107,177,.16);
+  flex:0 0 26px;
+}
+.alogy-safety-details[open] summary:after{content:"−"}
+.alogy-safety-details .alogy-safety-grid{
+  margin:0;
+  padding:0 16px 16px;
+}
+.alogy-result-orientativo{
+  border-left:4px solid var(--brand);
+}
+.alogy-result-orientativo strong{color:#0b3a62}
+.alogy-safety-replaced{
+  display:none!important;
+}
+.alogy-contextual-warning{
+  border-left:4px solid rgba(0,107,177,.55);
+}
+.alogy-contextual-warning h2,
+.alogy-contextual-warning h3{
+  color:#0b3a62;
+}
+@media(max-width:900px){
+  .alogy-safety-card{padding:16px}
+  .alogy-risk-banner{gap:10px}
+  .alogy-safety-grid{grid-template-columns:1fr}
+}
+@media print{
+  .alogy-safety-layer{break-inside:avoid;margin:10px 0}
+  .alogy-safety-card{box-shadow:none;border:1px solid #ddd;background:#fff}
+  .alogy-safety-details{background:#fff}
+  .alogy-safety-details .alogy-safety-grid{display:grid!important}
+}
+
+/* =========================
+   ETAPA 3 - BLOCO TÉCNICO ESPECÍFICO PARA FERRAMENTAS CRÍTICAS
+   Não altera fórmulas, categorias ou SEO.
+========================= */
+.alogy-critical-guidance{
+  margin:16px 0 18px;
+  border-left:5px solid #0b3a62;
+  background:linear-gradient(180deg,rgba(11,58,98,.055),rgba(255,255,255,.96));
+}
+.alogy-critical-guidance-head{
+  display:flex;
+  align-items:flex-start;
+  gap:14px;
+  margin-bottom:14px;
+}
+.alogy-critical-guidance-icon{
+  width:42px;
+  height:42px;
+  border-radius:14px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex:0 0 42px;
+  background:#fff;
+  color:#0b3a62;
+  border:1px solid rgba(11,58,98,.16);
+}
+.alogy-critical-guidance h2{
+  margin:0 0 6px;
+  color:#0b3a62;
+  font-size:1.12rem;
+  line-height:1.25;
+}
+.alogy-critical-guidance-head p{
+  margin:0;
+  color:#405166;
+  line-height:1.58;
+}
+.alogy-critical-guidance-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px;
+}
+.alogy-critical-guidance-box{
+  background:#fff;
+  border:1px solid rgba(0,0,0,.08);
+  border-radius:16px;
+  padding:16px;
+}
+.alogy-critical-guidance-box h3{
+  margin:0 0 8px;
+  color:#0b3a62;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-size:1rem;
+  line-height:1.25;
+}
+.alogy-critical-guidance-box ul{
+  margin:8px 0 0 18px;
+  padding:0;
+}
+.alogy-critical-guidance-box li{
+  color:var(--muted);
+  font-size:.95rem;
+  line-height:1.55;
+}
+.alogy-critical-guidance-box li + li{margin-top:5px}
+.alogy-critical-guidance-wide{
+  grid-column:1 / -1;
+}
+@media(max-width:900px){
+  .alogy-critical-guidance-head{gap:10px}
+  .alogy-critical-guidance-grid{grid-template-columns:1fr}
+  .alogy-critical-guidance-wide{grid-column:auto}
+}
+@media print{
+  .alogy-critical-guidance{break-inside:avoid;box-shadow:none;border:1px solid #ddd;background:#fff}
+}
+
+/* Etapa 4 - leitura dinâmica do resultado em ferramentas críticas */
+.alogy-result-readout{
+  margin:14px 0 0;
+  border:1px solid rgba(0,107,177,.18);
+  border-left:5px solid var(--accent);
+  border-radius:16px;
+  background:linear-gradient(180deg,rgba(0,107,177,.07),rgba(255,255,255,.96));
+  box-shadow:0 10px 24px rgba(0,0,0,.06);
+  padding:14px;
+  color:var(--text);
+}
+.alogy-result-readout-head{
+  display:flex;
+  gap:12px;
+  align-items:flex-start;
+}
+.alogy-result-readout-icon{
+  width:34px;
+  height:34px;
+  border-radius:999px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  background:rgba(0,107,177,.10);
+  color:var(--accent);
+  flex:0 0 auto;
+}
+.alogy-result-readout h3{
+  margin:0 0 5px;
+  color:#0b3a62;
+  font-size:1rem;
+  line-height:1.25;
+}
+.alogy-result-readout p{
+  margin:0;
+  color:var(--muted);
+  line-height:1.55;
+  font-size:.95rem;
+}
+.alogy-result-readout-details{
+  margin-top:10px;
+  background:rgba(255,255,255,.70);
+  border:1px solid rgba(0,0,0,.07);
+  border-radius:12px;
+  padding:9px 11px;
+}
+.alogy-result-readout-details summary{
+  cursor:pointer;
+  font-weight:800;
+  color:#0b3a62;
+}
+.alogy-result-readout-details ul{
+  margin:8px 0 0 18px;
+  padding:0;
+}
+.alogy-result-readout-details li{
+  color:var(--muted);
+  line-height:1.48;
+  font-size:.93rem;
+}
+.alogy-result-readout-ok{
+  border-left-color:#16813a;
+}
+.alogy-result-readout-ok .alogy-result-readout-icon{
+  color:#16813a;
+  background:rgba(22,129,58,.10);
+}
+.alogy-result-readout-warn{
+  border-left-color:#c66a00;
+}
+.alogy-result-readout-warn .alogy-result-readout-icon{
+  color:#9b5200;
+  background:rgba(198,106,0,.12);
+}
+.alogy-result-readout-bad{
+  border-left-color:#b42318;
+}
+.alogy-result-readout-bad .alogy-result-readout-icon{
+  color:#b42318;
+  background:rgba(180,35,24,.10);
+}
+.alogy-result-readout-initial{
+  border-left-color:#64748b;
+}
+.alogy-result-readout-initial .alogy-result-readout-icon{
+  color:#64748b;
+  background:rgba(100,116,139,.10);
+}
+@media(max-width:700px){
+  .alogy-result-readout-head{gap:10px}
+  .alogy-result-readout{padding:12px}
+}
+@media print{
+  .alogy-result-readout{break-inside:avoid;box-shadow:none;background:#fff;border:1px solid #ddd;border-left:5px solid #777}
+}

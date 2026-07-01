@@ -666,3 +666,15100 @@ document.addEventListener('DOMContentLoaded', () => {
 
   setButtonState();
 });
+
+/* =========================
+   CAMADA PADRÃO DE SEGURANÇA DAS FERRAMENTAS
+   Etapa controlada: avisos, risco, premissas, limitações, memória de cálculo e resultado orientativo.
+   Não altera fórmulas, cálculos, SEO nem categorias.
+========================= */
+(function(){
+  const TOOL_PREFIX_RE = /^(calculadora|checklist|conversor|gerador)-.+\.html$/i;
+
+  const riskText = {
+    low: {
+      label: 'Risco baixo',
+      title: 'Uso orientativo da ferramenta',
+      icon: 'fa-circle-info',
+      text: 'Esta ferramenta serve para apoio rápido, estudo e conferência preliminar. Confira os dados digitados, as unidades e o contexto antes de usar o resultado em qualquer decisão técnica.'
+    },
+    medium: {
+      label: 'Risco médio',
+      title: 'Apoio técnico preliminar',
+      icon: 'fa-triangle-exclamation',
+      text: 'Esta ferramenta pode apoiar análises de instrumentação, automação, calibração, manutenção ou processo, mas o resultado depende dos dados informados e das premissas adotadas. Valide o resultado antes de aplicar em campo.'
+    },
+    high: {
+      label: 'Risco alto',
+      title: 'Atenção: validação técnica obrigatória',
+      icon: 'fa-shield-halved',
+      text: 'Esta ferramenta envolve tema que pode afetar segurança, processo, instalação, equipamento ou conformidade. O resultado é apenas orientativo e não substitui projeto, laudo, ART, procedimento, certificado, inspeção, norma aplicável ou validação de profissional habilitado.'
+    }
+  };
+
+  const highRiskPatterns = [
+    'area-classificada','barreira-intrinseca','intrinseca','lopa','sil-','sif','intertravamento','seguranca',
+    'curto-circuito','transformador','aterramento','motor','partida','estrela-triangulo','queda-tensao','eletroduto','barramento','disjuntor','eletrico','energia','thd','harmonica',
+    'caldeira','vapor','gas','gases','nitrogenio','hidrogenio','pressurizado','pressao','pressostato','vacuo','tanque','vaso','expansao','golpe-ariete',
+    'bomba','npsh','cavitacao','valvula-controle','cv-gases','kv','placa-orificio','restricao','purga','purgador','combustivel',
+    'hidraulico','mangueira-hidraulica','cilindro-hidraulico','acumulador-hidraulico','exaustao','ventilacao-painel',
+    'dosagem-quimica','cloro','neutralizacao','ph-industrial','orp','condutividade','analizadores','analisadores'
+  ];
+
+  const mediumRiskPatterns = [
+    '4-20ma','hart','instrumentacao','transmissor','calibracao','manometro','termopar','pt100','temperatura','nivel','vazao','dp','orificio','rotametro','radar','ultrassonico','selo-remoto','linha-impulso','termopoco',
+    'clp','modbus','profibus','rs485','ethernet','rede','ups','bateria','24vcc','cabo-instrumentacao','cartao-analogico','i-o','io','pid','scada',
+    'ar-comprimido','ar-instrumentos','pneumatico','solenoide','atuador','ponto-orvalho','compressor',
+    'mtbf','mttr','oee','fmea','criticidade','manutencao','confiabilidade','sobressalentes','checklist','comissionamento','fat-sat'
+  ];
+
+  const toolRiskMap = Object.freeze({
+    'calculadora-4-20ma.html': 'medium',
+    'calculadora-acumulador-hidraulico.html': 'high',
+    'calculadora-alcalinidade-acidez-neutralizacao.html': 'high',
+    'calculadora-alinhamento-eixos-relogio.html': 'medium',
+    'calculadora-area-trocador-calor.html': 'medium',
+    'calculadora-aterramento.html': 'high',
+    'calculadora-atuador-pneumatico.html': 'high',
+    'calculadora-autonomia-ar-instrumentos.html': 'high',
+    'calculadora-autonomia-cilindro-gas.html': 'high',
+    'calculadora-backlog-manutencao-semanas.html': 'medium',
+    'calculadora-balanceamento-rotor-campo.html': 'medium',
+    'calculadora-barreira-intrinseca-area-classificada.html': 'high',
+    'calculadora-bateria-ups-24vcc.html': 'high',
+    'calculadora-bocal-lavagem-cip.html': 'high',
+    'calculadora-bomba-dosadora-quimica.html': 'high',
+    'calculadora-burden-transformador-corrente.html': 'high',
+    'calculadora-cabo-instrumentacao-24vcc.html': 'high',
+    'calculadora-cabo-profibus-rs485.html': 'high',
+    'calculadora-calibracao-balanca-industrial.html': 'high',
+    'calculadora-calibracao-cartao-analogico-clp.html': 'medium',
+    'calculadora-calibracao-chave-fluxo.html': 'medium',
+    'calculadora-calibracao-chave-nivel.html': 'medium',
+    'calculadora-calibracao-condutivimetro.html': 'medium',
+    'calculadora-calibracao-conversor-ip-pi.html': 'high',
+    'calculadora-calibracao-indicador-controlador.html': 'medium',
+    'calculadora-calibracao-manometro.html': 'high',
+    'calculadora-calibracao-medidor-vazao-coriolis.html': 'medium',
+    'calculadora-calibracao-medidor-vazao-magnetico.html': 'medium',
+    'calculadora-calibracao-medidor-vazao-ultrassonico.html': 'medium',
+    'calculadora-calibracao-phmetro.html': 'medium',
+    'calculadora-calibracao-pressostato.html': 'high',
+    'calculadora-calibracao-radar-ultrassonico-nivel.html': 'medium',
+    'calculadora-calibracao-termostato.html': 'medium',
+    'calculadora-calibracao-totalizador-vazao.html': 'medium',
+    'calculadora-calibracao-transmissor-dp-vazao.html': 'high',
+    'calculadora-calibracao-transmissor-nivel-dp.html': 'high',
+    'calculadora-calibracao-transmissor-orp.html': 'high',
+    'calculadora-calibracao-transmissor-pressao.html': 'high',
+    'calculadora-calibracao-transmissor-temperatura.html': 'medium',
+    'calculadora-calibracao-valvula-controle.html': 'high',
+    'calculadora-capabilidade-cp-cpk.html': 'medium',
+    'calculadora-carga-malha-4-20ma.html': 'medium',
+    'calculadora-carga-termica-lote-aquecimento.html': 'high',
+    'calculadora-celula-carga-tanque.html': 'high',
+    'calculadora-classe-limpeza-oleo-iso4406.html': 'high',
+    'calculadora-comprimento-cabo-hart.html': 'high',
+    'calculadora-comprimento-correia-polias.html': 'low',
+    'calculadora-condensado-ar-comprimido.html': 'medium',
+    'calculadora-condutividade-tds.html': 'medium',
+    'calculadora-conexoes-pneumaticas-comprimento-equivalente.html': 'high',
+    'calculadora-consumo-ar-cilindro-pneumatico.html': 'high',
+    'calculadora-consumo-ar-comprimido.html': 'high',
+    'calculadora-consumo-ar-instrumentos.html': 'high',
+    'calculadora-consumo-energia-resistencia-aquecimento.html': 'high',
+    'calculadora-consumo-nitrogenio-purga.html': 'high',
+    'calculadora-consumo-valvula-solenoide-bobina.html': 'medium',
+    'calculadora-consumo-vapor-aquecimento.html': 'high',
+    'calculadora-conversao-sinais-industriais.html': 'medium',
+    'calculadora-conversao-vibracao-frequencia.html': 'medium',
+    'calculadora-correcao-fator-potencia.html': 'high',
+    'calculadora-corrente-neutro-trifasico.html': 'high',
+    'calculadora-corrente-partida-motor.html': 'high',
+    'calculadora-corrente-trifasica.html': 'high',
+    'calculadora-criticidade-instrumentos.html': 'medium',
+    'calculadora-curto-circuito-transformador.html': 'high',
+    'calculadora-custo-ar-comprimido.html': 'high',
+    'calculadora-custo-parada-producao.html': 'medium',
+    'calculadora-cv-gases-valvula-controle.html': 'high',
+    'calculadora-cv-kv-valvula-controle.html': 'high',
+    'calculadora-cv-valvula-controle.html': 'high',
+    'calculadora-densidade-api-grau-api.html': 'medium',
+    'calculadora-desequilibrio-tensao-motor.html': 'high',
+    'calculadora-diagnostico-4-20ma-hart.html': 'medium',
+    'calculadora-diametro-cilindro-pneumatico.html': 'high',
+    'calculadora-dilatacao-termica.html': 'medium',
+    'calculadora-dimensionamento-cabos.html': 'high',
+    'calculadora-disjuntor-protecao.html': 'high',
+    'calculadora-disponibilidade-sistema-serie-paralelo.html': 'medium',
+    'calculadora-dn-nps-schedule.html': 'low',
+    'calculadora-dosagem-cloro-livre.html': 'high',
+    'calculadora-dosagem-quimica-ppm.html': 'medium',
+    'calculadora-dp-nivel-tanque-fechado.html': 'high',
+    'calculadora-duto-exaustao-industrial.html': 'high',
+    'calculadora-economia-inversor-bomba-ventilador.html': 'high',
+    'calculadora-eficiencia-compressor.html': 'high',
+    'calculadora-eficiencia-filtro-beta.html': 'high',
+    'calculadora-emissividade-termografia.html': 'medium',
+    'calculadora-energia-consumo-industrial.html': 'high',
+    'calculadora-erro-calibracao.html': 'medium',
+    'calculadora-erro-total-malha-instrumentacao.html': 'medium',
+    'calculadora-escala-clp.html': 'medium',
+    'calculadora-flanges-juntas-parafusos.html': 'high',
+    'calculadora-fonte-24vcc-painel-automacao.html': 'high',
+    'calculadora-fonte-24vcc.html': 'high',
+    'calculadora-forca-cilindro-hidraulico.html': 'high',
+    'calculadora-frequencia-defeitos-rolamento.html': 'medium',
+    'calculadora-furo-macho-rosca-interna.html': 'low',
+    'calculadora-golpe-ariete-joukowsky.html': 'high',
+    'calculadora-histerese-pressostato-termostato.html': 'medium',
+    'calculadora-incerteza-calibracao-tur-tar.html': 'high',
+    'calculadora-incerteza-calibracao.html': 'medium',
+    'calculadora-indice-cavitacao-valvula.html': 'high',
+    'calculadora-indice-polarizacao-dar.html': 'high',
+    'calculadora-intervalo-calibracao-deriva.html': 'medium',
+    'calculadora-inversor-frequencia.html': 'high',
+    'calculadora-io-clp.html': 'medium',
+    'calculadora-ip-rede-industrial.html': 'high',
+    'calculadora-k-factor-vazao-pulsos.html': 'medium',
+    'calculadora-kva-transformador-carga.html': 'high',
+    'calculadora-leis-afinidade-bombas-ventiladores.html': 'high',
+    'calculadora-linha-impulso-transmissor-dp.html': 'high',
+    'calculadora-lmtd-trocador-calor.html': 'medium',
+    'calculadora-lopa-simplificada.html': 'high',
+    'calculadora-lrv-urv-span.html': 'high',
+    'calculadora-lsi-langelier-agua.html': 'medium',
+    'calculadora-malha-4-20ma-hart-completa.html': 'high',
+    'calculadora-massa-tanque-nivel.html': 'medium',
+    'calculadora-mistura-diluicao-solucoes.html': 'medium',
+    'calculadora-modbus-polling.html': 'medium',
+    'calculadora-modbus.html': 'medium',
+    'calculadora-mtbf-mttr-disponibilidade.html': 'medium',
+    'calculadora-nivel-caldeira-transmissor-dp.html': 'high',
+    'calculadora-nivel-dp-tanque-pressurizado.html': 'high',
+    'calculadora-nivel-pressao-hidrostatica.html': 'high',
+    'calculadora-nivel-radar-ultrassonico.html': 'high',
+    'calculadora-npsh-bomba.html': 'high',
+    'calculadora-ocupacao-eletroduto-cabos.html': 'high',
+    'calculadora-oee.html': 'medium',
+    'calculadora-orp-mv-percentual.html': 'medium',
+    'calculadora-pareto-falhas-manutencao.html': 'medium',
+    'calculadora-partida-estrela-triangulo-corrente.html': 'high',
+    'calculadora-perda-calor-tubulacao.html': 'medium',
+    'calculadora-perda-carga-ar-comprimido.html': 'high',
+    'calculadora-perda-carga-filtro.html': 'high',
+    'calculadora-perda-carga-mangueira-hidraulica.html': 'high',
+    'calculadora-perda-carga.html': 'medium',
+    'calculadora-peso-tubos-chapas-barras.html': 'low',
+    'calculadora-placa-orificio-restricao.html': 'high',
+    'calculadora-placa-orificio-vazao-dp.html': 'high',
+    'calculadora-ponto-operacao-bomba.html': 'high',
+    'calculadora-ponto-orvalho-ar-comprimido.html': 'high',
+    'calculadora-ponto-ressuprimento-sobressalentes.html': 'medium',
+    'calculadora-potencia-bomba.html': 'high',
+    'calculadora-potencia-exaustor-ventilador.html': 'high',
+    'calculadora-potencia-hidraulica.html': 'high',
+    'calculadora-ppm-mg-m3-gases.html': 'high',
+    'calculadora-pressao-hidrostatica-densidade.html': 'high',
+    'calculadora-pt100.html': 'medium',
+    'calculadora-purga-caldeira-tds.html': 'high',
+    'calculadora-purga-torre-resfriamento.html': 'high',
+    'calculadora-purgador-vapor-condensado.html': 'high',
+    'calculadora-queda-de-tensao.html': 'high',
+    'calculadora-queda-tensao-24vcc.html': 'high',
+    'calculadora-queda-tensao-partida-motor.html': 'high',
+    'calculadora-raiz-quadrada-4-20ma.html': 'high',
+    'calculadora-recuperacao-condensado-energia.html': 'high',
+    'calculadora-relubrificacao-rolamento.html': 'medium',
+    'calculadora-reservatorio-ar-comprimido.html': 'high',
+    'calculadora-resistor-shunt-sinal-instrumentacao.html': 'high',
+    'calculadora-resolucao-clp-analogico.html': 'medium',
+    'calculadora-reynolds-regime-escoamento.html': 'medium',
+    'calculadora-roscas-industriais-conexoes.html': 'high',
+    'calculadora-rotametro-correcao-vazao.html': 'high',
+    'calculadora-rpm-polias-reducao.html': 'low',
+    'calculadora-rpn-fmea-manutencao.html': 'medium',
+    'calculadora-secao-barramento-cobre.html': 'medium',
+    'calculadora-selo-remoto-capilar-dp.html': 'high',
+    'calculadora-sil-pfd-didatica.html': 'high',
+    'calculadora-sinal-pneumatico-3-15psi.html': 'high',
+    'calculadora-sintonia-pid.html': 'medium',
+    'calculadora-slip-motor-inducao.html': 'high',
+    'calculadora-slope-sonda-ph.html': 'medium',
+    'calculadora-sobressalentes-criticidade.html': 'medium',
+    'calculadora-solenoide-atuador-pneumatico.html': 'high',
+    'calculadora-split-range-4-20ma.html': 'medium',
+    'calculadora-tanque-expansao-termica-agua.html': 'high',
+    'calculadora-taxa-corrosao-vida-remanescente.html': 'high',
+    'calculadora-temperatura-industrial.html': 'medium',
+    'calculadora-tempo-aceleracao-motor-inercia.html': 'high',
+    'calculadora-tempo-amostragem-analisador.html': 'high',
+    'calculadora-tempo-atuacao-valvula.html': 'high',
+    'calculadora-tempo-descarga-capacitor.html': 'high',
+    'calculadora-tempo-enchimento-tanque.html': 'medium',
+    'calculadora-tempo-pressurizacao-volume.html': 'high',
+    'calculadora-tempo-residencia-tanque.html': 'high',
+    'calculadora-tempo-resposta-malha-controle.html': 'medium',
+    'calculadora-tempo-transmissao-serial-industrial.html': 'medium',
+    'calculadora-tempo-varredura-modbus-rtu.html': 'high',
+    'calculadora-tensao-correia-transmissao.html': 'medium',
+    'calculadora-termopar.html': 'medium',
+    'calculadora-termopoco-tempo-resposta.html': 'high',
+    'calculadora-termopoco-wake-frequency.html': 'high',
+    'calculadora-thd-distorcao-harmonica.html': 'high',
+    'calculadora-torque-aperto-parafusos.html': 'medium',
+    'calculadora-torque-potencia-eixo.html': 'high',
+    'calculadora-trocador-calor-simples.html': 'high',
+    'calculadora-tubo-pneumatico-instrumentacao.html': 'high',
+    'calculadora-ups-automacao-clp-instrumentos.html': 'high',
+    'calculadora-vazamento-agua-orificio.html': 'high',
+    'calculadora-vazamento-ar-comprimido-furo.html': 'high',
+    'calculadora-vazamento-ar-comprimido.html': 'high',
+    'calculadora-vazamento-vacuo-pressure-decay.html': 'high',
+    'calculadora-vazao-bomba-deslocamento-positivo.html': 'high',
+    'calculadora-vazao-normalizada-gases.html': 'high',
+    'calculadora-vazao-pressao-diferencial.html': 'high',
+    'calculadora-vazao-vapor-saturado.html': 'high',
+    'calculadora-vazao-velocidade-diametro.html': 'high',
+    'calculadora-vazao-vertedouro-canaleta.html': 'medium',
+    'calculadora-velocidade-cilindro-hidraulico.html': 'high',
+    'calculadora-velocidade-recomendada-tubulacao.html': 'high',
+    'calculadora-ventilacao-painel-eletrico.html': 'high',
+    'calculadora-vibracao-rms-pico-pico-a-pico.html': 'medium',
+    'calculadora-vida-l10-rolamento.html': 'medium',
+    'calculadora-volume-cilindro-horizontal-nivel.html': 'medium',
+    'calculadora-volume-tanque-vertical-horizontal.html': 'medium',
+    'calculadora-volume-tanque.html': 'medium',
+    'checklist-calibracao-analisadores-processo.html': 'high',
+    'checklist-comissionamento-hart.html': 'high',
+    'checklist-comissionamento-industrial.html': 'high',
+    'checklist-fat-sat-instrumentacao.html': 'medium',
+    'checklist-inspecao-bomba-centrifuga.html': 'high',
+    'checklist-inspecao-instrumentos-area-classificada.html': 'high',
+    'checklist-manutencao-preventiva-instrumentos.html': 'high',
+    'checklist-montagem-instrumentos-campo.html': 'medium',
+    'checklist-nova-nr10.html': 'high',
+    'checklist-nr12.html': 'high',
+    'checklist-painel-eletrico-industrial.html': 'high',
+    'checklist-partida-motor-inversor.html': 'high',
+    'checklist-teste-de-loop.html': 'medium',
+    'conversor-grau-protecao-ip-nema.html': 'medium',
+    'conversor-unidades-industriais.html': 'low',
+    'gerador-folha-dados-instrumento.html': 'high',
+  });
+
+  function currentToolFile(){
+    const path = window.location.pathname.split('/').pop() || 'index.html';
+    return path.toLowerCase();
+  }
+
+  function isToolPage(){
+    const file = currentToolFile();
+    if(TOOL_PREFIX_RE.test(file)) return true;
+    const bodyClass = document.body?.className || '';
+    return /tools-page|tech-page/.test(bodyClass) && document.querySelector('main');
+  }
+
+  function detectToolRisk(file){
+    const bodyRisk = (document.body?.dataset?.alogyRisk || '').toLowerCase();
+    if(['low','medium','high'].includes(bodyRisk)) return bodyRisk;
+
+    const normalizedFile = (file || '').toLowerCase();
+    if(toolRiskMap[normalizedFile]) return toolRiskMap[normalizedFile];
+
+    const normalized = normalizedFile.replace(/\.html$/,'');
+    if(highRiskPatterns.some((term) => normalized.includes(term))) return 'high';
+    if(mediumRiskPatterns.some((term) => normalized.includes(term))) return 'medium';
+    if(normalized.startsWith('checklist-')) return 'medium';
+    if(normalized.startsWith('conversor-')) return 'low';
+    return 'low';
+  }
+
+  function createEl(tag, className, html){
+    const el = document.createElement(tag);
+    if(className) el.className = className;
+    if(html !== undefined) el.innerHTML = html;
+    return el;
+  }
+
+  function getToolTitle(){
+    const h1 = document.querySelector('main h1');
+    if(h1) return h1.textContent.trim().replace(/\s+/g,' ');
+    return document.title.replace(/\|.*$/,'').trim() || 'Ferramenta técnica';
+  }
+
+  function buildRiskBanner(risk){
+    const cfg = riskText[risk] || riskText.low;
+    const card = createEl('section', `alogy-safety-card alogy-risk-banner alogy-risk-${risk}`);
+    card.setAttribute('aria-label', 'Aviso de uso orientativo e responsabilidade técnica');
+    card.innerHTML = `
+      <div class="alogy-risk-icon" aria-hidden="true"><i class="fas ${cfg.icon}"></i></div>
+      <div>
+        <h2>${cfg.title} <span class="tool-badge">${cfg.label}</span></h2>
+        <p>${cfg.text}</p>
+      </div>
+    `;
+    return card;
+  }
+
+  function buildStandardDetails(risk){
+    const isHigh = risk === 'high';
+    const isMedium = risk === 'medium';
+    const details = createEl('details', 'alogy-safety-details no-print');
+    details.innerHTML = `
+      <summary>Premissas, limitações e uso seguro do resultado</summary>
+      <div class="alogy-safety-grid">
+        <section class="alogy-safety-box">
+          <h3><i class="fas fa-list-check"></i> Premissas do cálculo</h3>
+          <ul>
+            <li>Os resultados consideram que os dados digitados estão corretos e nas unidades indicadas.</li>
+            <li>Condições reais de instalação, operação, ambiente e processo podem exigir correções adicionais.</li>
+            <li>Catálogos de fabricantes, procedimentos internos e normas aplicáveis prevalecem sobre estimativas online.</li>
+            ${isHigh ? '<li>Margens de segurança, redundância, certificações e requisitos legais devem ser avaliados fora da calculadora.</li>' : ''}
+          </ul>
+        </section>
+        <section class="alogy-safety-box">
+          <h3><i class="fas fa-ban"></i> Limitações de uso</h3>
+          <ul>
+            <li>Não use o resultado isoladamente para liberar intervenção, alterar processo, comprar equipamento ou aprovar instalação.</li>
+            <li>Esta ferramenta não substitui projeto, laudo, ART, calibração certificada, inspeção ou análise de profissional habilitado.</li>
+            <li>Em caso de divergência, dúvida ou aplicação crítica, valide os dados com documentação técnica e medição em campo.</li>
+            ${isHigh || isMedium ? '<li>Para aplicações industriais, registre as premissas usadas e confira se o cálculo é compatível com o equipamento real.</li>' : ''}
+          </ul>
+        </section>
+        <section class="alogy-safety-box">
+          <h3><i class="fas fa-square-root-variable"></i> Memória de cálculo</h3>
+          <p>A memória de cálculo específica deve ser conferida nos blocos de fórmula, explicação ou memorial da própria ferramenta. Quando a página não mostrar todos os passos, trate o número final como referência preliminar e documente manualmente as premissas antes de aplicar.</p>
+        </section>
+        <section class="alogy-safety-box alogy-result-orientativo">
+          <h3><i class="fas fa-clipboard-check"></i> Resultado orientativo</h3>
+          <p><strong>Interpretação recomendada:</strong> use o resultado como ponto de partida para análise técnica, não como aprovação final. Confira unidade, faixa, tolerância, margem de segurança e condição real de operação.</p>
+        </section>
+      </div>
+    `;
+    return details;
+  }
+
+  function findHero(main){
+    return main.querySelector('.tools-hero, .tech-hero, .tool-page-intro');
+  }
+
+  function normalizeSafetyText(text){
+    return (text || '')
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g,'')
+      .replace(/\s+/g,' ')
+      .trim();
+  }
+
+  function getSafetyHeading(section){
+    const heading = section.querySelector('h2, h3');
+    return normalizeSafetyText(heading?.textContent || '');
+  }
+
+  function isGenericSafetyNotice(section){
+    const headingText = getSafetyHeading(section);
+    const ariaText = normalizeSafetyText(section.getAttribute('aria-label') || '');
+    const firstText = normalizeSafetyText(section.textContent || '').slice(0, 520);
+
+    const genericAria = [
+      'aviso de responsabilidade',
+      'aviso de uso',
+      'aviso de uso da ferramenta'
+    ];
+
+    const genericHeadings = [
+      'uso orientativo',
+      'uso orientativo e responsabilidade tecnica',
+      'ferramenta orientativa',
+      'ferramenta para estudo e apoio tecnico',
+      'ferramenta para apoio tecnico',
+      'aviso tecnico importante'
+    ];
+
+    const specificSafetyHeadings = [
+      'aviso critico de seguranca',
+      'aviso de seguranca e uso correto'
+    ];
+
+    if(specificSafetyHeadings.some((kw) => headingText.includes(kw))) return false;
+    if(genericAria.some((kw) => ariaText.includes(kw))) return true;
+    if(genericHeadings.some((kw) => headingText.includes(kw))) return true;
+
+    if(firstText.startsWith('esta ferramenta e apenas') && firstText.includes('nao substitui')) return true;
+    if(firstText.startsWith('esta calculadora e apenas') && firstText.includes('nao substitui')) return true;
+    if(firstText.startsWith('esta checklist e orientativa') && firstText.includes('nao substitui')) return true;
+    if(firstText.startsWith('use esta ferramenta para estudo') && firstText.includes('conferencia preliminar')) return true;
+    if(firstText.startsWith('use como apoio tecnico') && firstText.includes('conferencia preliminar')) return true;
+
+    return false;
+  }
+
+  function isSpecificSafetyNotice(section){
+    const headingText = getSafetyHeading(section);
+    const firstText = normalizeSafetyText(section.textContent || '').slice(0, 900);
+
+    if(headingText.includes('aviso critico de seguranca')) return true;
+    if(headingText.includes('aviso de seguranca e uso correto')) return true;
+
+    const specificTerms = [
+      'area classificada','ex i','explosao','poeira combustivel','barreira zener','isolador galvanico',
+      'cavitacao','flashing','ruido','valvula critica','classe de pressao','fluido toxico','inflamavel',
+      'projeto eletrico','diagrama multifilar','curto-circuito','seletividade','nr-10','seguranca funcional'
+    ];
+
+    const hasSafetyLanguage = firstText.includes('nao substitui') || firstText.includes('validacao profissional') || firstText.includes('validacao tecnica');
+    const hasSafetyHeading = headingText.includes('aviso') || headingText.includes('cuidados especificos');
+    return hasSafetyHeading && hasSafetyLanguage && specificTerms.some((term) => firstText.includes(term));
+  }
+
+  function findGenericDisclaimer(main){
+    const hero = findHero(main);
+    return Array.from(main.querySelectorAll(':scope > section'))
+      .filter((section) => section !== hero && !section.classList.contains('alogy-safety-layer'))
+      .slice(0, 8)
+      .find(isGenericSafetyNotice);
+  }
+
+  function markContextualSafetyBlocks(main){
+    const hero = findHero(main);
+    Array.from(main.querySelectorAll(':scope > section'))
+      .filter((section) => section !== hero && !section.classList.contains('alogy-safety-layer'))
+      .slice(0, 10)
+      .forEach((section) => {
+        if(isGenericSafetyNotice(section)) return;
+        if(!isSpecificSafetyNotice(section)) return;
+        section.classList.add('alogy-contextual-warning');
+        section.dataset.alogySafetyContext = 'specific';
+        const heading = section.querySelector('h2, h3');
+        if(heading && /aviso de segurança e uso correto/i.test(heading.textContent || '')){
+          heading.textContent = 'Cuidados específicos desta ferramenta';
+        }
+      });
+  }
+
+  function insertSafetyLayer(){
+    if(!isToolPage()) return;
+    const main = document.querySelector('main');
+    if(!main || main.querySelector(':scope > .alogy-safety-layer')) return;
+
+    markContextualSafetyBlocks(main);
+
+    const file = currentToolFile();
+    const risk = detectToolRisk(file);
+    const title = getToolTitle();
+
+    const layer = createEl('section', 'alogy-safety-layer');
+    layer.dataset.alogyTool = title;
+    layer.dataset.alogyRisk = risk;
+    layer.appendChild(buildRiskBanner(risk));
+    layer.appendChild(buildStandardDetails(risk));
+
+    const genericDisclaimer = findGenericDisclaimer(main);
+    if(genericDisclaimer){
+      genericDisclaimer.classList.add('alogy-safety-replaced');
+      genericDisclaimer.setAttribute('aria-hidden', 'true');
+      genericDisclaimer.dataset.alogySafetyReplaced = 'generic';
+      genericDisclaimer.insertAdjacentElement('afterend', layer);
+      return;
+    }
+
+    const hero = findHero(main);
+    if(hero){
+      hero.insertAdjacentElement('afterend', layer);
+      return;
+    }
+
+    main.insertBefore(layer, main.firstElementChild || null);
+  }
+
+  window.ALOGY_TOOL_SAFETY = {
+    detectToolRisk,
+    insertSafetyLayer,
+    riskText,
+    toolRiskMap,
+    highRiskPatterns,
+    mediumRiskPatterns
+  };
+
+  document.addEventListener('DOMContentLoaded', insertSafetyLayer);
+})();
+
+/* =========================
+   ETAPAS 3-10 - COMPLEMENTO TÉCNICO ESPECÍFICO PARA FERRAMENTAS
+   Escopo: orientação, premissas, limitações, memória e interpretação.
+   Não altera fórmulas, categorias ou SEO.
+========================= */
+(function(){
+  const CRITICAL_TOOL_GUIDANCE = Object.freeze({
+    'calculadora-barreira-intrinseca-area-classificada.html': {
+      title: 'Complemento técnico — barreira intrínseca e área classificada',
+      intro: 'Use este bloco para conferir o contexto antes de interpretar “OK” ou “não conforme”. Em área classificada, a calculadora é apenas uma triagem de entidade, cabo e tensão de loop.',
+      assumptions: [
+        'Os parâmetros Uo, Io, Po, Co e Lo devem vir do certificado/manual do aparelho associado.',
+        'Os parâmetros Ui, Ii, Pi, Ci e Li devem vir do certificado/manual do instrumento de campo.',
+        'A capacitância e a indutância do cabo devem considerar o trecho real instalado, incluindo sobras, caixas e derivações quando aplicável.',
+        'A tensão disponível considera a fonte, a queda fixa informada, as cargas em série e a resistência ida e volta do cabo.'
+      ],
+      limitations: [
+        'A ferramenta não classifica área, zona, grupo, EPL, classe de temperatura ou método de proteção Ex.',
+        'Não valida certificado, desenho de malha, aterramento de barreira Zener, segregação, prensa-cabos, invólucro, instalação física ou inspeção Ex.',
+        'Não use “preliminarmente OK” como liberação de instalação em área classificada.',
+        'Em Grupo IIC, poeira combustível, barreira Zener, isolador galvânico ou malha crítica, valide com documentação completa.'
+      ],
+      memory: [
+        'Entidade: verificar Uo ≤ Ui, Io ≤ Ii e Po ≤ Pi.',
+        'Cabo: Ctotal = Ci + Ccabo e Ltotal = Li + Lcabo; ambos devem ficar abaixo de Co e Lo permitidos.',
+        'Resistência do cabo: Rcabo = 2 × Rcondutor × comprimento.',
+        'Tensão no instrumento: Vtx = Vfonte − Vqueda fixa − I × (Rentrada + Rsérie + Rextras + Rcabo).',
+        'HART: a carga útil de comunicação deve ser validada no painel e em campo, sem depender apenas da resistência do cabo.'
+      ],
+      example: [
+        'Exemplo de triagem: transmissor Ex i 4-20 mA/HART, 150 m de cabo, barreira isoladora, fonte 24 Vcc e entrada analógica de 250 Ω.',
+        'Preencha primeiro os dados dos certificados Ex; depois confira cabo, tensão disponível em 20 mA e em falha alta.',
+        'Se qualquer entidade ou tensão ficar sem margem, trate como “revisar projeto”, mesmo que apenas um item tenha falhado.'
+      ],
+      interpretation: [
+        '“Preliminarmente OK” significa apenas que os dados digitados passaram nas comparações feitas pela ferramenta.',
+        '“Aceitável com atenção” indica margem baixa; evite instalar no limite em malhas Ex ou HART.',
+        '“Não conforme/revisar” deve bloquear uso prático até conferir certificado, cabo, barreira, fonte e arquitetura da malha.'
+      ]
+    },
+    'calculadora-curto-circuito-transformador.html': {
+      title: 'Complemento técnico — curto-circuito em transformador',
+      intro: 'Esta estimativa serve para triagem da ordem de grandeza da corrente de curto no secundário do transformador. Ela não substitui estudo elétrico de curto-circuito e coordenação de proteção.',
+      assumptions: [
+        'O cálculo considera curto-circuito trifásico no secundário com base em kVA, tensão secundária e impedância percentual do transformador.',
+        'A tensão informada deve ser linha-linha em volts.',
+        'A impedância percentual deve ser a impedância de placa ou valor validado do transformador.',
+        'O fator de contribuição/ajuste é uma aproximação manual para cenários preliminares.'
+      ],
+      limitations: [
+        'Não considera contribuição da concessionária, motores, geradores, cabos, impedância de rede, X/R, componente CC, assimetria ou arco elétrico.',
+        'Não define capacidade de interrupção de disjuntores, seletividade, barramento, proteção ou ajuste de relés.',
+        'Não use para liberar intervenção elétrica, especificar proteção final ou aprovar painel.',
+        'Para aplicação real, valide com estudo de curto-circuito completo e profissional habilitado.'
+      ],
+      memory: [
+        'Corrente nominal: In = kVA × 1000 / (√3 × V).',
+        'Curto-circuito trifásico estimado: Icc = In / (Z% / 100) × fator.',
+        'Potência de curto: Scc = √3 × V × Icc.',
+        'Quanto menor a impedância percentual, maior a corrente de curto estimada.'
+      ],
+      example: [
+        'Exemplo: transformador de 500 kVA, 380 V, impedância de 5% e fator 1.',
+        'A ferramenta estima corrente nominal próxima de 760 A e curto trifásico próximo de 15,2 kA.',
+        'Esse valor deve ser comparado apenas preliminarmente com capacidade de interrupção e níveis de painel.'
+      ],
+      interpretation: [
+        'Resultado acima de 10 kA já merece atenção especial na triagem de disjuntores, barramentos e painéis.',
+        'Se o valor calculado ficar próximo da capacidade do equipamento, trate como condição crítica e solicite estudo completo.',
+        'Use o resultado para levantar suspeitas e orientar conversa técnica, não para fechar especificação.'
+      ]
+    },
+    'calculadora-fonte-24vcc-painel-automacao.html': {
+      title: 'Complemento técnico — fonte 24 Vcc para painel de automação',
+      intro: 'Esta ferramenta ajuda a verificar capacidade de fonte, reserva, derating e queda de tensão em circuitos 24 Vcc. A seleção final deve considerar arquitetura do painel e dados reais dos equipamentos.',
+      assumptions: [
+        'As correntes unitárias devem vir de datasheets ou medição confiável das cargas 24 Vcc.',
+        'A simultaneidade representa quais cargas podem ficar energizadas ao mesmo tempo.',
+        'O derating informado reduz a capacidade utilizável da fonte para considerar temperatura, ventilação e margem de projeto.',
+        'A queda de tensão usa o circuito mais distante como referência de triagem.'
+      ],
+      limitations: [
+        'Não substitui diagrama elétrico, estudo de seletividade, proteção por ramal, cálculo térmico do painel ou análise de segurança funcional.',
+        'Não valida picos reais de solenóides, módulos remotos, switches, IHM, fontes redundantes ou cargas com partida elevada.',
+        'Não use para definir fusíveis, disjuntores ou arquitetura redundante sem revisar manuais e condição real de operação.',
+        'Em intertravamentos, máquinas, área classificada ou sistemas críticos, validar com documentação do projeto.'
+      ],
+      memory: [
+        'Corrente contínua por carga: I = quantidade × corrente unitária × simultaneidade.',
+        'Corrente com reserva: Ireserva = Itotal × (1 + reserva).',
+        'Corrente requerida com derating: Ireq = Ireserva / derating.',
+        'Resistência do loop do cabo: Rloop = 2 × distância × resistência específica corrigida / seção.',
+        'Queda de tensão: Vqueda = Iramal × Rloop; tensão na carga = Vfonte − Vqueda.'
+      ],
+      example: [
+        'Exemplo: painel com CLP, 32 entradas, 16 saídas, 6 transmissores, 4 solenóides, fonte 24 Vcc e 25% de reserva.',
+        'Use simultaneidade realista para cargas que não operam todas ao mesmo tempo.',
+        'Depois compare a fonte sugerida com fonte comercial, temperatura do painel, ventilação e redundância necessária.'
+      ],
+      interpretation: [
+        '“OK” indica capacidade preliminar, mas ainda exige conferir proteção dos ramais e dados de fabricante.',
+        'Alerta de pouca margem de tensão no circuito distante indica risco de falha intermitente, diagnóstico incorreto ou queda em acionamentos.',
+        'Se a fonte prevista operar perto do limite, prefira revisar reserva, derating, divisão de cargas ou redundância.'
+      ]
+    },
+    'calculadora-cabo-instrumentacao-24vcc.html': {
+      title: 'Complemento técnico — cabo de instrumentação 24 Vcc',
+      intro: 'A ferramenta verifica queda de tensão, tensão disponível e seção preliminar para malhas e cargas 24 Vcc de instrumentação. O resultado depende muito da rota real do cabo e da corrente considerada.',
+      assumptions: [
+        'A distância informada é o trecho físico de ida; a ferramenta considera ida e volta no cálculo elétrico.',
+        'A corrente normal e a corrente de falha/pico devem representar a pior condição relevante para o equipamento.',
+        'A resistência por seção considera material e temperatura do condutor.',
+        'Cargas série como barreira, isolador, resistor HART e entrada analógica devem ser somadas quando estiverem no loop.'
+      ],
+      limitations: [
+        'Não valida classe de isolação, método de instalação, agrupamento, temperatura máxima, blindagem, aterramento, segregação ou rota em eletrocalha/eletroduto.',
+        'Não substitui projeto elétrico, especificação de cabo, requisitos de área classificada ou instruções do fabricante.',
+        'Para solenóides, válvulas, remotas ou cargas com pico, confira a pior condição de acionamento.',
+        'Para HART, validar também carga de comunicação e ruído da instalação.'
+      ],
+      memory: [
+        'Resistência do loop: Rloop = 2 × distância × ρcorrigido / seção.',
+        'Queda no cabo: Vcabo = I × Rloop.',
+        'Queda em elementos série: Vsérie = I × Rsérie + Vfixa.',
+        'Tensão disponível: Vdisp = Vfonte − Vcabo − Vsérie.',
+        'Comprimento máximo é limitado pela margem de tensão e pela queda percentual desejada.'
+      ],
+      example: [
+        'Exemplo: transmissor 2 fios 4-20 mA/HART, fonte 24 Vcc, 150 m de cabo, 250 Ω de entrada analógica e corrente de falha alta de 21 mA.',
+        'Confira a tensão disponível em 20 mA e também em falha alta, porque o diagnóstico pode exigir mais margem.',
+        'Se a margem for pequena, avalie reduzir carga série, aumentar seção, encurtar rota ou rever fonte/isolador.'
+      ],
+      interpretation: [
+        'Tensão disponível acima do mínimo com boa margem indica condição preliminar favorável.',
+        'Margem pequena não deve ser tratada como aprovação; campo real pode ter emendas, temperatura, resistência maior e queda adicional.',
+        'Se o resultado sugerir seção maior, revise também proteção, borne, prensa-cabo e padrão de instalação.'
+      ]
+    },
+    'calculadora-malha-4-20ma-hart-completa.html': {
+      title: 'Complemento técnico — malha 4-20 mA / HART',
+      intro: 'Esta ferramenta concentra escala de engenharia, raw de CLP/DCS, carga de loop, tensão disponível e diagnóstico preliminar HART. Ela é útil para comissionamento, mas não substitui teste de loop completo.',
+      assumptions: [
+        'LRV e URV representam a escala configurada no transmissor ou no sistema de controle.',
+        'Raw mínimo e máximo devem corresponder ao cartão analógico real do CLP/DCS.',
+        'As resistências de entrada, HART, barreira, isolador e cabo devem representar o circuito em série real.',
+        'A tensão mínima do transmissor deve vir do datasheet, considerando comunicação e condição de falha quando aplicável.'
+      ],
+      limitations: [
+        'Não identifica sozinho falha de aterramento, ruído, cabo rompido intermitente, polaridade invertida, parametrização errada ou escala diferente no supervisório.',
+        'Não substitui injeção/simulação de corrente, leitura no cartão, comparação com transmissor e checklist de loop.',
+        'Para HART, carga adequada não garante comunicação se houver ruído, barreira incompatível ou filtro no cartão.',
+        'Não use para alterar malha crítica sem validar causa, efeito e condição de processo.'
+      ],
+      memory: [
+        'PV pela corrente: PV = LRV + ((mA − 4) / 16) × (URV − LRV).',
+        'Raw pela corrente: Raw = RawMin + ((mA − 4) / 16) × (RawMax − RawMin).',
+        'Resistência do cabo: Rcabo = 2 × comprimento × Rcondutor/km / 1000.',
+        'Tensão no transmissor: Vtx = Vfonte − I × (Rcabo + Rentrada + RHART + Rbarreira + Rextras).',
+        'Correntes abaixo/acima da faixa devem ser interpretadas junto com NAMUR NE43 ou configuração do fabricante.'
+      ],
+      example: [
+        'Exemplo: LT-101, 0 a 100%, corrente medida 12 mA, raw 0 a 27648, fonte 24 Vcc, entrada de 250 Ω e 150 m de cabo.',
+        'A leitura de 12 mA deve corresponder a aproximadamente 50% da escala e raw intermediário.',
+        'Depois confira se a tensão no transmissor permanece acima do mínimo em 20 mA e em falha alta.'
+      ],
+      interpretation: [
+        'Divergência entre PV calculado, raw esperado e leitura real indica possível erro de escala, cartão, parametrização ou medição.',
+        'Tensão baixa no transmissor indica risco de saturação, falha de comunicação ou diagnóstico que não chega ao CLP/DCS.',
+        'Carga HART fora da faixa recomendada deve ser validada com comunicador ou ferramenta de configuração.'
+      ]
+    },
+    'calculadora-nivel-caldeira-transmissor-dp.html': {
+      title: 'Complemento técnico — nível de caldeira por transmissor DP',
+      intro: 'Nível de caldeira é aplicação crítica. Esta ferramenta apoia o cálculo preliminar de LRV, URV, span, escala e alarmes, mas não define intertravamento, trip ou filosofia de segurança.',
+      assumptions: [
+        'A geometria das tomadas, pote de condensado/perna úmida e posição do transmissor deve representar a instalação real.',
+        'As densidades de água, vapor, condensado e linhas devem estar coerentes com pressão e temperatura de operação.',
+        'A ligação HP/LP e possível inversão devem refletir o manifold e a tubulação real.',
+        'Os pontos de alarme devem ser comparados com a filosofia da caldeira e a faixa configurada.'
+      ],
+      limitations: [
+        'Não dimensiona segurança de caldeira, trip, redundância, votação, independência, BMS, SIS ou lógica de intertravamento.',
+        'Não substitui requisitos legais, procedimento de operação, inspeção, projeto mecânico, instrumentação de segurança ou validação da planta.',
+        'Densidade errada em caldeira pressurizada pode deslocar significativamente LRV/URV e alarmes.',
+        'Não use para liberar partida, alterar trip ou operar caldeira sem validação formal.'
+      ],
+      memory: [
+        'O transmissor mede DP = pressão no lado HP − pressão no lado LP.',
+        'A coluna variável do nível altera o lado HP; a perna úmida/pote de condensado cria referência no LP.',
+        'LRV é o DP no nível 0%; URV é o DP no nível 100%; Span = URV − LRV.',
+        'Corrente: mA = 4 + 16 × ((DP − LRV) / Span).',
+        'Raw do CLP/DCS é escalonado a partir do mA calculado.'
+      ],
+      example: [
+        'Exemplo: tambor de caldeira com tomada inferior em HP, tomada superior em LP com perna úmida, nível 0–100% entre as tomadas e densidades ajustadas à condição de operação.',
+        'Calcule LRV/URV, confira se o span não ficou muito baixo e verifique se os alarmes geram corrente coerente.',
+        'Se LRV e URV forem negativos, isso pode ser normal em perna úmida; o importante é o span e a configuração correta.'
+      ],
+      interpretation: [
+        'Alarme fora de 3,8–20,5 mA indica que o ponto pode estar fora da faixa configurada ou que a escala precisa revisão.',
+        'Span muito pequeno aumenta sensibilidade a erro de densidade, linha parcialmente cheia, condensado e montagem.',
+        'Qualquer alteração em trip de caldeira deve passar por análise formal e aprovação responsável.'
+      ]
+    },
+    'calculadora-nivel-dp-tanque-pressurizado.html': {
+      title: 'Complemento técnico — nível DP em tanque pressurizado',
+      intro: 'Esta ferramenta ajuda a estimar LRV, URV, span e alarmes para tanque pressurizado com perna seca, perna úmida ou selos. O resultado depende diretamente da geometria e das densidades.',
+      assumptions: [
+        'A tomada inferior está ligada ao lado HP e a tomada superior ao lado LP, salvo se a instalação real for diferente.',
+        'Em perna seca, a pressão do tanque tende a se cancelar; em perna úmida, a coluna do LP cria offset constante.',
+        'Densidade do líquido e do fluido de enchimento devem representar condição real de operação.',
+        'Offset de selo/capilar deve ser informado quando existir influência adicional conhecida.'
+      ],
+      limitations: [
+        'Não valida pressão admissível do transmissor, selo, capilar, manifold, materiais, temperatura, vácuo ou compatibilidade química.',
+        'Não substitui folha de dados do transmissor, desenho de montagem, cálculo de selos remotos ou validação de processo.',
+        'Em fluidos tóxicos, inflamáveis, viscosos, incrustantes ou com interface, o cálculo simplificado pode não ser suficiente.',
+        'Alarmes e trips devem ser avaliados junto com risco de processo e filosofia operacional.'
+      ],
+      memory: [
+        'DP = contribuição hidrostática do lado HP − contribuição hidrostática do lado LP + offset informado.',
+        'LRV = DP no nível 0%; URV = DP no nível 100%; Span = URV − LRV.',
+        'mA = 4 + 16 × ((DP − LRV) / Span).',
+        'A cápsula DP deve cobrir o maior módulo de LRV/URV/span com margem adequada.',
+        'Raw do CLP/DCS segue a escala 4–20 mA informada.'
+      ],
+      example: [
+        'Exemplo: tanque pressurizado com líquido de 900 kg/m³, tomada inferior abaixo da superior, perna úmida de 1000 kg/m³ e nível 0–100% em 1500 mm.',
+        'Calcule LRV/URV e confirme se a cápsula prevista cobre o range com margem.',
+        'Depois confira se os alarmes LLL, LL, HH e HHH caem em correntes coerentes.'
+      ],
+      interpretation: [
+        'LRV negativo pode ser normal quando a coluna do LP é maior que a coluna no HP.',
+        'Se a cápsula prevista ficar apertada, selecione range maior ou revise montagem/densidade antes de comprar.',
+        'Se o normal ou alarmes ficarem fora da escala, revise o range de nível ou filosofia de alarme.'
+      ]
+    },
+    'calculadora-placa-orificio-vazao-dp.html': {
+      title: 'Complemento técnico — placa de orifício e vazão por DP',
+      intro: 'A ferramenta faz pré-dimensionamento e conversão de vazão por pressão diferencial. Placa de orifício depende fortemente de geometria, trechos retos, propriedades do fluido e norma de cálculo.',
+      assumptions: [
+        'D é o diâmetro interno real da tubulação e d é o diâmetro do orifício.',
+        'Densidade, viscosidade, pressão e temperatura devem representar condição operacional, não apenas condição ambiente.',
+        'Coeficiente de descarga Cd e fator de expansão são aproximações para triagem.',
+        'A extração de raiz deve estar coerente entre transmissor, CLP/DCS e supervisório.'
+      ],
+      limitations: [
+        'Não substitui dimensionamento conforme norma aplicável, folha de cálculo, fabricante ou software especializado.',
+        'Não valida trechos retos, tipo de tomada, acabamento da placa, excentricidade, instalação invertida, linhas de impulso, condensado ou compensação P/T.',
+        'Para gás/vapor, ΔP/P1 elevado, fluido compressível ou condição próxima do limite exigem cálculo mais rigoroso.',
+        'Não use para especificar elemento primário final sem revisão de engenharia.'
+      ],
+      memory: [
+        'Beta = d / D.',
+        'Vazão simplificada: Q ≈ Cd × ε × Aorifício / √(1 − β⁴) × √(2 × ΔP / ρ).',
+        'Para placa de orifício, ΔP varia aproximadamente com o quadrado da vazão.',
+        'Com extração de raiz, %vazão = √(%DP).',
+        'mA de vazão linearizada: mA = 4 + 16 × fração de vazão.'
+      ],
+      example: [
+        'Exemplo: água em linha de 100 mm, orifício dimensionado para vazão máxima de 50 m³/h e DP máximo de 250 mbar.',
+        'Confira beta, Reynolds, velocidade, perda permanente e range DP sugerido.',
+        'Depois confirme se a raiz quadrada está no transmissor ou no CLP, evitando duplicidade de extração.'
+      ],
+      interpretation: [
+        'Beta fora da faixa de atenção indica risco de maior incerteza ou aplicação inadequada.',
+        'Reynolds baixo sugere regime laminar/transição, reduzindo confiabilidade do método.',
+        'Velocidade alta ou ΔP elevado pode indicar ruído, erosão, perda de energia e necessidade de rever o elemento primário.'
+      ]
+    },
+    'calculadora-cv-kv-valvula-controle.html': {
+      title: 'Complemento técnico — Cv/Kv de válvula de controle',
+      intro: 'Esta ferramenta serve para pré-dimensionar válvula de controle e avaliar abertura estimada, cavitação, flashing, escoamento crítico e velocidade. A seleção final deve passar por fabricante ou engenharia de aplicação.',
+      assumptions: [
+        'P1 e P2 devem representar pressões reais na válvula, na condição de vazão analisada.',
+        'As vazões mínima, normal e máxima devem estar na mesma base de unidade e representar a faixa de controle esperada.',
+        'Para líquido, a densidade e a pressão de vapor influenciam cavitação e flashing.',
+        'Para gás/vapor, massa molar, gravidade específica, fator Z e temperatura afetam o resultado.'
+      ],
+      limitations: [
+        'Não substitui software/catálogo do fabricante, curvas reais, ruído aerodinâmico, erosão, materiais, classe de pressão, atuador ou posicionador.',
+        'Não valida válvula para serviço crítico, fluido tóxico, inflamável, bifásico, slurry, vapor complexo ou alta queda de pressão.',
+        'Abertura estimada é aproximação; a característica instalada pode mudar com a curva do processo.',
+        'Não use para comprar válvula final sem folha de dados revisada.'
+      ],
+      memory: [
+        'Líquido: Kv = Q × √(SG / ΔP), com Q em m³/h e ΔP em bar.',
+        'Conversão usada: Cv ≈ Kv / 0,865 e Kv ≈ Cv × 0,865.',
+        'Gás/vapor usa aproximação compressível com pressão absoluta, temperatura, gravidade específica e fator Z.',
+        'Cv selecionado considera a maior vazão e a margem informada ou o Cv manual preenchido.',
+        'Abertura estimada compara Cv requerido com Cv selecionado e rangeabilidade informada.'
+      ],
+      example: [
+        'Exemplo: líquido com P1 6 bar(g), P2 3 bar(g), densidade 1000 kg/m³ e vazões mínima/normal/máxima de 5/15/25 m³/h.',
+        'Verifique se a abertura normal fica em faixa controlável e se a mínima não fica muito próxima da sede.',
+        'Se aparecer cavitação/flashing, revise ΔP, internos, válvula multiestágio ou condição de processo.'
+      ],
+      interpretation: [
+        'Válvula muito grande tende a controlar mal em baixa abertura; válvula pequena pode saturar na vazão máxima.',
+        'Alertas de cavitação, flashing ou velocidade alta devem ser tratados como pontos de engenharia, não apenas observações.',
+        'Para vapor/gás, escoamento crítico pode limitar aumento de vazão mesmo elevando ΔP.'
+      ]
+    },
+    'calculadora-lopa-simplificada.html': {
+      title: 'Complemento técnico — LOPA simplificada',
+      intro: 'LOPA envolve segurança de processo. Esta ferramenta é didática e serve para entender a lógica de frequência iniciadora, PFD e redução de risco, não para emitir análise oficial.',
+      assumptions: [
+        'A frequência iniciadora deve representar evento realista em eventos por ano.',
+        'Cada IPL informada deve ser realmente independente, eficaz, auditável e aplicável ao cenário.',
+        'PFDs devem vir de base confiável, procedimento interno, fabricante, estudo SIL ou histórico validado.',
+        'A frequência tolerável deve vir de critério de risco aceito pela empresa/projeto.'
+      ],
+      limitations: [
+        'Não valida independência, causa comum, fator humano, demanda, cobertura de diagnóstico, tempo de resposta ou provas periódicas.',
+        'Não substitui HAZOP, LOPA formal, estudo SIL, SRS, verificação IEC 61511/IEC 61508 ou aprovação de equipe multidisciplinar.',
+        'Não use para justificar retirada de proteção, alteração de intertravamento ou aceitação oficial de risco.',
+        'Camadas sem independência real não devem ser multiplicadas como IPLs.'
+      ],
+      memory: [
+        'PFD total = PFD1 × PFD2 × PFD3 × PFD4, considerando apenas IPLs válidas e independentes.',
+        'Frequência mitigada = frequência iniciadora × PFD total.',
+        'O cenário fica preliminarmente dentro do alvo quando frequência mitigada ≤ frequência tolerável.',
+        'Redução de risco de uma IPL ≈ 1 / PFD.'
+      ],
+      example: [
+        'Exemplo didático: frequência iniciadora 0,1 evento/ano, alvo 1E-5 evento/ano, duas IPLs com PFD 0,1 e 0,01.',
+        'PFD total = 0,001 e frequência mitigada = 1E-4 evento/ano; ainda acima do alvo 1E-5.',
+        'Esse resultado indicaria necessidade de revisar cenário, camadas ou meta, mas nunca aprovar sozinho.'
+      ],
+      interpretation: [
+        '“Dentro do alvo” na ferramenta significa apenas comparação matemática com os valores digitados.',
+        'Se uma IPL não for independente ou não for comprovável, ela não deve entrar na multiplicação.',
+        'Qualquer decisão de segurança deve ser formalizada por metodologia, equipe competente e documentação rastreável.'
+      ]
+    },
+    'calculadora-queda-de-tensao.html': {
+      title: 'Complemento técnico — queda de tensão em circuito elétrico',
+      intro: 'Use esta ferramenta como triagem para queda de tensão em regime. O resultado ajuda a identificar se a seção informada está próxima do limite, mas não substitui dimensionamento completo do circuito.',
+      assumptions: [
+        'A tensão informada deve representar a tensão nominal do circuito analisado.',
+        'O comprimento deve corresponder ao trecho real entre origem e carga, considerando a forma de cálculo do circuito.',
+        'Fator de potência, material, temperatura e seção devem refletir a condição prevista de operação.',
+        'O limite de queda informado deve ser coerente com o critério de projeto adotado para a instalação.'
+      ],
+      limitations: [
+        'Não valida capacidade de condução de corrente, curto-circuito, proteção, seletividade, aquecimento, agrupamento ou método de instalação.',
+        'Não substitui projeto elétrico, memorial de cálculo, inspeção ou validação por profissional habilitado.',
+        'Não use a queda de tensão isoladamente para aprovar cabo, disjuntor ou alimentação de máquina.',
+        'Em motores, partidas pesadas, inversores, longas distâncias e cargas críticas, avaliar também partida, harmônicas e proteção.'
+      ],
+      memory: [
+        'Trifásico: ΔV = √3 × I × L × (R × cosφ + X × senφ).',
+        'Monofásico/bifásico: ΔV = 2 × I × L × (R × cosφ + X × senφ).',
+        'Percentual: ΔV% = ΔV / tensão × 100.',
+        'A resistência do cabo varia com seção, material, temperatura e quantidade de condutores em paralelo.'
+      ],
+      example: [
+        'Exemplo: motor trifásico 380 V, corrente de 32 A, 80 m de cabo, cosφ 0,85 e limite de 4%.',
+        'Compare a queda calculada com o limite adotado e simule seções maiores caso fique próximo do limite.',
+        'Depois valide capacidade de corrente, partida, proteção e instalação física do cabo.'
+      ],
+      interpretation: [
+        '“Dentro do limite” indica apenas atendimento ao critério de queda digitado.',
+        '“Atenção” indica margem apertada; pequenas mudanças de rota, temperatura ou carga podem ultrapassar o limite.',
+        '“Acima do limite” deve levar à revisão de seção, rota, carga, tensão, paralelismo ou alimentação.'
+      ]
+    },
+    'calculadora-dimensionamento-cabos.html': {
+      title: 'Complemento técnico — dimensionamento preliminar de cabos',
+      intro: 'Esta ferramenta consolida critérios de pré-dimensionamento de cabos, mas a recomendação final depende do projeto elétrico completo, método de instalação e proteção adotada.',
+      assumptions: [
+        'Os dados de carga, tensão, sistema, comprimento, temperatura, agrupamento e método de instalação devem representar a condição real.',
+        'O critério de queda, corrente e curto-circuito deve estar alinhado ao padrão de projeto utilizado.',
+        'A corrente de projeto deve considerar simultaneidade, rendimento, fator de potência e regime de operação quando aplicável.',
+        'Em motor, corrente de partida e tempo de partida precisam representar a pior condição provável.'
+      ],
+      limitations: [
+        'Não substitui projeto elétrico, tabela normativa completa, coordenação de proteção, seletividade ou estudo de curto-circuito.',
+        'Não valida instalação física, agrupamento real, temperatura final, tipo de isolação, barramento, bornes, terminais ou método de lançamento.',
+        'Não use a seção recomendada como especificação final sem conferir norma, memorial e proteção do circuito.',
+        'Em circuitos críticos, motores, inversores, áreas classificadas ou segurança, validar com engenharia responsável.'
+      ],
+      memory: [
+        'A seção é verificada por capacidade de corrente, queda de tensão, curto-circuito térmico e seção mínima aplicável.',
+        'Queda de tensão usa corrente, comprimento, resistência, reatância, fator de potência e sistema elétrico.',
+        'Critério térmico de curto usa energia I²t como triagem, conforme dados informados.',
+        'A proteção preliminar compara corrente de projeto, capacidade do cabo e disjuntor sugerido.'
+      ],
+      example: [
+        'Exemplo: motor de 15 kW em 380 V, 60 m, partida direta ou estrela-triângulo, temperatura elevada e vários circuitos agrupados.',
+        'Use o modo avançado para informar agrupamento, queda de partida, curto-circuito e seção mínima.',
+        'Depois gere o relatório e valide com o padrão de instalação, disjuntor, seletividade e norma aplicável.'
+      ],
+      interpretation: [
+        '“Atende aos critérios informados” não significa projeto aprovado; significa que os critérios digitados foram atendidos pela triagem.',
+        'Qualquer critério reprovado deve bloquear a recomendação até revisão dos dados ou aumento de seção.',
+        'Quando houver alerta de queda próxima, partida ou agrupamento, trate a seção como preliminar e revise a instalação completa.'
+      ]
+    },
+    'calculadora-disjuntor-protecao.html': {
+      title: 'Complemento técnico — disjuntor e proteção preliminar',
+      intro: 'Esta ferramenta ajuda a estimar proteção para circuitos, mas a escolha final do disjuntor depende de corrente, curva, capacidade de interrupção, seletividade e instalação real.',
+      assumptions: [
+        'A corrente de carga deve representar a condição de operação contínua ou a corrente de projeto do circuito.',
+        'A capacidade do cabo deve considerar método de instalação, temperatura, agrupamento e isolação.',
+        'A curva de disparo deve ser compatível com o tipo de carga e corrente de partida/inrush.',
+        'A capacidade de interrupção precisa ser comparada com a corrente de curto-circuito disponível no ponto de instalação.'
+      ],
+      limitations: [
+        'Não substitui estudo de curto-circuito, seletividade, coordenação, proteção contra choque, aterramento ou projeto elétrico.',
+        'Não define sozinho curva B/C/D, Icu/Ics, ajuste térmico/magnético, DR, DPS ou proteção de motor.',
+        'Não use para liberar painel ou circuito sem validar norma, fabricante e documentação da instalação.',
+        'Em motores, transformadores, inversores e cargas eletrônicas, validar partida, harmônicas e corrente de inrush.'
+      ],
+      memory: [
+        'A proteção deve ficar acima da corrente de projeto e abaixo/compatível com a capacidade do cabo.',
+        'A corrente de curto disponível deve ser menor que a capacidade de interrupção do dispositivo.',
+        'A curva de disparo precisa suportar partida normal sem comprometer proteção contra falhas.',
+        'A seletividade depende da relação entre dispositivos a montante e a jusante.'
+      ],
+      example: [
+        'Exemplo: circuito trifásico com 42 A de carga, cabo com capacidade corrigida de 57 A e curto estimado no painel.',
+        'A ferramenta sugere faixa preliminar, mas o modelo final deve ser conferido por catálogo e curva tempo-corrente.',
+        'Compare também Icu/Ics, coordenação com disjuntor geral e proteção do cabo.'
+      ],
+      interpretation: [
+        'Resultado “OK” indica apenas compatibilidade preliminar entre dados digitados.',
+        'Se houver indicação de revisar, verifique corrente, cabo, curva, curto-circuito e seletividade antes de aplicar.',
+        'Nunca escolha disjuntor apenas pela corrente nominal sem conferir capacidade de interrupção e coordenação.'
+      ]
+    },
+    'calculadora-corrente-partida-motor.html': {
+      title: 'Complemento técnico — corrente de partida de motor',
+      intro: 'Esta ferramenta estima corrente de partida e impacto preliminar de acionamento. Use como apoio para avaliar alimentação, proteção e queda de tensão durante a partida.',
+      assumptions: [
+        'A corrente nominal do motor deve ser conhecida ou calculada a partir de tensão, potência, rendimento e fator de potência.',
+        'O múltiplo de partida deve representar o método de partida e o motor real.',
+        'O tempo de partida deve ser coerente com carga mecânica, inércia e método de acionamento.',
+        'A alimentação disponível deve ser suficiente para suportar a corrente transitória sem queda excessiva.'
+      ],
+      limitations: [
+        'Não substitui curva do motor, estudo de partida, coordenação de proteção, ajuste de relé térmico ou análise de queda de tensão.',
+        'Não valida partida com carga acoplada, inversor, soft-starter, gerador, transformador limitado ou rede fraca.',
+        'Não use para definir proteção final sem conferir catálogo do motor e dispositivo de partida.',
+        'Motores grandes, partidas frequentes ou cargas de alta inércia exigem análise específica.'
+      ],
+      memory: [
+        'Corrente de partida estimada = corrente nominal × múltiplo de partida.',
+        'Partida direta geralmente produz corrente maior que partida compensada, estrela-triângulo, soft-starter ou inversor.',
+        'Energia térmica e queda de tensão dependem de corrente, tempo de partida e impedância da rede.',
+        'A proteção deve permitir a partida normal e atuar em falhas reais.'
+      ],
+      example: [
+        'Exemplo: motor de 30 kW com corrente nominal aproximada de 58 A e partida direta com 6 × In.',
+        'A corrente de partida estimada fica na ordem de centenas de ampères, exigindo atenção à queda de tensão e proteção.',
+        'Compare o resultado com curva do dispositivo de proteção e capacidade da alimentação.'
+      ],
+      interpretation: [
+        'Corrente de partida elevada não é automaticamente falha, mas pode causar queda de tensão, disparo indevido ou impacto em outros equipamentos.',
+        'Se o resultado indicar partida pesada, revise método de partida, cabo, transformador, proteção e carga mecânica.',
+        'Use o valor como triagem para estudos de partida, não como ajuste final de proteção.'
+      ]
+    },
+    'calculadora-partida-estrela-triangulo-corrente.html': {
+      title: 'Complemento técnico — partida estrela-triângulo',
+      intro: 'Esta ferramenta compara corrente em estrela-triângulo de forma preliminar. A aplicação real depende do motor, tensão de placa, sequência de comando e carga acoplada.',
+      assumptions: [
+        'O motor deve ser adequado para partida estrela-triângulo na tensão da rede utilizada.',
+        'A corrente de partida direta usada como referência deve representar o motor real.',
+        'A carga mecânica deve permitir partida com torque reduzido durante a etapa em estrela.',
+        'O tempo de comutação deve ser ajustado conforme aceleração real do conjunto.'
+      ],
+      limitations: [
+        'Não valida diagrama de comando, intertravamento, temporização, proteção térmica, contator, fusível ou coordenação elétrica.',
+        'Não garante partida bem-sucedida em bombas, compressores, ventiladores ou cargas com alto torque inicial.',
+        'Não use em motor sem confirmar ligação de placa, tensão nominal e compatibilidade com estrela-triângulo.',
+        'A transição pode gerar pico de corrente e impacto mecânico que a ferramenta não calcula completamente.'
+      ],
+      memory: [
+        'Na partida em estrela, a tensão por fase é reduzida e a corrente de linha tende a ficar em torno de 1/3 da partida direta.',
+        'O torque de partida também é reduzido, aproximadamente na mesma proporção da tensão ao quadrado.',
+        'Na transição para triângulo pode ocorrer pico transitório dependendo da velocidade e do sincronismo.',
+        'A proteção deve considerar regime em triângulo e condição de partida.'
+      ],
+      example: [
+        'Exemplo: motor que partiria direto com 360 A pode partir em estrela com corrente preliminar próxima de 120 A.',
+        'Mesmo com menor corrente, confirme se o torque em estrela consegue acelerar a carga.',
+        'Valide contatores, temporizador, intertravamento mecânico/elétrico e proteção.'
+      ],
+      interpretation: [
+        'Redução de corrente não significa que a partida é adequada para qualquer carga.',
+        'Se houver dificuldade de aceleração ou comutação brusca, revise método de partida.',
+        'Para cargas críticas, considere soft-starter ou inversor conforme análise técnica.'
+      ]
+    },
+    'calculadora-queda-tensao-partida-motor.html': {
+      title: 'Complemento técnico — queda de tensão na partida de motor',
+      intro: 'Esta ferramenta estima a queda de tensão durante a partida do motor, uma condição transitória que pode afetar o próprio motor e outras cargas conectadas.',
+      assumptions: [
+        'A corrente de partida deve representar o método de partida e a pior condição da carga.',
+        'A impedância do cabo e da alimentação precisa refletir o caminho real até o motor.',
+        'O limite de queda de partida deve ser definido pelo critério de projeto e sensibilidade das cargas próximas.',
+        'A tensão nominal informada deve ser a tensão disponível no barramento de alimentação.'
+      ],
+      limitations: [
+        'Não substitui estudo de partida, fluxo de carga, curva do motor, impacto na rede ou validação com concessionária quando aplicável.',
+        'Não considera variações dinâmicas completas do motor, transformador, gerador, soft-starter, inversor ou carga mecânica.',
+        'Não use para liberar partida de motor crítico sem validar proteção, torque, tempo de aceleração e impacto no processo.',
+        'Queda aceitável depende da carga alimentada, sensibilidade de equipamentos e padrão da instalação.'
+      ],
+      memory: [
+        'A queda de partida usa corrente de partida, impedância do circuito e tensão nominal.',
+        'A corrente de partida pode ser múltiplos da corrente nominal dependendo do método de partida.',
+        'Quanto maior o comprimento e menor a seção do cabo, maior a queda transitória.',
+        'Soft-starter e inversor podem reduzir corrente, mas exigem análise específica.'
+      ],
+      example: [
+        'Exemplo: motor de 55 kW com partida direta, corrente de partida elevada e 90 m de alimentação.',
+        'Simule a queda com a seção prevista e compare com o limite de partida adotado.',
+        'Se a queda for alta, avalie aumentar seção, alterar método de partida ou revisar alimentação.'
+      ],
+      interpretation: [
+        'Resultado dentro do limite é apenas triagem; observe também tempo de aceleração e impacto nas demais cargas.',
+        'Resultado próximo do limite merece margem adicional para temperatura, envelhecimento e variação de rede.',
+        'Resultado acima do limite indica necessidade de revisão antes da partida em campo.'
+      ]
+    },
+    'calculadora-desequilibrio-tensao-motor.html': {
+      title: 'Complemento técnico — desequilíbrio de tensão em motor',
+      intro: 'Esta ferramenta calcula o desequilíbrio de tensão entre fases para triagem de risco em motores trifásicos. Pequenos desequilíbrios de tensão podem gerar aquecimento desproporcional.',
+      assumptions: [
+        'As três tensões devem ser medidas no mesmo ponto e na mesma condição de carga.',
+        'A medição deve usar instrumento confiável e fases corretamente identificadas.',
+        'A interpretação deve considerar regime de operação, carga do motor e ambiente térmico.',
+        'O resultado é uma triagem baseada na variação percentual entre fases.'
+      ],
+      limitations: [
+        'Não substitui análise de qualidade de energia, corrente de fase, termografia, isolação, rolamentos ou diagnóstico completo do motor.',
+        'Não identifica sozinho mau contato, borne aquecido, desbalanceamento de carga, harmônicas ou falha interna.',
+        'Não use para liberar motor com aquecimento, vibração ou corrente desequilibrada sem investigação adicional.',
+        'Em motores críticos, avaliar também corrente, temperatura, fator de serviço e histórico.'
+      ],
+      memory: [
+        'Tensão média = soma das tensões fase-fase / 3.',
+        'Maior desvio = maior diferença absoluta entre cada tensão e a média.',
+        'Desequilíbrio percentual = maior desvio / tensão média × 100.',
+        'Quanto maior o desequilíbrio, maior o risco de aquecimento e redução de vida útil.'
+      ],
+      example: [
+        'Exemplo: tensões medidas de 380 V, 372 V e 388 V em motor em operação.',
+        'A ferramenta calcula a média, o maior desvio e o percentual de desequilíbrio.',
+        'Se houver atenção, medir correntes de fase e procurar causas na alimentação e conexões.'
+      ],
+      interpretation: [
+        'Desequilíbrio baixo indica condição preliminar favorável, mas não exclui outros problemas elétricos.',
+        'Desequilíbrio moderado pede investigação de carga, conexões, alimentação e corrente por fase.',
+        'Desequilíbrio elevado deve ser tratado antes de manter motor crítico em operação contínua.'
+      ]
+    },
+    'calculadora-kva-transformador-carga.html': {
+      title: 'Complemento técnico — kVA de transformador para carga',
+      intro: 'Esta ferramenta estima potência aparente necessária para transformador a partir de cargas informadas. Use como pré-dimensionamento, não como especificação final.',
+      assumptions: [
+        'As cargas devem representar a demanda simultânea prevista, não apenas a soma instalada quando houver diversidade.',
+        'Fator de potência, rendimento e regime de operação precisam refletir a condição real.',
+        'A margem de reserva deve considerar expansão, aquecimento, altitude, ventilação e regime contínuo.',
+        'Partidas de motor e cargas não lineares devem ser tratadas com atenção adicional.'
+      ],
+      limitations: [
+        'Não substitui estudo de demanda, fluxo de carga, curto-circuito, partida de motor, harmônicas, proteção ou especificação do transformador.',
+        'Não valida impedância, perdas, ventilação, classe de isolação, temperatura, taps, aterramento ou proteção.',
+        'Não use apenas o kVA calculado para comprar transformador sem revisar cargas críticas e condições ambientais.',
+        'Transformadores alimentando inversores, retificadores ou motores grandes exigem análise adicional.'
+      ],
+      memory: [
+        'Potência aparente em kVA relaciona potência ativa, rendimento e fator de potência.',
+        'Reserva é aplicada sobre a demanda estimada para evitar operação no limite.',
+        'Corrente no secundário depende de kVA e tensão trifásica ou monofásica.',
+        'A seleção comercial deve considerar potência padronizada acima da necessidade calculada.'
+      ],
+      example: [
+        'Exemplo: conjunto de cargas de 180 kW, fator de potência 0,88 e reserva de 20%.',
+        'A ferramenta estima o kVA necessário e ajuda a escolher uma potência comercial superior.',
+        'Depois valide partida de motores, harmônicas, proteção e ventilação do transformador.'
+      ],
+      interpretation: [
+        'Resultado com reserva adequada é apenas pré-seleção.',
+        'Se o transformador ficar próximo do limite, revise simultaneidade, expansão e regime contínuo.',
+        'Se houver cargas não lineares ou motores grandes, faça análise específica antes da compra.'
+      ]
+    },
+    'calculadora-thd-distorcao-harmonica.html': {
+      title: 'Complemento técnico — THD e distorção harmônica',
+      intro: 'Esta ferramenta calcula THD de forma orientativa para avaliar presença de harmônicas. A interpretação deve considerar se a medição é de tensão ou corrente e o ponto de acoplamento.',
+      assumptions: [
+        'A fundamental e as harmônicas informadas devem vir de medição confiável ou relatório de analisador de energia.',
+        'As ordens harmônicas devem ser coerentes com o tipo de carga analisada.',
+        'A comparação com limites depende do ponto de medição, nível de tensão, potência de curto e norma aplicável.',
+        'A análise deve separar THD de tensão, THD de corrente e TDD quando necessário.'
+      ],
+      limitations: [
+        'Não substitui estudo de qualidade de energia, campanha de medição, análise de ressonância, filtros ou compatibilidade eletromagnética.',
+        'Não define sozinho necessidade de filtro, reator, transformador K-factor ou mitigação.',
+        'Não use para concluir conformidade normativa sem medição adequada e critério aplicável.',
+        'Cargas com inversores, retificadores, UPS e fornos exigem análise específica.'
+      ],
+      memory: [
+        'THD = raiz quadrada da soma dos quadrados das harmônicas / fundamental × 100.',
+        'O valor total RMS aumenta com a presença de harmônicas.',
+        'A severidade depende do tipo de grandeza, ponto de medição e sensibilidade das cargas.',
+        'Harmônicas podem causar aquecimento, disparos, vibração, ruído e falha em capacitores.'
+      ],
+      example: [
+        'Exemplo: fundamental de 100 A e harmônicas de 5ª, 7ª e 11ª medidas por analisador.',
+        'Informe as magnitudes harmônicas e compare o THD calculado com o critério de engenharia aplicável.',
+        'Se o valor for alto, investigar cargas não lineares e possibilidade de ressonância.'
+      ],
+      interpretation: [
+        'THD baixo é condição favorável, mas não substitui avaliação completa de qualidade de energia.',
+        'THD moderado ou alto requer identificar fontes, ponto de medição e impacto nos equipamentos.',
+        'Antes de instalar filtros, confirmar medições, ressonância e projeto elétrico.'
+      ]
+    },
+    'calculadora-ocupacao-eletroduto-cabos.html': {
+      title: 'Complemento técnico — ocupação de eletroduto por cabos',
+      intro: 'Esta ferramenta estima a ocupação física do eletroduto. A aprovação real depende também de método de instalação, quantidade de curvas, aquecimento e facilidade de lançamento.',
+      assumptions: [
+        'O diâmetro interno do eletroduto e o diâmetro externo dos cabos devem ser reais, preferencialmente de catálogo.',
+        'A quantidade de cabos deve incluir todos os condutores no trecho analisado.',
+        'O limite de ocupação adotado deve estar alinhado com o critério normativo ou padrão de projeto aplicável.',
+        'O fator de irregularidade tenta representar folgas e variação de acomodação dos cabos.'
+      ],
+      limitations: [
+        'Não valida capacidade de corrente, aquecimento, agrupamento, raio de curvatura, esforço de puxamento ou quantidade de curvas.',
+        'Não substitui projeto de infraestrutura elétrica, inspeção ou norma aplicável.',
+        'Não use ocupação física aceitável como aprovação elétrica completa do circuito.',
+        'Trechos longos, muitos cabos, cabos blindados ou curvas sucessivas exigem avaliação prática adicional.'
+      ],
+      memory: [
+        'Área do eletroduto = π × diâmetro interno² / 4.',
+        'Área ocupada = quantidade × área externa média do cabo × fator de irregularidade.',
+        'Ocupação percentual = área ocupada / área interna × 100.',
+        'Cabos máximos consideram limite de ocupação e reserva futura desejada.'
+      ],
+      example: [
+        'Exemplo: eletroduto de 40 mm com 8 cabos de 8 mm e reserva futura de 20%.',
+        'A ferramenta indica ocupação atual e quantidade máxima aproximada de cabos.',
+        'Depois valide curvas, puxamento, agrupamento e aquecimento do circuito.'
+      ],
+      interpretation: [
+        '“Dentro da reserva” indica folga física preliminar.',
+        '“Sem reserva” indica que passa no limite adotado, mas não deixa margem para expansão ou lançamento confortável.',
+        '“Acima do limite” exige revisão de eletroduto, quantidade de cabos, rota ou infraestrutura.'
+      ]
+    },
+    'calculadora-ventilacao-painel-eletrico.html': {
+      title: 'Complemento técnico — ventilação de painel elétrico',
+      intro: 'Esta ferramenta estima vazão de ventilação para remover calor de painel. A seleção final depende do ambiente, grau de proteção, filtros, perdas e temperatura admissível dos equipamentos.',
+      assumptions: [
+        'O calor dissipado interno deve considerar fontes, inversores, CLP, contatores, relés, transformadores e perdas dos equipamentos.',
+        'A temperatura ambiente deve representar a pior condição próxima ao painel.',
+        'A temperatura interna máxima deve respeitar os limites dos componentes instalados.',
+        'O fator de filtro/grade deve representar a perda real de vazão na instalação.'
+      ],
+      limitations: [
+        'Não substitui cálculo térmico completo, análise de IP, poeira, umidade, corrosão, insolação ou troca térmica pela carcaça.',
+        'Não valida ar-condicionado de painel, trocador ar-ar, pressurização, filtros ou manutenção preventiva.',
+        'Não use para painéis em área agressiva, externa, classificada ou com grau IP crítico sem engenharia específica.',
+        'Ventilação insuficiente pode reduzir vida útil de eletrônicos e causar falhas intermitentes.'
+      ],
+      memory: [
+        'A vazão mínima é estimada a partir da dissipação térmica e diferença admissível de temperatura.',
+        'A vazão com margem aplica fator de segurança.',
+        'A vazão recomendada compensa perdas por filtro e grade.',
+        'Quanto menor a diferença entre temperatura interna máxima e ambiente, maior a vazão necessária.'
+      ],
+      example: [
+        'Exemplo: painel com 850 W dissipados, ambiente de 35 °C, temperatura interna desejada de 45 °C e filtro com perda de 25%.',
+        'A ferramenta estima a vazão mínima e compara com ventilador existente.',
+        'Depois valide IP, filtros, manutenção, posição dos ventiladores e temperatura real medida.'
+      ],
+      interpretation: [
+        '“Atende estimado” indica que a vazão existente supera a vazão calculada nas premissas digitadas.',
+        '“Aumentar ventilação” exige revisar ventilador, filtros, ar-condicionado de painel, dissipação e ambiente.',
+        'Em painéis críticos, confirme a temperatura real com medição e histórico de falhas.'
+      ]
+    },
+    'checklist-painel-eletrico-industrial.html': {
+      title: 'Complemento técnico — checklist de painel elétrico industrial',
+      intro: 'O checklist ajuda a organizar uma inspeção preliminar, mas não substitui inspeção formal, ensaios, prontuário, ART ou liberação de segurança.',
+      assumptions: [
+        'As respostas devem ser preenchidas por pessoa competente, com acesso ao painel, documentação e condição real de instalação.',
+        'Itens marcados como não aplicável devem ser justificados quando houver auditoria ou liberação formal.',
+        'Pendências críticas devem ser tratadas antes de energização, manutenção ou entrega do painel.',
+        'O checklist deve ser complementado por medições e inspeções físicas quando necessário.'
+      ],
+      limitations: [
+        'Não substitui NR-10, projeto elétrico, laudo, ensaios dielétricos, termografia, inspeção por profissional habilitado ou procedimento interno.',
+        'Não garante conformidade normativa completa apenas pela marcação dos itens.',
+        'Não use “sem pendências” como autorização automática de energização ou intervenção.',
+        'Painéis com risco elevado exigem bloqueio, sinalização, documentação e análise específica.'
+      ],
+      memory: [
+        'O resumo considera itens aplicáveis, itens OK, pendências totais e pendências críticas.',
+        'Pendência crítica tem prioridade maior que percentual geral de avanço.',
+        'O registro copiado deve ser anexado a evidências, fotos, medições e responsáveis quando usado em rotina real.',
+        'A interpretação deve considerar a criticidade do painel e a etapa do trabalho.'
+      ],
+      example: [
+        'Exemplo: painel de automação revisado antes de start-up, com verificação de identificação, aterramento, proteções, limpeza e documentação.',
+        'Marque cada item, copie o resumo e trate pendências críticas antes da liberação.',
+        'Use fotos e medições como evidência complementar.'
+      ],
+      interpretation: [
+        'Pendência crítica deve impedir liberação até tratamento e reavaliação.',
+        'Pendências comuns devem gerar plano de ação, prazo e responsável.',
+        'Sem pendências marcadas indica apenas resultado do checklist preenchido, não certificação do painel.'
+      ]
+    },
+    'checklist-nova-nr10.html': {
+      title: 'Complemento técnico — checklist orientativo NR-10',
+      intro: 'Este checklist ajuda a organizar uma verificação preliminar relacionada à NR-10. Ele não substitui interpretação legal, auditoria, prontuário, treinamentos ou responsabilidade técnica.',
+      assumptions: [
+        'As respostas devem refletir evidências reais: documentos, treinamentos, procedimentos, inspeções e condições de campo.',
+        'Itens não aplicáveis precisam de justificativa técnica ou administrativa quando usados em auditoria.',
+        'Pendências devem ser tratadas por responsáveis definidos e com prazo.',
+        'A avaliação deve considerar a versão vigente da NR-10 e requisitos internos da empresa.'
+      ],
+      limitations: [
+        'Não substitui consultoria legal/técnica, auditoria de segurança, laudo, prontuário das instalações elétricas ou capacitação obrigatória.',
+        'Não garante conformidade apenas pelo percentual de itens marcados.',
+        'Não use para autorizar trabalho energizado, liberação de acesso ou intervenção elétrica.',
+        'Requisitos de segurança elétrica devem ser avaliados por profissional habilitado e equipe competente.'
+      ],
+      memory: [
+        'O percentual é calculado a partir dos itens aplicáveis marcados como atendidos.',
+        'A leitura do resultado deve considerar pendências críticas, evidências e documentação.',
+        'Itens pendentes devem virar plano de ação, não apenas observação.',
+        'O resumo copiado é registro auxiliar, não documento legal autossuficiente.'
+      ],
+      example: [
+        'Exemplo: revisão interna antes de auditoria de segurança elétrica na planta.',
+        'Preencha os itens com base em evidências, copie o resumo e anexe documentos de suporte.',
+        'Direcione pendências para responsável técnico, segurança do trabalho ou manutenção elétrica.'
+      ],
+      interpretation: [
+        'Percentual alto não elimina pendências críticas.',
+        'Qualquer item essencial pendente deve gerar ação antes de intervenção ou liberação.',
+        'Use o checklist como apoio de gestão, não como declaração final de conformidade.'
+      ]
+    },
+    "calculadora-calibracao-transmissor-pressao.html": {
+          "title": "Complemento técnico — calibração de transmissor de pressão",
+          "intro": "Use este complemento para interpretar o erro do transmissor de pressão como conferência de campo, sem transformar o resultado em certificado ou liberação automática.",
+          "assumptions": [
+                "A referência de pressão deve ser rastreável e compatível com a faixa e a exatidão requerida.",
+                "LRV, URV, span, unidade e pontos de teste devem corresponder à configuração real do transmissor e do sistema.",
+                "O erro deve ser comparado com a tolerância definida no procedimento, no processo ou na especificação do instrumento.",
+                "Subida, descida e repetibilidade devem ser consideradas quando o procedimento exigir avaliação de histerese."
+          ],
+          "limitations": [
+                "A ferramenta não emite certificado, não valida rastreabilidade e não substitui procedimento de calibração aprovado.",
+                "Não avalia estabilidade, histerese completa, linearidade em todos os pontos, efeito de temperatura, posição de montagem ou dano mecânico.",
+                "Não use o status como aprovação final de malha crítica, SIS, proteção de equipamento ou processo regulado.",
+                "Para instrumentos críticos, registre as found/as left, incerteza, padrão utilizado e responsável pela calibração."
+          ],
+          "memory": [
+                "Span = URV − LRV.",
+                "Sinal esperado em mA = 4 + 16 × ((pressão aplicada − LRV) / span).",
+                "Erro = indicação ou corrente convertida − valor de referência.",
+                "Decisão preliminar: comparar |erro| com tolerância/EMP definida."
+          ],
+          "example": [
+                "Exemplo: transmissor 0 a 10 bar, ponto aplicado 5 bar, corrente medida próxima de 12 mA e tolerância de processo definida.",
+                "Calcule o erro no ponto, compare com a tolerância e registre se o ajuste é necessário.",
+                "Se o erro estiver próximo do limite, repita o ponto e confira vazamento, zero, span e estabilidade."
+          ],
+          "interpretation": [
+                "Aprovado significa apenas que o ponto calculado ficou dentro do critério informado.",
+                "Reprovado ou próximo do limite exige repetir o teste, conferir padrão, conexões, unidade e configuração antes de ajustar.",
+                "Em malhas críticas, a decisão final deve seguir procedimento, certificado e validação do responsável."
+          ]
+    } ,
+    "calculadora-calibracao-transmissor-temperatura.html": {
+          "title": "Complemento técnico — calibração de transmissor de temperatura",
+          "intro": "Este complemento ajuda a conferir erro em °C e mA em transmissores RTD/termopar, considerando que o resultado é apoio preliminar de calibração.",
+          "assumptions": [
+                "O tipo de sensor, faixa configurada, unidade e compensação devem ser os mesmos usados no transmissor.",
+                "A referência de temperatura ou simulador deve ser adequada ao ponto testado e ao erro esperado.",
+                "Para RTD, a ligação 2/3/4 fios precisa estar correta; para termopar, a junta fria deve ser considerada.",
+                "A tolerância informada deve vir do procedimento, processo ou especificação aplicável."
+          ],
+          "limitations": [
+                "A ferramenta não valida imersão, gradiente térmico, estabilização, compensação de junta fria, cabo de extensão ou classe do sensor.",
+                "Não substitui calibração com padrão rastreável nem certificado metrológico.",
+                "Não use para liberar malha de temperatura crítica sem teste completo da cadeia sensor-transmissor-sistema.",
+                "Resultados instáveis devem ser investigados antes de qualquer ajuste."
+          ],
+          "memory": [
+                "Span = URV − LRV.",
+                "mA esperado = 4 + 16 × ((temperatura de referência − LRV) / span).",
+                "Erro em °C = indicação − referência.",
+                "Erro em mA = corrente medida − corrente esperada."
+          ],
+          "example": [
+                "Exemplo: transmissor 0 a 200 °C, referência 100 °C, indicação 100,4 °C e corrente medida 12,04 mA.",
+                "Compare o erro em °C com a tolerância e confira se o erro em mA é coerente.",
+                "Se houver diferença entre indicação e mA, investigue escala do transmissor, cartão ou supervisório."
+          ],
+          "interpretation": [
+                "Resultado dentro da tolerância é uma aprovação preliminar do ponto calculado.",
+                "Erro acima da tolerância exige verificar sensor, ligação, padrão, estabilização e escala.",
+                "Em controle de qualidade, segurança ou energia, use procedimento formal e rastreabilidade."
+          ]
+    } ,
+    "calculadora-calibracao-manometro.html": {
+          "title": "Complemento técnico — calibração de manômetro",
+          "intro": "Use este complemento para interpretar erro, histerese e limite por classe de exatidão em manômetros industriais.",
+          "assumptions": [
+                "O fundo de escala, classe/EMP e unidade devem corresponder ao manômetro real.",
+                "A pressão de referência deve ser aplicada com padrão adequado, sem vazamento e com estabilização.",
+                "Leituras de subida e descida devem ser feitas no mesmo ponto para avaliar histerese quando aplicável.",
+                "A tolerância adicional só deve ser usada se estiver prevista no procedimento."
+          ],
+          "limitations": [
+                "Não substitui certificado, rastreabilidade, inspeção visual, teste de vazamento, avaliação de ponteiro, visor e conexão.",
+                "Não valida compatibilidade com fluido, oxigênio, processo corrosivo, selo remoto ou pulsação.",
+                "Não use para liberar manômetro de segurança sem procedimento formal e identificação do ponto de uso.",
+                "Manômetros danificados, travados ou com batida devem ser reprovados independentemente do cálculo."
+          ],
+          "memory": [
+                "Limite por classe = fundo de escala × classe% / 100 + tolerância adicional.",
+                "Erro subida = indicação subida − referência.",
+                "Erro descida = indicação descida − referência.",
+                "Histerese = indicação subida − indicação descida no mesmo ponto."
+          ],
+          "example": [
+                "Exemplo: manômetro 0 a 10 bar, classe 1,0%, ponto de 5 bar, leitura 5,05 bar na subida e 4,98 bar na descida.",
+                "Compare os erros e a histerese com o limite calculado.",
+                "Se houver histerese relevante, confira mecanismo, pulsação, atrito e condição do instrumento."
+          ],
+          "interpretation": [
+                "Dentro do limite indica condição preliminar favorável para o ponto analisado.",
+                "Erro ou histerese fora do limite deve gerar reprovação, ajuste ou substituição conforme procedimento.",
+                "A decisão final depende da criticidade do ponto e do plano de calibração."
+          ]
+    } ,
+    "calculadora-calibracao-pressostato.html": {
+          "title": "Complemento técnico — calibração de pressostato",
+          "intro": "Este complemento ajuda a interpretar ponto de atuação, reset e histerese de pressostatos usados em alarme, controle ou proteção.",
+          "assumptions": [
+                "Setpoint, reset, unidade e tolerância devem vir do procedimento ou da função do pressostato no processo.",
+                "A pressão deve ser aplicada lentamente na direção correta para identificar atuação e retorno.",
+                "O contato elétrico deve ser testado junto com o elemento mecânico quando aplicável.",
+                "A repetibilidade deve ser avaliada em mais de um ciclo quando a função for crítica."
+          ],
+          "limitations": [
+                "A ferramenta não valida contato colado, bounce, isolamento elétrico, grau de proteção, vibração ou compatibilidade com fluido.",
+                "Não substitui teste funcional no circuito de alarme/intertravamento.",
+                "Não use para liberar proteção de máquina, bomba, compressor, caldeira ou vaso sem teste formal.",
+                "Pressostato com instabilidade ou atuação irregular deve ser investigado mesmo se um ponto parecer aprovado."
+          ],
+          "memory": [
+                "Erro de atuação = pressão de atuação medida − setpoint.",
+                "Erro de reset = pressão de reset medida − reset esperado, quando aplicável.",
+                "Diferencial/histerese = atuação − reset.",
+                "Decisão preliminar: comparar erros com tolerância informada."
+          ],
+          "example": [
+                "Exemplo: pressostato ajustado para atuar em 6 bar e resetar em 5 bar.",
+                "Registre pressão de atuação, reset e condição do contato elétrico.",
+                "Se o contato atua dentro da tolerância, ainda execute teste no circuito real quando for alarme ou intertravamento."
+          ],
+          "interpretation": [
+                "Status favorável vale para os valores informados, não para toda a função de segurança ou controle.",
+                "Erro no setpoint ou reset exige ajuste, repetição do teste e registro as left.",
+                "Em função crítica, confirme a lógica no CLP/relé e a resposta do equipamento final."
+          ]
+    } ,
+    "calculadora-calibracao-valvula-controle.html": {
+          "title": "Complemento técnico — calibração de válvula de controle",
+          "intro": "Use este complemento para interpretar curso, posição esperada e erro de válvulas de controle, atuadores e posicionadores.",
+          "assumptions": [
+                "A relação sinal-posição deve corresponder à ação direta/reversa configurada no posicionador.",
+                "O curso mecânico, zero, span, ar de instrumentos e alimentação do posicionador devem estar em condição adequada.",
+                "A tolerância deve considerar criticidade da malha, tipo de válvula, rangeabilidade e procedimento de manutenção.",
+                "O teste deve registrar subida e descida quando histerese, agarramento ou zona morta forem relevantes."
+          ],
+          "limitations": [
+                "A ferramenta não avalia vazamento de sede, atrito, stick-slip, assinatura dinâmica, Cv real, cavitação ou estabilidade da malha.",
+                "Não substitui calibração do posicionador, teste de curso completo, ensaio de estanqueidade ou comissionamento da malha.",
+                "Não use para liberar válvula de shutdown, controle crítico ou sistema de segurança sem teste funcional formal.",
+                "Problemas pneumáticos e mecânicos podem existir mesmo com erro estático pequeno."
+          ],
+          "memory": [
+                "Posição esperada = função do sinal de entrada e da ação configurada.",
+                "Erro de posição = posição medida − posição esperada.",
+                "Desvio em % do curso deve ser comparado com tolerância definida.",
+                "Leitura em múltiplos pontos ajuda a identificar linearidade, histerese e agarramento."
+          ],
+          "example": [
+                "Exemplo: válvula 4-20 mA com ação direta, sinal 12 mA e posição esperada de 50%.",
+                "Compare a posição real indicada pelo posicionador ou escala de curso.",
+                "Se houver desvio, verifique ar de instrumentos, I/P, posicionador, haste, atrito e calibração."
+          ],
+          "interpretation": [
+                "Status favorável indica apenas que o ponto está coerente com a tolerância informada.",
+                "Atenção ou reprovação exige revisar mecânica, pneumática, posicionador e sinal antes de liberar a malha.",
+                "Válvulas críticas devem passar por teste funcional e registro conforme procedimento."
+          ]
+    } ,
+    "calculadora-incerteza-calibracao-tur-tar.html": {
+          "title": "Complemento técnico — incerteza de calibração, TUR e TAR",
+          "intro": "Este complemento ajuda a interpretar incerteza expandida, erro, TUR/TAR e decisão preliminar de conformidade metrológica.",
+          "assumptions": [
+                "As incertezas informadas devem estar na mesma unidade do mensurando ou convertidas corretamente.",
+                "O fator de abrangência e o nível de confiança devem seguir o procedimento do laboratório ou da empresa.",
+                "A tolerância/EMP precisa ser o critério aplicável ao instrumento, processo ou requisito do cliente.",
+                "TUR/TAR só fazem sentido quando as contribuições e tolerâncias foram definidas de forma consistente."
+          ],
+          "limitations": [
+                "A ferramenta não substitui balanço de incerteza formal, certificado acreditado ou procedimento metrológico aprovado.",
+                "Não valida distribuição estatística, correlação, repetibilidade real, resolução, deriva, padrão, ambiente ou método de medição.",
+                "Não use TUR/TAR isoladamente para aprovar instrumento crítico sem regra de decisão definida.",
+                "Critérios de aceitação devem ser definidos antes da calibração, não depois do resultado."
+          ],
+          "memory": [
+                "Incerteza combinada: raiz da soma dos quadrados das contribuições independentes.",
+                "Incerteza expandida: U = k × uc.",
+                "TUR típico: tolerância / incerteza expandida.",
+                "TAR compara tolerância com erro observado mais componentes relevantes conforme critério adotado."
+          ],
+          "example": [
+                "Exemplo: instrumento com tolerância ±1,0 unidade e incerteza expandida ±0,25 unidade.",
+                "O TUR aproximado é 4:1, mas a decisão depende também do erro medido e da regra de decisão.",
+                "Se o erro ficar próximo do limite, trate como zona de atenção e documente a decisão."
+          ],
+          "interpretation": [
+                "TUR alto melhora a confiança, mas não dispensa regra de decisão e rastreabilidade.",
+                "Resultado aprovado com incerteza próxima do limite deve ser tratado com cautela.",
+                "Incerteza mal informada pode gerar falsa aprovação ou reprovação indevida."
+          ]
+    } ,
+    "calculadora-incerteza-calibracao.html": {
+          "title": "Complemento técnico — incerteza de calibração",
+          "intro": "Use este complemento para interpretar uma estimativa de incerteza combinada e expandida em calibração industrial.",
+          "assumptions": [
+                "Todas as contribuições devem estar na mesma unidade ou devidamente convertidas.",
+                "As contribuições devem representar padrão, resolução, repetibilidade, deriva, ambiente e método quando aplicável.",
+                "O fator k deve refletir o critério de abrangência usado no procedimento.",
+                "A tolerância informada precisa ser o critério de aceitação do instrumento ou processo."
+          ],
+          "limitations": [
+                "A ferramenta não substitui análise metrológica completa ou certificado de calibração.",
+                "Não avalia correlações, graus de liberdade, distribuição estatística, método de ensaio ou rastreabilidade.",
+                "Não use como única base para declaração de conformidade em medições críticas.",
+                "Contribuições omitidas tornam a incerteza subestimada."
+          ],
+          "memory": [
+                "uc = raiz da soma dos quadrados das contribuições independentes.",
+                "U = k × uc.",
+                "TUR = tolerância / U, quando a tolerância e U estão na mesma unidade.",
+                "A decisão deve considerar erro medido, U e regra de aceitação."
+          ],
+          "example": [
+                "Exemplo: padrão, resolução e repetibilidade informados em bar para um manômetro.",
+                "Calcule U e compare com a tolerância do instrumento.",
+                "Se U for alta em relação à tolerância, revise padrão, método ou critério."
+          ],
+          "interpretation": [
+                "Incerteza menor aumenta confiança, mas não aprova sozinha o instrumento.",
+                "TUR baixo indica que o padrão ou método pode não ser adequado ao critério.",
+                "Use o resultado como apoio ao procedimento metrológico."
+          ]
+    } ,
+    "calculadora-erro-calibracao.html": {
+          "title": "Complemento técnico — erro de calibração de instrumentos",
+          "intro": "Este complemento ajuda a interpretar erro, tolerância e decisão preliminar por ponto em calibração de instrumentos industriais.",
+          "assumptions": [
+                "Os pontos de referência e medidos devem estar na mesma unidade e representar leituras estabilizadas.",
+                "A tolerância pode ser por valor absoluto, % do ponto ou % do span conforme procedimento.",
+                "LRV/URV devem representar a escala do instrumento quando o critério usar span.",
+                "A decisão depende do maior erro absoluto e do critério de aceitação definido antes do teste."
+          ],
+          "limitations": [
+                "A ferramenta não substitui certificado, rastreabilidade, análise de incerteza ou procedimento formal.",
+                "Não avalia histerese completa, repetibilidade, linearidade, estabilidade ou influência ambiental se esses dados não forem inseridos.",
+                "Não use para emitir decisão final em instrumento crítico sem regra de decisão e responsável técnico.",
+                "Pontos insuficientes podem mascarar erro em parte da faixa."
+          ],
+          "memory": [
+                "Erro por ponto = valor medido − valor de referência.",
+                "Erro percentual pode ser calculado sobre o ponto ou sobre o span, conforme critério selecionado.",
+                "Maior erro absoluto define a pior condição da tabela.",
+                "Status geral depende da comparação do erro com a tolerância informada."
+          ],
+          "example": [
+                "Exemplo: instrumento 0 a 100 unidades com pontos em 0, 25, 50, 75 e 100%.",
+                "Informe referência, leitura medida e tolerância do plano de calibração.",
+                "Se apenas um ponto reprovar, investigue linearidade, ajuste e repetição do ponto."
+          ],
+          "interpretation": [
+                "Aprovado indica que os pontos digitados respeitam o critério informado.",
+                "Reprovado exige revisar dados, repetir medição e decidir ajuste/substituição conforme procedimento.",
+                "A decisão final deve considerar incerteza e criticidade da aplicação."
+          ]
+    } ,
+    "calculadora-erro-total-malha-instrumentacao.html": {
+          "title": "Complemento técnico — erro total de malha de instrumentação",
+          "intro": "Use este complemento para interpretar erro combinado de transmissor, indicador, cartão, conversores e demais componentes da malha.",
+          "assumptions": [
+                "Cada componente deve ter erro/tolerância informado na mesma base ou convertido para a unidade comum.",
+                "O span e a tolerância do processo devem estar definidos antes da soma dos erros.",
+                "A combinação RSS pressupõe contribuições independentes; soma direta é mais conservadora.",
+                "Os componentes considerados devem representar a cadeia real de medição."
+          ],
+          "limitations": [
+                "A ferramenta não substitui teste de loop completo, estudo metrológico ou validação da cadeia em campo.",
+                "Não avalia erro de instalação, ruído, aterramento, filtro, resolução do CLP, escala do supervisório ou deriva temporal se não forem considerados.",
+                "Não use para liberar malha de segurança ou qualidade crítica sem ensaio real ponta a ponta.",
+                "Omissão de componentes reduz artificialmente o erro total."
+          ],
+          "memory": [
+                "Erro total por soma direta = soma dos módulos dos erros/contribuições.",
+                "Erro total por RSS = raiz da soma dos quadrados das contribuições independentes.",
+                "Erro percentual = erro absoluto / span × 100.",
+                "Status preliminar compara o erro total com a tolerância permitida."
+          ],
+          "example": [
+                "Exemplo: transmissor, isolador, cartão analógico e indicador local em uma malha 4-20 mA.",
+                "Some as contribuições ou use RSS conforme critério definido.",
+                "Se o erro total se aproximar da tolerância do processo, revise instrumentos, calibração e arquitetura."
+          ],
+          "interpretation": [
+                "Resultado favorável indica compatibilidade preliminar da cadeia informada.",
+                "Atenção ou reprovação mostra que a malha pode não atender à tolerância de processo.",
+                "Confirme em teste de loop e documentação antes de usar em decisão operacional."
+          ]
+    } ,
+    "calculadora-calibracao-phmetro.html": {
+          "title": "Complemento técnico — calibração de pHmetro",
+          "intro": "Este complemento ajuda a interpretar offset, slope e erro de pH em calibração de pHmetro ou transmissor de pH.",
+          "assumptions": [
+                "Buffers devem estar dentro da validade, na temperatura correta e sem contaminação.",
+                "O eletrodo deve estar limpo, hidratado e estabilizado antes da leitura.",
+                "A compensação de temperatura deve estar ativa ou considerada no procedimento.",
+                "A tolerância deve refletir o processo, o instrumento e o critério interno."
+          ],
+          "limitations": [
+                "A ferramenta não avalia envelhecimento do eletrodo, tempo de resposta, junção obstruída, ruído, aterramento ou contaminação de amostra.",
+                "Não substitui calibração com buffers rastreáveis e procedimento adequado.",
+                "Não use para liberar controle de neutralização ou qualidade sem conferir resposta no processo.",
+                "Slope ou offset fora de faixa deve gerar manutenção/substituição, não apenas ajuste matemático."
+          ],
+          "memory": [
+                "Erro de pH = leitura medida − valor do buffer/referência.",
+                "Slope representa a sensibilidade do eletrodo em relação ao comportamento ideal.",
+                "Offset indica desvio próximo ao ponto neutro ou ponto de referência.",
+                "Status preliminar compara erro/slope/offset com tolerâncias informadas."
+          ],
+          "example": [
+                "Exemplo: buffers pH 4, 7 e 10, leituras estabilizadas e tolerância definida pelo processo.",
+                "Calcule erro nos pontos e observe slope e offset.",
+                "Se o slope estiver baixo, avalie limpeza, hidratação ou troca do eletrodo."
+          ],
+          "interpretation": [
+                "Aprovado indica coerência preliminar nos pontos informados.",
+                "Atenção em slope ou offset pode indicar eletrodo envelhecido ou procedimento inadequado.",
+                "Em controle crítico de pH, confirme no processo e registre o procedimento."
+          ]
+    } ,
+    "calculadora-calibracao-transmissor-orp.html": {
+          "title": "Complemento técnico — calibração de transmissor ORP",
+          "intro": "Use este complemento para interpretar erro em mV e sinal de saída em transmissores ORP.",
+          "assumptions": [
+                "A solução padrão ORP deve estar dentro da validade e na temperatura especificada.",
+                "O eletrodo deve estar limpo, estabilizado e compatível com o processo.",
+                "A escala mV e a saída 4-20 mA devem corresponder à configuração real do transmissor.",
+                "A tolerância deve refletir o controle químico ou requisito de qualidade aplicável."
+          ],
+          "limitations": [
+                "A ferramenta não avalia tempo de resposta, contaminação, aterramento, referência do eletrodo ou condição da amostra.",
+                "Não substitui procedimento de calibração/verificação com padrão adequado.",
+                "Não use para liberar dosagem química, sanitização ou controle crítico sem teste de processo.",
+                "Leituras ORP podem depender fortemente da condição química da amostra."
+          ],
+          "memory": [
+                "Erro em mV = indicação medida − referência aplicada.",
+                "mA esperado é calculado pela escala LRV/URV configurada no transmissor.",
+                "Erro em mA compara corrente medida com corrente esperada.",
+                "Status preliminar compara erro com tolerância informada."
+          ],
+          "example": [
+                "Exemplo: padrão ORP conhecido, transmissor configurado em faixa mV e corrente medida no loop.",
+                "Compare erro em mV e coerência da saída 4-20 mA.",
+                "Se a leitura demorar a estabilizar, investigue eletrodo e solução antes de ajustar."
+          ],
+          "interpretation": [
+                "Resultado favorável é apenas verificação preliminar do ponto testado.",
+                "Erro fora do limite exige revisar padrão, eletrodo, temperatura e configuração.",
+                "Em controle químico crítico, valide resposta real no processo."
+          ]
+    } ,
+    "calculadora-calibracao-condutivimetro.html": {
+          "title": "Complemento técnico — calibração de condutivímetro",
+          "intro": "Este complemento ajuda a interpretar erro de condutividade, constante de célula e sinal de transmissor.",
+          "assumptions": [
+                "A solução padrão deve estar dentro da validade e na temperatura de referência ou compensada.",
+                "A constante de célula, faixa e unidade devem corresponder ao sensor/transmissor real.",
+                "A célula deve estar limpa, sem bolhas e adequada à faixa de medição.",
+                "A tolerância deve refletir água, processo, qualidade ou requisito interno aplicável."
+          ],
+          "limitations": [
+                "A ferramenta não avalia contaminação, polarização, incrustação, compensação de temperatura ou instalação em linha.",
+                "Não substitui calibração/verificação com solução padrão e procedimento rastreável.",
+                "Não use para liberar água crítica, CIP, tratamento químico ou qualidade sem validação do processo.",
+                "Unidades µS/cm, mS/cm e TDS devem ser conferidas com atenção."
+          ],
+          "memory": [
+                "Erro = leitura medida − referência da solução padrão.",
+                "Erro percentual = erro / referência × 100, quando aplicável.",
+                "mA esperado segue a escala LRV/URV configurada.",
+                "Status preliminar compara erro com tolerância informada."
+          ],
+          "example": [
+                "Exemplo: solução padrão 1413 µS/cm, leitura medida e faixa configurada no transmissor.",
+                "Compare erro absoluto e percentual com o critério de aceitação.",
+                "Se houver desvio alto, limpe a célula e confira temperatura antes de ajustar."
+          ],
+          "interpretation": [
+                "Aprovado indica coerência com a tolerância informada no ponto testado.",
+                "Atenção ou reprovação exige conferir solução, temperatura, célula e unidade.",
+                "Em aplicações de qualidade, documente padrão, lote e temperatura."
+          ]
+    } ,
+    "calculadora-calibracao-balanca-industrial.html": {
+          "title": "Complemento técnico — calibração de balança industrial",
+          "intro": "Use este complemento para interpretar erro de indicação em balanças industriais como triagem metrológica preliminar.",
+          "assumptions": [
+                "Os pesos ou massas padrão devem ser adequados à faixa e rastreáveis quando o procedimento exigir.",
+                "A balança deve estar nivelada, limpa, aquecida e em condição estável.",
+                "Os pontos devem cobrir a faixa de uso real, incluindo cargas próximas da operação.",
+                "A tolerância deve ser definida por processo, legislação aplicável, procedimento ou especificação interna."
+          ],
+          "limitations": [
+                "A ferramenta não substitui ensaio metrológico completo, verificação legal, certificado ou ajuste por técnico habilitado.",
+                "Não avalia excentricidade, repetibilidade, linearidade completa, vibração, vento, temperatura ou condição estrutural.",
+                "Não use para liberar balança fiscal, dosagem crítica ou qualidade sem procedimento formal.",
+                "A base mecânica e as células de carga podem causar erro mesmo quando um ponto isolado parece aprovado."
+          ],
+          "memory": [
+                "Erro = indicação da balança − massa de referência.",
+                "Erro percentual = erro / massa de referência × 100, quando aplicável.",
+                "Status preliminar compara erro com tolerância informada.",
+                "Vários pontos ajudam a avaliar linearidade ao longo da faixa."
+          ],
+          "example": [
+                "Exemplo: referência de 500 kg, indicação de 501 kg e tolerância definida para o processo.",
+                "Calcule o erro e compare com o limite permitido.",
+                "Se a aplicação for dosagem, confira também repetibilidade e excentricidade."
+          ],
+          "interpretation": [
+                "Resultado favorável é apenas triagem do ponto informado.",
+                "Erro fora do limite deve gerar verificação de base, célula, indicador e ajuste.",
+                "Aplicações comerciais ou críticas exigem critérios metrológicos formais."
+          ]
+    } ,
+    "calculadora-calibracao-cartao-analogico-clp.html": {
+          "title": "Complemento técnico — calibração de cartão analógico CLP/DCS",
+          "intro": "Este complemento ajuda a interpretar erro de entrada/saída analógica em cartões de CLP ou DCS.",
+          "assumptions": [
+                "A escala raw, engenharia e sinal elétrico devem corresponder à configuração real do cartão.",
+                "O simulador ou calibrador deve ser adequado para mA, V, RTD ou termopar conforme o canal.",
+                "O ponto lido deve ser conferido no mesmo local usado para controle ou supervisão.",
+                "A tolerância deve considerar resolução, conversão A/D-D/A, escala e criticidade da malha."
+          ],
+          "limitations": [
+                "A ferramenta não avalia ruído, aterramento, isolamento, filtros, tempo de amostragem, módulo defeituoso ou configuração do software.",
+                "Não substitui teste de loop, backup de programa, procedimento de comissionamento ou validação do sistema.",
+                "Não use para alterar cartão de malha crítica sem controle de mudanças.",
+                "Erro de escala no supervisório pode permanecer mesmo se o cartão estiver correto."
+          ],
+          "memory": [
+                "Sinal esperado é convertido entre engenharia, mA/V e raw conforme escala configurada.",
+                "Erro = valor lido − valor de referência/aplicado.",
+                "Erro percentual pode ser calculado sobre o span da escala.",
+                "Status preliminar compara erro com tolerância informada."
+          ],
+          "example": [
+                "Exemplo: entrada 4-20 mA, raw 0 a 27648, ponto aplicado 12 mA.",
+                "Compare raw/engenharia esperado com leitura no CLP.",
+                "Se houver erro, investigue escala, borne, cartão, filtro e aterramento."
+          ],
+          "interpretation": [
+                "Resultado favorável indica coerência preliminar entre sinal e leitura.",
+                "Desvio exige revisar escala, tipo de canal, range, fiação e lógica.",
+                "Em malhas críticas, valide ponta a ponta com teste de loop."
+          ]
+    } ,
+    "calculadora-calibracao-transmissor-nivel-dp.html": {
+          "title": "Complemento técnico — calibração de transmissor de nível DP",
+          "intro": "Este complemento ajuda a interpretar pontos de calibração de transmissores de nível por pressão diferencial.",
+          "assumptions": [
+                "LRV e URV devem ser o range já definido para a aplicação de nível.",
+                "A densidade, perna seca/molhada e ligação HP/LP devem estar corretas antes da calibração.",
+                "O DP aplicado/medido deve representar o ponto de nível testado.",
+                "A tolerância deve considerar processo, altura, densidade e criticidade da malha."
+          ],
+          "limitations": [
+                "A ferramenta não calcula por si só a instalação real de tanque fechado, selos remotos, capilares ou perna molhada.",
+                "Não substitui cálculo de range, inspeção de tubulação de impulso, equalização e teste de loop.",
+                "Não use para liberar nível crítico sem validar montagem, densidade e lógica de alarme/intertravamento.",
+                "Offset de instalação incorreto pode aprovar a calibração mas errar o nível real."
+          ],
+          "memory": [
+                "Span = URV − LRV.",
+                "DP esperado = LRV + span × nível% / 100.",
+                "mA esperado = 4 + 16 × nível% / 100.",
+                "Erro DP = DP medido − DP esperado."
+          ],
+          "example": [
+                "Exemplo: range DP definido de −100 a 400 mbar e teste em 50% de nível.",
+                "Calcule DP esperado, corrente esperada e erro do ponto.",
+                "Se o sentido do sinal estiver invertido, confira HP/LP e configuração do transmissor."
+          ],
+          "interpretation": [
+                "Aprovado no ponto não garante que o range do tanque esteja correto.",
+                "Erro ou sinal invertido exige revisar montagem, LRV/URV e densidade.",
+                "Em níveis críticos, confirme alarmes e leitura no sistema."
+          ]
+    } ,
+    "calculadora-calibracao-transmissor-dp-vazao.html": {
+          "title": "Complemento técnico — calibração de transmissor DP de vazão",
+          "intro": "Este complemento ajuda a interpretar pontos de calibração em transmissores de vazão por pressão diferencial com extração de raiz quadrada.",
+          "assumptions": [
+                "DP máximo, vazão máxima e ponto de teste devem corresponder ao range configurado.",
+                "A raiz quadrada deve estar aplicada em apenas um local: transmissor, CLP ou supervisório, conforme projeto.",
+                "O DP aplicado deve ser estável e compatível com o ponto de vazão simulado.",
+                "A tolerância deve ser definida em % de vazão, % do span ou critério do procedimento."
+          ],
+          "limitations": [
+                "A ferramenta não valida placa de orifício, trechos retos, Reynolds, densidade, compensação ou instalação do elemento primário.",
+                "Não substitui calibração do transmissor, verificação da extração de raiz e teste de loop.",
+                "Não use para alterar medição fiscal, qualidade ou processo crítico sem procedimento formal.",
+                "Aplicar raiz quadrada duas vezes ou em local errado gera erro grande de vazão."
+          ],
+          "memory": [
+                "DP esperado = DP máximo × (vazão% / 100)².",
+                "mA esperado = 4 + 16 × vazão% / 100 quando a saída representa vazão linearizada.",
+                "Erro de vazão compara vazão calculada pela corrente com o ponto de teste.",
+                "Status preliminar compara erro com tolerância informada."
+          ],
+          "example": [
+                "Exemplo: DP máximo 250 mbar e ponto de vazão de 50%.",
+                "O DP esperado é 25% do DP máximo, ou 62,5 mbar.",
+                "Confira se a corrente esperada representa 50% de vazão, não 25% de DP."
+          ],
+          "interpretation": [
+                "Resultado favorável confirma apenas coerência entre DP, corrente e ponto digitado.",
+                "Desvio exige revisar raiz quadrada, escala, DP aplicado e configuração do sistema.",
+                "Em vazão crítica, validar também elemento primário e compensações de processo."
+          ]
+    } ,
+    "calculadora-calibracao-medidor-vazao-magnetico.html": {
+          "title": "Complemento técnico — calibração de medidor de vazão magnético",
+          "intro": "Use este complemento para interpretar verificação de medidor magnético e saída associada.",
+          "assumptions": [
+                "O fluido deve ter condutividade adequada e tubo cheio na condição de medição.",
+                "A referência de vazão, simulador ou comparação deve ser compatível com a incerteza requerida.",
+                "A escala, unidade, diâmetro e saída devem corresponder ao instrumento instalado.",
+                "A tolerância deve considerar processo, medidor, instalação e critério interno."
+          ],
+          "limitations": [
+                "A ferramenta não valida aterramento, anéis de aterramento, revestimento, eletrodos, bolhas, tubo parcialmente cheio ou perfil de escoamento.",
+                "Não substitui calibração em bancada, verificação com padrão de vazão ou diagnóstico do fabricante.",
+                "Não use para medição fiscal, dosagem crítica ou qualidade sem procedimento formal.",
+                "Instalação inadequada pode gerar erro mesmo com eletrônica aparentemente correta."
+          ],
+          "memory": [
+                "Erro = vazão indicada − vazão de referência.",
+                "Erro percentual = erro / referência × 100.",
+                "Sinal esperado depende da escala de saída configurada.",
+                "Status preliminar compara o erro com a tolerância informada."
+          ],
+          "example": [
+                "Exemplo: vazão de referência de 50 m³/h e indicação do medidor no mesmo ponto.",
+                "Compare erro absoluto e percentual com a tolerância.",
+                "Se houver desvio, confira aterramento, tubo cheio, bolhas e escala."
+          ],
+          "interpretation": [
+                "Aprovado no cálculo é apenas verificação preliminar da condição informada.",
+                "Atenção ou reprovação exige investigar instalação e diagnóstico do medidor.",
+                "Aplicações críticas devem usar procedimento e padrão adequado."
+          ]
+    } ,
+    "calculadora-calibracao-medidor-vazao-coriolis.html": {
+          "title": "Complemento técnico — calibração de medidor de vazão Coriolis",
+          "intro": "Este complemento ajuda a interpretar erro de vazão em medidores Coriolis, considerando aplicação preliminar de campo.",
+          "assumptions": [
+                "A referência de massa/vazão deve ser compatível com a exatidão requerida.",
+                "Zero, densidade, bolhas, vibração e condição de tubo cheio devem estar controlados.",
+                "A escala e a unidade devem corresponder à configuração real do transmissor.",
+                "A tolerância deve considerar fluido, processo e especificação do medidor."
+          ],
+          "limitations": [
+                "A ferramenta não valida zero verification, diagnóstico interno, vibração, gás entranhado, stress mecânico ou montagem.",
+                "Não substitui calibração com padrão de vazão/massa ou procedimento do fabricante.",
+                "Não use para medição fiscal, transferência de custódia, dosagem crítica ou qualidade sem validação formal.",
+                "Mudança de fluido, densidade e regime pode afetar a medição real."
+          ],
+          "memory": [
+                "Erro = vazão indicada − vazão de referência.",
+                "Erro percentual = erro / referência × 100.",
+                "Sinal esperado depende da escala de saída configurada.",
+                "Status preliminar compara erro com tolerância."
+          ],
+          "example": [
+                "Exemplo: ponto de teste com referência gravimétrica e indicação do Coriolis.",
+                "Compare o erro com a tolerância do processo.",
+                "Se o erro variar, confira zero, bolhas, vibração e diagnóstico interno."
+          ],
+          "interpretation": [
+                "Resultado favorável não substitui verificação de instalação e diagnóstico do medidor.",
+                "Erro próximo ao limite deve ser investigado antes de ajustar.",
+                "Em medição crítica, usar procedimento metrológico formal."
+          ]
+    } ,
+    "calculadora-calibracao-medidor-vazao-ultrassonico.html": {
+          "title": "Complemento técnico — calibração de medidor de vazão ultrassônico",
+          "intro": "Use este complemento para interpretar verificação de medidor ultrassônico de vazão como triagem técnica.",
+          "assumptions": [
+                "Diâmetro, material, espessura, fluido e instalação devem estar coerentes com o medidor real.",
+                "A referência de vazão ou comparação deve ser confiável e representativa.",
+                "A qualidade de sinal/transdutores deve estar adequada antes de interpretar erro.",
+                "A tolerância deve considerar processo, instalação e tecnologia do medidor."
+          ],
+          "limitations": [
+                "A ferramenta não valida acoplamento, alinhamento, perfil de velocidade, trechos retos, bolhas, incrustação ou ruído acústico.",
+                "Não substitui comissionamento do medidor ou calibração com padrão de vazão.",
+                "Não use para medição crítica sem validar diagnóstico e instalação.",
+                "Clamp-on é especialmente sensível à instalação e dados da tubulação."
+          ],
+          "memory": [
+                "Erro = vazão indicada − vazão de referência.",
+                "Erro percentual = erro / referência × 100.",
+                "Status preliminar compara erro com tolerância informada.",
+                "A interpretação deve considerar qualidade de sinal e condição hidráulica."
+          ],
+          "example": [
+                "Exemplo: comparação com medidor padrão ou vazão conhecida em linha estável.",
+                "Calcule o erro e registre condição de sinal e instalação.",
+                "Se o erro for alto, revise acoplamento, dados da tubulação e trechos retos."
+          ],
+          "interpretation": [
+                "Aprovado no cálculo é apenas uma indicação preliminar.",
+                "Atenção exige verificar instalação, sinal e perfil de escoamento.",
+                "Aplicações críticas exigem referência de vazão e procedimento adequado."
+          ]
+    } ,
+    "calculadora-intervalo-calibracao-deriva.html": {
+          "title": "Complemento técnico — intervalo de calibração por deriva",
+          "intro": "Este complemento ajuda a interpretar tendência de deriva e sugerir intervalo preliminar de calibração.",
+          "assumptions": [
+                "Os dados históricos devem vir de calibrações comparáveis, com procedimento e padrão semelhantes.",
+                "A deriva deve ser avaliada na mesma unidade e em pontos representativos da faixa de uso.",
+                "A tolerância deve refletir criticidade do processo e requisito interno.",
+                "Eventos de manutenção, troca de sensor ou ajuste devem ser considerados na interpretação."
+          ],
+          "limitations": [
+                "A ferramenta não substitui estudo estatístico formal, análise de risco, histórico completo ou procedimento metrológico.",
+                "Não use poucos dados históricos para aumentar intervalo de instrumento crítico.",
+                "Não considera mudança de processo, ambiente, vibração, temperatura ou degradação acelerada se não forem avaliadas.",
+                "Intervalo de calibração deve ser aprovado conforme sistema de gestão da empresa."
+          ],
+          "memory": [
+                "Deriva aproximada = variação de erro ao longo do tempo.",
+                "Tempo até limite = margem disponível / taxa de deriva estimada.",
+                "Intervalo recomendado deve incluir fator de segurança.",
+                "Resultado deve ser revisado quando houver nova calibração ou mudança de processo."
+          ],
+          "example": [
+                "Exemplo: instrumento com erro crescendo 0,2 unidade a cada 6 meses e tolerância de 1,0 unidade.",
+                "A ferramenta estima quando o erro pode atingir o limite.",
+                "Se o instrumento for crítico, mantenha intervalo conservador até haver histórico suficiente."
+          ],
+          "interpretation": [
+                "Intervalo sugerido não é autorização automática para ampliar calibração.",
+                "Tendência instável ou poucos dados devem gerar cautela.",
+                "Use junto com criticidade, histórico de falhas e plano de calibração."
+          ]
+    } ,
+    "calculadora-calibracao-chave-fluxo.html": {
+          "title": "Complemento técnico — calibração de chave de fluxo",
+          "intro": "Use este complemento para interpretar o resultado de calibração de chave de fluxo como apoio técnico preliminar de campo.",
+          "assumptions": [
+                "Os valores de referência, medidos, unidade e tolerância devem seguir o procedimento aplicável.",
+                "O padrão ou simulador usado deve ser compatível com a faixa e a exatidão necessária.",
+                "A condição de instalação deve estar estável e representativa do uso real.",
+                "A decisão deve considerar criticidade da função, histórico do equipamento e evidências de campo."
+          ],
+          "limitations": [
+                "A ferramenta não substitui certificado, rastreabilidade, teste funcional completo ou validação por responsável técnico.",
+                "Não avalia todos os efeitos de instalação, repetibilidade, histerese, ambiente ou falhas intermitentes.",
+                "Não use para liberar função crítica sem procedimento formal e teste no circuito real.",
+                "Resultado favorável em um ponto não garante desempenho em toda a faixa ou condição operacional."
+          ],
+          "memory": [
+                "Erro = valor medido − valor de referência, quando aplicável.",
+                "Erro percentual ou sinal esperado deve ser interpretado conforme a escala configurada.",
+                "Status preliminar compara erro/desvio com tolerância informada.",
+                "Pontos múltiplos ajudam a identificar linearidade, histerese ou repetibilidade."
+          ],
+          "example": [
+                "Exemplo: aplicar ponto de referência, registrar leitura/atuação e comparar com a tolerância definida.",
+                "Repetir o ponto quando houver instabilidade ou resultado próximo do limite.",
+                "Registrar as found/as left quando houver ajuste ou intervenção."
+          ],
+          "interpretation": [
+                "Aprovado indica apenas que os dados digitados atenderam ao critério informado.",
+                "Atenção ou reprovação exige revisar padrão, ligação, configuração e condição de instalação.",
+                "Funções de alarme, intertravamento, qualidade ou segurança exigem teste formal e evidência."
+          ]
+    } ,
+    "calculadora-calibracao-chave-nivel.html": {
+          "title": "Complemento técnico — calibração de chave de nível",
+          "intro": "Use este complemento para interpretar o resultado de calibração de chave de nível como apoio técnico preliminar de campo.",
+          "assumptions": [
+                "Os valores de referência, medidos, unidade e tolerância devem seguir o procedimento aplicável.",
+                "O padrão ou simulador usado deve ser compatível com a faixa e a exatidão necessária.",
+                "A condição de instalação deve estar estável e representativa do uso real.",
+                "A decisão deve considerar criticidade da função, histórico do equipamento e evidências de campo."
+          ],
+          "limitations": [
+                "A ferramenta não substitui certificado, rastreabilidade, teste funcional completo ou validação por responsável técnico.",
+                "Não avalia todos os efeitos de instalação, repetibilidade, histerese, ambiente ou falhas intermitentes.",
+                "Não use para liberar função crítica sem procedimento formal e teste no circuito real.",
+                "Resultado favorável em um ponto não garante desempenho em toda a faixa ou condição operacional."
+          ],
+          "memory": [
+                "Erro = valor medido − valor de referência, quando aplicável.",
+                "Erro percentual ou sinal esperado deve ser interpretado conforme a escala configurada.",
+                "Status preliminar compara erro/desvio com tolerância informada.",
+                "Pontos múltiplos ajudam a identificar linearidade, histerese ou repetibilidade."
+          ],
+          "example": [
+                "Exemplo: aplicar ponto de referência, registrar leitura/atuação e comparar com a tolerância definida.",
+                "Repetir o ponto quando houver instabilidade ou resultado próximo do limite.",
+                "Registrar as found/as left quando houver ajuste ou intervenção."
+          ],
+          "interpretation": [
+                "Aprovado indica apenas que os dados digitados atenderam ao critério informado.",
+                "Atenção ou reprovação exige revisar padrão, ligação, configuração e condição de instalação.",
+                "Funções de alarme, intertravamento, qualidade ou segurança exigem teste formal e evidência."
+          ]
+    } ,
+    "calculadora-calibracao-conversor-ip-pi.html": {
+          "title": "Complemento técnico — calibração de conversor I/P e P/I",
+          "intro": "Use este complemento para interpretar o resultado de calibração de conversor I/P e P/I como apoio técnico preliminar de campo.",
+          "assumptions": [
+                "Os valores de referência, medidos, unidade e tolerância devem seguir o procedimento aplicável.",
+                "O padrão ou simulador usado deve ser compatível com a faixa e a exatidão necessária.",
+                "A condição de instalação deve estar estável e representativa do uso real.",
+                "A decisão deve considerar criticidade da função, histórico do equipamento e evidências de campo."
+          ],
+          "limitations": [
+                "A ferramenta não substitui certificado, rastreabilidade, teste funcional completo ou validação por responsável técnico.",
+                "Não avalia todos os efeitos de instalação, repetibilidade, histerese, ambiente ou falhas intermitentes.",
+                "Não use para liberar função crítica sem procedimento formal e teste no circuito real.",
+                "Resultado favorável em um ponto não garante desempenho em toda a faixa ou condição operacional."
+          ],
+          "memory": [
+                "Erro = valor medido − valor de referência, quando aplicável.",
+                "Erro percentual ou sinal esperado deve ser interpretado conforme a escala configurada.",
+                "Status preliminar compara erro/desvio com tolerância informada.",
+                "Pontos múltiplos ajudam a identificar linearidade, histerese ou repetibilidade."
+          ],
+          "example": [
+                "Exemplo: aplicar ponto de referência, registrar leitura/atuação e comparar com a tolerância definida.",
+                "Repetir o ponto quando houver instabilidade ou resultado próximo do limite.",
+                "Registrar as found/as left quando houver ajuste ou intervenção."
+          ],
+          "interpretation": [
+                "Aprovado indica apenas que os dados digitados atenderam ao critério informado.",
+                "Atenção ou reprovação exige revisar padrão, ligação, configuração e condição de instalação.",
+                "Funções de alarme, intertravamento, qualidade ou segurança exigem teste formal e evidência."
+          ]
+    } ,
+    "calculadora-calibracao-indicador-controlador.html": {
+          "title": "Complemento técnico — calibração de indicador e controlador",
+          "intro": "Use este complemento para interpretar o resultado de calibração de indicador e controlador como apoio técnico preliminar de campo.",
+          "assumptions": [
+                "Os valores de referência, medidos, unidade e tolerância devem seguir o procedimento aplicável.",
+                "O padrão ou simulador usado deve ser compatível com a faixa e a exatidão necessária.",
+                "A condição de instalação deve estar estável e representativa do uso real.",
+                "A decisão deve considerar criticidade da função, histórico do equipamento e evidências de campo."
+          ],
+          "limitations": [
+                "A ferramenta não substitui certificado, rastreabilidade, teste funcional completo ou validação por responsável técnico.",
+                "Não avalia todos os efeitos de instalação, repetibilidade, histerese, ambiente ou falhas intermitentes.",
+                "Não use para liberar função crítica sem procedimento formal e teste no circuito real.",
+                "Resultado favorável em um ponto não garante desempenho em toda a faixa ou condição operacional."
+          ],
+          "memory": [
+                "Erro = valor medido − valor de referência, quando aplicável.",
+                "Erro percentual ou sinal esperado deve ser interpretado conforme a escala configurada.",
+                "Status preliminar compara erro/desvio com tolerância informada.",
+                "Pontos múltiplos ajudam a identificar linearidade, histerese ou repetibilidade."
+          ],
+          "example": [
+                "Exemplo: aplicar ponto de referência, registrar leitura/atuação e comparar com a tolerância definida.",
+                "Repetir o ponto quando houver instabilidade ou resultado próximo do limite.",
+                "Registrar as found/as left quando houver ajuste ou intervenção."
+          ],
+          "interpretation": [
+                "Aprovado indica apenas que os dados digitados atenderam ao critério informado.",
+                "Atenção ou reprovação exige revisar padrão, ligação, configuração e condição de instalação.",
+                "Funções de alarme, intertravamento, qualidade ou segurança exigem teste formal e evidência."
+          ]
+    } ,
+    "calculadora-calibracao-radar-ultrassonico-nivel.html": {
+          "title": "Complemento técnico — calibração de radar/ultrassônico de nível",
+          "intro": "Use este complemento para interpretar o resultado de calibração de radar/ultrassônico de nível como apoio técnico preliminar de campo.",
+          "assumptions": [
+                "Os valores de referência, medidos, unidade e tolerância devem seguir o procedimento aplicável.",
+                "O padrão ou simulador usado deve ser compatível com a faixa e a exatidão necessária.",
+                "A condição de instalação deve estar estável e representativa do uso real.",
+                "A decisão deve considerar criticidade da função, histórico do equipamento e evidências de campo."
+          ],
+          "limitations": [
+                "A ferramenta não substitui certificado, rastreabilidade, teste funcional completo ou validação por responsável técnico.",
+                "Não avalia todos os efeitos de instalação, repetibilidade, histerese, ambiente ou falhas intermitentes.",
+                "Não use para liberar função crítica sem procedimento formal e teste no circuito real.",
+                "Resultado favorável em um ponto não garante desempenho em toda a faixa ou condição operacional."
+          ],
+          "memory": [
+                "Erro = valor medido − valor de referência, quando aplicável.",
+                "Erro percentual ou sinal esperado deve ser interpretado conforme a escala configurada.",
+                "Status preliminar compara erro/desvio com tolerância informada.",
+                "Pontos múltiplos ajudam a identificar linearidade, histerese ou repetibilidade."
+          ],
+          "example": [
+                "Exemplo: aplicar ponto de referência, registrar leitura/atuação e comparar com a tolerância definida.",
+                "Repetir o ponto quando houver instabilidade ou resultado próximo do limite.",
+                "Registrar as found/as left quando houver ajuste ou intervenção."
+          ],
+          "interpretation": [
+                "Aprovado indica apenas que os dados digitados atenderam ao critério informado.",
+                "Atenção ou reprovação exige revisar padrão, ligação, configuração e condição de instalação.",
+                "Funções de alarme, intertravamento, qualidade ou segurança exigem teste formal e evidência."
+          ]
+    } ,
+    "calculadora-calibracao-termostato.html": {
+          "title": "Complemento técnico — calibração de termostato",
+          "intro": "Use este complemento para interpretar o resultado de calibração de termostato como apoio técnico preliminar de campo.",
+          "assumptions": [
+                "Os valores de referência, medidos, unidade e tolerância devem seguir o procedimento aplicável.",
+                "O padrão ou simulador usado deve ser compatível com a faixa e a exatidão necessária.",
+                "A condição de instalação deve estar estável e representativa do uso real.",
+                "A decisão deve considerar criticidade da função, histórico do equipamento e evidências de campo."
+          ],
+          "limitations": [
+                "A ferramenta não substitui certificado, rastreabilidade, teste funcional completo ou validação por responsável técnico.",
+                "Não avalia todos os efeitos de instalação, repetibilidade, histerese, ambiente ou falhas intermitentes.",
+                "Não use para liberar função crítica sem procedimento formal e teste no circuito real.",
+                "Resultado favorável em um ponto não garante desempenho em toda a faixa ou condição operacional."
+          ],
+          "memory": [
+                "Erro = valor medido − valor de referência, quando aplicável.",
+                "Erro percentual ou sinal esperado deve ser interpretado conforme a escala configurada.",
+                "Status preliminar compara erro/desvio com tolerância informada.",
+                "Pontos múltiplos ajudam a identificar linearidade, histerese ou repetibilidade."
+          ],
+          "example": [
+                "Exemplo: aplicar ponto de referência, registrar leitura/atuação e comparar com a tolerância definida.",
+                "Repetir o ponto quando houver instabilidade ou resultado próximo do limite.",
+                "Registrar as found/as left quando houver ajuste ou intervenção."
+          ],
+          "interpretation": [
+                "Aprovado indica apenas que os dados digitados atenderam ao critério informado.",
+                "Atenção ou reprovação exige revisar padrão, ligação, configuração e condição de instalação.",
+                "Funções de alarme, intertravamento, qualidade ou segurança exigem teste formal e evidência."
+          ]
+    } ,
+    "calculadora-calibracao-totalizador-vazao.html": {
+          "title": "Complemento técnico — calibração de totalizador de vazão",
+          "intro": "Use este complemento para interpretar o resultado de calibração de totalizador de vazão como apoio técnico preliminar de campo.",
+          "assumptions": [
+                "Os valores de referência, medidos, unidade e tolerância devem seguir o procedimento aplicável.",
+                "O padrão ou simulador usado deve ser compatível com a faixa e a exatidão necessária.",
+                "A condição de instalação deve estar estável e representativa do uso real.",
+                "A decisão deve considerar criticidade da função, histórico do equipamento e evidências de campo."
+          ],
+          "limitations": [
+                "A ferramenta não substitui certificado, rastreabilidade, teste funcional completo ou validação por responsável técnico.",
+                "Não avalia todos os efeitos de instalação, repetibilidade, histerese, ambiente ou falhas intermitentes.",
+                "Não use para liberar função crítica sem procedimento formal e teste no circuito real.",
+                "Resultado favorável em um ponto não garante desempenho em toda a faixa ou condição operacional."
+          ],
+          "memory": [
+                "Erro = valor medido − valor de referência, quando aplicável.",
+                "Erro percentual ou sinal esperado deve ser interpretado conforme a escala configurada.",
+                "Status preliminar compara erro/desvio com tolerância informada.",
+                "Pontos múltiplos ajudam a identificar linearidade, histerese ou repetibilidade."
+          ],
+          "example": [
+                "Exemplo: aplicar ponto de referência, registrar leitura/atuação e comparar com a tolerância definida.",
+                "Repetir o ponto quando houver instabilidade ou resultado próximo do limite.",
+                "Registrar as found/as left quando houver ajuste ou intervenção."
+          ],
+          "interpretation": [
+                "Aprovado indica apenas que os dados digitados atenderam ao critério informado.",
+                "Atenção ou reprovação exige revisar padrão, ligação, configuração e condição de instalação.",
+                "Funções de alarme, intertravamento, qualidade ou segurança exigem teste formal e evidência."
+          ]
+    },
+    "calculadora-4-20ma.html": {
+          "title": "Complemento técnico — sinal 4-20 mA",
+          "intro": "Use este complemento para interpretar sinal 4-20 mA como apoio técnico preliminar de instrumentação de processo. O resultado depende da qualidade dos dados informados e das condições reais de instalação.",
+          "assumptions": [
+                "A faixa LRV/URV, span, direção de atuação e unidade devem ser as mesmas configuradas no instrumento e no CLP/DCS.",
+                "Para malhas 4-20 mA/HART, considere tensão da fonte, cargas em série, resistência do cabo e requisito mínimo do transmissor.",
+                "O sinal calculado representa condição ideal; ruído, mau contato, aterramento, barreira, isolador ou cartão analógico podem alterar a leitura real.",
+                "Em HART, a resistência/carga útil deve permitir comunicação estável na condição real de instalação."
+          ],
+          "limitations": [
+                "Não substitui teste de malha, calibração rastreável, análise de falha, comissionamento ou validação do cartão CLP/DCS.",
+                "Não confirma configuração HART, damping, raiz quadrada interna, linearização, saturação NAMUR ou diagnósticos do transmissor.",
+                "Não use para liberar intertravamento, alarme crítico ou função de segurança sem teste funcional documentado.",
+                "Se houver diferença entre campo e sala de controle, medir corrente/tensão em pontos distintos da malha antes de concluir."
+          ],
+          "memory": [
+                "Percentual de escala: % = (valor − LRV) / (URV − LRV) × 100.",
+                "Sinal linear: mA = 4 + (% / 100) × 16.",
+                "Em extração de raiz quadrada, a relação entre vazão e DP não é linear; confirme onde a raiz está sendo aplicada.",
+                "Para carga de malha: V disponível deve ser maior que a soma das quedas em transmissor, entrada, resistor, barreira, cabo e acessórios."
+          ],
+          "example": [
+                "Exemplo: transmissor 0 a 10 bar, leitura de processo 6 bar e saída esperada de aproximadamente 13,6 mA em escala linear.",
+                "Compare o valor calculado com a corrente medida na malha e com a leitura do CLP/DCS.",
+                "Se o erro aparecer apenas no supervisório, revise escala do cartão, engenharia, LRV/URV e configuração do bloco."
+          ],
+          "interpretation": [
+                "Resultado favorável significa coerência matemática para os dados digitados, não aprovação da malha.",
+                "Diferença pequena pode indicar tolerância, resolução ou ajuste; diferença persistente exige teste de malha e revisão de configuração.",
+                "Em alarme, intertravamento ou segurança, trate qualquer divergência como pendência até validar em campo."
+          ]
+    },
+    "calculadora-carga-malha-4-20ma.html": {
+          "title": "Complemento técnico — carga de malha 4-20 mA",
+          "intro": "Use este complemento para interpretar carga de malha 4-20 mA como apoio técnico preliminar de instrumentação de processo. O resultado depende da qualidade dos dados informados e das condições reais de instalação.",
+          "assumptions": [
+                "A faixa LRV/URV, span, direção de atuação e unidade devem ser as mesmas configuradas no instrumento e no CLP/DCS.",
+                "Para malhas 4-20 mA/HART, considere tensão da fonte, cargas em série, resistência do cabo e requisito mínimo do transmissor.",
+                "O sinal calculado representa condição ideal; ruído, mau contato, aterramento, barreira, isolador ou cartão analógico podem alterar a leitura real.",
+                "Em HART, a resistência/carga útil deve permitir comunicação estável na condição real de instalação."
+          ],
+          "limitations": [
+                "Não substitui teste de malha, calibração rastreável, análise de falha, comissionamento ou validação do cartão CLP/DCS.",
+                "Não confirma configuração HART, damping, raiz quadrada interna, linearização, saturação NAMUR ou diagnósticos do transmissor.",
+                "Não use para liberar intertravamento, alarme crítico ou função de segurança sem teste funcional documentado.",
+                "Se houver diferença entre campo e sala de controle, medir corrente/tensão em pontos distintos da malha antes de concluir."
+          ],
+          "memory": [
+                "Percentual de escala: % = (valor − LRV) / (URV − LRV) × 100.",
+                "Sinal linear: mA = 4 + (% / 100) × 16.",
+                "Em extração de raiz quadrada, a relação entre vazão e DP não é linear; confirme onde a raiz está sendo aplicada.",
+                "Para carga de malha: V disponível deve ser maior que a soma das quedas em transmissor, entrada, resistor, barreira, cabo e acessórios."
+          ],
+          "example": [
+                "Exemplo: transmissor 0 a 10 bar, leitura de processo 6 bar e saída esperada de aproximadamente 13,6 mA em escala linear.",
+                "Compare o valor calculado com a corrente medida na malha e com a leitura do CLP/DCS.",
+                "Se o erro aparecer apenas no supervisório, revise escala do cartão, engenharia, LRV/URV e configuração do bloco."
+          ],
+          "interpretation": [
+                "Resultado favorável significa coerência matemática para os dados digitados, não aprovação da malha.",
+                "Diferença pequena pode indicar tolerância, resolução ou ajuste; diferença persistente exige teste de malha e revisão de configuração.",
+                "Em alarme, intertravamento ou segurança, trate qualquer divergência como pendência até validar em campo."
+          ]
+    },
+    "calculadora-diagnostico-4-20ma-hart.html": {
+          "title": "Complemento técnico — diagnóstico 4-20 mA e HART",
+          "intro": "Use este complemento para interpretar diagnóstico 4-20 mA e HART como apoio técnico preliminar de instrumentação de processo. O resultado depende da qualidade dos dados informados e das condições reais de instalação.",
+          "assumptions": [
+                "A faixa LRV/URV, span, direção de atuação e unidade devem ser as mesmas configuradas no instrumento e no CLP/DCS.",
+                "Para malhas 4-20 mA/HART, considere tensão da fonte, cargas em série, resistência do cabo e requisito mínimo do transmissor.",
+                "O sinal calculado representa condição ideal; ruído, mau contato, aterramento, barreira, isolador ou cartão analógico podem alterar a leitura real.",
+                "Em HART, a resistência/carga útil deve permitir comunicação estável na condição real de instalação."
+          ],
+          "limitations": [
+                "Não substitui teste de malha, calibração rastreável, análise de falha, comissionamento ou validação do cartão CLP/DCS.",
+                "Não confirma configuração HART, damping, raiz quadrada interna, linearização, saturação NAMUR ou diagnósticos do transmissor.",
+                "Não use para liberar intertravamento, alarme crítico ou função de segurança sem teste funcional documentado.",
+                "Se houver diferença entre campo e sala de controle, medir corrente/tensão em pontos distintos da malha antes de concluir."
+          ],
+          "memory": [
+                "Percentual de escala: % = (valor − LRV) / (URV − LRV) × 100.",
+                "Sinal linear: mA = 4 + (% / 100) × 16.",
+                "Em extração de raiz quadrada, a relação entre vazão e DP não é linear; confirme onde a raiz está sendo aplicada.",
+                "Para carga de malha: V disponível deve ser maior que a soma das quedas em transmissor, entrada, resistor, barreira, cabo e acessórios."
+          ],
+          "example": [
+                "Exemplo: transmissor 0 a 10 bar, leitura de processo 6 bar e saída esperada de aproximadamente 13,6 mA em escala linear.",
+                "Compare o valor calculado com a corrente medida na malha e com a leitura do CLP/DCS.",
+                "Se o erro aparecer apenas no supervisório, revise escala do cartão, engenharia, LRV/URV e configuração do bloco."
+          ],
+          "interpretation": [
+                "Resultado favorável significa coerência matemática para os dados digitados, não aprovação da malha.",
+                "Diferença pequena pode indicar tolerância, resolução ou ajuste; diferença persistente exige teste de malha e revisão de configuração.",
+                "Em alarme, intertravamento ou segurança, trate qualquer divergência como pendência até validar em campo."
+          ]
+    },
+    "calculadora-comprimento-cabo-hart.html": {
+          "title": "Complemento técnico — comprimento máximo de cabo HART",
+          "intro": "Use este complemento para interpretar comprimento máximo de cabo HART como apoio técnico preliminar de instrumentação de processo. O resultado depende da qualidade dos dados informados e das condições reais de instalação.",
+          "assumptions": [
+                "A faixa LRV/URV, span, direção de atuação e unidade devem ser as mesmas configuradas no instrumento e no CLP/DCS.",
+                "Para malhas 4-20 mA/HART, considere tensão da fonte, cargas em série, resistência do cabo e requisito mínimo do transmissor.",
+                "O sinal calculado representa condição ideal; ruído, mau contato, aterramento, barreira, isolador ou cartão analógico podem alterar a leitura real.",
+                "Em HART, a resistência/carga útil deve permitir comunicação estável na condição real de instalação."
+          ],
+          "limitations": [
+                "Não substitui teste de malha, calibração rastreável, análise de falha, comissionamento ou validação do cartão CLP/DCS.",
+                "Não confirma configuração HART, damping, raiz quadrada interna, linearização, saturação NAMUR ou diagnósticos do transmissor.",
+                "Não use para liberar intertravamento, alarme crítico ou função de segurança sem teste funcional documentado.",
+                "Se houver diferença entre campo e sala de controle, medir corrente/tensão em pontos distintos da malha antes de concluir."
+          ],
+          "memory": [
+                "Percentual de escala: % = (valor − LRV) / (URV − LRV) × 100.",
+                "Sinal linear: mA = 4 + (% / 100) × 16.",
+                "Em extração de raiz quadrada, a relação entre vazão e DP não é linear; confirme onde a raiz está sendo aplicada.",
+                "Para carga de malha: V disponível deve ser maior que a soma das quedas em transmissor, entrada, resistor, barreira, cabo e acessórios."
+          ],
+          "example": [
+                "Exemplo: transmissor 0 a 10 bar, leitura de processo 6 bar e saída esperada de aproximadamente 13,6 mA em escala linear.",
+                "Compare o valor calculado com a corrente medida na malha e com a leitura do CLP/DCS.",
+                "Se o erro aparecer apenas no supervisório, revise escala do cartão, engenharia, LRV/URV e configuração do bloco."
+          ],
+          "interpretation": [
+                "Resultado favorável significa coerência matemática para os dados digitados, não aprovação da malha.",
+                "Diferença pequena pode indicar tolerância, resolução ou ajuste; diferença persistente exige teste de malha e revisão de configuração.",
+                "Em alarme, intertravamento ou segurança, trate qualquer divergência como pendência até validar em campo."
+          ]
+    },
+    "calculadora-lrv-urv-span.html": {
+          "title": "Complemento técnico — LRV, URV e span",
+          "intro": "Use este complemento para interpretar LRV, URV e span como apoio técnico preliminar de instrumentação de processo. O resultado depende da qualidade dos dados informados e das condições reais de instalação.",
+          "assumptions": [
+                "A faixa LRV/URV, span, direção de atuação e unidade devem ser as mesmas configuradas no instrumento e no CLP/DCS.",
+                "Para malhas 4-20 mA/HART, considere tensão da fonte, cargas em série, resistência do cabo e requisito mínimo do transmissor.",
+                "O sinal calculado representa condição ideal; ruído, mau contato, aterramento, barreira, isolador ou cartão analógico podem alterar a leitura real.",
+                "Em HART, a resistência/carga útil deve permitir comunicação estável na condição real de instalação."
+          ],
+          "limitations": [
+                "Não substitui teste de malha, calibração rastreável, análise de falha, comissionamento ou validação do cartão CLP/DCS.",
+                "Não confirma configuração HART, damping, raiz quadrada interna, linearização, saturação NAMUR ou diagnósticos do transmissor.",
+                "Não use para liberar intertravamento, alarme crítico ou função de segurança sem teste funcional documentado.",
+                "Se houver diferença entre campo e sala de controle, medir corrente/tensão em pontos distintos da malha antes de concluir."
+          ],
+          "memory": [
+                "Percentual de escala: % = (valor − LRV) / (URV − LRV) × 100.",
+                "Sinal linear: mA = 4 + (% / 100) × 16.",
+                "Em extração de raiz quadrada, a relação entre vazão e DP não é linear; confirme onde a raiz está sendo aplicada.",
+                "Para carga de malha: V disponível deve ser maior que a soma das quedas em transmissor, entrada, resistor, barreira, cabo e acessórios."
+          ],
+          "example": [
+                "Exemplo: transmissor 0 a 10 bar, leitura de processo 6 bar e saída esperada de aproximadamente 13,6 mA em escala linear.",
+                "Compare o valor calculado com a corrente medida na malha e com a leitura do CLP/DCS.",
+                "Se o erro aparecer apenas no supervisório, revise escala do cartão, engenharia, LRV/URV e configuração do bloco."
+          ],
+          "interpretation": [
+                "Resultado favorável significa coerência matemática para os dados digitados, não aprovação da malha.",
+                "Diferença pequena pode indicar tolerância, resolução ou ajuste; diferença persistente exige teste de malha e revisão de configuração.",
+                "Em alarme, intertravamento ou segurança, trate qualquer divergência como pendência até validar em campo."
+          ]
+    },
+    "calculadora-raiz-quadrada-4-20ma.html": {
+          "title": "Complemento técnico — extração de raiz quadrada 4-20 mA",
+          "intro": "Use este complemento para interpretar extração de raiz quadrada 4-20 mA como apoio técnico preliminar de instrumentação de processo. O resultado depende da qualidade dos dados informados e das condições reais de instalação.",
+          "assumptions": [
+                "A faixa LRV/URV, span, direção de atuação e unidade devem ser as mesmas configuradas no instrumento e no CLP/DCS.",
+                "Para malhas 4-20 mA/HART, considere tensão da fonte, cargas em série, resistência do cabo e requisito mínimo do transmissor.",
+                "O sinal calculado representa condição ideal; ruído, mau contato, aterramento, barreira, isolador ou cartão analógico podem alterar a leitura real.",
+                "Em HART, a resistência/carga útil deve permitir comunicação estável na condição real de instalação."
+          ],
+          "limitations": [
+                "Não substitui teste de malha, calibração rastreável, análise de falha, comissionamento ou validação do cartão CLP/DCS.",
+                "Não confirma configuração HART, damping, raiz quadrada interna, linearização, saturação NAMUR ou diagnósticos do transmissor.",
+                "Não use para liberar intertravamento, alarme crítico ou função de segurança sem teste funcional documentado.",
+                "Se houver diferença entre campo e sala de controle, medir corrente/tensão em pontos distintos da malha antes de concluir."
+          ],
+          "memory": [
+                "Percentual de escala: % = (valor − LRV) / (URV − LRV) × 100.",
+                "Sinal linear: mA = 4 + (% / 100) × 16.",
+                "Em extração de raiz quadrada, a relação entre vazão e DP não é linear; confirme onde a raiz está sendo aplicada.",
+                "Para carga de malha: V disponível deve ser maior que a soma das quedas em transmissor, entrada, resistor, barreira, cabo e acessórios."
+          ],
+          "example": [
+                "Exemplo: transmissor 0 a 10 bar, leitura de processo 6 bar e saída esperada de aproximadamente 13,6 mA em escala linear.",
+                "Compare o valor calculado com a corrente medida na malha e com a leitura do CLP/DCS.",
+                "Se o erro aparecer apenas no supervisório, revise escala do cartão, engenharia, LRV/URV e configuração do bloco."
+          ],
+          "interpretation": [
+                "Resultado favorável significa coerência matemática para os dados digitados, não aprovação da malha.",
+                "Diferença pequena pode indicar tolerância, resolução ou ajuste; diferença persistente exige teste de malha e revisão de configuração.",
+                "Em alarme, intertravamento ou segurança, trate qualquer divergência como pendência até validar em campo."
+          ]
+    },
+    "calculadora-split-range-4-20ma.html": {
+          "title": "Complemento técnico — split range 4-20 mA",
+          "intro": "Use este complemento para interpretar split range 4-20 mA como apoio técnico preliminar de instrumentação de processo. O resultado depende da qualidade dos dados informados e das condições reais de instalação.",
+          "assumptions": [
+                "A faixa LRV/URV, span, direção de atuação e unidade devem ser as mesmas configuradas no instrumento e no CLP/DCS.",
+                "Para malhas 4-20 mA/HART, considere tensão da fonte, cargas em série, resistência do cabo e requisito mínimo do transmissor.",
+                "O sinal calculado representa condição ideal; ruído, mau contato, aterramento, barreira, isolador ou cartão analógico podem alterar a leitura real.",
+                "Em HART, a resistência/carga útil deve permitir comunicação estável na condição real de instalação."
+          ],
+          "limitations": [
+                "Não substitui teste de malha, calibração rastreável, análise de falha, comissionamento ou validação do cartão CLP/DCS.",
+                "Não confirma configuração HART, damping, raiz quadrada interna, linearização, saturação NAMUR ou diagnósticos do transmissor.",
+                "Não use para liberar intertravamento, alarme crítico ou função de segurança sem teste funcional documentado.",
+                "Se houver diferença entre campo e sala de controle, medir corrente/tensão em pontos distintos da malha antes de concluir."
+          ],
+          "memory": [
+                "Percentual de escala: % = (valor − LRV) / (URV − LRV) × 100.",
+                "Sinal linear: mA = 4 + (% / 100) × 16.",
+                "Em extração de raiz quadrada, a relação entre vazão e DP não é linear; confirme onde a raiz está sendo aplicada.",
+                "Para carga de malha: V disponível deve ser maior que a soma das quedas em transmissor, entrada, resistor, barreira, cabo e acessórios."
+          ],
+          "example": [
+                "Exemplo: transmissor 0 a 10 bar, leitura de processo 6 bar e saída esperada de aproximadamente 13,6 mA em escala linear.",
+                "Compare o valor calculado com a corrente medida na malha e com a leitura do CLP/DCS.",
+                "Se o erro aparecer apenas no supervisório, revise escala do cartão, engenharia, LRV/URV e configuração do bloco."
+          ],
+          "interpretation": [
+                "Resultado favorável significa coerência matemática para os dados digitados, não aprovação da malha.",
+                "Diferença pequena pode indicar tolerância, resolução ou ajuste; diferença persistente exige teste de malha e revisão de configuração.",
+                "Em alarme, intertravamento ou segurança, trate qualquer divergência como pendência até validar em campo."
+          ]
+    },
+    "calculadora-sinal-pneumatico-3-15psi.html": {
+          "title": "Complemento técnico — sinal pneumático 3-15 psi",
+          "intro": "Use este complemento para interpretar sinal pneumático 3-15 psi como apoio técnico preliminar de instrumentação de processo. O resultado depende da qualidade dos dados informados e das condições reais de instalação.",
+          "assumptions": [
+                "Pressão disponível, diâmetro, curso, volume e consumo devem representar a condição real de operação.",
+                "A qualidade do ar de instrumento, regulador, filtro, solenóide e tubulação afetam o desempenho prático.",
+                "Força calculada é ideal e deve considerar perdas, atrito, mola, carga externa e fator de segurança.",
+                "O tempo de atuação depende de volume, vazão, acessórios e restrições pneumáticas."
+          ],
+          "limitations": [
+                "Não substitui seleção de atuador, cálculo de torque/força por fabricante ou validação da função de segurança.",
+                "Não avalia qualidade do ar, queda dinâmica, congelamento, vazamentos, histerese, falha segura ou tempos reais de processo.",
+                "Não use para liberar válvula de bloqueio, shutdown ou intertravamento sem teste funcional.",
+                "Aplicações críticas exigem teste em campo e documentação do conjunto válvula-atuador-acessórios."
+          ],
+          "memory": [
+                "Força pneumática ideal: F = pressão × área efetiva do pistão ou diafragma.",
+                "Consumo depende de volume deslocado, pressão e número de ciclos.",
+                "Tempo de atuação depende da vazão pneumática disponível e das restrições do circuito.",
+                "Margem deve cobrir atrito, carga, mola, desgaste e variações de pressão."
+          ],
+          "example": [
+                "Exemplo: verificar se a pressão de ar disponível gera força suficiente no atuador com margem.",
+                "Depois comparar com requisito de torque/força da válvula e tempo de abertura/fechamento desejado.",
+                "Se o tempo ou força ficar no limite, revisar tubulação, solenóide, regulador, booster ou atuador."
+          ],
+          "interpretation": [
+                "Resultado coerente indica apenas capacidade preliminar do circuito pneumático.",
+                "Margem baixa exige revisar pressão mínima, perdas e condição real de carga.",
+                "Em válvula crítica, validar atuação real em campo e registrar teste funcional."
+          ]
+    },
+    "calculadora-pt100.html": {
+          "title": "Complemento técnico — PT100",
+          "intro": "Use este complemento para interpretar PT100 como apoio técnico preliminar de instrumentação de processo. O resultado depende da qualidade dos dados informados e das condições reais de instalação.",
+          "assumptions": [
+                "O tipo de sensor, curva, unidade e ligação informados devem coincidir com o instrumento real.",
+                "Para RTD/PT100, considere tipo de ligação 2/3/4 fios e efeito da resistência dos cabos.",
+                "Para termopar, considere tipo, polaridade, compensação de junta fria e extensão correta do cabo.",
+                "A condição térmica deve estar estável antes de comparar leitura calculada e leitura de campo."
+          ],
+          "limitations": [
+                "Não substitui tabela oficial, calibrador, banho/bloco seco, certificado ou procedimento de calibração.",
+                "Não detecta mau contato, inversão de polaridade, isolação baixa, sensor degradado, poço termométrico inadequado ou erro de montagem.",
+                "Não valide controle, alarme ou intertravamento de temperatura sem teste funcional no circuito real.",
+                "Em processo crítico, considere incerteza do padrão, gradiente térmico e tempo de estabilização."
+          ],
+          "memory": [
+                "RTD/PT100 segue relação resistência × temperatura conforme curva do sensor e referência adotada.",
+                "Termopar relaciona temperatura e mV considerando o tipo do par e compensação de junta fria.",
+                "Erro prático = leitura do instrumento − valor de referência, respeitando unidade e ponto de teste.",
+                "Ligação e cabo podem introduzir erro adicional que não aparece em cálculo ideal."
+          ],
+          "example": [
+                "Exemplo: comparar um PT100 a 100 °C com resistência esperada e leitura do transmissor.",
+                "Se a leitura estiver diferente, conferir ligação 3 fios, resistência dos condutores e configuração do transmissor.",
+                "Registrar condição as found/as left quando a comparação fizer parte de calibração ou manutenção."
+          ],
+          "interpretation": [
+                "Resultado coerente indica compatibilidade preliminar entre valor, sensor e unidade.",
+                "Divergência exige revisar sensor selecionado, ligação, cabo, compensação, escala e estabilidade térmica.",
+                "Nunca use conversão isolada para liberar malha crítica sem procedimento e padrão adequado."
+          ]
+    },
+    "calculadora-termopar.html": {
+          "title": "Complemento técnico — termopar",
+          "intro": "Use este complemento para interpretar termopar como apoio técnico preliminar de instrumentação de processo. O resultado depende da qualidade dos dados informados e das condições reais de instalação.",
+          "assumptions": [
+                "O tipo de sensor, curva, unidade e ligação informados devem coincidir com o instrumento real.",
+                "Para RTD/PT100, considere tipo de ligação 2/3/4 fios e efeito da resistência dos cabos.",
+                "Para termopar, considere tipo, polaridade, compensação de junta fria e extensão correta do cabo.",
+                "A condição térmica deve estar estável antes de comparar leitura calculada e leitura de campo."
+          ],
+          "limitations": [
+                "Não substitui tabela oficial, calibrador, banho/bloco seco, certificado ou procedimento de calibração.",
+                "Não detecta mau contato, inversão de polaridade, isolação baixa, sensor degradado, poço termométrico inadequado ou erro de montagem.",
+                "Não valide controle, alarme ou intertravamento de temperatura sem teste funcional no circuito real.",
+                "Em processo crítico, considere incerteza do padrão, gradiente térmico e tempo de estabilização."
+          ],
+          "memory": [
+                "RTD/PT100 segue relação resistência × temperatura conforme curva do sensor e referência adotada.",
+                "Termopar relaciona temperatura e mV considerando o tipo do par e compensação de junta fria.",
+                "Erro prático = leitura do instrumento − valor de referência, respeitando unidade e ponto de teste.",
+                "Ligação e cabo podem introduzir erro adicional que não aparece em cálculo ideal."
+          ],
+          "example": [
+                "Exemplo: comparar um PT100 a 100 °C com resistência esperada e leitura do transmissor.",
+                "Se a leitura estiver diferente, conferir ligação 3 fios, resistência dos condutores e configuração do transmissor.",
+                "Registrar condição as found/as left quando a comparação fizer parte de calibração ou manutenção."
+          ],
+          "interpretation": [
+                "Resultado coerente indica compatibilidade preliminar entre valor, sensor e unidade.",
+                "Divergência exige revisar sensor selecionado, ligação, cabo, compensação, escala e estabilidade térmica.",
+                "Nunca use conversão isolada para liberar malha crítica sem procedimento e padrão adequado."
+          ]
+    },
+    "calculadora-temperatura-industrial.html": {
+          "title": "Complemento técnico — temperatura industrial",
+          "intro": "Use este complemento para interpretar temperatura industrial como apoio técnico preliminar de instrumentação de processo. O resultado depende da qualidade dos dados informados e das condições reais de instalação.",
+          "assumptions": [
+                "O tipo de sensor, curva, unidade e ligação informados devem coincidir com o instrumento real.",
+                "Para RTD/PT100, considere tipo de ligação 2/3/4 fios e efeito da resistência dos cabos.",
+                "Para termopar, considere tipo, polaridade, compensação de junta fria e extensão correta do cabo.",
+                "A condição térmica deve estar estável antes de comparar leitura calculada e leitura de campo."
+          ],
+          "limitations": [
+                "Não substitui tabela oficial, calibrador, banho/bloco seco, certificado ou procedimento de calibração.",
+                "Não detecta mau contato, inversão de polaridade, isolação baixa, sensor degradado, poço termométrico inadequado ou erro de montagem.",
+                "Não valide controle, alarme ou intertravamento de temperatura sem teste funcional no circuito real.",
+                "Em processo crítico, considere incerteza do padrão, gradiente térmico e tempo de estabilização."
+          ],
+          "memory": [
+                "RTD/PT100 segue relação resistência × temperatura conforme curva do sensor e referência adotada.",
+                "Termopar relaciona temperatura e mV considerando o tipo do par e compensação de junta fria.",
+                "Erro prático = leitura do instrumento − valor de referência, respeitando unidade e ponto de teste.",
+                "Ligação e cabo podem introduzir erro adicional que não aparece em cálculo ideal."
+          ],
+          "example": [
+                "Exemplo: comparar um PT100 a 100 °C com resistência esperada e leitura do transmissor.",
+                "Se a leitura estiver diferente, conferir ligação 3 fios, resistência dos condutores e configuração do transmissor.",
+                "Registrar condição as found/as left quando a comparação fizer parte de calibração ou manutenção."
+          ],
+          "interpretation": [
+                "Resultado coerente indica compatibilidade preliminar entre valor, sensor e unidade.",
+                "Divergência exige revisar sensor selecionado, ligação, cabo, compensação, escala e estabilidade térmica.",
+                "Nunca use conversão isolada para liberar malha crítica sem procedimento e padrão adequado."
+          ]
+    },
+    "calculadora-nivel-pressao-hidrostatica.html": {
+          "title": "Complemento técnico — nível por pressão hidrostática",
+          "intro": "Use este complemento para interpretar nível por pressão hidrostática como apoio técnico preliminar de instrumentação de processo. O resultado depende da qualidade dos dados informados e das condições reais de instalação.",
+          "assumptions": [
+                "A densidade, altura, unidade de pressão, ponto de tomada e posição do transmissor devem representar a instalação real.",
+                "Em tanque fechado, perna seca/úmida, pressão de gás e referência do lado de baixa devem estar corretamente definidos.",
+                "Em selo remoto/capilar, considere fluido de enchimento, temperatura, elevação e montagem.",
+                "A geometria do tanque e o zero/elevated ou suppressed zero devem ser compatíveis com a aplicação."
+          ],
+          "limitations": [
+                "Não substitui folha de dados, desenho de montagem, cálculo completo de range, comissionamento ou calibração do transmissor.",
+                "Não avalia espuma, turbulência, incrustação, vapores, interface, densidade variável, pressão pulsante ou erros de tomada de impulso.",
+                "Não use para liberar nível de caldeira, tanque pressurizado ou proteção de transbordo sem validação formal.",
+                "Em fluido perigoso, temperatura alta ou serviço crítico, revisar material, selos, capilares, condensação e isolamento."
+          ],
+          "memory": [
+                "Pressão hidrostática básica: P = densidade × gravidade × altura, com conversão correta de unidades.",
+                "Nível por DP depende da diferença entre lado alto e lado baixo, incluindo pernas, selos e pressão de referência.",
+                "LRV e URV devem representar 0% e 100% reais da faixa de medição na montagem escolhida.",
+                "Mudança de densidade altera diretamente o nível inferido por pressão diferencial."
+          ],
+          "example": [
+                "Exemplo: tanque com 2 m de faixa útil, densidade 1,0 kg/L e transmissor abaixo da tomada inferior.",
+                "Calcule LRV/URV e confira se a saída 4-20 mA corresponde ao nível físico esperado.",
+                "Se o processo tiver densidade variável ou selo remoto, trate o resultado como estimativa e valide em campo."
+          ],
+          "interpretation": [
+                "Resultado favorável indica coerência preliminar de faixa/pressão para os dados digitados.",
+                "Valores negativos, muito altos ou sem margem geralmente indicam referência, densidade, tomada ou unidade incorreta.",
+                "Em medição crítica de nível, confirme fisicamente os pontos e faça teste de malha antes de aplicar."
+          ]
+    },
+    "calculadora-pressao-hidrostatica-densidade.html": {
+          "title": "Complemento técnico — pressão hidrostática por densidade",
+          "intro": "Use este complemento para interpretar pressão hidrostática por densidade como apoio técnico preliminar de instrumentação de processo. O resultado depende da qualidade dos dados informados e das condições reais de instalação.",
+          "assumptions": [
+                "A densidade, altura, unidade de pressão, ponto de tomada e posição do transmissor devem representar a instalação real.",
+                "Em tanque fechado, perna seca/úmida, pressão de gás e referência do lado de baixa devem estar corretamente definidos.",
+                "Em selo remoto/capilar, considere fluido de enchimento, temperatura, elevação e montagem.",
+                "A geometria do tanque e o zero/elevated ou suppressed zero devem ser compatíveis com a aplicação."
+          ],
+          "limitations": [
+                "Não substitui folha de dados, desenho de montagem, cálculo completo de range, comissionamento ou calibração do transmissor.",
+                "Não avalia espuma, turbulência, incrustação, vapores, interface, densidade variável, pressão pulsante ou erros de tomada de impulso.",
+                "Não use para liberar nível de caldeira, tanque pressurizado ou proteção de transbordo sem validação formal.",
+                "Em fluido perigoso, temperatura alta ou serviço crítico, revisar material, selos, capilares, condensação e isolamento."
+          ],
+          "memory": [
+                "Pressão hidrostática básica: P = densidade × gravidade × altura, com conversão correta de unidades.",
+                "Nível por DP depende da diferença entre lado alto e lado baixo, incluindo pernas, selos e pressão de referência.",
+                "LRV e URV devem representar 0% e 100% reais da faixa de medição na montagem escolhida.",
+                "Mudança de densidade altera diretamente o nível inferido por pressão diferencial."
+          ],
+          "example": [
+                "Exemplo: tanque com 2 m de faixa útil, densidade 1,0 kg/L e transmissor abaixo da tomada inferior.",
+                "Calcule LRV/URV e confira se a saída 4-20 mA corresponde ao nível físico esperado.",
+                "Se o processo tiver densidade variável ou selo remoto, trate o resultado como estimativa e valide em campo."
+          ],
+          "interpretation": [
+                "Resultado favorável indica coerência preliminar de faixa/pressão para os dados digitados.",
+                "Valores negativos, muito altos ou sem margem geralmente indicam referência, densidade, tomada ou unidade incorreta.",
+                "Em medição crítica de nível, confirme fisicamente os pontos e faça teste de malha antes de aplicar."
+          ]
+    },
+    "calculadora-dp-nivel-tanque-fechado.html": {
+          "title": "Complemento técnico — DP para nível em tanque fechado",
+          "intro": "Use este complemento para interpretar DP para nível em tanque fechado como apoio técnico preliminar de instrumentação de processo. O resultado depende da qualidade dos dados informados e das condições reais de instalação.",
+          "assumptions": [
+                "A densidade, altura, unidade de pressão, ponto de tomada e posição do transmissor devem representar a instalação real.",
+                "Em tanque fechado, perna seca/úmida, pressão de gás e referência do lado de baixa devem estar corretamente definidos.",
+                "Em selo remoto/capilar, considere fluido de enchimento, temperatura, elevação e montagem.",
+                "A geometria do tanque e o zero/elevated ou suppressed zero devem ser compatíveis com a aplicação."
+          ],
+          "limitations": [
+                "Não substitui folha de dados, desenho de montagem, cálculo completo de range, comissionamento ou calibração do transmissor.",
+                "Não avalia espuma, turbulência, incrustação, vapores, interface, densidade variável, pressão pulsante ou erros de tomada de impulso.",
+                "Não use para liberar nível de caldeira, tanque pressurizado ou proteção de transbordo sem validação formal.",
+                "Em fluido perigoso, temperatura alta ou serviço crítico, revisar material, selos, capilares, condensação e isolamento."
+          ],
+          "memory": [
+                "Pressão hidrostática básica: P = densidade × gravidade × altura, com conversão correta de unidades.",
+                "Nível por DP depende da diferença entre lado alto e lado baixo, incluindo pernas, selos e pressão de referência.",
+                "LRV e URV devem representar 0% e 100% reais da faixa de medição na montagem escolhida.",
+                "Mudança de densidade altera diretamente o nível inferido por pressão diferencial."
+          ],
+          "example": [
+                "Exemplo: tanque com 2 m de faixa útil, densidade 1,0 kg/L e transmissor abaixo da tomada inferior.",
+                "Calcule LRV/URV e confira se a saída 4-20 mA corresponde ao nível físico esperado.",
+                "Se o processo tiver densidade variável ou selo remoto, trate o resultado como estimativa e valide em campo."
+          ],
+          "interpretation": [
+                "Resultado favorável indica coerência preliminar de faixa/pressão para os dados digitados.",
+                "Valores negativos, muito altos ou sem margem geralmente indicam referência, densidade, tomada ou unidade incorreta.",
+                "Em medição crítica de nível, confirme fisicamente os pontos e faça teste de malha antes de aplicar."
+          ]
+    },
+    "calculadora-linha-impulso-transmissor-dp.html": {
+          "title": "Complemento técnico — linha de impulso para transmissor DP",
+          "intro": "Use este complemento para interpretar linha de impulso para transmissor DP como apoio técnico preliminar de instrumentação de processo. O resultado depende da qualidade dos dados informados e das condições reais de instalação.",
+          "assumptions": [
+                "A densidade, altura, unidade de pressão, ponto de tomada e posição do transmissor devem representar a instalação real.",
+                "Em tanque fechado, perna seca/úmida, pressão de gás e referência do lado de baixa devem estar corretamente definidos.",
+                "Em selo remoto/capilar, considere fluido de enchimento, temperatura, elevação e montagem.",
+                "A geometria do tanque e o zero/elevated ou suppressed zero devem ser compatíveis com a aplicação."
+          ],
+          "limitations": [
+                "Não substitui folha de dados, desenho de montagem, cálculo completo de range, comissionamento ou calibração do transmissor.",
+                "Não avalia espuma, turbulência, incrustação, vapores, interface, densidade variável, pressão pulsante ou erros de tomada de impulso.",
+                "Não use para liberar nível de caldeira, tanque pressurizado ou proteção de transbordo sem validação formal.",
+                "Em fluido perigoso, temperatura alta ou serviço crítico, revisar material, selos, capilares, condensação e isolamento."
+          ],
+          "memory": [
+                "Pressão hidrostática básica: P = densidade × gravidade × altura, com conversão correta de unidades.",
+                "Nível por DP depende da diferença entre lado alto e lado baixo, incluindo pernas, selos e pressão de referência.",
+                "LRV e URV devem representar 0% e 100% reais da faixa de medição na montagem escolhida.",
+                "Mudança de densidade altera diretamente o nível inferido por pressão diferencial."
+          ],
+          "example": [
+                "Exemplo: tanque com 2 m de faixa útil, densidade 1,0 kg/L e transmissor abaixo da tomada inferior.",
+                "Calcule LRV/URV e confira se a saída 4-20 mA corresponde ao nível físico esperado.",
+                "Se o processo tiver densidade variável ou selo remoto, trate o resultado como estimativa e valide em campo."
+          ],
+          "interpretation": [
+                "Resultado favorável indica coerência preliminar de faixa/pressão para os dados digitados.",
+                "Valores negativos, muito altos ou sem margem geralmente indicam referência, densidade, tomada ou unidade incorreta.",
+                "Em medição crítica de nível, confirme fisicamente os pontos e faça teste de malha antes de aplicar."
+          ]
+    },
+    "calculadora-selo-remoto-capilar-dp.html": {
+          "title": "Complemento técnico — selo remoto e capilar DP",
+          "intro": "Use este complemento para interpretar selo remoto e capilar DP como apoio técnico preliminar de instrumentação de processo. O resultado depende da qualidade dos dados informados e das condições reais de instalação.",
+          "assumptions": [
+                "A densidade, altura, unidade de pressão, ponto de tomada e posição do transmissor devem representar a instalação real.",
+                "Em tanque fechado, perna seca/úmida, pressão de gás e referência do lado de baixa devem estar corretamente definidos.",
+                "Em selo remoto/capilar, considere fluido de enchimento, temperatura, elevação e montagem.",
+                "A geometria do tanque e o zero/elevated ou suppressed zero devem ser compatíveis com a aplicação."
+          ],
+          "limitations": [
+                "Não substitui folha de dados, desenho de montagem, cálculo completo de range, comissionamento ou calibração do transmissor.",
+                "Não avalia espuma, turbulência, incrustação, vapores, interface, densidade variável, pressão pulsante ou erros de tomada de impulso.",
+                "Não use para liberar nível de caldeira, tanque pressurizado ou proteção de transbordo sem validação formal.",
+                "Em fluido perigoso, temperatura alta ou serviço crítico, revisar material, selos, capilares, condensação e isolamento."
+          ],
+          "memory": [
+                "Pressão hidrostática básica: P = densidade × gravidade × altura, com conversão correta de unidades.",
+                "Nível por DP depende da diferença entre lado alto e lado baixo, incluindo pernas, selos e pressão de referência.",
+                "LRV e URV devem representar 0% e 100% reais da faixa de medição na montagem escolhida.",
+                "Mudança de densidade altera diretamente o nível inferido por pressão diferencial."
+          ],
+          "example": [
+                "Exemplo: tanque com 2 m de faixa útil, densidade 1,0 kg/L e transmissor abaixo da tomada inferior.",
+                "Calcule LRV/URV e confira se a saída 4-20 mA corresponde ao nível físico esperado.",
+                "Se o processo tiver densidade variável ou selo remoto, trate o resultado como estimativa e valide em campo."
+          ],
+          "interpretation": [
+                "Resultado favorável indica coerência preliminar de faixa/pressão para os dados digitados.",
+                "Valores negativos, muito altos ou sem margem geralmente indicam referência, densidade, tomada ou unidade incorreta.",
+                "Em medição crítica de nível, confirme fisicamente os pontos e faça teste de malha antes de aplicar."
+          ]
+    },
+    "calculadora-nivel-radar-ultrassonico.html": {
+          "title": "Complemento técnico — nível radar e ultrassônico",
+          "intro": "Use este complemento para interpretar nível radar e ultrassônico como apoio técnico preliminar de instrumentação de processo. O resultado depende da qualidade dos dados informados e das condições reais de instalação.",
+          "assumptions": [
+                "A densidade, altura, unidade de pressão, ponto de tomada e posição do transmissor devem representar a instalação real.",
+                "Em tanque fechado, perna seca/úmida, pressão de gás e referência do lado de baixa devem estar corretamente definidos.",
+                "Em selo remoto/capilar, considere fluido de enchimento, temperatura, elevação e montagem.",
+                "A geometria do tanque e o zero/elevated ou suppressed zero devem ser compatíveis com a aplicação."
+          ],
+          "limitations": [
+                "Não substitui folha de dados, desenho de montagem, cálculo completo de range, comissionamento ou calibração do transmissor.",
+                "Não avalia espuma, turbulência, incrustação, vapores, interface, densidade variável, pressão pulsante ou erros de tomada de impulso.",
+                "Não use para liberar nível de caldeira, tanque pressurizado ou proteção de transbordo sem validação formal.",
+                "Em fluido perigoso, temperatura alta ou serviço crítico, revisar material, selos, capilares, condensação e isolamento."
+          ],
+          "memory": [
+                "Pressão hidrostática básica: P = densidade × gravidade × altura, com conversão correta de unidades.",
+                "Nível por DP depende da diferença entre lado alto e lado baixo, incluindo pernas, selos e pressão de referência.",
+                "LRV e URV devem representar 0% e 100% reais da faixa de medição na montagem escolhida.",
+                "Mudança de densidade altera diretamente o nível inferido por pressão diferencial."
+          ],
+          "example": [
+                "Exemplo: tanque com 2 m de faixa útil, densidade 1,0 kg/L e transmissor abaixo da tomada inferior.",
+                "Calcule LRV/URV e confira se a saída 4-20 mA corresponde ao nível físico esperado.",
+                "Se o processo tiver densidade variável ou selo remoto, trate o resultado como estimativa e valide em campo."
+          ],
+          "interpretation": [
+                "Resultado favorável indica coerência preliminar de faixa/pressão para os dados digitados.",
+                "Valores negativos, muito altos ou sem margem geralmente indicam referência, densidade, tomada ou unidade incorreta.",
+                "Em medição crítica de nível, confirme fisicamente os pontos e faça teste de malha antes de aplicar."
+          ]
+    },
+    "calculadora-vazao-pressao-diferencial.html": {
+          "title": "Complemento técnico — vazão por pressão diferencial",
+          "intro": "Use este complemento para interpretar vazão por pressão diferencial como apoio técnico preliminar de instrumentação de processo. O resultado depende da qualidade dos dados informados e das condições reais de instalação.",
+          "assumptions": [
+                "As unidades de vazão, pressão, temperatura, densidade e diâmetro devem estar consistentes entre si.",
+                "A condição normalizada/padrão deve ser conhecida quando houver conversão entre m³/h, Nm³/h ou Sm³/h.",
+                "Em vazão por DP, confirme range, extração de raiz, fluido, tomada, placa, beta e densidade usada.",
+                "Em medidores por pulso/K-factor, o fator deve corresponder ao medidor, unidade e faixa de operação."
+          ],
+          "limitations": [
+                "Não substitui dimensionamento completo por norma, software do fabricante, relatório de medição ou validação metrológica.",
+                "Não avalia plenamente compressibilidade, perfil de escoamento, trechos retos, rugosidade, incrustação, pulsação, cavitação ou duas fases.",
+                "Não use para especificar medidor fiscal, placa final, válvula crítica ou sistema de segurança sem cálculo formal.",
+                "Para vapor, gases e fluidos perigosos, confirmar propriedades do fluido, condição de operação e limites de instalação."
+          ],
+          "memory": [
+                "Vazão volumétrica básica: Q = velocidade × área, com área calculada pelo diâmetro interno.",
+                "Em DP: vazão é proporcional à raiz quadrada do diferencial de pressão dentro da condição assumida.",
+                "Reynolds ajuda a identificar regime laminar, transição ou turbulento, mas não aprova instalação sozinho.",
+                "Conversões normalizadas dependem de pressão e temperatura de referência adotadas."
+          ],
+          "example": [
+                "Exemplo: conferir se a vazão calculada por DP bate com a escala do transmissor e com a leitura do supervisório.",
+                "Para gás, informar condição de operação e condição normalizada antes de comparar Nm³/h e m³/h.",
+                "Se o resultado estiver no limite, conferir diâmetro interno, densidade, viscosidade, trechos retos e configuração do instrumento."
+          ],
+          "interpretation": [
+                "Resultado coerente indica compatibilidade preliminar de unidades e ordem de grandeza.",
+                "Alerta ou valor fora do esperado exige revisar unidade, condição de referência, propriedades do fluido e instalação.",
+                "Em medição crítica, use o resultado apenas como triagem e valide com cálculo/fabricante/procedimento aplicável."
+          ]
+    },
+    "calculadora-k-factor-vazao-pulsos.html": {
+          "title": "Complemento técnico — K-factor de vazão por pulsos",
+          "intro": "Use este complemento para interpretar K-factor de vazão por pulsos como apoio técnico preliminar de instrumentação de processo. O resultado depende da qualidade dos dados informados e das condições reais de instalação.",
+          "assumptions": [
+                "As unidades de vazão, pressão, temperatura, densidade e diâmetro devem estar consistentes entre si.",
+                "A condição normalizada/padrão deve ser conhecida quando houver conversão entre m³/h, Nm³/h ou Sm³/h.",
+                "Em vazão por DP, confirme range, extração de raiz, fluido, tomada, placa, beta e densidade usada.",
+                "Em medidores por pulso/K-factor, o fator deve corresponder ao medidor, unidade e faixa de operação."
+          ],
+          "limitations": [
+                "Não substitui dimensionamento completo por norma, software do fabricante, relatório de medição ou validação metrológica.",
+                "Não avalia plenamente compressibilidade, perfil de escoamento, trechos retos, rugosidade, incrustação, pulsação, cavitação ou duas fases.",
+                "Não use para especificar medidor fiscal, placa final, válvula crítica ou sistema de segurança sem cálculo formal.",
+                "Para vapor, gases e fluidos perigosos, confirmar propriedades do fluido, condição de operação e limites de instalação."
+          ],
+          "memory": [
+                "Vazão volumétrica básica: Q = velocidade × área, com área calculada pelo diâmetro interno.",
+                "Em DP: vazão é proporcional à raiz quadrada do diferencial de pressão dentro da condição assumida.",
+                "Reynolds ajuda a identificar regime laminar, transição ou turbulento, mas não aprova instalação sozinho.",
+                "Conversões normalizadas dependem de pressão e temperatura de referência adotadas."
+          ],
+          "example": [
+                "Exemplo: conferir se a vazão calculada por DP bate com a escala do transmissor e com a leitura do supervisório.",
+                "Para gás, informar condição de operação e condição normalizada antes de comparar Nm³/h e m³/h.",
+                "Se o resultado estiver no limite, conferir diâmetro interno, densidade, viscosidade, trechos retos e configuração do instrumento."
+          ],
+          "interpretation": [
+                "Resultado coerente indica compatibilidade preliminar de unidades e ordem de grandeza.",
+                "Alerta ou valor fora do esperado exige revisar unidade, condição de referência, propriedades do fluido e instalação.",
+                "Em medição crítica, use o resultado apenas como triagem e valide com cálculo/fabricante/procedimento aplicável."
+          ]
+    },
+    "calculadora-rotametro-correcao-vazao.html": {
+          "title": "Complemento técnico — correção de vazão em rotâmetro",
+          "intro": "Use este complemento para interpretar correção de vazão em rotâmetro como apoio técnico preliminar de instrumentação de processo. O resultado depende da qualidade dos dados informados e das condições reais de instalação.",
+          "assumptions": [
+                "As unidades de vazão, pressão, temperatura, densidade e diâmetro devem estar consistentes entre si.",
+                "A condição normalizada/padrão deve ser conhecida quando houver conversão entre m³/h, Nm³/h ou Sm³/h.",
+                "Em vazão por DP, confirme range, extração de raiz, fluido, tomada, placa, beta e densidade usada.",
+                "Em medidores por pulso/K-factor, o fator deve corresponder ao medidor, unidade e faixa de operação."
+          ],
+          "limitations": [
+                "Não substitui dimensionamento completo por norma, software do fabricante, relatório de medição ou validação metrológica.",
+                "Não avalia plenamente compressibilidade, perfil de escoamento, trechos retos, rugosidade, incrustação, pulsação, cavitação ou duas fases.",
+                "Não use para especificar medidor fiscal, placa final, válvula crítica ou sistema de segurança sem cálculo formal.",
+                "Para vapor, gases e fluidos perigosos, confirmar propriedades do fluido, condição de operação e limites de instalação."
+          ],
+          "memory": [
+                "Vazão volumétrica básica: Q = velocidade × área, com área calculada pelo diâmetro interno.",
+                "Em DP: vazão é proporcional à raiz quadrada do diferencial de pressão dentro da condição assumida.",
+                "Reynolds ajuda a identificar regime laminar, transição ou turbulento, mas não aprova instalação sozinho.",
+                "Conversões normalizadas dependem de pressão e temperatura de referência adotadas."
+          ],
+          "example": [
+                "Exemplo: conferir se a vazão calculada por DP bate com a escala do transmissor e com a leitura do supervisório.",
+                "Para gás, informar condição de operação e condição normalizada antes de comparar Nm³/h e m³/h.",
+                "Se o resultado estiver no limite, conferir diâmetro interno, densidade, viscosidade, trechos retos e configuração do instrumento."
+          ],
+          "interpretation": [
+                "Resultado coerente indica compatibilidade preliminar de unidades e ordem de grandeza.",
+                "Alerta ou valor fora do esperado exige revisar unidade, condição de referência, propriedades do fluido e instalação.",
+                "Em medição crítica, use o resultado apenas como triagem e valide com cálculo/fabricante/procedimento aplicável."
+          ]
+    },
+    "calculadora-vazao-normalizada-gases.html": {
+          "title": "Complemento técnico — vazão normalizada de gases",
+          "intro": "Use este complemento para interpretar vazão normalizada de gases como apoio técnico preliminar de instrumentação de processo. O resultado depende da qualidade dos dados informados e das condições reais de instalação.",
+          "assumptions": [
+                "As unidades de vazão, pressão, temperatura, densidade e diâmetro devem estar consistentes entre si.",
+                "A condição normalizada/padrão deve ser conhecida quando houver conversão entre m³/h, Nm³/h ou Sm³/h.",
+                "Em vazão por DP, confirme range, extração de raiz, fluido, tomada, placa, beta e densidade usada.",
+                "Em medidores por pulso/K-factor, o fator deve corresponder ao medidor, unidade e faixa de operação."
+          ],
+          "limitations": [
+                "Não substitui dimensionamento completo por norma, software do fabricante, relatório de medição ou validação metrológica.",
+                "Não avalia plenamente compressibilidade, perfil de escoamento, trechos retos, rugosidade, incrustação, pulsação, cavitação ou duas fases.",
+                "Não use para especificar medidor fiscal, placa final, válvula crítica ou sistema de segurança sem cálculo formal.",
+                "Para vapor, gases e fluidos perigosos, confirmar propriedades do fluido, condição de operação e limites de instalação."
+          ],
+          "memory": [
+                "Vazão volumétrica básica: Q = velocidade × área, com área calculada pelo diâmetro interno.",
+                "Em DP: vazão é proporcional à raiz quadrada do diferencial de pressão dentro da condição assumida.",
+                "Reynolds ajuda a identificar regime laminar, transição ou turbulento, mas não aprova instalação sozinho.",
+                "Conversões normalizadas dependem de pressão e temperatura de referência adotadas."
+          ],
+          "example": [
+                "Exemplo: conferir se a vazão calculada por DP bate com a escala do transmissor e com a leitura do supervisório.",
+                "Para gás, informar condição de operação e condição normalizada antes de comparar Nm³/h e m³/h.",
+                "Se o resultado estiver no limite, conferir diâmetro interno, densidade, viscosidade, trechos retos e configuração do instrumento."
+          ],
+          "interpretation": [
+                "Resultado coerente indica compatibilidade preliminar de unidades e ordem de grandeza.",
+                "Alerta ou valor fora do esperado exige revisar unidade, condição de referência, propriedades do fluido e instalação.",
+                "Em medição crítica, use o resultado apenas como triagem e valide com cálculo/fabricante/procedimento aplicável."
+          ]
+    },
+    "calculadora-vazao-velocidade-diametro.html": {
+          "title": "Complemento técnico — vazão, velocidade e diâmetro de tubulação",
+          "intro": "Use este complemento para interpretar vazão, velocidade e diâmetro de tubulação como apoio técnico preliminar de instrumentação de processo. O resultado depende da qualidade dos dados informados e das condições reais de instalação.",
+          "assumptions": [
+                "As unidades de vazão, pressão, temperatura, densidade e diâmetro devem estar consistentes entre si.",
+                "A condição normalizada/padrão deve ser conhecida quando houver conversão entre m³/h, Nm³/h ou Sm³/h.",
+                "Em vazão por DP, confirme range, extração de raiz, fluido, tomada, placa, beta e densidade usada.",
+                "Em medidores por pulso/K-factor, o fator deve corresponder ao medidor, unidade e faixa de operação."
+          ],
+          "limitations": [
+                "Não substitui dimensionamento completo por norma, software do fabricante, relatório de medição ou validação metrológica.",
+                "Não avalia plenamente compressibilidade, perfil de escoamento, trechos retos, rugosidade, incrustação, pulsação, cavitação ou duas fases.",
+                "Não use para especificar medidor fiscal, placa final, válvula crítica ou sistema de segurança sem cálculo formal.",
+                "Para vapor, gases e fluidos perigosos, confirmar propriedades do fluido, condição de operação e limites de instalação."
+          ],
+          "memory": [
+                "Vazão volumétrica básica: Q = velocidade × área, com área calculada pelo diâmetro interno.",
+                "Em DP: vazão é proporcional à raiz quadrada do diferencial de pressão dentro da condição assumida.",
+                "Reynolds ajuda a identificar regime laminar, transição ou turbulento, mas não aprova instalação sozinho.",
+                "Conversões normalizadas dependem de pressão e temperatura de referência adotadas."
+          ],
+          "example": [
+                "Exemplo: conferir se a vazão calculada por DP bate com a escala do transmissor e com a leitura do supervisório.",
+                "Para gás, informar condição de operação e condição normalizada antes de comparar Nm³/h e m³/h.",
+                "Se o resultado estiver no limite, conferir diâmetro interno, densidade, viscosidade, trechos retos e configuração do instrumento."
+          ],
+          "interpretation": [
+                "Resultado coerente indica compatibilidade preliminar de unidades e ordem de grandeza.",
+                "Alerta ou valor fora do esperado exige revisar unidade, condição de referência, propriedades do fluido e instalação.",
+                "Em medição crítica, use o resultado apenas como triagem e valide com cálculo/fabricante/procedimento aplicável."
+          ]
+    },
+    "calculadora-vazao-vertedouro-canaleta.html": {
+          "title": "Complemento técnico — vazão em vertedouro e canaleta",
+          "intro": "Use este complemento para interpretar vazão em vertedouro e canaleta como apoio técnico preliminar de instrumentação de processo. O resultado depende da qualidade dos dados informados e das condições reais de instalação.",
+          "assumptions": [
+                "As unidades de vazão, pressão, temperatura, densidade e diâmetro devem estar consistentes entre si.",
+                "A condição normalizada/padrão deve ser conhecida quando houver conversão entre m³/h, Nm³/h ou Sm³/h.",
+                "Em vazão por DP, confirme range, extração de raiz, fluido, tomada, placa, beta e densidade usada.",
+                "Em medidores por pulso/K-factor, o fator deve corresponder ao medidor, unidade e faixa de operação."
+          ],
+          "limitations": [
+                "Não substitui dimensionamento completo por norma, software do fabricante, relatório de medição ou validação metrológica.",
+                "Não avalia plenamente compressibilidade, perfil de escoamento, trechos retos, rugosidade, incrustação, pulsação, cavitação ou duas fases.",
+                "Não use para especificar medidor fiscal, placa final, válvula crítica ou sistema de segurança sem cálculo formal.",
+                "Para vapor, gases e fluidos perigosos, confirmar propriedades do fluido, condição de operação e limites de instalação."
+          ],
+          "memory": [
+                "Vazão volumétrica básica: Q = velocidade × área, com área calculada pelo diâmetro interno.",
+                "Em DP: vazão é proporcional à raiz quadrada do diferencial de pressão dentro da condição assumida.",
+                "Reynolds ajuda a identificar regime laminar, transição ou turbulento, mas não aprova instalação sozinho.",
+                "Conversões normalizadas dependem de pressão e temperatura de referência adotadas."
+          ],
+          "example": [
+                "Exemplo: conferir se a vazão calculada por DP bate com a escala do transmissor e com a leitura do supervisório.",
+                "Para gás, informar condição de operação e condição normalizada antes de comparar Nm³/h e m³/h.",
+                "Se o resultado estiver no limite, conferir diâmetro interno, densidade, viscosidade, trechos retos e configuração do instrumento."
+          ],
+          "interpretation": [
+                "Resultado coerente indica compatibilidade preliminar de unidades e ordem de grandeza.",
+                "Alerta ou valor fora do esperado exige revisar unidade, condição de referência, propriedades do fluido e instalação.",
+                "Em medição crítica, use o resultado apenas como triagem e valide com cálculo/fabricante/procedimento aplicável."
+          ]
+    },
+    "calculadora-reynolds-regime-escoamento.html": {
+          "title": "Complemento técnico — Reynolds e regime de escoamento",
+          "intro": "Use este complemento para interpretar Reynolds e regime de escoamento como apoio técnico preliminar de instrumentação de processo. O resultado depende da qualidade dos dados informados e das condições reais de instalação.",
+          "assumptions": [
+                "As unidades de vazão, pressão, temperatura, densidade e diâmetro devem estar consistentes entre si.",
+                "A condição normalizada/padrão deve ser conhecida quando houver conversão entre m³/h, Nm³/h ou Sm³/h.",
+                "Em vazão por DP, confirme range, extração de raiz, fluido, tomada, placa, beta e densidade usada.",
+                "Em medidores por pulso/K-factor, o fator deve corresponder ao medidor, unidade e faixa de operação."
+          ],
+          "limitations": [
+                "Não substitui dimensionamento completo por norma, software do fabricante, relatório de medição ou validação metrológica.",
+                "Não avalia plenamente compressibilidade, perfil de escoamento, trechos retos, rugosidade, incrustação, pulsação, cavitação ou duas fases.",
+                "Não use para especificar medidor fiscal, placa final, válvula crítica ou sistema de segurança sem cálculo formal.",
+                "Para vapor, gases e fluidos perigosos, confirmar propriedades do fluido, condição de operação e limites de instalação."
+          ],
+          "memory": [
+                "Vazão volumétrica básica: Q = velocidade × área, com área calculada pelo diâmetro interno.",
+                "Em DP: vazão é proporcional à raiz quadrada do diferencial de pressão dentro da condição assumida.",
+                "Reynolds ajuda a identificar regime laminar, transição ou turbulento, mas não aprova instalação sozinho.",
+                "Conversões normalizadas dependem de pressão e temperatura de referência adotadas."
+          ],
+          "example": [
+                "Exemplo: conferir se a vazão calculada por DP bate com a escala do transmissor e com a leitura do supervisório.",
+                "Para gás, informar condição de operação e condição normalizada antes de comparar Nm³/h e m³/h.",
+                "Se o resultado estiver no limite, conferir diâmetro interno, densidade, viscosidade, trechos retos e configuração do instrumento."
+          ],
+          "interpretation": [
+                "Resultado coerente indica compatibilidade preliminar de unidades e ordem de grandeza.",
+                "Alerta ou valor fora do esperado exige revisar unidade, condição de referência, propriedades do fluido e instalação.",
+                "Em medição crítica, use o resultado apenas como triagem e valide com cálculo/fabricante/procedimento aplicável."
+          ]
+    },
+    "calculadora-densidade-api-grau-api.html": {
+          "title": "Complemento técnico — densidade e grau API",
+          "intro": "Use este complemento para interpretar densidade e grau API como apoio técnico preliminar de instrumentação de processo. O resultado depende da qualidade dos dados informados e das condições reais de instalação.",
+          "assumptions": [
+                "Os dados informados devem representar a condição real de processo e a unidade correta.",
+                "A ferramenta considera cálculo preliminar e não cobre todas as variáveis de instalação.",
+                "O usuário deve conferir dados de fabricante, condição operacional e criticidade da aplicação.",
+                "Resultados próximos de limites exigem validação adicional."
+          ],
+          "limitations": [
+                "Não substitui projeto, procedimento, laudo, calibração, comissionamento ou validação por responsável técnico.",
+                "Não avalia todas as condições de processo, segurança, instalação e manutenção.",
+                "Não use como liberação final de equipamento ou processo crítico.",
+                "Aplicações com risco a pessoas, equipamento ou produção exigem análise formal."
+          ],
+          "memory": [
+                "A memória de cálculo deve ser interpretada com as unidades e premissas informadas.",
+                "O resultado é uma estimativa técnica para apoio à decisão preliminar.",
+                "Mudança de unidade ou condição de processo pode alterar significativamente o resultado.",
+                "Sempre comparar com dados reais de campo e fabricante."
+          ],
+          "example": [
+                "Exemplo: preencher dados reais de operação, calcular e comparar com leitura de campo ou documentação técnica.",
+                "Se houver divergência, revisar unidade, premissa e instrumento aplicado.",
+                "Registrar as premissas quando o resultado for usado em relatório ou manutenção."
+          ],
+          "interpretation": [
+                "Resultado favorável não substitui validação técnica.",
+                "Atenção indica necessidade de revisar premissas, unidades e condição de aplicação.",
+                "Resultado crítico deve ser tratado como pendência até avaliação completa."
+          ]
+    },
+    "calculadora-massa-tanque-nivel.html": {
+          "title": "Complemento técnico — massa em tanque por nível e densidade",
+          "intro": "Use este complemento para interpretar massa em tanque por nível e densidade como apoio técnico preliminar de instrumentação de processo. O resultado depende da qualidade dos dados informados e das condições reais de instalação.",
+          "assumptions": [
+                "A densidade, altura, unidade de pressão, ponto de tomada e posição do transmissor devem representar a instalação real.",
+                "Em tanque fechado, perna seca/úmida, pressão de gás e referência do lado de baixa devem estar corretamente definidos.",
+                "Em selo remoto/capilar, considere fluido de enchimento, temperatura, elevação e montagem.",
+                "A geometria do tanque e o zero/elevated ou suppressed zero devem ser compatíveis com a aplicação."
+          ],
+          "limitations": [
+                "Não substitui folha de dados, desenho de montagem, cálculo completo de range, comissionamento ou calibração do transmissor.",
+                "Não avalia espuma, turbulência, incrustação, vapores, interface, densidade variável, pressão pulsante ou erros de tomada de impulso.",
+                "Não use para liberar nível de caldeira, tanque pressurizado ou proteção de transbordo sem validação formal.",
+                "Em fluido perigoso, temperatura alta ou serviço crítico, revisar material, selos, capilares, condensação e isolamento."
+          ],
+          "memory": [
+                "Pressão hidrostática básica: P = densidade × gravidade × altura, com conversão correta de unidades.",
+                "Nível por DP depende da diferença entre lado alto e lado baixo, incluindo pernas, selos e pressão de referência.",
+                "LRV e URV devem representar 0% e 100% reais da faixa de medição na montagem escolhida.",
+                "Mudança de densidade altera diretamente o nível inferido por pressão diferencial."
+          ],
+          "example": [
+                "Exemplo: tanque com 2 m de faixa útil, densidade 1,0 kg/L e transmissor abaixo da tomada inferior.",
+                "Calcule LRV/URV e confira se a saída 4-20 mA corresponde ao nível físico esperado.",
+                "Se o processo tiver densidade variável ou selo remoto, trate o resultado como estimativa e valide em campo."
+          ],
+          "interpretation": [
+                "Resultado favorável indica coerência preliminar de faixa/pressão para os dados digitados.",
+                "Valores negativos, muito altos ou sem margem geralmente indicam referência, densidade, tomada ou unidade incorreta.",
+                "Em medição crítica de nível, confirme fisicamente os pontos e faça teste de malha antes de aplicar."
+          ]
+    },
+    "calculadora-volume-cilindro-horizontal-nivel.html": {
+          "title": "Complemento técnico — volume em cilindro horizontal por nível",
+          "intro": "Use este complemento para interpretar volume em cilindro horizontal por nível como apoio técnico preliminar de instrumentação de processo. O resultado depende da qualidade dos dados informados e das condições reais de instalação.",
+          "assumptions": [
+                "A densidade, altura, unidade de pressão, ponto de tomada e posição do transmissor devem representar a instalação real.",
+                "Em tanque fechado, perna seca/úmida, pressão de gás e referência do lado de baixa devem estar corretamente definidos.",
+                "Em selo remoto/capilar, considere fluido de enchimento, temperatura, elevação e montagem.",
+                "A geometria do tanque e o zero/elevated ou suppressed zero devem ser compatíveis com a aplicação."
+          ],
+          "limitations": [
+                "Não substitui folha de dados, desenho de montagem, cálculo completo de range, comissionamento ou calibração do transmissor.",
+                "Não avalia espuma, turbulência, incrustação, vapores, interface, densidade variável, pressão pulsante ou erros de tomada de impulso.",
+                "Não use para liberar nível de caldeira, tanque pressurizado ou proteção de transbordo sem validação formal.",
+                "Em fluido perigoso, temperatura alta ou serviço crítico, revisar material, selos, capilares, condensação e isolamento."
+          ],
+          "memory": [
+                "Pressão hidrostática básica: P = densidade × gravidade × altura, com conversão correta de unidades.",
+                "Nível por DP depende da diferença entre lado alto e lado baixo, incluindo pernas, selos e pressão de referência.",
+                "LRV e URV devem representar 0% e 100% reais da faixa de medição na montagem escolhida.",
+                "Mudança de densidade altera diretamente o nível inferido por pressão diferencial."
+          ],
+          "example": [
+                "Exemplo: tanque com 2 m de faixa útil, densidade 1,0 kg/L e transmissor abaixo da tomada inferior.",
+                "Calcule LRV/URV e confira se a saída 4-20 mA corresponde ao nível físico esperado.",
+                "Se o processo tiver densidade variável ou selo remoto, trate o resultado como estimativa e valide em campo."
+          ],
+          "interpretation": [
+                "Resultado favorável indica coerência preliminar de faixa/pressão para os dados digitados.",
+                "Valores negativos, muito altos ou sem margem geralmente indicam referência, densidade, tomada ou unidade incorreta.",
+                "Em medição crítica de nível, confirme fisicamente os pontos e faça teste de malha antes de aplicar."
+          ]
+    },
+    "calculadora-placa-orificio-restricao.html": {
+          "title": "Complemento técnico — placa de orifício e restrição",
+          "intro": "Use este complemento para interpretar placa de orifício e restrição como apoio técnico preliminar de instrumentação de processo. O resultado depende da qualidade dos dados informados e das condições reais de instalação.",
+          "assumptions": [
+                "As unidades de vazão, pressão, temperatura, densidade e diâmetro devem estar consistentes entre si.",
+                "A condição normalizada/padrão deve ser conhecida quando houver conversão entre m³/h, Nm³/h ou Sm³/h.",
+                "Em vazão por DP, confirme range, extração de raiz, fluido, tomada, placa, beta e densidade usada.",
+                "Em medidores por pulso/K-factor, o fator deve corresponder ao medidor, unidade e faixa de operação."
+          ],
+          "limitations": [
+                "Não substitui dimensionamento completo por norma, software do fabricante, relatório de medição ou validação metrológica.",
+                "Não avalia plenamente compressibilidade, perfil de escoamento, trechos retos, rugosidade, incrustação, pulsação, cavitação ou duas fases.",
+                "Não use para especificar medidor fiscal, placa final, válvula crítica ou sistema de segurança sem cálculo formal.",
+                "Para vapor, gases e fluidos perigosos, confirmar propriedades do fluido, condição de operação e limites de instalação."
+          ],
+          "memory": [
+                "Vazão volumétrica básica: Q = velocidade × área, com área calculada pelo diâmetro interno.",
+                "Em DP: vazão é proporcional à raiz quadrada do diferencial de pressão dentro da condição assumida.",
+                "Reynolds ajuda a identificar regime laminar, transição ou turbulento, mas não aprova instalação sozinho.",
+                "Conversões normalizadas dependem de pressão e temperatura de referência adotadas."
+          ],
+          "example": [
+                "Exemplo: conferir se a vazão calculada por DP bate com a escala do transmissor e com a leitura do supervisório.",
+                "Para gás, informar condição de operação e condição normalizada antes de comparar Nm³/h e m³/h.",
+                "Se o resultado estiver no limite, conferir diâmetro interno, densidade, viscosidade, trechos retos e configuração do instrumento."
+          ],
+          "interpretation": [
+                "Resultado coerente indica compatibilidade preliminar de unidades e ordem de grandeza.",
+                "Alerta ou valor fora do esperado exige revisar unidade, condição de referência, propriedades do fluido e instalação.",
+                "Em medição crítica, use o resultado apenas como triagem e valide com cálculo/fabricante/procedimento aplicável."
+          ]
+    },
+    "calculadora-cv-valvula-controle.html": {
+          "title": "Complemento técnico — Cv para válvulas de controle",
+          "intro": "Use este complemento para interpretar Cv para válvulas de controle como apoio técnico preliminar de instrumentação de processo. O resultado depende da qualidade dos dados informados e das condições reais de instalação.",
+          "assumptions": [
+                "As condições de vazão, pressão a montante/jusante, temperatura, densidade e fluido devem representar o pior caso relevante.",
+                "Para gases, compressibilidade, pressão absoluta e condição de escoamento crítico devem ser tratados com cuidado.",
+                "O Cv/Kv calculado é preliminar e precisa ser comparado com curva, rangeabilidade e internos disponíveis do fabricante.",
+                "Atuador, posicionador, ar de instrumento e ação de falha devem ser compatíveis com a função da válvula."
+          ],
+          "limitations": [
+                "Não substitui dimensionamento por fabricante, norma aplicável, análise de cavitação/flashing/ruído ou seleção final de corpo/interno.",
+                "Não valida material, classe de pressão, vedação, característica, rangeabilidade, autoridade da válvula ou segurança de processo.",
+                "Não use para comprar válvula crítica sem folha de dados completa e revisão de engenharia.",
+                "Serviços com fluido tóxico, inflamável, vapor, alta pressão ou alta queda de pressão exigem validação específica."
+          ],
+          "memory": [
+                "Cv/Kv relaciona capacidade de vazão da válvula com queda de pressão e propriedades do fluido.",
+                "Abertura normal muito baixa ou muito alta pode indicar válvula mal dimensionada ou pouca rangeabilidade útil.",
+                "Cavitação, flashing e escoamento crítico podem invalidar uma leitura simplificada de Cv.",
+                "Tempo de atuação depende de volume do atuador, vazão pneumática, pressão disponível e acessórios."
+          ],
+          "example": [
+                "Exemplo: calcular Cv para condição normal e máxima, depois escolher válvula que opere em faixa útil de abertura.",
+                "Conferir também pressão mínima/máxima, fluido, temperatura, ruído, cavitação e classe de pressão.",
+                "Para atuador, validar força/torque com margem e condição de falha segura."
+          ],
+          "interpretation": [
+                "Resultado favorável é apenas pré-seleção; a seleção final deve passar por fabricante/engenharia.",
+                "Atenção em cavitação, flashing, abertura extrema ou velocidade indica necessidade de revisar a solução.",
+                "Condição crítica deve bloquear especificação até completar folha de dados e cálculo formal."
+          ]
+    },
+    "calculadora-cv-gases-valvula-controle.html": {
+          "title": "Complemento técnico — Cv para gases em válvula de controle",
+          "intro": "Use este complemento para interpretar Cv para gases em válvula de controle como apoio técnico preliminar de instrumentação de processo. O resultado depende da qualidade dos dados informados e das condições reais de instalação.",
+          "assumptions": [
+                "As condições de vazão, pressão a montante/jusante, temperatura, densidade e fluido devem representar o pior caso relevante.",
+                "Para gases, compressibilidade, pressão absoluta e condição de escoamento crítico devem ser tratados com cuidado.",
+                "O Cv/Kv calculado é preliminar e precisa ser comparado com curva, rangeabilidade e internos disponíveis do fabricante.",
+                "Atuador, posicionador, ar de instrumento e ação de falha devem ser compatíveis com a função da válvula."
+          ],
+          "limitations": [
+                "Não substitui dimensionamento por fabricante, norma aplicável, análise de cavitação/flashing/ruído ou seleção final de corpo/interno.",
+                "Não valida material, classe de pressão, vedação, característica, rangeabilidade, autoridade da válvula ou segurança de processo.",
+                "Não use para comprar válvula crítica sem folha de dados completa e revisão de engenharia.",
+                "Serviços com fluido tóxico, inflamável, vapor, alta pressão ou alta queda de pressão exigem validação específica."
+          ],
+          "memory": [
+                "Cv/Kv relaciona capacidade de vazão da válvula com queda de pressão e propriedades do fluido.",
+                "Abertura normal muito baixa ou muito alta pode indicar válvula mal dimensionada ou pouca rangeabilidade útil.",
+                "Cavitação, flashing e escoamento crítico podem invalidar uma leitura simplificada de Cv.",
+                "Tempo de atuação depende de volume do atuador, vazão pneumática, pressão disponível e acessórios."
+          ],
+          "example": [
+                "Exemplo: calcular Cv para condição normal e máxima, depois escolher válvula que opere em faixa útil de abertura.",
+                "Conferir também pressão mínima/máxima, fluido, temperatura, ruído, cavitação e classe de pressão.",
+                "Para atuador, validar força/torque com margem e condição de falha segura."
+          ],
+          "interpretation": [
+                "Resultado favorável é apenas pré-seleção; a seleção final deve passar por fabricante/engenharia.",
+                "Atenção em cavitação, flashing, abertura extrema ou velocidade indica necessidade de revisar a solução.",
+                "Condição crítica deve bloquear especificação até completar folha de dados e cálculo formal."
+          ]
+    },
+    "calculadora-indice-cavitacao-valvula.html": {
+          "title": "Complemento técnico — cavitação em válvula de controle",
+          "intro": "Use este complemento para interpretar cavitação em válvula de controle como apoio técnico preliminar de instrumentação de processo. O resultado depende da qualidade dos dados informados e das condições reais de instalação.",
+          "assumptions": [
+                "As condições de vazão, pressão a montante/jusante, temperatura, densidade e fluido devem representar o pior caso relevante.",
+                "Para gases, compressibilidade, pressão absoluta e condição de escoamento crítico devem ser tratados com cuidado.",
+                "O Cv/Kv calculado é preliminar e precisa ser comparado com curva, rangeabilidade e internos disponíveis do fabricante.",
+                "Atuador, posicionador, ar de instrumento e ação de falha devem ser compatíveis com a função da válvula."
+          ],
+          "limitations": [
+                "Não substitui dimensionamento por fabricante, norma aplicável, análise de cavitação/flashing/ruído ou seleção final de corpo/interno.",
+                "Não valida material, classe de pressão, vedação, característica, rangeabilidade, autoridade da válvula ou segurança de processo.",
+                "Não use para comprar válvula crítica sem folha de dados completa e revisão de engenharia.",
+                "Serviços com fluido tóxico, inflamável, vapor, alta pressão ou alta queda de pressão exigem validação específica."
+          ],
+          "memory": [
+                "Cv/Kv relaciona capacidade de vazão da válvula com queda de pressão e propriedades do fluido.",
+                "Abertura normal muito baixa ou muito alta pode indicar válvula mal dimensionada ou pouca rangeabilidade útil.",
+                "Cavitação, flashing e escoamento crítico podem invalidar uma leitura simplificada de Cv.",
+                "Tempo de atuação depende de volume do atuador, vazão pneumática, pressão disponível e acessórios."
+          ],
+          "example": [
+                "Exemplo: calcular Cv para condição normal e máxima, depois escolher válvula que opere em faixa útil de abertura.",
+                "Conferir também pressão mínima/máxima, fluido, temperatura, ruído, cavitação e classe de pressão.",
+                "Para atuador, validar força/torque com margem e condição de falha segura."
+          ],
+          "interpretation": [
+                "Resultado favorável é apenas pré-seleção; a seleção final deve passar por fabricante/engenharia.",
+                "Atenção em cavitação, flashing, abertura extrema ou velocidade indica necessidade de revisar a solução.",
+                "Condição crítica deve bloquear especificação até completar folha de dados e cálculo formal."
+          ]
+    },
+    "calculadora-atuador-pneumatico.html": {
+          "title": "Complemento técnico — atuador pneumático",
+          "intro": "Use este complemento para interpretar atuador pneumático como apoio técnico preliminar de instrumentação de processo. O resultado depende da qualidade dos dados informados e das condições reais de instalação.",
+          "assumptions": [
+                "Pressão disponível, diâmetro, curso, volume e consumo devem representar a condição real de operação.",
+                "A qualidade do ar de instrumento, regulador, filtro, solenóide e tubulação afetam o desempenho prático.",
+                "Força calculada é ideal e deve considerar perdas, atrito, mola, carga externa e fator de segurança.",
+                "O tempo de atuação depende de volume, vazão, acessórios e restrições pneumáticas."
+          ],
+          "limitations": [
+                "Não substitui seleção de atuador, cálculo de torque/força por fabricante ou validação da função de segurança.",
+                "Não avalia qualidade do ar, queda dinâmica, congelamento, vazamentos, histerese, falha segura ou tempos reais de processo.",
+                "Não use para liberar válvula de bloqueio, shutdown ou intertravamento sem teste funcional.",
+                "Aplicações críticas exigem teste em campo e documentação do conjunto válvula-atuador-acessórios."
+          ],
+          "memory": [
+                "Força pneumática ideal: F = pressão × área efetiva do pistão ou diafragma.",
+                "Consumo depende de volume deslocado, pressão e número de ciclos.",
+                "Tempo de atuação depende da vazão pneumática disponível e das restrições do circuito.",
+                "Margem deve cobrir atrito, carga, mola, desgaste e variações de pressão."
+          ],
+          "example": [
+                "Exemplo: verificar se a pressão de ar disponível gera força suficiente no atuador com margem.",
+                "Depois comparar com requisito de torque/força da válvula e tempo de abertura/fechamento desejado.",
+                "Se o tempo ou força ficar no limite, revisar tubulação, solenóide, regulador, booster ou atuador."
+          ],
+          "interpretation": [
+                "Resultado coerente indica apenas capacidade preliminar do circuito pneumático.",
+                "Margem baixa exige revisar pressão mínima, perdas e condição real de carga.",
+                "Em válvula crítica, validar atuação real em campo e registrar teste funcional."
+          ]
+    },
+    "calculadora-tempo-atuacao-valvula.html": {
+          "title": "Complemento técnico — tempo de atuação de válvula",
+          "intro": "Use este complemento para interpretar tempo de atuação de válvula como apoio técnico preliminar de instrumentação de processo. O resultado depende da qualidade dos dados informados e das condições reais de instalação.",
+          "assumptions": [
+                "As condições de vazão, pressão a montante/jusante, temperatura, densidade e fluido devem representar o pior caso relevante.",
+                "Para gases, compressibilidade, pressão absoluta e condição de escoamento crítico devem ser tratados com cuidado.",
+                "O Cv/Kv calculado é preliminar e precisa ser comparado com curva, rangeabilidade e internos disponíveis do fabricante.",
+                "Atuador, posicionador, ar de instrumento e ação de falha devem ser compatíveis com a função da válvula."
+          ],
+          "limitations": [
+                "Não substitui dimensionamento por fabricante, norma aplicável, análise de cavitação/flashing/ruído ou seleção final de corpo/interno.",
+                "Não valida material, classe de pressão, vedação, característica, rangeabilidade, autoridade da válvula ou segurança de processo.",
+                "Não use para comprar válvula crítica sem folha de dados completa e revisão de engenharia.",
+                "Serviços com fluido tóxico, inflamável, vapor, alta pressão ou alta queda de pressão exigem validação específica."
+          ],
+          "memory": [
+                "Cv/Kv relaciona capacidade de vazão da válvula com queda de pressão e propriedades do fluido.",
+                "Abertura normal muito baixa ou muito alta pode indicar válvula mal dimensionada ou pouca rangeabilidade útil.",
+                "Cavitação, flashing e escoamento crítico podem invalidar uma leitura simplificada de Cv.",
+                "Tempo de atuação depende de volume do atuador, vazão pneumática, pressão disponível e acessórios."
+          ],
+          "example": [
+                "Exemplo: calcular Cv para condição normal e máxima, depois escolher válvula que opere em faixa útil de abertura.",
+                "Conferir também pressão mínima/máxima, fluido, temperatura, ruído, cavitação e classe de pressão.",
+                "Para atuador, validar força/torque com margem e condição de falha segura."
+          ],
+          "interpretation": [
+                "Resultado favorável é apenas pré-seleção; a seleção final deve passar por fabricante/engenharia.",
+                "Atenção em cavitação, flashing, abertura extrema ou velocidade indica necessidade de revisar a solução.",
+                "Condição crítica deve bloquear especificação até completar folha de dados e cálculo formal."
+          ]
+    },
+    "calculadora-bateria-ups-24vcc.html": {
+        "title": "Complemento técnico — bateria UPS 24 Vcc para CLP e instrumentos",
+        "intro": "Use este complemento para interpretar autonomia de bateria como pré-dimensionamento de alimentação 24 Vcc. Em automação, autonomia insuficiente pode causar parada, perda de comunicação ou desligamento incorreto de instrumentos.",
+        "assumptions": [
+            "A corrente total deve representar as cargas que realmente permanecerão alimentadas durante a falta de energia.",
+            "A autonomia desejada deve considerar tempo de parada segura, retorno de energia, operação assistida ou desligamento controlado.",
+            "Profundidade de descarga, rendimento e derating devem refletir tecnologia da bateria, temperatura e envelhecimento.",
+            "A tensão nominal do banco, carregador, fusíveis e cabos devem ser compatíveis com a corrente do sistema 24 Vcc."
+        ],
+        "limitations": [
+            "Não substitui curva real do fabricante da bateria/UPS, ensaio de autonomia, seletividade, proteção por ramal ou estudo de confiabilidade.",
+            "Não valida curto-circuito, corrente de partida de cargas, redundância, hot-swap, temperatura de painel ou tempo de recarga.",
+            "Não use para liberar sistema crítico de segurança, CLP, rede ou instrumentação sem teste funcional em campo.",
+            "Baterias envelhecidas, temperatura elevada e cargas pulsantes podem reduzir bastante a autonomia real."
+        ],
+        "memory": [
+            "Energia aproximada: Wh = V × A × h, ajustada por rendimento, profundidade de descarga e derating.",
+            "Capacidade em Ah aumenta quando há maior autonomia, maior corrente, menor rendimento ou menor profundidade de descarga permitida.",
+            "A autonomia real depende da curva de descarga, temperatura, estado de saúde da bateria e perfil das cargas.",
+            "A sugestão comercial deve ser tratada como referência inicial, não como especificação final."
+        ],
+        "example": [
+            "Exemplo: painel 24 Vcc consumindo 6 A, autonomia desejada de 1 hora, rendimento de 85%, DoD de 70% e derating de 80%.",
+            "Use o resultado para escolher uma capacidade comercial acima do mínimo e depois confira a curva do fabricante.",
+            "Em CLP ou rede crítica, valide também fonte redundante, UPS, fusíveis, supervisão de bateria e alarme de falha."
+        ],
+        "interpretation": [
+            "Resultado favorável indica apenas que a capacidade estimada atende às premissas digitadas.",
+            "Margem pequena pede bateria maior, redução de carga ou revisão de autonomia desejada.",
+            "Sistema crítico deve ser testado com falta real de energia e registro de autonomia medida."
+        ]
+    },
+    "calculadora-cabo-profibus-rs485.html": {
+        "title": "Complemento técnico — cabo PROFIBUS e RS-485",
+        "intro": "Use este complemento para interpretar comprimento, taxa, dispositivos e repetidores em redes seriais industriais. Redes PROFIBUS/RS-485 são muito sensíveis a cabo, terminação, blindagem e aterramento.",
+        "assumptions": [
+            "A taxa de comunicação informada deve representar a configuração real de todos os dispositivos do segmento.",
+            "O comprimento informado deve considerar rota física, sobras em painel, caixas, derivações e trecho até conectores.",
+            "O número de dispositivos deve considerar todos os nós ativos do segmento, inclusive repetidores quando aplicável.",
+            "As terminações devem existir apenas nas extremidades elétricas do segmento e devem estar energizadas quando exigido."
+        ],
+        "limitations": [
+            "Não diagnostica ruído, reflexões, blindagem incorreta, aterramento, conectores defeituosos, derivação longa ou osciloscopia de sinal.",
+            "Não substitui analisador PROFIBUS/RS-485, teste de continuidade, inspeção de terminação ou validação em comissionamento.",
+            "Não use o resultado como garantia de comunicação estável se o cabeamento real não seguir boas práticas de instalação.",
+            "Ambientes com inversores, motores, cabos de potência próximos ou aterramento ruim exigem atenção adicional."
+        ],
+        "memory": [
+            "Quanto maior a taxa de comunicação, menor tende a ser o comprimento permitido do segmento.",
+            "Uso do segmento compara o comprimento informado com uma referência típica para a taxa selecionada.",
+            "Repetidores são estimados quando o comprimento ou quantidade de dispositivos excede a referência adotada.",
+            "Terminação incorreta pode gerar falha mesmo quando comprimento e quantidade de dispositivos parecem aceitáveis."
+        ],
+        "example": [
+            "Exemplo: PROFIBUS DP a 187,5 kbit/s, 250 m de cabo, 18 dispositivos e terminação ativa nas duas extremidades.",
+            "A ferramenta indica uso do segmento e necessidade preliminar de repetidor.",
+            "Depois confira com teste físico: polaridade A/B, blindagem, continuidade, resistência de terminação e diagnóstico da rede."
+        ],
+        "interpretation": [
+            "OK preliminar indica apenas que comprimento, taxa, dispositivos e terminação informados parecem coerentes.",
+            "Atenção indica necessidade de revisar taxa, segmentação, repetidor, terminação ou quantidade de nós.",
+            "Falhas intermitentes normalmente exigem medição de sinal e inspeção física, não apenas cálculo de comprimento."
+        ]
+    },
+    "calculadora-escala-clp.html": {
+        "title": "Complemento técnico — escala de CLP e instrumento",
+        "intro": "Use este complemento para interpretar conversão entre sinal bruto, sinal elétrico e unidade de engenharia. Erro de escala em CLP pode gerar leitura incorreta no supervisório, intertravamento ou controle.",
+        "assumptions": [
+            "O range do instrumento, o range de engenharia e o range bruto do cartão devem estar configurados de forma coerente.",
+            "O tipo de sinal deve representar a entrada real: 4-20 mA, 0-10 V, raw do fabricante ou escala configurada no CLP.",
+            "A leitura usada deve estar dentro da faixa válida ou ser tratada como falha/alarme quando ultrapassar limites.",
+            "O canal analógico deve estar calibrado ou conferido antes de concluir que o erro é apenas de escala."
+        ],
+        "limitations": [
+            "Não valida configuração real do bloco de escala, filtro, linearização, raiz quadrada, clamps, alarmes ou diagnóstico do cartão.",
+            "Não substitui teste com calibrador, simulação de sinal e comparação com o valor exibido no CLP/IHM/SCADA.",
+            "Não use para alterar lógica crítica sem backup, gestão de mudança e teste funcional.",
+            "Escalas invertidas, unidades erradas ou faixa de falha NAMUR precisam ser tratadas no programa."
+        ],
+        "memory": [
+            "Escala linear: valor engenharia = mínimo engenharia + fração do sinal × span de engenharia.",
+            "A fração normalmente é calculada comparando sinal medido com mínimo/máximo do sinal ou raw configurado.",
+            "Para 4-20 mA, 4 mA representa 0% do span e 20 mA representa 100% do span em uma escala linear típica.",
+            "Raw esperado depende do fabricante e da parametrização do módulo analógico."
+        ],
+        "example": [
+            "Exemplo: transmissor 4-20 mA configurado de 0 a 10 bar e cartão CLP com raw 0 a 27648.",
+            "Em 12 mA, a leitura esperada é cerca de 50% do span, ou aproximadamente 5 bar.",
+            "Compare o resultado com o valor no CLP e no supervisório para localizar erro de escala ou configuração."
+        ],
+        "interpretation": [
+            "Resultado coerente indica correspondência matemática, não garante que o instrumento esteja calibrado.",
+            "Valor fora da faixa indica possível erro de sinal, configuração, cabo, canal ou condição de falha.",
+            "Em malhas críticas, teste pontos de 0%, 25%, 50%, 75% e 100% antes de liberar."
+        ]
+    },
+    "calculadora-io-clp.html": {
+        "title": "Complemento técnico — I/O de CLP",
+        "intro": "Use este complemento para interpretar quantidade de entradas, saídas, reservas e cartões de CLP. A contagem de I/O é uma base preliminar para arquitetura, lista de sinais e orçamento de painel.",
+        "assumptions": [
+            "A lista de sinais deve separar DI, DO, AI e AO, além de sinais especiais como RTD, termopar, pulso, encoder ou comunicação.",
+            "A reserva deve considerar expansão futura, sinais de manutenção, alarmes e alterações de escopo.",
+            "A quantidade de canais por cartão deve representar o hardware real do fabricante escolhido.",
+            "Sinais de segurança, redundância e áreas classificadas devem ser tratados separadamente quando aplicável."
+        ],
+        "limitations": [
+            "Não define arquitetura final de CLP, redundância, fonte, borne, relé de interface, segregação, rede ou painel.",
+            "Não substitui lista de I/O aprovada, diagrama elétrico, folha de dados, matriz de causa e efeito ou revisão de automação.",
+            "Não use para compra final sem conferir spare, endereço, rack, módulos especiais e compatibilidade do fabricante.",
+            "I/O de segurança deve ser dimensionado conforme requisitos próprios de segurança funcional."
+        ],
+        "memory": [
+            "Quantidade com reserva = quantidade base × (1 + reserva percentual).",
+            "Número de cartões = arredondamento para cima da quantidade com reserva dividida por canais por cartão.",
+            "Sinais analógicos podem exigir isolação, barreira, alimentação externa, HART ou bornes específicos.",
+            "Reserva insuficiente aumenta risco de retrabalho em montagem e comissionamento."
+        ],
+        "example": [
+            "Exemplo: 40 DI, 24 DO, 12 AI e 4 AO, com 20% de reserva e cartões de 16 canais digitais / 8 canais analógicos.",
+            "Use o resultado para estimar quantidade de módulos e espaços no painel.",
+            "Depois confira lista de I/O, endereçamento, bornes, alimentação e reserva física no rack."
+        ],
+        "interpretation": [
+            "Resultado favorável indica dimensionamento preliminar de canais, não arquitetura aprovada.",
+            "Reserva baixa ou cartões no limite pedem revisão antes de fechar painel.",
+            "Sinais críticos, Ex, HART ou segurança devem ser conferidos individualmente."
+        ]
+    },
+    "calculadora-ip-rede-industrial.html": {
+        "title": "Complemento técnico — IP e máscara de rede industrial",
+        "intro": "Use este complemento para interpretar endereçamento IP, sub-rede e faixa de hosts em redes industriais. Configuração incorreta pode causar perda de comunicação entre CLP, IHM, inversores, remotas e supervisório.",
+        "assumptions": [
+            "O IP, máscara e gateway devem representar a arquitetura real definida para a rede industrial.",
+            "Cada equipamento deve ter endereço único, documentado e compatível com a sub-rede.",
+            "A faixa calculada deve ser comparada com plano de endereçamento, VLAN, firewall e roteamento da planta.",
+            "Redes OT devem ser separadas e controladas conforme política de segurança da empresa."
+        ],
+        "limitations": [
+            "Não valida firewall, VLAN, NAT, roteamento, redundância, anel, segurança cibernética ou disponibilidade de rede.",
+            "Não detecta conflito real de IP, perda de pacote, latência, loop de rede ou problema físico de switch/cabo.",
+            "Não use para alterar rede em produção sem janela, backup de configuração e plano de retorno.",
+            "Sistemas críticos exigem validação com automação, TI/OT e documentação atualizada."
+        ],
+        "memory": [
+            "A máscara define quais bits pertencem à rede e quais ficam disponíveis para hosts.",
+            "Endereço de rede e broadcast não devem ser atribuídos a equipamentos finais.",
+            "Hosts válidos ficam entre o primeiro e o último endereço disponível da sub-rede.",
+            "Gateway só é necessário quando o equipamento precisa comunicar fora da própria sub-rede."
+        ],
+        "example": [
+            "Exemplo: CLP em 192.168.10.20 com máscara 255.255.255.0 pertence à rede 192.168.10.0/24.",
+            "A faixa típica de hosts vai de 192.168.10.1 a 192.168.10.254, reservando endereços conforme padrão da planta.",
+            "Antes de aplicar, conferir se não há IP duplicado e se switches/VLANs estão configurados."
+        ],
+        "interpretation": [
+            "Resultado coerente indica sub-rede e faixa calculadas corretamente para os dados digitados.",
+            "Atenção se o IP estiver fora do plano da planta, se houver gateway incompatível ou faixa sobreposta.",
+            "Alteração em rede industrial deve ser planejada para evitar parada de comunicação."
+        ]
+    },
+    "calculadora-modbus-polling.html": {
+        "title": "Complemento técnico — ciclo de polling Modbus RTU",
+        "intro": "Use este complemento para interpretar tempo de polling e carga de comunicação em rede Modbus RTU. Polling mal dimensionado pode gerar lentidão, timeout e dados atrasados no CLP ou supervisório.",
+        "assumptions": [
+            "Baud rate, quantidade de escravos, registradores e intervalo de consulta devem representar a configuração real da rede.",
+            "A estimativa considera uma comunicação sequencial típica mestre-escravo.",
+            "Timeout, retries e atrasos entre mensagens influenciam diretamente o tempo total de atualização.",
+            "Todos os dispositivos devem estar configurados com parâmetros seriais compatíveis."
+        ],
+        "limitations": [
+            "Não detecta ruído, endereços duplicados, falha de terminação, cabo inadequado, polaridade invertida ou aterramento ruim.",
+            "Não substitui teste com analisador serial, log de comunicação ou diagnóstico do mestre Modbus.",
+            "Não garante tempo determinístico para controle rápido ou intertravamento.",
+            "Redes com muitos escravos, baixa taxa ou muitos retries precisam de validação em campo."
+        ],
+        "memory": [
+            "Tempo de transmissão depende da quantidade de bytes, baud rate e formato serial.",
+            "Ciclo total soma requisições, respostas, atrasos, timeouts e tentativas de repetição.",
+            "Quanto maior a quantidade de dispositivos e registradores, maior o tempo de atualização.",
+            "Timeout longo melhora tolerância a atraso, mas pode deixar a rede lenta em caso de falha."
+        ],
+        "example": [
+            "Exemplo: 12 escravos, 9600 bps, leitura de blocos pequenos e timeout de 500 ms.",
+            "A ferramenta estima o ciclo de atualização e ajuda a avaliar se o supervisório ficará lento.",
+            "Se o ciclo ficar alto, agrupe registradores, aumente baud rate quando possível ou divida a rede."
+        ],
+        "interpretation": [
+            "Resultado favorável indica tempo de polling aceitável para a finalidade informada.",
+            "Atenção quando ciclo, ocupação ou timeout ficarem altos em relação à dinâmica do processo.",
+            "Para controle rápido, evite depender de Modbus RTU lento sem análise de tempo de resposta."
+        ]
+    },
+    "calculadora-modbus.html": {
+        "title": "Complemento técnico — endereços e registradores Modbus",
+        "intro": "Use este complemento para interpretar endereçamento Modbus, função, offset, tipo de dado e ordem de bytes/palavras. Erro de mapeamento é uma das causas mais comuns de leitura incorreta em automação.",
+        "assumptions": [
+            "A documentação do equipamento deve informar tabela de registradores, função Modbus e tipo de dado.",
+            "Endereço mostrado no manual pode ser base 0, base 1 ou notação 3xxxx/4xxxx, dependendo do fabricante.",
+            "Word order e byte order devem ser compatíveis entre escravo, CLP, gateway e supervisório.",
+            "Coils, discrete inputs, input registers e holding registers não são equivalentes."
+        ],
+        "limitations": [
+            "Não confirma comunicação física, baud rate, paridade, timeout, ID do escravo ou gateway.",
+            "Não substitui teste com software Modbus, leitura real do registrador e comparação com valor local do equipamento.",
+            "Não use conversão de endereço sem conferir se o fabricante utiliza offset diferente ou registrador documentado de forma própria.",
+            "Float, inteiro assinado, escala e fator multiplicador podem alterar completamente o valor exibido."
+        ],
+        "memory": [
+            "Notações 40001/30001 costumam representar classes de registradores, não necessariamente o offset enviado no frame.",
+            "Alguns mestres usam offset zero; outros pedem o endereço documentado pelo fabricante.",
+            "Valores de 32 bits usam dois registradores e dependem de ordem de palavra/byte.",
+            "A função Modbus correta deve combinar com o tipo de registrador lido ou escrito."
+        ],
+        "example": [
+            "Exemplo: manual informa 40010 como holding register de temperatura em inteiro com fator 0,1.",
+            "Dependendo do mestre, pode ser necessário consultar offset 9 ou endereço 40010.",
+            "Leia um valor conhecido e compare com display local para validar endereço, escala e word order."
+        ],
+        "interpretation": [
+            "Resultado coerente ajuda a montar a consulta, mas não garante que o equipamento responda corretamente.",
+            "Valor absurdo normalmente indica endereço, função, tipo de dado, escala ou word order incorretos.",
+            "Sempre valide com leitura real antes de usar o dado em controle, alarme ou relatório."
+        ]
+    },
+    "calculadora-resolucao-clp-analogico.html": {
+        "title": "Complemento técnico — resolução de cartão analógico CLP",
+        "intro": "Use este complemento para interpretar resolução, contagens e menor variação detectável em canais analógicos. Resolução não é a mesma coisa que exatidão ou calibração.",
+        "assumptions": [
+            "A quantidade de bits e a faixa raw devem representar o módulo analógico real e sua parametrização.",
+            "O range de engenharia deve representar o range configurado do instrumento ou variável no CLP.",
+            "A resolução calculada considera quantização ideal, sem ruído, erro do módulo, erro do transmissor ou filtro.",
+            "A aplicação deve tolerar a menor variação detectável calculada."
+        ],
+        "limitations": [
+            "Não calcula exatidão, incerteza, ruído, deriva, erro do transmissor ou erro total da malha.",
+            "Não substitui calibração do canal, teste com simulador e comparação com padrão rastreável quando necessário.",
+            "Não use resolução como garantia de qualidade de medição.",
+            "Filtros, damping e atualização do CLP podem mascarar ou atrasar variações pequenas."
+        ],
+        "memory": [
+            "Passo raw ideal = span de engenharia / número de contagens úteis.",
+            "Mais bits ou maior faixa raw reduzem o tamanho do passo teórico.",
+            "Span de engenharia muito grande aumenta o valor mínimo por contagem.",
+            "A exatidão final depende da soma de erros do transmissor, cartão, cabos, conversão e calibração."
+        ],
+        "example": [
+            "Exemplo: cartão de 15 bits com range 0 a 27648 para variável de 0 a 100 °C.",
+            "O resultado indica a menor variação teórica por contagem no CLP.",
+            "Depois compare esse valor com tolerância do processo e erro permitido da malha."
+        ],
+        "interpretation": [
+            "Resultado favorável indica resolução suficiente para a necessidade informada, não garantia de exatidão.",
+            "Atenção se o passo calculado for grande perto da tolerância ou da variação mínima que precisa ser vista.",
+            "Para qualidade, dosagem ou segurança, avalie erro total e calibração além da resolução."
+        ]
+    },
+    "calculadora-sintonia-pid.html": {
+        "title": "Complemento técnico — sintonia PID industrial",
+        "intro": "Use este complemento para interpretar parâmetros PID como ponto de partida. Sintonia de malha de controle pode causar oscilação, instabilidade, sobretemperatura, sobrepressão ou perda de qualidade se aplicada sem teste.",
+        "assumptions": [
+            "O processo deve estar em condição segura para teste e com instrumentação funcionando corretamente.",
+            "Ganho, tempo morto e constante de tempo devem representar a resposta real da malha.",
+            "A ação direta/reversa, limites de saída, anti-windup e modo manual/automático devem estar corretos no controlador.",
+            "A sintonia calculada deve ser aplicada gradualmente e testada com acompanhamento operacional."
+        ],
+        "limitations": [
+            "Não substitui teste de resposta em campo, análise de estabilidade, conhecimento do processo ou procedimento de mudança de parâmetro.",
+            "Não garante desempenho para processo não linear, malha com válvula agarrando, sensor lento, ruído, saturação ou tempo morto variável.",
+            "Não use em malhas críticas sem plano de teste, limites seguros e autorização da operação.",
+            "Malhas em cascata, razão, override ou controle multivariável exigem análise específica."
+        ],
+        "memory": [
+            "Parâmetros PID relacionam erro, integral e derivada para ajustar a saída do controlador.",
+            "Ganho alto tende a responder mais rápido, mas pode aumentar oscilação.",
+            "Integral remove erro estacionário, mas pode causar windup se mal configurada.",
+            "Derivada pode antecipar variação, mas é sensível a ruído e filtragem."
+        ],
+        "example": [
+            "Exemplo: malha de temperatura lenta com tempo morto conhecido e variação controlada em modo manual.",
+            "Calcule uma sintonia conservadora, aplique com supervisão e observe resposta a pequenas perturbações.",
+            "Registre parâmetros antigos, novos, tendência da PV/SP/OUT e critérios de aceitação."
+        ],
+        "interpretation": [
+            "Resultado favorável é ponto de partida, não garantia de estabilidade final.",
+            "Atenção se o processo for crítico, rápido, com ruído, saturação, válvula ruim ou grande tempo morto.",
+            "Mudanças em PID devem ser feitas com backup, tendência e possibilidade de retorno ao ajuste anterior."
+        ]
+    },
+    "calculadora-tempo-transmissao-serial-industrial.html": {
+        "title": "Complemento técnico — tempo de transmissão serial industrial",
+        "intro": "Use este complemento para interpretar tempo de transmissão em comunicação serial industrial. Ele ajuda a estimar atraso de mensagens, mas não substitui teste real da rede.",
+        "assumptions": [
+            "Baud rate, quantidade de bytes, bits de dados, paridade e stop bits devem representar a configuração real.",
+            "A estimativa considera tempo de transmissão do quadro, sem incluir todo o processamento interno dos equipamentos.",
+            "Atrasos de resposta, timeouts, retries e turn-around time podem ser maiores que o tempo puro de transmissão.",
+            "A rede física deve estar corretamente terminada, blindada e aterrada."
+        ],
+        "limitations": [
+            "Não detecta ruído, colisão, erro de protocolo, buffer, latência de gateway ou perda de pacotes.",
+            "Não garante atualização suficiente para controle rápido, intertravamento ou sincronismo.",
+            "Não substitui medição real com analisador, log de comunicação ou diagnóstico do CLP/supervisório.",
+            "Protocolos diferentes podem adicionar overhead não representado por um cálculo simples de bytes."
+        ],
+        "memory": [
+            "Tempo aproximado = quantidade de bits transmitidos / baud rate.",
+            "Cada byte serial inclui bits de dados e bits adicionais de start, paridade e stop conforme configuração.",
+            "Quadros maiores ou baud rate menor aumentam o tempo de transmissão.",
+            "O ciclo de atualização total soma transmissão, resposta, processamento e esperas do protocolo."
+        ],
+        "example": [
+            "Exemplo: mensagem de 40 bytes a 9600 bps com 8N1.",
+            "A ferramenta estima o tempo mínimo de transmissão daquele quadro.",
+            "Depois compare com tempo de polling real e necessidade de atualização do processo."
+        ],
+        "interpretation": [
+            "Resultado favorável indica que o tempo puro de transmissão é compatível com a aplicação preliminar.",
+            "Atenção se o tempo ficar próximo da necessidade de atualização ou se houver muitos dispositivos na rede.",
+            "Para controle ou dados críticos, valide ciclo completo em campo."
+        ]
+    },
+    "calculadora-tempo-varredura-modbus-rtu.html": {
+        "title": "Complemento técnico — tempo de varredura Modbus RTU",
+        "intro": "Use este complemento para interpretar tempo total de varredura em Modbus RTU. Em redes lentas, os dados podem chegar atrasados ao CLP, IHM ou supervisório.",
+        "assumptions": [
+            "A quantidade de escravos, registradores, taxa serial, timeout e retries devem refletir a configuração real.",
+            "O mestre consulta dispositivos de forma sequencial e o tempo total depende da soma das transações.",
+            "Falhas de resposta aumentam muito o ciclo por causa de timeout e repetição.",
+            "A dinâmica do processo deve ser compatível com o tempo de atualização calculado."
+        ],
+        "limitations": [
+            "Não valida qualidade física da rede, ruído, terminação, polaridade, cabo, blindagem ou aterramento.",
+            "Não substitui teste real de comunicação, diagnóstico de timeout e análise de log do mestre.",
+            "Não deve ser usado para intertravamentos rápidos ou controle crítico sem avaliação de tempo de resposta.",
+            "Gateways, conversores e rádios podem adicionar atrasos relevantes."
+        ],
+        "memory": [
+            "Tempo de varredura soma requisições, respostas, atrasos, timeouts e retries de todos os escravos.",
+            "Taxa serial mais alta reduz tempo de transmissão, mas não resolve falhas físicas ou excesso de retries.",
+            "Leituras agrupadas tendem a ser mais eficientes que muitas leituras pequenas.",
+            "Tempo de atualização deve ser menor que o tempo aceitável para a operação monitorada."
+        ],
+        "example": [
+            "Exemplo: 20 escravos, 19200 bps, 10 registradores por escravo e timeout de 300 ms.",
+            "A ferramenta estima se a varredura fica adequada para supervisão lenta ou se a rede ficará atrasada.",
+            "Se houver muitos timeouts, primeiro corrija a rede física antes de aumentar timeout."
+        ],
+        "interpretation": [
+            "Resultado favorável indica ciclo preliminar aceitável para a aplicação informada.",
+            "Atenção se o tempo de varredura for alto, se houver retries ou se a variável precisar de atualização rápida.",
+            "Condição crítica pede divisão da rede, agrupamento de leituras, maior taxa ou mudança de arquitetura."
+        ]
+    },
+    "calculadora-tempo-resposta-malha-controle.html": {
+        "title": "Complemento técnico — tempo de resposta de malha de controle",
+        "intro": "Use este complemento para interpretar atrasos de sensor, transmissão, CLP, atuador e processo. Tempo de resposta alto pode prejudicar controle, alarmes e intertravamentos.",
+        "assumptions": [
+            "Os tempos informados devem representar a condição real da malha, incluindo filtro, damping, varredura e atuação.",
+            "O processo deve ser avaliado conforme a dinâmica da variável controlada e criticidade da aplicação.",
+            "Tempo de resposta de instrumento e atuador deve vir de datasheet, teste ou histórico confiável.",
+            "Malhas críticas precisam de critério claro de tempo máximo aceitável."
+        ],
+        "limitations": [
+            "Não substitui teste de resposta em campo, tendência histórica, análise de estabilidade ou estudo de segurança funcional.",
+            "Não considera todas as não linearidades, saturações, histerese, ruído, tempo morto variável ou falhas intermitentes.",
+            "Não use para liberar intertravamento, alarme crítico ou controle rápido sem teste funcional.",
+            "Filtros excessivos podem esconder falhas ou atrasar alarmes mesmo quando a leitura parece estável."
+        ],
+        "memory": [
+            "Tempo total preliminar é a soma dos atrasos relevantes da cadeia de medição, controle e atuação.",
+            "Elementos lentos dominam a resposta final da malha.",
+            "Tempo morto elevado dificulta sintonia PID e pode causar oscilação.",
+            "A avaliação deve comparar tempo de resposta com necessidade do processo."
+        ],
+        "example": [
+            "Exemplo: transmissor com damping de 2 s, CLP com ciclo de 200 ms, rede com 500 ms e válvula com 4 s.",
+            "A ferramenta soma os principais atrasos para estimar resposta preliminar da malha.",
+            "Depois compare com o tempo máximo tolerável para controle, alarme ou segurança."
+        ],
+        "interpretation": [
+            "Resultado favorável indica resposta preliminar compatível com a aplicação informada.",
+            "Atenção se o tempo total ficar alto perto da dinâmica do processo ou se houver grande tempo morto.",
+            "Em malha crítica, validar com teste real e tendência de PV/SP/OUT."
+        ]
+    },
+    "calculadora-ups-automacao-clp-instrumentos.html": {
+        "title": "Complemento técnico — UPS para automação, CLP e instrumentos",
+        "intro": "Use este complemento para interpretar potência, autonomia e bateria de UPS/nobreak em painéis de automação. Em sistemas industriais, UPS mal dimensionada pode desligar CLP, remotas, switches, instrumentos e supervisório.",
+        "assumptions": [
+            "A lista de cargas deve incluir todos os equipamentos que realmente permanecerão alimentados pela UPS.",
+            "Fator de potência, rendimento, temperatura e simultaneidade devem representar o cenário real.",
+            "Autonomia desejada deve considerar parada segura, retorno de energia, reinicialização e tempo de operação assistida.",
+            "A arquitetura deve considerar cargas prioritárias, proteção por ramal e sinalização de falha da UPS."
+        ],
+        "limitations": [
+            "Não substitui curva real de autonomia do fabricante, cálculo de curto, seletividade, proteção, dissipação térmica ou teste de descarga.",
+            "Não valida bypass, redundância, hot-swap, carregador, coordenação de fusíveis ou integração com CLP/SCADA.",
+            "Não use para sistema crítico sem teste funcional de falta de energia e plano de retorno.",
+            "Baterias perdem capacidade com temperatura, envelhecimento e ciclos de descarga."
+        ],
+        "memory": [
+            "Potência aparente depende de potência ativa, fator de potência e margem aplicada.",
+            "Energia requerida depende da potência crítica e do tempo de autonomia desejado.",
+            "Capacidade de bateria é corrigida por rendimento, tensão do banco, temperatura e profundidade de descarga.",
+            "Autonomia estimada com banco informado deve ser comparada com curva real do fabricante."
+        ],
+        "example": [
+            "Exemplo: CLP, switch industrial, remotas e instrumentos críticos somando 350 W, autonomia de 30 minutos e margem de 25%.",
+            "A ferramenta estima VA da UPS e Ah mínimo do banco.",
+            "Depois confira curva do fabricante, proteção por carga, sinal de alarme e teste prático de falta de energia."
+        ],
+        "interpretation": [
+            "Pré-dimensionamento adequado indica margem preliminar para potência e bateria, não liberação final.",
+            "Atenção se autonomia, temperatura, FP ou carga ficarem no limite.",
+            "Resultado insuficiente pede reduzir cargas, aumentar UPS/bateria ou separar cargas críticas e não críticas."
+        ]
+    },
+    "checklist-comissionamento-hart.html": {
+        "title": "Complemento técnico — checklist de comissionamento HART",
+        "intro": "Use este complemento para interpretar o checklist HART como apoio de campo. O checklist ajuda a reduzir esquecimentos, mas não substitui procedimento de comissionamento da planta.",
+        "assumptions": [
+            "A TAG, instrumento, range e local devem corresponder ao desenho de malha e à folha de dados vigente.",
+            "A malha deve estar em condição segura para teste, com operação e manutenção alinhadas.",
+            "Comunicador HART, calibrador e padrões usados devem estar adequados e, quando aplicável, calibrados.",
+            "As evidências de comissionamento devem ser registradas conforme procedimento do cliente."
+        ],
+        "limitations": [
+            "Não garante conformidade se não houver teste físico, simulação de sinal, conferência de range, PV/AO e comunicação HART.",
+            "Não substitui FAT/SAT, procedimento de loop check, relatório formal ou aprovação de engenharia/operação.",
+            "Não use percentual completo como liberação automática de partida.",
+            "Malhas Ex, SIS, intertravamento ou controle crítico exigem documentação e teste específico."
+        ],
+        "memory": [
+            "Percentual concluído = itens marcados como realizados dividido pelo total de itens do checklist.",
+            "Itens concluídos indicam progresso, não qualidade da evidência coletada.",
+            "Pendências críticas devem bloquear liberação mesmo que o percentual geral seja alto.",
+            "Registro de TAG, range e local ajuda a rastrear evidência depois do campo."
+        ],
+        "example": [
+            "Exemplo: transmissor HART de pressão, TAG PT-101, range 0 a 10 bar, instalado no campo e ligado ao cartão analógico.",
+            "Marque itens como alimentação, comunicação, range, PV, AO, damping, unidades, TAG e teste 4-20 mA.",
+            "Ao final, copie/imprima o resumo e anexe evidências conforme procedimento."
+        ],
+        "interpretation": [
+            "Checklist completo indica que os itens foram conferidos, mas a liberação final depende das evidências e aprovação local.",
+            "Percentual parcial indica pendências que devem ser tratadas antes de partida ou entrega.",
+            "Em malha crítica, qualquer pendência relevante deve bloquear liberação."
+        ]
+    },
+    "checklist-comissionamento-industrial.html": {
+        "title": "Complemento técnico — checklist de comissionamento industrial",
+        "intro": "Use este complemento para interpretar o checklist como apoio de comissionamento, entrega técnica e organização de pendências. Ele não substitui procedimento formal de partida ou aceitação.",
+        "assumptions": [
+            "O escopo do checklist deve estar alinhado com projeto, equipamento, TAG, área e responsável informados.",
+            "Itens críticos devem ser tratados com prioridade, independentemente do percentual geral de progresso.",
+            "Status e observações devem refletir evidência real de campo, não apenas preenchimento administrativo.",
+            "A liberação final deve seguir procedimento do cliente, operação, manutenção e segurança."
+        ],
+        "limitations": [
+            "Não substitui laudo, ART/RRT, procedimento de comissionamento, teste funcional, SAT, permissão de trabalho ou aceite formal.",
+            "Não valida tecnicamente equipamentos, instalações elétricas, instrumentação, processo, segurança ou documentação por si só.",
+            "Não use percentual como autorização automática de partida.",
+            "Pendência crítica deve ser resolvida ou formalmente aceita antes de liberação."
+        ],
+        "memory": [
+            "Percentual representa progresso dos itens aplicáveis avaliados.",
+            "Itens pendentes e críticos influenciam mais a decisão de liberação que o percentual total.",
+            "Itens N/A devem ser usados apenas quando realmente não se aplicam ao escopo.",
+            "O resumo automático serve como apoio para ata ou relatório preliminar."
+        ],
+        "example": [
+            "Exemplo: comissionamento de painel de automação com CLP, fontes 24 Vcc, rede industrial, sinais de campo e IHM.",
+            "Preencha status por item, registre pendências e detalhe evidências nas observações.",
+            "Antes da entrega, revise pendências críticas, documentação, backup, testes e aceite operacional."
+        ],
+        "interpretation": [
+            "Sem pendências registradas é uma indicação preliminar, não aceite formal automático.",
+            "Pendências críticas devem bloquear partida, mesmo com alto percentual de itens OK.",
+            "Resumo deve ser validado por responsável técnico e procedimento da planta."
+        ]
+    },
+
+    "calculadora-acumulador-hidraulico.html": {
+        "title": "Complemento técnico — hidráulica industrial — Acumulador hidraulico",
+        "intro": "Use este complemento para interpretar cálculos de acumuladores, cilindros, potência hidráulica, mangueiras e perda de carga. Sistemas hidráulicos podem armazenar energia alta mesmo após desligamento.",
+        "assumptions": [
+            "Pressão, vazão, volume, diâmetro, curso e fluido devem representar a condição real.",
+            "Pressões devem considerar faixa de trabalho, picos, válvulas de alívio e temperatura do óleo.",
+            "Mangueiras, conexões, cilindros e acumuladores devem ser compatíveis com pressão, fluido e ambiente.",
+            "Cálculos de acumulador devem usar pressões absolutas e pré-carga correta."
+        ],
+        "limitations": [
+            "Não substitui projeto hidráulico, seleção de componentes, teste de pressão, avaliação de mangueiras, válvulas de segurança ou bloqueio de energia.",
+            "Não valida fadiga, pulsação, golpe, contaminação, compatibilidade de fluido, temperatura ou normas aplicáveis.",
+            "Não intervenha em acumulador ou circuito pressurizado sem despressurização e procedimento seguro.",
+            "A energia armazenada pode causar movimento inesperado de atuadores e risco grave."
+        ],
+        "memory": [
+            "Força hidráulica depende de pressão e área efetiva do cilindro.",
+            "Potência hidráulica depende de vazão e pressão.",
+            "Perda de carga aumenta com vazão, comprimento, rugosidade, conexões e viscosidade.",
+            "Acumuladores usam relação pressão-volume do gás, com processo isotérmico ou adiabático aproximado."
+        ],
+        "example": [
+            "Exemplo: estimar volume de acumulador para fornecer óleo durante queda momentânea de pressão.",
+            "Informe pré-carga, pressão mínima, pressão máxima e volume útil desejado.",
+            "Depois valide com catálogo, válvula de segurança, bloco de segurança e procedimento de manutenção."
+        ],
+        "interpretation": [
+            "Resultado favorável é pré-dimensionamento, não liberação de componente hidráulico.",
+            "Atenção se pressão, temperatura, acumulador, mangueira ou curso estiverem próximos do limite.",
+            "Condição crítica deve bloquear aplicação até validação do circuito e segurança de energia armazenada."
+        ]
+    },
+    "calculadora-alcalinidade-acidez-neutralizacao.html": {
+        "title": "Complemento técnico — dosagem, água industrial e química de processo — Alcalinidade acidez neutralizacao",
+        "intro": "Use este complemento para interpretar cálculos de dosagem, neutralização, diluição, cloro, corrosão e índices de água. Química de processo depende de análise laboratorial, produto usado e segurança química.",
+        "assumptions": [
+            "Concentração, vazão, volume, densidade e pureza do produto químico devem estar corretos.",
+            "pH, alcalinidade, cloro, TDS, LSI e corrosão dependem de medição confiável e condição da amostra.",
+            "Produtos químicos devem ser compatíveis com material, temperatura, processo e segurança.",
+            "Dosagens devem considerar eficiência de mistura, tempo de contato e variação da carga."
+        ],
+        "limitations": [
+            "Não substitui análise laboratorial, FISPQ, procedimento químico, validação ambiental, sanitária ou de segurança.",
+            "Não valida reação exotérmica, incompatibilidade química, corrosão localizada, incrustação ou descarte.",
+            "Não use para dosagem crítica sem teste, acompanhamento e validação do responsável técnico.",
+            "pH e neutralização são não lineares; pequenas variações podem mudar muito o resultado."
+        ],
+        "memory": [
+            "Dosagem ppm relaciona massa de produto ativo com volume ou vazão tratada.",
+            "Diluição relaciona concentração inicial, concentração final e volume.",
+            "Neutralização depende de alcalinidade/acidez, estequiometria e produto usado.",
+            "Índices de água são indicadores preliminares e devem ser interpretados com análise completa."
+        ],
+        "example": [
+            "Exemplo: estimar dosagem de químico para atingir uma concentração alvo em uma vazão de processo.",
+            "Informe vazão, concentração desejada, pureza e densidade do produto.",
+            "Depois valide com análise, ajuste fino em campo e limites de segurança química."
+        ],
+        "interpretation": [
+            "Resultado favorável indica dosagem preliminar compatível com os dados informados.",
+            "Atenção se houver produto perigoso, pH extremo, reação, corrosão, incrustação ou descarte.",
+            "Condição crítica exige teste controlado, EPI, FISPQ e validação técnica antes de aplicar."
+        ]
+    },
+    "calculadora-area-trocador-calor.html": {
+        "title": "Complemento técnico — trocadores, aquecimento e energia térmica — Area trocador calor",
+        "intro": "Use este complemento para interpretar estimativas de carga térmica, trocador de calor, aquecimento, perdas e consumo de energia. Resultados térmicos são muito sensíveis a propriedades do fluido e perdas reais.",
+        "assumptions": [
+            "Vazão, massa, Cp, ΔT, coeficiente global, área e rendimento devem representar a condição de projeto ou operação.",
+            "Propriedades do fluido podem variar com temperatura, concentração e pressão.",
+            "Perdas para ambiente, isolamento, incrustação e regime transitório podem alterar o resultado.",
+            "Trocadores devem ser avaliados conforme lado quente/frio, LMTD, fouling e limite de pressão/temperatura."
+        ],
+        "limitations": [
+            "Não substitui dimensionamento térmico detalhado, seleção de trocador, análise mecânica, limpeza, pressão admissível ou garantia de performance.",
+            "Não valida fouling, vibração, dilatação térmica, mistura de fases, ebulição, condensação ou segurança de processo.",
+            "Não use como única base para comprar resistência, trocador, vapor ou sistema de aquecimento.",
+            "Fluidos não Newtonianos, viscosos, corrosivos ou bifásicos exigem análise específica."
+        ],
+        "memory": [
+            "Carga térmica sensível geralmente depende de massa ou vazão mássica, Cp e ΔT.",
+            "Área de troca pode ser estimada por Q = U × A × ΔT médio logarítmico.",
+            "Perda térmica depende de área, diferença de temperatura, isolamento e coeficiente de troca.",
+            "Consumo elétrico ou de vapor depende da carga térmica e do rendimento do sistema."
+        ],
+        "example": [
+            "Exemplo: estimar potência necessária para aquecer um lote de água de 25 °C para 70 °C.",
+            "Informe volume/massa, Cp, ΔT, tempo e rendimento.",
+            "Depois valide com perdas, tempo real de aquecimento, limite do equipamento e segurança térmica."
+        ],
+        "interpretation": [
+            "Resultado favorável indica estimativa térmica coerente com as premissas informadas.",
+            "Atenção se houver temperatura alta, pressão, fluido perigoso, incrustação ou margem pequena.",
+            "Condição crítica exige balanço térmico, dados de fabricante e validação em campo."
+        ]
+    },
+    "calculadora-autonomia-ar-instrumentos.html": {
+        "title": "Complemento técnico — ar comprimido e ar de instrumentos — Autonomia ar instrumentos",
+        "intro": "Use este complemento para interpretar consumo, autonomia, condensado, reservatório, custo e qualidade de ar comprimido. Em instrumentação, a qualidade do ar impacta válvulas, posicionadores, conversores e confiabilidade do processo.",
+        "assumptions": [
+            "Pressão, vazão, temperatura, ciclo de operação e simultaneidade devem representar a condição real.",
+            "Consumos intermitentes de válvulas, cilindros, purgas e sopros devem ser tratados com margem.",
+            "Perdas por vazamento, queda de pressão, secador, filtros e rede podem alterar bastante o resultado.",
+            "Para ar de instrumentos, considerar qualidade, ponto de orvalho, óleo, particulado e estabilidade de pressão."
+        ],
+        "limitations": [
+            "Não substitui projeto de rede de ar, especificação de compressor, vaso, secador, filtros ou inspeção de segurança.",
+            "Não valida NR-13 para reservatórios, integridade da rede, ruído, eficiência energética ou qualidade conforme exigência do fabricante.",
+            "Não use como única base para reduzir compressor, desligar sistema ou modificar rede crítica.",
+            "Vazamentos, demanda de pico e simultaneidade podem tornar o consumo real maior que a estimativa."
+        ],
+        "memory": [
+            "Consumo de ar depende de volume, pressão absoluta, ciclos, tempo e fator de simultaneidade.",
+            "Autonomia depende do volume armazenado, faixa de pressão útil e demanda média.",
+            "Custo depende de energia consumida, eficiência do compressor, horas de operação e tarifa.",
+            "Ponto de orvalho e condensado dependem de temperatura, umidade e pressão."
+        ],
+        "example": [
+            "Exemplo: estimar se um reservatório mantém ar de instrumentos durante uma queda temporária do compressor.",
+            "Informe volume, pressões inicial/final, consumo médio e margem de segurança.",
+            "Use o resultado para triagem e valide com teste real, tendência de pressão e criticidade das válvulas."
+        ],
+        "interpretation": [
+            "Resultado favorável indica pré-dimensionamento coerente com os dados informados.",
+            "Atenção se a margem for pequena, houver muitos vazamentos, demanda de pico ou ar de instrumentos crítico.",
+            "Condição crítica pede medição em campo, correção de vazamentos, revisão do compressor e avaliação do vaso/rede."
+        ]
+    },
+    "calculadora-autonomia-cilindro-gas.html": {
+        "title": "Complemento técnico — gases industriais e pressurização — Autonomia cilindro gas",
+        "intro": "Use este complemento para interpretar cálculos com gases, cilindros, purga, concentração e normalização. Gases industriais podem envolver pressão, asfixia, inflamabilidade, toxicidade e requisitos de ventilação.",
+        "assumptions": [
+            "Pressão, temperatura, volume, composição e condição normalizada devem estar coerentes.",
+            "Para cilindros, usar pressão útil, fator de compressibilidade quando necessário e consumo real do processo.",
+            "Para purga, considerar volume efetivo, renovação, concentração alvo e segurança da área.",
+            "Unidades como Nm³/h, m³/h, ppm, mg/m³ e bar devem ser conferidas antes da aplicação."
+        ],
+        "limitations": [
+            "Não substitui análise de segurança, ventilação, classificação de área, FISPQ, procedimento de purga ou especificação de reguladores.",
+            "Não valida risco de asfixia, inflamabilidade, toxicidade, enriquecimento de oxigênio ou exaustão.",
+            "Não use para liberar trabalho com gás sem procedimento, medição e autorização local.",
+            "Gases reais, alta pressão, temperatura variável e mistura de gases podem exigir correções específicas."
+        ],
+        "memory": [
+            "Conversões de gás dependem de pressão, temperatura e volume de referência.",
+            "Consumo ou autonomia relaciona volume disponível, vazão e faixa útil de pressão.",
+            "Concentrações podem ser expressas em ppm, mg/m³ ou percentual, dependendo do gás e das condições.",
+            "Purga depende de volume, vazão, tempo e renovação efetiva do ambiente/equipamento."
+        ],
+        "example": [
+            "Exemplo: estimar autonomia de um cilindro de nitrogênio para purga de baixa vazão.",
+            "Informe volume, pressão inicial/final, consumo e tempo previsto.",
+            "Depois valide com regulador, ventilação, detector de gás, procedimento e condição real."
+        ],
+        "interpretation": [
+            "Resultado favorável indica estimativa preliminar com os dados digitados.",
+            "Atenção se houver gás inflamável, tóxico, asfixiante, alta pressão ou ambiente fechado.",
+            "Condição crítica exige medição, ventilação, procedimento e validação de segurança antes de aplicar."
+        ]
+    },
+    "calculadora-bomba-dosadora-quimica.html": {
+        "title": "Complemento técnico — bombas, NPSH e ponto de operação — Bomba dosadora quimica",
+        "intro": "Use este complemento para interpretar cálculos de bombas, potência, NPSH, curvas e leis de afinidade. Bombas podem falhar por cavitação, operação fora da curva, superaquecimento, vibração ou seleção inadequada.",
+        "assumptions": [
+            "Vazão, altura manométrica, rotação, densidade, viscosidade e rendimento devem representar o ponto real de operação.",
+            "NPSHr, curva da bomba e limites de fabricante devem ser usados quando disponíveis.",
+            "Perdas de carga, nível do reservatório, temperatura e pressão de vapor devem considerar a pior condição provável.",
+            "A análise deve respeitar fluido, regime, material, vedação e criticidade do processo."
+        ],
+        "limitations": [
+            "Não substitui seleção hidráulica do fabricante, curva certificada, análise de NPSH, cavitação, vibração ou proteção do motor.",
+            "Não valida instalação, alinhamento, escorva, válvulas, recirculação mínima, selo mecânico ou proteção contra operação a seco.",
+            "Não use como única base para comprar, alterar rotor, mudar rotação ou liberar operação de bomba crítica.",
+            "Fluidos viscosos, abrasivos, quentes ou voláteis exigem correções específicas."
+        ],
+        "memory": [
+            "Potência hidráulica relaciona vazão, altura manométrica, densidade e gravidade.",
+            "Potência no eixo considera rendimento da bomba e margem operacional.",
+            "NPSHa deve ser maior que NPSHr com margem adequada para reduzir risco de cavitação.",
+            "Leis de afinidade relacionam vazão, altura e potência com a rotação/diâmetro em condições aproximadas."
+        ],
+        "example": [
+            "Exemplo: verificar se uma bomba atende nova vazão após ajuste de rotação por inversor.",
+            "Informe ponto atual, novo ponto desejado, rotação, rendimento e dados de curva quando disponíveis.",
+            "Use o resultado para triagem e valide com curva da bomba, NPSH, motor, válvulas e operação real."
+        ],
+        "interpretation": [
+            "Resultado favorável indica compatibilidade preliminar, não seleção final da bomba.",
+            "Atenção se NPSH, potência, rotação, viscosidade, recirculação ou operação fora da curva estiverem no limite.",
+            "Condição crítica exige análise de curva, fabricante e teste de campo antes de aplicar."
+        ]
+    },
+    "calculadora-carga-termica-lote-aquecimento.html": {
+        "title": "Complemento técnico — trocadores, aquecimento e energia térmica — Carga termica lote aquecimento",
+        "intro": "Use este complemento para interpretar estimativas de carga térmica, trocador de calor, aquecimento, perdas e consumo de energia. Resultados térmicos são muito sensíveis a propriedades do fluido e perdas reais.",
+        "assumptions": [
+            "Vazão, massa, Cp, ΔT, coeficiente global, área e rendimento devem representar a condição de projeto ou operação.",
+            "Propriedades do fluido podem variar com temperatura, concentração e pressão.",
+            "Perdas para ambiente, isolamento, incrustação e regime transitório podem alterar o resultado.",
+            "Trocadores devem ser avaliados conforme lado quente/frio, LMTD, fouling e limite de pressão/temperatura."
+        ],
+        "limitations": [
+            "Não substitui dimensionamento térmico detalhado, seleção de trocador, análise mecânica, limpeza, pressão admissível ou garantia de performance.",
+            "Não valida fouling, vibração, dilatação térmica, mistura de fases, ebulição, condensação ou segurança de processo.",
+            "Não use como única base para comprar resistência, trocador, vapor ou sistema de aquecimento.",
+            "Fluidos não Newtonianos, viscosos, corrosivos ou bifásicos exigem análise específica."
+        ],
+        "memory": [
+            "Carga térmica sensível geralmente depende de massa ou vazão mássica, Cp e ΔT.",
+            "Área de troca pode ser estimada por Q = U × A × ΔT médio logarítmico.",
+            "Perda térmica depende de área, diferença de temperatura, isolamento e coeficiente de troca.",
+            "Consumo elétrico ou de vapor depende da carga térmica e do rendimento do sistema."
+        ],
+        "example": [
+            "Exemplo: estimar potência necessária para aquecer um lote de água de 25 °C para 70 °C.",
+            "Informe volume/massa, Cp, ΔT, tempo e rendimento.",
+            "Depois valide com perdas, tempo real de aquecimento, limite do equipamento e segurança térmica."
+        ],
+        "interpretation": [
+            "Resultado favorável indica estimativa térmica coerente com as premissas informadas.",
+            "Atenção se houver temperatura alta, pressão, fluido perigoso, incrustação ou margem pequena.",
+            "Condição crítica exige balanço térmico, dados de fabricante e validação em campo."
+        ]
+    },
+    "calculadora-celula-carga-tanque.html": {
+        "title": "Complemento técnico — tanques, volume, massa e tempo de residência — Celula carga tanque",
+        "intro": "Use este complemento para interpretar cálculos de volume, nível, massa, enchimento e tempo de residência em tanques. Tanques podem envolver transbordo, pressão, produto perigoso, agitação e erro de medição.",
+        "assumptions": [
+            "Geometria, diâmetro, altura, orientação, nível e densidade devem representar o tanque real.",
+            "Volume útil, volume morto, fundo cônico, bocais, serpentinas e internos podem alterar o volume real.",
+            "Para massa, a densidade deve ser compatível com temperatura, concentração e produto.",
+            "Tempo de enchimento ou residência depende da vazão real, regime de operação e variação de nível."
+        ],
+        "limitations": [
+            "Não substitui tabela de arqueação, medição fiscal, projeto de tanque, análise estrutural, transbordo, respiro ou segurança de processo.",
+            "Não valida compatibilidade química, pressão/vácuo, inflamabilidade, área classificada ou controle de nível crítico.",
+            "Não use para inventário oficial ou dosagem crítica sem calibração/arqueação validada.",
+            "Tanques irregulares, inclinados ou com internos exigem correção específica."
+        ],
+        "memory": [
+            "Volume em tanque depende da geometria e do nível informado.",
+            "Massa é volume multiplicado pela densidade corrigida para a condição real.",
+            "Tempo de enchimento ou residência relaciona volume útil e vazão.",
+            "Percentual de enchimento deve ser comparado com limites operacional, alarme alto e transbordo."
+        ],
+        "example": [
+            "Exemplo: estimar volume de um tanque horizontal parcialmente cheio para conferência operacional.",
+            "Informe diâmetro, comprimento e nível medido.",
+            "Depois compare com tabela de tanque, histórico, medidor de nível e limite de alarme."
+        ],
+        "interpretation": [
+            "Resultado favorável é estimativa operacional, não arqueação oficial.",
+            "Atenção se o tanque tiver produto perigoso, geometria complexa, nível crítico ou risco de transbordo.",
+            "Condição crítica exige tabela validada, instrumento calibrado e procedimento de operação."
+        ]
+    },
+    "calculadora-condensado-ar-comprimido.html": {
+        "title": "Complemento técnico — vapor, condensado e caldeira — Condensado ar comprimido",
+        "intro": "Use este complemento para interpretar cálculos envolvendo vapor, condensado, purga e energia térmica. Esses resultados são úteis para triagem, mas dependem fortemente das condições reais de pressão, temperatura, qualidade do vapor, perdas e segurança operacional.",
+        "assumptions": [
+            "Pressão, temperatura, entalpia, rendimento e regime de operação devem representar a condição real do sistema.",
+            "A qualidade do vapor, perdas térmicas, isolamento, condensado e condições de retorno devem ser avaliadas separadamente.",
+            "Os dados informados pelo usuário devem ser conferidos com instrumentos, datasheets, histórico operacional ou balanço de massa/energia.",
+            "Aplicações em caldeiras, vapor pressurizado ou purga devem respeitar procedimento operacional e limites do equipamento."
+        ],
+        "limitations": [
+            "Não substitui projeto de vapor, inspeção, NR-13, avaliação de válvulas de segurança, purgadores, tubulação ou integridade mecânica.",
+            "Não valida pressão admissível, dilatação térmica, golpe de aríete, qualidade da água, corrosão ou segurança de operação.",
+            "Não use o resultado como autorização para alteração em caldeira, linha de vapor ou sistema pressurizado.",
+            "Perdas reais podem ser maiores que as estimadas por isolamento ruim, purgadores defeituosos, vazamentos e operação intermitente."
+        ],
+        "memory": [
+            "A lógica principal relaciona massa, vazão, calor sensível, calor latente, rendimento e tempo de operação.",
+            "Quando houver energia térmica, a carga depende de massa ou vazão, calor específico e variação de temperatura.",
+            "Quando houver vapor, o consumo depende da carga térmica dividida pelo calor latente efetivo e eficiência.",
+            "O resultado deve ser comparado com capacidade instalada, histórico, instrumentação e margem operacional."
+        ],
+        "example": [
+            "Exemplo: estimar consumo de vapor para aquecer um tanque ou processo por batelada.",
+            "Informe vazão, densidade, Cp, ΔT, calor latente e rendimento conservador.",
+            "Use o resultado para pré-avaliação e depois valide com medição, balanço térmico e condição real da linha."
+        ],
+        "interpretation": [
+            "Resultado favorável indica apenas compatibilidade preliminar com os dados informados.",
+            "Atenção se houver pressão elevada, vapor superaquecido, purga, retorno de condensado, perdas grandes ou operação intermitente.",
+            "Condição crítica exige validação por responsável técnico antes de qualquer intervenção em sistema pressurizado."
+        ]
+    },
+    "calculadora-conexoes-pneumaticas-comprimento-equivalente.html": {
+        "title": "Complemento técnico — pneumática industrial — Conexoes pneumaticas comprimento equivalente",
+        "intro": "Use este complemento para interpretar cálculos de cilindros pneumáticos, solenóides, tubos, conexões e consumo. Em instrumentação, pneumática afeta atuadores, válvulas de controle e segurança operacional.",
+        "assumptions": [
+            "Pressão, diâmetro, curso, ciclo, vazão e simultaneidade devem representar a operação real.",
+            "Perdas em tubos, conexões, reguladores, filtros e válvulas devem ser consideradas com margem.",
+            "Atuadores críticos devem ser avaliados conforme tempo de abertura/fechamento, falha segura e ar disponível.",
+            "Consumo deve considerar ciclos reais, vazamentos e reserva de ar."
+        ],
+        "limitations": [
+            "Não substitui seleção de válvula pneumática, atuador, regulador, filtro, posicionador ou teste de tempo de atuação.",
+            "Não valida segurança de movimento, falha de ar, bloqueio pneumático, exaustão, ruído ou travamento mecânico.",
+            "Não use para liberar atuador crítico sem teste funcional em campo.",
+            "Tubos longos e conexões restritivas podem aumentar tempo de resposta além do calculado."
+        ],
+        "memory": [
+            "Força pneumática depende de pressão e área efetiva do cilindro.",
+            "Consumo por ciclo depende do volume deslocado e da pressão absoluta.",
+            "Queda de pressão e tempo de resposta aumentam com comprimento, restrições e vazão exigida.",
+            "Solenóides e atuadores devem ser comparados com Cv, pressão disponível e condição de falha."
+        ],
+        "example": [
+            "Exemplo: estimar consumo de ar de um cilindro que opera várias vezes por minuto.",
+            "Informe diâmetro, curso, pressão e ciclos por hora.",
+            "Depois valide com vazão da válvula, reservatório, queda de pressão e teste de movimento real."
+        ],
+        "interpretation": [
+            "Resultado favorável indica triagem preliminar para consumo, força ou tempo.",
+            "Atenção se a aplicação for rápida, crítica, com tubos longos ou baixa pressão disponível.",
+            "Condição crítica pede teste funcional e revisão de válvula, atuador, regulador e rede de ar."
+        ]
+    },
+    "calculadora-consumo-ar-cilindro-pneumatico.html": {
+        "title": "Complemento técnico — pneumática industrial — Consumo ar cilindro pneumatico",
+        "intro": "Use este complemento para interpretar cálculos de cilindros pneumáticos, solenóides, tubos, conexões e consumo. Em instrumentação, pneumática afeta atuadores, válvulas de controle e segurança operacional.",
+        "assumptions": [
+            "Pressão, diâmetro, curso, ciclo, vazão e simultaneidade devem representar a operação real.",
+            "Perdas em tubos, conexões, reguladores, filtros e válvulas devem ser consideradas com margem.",
+            "Atuadores críticos devem ser avaliados conforme tempo de abertura/fechamento, falha segura e ar disponível.",
+            "Consumo deve considerar ciclos reais, vazamentos e reserva de ar."
+        ],
+        "limitations": [
+            "Não substitui seleção de válvula pneumática, atuador, regulador, filtro, posicionador ou teste de tempo de atuação.",
+            "Não valida segurança de movimento, falha de ar, bloqueio pneumático, exaustão, ruído ou travamento mecânico.",
+            "Não use para liberar atuador crítico sem teste funcional em campo.",
+            "Tubos longos e conexões restritivas podem aumentar tempo de resposta além do calculado."
+        ],
+        "memory": [
+            "Força pneumática depende de pressão e área efetiva do cilindro.",
+            "Consumo por ciclo depende do volume deslocado e da pressão absoluta.",
+            "Queda de pressão e tempo de resposta aumentam com comprimento, restrições e vazão exigida.",
+            "Solenóides e atuadores devem ser comparados com Cv, pressão disponível e condição de falha."
+        ],
+        "example": [
+            "Exemplo: estimar consumo de ar de um cilindro que opera várias vezes por minuto.",
+            "Informe diâmetro, curso, pressão e ciclos por hora.",
+            "Depois valide com vazão da válvula, reservatório, queda de pressão e teste de movimento real."
+        ],
+        "interpretation": [
+            "Resultado favorável indica triagem preliminar para consumo, força ou tempo.",
+            "Atenção se a aplicação for rápida, crítica, com tubos longos ou baixa pressão disponível.",
+            "Condição crítica pede teste funcional e revisão de válvula, atuador, regulador e rede de ar."
+        ]
+    },
+    "calculadora-consumo-ar-comprimido.html": {
+        "title": "Complemento técnico — ar comprimido e ar de instrumentos — Consumo ar comprimido",
+        "intro": "Use este complemento para interpretar consumo, autonomia, condensado, reservatório, custo e qualidade de ar comprimido. Em instrumentação, a qualidade do ar impacta válvulas, posicionadores, conversores e confiabilidade do processo.",
+        "assumptions": [
+            "Pressão, vazão, temperatura, ciclo de operação e simultaneidade devem representar a condição real.",
+            "Consumos intermitentes de válvulas, cilindros, purgas e sopros devem ser tratados com margem.",
+            "Perdas por vazamento, queda de pressão, secador, filtros e rede podem alterar bastante o resultado.",
+            "Para ar de instrumentos, considerar qualidade, ponto de orvalho, óleo, particulado e estabilidade de pressão."
+        ],
+        "limitations": [
+            "Não substitui projeto de rede de ar, especificação de compressor, vaso, secador, filtros ou inspeção de segurança.",
+            "Não valida NR-13 para reservatórios, integridade da rede, ruído, eficiência energética ou qualidade conforme exigência do fabricante.",
+            "Não use como única base para reduzir compressor, desligar sistema ou modificar rede crítica.",
+            "Vazamentos, demanda de pico e simultaneidade podem tornar o consumo real maior que a estimativa."
+        ],
+        "memory": [
+            "Consumo de ar depende de volume, pressão absoluta, ciclos, tempo e fator de simultaneidade.",
+            "Autonomia depende do volume armazenado, faixa de pressão útil e demanda média.",
+            "Custo depende de energia consumida, eficiência do compressor, horas de operação e tarifa.",
+            "Ponto de orvalho e condensado dependem de temperatura, umidade e pressão."
+        ],
+        "example": [
+            "Exemplo: estimar se um reservatório mantém ar de instrumentos durante uma queda temporária do compressor.",
+            "Informe volume, pressões inicial/final, consumo médio e margem de segurança.",
+            "Use o resultado para triagem e valide com teste real, tendência de pressão e criticidade das válvulas."
+        ],
+        "interpretation": [
+            "Resultado favorável indica pré-dimensionamento coerente com os dados informados.",
+            "Atenção se a margem for pequena, houver muitos vazamentos, demanda de pico ou ar de instrumentos crítico.",
+            "Condição crítica pede medição em campo, correção de vazamentos, revisão do compressor e avaliação do vaso/rede."
+        ]
+    },
+    "calculadora-consumo-ar-instrumentos.html": {
+        "title": "Complemento técnico — ar comprimido e ar de instrumentos — Consumo ar instrumentos",
+        "intro": "Use este complemento para interpretar consumo, autonomia, condensado, reservatório, custo e qualidade de ar comprimido. Em instrumentação, a qualidade do ar impacta válvulas, posicionadores, conversores e confiabilidade do processo.",
+        "assumptions": [
+            "Pressão, vazão, temperatura, ciclo de operação e simultaneidade devem representar a condição real.",
+            "Consumos intermitentes de válvulas, cilindros, purgas e sopros devem ser tratados com margem.",
+            "Perdas por vazamento, queda de pressão, secador, filtros e rede podem alterar bastante o resultado.",
+            "Para ar de instrumentos, considerar qualidade, ponto de orvalho, óleo, particulado e estabilidade de pressão."
+        ],
+        "limitations": [
+            "Não substitui projeto de rede de ar, especificação de compressor, vaso, secador, filtros ou inspeção de segurança.",
+            "Não valida NR-13 para reservatórios, integridade da rede, ruído, eficiência energética ou qualidade conforme exigência do fabricante.",
+            "Não use como única base para reduzir compressor, desligar sistema ou modificar rede crítica.",
+            "Vazamentos, demanda de pico e simultaneidade podem tornar o consumo real maior que a estimativa."
+        ],
+        "memory": [
+            "Consumo de ar depende de volume, pressão absoluta, ciclos, tempo e fator de simultaneidade.",
+            "Autonomia depende do volume armazenado, faixa de pressão útil e demanda média.",
+            "Custo depende de energia consumida, eficiência do compressor, horas de operação e tarifa.",
+            "Ponto de orvalho e condensado dependem de temperatura, umidade e pressão."
+        ],
+        "example": [
+            "Exemplo: estimar se um reservatório mantém ar de instrumentos durante uma queda temporária do compressor.",
+            "Informe volume, pressões inicial/final, consumo médio e margem de segurança.",
+            "Use o resultado para triagem e valide com teste real, tendência de pressão e criticidade das válvulas."
+        ],
+        "interpretation": [
+            "Resultado favorável indica pré-dimensionamento coerente com os dados informados.",
+            "Atenção se a margem for pequena, houver muitos vazamentos, demanda de pico ou ar de instrumentos crítico.",
+            "Condição crítica pede medição em campo, correção de vazamentos, revisão do compressor e avaliação do vaso/rede."
+        ]
+    },
+    "calculadora-consumo-energia-resistencia-aquecimento.html": {
+        "title": "Complemento técnico — trocadores, aquecimento e energia térmica — Consumo energia resistencia aquecimento",
+        "intro": "Use este complemento para interpretar estimativas de carga térmica, trocador de calor, aquecimento, perdas e consumo de energia. Resultados térmicos são muito sensíveis a propriedades do fluido e perdas reais.",
+        "assumptions": [
+            "Vazão, massa, Cp, ΔT, coeficiente global, área e rendimento devem representar a condição de projeto ou operação.",
+            "Propriedades do fluido podem variar com temperatura, concentração e pressão.",
+            "Perdas para ambiente, isolamento, incrustação e regime transitório podem alterar o resultado.",
+            "Trocadores devem ser avaliados conforme lado quente/frio, LMTD, fouling e limite de pressão/temperatura."
+        ],
+        "limitations": [
+            "Não substitui dimensionamento térmico detalhado, seleção de trocador, análise mecânica, limpeza, pressão admissível ou garantia de performance.",
+            "Não valida fouling, vibração, dilatação térmica, mistura de fases, ebulição, condensação ou segurança de processo.",
+            "Não use como única base para comprar resistência, trocador, vapor ou sistema de aquecimento.",
+            "Fluidos não Newtonianos, viscosos, corrosivos ou bifásicos exigem análise específica."
+        ],
+        "memory": [
+            "Carga térmica sensível geralmente depende de massa ou vazão mássica, Cp e ΔT.",
+            "Área de troca pode ser estimada por Q = U × A × ΔT médio logarítmico.",
+            "Perda térmica depende de área, diferença de temperatura, isolamento e coeficiente de troca.",
+            "Consumo elétrico ou de vapor depende da carga térmica e do rendimento do sistema."
+        ],
+        "example": [
+            "Exemplo: estimar potência necessária para aquecer um lote de água de 25 °C para 70 °C.",
+            "Informe volume/massa, Cp, ΔT, tempo e rendimento.",
+            "Depois valide com perdas, tempo real de aquecimento, limite do equipamento e segurança térmica."
+        ],
+        "interpretation": [
+            "Resultado favorável indica estimativa térmica coerente com as premissas informadas.",
+            "Atenção se houver temperatura alta, pressão, fluido perigoso, incrustação ou margem pequena.",
+            "Condição crítica exige balanço térmico, dados de fabricante e validação em campo."
+        ]
+    },
+    "calculadora-consumo-nitrogenio-purga.html": {
+        "title": "Complemento técnico — gases industriais e pressurização — Consumo nitrogenio purga",
+        "intro": "Use este complemento para interpretar cálculos com gases, cilindros, purga, concentração e normalização. Gases industriais podem envolver pressão, asfixia, inflamabilidade, toxicidade e requisitos de ventilação.",
+        "assumptions": [
+            "Pressão, temperatura, volume, composição e condição normalizada devem estar coerentes.",
+            "Para cilindros, usar pressão útil, fator de compressibilidade quando necessário e consumo real do processo.",
+            "Para purga, considerar volume efetivo, renovação, concentração alvo e segurança da área.",
+            "Unidades como Nm³/h, m³/h, ppm, mg/m³ e bar devem ser conferidas antes da aplicação."
+        ],
+        "limitations": [
+            "Não substitui análise de segurança, ventilação, classificação de área, FISPQ, procedimento de purga ou especificação de reguladores.",
+            "Não valida risco de asfixia, inflamabilidade, toxicidade, enriquecimento de oxigênio ou exaustão.",
+            "Não use para liberar trabalho com gás sem procedimento, medição e autorização local.",
+            "Gases reais, alta pressão, temperatura variável e mistura de gases podem exigir correções específicas."
+        ],
+        "memory": [
+            "Conversões de gás dependem de pressão, temperatura e volume de referência.",
+            "Consumo ou autonomia relaciona volume disponível, vazão e faixa útil de pressão.",
+            "Concentrações podem ser expressas em ppm, mg/m³ ou percentual, dependendo do gás e das condições.",
+            "Purga depende de volume, vazão, tempo e renovação efetiva do ambiente/equipamento."
+        ],
+        "example": [
+            "Exemplo: estimar autonomia de um cilindro de nitrogênio para purga de baixa vazão.",
+            "Informe volume, pressão inicial/final, consumo e tempo previsto.",
+            "Depois valide com regulador, ventilação, detector de gás, procedimento e condição real."
+        ],
+        "interpretation": [
+            "Resultado favorável indica estimativa preliminar com os dados digitados.",
+            "Atenção se houver gás inflamável, tóxico, asfixiante, alta pressão ou ambiente fechado.",
+            "Condição crítica exige medição, ventilação, procedimento e validação de segurança antes de aplicar."
+        ]
+    },
+    "calculadora-consumo-vapor-aquecimento.html": {
+        "title": "Complemento técnico — vapor, condensado e caldeira — Consumo vapor aquecimento",
+        "intro": "Use este complemento para interpretar cálculos envolvendo vapor, condensado, purga e energia térmica. Esses resultados são úteis para triagem, mas dependem fortemente das condições reais de pressão, temperatura, qualidade do vapor, perdas e segurança operacional.",
+        "assumptions": [
+            "Pressão, temperatura, entalpia, rendimento e regime de operação devem representar a condição real do sistema.",
+            "A qualidade do vapor, perdas térmicas, isolamento, condensado e condições de retorno devem ser avaliadas separadamente.",
+            "Os dados informados pelo usuário devem ser conferidos com instrumentos, datasheets, histórico operacional ou balanço de massa/energia.",
+            "Aplicações em caldeiras, vapor pressurizado ou purga devem respeitar procedimento operacional e limites do equipamento."
+        ],
+        "limitations": [
+            "Não substitui projeto de vapor, inspeção, NR-13, avaliação de válvulas de segurança, purgadores, tubulação ou integridade mecânica.",
+            "Não valida pressão admissível, dilatação térmica, golpe de aríete, qualidade da água, corrosão ou segurança de operação.",
+            "Não use o resultado como autorização para alteração em caldeira, linha de vapor ou sistema pressurizado.",
+            "Perdas reais podem ser maiores que as estimadas por isolamento ruim, purgadores defeituosos, vazamentos e operação intermitente."
+        ],
+        "memory": [
+            "A lógica principal relaciona massa, vazão, calor sensível, calor latente, rendimento e tempo de operação.",
+            "Quando houver energia térmica, a carga depende de massa ou vazão, calor específico e variação de temperatura.",
+            "Quando houver vapor, o consumo depende da carga térmica dividida pelo calor latente efetivo e eficiência.",
+            "O resultado deve ser comparado com capacidade instalada, histórico, instrumentação e margem operacional."
+        ],
+        "example": [
+            "Exemplo: estimar consumo de vapor para aquecer um tanque ou processo por batelada.",
+            "Informe vazão, densidade, Cp, ΔT, calor latente e rendimento conservador.",
+            "Use o resultado para pré-avaliação e depois valide com medição, balanço térmico e condição real da linha."
+        ],
+        "interpretation": [
+            "Resultado favorável indica apenas compatibilidade preliminar com os dados informados.",
+            "Atenção se houver pressão elevada, vapor superaquecido, purga, retorno de condensado, perdas grandes ou operação intermitente.",
+            "Condição crítica exige validação por responsável técnico antes de qualquer intervenção em sistema pressurizado."
+        ]
+    },
+    "calculadora-custo-ar-comprimido.html": {
+        "title": "Complemento técnico — ar comprimido e ar de instrumentos — Custo ar comprimido",
+        "intro": "Use este complemento para interpretar consumo, autonomia, condensado, reservatório, custo e qualidade de ar comprimido. Em instrumentação, a qualidade do ar impacta válvulas, posicionadores, conversores e confiabilidade do processo.",
+        "assumptions": [
+            "Pressão, vazão, temperatura, ciclo de operação e simultaneidade devem representar a condição real.",
+            "Consumos intermitentes de válvulas, cilindros, purgas e sopros devem ser tratados com margem.",
+            "Perdas por vazamento, queda de pressão, secador, filtros e rede podem alterar bastante o resultado.",
+            "Para ar de instrumentos, considerar qualidade, ponto de orvalho, óleo, particulado e estabilidade de pressão."
+        ],
+        "limitations": [
+            "Não substitui projeto de rede de ar, especificação de compressor, vaso, secador, filtros ou inspeção de segurança.",
+            "Não valida NR-13 para reservatórios, integridade da rede, ruído, eficiência energética ou qualidade conforme exigência do fabricante.",
+            "Não use como única base para reduzir compressor, desligar sistema ou modificar rede crítica.",
+            "Vazamentos, demanda de pico e simultaneidade podem tornar o consumo real maior que a estimativa."
+        ],
+        "memory": [
+            "Consumo de ar depende de volume, pressão absoluta, ciclos, tempo e fator de simultaneidade.",
+            "Autonomia depende do volume armazenado, faixa de pressão útil e demanda média.",
+            "Custo depende de energia consumida, eficiência do compressor, horas de operação e tarifa.",
+            "Ponto de orvalho e condensado dependem de temperatura, umidade e pressão."
+        ],
+        "example": [
+            "Exemplo: estimar se um reservatório mantém ar de instrumentos durante uma queda temporária do compressor.",
+            "Informe volume, pressões inicial/final, consumo médio e margem de segurança.",
+            "Use o resultado para triagem e valide com teste real, tendência de pressão e criticidade das válvulas."
+        ],
+        "interpretation": [
+            "Resultado favorável indica pré-dimensionamento coerente com os dados informados.",
+            "Atenção se a margem for pequena, houver muitos vazamentos, demanda de pico ou ar de instrumentos crítico.",
+            "Condição crítica pede medição em campo, correção de vazamentos, revisão do compressor e avaliação do vaso/rede."
+        ]
+    },
+    "calculadora-diametro-cilindro-pneumatico.html": {
+        "title": "Complemento técnico — pneumática industrial — Diametro cilindro pneumatico",
+        "intro": "Use este complemento para interpretar cálculos de cilindros pneumáticos, solenóides, tubos, conexões e consumo. Em instrumentação, pneumática afeta atuadores, válvulas de controle e segurança operacional.",
+        "assumptions": [
+            "Pressão, diâmetro, curso, ciclo, vazão e simultaneidade devem representar a operação real.",
+            "Perdas em tubos, conexões, reguladores, filtros e válvulas devem ser consideradas com margem.",
+            "Atuadores críticos devem ser avaliados conforme tempo de abertura/fechamento, falha segura e ar disponível.",
+            "Consumo deve considerar ciclos reais, vazamentos e reserva de ar."
+        ],
+        "limitations": [
+            "Não substitui seleção de válvula pneumática, atuador, regulador, filtro, posicionador ou teste de tempo de atuação.",
+            "Não valida segurança de movimento, falha de ar, bloqueio pneumático, exaustão, ruído ou travamento mecânico.",
+            "Não use para liberar atuador crítico sem teste funcional em campo.",
+            "Tubos longos e conexões restritivas podem aumentar tempo de resposta além do calculado."
+        ],
+        "memory": [
+            "Força pneumática depende de pressão e área efetiva do cilindro.",
+            "Consumo por ciclo depende do volume deslocado e da pressão absoluta.",
+            "Queda de pressão e tempo de resposta aumentam com comprimento, restrições e vazão exigida.",
+            "Solenóides e atuadores devem ser comparados com Cv, pressão disponível e condição de falha."
+        ],
+        "example": [
+            "Exemplo: estimar consumo de ar de um cilindro que opera várias vezes por minuto.",
+            "Informe diâmetro, curso, pressão e ciclos por hora.",
+            "Depois valide com vazão da válvula, reservatório, queda de pressão e teste de movimento real."
+        ],
+        "interpretation": [
+            "Resultado favorável indica triagem preliminar para consumo, força ou tempo.",
+            "Atenção se a aplicação for rápida, crítica, com tubos longos ou baixa pressão disponível.",
+            "Condição crítica pede teste funcional e revisão de válvula, atuador, regulador e rede de ar."
+        ]
+    },
+    "calculadora-dosagem-cloro-livre.html": {
+        "title": "Complemento técnico — dosagem, água industrial e química de processo — Dosagem cloro livre",
+        "intro": "Use este complemento para interpretar cálculos de dosagem, neutralização, diluição, cloro, corrosão e índices de água. Química de processo depende de análise laboratorial, produto usado e segurança química.",
+        "assumptions": [
+            "Concentração, vazão, volume, densidade e pureza do produto químico devem estar corretos.",
+            "pH, alcalinidade, cloro, TDS, LSI e corrosão dependem de medição confiável e condição da amostra.",
+            "Produtos químicos devem ser compatíveis com material, temperatura, processo e segurança.",
+            "Dosagens devem considerar eficiência de mistura, tempo de contato e variação da carga."
+        ],
+        "limitations": [
+            "Não substitui análise laboratorial, FISPQ, procedimento químico, validação ambiental, sanitária ou de segurança.",
+            "Não valida reação exotérmica, incompatibilidade química, corrosão localizada, incrustação ou descarte.",
+            "Não use para dosagem crítica sem teste, acompanhamento e validação do responsável técnico.",
+            "pH e neutralização são não lineares; pequenas variações podem mudar muito o resultado."
+        ],
+        "memory": [
+            "Dosagem ppm relaciona massa de produto ativo com volume ou vazão tratada.",
+            "Diluição relaciona concentração inicial, concentração final e volume.",
+            "Neutralização depende de alcalinidade/acidez, estequiometria e produto usado.",
+            "Índices de água são indicadores preliminares e devem ser interpretados com análise completa."
+        ],
+        "example": [
+            "Exemplo: estimar dosagem de químico para atingir uma concentração alvo em uma vazão de processo.",
+            "Informe vazão, concentração desejada, pureza e densidade do produto.",
+            "Depois valide com análise, ajuste fino em campo e limites de segurança química."
+        ],
+        "interpretation": [
+            "Resultado favorável indica dosagem preliminar compatível com os dados informados.",
+            "Atenção se houver produto perigoso, pH extremo, reação, corrosão, incrustação ou descarte.",
+            "Condição crítica exige teste controlado, EPI, FISPQ e validação técnica antes de aplicar."
+        ]
+    },
+    "calculadora-dosagem-quimica-ppm.html": {
+        "title": "Complemento técnico — dosagem, água industrial e química de processo — Dosagem quimica ppm",
+        "intro": "Use este complemento para interpretar cálculos de dosagem, neutralização, diluição, cloro, corrosão e índices de água. Química de processo depende de análise laboratorial, produto usado e segurança química.",
+        "assumptions": [
+            "Concentração, vazão, volume, densidade e pureza do produto químico devem estar corretos.",
+            "pH, alcalinidade, cloro, TDS, LSI e corrosão dependem de medição confiável e condição da amostra.",
+            "Produtos químicos devem ser compatíveis com material, temperatura, processo e segurança.",
+            "Dosagens devem considerar eficiência de mistura, tempo de contato e variação da carga."
+        ],
+        "limitations": [
+            "Não substitui análise laboratorial, FISPQ, procedimento químico, validação ambiental, sanitária ou de segurança.",
+            "Não valida reação exotérmica, incompatibilidade química, corrosão localizada, incrustação ou descarte.",
+            "Não use para dosagem crítica sem teste, acompanhamento e validação do responsável técnico.",
+            "pH e neutralização são não lineares; pequenas variações podem mudar muito o resultado."
+        ],
+        "memory": [
+            "Dosagem ppm relaciona massa de produto ativo com volume ou vazão tratada.",
+            "Diluição relaciona concentração inicial, concentração final e volume.",
+            "Neutralização depende de alcalinidade/acidez, estequiometria e produto usado.",
+            "Índices de água são indicadores preliminares e devem ser interpretados com análise completa."
+        ],
+        "example": [
+            "Exemplo: estimar dosagem de químico para atingir uma concentração alvo em uma vazão de processo.",
+            "Informe vazão, concentração desejada, pureza e densidade do produto.",
+            "Depois valide com análise, ajuste fino em campo e limites de segurança química."
+        ],
+        "interpretation": [
+            "Resultado favorável indica dosagem preliminar compatível com os dados informados.",
+            "Atenção se houver produto perigoso, pH extremo, reação, corrosão, incrustação ou descarte.",
+            "Condição crítica exige teste controlado, EPI, FISPQ e validação técnica antes de aplicar."
+        ]
+    },
+    "calculadora-duto-exaustao-industrial.html": {
+        "title": "Complemento técnico — escoamento, perda de carga e exaustão — Duto exaustao industrial",
+        "intro": "Use este complemento para interpretar cálculos de perda de carga, filtros, dutos, exaustão e velocidade em tubulações. Escoamento real depende de fluido, regime, rugosidade, conexões e condição de operação.",
+        "assumptions": [
+            "Vazão, diâmetro, comprimento, rugosidade, densidade e viscosidade devem representar a condição real.",
+            "Conexões, válvulas, filtros, curvas e entradas/saídas devem ser consideradas com comprimento equivalente ou perda localizada.",
+            "Para exaustão, considerar captação, velocidade de face, contaminante, perdas e ponto de descarga.",
+            "Filtros devem ser avaliados com perda limpa, suja e limite de troca."
+        ],
+        "limitations": [
+            "Não substitui projeto hidráulico/aeráulico, balanceamento de rede, análise de ruído, vibração, corrosão ou segurança.",
+            "Não valida captura de contaminante, toxicidade, explosividade, emissão atmosférica ou ventilação legalmente exigida.",
+            "Não use para especificar ventilador, bomba ou duto crítico sem curva do equipamento e perda total real.",
+            "Regime bifásico, fluido viscoso, sólido em suspensão ou alta temperatura exigem análise específica."
+        ],
+        "memory": [
+            "Perda de carga aumenta com vazão, comprimento, rugosidade, conexões e velocidade.",
+            "Velocidade depende da vazão dividida pela área interna da tubulação ou duto.",
+            "Filtros adicionam perda variável conforme saturação.",
+            "Exaustão exige comparar vazão disponível com velocidade/captação necessária."
+        ],
+        "example": [
+            "Exemplo: estimar perda de carga de uma linha de ar comprimido com várias conexões.",
+            "Informe vazão, diâmetro, comprimento e perdas equivalentes.",
+            "Depois valide com medição de pressão, curva do equipamento e condição de operação."
+        ],
+        "interpretation": [
+            "Resultado favorável indica perda ou velocidade preliminarmente compatível.",
+            "Atenção se houver perda elevada, velocidade alta, filtro sujo, ruído, erosão ou baixa captação.",
+            "Condição crítica exige medição, curva de equipamento e revisão do projeto da rede."
+        ]
+    },
+    "calculadora-economia-inversor-bomba-ventilador.html": {
+        "title": "Complemento técnico — bombas, NPSH e ponto de operação — Economia inversor bomba ventilador",
+        "intro": "Use este complemento para interpretar cálculos de bombas, potência, NPSH, curvas e leis de afinidade. Bombas podem falhar por cavitação, operação fora da curva, superaquecimento, vibração ou seleção inadequada.",
+        "assumptions": [
+            "Vazão, altura manométrica, rotação, densidade, viscosidade e rendimento devem representar o ponto real de operação.",
+            "NPSHr, curva da bomba e limites de fabricante devem ser usados quando disponíveis.",
+            "Perdas de carga, nível do reservatório, temperatura e pressão de vapor devem considerar a pior condição provável.",
+            "A análise deve respeitar fluido, regime, material, vedação e criticidade do processo."
+        ],
+        "limitations": [
+            "Não substitui seleção hidráulica do fabricante, curva certificada, análise de NPSH, cavitação, vibração ou proteção do motor.",
+            "Não valida instalação, alinhamento, escorva, válvulas, recirculação mínima, selo mecânico ou proteção contra operação a seco.",
+            "Não use como única base para comprar, alterar rotor, mudar rotação ou liberar operação de bomba crítica.",
+            "Fluidos viscosos, abrasivos, quentes ou voláteis exigem correções específicas."
+        ],
+        "memory": [
+            "Potência hidráulica relaciona vazão, altura manométrica, densidade e gravidade.",
+            "Potência no eixo considera rendimento da bomba e margem operacional.",
+            "NPSHa deve ser maior que NPSHr com margem adequada para reduzir risco de cavitação.",
+            "Leis de afinidade relacionam vazão, altura e potência com a rotação/diâmetro em condições aproximadas."
+        ],
+        "example": [
+            "Exemplo: verificar se uma bomba atende nova vazão após ajuste de rotação por inversor.",
+            "Informe ponto atual, novo ponto desejado, rotação, rendimento e dados de curva quando disponíveis.",
+            "Use o resultado para triagem e valide com curva da bomba, NPSH, motor, válvulas e operação real."
+        ],
+        "interpretation": [
+            "Resultado favorável indica compatibilidade preliminar, não seleção final da bomba.",
+            "Atenção se NPSH, potência, rotação, viscosidade, recirculação ou operação fora da curva estiverem no limite.",
+            "Condição crítica exige análise de curva, fabricante e teste de campo antes de aplicar."
+        ]
+    },
+    "calculadora-eficiencia-compressor.html": {
+        "title": "Complemento técnico — ar comprimido e ar de instrumentos — Eficiencia compressor",
+        "intro": "Use este complemento para interpretar consumo, autonomia, condensado, reservatório, custo e qualidade de ar comprimido. Em instrumentação, a qualidade do ar impacta válvulas, posicionadores, conversores e confiabilidade do processo.",
+        "assumptions": [
+            "Pressão, vazão, temperatura, ciclo de operação e simultaneidade devem representar a condição real.",
+            "Consumos intermitentes de válvulas, cilindros, purgas e sopros devem ser tratados com margem.",
+            "Perdas por vazamento, queda de pressão, secador, filtros e rede podem alterar bastante o resultado.",
+            "Para ar de instrumentos, considerar qualidade, ponto de orvalho, óleo, particulado e estabilidade de pressão."
+        ],
+        "limitations": [
+            "Não substitui projeto de rede de ar, especificação de compressor, vaso, secador, filtros ou inspeção de segurança.",
+            "Não valida NR-13 para reservatórios, integridade da rede, ruído, eficiência energética ou qualidade conforme exigência do fabricante.",
+            "Não use como única base para reduzir compressor, desligar sistema ou modificar rede crítica.",
+            "Vazamentos, demanda de pico e simultaneidade podem tornar o consumo real maior que a estimativa."
+        ],
+        "memory": [
+            "Consumo de ar depende de volume, pressão absoluta, ciclos, tempo e fator de simultaneidade.",
+            "Autonomia depende do volume armazenado, faixa de pressão útil e demanda média.",
+            "Custo depende de energia consumida, eficiência do compressor, horas de operação e tarifa.",
+            "Ponto de orvalho e condensado dependem de temperatura, umidade e pressão."
+        ],
+        "example": [
+            "Exemplo: estimar se um reservatório mantém ar de instrumentos durante uma queda temporária do compressor.",
+            "Informe volume, pressões inicial/final, consumo médio e margem de segurança.",
+            "Use o resultado para triagem e valide com teste real, tendência de pressão e criticidade das válvulas."
+        ],
+        "interpretation": [
+            "Resultado favorável indica pré-dimensionamento coerente com os dados informados.",
+            "Atenção se a margem for pequena, houver muitos vazamentos, demanda de pico ou ar de instrumentos crítico.",
+            "Condição crítica pede medição em campo, correção de vazamentos, revisão do compressor e avaliação do vaso/rede."
+        ]
+    },
+    "calculadora-emissividade-termografia.html": {
+        "title": "Complemento técnico — instrumentação mecânica e medição de campo — Emissividade termografia",
+        "intro": "Use este complemento para interpretar cálculos de termopoco, emissividade, histerese e resposta de instrumentos. Esses resultados ajudam no diagnóstico, mas dependem da montagem e da condição real do processo.",
+        "assumptions": [
+            "Dados de processo, geometria, material, sensor e montagem devem representar o caso real.",
+            "Tempo de resposta, emissividade e histerese podem variar com instalação, contato térmico e condição de operação.",
+            "Termopocos devem considerar fluido, velocidade, material, comprimento de inserção e vibração.",
+            "Instrumentos devem ser comparados com datasheet, calibração e histórico."
+        ],
+        "limitations": [
+            "Não substitui cálculo mecânico detalhado, wake frequency, ensaio, calibração ou validação do fabricante.",
+            "Não valida integridade mecânica, corrosão, fadiga, vibração, pressão, temperatura máxima ou compatibilidade de material.",
+            "Não use para liberar termopoco crítico sem avaliação completa de processo e mecânica.",
+            "Medição por termografia depende muito de emissividade, distância, foco e reflexos."
+        ],
+        "memory": [
+            "Tempo de resposta depende de massa térmica, troca de calor e montagem do sensor.",
+            "Histerese compara diferença entre trajetória crescente e decrescente de medição.",
+            "Emissividade corrige a leitura radiométrica conforme o material e condição superficial.",
+            "Wake frequency compara excitação do fluido com frequência natural do termopoco."
+        ],
+        "example": [
+            "Exemplo: avaliar se um termopoco pode ter resposta lenta em linha de processo.",
+            "Informe dimensões, material, fluido e condição de operação quando aplicável.",
+            "Depois valide com fabricante, norma aplicável e teste de campo."
+        ],
+        "interpretation": [
+            "Resultado favorável indica apenas triagem de medição ou montagem.",
+            "Atenção se houver vibração, alta velocidade, alta pressão/temperatura ou medição crítica.",
+            "Condição crítica exige avaliação mecânica, calibração e validação do fabricante."
+        ]
+    },
+    "calculadora-energia-consumo-industrial.html": {
+        "title": "Complemento técnico — trocadores, aquecimento e energia térmica — Energia consumo industrial",
+        "intro": "Use este complemento para interpretar estimativas de carga térmica, trocador de calor, aquecimento, perdas e consumo de energia. Resultados térmicos são muito sensíveis a propriedades do fluido e perdas reais.",
+        "assumptions": [
+            "Vazão, massa, Cp, ΔT, coeficiente global, área e rendimento devem representar a condição de projeto ou operação.",
+            "Propriedades do fluido podem variar com temperatura, concentração e pressão.",
+            "Perdas para ambiente, isolamento, incrustação e regime transitório podem alterar o resultado.",
+            "Trocadores devem ser avaliados conforme lado quente/frio, LMTD, fouling e limite de pressão/temperatura."
+        ],
+        "limitations": [
+            "Não substitui dimensionamento térmico detalhado, seleção de trocador, análise mecânica, limpeza, pressão admissível ou garantia de performance.",
+            "Não valida fouling, vibração, dilatação térmica, mistura de fases, ebulição, condensação ou segurança de processo.",
+            "Não use como única base para comprar resistência, trocador, vapor ou sistema de aquecimento.",
+            "Fluidos não Newtonianos, viscosos, corrosivos ou bifásicos exigem análise específica."
+        ],
+        "memory": [
+            "Carga térmica sensível geralmente depende de massa ou vazão mássica, Cp e ΔT.",
+            "Área de troca pode ser estimada por Q = U × A × ΔT médio logarítmico.",
+            "Perda térmica depende de área, diferença de temperatura, isolamento e coeficiente de troca.",
+            "Consumo elétrico ou de vapor depende da carga térmica e do rendimento do sistema."
+        ],
+        "example": [
+            "Exemplo: estimar potência necessária para aquecer um lote de água de 25 °C para 70 °C.",
+            "Informe volume/massa, Cp, ΔT, tempo e rendimento.",
+            "Depois valide com perdas, tempo real de aquecimento, limite do equipamento e segurança térmica."
+        ],
+        "interpretation": [
+            "Resultado favorável indica estimativa térmica coerente com as premissas informadas.",
+            "Atenção se houver temperatura alta, pressão, fluido perigoso, incrustação ou margem pequena.",
+            "Condição crítica exige balanço térmico, dados de fabricante e validação em campo."
+        ]
+    },
+    "calculadora-forca-cilindro-hidraulico.html": {
+        "title": "Complemento técnico — hidráulica industrial — Forca cilindro hidraulico",
+        "intro": "Use este complemento para interpretar cálculos de acumuladores, cilindros, potência hidráulica, mangueiras e perda de carga. Sistemas hidráulicos podem armazenar energia alta mesmo após desligamento.",
+        "assumptions": [
+            "Pressão, vazão, volume, diâmetro, curso e fluido devem representar a condição real.",
+            "Pressões devem considerar faixa de trabalho, picos, válvulas de alívio e temperatura do óleo.",
+            "Mangueiras, conexões, cilindros e acumuladores devem ser compatíveis com pressão, fluido e ambiente.",
+            "Cálculos de acumulador devem usar pressões absolutas e pré-carga correta."
+        ],
+        "limitations": [
+            "Não substitui projeto hidráulico, seleção de componentes, teste de pressão, avaliação de mangueiras, válvulas de segurança ou bloqueio de energia.",
+            "Não valida fadiga, pulsação, golpe, contaminação, compatibilidade de fluido, temperatura ou normas aplicáveis.",
+            "Não intervenha em acumulador ou circuito pressurizado sem despressurização e procedimento seguro.",
+            "A energia armazenada pode causar movimento inesperado de atuadores e risco grave."
+        ],
+        "memory": [
+            "Força hidráulica depende de pressão e área efetiva do cilindro.",
+            "Potência hidráulica depende de vazão e pressão.",
+            "Perda de carga aumenta com vazão, comprimento, rugosidade, conexões e viscosidade.",
+            "Acumuladores usam relação pressão-volume do gás, com processo isotérmico ou adiabático aproximado."
+        ],
+        "example": [
+            "Exemplo: estimar volume de acumulador para fornecer óleo durante queda momentânea de pressão.",
+            "Informe pré-carga, pressão mínima, pressão máxima e volume útil desejado.",
+            "Depois valide com catálogo, válvula de segurança, bloco de segurança e procedimento de manutenção."
+        ],
+        "interpretation": [
+            "Resultado favorável é pré-dimensionamento, não liberação de componente hidráulico.",
+            "Atenção se pressão, temperatura, acumulador, mangueira ou curso estiverem próximos do limite.",
+            "Condição crítica deve bloquear aplicação até validação do circuito e segurança de energia armazenada."
+        ]
+    },
+    "calculadora-golpe-ariete-joukowsky.html": {
+        "title": "Complemento técnico — processo e utilidades industriais — Golpe ariete joukowsky",
+        "intro": "Use este complemento para interpretar cálculos de processo e utilidades como apoio preliminar. O resultado depende da qualidade dos dados digitados, condição real de operação e margem adotada.",
+        "assumptions": [
+            "Os dados informados devem representar a condição real ou o cenário de projeto desejado.",
+            "Unidades, temperatura, pressão, densidade, vazão e rendimento devem ser conferidos antes de usar o resultado.",
+            "Aplicações críticas precisam considerar pior caso, margem de segurança e histórico operacional.",
+            "O resultado deve ser comparado com instrumentos, datasheets e limites do equipamento."
+        ],
+        "limitations": [
+            "Não substitui projeto, laudo, análise de segurança, especificação de fabricante ou validação por profissional habilitado.",
+            "Não valida todos os efeitos de processo, transientes, falhas, corrosão, incrustação, vibração ou desgaste.",
+            "Não use como liberação automática para modificar operação, comprar equipamento ou intervir em campo.",
+            "Condições fora da faixa normal podem exigir cálculo específico."
+        ],
+        "memory": [
+            "A memória de cálculo segue a fórmula principal da ferramenta e as unidades informadas pelo usuário.",
+            "O resultado é tão confiável quanto os dados de entrada e premissas adotadas.",
+            "Margens conservadoras reduzem risco de subdimensionamento em uso preliminar.",
+            "A decisão final deve considerar contexto de processo e limites do equipamento."
+        ],
+        "example": [
+            "Exemplo: usar a ferramenta para uma primeira estimativa antes de consultar fabricante ou engenharia.",
+            "Preencha os dados com valores medidos ou de projeto e confira a unidade de cada campo.",
+            "Use o resultado como base de conversa técnica, não como aprovação final."
+        ],
+        "interpretation": [
+            "Resultado favorável indica compatibilidade preliminar com os dados informados.",
+            "Atenção se o resultado ficar próximo do limite, envolver segurança ou depender de dados estimados.",
+            "Condição crítica exige revisão técnica, medição e validação antes de aplicar."
+        ]
+    },
+    "calculadora-histerese-pressostato-termostato.html": {
+        "title": "Complemento técnico — instrumentação mecânica e medição de campo — Histerese pressostato termostato",
+        "intro": "Use este complemento para interpretar cálculos de termopoco, emissividade, histerese e resposta de instrumentos. Esses resultados ajudam no diagnóstico, mas dependem da montagem e da condição real do processo.",
+        "assumptions": [
+            "Dados de processo, geometria, material, sensor e montagem devem representar o caso real.",
+            "Tempo de resposta, emissividade e histerese podem variar com instalação, contato térmico e condição de operação.",
+            "Termopocos devem considerar fluido, velocidade, material, comprimento de inserção e vibração.",
+            "Instrumentos devem ser comparados com datasheet, calibração e histórico."
+        ],
+        "limitations": [
+            "Não substitui cálculo mecânico detalhado, wake frequency, ensaio, calibração ou validação do fabricante.",
+            "Não valida integridade mecânica, corrosão, fadiga, vibração, pressão, temperatura máxima ou compatibilidade de material.",
+            "Não use para liberar termopoco crítico sem avaliação completa de processo e mecânica.",
+            "Medição por termografia depende muito de emissividade, distância, foco e reflexos."
+        ],
+        "memory": [
+            "Tempo de resposta depende de massa térmica, troca de calor e montagem do sensor.",
+            "Histerese compara diferença entre trajetória crescente e decrescente de medição.",
+            "Emissividade corrige a leitura radiométrica conforme o material e condição superficial.",
+            "Wake frequency compara excitação do fluido com frequência natural do termopoco."
+        ],
+        "example": [
+            "Exemplo: avaliar se um termopoco pode ter resposta lenta em linha de processo.",
+            "Informe dimensões, material, fluido e condição de operação quando aplicável.",
+            "Depois valide com fabricante, norma aplicável e teste de campo."
+        ],
+        "interpretation": [
+            "Resultado favorável indica apenas triagem de medição ou montagem.",
+            "Atenção se houver vibração, alta velocidade, alta pressão/temperatura ou medição crítica.",
+            "Condição crítica exige avaliação mecânica, calibração e validação do fabricante."
+        ]
+    },
+    "calculadora-leis-afinidade-bombas-ventiladores.html": {
+        "title": "Complemento técnico — bombas, NPSH e ponto de operação — Leis afinidade bombas ventiladores",
+        "intro": "Use este complemento para interpretar cálculos de bombas, potência, NPSH, curvas e leis de afinidade. Bombas podem falhar por cavitação, operação fora da curva, superaquecimento, vibração ou seleção inadequada.",
+        "assumptions": [
+            "Vazão, altura manométrica, rotação, densidade, viscosidade e rendimento devem representar o ponto real de operação.",
+            "NPSHr, curva da bomba e limites de fabricante devem ser usados quando disponíveis.",
+            "Perdas de carga, nível do reservatório, temperatura e pressão de vapor devem considerar a pior condição provável.",
+            "A análise deve respeitar fluido, regime, material, vedação e criticidade do processo."
+        ],
+        "limitations": [
+            "Não substitui seleção hidráulica do fabricante, curva certificada, análise de NPSH, cavitação, vibração ou proteção do motor.",
+            "Não valida instalação, alinhamento, escorva, válvulas, recirculação mínima, selo mecânico ou proteção contra operação a seco.",
+            "Não use como única base para comprar, alterar rotor, mudar rotação ou liberar operação de bomba crítica.",
+            "Fluidos viscosos, abrasivos, quentes ou voláteis exigem correções específicas."
+        ],
+        "memory": [
+            "Potência hidráulica relaciona vazão, altura manométrica, densidade e gravidade.",
+            "Potência no eixo considera rendimento da bomba e margem operacional.",
+            "NPSHa deve ser maior que NPSHr com margem adequada para reduzir risco de cavitação.",
+            "Leis de afinidade relacionam vazão, altura e potência com a rotação/diâmetro em condições aproximadas."
+        ],
+        "example": [
+            "Exemplo: verificar se uma bomba atende nova vazão após ajuste de rotação por inversor.",
+            "Informe ponto atual, novo ponto desejado, rotação, rendimento e dados de curva quando disponíveis.",
+            "Use o resultado para triagem e valide com curva da bomba, NPSH, motor, válvulas e operação real."
+        ],
+        "interpretation": [
+            "Resultado favorável indica compatibilidade preliminar, não seleção final da bomba.",
+            "Atenção se NPSH, potência, rotação, viscosidade, recirculação ou operação fora da curva estiverem no limite.",
+            "Condição crítica exige análise de curva, fabricante e teste de campo antes de aplicar."
+        ]
+    },
+    "calculadora-lmtd-trocador-calor.html": {
+        "title": "Complemento técnico — trocadores, aquecimento e energia térmica — LMTD trocador calor",
+        "intro": "Use este complemento para interpretar estimativas de carga térmica, trocador de calor, aquecimento, perdas e consumo de energia. Resultados térmicos são muito sensíveis a propriedades do fluido e perdas reais.",
+        "assumptions": [
+            "Vazão, massa, Cp, ΔT, coeficiente global, área e rendimento devem representar a condição de projeto ou operação.",
+            "Propriedades do fluido podem variar com temperatura, concentração e pressão.",
+            "Perdas para ambiente, isolamento, incrustação e regime transitório podem alterar o resultado.",
+            "Trocadores devem ser avaliados conforme lado quente/frio, LMTD, fouling e limite de pressão/temperatura."
+        ],
+        "limitations": [
+            "Não substitui dimensionamento térmico detalhado, seleção de trocador, análise mecânica, limpeza, pressão admissível ou garantia de performance.",
+            "Não valida fouling, vibração, dilatação térmica, mistura de fases, ebulição, condensação ou segurança de processo.",
+            "Não use como única base para comprar resistência, trocador, vapor ou sistema de aquecimento.",
+            "Fluidos não Newtonianos, viscosos, corrosivos ou bifásicos exigem análise específica."
+        ],
+        "memory": [
+            "Carga térmica sensível geralmente depende de massa ou vazão mássica, Cp e ΔT.",
+            "Área de troca pode ser estimada por Q = U × A × ΔT médio logarítmico.",
+            "Perda térmica depende de área, diferença de temperatura, isolamento e coeficiente de troca.",
+            "Consumo elétrico ou de vapor depende da carga térmica e do rendimento do sistema."
+        ],
+        "example": [
+            "Exemplo: estimar potência necessária para aquecer um lote de água de 25 °C para 70 °C.",
+            "Informe volume/massa, Cp, ΔT, tempo e rendimento.",
+            "Depois valide com perdas, tempo real de aquecimento, limite do equipamento e segurança térmica."
+        ],
+        "interpretation": [
+            "Resultado favorável indica estimativa térmica coerente com as premissas informadas.",
+            "Atenção se houver temperatura alta, pressão, fluido perigoso, incrustação ou margem pequena.",
+            "Condição crítica exige balanço térmico, dados de fabricante e validação em campo."
+        ]
+    },
+    "calculadora-lsi-langelier-agua.html": {
+        "title": "Complemento técnico — dosagem, água industrial e química de processo — LSI langelier agua",
+        "intro": "Use este complemento para interpretar cálculos de dosagem, neutralização, diluição, cloro, corrosão e índices de água. Química de processo depende de análise laboratorial, produto usado e segurança química.",
+        "assumptions": [
+            "Concentração, vazão, volume, densidade e pureza do produto químico devem estar corretos.",
+            "pH, alcalinidade, cloro, TDS, LSI e corrosão dependem de medição confiável e condição da amostra.",
+            "Produtos químicos devem ser compatíveis com material, temperatura, processo e segurança.",
+            "Dosagens devem considerar eficiência de mistura, tempo de contato e variação da carga."
+        ],
+        "limitations": [
+            "Não substitui análise laboratorial, FISPQ, procedimento químico, validação ambiental, sanitária ou de segurança.",
+            "Não valida reação exotérmica, incompatibilidade química, corrosão localizada, incrustação ou descarte.",
+            "Não use para dosagem crítica sem teste, acompanhamento e validação do responsável técnico.",
+            "pH e neutralização são não lineares; pequenas variações podem mudar muito o resultado."
+        ],
+        "memory": [
+            "Dosagem ppm relaciona massa de produto ativo com volume ou vazão tratada.",
+            "Diluição relaciona concentração inicial, concentração final e volume.",
+            "Neutralização depende de alcalinidade/acidez, estequiometria e produto usado.",
+            "Índices de água são indicadores preliminares e devem ser interpretados com análise completa."
+        ],
+        "example": [
+            "Exemplo: estimar dosagem de químico para atingir uma concentração alvo em uma vazão de processo.",
+            "Informe vazão, concentração desejada, pureza e densidade do produto.",
+            "Depois valide com análise, ajuste fino em campo e limites de segurança química."
+        ],
+        "interpretation": [
+            "Resultado favorável indica dosagem preliminar compatível com os dados informados.",
+            "Atenção se houver produto perigoso, pH extremo, reação, corrosão, incrustação ou descarte.",
+            "Condição crítica exige teste controlado, EPI, FISPQ e validação técnica antes de aplicar."
+        ]
+    },
+    "calculadora-mistura-diluicao-solucoes.html": {
+        "title": "Complemento técnico — dosagem, água industrial e química de processo — Mistura diluicao solucoes",
+        "intro": "Use este complemento para interpretar cálculos de dosagem, neutralização, diluição, cloro, corrosão e índices de água. Química de processo depende de análise laboratorial, produto usado e segurança química.",
+        "assumptions": [
+            "Concentração, vazão, volume, densidade e pureza do produto químico devem estar corretos.",
+            "pH, alcalinidade, cloro, TDS, LSI e corrosão dependem de medição confiável e condição da amostra.",
+            "Produtos químicos devem ser compatíveis com material, temperatura, processo e segurança.",
+            "Dosagens devem considerar eficiência de mistura, tempo de contato e variação da carga."
+        ],
+        "limitations": [
+            "Não substitui análise laboratorial, FISPQ, procedimento químico, validação ambiental, sanitária ou de segurança.",
+            "Não valida reação exotérmica, incompatibilidade química, corrosão localizada, incrustação ou descarte.",
+            "Não use para dosagem crítica sem teste, acompanhamento e validação do responsável técnico.",
+            "pH e neutralização são não lineares; pequenas variações podem mudar muito o resultado."
+        ],
+        "memory": [
+            "Dosagem ppm relaciona massa de produto ativo com volume ou vazão tratada.",
+            "Diluição relaciona concentração inicial, concentração final e volume.",
+            "Neutralização depende de alcalinidade/acidez, estequiometria e produto usado.",
+            "Índices de água são indicadores preliminares e devem ser interpretados com análise completa."
+        ],
+        "example": [
+            "Exemplo: estimar dosagem de químico para atingir uma concentração alvo em uma vazão de processo.",
+            "Informe vazão, concentração desejada, pureza e densidade do produto.",
+            "Depois valide com análise, ajuste fino em campo e limites de segurança química."
+        ],
+        "interpretation": [
+            "Resultado favorável indica dosagem preliminar compatível com os dados informados.",
+            "Atenção se houver produto perigoso, pH extremo, reação, corrosão, incrustação ou descarte.",
+            "Condição crítica exige teste controlado, EPI, FISPQ e validação técnica antes de aplicar."
+        ]
+    },
+    "calculadora-npsh-bomba.html": {
+        "title": "Complemento técnico — bombas, NPSH e ponto de operação — NPSH bomba",
+        "intro": "Use este complemento para interpretar cálculos de bombas, potência, NPSH, curvas e leis de afinidade. Bombas podem falhar por cavitação, operação fora da curva, superaquecimento, vibração ou seleção inadequada.",
+        "assumptions": [
+            "Vazão, altura manométrica, rotação, densidade, viscosidade e rendimento devem representar o ponto real de operação.",
+            "NPSHr, curva da bomba e limites de fabricante devem ser usados quando disponíveis.",
+            "Perdas de carga, nível do reservatório, temperatura e pressão de vapor devem considerar a pior condição provável.",
+            "A análise deve respeitar fluido, regime, material, vedação e criticidade do processo."
+        ],
+        "limitations": [
+            "Não substitui seleção hidráulica do fabricante, curva certificada, análise de NPSH, cavitação, vibração ou proteção do motor.",
+            "Não valida instalação, alinhamento, escorva, válvulas, recirculação mínima, selo mecânico ou proteção contra operação a seco.",
+            "Não use como única base para comprar, alterar rotor, mudar rotação ou liberar operação de bomba crítica.",
+            "Fluidos viscosos, abrasivos, quentes ou voláteis exigem correções específicas."
+        ],
+        "memory": [
+            "Potência hidráulica relaciona vazão, altura manométrica, densidade e gravidade.",
+            "Potência no eixo considera rendimento da bomba e margem operacional.",
+            "NPSHa deve ser maior que NPSHr com margem adequada para reduzir risco de cavitação.",
+            "Leis de afinidade relacionam vazão, altura e potência com a rotação/diâmetro em condições aproximadas."
+        ],
+        "example": [
+            "Exemplo: verificar se uma bomba atende nova vazão após ajuste de rotação por inversor.",
+            "Informe ponto atual, novo ponto desejado, rotação, rendimento e dados de curva quando disponíveis.",
+            "Use o resultado para triagem e valide com curva da bomba, NPSH, motor, válvulas e operação real."
+        ],
+        "interpretation": [
+            "Resultado favorável indica compatibilidade preliminar, não seleção final da bomba.",
+            "Atenção se NPSH, potência, rotação, viscosidade, recirculação ou operação fora da curva estiverem no limite.",
+            "Condição crítica exige análise de curva, fabricante e teste de campo antes de aplicar."
+        ]
+    },
+    "calculadora-perda-calor-tubulacao.html": {
+        "title": "Complemento técnico — trocadores, aquecimento e energia térmica — Perda calor tubulacao",
+        "intro": "Use este complemento para interpretar estimativas de carga térmica, trocador de calor, aquecimento, perdas e consumo de energia. Resultados térmicos são muito sensíveis a propriedades do fluido e perdas reais.",
+        "assumptions": [
+            "Vazão, massa, Cp, ΔT, coeficiente global, área e rendimento devem representar a condição de projeto ou operação.",
+            "Propriedades do fluido podem variar com temperatura, concentração e pressão.",
+            "Perdas para ambiente, isolamento, incrustação e regime transitório podem alterar o resultado.",
+            "Trocadores devem ser avaliados conforme lado quente/frio, LMTD, fouling e limite de pressão/temperatura."
+        ],
+        "limitations": [
+            "Não substitui dimensionamento térmico detalhado, seleção de trocador, análise mecânica, limpeza, pressão admissível ou garantia de performance.",
+            "Não valida fouling, vibração, dilatação térmica, mistura de fases, ebulição, condensação ou segurança de processo.",
+            "Não use como única base para comprar resistência, trocador, vapor ou sistema de aquecimento.",
+            "Fluidos não Newtonianos, viscosos, corrosivos ou bifásicos exigem análise específica."
+        ],
+        "memory": [
+            "Carga térmica sensível geralmente depende de massa ou vazão mássica, Cp e ΔT.",
+            "Área de troca pode ser estimada por Q = U × A × ΔT médio logarítmico.",
+            "Perda térmica depende de área, diferença de temperatura, isolamento e coeficiente de troca.",
+            "Consumo elétrico ou de vapor depende da carga térmica e do rendimento do sistema."
+        ],
+        "example": [
+            "Exemplo: estimar potência necessária para aquecer um lote de água de 25 °C para 70 °C.",
+            "Informe volume/massa, Cp, ΔT, tempo e rendimento.",
+            "Depois valide com perdas, tempo real de aquecimento, limite do equipamento e segurança térmica."
+        ],
+        "interpretation": [
+            "Resultado favorável indica estimativa térmica coerente com as premissas informadas.",
+            "Atenção se houver temperatura alta, pressão, fluido perigoso, incrustação ou margem pequena.",
+            "Condição crítica exige balanço térmico, dados de fabricante e validação em campo."
+        ]
+    },
+    "calculadora-perda-carga-ar-comprimido.html": {
+        "title": "Complemento técnico — ar comprimido e ar de instrumentos — Perda carga ar comprimido",
+        "intro": "Use este complemento para interpretar consumo, autonomia, condensado, reservatório, custo e qualidade de ar comprimido. Em instrumentação, a qualidade do ar impacta válvulas, posicionadores, conversores e confiabilidade do processo.",
+        "assumptions": [
+            "Pressão, vazão, temperatura, ciclo de operação e simultaneidade devem representar a condição real.",
+            "Consumos intermitentes de válvulas, cilindros, purgas e sopros devem ser tratados com margem.",
+            "Perdas por vazamento, queda de pressão, secador, filtros e rede podem alterar bastante o resultado.",
+            "Para ar de instrumentos, considerar qualidade, ponto de orvalho, óleo, particulado e estabilidade de pressão."
+        ],
+        "limitations": [
+            "Não substitui projeto de rede de ar, especificação de compressor, vaso, secador, filtros ou inspeção de segurança.",
+            "Não valida NR-13 para reservatórios, integridade da rede, ruído, eficiência energética ou qualidade conforme exigência do fabricante.",
+            "Não use como única base para reduzir compressor, desligar sistema ou modificar rede crítica.",
+            "Vazamentos, demanda de pico e simultaneidade podem tornar o consumo real maior que a estimativa."
+        ],
+        "memory": [
+            "Consumo de ar depende de volume, pressão absoluta, ciclos, tempo e fator de simultaneidade.",
+            "Autonomia depende do volume armazenado, faixa de pressão útil e demanda média.",
+            "Custo depende de energia consumida, eficiência do compressor, horas de operação e tarifa.",
+            "Ponto de orvalho e condensado dependem de temperatura, umidade e pressão."
+        ],
+        "example": [
+            "Exemplo: estimar se um reservatório mantém ar de instrumentos durante uma queda temporária do compressor.",
+            "Informe volume, pressões inicial/final, consumo médio e margem de segurança.",
+            "Use o resultado para triagem e valide com teste real, tendência de pressão e criticidade das válvulas."
+        ],
+        "interpretation": [
+            "Resultado favorável indica pré-dimensionamento coerente com os dados informados.",
+            "Atenção se a margem for pequena, houver muitos vazamentos, demanda de pico ou ar de instrumentos crítico.",
+            "Condição crítica pede medição em campo, correção de vazamentos, revisão do compressor e avaliação do vaso/rede."
+        ]
+    },
+    "calculadora-perda-carga-filtro.html": {
+        "title": "Complemento técnico — escoamento, perda de carga e exaustão — Perda carga filtro",
+        "intro": "Use este complemento para interpretar cálculos de perda de carga, filtros, dutos, exaustão e velocidade em tubulações. Escoamento real depende de fluido, regime, rugosidade, conexões e condição de operação.",
+        "assumptions": [
+            "Vazão, diâmetro, comprimento, rugosidade, densidade e viscosidade devem representar a condição real.",
+            "Conexões, válvulas, filtros, curvas e entradas/saídas devem ser consideradas com comprimento equivalente ou perda localizada.",
+            "Para exaustão, considerar captação, velocidade de face, contaminante, perdas e ponto de descarga.",
+            "Filtros devem ser avaliados com perda limpa, suja e limite de troca."
+        ],
+        "limitations": [
+            "Não substitui projeto hidráulico/aeráulico, balanceamento de rede, análise de ruído, vibração, corrosão ou segurança.",
+            "Não valida captura de contaminante, toxicidade, explosividade, emissão atmosférica ou ventilação legalmente exigida.",
+            "Não use para especificar ventilador, bomba ou duto crítico sem curva do equipamento e perda total real.",
+            "Regime bifásico, fluido viscoso, sólido em suspensão ou alta temperatura exigem análise específica."
+        ],
+        "memory": [
+            "Perda de carga aumenta com vazão, comprimento, rugosidade, conexões e velocidade.",
+            "Velocidade depende da vazão dividida pela área interna da tubulação ou duto.",
+            "Filtros adicionam perda variável conforme saturação.",
+            "Exaustão exige comparar vazão disponível com velocidade/captação necessária."
+        ],
+        "example": [
+            "Exemplo: estimar perda de carga de uma linha de ar comprimido com várias conexões.",
+            "Informe vazão, diâmetro, comprimento e perdas equivalentes.",
+            "Depois valide com medição de pressão, curva do equipamento e condição de operação."
+        ],
+        "interpretation": [
+            "Resultado favorável indica perda ou velocidade preliminarmente compatível.",
+            "Atenção se houver perda elevada, velocidade alta, filtro sujo, ruído, erosão ou baixa captação.",
+            "Condição crítica exige medição, curva de equipamento e revisão do projeto da rede."
+        ]
+    },
+    "calculadora-perda-carga-mangueira-hidraulica.html": {
+        "title": "Complemento técnico — hidráulica industrial — Perda carga mangueira hidraulica",
+        "intro": "Use este complemento para interpretar cálculos de acumuladores, cilindros, potência hidráulica, mangueiras e perda de carga. Sistemas hidráulicos podem armazenar energia alta mesmo após desligamento.",
+        "assumptions": [
+            "Pressão, vazão, volume, diâmetro, curso e fluido devem representar a condição real.",
+            "Pressões devem considerar faixa de trabalho, picos, válvulas de alívio e temperatura do óleo.",
+            "Mangueiras, conexões, cilindros e acumuladores devem ser compatíveis com pressão, fluido e ambiente.",
+            "Cálculos de acumulador devem usar pressões absolutas e pré-carga correta."
+        ],
+        "limitations": [
+            "Não substitui projeto hidráulico, seleção de componentes, teste de pressão, avaliação de mangueiras, válvulas de segurança ou bloqueio de energia.",
+            "Não valida fadiga, pulsação, golpe, contaminação, compatibilidade de fluido, temperatura ou normas aplicáveis.",
+            "Não intervenha em acumulador ou circuito pressurizado sem despressurização e procedimento seguro.",
+            "A energia armazenada pode causar movimento inesperado de atuadores e risco grave."
+        ],
+        "memory": [
+            "Força hidráulica depende de pressão e área efetiva do cilindro.",
+            "Potência hidráulica depende de vazão e pressão.",
+            "Perda de carga aumenta com vazão, comprimento, rugosidade, conexões e viscosidade.",
+            "Acumuladores usam relação pressão-volume do gás, com processo isotérmico ou adiabático aproximado."
+        ],
+        "example": [
+            "Exemplo: estimar volume de acumulador para fornecer óleo durante queda momentânea de pressão.",
+            "Informe pré-carga, pressão mínima, pressão máxima e volume útil desejado.",
+            "Depois valide com catálogo, válvula de segurança, bloco de segurança e procedimento de manutenção."
+        ],
+        "interpretation": [
+            "Resultado favorável é pré-dimensionamento, não liberação de componente hidráulico.",
+            "Atenção se pressão, temperatura, acumulador, mangueira ou curso estiverem próximos do limite.",
+            "Condição crítica deve bloquear aplicação até validação do circuito e segurança de energia armazenada."
+        ]
+    },
+    "calculadora-perda-carga.html": {
+        "title": "Complemento técnico — escoamento, perda de carga e exaustão — Perda carga",
+        "intro": "Use este complemento para interpretar cálculos de perda de carga, filtros, dutos, exaustão e velocidade em tubulações. Escoamento real depende de fluido, regime, rugosidade, conexões e condição de operação.",
+        "assumptions": [
+            "Vazão, diâmetro, comprimento, rugosidade, densidade e viscosidade devem representar a condição real.",
+            "Conexões, válvulas, filtros, curvas e entradas/saídas devem ser consideradas com comprimento equivalente ou perda localizada.",
+            "Para exaustão, considerar captação, velocidade de face, contaminante, perdas e ponto de descarga.",
+            "Filtros devem ser avaliados com perda limpa, suja e limite de troca."
+        ],
+        "limitations": [
+            "Não substitui projeto hidráulico/aeráulico, balanceamento de rede, análise de ruído, vibração, corrosão ou segurança.",
+            "Não valida captura de contaminante, toxicidade, explosividade, emissão atmosférica ou ventilação legalmente exigida.",
+            "Não use para especificar ventilador, bomba ou duto crítico sem curva do equipamento e perda total real.",
+            "Regime bifásico, fluido viscoso, sólido em suspensão ou alta temperatura exigem análise específica."
+        ],
+        "memory": [
+            "Perda de carga aumenta com vazão, comprimento, rugosidade, conexões e velocidade.",
+            "Velocidade depende da vazão dividida pela área interna da tubulação ou duto.",
+            "Filtros adicionam perda variável conforme saturação.",
+            "Exaustão exige comparar vazão disponível com velocidade/captação necessária."
+        ],
+        "example": [
+            "Exemplo: estimar perda de carga de uma linha de ar comprimido com várias conexões.",
+            "Informe vazão, diâmetro, comprimento e perdas equivalentes.",
+            "Depois valide com medição de pressão, curva do equipamento e condição de operação."
+        ],
+        "interpretation": [
+            "Resultado favorável indica perda ou velocidade preliminarmente compatível.",
+            "Atenção se houver perda elevada, velocidade alta, filtro sujo, ruído, erosão ou baixa captação.",
+            "Condição crítica exige medição, curva de equipamento e revisão do projeto da rede."
+        ]
+    },
+    "calculadora-ponto-operacao-bomba.html": {
+        "title": "Complemento técnico — bombas, NPSH e ponto de operação — Ponto operacao bomba",
+        "intro": "Use este complemento para interpretar cálculos de bombas, potência, NPSH, curvas e leis de afinidade. Bombas podem falhar por cavitação, operação fora da curva, superaquecimento, vibração ou seleção inadequada.",
+        "assumptions": [
+            "Vazão, altura manométrica, rotação, densidade, viscosidade e rendimento devem representar o ponto real de operação.",
+            "NPSHr, curva da bomba e limites de fabricante devem ser usados quando disponíveis.",
+            "Perdas de carga, nível do reservatório, temperatura e pressão de vapor devem considerar a pior condição provável.",
+            "A análise deve respeitar fluido, regime, material, vedação e criticidade do processo."
+        ],
+        "limitations": [
+            "Não substitui seleção hidráulica do fabricante, curva certificada, análise de NPSH, cavitação, vibração ou proteção do motor.",
+            "Não valida instalação, alinhamento, escorva, válvulas, recirculação mínima, selo mecânico ou proteção contra operação a seco.",
+            "Não use como única base para comprar, alterar rotor, mudar rotação ou liberar operação de bomba crítica.",
+            "Fluidos viscosos, abrasivos, quentes ou voláteis exigem correções específicas."
+        ],
+        "memory": [
+            "Potência hidráulica relaciona vazão, altura manométrica, densidade e gravidade.",
+            "Potência no eixo considera rendimento da bomba e margem operacional.",
+            "NPSHa deve ser maior que NPSHr com margem adequada para reduzir risco de cavitação.",
+            "Leis de afinidade relacionam vazão, altura e potência com a rotação/diâmetro em condições aproximadas."
+        ],
+        "example": [
+            "Exemplo: verificar se uma bomba atende nova vazão após ajuste de rotação por inversor.",
+            "Informe ponto atual, novo ponto desejado, rotação, rendimento e dados de curva quando disponíveis.",
+            "Use o resultado para triagem e valide com curva da bomba, NPSH, motor, válvulas e operação real."
+        ],
+        "interpretation": [
+            "Resultado favorável indica compatibilidade preliminar, não seleção final da bomba.",
+            "Atenção se NPSH, potência, rotação, viscosidade, recirculação ou operação fora da curva estiverem no limite.",
+            "Condição crítica exige análise de curva, fabricante e teste de campo antes de aplicar."
+        ]
+    },
+    "calculadora-ponto-orvalho-ar-comprimido.html": {
+        "title": "Complemento técnico — ar comprimido e ar de instrumentos — Ponto orvalho ar comprimido",
+        "intro": "Use este complemento para interpretar consumo, autonomia, condensado, reservatório, custo e qualidade de ar comprimido. Em instrumentação, a qualidade do ar impacta válvulas, posicionadores, conversores e confiabilidade do processo.",
+        "assumptions": [
+            "Pressão, vazão, temperatura, ciclo de operação e simultaneidade devem representar a condição real.",
+            "Consumos intermitentes de válvulas, cilindros, purgas e sopros devem ser tratados com margem.",
+            "Perdas por vazamento, queda de pressão, secador, filtros e rede podem alterar bastante o resultado.",
+            "Para ar de instrumentos, considerar qualidade, ponto de orvalho, óleo, particulado e estabilidade de pressão."
+        ],
+        "limitations": [
+            "Não substitui projeto de rede de ar, especificação de compressor, vaso, secador, filtros ou inspeção de segurança.",
+            "Não valida NR-13 para reservatórios, integridade da rede, ruído, eficiência energética ou qualidade conforme exigência do fabricante.",
+            "Não use como única base para reduzir compressor, desligar sistema ou modificar rede crítica.",
+            "Vazamentos, demanda de pico e simultaneidade podem tornar o consumo real maior que a estimativa."
+        ],
+        "memory": [
+            "Consumo de ar depende de volume, pressão absoluta, ciclos, tempo e fator de simultaneidade.",
+            "Autonomia depende do volume armazenado, faixa de pressão útil e demanda média.",
+            "Custo depende de energia consumida, eficiência do compressor, horas de operação e tarifa.",
+            "Ponto de orvalho e condensado dependem de temperatura, umidade e pressão."
+        ],
+        "example": [
+            "Exemplo: estimar se um reservatório mantém ar de instrumentos durante uma queda temporária do compressor.",
+            "Informe volume, pressões inicial/final, consumo médio e margem de segurança.",
+            "Use o resultado para triagem e valide com teste real, tendência de pressão e criticidade das válvulas."
+        ],
+        "interpretation": [
+            "Resultado favorável indica pré-dimensionamento coerente com os dados informados.",
+            "Atenção se a margem for pequena, houver muitos vazamentos, demanda de pico ou ar de instrumentos crítico.",
+            "Condição crítica pede medição em campo, correção de vazamentos, revisão do compressor e avaliação do vaso/rede."
+        ]
+    },
+    "calculadora-potencia-bomba.html": {
+        "title": "Complemento técnico — bombas, NPSH e ponto de operação — Potencia bomba",
+        "intro": "Use este complemento para interpretar cálculos de bombas, potência, NPSH, curvas e leis de afinidade. Bombas podem falhar por cavitação, operação fora da curva, superaquecimento, vibração ou seleção inadequada.",
+        "assumptions": [
+            "Vazão, altura manométrica, rotação, densidade, viscosidade e rendimento devem representar o ponto real de operação.",
+            "NPSHr, curva da bomba e limites de fabricante devem ser usados quando disponíveis.",
+            "Perdas de carga, nível do reservatório, temperatura e pressão de vapor devem considerar a pior condição provável.",
+            "A análise deve respeitar fluido, regime, material, vedação e criticidade do processo."
+        ],
+        "limitations": [
+            "Não substitui seleção hidráulica do fabricante, curva certificada, análise de NPSH, cavitação, vibração ou proteção do motor.",
+            "Não valida instalação, alinhamento, escorva, válvulas, recirculação mínima, selo mecânico ou proteção contra operação a seco.",
+            "Não use como única base para comprar, alterar rotor, mudar rotação ou liberar operação de bomba crítica.",
+            "Fluidos viscosos, abrasivos, quentes ou voláteis exigem correções específicas."
+        ],
+        "memory": [
+            "Potência hidráulica relaciona vazão, altura manométrica, densidade e gravidade.",
+            "Potência no eixo considera rendimento da bomba e margem operacional.",
+            "NPSHa deve ser maior que NPSHr com margem adequada para reduzir risco de cavitação.",
+            "Leis de afinidade relacionam vazão, altura e potência com a rotação/diâmetro em condições aproximadas."
+        ],
+        "example": [
+            "Exemplo: verificar se uma bomba atende nova vazão após ajuste de rotação por inversor.",
+            "Informe ponto atual, novo ponto desejado, rotação, rendimento e dados de curva quando disponíveis.",
+            "Use o resultado para triagem e valide com curva da bomba, NPSH, motor, válvulas e operação real."
+        ],
+        "interpretation": [
+            "Resultado favorável indica compatibilidade preliminar, não seleção final da bomba.",
+            "Atenção se NPSH, potência, rotação, viscosidade, recirculação ou operação fora da curva estiverem no limite.",
+            "Condição crítica exige análise de curva, fabricante e teste de campo antes de aplicar."
+        ]
+    },
+    "calculadora-potencia-hidraulica.html": {
+        "title": "Complemento técnico — hidráulica industrial — Potencia hidraulica",
+        "intro": "Use este complemento para interpretar cálculos de acumuladores, cilindros, potência hidráulica, mangueiras e perda de carga. Sistemas hidráulicos podem armazenar energia alta mesmo após desligamento.",
+        "assumptions": [
+            "Pressão, vazão, volume, diâmetro, curso e fluido devem representar a condição real.",
+            "Pressões devem considerar faixa de trabalho, picos, válvulas de alívio e temperatura do óleo.",
+            "Mangueiras, conexões, cilindros e acumuladores devem ser compatíveis com pressão, fluido e ambiente.",
+            "Cálculos de acumulador devem usar pressões absolutas e pré-carga correta."
+        ],
+        "limitations": [
+            "Não substitui projeto hidráulico, seleção de componentes, teste de pressão, avaliação de mangueiras, válvulas de segurança ou bloqueio de energia.",
+            "Não valida fadiga, pulsação, golpe, contaminação, compatibilidade de fluido, temperatura ou normas aplicáveis.",
+            "Não intervenha em acumulador ou circuito pressurizado sem despressurização e procedimento seguro.",
+            "A energia armazenada pode causar movimento inesperado de atuadores e risco grave."
+        ],
+        "memory": [
+            "Força hidráulica depende de pressão e área efetiva do cilindro.",
+            "Potência hidráulica depende de vazão e pressão.",
+            "Perda de carga aumenta com vazão, comprimento, rugosidade, conexões e viscosidade.",
+            "Acumuladores usam relação pressão-volume do gás, com processo isotérmico ou adiabático aproximado."
+        ],
+        "example": [
+            "Exemplo: estimar volume de acumulador para fornecer óleo durante queda momentânea de pressão.",
+            "Informe pré-carga, pressão mínima, pressão máxima e volume útil desejado.",
+            "Depois valide com catálogo, válvula de segurança, bloco de segurança e procedimento de manutenção."
+        ],
+        "interpretation": [
+            "Resultado favorável é pré-dimensionamento, não liberação de componente hidráulico.",
+            "Atenção se pressão, temperatura, acumulador, mangueira ou curso estiverem próximos do limite.",
+            "Condição crítica deve bloquear aplicação até validação do circuito e segurança de energia armazenada."
+        ]
+    },
+    "calculadora-ppm-mg-m3-gases.html": {
+        "title": "Complemento técnico — gases industriais e pressurização — Ppm / mg/m³ gases",
+        "intro": "Use este complemento para interpretar cálculos com gases, cilindros, purga, concentração e normalização. Gases industriais podem envolver pressão, asfixia, inflamabilidade, toxicidade e requisitos de ventilação.",
+        "assumptions": [
+            "Pressão, temperatura, volume, composição e condição normalizada devem estar coerentes.",
+            "Para cilindros, usar pressão útil, fator de compressibilidade quando necessário e consumo real do processo.",
+            "Para purga, considerar volume efetivo, renovação, concentração alvo e segurança da área.",
+            "Unidades como Nm³/h, m³/h, ppm, mg/m³ e bar devem ser conferidas antes da aplicação."
+        ],
+        "limitations": [
+            "Não substitui análise de segurança, ventilação, classificação de área, FISPQ, procedimento de purga ou especificação de reguladores.",
+            "Não valida risco de asfixia, inflamabilidade, toxicidade, enriquecimento de oxigênio ou exaustão.",
+            "Não use para liberar trabalho com gás sem procedimento, medição e autorização local.",
+            "Gases reais, alta pressão, temperatura variável e mistura de gases podem exigir correções específicas."
+        ],
+        "memory": [
+            "Conversões de gás dependem de pressão, temperatura e volume de referência.",
+            "Consumo ou autonomia relaciona volume disponível, vazão e faixa útil de pressão.",
+            "Concentrações podem ser expressas em ppm, mg/m³ ou percentual, dependendo do gás e das condições.",
+            "Purga depende de volume, vazão, tempo e renovação efetiva do ambiente/equipamento."
+        ],
+        "example": [
+            "Exemplo: estimar autonomia de um cilindro de nitrogênio para purga de baixa vazão.",
+            "Informe volume, pressão inicial/final, consumo e tempo previsto.",
+            "Depois valide com regulador, ventilação, detector de gás, procedimento e condição real."
+        ],
+        "interpretation": [
+            "Resultado favorável indica estimativa preliminar com os dados digitados.",
+            "Atenção se houver gás inflamável, tóxico, asfixiante, alta pressão ou ambiente fechado.",
+            "Condição crítica exige medição, ventilação, procedimento e validação de segurança antes de aplicar."
+        ]
+    },
+    "calculadora-purga-caldeira-tds.html": {
+        "title": "Complemento técnico — vapor, condensado e caldeira — Purga caldeira TDS",
+        "intro": "Use este complemento para interpretar cálculos envolvendo vapor, condensado, purga e energia térmica. Esses resultados são úteis para triagem, mas dependem fortemente das condições reais de pressão, temperatura, qualidade do vapor, perdas e segurança operacional.",
+        "assumptions": [
+            "Pressão, temperatura, entalpia, rendimento e regime de operação devem representar a condição real do sistema.",
+            "A qualidade do vapor, perdas térmicas, isolamento, condensado e condições de retorno devem ser avaliadas separadamente.",
+            "Os dados informados pelo usuário devem ser conferidos com instrumentos, datasheets, histórico operacional ou balanço de massa/energia.",
+            "Aplicações em caldeiras, vapor pressurizado ou purga devem respeitar procedimento operacional e limites do equipamento."
+        ],
+        "limitations": [
+            "Não substitui projeto de vapor, inspeção, NR-13, avaliação de válvulas de segurança, purgadores, tubulação ou integridade mecânica.",
+            "Não valida pressão admissível, dilatação térmica, golpe de aríete, qualidade da água, corrosão ou segurança de operação.",
+            "Não use o resultado como autorização para alteração em caldeira, linha de vapor ou sistema pressurizado.",
+            "Perdas reais podem ser maiores que as estimadas por isolamento ruim, purgadores defeituosos, vazamentos e operação intermitente."
+        ],
+        "memory": [
+            "A lógica principal relaciona massa, vazão, calor sensível, calor latente, rendimento e tempo de operação.",
+            "Quando houver energia térmica, a carga depende de massa ou vazão, calor específico e variação de temperatura.",
+            "Quando houver vapor, o consumo depende da carga térmica dividida pelo calor latente efetivo e eficiência.",
+            "O resultado deve ser comparado com capacidade instalada, histórico, instrumentação e margem operacional."
+        ],
+        "example": [
+            "Exemplo: estimar consumo de vapor para aquecer um tanque ou processo por batelada.",
+            "Informe vazão, densidade, Cp, ΔT, calor latente e rendimento conservador.",
+            "Use o resultado para pré-avaliação e depois valide com medição, balanço térmico e condição real da linha."
+        ],
+        "interpretation": [
+            "Resultado favorável indica apenas compatibilidade preliminar com os dados informados.",
+            "Atenção se houver pressão elevada, vapor superaquecido, purga, retorno de condensado, perdas grandes ou operação intermitente.",
+            "Condição crítica exige validação por responsável técnico antes de qualquer intervenção em sistema pressurizado."
+        ]
+    },
+    "calculadora-purga-torre-resfriamento.html": {
+        "title": "Complemento técnico — processo e utilidades industriais — Purga torre resfriamento",
+        "intro": "Use este complemento para interpretar cálculos de processo e utilidades como apoio preliminar. O resultado depende da qualidade dos dados digitados, condição real de operação e margem adotada.",
+        "assumptions": [
+            "Os dados informados devem representar a condição real ou o cenário de projeto desejado.",
+            "Unidades, temperatura, pressão, densidade, vazão e rendimento devem ser conferidos antes de usar o resultado.",
+            "Aplicações críticas precisam considerar pior caso, margem de segurança e histórico operacional.",
+            "O resultado deve ser comparado com instrumentos, datasheets e limites do equipamento."
+        ],
+        "limitations": [
+            "Não substitui projeto, laudo, análise de segurança, especificação de fabricante ou validação por profissional habilitado.",
+            "Não valida todos os efeitos de processo, transientes, falhas, corrosão, incrustação, vibração ou desgaste.",
+            "Não use como liberação automática para modificar operação, comprar equipamento ou intervir em campo.",
+            "Condições fora da faixa normal podem exigir cálculo específico."
+        ],
+        "memory": [
+            "A memória de cálculo segue a fórmula principal da ferramenta e as unidades informadas pelo usuário.",
+            "O resultado é tão confiável quanto os dados de entrada e premissas adotadas.",
+            "Margens conservadoras reduzem risco de subdimensionamento em uso preliminar.",
+            "A decisão final deve considerar contexto de processo e limites do equipamento."
+        ],
+        "example": [
+            "Exemplo: usar a ferramenta para uma primeira estimativa antes de consultar fabricante ou engenharia.",
+            "Preencha os dados com valores medidos ou de projeto e confira a unidade de cada campo.",
+            "Use o resultado como base de conversa técnica, não como aprovação final."
+        ],
+        "interpretation": [
+            "Resultado favorável indica compatibilidade preliminar com os dados informados.",
+            "Atenção se o resultado ficar próximo do limite, envolver segurança ou depender de dados estimados.",
+            "Condição crítica exige revisão técnica, medição e validação antes de aplicar."
+        ]
+    },
+    "calculadora-purgador-vapor-condensado.html": {
+        "title": "Complemento técnico — vapor, condensado e caldeira — Purgador vapor condensado",
+        "intro": "Use este complemento para interpretar cálculos envolvendo vapor, condensado, purga e energia térmica. Esses resultados são úteis para triagem, mas dependem fortemente das condições reais de pressão, temperatura, qualidade do vapor, perdas e segurança operacional.",
+        "assumptions": [
+            "Pressão, temperatura, entalpia, rendimento e regime de operação devem representar a condição real do sistema.",
+            "A qualidade do vapor, perdas térmicas, isolamento, condensado e condições de retorno devem ser avaliadas separadamente.",
+            "Os dados informados pelo usuário devem ser conferidos com instrumentos, datasheets, histórico operacional ou balanço de massa/energia.",
+            "Aplicações em caldeiras, vapor pressurizado ou purga devem respeitar procedimento operacional e limites do equipamento."
+        ],
+        "limitations": [
+            "Não substitui projeto de vapor, inspeção, NR-13, avaliação de válvulas de segurança, purgadores, tubulação ou integridade mecânica.",
+            "Não valida pressão admissível, dilatação térmica, golpe de aríete, qualidade da água, corrosão ou segurança de operação.",
+            "Não use o resultado como autorização para alteração em caldeira, linha de vapor ou sistema pressurizado.",
+            "Perdas reais podem ser maiores que as estimadas por isolamento ruim, purgadores defeituosos, vazamentos e operação intermitente."
+        ],
+        "memory": [
+            "A lógica principal relaciona massa, vazão, calor sensível, calor latente, rendimento e tempo de operação.",
+            "Quando houver energia térmica, a carga depende de massa ou vazão, calor específico e variação de temperatura.",
+            "Quando houver vapor, o consumo depende da carga térmica dividida pelo calor latente efetivo e eficiência.",
+            "O resultado deve ser comparado com capacidade instalada, histórico, instrumentação e margem operacional."
+        ],
+        "example": [
+            "Exemplo: estimar consumo de vapor para aquecer um tanque ou processo por batelada.",
+            "Informe vazão, densidade, Cp, ΔT, calor latente e rendimento conservador.",
+            "Use o resultado para pré-avaliação e depois valide com medição, balanço térmico e condição real da linha."
+        ],
+        "interpretation": [
+            "Resultado favorável indica apenas compatibilidade preliminar com os dados informados.",
+            "Atenção se houver pressão elevada, vapor superaquecido, purga, retorno de condensado, perdas grandes ou operação intermitente.",
+            "Condição crítica exige validação por responsável técnico antes de qualquer intervenção em sistema pressurizado."
+        ]
+    },
+    "calculadora-recuperacao-condensado-energia.html": {
+        "title": "Complemento técnico — vapor, condensado e caldeira — Recuperacao condensado energia",
+        "intro": "Use este complemento para interpretar cálculos envolvendo vapor, condensado, purga e energia térmica. Esses resultados são úteis para triagem, mas dependem fortemente das condições reais de pressão, temperatura, qualidade do vapor, perdas e segurança operacional.",
+        "assumptions": [
+            "Pressão, temperatura, entalpia, rendimento e regime de operação devem representar a condição real do sistema.",
+            "A qualidade do vapor, perdas térmicas, isolamento, condensado e condições de retorno devem ser avaliadas separadamente.",
+            "Os dados informados pelo usuário devem ser conferidos com instrumentos, datasheets, histórico operacional ou balanço de massa/energia.",
+            "Aplicações em caldeiras, vapor pressurizado ou purga devem respeitar procedimento operacional e limites do equipamento."
+        ],
+        "limitations": [
+            "Não substitui projeto de vapor, inspeção, NR-13, avaliação de válvulas de segurança, purgadores, tubulação ou integridade mecânica.",
+            "Não valida pressão admissível, dilatação térmica, golpe de aríete, qualidade da água, corrosão ou segurança de operação.",
+            "Não use o resultado como autorização para alteração em caldeira, linha de vapor ou sistema pressurizado.",
+            "Perdas reais podem ser maiores que as estimadas por isolamento ruim, purgadores defeituosos, vazamentos e operação intermitente."
+        ],
+        "memory": [
+            "A lógica principal relaciona massa, vazão, calor sensível, calor latente, rendimento e tempo de operação.",
+            "Quando houver energia térmica, a carga depende de massa ou vazão, calor específico e variação de temperatura.",
+            "Quando houver vapor, o consumo depende da carga térmica dividida pelo calor latente efetivo e eficiência.",
+            "O resultado deve ser comparado com capacidade instalada, histórico, instrumentação e margem operacional."
+        ],
+        "example": [
+            "Exemplo: estimar consumo de vapor para aquecer um tanque ou processo por batelada.",
+            "Informe vazão, densidade, Cp, ΔT, calor latente e rendimento conservador.",
+            "Use o resultado para pré-avaliação e depois valide com medição, balanço térmico e condição real da linha."
+        ],
+        "interpretation": [
+            "Resultado favorável indica apenas compatibilidade preliminar com os dados informados.",
+            "Atenção se houver pressão elevada, vapor superaquecido, purga, retorno de condensado, perdas grandes ou operação intermitente.",
+            "Condição crítica exige validação por responsável técnico antes de qualquer intervenção em sistema pressurizado."
+        ]
+    },
+    "calculadora-reservatorio-ar-comprimido.html": {
+        "title": "Complemento técnico — ar comprimido e ar de instrumentos — Reservatorio ar comprimido",
+        "intro": "Use este complemento para interpretar consumo, autonomia, condensado, reservatório, custo e qualidade de ar comprimido. Em instrumentação, a qualidade do ar impacta válvulas, posicionadores, conversores e confiabilidade do processo.",
+        "assumptions": [
+            "Pressão, vazão, temperatura, ciclo de operação e simultaneidade devem representar a condição real.",
+            "Consumos intermitentes de válvulas, cilindros, purgas e sopros devem ser tratados com margem.",
+            "Perdas por vazamento, queda de pressão, secador, filtros e rede podem alterar bastante o resultado.",
+            "Para ar de instrumentos, considerar qualidade, ponto de orvalho, óleo, particulado e estabilidade de pressão."
+        ],
+        "limitations": [
+            "Não substitui projeto de rede de ar, especificação de compressor, vaso, secador, filtros ou inspeção de segurança.",
+            "Não valida NR-13 para reservatórios, integridade da rede, ruído, eficiência energética ou qualidade conforme exigência do fabricante.",
+            "Não use como única base para reduzir compressor, desligar sistema ou modificar rede crítica.",
+            "Vazamentos, demanda de pico e simultaneidade podem tornar o consumo real maior que a estimativa."
+        ],
+        "memory": [
+            "Consumo de ar depende de volume, pressão absoluta, ciclos, tempo e fator de simultaneidade.",
+            "Autonomia depende do volume armazenado, faixa de pressão útil e demanda média.",
+            "Custo depende de energia consumida, eficiência do compressor, horas de operação e tarifa.",
+            "Ponto de orvalho e condensado dependem de temperatura, umidade e pressão."
+        ],
+        "example": [
+            "Exemplo: estimar se um reservatório mantém ar de instrumentos durante uma queda temporária do compressor.",
+            "Informe volume, pressões inicial/final, consumo médio e margem de segurança.",
+            "Use o resultado para triagem e valide com teste real, tendência de pressão e criticidade das válvulas."
+        ],
+        "interpretation": [
+            "Resultado favorável indica pré-dimensionamento coerente com os dados informados.",
+            "Atenção se a margem for pequena, houver muitos vazamentos, demanda de pico ou ar de instrumentos crítico.",
+            "Condição crítica pede medição em campo, correção de vazamentos, revisão do compressor e avaliação do vaso/rede."
+        ]
+    },
+    "calculadora-solenoide-atuador-pneumatico.html": {
+        "title": "Complemento técnico — pneumática industrial — Solenoide atuador pneumatico",
+        "intro": "Use este complemento para interpretar cálculos de cilindros pneumáticos, solenóides, tubos, conexões e consumo. Em instrumentação, pneumática afeta atuadores, válvulas de controle e segurança operacional.",
+        "assumptions": [
+            "Pressão, diâmetro, curso, ciclo, vazão e simultaneidade devem representar a operação real.",
+            "Perdas em tubos, conexões, reguladores, filtros e válvulas devem ser consideradas com margem.",
+            "Atuadores críticos devem ser avaliados conforme tempo de abertura/fechamento, falha segura e ar disponível.",
+            "Consumo deve considerar ciclos reais, vazamentos e reserva de ar."
+        ],
+        "limitations": [
+            "Não substitui seleção de válvula pneumática, atuador, regulador, filtro, posicionador ou teste de tempo de atuação.",
+            "Não valida segurança de movimento, falha de ar, bloqueio pneumático, exaustão, ruído ou travamento mecânico.",
+            "Não use para liberar atuador crítico sem teste funcional em campo.",
+            "Tubos longos e conexões restritivas podem aumentar tempo de resposta além do calculado."
+        ],
+        "memory": [
+            "Força pneumática depende de pressão e área efetiva do cilindro.",
+            "Consumo por ciclo depende do volume deslocado e da pressão absoluta.",
+            "Queda de pressão e tempo de resposta aumentam com comprimento, restrições e vazão exigida.",
+            "Solenóides e atuadores devem ser comparados com Cv, pressão disponível e condição de falha."
+        ],
+        "example": [
+            "Exemplo: estimar consumo de ar de um cilindro que opera várias vezes por minuto.",
+            "Informe diâmetro, curso, pressão e ciclos por hora.",
+            "Depois valide com vazão da válvula, reservatório, queda de pressão e teste de movimento real."
+        ],
+        "interpretation": [
+            "Resultado favorável indica triagem preliminar para consumo, força ou tempo.",
+            "Atenção se a aplicação for rápida, crítica, com tubos longos ou baixa pressão disponível.",
+            "Condição crítica pede teste funcional e revisão de válvula, atuador, regulador e rede de ar."
+        ]
+    },
+    "calculadora-tanque-expansao-termica-agua.html": {
+        "title": "Complemento técnico — tanques, volume, massa e tempo de residência — Tanque expansao termica agua",
+        "intro": "Use este complemento para interpretar cálculos de volume, nível, massa, enchimento e tempo de residência em tanques. Tanques podem envolver transbordo, pressão, produto perigoso, agitação e erro de medição.",
+        "assumptions": [
+            "Geometria, diâmetro, altura, orientação, nível e densidade devem representar o tanque real.",
+            "Volume útil, volume morto, fundo cônico, bocais, serpentinas e internos podem alterar o volume real.",
+            "Para massa, a densidade deve ser compatível com temperatura, concentração e produto.",
+            "Tempo de enchimento ou residência depende da vazão real, regime de operação e variação de nível."
+        ],
+        "limitations": [
+            "Não substitui tabela de arqueação, medição fiscal, projeto de tanque, análise estrutural, transbordo, respiro ou segurança de processo.",
+            "Não valida compatibilidade química, pressão/vácuo, inflamabilidade, área classificada ou controle de nível crítico.",
+            "Não use para inventário oficial ou dosagem crítica sem calibração/arqueação validada.",
+            "Tanques irregulares, inclinados ou com internos exigem correção específica."
+        ],
+        "memory": [
+            "Volume em tanque depende da geometria e do nível informado.",
+            "Massa é volume multiplicado pela densidade corrigida para a condição real.",
+            "Tempo de enchimento ou residência relaciona volume útil e vazão.",
+            "Percentual de enchimento deve ser comparado com limites operacional, alarme alto e transbordo."
+        ],
+        "example": [
+            "Exemplo: estimar volume de um tanque horizontal parcialmente cheio para conferência operacional.",
+            "Informe diâmetro, comprimento e nível medido.",
+            "Depois compare com tabela de tanque, histórico, medidor de nível e limite de alarme."
+        ],
+        "interpretation": [
+            "Resultado favorável é estimativa operacional, não arqueação oficial.",
+            "Atenção se o tanque tiver produto perigoso, geometria complexa, nível crítico ou risco de transbordo.",
+            "Condição crítica exige tabela validada, instrumento calibrado e procedimento de operação."
+        ]
+    },
+    "calculadora-taxa-corrosao-vida-remanescente.html": {
+        "title": "Complemento técnico — dosagem, água industrial e química de processo — Taxa corrosao vida remanescente",
+        "intro": "Use este complemento para interpretar cálculos de dosagem, neutralização, diluição, cloro, corrosão e índices de água. Química de processo depende de análise laboratorial, produto usado e segurança química.",
+        "assumptions": [
+            "Concentração, vazão, volume, densidade e pureza do produto químico devem estar corretos.",
+            "pH, alcalinidade, cloro, TDS, LSI e corrosão dependem de medição confiável e condição da amostra.",
+            "Produtos químicos devem ser compatíveis com material, temperatura, processo e segurança.",
+            "Dosagens devem considerar eficiência de mistura, tempo de contato e variação da carga."
+        ],
+        "limitations": [
+            "Não substitui análise laboratorial, FISPQ, procedimento químico, validação ambiental, sanitária ou de segurança.",
+            "Não valida reação exotérmica, incompatibilidade química, corrosão localizada, incrustação ou descarte.",
+            "Não use para dosagem crítica sem teste, acompanhamento e validação do responsável técnico.",
+            "pH e neutralização são não lineares; pequenas variações podem mudar muito o resultado."
+        ],
+        "memory": [
+            "Dosagem ppm relaciona massa de produto ativo com volume ou vazão tratada.",
+            "Diluição relaciona concentração inicial, concentração final e volume.",
+            "Neutralização depende de alcalinidade/acidez, estequiometria e produto usado.",
+            "Índices de água são indicadores preliminares e devem ser interpretados com análise completa."
+        ],
+        "example": [
+            "Exemplo: estimar dosagem de químico para atingir uma concentração alvo em uma vazão de processo.",
+            "Informe vazão, concentração desejada, pureza e densidade do produto.",
+            "Depois valide com análise, ajuste fino em campo e limites de segurança química."
+        ],
+        "interpretation": [
+            "Resultado favorável indica dosagem preliminar compatível com os dados informados.",
+            "Atenção se houver produto perigoso, pH extremo, reação, corrosão, incrustação ou descarte.",
+            "Condição crítica exige teste controlado, EPI, FISPQ e validação técnica antes de aplicar."
+        ]
+    },
+    "calculadora-tempo-enchimento-tanque.html": {
+        "title": "Complemento técnico — tanques, volume, massa e tempo de residência — Tempo enchimento tanque",
+        "intro": "Use este complemento para interpretar cálculos de volume, nível, massa, enchimento e tempo de residência em tanques. Tanques podem envolver transbordo, pressão, produto perigoso, agitação e erro de medição.",
+        "assumptions": [
+            "Geometria, diâmetro, altura, orientação, nível e densidade devem representar o tanque real.",
+            "Volume útil, volume morto, fundo cônico, bocais, serpentinas e internos podem alterar o volume real.",
+            "Para massa, a densidade deve ser compatível com temperatura, concentração e produto.",
+            "Tempo de enchimento ou residência depende da vazão real, regime de operação e variação de nível."
+        ],
+        "limitations": [
+            "Não substitui tabela de arqueação, medição fiscal, projeto de tanque, análise estrutural, transbordo, respiro ou segurança de processo.",
+            "Não valida compatibilidade química, pressão/vácuo, inflamabilidade, área classificada ou controle de nível crítico.",
+            "Não use para inventário oficial ou dosagem crítica sem calibração/arqueação validada.",
+            "Tanques irregulares, inclinados ou com internos exigem correção específica."
+        ],
+        "memory": [
+            "Volume em tanque depende da geometria e do nível informado.",
+            "Massa é volume multiplicado pela densidade corrigida para a condição real.",
+            "Tempo de enchimento ou residência relaciona volume útil e vazão.",
+            "Percentual de enchimento deve ser comparado com limites operacional, alarme alto e transbordo."
+        ],
+        "example": [
+            "Exemplo: estimar volume de um tanque horizontal parcialmente cheio para conferência operacional.",
+            "Informe diâmetro, comprimento e nível medido.",
+            "Depois compare com tabela de tanque, histórico, medidor de nível e limite de alarme."
+        ],
+        "interpretation": [
+            "Resultado favorável é estimativa operacional, não arqueação oficial.",
+            "Atenção se o tanque tiver produto perigoso, geometria complexa, nível crítico ou risco de transbordo.",
+            "Condição crítica exige tabela validada, instrumento calibrado e procedimento de operação."
+        ]
+    },
+    "calculadora-tempo-pressurizacao-volume.html": {
+        "title": "Complemento técnico — gases industriais e pressurização — Tempo pressurizacao volume",
+        "intro": "Use este complemento para interpretar cálculos com gases, cilindros, purga, concentração e normalização. Gases industriais podem envolver pressão, asfixia, inflamabilidade, toxicidade e requisitos de ventilação.",
+        "assumptions": [
+            "Pressão, temperatura, volume, composição e condição normalizada devem estar coerentes.",
+            "Para cilindros, usar pressão útil, fator de compressibilidade quando necessário e consumo real do processo.",
+            "Para purga, considerar volume efetivo, renovação, concentração alvo e segurança da área.",
+            "Unidades como Nm³/h, m³/h, ppm, mg/m³ e bar devem ser conferidas antes da aplicação."
+        ],
+        "limitations": [
+            "Não substitui análise de segurança, ventilação, classificação de área, FISPQ, procedimento de purga ou especificação de reguladores.",
+            "Não valida risco de asfixia, inflamabilidade, toxicidade, enriquecimento de oxigênio ou exaustão.",
+            "Não use para liberar trabalho com gás sem procedimento, medição e autorização local.",
+            "Gases reais, alta pressão, temperatura variável e mistura de gases podem exigir correções específicas."
+        ],
+        "memory": [
+            "Conversões de gás dependem de pressão, temperatura e volume de referência.",
+            "Consumo ou autonomia relaciona volume disponível, vazão e faixa útil de pressão.",
+            "Concentrações podem ser expressas em ppm, mg/m³ ou percentual, dependendo do gás e das condições.",
+            "Purga depende de volume, vazão, tempo e renovação efetiva do ambiente/equipamento."
+        ],
+        "example": [
+            "Exemplo: estimar autonomia de um cilindro de nitrogênio para purga de baixa vazão.",
+            "Informe volume, pressão inicial/final, consumo e tempo previsto.",
+            "Depois valide com regulador, ventilação, detector de gás, procedimento e condição real."
+        ],
+        "interpretation": [
+            "Resultado favorável indica estimativa preliminar com os dados digitados.",
+            "Atenção se houver gás inflamável, tóxico, asfixiante, alta pressão ou ambiente fechado.",
+            "Condição crítica exige medição, ventilação, procedimento e validação de segurança antes de aplicar."
+        ]
+    },
+    "calculadora-tempo-residencia-tanque.html": {
+        "title": "Complemento técnico — tanques, volume, massa e tempo de residência — Tempo residencia tanque",
+        "intro": "Use este complemento para interpretar cálculos de volume, nível, massa, enchimento e tempo de residência em tanques. Tanques podem envolver transbordo, pressão, produto perigoso, agitação e erro de medição.",
+        "assumptions": [
+            "Geometria, diâmetro, altura, orientação, nível e densidade devem representar o tanque real.",
+            "Volume útil, volume morto, fundo cônico, bocais, serpentinas e internos podem alterar o volume real.",
+            "Para massa, a densidade deve ser compatível com temperatura, concentração e produto.",
+            "Tempo de enchimento ou residência depende da vazão real, regime de operação e variação de nível."
+        ],
+        "limitations": [
+            "Não substitui tabela de arqueação, medição fiscal, projeto de tanque, análise estrutural, transbordo, respiro ou segurança de processo.",
+            "Não valida compatibilidade química, pressão/vácuo, inflamabilidade, área classificada ou controle de nível crítico.",
+            "Não use para inventário oficial ou dosagem crítica sem calibração/arqueação validada.",
+            "Tanques irregulares, inclinados ou com internos exigem correção específica."
+        ],
+        "memory": [
+            "Volume em tanque depende da geometria e do nível informado.",
+            "Massa é volume multiplicado pela densidade corrigida para a condição real.",
+            "Tempo de enchimento ou residência relaciona volume útil e vazão.",
+            "Percentual de enchimento deve ser comparado com limites operacional, alarme alto e transbordo."
+        ],
+        "example": [
+            "Exemplo: estimar volume de um tanque horizontal parcialmente cheio para conferência operacional.",
+            "Informe diâmetro, comprimento e nível medido.",
+            "Depois compare com tabela de tanque, histórico, medidor de nível e limite de alarme."
+        ],
+        "interpretation": [
+            "Resultado favorável é estimativa operacional, não arqueação oficial.",
+            "Atenção se o tanque tiver produto perigoso, geometria complexa, nível crítico ou risco de transbordo.",
+            "Condição crítica exige tabela validada, instrumento calibrado e procedimento de operação."
+        ]
+    },
+    "calculadora-termopoco-tempo-resposta.html": {
+        "title": "Complemento técnico — instrumentação mecânica e medição de campo — Termopoco tempo resposta",
+        "intro": "Use este complemento para interpretar cálculos de termopoco, emissividade, histerese e resposta de instrumentos. Esses resultados ajudam no diagnóstico, mas dependem da montagem e da condição real do processo.",
+        "assumptions": [
+            "Dados de processo, geometria, material, sensor e montagem devem representar o caso real.",
+            "Tempo de resposta, emissividade e histerese podem variar com instalação, contato térmico e condição de operação.",
+            "Termopocos devem considerar fluido, velocidade, material, comprimento de inserção e vibração.",
+            "Instrumentos devem ser comparados com datasheet, calibração e histórico."
+        ],
+        "limitations": [
+            "Não substitui cálculo mecânico detalhado, wake frequency, ensaio, calibração ou validação do fabricante.",
+            "Não valida integridade mecânica, corrosão, fadiga, vibração, pressão, temperatura máxima ou compatibilidade de material.",
+            "Não use para liberar termopoco crítico sem avaliação completa de processo e mecânica.",
+            "Medição por termografia depende muito de emissividade, distância, foco e reflexos."
+        ],
+        "memory": [
+            "Tempo de resposta depende de massa térmica, troca de calor e montagem do sensor.",
+            "Histerese compara diferença entre trajetória crescente e decrescente de medição.",
+            "Emissividade corrige a leitura radiométrica conforme o material e condição superficial.",
+            "Wake frequency compara excitação do fluido com frequência natural do termopoco."
+        ],
+        "example": [
+            "Exemplo: avaliar se um termopoco pode ter resposta lenta em linha de processo.",
+            "Informe dimensões, material, fluido e condição de operação quando aplicável.",
+            "Depois valide com fabricante, norma aplicável e teste de campo."
+        ],
+        "interpretation": [
+            "Resultado favorável indica apenas triagem de medição ou montagem.",
+            "Atenção se houver vibração, alta velocidade, alta pressão/temperatura ou medição crítica.",
+            "Condição crítica exige avaliação mecânica, calibração e validação do fabricante."
+        ]
+    },
+    "calculadora-termopoco-wake-frequency.html": {
+        "title": "Complemento técnico — instrumentação mecânica e medição de campo — Termopoco wake frequency",
+        "intro": "Use este complemento para interpretar cálculos de termopoco, emissividade, histerese e resposta de instrumentos. Esses resultados ajudam no diagnóstico, mas dependem da montagem e da condição real do processo.",
+        "assumptions": [
+            "Dados de processo, geometria, material, sensor e montagem devem representar o caso real.",
+            "Tempo de resposta, emissividade e histerese podem variar com instalação, contato térmico e condição de operação.",
+            "Termopocos devem considerar fluido, velocidade, material, comprimento de inserção e vibração.",
+            "Instrumentos devem ser comparados com datasheet, calibração e histórico."
+        ],
+        "limitations": [
+            "Não substitui cálculo mecânico detalhado, wake frequency, ensaio, calibração ou validação do fabricante.",
+            "Não valida integridade mecânica, corrosão, fadiga, vibração, pressão, temperatura máxima ou compatibilidade de material.",
+            "Não use para liberar termopoco crítico sem avaliação completa de processo e mecânica.",
+            "Medição por termografia depende muito de emissividade, distância, foco e reflexos."
+        ],
+        "memory": [
+            "Tempo de resposta depende de massa térmica, troca de calor e montagem do sensor.",
+            "Histerese compara diferença entre trajetória crescente e decrescente de medição.",
+            "Emissividade corrige a leitura radiométrica conforme o material e condição superficial.",
+            "Wake frequency compara excitação do fluido com frequência natural do termopoco."
+        ],
+        "example": [
+            "Exemplo: avaliar se um termopoco pode ter resposta lenta em linha de processo.",
+            "Informe dimensões, material, fluido e condição de operação quando aplicável.",
+            "Depois valide com fabricante, norma aplicável e teste de campo."
+        ],
+        "interpretation": [
+            "Resultado favorável indica apenas triagem de medição ou montagem.",
+            "Atenção se houver vibração, alta velocidade, alta pressão/temperatura ou medição crítica.",
+            "Condição crítica exige avaliação mecânica, calibração e validação do fabricante."
+        ]
+    },
+    "calculadora-trocador-calor-simples.html": {
+        "title": "Complemento técnico — trocadores, aquecimento e energia térmica — Trocador calor simples",
+        "intro": "Use este complemento para interpretar estimativas de carga térmica, trocador de calor, aquecimento, perdas e consumo de energia. Resultados térmicos são muito sensíveis a propriedades do fluido e perdas reais.",
+        "assumptions": [
+            "Vazão, massa, Cp, ΔT, coeficiente global, área e rendimento devem representar a condição de projeto ou operação.",
+            "Propriedades do fluido podem variar com temperatura, concentração e pressão.",
+            "Perdas para ambiente, isolamento, incrustação e regime transitório podem alterar o resultado.",
+            "Trocadores devem ser avaliados conforme lado quente/frio, LMTD, fouling e limite de pressão/temperatura."
+        ],
+        "limitations": [
+            "Não substitui dimensionamento térmico detalhado, seleção de trocador, análise mecânica, limpeza, pressão admissível ou garantia de performance.",
+            "Não valida fouling, vibração, dilatação térmica, mistura de fases, ebulição, condensação ou segurança de processo.",
+            "Não use como única base para comprar resistência, trocador, vapor ou sistema de aquecimento.",
+            "Fluidos não Newtonianos, viscosos, corrosivos ou bifásicos exigem análise específica."
+        ],
+        "memory": [
+            "Carga térmica sensível geralmente depende de massa ou vazão mássica, Cp e ΔT.",
+            "Área de troca pode ser estimada por Q = U × A × ΔT médio logarítmico.",
+            "Perda térmica depende de área, diferença de temperatura, isolamento e coeficiente de troca.",
+            "Consumo elétrico ou de vapor depende da carga térmica e do rendimento do sistema."
+        ],
+        "example": [
+            "Exemplo: estimar potência necessária para aquecer um lote de água de 25 °C para 70 °C.",
+            "Informe volume/massa, Cp, ΔT, tempo e rendimento.",
+            "Depois valide com perdas, tempo real de aquecimento, limite do equipamento e segurança térmica."
+        ],
+        "interpretation": [
+            "Resultado favorável indica estimativa térmica coerente com as premissas informadas.",
+            "Atenção se houver temperatura alta, pressão, fluido perigoso, incrustação ou margem pequena.",
+            "Condição crítica exige balanço térmico, dados de fabricante e validação em campo."
+        ]
+    },
+    "calculadora-tubo-pneumatico-instrumentacao.html": {
+        "title": "Complemento técnico — pneumática industrial — Tubo pneumatico instrumentacao",
+        "intro": "Use este complemento para interpretar cálculos de cilindros pneumáticos, solenóides, tubos, conexões e consumo. Em instrumentação, pneumática afeta atuadores, válvulas de controle e segurança operacional.",
+        "assumptions": [
+            "Pressão, diâmetro, curso, ciclo, vazão e simultaneidade devem representar a operação real.",
+            "Perdas em tubos, conexões, reguladores, filtros e válvulas devem ser consideradas com margem.",
+            "Atuadores críticos devem ser avaliados conforme tempo de abertura/fechamento, falha segura e ar disponível.",
+            "Consumo deve considerar ciclos reais, vazamentos e reserva de ar."
+        ],
+        "limitations": [
+            "Não substitui seleção de válvula pneumática, atuador, regulador, filtro, posicionador ou teste de tempo de atuação.",
+            "Não valida segurança de movimento, falha de ar, bloqueio pneumático, exaustão, ruído ou travamento mecânico.",
+            "Não use para liberar atuador crítico sem teste funcional em campo.",
+            "Tubos longos e conexões restritivas podem aumentar tempo de resposta além do calculado."
+        ],
+        "memory": [
+            "Força pneumática depende de pressão e área efetiva do cilindro.",
+            "Consumo por ciclo depende do volume deslocado e da pressão absoluta.",
+            "Queda de pressão e tempo de resposta aumentam com comprimento, restrições e vazão exigida.",
+            "Solenóides e atuadores devem ser comparados com Cv, pressão disponível e condição de falha."
+        ],
+        "example": [
+            "Exemplo: estimar consumo de ar de um cilindro que opera várias vezes por minuto.",
+            "Informe diâmetro, curso, pressão e ciclos por hora.",
+            "Depois valide com vazão da válvula, reservatório, queda de pressão e teste de movimento real."
+        ],
+        "interpretation": [
+            "Resultado favorável indica triagem preliminar para consumo, força ou tempo.",
+            "Atenção se a aplicação for rápida, crítica, com tubos longos ou baixa pressão disponível.",
+            "Condição crítica pede teste funcional e revisão de válvula, atuador, regulador e rede de ar."
+        ]
+    },
+    "calculadora-vazamento-agua-orificio.html": {
+        "title": "Complemento técnico — vazamentos e testes de estanqueidade — Vazamento agua orificio",
+        "intro": "Use este complemento para interpretar estimativas de vazamento de água, ar comprimido ou vácuo. Vazamentos afetam energia, segurança, qualidade e disponibilidade do processo.",
+        "assumptions": [
+            "Pressão, diâmetro do furo, volume, tempo, temperatura e fluido devem representar a condição real.",
+            "A estimativa considera modelo simplificado e pode variar com geometria do vazamento e regime de escoamento.",
+            "Para vácuo ou pressure decay, volume de teste, temperatura e estabilidade devem ser controlados.",
+            "Em ar comprimido, custo depende de pressão, horas, eficiência do compressor e tarifa."
+        ],
+        "limitations": [
+            "Não substitui teste de estanqueidade formal, ensaio normativo, detector, inspeção ou análise de segurança.",
+            "Não valida risco de jato, ruptura, inundação, asfixia, inflamabilidade ou contaminação.",
+            "Não use para liberar equipamento pressurizado sem teste conforme procedimento aplicável.",
+            "Temperatura, compressibilidade e variação de pressão podem distorcer o resultado."
+        ],
+        "memory": [
+            "Vazamento por orifício depende de área, pressão diferencial, densidade e coeficiente de descarga.",
+            "Teste por queda de pressão relaciona variação de pressão, volume e tempo.",
+            "Custo de vazamento de ar depende da vazão perdida e energia para comprimir o ar.",
+            "Quanto maior pressão e diâmetro do vazamento, maior a perda estimada."
+        ],
+        "example": [
+            "Exemplo: estimar custo anual de um vazamento de ar por furo pequeno em rede de 7 bar.",
+            "Informe pressão, diâmetro estimado, horas de operação e custo de energia.",
+            "Depois confirme com ultrassom, medição de vazão, reparo e nova verificação."
+        ],
+        "interpretation": [
+            "Resultado favorável indica vazamento estimado baixo ou dentro do critério informado.",
+            "Atenção se o custo, perda de pressão ou queda de vácuo forem relevantes para a operação.",
+            "Condição crítica exige isolamento, reparo e teste formal antes de liberar o sistema."
+        ]
+    },
+    "calculadora-vazamento-ar-comprimido-furo.html": {
+        "title": "Complemento técnico — ar comprimido e ar de instrumentos — Vazamento ar comprimido furo",
+        "intro": "Use este complemento para interpretar consumo, autonomia, condensado, reservatório, custo e qualidade de ar comprimido. Em instrumentação, a qualidade do ar impacta válvulas, posicionadores, conversores e confiabilidade do processo.",
+        "assumptions": [
+            "Pressão, vazão, temperatura, ciclo de operação e simultaneidade devem representar a condição real.",
+            "Consumos intermitentes de válvulas, cilindros, purgas e sopros devem ser tratados com margem.",
+            "Perdas por vazamento, queda de pressão, secador, filtros e rede podem alterar bastante o resultado.",
+            "Para ar de instrumentos, considerar qualidade, ponto de orvalho, óleo, particulado e estabilidade de pressão."
+        ],
+        "limitations": [
+            "Não substitui projeto de rede de ar, especificação de compressor, vaso, secador, filtros ou inspeção de segurança.",
+            "Não valida NR-13 para reservatórios, integridade da rede, ruído, eficiência energética ou qualidade conforme exigência do fabricante.",
+            "Não use como única base para reduzir compressor, desligar sistema ou modificar rede crítica.",
+            "Vazamentos, demanda de pico e simultaneidade podem tornar o consumo real maior que a estimativa."
+        ],
+        "memory": [
+            "Consumo de ar depende de volume, pressão absoluta, ciclos, tempo e fator de simultaneidade.",
+            "Autonomia depende do volume armazenado, faixa de pressão útil e demanda média.",
+            "Custo depende de energia consumida, eficiência do compressor, horas de operação e tarifa.",
+            "Ponto de orvalho e condensado dependem de temperatura, umidade e pressão."
+        ],
+        "example": [
+            "Exemplo: estimar se um reservatório mantém ar de instrumentos durante uma queda temporária do compressor.",
+            "Informe volume, pressões inicial/final, consumo médio e margem de segurança.",
+            "Use o resultado para triagem e valide com teste real, tendência de pressão e criticidade das válvulas."
+        ],
+        "interpretation": [
+            "Resultado favorável indica pré-dimensionamento coerente com os dados informados.",
+            "Atenção se a margem for pequena, houver muitos vazamentos, demanda de pico ou ar de instrumentos crítico.",
+            "Condição crítica pede medição em campo, correção de vazamentos, revisão do compressor e avaliação do vaso/rede."
+        ]
+    },
+    "calculadora-vazamento-ar-comprimido.html": {
+        "title": "Complemento técnico — ar comprimido e ar de instrumentos — Vazamento ar comprimido",
+        "intro": "Use este complemento para interpretar consumo, autonomia, condensado, reservatório, custo e qualidade de ar comprimido. Em instrumentação, a qualidade do ar impacta válvulas, posicionadores, conversores e confiabilidade do processo.",
+        "assumptions": [
+            "Pressão, vazão, temperatura, ciclo de operação e simultaneidade devem representar a condição real.",
+            "Consumos intermitentes de válvulas, cilindros, purgas e sopros devem ser tratados com margem.",
+            "Perdas por vazamento, queda de pressão, secador, filtros e rede podem alterar bastante o resultado.",
+            "Para ar de instrumentos, considerar qualidade, ponto de orvalho, óleo, particulado e estabilidade de pressão."
+        ],
+        "limitations": [
+            "Não substitui projeto de rede de ar, especificação de compressor, vaso, secador, filtros ou inspeção de segurança.",
+            "Não valida NR-13 para reservatórios, integridade da rede, ruído, eficiência energética ou qualidade conforme exigência do fabricante.",
+            "Não use como única base para reduzir compressor, desligar sistema ou modificar rede crítica.",
+            "Vazamentos, demanda de pico e simultaneidade podem tornar o consumo real maior que a estimativa."
+        ],
+        "memory": [
+            "Consumo de ar depende de volume, pressão absoluta, ciclos, tempo e fator de simultaneidade.",
+            "Autonomia depende do volume armazenado, faixa de pressão útil e demanda média.",
+            "Custo depende de energia consumida, eficiência do compressor, horas de operação e tarifa.",
+            "Ponto de orvalho e condensado dependem de temperatura, umidade e pressão."
+        ],
+        "example": [
+            "Exemplo: estimar se um reservatório mantém ar de instrumentos durante uma queda temporária do compressor.",
+            "Informe volume, pressões inicial/final, consumo médio e margem de segurança.",
+            "Use o resultado para triagem e valide com teste real, tendência de pressão e criticidade das válvulas."
+        ],
+        "interpretation": [
+            "Resultado favorável indica pré-dimensionamento coerente com os dados informados.",
+            "Atenção se a margem for pequena, houver muitos vazamentos, demanda de pico ou ar de instrumentos crítico.",
+            "Condição crítica pede medição em campo, correção de vazamentos, revisão do compressor e avaliação do vaso/rede."
+        ]
+    },
+    "calculadora-vazamento-vacuo-pressure-decay.html": {
+        "title": "Complemento técnico — vazamentos e testes de estanqueidade — Vazamento vacuo pressure decay",
+        "intro": "Use este complemento para interpretar estimativas de vazamento de água, ar comprimido ou vácuo. Vazamentos afetam energia, segurança, qualidade e disponibilidade do processo.",
+        "assumptions": [
+            "Pressão, diâmetro do furo, volume, tempo, temperatura e fluido devem representar a condição real.",
+            "A estimativa considera modelo simplificado e pode variar com geometria do vazamento e regime de escoamento.",
+            "Para vácuo ou pressure decay, volume de teste, temperatura e estabilidade devem ser controlados.",
+            "Em ar comprimido, custo depende de pressão, horas, eficiência do compressor e tarifa."
+        ],
+        "limitations": [
+            "Não substitui teste de estanqueidade formal, ensaio normativo, detector, inspeção ou análise de segurança.",
+            "Não valida risco de jato, ruptura, inundação, asfixia, inflamabilidade ou contaminação.",
+            "Não use para liberar equipamento pressurizado sem teste conforme procedimento aplicável.",
+            "Temperatura, compressibilidade e variação de pressão podem distorcer o resultado."
+        ],
+        "memory": [
+            "Vazamento por orifício depende de área, pressão diferencial, densidade e coeficiente de descarga.",
+            "Teste por queda de pressão relaciona variação de pressão, volume e tempo.",
+            "Custo de vazamento de ar depende da vazão perdida e energia para comprimir o ar.",
+            "Quanto maior pressão e diâmetro do vazamento, maior a perda estimada."
+        ],
+        "example": [
+            "Exemplo: estimar custo anual de um vazamento de ar por furo pequeno em rede de 7 bar.",
+            "Informe pressão, diâmetro estimado, horas de operação e custo de energia.",
+            "Depois confirme com ultrassom, medição de vazão, reparo e nova verificação."
+        ],
+        "interpretation": [
+            "Resultado favorável indica vazamento estimado baixo ou dentro do critério informado.",
+            "Atenção se o custo, perda de pressão ou queda de vácuo forem relevantes para a operação.",
+            "Condição crítica exige isolamento, reparo e teste formal antes de liberar o sistema."
+        ]
+    },
+    "calculadora-vazao-bomba-deslocamento-positivo.html": {
+        "title": "Complemento técnico — bombas, NPSH e ponto de operação — Vazao bomba deslocamento positivo",
+        "intro": "Use este complemento para interpretar cálculos de bombas, potência, NPSH, curvas e leis de afinidade. Bombas podem falhar por cavitação, operação fora da curva, superaquecimento, vibração ou seleção inadequada.",
+        "assumptions": [
+            "Vazão, altura manométrica, rotação, densidade, viscosidade e rendimento devem representar o ponto real de operação.",
+            "NPSHr, curva da bomba e limites de fabricante devem ser usados quando disponíveis.",
+            "Perdas de carga, nível do reservatório, temperatura e pressão de vapor devem considerar a pior condição provável.",
+            "A análise deve respeitar fluido, regime, material, vedação e criticidade do processo."
+        ],
+        "limitations": [
+            "Não substitui seleção hidráulica do fabricante, curva certificada, análise de NPSH, cavitação, vibração ou proteção do motor.",
+            "Não valida instalação, alinhamento, escorva, válvulas, recirculação mínima, selo mecânico ou proteção contra operação a seco.",
+            "Não use como única base para comprar, alterar rotor, mudar rotação ou liberar operação de bomba crítica.",
+            "Fluidos viscosos, abrasivos, quentes ou voláteis exigem correções específicas."
+        ],
+        "memory": [
+            "Potência hidráulica relaciona vazão, altura manométrica, densidade e gravidade.",
+            "Potência no eixo considera rendimento da bomba e margem operacional.",
+            "NPSHa deve ser maior que NPSHr com margem adequada para reduzir risco de cavitação.",
+            "Leis de afinidade relacionam vazão, altura e potência com a rotação/diâmetro em condições aproximadas."
+        ],
+        "example": [
+            "Exemplo: verificar se uma bomba atende nova vazão após ajuste de rotação por inversor.",
+            "Informe ponto atual, novo ponto desejado, rotação, rendimento e dados de curva quando disponíveis.",
+            "Use o resultado para triagem e valide com curva da bomba, NPSH, motor, válvulas e operação real."
+        ],
+        "interpretation": [
+            "Resultado favorável indica compatibilidade preliminar, não seleção final da bomba.",
+            "Atenção se NPSH, potência, rotação, viscosidade, recirculação ou operação fora da curva estiverem no limite.",
+            "Condição crítica exige análise de curva, fabricante e teste de campo antes de aplicar."
+        ]
+    },
+    "calculadora-vazao-vapor-saturado.html": {
+        "title": "Complemento técnico — vapor, condensado e caldeira — Vazao vapor saturado",
+        "intro": "Use este complemento para interpretar cálculos envolvendo vapor, condensado, purga e energia térmica. Esses resultados são úteis para triagem, mas dependem fortemente das condições reais de pressão, temperatura, qualidade do vapor, perdas e segurança operacional.",
+        "assumptions": [
+            "Pressão, temperatura, entalpia, rendimento e regime de operação devem representar a condição real do sistema.",
+            "A qualidade do vapor, perdas térmicas, isolamento, condensado e condições de retorno devem ser avaliadas separadamente.",
+            "Os dados informados pelo usuário devem ser conferidos com instrumentos, datasheets, histórico operacional ou balanço de massa/energia.",
+            "Aplicações em caldeiras, vapor pressurizado ou purga devem respeitar procedimento operacional e limites do equipamento."
+        ],
+        "limitations": [
+            "Não substitui projeto de vapor, inspeção, NR-13, avaliação de válvulas de segurança, purgadores, tubulação ou integridade mecânica.",
+            "Não valida pressão admissível, dilatação térmica, golpe de aríete, qualidade da água, corrosão ou segurança de operação.",
+            "Não use o resultado como autorização para alteração em caldeira, linha de vapor ou sistema pressurizado.",
+            "Perdas reais podem ser maiores que as estimadas por isolamento ruim, purgadores defeituosos, vazamentos e operação intermitente."
+        ],
+        "memory": [
+            "A lógica principal relaciona massa, vazão, calor sensível, calor latente, rendimento e tempo de operação.",
+            "Quando houver energia térmica, a carga depende de massa ou vazão, calor específico e variação de temperatura.",
+            "Quando houver vapor, o consumo depende da carga térmica dividida pelo calor latente efetivo e eficiência.",
+            "O resultado deve ser comparado com capacidade instalada, histórico, instrumentação e margem operacional."
+        ],
+        "example": [
+            "Exemplo: estimar consumo de vapor para aquecer um tanque ou processo por batelada.",
+            "Informe vazão, densidade, Cp, ΔT, calor latente e rendimento conservador.",
+            "Use o resultado para pré-avaliação e depois valide com medição, balanço térmico e condição real da linha."
+        ],
+        "interpretation": [
+            "Resultado favorável indica apenas compatibilidade preliminar com os dados informados.",
+            "Atenção se houver pressão elevada, vapor superaquecido, purga, retorno de condensado, perdas grandes ou operação intermitente.",
+            "Condição crítica exige validação por responsável técnico antes de qualquer intervenção em sistema pressurizado."
+        ]
+    },
+    "calculadora-velocidade-cilindro-hidraulico.html": {
+        "title": "Complemento técnico — hidráulica industrial — Velocidade cilindro hidraulico",
+        "intro": "Use este complemento para interpretar cálculos de acumuladores, cilindros, potência hidráulica, mangueiras e perda de carga. Sistemas hidráulicos podem armazenar energia alta mesmo após desligamento.",
+        "assumptions": [
+            "Pressão, vazão, volume, diâmetro, curso e fluido devem representar a condição real.",
+            "Pressões devem considerar faixa de trabalho, picos, válvulas de alívio e temperatura do óleo.",
+            "Mangueiras, conexões, cilindros e acumuladores devem ser compatíveis com pressão, fluido e ambiente.",
+            "Cálculos de acumulador devem usar pressões absolutas e pré-carga correta."
+        ],
+        "limitations": [
+            "Não substitui projeto hidráulico, seleção de componentes, teste de pressão, avaliação de mangueiras, válvulas de segurança ou bloqueio de energia.",
+            "Não valida fadiga, pulsação, golpe, contaminação, compatibilidade de fluido, temperatura ou normas aplicáveis.",
+            "Não intervenha em acumulador ou circuito pressurizado sem despressurização e procedimento seguro.",
+            "A energia armazenada pode causar movimento inesperado de atuadores e risco grave."
+        ],
+        "memory": [
+            "Força hidráulica depende de pressão e área efetiva do cilindro.",
+            "Potência hidráulica depende de vazão e pressão.",
+            "Perda de carga aumenta com vazão, comprimento, rugosidade, conexões e viscosidade.",
+            "Acumuladores usam relação pressão-volume do gás, com processo isotérmico ou adiabático aproximado."
+        ],
+        "example": [
+            "Exemplo: estimar volume de acumulador para fornecer óleo durante queda momentânea de pressão.",
+            "Informe pré-carga, pressão mínima, pressão máxima e volume útil desejado.",
+            "Depois valide com catálogo, válvula de segurança, bloco de segurança e procedimento de manutenção."
+        ],
+        "interpretation": [
+            "Resultado favorável é pré-dimensionamento, não liberação de componente hidráulico.",
+            "Atenção se pressão, temperatura, acumulador, mangueira ou curso estiverem próximos do limite.",
+            "Condição crítica deve bloquear aplicação até validação do circuito e segurança de energia armazenada."
+        ]
+    },
+    "calculadora-volume-tanque-vertical-horizontal.html": {
+        "title": "Complemento técnico — tanques, volume, massa e tempo de residência — Volume tanque vertical horizontal",
+        "intro": "Use este complemento para interpretar cálculos de volume, nível, massa, enchimento e tempo de residência em tanques. Tanques podem envolver transbordo, pressão, produto perigoso, agitação e erro de medição.",
+        "assumptions": [
+            "Geometria, diâmetro, altura, orientação, nível e densidade devem representar o tanque real.",
+            "Volume útil, volume morto, fundo cônico, bocais, serpentinas e internos podem alterar o volume real.",
+            "Para massa, a densidade deve ser compatível com temperatura, concentração e produto.",
+            "Tempo de enchimento ou residência depende da vazão real, regime de operação e variação de nível."
+        ],
+        "limitations": [
+            "Não substitui tabela de arqueação, medição fiscal, projeto de tanque, análise estrutural, transbordo, respiro ou segurança de processo.",
+            "Não valida compatibilidade química, pressão/vácuo, inflamabilidade, área classificada ou controle de nível crítico.",
+            "Não use para inventário oficial ou dosagem crítica sem calibração/arqueação validada.",
+            "Tanques irregulares, inclinados ou com internos exigem correção específica."
+        ],
+        "memory": [
+            "Volume em tanque depende da geometria e do nível informado.",
+            "Massa é volume multiplicado pela densidade corrigida para a condição real.",
+            "Tempo de enchimento ou residência relaciona volume útil e vazão.",
+            "Percentual de enchimento deve ser comparado com limites operacional, alarme alto e transbordo."
+        ],
+        "example": [
+            "Exemplo: estimar volume de um tanque horizontal parcialmente cheio para conferência operacional.",
+            "Informe diâmetro, comprimento e nível medido.",
+            "Depois compare com tabela de tanque, histórico, medidor de nível e limite de alarme."
+        ],
+        "interpretation": [
+            "Resultado favorável é estimativa operacional, não arqueação oficial.",
+            "Atenção se o tanque tiver produto perigoso, geometria complexa, nível crítico ou risco de transbordo.",
+            "Condição crítica exige tabela validada, instrumento calibrado e procedimento de operação."
+        ]
+    },
+    "calculadora-volume-tanque.html": {
+        "title": "Complemento técnico — tanques, volume, massa e tempo de residência — Volume tanque",
+        "intro": "Use este complemento para interpretar cálculos de volume, nível, massa, enchimento e tempo de residência em tanques. Tanques podem envolver transbordo, pressão, produto perigoso, agitação e erro de medição.",
+        "assumptions": [
+            "Geometria, diâmetro, altura, orientação, nível e densidade devem representar o tanque real.",
+            "Volume útil, volume morto, fundo cônico, bocais, serpentinas e internos podem alterar o volume real.",
+            "Para massa, a densidade deve ser compatível com temperatura, concentração e produto.",
+            "Tempo de enchimento ou residência depende da vazão real, regime de operação e variação de nível."
+        ],
+        "limitations": [
+            "Não substitui tabela de arqueação, medição fiscal, projeto de tanque, análise estrutural, transbordo, respiro ou segurança de processo.",
+            "Não valida compatibilidade química, pressão/vácuo, inflamabilidade, área classificada ou controle de nível crítico.",
+            "Não use para inventário oficial ou dosagem crítica sem calibração/arqueação validada.",
+            "Tanques irregulares, inclinados ou com internos exigem correção específica."
+        ],
+        "memory": [
+            "Volume em tanque depende da geometria e do nível informado.",
+            "Massa é volume multiplicado pela densidade corrigida para a condição real.",
+            "Tempo de enchimento ou residência relaciona volume útil e vazão.",
+            "Percentual de enchimento deve ser comparado com limites operacional, alarme alto e transbordo."
+        ],
+        "example": [
+            "Exemplo: estimar volume de um tanque horizontal parcialmente cheio para conferência operacional.",
+            "Informe diâmetro, comprimento e nível medido.",
+            "Depois compare com tabela de tanque, histórico, medidor de nível e limite de alarme."
+        ],
+        "interpretation": [
+            "Resultado favorável é estimativa operacional, não arqueação oficial.",
+            "Atenção se o tanque tiver produto perigoso, geometria complexa, nível crítico ou risco de transbordo.",
+            "Condição crítica exige tabela validada, instrumento calibrado e procedimento de operação."
+        ]
+    },
+    "calculadora-alinhamento-eixos-relogio.html": {
+      "title": "Complemento técnico — mecânica auxiliar, transmissão e vibração — Alinhamento Eixos Relogio",
+      "intro": "Use este complemento para interpretar cálculos auxiliares de montagem, transmissão, vibração e componentes mecânicos. O resultado é referência preliminar e deve ser confrontado com catálogo, condição real de máquina e procedimento de manutenção.",
+      "assumptions": [
+            "Medidas, rotação, torque, massa, geometria, desalinhamento e vibração devem ser coletados com instrumento adequado e unidade correta.",
+            "A máquina deve estar em condição representativa de operação para dados de vibração, balanceamento ou transmissão.",
+            "Catálogos de fabricante podem impor limites próprios para correia, rolamento, acoplamento, parafuso, rosca e eixo.",
+            "A montagem real pode ter folga, desgaste, temperatura, lubrificação, carga dinâmica e condição de base que a ferramenta não conhece."
+      ],
+      "limitations": [
+            "Não substitui análise dinâmica, alinhamento certificado, balanceamento completo, cálculo estrutural ou procedimento de torque do fabricante.",
+            "Não valida fadiga, concentração de tensão, classe de parafuso, lubrificação de rosca, segurança de proteção mecânica ou integridade da máquina.",
+            "Não use valores preliminares para liberar máquina crítica sem medição, inspeção e aceite técnico.",
+            "Condições de alta rotação, alta energia, vibração elevada ou equipamento crítico exigem análise especializada."
+      ],
+      "memory": [
+            "Transmissões por correia relacionam diâmetros/rotações e podem alterar torque disponível.",
+            "Vibração pode ser expressa em pico, pico a pico ou RMS, mas a severidade depende da máquina e frequência.",
+            "Torque de aperto depende de carga desejada, diâmetro, atrito, lubrificação e classe do conjunto.",
+            "Balanceamento, desalinhamento e rolamentos exigem interpretação conjunta com espectro, fase, temperatura e inspeção."
+      ],
+      "example": [
+            "Exemplo: usar cálculo de rotação de polias para estimar nova velocidade antes de trocar conjunto de transmissão.",
+            "Conferir depois tensão de correia, potência transmitida, proteção mecânica e limite do equipamento acionado.",
+            "Em vibração, use o resultado apenas como conversão/triagem e compare com histórico e norma/procedimento aplicável."
+      ],
+      "interpretation": [
+            "Resultado favorável serve como apoio de manutenção ou pré-seleção, não como liberação final de máquina.",
+            "Atenção quando houver vibração, torque, rotação, tensão ou massa próximos de limites de fabricante.",
+            "Condição crítica deve gerar inspeção, parada segura, análise de causa ou validação de engenharia."
+      ]
+},
+    "calculadora-aterramento.html": {
+      "title": "Complemento técnico — elétrica industrial e acionamentos — Aterramento",
+      "intro": "Use este complemento para interpretar cálculos auxiliares de elétrica industrial, 24 Vcc, motores, inversores, barramentos, aterramento e transformadores de corrente. O resultado é orientativo e deve ser validado antes de qualquer aplicação em instalação real.",
+      "assumptions": [
+            "Tensão, corrente, potência, fator de potência, rendimento, frequência, cabo e temperatura devem representar a condição real do circuito.",
+            "Dados de motor, inversor, fonte, TC, capacitor, barramento e proteção devem vir de placa, catálogo ou medição confiável.",
+            "A instalação deve considerar método de montagem, temperatura ambiente, ventilação, agrupamento, harmônicos e regime de carga.",
+            "Circuitos 24 Vcc devem considerar corrente contínua, pico, queda de tensão e seletividade/proteção por ramal."
+      ],
+      "limitations": [
+            "Não substitui projeto elétrico, estudo de curto, seletividade, aterramento, SPDA, NR-10, especificação de painel ou laudo técnico.",
+            "Não valida capacidade de interrupção, arco elétrico, elevação térmica, proteção contra choque, coordenação ou requisitos de concessionária.",
+            "Não use para liberar intervenção elétrica, energização ou alteração de painel sem profissional habilitado e procedimento seguro.",
+            "Circuitos de motores, inversores, TCs e barramentos podem exigir requisitos específicos de fabricante e norma."
+      ],
+      "memory": [
+            "Corrente trifásica depende de potência, tensão, fator de potência e rendimento.",
+            "Queda 24 Vcc depende da corrente, resistência do cabo e comprimento de ida e volta.",
+            "Burden de TC depende da carga conectada e resistência do circuito secundário.",
+            "Aterramento, barramento, capacitor e inversor exigem verificação térmica, proteção e condições de instalação."
+      ],
+      "example": [
+            "Exemplo: verificar se uma fonte 24 Vcc atende cargas de painel e se a queda no ramal mais longo ainda permite operação do dispositivo.",
+            "Depois confira proteção do ramal, corrente de pico, tensão mínima do equipamento e temperatura do painel.",
+            "Para motores e inversores, compare o resultado com placa, manual e proteção existente."
+      ],
+      "interpretation": [
+            "Resultado favorável é pré-verificação, não aprovação de instalação elétrica.",
+            "Atenção quando houver margem baixa, aquecimento, corrente elevada, isolamento ruim ou tensão próxima do limite.",
+            "Condição crítica deve bloquear aplicação até revisão do projeto, proteção, procedimento e profissional habilitado."
+      ]
+},
+    "calculadora-backlog-manutencao-semanas.html": {
+      "title": "Complemento técnico — manutenção, confiabilidade e gestão de ativos — Backlog Manutencao Semanas",
+      "intro": "Use este complemento para interpretar indicadores de manutenção, confiabilidade, sobressalentes e priorização. A ferramenta apoia análise preliminar, mas não substitui histórico validado, estratégia de manutenção ou decisão formal de gestão de ativos.",
+      "assumptions": [
+            "Os dados de falhas, paradas, produção, reparos, criticidade e estoque devem vir de registros confiáveis de manutenção/operação.",
+            "O período analisado precisa ser representativo; janelas muito curtas podem distorcer MTBF, MTTR, OEE, Pareto e backlog.",
+            "Custos de parada, impacto de segurança, impacto ambiental e criticidade devem ser definidos com critério interno da planta.",
+            "Resultados de priorização dependem da qualidade dos pesos, notas e premissas informadas pelo usuário."
+      ],
+      "limitations": [
+            "Não substitui análise formal de confiabilidade, FMEA completo, RCA, RCM, plano mestre de manutenção ou política de sobressalentes.",
+            "Não valida disponibilidade contratual, SLA, perdas contábeis, risco de segurança ou impacto regulatório.",
+            "Não use uma pontuação isolada para eliminar manutenção, reduzir estoque crítico ou postergar ação de segurança.",
+            "Indicadores devem ser revisados com equipe de manutenção, operação, engenharia e segurança quando envolverem ativos críticos."
+      ],
+      "memory": [
+            "Indicadores como MTBF, MTTR e disponibilidade dependem da relação entre tempo operacional, falhas e tempo de reparo.",
+            "OEE combina disponibilidade, performance e qualidade, e deve ser interpretado junto com causas de perda.",
+            "Pareto e RPN/FMEA priorizam itens, mas não provam causa raiz por si só.",
+            "Ponto de ressuprimento e criticidade de sobressalentes dependem de consumo, lead time, risco e impacto da falta."
+      ],
+      "example": [
+            "Exemplo: usar dados dos últimos 12 meses para identificar os instrumentos que mais geram parada e priorizar manutenção preventiva.",
+            "Preencha falhas, tempos de reparo, impacto e estoque com dados reais do CMMS/ERP quando disponível.",
+            "Depois valide a prioridade com histórico de campo, criticidade do processo e disponibilidade de sobressalentes."
+      ],
+      "interpretation": [
+            "Resultado favorável indica tendência preliminar, não aprovação automática da estratégia de manutenção.",
+            "Atenção quando houver dados incompletos, período curto, alto custo de parada ou ativo crítico sem sobressalente.",
+            "Condição crítica deve virar ação de revisão, RCA, inspeção, compra planejada ou ajuste do plano de manutenção."
+      ]
+},
+    "calculadora-balanceamento-rotor-campo.html": {
+      "title": "Complemento técnico — mecânica auxiliar, transmissão e vibração — Balanceamento Rotor Campo",
+      "intro": "Use este complemento para interpretar cálculos auxiliares de montagem, transmissão, vibração e componentes mecânicos. O resultado é referência preliminar e deve ser confrontado com catálogo, condição real de máquina e procedimento de manutenção.",
+      "assumptions": [
+            "Medidas, rotação, torque, massa, geometria, desalinhamento e vibração devem ser coletados com instrumento adequado e unidade correta.",
+            "A máquina deve estar em condição representativa de operação para dados de vibração, balanceamento ou transmissão.",
+            "Catálogos de fabricante podem impor limites próprios para correia, rolamento, acoplamento, parafuso, rosca e eixo.",
+            "A montagem real pode ter folga, desgaste, temperatura, lubrificação, carga dinâmica e condição de base que a ferramenta não conhece."
+      ],
+      "limitations": [
+            "Não substitui análise dinâmica, alinhamento certificado, balanceamento completo, cálculo estrutural ou procedimento de torque do fabricante.",
+            "Não valida fadiga, concentração de tensão, classe de parafuso, lubrificação de rosca, segurança de proteção mecânica ou integridade da máquina.",
+            "Não use valores preliminares para liberar máquina crítica sem medição, inspeção e aceite técnico.",
+            "Condições de alta rotação, alta energia, vibração elevada ou equipamento crítico exigem análise especializada."
+      ],
+      "memory": [
+            "Transmissões por correia relacionam diâmetros/rotações e podem alterar torque disponível.",
+            "Vibração pode ser expressa em pico, pico a pico ou RMS, mas a severidade depende da máquina e frequência.",
+            "Torque de aperto depende de carga desejada, diâmetro, atrito, lubrificação e classe do conjunto.",
+            "Balanceamento, desalinhamento e rolamentos exigem interpretação conjunta com espectro, fase, temperatura e inspeção."
+      ],
+      "example": [
+            "Exemplo: usar cálculo de rotação de polias para estimar nova velocidade antes de trocar conjunto de transmissão.",
+            "Conferir depois tensão de correia, potência transmitida, proteção mecânica e limite do equipamento acionado.",
+            "Em vibração, use o resultado apenas como conversão/triagem e compare com histórico e norma/procedimento aplicável."
+      ],
+      "interpretation": [
+            "Resultado favorável serve como apoio de manutenção ou pré-seleção, não como liberação final de máquina.",
+            "Atenção quando houver vibração, torque, rotação, tensão ou massa próximos de limites de fabricante.",
+            "Condição crítica deve gerar inspeção, parada segura, análise de causa ou validação de engenharia."
+      ]
+},
+    "calculadora-bocal-lavagem-cip.html": {
+      "title": "Complemento técnico — qualidade, analítica e processo auxiliar — Bocal Lavagem Cip",
+      "intro": "Use este complemento para interpretar cálculos de qualidade, analítica, limpeza, amostragem e itens auxiliares de processo. O resultado ajuda na triagem, mas precisa ser confirmado com medição, procedimento e condição real do processo.",
+      "assumptions": [
+            "Amostras, leituras, limites, vazões e fatores devem representar a condição real de operação.",
+            "Instrumentos analíticos devem estar limpos, calibrados e compensados conforme procedimento do fabricante.",
+            "Dados de óleo, filtro, CIP, solenoide e processo devem considerar temperatura, concentração, pressão e regime de operação.",
+            "Indicadores de qualidade dependem de amostragem representativa e limites estatísticos definidos corretamente."
+      ],
+      "limitations": [
+            "Não substitui validação analítica, laboratório, procedimento de limpeza, especificação de qualidade ou análise estatística formal.",
+            "Não valida segurança química, compatibilidade de material, sanitização, rastreabilidade ou liberação de lote.",
+            "Não use resultado isolado para liberar produto, água, óleo, CIP ou controle de processo crítico.",
+            "Analítica de processo pode exigir compensação de temperatura, calibração, histórico e verificação com padrão."
+      ],
+      "memory": [
+            "Cp/Cpk dependem da variabilidade do processo e limites de especificação.",
+            "Condutividade, TDS, ORP e slope de pH dependem de sensor, temperatura, solução e calibração.",
+            "Eficiência de filtro e classe de limpeza dependem de contagem/remoção e condição do fluido.",
+            "Tempo de amostragem e lavagem depende de volume, vazão, renovação e dinâmica real do sistema."
+      ],
+      "example": [
+            "Exemplo: avaliar preliminarmente o slope de uma sonda de pH depois de calibração em dois pontos.",
+            "Se o resultado ficar em atenção, repita limpeza, padrões, temperatura e estabilização antes de concluir falha do sensor.",
+            "Para qualidade, valide sempre com amostragem e procedimento aceito pela planta."
+      ],
+      "interpretation": [
+            "Resultado favorável indica coerência preliminar, não liberação de processo ou produto.",
+            "Atenção quando houver sensor lento, amostra instável, limite de especificação próximo ou dados insuficientes.",
+            "Condição crítica deve gerar investigação, recalibração, nova amostragem ou validação de laboratório/procedimento."
+      ]
+},
+    "calculadora-burden-transformador-corrente.html": {
+      "title": "Complemento técnico — elétrica industrial e acionamentos — Burden Transformador Corrente",
+      "intro": "Use este complemento para interpretar cálculos auxiliares de elétrica industrial, 24 Vcc, motores, inversores, barramentos, aterramento e transformadores de corrente. O resultado é orientativo e deve ser validado antes de qualquer aplicação em instalação real.",
+      "assumptions": [
+            "Tensão, corrente, potência, fator de potência, rendimento, frequência, cabo e temperatura devem representar a condição real do circuito.",
+            "Dados de motor, inversor, fonte, TC, capacitor, barramento e proteção devem vir de placa, catálogo ou medição confiável.",
+            "A instalação deve considerar método de montagem, temperatura ambiente, ventilação, agrupamento, harmônicos e regime de carga.",
+            "Circuitos 24 Vcc devem considerar corrente contínua, pico, queda de tensão e seletividade/proteção por ramal."
+      ],
+      "limitations": [
+            "Não substitui projeto elétrico, estudo de curto, seletividade, aterramento, SPDA, NR-10, especificação de painel ou laudo técnico.",
+            "Não valida capacidade de interrupção, arco elétrico, elevação térmica, proteção contra choque, coordenação ou requisitos de concessionária.",
+            "Não use para liberar intervenção elétrica, energização ou alteração de painel sem profissional habilitado e procedimento seguro.",
+            "Circuitos de motores, inversores, TCs e barramentos podem exigir requisitos específicos de fabricante e norma."
+      ],
+      "memory": [
+            "Corrente trifásica depende de potência, tensão, fator de potência e rendimento.",
+            "Queda 24 Vcc depende da corrente, resistência do cabo e comprimento de ida e volta.",
+            "Burden de TC depende da carga conectada e resistência do circuito secundário.",
+            "Aterramento, barramento, capacitor e inversor exigem verificação térmica, proteção e condições de instalação."
+      ],
+      "example": [
+            "Exemplo: verificar se uma fonte 24 Vcc atende cargas de painel e se a queda no ramal mais longo ainda permite operação do dispositivo.",
+            "Depois confira proteção do ramal, corrente de pico, tensão mínima do equipamento e temperatura do painel.",
+            "Para motores e inversores, compare o resultado com placa, manual e proteção existente."
+      ],
+      "interpretation": [
+            "Resultado favorável é pré-verificação, não aprovação de instalação elétrica.",
+            "Atenção quando houver margem baixa, aquecimento, corrente elevada, isolamento ruim ou tensão próxima do limite.",
+            "Condição crítica deve bloquear aplicação até revisão do projeto, proteção, procedimento e profissional habilitado."
+      ]
+},
+    "calculadora-capabilidade-cp-cpk.html": {
+      "title": "Complemento técnico — qualidade, analítica e processo auxiliar — Capabilidade Cp Cpk",
+      "intro": "Use este complemento para interpretar cálculos de qualidade, analítica, limpeza, amostragem e itens auxiliares de processo. O resultado ajuda na triagem, mas precisa ser confirmado com medição, procedimento e condição real do processo.",
+      "assumptions": [
+            "Amostras, leituras, limites, vazões e fatores devem representar a condição real de operação.",
+            "Instrumentos analíticos devem estar limpos, calibrados e compensados conforme procedimento do fabricante.",
+            "Dados de óleo, filtro, CIP, solenoide e processo devem considerar temperatura, concentração, pressão e regime de operação.",
+            "Indicadores de qualidade dependem de amostragem representativa e limites estatísticos definidos corretamente."
+      ],
+      "limitations": [
+            "Não substitui validação analítica, laboratório, procedimento de limpeza, especificação de qualidade ou análise estatística formal.",
+            "Não valida segurança química, compatibilidade de material, sanitização, rastreabilidade ou liberação de lote.",
+            "Não use resultado isolado para liberar produto, água, óleo, CIP ou controle de processo crítico.",
+            "Analítica de processo pode exigir compensação de temperatura, calibração, histórico e verificação com padrão."
+      ],
+      "memory": [
+            "Cp/Cpk dependem da variabilidade do processo e limites de especificação.",
+            "Condutividade, TDS, ORP e slope de pH dependem de sensor, temperatura, solução e calibração.",
+            "Eficiência de filtro e classe de limpeza dependem de contagem/remoção e condição do fluido.",
+            "Tempo de amostragem e lavagem depende de volume, vazão, renovação e dinâmica real do sistema."
+      ],
+      "example": [
+            "Exemplo: avaliar preliminarmente o slope de uma sonda de pH depois de calibração em dois pontos.",
+            "Se o resultado ficar em atenção, repita limpeza, padrões, temperatura e estabilização antes de concluir falha do sensor.",
+            "Para qualidade, valide sempre com amostragem e procedimento aceito pela planta."
+      ],
+      "interpretation": [
+            "Resultado favorável indica coerência preliminar, não liberação de processo ou produto.",
+            "Atenção quando houver sensor lento, amostra instável, limite de especificação próximo ou dados insuficientes.",
+            "Condição crítica deve gerar investigação, recalibração, nova amostragem ou validação de laboratório/procedimento."
+      ]
+},
+    "calculadora-classe-limpeza-oleo-iso4406.html": {
+      "title": "Complemento técnico — qualidade, analítica e processo auxiliar — Classe Limpeza Oleo Iso4406",
+      "intro": "Use este complemento para interpretar cálculos de qualidade, analítica, limpeza, amostragem e itens auxiliares de processo. O resultado ajuda na triagem, mas precisa ser confirmado com medição, procedimento e condição real do processo.",
+      "assumptions": [
+            "Amostras, leituras, limites, vazões e fatores devem representar a condição real de operação.",
+            "Instrumentos analíticos devem estar limpos, calibrados e compensados conforme procedimento do fabricante.",
+            "Dados de óleo, filtro, CIP, solenoide e processo devem considerar temperatura, concentração, pressão e regime de operação.",
+            "Indicadores de qualidade dependem de amostragem representativa e limites estatísticos definidos corretamente."
+      ],
+      "limitations": [
+            "Não substitui validação analítica, laboratório, procedimento de limpeza, especificação de qualidade ou análise estatística formal.",
+            "Não valida segurança química, compatibilidade de material, sanitização, rastreabilidade ou liberação de lote.",
+            "Não use resultado isolado para liberar produto, água, óleo, CIP ou controle de processo crítico.",
+            "Analítica de processo pode exigir compensação de temperatura, calibração, histórico e verificação com padrão."
+      ],
+      "memory": [
+            "Cp/Cpk dependem da variabilidade do processo e limites de especificação.",
+            "Condutividade, TDS, ORP e slope de pH dependem de sensor, temperatura, solução e calibração.",
+            "Eficiência de filtro e classe de limpeza dependem de contagem/remoção e condição do fluido.",
+            "Tempo de amostragem e lavagem depende de volume, vazão, renovação e dinâmica real do sistema."
+      ],
+      "example": [
+            "Exemplo: avaliar preliminarmente o slope de uma sonda de pH depois de calibração em dois pontos.",
+            "Se o resultado ficar em atenção, repita limpeza, padrões, temperatura e estabilização antes de concluir falha do sensor.",
+            "Para qualidade, valide sempre com amostragem e procedimento aceito pela planta."
+      ],
+      "interpretation": [
+            "Resultado favorável indica coerência preliminar, não liberação de processo ou produto.",
+            "Atenção quando houver sensor lento, amostra instável, limite de especificação próximo ou dados insuficientes.",
+            "Condição crítica deve gerar investigação, recalibração, nova amostragem ou validação de laboratório/procedimento."
+      ]
+},
+    "calculadora-comprimento-correia-polias.html": {
+      "title": "Complemento técnico — mecânica auxiliar, transmissão e vibração — Comprimento Correia Polias",
+      "intro": "Use este complemento para interpretar cálculos auxiliares de montagem, transmissão, vibração e componentes mecânicos. O resultado é referência preliminar e deve ser confrontado com catálogo, condição real de máquina e procedimento de manutenção.",
+      "assumptions": [
+            "Medidas, rotação, torque, massa, geometria, desalinhamento e vibração devem ser coletados com instrumento adequado e unidade correta.",
+            "A máquina deve estar em condição representativa de operação para dados de vibração, balanceamento ou transmissão.",
+            "Catálogos de fabricante podem impor limites próprios para correia, rolamento, acoplamento, parafuso, rosca e eixo.",
+            "A montagem real pode ter folga, desgaste, temperatura, lubrificação, carga dinâmica e condição de base que a ferramenta não conhece."
+      ],
+      "limitations": [
+            "Não substitui análise dinâmica, alinhamento certificado, balanceamento completo, cálculo estrutural ou procedimento de torque do fabricante.",
+            "Não valida fadiga, concentração de tensão, classe de parafuso, lubrificação de rosca, segurança de proteção mecânica ou integridade da máquina.",
+            "Não use valores preliminares para liberar máquina crítica sem medição, inspeção e aceite técnico.",
+            "Condições de alta rotação, alta energia, vibração elevada ou equipamento crítico exigem análise especializada."
+      ],
+      "memory": [
+            "Transmissões por correia relacionam diâmetros/rotações e podem alterar torque disponível.",
+            "Vibração pode ser expressa em pico, pico a pico ou RMS, mas a severidade depende da máquina e frequência.",
+            "Torque de aperto depende de carga desejada, diâmetro, atrito, lubrificação e classe do conjunto.",
+            "Balanceamento, desalinhamento e rolamentos exigem interpretação conjunta com espectro, fase, temperatura e inspeção."
+      ],
+      "example": [
+            "Exemplo: usar cálculo de rotação de polias para estimar nova velocidade antes de trocar conjunto de transmissão.",
+            "Conferir depois tensão de correia, potência transmitida, proteção mecânica e limite do equipamento acionado.",
+            "Em vibração, use o resultado apenas como conversão/triagem e compare com histórico e norma/procedimento aplicável."
+      ],
+      "interpretation": [
+            "Resultado favorável serve como apoio de manutenção ou pré-seleção, não como liberação final de máquina.",
+            "Atenção quando houver vibração, torque, rotação, tensão ou massa próximos de limites de fabricante.",
+            "Condição crítica deve gerar inspeção, parada segura, análise de causa ou validação de engenharia."
+      ]
+},
+    "calculadora-condutividade-tds.html": {
+      "title": "Complemento técnico — qualidade, analítica e processo auxiliar — Condutividade Tds",
+      "intro": "Use este complemento para interpretar cálculos de qualidade, analítica, limpeza, amostragem e itens auxiliares de processo. O resultado ajuda na triagem, mas precisa ser confirmado com medição, procedimento e condição real do processo.",
+      "assumptions": [
+            "Amostras, leituras, limites, vazões e fatores devem representar a condição real de operação.",
+            "Instrumentos analíticos devem estar limpos, calibrados e compensados conforme procedimento do fabricante.",
+            "Dados de óleo, filtro, CIP, solenoide e processo devem considerar temperatura, concentração, pressão e regime de operação.",
+            "Indicadores de qualidade dependem de amostragem representativa e limites estatísticos definidos corretamente."
+      ],
+      "limitations": [
+            "Não substitui validação analítica, laboratório, procedimento de limpeza, especificação de qualidade ou análise estatística formal.",
+            "Não valida segurança química, compatibilidade de material, sanitização, rastreabilidade ou liberação de lote.",
+            "Não use resultado isolado para liberar produto, água, óleo, CIP ou controle de processo crítico.",
+            "Analítica de processo pode exigir compensação de temperatura, calibração, histórico e verificação com padrão."
+      ],
+      "memory": [
+            "Cp/Cpk dependem da variabilidade do processo e limites de especificação.",
+            "Condutividade, TDS, ORP e slope de pH dependem de sensor, temperatura, solução e calibração.",
+            "Eficiência de filtro e classe de limpeza dependem de contagem/remoção e condição do fluido.",
+            "Tempo de amostragem e lavagem depende de volume, vazão, renovação e dinâmica real do sistema."
+      ],
+      "example": [
+            "Exemplo: avaliar preliminarmente o slope de uma sonda de pH depois de calibração em dois pontos.",
+            "Se o resultado ficar em atenção, repita limpeza, padrões, temperatura e estabilização antes de concluir falha do sensor.",
+            "Para qualidade, valide sempre com amostragem e procedimento aceito pela planta."
+      ],
+      "interpretation": [
+            "Resultado favorável indica coerência preliminar, não liberação de processo ou produto.",
+            "Atenção quando houver sensor lento, amostra instável, limite de especificação próximo ou dados insuficientes.",
+            "Condição crítica deve gerar investigação, recalibração, nova amostragem ou validação de laboratório/procedimento."
+      ]
+},
+    "calculadora-consumo-valvula-solenoide-bobina.html": {
+      "title": "Complemento técnico — qualidade, analítica e processo auxiliar — Consumo Valvula Solenoide Bobina",
+      "intro": "Use este complemento para interpretar cálculos de qualidade, analítica, limpeza, amostragem e itens auxiliares de processo. O resultado ajuda na triagem, mas precisa ser confirmado com medição, procedimento e condição real do processo.",
+      "assumptions": [
+            "Amostras, leituras, limites, vazões e fatores devem representar a condição real de operação.",
+            "Instrumentos analíticos devem estar limpos, calibrados e compensados conforme procedimento do fabricante.",
+            "Dados de óleo, filtro, CIP, solenoide e processo devem considerar temperatura, concentração, pressão e regime de operação.",
+            "Indicadores de qualidade dependem de amostragem representativa e limites estatísticos definidos corretamente."
+      ],
+      "limitations": [
+            "Não substitui validação analítica, laboratório, procedimento de limpeza, especificação de qualidade ou análise estatística formal.",
+            "Não valida segurança química, compatibilidade de material, sanitização, rastreabilidade ou liberação de lote.",
+            "Não use resultado isolado para liberar produto, água, óleo, CIP ou controle de processo crítico.",
+            "Analítica de processo pode exigir compensação de temperatura, calibração, histórico e verificação com padrão."
+      ],
+      "memory": [
+            "Cp/Cpk dependem da variabilidade do processo e limites de especificação.",
+            "Condutividade, TDS, ORP e slope de pH dependem de sensor, temperatura, solução e calibração.",
+            "Eficiência de filtro e classe de limpeza dependem de contagem/remoção e condição do fluido.",
+            "Tempo de amostragem e lavagem depende de volume, vazão, renovação e dinâmica real do sistema."
+      ],
+      "example": [
+            "Exemplo: avaliar preliminarmente o slope de uma sonda de pH depois de calibração em dois pontos.",
+            "Se o resultado ficar em atenção, repita limpeza, padrões, temperatura e estabilização antes de concluir falha do sensor.",
+            "Para qualidade, valide sempre com amostragem e procedimento aceito pela planta."
+      ],
+      "interpretation": [
+            "Resultado favorável indica coerência preliminar, não liberação de processo ou produto.",
+            "Atenção quando houver sensor lento, amostra instável, limite de especificação próximo ou dados insuficientes.",
+            "Condição crítica deve gerar investigação, recalibração, nova amostragem ou validação de laboratório/procedimento."
+      ]
+},
+    "calculadora-conversao-sinais-industriais.html": {
+      "title": "Complemento técnico — apoio geral, conversões e documentação — Conversao Sinais Industriais",
+      "intro": "Use este complemento para interpretar conversões, seleção preliminar, documentação técnica e cálculos auxiliares. Essas ferramentas ajudam a padronizar informações, mas não substituem especificação, catálogo, projeto ou validação técnica.",
+      "assumptions": [
+            "Unidades, fatores, dimensões, padrões e dados de entrada devem ser conferidos antes de usar o resultado.",
+            "Conversões dependem da grandeza correta; não misture unidades absolutas, relativas, normalizadas ou compensadas sem critério.",
+            "Dados de folha de dados devem refletir o serviço real, condição de processo, material, faixa, sinal e instalação.",
+            "Cálculos auxiliares devem ser usados junto com catálogo, norma e procedimento aplicável."
+      ],
+      "limitations": [
+            "Não substitui folha de dados aprovada, memorial de cálculo, especificação de compra, projeto mecânico/elétrico ou análise de segurança.",
+            "Não valida compatibilidade de material, pressão, temperatura, classe de flange, proteção IP/NEMA ou instalação real.",
+            "Não use conversão isolada para liberar compra, montagem, comissionamento ou modificação de processo.",
+            "Quando houver equipamento crítico, valide com engenharia, fabricante ou documento aprovado."
+      ],
+      "memory": [
+            "Conversões apenas mudam representação; não melhoram a qualidade do dado original.",
+            "DN/NPS, schedule, flanges e proteção IP/NEMA dependem de padrão, classe, material e aplicação.",
+            "Folha de dados deve reunir identificação, serviço, processo, sinal, alimentação, material, montagem e requisitos ambientais.",
+            "Velocidade, potência e dilatação são triagens que dependem de fluido, temperatura, material e condição de instalação."
+      ],
+      "example": [
+            "Exemplo: converter unidades de pressão antes de preencher uma folha de dados de transmissor.",
+            "Depois confira se o valor é manométrico, absoluto, diferencial ou normalizado, conforme o serviço.",
+            "Finalize comparando o resultado com documento de projeto, catálogo e dados reais de processo."
+      ],
+      "interpretation": [
+            "Resultado favorável indica conversão ou preenchimento coerente, não validação técnica completa.",
+            "Atenção quando a aplicação envolver pressão, temperatura, fluido perigoso, flange, proteção ambiental ou compra de equipamento.",
+            "Condição crítica exige revisão da unidade, padrão, documento de referência e aprovação técnica."
+      ]
+},
+    "calculadora-conversao-vibracao-frequencia.html": {
+      "title": "Complemento técnico — apoio geral, conversões e documentação — Conversao Vibracao Frequencia",
+      "intro": "Use este complemento para interpretar conversões, seleção preliminar, documentação técnica e cálculos auxiliares. Essas ferramentas ajudam a padronizar informações, mas não substituem especificação, catálogo, projeto ou validação técnica.",
+      "assumptions": [
+            "Unidades, fatores, dimensões, padrões e dados de entrada devem ser conferidos antes de usar o resultado.",
+            "Conversões dependem da grandeza correta; não misture unidades absolutas, relativas, normalizadas ou compensadas sem critério.",
+            "Dados de folha de dados devem refletir o serviço real, condição de processo, material, faixa, sinal e instalação.",
+            "Cálculos auxiliares devem ser usados junto com catálogo, norma e procedimento aplicável."
+      ],
+      "limitations": [
+            "Não substitui folha de dados aprovada, memorial de cálculo, especificação de compra, projeto mecânico/elétrico ou análise de segurança.",
+            "Não valida compatibilidade de material, pressão, temperatura, classe de flange, proteção IP/NEMA ou instalação real.",
+            "Não use conversão isolada para liberar compra, montagem, comissionamento ou modificação de processo.",
+            "Quando houver equipamento crítico, valide com engenharia, fabricante ou documento aprovado."
+      ],
+      "memory": [
+            "Conversões apenas mudam representação; não melhoram a qualidade do dado original.",
+            "DN/NPS, schedule, flanges e proteção IP/NEMA dependem de padrão, classe, material e aplicação.",
+            "Folha de dados deve reunir identificação, serviço, processo, sinal, alimentação, material, montagem e requisitos ambientais.",
+            "Velocidade, potência e dilatação são triagens que dependem de fluido, temperatura, material e condição de instalação."
+      ],
+      "example": [
+            "Exemplo: converter unidades de pressão antes de preencher uma folha de dados de transmissor.",
+            "Depois confira se o valor é manométrico, absoluto, diferencial ou normalizado, conforme o serviço.",
+            "Finalize comparando o resultado com documento de projeto, catálogo e dados reais de processo."
+      ],
+      "interpretation": [
+            "Resultado favorável indica conversão ou preenchimento coerente, não validação técnica completa.",
+            "Atenção quando a aplicação envolver pressão, temperatura, fluido perigoso, flange, proteção ambiental ou compra de equipamento.",
+            "Condição crítica exige revisão da unidade, padrão, documento de referência e aprovação técnica."
+      ]
+},
+    "calculadora-correcao-fator-potencia.html": {
+      "title": "Complemento técnico — elétrica industrial e acionamentos — Correcao Fator Potencia",
+      "intro": "Use este complemento para interpretar cálculos auxiliares de elétrica industrial, 24 Vcc, motores, inversores, barramentos, aterramento e transformadores de corrente. O resultado é orientativo e deve ser validado antes de qualquer aplicação em instalação real.",
+      "assumptions": [
+            "Tensão, corrente, potência, fator de potência, rendimento, frequência, cabo e temperatura devem representar a condição real do circuito.",
+            "Dados de motor, inversor, fonte, TC, capacitor, barramento e proteção devem vir de placa, catálogo ou medição confiável.",
+            "A instalação deve considerar método de montagem, temperatura ambiente, ventilação, agrupamento, harmônicos e regime de carga.",
+            "Circuitos 24 Vcc devem considerar corrente contínua, pico, queda de tensão e seletividade/proteção por ramal."
+      ],
+      "limitations": [
+            "Não substitui projeto elétrico, estudo de curto, seletividade, aterramento, SPDA, NR-10, especificação de painel ou laudo técnico.",
+            "Não valida capacidade de interrupção, arco elétrico, elevação térmica, proteção contra choque, coordenação ou requisitos de concessionária.",
+            "Não use para liberar intervenção elétrica, energização ou alteração de painel sem profissional habilitado e procedimento seguro.",
+            "Circuitos de motores, inversores, TCs e barramentos podem exigir requisitos específicos de fabricante e norma."
+      ],
+      "memory": [
+            "Corrente trifásica depende de potência, tensão, fator de potência e rendimento.",
+            "Queda 24 Vcc depende da corrente, resistência do cabo e comprimento de ida e volta.",
+            "Burden de TC depende da carga conectada e resistência do circuito secundário.",
+            "Aterramento, barramento, capacitor e inversor exigem verificação térmica, proteção e condições de instalação."
+      ],
+      "example": [
+            "Exemplo: verificar se uma fonte 24 Vcc atende cargas de painel e se a queda no ramal mais longo ainda permite operação do dispositivo.",
+            "Depois confira proteção do ramal, corrente de pico, tensão mínima do equipamento e temperatura do painel.",
+            "Para motores e inversores, compare o resultado com placa, manual e proteção existente."
+      ],
+      "interpretation": [
+            "Resultado favorável é pré-verificação, não aprovação de instalação elétrica.",
+            "Atenção quando houver margem baixa, aquecimento, corrente elevada, isolamento ruim ou tensão próxima do limite.",
+            "Condição crítica deve bloquear aplicação até revisão do projeto, proteção, procedimento e profissional habilitado."
+      ]
+},
+    "calculadora-corrente-neutro-trifasico.html": {
+      "title": "Complemento técnico — elétrica industrial e acionamentos — Corrente Neutro Trifasico",
+      "intro": "Use este complemento para interpretar cálculos auxiliares de elétrica industrial, 24 Vcc, motores, inversores, barramentos, aterramento e transformadores de corrente. O resultado é orientativo e deve ser validado antes de qualquer aplicação em instalação real.",
+      "assumptions": [
+            "Tensão, corrente, potência, fator de potência, rendimento, frequência, cabo e temperatura devem representar a condição real do circuito.",
+            "Dados de motor, inversor, fonte, TC, capacitor, barramento e proteção devem vir de placa, catálogo ou medição confiável.",
+            "A instalação deve considerar método de montagem, temperatura ambiente, ventilação, agrupamento, harmônicos e regime de carga.",
+            "Circuitos 24 Vcc devem considerar corrente contínua, pico, queda de tensão e seletividade/proteção por ramal."
+      ],
+      "limitations": [
+            "Não substitui projeto elétrico, estudo de curto, seletividade, aterramento, SPDA, NR-10, especificação de painel ou laudo técnico.",
+            "Não valida capacidade de interrupção, arco elétrico, elevação térmica, proteção contra choque, coordenação ou requisitos de concessionária.",
+            "Não use para liberar intervenção elétrica, energização ou alteração de painel sem profissional habilitado e procedimento seguro.",
+            "Circuitos de motores, inversores, TCs e barramentos podem exigir requisitos específicos de fabricante e norma."
+      ],
+      "memory": [
+            "Corrente trifásica depende de potência, tensão, fator de potência e rendimento.",
+            "Queda 24 Vcc depende da corrente, resistência do cabo e comprimento de ida e volta.",
+            "Burden de TC depende da carga conectada e resistência do circuito secundário.",
+            "Aterramento, barramento, capacitor e inversor exigem verificação térmica, proteção e condições de instalação."
+      ],
+      "example": [
+            "Exemplo: verificar se uma fonte 24 Vcc atende cargas de painel e se a queda no ramal mais longo ainda permite operação do dispositivo.",
+            "Depois confira proteção do ramal, corrente de pico, tensão mínima do equipamento e temperatura do painel.",
+            "Para motores e inversores, compare o resultado com placa, manual e proteção existente."
+      ],
+      "interpretation": [
+            "Resultado favorável é pré-verificação, não aprovação de instalação elétrica.",
+            "Atenção quando houver margem baixa, aquecimento, corrente elevada, isolamento ruim ou tensão próxima do limite.",
+            "Condição crítica deve bloquear aplicação até revisão do projeto, proteção, procedimento e profissional habilitado."
+      ]
+},
+    "calculadora-corrente-trifasica.html": {
+      "title": "Complemento técnico — elétrica industrial e acionamentos — Corrente Trifasica",
+      "intro": "Use este complemento para interpretar cálculos auxiliares de elétrica industrial, 24 Vcc, motores, inversores, barramentos, aterramento e transformadores de corrente. O resultado é orientativo e deve ser validado antes de qualquer aplicação em instalação real.",
+      "assumptions": [
+            "Tensão, corrente, potência, fator de potência, rendimento, frequência, cabo e temperatura devem representar a condição real do circuito.",
+            "Dados de motor, inversor, fonte, TC, capacitor, barramento e proteção devem vir de placa, catálogo ou medição confiável.",
+            "A instalação deve considerar método de montagem, temperatura ambiente, ventilação, agrupamento, harmônicos e regime de carga.",
+            "Circuitos 24 Vcc devem considerar corrente contínua, pico, queda de tensão e seletividade/proteção por ramal."
+      ],
+      "limitations": [
+            "Não substitui projeto elétrico, estudo de curto, seletividade, aterramento, SPDA, NR-10, especificação de painel ou laudo técnico.",
+            "Não valida capacidade de interrupção, arco elétrico, elevação térmica, proteção contra choque, coordenação ou requisitos de concessionária.",
+            "Não use para liberar intervenção elétrica, energização ou alteração de painel sem profissional habilitado e procedimento seguro.",
+            "Circuitos de motores, inversores, TCs e barramentos podem exigir requisitos específicos de fabricante e norma."
+      ],
+      "memory": [
+            "Corrente trifásica depende de potência, tensão, fator de potência e rendimento.",
+            "Queda 24 Vcc depende da corrente, resistência do cabo e comprimento de ida e volta.",
+            "Burden de TC depende da carga conectada e resistência do circuito secundário.",
+            "Aterramento, barramento, capacitor e inversor exigem verificação térmica, proteção e condições de instalação."
+      ],
+      "example": [
+            "Exemplo: verificar se uma fonte 24 Vcc atende cargas de painel e se a queda no ramal mais longo ainda permite operação do dispositivo.",
+            "Depois confira proteção do ramal, corrente de pico, tensão mínima do equipamento e temperatura do painel.",
+            "Para motores e inversores, compare o resultado com placa, manual e proteção existente."
+      ],
+      "interpretation": [
+            "Resultado favorável é pré-verificação, não aprovação de instalação elétrica.",
+            "Atenção quando houver margem baixa, aquecimento, corrente elevada, isolamento ruim ou tensão próxima do limite.",
+            "Condição crítica deve bloquear aplicação até revisão do projeto, proteção, procedimento e profissional habilitado."
+      ]
+},
+    "calculadora-criticidade-instrumentos.html": {
+      "title": "Complemento técnico — manutenção, confiabilidade e gestão de ativos — Criticidade Instrumentos",
+      "intro": "Use este complemento para interpretar indicadores de manutenção, confiabilidade, sobressalentes e priorização. A ferramenta apoia análise preliminar, mas não substitui histórico validado, estratégia de manutenção ou decisão formal de gestão de ativos.",
+      "assumptions": [
+            "Os dados de falhas, paradas, produção, reparos, criticidade e estoque devem vir de registros confiáveis de manutenção/operação.",
+            "O período analisado precisa ser representativo; janelas muito curtas podem distorcer MTBF, MTTR, OEE, Pareto e backlog.",
+            "Custos de parada, impacto de segurança, impacto ambiental e criticidade devem ser definidos com critério interno da planta.",
+            "Resultados de priorização dependem da qualidade dos pesos, notas e premissas informadas pelo usuário."
+      ],
+      "limitations": [
+            "Não substitui análise formal de confiabilidade, FMEA completo, RCA, RCM, plano mestre de manutenção ou política de sobressalentes.",
+            "Não valida disponibilidade contratual, SLA, perdas contábeis, risco de segurança ou impacto regulatório.",
+            "Não use uma pontuação isolada para eliminar manutenção, reduzir estoque crítico ou postergar ação de segurança.",
+            "Indicadores devem ser revisados com equipe de manutenção, operação, engenharia e segurança quando envolverem ativos críticos."
+      ],
+      "memory": [
+            "Indicadores como MTBF, MTTR e disponibilidade dependem da relação entre tempo operacional, falhas e tempo de reparo.",
+            "OEE combina disponibilidade, performance e qualidade, e deve ser interpretado junto com causas de perda.",
+            "Pareto e RPN/FMEA priorizam itens, mas não provam causa raiz por si só.",
+            "Ponto de ressuprimento e criticidade de sobressalentes dependem de consumo, lead time, risco e impacto da falta."
+      ],
+      "example": [
+            "Exemplo: usar dados dos últimos 12 meses para identificar os instrumentos que mais geram parada e priorizar manutenção preventiva.",
+            "Preencha falhas, tempos de reparo, impacto e estoque com dados reais do CMMS/ERP quando disponível.",
+            "Depois valide a prioridade com histórico de campo, criticidade do processo e disponibilidade de sobressalentes."
+      ],
+      "interpretation": [
+            "Resultado favorável indica tendência preliminar, não aprovação automática da estratégia de manutenção.",
+            "Atenção quando houver dados incompletos, período curto, alto custo de parada ou ativo crítico sem sobressalente.",
+            "Condição crítica deve virar ação de revisão, RCA, inspeção, compra planejada ou ajuste do plano de manutenção."
+      ]
+},
+    "calculadora-custo-parada-producao.html": {
+      "title": "Complemento técnico — manutenção, confiabilidade e gestão de ativos — Custo Parada Producao",
+      "intro": "Use este complemento para interpretar indicadores de manutenção, confiabilidade, sobressalentes e priorização. A ferramenta apoia análise preliminar, mas não substitui histórico validado, estratégia de manutenção ou decisão formal de gestão de ativos.",
+      "assumptions": [
+            "Os dados de falhas, paradas, produção, reparos, criticidade e estoque devem vir de registros confiáveis de manutenção/operação.",
+            "O período analisado precisa ser representativo; janelas muito curtas podem distorcer MTBF, MTTR, OEE, Pareto e backlog.",
+            "Custos de parada, impacto de segurança, impacto ambiental e criticidade devem ser definidos com critério interno da planta.",
+            "Resultados de priorização dependem da qualidade dos pesos, notas e premissas informadas pelo usuário."
+      ],
+      "limitations": [
+            "Não substitui análise formal de confiabilidade, FMEA completo, RCA, RCM, plano mestre de manutenção ou política de sobressalentes.",
+            "Não valida disponibilidade contratual, SLA, perdas contábeis, risco de segurança ou impacto regulatório.",
+            "Não use uma pontuação isolada para eliminar manutenção, reduzir estoque crítico ou postergar ação de segurança.",
+            "Indicadores devem ser revisados com equipe de manutenção, operação, engenharia e segurança quando envolverem ativos críticos."
+      ],
+      "memory": [
+            "Indicadores como MTBF, MTTR e disponibilidade dependem da relação entre tempo operacional, falhas e tempo de reparo.",
+            "OEE combina disponibilidade, performance e qualidade, e deve ser interpretado junto com causas de perda.",
+            "Pareto e RPN/FMEA priorizam itens, mas não provam causa raiz por si só.",
+            "Ponto de ressuprimento e criticidade de sobressalentes dependem de consumo, lead time, risco e impacto da falta."
+      ],
+      "example": [
+            "Exemplo: usar dados dos últimos 12 meses para identificar os instrumentos que mais geram parada e priorizar manutenção preventiva.",
+            "Preencha falhas, tempos de reparo, impacto e estoque com dados reais do CMMS/ERP quando disponível.",
+            "Depois valide a prioridade com histórico de campo, criticidade do processo e disponibilidade de sobressalentes."
+      ],
+      "interpretation": [
+            "Resultado favorável indica tendência preliminar, não aprovação automática da estratégia de manutenção.",
+            "Atenção quando houver dados incompletos, período curto, alto custo de parada ou ativo crítico sem sobressalente.",
+            "Condição crítica deve virar ação de revisão, RCA, inspeção, compra planejada ou ajuste do plano de manutenção."
+      ]
+},
+    "calculadora-dilatacao-termica.html": {
+      "title": "Complemento técnico — apoio geral, conversões e documentação — Dilatacao Termica",
+      "intro": "Use este complemento para interpretar conversões, seleção preliminar, documentação técnica e cálculos auxiliares. Essas ferramentas ajudam a padronizar informações, mas não substituem especificação, catálogo, projeto ou validação técnica.",
+      "assumptions": [
+            "Unidades, fatores, dimensões, padrões e dados de entrada devem ser conferidos antes de usar o resultado.",
+            "Conversões dependem da grandeza correta; não misture unidades absolutas, relativas, normalizadas ou compensadas sem critério.",
+            "Dados de folha de dados devem refletir o serviço real, condição de processo, material, faixa, sinal e instalação.",
+            "Cálculos auxiliares devem ser usados junto com catálogo, norma e procedimento aplicável."
+      ],
+      "limitations": [
+            "Não substitui folha de dados aprovada, memorial de cálculo, especificação de compra, projeto mecânico/elétrico ou análise de segurança.",
+            "Não valida compatibilidade de material, pressão, temperatura, classe de flange, proteção IP/NEMA ou instalação real.",
+            "Não use conversão isolada para liberar compra, montagem, comissionamento ou modificação de processo.",
+            "Quando houver equipamento crítico, valide com engenharia, fabricante ou documento aprovado."
+      ],
+      "memory": [
+            "Conversões apenas mudam representação; não melhoram a qualidade do dado original.",
+            "DN/NPS, schedule, flanges e proteção IP/NEMA dependem de padrão, classe, material e aplicação.",
+            "Folha de dados deve reunir identificação, serviço, processo, sinal, alimentação, material, montagem e requisitos ambientais.",
+            "Velocidade, potência e dilatação são triagens que dependem de fluido, temperatura, material e condição de instalação."
+      ],
+      "example": [
+            "Exemplo: converter unidades de pressão antes de preencher uma folha de dados de transmissor.",
+            "Depois confira se o valor é manométrico, absoluto, diferencial ou normalizado, conforme o serviço.",
+            "Finalize comparando o resultado com documento de projeto, catálogo e dados reais de processo."
+      ],
+      "interpretation": [
+            "Resultado favorável indica conversão ou preenchimento coerente, não validação técnica completa.",
+            "Atenção quando a aplicação envolver pressão, temperatura, fluido perigoso, flange, proteção ambiental ou compra de equipamento.",
+            "Condição crítica exige revisão da unidade, padrão, documento de referência e aprovação técnica."
+      ]
+},
+    "calculadora-disponibilidade-sistema-serie-paralelo.html": {
+      "title": "Complemento técnico — manutenção, confiabilidade e gestão de ativos — Disponibilidade Sistema Serie Paralelo",
+      "intro": "Use este complemento para interpretar indicadores de manutenção, confiabilidade, sobressalentes e priorização. A ferramenta apoia análise preliminar, mas não substitui histórico validado, estratégia de manutenção ou decisão formal de gestão de ativos.",
+      "assumptions": [
+            "Os dados de falhas, paradas, produção, reparos, criticidade e estoque devem vir de registros confiáveis de manutenção/operação.",
+            "O período analisado precisa ser representativo; janelas muito curtas podem distorcer MTBF, MTTR, OEE, Pareto e backlog.",
+            "Custos de parada, impacto de segurança, impacto ambiental e criticidade devem ser definidos com critério interno da planta.",
+            "Resultados de priorização dependem da qualidade dos pesos, notas e premissas informadas pelo usuário."
+      ],
+      "limitations": [
+            "Não substitui análise formal de confiabilidade, FMEA completo, RCA, RCM, plano mestre de manutenção ou política de sobressalentes.",
+            "Não valida disponibilidade contratual, SLA, perdas contábeis, risco de segurança ou impacto regulatório.",
+            "Não use uma pontuação isolada para eliminar manutenção, reduzir estoque crítico ou postergar ação de segurança.",
+            "Indicadores devem ser revisados com equipe de manutenção, operação, engenharia e segurança quando envolverem ativos críticos."
+      ],
+      "memory": [
+            "Indicadores como MTBF, MTTR e disponibilidade dependem da relação entre tempo operacional, falhas e tempo de reparo.",
+            "OEE combina disponibilidade, performance e qualidade, e deve ser interpretado junto com causas de perda.",
+            "Pareto e RPN/FMEA priorizam itens, mas não provam causa raiz por si só.",
+            "Ponto de ressuprimento e criticidade de sobressalentes dependem de consumo, lead time, risco e impacto da falta."
+      ],
+      "example": [
+            "Exemplo: usar dados dos últimos 12 meses para identificar os instrumentos que mais geram parada e priorizar manutenção preventiva.",
+            "Preencha falhas, tempos de reparo, impacto e estoque com dados reais do CMMS/ERP quando disponível.",
+            "Depois valide a prioridade com histórico de campo, criticidade do processo e disponibilidade de sobressalentes."
+      ],
+      "interpretation": [
+            "Resultado favorável indica tendência preliminar, não aprovação automática da estratégia de manutenção.",
+            "Atenção quando houver dados incompletos, período curto, alto custo de parada ou ativo crítico sem sobressalente.",
+            "Condição crítica deve virar ação de revisão, RCA, inspeção, compra planejada ou ajuste do plano de manutenção."
+      ]
+},
+    "calculadora-dn-nps-schedule.html": {
+      "title": "Complemento técnico — apoio geral, conversões e documentação — Dn/Nps Schedule",
+      "intro": "Use este complemento para interpretar conversões, seleção preliminar, documentação técnica e cálculos auxiliares. Essas ferramentas ajudam a padronizar informações, mas não substituem especificação, catálogo, projeto ou validação técnica.",
+      "assumptions": [
+            "Unidades, fatores, dimensões, padrões e dados de entrada devem ser conferidos antes de usar o resultado.",
+            "Conversões dependem da grandeza correta; não misture unidades absolutas, relativas, normalizadas ou compensadas sem critério.",
+            "Dados de folha de dados devem refletir o serviço real, condição de processo, material, faixa, sinal e instalação.",
+            "Cálculos auxiliares devem ser usados junto com catálogo, norma e procedimento aplicável."
+      ],
+      "limitations": [
+            "Não substitui folha de dados aprovada, memorial de cálculo, especificação de compra, projeto mecânico/elétrico ou análise de segurança.",
+            "Não valida compatibilidade de material, pressão, temperatura, classe de flange, proteção IP/NEMA ou instalação real.",
+            "Não use conversão isolada para liberar compra, montagem, comissionamento ou modificação de processo.",
+            "Quando houver equipamento crítico, valide com engenharia, fabricante ou documento aprovado."
+      ],
+      "memory": [
+            "Conversões apenas mudam representação; não melhoram a qualidade do dado original.",
+            "DN/NPS, schedule, flanges e proteção IP/NEMA dependem de padrão, classe, material e aplicação.",
+            "Folha de dados deve reunir identificação, serviço, processo, sinal, alimentação, material, montagem e requisitos ambientais.",
+            "Velocidade, potência e dilatação são triagens que dependem de fluido, temperatura, material e condição de instalação."
+      ],
+      "example": [
+            "Exemplo: converter unidades de pressão antes de preencher uma folha de dados de transmissor.",
+            "Depois confira se o valor é manométrico, absoluto, diferencial ou normalizado, conforme o serviço.",
+            "Finalize comparando o resultado com documento de projeto, catálogo e dados reais de processo."
+      ],
+      "interpretation": [
+            "Resultado favorável indica conversão ou preenchimento coerente, não validação técnica completa.",
+            "Atenção quando a aplicação envolver pressão, temperatura, fluido perigoso, flange, proteção ambiental ou compra de equipamento.",
+            "Condição crítica exige revisão da unidade, padrão, documento de referência e aprovação técnica."
+      ]
+},
+    "calculadora-eficiencia-filtro-beta.html": {
+      "title": "Complemento técnico — qualidade, analítica e processo auxiliar — Eficiencia Filtro Beta",
+      "intro": "Use este complemento para interpretar cálculos de qualidade, analítica, limpeza, amostragem e itens auxiliares de processo. O resultado ajuda na triagem, mas precisa ser confirmado com medição, procedimento e condição real do processo.",
+      "assumptions": [
+            "Amostras, leituras, limites, vazões e fatores devem representar a condição real de operação.",
+            "Instrumentos analíticos devem estar limpos, calibrados e compensados conforme procedimento do fabricante.",
+            "Dados de óleo, filtro, CIP, solenoide e processo devem considerar temperatura, concentração, pressão e regime de operação.",
+            "Indicadores de qualidade dependem de amostragem representativa e limites estatísticos definidos corretamente."
+      ],
+      "limitations": [
+            "Não substitui validação analítica, laboratório, procedimento de limpeza, especificação de qualidade ou análise estatística formal.",
+            "Não valida segurança química, compatibilidade de material, sanitização, rastreabilidade ou liberação de lote.",
+            "Não use resultado isolado para liberar produto, água, óleo, CIP ou controle de processo crítico.",
+            "Analítica de processo pode exigir compensação de temperatura, calibração, histórico e verificação com padrão."
+      ],
+      "memory": [
+            "Cp/Cpk dependem da variabilidade do processo e limites de especificação.",
+            "Condutividade, TDS, ORP e slope de pH dependem de sensor, temperatura, solução e calibração.",
+            "Eficiência de filtro e classe de limpeza dependem de contagem/remoção e condição do fluido.",
+            "Tempo de amostragem e lavagem depende de volume, vazão, renovação e dinâmica real do sistema."
+      ],
+      "example": [
+            "Exemplo: avaliar preliminarmente o slope de uma sonda de pH depois de calibração em dois pontos.",
+            "Se o resultado ficar em atenção, repita limpeza, padrões, temperatura e estabilização antes de concluir falha do sensor.",
+            "Para qualidade, valide sempre com amostragem e procedimento aceito pela planta."
+      ],
+      "interpretation": [
+            "Resultado favorável indica coerência preliminar, não liberação de processo ou produto.",
+            "Atenção quando houver sensor lento, amostra instável, limite de especificação próximo ou dados insuficientes.",
+            "Condição crítica deve gerar investigação, recalibração, nova amostragem ou validação de laboratório/procedimento."
+      ]
+},
+    "calculadora-flanges-juntas-parafusos.html": {
+      "title": "Complemento técnico — apoio geral, conversões e documentação — Flanges Juntas Parafusos",
+      "intro": "Use este complemento para interpretar conversões, seleção preliminar, documentação técnica e cálculos auxiliares. Essas ferramentas ajudam a padronizar informações, mas não substituem especificação, catálogo, projeto ou validação técnica.",
+      "assumptions": [
+            "Unidades, fatores, dimensões, padrões e dados de entrada devem ser conferidos antes de usar o resultado.",
+            "Conversões dependem da grandeza correta; não misture unidades absolutas, relativas, normalizadas ou compensadas sem critério.",
+            "Dados de folha de dados devem refletir o serviço real, condição de processo, material, faixa, sinal e instalação.",
+            "Cálculos auxiliares devem ser usados junto com catálogo, norma e procedimento aplicável."
+      ],
+      "limitations": [
+            "Não substitui folha de dados aprovada, memorial de cálculo, especificação de compra, projeto mecânico/elétrico ou análise de segurança.",
+            "Não valida compatibilidade de material, pressão, temperatura, classe de flange, proteção IP/NEMA ou instalação real.",
+            "Não use conversão isolada para liberar compra, montagem, comissionamento ou modificação de processo.",
+            "Quando houver equipamento crítico, valide com engenharia, fabricante ou documento aprovado."
+      ],
+      "memory": [
+            "Conversões apenas mudam representação; não melhoram a qualidade do dado original.",
+            "DN/NPS, schedule, flanges e proteção IP/NEMA dependem de padrão, classe, material e aplicação.",
+            "Folha de dados deve reunir identificação, serviço, processo, sinal, alimentação, material, montagem e requisitos ambientais.",
+            "Velocidade, potência e dilatação são triagens que dependem de fluido, temperatura, material e condição de instalação."
+      ],
+      "example": [
+            "Exemplo: converter unidades de pressão antes de preencher uma folha de dados de transmissor.",
+            "Depois confira se o valor é manométrico, absoluto, diferencial ou normalizado, conforme o serviço.",
+            "Finalize comparando o resultado com documento de projeto, catálogo e dados reais de processo."
+      ],
+      "interpretation": [
+            "Resultado favorável indica conversão ou preenchimento coerente, não validação técnica completa.",
+            "Atenção quando a aplicação envolver pressão, temperatura, fluido perigoso, flange, proteção ambiental ou compra de equipamento.",
+            "Condição crítica exige revisão da unidade, padrão, documento de referência e aprovação técnica."
+      ]
+},
+    "calculadora-fonte-24vcc.html": {
+      "title": "Complemento técnico — elétrica industrial e acionamentos — Fonte 24Vcc",
+      "intro": "Use este complemento para interpretar cálculos auxiliares de elétrica industrial, 24 Vcc, motores, inversores, barramentos, aterramento e transformadores de corrente. O resultado é orientativo e deve ser validado antes de qualquer aplicação em instalação real.",
+      "assumptions": [
+            "Tensão, corrente, potência, fator de potência, rendimento, frequência, cabo e temperatura devem representar a condição real do circuito.",
+            "Dados de motor, inversor, fonte, TC, capacitor, barramento e proteção devem vir de placa, catálogo ou medição confiável.",
+            "A instalação deve considerar método de montagem, temperatura ambiente, ventilação, agrupamento, harmônicos e regime de carga.",
+            "Circuitos 24 Vcc devem considerar corrente contínua, pico, queda de tensão e seletividade/proteção por ramal."
+      ],
+      "limitations": [
+            "Não substitui projeto elétrico, estudo de curto, seletividade, aterramento, SPDA, NR-10, especificação de painel ou laudo técnico.",
+            "Não valida capacidade de interrupção, arco elétrico, elevação térmica, proteção contra choque, coordenação ou requisitos de concessionária.",
+            "Não use para liberar intervenção elétrica, energização ou alteração de painel sem profissional habilitado e procedimento seguro.",
+            "Circuitos de motores, inversores, TCs e barramentos podem exigir requisitos específicos de fabricante e norma."
+      ],
+      "memory": [
+            "Corrente trifásica depende de potência, tensão, fator de potência e rendimento.",
+            "Queda 24 Vcc depende da corrente, resistência do cabo e comprimento de ida e volta.",
+            "Burden de TC depende da carga conectada e resistência do circuito secundário.",
+            "Aterramento, barramento, capacitor e inversor exigem verificação térmica, proteção e condições de instalação."
+      ],
+      "example": [
+            "Exemplo: verificar se uma fonte 24 Vcc atende cargas de painel e se a queda no ramal mais longo ainda permite operação do dispositivo.",
+            "Depois confira proteção do ramal, corrente de pico, tensão mínima do equipamento e temperatura do painel.",
+            "Para motores e inversores, compare o resultado com placa, manual e proteção existente."
+      ],
+      "interpretation": [
+            "Resultado favorável é pré-verificação, não aprovação de instalação elétrica.",
+            "Atenção quando houver margem baixa, aquecimento, corrente elevada, isolamento ruim ou tensão próxima do limite.",
+            "Condição crítica deve bloquear aplicação até revisão do projeto, proteção, procedimento e profissional habilitado."
+      ]
+},
+    "calculadora-frequencia-defeitos-rolamento.html": {
+      "title": "Complemento técnico — mecânica auxiliar, transmissão e vibração — Frequencia Defeitos Rolamento",
+      "intro": "Use este complemento para interpretar cálculos auxiliares de montagem, transmissão, vibração e componentes mecânicos. O resultado é referência preliminar e deve ser confrontado com catálogo, condição real de máquina e procedimento de manutenção.",
+      "assumptions": [
+            "Medidas, rotação, torque, massa, geometria, desalinhamento e vibração devem ser coletados com instrumento adequado e unidade correta.",
+            "A máquina deve estar em condição representativa de operação para dados de vibração, balanceamento ou transmissão.",
+            "Catálogos de fabricante podem impor limites próprios para correia, rolamento, acoplamento, parafuso, rosca e eixo.",
+            "A montagem real pode ter folga, desgaste, temperatura, lubrificação, carga dinâmica e condição de base que a ferramenta não conhece."
+      ],
+      "limitations": [
+            "Não substitui análise dinâmica, alinhamento certificado, balanceamento completo, cálculo estrutural ou procedimento de torque do fabricante.",
+            "Não valida fadiga, concentração de tensão, classe de parafuso, lubrificação de rosca, segurança de proteção mecânica ou integridade da máquina.",
+            "Não use valores preliminares para liberar máquina crítica sem medição, inspeção e aceite técnico.",
+            "Condições de alta rotação, alta energia, vibração elevada ou equipamento crítico exigem análise especializada."
+      ],
+      "memory": [
+            "Transmissões por correia relacionam diâmetros/rotações e podem alterar torque disponível.",
+            "Vibração pode ser expressa em pico, pico a pico ou RMS, mas a severidade depende da máquina e frequência.",
+            "Torque de aperto depende de carga desejada, diâmetro, atrito, lubrificação e classe do conjunto.",
+            "Balanceamento, desalinhamento e rolamentos exigem interpretação conjunta com espectro, fase, temperatura e inspeção."
+      ],
+      "example": [
+            "Exemplo: usar cálculo de rotação de polias para estimar nova velocidade antes de trocar conjunto de transmissão.",
+            "Conferir depois tensão de correia, potência transmitida, proteção mecânica e limite do equipamento acionado.",
+            "Em vibração, use o resultado apenas como conversão/triagem e compare com histórico e norma/procedimento aplicável."
+      ],
+      "interpretation": [
+            "Resultado favorável serve como apoio de manutenção ou pré-seleção, não como liberação final de máquina.",
+            "Atenção quando houver vibração, torque, rotação, tensão ou massa próximos de limites de fabricante.",
+            "Condição crítica deve gerar inspeção, parada segura, análise de causa ou validação de engenharia."
+      ]
+},
+    "calculadora-furo-macho-rosca-interna.html": {
+      "title": "Complemento técnico — mecânica auxiliar, transmissão e vibração — Furo Macho Rosca Interna",
+      "intro": "Use este complemento para interpretar cálculos auxiliares de montagem, transmissão, vibração e componentes mecânicos. O resultado é referência preliminar e deve ser confrontado com catálogo, condição real de máquina e procedimento de manutenção.",
+      "assumptions": [
+            "Medidas, rotação, torque, massa, geometria, desalinhamento e vibração devem ser coletados com instrumento adequado e unidade correta.",
+            "A máquina deve estar em condição representativa de operação para dados de vibração, balanceamento ou transmissão.",
+            "Catálogos de fabricante podem impor limites próprios para correia, rolamento, acoplamento, parafuso, rosca e eixo.",
+            "A montagem real pode ter folga, desgaste, temperatura, lubrificação, carga dinâmica e condição de base que a ferramenta não conhece."
+      ],
+      "limitations": [
+            "Não substitui análise dinâmica, alinhamento certificado, balanceamento completo, cálculo estrutural ou procedimento de torque do fabricante.",
+            "Não valida fadiga, concentração de tensão, classe de parafuso, lubrificação de rosca, segurança de proteção mecânica ou integridade da máquina.",
+            "Não use valores preliminares para liberar máquina crítica sem medição, inspeção e aceite técnico.",
+            "Condições de alta rotação, alta energia, vibração elevada ou equipamento crítico exigem análise especializada."
+      ],
+      "memory": [
+            "Transmissões por correia relacionam diâmetros/rotações e podem alterar torque disponível.",
+            "Vibração pode ser expressa em pico, pico a pico ou RMS, mas a severidade depende da máquina e frequência.",
+            "Torque de aperto depende de carga desejada, diâmetro, atrito, lubrificação e classe do conjunto.",
+            "Balanceamento, desalinhamento e rolamentos exigem interpretação conjunta com espectro, fase, temperatura e inspeção."
+      ],
+      "example": [
+            "Exemplo: usar cálculo de rotação de polias para estimar nova velocidade antes de trocar conjunto de transmissão.",
+            "Conferir depois tensão de correia, potência transmitida, proteção mecânica e limite do equipamento acionado.",
+            "Em vibração, use o resultado apenas como conversão/triagem e compare com histórico e norma/procedimento aplicável."
+      ],
+      "interpretation": [
+            "Resultado favorável serve como apoio de manutenção ou pré-seleção, não como liberação final de máquina.",
+            "Atenção quando houver vibração, torque, rotação, tensão ou massa próximos de limites de fabricante.",
+            "Condição crítica deve gerar inspeção, parada segura, análise de causa ou validação de engenharia."
+      ]
+},
+    "calculadora-indice-polarizacao-dar.html": {
+      "title": "Complemento técnico — elétrica industrial e acionamentos — Indice Polarizacao Dar",
+      "intro": "Use este complemento para interpretar cálculos auxiliares de elétrica industrial, 24 Vcc, motores, inversores, barramentos, aterramento e transformadores de corrente. O resultado é orientativo e deve ser validado antes de qualquer aplicação em instalação real.",
+      "assumptions": [
+            "Tensão, corrente, potência, fator de potência, rendimento, frequência, cabo e temperatura devem representar a condição real do circuito.",
+            "Dados de motor, inversor, fonte, TC, capacitor, barramento e proteção devem vir de placa, catálogo ou medição confiável.",
+            "A instalação deve considerar método de montagem, temperatura ambiente, ventilação, agrupamento, harmônicos e regime de carga.",
+            "Circuitos 24 Vcc devem considerar corrente contínua, pico, queda de tensão e seletividade/proteção por ramal."
+      ],
+      "limitations": [
+            "Não substitui projeto elétrico, estudo de curto, seletividade, aterramento, SPDA, NR-10, especificação de painel ou laudo técnico.",
+            "Não valida capacidade de interrupção, arco elétrico, elevação térmica, proteção contra choque, coordenação ou requisitos de concessionária.",
+            "Não use para liberar intervenção elétrica, energização ou alteração de painel sem profissional habilitado e procedimento seguro.",
+            "Circuitos de motores, inversores, TCs e barramentos podem exigir requisitos específicos de fabricante e norma."
+      ],
+      "memory": [
+            "Corrente trifásica depende de potência, tensão, fator de potência e rendimento.",
+            "Queda 24 Vcc depende da corrente, resistência do cabo e comprimento de ida e volta.",
+            "Burden de TC depende da carga conectada e resistência do circuito secundário.",
+            "Aterramento, barramento, capacitor e inversor exigem verificação térmica, proteção e condições de instalação."
+      ],
+      "example": [
+            "Exemplo: verificar se uma fonte 24 Vcc atende cargas de painel e se a queda no ramal mais longo ainda permite operação do dispositivo.",
+            "Depois confira proteção do ramal, corrente de pico, tensão mínima do equipamento e temperatura do painel.",
+            "Para motores e inversores, compare o resultado com placa, manual e proteção existente."
+      ],
+      "interpretation": [
+            "Resultado favorável é pré-verificação, não aprovação de instalação elétrica.",
+            "Atenção quando houver margem baixa, aquecimento, corrente elevada, isolamento ruim ou tensão próxima do limite.",
+            "Condição crítica deve bloquear aplicação até revisão do projeto, proteção, procedimento e profissional habilitado."
+      ]
+},
+    "calculadora-inversor-frequencia.html": {
+      "title": "Complemento técnico — elétrica industrial e acionamentos — Inversor Frequencia",
+      "intro": "Use este complemento para interpretar cálculos auxiliares de elétrica industrial, 24 Vcc, motores, inversores, barramentos, aterramento e transformadores de corrente. O resultado é orientativo e deve ser validado antes de qualquer aplicação em instalação real.",
+      "assumptions": [
+            "Tensão, corrente, potência, fator de potência, rendimento, frequência, cabo e temperatura devem representar a condição real do circuito.",
+            "Dados de motor, inversor, fonte, TC, capacitor, barramento e proteção devem vir de placa, catálogo ou medição confiável.",
+            "A instalação deve considerar método de montagem, temperatura ambiente, ventilação, agrupamento, harmônicos e regime de carga.",
+            "Circuitos 24 Vcc devem considerar corrente contínua, pico, queda de tensão e seletividade/proteção por ramal."
+      ],
+      "limitations": [
+            "Não substitui projeto elétrico, estudo de curto, seletividade, aterramento, SPDA, NR-10, especificação de painel ou laudo técnico.",
+            "Não valida capacidade de interrupção, arco elétrico, elevação térmica, proteção contra choque, coordenação ou requisitos de concessionária.",
+            "Não use para liberar intervenção elétrica, energização ou alteração de painel sem profissional habilitado e procedimento seguro.",
+            "Circuitos de motores, inversores, TCs e barramentos podem exigir requisitos específicos de fabricante e norma."
+      ],
+      "memory": [
+            "Corrente trifásica depende de potência, tensão, fator de potência e rendimento.",
+            "Queda 24 Vcc depende da corrente, resistência do cabo e comprimento de ida e volta.",
+            "Burden de TC depende da carga conectada e resistência do circuito secundário.",
+            "Aterramento, barramento, capacitor e inversor exigem verificação térmica, proteção e condições de instalação."
+      ],
+      "example": [
+            "Exemplo: verificar se uma fonte 24 Vcc atende cargas de painel e se a queda no ramal mais longo ainda permite operação do dispositivo.",
+            "Depois confira proteção do ramal, corrente de pico, tensão mínima do equipamento e temperatura do painel.",
+            "Para motores e inversores, compare o resultado com placa, manual e proteção existente."
+      ],
+      "interpretation": [
+            "Resultado favorável é pré-verificação, não aprovação de instalação elétrica.",
+            "Atenção quando houver margem baixa, aquecimento, corrente elevada, isolamento ruim ou tensão próxima do limite.",
+            "Condição crítica deve bloquear aplicação até revisão do projeto, proteção, procedimento e profissional habilitado."
+      ]
+},
+    "calculadora-mtbf-mttr-disponibilidade.html": {
+      "title": "Complemento técnico — manutenção, confiabilidade e gestão de ativos — Mtbf Mttr Disponibilidade",
+      "intro": "Use este complemento para interpretar indicadores de manutenção, confiabilidade, sobressalentes e priorização. A ferramenta apoia análise preliminar, mas não substitui histórico validado, estratégia de manutenção ou decisão formal de gestão de ativos.",
+      "assumptions": [
+            "Os dados de falhas, paradas, produção, reparos, criticidade e estoque devem vir de registros confiáveis de manutenção/operação.",
+            "O período analisado precisa ser representativo; janelas muito curtas podem distorcer MTBF, MTTR, OEE, Pareto e backlog.",
+            "Custos de parada, impacto de segurança, impacto ambiental e criticidade devem ser definidos com critério interno da planta.",
+            "Resultados de priorização dependem da qualidade dos pesos, notas e premissas informadas pelo usuário."
+      ],
+      "limitations": [
+            "Não substitui análise formal de confiabilidade, FMEA completo, RCA, RCM, plano mestre de manutenção ou política de sobressalentes.",
+            "Não valida disponibilidade contratual, SLA, perdas contábeis, risco de segurança ou impacto regulatório.",
+            "Não use uma pontuação isolada para eliminar manutenção, reduzir estoque crítico ou postergar ação de segurança.",
+            "Indicadores devem ser revisados com equipe de manutenção, operação, engenharia e segurança quando envolverem ativos críticos."
+      ],
+      "memory": [
+            "Indicadores como MTBF, MTTR e disponibilidade dependem da relação entre tempo operacional, falhas e tempo de reparo.",
+            "OEE combina disponibilidade, performance e qualidade, e deve ser interpretado junto com causas de perda.",
+            "Pareto e RPN/FMEA priorizam itens, mas não provam causa raiz por si só.",
+            "Ponto de ressuprimento e criticidade de sobressalentes dependem de consumo, lead time, risco e impacto da falta."
+      ],
+      "example": [
+            "Exemplo: usar dados dos últimos 12 meses para identificar os instrumentos que mais geram parada e priorizar manutenção preventiva.",
+            "Preencha falhas, tempos de reparo, impacto e estoque com dados reais do CMMS/ERP quando disponível.",
+            "Depois valide a prioridade com histórico de campo, criticidade do processo e disponibilidade de sobressalentes."
+      ],
+      "interpretation": [
+            "Resultado favorável indica tendência preliminar, não aprovação automática da estratégia de manutenção.",
+            "Atenção quando houver dados incompletos, período curto, alto custo de parada ou ativo crítico sem sobressalente.",
+            "Condição crítica deve virar ação de revisão, RCA, inspeção, compra planejada ou ajuste do plano de manutenção."
+      ]
+},
+    "calculadora-oee.html": {
+      "title": "Complemento técnico — manutenção, confiabilidade e gestão de ativos — Oee",
+      "intro": "Use este complemento para interpretar indicadores de manutenção, confiabilidade, sobressalentes e priorização. A ferramenta apoia análise preliminar, mas não substitui histórico validado, estratégia de manutenção ou decisão formal de gestão de ativos.",
+      "assumptions": [
+            "Os dados de falhas, paradas, produção, reparos, criticidade e estoque devem vir de registros confiáveis de manutenção/operação.",
+            "O período analisado precisa ser representativo; janelas muito curtas podem distorcer MTBF, MTTR, OEE, Pareto e backlog.",
+            "Custos de parada, impacto de segurança, impacto ambiental e criticidade devem ser definidos com critério interno da planta.",
+            "Resultados de priorização dependem da qualidade dos pesos, notas e premissas informadas pelo usuário."
+      ],
+      "limitations": [
+            "Não substitui análise formal de confiabilidade, FMEA completo, RCA, RCM, plano mestre de manutenção ou política de sobressalentes.",
+            "Não valida disponibilidade contratual, SLA, perdas contábeis, risco de segurança ou impacto regulatório.",
+            "Não use uma pontuação isolada para eliminar manutenção, reduzir estoque crítico ou postergar ação de segurança.",
+            "Indicadores devem ser revisados com equipe de manutenção, operação, engenharia e segurança quando envolverem ativos críticos."
+      ],
+      "memory": [
+            "Indicadores como MTBF, MTTR e disponibilidade dependem da relação entre tempo operacional, falhas e tempo de reparo.",
+            "OEE combina disponibilidade, performance e qualidade, e deve ser interpretado junto com causas de perda.",
+            "Pareto e RPN/FMEA priorizam itens, mas não provam causa raiz por si só.",
+            "Ponto de ressuprimento e criticidade de sobressalentes dependem de consumo, lead time, risco e impacto da falta."
+      ],
+      "example": [
+            "Exemplo: usar dados dos últimos 12 meses para identificar os instrumentos que mais geram parada e priorizar manutenção preventiva.",
+            "Preencha falhas, tempos de reparo, impacto e estoque com dados reais do CMMS/ERP quando disponível.",
+            "Depois valide a prioridade com histórico de campo, criticidade do processo e disponibilidade de sobressalentes."
+      ],
+      "interpretation": [
+            "Resultado favorável indica tendência preliminar, não aprovação automática da estratégia de manutenção.",
+            "Atenção quando houver dados incompletos, período curto, alto custo de parada ou ativo crítico sem sobressalente.",
+            "Condição crítica deve virar ação de revisão, RCA, inspeção, compra planejada ou ajuste do plano de manutenção."
+      ]
+},
+    "calculadora-orp-mv-percentual.html": {
+      "title": "Complemento técnico — qualidade, analítica e processo auxiliar — Orp Mv Percentual",
+      "intro": "Use este complemento para interpretar cálculos de qualidade, analítica, limpeza, amostragem e itens auxiliares de processo. O resultado ajuda na triagem, mas precisa ser confirmado com medição, procedimento e condição real do processo.",
+      "assumptions": [
+            "Amostras, leituras, limites, vazões e fatores devem representar a condição real de operação.",
+            "Instrumentos analíticos devem estar limpos, calibrados e compensados conforme procedimento do fabricante.",
+            "Dados de óleo, filtro, CIP, solenoide e processo devem considerar temperatura, concentração, pressão e regime de operação.",
+            "Indicadores de qualidade dependem de amostragem representativa e limites estatísticos definidos corretamente."
+      ],
+      "limitations": [
+            "Não substitui validação analítica, laboratório, procedimento de limpeza, especificação de qualidade ou análise estatística formal.",
+            "Não valida segurança química, compatibilidade de material, sanitização, rastreabilidade ou liberação de lote.",
+            "Não use resultado isolado para liberar produto, água, óleo, CIP ou controle de processo crítico.",
+            "Analítica de processo pode exigir compensação de temperatura, calibração, histórico e verificação com padrão."
+      ],
+      "memory": [
+            "Cp/Cpk dependem da variabilidade do processo e limites de especificação.",
+            "Condutividade, TDS, ORP e slope de pH dependem de sensor, temperatura, solução e calibração.",
+            "Eficiência de filtro e classe de limpeza dependem de contagem/remoção e condição do fluido.",
+            "Tempo de amostragem e lavagem depende de volume, vazão, renovação e dinâmica real do sistema."
+      ],
+      "example": [
+            "Exemplo: avaliar preliminarmente o slope de uma sonda de pH depois de calibração em dois pontos.",
+            "Se o resultado ficar em atenção, repita limpeza, padrões, temperatura e estabilização antes de concluir falha do sensor.",
+            "Para qualidade, valide sempre com amostragem e procedimento aceito pela planta."
+      ],
+      "interpretation": [
+            "Resultado favorável indica coerência preliminar, não liberação de processo ou produto.",
+            "Atenção quando houver sensor lento, amostra instável, limite de especificação próximo ou dados insuficientes.",
+            "Condição crítica deve gerar investigação, recalibração, nova amostragem ou validação de laboratório/procedimento."
+      ]
+},
+    "calculadora-pareto-falhas-manutencao.html": {
+      "title": "Complemento técnico — manutenção, confiabilidade e gestão de ativos — Pareto Falhas Manutencao",
+      "intro": "Use este complemento para interpretar indicadores de manutenção, confiabilidade, sobressalentes e priorização. A ferramenta apoia análise preliminar, mas não substitui histórico validado, estratégia de manutenção ou decisão formal de gestão de ativos.",
+      "assumptions": [
+            "Os dados de falhas, paradas, produção, reparos, criticidade e estoque devem vir de registros confiáveis de manutenção/operação.",
+            "O período analisado precisa ser representativo; janelas muito curtas podem distorcer MTBF, MTTR, OEE, Pareto e backlog.",
+            "Custos de parada, impacto de segurança, impacto ambiental e criticidade devem ser definidos com critério interno da planta.",
+            "Resultados de priorização dependem da qualidade dos pesos, notas e premissas informadas pelo usuário."
+      ],
+      "limitations": [
+            "Não substitui análise formal de confiabilidade, FMEA completo, RCA, RCM, plano mestre de manutenção ou política de sobressalentes.",
+            "Não valida disponibilidade contratual, SLA, perdas contábeis, risco de segurança ou impacto regulatório.",
+            "Não use uma pontuação isolada para eliminar manutenção, reduzir estoque crítico ou postergar ação de segurança.",
+            "Indicadores devem ser revisados com equipe de manutenção, operação, engenharia e segurança quando envolverem ativos críticos."
+      ],
+      "memory": [
+            "Indicadores como MTBF, MTTR e disponibilidade dependem da relação entre tempo operacional, falhas e tempo de reparo.",
+            "OEE combina disponibilidade, performance e qualidade, e deve ser interpretado junto com causas de perda.",
+            "Pareto e RPN/FMEA priorizam itens, mas não provam causa raiz por si só.",
+            "Ponto de ressuprimento e criticidade de sobressalentes dependem de consumo, lead time, risco e impacto da falta."
+      ],
+      "example": [
+            "Exemplo: usar dados dos últimos 12 meses para identificar os instrumentos que mais geram parada e priorizar manutenção preventiva.",
+            "Preencha falhas, tempos de reparo, impacto e estoque com dados reais do CMMS/ERP quando disponível.",
+            "Depois valide a prioridade com histórico de campo, criticidade do processo e disponibilidade de sobressalentes."
+      ],
+      "interpretation": [
+            "Resultado favorável indica tendência preliminar, não aprovação automática da estratégia de manutenção.",
+            "Atenção quando houver dados incompletos, período curto, alto custo de parada ou ativo crítico sem sobressalente.",
+            "Condição crítica deve virar ação de revisão, RCA, inspeção, compra planejada ou ajuste do plano de manutenção."
+      ]
+},
+    "calculadora-peso-tubos-chapas-barras.html": {
+      "title": "Complemento técnico — mecânica auxiliar, transmissão e vibração — Peso Tubos Chapas Barras",
+      "intro": "Use este complemento para interpretar cálculos auxiliares de montagem, transmissão, vibração e componentes mecânicos. O resultado é referência preliminar e deve ser confrontado com catálogo, condição real de máquina e procedimento de manutenção.",
+      "assumptions": [
+            "Medidas, rotação, torque, massa, geometria, desalinhamento e vibração devem ser coletados com instrumento adequado e unidade correta.",
+            "A máquina deve estar em condição representativa de operação para dados de vibração, balanceamento ou transmissão.",
+            "Catálogos de fabricante podem impor limites próprios para correia, rolamento, acoplamento, parafuso, rosca e eixo.",
+            "A montagem real pode ter folga, desgaste, temperatura, lubrificação, carga dinâmica e condição de base que a ferramenta não conhece."
+      ],
+      "limitations": [
+            "Não substitui análise dinâmica, alinhamento certificado, balanceamento completo, cálculo estrutural ou procedimento de torque do fabricante.",
+            "Não valida fadiga, concentração de tensão, classe de parafuso, lubrificação de rosca, segurança de proteção mecânica ou integridade da máquina.",
+            "Não use valores preliminares para liberar máquina crítica sem medição, inspeção e aceite técnico.",
+            "Condições de alta rotação, alta energia, vibração elevada ou equipamento crítico exigem análise especializada."
+      ],
+      "memory": [
+            "Transmissões por correia relacionam diâmetros/rotações e podem alterar torque disponível.",
+            "Vibração pode ser expressa em pico, pico a pico ou RMS, mas a severidade depende da máquina e frequência.",
+            "Torque de aperto depende de carga desejada, diâmetro, atrito, lubrificação e classe do conjunto.",
+            "Balanceamento, desalinhamento e rolamentos exigem interpretação conjunta com espectro, fase, temperatura e inspeção."
+      ],
+      "example": [
+            "Exemplo: usar cálculo de rotação de polias para estimar nova velocidade antes de trocar conjunto de transmissão.",
+            "Conferir depois tensão de correia, potência transmitida, proteção mecânica e limite do equipamento acionado.",
+            "Em vibração, use o resultado apenas como conversão/triagem e compare com histórico e norma/procedimento aplicável."
+      ],
+      "interpretation": [
+            "Resultado favorável serve como apoio de manutenção ou pré-seleção, não como liberação final de máquina.",
+            "Atenção quando houver vibração, torque, rotação, tensão ou massa próximos de limites de fabricante.",
+            "Condição crítica deve gerar inspeção, parada segura, análise de causa ou validação de engenharia."
+      ]
+},
+    "calculadora-ponto-ressuprimento-sobressalentes.html": {
+      "title": "Complemento técnico — manutenção, confiabilidade e gestão de ativos — Ponto Ressuprimento Sobressalentes",
+      "intro": "Use este complemento para interpretar indicadores de manutenção, confiabilidade, sobressalentes e priorização. A ferramenta apoia análise preliminar, mas não substitui histórico validado, estratégia de manutenção ou decisão formal de gestão de ativos.",
+      "assumptions": [
+            "Os dados de falhas, paradas, produção, reparos, criticidade e estoque devem vir de registros confiáveis de manutenção/operação.",
+            "O período analisado precisa ser representativo; janelas muito curtas podem distorcer MTBF, MTTR, OEE, Pareto e backlog.",
+            "Custos de parada, impacto de segurança, impacto ambiental e criticidade devem ser definidos com critério interno da planta.",
+            "Resultados de priorização dependem da qualidade dos pesos, notas e premissas informadas pelo usuário."
+      ],
+      "limitations": [
+            "Não substitui análise formal de confiabilidade, FMEA completo, RCA, RCM, plano mestre de manutenção ou política de sobressalentes.",
+            "Não valida disponibilidade contratual, SLA, perdas contábeis, risco de segurança ou impacto regulatório.",
+            "Não use uma pontuação isolada para eliminar manutenção, reduzir estoque crítico ou postergar ação de segurança.",
+            "Indicadores devem ser revisados com equipe de manutenção, operação, engenharia e segurança quando envolverem ativos críticos."
+      ],
+      "memory": [
+            "Indicadores como MTBF, MTTR e disponibilidade dependem da relação entre tempo operacional, falhas e tempo de reparo.",
+            "OEE combina disponibilidade, performance e qualidade, e deve ser interpretado junto com causas de perda.",
+            "Pareto e RPN/FMEA priorizam itens, mas não provam causa raiz por si só.",
+            "Ponto de ressuprimento e criticidade de sobressalentes dependem de consumo, lead time, risco e impacto da falta."
+      ],
+      "example": [
+            "Exemplo: usar dados dos últimos 12 meses para identificar os instrumentos que mais geram parada e priorizar manutenção preventiva.",
+            "Preencha falhas, tempos de reparo, impacto e estoque com dados reais do CMMS/ERP quando disponível.",
+            "Depois valide a prioridade com histórico de campo, criticidade do processo e disponibilidade de sobressalentes."
+      ],
+      "interpretation": [
+            "Resultado favorável indica tendência preliminar, não aprovação automática da estratégia de manutenção.",
+            "Atenção quando houver dados incompletos, período curto, alto custo de parada ou ativo crítico sem sobressalente.",
+            "Condição crítica deve virar ação de revisão, RCA, inspeção, compra planejada ou ajuste do plano de manutenção."
+      ]
+},
+    "calculadora-potencia-exaustor-ventilador.html": {
+      "title": "Complemento técnico — apoio geral, conversões e documentação — Potencia Exaustor Ventilador",
+      "intro": "Use este complemento para interpretar conversões, seleção preliminar, documentação técnica e cálculos auxiliares. Essas ferramentas ajudam a padronizar informações, mas não substituem especificação, catálogo, projeto ou validação técnica.",
+      "assumptions": [
+            "Unidades, fatores, dimensões, padrões e dados de entrada devem ser conferidos antes de usar o resultado.",
+            "Conversões dependem da grandeza correta; não misture unidades absolutas, relativas, normalizadas ou compensadas sem critério.",
+            "Dados de folha de dados devem refletir o serviço real, condição de processo, material, faixa, sinal e instalação.",
+            "Cálculos auxiliares devem ser usados junto com catálogo, norma e procedimento aplicável."
+      ],
+      "limitations": [
+            "Não substitui folha de dados aprovada, memorial de cálculo, especificação de compra, projeto mecânico/elétrico ou análise de segurança.",
+            "Não valida compatibilidade de material, pressão, temperatura, classe de flange, proteção IP/NEMA ou instalação real.",
+            "Não use conversão isolada para liberar compra, montagem, comissionamento ou modificação de processo.",
+            "Quando houver equipamento crítico, valide com engenharia, fabricante ou documento aprovado."
+      ],
+      "memory": [
+            "Conversões apenas mudam representação; não melhoram a qualidade do dado original.",
+            "DN/NPS, schedule, flanges e proteção IP/NEMA dependem de padrão, classe, material e aplicação.",
+            "Folha de dados deve reunir identificação, serviço, processo, sinal, alimentação, material, montagem e requisitos ambientais.",
+            "Velocidade, potência e dilatação são triagens que dependem de fluido, temperatura, material e condição de instalação."
+      ],
+      "example": [
+            "Exemplo: converter unidades de pressão antes de preencher uma folha de dados de transmissor.",
+            "Depois confira se o valor é manométrico, absoluto, diferencial ou normalizado, conforme o serviço.",
+            "Finalize comparando o resultado com documento de projeto, catálogo e dados reais de processo."
+      ],
+      "interpretation": [
+            "Resultado favorável indica conversão ou preenchimento coerente, não validação técnica completa.",
+            "Atenção quando a aplicação envolver pressão, temperatura, fluido perigoso, flange, proteção ambiental ou compra de equipamento.",
+            "Condição crítica exige revisão da unidade, padrão, documento de referência e aprovação técnica."
+      ]
+},
+    "calculadora-queda-tensao-24vcc.html": {
+      "title": "Complemento técnico — elétrica industrial e acionamentos — Queda Tensao 24Vcc",
+      "intro": "Use este complemento para interpretar cálculos auxiliares de elétrica industrial, 24 Vcc, motores, inversores, barramentos, aterramento e transformadores de corrente. O resultado é orientativo e deve ser validado antes de qualquer aplicação em instalação real.",
+      "assumptions": [
+            "Tensão, corrente, potência, fator de potência, rendimento, frequência, cabo e temperatura devem representar a condição real do circuito.",
+            "Dados de motor, inversor, fonte, TC, capacitor, barramento e proteção devem vir de placa, catálogo ou medição confiável.",
+            "A instalação deve considerar método de montagem, temperatura ambiente, ventilação, agrupamento, harmônicos e regime de carga.",
+            "Circuitos 24 Vcc devem considerar corrente contínua, pico, queda de tensão e seletividade/proteção por ramal."
+      ],
+      "limitations": [
+            "Não substitui projeto elétrico, estudo de curto, seletividade, aterramento, SPDA, NR-10, especificação de painel ou laudo técnico.",
+            "Não valida capacidade de interrupção, arco elétrico, elevação térmica, proteção contra choque, coordenação ou requisitos de concessionária.",
+            "Não use para liberar intervenção elétrica, energização ou alteração de painel sem profissional habilitado e procedimento seguro.",
+            "Circuitos de motores, inversores, TCs e barramentos podem exigir requisitos específicos de fabricante e norma."
+      ],
+      "memory": [
+            "Corrente trifásica depende de potência, tensão, fator de potência e rendimento.",
+            "Queda 24 Vcc depende da corrente, resistência do cabo e comprimento de ida e volta.",
+            "Burden de TC depende da carga conectada e resistência do circuito secundário.",
+            "Aterramento, barramento, capacitor e inversor exigem verificação térmica, proteção e condições de instalação."
+      ],
+      "example": [
+            "Exemplo: verificar se uma fonte 24 Vcc atende cargas de painel e se a queda no ramal mais longo ainda permite operação do dispositivo.",
+            "Depois confira proteção do ramal, corrente de pico, tensão mínima do equipamento e temperatura do painel.",
+            "Para motores e inversores, compare o resultado com placa, manual e proteção existente."
+      ],
+      "interpretation": [
+            "Resultado favorável é pré-verificação, não aprovação de instalação elétrica.",
+            "Atenção quando houver margem baixa, aquecimento, corrente elevada, isolamento ruim ou tensão próxima do limite.",
+            "Condição crítica deve bloquear aplicação até revisão do projeto, proteção, procedimento e profissional habilitado."
+      ]
+},
+    "calculadora-relubrificacao-rolamento.html": {
+      "title": "Complemento técnico — manutenção, confiabilidade e gestão de ativos — Relubrificacao Rolamento",
+      "intro": "Use este complemento para interpretar indicadores de manutenção, confiabilidade, sobressalentes e priorização. A ferramenta apoia análise preliminar, mas não substitui histórico validado, estratégia de manutenção ou decisão formal de gestão de ativos.",
+      "assumptions": [
+            "Os dados de falhas, paradas, produção, reparos, criticidade e estoque devem vir de registros confiáveis de manutenção/operação.",
+            "O período analisado precisa ser representativo; janelas muito curtas podem distorcer MTBF, MTTR, OEE, Pareto e backlog.",
+            "Custos de parada, impacto de segurança, impacto ambiental e criticidade devem ser definidos com critério interno da planta.",
+            "Resultados de priorização dependem da qualidade dos pesos, notas e premissas informadas pelo usuário."
+      ],
+      "limitations": [
+            "Não substitui análise formal de confiabilidade, FMEA completo, RCA, RCM, plano mestre de manutenção ou política de sobressalentes.",
+            "Não valida disponibilidade contratual, SLA, perdas contábeis, risco de segurança ou impacto regulatório.",
+            "Não use uma pontuação isolada para eliminar manutenção, reduzir estoque crítico ou postergar ação de segurança.",
+            "Indicadores devem ser revisados com equipe de manutenção, operação, engenharia e segurança quando envolverem ativos críticos."
+      ],
+      "memory": [
+            "Indicadores como MTBF, MTTR e disponibilidade dependem da relação entre tempo operacional, falhas e tempo de reparo.",
+            "OEE combina disponibilidade, performance e qualidade, e deve ser interpretado junto com causas de perda.",
+            "Pareto e RPN/FMEA priorizam itens, mas não provam causa raiz por si só.",
+            "Ponto de ressuprimento e criticidade de sobressalentes dependem de consumo, lead time, risco e impacto da falta."
+      ],
+      "example": [
+            "Exemplo: usar dados dos últimos 12 meses para identificar os instrumentos que mais geram parada e priorizar manutenção preventiva.",
+            "Preencha falhas, tempos de reparo, impacto e estoque com dados reais do CMMS/ERP quando disponível.",
+            "Depois valide a prioridade com histórico de campo, criticidade do processo e disponibilidade de sobressalentes."
+      ],
+      "interpretation": [
+            "Resultado favorável indica tendência preliminar, não aprovação automática da estratégia de manutenção.",
+            "Atenção quando houver dados incompletos, período curto, alto custo de parada ou ativo crítico sem sobressalente.",
+            "Condição crítica deve virar ação de revisão, RCA, inspeção, compra planejada ou ajuste do plano de manutenção."
+      ]
+},
+    "calculadora-resistor-shunt-sinal-instrumentacao.html": {
+      "title": "Complemento técnico — elétrica industrial e acionamentos — Resistor Shunt Sinal Instrumentacao",
+      "intro": "Use este complemento para interpretar cálculos auxiliares de elétrica industrial, 24 Vcc, motores, inversores, barramentos, aterramento e transformadores de corrente. O resultado é orientativo e deve ser validado antes de qualquer aplicação em instalação real.",
+      "assumptions": [
+            "Tensão, corrente, potência, fator de potência, rendimento, frequência, cabo e temperatura devem representar a condição real do circuito.",
+            "Dados de motor, inversor, fonte, TC, capacitor, barramento e proteção devem vir de placa, catálogo ou medição confiável.",
+            "A instalação deve considerar método de montagem, temperatura ambiente, ventilação, agrupamento, harmônicos e regime de carga.",
+            "Circuitos 24 Vcc devem considerar corrente contínua, pico, queda de tensão e seletividade/proteção por ramal."
+      ],
+      "limitations": [
+            "Não substitui projeto elétrico, estudo de curto, seletividade, aterramento, SPDA, NR-10, especificação de painel ou laudo técnico.",
+            "Não valida capacidade de interrupção, arco elétrico, elevação térmica, proteção contra choque, coordenação ou requisitos de concessionária.",
+            "Não use para liberar intervenção elétrica, energização ou alteração de painel sem profissional habilitado e procedimento seguro.",
+            "Circuitos de motores, inversores, TCs e barramentos podem exigir requisitos específicos de fabricante e norma."
+      ],
+      "memory": [
+            "Corrente trifásica depende de potência, tensão, fator de potência e rendimento.",
+            "Queda 24 Vcc depende da corrente, resistência do cabo e comprimento de ida e volta.",
+            "Burden de TC depende da carga conectada e resistência do circuito secundário.",
+            "Aterramento, barramento, capacitor e inversor exigem verificação térmica, proteção e condições de instalação."
+      ],
+      "example": [
+            "Exemplo: verificar se uma fonte 24 Vcc atende cargas de painel e se a queda no ramal mais longo ainda permite operação do dispositivo.",
+            "Depois confira proteção do ramal, corrente de pico, tensão mínima do equipamento e temperatura do painel.",
+            "Para motores e inversores, compare o resultado com placa, manual e proteção existente."
+      ],
+      "interpretation": [
+            "Resultado favorável é pré-verificação, não aprovação de instalação elétrica.",
+            "Atenção quando houver margem baixa, aquecimento, corrente elevada, isolamento ruim ou tensão próxima do limite.",
+            "Condição crítica deve bloquear aplicação até revisão do projeto, proteção, procedimento e profissional habilitado."
+      ]
+},
+    "calculadora-roscas-industriais-conexoes.html": {
+      "title": "Complemento técnico — mecânica auxiliar, transmissão e vibração — Roscas Industriais Conexoes",
+      "intro": "Use este complemento para interpretar cálculos auxiliares de montagem, transmissão, vibração e componentes mecânicos. O resultado é referência preliminar e deve ser confrontado com catálogo, condição real de máquina e procedimento de manutenção.",
+      "assumptions": [
+            "Medidas, rotação, torque, massa, geometria, desalinhamento e vibração devem ser coletados com instrumento adequado e unidade correta.",
+            "A máquina deve estar em condição representativa de operação para dados de vibração, balanceamento ou transmissão.",
+            "Catálogos de fabricante podem impor limites próprios para correia, rolamento, acoplamento, parafuso, rosca e eixo.",
+            "A montagem real pode ter folga, desgaste, temperatura, lubrificação, carga dinâmica e condição de base que a ferramenta não conhece."
+      ],
+      "limitations": [
+            "Não substitui análise dinâmica, alinhamento certificado, balanceamento completo, cálculo estrutural ou procedimento de torque do fabricante.",
+            "Não valida fadiga, concentração de tensão, classe de parafuso, lubrificação de rosca, segurança de proteção mecânica ou integridade da máquina.",
+            "Não use valores preliminares para liberar máquina crítica sem medição, inspeção e aceite técnico.",
+            "Condições de alta rotação, alta energia, vibração elevada ou equipamento crítico exigem análise especializada."
+      ],
+      "memory": [
+            "Transmissões por correia relacionam diâmetros/rotações e podem alterar torque disponível.",
+            "Vibração pode ser expressa em pico, pico a pico ou RMS, mas a severidade depende da máquina e frequência.",
+            "Torque de aperto depende de carga desejada, diâmetro, atrito, lubrificação e classe do conjunto.",
+            "Balanceamento, desalinhamento e rolamentos exigem interpretação conjunta com espectro, fase, temperatura e inspeção."
+      ],
+      "example": [
+            "Exemplo: usar cálculo de rotação de polias para estimar nova velocidade antes de trocar conjunto de transmissão.",
+            "Conferir depois tensão de correia, potência transmitida, proteção mecânica e limite do equipamento acionado.",
+            "Em vibração, use o resultado apenas como conversão/triagem e compare com histórico e norma/procedimento aplicável."
+      ],
+      "interpretation": [
+            "Resultado favorável serve como apoio de manutenção ou pré-seleção, não como liberação final de máquina.",
+            "Atenção quando houver vibração, torque, rotação, tensão ou massa próximos de limites de fabricante.",
+            "Condição crítica deve gerar inspeção, parada segura, análise de causa ou validação de engenharia."
+      ]
+},
+    "calculadora-rpm-polias-reducao.html": {
+      "title": "Complemento técnico — mecânica auxiliar, transmissão e vibração — Rpm Polias Reducao",
+      "intro": "Use este complemento para interpretar cálculos auxiliares de montagem, transmissão, vibração e componentes mecânicos. O resultado é referência preliminar e deve ser confrontado com catálogo, condição real de máquina e procedimento de manutenção.",
+      "assumptions": [
+            "Medidas, rotação, torque, massa, geometria, desalinhamento e vibração devem ser coletados com instrumento adequado e unidade correta.",
+            "A máquina deve estar em condição representativa de operação para dados de vibração, balanceamento ou transmissão.",
+            "Catálogos de fabricante podem impor limites próprios para correia, rolamento, acoplamento, parafuso, rosca e eixo.",
+            "A montagem real pode ter folga, desgaste, temperatura, lubrificação, carga dinâmica e condição de base que a ferramenta não conhece."
+      ],
+      "limitations": [
+            "Não substitui análise dinâmica, alinhamento certificado, balanceamento completo, cálculo estrutural ou procedimento de torque do fabricante.",
+            "Não valida fadiga, concentração de tensão, classe de parafuso, lubrificação de rosca, segurança de proteção mecânica ou integridade da máquina.",
+            "Não use valores preliminares para liberar máquina crítica sem medição, inspeção e aceite técnico.",
+            "Condições de alta rotação, alta energia, vibração elevada ou equipamento crítico exigem análise especializada."
+      ],
+      "memory": [
+            "Transmissões por correia relacionam diâmetros/rotações e podem alterar torque disponível.",
+            "Vibração pode ser expressa em pico, pico a pico ou RMS, mas a severidade depende da máquina e frequência.",
+            "Torque de aperto depende de carga desejada, diâmetro, atrito, lubrificação e classe do conjunto.",
+            "Balanceamento, desalinhamento e rolamentos exigem interpretação conjunta com espectro, fase, temperatura e inspeção."
+      ],
+      "example": [
+            "Exemplo: usar cálculo de rotação de polias para estimar nova velocidade antes de trocar conjunto de transmissão.",
+            "Conferir depois tensão de correia, potência transmitida, proteção mecânica e limite do equipamento acionado.",
+            "Em vibração, use o resultado apenas como conversão/triagem e compare com histórico e norma/procedimento aplicável."
+      ],
+      "interpretation": [
+            "Resultado favorável serve como apoio de manutenção ou pré-seleção, não como liberação final de máquina.",
+            "Atenção quando houver vibração, torque, rotação, tensão ou massa próximos de limites de fabricante.",
+            "Condição crítica deve gerar inspeção, parada segura, análise de causa ou validação de engenharia."
+      ]
+},
+    "calculadora-rpn-fmea-manutencao.html": {
+      "title": "Complemento técnico — manutenção, confiabilidade e gestão de ativos — Rpn Fmea Manutencao",
+      "intro": "Use este complemento para interpretar indicadores de manutenção, confiabilidade, sobressalentes e priorização. A ferramenta apoia análise preliminar, mas não substitui histórico validado, estratégia de manutenção ou decisão formal de gestão de ativos.",
+      "assumptions": [
+            "Os dados de falhas, paradas, produção, reparos, criticidade e estoque devem vir de registros confiáveis de manutenção/operação.",
+            "O período analisado precisa ser representativo; janelas muito curtas podem distorcer MTBF, MTTR, OEE, Pareto e backlog.",
+            "Custos de parada, impacto de segurança, impacto ambiental e criticidade devem ser definidos com critério interno da planta.",
+            "Resultados de priorização dependem da qualidade dos pesos, notas e premissas informadas pelo usuário."
+      ],
+      "limitations": [
+            "Não substitui análise formal de confiabilidade, FMEA completo, RCA, RCM, plano mestre de manutenção ou política de sobressalentes.",
+            "Não valida disponibilidade contratual, SLA, perdas contábeis, risco de segurança ou impacto regulatório.",
+            "Não use uma pontuação isolada para eliminar manutenção, reduzir estoque crítico ou postergar ação de segurança.",
+            "Indicadores devem ser revisados com equipe de manutenção, operação, engenharia e segurança quando envolverem ativos críticos."
+      ],
+      "memory": [
+            "Indicadores como MTBF, MTTR e disponibilidade dependem da relação entre tempo operacional, falhas e tempo de reparo.",
+            "OEE combina disponibilidade, performance e qualidade, e deve ser interpretado junto com causas de perda.",
+            "Pareto e RPN/FMEA priorizam itens, mas não provam causa raiz por si só.",
+            "Ponto de ressuprimento e criticidade de sobressalentes dependem de consumo, lead time, risco e impacto da falta."
+      ],
+      "example": [
+            "Exemplo: usar dados dos últimos 12 meses para identificar os instrumentos que mais geram parada e priorizar manutenção preventiva.",
+            "Preencha falhas, tempos de reparo, impacto e estoque com dados reais do CMMS/ERP quando disponível.",
+            "Depois valide a prioridade com histórico de campo, criticidade do processo e disponibilidade de sobressalentes."
+      ],
+      "interpretation": [
+            "Resultado favorável indica tendência preliminar, não aprovação automática da estratégia de manutenção.",
+            "Atenção quando houver dados incompletos, período curto, alto custo de parada ou ativo crítico sem sobressalente.",
+            "Condição crítica deve virar ação de revisão, RCA, inspeção, compra planejada ou ajuste do plano de manutenção."
+      ]
+},
+    "calculadora-secao-barramento-cobre.html": {
+      "title": "Complemento técnico — elétrica industrial e acionamentos — Secao Barramento Cobre",
+      "intro": "Use este complemento para interpretar cálculos auxiliares de elétrica industrial, 24 Vcc, motores, inversores, barramentos, aterramento e transformadores de corrente. O resultado é orientativo e deve ser validado antes de qualquer aplicação em instalação real.",
+      "assumptions": [
+            "Tensão, corrente, potência, fator de potência, rendimento, frequência, cabo e temperatura devem representar a condição real do circuito.",
+            "Dados de motor, inversor, fonte, TC, capacitor, barramento e proteção devem vir de placa, catálogo ou medição confiável.",
+            "A instalação deve considerar método de montagem, temperatura ambiente, ventilação, agrupamento, harmônicos e regime de carga.",
+            "Circuitos 24 Vcc devem considerar corrente contínua, pico, queda de tensão e seletividade/proteção por ramal."
+      ],
+      "limitations": [
+            "Não substitui projeto elétrico, estudo de curto, seletividade, aterramento, SPDA, NR-10, especificação de painel ou laudo técnico.",
+            "Não valida capacidade de interrupção, arco elétrico, elevação térmica, proteção contra choque, coordenação ou requisitos de concessionária.",
+            "Não use para liberar intervenção elétrica, energização ou alteração de painel sem profissional habilitado e procedimento seguro.",
+            "Circuitos de motores, inversores, TCs e barramentos podem exigir requisitos específicos de fabricante e norma."
+      ],
+      "memory": [
+            "Corrente trifásica depende de potência, tensão, fator de potência e rendimento.",
+            "Queda 24 Vcc depende da corrente, resistência do cabo e comprimento de ida e volta.",
+            "Burden de TC depende da carga conectada e resistência do circuito secundário.",
+            "Aterramento, barramento, capacitor e inversor exigem verificação térmica, proteção e condições de instalação."
+      ],
+      "example": [
+            "Exemplo: verificar se uma fonte 24 Vcc atende cargas de painel e se a queda no ramal mais longo ainda permite operação do dispositivo.",
+            "Depois confira proteção do ramal, corrente de pico, tensão mínima do equipamento e temperatura do painel.",
+            "Para motores e inversores, compare o resultado com placa, manual e proteção existente."
+      ],
+      "interpretation": [
+            "Resultado favorável é pré-verificação, não aprovação de instalação elétrica.",
+            "Atenção quando houver margem baixa, aquecimento, corrente elevada, isolamento ruim ou tensão próxima do limite.",
+            "Condição crítica deve bloquear aplicação até revisão do projeto, proteção, procedimento e profissional habilitado."
+      ]
+},
+    "calculadora-sil-pfd-didatica.html": {
+      "title": "Complemento técnico — segurança instrumentada e SIL/PFD didático — Sil Pfd Didatica",
+      "intro": "Use este complemento para interpretar cálculo didático de PFD/SIL apenas como apoio conceitual. Segurança instrumentada exige análise formal, dados de confiabilidade válidos, arquitetura real, requisitos de SRS e validação por profissional qualificado.",
+      "assumptions": [
+            "Taxas de falha, intervalo de teste, cobertura de diagnóstico e arquitetura devem vir de fonte técnica confiável.",
+            "O cálculo é simplificado e não representa sozinho o ciclo de vida completo de segurança funcional.",
+            "A aplicação real deve considerar sensor, lógica, elemento final, bypass, teste, manutenção e causa comum.",
+            "O alvo de SIL/PFD deve vir de LOPA, análise de risco ou especificação de requisitos de segurança aprovada."
+      ],
+      "limitations": [
+            "Não substitui IEC 61508, IEC 61511, SRS, LOPA formal, cálculo certificado ou validação de segurança funcional.",
+            "Não use o resultado para aprovar intertravamento, reduzir teste, escolher arquitetura ou liberar processo crítico.",
+            "Não considera automaticamente sistemáticas, fator beta, prova de teste parcial, restrições operacionais ou competência do ciclo de vida.",
+            "Qualquer decisão prática de SIL deve passar por engenharia, segurança de processo e documentação aprovada."
+      ],
+      "memory": [
+            "PFDavg é uma medida probabilística média de falha sob demanda para função de segurança.",
+            "O SIL depende do intervalo de PFD e do modo de demanda, mas também de requisitos sistemáticos e gestão do ciclo de vida.",
+            "Arquitetura, redundância, teste periódico e elemento final influenciam fortemente o resultado.",
+            "Resultado numérico sem SRS, dados confiáveis e validação formal não comprova segurança funcional."
+      ],
+      "example": [
+            "Exemplo: estimar didaticamente o efeito de alterar intervalo de teste em uma função instrumentada simples.",
+            "Compare o resultado apenas para entender tendência, não para liberar a função real.",
+            "Depois valide a função em LOPA/SRS, cálculo formal, teste de prova e gestão de mudanças."
+      ],
+      "interpretation": [
+            "Resultado favorável é apenas indicação didática, não comprovação de SIL em campo.",
+            "Atenção quando o PFD ficar próximo de limite de faixa, depender de dado incerto ou envolver elemento final crítico.",
+            "Condição crítica deve bloquear uso prático até revisão formal de segurança funcional."
+      ]
+},
+    "calculadora-slip-motor-inducao.html": {
+      "title": "Complemento técnico — elétrica industrial e acionamentos — Slip Motor Inducao",
+      "intro": "Use este complemento para interpretar cálculos auxiliares de elétrica industrial, 24 Vcc, motores, inversores, barramentos, aterramento e transformadores de corrente. O resultado é orientativo e deve ser validado antes de qualquer aplicação em instalação real.",
+      "assumptions": [
+            "Tensão, corrente, potência, fator de potência, rendimento, frequência, cabo e temperatura devem representar a condição real do circuito.",
+            "Dados de motor, inversor, fonte, TC, capacitor, barramento e proteção devem vir de placa, catálogo ou medição confiável.",
+            "A instalação deve considerar método de montagem, temperatura ambiente, ventilação, agrupamento, harmônicos e regime de carga.",
+            "Circuitos 24 Vcc devem considerar corrente contínua, pico, queda de tensão e seletividade/proteção por ramal."
+      ],
+      "limitations": [
+            "Não substitui projeto elétrico, estudo de curto, seletividade, aterramento, SPDA, NR-10, especificação de painel ou laudo técnico.",
+            "Não valida capacidade de interrupção, arco elétrico, elevação térmica, proteção contra choque, coordenação ou requisitos de concessionária.",
+            "Não use para liberar intervenção elétrica, energização ou alteração de painel sem profissional habilitado e procedimento seguro.",
+            "Circuitos de motores, inversores, TCs e barramentos podem exigir requisitos específicos de fabricante e norma."
+      ],
+      "memory": [
+            "Corrente trifásica depende de potência, tensão, fator de potência e rendimento.",
+            "Queda 24 Vcc depende da corrente, resistência do cabo e comprimento de ida e volta.",
+            "Burden de TC depende da carga conectada e resistência do circuito secundário.",
+            "Aterramento, barramento, capacitor e inversor exigem verificação térmica, proteção e condições de instalação."
+      ],
+      "example": [
+            "Exemplo: verificar se uma fonte 24 Vcc atende cargas de painel e se a queda no ramal mais longo ainda permite operação do dispositivo.",
+            "Depois confira proteção do ramal, corrente de pico, tensão mínima do equipamento e temperatura do painel.",
+            "Para motores e inversores, compare o resultado com placa, manual e proteção existente."
+      ],
+      "interpretation": [
+            "Resultado favorável é pré-verificação, não aprovação de instalação elétrica.",
+            "Atenção quando houver margem baixa, aquecimento, corrente elevada, isolamento ruim ou tensão próxima do limite.",
+            "Condição crítica deve bloquear aplicação até revisão do projeto, proteção, procedimento e profissional habilitado."
+      ]
+},
+    "calculadora-slope-sonda-ph.html": {
+      "title": "Complemento técnico — qualidade, analítica e processo auxiliar — Slope Sonda Ph",
+      "intro": "Use este complemento para interpretar cálculos de qualidade, analítica, limpeza, amostragem e itens auxiliares de processo. O resultado ajuda na triagem, mas precisa ser confirmado com medição, procedimento e condição real do processo.",
+      "assumptions": [
+            "Amostras, leituras, limites, vazões e fatores devem representar a condição real de operação.",
+            "Instrumentos analíticos devem estar limpos, calibrados e compensados conforme procedimento do fabricante.",
+            "Dados de óleo, filtro, CIP, solenoide e processo devem considerar temperatura, concentração, pressão e regime de operação.",
+            "Indicadores de qualidade dependem de amostragem representativa e limites estatísticos definidos corretamente."
+      ],
+      "limitations": [
+            "Não substitui validação analítica, laboratório, procedimento de limpeza, especificação de qualidade ou análise estatística formal.",
+            "Não valida segurança química, compatibilidade de material, sanitização, rastreabilidade ou liberação de lote.",
+            "Não use resultado isolado para liberar produto, água, óleo, CIP ou controle de processo crítico.",
+            "Analítica de processo pode exigir compensação de temperatura, calibração, histórico e verificação com padrão."
+      ],
+      "memory": [
+            "Cp/Cpk dependem da variabilidade do processo e limites de especificação.",
+            "Condutividade, TDS, ORP e slope de pH dependem de sensor, temperatura, solução e calibração.",
+            "Eficiência de filtro e classe de limpeza dependem de contagem/remoção e condição do fluido.",
+            "Tempo de amostragem e lavagem depende de volume, vazão, renovação e dinâmica real do sistema."
+      ],
+      "example": [
+            "Exemplo: avaliar preliminarmente o slope de uma sonda de pH depois de calibração em dois pontos.",
+            "Se o resultado ficar em atenção, repita limpeza, padrões, temperatura e estabilização antes de concluir falha do sensor.",
+            "Para qualidade, valide sempre com amostragem e procedimento aceito pela planta."
+      ],
+      "interpretation": [
+            "Resultado favorável indica coerência preliminar, não liberação de processo ou produto.",
+            "Atenção quando houver sensor lento, amostra instável, limite de especificação próximo ou dados insuficientes.",
+            "Condição crítica deve gerar investigação, recalibração, nova amostragem ou validação de laboratório/procedimento."
+      ]
+},
+    "calculadora-sobressalentes-criticidade.html": {
+      "title": "Complemento técnico — manutenção, confiabilidade e gestão de ativos — Sobressalentes Criticidade",
+      "intro": "Use este complemento para interpretar indicadores de manutenção, confiabilidade, sobressalentes e priorização. A ferramenta apoia análise preliminar, mas não substitui histórico validado, estratégia de manutenção ou decisão formal de gestão de ativos.",
+      "assumptions": [
+            "Os dados de falhas, paradas, produção, reparos, criticidade e estoque devem vir de registros confiáveis de manutenção/operação.",
+            "O período analisado precisa ser representativo; janelas muito curtas podem distorcer MTBF, MTTR, OEE, Pareto e backlog.",
+            "Custos de parada, impacto de segurança, impacto ambiental e criticidade devem ser definidos com critério interno da planta.",
+            "Resultados de priorização dependem da qualidade dos pesos, notas e premissas informadas pelo usuário."
+      ],
+      "limitations": [
+            "Não substitui análise formal de confiabilidade, FMEA completo, RCA, RCM, plano mestre de manutenção ou política de sobressalentes.",
+            "Não valida disponibilidade contratual, SLA, perdas contábeis, risco de segurança ou impacto regulatório.",
+            "Não use uma pontuação isolada para eliminar manutenção, reduzir estoque crítico ou postergar ação de segurança.",
+            "Indicadores devem ser revisados com equipe de manutenção, operação, engenharia e segurança quando envolverem ativos críticos."
+      ],
+      "memory": [
+            "Indicadores como MTBF, MTTR e disponibilidade dependem da relação entre tempo operacional, falhas e tempo de reparo.",
+            "OEE combina disponibilidade, performance e qualidade, e deve ser interpretado junto com causas de perda.",
+            "Pareto e RPN/FMEA priorizam itens, mas não provam causa raiz por si só.",
+            "Ponto de ressuprimento e criticidade de sobressalentes dependem de consumo, lead time, risco e impacto da falta."
+      ],
+      "example": [
+            "Exemplo: usar dados dos últimos 12 meses para identificar os instrumentos que mais geram parada e priorizar manutenção preventiva.",
+            "Preencha falhas, tempos de reparo, impacto e estoque com dados reais do CMMS/ERP quando disponível.",
+            "Depois valide a prioridade com histórico de campo, criticidade do processo e disponibilidade de sobressalentes."
+      ],
+      "interpretation": [
+            "Resultado favorável indica tendência preliminar, não aprovação automática da estratégia de manutenção.",
+            "Atenção quando houver dados incompletos, período curto, alto custo de parada ou ativo crítico sem sobressalente.",
+            "Condição crítica deve virar ação de revisão, RCA, inspeção, compra planejada ou ajuste do plano de manutenção."
+      ]
+},
+    "calculadora-tempo-aceleracao-motor-inercia.html": {
+      "title": "Complemento técnico — elétrica industrial e acionamentos — Tempo Aceleracao Motor Inercia",
+      "intro": "Use este complemento para interpretar cálculos auxiliares de elétrica industrial, 24 Vcc, motores, inversores, barramentos, aterramento e transformadores de corrente. O resultado é orientativo e deve ser validado antes de qualquer aplicação em instalação real.",
+      "assumptions": [
+            "Tensão, corrente, potência, fator de potência, rendimento, frequência, cabo e temperatura devem representar a condição real do circuito.",
+            "Dados de motor, inversor, fonte, TC, capacitor, barramento e proteção devem vir de placa, catálogo ou medição confiável.",
+            "A instalação deve considerar método de montagem, temperatura ambiente, ventilação, agrupamento, harmônicos e regime de carga.",
+            "Circuitos 24 Vcc devem considerar corrente contínua, pico, queda de tensão e seletividade/proteção por ramal."
+      ],
+      "limitations": [
+            "Não substitui projeto elétrico, estudo de curto, seletividade, aterramento, SPDA, NR-10, especificação de painel ou laudo técnico.",
+            "Não valida capacidade de interrupção, arco elétrico, elevação térmica, proteção contra choque, coordenação ou requisitos de concessionária.",
+            "Não use para liberar intervenção elétrica, energização ou alteração de painel sem profissional habilitado e procedimento seguro.",
+            "Circuitos de motores, inversores, TCs e barramentos podem exigir requisitos específicos de fabricante e norma."
+      ],
+      "memory": [
+            "Corrente trifásica depende de potência, tensão, fator de potência e rendimento.",
+            "Queda 24 Vcc depende da corrente, resistência do cabo e comprimento de ida e volta.",
+            "Burden de TC depende da carga conectada e resistência do circuito secundário.",
+            "Aterramento, barramento, capacitor e inversor exigem verificação térmica, proteção e condições de instalação."
+      ],
+      "example": [
+            "Exemplo: verificar se uma fonte 24 Vcc atende cargas de painel e se a queda no ramal mais longo ainda permite operação do dispositivo.",
+            "Depois confira proteção do ramal, corrente de pico, tensão mínima do equipamento e temperatura do painel.",
+            "Para motores e inversores, compare o resultado com placa, manual e proteção existente."
+      ],
+      "interpretation": [
+            "Resultado favorável é pré-verificação, não aprovação de instalação elétrica.",
+            "Atenção quando houver margem baixa, aquecimento, corrente elevada, isolamento ruim ou tensão próxima do limite.",
+            "Condição crítica deve bloquear aplicação até revisão do projeto, proteção, procedimento e profissional habilitado."
+      ]
+},
+    "calculadora-tempo-amostragem-analisador.html": {
+      "title": "Complemento técnico — qualidade, analítica e processo auxiliar — Tempo Amostragem Analisador",
+      "intro": "Use este complemento para interpretar cálculos de qualidade, analítica, limpeza, amostragem e itens auxiliares de processo. O resultado ajuda na triagem, mas precisa ser confirmado com medição, procedimento e condição real do processo.",
+      "assumptions": [
+            "Amostras, leituras, limites, vazões e fatores devem representar a condição real de operação.",
+            "Instrumentos analíticos devem estar limpos, calibrados e compensados conforme procedimento do fabricante.",
+            "Dados de óleo, filtro, CIP, solenoide e processo devem considerar temperatura, concentração, pressão e regime de operação.",
+            "Indicadores de qualidade dependem de amostragem representativa e limites estatísticos definidos corretamente."
+      ],
+      "limitations": [
+            "Não substitui validação analítica, laboratório, procedimento de limpeza, especificação de qualidade ou análise estatística formal.",
+            "Não valida segurança química, compatibilidade de material, sanitização, rastreabilidade ou liberação de lote.",
+            "Não use resultado isolado para liberar produto, água, óleo, CIP ou controle de processo crítico.",
+            "Analítica de processo pode exigir compensação de temperatura, calibração, histórico e verificação com padrão."
+      ],
+      "memory": [
+            "Cp/Cpk dependem da variabilidade do processo e limites de especificação.",
+            "Condutividade, TDS, ORP e slope de pH dependem de sensor, temperatura, solução e calibração.",
+            "Eficiência de filtro e classe de limpeza dependem de contagem/remoção e condição do fluido.",
+            "Tempo de amostragem e lavagem depende de volume, vazão, renovação e dinâmica real do sistema."
+      ],
+      "example": [
+            "Exemplo: avaliar preliminarmente o slope de uma sonda de pH depois de calibração em dois pontos.",
+            "Se o resultado ficar em atenção, repita limpeza, padrões, temperatura e estabilização antes de concluir falha do sensor.",
+            "Para qualidade, valide sempre com amostragem e procedimento aceito pela planta."
+      ],
+      "interpretation": [
+            "Resultado favorável indica coerência preliminar, não liberação de processo ou produto.",
+            "Atenção quando houver sensor lento, amostra instável, limite de especificação próximo ou dados insuficientes.",
+            "Condição crítica deve gerar investigação, recalibração, nova amostragem ou validação de laboratório/procedimento."
+      ]
+},
+    "calculadora-tempo-descarga-capacitor.html": {
+      "title": "Complemento técnico — elétrica industrial e acionamentos — Tempo Descarga Capacitor",
+      "intro": "Use este complemento para interpretar cálculos auxiliares de elétrica industrial, 24 Vcc, motores, inversores, barramentos, aterramento e transformadores de corrente. O resultado é orientativo e deve ser validado antes de qualquer aplicação em instalação real.",
+      "assumptions": [
+            "Tensão, corrente, potência, fator de potência, rendimento, frequência, cabo e temperatura devem representar a condição real do circuito.",
+            "Dados de motor, inversor, fonte, TC, capacitor, barramento e proteção devem vir de placa, catálogo ou medição confiável.",
+            "A instalação deve considerar método de montagem, temperatura ambiente, ventilação, agrupamento, harmônicos e regime de carga.",
+            "Circuitos 24 Vcc devem considerar corrente contínua, pico, queda de tensão e seletividade/proteção por ramal."
+      ],
+      "limitations": [
+            "Não substitui projeto elétrico, estudo de curto, seletividade, aterramento, SPDA, NR-10, especificação de painel ou laudo técnico.",
+            "Não valida capacidade de interrupção, arco elétrico, elevação térmica, proteção contra choque, coordenação ou requisitos de concessionária.",
+            "Não use para liberar intervenção elétrica, energização ou alteração de painel sem profissional habilitado e procedimento seguro.",
+            "Circuitos de motores, inversores, TCs e barramentos podem exigir requisitos específicos de fabricante e norma."
+      ],
+      "memory": [
+            "Corrente trifásica depende de potência, tensão, fator de potência e rendimento.",
+            "Queda 24 Vcc depende da corrente, resistência do cabo e comprimento de ida e volta.",
+            "Burden de TC depende da carga conectada e resistência do circuito secundário.",
+            "Aterramento, barramento, capacitor e inversor exigem verificação térmica, proteção e condições de instalação."
+      ],
+      "example": [
+            "Exemplo: verificar se uma fonte 24 Vcc atende cargas de painel e se a queda no ramal mais longo ainda permite operação do dispositivo.",
+            "Depois confira proteção do ramal, corrente de pico, tensão mínima do equipamento e temperatura do painel.",
+            "Para motores e inversores, compare o resultado com placa, manual e proteção existente."
+      ],
+      "interpretation": [
+            "Resultado favorável é pré-verificação, não aprovação de instalação elétrica.",
+            "Atenção quando houver margem baixa, aquecimento, corrente elevada, isolamento ruim ou tensão próxima do limite.",
+            "Condição crítica deve bloquear aplicação até revisão do projeto, proteção, procedimento e profissional habilitado."
+      ]
+},
+    "calculadora-tensao-correia-transmissao.html": {
+      "title": "Complemento técnico — mecânica auxiliar, transmissão e vibração — Tensao Correia Transmissao",
+      "intro": "Use este complemento para interpretar cálculos auxiliares de montagem, transmissão, vibração e componentes mecânicos. O resultado é referência preliminar e deve ser confrontado com catálogo, condição real de máquina e procedimento de manutenção.",
+      "assumptions": [
+            "Medidas, rotação, torque, massa, geometria, desalinhamento e vibração devem ser coletados com instrumento adequado e unidade correta.",
+            "A máquina deve estar em condição representativa de operação para dados de vibração, balanceamento ou transmissão.",
+            "Catálogos de fabricante podem impor limites próprios para correia, rolamento, acoplamento, parafuso, rosca e eixo.",
+            "A montagem real pode ter folga, desgaste, temperatura, lubrificação, carga dinâmica e condição de base que a ferramenta não conhece."
+      ],
+      "limitations": [
+            "Não substitui análise dinâmica, alinhamento certificado, balanceamento completo, cálculo estrutural ou procedimento de torque do fabricante.",
+            "Não valida fadiga, concentração de tensão, classe de parafuso, lubrificação de rosca, segurança de proteção mecânica ou integridade da máquina.",
+            "Não use valores preliminares para liberar máquina crítica sem medição, inspeção e aceite técnico.",
+            "Condições de alta rotação, alta energia, vibração elevada ou equipamento crítico exigem análise especializada."
+      ],
+      "memory": [
+            "Transmissões por correia relacionam diâmetros/rotações e podem alterar torque disponível.",
+            "Vibração pode ser expressa em pico, pico a pico ou RMS, mas a severidade depende da máquina e frequência.",
+            "Torque de aperto depende de carga desejada, diâmetro, atrito, lubrificação e classe do conjunto.",
+            "Balanceamento, desalinhamento e rolamentos exigem interpretação conjunta com espectro, fase, temperatura e inspeção."
+      ],
+      "example": [
+            "Exemplo: usar cálculo de rotação de polias para estimar nova velocidade antes de trocar conjunto de transmissão.",
+            "Conferir depois tensão de correia, potência transmitida, proteção mecânica e limite do equipamento acionado.",
+            "Em vibração, use o resultado apenas como conversão/triagem e compare com histórico e norma/procedimento aplicável."
+      ],
+      "interpretation": [
+            "Resultado favorável serve como apoio de manutenção ou pré-seleção, não como liberação final de máquina.",
+            "Atenção quando houver vibração, torque, rotação, tensão ou massa próximos de limites de fabricante.",
+            "Condição crítica deve gerar inspeção, parada segura, análise de causa ou validação de engenharia."
+      ]
+},
+    "calculadora-torque-aperto-parafusos.html": {
+      "title": "Complemento técnico — mecânica auxiliar, transmissão e vibração — Torque Aperto Parafusos",
+      "intro": "Use este complemento para interpretar cálculos auxiliares de montagem, transmissão, vibração e componentes mecânicos. O resultado é referência preliminar e deve ser confrontado com catálogo, condição real de máquina e procedimento de manutenção.",
+      "assumptions": [
+            "Medidas, rotação, torque, massa, geometria, desalinhamento e vibração devem ser coletados com instrumento adequado e unidade correta.",
+            "A máquina deve estar em condição representativa de operação para dados de vibração, balanceamento ou transmissão.",
+            "Catálogos de fabricante podem impor limites próprios para correia, rolamento, acoplamento, parafuso, rosca e eixo.",
+            "A montagem real pode ter folga, desgaste, temperatura, lubrificação, carga dinâmica e condição de base que a ferramenta não conhece."
+      ],
+      "limitations": [
+            "Não substitui análise dinâmica, alinhamento certificado, balanceamento completo, cálculo estrutural ou procedimento de torque do fabricante.",
+            "Não valida fadiga, concentração de tensão, classe de parafuso, lubrificação de rosca, segurança de proteção mecânica ou integridade da máquina.",
+            "Não use valores preliminares para liberar máquina crítica sem medição, inspeção e aceite técnico.",
+            "Condições de alta rotação, alta energia, vibração elevada ou equipamento crítico exigem análise especializada."
+      ],
+      "memory": [
+            "Transmissões por correia relacionam diâmetros/rotações e podem alterar torque disponível.",
+            "Vibração pode ser expressa em pico, pico a pico ou RMS, mas a severidade depende da máquina e frequência.",
+            "Torque de aperto depende de carga desejada, diâmetro, atrito, lubrificação e classe do conjunto.",
+            "Balanceamento, desalinhamento e rolamentos exigem interpretação conjunta com espectro, fase, temperatura e inspeção."
+      ],
+      "example": [
+            "Exemplo: usar cálculo de rotação de polias para estimar nova velocidade antes de trocar conjunto de transmissão.",
+            "Conferir depois tensão de correia, potência transmitida, proteção mecânica e limite do equipamento acionado.",
+            "Em vibração, use o resultado apenas como conversão/triagem e compare com histórico e norma/procedimento aplicável."
+      ],
+      "interpretation": [
+            "Resultado favorável serve como apoio de manutenção ou pré-seleção, não como liberação final de máquina.",
+            "Atenção quando houver vibração, torque, rotação, tensão ou massa próximos de limites de fabricante.",
+            "Condição crítica deve gerar inspeção, parada segura, análise de causa ou validação de engenharia."
+      ]
+},
+    "calculadora-torque-potencia-eixo.html": {
+      "title": "Complemento técnico — mecânica auxiliar, transmissão e vibração — Torque Potencia Eixo",
+      "intro": "Use este complemento para interpretar cálculos auxiliares de montagem, transmissão, vibração e componentes mecânicos. O resultado é referência preliminar e deve ser confrontado com catálogo, condição real de máquina e procedimento de manutenção.",
+      "assumptions": [
+            "Medidas, rotação, torque, massa, geometria, desalinhamento e vibração devem ser coletados com instrumento adequado e unidade correta.",
+            "A máquina deve estar em condição representativa de operação para dados de vibração, balanceamento ou transmissão.",
+            "Catálogos de fabricante podem impor limites próprios para correia, rolamento, acoplamento, parafuso, rosca e eixo.",
+            "A montagem real pode ter folga, desgaste, temperatura, lubrificação, carga dinâmica e condição de base que a ferramenta não conhece."
+      ],
+      "limitations": [
+            "Não substitui análise dinâmica, alinhamento certificado, balanceamento completo, cálculo estrutural ou procedimento de torque do fabricante.",
+            "Não valida fadiga, concentração de tensão, classe de parafuso, lubrificação de rosca, segurança de proteção mecânica ou integridade da máquina.",
+            "Não use valores preliminares para liberar máquina crítica sem medição, inspeção e aceite técnico.",
+            "Condições de alta rotação, alta energia, vibração elevada ou equipamento crítico exigem análise especializada."
+      ],
+      "memory": [
+            "Transmissões por correia relacionam diâmetros/rotações e podem alterar torque disponível.",
+            "Vibração pode ser expressa em pico, pico a pico ou RMS, mas a severidade depende da máquina e frequência.",
+            "Torque de aperto depende de carga desejada, diâmetro, atrito, lubrificação e classe do conjunto.",
+            "Balanceamento, desalinhamento e rolamentos exigem interpretação conjunta com espectro, fase, temperatura e inspeção."
+      ],
+      "example": [
+            "Exemplo: usar cálculo de rotação de polias para estimar nova velocidade antes de trocar conjunto de transmissão.",
+            "Conferir depois tensão de correia, potência transmitida, proteção mecânica e limite do equipamento acionado.",
+            "Em vibração, use o resultado apenas como conversão/triagem e compare com histórico e norma/procedimento aplicável."
+      ],
+      "interpretation": [
+            "Resultado favorável serve como apoio de manutenção ou pré-seleção, não como liberação final de máquina.",
+            "Atenção quando houver vibração, torque, rotação, tensão ou massa próximos de limites de fabricante.",
+            "Condição crítica deve gerar inspeção, parada segura, análise de causa ou validação de engenharia."
+      ]
+},
+    "calculadora-velocidade-recomendada-tubulacao.html": {
+      "title": "Complemento técnico — apoio geral, conversões e documentação — Velocidade Recomendada Tubulacao",
+      "intro": "Use este complemento para interpretar conversões, seleção preliminar, documentação técnica e cálculos auxiliares. Essas ferramentas ajudam a padronizar informações, mas não substituem especificação, catálogo, projeto ou validação técnica.",
+      "assumptions": [
+            "Unidades, fatores, dimensões, padrões e dados de entrada devem ser conferidos antes de usar o resultado.",
+            "Conversões dependem da grandeza correta; não misture unidades absolutas, relativas, normalizadas ou compensadas sem critério.",
+            "Dados de folha de dados devem refletir o serviço real, condição de processo, material, faixa, sinal e instalação.",
+            "Cálculos auxiliares devem ser usados junto com catálogo, norma e procedimento aplicável."
+      ],
+      "limitations": [
+            "Não substitui folha de dados aprovada, memorial de cálculo, especificação de compra, projeto mecânico/elétrico ou análise de segurança.",
+            "Não valida compatibilidade de material, pressão, temperatura, classe de flange, proteção IP/NEMA ou instalação real.",
+            "Não use conversão isolada para liberar compra, montagem, comissionamento ou modificação de processo.",
+            "Quando houver equipamento crítico, valide com engenharia, fabricante ou documento aprovado."
+      ],
+      "memory": [
+            "Conversões apenas mudam representação; não melhoram a qualidade do dado original.",
+            "DN/NPS, schedule, flanges e proteção IP/NEMA dependem de padrão, classe, material e aplicação.",
+            "Folha de dados deve reunir identificação, serviço, processo, sinal, alimentação, material, montagem e requisitos ambientais.",
+            "Velocidade, potência e dilatação são triagens que dependem de fluido, temperatura, material e condição de instalação."
+      ],
+      "example": [
+            "Exemplo: converter unidades de pressão antes de preencher uma folha de dados de transmissor.",
+            "Depois confira se o valor é manométrico, absoluto, diferencial ou normalizado, conforme o serviço.",
+            "Finalize comparando o resultado com documento de projeto, catálogo e dados reais de processo."
+      ],
+      "interpretation": [
+            "Resultado favorável indica conversão ou preenchimento coerente, não validação técnica completa.",
+            "Atenção quando a aplicação envolver pressão, temperatura, fluido perigoso, flange, proteção ambiental ou compra de equipamento.",
+            "Condição crítica exige revisão da unidade, padrão, documento de referência e aprovação técnica."
+      ]
+},
+    "calculadora-vibracao-rms-pico-pico-a-pico.html": {
+      "title": "Complemento técnico — mecânica auxiliar, transmissão e vibração — Vibracao Rms Pico Pico A Pico",
+      "intro": "Use este complemento para interpretar cálculos auxiliares de montagem, transmissão, vibração e componentes mecânicos. O resultado é referência preliminar e deve ser confrontado com catálogo, condição real de máquina e procedimento de manutenção.",
+      "assumptions": [
+            "Medidas, rotação, torque, massa, geometria, desalinhamento e vibração devem ser coletados com instrumento adequado e unidade correta.",
+            "A máquina deve estar em condição representativa de operação para dados de vibração, balanceamento ou transmissão.",
+            "Catálogos de fabricante podem impor limites próprios para correia, rolamento, acoplamento, parafuso, rosca e eixo.",
+            "A montagem real pode ter folga, desgaste, temperatura, lubrificação, carga dinâmica e condição de base que a ferramenta não conhece."
+      ],
+      "limitations": [
+            "Não substitui análise dinâmica, alinhamento certificado, balanceamento completo, cálculo estrutural ou procedimento de torque do fabricante.",
+            "Não valida fadiga, concentração de tensão, classe de parafuso, lubrificação de rosca, segurança de proteção mecânica ou integridade da máquina.",
+            "Não use valores preliminares para liberar máquina crítica sem medição, inspeção e aceite técnico.",
+            "Condições de alta rotação, alta energia, vibração elevada ou equipamento crítico exigem análise especializada."
+      ],
+      "memory": [
+            "Transmissões por correia relacionam diâmetros/rotações e podem alterar torque disponível.",
+            "Vibração pode ser expressa em pico, pico a pico ou RMS, mas a severidade depende da máquina e frequência.",
+            "Torque de aperto depende de carga desejada, diâmetro, atrito, lubrificação e classe do conjunto.",
+            "Balanceamento, desalinhamento e rolamentos exigem interpretação conjunta com espectro, fase, temperatura e inspeção."
+      ],
+      "example": [
+            "Exemplo: usar cálculo de rotação de polias para estimar nova velocidade antes de trocar conjunto de transmissão.",
+            "Conferir depois tensão de correia, potência transmitida, proteção mecânica e limite do equipamento acionado.",
+            "Em vibração, use o resultado apenas como conversão/triagem e compare com histórico e norma/procedimento aplicável."
+      ],
+      "interpretation": [
+            "Resultado favorável serve como apoio de manutenção ou pré-seleção, não como liberação final de máquina.",
+            "Atenção quando houver vibração, torque, rotação, tensão ou massa próximos de limites de fabricante.",
+            "Condição crítica deve gerar inspeção, parada segura, análise de causa ou validação de engenharia."
+      ]
+},
+    "calculadora-vida-l10-rolamento.html": {
+      "title": "Complemento técnico — manutenção, confiabilidade e gestão de ativos — Vida L10 Rolamento",
+      "intro": "Use este complemento para interpretar indicadores de manutenção, confiabilidade, sobressalentes e priorização. A ferramenta apoia análise preliminar, mas não substitui histórico validado, estratégia de manutenção ou decisão formal de gestão de ativos.",
+      "assumptions": [
+            "Os dados de falhas, paradas, produção, reparos, criticidade e estoque devem vir de registros confiáveis de manutenção/operação.",
+            "O período analisado precisa ser representativo; janelas muito curtas podem distorcer MTBF, MTTR, OEE, Pareto e backlog.",
+            "Custos de parada, impacto de segurança, impacto ambiental e criticidade devem ser definidos com critério interno da planta.",
+            "Resultados de priorização dependem da qualidade dos pesos, notas e premissas informadas pelo usuário."
+      ],
+      "limitations": [
+            "Não substitui análise formal de confiabilidade, FMEA completo, RCA, RCM, plano mestre de manutenção ou política de sobressalentes.",
+            "Não valida disponibilidade contratual, SLA, perdas contábeis, risco de segurança ou impacto regulatório.",
+            "Não use uma pontuação isolada para eliminar manutenção, reduzir estoque crítico ou postergar ação de segurança.",
+            "Indicadores devem ser revisados com equipe de manutenção, operação, engenharia e segurança quando envolverem ativos críticos."
+      ],
+      "memory": [
+            "Indicadores como MTBF, MTTR e disponibilidade dependem da relação entre tempo operacional, falhas e tempo de reparo.",
+            "OEE combina disponibilidade, performance e qualidade, e deve ser interpretado junto com causas de perda.",
+            "Pareto e RPN/FMEA priorizam itens, mas não provam causa raiz por si só.",
+            "Ponto de ressuprimento e criticidade de sobressalentes dependem de consumo, lead time, risco e impacto da falta."
+      ],
+      "example": [
+            "Exemplo: usar dados dos últimos 12 meses para identificar os instrumentos que mais geram parada e priorizar manutenção preventiva.",
+            "Preencha falhas, tempos de reparo, impacto e estoque com dados reais do CMMS/ERP quando disponível.",
+            "Depois valide a prioridade com histórico de campo, criticidade do processo e disponibilidade de sobressalentes."
+      ],
+      "interpretation": [
+            "Resultado favorável indica tendência preliminar, não aprovação automática da estratégia de manutenção.",
+            "Atenção quando houver dados incompletos, período curto, alto custo de parada ou ativo crítico sem sobressalente.",
+            "Condição crítica deve virar ação de revisão, RCA, inspeção, compra planejada ou ajuste do plano de manutenção."
+      ]
+},
+    "checklist-calibracao-analisadores-processo.html": {
+      "title": "Complemento técnico — checklist industrial — Calibracao Analisadores Processo",
+      "intro": "Use o checklist como apoio de campo e registro preliminar. Ele ajuda a não esquecer itens importantes, mas não substitui procedimento aprovado, análise de risco, inspeção formal ou liberação de serviço.",
+      "assumptions": [
+            "Os itens marcados devem ser conferidos fisicamente no equipamento, painel, instrumento, máquina ou instalação real.",
+            "O responsável deve usar procedimento interno, permissões de trabalho e requisitos da planta quando aplicável.",
+            "Pendências críticas precisam ser tratadas antes de liberar operação, partida, comissionamento ou manutenção.",
+            "Fotos, evidências, certificados, relatórios e assinaturas podem ser necessários fora da ferramenta."
+      ],
+      "limitations": [
+            "Não substitui APR/PT, laudo, inspeção normativa, FAT/SAT formal, comissionamento documentado ou responsabilidade técnica.",
+            "Não valida automaticamente adequação a NR, IEC, ISA, ABNT, fabricante ou procedimento interno.",
+            "Não use percentual alto de conclusão como liberação se existir pendência crítica marcada.",
+            "Equipamentos energizados, máquinas, área classificada, bombas e instrumentos críticos exigem procedimento e bloqueio adequados."
+      ],
+      "memory": [
+            "O status do checklist depende da quantidade de itens concluídos e da presença de pendências críticas.",
+            "Itens críticos devem ter peso maior que itens administrativos ou de acabamento.",
+            "Checklist é controle operacional; a evidência de execução deve ser arquivada conforme rotina da empresa.",
+            "A liberação final deve considerar segurança, processo, qualidade, documentação e aceite das áreas envolvidas."
+      ],
+      "example": [
+            "Exemplo: antes de liberar um teste de loop, marcar alimentação, aterramento, escala, TAG, range, sinal, atuação no CLP/DCS e retorno ao operador.",
+            "Se um item crítico falhar, registre a pendência e não trate o checklist como concluído.",
+            "Depois anexe evidências no sistema da empresa ou relatório de comissionamento."
+      ],
+      "interpretation": [
+            "Status favorável significa que os itens informados foram marcados como atendidos, não que a instalação está automaticamente liberada.",
+            "Atenção quando houver pendências não críticas, documentação incompleta ou itens que dependem de terceiros.",
+            "Pendência crítica deve bloquear liberação até correção, evidência e aceite técnico."
+      ]
+},
+    "checklist-fat-sat-instrumentacao.html": {
+      "title": "Complemento técnico — checklist industrial — Fat Sat Instrumentacao",
+      "intro": "Use o checklist como apoio de campo e registro preliminar. Ele ajuda a não esquecer itens importantes, mas não substitui procedimento aprovado, análise de risco, inspeção formal ou liberação de serviço.",
+      "assumptions": [
+            "Os itens marcados devem ser conferidos fisicamente no equipamento, painel, instrumento, máquina ou instalação real.",
+            "O responsável deve usar procedimento interno, permissões de trabalho e requisitos da planta quando aplicável.",
+            "Pendências críticas precisam ser tratadas antes de liberar operação, partida, comissionamento ou manutenção.",
+            "Fotos, evidências, certificados, relatórios e assinaturas podem ser necessários fora da ferramenta."
+      ],
+      "limitations": [
+            "Não substitui APR/PT, laudo, inspeção normativa, FAT/SAT formal, comissionamento documentado ou responsabilidade técnica.",
+            "Não valida automaticamente adequação a NR, IEC, ISA, ABNT, fabricante ou procedimento interno.",
+            "Não use percentual alto de conclusão como liberação se existir pendência crítica marcada.",
+            "Equipamentos energizados, máquinas, área classificada, bombas e instrumentos críticos exigem procedimento e bloqueio adequados."
+      ],
+      "memory": [
+            "O status do checklist depende da quantidade de itens concluídos e da presença de pendências críticas.",
+            "Itens críticos devem ter peso maior que itens administrativos ou de acabamento.",
+            "Checklist é controle operacional; a evidência de execução deve ser arquivada conforme rotina da empresa.",
+            "A liberação final deve considerar segurança, processo, qualidade, documentação e aceite das áreas envolvidas."
+      ],
+      "example": [
+            "Exemplo: antes de liberar um teste de loop, marcar alimentação, aterramento, escala, TAG, range, sinal, atuação no CLP/DCS e retorno ao operador.",
+            "Se um item crítico falhar, registre a pendência e não trate o checklist como concluído.",
+            "Depois anexe evidências no sistema da empresa ou relatório de comissionamento."
+      ],
+      "interpretation": [
+            "Status favorável significa que os itens informados foram marcados como atendidos, não que a instalação está automaticamente liberada.",
+            "Atenção quando houver pendências não críticas, documentação incompleta ou itens que dependem de terceiros.",
+            "Pendência crítica deve bloquear liberação até correção, evidência e aceite técnico."
+      ]
+},
+    "checklist-inspecao-bomba-centrifuga.html": {
+      "title": "Complemento técnico — checklist industrial — Inspecao Bomba Centrifuga",
+      "intro": "Use o checklist como apoio de campo e registro preliminar. Ele ajuda a não esquecer itens importantes, mas não substitui procedimento aprovado, análise de risco, inspeção formal ou liberação de serviço.",
+      "assumptions": [
+            "Os itens marcados devem ser conferidos fisicamente no equipamento, painel, instrumento, máquina ou instalação real.",
+            "O responsável deve usar procedimento interno, permissões de trabalho e requisitos da planta quando aplicável.",
+            "Pendências críticas precisam ser tratadas antes de liberar operação, partida, comissionamento ou manutenção.",
+            "Fotos, evidências, certificados, relatórios e assinaturas podem ser necessários fora da ferramenta."
+      ],
+      "limitations": [
+            "Não substitui APR/PT, laudo, inspeção normativa, FAT/SAT formal, comissionamento documentado ou responsabilidade técnica.",
+            "Não valida automaticamente adequação a NR, IEC, ISA, ABNT, fabricante ou procedimento interno.",
+            "Não use percentual alto de conclusão como liberação se existir pendência crítica marcada.",
+            "Equipamentos energizados, máquinas, área classificada, bombas e instrumentos críticos exigem procedimento e bloqueio adequados."
+      ],
+      "memory": [
+            "O status do checklist depende da quantidade de itens concluídos e da presença de pendências críticas.",
+            "Itens críticos devem ter peso maior que itens administrativos ou de acabamento.",
+            "Checklist é controle operacional; a evidência de execução deve ser arquivada conforme rotina da empresa.",
+            "A liberação final deve considerar segurança, processo, qualidade, documentação e aceite das áreas envolvidas."
+      ],
+      "example": [
+            "Exemplo: antes de liberar um teste de loop, marcar alimentação, aterramento, escala, TAG, range, sinal, atuação no CLP/DCS e retorno ao operador.",
+            "Se um item crítico falhar, registre a pendência e não trate o checklist como concluído.",
+            "Depois anexe evidências no sistema da empresa ou relatório de comissionamento."
+      ],
+      "interpretation": [
+            "Status favorável significa que os itens informados foram marcados como atendidos, não que a instalação está automaticamente liberada.",
+            "Atenção quando houver pendências não críticas, documentação incompleta ou itens que dependem de terceiros.",
+            "Pendência crítica deve bloquear liberação até correção, evidência e aceite técnico."
+      ]
+},
+    "checklist-inspecao-instrumentos-area-classificada.html": {
+      "title": "Complemento técnico — checklist industrial — Inspecao Instrumentos Area Classificada",
+      "intro": "Use o checklist como apoio de campo e registro preliminar. Ele ajuda a não esquecer itens importantes, mas não substitui procedimento aprovado, análise de risco, inspeção formal ou liberação de serviço.",
+      "assumptions": [
+            "Os itens marcados devem ser conferidos fisicamente no equipamento, painel, instrumento, máquina ou instalação real.",
+            "O responsável deve usar procedimento interno, permissões de trabalho e requisitos da planta quando aplicável.",
+            "Pendências críticas precisam ser tratadas antes de liberar operação, partida, comissionamento ou manutenção.",
+            "Fotos, evidências, certificados, relatórios e assinaturas podem ser necessários fora da ferramenta."
+      ],
+      "limitations": [
+            "Não substitui APR/PT, laudo, inspeção normativa, FAT/SAT formal, comissionamento documentado ou responsabilidade técnica.",
+            "Não valida automaticamente adequação a NR, IEC, ISA, ABNT, fabricante ou procedimento interno.",
+            "Não use percentual alto de conclusão como liberação se existir pendência crítica marcada.",
+            "Equipamentos energizados, máquinas, área classificada, bombas e instrumentos críticos exigem procedimento e bloqueio adequados."
+      ],
+      "memory": [
+            "O status do checklist depende da quantidade de itens concluídos e da presença de pendências críticas.",
+            "Itens críticos devem ter peso maior que itens administrativos ou de acabamento.",
+            "Checklist é controle operacional; a evidência de execução deve ser arquivada conforme rotina da empresa.",
+            "A liberação final deve considerar segurança, processo, qualidade, documentação e aceite das áreas envolvidas."
+      ],
+      "example": [
+            "Exemplo: antes de liberar um teste de loop, marcar alimentação, aterramento, escala, TAG, range, sinal, atuação no CLP/DCS e retorno ao operador.",
+            "Se um item crítico falhar, registre a pendência e não trate o checklist como concluído.",
+            "Depois anexe evidências no sistema da empresa ou relatório de comissionamento."
+      ],
+      "interpretation": [
+            "Status favorável significa que os itens informados foram marcados como atendidos, não que a instalação está automaticamente liberada.",
+            "Atenção quando houver pendências não críticas, documentação incompleta ou itens que dependem de terceiros.",
+            "Pendência crítica deve bloquear liberação até correção, evidência e aceite técnico."
+      ]
+},
+    "checklist-manutencao-preventiva-instrumentos.html": {
+      "title": "Complemento técnico — checklist industrial — Manutencao Preventiva Instrumentos",
+      "intro": "Use o checklist como apoio de campo e registro preliminar. Ele ajuda a não esquecer itens importantes, mas não substitui procedimento aprovado, análise de risco, inspeção formal ou liberação de serviço.",
+      "assumptions": [
+            "Os itens marcados devem ser conferidos fisicamente no equipamento, painel, instrumento, máquina ou instalação real.",
+            "O responsável deve usar procedimento interno, permissões de trabalho e requisitos da planta quando aplicável.",
+            "Pendências críticas precisam ser tratadas antes de liberar operação, partida, comissionamento ou manutenção.",
+            "Fotos, evidências, certificados, relatórios e assinaturas podem ser necessários fora da ferramenta."
+      ],
+      "limitations": [
+            "Não substitui APR/PT, laudo, inspeção normativa, FAT/SAT formal, comissionamento documentado ou responsabilidade técnica.",
+            "Não valida automaticamente adequação a NR, IEC, ISA, ABNT, fabricante ou procedimento interno.",
+            "Não use percentual alto de conclusão como liberação se existir pendência crítica marcada.",
+            "Equipamentos energizados, máquinas, área classificada, bombas e instrumentos críticos exigem procedimento e bloqueio adequados."
+      ],
+      "memory": [
+            "O status do checklist depende da quantidade de itens concluídos e da presença de pendências críticas.",
+            "Itens críticos devem ter peso maior que itens administrativos ou de acabamento.",
+            "Checklist é controle operacional; a evidência de execução deve ser arquivada conforme rotina da empresa.",
+            "A liberação final deve considerar segurança, processo, qualidade, documentação e aceite das áreas envolvidas."
+      ],
+      "example": [
+            "Exemplo: antes de liberar um teste de loop, marcar alimentação, aterramento, escala, TAG, range, sinal, atuação no CLP/DCS e retorno ao operador.",
+            "Se um item crítico falhar, registre a pendência e não trate o checklist como concluído.",
+            "Depois anexe evidências no sistema da empresa ou relatório de comissionamento."
+      ],
+      "interpretation": [
+            "Status favorável significa que os itens informados foram marcados como atendidos, não que a instalação está automaticamente liberada.",
+            "Atenção quando houver pendências não críticas, documentação incompleta ou itens que dependem de terceiros.",
+            "Pendência crítica deve bloquear liberação até correção, evidência e aceite técnico."
+      ]
+},
+    "checklist-montagem-instrumentos-campo.html": {
+      "title": "Complemento técnico — checklist industrial — Montagem Instrumentos Campo",
+      "intro": "Use o checklist como apoio de campo e registro preliminar. Ele ajuda a não esquecer itens importantes, mas não substitui procedimento aprovado, análise de risco, inspeção formal ou liberação de serviço.",
+      "assumptions": [
+            "Os itens marcados devem ser conferidos fisicamente no equipamento, painel, instrumento, máquina ou instalação real.",
+            "O responsável deve usar procedimento interno, permissões de trabalho e requisitos da planta quando aplicável.",
+            "Pendências críticas precisam ser tratadas antes de liberar operação, partida, comissionamento ou manutenção.",
+            "Fotos, evidências, certificados, relatórios e assinaturas podem ser necessários fora da ferramenta."
+      ],
+      "limitations": [
+            "Não substitui APR/PT, laudo, inspeção normativa, FAT/SAT formal, comissionamento documentado ou responsabilidade técnica.",
+            "Não valida automaticamente adequação a NR, IEC, ISA, ABNT, fabricante ou procedimento interno.",
+            "Não use percentual alto de conclusão como liberação se existir pendência crítica marcada.",
+            "Equipamentos energizados, máquinas, área classificada, bombas e instrumentos críticos exigem procedimento e bloqueio adequados."
+      ],
+      "memory": [
+            "O status do checklist depende da quantidade de itens concluídos e da presença de pendências críticas.",
+            "Itens críticos devem ter peso maior que itens administrativos ou de acabamento.",
+            "Checklist é controle operacional; a evidência de execução deve ser arquivada conforme rotina da empresa.",
+            "A liberação final deve considerar segurança, processo, qualidade, documentação e aceite das áreas envolvidas."
+      ],
+      "example": [
+            "Exemplo: antes de liberar um teste de loop, marcar alimentação, aterramento, escala, TAG, range, sinal, atuação no CLP/DCS e retorno ao operador.",
+            "Se um item crítico falhar, registre a pendência e não trate o checklist como concluído.",
+            "Depois anexe evidências no sistema da empresa ou relatório de comissionamento."
+      ],
+      "interpretation": [
+            "Status favorável significa que os itens informados foram marcados como atendidos, não que a instalação está automaticamente liberada.",
+            "Atenção quando houver pendências não críticas, documentação incompleta ou itens que dependem de terceiros.",
+            "Pendência crítica deve bloquear liberação até correção, evidência e aceite técnico."
+      ]
+},
+    "checklist-nr12.html": {
+      "title": "Complemento técnico — checklist industrial — Nr-12",
+      "intro": "Use o checklist como apoio de campo e registro preliminar. Ele ajuda a não esquecer itens importantes, mas não substitui procedimento aprovado, análise de risco, inspeção formal ou liberação de serviço.",
+      "assumptions": [
+            "Os itens marcados devem ser conferidos fisicamente no equipamento, painel, instrumento, máquina ou instalação real.",
+            "O responsável deve usar procedimento interno, permissões de trabalho e requisitos da planta quando aplicável.",
+            "Pendências críticas precisam ser tratadas antes de liberar operação, partida, comissionamento ou manutenção.",
+            "Fotos, evidências, certificados, relatórios e assinaturas podem ser necessários fora da ferramenta."
+      ],
+      "limitations": [
+            "Não substitui APR/PT, laudo, inspeção normativa, FAT/SAT formal, comissionamento documentado ou responsabilidade técnica.",
+            "Não valida automaticamente adequação a NR, IEC, ISA, ABNT, fabricante ou procedimento interno.",
+            "Não use percentual alto de conclusão como liberação se existir pendência crítica marcada.",
+            "Equipamentos energizados, máquinas, área classificada, bombas e instrumentos críticos exigem procedimento e bloqueio adequados."
+      ],
+      "memory": [
+            "O status do checklist depende da quantidade de itens concluídos e da presença de pendências críticas.",
+            "Itens críticos devem ter peso maior que itens administrativos ou de acabamento.",
+            "Checklist é controle operacional; a evidência de execução deve ser arquivada conforme rotina da empresa.",
+            "A liberação final deve considerar segurança, processo, qualidade, documentação e aceite das áreas envolvidas."
+      ],
+      "example": [
+            "Exemplo: antes de liberar um teste de loop, marcar alimentação, aterramento, escala, TAG, range, sinal, atuação no CLP/DCS e retorno ao operador.",
+            "Se um item crítico falhar, registre a pendência e não trate o checklist como concluído.",
+            "Depois anexe evidências no sistema da empresa ou relatório de comissionamento."
+      ],
+      "interpretation": [
+            "Status favorável significa que os itens informados foram marcados como atendidos, não que a instalação está automaticamente liberada.",
+            "Atenção quando houver pendências não críticas, documentação incompleta ou itens que dependem de terceiros.",
+            "Pendência crítica deve bloquear liberação até correção, evidência e aceite técnico."
+      ]
+},
+    "checklist-partida-motor-inversor.html": {
+      "title": "Complemento técnico — checklist industrial — Partida Motor Inversor",
+      "intro": "Use o checklist como apoio de campo e registro preliminar. Ele ajuda a não esquecer itens importantes, mas não substitui procedimento aprovado, análise de risco, inspeção formal ou liberação de serviço.",
+      "assumptions": [
+            "Os itens marcados devem ser conferidos fisicamente no equipamento, painel, instrumento, máquina ou instalação real.",
+            "O responsável deve usar procedimento interno, permissões de trabalho e requisitos da planta quando aplicável.",
+            "Pendências críticas precisam ser tratadas antes de liberar operação, partida, comissionamento ou manutenção.",
+            "Fotos, evidências, certificados, relatórios e assinaturas podem ser necessários fora da ferramenta."
+      ],
+      "limitations": [
+            "Não substitui APR/PT, laudo, inspeção normativa, FAT/SAT formal, comissionamento documentado ou responsabilidade técnica.",
+            "Não valida automaticamente adequação a NR, IEC, ISA, ABNT, fabricante ou procedimento interno.",
+            "Não use percentual alto de conclusão como liberação se existir pendência crítica marcada.",
+            "Equipamentos energizados, máquinas, área classificada, bombas e instrumentos críticos exigem procedimento e bloqueio adequados."
+      ],
+      "memory": [
+            "O status do checklist depende da quantidade de itens concluídos e da presença de pendências críticas.",
+            "Itens críticos devem ter peso maior que itens administrativos ou de acabamento.",
+            "Checklist é controle operacional; a evidência de execução deve ser arquivada conforme rotina da empresa.",
+            "A liberação final deve considerar segurança, processo, qualidade, documentação e aceite das áreas envolvidas."
+      ],
+      "example": [
+            "Exemplo: antes de liberar um teste de loop, marcar alimentação, aterramento, escala, TAG, range, sinal, atuação no CLP/DCS e retorno ao operador.",
+            "Se um item crítico falhar, registre a pendência e não trate o checklist como concluído.",
+            "Depois anexe evidências no sistema da empresa ou relatório de comissionamento."
+      ],
+      "interpretation": [
+            "Status favorável significa que os itens informados foram marcados como atendidos, não que a instalação está automaticamente liberada.",
+            "Atenção quando houver pendências não críticas, documentação incompleta ou itens que dependem de terceiros.",
+            "Pendência crítica deve bloquear liberação até correção, evidência e aceite técnico."
+      ]
+},
+    "checklist-teste-de-loop.html": {
+      "title": "Complemento técnico — checklist industrial — Teste De Loop",
+      "intro": "Use o checklist como apoio de campo e registro preliminar. Ele ajuda a não esquecer itens importantes, mas não substitui procedimento aprovado, análise de risco, inspeção formal ou liberação de serviço.",
+      "assumptions": [
+            "Os itens marcados devem ser conferidos fisicamente no equipamento, painel, instrumento, máquina ou instalação real.",
+            "O responsável deve usar procedimento interno, permissões de trabalho e requisitos da planta quando aplicável.",
+            "Pendências críticas precisam ser tratadas antes de liberar operação, partida, comissionamento ou manutenção.",
+            "Fotos, evidências, certificados, relatórios e assinaturas podem ser necessários fora da ferramenta."
+      ],
+      "limitations": [
+            "Não substitui APR/PT, laudo, inspeção normativa, FAT/SAT formal, comissionamento documentado ou responsabilidade técnica.",
+            "Não valida automaticamente adequação a NR, IEC, ISA, ABNT, fabricante ou procedimento interno.",
+            "Não use percentual alto de conclusão como liberação se existir pendência crítica marcada.",
+            "Equipamentos energizados, máquinas, área classificada, bombas e instrumentos críticos exigem procedimento e bloqueio adequados."
+      ],
+      "memory": [
+            "O status do checklist depende da quantidade de itens concluídos e da presença de pendências críticas.",
+            "Itens críticos devem ter peso maior que itens administrativos ou de acabamento.",
+            "Checklist é controle operacional; a evidência de execução deve ser arquivada conforme rotina da empresa.",
+            "A liberação final deve considerar segurança, processo, qualidade, documentação e aceite das áreas envolvidas."
+      ],
+      "example": [
+            "Exemplo: antes de liberar um teste de loop, marcar alimentação, aterramento, escala, TAG, range, sinal, atuação no CLP/DCS e retorno ao operador.",
+            "Se um item crítico falhar, registre a pendência e não trate o checklist como concluído.",
+            "Depois anexe evidências no sistema da empresa ou relatório de comissionamento."
+      ],
+      "interpretation": [
+            "Status favorável significa que os itens informados foram marcados como atendidos, não que a instalação está automaticamente liberada.",
+            "Atenção quando houver pendências não críticas, documentação incompleta ou itens que dependem de terceiros.",
+            "Pendência crítica deve bloquear liberação até correção, evidência e aceite técnico."
+      ]
+},
+    "conversor-grau-protecao-ip-nema.html": {
+      "title": "Complemento técnico — apoio geral, conversões e documentação — Grau Protecao Ip Nema",
+      "intro": "Use este complemento para interpretar conversões, seleção preliminar, documentação técnica e cálculos auxiliares. Essas ferramentas ajudam a padronizar informações, mas não substituem especificação, catálogo, projeto ou validação técnica.",
+      "assumptions": [
+            "Unidades, fatores, dimensões, padrões e dados de entrada devem ser conferidos antes de usar o resultado.",
+            "Conversões dependem da grandeza correta; não misture unidades absolutas, relativas, normalizadas ou compensadas sem critério.",
+            "Dados de folha de dados devem refletir o serviço real, condição de processo, material, faixa, sinal e instalação.",
+            "Cálculos auxiliares devem ser usados junto com catálogo, norma e procedimento aplicável."
+      ],
+      "limitations": [
+            "Não substitui folha de dados aprovada, memorial de cálculo, especificação de compra, projeto mecânico/elétrico ou análise de segurança.",
+            "Não valida compatibilidade de material, pressão, temperatura, classe de flange, proteção IP/NEMA ou instalação real.",
+            "Não use conversão isolada para liberar compra, montagem, comissionamento ou modificação de processo.",
+            "Quando houver equipamento crítico, valide com engenharia, fabricante ou documento aprovado."
+      ],
+      "memory": [
+            "Conversões apenas mudam representação; não melhoram a qualidade do dado original.",
+            "DN/NPS, schedule, flanges e proteção IP/NEMA dependem de padrão, classe, material e aplicação.",
+            "Folha de dados deve reunir identificação, serviço, processo, sinal, alimentação, material, montagem e requisitos ambientais.",
+            "Velocidade, potência e dilatação são triagens que dependem de fluido, temperatura, material e condição de instalação."
+      ],
+      "example": [
+            "Exemplo: converter unidades de pressão antes de preencher uma folha de dados de transmissor.",
+            "Depois confira se o valor é manométrico, absoluto, diferencial ou normalizado, conforme o serviço.",
+            "Finalize comparando o resultado com documento de projeto, catálogo e dados reais de processo."
+      ],
+      "interpretation": [
+            "Resultado favorável indica conversão ou preenchimento coerente, não validação técnica completa.",
+            "Atenção quando a aplicação envolver pressão, temperatura, fluido perigoso, flange, proteção ambiental ou compra de equipamento.",
+            "Condição crítica exige revisão da unidade, padrão, documento de referência e aprovação técnica."
+      ]
+},
+    "conversor-unidades-industriais.html": {
+      "title": "Complemento técnico — apoio geral, conversões e documentação — Unidades Industriais",
+      "intro": "Use este complemento para interpretar conversões, seleção preliminar, documentação técnica e cálculos auxiliares. Essas ferramentas ajudam a padronizar informações, mas não substituem especificação, catálogo, projeto ou validação técnica.",
+      "assumptions": [
+            "Unidades, fatores, dimensões, padrões e dados de entrada devem ser conferidos antes de usar o resultado.",
+            "Conversões dependem da grandeza correta; não misture unidades absolutas, relativas, normalizadas ou compensadas sem critério.",
+            "Dados de folha de dados devem refletir o serviço real, condição de processo, material, faixa, sinal e instalação.",
+            "Cálculos auxiliares devem ser usados junto com catálogo, norma e procedimento aplicável."
+      ],
+      "limitations": [
+            "Não substitui folha de dados aprovada, memorial de cálculo, especificação de compra, projeto mecânico/elétrico ou análise de segurança.",
+            "Não valida compatibilidade de material, pressão, temperatura, classe de flange, proteção IP/NEMA ou instalação real.",
+            "Não use conversão isolada para liberar compra, montagem, comissionamento ou modificação de processo.",
+            "Quando houver equipamento crítico, valide com engenharia, fabricante ou documento aprovado."
+      ],
+      "memory": [
+            "Conversões apenas mudam representação; não melhoram a qualidade do dado original.",
+            "DN/NPS, schedule, flanges e proteção IP/NEMA dependem de padrão, classe, material e aplicação.",
+            "Folha de dados deve reunir identificação, serviço, processo, sinal, alimentação, material, montagem e requisitos ambientais.",
+            "Velocidade, potência e dilatação são triagens que dependem de fluido, temperatura, material e condição de instalação."
+      ],
+      "example": [
+            "Exemplo: converter unidades de pressão antes de preencher uma folha de dados de transmissor.",
+            "Depois confira se o valor é manométrico, absoluto, diferencial ou normalizado, conforme o serviço.",
+            "Finalize comparando o resultado com documento de projeto, catálogo e dados reais de processo."
+      ],
+      "interpretation": [
+            "Resultado favorável indica conversão ou preenchimento coerente, não validação técnica completa.",
+            "Atenção quando a aplicação envolver pressão, temperatura, fluido perigoso, flange, proteção ambiental ou compra de equipamento.",
+            "Condição crítica exige revisão da unidade, padrão, documento de referência e aprovação técnica."
+      ]
+},
+    "gerador-folha-dados-instrumento.html": {
+      "title": "Complemento técnico — apoio geral, conversões e documentação — Folha Dados Instrumento",
+      "intro": "Use este complemento para interpretar conversões, seleção preliminar, documentação técnica e cálculos auxiliares. Essas ferramentas ajudam a padronizar informações, mas não substituem especificação, catálogo, projeto ou validação técnica.",
+      "assumptions": [
+            "Unidades, fatores, dimensões, padrões e dados de entrada devem ser conferidos antes de usar o resultado.",
+            "Conversões dependem da grandeza correta; não misture unidades absolutas, relativas, normalizadas ou compensadas sem critério.",
+            "Dados de folha de dados devem refletir o serviço real, condição de processo, material, faixa, sinal e instalação.",
+            "Cálculos auxiliares devem ser usados junto com catálogo, norma e procedimento aplicável."
+      ],
+      "limitations": [
+            "Não substitui folha de dados aprovada, memorial de cálculo, especificação de compra, projeto mecânico/elétrico ou análise de segurança.",
+            "Não valida compatibilidade de material, pressão, temperatura, classe de flange, proteção IP/NEMA ou instalação real.",
+            "Não use conversão isolada para liberar compra, montagem, comissionamento ou modificação de processo.",
+            "Quando houver equipamento crítico, valide com engenharia, fabricante ou documento aprovado."
+      ],
+      "memory": [
+            "Conversões apenas mudam representação; não melhoram a qualidade do dado original.",
+            "DN/NPS, schedule, flanges e proteção IP/NEMA dependem de padrão, classe, material e aplicação.",
+            "Folha de dados deve reunir identificação, serviço, processo, sinal, alimentação, material, montagem e requisitos ambientais.",
+            "Velocidade, potência e dilatação são triagens que dependem de fluido, temperatura, material e condição de instalação."
+      ],
+      "example": [
+            "Exemplo: converter unidades de pressão antes de preencher uma folha de dados de transmissor.",
+            "Depois confira se o valor é manométrico, absoluto, diferencial ou normalizado, conforme o serviço.",
+            "Finalize comparando o resultado com documento de projeto, catálogo e dados reais de processo."
+      ],
+      "interpretation": [
+            "Resultado favorável indica conversão ou preenchimento coerente, não validação técnica completa.",
+            "Atenção quando a aplicação envolver pressão, temperatura, fluido perigoso, flange, proteção ambiental ou compra de equipamento.",
+            "Condição crítica exige revisão da unidade, padrão, documento de referência e aprovação técnica."
+      ]
+}
+
+
+  });
+
+  function currentToolFile(){
+    const file = (window.location.pathname.split('/').pop() || 'index.html').toLowerCase();
+    return file || 'index.html';
+  }
+
+  function listHtml(items){
+    return `<ul>${items.map((item) => `<li>${item}</li>`).join('')}</ul>`;
+  }
+
+  function buildGuidanceCard(data){
+    const card = document.createElement('section');
+    card.className = 'alogy-critical-guidance alogy-safety-card';
+    card.setAttribute('aria-label', 'Complemento técnico específico da ferramenta');
+    card.innerHTML = `
+      <div class="alogy-critical-guidance-head">
+        <div class="alogy-critical-guidance-icon" aria-hidden="true"><i class="fas fa-screwdriver-wrench"></i></div>
+        <div>
+          <h2>${data.title}</h2>
+          <p>${data.intro}</p>
+        </div>
+      </div>
+      <div class="alogy-critical-guidance-grid">
+        <section class="alogy-critical-guidance-box">
+          <h3><i class="fas fa-list-check"></i> Premissas específicas</h3>
+          ${listHtml(data.assumptions)}
+        </section>
+        <section class="alogy-critical-guidance-box">
+          <h3><i class="fas fa-triangle-exclamation"></i> Limitações críticas</h3>
+          ${listHtml(data.limitations)}
+        </section>
+        <section class="alogy-critical-guidance-box">
+          <h3><i class="fas fa-square-root-variable"></i> Memória de cálculo principal</h3>
+          ${listHtml(data.memory)}
+        </section>
+        <section class="alogy-critical-guidance-box">
+          <h3><i class="fas fa-vial-circle-check"></i> Exemplo prático de uso</h3>
+          ${listHtml(data.example)}
+        </section>
+        <section class="alogy-critical-guidance-box alogy-critical-guidance-wide alogy-result-orientativo">
+          <h3><i class="fas fa-clipboard-check"></i> Como interpretar o resultado</h3>
+          ${listHtml(data.interpretation)}
+        </section>
+      </div>
+    `;
+    return card;
+  }
+
+  function insertCriticalToolGuidance(){
+    const file = currentToolFile();
+    const data = CRITICAL_TOOL_GUIDANCE[file];
+    if(!data) return;
+
+    const main = document.querySelector('main');
+    if(!main || main.querySelector(':scope > .alogy-critical-guidance')) return;
+
+    const card = buildGuidanceCard(data);
+    const safetyLayer = main.querySelector(':scope > .alogy-safety-layer');
+    if(safetyLayer){
+      safetyLayer.insertAdjacentElement('afterend', card);
+      return;
+    }
+
+    const hero = main.querySelector('.tools-hero, .tech-hero, .tool-page-intro');
+    if(hero){
+      hero.insertAdjacentElement('afterend', card);
+      return;
+    }
+
+    main.insertBefore(card, main.firstElementChild || null);
+  }
+
+  window.ALOGY_CRITICAL_TOOL_GUIDANCE = {
+    map: CRITICAL_TOOL_GUIDANCE,
+    insertCriticalToolGuidance
+  };
+
+  document.addEventListener('DOMContentLoaded', insertCriticalToolGuidance);
+})();
+
+/* =========================
+   ETAPAS 4-10 - LEITURA DINÂMICA DO RESULTADO NAS FERRAMENTAS
+   Escopo: interpretação do resultado e próximos cuidados.
+   Não altera fórmulas, entradas, categorias, SEO ou lógica de cálculo.
+========================= */
+(function(){
+  const RESULT_INTERPRETATION_MAP = Object.freeze({
+    'calculadora-barreira-intrinseca-area-classificada.html': {
+      selectors: ['#statusBox'],
+      title: 'Leitura técnica da compatibilidade Ex',
+      messages: {
+        initial: 'Preencha os dados e gere o cálculo para obter uma leitura técnica preliminar da compatibilidade de entidade, cabo, tensão de loop e condição HART.',
+        ok: 'Os dados digitados passaram nas verificações preliminares. Antes de aplicar, confirme certificados Ex, desenho de malha, tipo de barreira, aterramento, segregação e inspeção em campo.',
+        warn: 'Existe margem baixa ou condição de atenção. Não trate como instalação liberada; revise cabo, fonte, cargas em série, parâmetros de entidade e carga HART.',
+        bad: 'O resultado indica não conformidade ou dados insuficientes. Bloqueie a aplicação prática até revisar certificados, barreira, instrumento, cabo e arquitetura da malha.'
+      },
+      next: [
+        'Conferir Uo/Io/Po/Co/Lo e Ui/Ii/Pi/Ci/Li diretamente nos certificados.',
+        'Validar comprimento real do cabo, capacitância, indutância e tensão no transmissor na pior condição.',
+        'Registrar a análise em desenho de malha ou memorial antes de instalar em área classificada.'
+      ]
+    },
+    'calculadora-curto-circuito-transformador.html': {
+      selectors: ['#r4', '#nota'],
+      title: 'Leitura técnica do curto-circuito estimado',
+      messages: {
+        initial: 'Informe os dados do transformador para estimar a ordem de grandeza da corrente de curto no secundário.',
+        ok: 'O resultado é uma estimativa inicial. Mesmo com indicação simples, compare com capacidade de interrupção, barramento e proteção antes de qualquer aplicação.',
+        warn: 'A corrente estimada indica energia elevada ou condição que merece atenção. Exija estudo completo para definir disjuntores, seletividade, barramento e proteção.',
+        bad: 'Há condição crítica ou dados inconsistentes. Não use o resultado para especificação ou liberação elétrica sem estudo de curto-circuito completo.'
+      },
+      next: [
+        'Confirmar kVA, tensão linha-linha e impedância percentual de placa.',
+        'Considerar contribuição da rede, motores, geradores, cabos e componente assimétrica em estudo formal.',
+        'Comparar o valor apenas como triagem com Icu/Ics, barramento e ajustes de proteção.'
+      ]
+    },
+    'calculadora-fonte-24vcc-painel-automacao.html': {
+      selectors: ['#resultadoRapido'],
+      title: 'Leitura técnica da fonte 24 Vcc',
+      messages: {
+        initial: 'Preencha as cargas do painel para avaliar capacidade de fonte, reserva, derating e queda de tensão.',
+        ok: 'A seleção parece favorável como pré-dimensionamento. Ainda é necessário conferir picos, proteção por ramal, temperatura do painel, redundância e dados de fabricante.',
+        warn: 'A margem ficou apertada ou há alerta de queda/capacidade. Revise simultaneidade, reserva, derating, divisão de cargas e tensão no ponto mais distante.',
+        bad: 'A fonte ou a tensão disponível não atende aos critérios digitados. Não aplique em painel real sem redimensionar fonte, cabos, proteção e arquitetura 24 Vcc.'
+      },
+      next: [
+        'Separar cargas contínuas, picos de solenóides e cargas eletrônicas sensíveis.',
+        'Verificar derating por temperatura e ventilação do painel.',
+        'Conferir queda de tensão no ramal mais longo e proteção individual das cargas críticas.'
+      ]
+    },
+    'calculadora-cabo-instrumentacao-24vcc.html': {
+      selectors: ['#resultadoRapido'],
+      title: 'Leitura técnica do cabo 24 Vcc',
+      messages: {
+        initial: 'Informe fonte, corrente, distância e seção para avaliar queda de tensão e tensão disponível no instrumento ou carga.',
+        ok: 'A queda e a tensão disponível parecem adequadas na condição informada. Confirme rota real, emendas, temperatura, blindagem, aterramento e requisito mínimo do equipamento.',
+        warn: 'Há margem baixa, queda elevada ou seção recomendada diferente. Revise resistência de cabo, cargas série, corrente de pico/falha e comprimento real.',
+        bad: 'O cabo não atende ou os dados estão inválidos. Não use a seção informada em campo sem corrigir tensão disponível, queda, corrente e requisitos do instrumento.'
+      },
+      next: [
+        'Comparar tensão disponível com a tensão mínima do datasheet na pior corrente.',
+        'Conferir corrente de falha alta, carga HART, isoladores/barreiras e entrada analógica.',
+        'Validar instalação física, segregação e método de instalação conforme o projeto.'
+      ]
+    },
+    'calculadora-malha-4-20ma-hart-completa.html': {
+      selectors: ['#statusBox'],
+      title: 'Leitura técnica da malha 4-20 mA/HART',
+      messages: {
+        initial: 'Preencha os dados da fonte, cargas, cabo e instrumento para avaliar a malha analógica e a condição de comunicação HART.',
+        ok: 'A malha passou na triagem. Confirme carga HART, tensão mínima do transmissor, escala LRV/URV, aterramento/blindagem e condição real de campo.',
+        warn: 'A malha exige atenção técnica. Revise carga útil HART, tensão disponível em 20 mA/falha alta, resistência do cabo e elementos em série.',
+        bad: 'A malha deve ser corrigida antes de uso. Verifique fonte, barreiras/isoladores, resistor de comunicação, entrada analógica, cabo e transmissor.'
+      },
+      next: [
+        'Testar tensão no transmissor em 20 mA e na pior condição de falha.',
+        'Confirmar se há carga mínima e máxima compatível com HART.',
+        'Conferir se a extração/escala está em apenas um ponto: transmissor, CLP ou supervisório.'
+      ]
+    },
+    'calculadora-nivel-caldeira-transmissor-dp.html': {
+      selectors: ['#resultadoRapido'],
+      title: 'Leitura técnica do nível de caldeira por DP',
+      messages: {
+        initial: 'Preencha geometria, ligação, densidades e escala para gerar a faixa DP preliminar do transmissor.',
+        ok: 'A faixa DP foi calculada para a configuração informada. Antes de aplicar, valide perna úmida/seca, ligação HP/LP, MAWP, manifold, alarmes/trips e procedimento da caldeira.',
+        warn: 'Há atenção na faixa, sentido do sinal, sensor ou pontos de alarme. Revise montagem, densidades, escala do CLP/SCADA e lógica de segurança.',
+        bad: 'O cálculo foi bloqueado ou indica condição inadequada. Não use para ajuste de transmissor até corrigir dados e validar a montagem real da caldeira.'
+      },
+      next: [
+        'Confirmar desenho de montagem, altura entre tomadas e condição da coluna de referência.',
+        'Verificar se 4-20 mA aumenta no sentido esperado pelo controle/intertravamento.',
+        'Validar alarmes, trips e pressão estática com procedimento e profissional responsável.'
+      ]
+    },
+    'calculadora-nivel-dp-tanque-pressurizado.html': {
+      selectors: ['#resultBox'],
+      title: 'Leitura técnica do nível DP em tanque pressurizado',
+      messages: {
+        initial: 'Preencha dados do tanque, densidade, referência e instalação para calcular range DP preliminar.',
+        ok: 'O range calculado parece coerente para os dados informados. Confirme conexão HP/LP, densidade real, pressão estática, perna molhada/seca e escala do sistema.',
+        warn: 'Existe ponto de atenção no span, sentido, pressão estática ou configuração. Revise montagem, densidade, LRV/URV e lógica do indicador/CLP.',
+        bad: 'Há erro ou inconsistência nos dados. Não use o range em campo até corrigir geometria, referência, densidade e configuração do transmissor.'
+      },
+      next: [
+        'Conferir se o range corresponde ao nível real desejado, não apenas à distância física entre tomadas.',
+        'Validar densidade na condição operacional de temperatura e composição.',
+        'Checar sentido de sinal e impacto de pressão estática no transmissor selecionado.'
+      ]
+    },
+    'calculadora-placa-orificio-vazao-dp.html': {
+      selectors: ['#resultadoRapido'],
+      title: 'Leitura técnica da placa de orifício/vazão DP',
+      messages: {
+        initial: 'Informe modo, fluido, diâmetros e condição operacional para dimensionar ou verificar a vazão por DP.',
+        ok: 'A configuração parece aceitável como triagem. Confirme norma aplicável, trechos retos, Reynolds, beta, propriedades do fluido e extração de raiz.',
+        warn: 'Há alerta de beta, Reynolds, velocidade, DP ou modo de operação. Revise elemento primário, range DP, compensação e instalação antes de especificar.',
+        bad: 'O cálculo está bloqueado ou indica condição inadequada. Não use para especificar placa/transmissor sem corrigir dados e validar por engenharia.'
+      },
+      next: [
+        'Validar D interno real, d do orifício, tomadas, trechos retos e acabamento da placa.',
+        'Conferir densidade/viscosidade na condição de processo e compensação P/T para gás/vapor.',
+        'Garantir que raiz quadrada não esteja duplicada no transmissor e no CLP/DCS.'
+      ]
+    },
+    'calculadora-cv-kv-valvula-controle.html': {
+      selectors: ['#resultadoRapido'],
+      title: 'Leitura técnica da válvula de controle',
+      messages: {
+        initial: 'Preencha fluido, pressões e vazões para pré-dimensionar Cv/Kv e avaliar abertura/alertas.',
+        ok: 'O Cv/Kv selecionado parece viável como pré-dimensionamento. Confirme curva do fabricante, característica instalada, atuador, ruído, materiais e classe de pressão.',
+        warn: 'Há atenção em abertura, velocidade, cavitação, flashing ou escoamento crítico. Revise ΔP, tipo de interno, rangeabilidade, material e condição de processo.',
+        bad: 'O resultado indica condição inadequada ou dados inválidos. Não especifique a válvula sem revisar processo, fluido, pressões, fabricante e engenharia de aplicação.'
+      },
+      next: [
+        'Verificar abertura mínima/normal/máxima e evitar válvula trabalhando quase fechada ou saturada.',
+        'Avaliar cavitação, flashing, ruído, erosão e classe de pressão.',
+        'Confirmar Cv/Kv final em software/catálogo do fabricante com dados completos do fluido.'
+      ]
+    },
+    'calculadora-lopa-simplificada.html': {
+      selectors: ['#status', '#nota'],
+      title: 'Leitura técnica da LOPA simplificada',
+      messages: {
+        initial: 'Preencha frequência iniciadora, alvo tolerável e PFDs para visualizar a lógica matemática da redução de risco.',
+        ok: 'A comparação matemática ficou dentro do alvo informado. Isso não comprova cenário seguro; confirme independência, eficácia, dados de falha e documentação formal.',
+        warn: 'O cenário exige atenção. Verifique se as IPLs são independentes e se os PFDs usados são defensáveis antes de qualquer conclusão.',
+        bad: 'A frequência mitigada ficou acima do alvo ou há dados insuficientes. Não use para justificar aceitação de risco sem HAZOP/LOPA formal e equipe competente.'
+      },
+      next: [
+        'Confirmar se cada IPL é independente, auditável, eficaz e aplicável ao cenário.',
+        'Usar PFDs rastreáveis de estudo SIL, fabricante, histórico validado ou procedimento da empresa.',
+        'Formalizar qualquer decisão por metodologia reconhecida e aprovação multidisciplinar.'
+      ]
+    },
+    'calculadora-queda-de-tensao.html': {
+      selectors: ['#qt_status', '#qt_nota'],
+      title: 'Leitura técnica da queda de tensão',
+      messages: {
+        initial: 'Informe os dados do circuito para avaliar a queda de tensão preliminar.',
+        ok: 'A queda está dentro do limite informado. Ainda valide capacidade de corrente, proteção, curto-circuito, método de instalação e condição real do circuito.',
+        warn: 'A queda está próxima do limite ou exige atenção. Revise comprimento, seção, fator de potência, temperatura e carga antes de aplicar.',
+        bad: 'A queda está acima do limite ou os dados são inconsistentes. Revise seção, rota, carga, tensão ou arquitetura do circuito antes de usar em campo.'
+      },
+      next: [
+        'Conferir se o comprimento e a corrente representam a pior condição do circuito.',
+        'Validar capacidade de condução, curto-circuito e proteção do cabo.',
+        'Revisar cargas sensíveis e queda na partida quando houver motor.'
+      ]
+    },
+    'calculadora-dimensionamento-cabos.html': {
+      selectors: ['#cb_status', '#cb_resumo'],
+      title: 'Leitura técnica do dimensionamento de cabos',
+      messages: {
+        initial: 'Preencha os dados do circuito para gerar o pré-dimensionamento de cabos.',
+        ok: 'A solução atende aos critérios informados na ferramenta. Ainda confira norma, método de instalação, proteção, curto-circuito, agrupamento e documentação do projeto.',
+        warn: 'Há alerta de margem, agrupamento, queda ou partida. Revise premissas antes de tratar a seção como recomendação prática.',
+        bad: 'Algum critério não atende ou os dados são insuficientes. Não use a seção em projeto real sem corrigir os pontos reprovados.'
+      },
+      next: [
+        'Conferir corrente de projeto, queda de tensão e seção mínima.',
+        'Validar curto-circuito térmico e proteção por catálogo/curva.',
+        'Revisar agrupamento, temperatura, isolação e método de instalação.'
+      ]
+    },
+    'calculadora-disjuntor-protecao.html': {
+      selectors: ['#dj_status'],
+      title: 'Leitura técnica da proteção por disjuntor',
+      messages: {
+        initial: 'Informe corrente, cabo e dados de proteção para avaliar compatibilidade preliminar.',
+        ok: 'A proteção parece compatível com os dados informados. Ainda valide curva, capacidade de interrupção, seletividade, curto-circuito e requisitos da carga.',
+        warn: 'Existe ponto de atenção na proteção. Revise corrente, cabo, curva, inrush, curto-circuito disponível e coordenação com dispositivos a montante.',
+        bad: 'A proteção não deve ser aplicada como está. Corrija critérios de corrente, cabo, curva, capacidade de interrupção ou seletividade antes do uso.'
+      },
+      next: [
+        'Comparar corrente nominal com corrente de projeto e capacidade do cabo.',
+        'Verificar Icu/Ics contra curto-circuito disponível no ponto.',
+        'Conferir seletividade e curva de disparo para a carga real.'
+      ]
+    },
+    'calculadora-corrente-partida-motor.html': {
+      selectors: ['#r1', '#r2', '#r3', '#r4', '#nota'],
+      title: 'Leitura técnica da partida de motor',
+      messages: {
+        initial: 'Informe os dados do motor e método de partida para estimar a corrente transitória.',
+        ok: 'A estimativa foi calculada. Use o valor para triagem e confira queda de tensão, proteção, curva do motor e impacto na rede.',
+        warn: 'A partida indica condição que merece atenção. Revise método de partida, alimentação, cabo, transformador, tempo de aceleração e proteção.',
+        bad: 'Os dados indicam condição crítica ou inválida. Não aplique ajustes ou especificações sem estudo de partida e validação do fabricante.'
+      },
+      next: [
+        'Comparar corrente de partida com capacidade da alimentação e proteção.',
+        'Avaliar queda de tensão durante a partida.',
+        'Validar tempo de aceleração e carga mecânica acoplada.'
+      ]
+    },
+    'calculadora-partida-estrela-triangulo-corrente.html': {
+      selectors: ['#nota'],
+      title: 'Leitura técnica da partida estrela-triângulo',
+      messages: {
+        initial: 'Preencha os dados para comparar a corrente estimada na partida estrela-triângulo.',
+        ok: 'A estimativa foi calculada. Confirme se o motor e a carga são compatíveis com partida estrela-triângulo.',
+        warn: 'A redução de corrente não garante partida adequada. Revise torque disponível, tempo de comutação, contatores, proteção e ligação de placa.',
+        bad: 'Há condição inadequada ou dados insuficientes. Não aplique partida estrela-triângulo sem validar motor, tensão, comando e carga.'
+      },
+      next: [
+        'Conferir placa do motor e tensão de ligação.',
+        'Verificar torque requerido pela carga durante a etapa em estrela.',
+        'Validar intertravamento, temporização, contatores e proteção.'
+      ]
+    },
+    'calculadora-queda-tensao-partida-motor.html': {
+      selectors: ['#nota'],
+      title: 'Leitura técnica da queda na partida',
+      messages: {
+        initial: 'Informe dados do motor e do circuito para estimar a queda de tensão na partida.',
+        ok: 'A queda de partida parece aceitável para o limite informado. Ainda confira tempo de aceleração, impacto nas demais cargas e proteção.',
+        warn: 'A queda de partida exige atenção. Revise método de partida, seção do cabo, comprimento, alimentação e sensibilidade das cargas próximas.',
+        bad: 'A queda de partida está inadequada ou os dados são inconsistentes. Revise o circuito antes de partir o motor em campo.'
+      },
+      next: [
+        'Confirmar corrente de partida real ou estimada pelo fabricante.',
+        'Avaliar impacto da partida no barramento e em cargas sensíveis.',
+        'Revisar possibilidade de soft-starter, inversor ou alteração de seção/alimentação.'
+      ]
+    },
+    'calculadora-desequilibrio-tensao-motor.html': {
+      selectors: ['#r1', '#r2', '#r3', '#r4', '#nota'],
+      title: 'Leitura técnica do desequilíbrio de tensão',
+      messages: {
+        initial: 'Informe as três tensões para calcular o desequilíbrio percentual.',
+        ok: 'O desequilíbrio parece baixo na medição informada. Ainda confira corrente por fase, aquecimento e condição de carga do motor.',
+        warn: 'O desequilíbrio merece atenção. Investigue alimentação, conexões, bornes, cargas monofásicas, corrente por fase e aquecimento.',
+        bad: 'O desequilíbrio está crítico ou os dados são inválidos. Não mantenha motor crítico em operação sem investigar a causa.'
+      },
+      next: [
+        'Medir correntes de fase na mesma condição de operação.',
+        'Verificar conexões, bornes, contatores, fusíveis e alimentação.',
+        'Avaliar temperatura do motor e histórico de falhas.'
+      ]
+    },
+    'calculadora-kva-transformador-carga.html': {
+      selectors: ['#r1', '#r2', '#r3', '#r4', '#nota'],
+      title: 'Leitura técnica do kVA do transformador',
+      messages: {
+        initial: 'Informe cargas e critérios para estimar o kVA necessário.',
+        ok: 'A estimativa de kVA foi calculada. Use como pré-seleção e valide demanda, reserva, partida de motores, harmônicas e proteção.',
+        warn: 'O dimensionamento merece atenção. Revise simultaneidade, reserva, fator de potência, cargas não lineares e expansão futura.',
+        bad: 'Os dados indicam condição inadequada ou insuficiente. Não selecione transformador sem revisar carga, regime e estudos elétricos.'
+      },
+      next: [
+        'Separar carga instalada, demanda simultânea e reserva futura.',
+        'Verificar partida de motores e quedas de tensão.',
+        'Avaliar harmônicas, ventilação, impedância e proteção.'
+      ]
+    },
+    'calculadora-thd-distorcao-harmonica.html': {
+      selectors: ['#r1', '#r2', '#r3'],
+      title: 'Leitura técnica do THD',
+      messages: {
+        initial: 'Informe fundamental e harmônicas para calcular o THD.',
+        ok: 'O THD foi calculado e parece favorável como triagem. Confirme o ponto de medição e o critério aplicável.',
+        warn: 'O THD exige análise técnica. Investigue cargas não lineares, ressonância, aquecimento, capacitores, transformadores e medições reais.',
+        bad: 'O resultado indica condição crítica ou dados inválidos. Não defina mitigação sem estudo de qualidade de energia.'
+      },
+      next: [
+        'Confirmar se o cálculo é para tensão, corrente ou TDD.',
+        'Validar medições com analisador de energia e período representativo.',
+        'Avaliar necessidade de reator, filtro, transformador adequado ou correção de instalação.'
+      ]
+    },
+    'calculadora-ocupacao-eletroduto-cabos.html': {
+      selectors: ['#r4', '#r2'],
+      title: 'Leitura técnica da ocupação de eletroduto',
+      messages: {
+        initial: 'Informe diâmetros e quantidade de cabos para estimar a ocupação do eletroduto.',
+        ok: 'A ocupação está dentro da reserva informada. Ainda confira aquecimento, curvas, puxamento, agrupamento e método de instalação.',
+        warn: 'A ocupação está sem reserva ou próxima do limite. Revise quantidade de cabos, reserva futura e facilidade de lançamento.',
+        bad: 'A ocupação está acima do limite. Revise eletroduto, rota, quantidade de cabos ou infraestrutura antes de executar.'
+      },
+      next: [
+        'Conferir diâmetros reais de catálogo dos cabos e eletroduto.',
+        'Validar raio de curvatura, puxamento e quantidade de curvas.',
+        'Avaliar agrupamento e capacidade de corrente dos cabos.'
+      ]
+    },
+    'calculadora-ventilacao-painel-eletrico.html': {
+      selectors: ['#r4', '#r1', '#r2', '#r3'],
+      title: 'Leitura técnica da ventilação do painel',
+      messages: {
+        initial: 'Informe dissipação térmica, temperaturas e ventilação existente para estimar a vazão necessária.',
+        ok: 'A ventilação existente atende à estimativa digitada. Ainda confirme filtros, IP, ambiente, manutenção e temperatura real do painel.',
+        warn: 'A ventilação precisa ser aumentada ou revisada. Verifique dissipação, filtros, ventilador, ar-condicionado de painel e ambiente.',
+        bad: 'A condição térmica é inadequada ou os dados são inválidos. Não opere painel crítico sem revisar refrigeração e temperatura interna.'
+      },
+      next: [
+        'Confirmar dissipação real de fontes, inversores, CLP e componentes.',
+        'Verificar filtro, grau IP, poeira, umidade e temperatura ambiente máxima.',
+        'Medir temperatura interna em operação e revisar manutenção dos ventiladores.'
+      ]
+    },
+    'checklist-painel-eletrico-industrial.html': {
+      selectors: ['#nota', '#resumo'],
+      title: 'Leitura técnica do checklist de painel',
+      messages: {
+        initial: 'Preencha o checklist para gerar um resumo preliminar da condição do painel.',
+        ok: 'Não há pendências marcadas. Isso não substitui inspeção formal, ensaios, documentação e liberação por responsável técnico.',
+        warn: 'Existem pendências a tratar. Defina responsável, prazo e evidência de correção antes de liberação.',
+        bad: 'Existem pendências críticas. Não liberar painel, energização ou intervenção sem tratativa e reavaliação.'
+      },
+      next: [
+        'Separar pendências críticas das pendências administrativas.',
+        'Anexar fotos, medições, desenhos e evidências quando aplicável.',
+        'Revisar aterramento, proteção, identificação, limpeza e documentação antes de liberar.'
+      ]
+    },
+    'checklist-nova-nr10.html': {
+      selectors: ['#nr10_resumo', '#nr10_ok', '#nr10_pct'],
+      title: 'Leitura técnica do checklist NR-10',
+      messages: {
+        initial: 'Preencha os itens do checklist para obter uma leitura preliminar da aderência.',
+        ok: 'A pontuação parece favorável, mas não comprova conformidade legal. Confirme evidências, prontuário, treinamentos, procedimentos e responsáveis.',
+        warn: 'Há itens pendentes ou sem evidência. Transforme pendências em plano de ação antes de auditoria, intervenção ou liberação.',
+        bad: 'Existem pendências relevantes ou críticas. Não use o checklist como autorização de trabalho sem avaliação técnica e gestão de segurança.'
+      },
+      next: [
+        'Conferir documentos, treinamentos, procedimentos e evidências reais.',
+        'Classificar pendências por criticidade e definir responsáveis.',
+        'Validar requisitos de segurança elétrica com profissional habilitado.'
+      ]
+    },
+    "calculadora-calibracao-transmissor-pressao.html": {
+          "selectors": [
+                "#r4",
+                "#nota",
+                "#tbl"
+          ],
+          "title": "Leitura técnica — calibração de transmissor de pressão",
+          "messages": {
+                "initial": "Preencha os dados e gere o cálculo para obter uma leitura preliminar do resultado de calibração/metrologia.",
+                "ok": "O resultado parece atender ao critério informado para os dados digitados. Ainda confira padrão, rastreabilidade, procedimento, unidade, incerteza e registro antes de liberar.",
+                "warn": "O resultado exige atenção técnica. Revise dados, unidade, tolerância, estabilidade, padrão utilizado e criticidade da aplicação antes de concluir.",
+                "bad": "O resultado indica reprovação, inconsistência ou condição crítica. Não libere o instrumento ou a função antes de revisar dados, repetir o teste e seguir o procedimento aplicável."
+          },
+          "next": [
+                "Conferir unidade, faixa, LRV/URV, tolerância/EMP e ponto de teste informado.",
+                "Confirmar rastreabilidade e adequação do padrão/calibrador usado.",
+                "Registrar as found/as left, incerteza quando aplicável e evidências antes de liberar o instrumento."
+          ]
+    } ,
+    "calculadora-calibracao-transmissor-temperatura.html": {
+          "selectors": [
+                "#r4",
+                "#r2",
+                "#r3"
+          ],
+          "title": "Leitura técnica — calibração de transmissor de temperatura",
+          "messages": {
+                "initial": "Preencha os dados e gere o cálculo para obter uma leitura preliminar do resultado de calibração/metrologia.",
+                "ok": "O resultado parece atender ao critério informado para os dados digitados. Ainda confira padrão, rastreabilidade, procedimento, unidade, incerteza e registro antes de liberar.",
+                "warn": "O resultado exige atenção técnica. Revise dados, unidade, tolerância, estabilidade, padrão utilizado e criticidade da aplicação antes de concluir.",
+                "bad": "O resultado indica reprovação, inconsistência ou condição crítica. Não libere o instrumento ou a função antes de revisar dados, repetir o teste e seguir o procedimento aplicável."
+          },
+          "next": [
+                "Conferir unidade, faixa, LRV/URV, tolerância/EMP e ponto de teste informado.",
+                "Confirmar rastreabilidade e adequação do padrão/calibrador usado.",
+                "Registrar as found/as left, incerteza quando aplicável e evidências antes de liberar o instrumento."
+          ]
+    } ,
+    "calculadora-calibracao-manometro.html": {
+          "selectors": [
+                "#r4",
+                "#r1",
+                "#r2",
+                "#r3"
+          ],
+          "title": "Leitura técnica — calibração de manômetro",
+          "messages": {
+                "initial": "Preencha os dados e gere o cálculo para obter uma leitura preliminar do resultado de calibração/metrologia.",
+                "ok": "O resultado parece atender ao critério informado para os dados digitados. Ainda confira padrão, rastreabilidade, procedimento, unidade, incerteza e registro antes de liberar.",
+                "warn": "O resultado exige atenção técnica. Revise dados, unidade, tolerância, estabilidade, padrão utilizado e criticidade da aplicação antes de concluir.",
+                "bad": "O resultado indica reprovação, inconsistência ou condição crítica. Não libere o instrumento ou a função antes de revisar dados, repetir o teste e seguir o procedimento aplicável."
+          },
+          "next": [
+                "Conferir unidade, faixa, LRV/URV, tolerância/EMP e ponto de teste informado.",
+                "Confirmar rastreabilidade e adequação do padrão/calibrador usado.",
+                "Registrar as found/as left, incerteza quando aplicável e evidências antes de liberar o instrumento."
+          ]
+    } ,
+    "calculadora-calibracao-pressostato.html": {
+          "selectors": [
+                "#r4",
+                "#nota",
+                "#tbl"
+          ],
+          "title": "Leitura técnica — calibração de pressostato",
+          "messages": {
+                "initial": "Preencha os dados e gere o cálculo para obter uma leitura preliminar do resultado de calibração/metrologia.",
+                "ok": "O resultado parece atender ao critério informado para os dados digitados. Ainda confira padrão, rastreabilidade, procedimento, unidade, incerteza e registro antes de liberar.",
+                "warn": "O resultado exige atenção técnica. Revise dados, unidade, tolerância, estabilidade, padrão utilizado e criticidade da aplicação antes de concluir.",
+                "bad": "O resultado indica reprovação, inconsistência ou condição crítica. Não libere o instrumento ou a função antes de revisar dados, repetir o teste e seguir o procedimento aplicável."
+          },
+          "next": [
+                "Conferir unidade, faixa, LRV/URV, tolerância/EMP e ponto de teste informado.",
+                "Confirmar rastreabilidade e adequação do padrão/calibrador usado.",
+                "Registrar as found/as left, incerteza quando aplicável e evidências antes de liberar o instrumento."
+          ]
+    } ,
+    "calculadora-calibracao-valvula-controle.html": {
+          "selectors": [
+                "#status",
+                "#rEsperada"
+          ],
+          "title": "Leitura técnica — calibração de válvula de controle",
+          "messages": {
+                "initial": "Preencha os dados e gere o cálculo para obter uma leitura preliminar do resultado de calibração/metrologia.",
+                "ok": "O resultado parece atender ao critério informado para os dados digitados. Ainda confira padrão, rastreabilidade, procedimento, unidade, incerteza e registro antes de liberar.",
+                "warn": "O resultado exige atenção técnica. Revise dados, unidade, tolerância, estabilidade, padrão utilizado e criticidade da aplicação antes de concluir.",
+                "bad": "O resultado indica reprovação, inconsistência ou condição crítica. Não libere o instrumento ou a função antes de revisar dados, repetir o teste e seguir o procedimento aplicável."
+          },
+          "next": [
+                "Conferir unidade, faixa, LRV/URV, tolerância/EMP e ponto de teste informado.",
+                "Confirmar rastreabilidade e adequação do padrão/calibrador usado.",
+                "Registrar as found/as left, incerteza quando aplicável e evidências antes de liberar o instrumento."
+          ]
+    } ,
+    "calculadora-incerteza-calibracao-tur-tar.html": {
+          "selectors": [
+                "#statusBox",
+                "#resultTable",
+                "#erroMaxOut"
+          ],
+          "title": "Leitura técnica — incerteza de calibração, TUR e TAR",
+          "messages": {
+                "initial": "Preencha os dados e gere o cálculo para obter uma leitura preliminar do resultado de calibração/metrologia.",
+                "ok": "O resultado parece atender ao critério informado para os dados digitados. Ainda confira padrão, rastreabilidade, procedimento, unidade, incerteza e registro antes de liberar.",
+                "warn": "O resultado exige atenção técnica. Revise dados, unidade, tolerância, estabilidade, padrão utilizado e criticidade da aplicação antes de concluir.",
+                "bad": "O resultado indica reprovação, inconsistência ou condição crítica. Não libere o instrumento ou a função antes de revisar dados, repetir o teste e seguir o procedimento aplicável."
+          },
+          "next": [
+                "Conferir unidade, faixa, LRV/URV, tolerância/EMP e ponto de teste informado.",
+                "Confirmar rastreabilidade e adequação do padrão/calibrador usado.",
+                "Registrar as found/as left, incerteza quando aplicável e evidências antes de liberar o instrumento."
+          ]
+    } ,
+    "calculadora-incerteza-calibracao.html": {
+          "selectors": [
+                "#r_status",
+                "#r_resultado",
+                "#r_tur"
+          ],
+          "title": "Leitura técnica — incerteza de calibração",
+          "messages": {
+                "initial": "Preencha os dados e gere o cálculo para obter uma leitura preliminar do resultado de calibração/metrologia.",
+                "ok": "O resultado parece atender ao critério informado para os dados digitados. Ainda confira padrão, rastreabilidade, procedimento, unidade, incerteza e registro antes de liberar.",
+                "warn": "O resultado exige atenção técnica. Revise dados, unidade, tolerância, estabilidade, padrão utilizado e criticidade da aplicação antes de concluir.",
+                "bad": "O resultado indica reprovação, inconsistência ou condição crítica. Não libere o instrumento ou a função antes de revisar dados, repetir o teste e seguir o procedimento aplicável."
+          },
+          "next": [
+                "Conferir unidade, faixa, LRV/URV, tolerância/EMP e ponto de teste informado.",
+                "Confirmar rastreabilidade e adequação do padrão/calibrador usado.",
+                "Registrar as found/as left, incerteza quando aplicável e evidências antes de liberar o instrumento."
+          ]
+    } ,
+    "calculadora-erro-calibracao.html": {
+          "selectors": [
+                "#cal_status_geral",
+                "#cal_nota",
+                "#cal_tbody"
+          ],
+          "title": "Leitura técnica — erro de calibração de instrumentos",
+          "messages": {
+                "initial": "Preencha os dados e gere o cálculo para obter uma leitura preliminar do resultado de calibração/metrologia.",
+                "ok": "O resultado parece atender ao critério informado para os dados digitados. Ainda confira padrão, rastreabilidade, procedimento, unidade, incerteza e registro antes de liberar.",
+                "warn": "O resultado exige atenção técnica. Revise dados, unidade, tolerância, estabilidade, padrão utilizado e criticidade da aplicação antes de concluir.",
+                "bad": "O resultado indica reprovação, inconsistência ou condição crítica. Não libere o instrumento ou a função antes de revisar dados, repetir o teste e seguir o procedimento aplicável."
+          },
+          "next": [
+                "Conferir unidade, faixa, LRV/URV, tolerância/EMP e ponto de teste informado.",
+                "Confirmar rastreabilidade e adequação do padrão/calibrador usado.",
+                "Registrar as found/as left, incerteza quando aplicável e evidências antes de liberar o instrumento."
+          ]
+    } ,
+    "calculadora-erro-total-malha-instrumentacao.html": {
+          "selectors": [
+                "#outStatus",
+                "#nota",
+                "#tblPontos"
+          ],
+          "title": "Leitura técnica — erro total de malha de instrumentação",
+          "messages": {
+                "initial": "Preencha os dados e gere o cálculo para obter uma leitura preliminar do resultado de calibração/metrologia.",
+                "ok": "O resultado parece atender ao critério informado para os dados digitados. Ainda confira padrão, rastreabilidade, procedimento, unidade, incerteza e registro antes de liberar.",
+                "warn": "O resultado exige atenção técnica. Revise dados, unidade, tolerância, estabilidade, padrão utilizado e criticidade da aplicação antes de concluir.",
+                "bad": "O resultado indica reprovação, inconsistência ou condição crítica. Não libere o instrumento ou a função antes de revisar dados, repetir o teste e seguir o procedimento aplicável."
+          },
+          "next": [
+                "Conferir unidade, faixa, LRV/URV, tolerância/EMP e ponto de teste informado.",
+                "Confirmar rastreabilidade e adequação do padrão/calibrador usado.",
+                "Registrar as found/as left, incerteza quando aplicável e evidências antes de liberar o instrumento."
+          ]
+    } ,
+    "calculadora-calibracao-phmetro.html": {
+          "selectors": [
+                "#r4",
+                "#nota",
+                "#r1",
+                "#r2"
+          ],
+          "title": "Leitura técnica — calibração de pHmetro",
+          "messages": {
+                "initial": "Preencha os dados e gere o cálculo para obter uma leitura preliminar do resultado de calibração/metrologia.",
+                "ok": "O resultado parece atender ao critério informado para os dados digitados. Ainda confira padrão, rastreabilidade, procedimento, unidade, incerteza e registro antes de liberar.",
+                "warn": "O resultado exige atenção técnica. Revise dados, unidade, tolerância, estabilidade, padrão utilizado e criticidade da aplicação antes de concluir.",
+                "bad": "O resultado indica reprovação, inconsistência ou condição crítica. Não libere o instrumento ou a função antes de revisar dados, repetir o teste e seguir o procedimento aplicável."
+          },
+          "next": [
+                "Conferir unidade, faixa, LRV/URV, tolerância/EMP e ponto de teste informado.",
+                "Confirmar rastreabilidade e adequação do padrão/calibrador usado.",
+                "Registrar as found/as left, incerteza quando aplicável e evidências antes de liberar o instrumento."
+          ]
+    } ,
+    "calculadora-calibracao-transmissor-orp.html": {
+          "selectors": [
+                "#r4",
+                "#r1",
+                "#r2",
+                "#r3"
+          ],
+          "title": "Leitura técnica — calibração de transmissor ORP",
+          "messages": {
+                "initial": "Preencha os dados e gere o cálculo para obter uma leitura preliminar do resultado de calibração/metrologia.",
+                "ok": "O resultado parece atender ao critério informado para os dados digitados. Ainda confira padrão, rastreabilidade, procedimento, unidade, incerteza e registro antes de liberar.",
+                "warn": "O resultado exige atenção técnica. Revise dados, unidade, tolerância, estabilidade, padrão utilizado e criticidade da aplicação antes de concluir.",
+                "bad": "O resultado indica reprovação, inconsistência ou condição crítica. Não libere o instrumento ou a função antes de revisar dados, repetir o teste e seguir o procedimento aplicável."
+          },
+          "next": [
+                "Conferir unidade, faixa, LRV/URV, tolerância/EMP e ponto de teste informado.",
+                "Confirmar rastreabilidade e adequação do padrão/calibrador usado.",
+                "Registrar as found/as left, incerteza quando aplicável e evidências antes de liberar o instrumento."
+          ]
+    } ,
+    "calculadora-calibracao-condutivimetro.html": {
+          "selectors": [
+                "#r4",
+                "#r1",
+                "#r2",
+                "#r3"
+          ],
+          "title": "Leitura técnica — calibração de condutivímetro",
+          "messages": {
+                "initial": "Preencha os dados e gere o cálculo para obter uma leitura preliminar do resultado de calibração/metrologia.",
+                "ok": "O resultado parece atender ao critério informado para os dados digitados. Ainda confira padrão, rastreabilidade, procedimento, unidade, incerteza e registro antes de liberar.",
+                "warn": "O resultado exige atenção técnica. Revise dados, unidade, tolerância, estabilidade, padrão utilizado e criticidade da aplicação antes de concluir.",
+                "bad": "O resultado indica reprovação, inconsistência ou condição crítica. Não libere o instrumento ou a função antes de revisar dados, repetir o teste e seguir o procedimento aplicável."
+          },
+          "next": [
+                "Conferir unidade, faixa, LRV/URV, tolerância/EMP e ponto de teste informado.",
+                "Confirmar rastreabilidade e adequação do padrão/calibrador usado.",
+                "Registrar as found/as left, incerteza quando aplicável e evidências antes de liberar o instrumento."
+          ]
+    } ,
+    "calculadora-calibracao-balanca-industrial.html": {
+          "selectors": [
+                "#r4",
+                "#r1",
+                "#r2",
+                "#r3"
+          ],
+          "title": "Leitura técnica — calibração de balança industrial",
+          "messages": {
+                "initial": "Preencha os dados e gere o cálculo para obter uma leitura preliminar do resultado de calibração/metrologia.",
+                "ok": "O resultado parece atender ao critério informado para os dados digitados. Ainda confira padrão, rastreabilidade, procedimento, unidade, incerteza e registro antes de liberar.",
+                "warn": "O resultado exige atenção técnica. Revise dados, unidade, tolerância, estabilidade, padrão utilizado e criticidade da aplicação antes de concluir.",
+                "bad": "O resultado indica reprovação, inconsistência ou condição crítica. Não libere o instrumento ou a função antes de revisar dados, repetir o teste e seguir o procedimento aplicável."
+          },
+          "next": [
+                "Conferir unidade, faixa, LRV/URV, tolerância/EMP e ponto de teste informado.",
+                "Confirmar rastreabilidade e adequação do padrão/calibrador usado.",
+                "Registrar as found/as left, incerteza quando aplicável e evidências antes de liberar o instrumento."
+          ]
+    } ,
+    "calculadora-calibracao-cartao-analogico-clp.html": {
+          "selectors": [
+                "#r4",
+                "#r1",
+                "#r2",
+                "#r3"
+          ],
+          "title": "Leitura técnica — calibração de cartão analógico CLP/DCS",
+          "messages": {
+                "initial": "Preencha os dados e gere o cálculo para obter uma leitura preliminar do resultado de calibração/metrologia.",
+                "ok": "O resultado parece atender ao critério informado para os dados digitados. Ainda confira padrão, rastreabilidade, procedimento, unidade, incerteza e registro antes de liberar.",
+                "warn": "O resultado exige atenção técnica. Revise dados, unidade, tolerância, estabilidade, padrão utilizado e criticidade da aplicação antes de concluir.",
+                "bad": "O resultado indica reprovação, inconsistência ou condição crítica. Não libere o instrumento ou a função antes de revisar dados, repetir o teste e seguir o procedimento aplicável."
+          },
+          "next": [
+                "Conferir unidade, faixa, LRV/URV, tolerância/EMP e ponto de teste informado.",
+                "Confirmar rastreabilidade e adequação do padrão/calibrador usado.",
+                "Registrar as found/as left, incerteza quando aplicável e evidências antes de liberar o instrumento."
+          ]
+    } ,
+    "calculadora-calibracao-transmissor-nivel-dp.html": {
+          "selectors": [
+                "#r4",
+                "#r1",
+                "#r2",
+                "#r3"
+          ],
+          "title": "Leitura técnica — calibração de transmissor de nível DP",
+          "messages": {
+                "initial": "Preencha os dados e gere o cálculo para obter uma leitura preliminar do resultado de calibração/metrologia.",
+                "ok": "O resultado parece atender ao critério informado para os dados digitados. Ainda confira padrão, rastreabilidade, procedimento, unidade, incerteza e registro antes de liberar.",
+                "warn": "O resultado exige atenção técnica. Revise dados, unidade, tolerância, estabilidade, padrão utilizado e criticidade da aplicação antes de concluir.",
+                "bad": "O resultado indica reprovação, inconsistência ou condição crítica. Não libere o instrumento ou a função antes de revisar dados, repetir o teste e seguir o procedimento aplicável."
+          },
+          "next": [
+                "Conferir unidade, faixa, LRV/URV, tolerância/EMP e ponto de teste informado.",
+                "Confirmar rastreabilidade e adequação do padrão/calibrador usado.",
+                "Registrar as found/as left, incerteza quando aplicável e evidências antes de liberar o instrumento."
+          ]
+    } ,
+    "calculadora-calibracao-transmissor-dp-vazao.html": {
+          "selectors": [
+                "#r4",
+                "#r1",
+                "#r2",
+                "#r3"
+          ],
+          "title": "Leitura técnica — calibração de transmissor DP de vazão",
+          "messages": {
+                "initial": "Preencha os dados e gere o cálculo para obter uma leitura preliminar do resultado de calibração/metrologia.",
+                "ok": "O resultado parece atender ao critério informado para os dados digitados. Ainda confira padrão, rastreabilidade, procedimento, unidade, incerteza e registro antes de liberar.",
+                "warn": "O resultado exige atenção técnica. Revise dados, unidade, tolerância, estabilidade, padrão utilizado e criticidade da aplicação antes de concluir.",
+                "bad": "O resultado indica reprovação, inconsistência ou condição crítica. Não libere o instrumento ou a função antes de revisar dados, repetir o teste e seguir o procedimento aplicável."
+          },
+          "next": [
+                "Conferir unidade, faixa, LRV/URV, tolerância/EMP e ponto de teste informado.",
+                "Confirmar rastreabilidade e adequação do padrão/calibrador usado.",
+                "Registrar as found/as left, incerteza quando aplicável e evidências antes de liberar o instrumento."
+          ]
+    } ,
+    "calculadora-calibracao-medidor-vazao-magnetico.html": {
+          "selectors": [
+                "#r4",
+                "#r1",
+                "#r2",
+                "#r3"
+          ],
+          "title": "Leitura técnica — calibração de medidor de vazão magnético",
+          "messages": {
+                "initial": "Preencha os dados e gere o cálculo para obter uma leitura preliminar do resultado de calibração/metrologia.",
+                "ok": "O resultado parece atender ao critério informado para os dados digitados. Ainda confira padrão, rastreabilidade, procedimento, unidade, incerteza e registro antes de liberar.",
+                "warn": "O resultado exige atenção técnica. Revise dados, unidade, tolerância, estabilidade, padrão utilizado e criticidade da aplicação antes de concluir.",
+                "bad": "O resultado indica reprovação, inconsistência ou condição crítica. Não libere o instrumento ou a função antes de revisar dados, repetir o teste e seguir o procedimento aplicável."
+          },
+          "next": [
+                "Conferir unidade, faixa, LRV/URV, tolerância/EMP e ponto de teste informado.",
+                "Confirmar rastreabilidade e adequação do padrão/calibrador usado.",
+                "Registrar as found/as left, incerteza quando aplicável e evidências antes de liberar o instrumento."
+          ]
+    } ,
+    "calculadora-calibracao-medidor-vazao-coriolis.html": {
+          "selectors": [
+                "#r4",
+                "#r1",
+                "#r2",
+                "#r3"
+          ],
+          "title": "Leitura técnica — calibração de medidor de vazão Coriolis",
+          "messages": {
+                "initial": "Preencha os dados e gere o cálculo para obter uma leitura preliminar do resultado de calibração/metrologia.",
+                "ok": "O resultado parece atender ao critério informado para os dados digitados. Ainda confira padrão, rastreabilidade, procedimento, unidade, incerteza e registro antes de liberar.",
+                "warn": "O resultado exige atenção técnica. Revise dados, unidade, tolerância, estabilidade, padrão utilizado e criticidade da aplicação antes de concluir.",
+                "bad": "O resultado indica reprovação, inconsistência ou condição crítica. Não libere o instrumento ou a função antes de revisar dados, repetir o teste e seguir o procedimento aplicável."
+          },
+          "next": [
+                "Conferir unidade, faixa, LRV/URV, tolerância/EMP e ponto de teste informado.",
+                "Confirmar rastreabilidade e adequação do padrão/calibrador usado.",
+                "Registrar as found/as left, incerteza quando aplicável e evidências antes de liberar o instrumento."
+          ]
+    } ,
+    "calculadora-calibracao-medidor-vazao-ultrassonico.html": {
+          "selectors": [
+                "#r4",
+                "#r1",
+                "#r2",
+                "#r3"
+          ],
+          "title": "Leitura técnica — calibração de medidor de vazão ultrassônico",
+          "messages": {
+                "initial": "Preencha os dados e gere o cálculo para obter uma leitura preliminar do resultado de calibração/metrologia.",
+                "ok": "O resultado parece atender ao critério informado para os dados digitados. Ainda confira padrão, rastreabilidade, procedimento, unidade, incerteza e registro antes de liberar.",
+                "warn": "O resultado exige atenção técnica. Revise dados, unidade, tolerância, estabilidade, padrão utilizado e criticidade da aplicação antes de concluir.",
+                "bad": "O resultado indica reprovação, inconsistência ou condição crítica. Não libere o instrumento ou a função antes de revisar dados, repetir o teste e seguir o procedimento aplicável."
+          },
+          "next": [
+                "Conferir unidade, faixa, LRV/URV, tolerância/EMP e ponto de teste informado.",
+                "Confirmar rastreabilidade e adequação do padrão/calibrador usado.",
+                "Registrar as found/as left, incerteza quando aplicável e evidências antes de liberar o instrumento."
+          ]
+    } ,
+    "calculadora-intervalo-calibracao-deriva.html": {
+          "selectors": [
+                "#r4",
+                "#nota",
+                "#r1",
+                "#r2"
+          ],
+          "title": "Leitura técnica — intervalo de calibração por deriva",
+          "messages": {
+                "initial": "Preencha os dados e gere o cálculo para obter uma leitura preliminar do resultado de calibração/metrologia.",
+                "ok": "O resultado parece atender ao critério informado para os dados digitados. Ainda confira padrão, rastreabilidade, procedimento, unidade, incerteza e registro antes de liberar.",
+                "warn": "O resultado exige atenção técnica. Revise dados, unidade, tolerância, estabilidade, padrão utilizado e criticidade da aplicação antes de concluir.",
+                "bad": "O resultado indica reprovação, inconsistência ou condição crítica. Não libere o instrumento ou a função antes de revisar dados, repetir o teste e seguir o procedimento aplicável."
+          },
+          "next": [
+                "Conferir unidade, faixa, LRV/URV, tolerância/EMP e ponto de teste informado.",
+                "Confirmar rastreabilidade e adequação do padrão/calibrador usado.",
+                "Registrar as found/as left, incerteza quando aplicável e evidências antes de liberar o instrumento."
+          ]
+    } ,
+    "calculadora-calibracao-chave-fluxo.html": {
+          "selectors": [
+                "#r4",
+                "#nota",
+                "#r1",
+                "#r2",
+                "#r3",
+                "#status"
+          ],
+          "title": "Leitura técnica — calibração de chave de fluxo",
+          "messages": {
+                "initial": "Preencha os dados e gere o cálculo para obter uma leitura preliminar do resultado de calibração/metrologia.",
+                "ok": "O resultado parece atender ao critério informado para os dados digitados. Ainda confira padrão, rastreabilidade, procedimento, unidade, incerteza e registro antes de liberar.",
+                "warn": "O resultado exige atenção técnica. Revise dados, unidade, tolerância, estabilidade, padrão utilizado e criticidade da aplicação antes de concluir.",
+                "bad": "O resultado indica reprovação, inconsistência ou condição crítica. Não libere o instrumento ou a função antes de revisar dados, repetir o teste e seguir o procedimento aplicável."
+          },
+          "next": [
+                "Conferir unidade, faixa, LRV/URV, tolerância/EMP e ponto de teste informado.",
+                "Confirmar rastreabilidade e adequação do padrão/calibrador usado.",
+                "Registrar as found/as left, incerteza quando aplicável e evidências antes de liberar o instrumento."
+          ]
+    } ,
+    "calculadora-calibracao-chave-nivel.html": {
+          "selectors": [
+                "#r4",
+                "#nota",
+                "#r1",
+                "#r2",
+                "#r3",
+                "#status"
+          ],
+          "title": "Leitura técnica — calibração de chave de nível",
+          "messages": {
+                "initial": "Preencha os dados e gere o cálculo para obter uma leitura preliminar do resultado de calibração/metrologia.",
+                "ok": "O resultado parece atender ao critério informado para os dados digitados. Ainda confira padrão, rastreabilidade, procedimento, unidade, incerteza e registro antes de liberar.",
+                "warn": "O resultado exige atenção técnica. Revise dados, unidade, tolerância, estabilidade, padrão utilizado e criticidade da aplicação antes de concluir.",
+                "bad": "O resultado indica reprovação, inconsistência ou condição crítica. Não libere o instrumento ou a função antes de revisar dados, repetir o teste e seguir o procedimento aplicável."
+          },
+          "next": [
+                "Conferir unidade, faixa, LRV/URV, tolerância/EMP e ponto de teste informado.",
+                "Confirmar rastreabilidade e adequação do padrão/calibrador usado.",
+                "Registrar as found/as left, incerteza quando aplicável e evidências antes de liberar o instrumento."
+          ]
+    } ,
+    "calculadora-calibracao-conversor-ip-pi.html": {
+          "selectors": [
+                "#r4",
+                "#nota",
+                "#r1",
+                "#r2",
+                "#r3",
+                "#status"
+          ],
+          "title": "Leitura técnica — calibração de conversor I/P e P/I",
+          "messages": {
+                "initial": "Preencha os dados e gere o cálculo para obter uma leitura preliminar do resultado de calibração/metrologia.",
+                "ok": "O resultado parece atender ao critério informado para os dados digitados. Ainda confira padrão, rastreabilidade, procedimento, unidade, incerteza e registro antes de liberar.",
+                "warn": "O resultado exige atenção técnica. Revise dados, unidade, tolerância, estabilidade, padrão utilizado e criticidade da aplicação antes de concluir.",
+                "bad": "O resultado indica reprovação, inconsistência ou condição crítica. Não libere o instrumento ou a função antes de revisar dados, repetir o teste e seguir o procedimento aplicável."
+          },
+          "next": [
+                "Conferir unidade, faixa, LRV/URV, tolerância/EMP e ponto de teste informado.",
+                "Confirmar rastreabilidade e adequação do padrão/calibrador usado.",
+                "Registrar as found/as left, incerteza quando aplicável e evidências antes de liberar o instrumento."
+          ]
+    } ,
+    "calculadora-calibracao-indicador-controlador.html": {
+          "selectors": [
+                "#r4",
+                "#nota",
+                "#r1",
+                "#r2",
+                "#r3",
+                "#status"
+          ],
+          "title": "Leitura técnica — calibração de indicador e controlador",
+          "messages": {
+                "initial": "Preencha os dados e gere o cálculo para obter uma leitura preliminar do resultado de calibração/metrologia.",
+                "ok": "O resultado parece atender ao critério informado para os dados digitados. Ainda confira padrão, rastreabilidade, procedimento, unidade, incerteza e registro antes de liberar.",
+                "warn": "O resultado exige atenção técnica. Revise dados, unidade, tolerância, estabilidade, padrão utilizado e criticidade da aplicação antes de concluir.",
+                "bad": "O resultado indica reprovação, inconsistência ou condição crítica. Não libere o instrumento ou a função antes de revisar dados, repetir o teste e seguir o procedimento aplicável."
+          },
+          "next": [
+                "Conferir unidade, faixa, LRV/URV, tolerância/EMP e ponto de teste informado.",
+                "Confirmar rastreabilidade e adequação do padrão/calibrador usado.",
+                "Registrar as found/as left, incerteza quando aplicável e evidências antes de liberar o instrumento."
+          ]
+    } ,
+    "calculadora-calibracao-radar-ultrassonico-nivel.html": {
+          "selectors": [
+                "#r4",
+                "#nota",
+                "#r1",
+                "#r2",
+                "#r3",
+                "#status"
+          ],
+          "title": "Leitura técnica — calibração de radar/ultrassônico de nível",
+          "messages": {
+                "initial": "Preencha os dados e gere o cálculo para obter uma leitura preliminar do resultado de calibração/metrologia.",
+                "ok": "O resultado parece atender ao critério informado para os dados digitados. Ainda confira padrão, rastreabilidade, procedimento, unidade, incerteza e registro antes de liberar.",
+                "warn": "O resultado exige atenção técnica. Revise dados, unidade, tolerância, estabilidade, padrão utilizado e criticidade da aplicação antes de concluir.",
+                "bad": "O resultado indica reprovação, inconsistência ou condição crítica. Não libere o instrumento ou a função antes de revisar dados, repetir o teste e seguir o procedimento aplicável."
+          },
+          "next": [
+                "Conferir unidade, faixa, LRV/URV, tolerância/EMP e ponto de teste informado.",
+                "Confirmar rastreabilidade e adequação do padrão/calibrador usado.",
+                "Registrar as found/as left, incerteza quando aplicável e evidências antes de liberar o instrumento."
+          ]
+    } ,
+    "calculadora-calibracao-termostato.html": {
+          "selectors": [
+                "#r4",
+                "#nota",
+                "#r1",
+                "#r2",
+                "#r3",
+                "#status"
+          ],
+          "title": "Leitura técnica — calibração de termostato",
+          "messages": {
+                "initial": "Preencha os dados e gere o cálculo para obter uma leitura preliminar do resultado de calibração/metrologia.",
+                "ok": "O resultado parece atender ao critério informado para os dados digitados. Ainda confira padrão, rastreabilidade, procedimento, unidade, incerteza e registro antes de liberar.",
+                "warn": "O resultado exige atenção técnica. Revise dados, unidade, tolerância, estabilidade, padrão utilizado e criticidade da aplicação antes de concluir.",
+                "bad": "O resultado indica reprovação, inconsistência ou condição crítica. Não libere o instrumento ou a função antes de revisar dados, repetir o teste e seguir o procedimento aplicável."
+          },
+          "next": [
+                "Conferir unidade, faixa, LRV/URV, tolerância/EMP e ponto de teste informado.",
+                "Confirmar rastreabilidade e adequação do padrão/calibrador usado.",
+                "Registrar as found/as left, incerteza quando aplicável e evidências antes de liberar o instrumento."
+          ]
+    } ,
+    "calculadora-calibracao-totalizador-vazao.html": {
+          "selectors": [
+                "#r4",
+                "#nota",
+                "#r1",
+                "#r2",
+                "#r3",
+                "#status"
+          ],
+          "title": "Leitura técnica — calibração de totalizador de vazão",
+          "messages": {
+                "initial": "Preencha os dados e gere o cálculo para obter uma leitura preliminar do resultado de calibração/metrologia.",
+                "ok": "O resultado parece atender ao critério informado para os dados digitados. Ainda confira padrão, rastreabilidade, procedimento, unidade, incerteza e registro antes de liberar.",
+                "warn": "O resultado exige atenção técnica. Revise dados, unidade, tolerância, estabilidade, padrão utilizado e criticidade da aplicação antes de concluir.",
+                "bad": "O resultado indica reprovação, inconsistência ou condição crítica. Não libere o instrumento ou a função antes de revisar dados, repetir o teste e seguir o procedimento aplicável."
+          },
+          "next": [
+                "Conferir unidade, faixa, LRV/URV, tolerância/EMP e ponto de teste informado.",
+                "Confirmar rastreabilidade e adequação do padrão/calibrador usado.",
+                "Registrar as found/as left, incerteza quando aplicável e evidências antes de liberar o instrumento."
+          ]
+    },
+    "calculadora-4-20ma.html": {
+          "selectors": [
+                ".calc-result",
+                ".result-box",
+                "#resultado",
+                "#resultadoFinal",
+                "#result",
+                "#nota",
+                "#outStatus",
+                "[id*=\"result\"]",
+                "[id*=\"res\"]",
+                "[id*=\"out\"]",
+                "[id*=\"nota\"]"
+          ],
+          "title": "Leitura técnica da malha/sinal industrial",
+          "messages": {
+                "initial": "Preencha os dados para obter uma leitura preliminar do sinal, faixa ou condição da malha.",
+                "ok": "O resultado parece coerente para os dados digitados. Ainda confira LRV/URV, escala do CLP/DCS, tensão de loop, cargas em série e medição em campo.",
+                "warn": "O resultado exige atenção. Revise faixa, unidade, carga de malha, configuração HART, raiz quadrada, saturação e ponto onde a medição foi feita.",
+                "bad": "O resultado indica condição incompatível ou insuficiente. Não aplique em campo antes de revisar dados, escala, fonte, cabo, cargas e configuração da malha."
+          },
+          "next": [
+                "Comparar corrente calculada com corrente medida no borne do transmissor e no cartão do CLP/DCS.",
+                "Conferir LRV, URV, unidade de engenharia, raiz quadrada e damping configurados.",
+                "Em HART ou malha crítica, validar comunicação, carga útil e teste de malha documentado."
+          ]
+    },
+    "calculadora-carga-malha-4-20ma.html": {
+          "selectors": [
+                ".calc-result",
+                ".result-box",
+                "#resultado",
+                "#resultadoFinal",
+                "#result",
+                "#nota",
+                "#outStatus",
+                "[id*=\"result\"]",
+                "[id*=\"res\"]",
+                "[id*=\"out\"]",
+                "[id*=\"nota\"]"
+          ],
+          "title": "Leitura técnica da malha/sinal industrial",
+          "messages": {
+                "initial": "Preencha os dados para obter uma leitura preliminar do sinal, faixa ou condição da malha.",
+                "ok": "O resultado parece coerente para os dados digitados. Ainda confira LRV/URV, escala do CLP/DCS, tensão de loop, cargas em série e medição em campo.",
+                "warn": "O resultado exige atenção. Revise faixa, unidade, carga de malha, configuração HART, raiz quadrada, saturação e ponto onde a medição foi feita.",
+                "bad": "O resultado indica condição incompatível ou insuficiente. Não aplique em campo antes de revisar dados, escala, fonte, cabo, cargas e configuração da malha."
+          },
+          "next": [
+                "Comparar corrente calculada com corrente medida no borne do transmissor e no cartão do CLP/DCS.",
+                "Conferir LRV, URV, unidade de engenharia, raiz quadrada e damping configurados.",
+                "Em HART ou malha crítica, validar comunicação, carga útil e teste de malha documentado."
+          ]
+    },
+    "calculadora-diagnostico-4-20ma-hart.html": {
+          "selectors": [
+                ".calc-result",
+                ".result-box",
+                "#resultado",
+                "#resultadoFinal",
+                "#result",
+                "#nota",
+                "#outStatus",
+                "[id*=\"result\"]",
+                "[id*=\"res\"]",
+                "[id*=\"out\"]",
+                "[id*=\"nota\"]"
+          ],
+          "title": "Leitura técnica da malha/sinal industrial",
+          "messages": {
+                "initial": "Preencha os dados para obter uma leitura preliminar do sinal, faixa ou condição da malha.",
+                "ok": "O resultado parece coerente para os dados digitados. Ainda confira LRV/URV, escala do CLP/DCS, tensão de loop, cargas em série e medição em campo.",
+                "warn": "O resultado exige atenção. Revise faixa, unidade, carga de malha, configuração HART, raiz quadrada, saturação e ponto onde a medição foi feita.",
+                "bad": "O resultado indica condição incompatível ou insuficiente. Não aplique em campo antes de revisar dados, escala, fonte, cabo, cargas e configuração da malha."
+          },
+          "next": [
+                "Comparar corrente calculada com corrente medida no borne do transmissor e no cartão do CLP/DCS.",
+                "Conferir LRV, URV, unidade de engenharia, raiz quadrada e damping configurados.",
+                "Em HART ou malha crítica, validar comunicação, carga útil e teste de malha documentado."
+          ]
+    },
+    "calculadora-comprimento-cabo-hart.html": {
+          "selectors": [
+                ".calc-result",
+                ".result-box",
+                "#resultado",
+                "#resultadoFinal",
+                "#result",
+                "#nota",
+                "#outStatus",
+                "[id*=\"result\"]",
+                "[id*=\"res\"]",
+                "[id*=\"out\"]",
+                "[id*=\"nota\"]"
+          ],
+          "title": "Leitura técnica da malha/sinal industrial",
+          "messages": {
+                "initial": "Preencha os dados para obter uma leitura preliminar do sinal, faixa ou condição da malha.",
+                "ok": "O resultado parece coerente para os dados digitados. Ainda confira LRV/URV, escala do CLP/DCS, tensão de loop, cargas em série e medição em campo.",
+                "warn": "O resultado exige atenção. Revise faixa, unidade, carga de malha, configuração HART, raiz quadrada, saturação e ponto onde a medição foi feita.",
+                "bad": "O resultado indica condição incompatível ou insuficiente. Não aplique em campo antes de revisar dados, escala, fonte, cabo, cargas e configuração da malha."
+          },
+          "next": [
+                "Comparar corrente calculada com corrente medida no borne do transmissor e no cartão do CLP/DCS.",
+                "Conferir LRV, URV, unidade de engenharia, raiz quadrada e damping configurados.",
+                "Em HART ou malha crítica, validar comunicação, carga útil e teste de malha documentado."
+          ]
+    },
+    "calculadora-lrv-urv-span.html": {
+          "selectors": [
+                ".calc-result",
+                ".result-box",
+                "#resultado",
+                "#resultadoFinal",
+                "#result",
+                "#nota",
+                "#outStatus",
+                "[id*=\"result\"]",
+                "[id*=\"res\"]",
+                "[id*=\"out\"]",
+                "[id*=\"nota\"]"
+          ],
+          "title": "Leitura técnica da malha/sinal industrial",
+          "messages": {
+                "initial": "Preencha os dados para obter uma leitura preliminar do sinal, faixa ou condição da malha.",
+                "ok": "O resultado parece coerente para os dados digitados. Ainda confira LRV/URV, escala do CLP/DCS, tensão de loop, cargas em série e medição em campo.",
+                "warn": "O resultado exige atenção. Revise faixa, unidade, carga de malha, configuração HART, raiz quadrada, saturação e ponto onde a medição foi feita.",
+                "bad": "O resultado indica condição incompatível ou insuficiente. Não aplique em campo antes de revisar dados, escala, fonte, cabo, cargas e configuração da malha."
+          },
+          "next": [
+                "Comparar corrente calculada com corrente medida no borne do transmissor e no cartão do CLP/DCS.",
+                "Conferir LRV, URV, unidade de engenharia, raiz quadrada e damping configurados.",
+                "Em HART ou malha crítica, validar comunicação, carga útil e teste de malha documentado."
+          ]
+    },
+    "calculadora-raiz-quadrada-4-20ma.html": {
+          "selectors": [
+                ".calc-result",
+                ".result-box",
+                "#resultado",
+                "#resultadoFinal",
+                "#result",
+                "#nota",
+                "#outStatus",
+                "[id*=\"result\"]",
+                "[id*=\"res\"]",
+                "[id*=\"out\"]",
+                "[id*=\"nota\"]"
+          ],
+          "title": "Leitura técnica da malha/sinal industrial",
+          "messages": {
+                "initial": "Preencha os dados para obter uma leitura preliminar do sinal, faixa ou condição da malha.",
+                "ok": "O resultado parece coerente para os dados digitados. Ainda confira LRV/URV, escala do CLP/DCS, tensão de loop, cargas em série e medição em campo.",
+                "warn": "O resultado exige atenção. Revise faixa, unidade, carga de malha, configuração HART, raiz quadrada, saturação e ponto onde a medição foi feita.",
+                "bad": "O resultado indica condição incompatível ou insuficiente. Não aplique em campo antes de revisar dados, escala, fonte, cabo, cargas e configuração da malha."
+          },
+          "next": [
+                "Comparar corrente calculada com corrente medida no borne do transmissor e no cartão do CLP/DCS.",
+                "Conferir LRV, URV, unidade de engenharia, raiz quadrada e damping configurados.",
+                "Em HART ou malha crítica, validar comunicação, carga útil e teste de malha documentado."
+          ]
+    },
+    "calculadora-split-range-4-20ma.html": {
+          "selectors": [
+                ".calc-result",
+                ".result-box",
+                "#resultado",
+                "#resultadoFinal",
+                "#result",
+                "#nota",
+                "#outStatus",
+                "[id*=\"result\"]",
+                "[id*=\"res\"]",
+                "[id*=\"out\"]",
+                "[id*=\"nota\"]"
+          ],
+          "title": "Leitura técnica da malha/sinal industrial",
+          "messages": {
+                "initial": "Preencha os dados para obter uma leitura preliminar do sinal, faixa ou condição da malha.",
+                "ok": "O resultado parece coerente para os dados digitados. Ainda confira LRV/URV, escala do CLP/DCS, tensão de loop, cargas em série e medição em campo.",
+                "warn": "O resultado exige atenção. Revise faixa, unidade, carga de malha, configuração HART, raiz quadrada, saturação e ponto onde a medição foi feita.",
+                "bad": "O resultado indica condição incompatível ou insuficiente. Não aplique em campo antes de revisar dados, escala, fonte, cabo, cargas e configuração da malha."
+          },
+          "next": [
+                "Comparar corrente calculada com corrente medida no borne do transmissor e no cartão do CLP/DCS.",
+                "Conferir LRV, URV, unidade de engenharia, raiz quadrada e damping configurados.",
+                "Em HART ou malha crítica, validar comunicação, carga útil e teste de malha documentado."
+          ]
+    },
+    "calculadora-sinal-pneumatico-3-15psi.html": {
+          "selectors": [
+                ".calc-result",
+                ".result-box",
+                "#resultado",
+                "#resultadoFinal",
+                "#result",
+                "#nota",
+                "#outStatus",
+                "[id*=\"result\"]",
+                "[id*=\"res\"]",
+                "[id*=\"out\"]",
+                "[id*=\"nota\"]"
+          ],
+          "title": "Leitura técnica pneumática/instrumentação",
+          "messages": {
+                "initial": "Preencha os dados para obter uma leitura preliminar de força, consumo ou atuação pneumática.",
+                "ok": "O resultado parece coerente para as premissas informadas. Ainda confira pressão mínima, perdas, qualidade do ar e dados do atuador/acessórios.",
+                "warn": "Existe atenção técnica. Revise pressão disponível, perdas, vazamentos, solenóide, regulador, volume e margem de força/tempo.",
+                "bad": "O resultado indica condição insuficiente ou crítica. Não aplique em válvula/intertravamento sem revisar o conjunto e testar em campo."
+          },
+          "next": [
+                "Conferir pressão mínima real no ponto de consumo e queda dinâmica.",
+                "Validar força/torque, tempo de atuação, vazão de ar e acessórios pneumáticos.",
+                "Em função crítica, executar teste funcional do conjunto completo."
+          ]
+    },
+    "calculadora-pt100.html": {
+          "selectors": [
+                ".calc-result",
+                ".result-box",
+                "#resultado",
+                "#resultadoFinal",
+                "#result",
+                "#nota",
+                "#outStatus",
+                "[id*=\"result\"]",
+                "[id*=\"res\"]",
+                "[id*=\"out\"]",
+                "[id*=\"nota\"]"
+          ],
+          "title": "Leitura técnica de temperatura industrial",
+          "messages": {
+                "initial": "Preencha os dados para obter uma leitura preliminar de temperatura, resistência ou milivoltagem.",
+                "ok": "O resultado parece coerente para o tipo de sensor informado. Ainda confira ligação, compensação, cabo, estabilidade térmica e configuração do transmissor.",
+                "warn": "Existe atenção técnica. Revise tipo de sensor, unidade, ligação, compensação de junta fria, resistência de cabo e condição de instalação.",
+                "bad": "O resultado indica condição incompatível ou fora da faixa. Não use para liberar malha sem revisar sensor, ligação, escala e procedimento de teste."
+          },
+          "next": [
+                "Conferir tipo do sensor, ligação 2/3/4 fios ou polaridade do termopar.",
+                "Comparar com padrão/calibrador adequado e aguardar estabilização térmica.",
+                "Verificar configuração do transmissor, entrada do CLP/DCS e unidade de engenharia."
+          ]
+    },
+    "calculadora-termopar.html": {
+          "selectors": [
+                ".calc-result",
+                ".result-box",
+                "#resultado",
+                "#resultadoFinal",
+                "#result",
+                "#nota",
+                "#outStatus",
+                "[id*=\"result\"]",
+                "[id*=\"res\"]",
+                "[id*=\"out\"]",
+                "[id*=\"nota\"]"
+          ],
+          "title": "Leitura técnica de temperatura industrial",
+          "messages": {
+                "initial": "Preencha os dados para obter uma leitura preliminar de temperatura, resistência ou milivoltagem.",
+                "ok": "O resultado parece coerente para o tipo de sensor informado. Ainda confira ligação, compensação, cabo, estabilidade térmica e configuração do transmissor.",
+                "warn": "Existe atenção técnica. Revise tipo de sensor, unidade, ligação, compensação de junta fria, resistência de cabo e condição de instalação.",
+                "bad": "O resultado indica condição incompatível ou fora da faixa. Não use para liberar malha sem revisar sensor, ligação, escala e procedimento de teste."
+          },
+          "next": [
+                "Conferir tipo do sensor, ligação 2/3/4 fios ou polaridade do termopar.",
+                "Comparar com padrão/calibrador adequado e aguardar estabilização térmica.",
+                "Verificar configuração do transmissor, entrada do CLP/DCS e unidade de engenharia."
+          ]
+    },
+    "calculadora-temperatura-industrial.html": {
+          "selectors": [
+                ".calc-result",
+                ".result-box",
+                "#resultado",
+                "#resultadoFinal",
+                "#result",
+                "#nota",
+                "#outStatus",
+                "[id*=\"result\"]",
+                "[id*=\"res\"]",
+                "[id*=\"out\"]",
+                "[id*=\"nota\"]"
+          ],
+          "title": "Leitura técnica de temperatura industrial",
+          "messages": {
+                "initial": "Preencha os dados para obter uma leitura preliminar de temperatura, resistência ou milivoltagem.",
+                "ok": "O resultado parece coerente para o tipo de sensor informado. Ainda confira ligação, compensação, cabo, estabilidade térmica e configuração do transmissor.",
+                "warn": "Existe atenção técnica. Revise tipo de sensor, unidade, ligação, compensação de junta fria, resistência de cabo e condição de instalação.",
+                "bad": "O resultado indica condição incompatível ou fora da faixa. Não use para liberar malha sem revisar sensor, ligação, escala e procedimento de teste."
+          },
+          "next": [
+                "Conferir tipo do sensor, ligação 2/3/4 fios ou polaridade do termopar.",
+                "Comparar com padrão/calibrador adequado e aguardar estabilização térmica.",
+                "Verificar configuração do transmissor, entrada do CLP/DCS e unidade de engenharia."
+          ]
+    },
+    "calculadora-nivel-pressao-hidrostatica.html": {
+          "selectors": [
+                ".calc-result",
+                ".result-box",
+                "#resultado",
+                "#resultadoFinal",
+                "#result",
+                "#nota",
+                "#outStatus",
+                "[id*=\"result\"]",
+                "[id*=\"res\"]",
+                "[id*=\"out\"]",
+                "[id*=\"nota\"]"
+          ],
+          "title": "Leitura técnica de nível/pressão diferencial",
+          "messages": {
+                "initial": "Preencha os dados para obter uma leitura preliminar de nível, pressão hidrostática ou DP.",
+                "ok": "O resultado parece coerente para as premissas informadas. Ainda confira densidade, tomadas, posição do transmissor, selos/capilares e teste de malha.",
+                "warn": "Há ponto de atenção. Revise densidade, unidade, referência, perna seca/úmida, pressão do tanque, montagem e possíveis variações de processo.",
+                "bad": "O resultado indica condição incompatível ou crítica. Não aplique antes de revisar montagem, referência, densidade, faixa LRV/URV e documentação."
+          },
+          "next": [
+                "Conferir se LRV/URV representam 0% e 100% físicos na montagem real.",
+                "Validar densidade, referência do lado baixo, tomadas de impulso, selos remotos e capilares.",
+                "Em tanque pressurizado, caldeira ou proteção de nível, exigir teste funcional e validação formal."
+          ]
+    },
+    "calculadora-pressao-hidrostatica-densidade.html": {
+          "selectors": [
+                ".calc-result",
+                ".result-box",
+                "#resultado",
+                "#resultadoFinal",
+                "#result",
+                "#nota",
+                "#outStatus",
+                "[id*=\"result\"]",
+                "[id*=\"res\"]",
+                "[id*=\"out\"]",
+                "[id*=\"nota\"]"
+          ],
+          "title": "Leitura técnica de nível/pressão diferencial",
+          "messages": {
+                "initial": "Preencha os dados para obter uma leitura preliminar de nível, pressão hidrostática ou DP.",
+                "ok": "O resultado parece coerente para as premissas informadas. Ainda confira densidade, tomadas, posição do transmissor, selos/capilares e teste de malha.",
+                "warn": "Há ponto de atenção. Revise densidade, unidade, referência, perna seca/úmida, pressão do tanque, montagem e possíveis variações de processo.",
+                "bad": "O resultado indica condição incompatível ou crítica. Não aplique antes de revisar montagem, referência, densidade, faixa LRV/URV e documentação."
+          },
+          "next": [
+                "Conferir se LRV/URV representam 0% e 100% físicos na montagem real.",
+                "Validar densidade, referência do lado baixo, tomadas de impulso, selos remotos e capilares.",
+                "Em tanque pressurizado, caldeira ou proteção de nível, exigir teste funcional e validação formal."
+          ]
+    },
+    "calculadora-dp-nivel-tanque-fechado.html": {
+          "selectors": [
+                ".calc-result",
+                ".result-box",
+                "#resultado",
+                "#resultadoFinal",
+                "#result",
+                "#nota",
+                "#outStatus",
+                "[id*=\"result\"]",
+                "[id*=\"res\"]",
+                "[id*=\"out\"]",
+                "[id*=\"nota\"]"
+          ],
+          "title": "Leitura técnica de nível/pressão diferencial",
+          "messages": {
+                "initial": "Preencha os dados para obter uma leitura preliminar de nível, pressão hidrostática ou DP.",
+                "ok": "O resultado parece coerente para as premissas informadas. Ainda confira densidade, tomadas, posição do transmissor, selos/capilares e teste de malha.",
+                "warn": "Há ponto de atenção. Revise densidade, unidade, referência, perna seca/úmida, pressão do tanque, montagem e possíveis variações de processo.",
+                "bad": "O resultado indica condição incompatível ou crítica. Não aplique antes de revisar montagem, referência, densidade, faixa LRV/URV e documentação."
+          },
+          "next": [
+                "Conferir se LRV/URV representam 0% e 100% físicos na montagem real.",
+                "Validar densidade, referência do lado baixo, tomadas de impulso, selos remotos e capilares.",
+                "Em tanque pressurizado, caldeira ou proteção de nível, exigir teste funcional e validação formal."
+          ]
+    },
+    "calculadora-linha-impulso-transmissor-dp.html": {
+          "selectors": [
+                ".calc-result",
+                ".result-box",
+                "#resultado",
+                "#resultadoFinal",
+                "#result",
+                "#nota",
+                "#outStatus",
+                "[id*=\"result\"]",
+                "[id*=\"res\"]",
+                "[id*=\"out\"]",
+                "[id*=\"nota\"]"
+          ],
+          "title": "Leitura técnica de nível/pressão diferencial",
+          "messages": {
+                "initial": "Preencha os dados para obter uma leitura preliminar de nível, pressão hidrostática ou DP.",
+                "ok": "O resultado parece coerente para as premissas informadas. Ainda confira densidade, tomadas, posição do transmissor, selos/capilares e teste de malha.",
+                "warn": "Há ponto de atenção. Revise densidade, unidade, referência, perna seca/úmida, pressão do tanque, montagem e possíveis variações de processo.",
+                "bad": "O resultado indica condição incompatível ou crítica. Não aplique antes de revisar montagem, referência, densidade, faixa LRV/URV e documentação."
+          },
+          "next": [
+                "Conferir se LRV/URV representam 0% e 100% físicos na montagem real.",
+                "Validar densidade, referência do lado baixo, tomadas de impulso, selos remotos e capilares.",
+                "Em tanque pressurizado, caldeira ou proteção de nível, exigir teste funcional e validação formal."
+          ]
+    },
+    "calculadora-selo-remoto-capilar-dp.html": {
+          "selectors": [
+                ".calc-result",
+                ".result-box",
+                "#resultado",
+                "#resultadoFinal",
+                "#result",
+                "#nota",
+                "#outStatus",
+                "[id*=\"result\"]",
+                "[id*=\"res\"]",
+                "[id*=\"out\"]",
+                "[id*=\"nota\"]"
+          ],
+          "title": "Leitura técnica de nível/pressão diferencial",
+          "messages": {
+                "initial": "Preencha os dados para obter uma leitura preliminar de nível, pressão hidrostática ou DP.",
+                "ok": "O resultado parece coerente para as premissas informadas. Ainda confira densidade, tomadas, posição do transmissor, selos/capilares e teste de malha.",
+                "warn": "Há ponto de atenção. Revise densidade, unidade, referência, perna seca/úmida, pressão do tanque, montagem e possíveis variações de processo.",
+                "bad": "O resultado indica condição incompatível ou crítica. Não aplique antes de revisar montagem, referência, densidade, faixa LRV/URV e documentação."
+          },
+          "next": [
+                "Conferir se LRV/URV representam 0% e 100% físicos na montagem real.",
+                "Validar densidade, referência do lado baixo, tomadas de impulso, selos remotos e capilares.",
+                "Em tanque pressurizado, caldeira ou proteção de nível, exigir teste funcional e validação formal."
+          ]
+    },
+    "calculadora-nivel-radar-ultrassonico.html": {
+          "selectors": [
+                ".calc-result",
+                ".result-box",
+                "#resultado",
+                "#resultadoFinal",
+                "#result",
+                "#nota",
+                "#outStatus",
+                "[id*=\"result\"]",
+                "[id*=\"res\"]",
+                "[id*=\"out\"]",
+                "[id*=\"nota\"]"
+          ],
+          "title": "Leitura técnica de nível/pressão diferencial",
+          "messages": {
+                "initial": "Preencha os dados para obter uma leitura preliminar de nível, pressão hidrostática ou DP.",
+                "ok": "O resultado parece coerente para as premissas informadas. Ainda confira densidade, tomadas, posição do transmissor, selos/capilares e teste de malha.",
+                "warn": "Há ponto de atenção. Revise densidade, unidade, referência, perna seca/úmida, pressão do tanque, montagem e possíveis variações de processo.",
+                "bad": "O resultado indica condição incompatível ou crítica. Não aplique antes de revisar montagem, referência, densidade, faixa LRV/URV e documentação."
+          },
+          "next": [
+                "Conferir se LRV/URV representam 0% e 100% físicos na montagem real.",
+                "Validar densidade, referência do lado baixo, tomadas de impulso, selos remotos e capilares.",
+                "Em tanque pressurizado, caldeira ou proteção de nível, exigir teste funcional e validação formal."
+          ]
+    },
+    "calculadora-vazao-pressao-diferencial.html": {
+          "selectors": [
+                ".calc-result",
+                ".result-box",
+                "#resultado",
+                "#resultadoFinal",
+                "#result",
+                "#nota",
+                "#outStatus",
+                "[id*=\"result\"]",
+                "[id*=\"res\"]",
+                "[id*=\"out\"]",
+                "[id*=\"nota\"]"
+          ],
+          "title": "Leitura técnica de vazão/processo",
+          "messages": {
+                "initial": "Preencha os dados para obter uma leitura preliminar de vazão, regime ou conversão de processo.",
+                "ok": "O resultado parece coerente para as condições informadas. Ainda confira propriedades do fluido, unidade, instalação e range do instrumento.",
+                "warn": "O resultado pede atenção. Revise unidade, condição normalizada, densidade/viscosidade, trechos retos, regime de escoamento e configuração do medidor.",
+                "bad": "O resultado indica condição incompatível, fora da faixa ou crítica. Não use para especificação ou liberação antes de cálculo formal e validação técnica."
+          },
+          "next": [
+                "Confirmar diâmetro interno, unidade, condição de referência, pressão, temperatura e propriedades do fluido.",
+                "Comparar com faixa do medidor/transmissor e requisitos de instalação.",
+                "Para gás, vapor, placa de orifício ou medição crítica, validar com norma/fabricante/procedimento."
+          ]
+    },
+    "calculadora-k-factor-vazao-pulsos.html": {
+          "selectors": [
+                ".calc-result",
+                ".result-box",
+                "#resultado",
+                "#resultadoFinal",
+                "#result",
+                "#nota",
+                "#outStatus",
+                "[id*=\"result\"]",
+                "[id*=\"res\"]",
+                "[id*=\"out\"]",
+                "[id*=\"nota\"]"
+          ],
+          "title": "Leitura técnica de vazão/processo",
+          "messages": {
+                "initial": "Preencha os dados para obter uma leitura preliminar de vazão, regime ou conversão de processo.",
+                "ok": "O resultado parece coerente para as condições informadas. Ainda confira propriedades do fluido, unidade, instalação e range do instrumento.",
+                "warn": "O resultado pede atenção. Revise unidade, condição normalizada, densidade/viscosidade, trechos retos, regime de escoamento e configuração do medidor.",
+                "bad": "O resultado indica condição incompatível, fora da faixa ou crítica. Não use para especificação ou liberação antes de cálculo formal e validação técnica."
+          },
+          "next": [
+                "Confirmar diâmetro interno, unidade, condição de referência, pressão, temperatura e propriedades do fluido.",
+                "Comparar com faixa do medidor/transmissor e requisitos de instalação.",
+                "Para gás, vapor, placa de orifício ou medição crítica, validar com norma/fabricante/procedimento."
+          ]
+    },
+    "calculadora-rotametro-correcao-vazao.html": {
+          "selectors": [
+                ".calc-result",
+                ".result-box",
+                "#resultado",
+                "#resultadoFinal",
+                "#result",
+                "#nota",
+                "#outStatus",
+                "[id*=\"result\"]",
+                "[id*=\"res\"]",
+                "[id*=\"out\"]",
+                "[id*=\"nota\"]"
+          ],
+          "title": "Leitura técnica de vazão/processo",
+          "messages": {
+                "initial": "Preencha os dados para obter uma leitura preliminar de vazão, regime ou conversão de processo.",
+                "ok": "O resultado parece coerente para as condições informadas. Ainda confira propriedades do fluido, unidade, instalação e range do instrumento.",
+                "warn": "O resultado pede atenção. Revise unidade, condição normalizada, densidade/viscosidade, trechos retos, regime de escoamento e configuração do medidor.",
+                "bad": "O resultado indica condição incompatível, fora da faixa ou crítica. Não use para especificação ou liberação antes de cálculo formal e validação técnica."
+          },
+          "next": [
+                "Confirmar diâmetro interno, unidade, condição de referência, pressão, temperatura e propriedades do fluido.",
+                "Comparar com faixa do medidor/transmissor e requisitos de instalação.",
+                "Para gás, vapor, placa de orifício ou medição crítica, validar com norma/fabricante/procedimento."
+          ]
+    },
+    "calculadora-vazao-normalizada-gases.html": {
+          "selectors": [
+                ".calc-result",
+                ".result-box",
+                "#resultado",
+                "#resultadoFinal",
+                "#result",
+                "#nota",
+                "#outStatus",
+                "[id*=\"result\"]",
+                "[id*=\"res\"]",
+                "[id*=\"out\"]",
+                "[id*=\"nota\"]"
+          ],
+          "title": "Leitura técnica de vazão/processo",
+          "messages": {
+                "initial": "Preencha os dados para obter uma leitura preliminar de vazão, regime ou conversão de processo.",
+                "ok": "O resultado parece coerente para as condições informadas. Ainda confira propriedades do fluido, unidade, instalação e range do instrumento.",
+                "warn": "O resultado pede atenção. Revise unidade, condição normalizada, densidade/viscosidade, trechos retos, regime de escoamento e configuração do medidor.",
+                "bad": "O resultado indica condição incompatível, fora da faixa ou crítica. Não use para especificação ou liberação antes de cálculo formal e validação técnica."
+          },
+          "next": [
+                "Confirmar diâmetro interno, unidade, condição de referência, pressão, temperatura e propriedades do fluido.",
+                "Comparar com faixa do medidor/transmissor e requisitos de instalação.",
+                "Para gás, vapor, placa de orifício ou medição crítica, validar com norma/fabricante/procedimento."
+          ]
+    },
+    "calculadora-vazao-velocidade-diametro.html": {
+          "selectors": [
+                ".calc-result",
+                ".result-box",
+                "#resultado",
+                "#resultadoFinal",
+                "#result",
+                "#nota",
+                "#outStatus",
+                "[id*=\"result\"]",
+                "[id*=\"res\"]",
+                "[id*=\"out\"]",
+                "[id*=\"nota\"]"
+          ],
+          "title": "Leitura técnica de vazão/processo",
+          "messages": {
+                "initial": "Preencha os dados para obter uma leitura preliminar de vazão, regime ou conversão de processo.",
+                "ok": "O resultado parece coerente para as condições informadas. Ainda confira propriedades do fluido, unidade, instalação e range do instrumento.",
+                "warn": "O resultado pede atenção. Revise unidade, condição normalizada, densidade/viscosidade, trechos retos, regime de escoamento e configuração do medidor.",
+                "bad": "O resultado indica condição incompatível, fora da faixa ou crítica. Não use para especificação ou liberação antes de cálculo formal e validação técnica."
+          },
+          "next": [
+                "Confirmar diâmetro interno, unidade, condição de referência, pressão, temperatura e propriedades do fluido.",
+                "Comparar com faixa do medidor/transmissor e requisitos de instalação.",
+                "Para gás, vapor, placa de orifício ou medição crítica, validar com norma/fabricante/procedimento."
+          ]
+    },
+    "calculadora-vazao-vertedouro-canaleta.html": {
+          "selectors": [
+                ".calc-result",
+                ".result-box",
+                "#resultado",
+                "#resultadoFinal",
+                "#result",
+                "#nota",
+                "#outStatus",
+                "[id*=\"result\"]",
+                "[id*=\"res\"]",
+                "[id*=\"out\"]",
+                "[id*=\"nota\"]"
+          ],
+          "title": "Leitura técnica de vazão/processo",
+          "messages": {
+                "initial": "Preencha os dados para obter uma leitura preliminar de vazão, regime ou conversão de processo.",
+                "ok": "O resultado parece coerente para as condições informadas. Ainda confira propriedades do fluido, unidade, instalação e range do instrumento.",
+                "warn": "O resultado pede atenção. Revise unidade, condição normalizada, densidade/viscosidade, trechos retos, regime de escoamento e configuração do medidor.",
+                "bad": "O resultado indica condição incompatível, fora da faixa ou crítica. Não use para especificação ou liberação antes de cálculo formal e validação técnica."
+          },
+          "next": [
+                "Confirmar diâmetro interno, unidade, condição de referência, pressão, temperatura e propriedades do fluido.",
+                "Comparar com faixa do medidor/transmissor e requisitos de instalação.",
+                "Para gás, vapor, placa de orifício ou medição crítica, validar com norma/fabricante/procedimento."
+          ]
+    },
+    "calculadora-reynolds-regime-escoamento.html": {
+          "selectors": [
+                ".calc-result",
+                ".result-box",
+                "#resultado",
+                "#resultadoFinal",
+                "#result",
+                "#nota",
+                "#outStatus",
+                "[id*=\"result\"]",
+                "[id*=\"res\"]",
+                "[id*=\"out\"]",
+                "[id*=\"nota\"]"
+          ],
+          "title": "Leitura técnica de vazão/processo",
+          "messages": {
+                "initial": "Preencha os dados para obter uma leitura preliminar de vazão, regime ou conversão de processo.",
+                "ok": "O resultado parece coerente para as condições informadas. Ainda confira propriedades do fluido, unidade, instalação e range do instrumento.",
+                "warn": "O resultado pede atenção. Revise unidade, condição normalizada, densidade/viscosidade, trechos retos, regime de escoamento e configuração do medidor.",
+                "bad": "O resultado indica condição incompatível, fora da faixa ou crítica. Não use para especificação ou liberação antes de cálculo formal e validação técnica."
+          },
+          "next": [
+                "Confirmar diâmetro interno, unidade, condição de referência, pressão, temperatura e propriedades do fluido.",
+                "Comparar com faixa do medidor/transmissor e requisitos de instalação.",
+                "Para gás, vapor, placa de orifício ou medição crítica, validar com norma/fabricante/procedimento."
+          ]
+    },
+    "calculadora-densidade-api-grau-api.html": {
+          "selectors": [
+                ".calc-result",
+                ".result-box",
+                "#resultado",
+                "#resultadoFinal",
+                "#result",
+                "#nota",
+                "#outStatus",
+                "[id*=\"result\"]",
+                "[id*=\"res\"]",
+                "[id*=\"out\"]",
+                "[id*=\"nota\"]"
+          ],
+          "title": "Leitura técnica do processo",
+          "messages": {
+                "initial": "Preencha os dados para obter uma leitura técnica preliminar.",
+                "ok": "O resultado parece coerente para os dados digitados. Ainda confirme premissas, unidade e condição de aplicação.",
+                "warn": "O resultado exige atenção técnica. Revise dados, unidade, premissas e condição real de processo.",
+                "bad": "O resultado indica condição incompatível ou crítica. Não aplique antes de revisar dados e validar tecnicamente."
+          },
+          "next": [
+                "Conferir unidade, faixa, propriedade do fluido/material e dados de fabricante.",
+                "Comparar com leitura de campo e documentação técnica.",
+                "Em aplicação crítica, registrar premissas e validar com responsável técnico."
+          ]
+    },
+    "calculadora-massa-tanque-nivel.html": {
+          "selectors": [
+                ".calc-result",
+                ".result-box",
+                "#resultado",
+                "#resultadoFinal",
+                "#result",
+                "#nota",
+                "#outStatus",
+                "[id*=\"result\"]",
+                "[id*=\"res\"]",
+                "[id*=\"out\"]",
+                "[id*=\"nota\"]"
+          ],
+          "title": "Leitura técnica de nível/pressão diferencial",
+          "messages": {
+                "initial": "Preencha os dados para obter uma leitura preliminar de nível, pressão hidrostática ou DP.",
+                "ok": "O resultado parece coerente para as premissas informadas. Ainda confira densidade, tomadas, posição do transmissor, selos/capilares e teste de malha.",
+                "warn": "Há ponto de atenção. Revise densidade, unidade, referência, perna seca/úmida, pressão do tanque, montagem e possíveis variações de processo.",
+                "bad": "O resultado indica condição incompatível ou crítica. Não aplique antes de revisar montagem, referência, densidade, faixa LRV/URV e documentação."
+          },
+          "next": [
+                "Conferir se LRV/URV representam 0% e 100% físicos na montagem real.",
+                "Validar densidade, referência do lado baixo, tomadas de impulso, selos remotos e capilares.",
+                "Em tanque pressurizado, caldeira ou proteção de nível, exigir teste funcional e validação formal."
+          ]
+    },
+    "calculadora-volume-cilindro-horizontal-nivel.html": {
+          "selectors": [
+                ".calc-result",
+                ".result-box",
+                "#resultado",
+                "#resultadoFinal",
+                "#result",
+                "#nota",
+                "#outStatus",
+                "[id*=\"result\"]",
+                "[id*=\"res\"]",
+                "[id*=\"out\"]",
+                "[id*=\"nota\"]"
+          ],
+          "title": "Leitura técnica de nível/pressão diferencial",
+          "messages": {
+                "initial": "Preencha os dados para obter uma leitura preliminar de nível, pressão hidrostática ou DP.",
+                "ok": "O resultado parece coerente para as premissas informadas. Ainda confira densidade, tomadas, posição do transmissor, selos/capilares e teste de malha.",
+                "warn": "Há ponto de atenção. Revise densidade, unidade, referência, perna seca/úmida, pressão do tanque, montagem e possíveis variações de processo.",
+                "bad": "O resultado indica condição incompatível ou crítica. Não aplique antes de revisar montagem, referência, densidade, faixa LRV/URV e documentação."
+          },
+          "next": [
+                "Conferir se LRV/URV representam 0% e 100% físicos na montagem real.",
+                "Validar densidade, referência do lado baixo, tomadas de impulso, selos remotos e capilares.",
+                "Em tanque pressurizado, caldeira ou proteção de nível, exigir teste funcional e validação formal."
+          ]
+    },
+    "calculadora-placa-orificio-restricao.html": {
+          "selectors": [
+                ".calc-result",
+                ".result-box",
+                "#resultado",
+                "#resultadoFinal",
+                "#result",
+                "#nota",
+                "#outStatus",
+                "[id*=\"result\"]",
+                "[id*=\"res\"]",
+                "[id*=\"out\"]",
+                "[id*=\"nota\"]"
+          ],
+          "title": "Leitura técnica de vazão/processo",
+          "messages": {
+                "initial": "Preencha os dados para obter uma leitura preliminar de vazão, regime ou conversão de processo.",
+                "ok": "O resultado parece coerente para as condições informadas. Ainda confira propriedades do fluido, unidade, instalação e range do instrumento.",
+                "warn": "O resultado pede atenção. Revise unidade, condição normalizada, densidade/viscosidade, trechos retos, regime de escoamento e configuração do medidor.",
+                "bad": "O resultado indica condição incompatível, fora da faixa ou crítica. Não use para especificação ou liberação antes de cálculo formal e validação técnica."
+          },
+          "next": [
+                "Confirmar diâmetro interno, unidade, condição de referência, pressão, temperatura e propriedades do fluido.",
+                "Comparar com faixa do medidor/transmissor e requisitos de instalação.",
+                "Para gás, vapor, placa de orifício ou medição crítica, validar com norma/fabricante/procedimento."
+          ]
+    },
+    "calculadora-cv-valvula-controle.html": {
+          "selectors": [
+                ".calc-result",
+                ".result-box",
+                "#resultado",
+                "#resultadoFinal",
+                "#result",
+                "#nota",
+                "#outStatus",
+                "[id*=\"result\"]",
+                "[id*=\"res\"]",
+                "[id*=\"out\"]",
+                "[id*=\"nota\"]"
+          ],
+          "title": "Leitura técnica de válvula de controle",
+          "messages": {
+                "initial": "Preencha os dados para obter uma leitura preliminar de Cv/Kv, cavitação ou atuação de válvula.",
+                "ok": "O resultado parece favorável como pré-seleção. Ainda valide com dados do fabricante, curva, internos, rangeabilidade, ruído, cavitação e classe de pressão.",
+                "warn": "Há atenção técnica. Revise queda de pressão, fluido, abertura, rangeabilidade, cavitação/flashing, velocidade, atuador e condição de falha.",
+                "bad": "O resultado indica condição crítica ou incompatível. Não especificar ou liberar válvula antes de cálculo formal, folha de dados e revisão de engenharia."
+          },
+          "next": [
+                "Validar condição mínima, normal e máxima de operação.",
+                "Conferir cavitação, flashing, ruído, erosão, material, classe de pressão e internos.",
+                "Comparar Cv/Kv e atuador com catálogo/fabricante e requisitos de segurança do processo."
+          ]
+    },
+    "calculadora-cv-gases-valvula-controle.html": {
+          "selectors": [
+                ".calc-result",
+                ".result-box",
+                "#resultado",
+                "#resultadoFinal",
+                "#result",
+                "#nota",
+                "#outStatus",
+                "[id*=\"result\"]",
+                "[id*=\"res\"]",
+                "[id*=\"out\"]",
+                "[id*=\"nota\"]"
+          ],
+          "title": "Leitura técnica de válvula de controle",
+          "messages": {
+                "initial": "Preencha os dados para obter uma leitura preliminar de Cv/Kv, cavitação ou atuação de válvula.",
+                "ok": "O resultado parece favorável como pré-seleção. Ainda valide com dados do fabricante, curva, internos, rangeabilidade, ruído, cavitação e classe de pressão.",
+                "warn": "Há atenção técnica. Revise queda de pressão, fluido, abertura, rangeabilidade, cavitação/flashing, velocidade, atuador e condição de falha.",
+                "bad": "O resultado indica condição crítica ou incompatível. Não especificar ou liberar válvula antes de cálculo formal, folha de dados e revisão de engenharia."
+          },
+          "next": [
+                "Validar condição mínima, normal e máxima de operação.",
+                "Conferir cavitação, flashing, ruído, erosão, material, classe de pressão e internos.",
+                "Comparar Cv/Kv e atuador com catálogo/fabricante e requisitos de segurança do processo."
+          ]
+    },
+    "calculadora-indice-cavitacao-valvula.html": {
+          "selectors": [
+                ".calc-result",
+                ".result-box",
+                "#resultado",
+                "#resultadoFinal",
+                "#result",
+                "#nota",
+                "#outStatus",
+                "[id*=\"result\"]",
+                "[id*=\"res\"]",
+                "[id*=\"out\"]",
+                "[id*=\"nota\"]"
+          ],
+          "title": "Leitura técnica de válvula de controle",
+          "messages": {
+                "initial": "Preencha os dados para obter uma leitura preliminar de Cv/Kv, cavitação ou atuação de válvula.",
+                "ok": "O resultado parece favorável como pré-seleção. Ainda valide com dados do fabricante, curva, internos, rangeabilidade, ruído, cavitação e classe de pressão.",
+                "warn": "Há atenção técnica. Revise queda de pressão, fluido, abertura, rangeabilidade, cavitação/flashing, velocidade, atuador e condição de falha.",
+                "bad": "O resultado indica condição crítica ou incompatível. Não especificar ou liberar válvula antes de cálculo formal, folha de dados e revisão de engenharia."
+          },
+          "next": [
+                "Validar condição mínima, normal e máxima de operação.",
+                "Conferir cavitação, flashing, ruído, erosão, material, classe de pressão e internos.",
+                "Comparar Cv/Kv e atuador com catálogo/fabricante e requisitos de segurança do processo."
+          ]
+    },
+    "calculadora-atuador-pneumatico.html": {
+          "selectors": [
+                ".calc-result",
+                ".result-box",
+                "#resultado",
+                "#resultadoFinal",
+                "#result",
+                "#nota",
+                "#outStatus",
+                "[id*=\"result\"]",
+                "[id*=\"res\"]",
+                "[id*=\"out\"]",
+                "[id*=\"nota\"]"
+          ],
+          "title": "Leitura técnica pneumática/instrumentação",
+          "messages": {
+                "initial": "Preencha os dados para obter uma leitura preliminar de força, consumo ou atuação pneumática.",
+                "ok": "O resultado parece coerente para as premissas informadas. Ainda confira pressão mínima, perdas, qualidade do ar e dados do atuador/acessórios.",
+                "warn": "Existe atenção técnica. Revise pressão disponível, perdas, vazamentos, solenóide, regulador, volume e margem de força/tempo.",
+                "bad": "O resultado indica condição insuficiente ou crítica. Não aplique em válvula/intertravamento sem revisar o conjunto e testar em campo."
+          },
+          "next": [
+                "Conferir pressão mínima real no ponto de consumo e queda dinâmica.",
+                "Validar força/torque, tempo de atuação, vazão de ar e acessórios pneumáticos.",
+                "Em função crítica, executar teste funcional do conjunto completo."
+          ]
+    },
+    "calculadora-tempo-atuacao-valvula.html": {
+          "selectors": [
+                ".calc-result",
+                ".result-box",
+                "#resultado",
+                "#resultadoFinal",
+                "#result",
+                "#nota",
+                "#outStatus",
+                "[id*=\"result\"]",
+                "[id*=\"res\"]",
+                "[id*=\"out\"]",
+                "[id*=\"nota\"]"
+          ],
+          "title": "Leitura técnica de válvula de controle",
+          "messages": {
+                "initial": "Preencha os dados para obter uma leitura preliminar de Cv/Kv, cavitação ou atuação de válvula.",
+                "ok": "O resultado parece favorável como pré-seleção. Ainda valide com dados do fabricante, curva, internos, rangeabilidade, ruído, cavitação e classe de pressão.",
+                "warn": "Há atenção técnica. Revise queda de pressão, fluido, abertura, rangeabilidade, cavitação/flashing, velocidade, atuador e condição de falha.",
+                "bad": "O resultado indica condição crítica ou incompatível. Não especificar ou liberar válvula antes de cálculo formal, folha de dados e revisão de engenharia."
+          },
+          "next": [
+                "Validar condição mínima, normal e máxima de operação.",
+                "Conferir cavitação, flashing, ruído, erosão, material, classe de pressão e internos.",
+                "Comparar Cv/Kv e atuador com catálogo/fabricante e requisitos de segurança do processo."
+          ]
+    },
+    "calculadora-bateria-ups-24vcc.html": {
+        "selectors": [
+            "#nota",
+            "#sug",
+            "#ah",
+            ".calc-result",
+            "[id*=\"resultado\"]",
+            "[id*=\"res\"]",
+            "[id*=\"nota\"]"
+        ],
+        "title": "Leitura técnica da bateria UPS 24 Vcc",
+        "messages": {
+            "initial": "Informe carga, autonomia, rendimento, DoD e derating para obter uma leitura preliminar da bateria 24 Vcc.",
+            "ok": "A capacidade estimada parece favorável para as premissas digitadas. Ainda confira curva real da bateria, temperatura, proteção e teste de autonomia.",
+            "warn": "Há atenção técnica em autonomia, capacidade comercial ou margem. Revise cargas críticas, derating, profundidade de descarga e envelhecimento.",
+            "bad": "O resultado indica bateria insuficiente ou dados inválidos. Não aplicar em painel real sem redimensionar e testar autonomia."
+        },
+        "next": [
+            "Conferir corrente real das cargas críticas e cargas que não precisam permanecer na UPS.",
+            "Comparar Ah calculado com curva e temperatura do fabricante.",
+            "Testar falta de energia e registrar autonomia real em comissionamento."
+        ]
+    },
+    "calculadora-cabo-profibus-rs485.html": {
+        "selectors": [
+            "#rStatus",
+            "#nota",
+            "#rUso",
+            ".calc-result",
+            "[id*=\"resultado\"]",
+            "[id*=\"res\"]",
+            "[id*=\"nota\"]"
+        ],
+        "title": "Leitura técnica do segmento PROFIBUS/RS-485",
+        "messages": {
+            "initial": "Informe rede, baud rate, comprimento, dispositivos e terminação para avaliar o segmento preliminarmente.",
+            "ok": "O segmento parece coerente pelos dados digitados. Ainda valide cabo, blindagem, terminação, conectores e diagnóstico físico.",
+            "warn": "Há atenção em comprimento, terminação, quantidade de dispositivos ou necessidade de repetidor. Revise a arquitetura antes do comissionamento.",
+            "bad": "O resultado indica condição incompatível ou dados inválidos. Não liberar rede sem corrigir cabeamento, taxa, repetidores ou terminação."
+        },
+        "next": [
+            "Conferir terminação ativa apenas nas extremidades elétricas do segmento.",
+            "Inspecionar blindagem, aterramento, polaridade A/B e conectores.",
+            "Usar analisador de rede ou diagnóstico do mestre em falhas intermitentes."
+        ]
+    },
+    "calculadora-escala-clp.html": {
+        "selectors": [
+            "#resultado",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".calc-result",
+            "[id*=\"resultado\"]",
+            "[id*=\"res\"]",
+            "[id*=\"nota\"]"
+        ],
+        "title": "Leitura técnica da escala de CLP",
+        "messages": {
+            "initial": "Informe ranges e leitura para interpretar a conversão entre sinal bruto e unidade de engenharia.",
+            "ok": "A escala parece coerente para os dados informados. Ainda compare com simulação de sinal e leitura no CLP/IHM.",
+            "warn": "Existe atenção técnica: leitura fora de faixa, range incoerente ou possível inversão de escala. Revise configuração do canal e bloco de escala.",
+            "bad": "O resultado indica erro crítico ou dados inválidos. Não use a leitura em controle/alarme antes de corrigir escala e testar em campo."
+        },
+        "next": [
+            "Testar 0%, 25%, 50%, 75% e 100% com calibrador ou simulador.",
+            "Conferir raw do fabricante, unidade de engenharia, LRV/URV e falha NAMUR.",
+            "Comparar valor no instrumento, CLP, IHM e supervisório."
+        ]
+    },
+    "calculadora-io-clp.html": {
+        "selectors": [
+            "#resultado",
+            "#total",
+            "#cards",
+            ".calc-result",
+            "[id*=\"resultado\"]",
+            "[id*=\"res\"]",
+            "[id*=\"nota\"]"
+        ],
+        "title": "Leitura técnica do I/O de CLP",
+        "messages": {
+            "initial": "Informe sinais, reserva e canais por cartão para obter uma estimativa preliminar de módulos de I/O.",
+            "ok": "A estimativa de I/O parece favorável como pré-dimensionamento. Ainda valide lista de sinais, módulos especiais, bornes e arquitetura.",
+            "warn": "Há atenção em reserva, quantidade de cartões ou sinais especiais. Revise lista de I/O antes de fechar painel ou compra.",
+            "bad": "O resultado indica dados insuficientes ou dimensionamento incompatível. Não aplicar sem revisar lista de I/O e hardware real."
+        },
+        "next": [
+            "Separar DI, DO, AI, AO, RTD, termopar, pulso, segurança e comunicação.",
+            "Conferir reserva física no rack, bornes, fonte 24 Vcc e endereçamento.",
+            "Validar compatibilidade dos módulos com o fabricante do CLP."
+        ]
+    },
+    "calculadora-ip-rede-industrial.html": {
+        "selectors": [
+            "#outStatus",
+            "#diag",
+            "#outRede",
+            "#outBroadcast",
+            "#outFaixa",
+            "#pills"
+        ],
+        "title": "Leitura técnica do endereçamento IP industrial",
+        "messages": {
+            "initial": "Informe IP e máscara para identificar rede, faixa de hosts e compatibilidade preliminar.",
+            "ok": "O endereçamento parece coerente para os dados digitados. Ainda valide plano de IP, gateway, VLAN, firewall e conflito real na rede.",
+            "warn": "Existe atenção em faixa, gateway, máscara ou sobreposição. Revise com automação/TI antes de alterar equipamento em produção.",
+            "bad": "O resultado indica IP/máscara inválido ou condição crítica. Não aplicar em rede industrial sem corrigir e validar."
+        },
+        "next": [
+            "Comparar com plano de endereçamento OT da planta.",
+            "Verificar conflito de IP e comunicação antes/depois da alteração.",
+            "Registrar alteração, backup e plano de retorno em rede produtiva."
+        ]
+    },
+    "calculadora-modbus-polling.html": {
+        "selectors": [
+            "#resultado",
+            "#nota",
+            "#status",
+            ".calc-result",
+            "[id*=\"resultado\"]",
+            "[id*=\"res\"]",
+            "[id*=\"nota\"]"
+        ],
+        "title": "Leitura técnica do polling Modbus",
+        "messages": {
+            "initial": "Informe baud rate, escravos, registradores e timeout para estimar ciclo de polling.",
+            "ok": "O ciclo parece compatível para uma aplicação preliminar. Ainda teste comunicação real, logs e estabilidade da rede.",
+            "warn": "Há atenção em ciclo, timeout, retries ou carga de comunicação. Revise agrupamento de leituras, baud rate e segmentação.",
+            "bad": "O resultado indica polling crítico ou dados inválidos. Não use para controle/monitoramento crítico sem redesenhar a comunicação."
+        },
+        "next": [
+            "Agrupar registradores contíguos e reduzir leituras pequenas repetidas.",
+            "Conferir timeout, retries, endereços duplicados e qualidade física da rede.",
+            "Comparar ciclo de atualização com necessidade real do processo."
+        ]
+    },
+    "calculadora-modbus.html": {
+        "selectors": [
+            "#resultado",
+            "#out",
+            "#status",
+            ".calc-result",
+            "[id*=\"resultado\"]",
+            "[id*=\"res\"]",
+            "[id*=\"out\"]",
+            "[id*=\"status\"]"
+        ],
+        "title": "Leitura técnica do mapeamento Modbus",
+        "messages": {
+            "initial": "Informe endereço, função e tipo de dado para apoiar a montagem da consulta Modbus.",
+            "ok": "O mapeamento parece coerente como referência. Ainda valide com leitura real, escala e documentação do fabricante.",
+            "warn": "Há atenção em offset, função, tipo de dado, escala ou word order. Revise antes de usar no CLP/SCADA.",
+            "bad": "O resultado indica condição incompatível ou dado inválido. Não aplicar no controle ou supervisório sem teste real."
+        },
+        "next": [
+            "Comparar endereço base 0/base 1 com manual do equipamento.",
+            "Testar leitura em software Modbus e comparar com display local.",
+            "Validar inteiro/float, escala, sinal e ordem de bytes/palavras."
+        ]
+    },
+    "calculadora-resolucao-clp-analogico.html": {
+        "selectors": [
+            "#resultado",
+            "#r1",
+            "#r2",
+            "#r3",
+            ".calc-result",
+            "[id*=\"resultado\"]",
+            "[id*=\"res\"]",
+            "[id*=\"nota\"]"
+        ],
+        "title": "Leitura técnica da resolução analógica",
+        "messages": {
+            "initial": "Informe bits, faixa raw e range de engenharia para estimar a menor variação teórica do canal.",
+            "ok": "A resolução parece compatível preliminarmente. Ainda avalie exatidão, ruído, erro total da malha e calibração.",
+            "warn": "A resolução pode ser baixa para a tolerância ou variação desejada. Revise range, módulo, filtro e necessidade do processo.",
+            "bad": "O resultado indica dados inválidos ou resolução inadequada. Não usar sem revisar hardware e requisito de medição."
+        },
+        "next": [
+            "Comparar passo calculado com tolerância do processo.",
+            "Avaliar erro do transmissor, cartão, ruído e filtro além da resolução.",
+            "Testar canal com simulador em pontos conhecidos."
+        ]
+    },
+    "calculadora-sintonia-pid.html": {
+        "selectors": [
+            "#resultado",
+            "#nota",
+            "#status",
+            ".calc-result",
+            "[id*=\"resultado\"]",
+            "[id*=\"res\"]",
+            "[id*=\"nota\"]"
+        ],
+        "title": "Leitura técnica da sintonia PID",
+        "messages": {
+            "initial": "Informe dados da resposta do processo para obter parâmetros PID preliminares.",
+            "ok": "A sintonia parece aplicável como ponto de partida conservador. Ainda teste com tendência e possibilidade de retorno ao ajuste anterior.",
+            "warn": "Há atenção em ganho, tempo morto, oscilação, ruído ou dinâmica do processo. Aplique apenas com acompanhamento operacional.",
+            "bad": "O resultado indica condição inadequada ou dados inválidos. Não aplicar parâmetros em malha real sem revisar teste e segurança do processo."
+        },
+        "next": [
+            "Registrar parâmetros antigos e novos antes de mudar o controlador.",
+            "Acompanhar tendência de PV, SP e OUT após pequenas perturbações.",
+            "Validar limites de saída, anti-windup, ação direta/reversa e modo de falha."
+        ]
+    },
+    "calculadora-tempo-transmissao-serial-industrial.html": {
+        "selectors": [
+            "#resultado",
+            "#nota",
+            "#status",
+            ".calc-result",
+            "[id*=\"resultado\"]",
+            "[id*=\"res\"]",
+            "[id*=\"nota\"]"
+        ],
+        "title": "Leitura técnica do tempo de transmissão serial",
+        "messages": {
+            "initial": "Informe bytes e configuração serial para estimar o tempo de transmissão do quadro.",
+            "ok": "O tempo estimado parece compatível como triagem. Ainda compare com o ciclo completo de protocolo e teste real.",
+            "warn": "Há atenção no tempo de transmissão ou na taxa configurada. Revise baud rate, tamanho de quadro e necessidade de atualização.",
+            "bad": "O resultado indica tempo incompatível ou dado inválido. Não usar em aplicação rápida/crítica sem validar ciclo completo."
+        },
+        "next": [
+            "Somar processamento, resposta do escravo, timeout e retries ao tempo puro de transmissão.",
+            "Conferir configuração serial igual em todos os dispositivos.",
+            "Medir a rede real em comissionamento quando a atualização for crítica."
+        ]
+    },
+    "calculadora-tempo-varredura-modbus-rtu.html": {
+        "selectors": [
+            "#resultado",
+            "#nota",
+            "#status",
+            ".calc-result",
+            "[id*=\"resultado\"]",
+            "[id*=\"res\"]",
+            "[id*=\"nota\"]"
+        ],
+        "title": "Leitura técnica da varredura Modbus RTU",
+        "messages": {
+            "initial": "Informe rede, escravos, registradores, timeout e retries para estimar tempo de varredura.",
+            "ok": "O tempo de varredura parece aceitável preliminarmente. Ainda valide com teste real e diagnóstico do mestre.",
+            "warn": "Há atenção em ciclo alto, muitos dispositivos, timeout ou retries. Revise arquitetura, agrupamento de leituras e taxa serial.",
+            "bad": "O resultado indica condição crítica ou rede lenta demais. Não usar para controle/intertravamento sem redesenho e validação."
+        },
+        "next": [
+            "Comparar tempo de varredura com dinâmica do processo.",
+            "Reduzir retries por falha física corrigindo cabo, terminação e endereços.",
+            "Separar redes ou migrar arquitetura quando a varredura ficar excessiva."
+        ]
+    },
+    "calculadora-tempo-resposta-malha-controle.html": {
+        "selectors": [
+            "#resultado",
+            "#nota",
+            "#status",
+            ".calc-result",
+            "[id*=\"resultado\"]",
+            "[id*=\"res\"]",
+            "[id*=\"nota\"]"
+        ],
+        "title": "Leitura técnica do tempo de resposta da malha",
+        "messages": {
+            "initial": "Informe atrasos da malha para avaliar tempo de resposta preliminar.",
+            "ok": "O tempo total parece compatível para a aplicação informada. Ainda valide com tendência e teste funcional.",
+            "warn": "Há atenção em atraso, damping, rede, CLP, atuador ou tempo morto. Revise antes de aplicar em controle ou alarme.",
+            "bad": "O resultado indica resposta lenta/crítica ou dados inválidos. Não liberar malha crítica sem teste real."
+        },
+        "next": [
+            "Identificar o elemento dominante do atraso e avaliar redução de filtro/damping quando seguro.",
+            "Comparar tempo total com necessidade de controle, alarme ou intertravamento.",
+            "Registrar tendência de resposta em campo."
+        ]
+    },
+    "calculadora-ups-automacao-clp-instrumentos.html": {
+        "selectors": [
+            "#resultadoRapido",
+            "#resultadoDetalhado",
+            "#memorial",
+            "[id*=\"resultado\"]",
+            "[id*=\"res\"]",
+            "[id*=\"nota\"]"
+        ],
+        "title": "Leitura técnica da UPS de automação",
+        "messages": {
+            "initial": "Informe cargas críticas e autonomia desejada para pré-dimensionar UPS e banco de baterias.",
+            "ok": "O pré-dimensionamento parece adequado para os dados informados. Ainda confira curva do fabricante, proteção, temperatura e teste de falta de energia.",
+            "warn": "Há atenção técnica em potência, autonomia, temperatura, margem ou banco de baterias. Revise cargas críticas e seleção comercial.",
+            "bad": "O resultado indica UPS/bateria insuficiente ou dados críticos. Não aplicar em painel real sem redimensionar e testar."
+        },
+        "next": [
+            "Separar cargas críticas e não críticas alimentadas pela UPS.",
+            "Comparar autonomia estimada com curva real do fabricante.",
+            "Testar falta de energia com CLP, rede e instrumentos energizados."
+        ]
+    },
+    "checklist-comissionamento-hart.html": {
+        "selectors": [
+            "#nota",
+            "#rPct",
+            "#rDone",
+            ".calc-result",
+            "[id*=\"resultado\"]",
+            "[id*=\"res\"]",
+            "[id*=\"nota\"]"
+        ],
+        "title": "Leitura técnica do checklist HART",
+        "messages": {
+            "initial": "Preencha os dados da malha e marque os itens concluídos para acompanhar o comissionamento HART.",
+            "ok": "O checklist está completo preliminarmente. Ainda registre evidências, teste de loop, PV/AO e aprovação conforme procedimento.",
+            "warn": "Checklist ainda possui itens pendentes. Trate pendências antes de liberar partida, principalmente em malhas críticas.",
+            "bad": "Há condição crítica ou dados inválidos. Não use o checklist como liberação sem completar testes e evidências."
+        },
+        "next": [
+            "Registrar TAG, range, localização, comunicador e evidências de teste.",
+            "Comparar PV, AO, range, damping, unidade e leitura no CLP/SCADA.",
+            "Em malha Ex/SIS, seguir procedimento específico e documentação formal."
+        ]
+    },
+    "checklist-comissionamento-industrial.html": {
+        "selectors": [
+            "#statusFinal",
+            "#percentual",
+            "#critCount",
+            "#resumo",
+            "[id*=\"resultado\"]",
+            "[id*=\"res\"]",
+            "[id*=\"status\"]"
+        ],
+        "title": "Leitura técnica do checklist de comissionamento",
+        "messages": {
+            "initial": "Preencha os dados do comissionamento e avalie os itens para gerar uma leitura preliminar de pendências.",
+            "ok": "Não há pendências registradas nos itens aplicáveis avaliados. Ainda valide evidências, procedimento do cliente e aceite formal.",
+            "warn": "Existem pendências, itens não avaliados ou pontos de atenção. Revise antes de entrega ou partida.",
+            "bad": "Há itens críticos pendentes. Não liberar partida ou entrega sem tratamento, aceite formal ou plano de ação aprovado."
+        },
+        "next": [
+            "Priorizar itens críticos pendentes acima do percentual geral.",
+            "Anexar evidências, responsáveis e prazos no relatório formal.",
+            "Validar aceite com operação, manutenção, segurança e engenharia."
+        ]
+    },
+
+    "calculadora-acumulador-hidraulico.html": {
+        "selectors": [
+            "#nota",
+            "#status",
+            "#resultado",
+            "#result",
+            "#resumo",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".calc-note",
+            ".calc-result",
+            ".result-box",
+            "[id*=\"resultado\"]",
+            "[id*=\"status\"]",
+            "[id*=\"nota\"]"
+        ],
+        "title": "Leitura técnica — Acumulador hidraulico",
+        "messages": {
+            "initial": "Preencha os dados e gere o cálculo para receber uma leitura técnica preliminar do resultado.",
+            "ok": "O resultado parece favorável como estimativa preliminar. Ainda confirme dados de entrada, unidade, margem e condição real antes de aplicar.",
+            "warn": "Há ponto de atenção, margem pequena ou resultado que depende de conferência técnica. Revise premissas, unidades e condição de operação.",
+            "bad": "O resultado indica condição crítica, insuficiente, inválida ou fora do critério. Não aplique em campo sem revisar dados, equipamento e segurança."
+        },
+        "next": [
+            "Conferir unidades, dados medidos e faixa real de operação.",
+            "Comparar o resultado com datasheet, histórico, procedimento e limite do equipamento.",
+            "Para aplicação crítica, registrar premissas e validar com responsável técnico antes de executar."
+        ]
+    },
+    "calculadora-alcalinidade-acidez-neutralizacao.html": {
+        "selectors": [
+            "#nota",
+            "#status",
+            "#resultado",
+            "#result",
+            "#resumo",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".calc-note",
+            ".calc-result",
+            ".result-box",
+            "[id*=\"resultado\"]",
+            "[id*=\"status\"]",
+            "[id*=\"nota\"]"
+        ],
+        "title": "Leitura técnica — Alcalinidade acidez neutralizacao",
+        "messages": {
+            "initial": "Preencha os dados e gere o cálculo para receber uma leitura técnica preliminar do resultado.",
+            "ok": "O resultado parece favorável como estimativa preliminar. Ainda confirme dados de entrada, unidade, margem e condição real antes de aplicar.",
+            "warn": "Há ponto de atenção, margem pequena ou resultado que depende de conferência técnica. Revise premissas, unidades e condição de operação.",
+            "bad": "O resultado indica condição crítica, insuficiente, inválida ou fora do critério. Não aplique em campo sem revisar dados, equipamento e segurança."
+        },
+        "next": [
+            "Conferir unidades, dados medidos e faixa real de operação.",
+            "Comparar o resultado com datasheet, histórico, procedimento e limite do equipamento.",
+            "Para aplicação crítica, registrar premissas e validar com responsável técnico antes de executar."
+        ]
+    },
+    "calculadora-area-trocador-calor.html": {
+        "selectors": [
+            "#nota",
+            "#status",
+            "#resultado",
+            "#result",
+            "#resumo",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".calc-note",
+            ".calc-result",
+            ".result-box",
+            "[id*=\"resultado\"]",
+            "[id*=\"status\"]",
+            "[id*=\"nota\"]"
+        ],
+        "title": "Leitura técnica — Area trocador calor",
+        "messages": {
+            "initial": "Preencha os dados e gere o cálculo para receber uma leitura técnica preliminar do resultado.",
+            "ok": "O resultado parece favorável como estimativa preliminar. Ainda confirme dados de entrada, unidade, margem e condição real antes de aplicar.",
+            "warn": "Há ponto de atenção, margem pequena ou resultado que depende de conferência técnica. Revise premissas, unidades e condição de operação.",
+            "bad": "O resultado indica condição crítica, insuficiente, inválida ou fora do critério. Não aplique em campo sem revisar dados, equipamento e segurança."
+        },
+        "next": [
+            "Conferir unidades, dados medidos e faixa real de operação.",
+            "Comparar o resultado com datasheet, histórico, procedimento e limite do equipamento.",
+            "Para aplicação crítica, registrar premissas e validar com responsável técnico antes de executar."
+        ]
+    },
+    "calculadora-autonomia-ar-instrumentos.html": {
+        "selectors": [
+            "#nota",
+            "#status",
+            "#resultado",
+            "#result",
+            "#resumo",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".calc-note",
+            ".calc-result",
+            ".result-box",
+            "[id*=\"resultado\"]",
+            "[id*=\"status\"]",
+            "[id*=\"nota\"]"
+        ],
+        "title": "Leitura técnica — Autonomia ar instrumentos",
+        "messages": {
+            "initial": "Preencha os dados e gere o cálculo para receber uma leitura técnica preliminar do resultado.",
+            "ok": "O resultado parece favorável como estimativa preliminar. Ainda confirme dados de entrada, unidade, margem e condição real antes de aplicar.",
+            "warn": "Há ponto de atenção, margem pequena ou resultado que depende de conferência técnica. Revise premissas, unidades e condição de operação.",
+            "bad": "O resultado indica condição crítica, insuficiente, inválida ou fora do critério. Não aplique em campo sem revisar dados, equipamento e segurança."
+        },
+        "next": [
+            "Conferir unidades, dados medidos e faixa real de operação.",
+            "Comparar o resultado com datasheet, histórico, procedimento e limite do equipamento.",
+            "Para aplicação crítica, registrar premissas e validar com responsável técnico antes de executar."
+        ]
+    },
+    "calculadora-autonomia-cilindro-gas.html": {
+        "selectors": [
+            "#nota",
+            "#status",
+            "#resultado",
+            "#result",
+            "#resumo",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".calc-note",
+            ".calc-result",
+            ".result-box",
+            "[id*=\"resultado\"]",
+            "[id*=\"status\"]",
+            "[id*=\"nota\"]"
+        ],
+        "title": "Leitura técnica — Autonomia cilindro gas",
+        "messages": {
+            "initial": "Preencha os dados e gere o cálculo para receber uma leitura técnica preliminar do resultado.",
+            "ok": "O resultado parece favorável como estimativa preliminar. Ainda confirme dados de entrada, unidade, margem e condição real antes de aplicar.",
+            "warn": "Há ponto de atenção, margem pequena ou resultado que depende de conferência técnica. Revise premissas, unidades e condição de operação.",
+            "bad": "O resultado indica condição crítica, insuficiente, inválida ou fora do critério. Não aplique em campo sem revisar dados, equipamento e segurança."
+        },
+        "next": [
+            "Conferir unidades, dados medidos e faixa real de operação.",
+            "Comparar o resultado com datasheet, histórico, procedimento e limite do equipamento.",
+            "Para aplicação crítica, registrar premissas e validar com responsável técnico antes de executar."
+        ]
+    },
+    "calculadora-bomba-dosadora-quimica.html": {
+        "selectors": [
+            "#nota",
+            "#status",
+            "#resultado",
+            "#result",
+            "#resumo",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".calc-note",
+            ".calc-result",
+            ".result-box",
+            "[id*=\"resultado\"]",
+            "[id*=\"status\"]",
+            "[id*=\"nota\"]"
+        ],
+        "title": "Leitura técnica — Bomba dosadora quimica",
+        "messages": {
+            "initial": "Preencha os dados e gere o cálculo para receber uma leitura técnica preliminar do resultado.",
+            "ok": "O resultado parece favorável como estimativa preliminar. Ainda confirme dados de entrada, unidade, margem e condição real antes de aplicar.",
+            "warn": "Há ponto de atenção, margem pequena ou resultado que depende de conferência técnica. Revise premissas, unidades e condição de operação.",
+            "bad": "O resultado indica condição crítica, insuficiente, inválida ou fora do critério. Não aplique em campo sem revisar dados, equipamento e segurança."
+        },
+        "next": [
+            "Conferir unidades, dados medidos e faixa real de operação.",
+            "Comparar o resultado com datasheet, histórico, procedimento e limite do equipamento.",
+            "Para aplicação crítica, registrar premissas e validar com responsável técnico antes de executar."
+        ]
+    },
+    "calculadora-carga-termica-lote-aquecimento.html": {
+        "selectors": [
+            "#nota",
+            "#status",
+            "#resultado",
+            "#result",
+            "#resumo",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".calc-note",
+            ".calc-result",
+            ".result-box",
+            "[id*=\"resultado\"]",
+            "[id*=\"status\"]",
+            "[id*=\"nota\"]"
+        ],
+        "title": "Leitura técnica — Carga termica lote aquecimento",
+        "messages": {
+            "initial": "Preencha os dados e gere o cálculo para receber uma leitura técnica preliminar do resultado.",
+            "ok": "O resultado parece favorável como estimativa preliminar. Ainda confirme dados de entrada, unidade, margem e condição real antes de aplicar.",
+            "warn": "Há ponto de atenção, margem pequena ou resultado que depende de conferência técnica. Revise premissas, unidades e condição de operação.",
+            "bad": "O resultado indica condição crítica, insuficiente, inválida ou fora do critério. Não aplique em campo sem revisar dados, equipamento e segurança."
+        },
+        "next": [
+            "Conferir unidades, dados medidos e faixa real de operação.",
+            "Comparar o resultado com datasheet, histórico, procedimento e limite do equipamento.",
+            "Para aplicação crítica, registrar premissas e validar com responsável técnico antes de executar."
+        ]
+    },
+    "calculadora-celula-carga-tanque.html": {
+        "selectors": [
+            "#nota",
+            "#status",
+            "#resultado",
+            "#result",
+            "#resumo",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".calc-note",
+            ".calc-result",
+            ".result-box",
+            "[id*=\"resultado\"]",
+            "[id*=\"status\"]",
+            "[id*=\"nota\"]"
+        ],
+        "title": "Leitura técnica — Celula carga tanque",
+        "messages": {
+            "initial": "Preencha os dados e gere o cálculo para receber uma leitura técnica preliminar do resultado.",
+            "ok": "O resultado parece favorável como estimativa preliminar. Ainda confirme dados de entrada, unidade, margem e condição real antes de aplicar.",
+            "warn": "Há ponto de atenção, margem pequena ou resultado que depende de conferência técnica. Revise premissas, unidades e condição de operação.",
+            "bad": "O resultado indica condição crítica, insuficiente, inválida ou fora do critério. Não aplique em campo sem revisar dados, equipamento e segurança."
+        },
+        "next": [
+            "Conferir unidades, dados medidos e faixa real de operação.",
+            "Comparar o resultado com datasheet, histórico, procedimento e limite do equipamento.",
+            "Para aplicação crítica, registrar premissas e validar com responsável técnico antes de executar."
+        ]
+    },
+    "calculadora-condensado-ar-comprimido.html": {
+        "selectors": [
+            "#nota",
+            "#status",
+            "#resultado",
+            "#result",
+            "#resumo",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".calc-note",
+            ".calc-result",
+            ".result-box",
+            "[id*=\"resultado\"]",
+            "[id*=\"status\"]",
+            "[id*=\"nota\"]"
+        ],
+        "title": "Leitura técnica — Condensado ar comprimido",
+        "messages": {
+            "initial": "Preencha os dados e gere o cálculo para receber uma leitura técnica preliminar do resultado.",
+            "ok": "O resultado parece favorável como estimativa preliminar. Ainda confirme dados de entrada, unidade, margem e condição real antes de aplicar.",
+            "warn": "Há ponto de atenção, margem pequena ou resultado que depende de conferência técnica. Revise premissas, unidades e condição de operação.",
+            "bad": "O resultado indica condição crítica, insuficiente, inválida ou fora do critério. Não aplique em campo sem revisar dados, equipamento e segurança."
+        },
+        "next": [
+            "Conferir unidades, dados medidos e faixa real de operação.",
+            "Comparar o resultado com datasheet, histórico, procedimento e limite do equipamento.",
+            "Para aplicação crítica, registrar premissas e validar com responsável técnico antes de executar."
+        ]
+    },
+    "calculadora-conexoes-pneumaticas-comprimento-equivalente.html": {
+        "selectors": [
+            "#nota",
+            "#status",
+            "#resultado",
+            "#result",
+            "#resumo",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".calc-note",
+            ".calc-result",
+            ".result-box",
+            "[id*=\"resultado\"]",
+            "[id*=\"status\"]",
+            "[id*=\"nota\"]"
+        ],
+        "title": "Leitura técnica — Conexoes pneumaticas comprimento equivalente",
+        "messages": {
+            "initial": "Preencha os dados e gere o cálculo para receber uma leitura técnica preliminar do resultado.",
+            "ok": "O resultado parece favorável como estimativa preliminar. Ainda confirme dados de entrada, unidade, margem e condição real antes de aplicar.",
+            "warn": "Há ponto de atenção, margem pequena ou resultado que depende de conferência técnica. Revise premissas, unidades e condição de operação.",
+            "bad": "O resultado indica condição crítica, insuficiente, inválida ou fora do critério. Não aplique em campo sem revisar dados, equipamento e segurança."
+        },
+        "next": [
+            "Conferir unidades, dados medidos e faixa real de operação.",
+            "Comparar o resultado com datasheet, histórico, procedimento e limite do equipamento.",
+            "Para aplicação crítica, registrar premissas e validar com responsável técnico antes de executar."
+        ]
+    },
+    "calculadora-consumo-ar-cilindro-pneumatico.html": {
+        "selectors": [
+            "#nota",
+            "#status",
+            "#resultado",
+            "#result",
+            "#resumo",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".calc-note",
+            ".calc-result",
+            ".result-box",
+            "[id*=\"resultado\"]",
+            "[id*=\"status\"]",
+            "[id*=\"nota\"]"
+        ],
+        "title": "Leitura técnica — Consumo ar cilindro pneumatico",
+        "messages": {
+            "initial": "Preencha os dados e gere o cálculo para receber uma leitura técnica preliminar do resultado.",
+            "ok": "O resultado parece favorável como estimativa preliminar. Ainda confirme dados de entrada, unidade, margem e condição real antes de aplicar.",
+            "warn": "Há ponto de atenção, margem pequena ou resultado que depende de conferência técnica. Revise premissas, unidades e condição de operação.",
+            "bad": "O resultado indica condição crítica, insuficiente, inválida ou fora do critério. Não aplique em campo sem revisar dados, equipamento e segurança."
+        },
+        "next": [
+            "Conferir unidades, dados medidos e faixa real de operação.",
+            "Comparar o resultado com datasheet, histórico, procedimento e limite do equipamento.",
+            "Para aplicação crítica, registrar premissas e validar com responsável técnico antes de executar."
+        ]
+    },
+    "calculadora-consumo-ar-comprimido.html": {
+        "selectors": [
+            "#nota",
+            "#status",
+            "#resultado",
+            "#result",
+            "#resumo",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".calc-note",
+            ".calc-result",
+            ".result-box",
+            "[id*=\"resultado\"]",
+            "[id*=\"status\"]",
+            "[id*=\"nota\"]"
+        ],
+        "title": "Leitura técnica — Consumo ar comprimido",
+        "messages": {
+            "initial": "Preencha os dados e gere o cálculo para receber uma leitura técnica preliminar do resultado.",
+            "ok": "O resultado parece favorável como estimativa preliminar. Ainda confirme dados de entrada, unidade, margem e condição real antes de aplicar.",
+            "warn": "Há ponto de atenção, margem pequena ou resultado que depende de conferência técnica. Revise premissas, unidades e condição de operação.",
+            "bad": "O resultado indica condição crítica, insuficiente, inválida ou fora do critério. Não aplique em campo sem revisar dados, equipamento e segurança."
+        },
+        "next": [
+            "Conferir unidades, dados medidos e faixa real de operação.",
+            "Comparar o resultado com datasheet, histórico, procedimento e limite do equipamento.",
+            "Para aplicação crítica, registrar premissas e validar com responsável técnico antes de executar."
+        ]
+    },
+    "calculadora-consumo-ar-instrumentos.html": {
+        "selectors": [
+            "#nota",
+            "#status",
+            "#resultado",
+            "#result",
+            "#resumo",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".calc-note",
+            ".calc-result",
+            ".result-box",
+            "[id*=\"resultado\"]",
+            "[id*=\"status\"]",
+            "[id*=\"nota\"]"
+        ],
+        "title": "Leitura técnica — Consumo ar instrumentos",
+        "messages": {
+            "initial": "Preencha os dados e gere o cálculo para receber uma leitura técnica preliminar do resultado.",
+            "ok": "O resultado parece favorável como estimativa preliminar. Ainda confirme dados de entrada, unidade, margem e condição real antes de aplicar.",
+            "warn": "Há ponto de atenção, margem pequena ou resultado que depende de conferência técnica. Revise premissas, unidades e condição de operação.",
+            "bad": "O resultado indica condição crítica, insuficiente, inválida ou fora do critério. Não aplique em campo sem revisar dados, equipamento e segurança."
+        },
+        "next": [
+            "Conferir unidades, dados medidos e faixa real de operação.",
+            "Comparar o resultado com datasheet, histórico, procedimento e limite do equipamento.",
+            "Para aplicação crítica, registrar premissas e validar com responsável técnico antes de executar."
+        ]
+    },
+    "calculadora-consumo-energia-resistencia-aquecimento.html": {
+        "selectors": [
+            "#nota",
+            "#status",
+            "#resultado",
+            "#result",
+            "#resumo",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".calc-note",
+            ".calc-result",
+            ".result-box",
+            "[id*=\"resultado\"]",
+            "[id*=\"status\"]",
+            "[id*=\"nota\"]"
+        ],
+        "title": "Leitura técnica — Consumo energia resistencia aquecimento",
+        "messages": {
+            "initial": "Preencha os dados e gere o cálculo para receber uma leitura técnica preliminar do resultado.",
+            "ok": "O resultado parece favorável como estimativa preliminar. Ainda confirme dados de entrada, unidade, margem e condição real antes de aplicar.",
+            "warn": "Há ponto de atenção, margem pequena ou resultado que depende de conferência técnica. Revise premissas, unidades e condição de operação.",
+            "bad": "O resultado indica condição crítica, insuficiente, inválida ou fora do critério. Não aplique em campo sem revisar dados, equipamento e segurança."
+        },
+        "next": [
+            "Conferir unidades, dados medidos e faixa real de operação.",
+            "Comparar o resultado com datasheet, histórico, procedimento e limite do equipamento.",
+            "Para aplicação crítica, registrar premissas e validar com responsável técnico antes de executar."
+        ]
+    },
+    "calculadora-consumo-nitrogenio-purga.html": {
+        "selectors": [
+            "#nota",
+            "#status",
+            "#resultado",
+            "#result",
+            "#resumo",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".calc-note",
+            ".calc-result",
+            ".result-box",
+            "[id*=\"resultado\"]",
+            "[id*=\"status\"]",
+            "[id*=\"nota\"]"
+        ],
+        "title": "Leitura técnica — Consumo nitrogenio purga",
+        "messages": {
+            "initial": "Preencha os dados e gere o cálculo para receber uma leitura técnica preliminar do resultado.",
+            "ok": "O resultado parece favorável como estimativa preliminar. Ainda confirme dados de entrada, unidade, margem e condição real antes de aplicar.",
+            "warn": "Há ponto de atenção, margem pequena ou resultado que depende de conferência técnica. Revise premissas, unidades e condição de operação.",
+            "bad": "O resultado indica condição crítica, insuficiente, inválida ou fora do critério. Não aplique em campo sem revisar dados, equipamento e segurança."
+        },
+        "next": [
+            "Conferir unidades, dados medidos e faixa real de operação.",
+            "Comparar o resultado com datasheet, histórico, procedimento e limite do equipamento.",
+            "Para aplicação crítica, registrar premissas e validar com responsável técnico antes de executar."
+        ]
+    },
+    "calculadora-consumo-vapor-aquecimento.html": {
+        "selectors": [
+            "#nota",
+            "#status",
+            "#resultado",
+            "#result",
+            "#resumo",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".calc-note",
+            ".calc-result",
+            ".result-box",
+            "[id*=\"resultado\"]",
+            "[id*=\"status\"]",
+            "[id*=\"nota\"]"
+        ],
+        "title": "Leitura técnica — Consumo vapor aquecimento",
+        "messages": {
+            "initial": "Preencha os dados e gere o cálculo para receber uma leitura técnica preliminar do resultado.",
+            "ok": "O resultado parece favorável como estimativa preliminar. Ainda confirme dados de entrada, unidade, margem e condição real antes de aplicar.",
+            "warn": "Há ponto de atenção, margem pequena ou resultado que depende de conferência técnica. Revise premissas, unidades e condição de operação.",
+            "bad": "O resultado indica condição crítica, insuficiente, inválida ou fora do critério. Não aplique em campo sem revisar dados, equipamento e segurança."
+        },
+        "next": [
+            "Conferir unidades, dados medidos e faixa real de operação.",
+            "Comparar o resultado com datasheet, histórico, procedimento e limite do equipamento.",
+            "Para aplicação crítica, registrar premissas e validar com responsável técnico antes de executar."
+        ]
+    },
+    "calculadora-custo-ar-comprimido.html": {
+        "selectors": [
+            "#nota",
+            "#status",
+            "#resultado",
+            "#result",
+            "#resumo",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".calc-note",
+            ".calc-result",
+            ".result-box",
+            "[id*=\"resultado\"]",
+            "[id*=\"status\"]",
+            "[id*=\"nota\"]"
+        ],
+        "title": "Leitura técnica — Custo ar comprimido",
+        "messages": {
+            "initial": "Preencha os dados e gere o cálculo para receber uma leitura técnica preliminar do resultado.",
+            "ok": "O resultado parece favorável como estimativa preliminar. Ainda confirme dados de entrada, unidade, margem e condição real antes de aplicar.",
+            "warn": "Há ponto de atenção, margem pequena ou resultado que depende de conferência técnica. Revise premissas, unidades e condição de operação.",
+            "bad": "O resultado indica condição crítica, insuficiente, inválida ou fora do critério. Não aplique em campo sem revisar dados, equipamento e segurança."
+        },
+        "next": [
+            "Conferir unidades, dados medidos e faixa real de operação.",
+            "Comparar o resultado com datasheet, histórico, procedimento e limite do equipamento.",
+            "Para aplicação crítica, registrar premissas e validar com responsável técnico antes de executar."
+        ]
+    },
+    "calculadora-diametro-cilindro-pneumatico.html": {
+        "selectors": [
+            "#nota",
+            "#status",
+            "#resultado",
+            "#result",
+            "#resumo",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".calc-note",
+            ".calc-result",
+            ".result-box",
+            "[id*=\"resultado\"]",
+            "[id*=\"status\"]",
+            "[id*=\"nota\"]"
+        ],
+        "title": "Leitura técnica — Diametro cilindro pneumatico",
+        "messages": {
+            "initial": "Preencha os dados e gere o cálculo para receber uma leitura técnica preliminar do resultado.",
+            "ok": "O resultado parece favorável como estimativa preliminar. Ainda confirme dados de entrada, unidade, margem e condição real antes de aplicar.",
+            "warn": "Há ponto de atenção, margem pequena ou resultado que depende de conferência técnica. Revise premissas, unidades e condição de operação.",
+            "bad": "O resultado indica condição crítica, insuficiente, inválida ou fora do critério. Não aplique em campo sem revisar dados, equipamento e segurança."
+        },
+        "next": [
+            "Conferir unidades, dados medidos e faixa real de operação.",
+            "Comparar o resultado com datasheet, histórico, procedimento e limite do equipamento.",
+            "Para aplicação crítica, registrar premissas e validar com responsável técnico antes de executar."
+        ]
+    },
+    "calculadora-dosagem-cloro-livre.html": {
+        "selectors": [
+            "#nota",
+            "#status",
+            "#resultado",
+            "#result",
+            "#resumo",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".calc-note",
+            ".calc-result",
+            ".result-box",
+            "[id*=\"resultado\"]",
+            "[id*=\"status\"]",
+            "[id*=\"nota\"]"
+        ],
+        "title": "Leitura técnica — Dosagem cloro livre",
+        "messages": {
+            "initial": "Preencha os dados e gere o cálculo para receber uma leitura técnica preliminar do resultado.",
+            "ok": "O resultado parece favorável como estimativa preliminar. Ainda confirme dados de entrada, unidade, margem e condição real antes de aplicar.",
+            "warn": "Há ponto de atenção, margem pequena ou resultado que depende de conferência técnica. Revise premissas, unidades e condição de operação.",
+            "bad": "O resultado indica condição crítica, insuficiente, inválida ou fora do critério. Não aplique em campo sem revisar dados, equipamento e segurança."
+        },
+        "next": [
+            "Conferir unidades, dados medidos e faixa real de operação.",
+            "Comparar o resultado com datasheet, histórico, procedimento e limite do equipamento.",
+            "Para aplicação crítica, registrar premissas e validar com responsável técnico antes de executar."
+        ]
+    },
+    "calculadora-dosagem-quimica-ppm.html": {
+        "selectors": [
+            "#nota",
+            "#status",
+            "#resultado",
+            "#result",
+            "#resumo",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".calc-note",
+            ".calc-result",
+            ".result-box",
+            "[id*=\"resultado\"]",
+            "[id*=\"status\"]",
+            "[id*=\"nota\"]"
+        ],
+        "title": "Leitura técnica — Dosagem quimica ppm",
+        "messages": {
+            "initial": "Preencha os dados e gere o cálculo para receber uma leitura técnica preliminar do resultado.",
+            "ok": "O resultado parece favorável como estimativa preliminar. Ainda confirme dados de entrada, unidade, margem e condição real antes de aplicar.",
+            "warn": "Há ponto de atenção, margem pequena ou resultado que depende de conferência técnica. Revise premissas, unidades e condição de operação.",
+            "bad": "O resultado indica condição crítica, insuficiente, inválida ou fora do critério. Não aplique em campo sem revisar dados, equipamento e segurança."
+        },
+        "next": [
+            "Conferir unidades, dados medidos e faixa real de operação.",
+            "Comparar o resultado com datasheet, histórico, procedimento e limite do equipamento.",
+            "Para aplicação crítica, registrar premissas e validar com responsável técnico antes de executar."
+        ]
+    },
+    "calculadora-duto-exaustao-industrial.html": {
+        "selectors": [
+            "#nota",
+            "#status",
+            "#resultado",
+            "#result",
+            "#resumo",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".calc-note",
+            ".calc-result",
+            ".result-box",
+            "[id*=\"resultado\"]",
+            "[id*=\"status\"]",
+            "[id*=\"nota\"]"
+        ],
+        "title": "Leitura técnica — Duto exaustao industrial",
+        "messages": {
+            "initial": "Preencha os dados e gere o cálculo para receber uma leitura técnica preliminar do resultado.",
+            "ok": "O resultado parece favorável como estimativa preliminar. Ainda confirme dados de entrada, unidade, margem e condição real antes de aplicar.",
+            "warn": "Há ponto de atenção, margem pequena ou resultado que depende de conferência técnica. Revise premissas, unidades e condição de operação.",
+            "bad": "O resultado indica condição crítica, insuficiente, inválida ou fora do critério. Não aplique em campo sem revisar dados, equipamento e segurança."
+        },
+        "next": [
+            "Conferir unidades, dados medidos e faixa real de operação.",
+            "Comparar o resultado com datasheet, histórico, procedimento e limite do equipamento.",
+            "Para aplicação crítica, registrar premissas e validar com responsável técnico antes de executar."
+        ]
+    },
+    "calculadora-economia-inversor-bomba-ventilador.html": {
+        "selectors": [
+            "#nota",
+            "#status",
+            "#resultado",
+            "#result",
+            "#resumo",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".calc-note",
+            ".calc-result",
+            ".result-box",
+            "[id*=\"resultado\"]",
+            "[id*=\"status\"]",
+            "[id*=\"nota\"]"
+        ],
+        "title": "Leitura técnica — Economia inversor bomba ventilador",
+        "messages": {
+            "initial": "Preencha os dados e gere o cálculo para receber uma leitura técnica preliminar do resultado.",
+            "ok": "O resultado parece favorável como estimativa preliminar. Ainda confirme dados de entrada, unidade, margem e condição real antes de aplicar.",
+            "warn": "Há ponto de atenção, margem pequena ou resultado que depende de conferência técnica. Revise premissas, unidades e condição de operação.",
+            "bad": "O resultado indica condição crítica, insuficiente, inválida ou fora do critério. Não aplique em campo sem revisar dados, equipamento e segurança."
+        },
+        "next": [
+            "Conferir unidades, dados medidos e faixa real de operação.",
+            "Comparar o resultado com datasheet, histórico, procedimento e limite do equipamento.",
+            "Para aplicação crítica, registrar premissas e validar com responsável técnico antes de executar."
+        ]
+    },
+    "calculadora-eficiencia-compressor.html": {
+        "selectors": [
+            "#nota",
+            "#status",
+            "#resultado",
+            "#result",
+            "#resumo",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".calc-note",
+            ".calc-result",
+            ".result-box",
+            "[id*=\"resultado\"]",
+            "[id*=\"status\"]",
+            "[id*=\"nota\"]"
+        ],
+        "title": "Leitura técnica — Eficiencia compressor",
+        "messages": {
+            "initial": "Preencha os dados e gere o cálculo para receber uma leitura técnica preliminar do resultado.",
+            "ok": "O resultado parece favorável como estimativa preliminar. Ainda confirme dados de entrada, unidade, margem e condição real antes de aplicar.",
+            "warn": "Há ponto de atenção, margem pequena ou resultado que depende de conferência técnica. Revise premissas, unidades e condição de operação.",
+            "bad": "O resultado indica condição crítica, insuficiente, inválida ou fora do critério. Não aplique em campo sem revisar dados, equipamento e segurança."
+        },
+        "next": [
+            "Conferir unidades, dados medidos e faixa real de operação.",
+            "Comparar o resultado com datasheet, histórico, procedimento e limite do equipamento.",
+            "Para aplicação crítica, registrar premissas e validar com responsável técnico antes de executar."
+        ]
+    },
+    "calculadora-emissividade-termografia.html": {
+        "selectors": [
+            "#nota",
+            "#status",
+            "#resultado",
+            "#result",
+            "#resumo",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".calc-note",
+            ".calc-result",
+            ".result-box",
+            "[id*=\"resultado\"]",
+            "[id*=\"status\"]",
+            "[id*=\"nota\"]"
+        ],
+        "title": "Leitura técnica — Emissividade termografia",
+        "messages": {
+            "initial": "Preencha os dados e gere o cálculo para receber uma leitura técnica preliminar do resultado.",
+            "ok": "O resultado parece favorável como estimativa preliminar. Ainda confirme dados de entrada, unidade, margem e condição real antes de aplicar.",
+            "warn": "Há ponto de atenção, margem pequena ou resultado que depende de conferência técnica. Revise premissas, unidades e condição de operação.",
+            "bad": "O resultado indica condição crítica, insuficiente, inválida ou fora do critério. Não aplique em campo sem revisar dados, equipamento e segurança."
+        },
+        "next": [
+            "Conferir unidades, dados medidos e faixa real de operação.",
+            "Comparar o resultado com datasheet, histórico, procedimento e limite do equipamento.",
+            "Para aplicação crítica, registrar premissas e validar com responsável técnico antes de executar."
+        ]
+    },
+    "calculadora-energia-consumo-industrial.html": {
+        "selectors": [
+            "#nota",
+            "#status",
+            "#resultado",
+            "#result",
+            "#resumo",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".calc-note",
+            ".calc-result",
+            ".result-box",
+            "[id*=\"resultado\"]",
+            "[id*=\"status\"]",
+            "[id*=\"nota\"]"
+        ],
+        "title": "Leitura técnica — Energia consumo industrial",
+        "messages": {
+            "initial": "Preencha os dados e gere o cálculo para receber uma leitura técnica preliminar do resultado.",
+            "ok": "O resultado parece favorável como estimativa preliminar. Ainda confirme dados de entrada, unidade, margem e condição real antes de aplicar.",
+            "warn": "Há ponto de atenção, margem pequena ou resultado que depende de conferência técnica. Revise premissas, unidades e condição de operação.",
+            "bad": "O resultado indica condição crítica, insuficiente, inválida ou fora do critério. Não aplique em campo sem revisar dados, equipamento e segurança."
+        },
+        "next": [
+            "Conferir unidades, dados medidos e faixa real de operação.",
+            "Comparar o resultado com datasheet, histórico, procedimento e limite do equipamento.",
+            "Para aplicação crítica, registrar premissas e validar com responsável técnico antes de executar."
+        ]
+    },
+    "calculadora-forca-cilindro-hidraulico.html": {
+        "selectors": [
+            "#nota",
+            "#status",
+            "#resultado",
+            "#result",
+            "#resumo",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".calc-note",
+            ".calc-result",
+            ".result-box",
+            "[id*=\"resultado\"]",
+            "[id*=\"status\"]",
+            "[id*=\"nota\"]"
+        ],
+        "title": "Leitura técnica — Forca cilindro hidraulico",
+        "messages": {
+            "initial": "Preencha os dados e gere o cálculo para receber uma leitura técnica preliminar do resultado.",
+            "ok": "O resultado parece favorável como estimativa preliminar. Ainda confirme dados de entrada, unidade, margem e condição real antes de aplicar.",
+            "warn": "Há ponto de atenção, margem pequena ou resultado que depende de conferência técnica. Revise premissas, unidades e condição de operação.",
+            "bad": "O resultado indica condição crítica, insuficiente, inválida ou fora do critério. Não aplique em campo sem revisar dados, equipamento e segurança."
+        },
+        "next": [
+            "Conferir unidades, dados medidos e faixa real de operação.",
+            "Comparar o resultado com datasheet, histórico, procedimento e limite do equipamento.",
+            "Para aplicação crítica, registrar premissas e validar com responsável técnico antes de executar."
+        ]
+    },
+    "calculadora-golpe-ariete-joukowsky.html": {
+        "selectors": [
+            "#nota",
+            "#status",
+            "#resultado",
+            "#result",
+            "#resumo",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".calc-note",
+            ".calc-result",
+            ".result-box",
+            "[id*=\"resultado\"]",
+            "[id*=\"status\"]",
+            "[id*=\"nota\"]"
+        ],
+        "title": "Leitura técnica — Golpe ariete joukowsky",
+        "messages": {
+            "initial": "Preencha os dados e gere o cálculo para receber uma leitura técnica preliminar do resultado.",
+            "ok": "O resultado parece favorável como estimativa preliminar. Ainda confirme dados de entrada, unidade, margem e condição real antes de aplicar.",
+            "warn": "Há ponto de atenção, margem pequena ou resultado que depende de conferência técnica. Revise premissas, unidades e condição de operação.",
+            "bad": "O resultado indica condição crítica, insuficiente, inválida ou fora do critério. Não aplique em campo sem revisar dados, equipamento e segurança."
+        },
+        "next": [
+            "Conferir unidades, dados medidos e faixa real de operação.",
+            "Comparar o resultado com datasheet, histórico, procedimento e limite do equipamento.",
+            "Para aplicação crítica, registrar premissas e validar com responsável técnico antes de executar."
+        ]
+    },
+    "calculadora-histerese-pressostato-termostato.html": {
+        "selectors": [
+            "#nota",
+            "#status",
+            "#resultado",
+            "#result",
+            "#resumo",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".calc-note",
+            ".calc-result",
+            ".result-box",
+            "[id*=\"resultado\"]",
+            "[id*=\"status\"]",
+            "[id*=\"nota\"]"
+        ],
+        "title": "Leitura técnica — Histerese pressostato termostato",
+        "messages": {
+            "initial": "Preencha os dados e gere o cálculo para receber uma leitura técnica preliminar do resultado.",
+            "ok": "O resultado parece favorável como estimativa preliminar. Ainda confirme dados de entrada, unidade, margem e condição real antes de aplicar.",
+            "warn": "Há ponto de atenção, margem pequena ou resultado que depende de conferência técnica. Revise premissas, unidades e condição de operação.",
+            "bad": "O resultado indica condição crítica, insuficiente, inválida ou fora do critério. Não aplique em campo sem revisar dados, equipamento e segurança."
+        },
+        "next": [
+            "Conferir unidades, dados medidos e faixa real de operação.",
+            "Comparar o resultado com datasheet, histórico, procedimento e limite do equipamento.",
+            "Para aplicação crítica, registrar premissas e validar com responsável técnico antes de executar."
+        ]
+    },
+    "calculadora-leis-afinidade-bombas-ventiladores.html": {
+        "selectors": [
+            "#nota",
+            "#status",
+            "#resultado",
+            "#result",
+            "#resumo",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".calc-note",
+            ".calc-result",
+            ".result-box",
+            "[id*=\"resultado\"]",
+            "[id*=\"status\"]",
+            "[id*=\"nota\"]"
+        ],
+        "title": "Leitura técnica — Leis afinidade bombas ventiladores",
+        "messages": {
+            "initial": "Preencha os dados e gere o cálculo para receber uma leitura técnica preliminar do resultado.",
+            "ok": "O resultado parece favorável como estimativa preliminar. Ainda confirme dados de entrada, unidade, margem e condição real antes de aplicar.",
+            "warn": "Há ponto de atenção, margem pequena ou resultado que depende de conferência técnica. Revise premissas, unidades e condição de operação.",
+            "bad": "O resultado indica condição crítica, insuficiente, inválida ou fora do critério. Não aplique em campo sem revisar dados, equipamento e segurança."
+        },
+        "next": [
+            "Conferir unidades, dados medidos e faixa real de operação.",
+            "Comparar o resultado com datasheet, histórico, procedimento e limite do equipamento.",
+            "Para aplicação crítica, registrar premissas e validar com responsável técnico antes de executar."
+        ]
+    },
+    "calculadora-lmtd-trocador-calor.html": {
+        "selectors": [
+            "#nota",
+            "#status",
+            "#resultado",
+            "#result",
+            "#resumo",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".calc-note",
+            ".calc-result",
+            ".result-box",
+            "[id*=\"resultado\"]",
+            "[id*=\"status\"]",
+            "[id*=\"nota\"]"
+        ],
+        "title": "Leitura técnica — LMTD trocador calor",
+        "messages": {
+            "initial": "Preencha os dados e gere o cálculo para receber uma leitura técnica preliminar do resultado.",
+            "ok": "O resultado parece favorável como estimativa preliminar. Ainda confirme dados de entrada, unidade, margem e condição real antes de aplicar.",
+            "warn": "Há ponto de atenção, margem pequena ou resultado que depende de conferência técnica. Revise premissas, unidades e condição de operação.",
+            "bad": "O resultado indica condição crítica, insuficiente, inválida ou fora do critério. Não aplique em campo sem revisar dados, equipamento e segurança."
+        },
+        "next": [
+            "Conferir unidades, dados medidos e faixa real de operação.",
+            "Comparar o resultado com datasheet, histórico, procedimento e limite do equipamento.",
+            "Para aplicação crítica, registrar premissas e validar com responsável técnico antes de executar."
+        ]
+    },
+    "calculadora-lsi-langelier-agua.html": {
+        "selectors": [
+            "#nota",
+            "#status",
+            "#resultado",
+            "#result",
+            "#resumo",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".calc-note",
+            ".calc-result",
+            ".result-box",
+            "[id*=\"resultado\"]",
+            "[id*=\"status\"]",
+            "[id*=\"nota\"]"
+        ],
+        "title": "Leitura técnica — LSI langelier agua",
+        "messages": {
+            "initial": "Preencha os dados e gere o cálculo para receber uma leitura técnica preliminar do resultado.",
+            "ok": "O resultado parece favorável como estimativa preliminar. Ainda confirme dados de entrada, unidade, margem e condição real antes de aplicar.",
+            "warn": "Há ponto de atenção, margem pequena ou resultado que depende de conferência técnica. Revise premissas, unidades e condição de operação.",
+            "bad": "O resultado indica condição crítica, insuficiente, inválida ou fora do critério. Não aplique em campo sem revisar dados, equipamento e segurança."
+        },
+        "next": [
+            "Conferir unidades, dados medidos e faixa real de operação.",
+            "Comparar o resultado com datasheet, histórico, procedimento e limite do equipamento.",
+            "Para aplicação crítica, registrar premissas e validar com responsável técnico antes de executar."
+        ]
+    },
+    "calculadora-mistura-diluicao-solucoes.html": {
+        "selectors": [
+            "#nota",
+            "#status",
+            "#resultado",
+            "#result",
+            "#resumo",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".calc-note",
+            ".calc-result",
+            ".result-box",
+            "[id*=\"resultado\"]",
+            "[id*=\"status\"]",
+            "[id*=\"nota\"]"
+        ],
+        "title": "Leitura técnica — Mistura diluicao solucoes",
+        "messages": {
+            "initial": "Preencha os dados e gere o cálculo para receber uma leitura técnica preliminar do resultado.",
+            "ok": "O resultado parece favorável como estimativa preliminar. Ainda confirme dados de entrada, unidade, margem e condição real antes de aplicar.",
+            "warn": "Há ponto de atenção, margem pequena ou resultado que depende de conferência técnica. Revise premissas, unidades e condição de operação.",
+            "bad": "O resultado indica condição crítica, insuficiente, inválida ou fora do critério. Não aplique em campo sem revisar dados, equipamento e segurança."
+        },
+        "next": [
+            "Conferir unidades, dados medidos e faixa real de operação.",
+            "Comparar o resultado com datasheet, histórico, procedimento e limite do equipamento.",
+            "Para aplicação crítica, registrar premissas e validar com responsável técnico antes de executar."
+        ]
+    },
+    "calculadora-npsh-bomba.html": {
+        "selectors": [
+            "#nota",
+            "#status",
+            "#resultado",
+            "#result",
+            "#resumo",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".calc-note",
+            ".calc-result",
+            ".result-box",
+            "[id*=\"resultado\"]",
+            "[id*=\"status\"]",
+            "[id*=\"nota\"]"
+        ],
+        "title": "Leitura técnica — NPSH bomba",
+        "messages": {
+            "initial": "Preencha os dados e gere o cálculo para receber uma leitura técnica preliminar do resultado.",
+            "ok": "O resultado parece favorável como estimativa preliminar. Ainda confirme dados de entrada, unidade, margem e condição real antes de aplicar.",
+            "warn": "Há ponto de atenção, margem pequena ou resultado que depende de conferência técnica. Revise premissas, unidades e condição de operação.",
+            "bad": "O resultado indica condição crítica, insuficiente, inválida ou fora do critério. Não aplique em campo sem revisar dados, equipamento e segurança."
+        },
+        "next": [
+            "Conferir unidades, dados medidos e faixa real de operação.",
+            "Comparar o resultado com datasheet, histórico, procedimento e limite do equipamento.",
+            "Para aplicação crítica, registrar premissas e validar com responsável técnico antes de executar."
+        ]
+    },
+    "calculadora-perda-calor-tubulacao.html": {
+        "selectors": [
+            "#nota",
+            "#status",
+            "#resultado",
+            "#result",
+            "#resumo",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".calc-note",
+            ".calc-result",
+            ".result-box",
+            "[id*=\"resultado\"]",
+            "[id*=\"status\"]",
+            "[id*=\"nota\"]"
+        ],
+        "title": "Leitura técnica — Perda calor tubulacao",
+        "messages": {
+            "initial": "Preencha os dados e gere o cálculo para receber uma leitura técnica preliminar do resultado.",
+            "ok": "O resultado parece favorável como estimativa preliminar. Ainda confirme dados de entrada, unidade, margem e condição real antes de aplicar.",
+            "warn": "Há ponto de atenção, margem pequena ou resultado que depende de conferência técnica. Revise premissas, unidades e condição de operação.",
+            "bad": "O resultado indica condição crítica, insuficiente, inválida ou fora do critério. Não aplique em campo sem revisar dados, equipamento e segurança."
+        },
+        "next": [
+            "Conferir unidades, dados medidos e faixa real de operação.",
+            "Comparar o resultado com datasheet, histórico, procedimento e limite do equipamento.",
+            "Para aplicação crítica, registrar premissas e validar com responsável técnico antes de executar."
+        ]
+    },
+    "calculadora-perda-carga-ar-comprimido.html": {
+        "selectors": [
+            "#nota",
+            "#status",
+            "#resultado",
+            "#result",
+            "#resumo",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".calc-note",
+            ".calc-result",
+            ".result-box",
+            "[id*=\"resultado\"]",
+            "[id*=\"status\"]",
+            "[id*=\"nota\"]"
+        ],
+        "title": "Leitura técnica — Perda carga ar comprimido",
+        "messages": {
+            "initial": "Preencha os dados e gere o cálculo para receber uma leitura técnica preliminar do resultado.",
+            "ok": "O resultado parece favorável como estimativa preliminar. Ainda confirme dados de entrada, unidade, margem e condição real antes de aplicar.",
+            "warn": "Há ponto de atenção, margem pequena ou resultado que depende de conferência técnica. Revise premissas, unidades e condição de operação.",
+            "bad": "O resultado indica condição crítica, insuficiente, inválida ou fora do critério. Não aplique em campo sem revisar dados, equipamento e segurança."
+        },
+        "next": [
+            "Conferir unidades, dados medidos e faixa real de operação.",
+            "Comparar o resultado com datasheet, histórico, procedimento e limite do equipamento.",
+            "Para aplicação crítica, registrar premissas e validar com responsável técnico antes de executar."
+        ]
+    },
+    "calculadora-perda-carga-filtro.html": {
+        "selectors": [
+            "#nota",
+            "#status",
+            "#resultado",
+            "#result",
+            "#resumo",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".calc-note",
+            ".calc-result",
+            ".result-box",
+            "[id*=\"resultado\"]",
+            "[id*=\"status\"]",
+            "[id*=\"nota\"]"
+        ],
+        "title": "Leitura técnica — Perda carga filtro",
+        "messages": {
+            "initial": "Preencha os dados e gere o cálculo para receber uma leitura técnica preliminar do resultado.",
+            "ok": "O resultado parece favorável como estimativa preliminar. Ainda confirme dados de entrada, unidade, margem e condição real antes de aplicar.",
+            "warn": "Há ponto de atenção, margem pequena ou resultado que depende de conferência técnica. Revise premissas, unidades e condição de operação.",
+            "bad": "O resultado indica condição crítica, insuficiente, inválida ou fora do critério. Não aplique em campo sem revisar dados, equipamento e segurança."
+        },
+        "next": [
+            "Conferir unidades, dados medidos e faixa real de operação.",
+            "Comparar o resultado com datasheet, histórico, procedimento e limite do equipamento.",
+            "Para aplicação crítica, registrar premissas e validar com responsável técnico antes de executar."
+        ]
+    },
+    "calculadora-perda-carga-mangueira-hidraulica.html": {
+        "selectors": [
+            "#nota",
+            "#status",
+            "#resultado",
+            "#result",
+            "#resumo",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".calc-note",
+            ".calc-result",
+            ".result-box",
+            "[id*=\"resultado\"]",
+            "[id*=\"status\"]",
+            "[id*=\"nota\"]"
+        ],
+        "title": "Leitura técnica — Perda carga mangueira hidraulica",
+        "messages": {
+            "initial": "Preencha os dados e gere o cálculo para receber uma leitura técnica preliminar do resultado.",
+            "ok": "O resultado parece favorável como estimativa preliminar. Ainda confirme dados de entrada, unidade, margem e condição real antes de aplicar.",
+            "warn": "Há ponto de atenção, margem pequena ou resultado que depende de conferência técnica. Revise premissas, unidades e condição de operação.",
+            "bad": "O resultado indica condição crítica, insuficiente, inválida ou fora do critério. Não aplique em campo sem revisar dados, equipamento e segurança."
+        },
+        "next": [
+            "Conferir unidades, dados medidos e faixa real de operação.",
+            "Comparar o resultado com datasheet, histórico, procedimento e limite do equipamento.",
+            "Para aplicação crítica, registrar premissas e validar com responsável técnico antes de executar."
+        ]
+    },
+    "calculadora-perda-carga.html": {
+        "selectors": [
+            "#nota",
+            "#status",
+            "#resultado",
+            "#result",
+            "#resumo",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".calc-note",
+            ".calc-result",
+            ".result-box",
+            "[id*=\"resultado\"]",
+            "[id*=\"status\"]",
+            "[id*=\"nota\"]"
+        ],
+        "title": "Leitura técnica — Perda carga",
+        "messages": {
+            "initial": "Preencha os dados e gere o cálculo para receber uma leitura técnica preliminar do resultado.",
+            "ok": "O resultado parece favorável como estimativa preliminar. Ainda confirme dados de entrada, unidade, margem e condição real antes de aplicar.",
+            "warn": "Há ponto de atenção, margem pequena ou resultado que depende de conferência técnica. Revise premissas, unidades e condição de operação.",
+            "bad": "O resultado indica condição crítica, insuficiente, inválida ou fora do critério. Não aplique em campo sem revisar dados, equipamento e segurança."
+        },
+        "next": [
+            "Conferir unidades, dados medidos e faixa real de operação.",
+            "Comparar o resultado com datasheet, histórico, procedimento e limite do equipamento.",
+            "Para aplicação crítica, registrar premissas e validar com responsável técnico antes de executar."
+        ]
+    },
+    "calculadora-ponto-operacao-bomba.html": {
+        "selectors": [
+            "#nota",
+            "#status",
+            "#resultado",
+            "#result",
+            "#resumo",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".calc-note",
+            ".calc-result",
+            ".result-box",
+            "[id*=\"resultado\"]",
+            "[id*=\"status\"]",
+            "[id*=\"nota\"]"
+        ],
+        "title": "Leitura técnica — Ponto operacao bomba",
+        "messages": {
+            "initial": "Preencha os dados e gere o cálculo para receber uma leitura técnica preliminar do resultado.",
+            "ok": "O resultado parece favorável como estimativa preliminar. Ainda confirme dados de entrada, unidade, margem e condição real antes de aplicar.",
+            "warn": "Há ponto de atenção, margem pequena ou resultado que depende de conferência técnica. Revise premissas, unidades e condição de operação.",
+            "bad": "O resultado indica condição crítica, insuficiente, inválida ou fora do critério. Não aplique em campo sem revisar dados, equipamento e segurança."
+        },
+        "next": [
+            "Conferir unidades, dados medidos e faixa real de operação.",
+            "Comparar o resultado com datasheet, histórico, procedimento e limite do equipamento.",
+            "Para aplicação crítica, registrar premissas e validar com responsável técnico antes de executar."
+        ]
+    },
+    "calculadora-ponto-orvalho-ar-comprimido.html": {
+        "selectors": [
+            "#nota",
+            "#status",
+            "#resultado",
+            "#result",
+            "#resumo",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".calc-note",
+            ".calc-result",
+            ".result-box",
+            "[id*=\"resultado\"]",
+            "[id*=\"status\"]",
+            "[id*=\"nota\"]"
+        ],
+        "title": "Leitura técnica — Ponto orvalho ar comprimido",
+        "messages": {
+            "initial": "Preencha os dados e gere o cálculo para receber uma leitura técnica preliminar do resultado.",
+            "ok": "O resultado parece favorável como estimativa preliminar. Ainda confirme dados de entrada, unidade, margem e condição real antes de aplicar.",
+            "warn": "Há ponto de atenção, margem pequena ou resultado que depende de conferência técnica. Revise premissas, unidades e condição de operação.",
+            "bad": "O resultado indica condição crítica, insuficiente, inválida ou fora do critério. Não aplique em campo sem revisar dados, equipamento e segurança."
+        },
+        "next": [
+            "Conferir unidades, dados medidos e faixa real de operação.",
+            "Comparar o resultado com datasheet, histórico, procedimento e limite do equipamento.",
+            "Para aplicação crítica, registrar premissas e validar com responsável técnico antes de executar."
+        ]
+    },
+    "calculadora-potencia-bomba.html": {
+        "selectors": [
+            "#nota",
+            "#status",
+            "#resultado",
+            "#result",
+            "#resumo",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".calc-note",
+            ".calc-result",
+            ".result-box",
+            "[id*=\"resultado\"]",
+            "[id*=\"status\"]",
+            "[id*=\"nota\"]"
+        ],
+        "title": "Leitura técnica — Potencia bomba",
+        "messages": {
+            "initial": "Preencha os dados e gere o cálculo para receber uma leitura técnica preliminar do resultado.",
+            "ok": "O resultado parece favorável como estimativa preliminar. Ainda confirme dados de entrada, unidade, margem e condição real antes de aplicar.",
+            "warn": "Há ponto de atenção, margem pequena ou resultado que depende de conferência técnica. Revise premissas, unidades e condição de operação.",
+            "bad": "O resultado indica condição crítica, insuficiente, inválida ou fora do critério. Não aplique em campo sem revisar dados, equipamento e segurança."
+        },
+        "next": [
+            "Conferir unidades, dados medidos e faixa real de operação.",
+            "Comparar o resultado com datasheet, histórico, procedimento e limite do equipamento.",
+            "Para aplicação crítica, registrar premissas e validar com responsável técnico antes de executar."
+        ]
+    },
+    "calculadora-potencia-hidraulica.html": {
+        "selectors": [
+            "#nota",
+            "#status",
+            "#resultado",
+            "#result",
+            "#resumo",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".calc-note",
+            ".calc-result",
+            ".result-box",
+            "[id*=\"resultado\"]",
+            "[id*=\"status\"]",
+            "[id*=\"nota\"]"
+        ],
+        "title": "Leitura técnica — Potencia hidraulica",
+        "messages": {
+            "initial": "Preencha os dados e gere o cálculo para receber uma leitura técnica preliminar do resultado.",
+            "ok": "O resultado parece favorável como estimativa preliminar. Ainda confirme dados de entrada, unidade, margem e condição real antes de aplicar.",
+            "warn": "Há ponto de atenção, margem pequena ou resultado que depende de conferência técnica. Revise premissas, unidades e condição de operação.",
+            "bad": "O resultado indica condição crítica, insuficiente, inválida ou fora do critério. Não aplique em campo sem revisar dados, equipamento e segurança."
+        },
+        "next": [
+            "Conferir unidades, dados medidos e faixa real de operação.",
+            "Comparar o resultado com datasheet, histórico, procedimento e limite do equipamento.",
+            "Para aplicação crítica, registrar premissas e validar com responsável técnico antes de executar."
+        ]
+    },
+    "calculadora-ppm-mg-m3-gases.html": {
+        "selectors": [
+            "#nota",
+            "#status",
+            "#resultado",
+            "#result",
+            "#resumo",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".calc-note",
+            ".calc-result",
+            ".result-box",
+            "[id*=\"resultado\"]",
+            "[id*=\"status\"]",
+            "[id*=\"nota\"]"
+        ],
+        "title": "Leitura técnica — Ppm / mg/m³ gases",
+        "messages": {
+            "initial": "Preencha os dados e gere o cálculo para receber uma leitura técnica preliminar do resultado.",
+            "ok": "O resultado parece favorável como estimativa preliminar. Ainda confirme dados de entrada, unidade, margem e condição real antes de aplicar.",
+            "warn": "Há ponto de atenção, margem pequena ou resultado que depende de conferência técnica. Revise premissas, unidades e condição de operação.",
+            "bad": "O resultado indica condição crítica, insuficiente, inválida ou fora do critério. Não aplique em campo sem revisar dados, equipamento e segurança."
+        },
+        "next": [
+            "Conferir unidades, dados medidos e faixa real de operação.",
+            "Comparar o resultado com datasheet, histórico, procedimento e limite do equipamento.",
+            "Para aplicação crítica, registrar premissas e validar com responsável técnico antes de executar."
+        ]
+    },
+    "calculadora-purga-caldeira-tds.html": {
+        "selectors": [
+            "#nota",
+            "#status",
+            "#resultado",
+            "#result",
+            "#resumo",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".calc-note",
+            ".calc-result",
+            ".result-box",
+            "[id*=\"resultado\"]",
+            "[id*=\"status\"]",
+            "[id*=\"nota\"]"
+        ],
+        "title": "Leitura técnica — Purga caldeira TDS",
+        "messages": {
+            "initial": "Preencha os dados e gere o cálculo para receber uma leitura técnica preliminar do resultado.",
+            "ok": "O resultado parece favorável como estimativa preliminar. Ainda confirme dados de entrada, unidade, margem e condição real antes de aplicar.",
+            "warn": "Há ponto de atenção, margem pequena ou resultado que depende de conferência técnica. Revise premissas, unidades e condição de operação.",
+            "bad": "O resultado indica condição crítica, insuficiente, inválida ou fora do critério. Não aplique em campo sem revisar dados, equipamento e segurança."
+        },
+        "next": [
+            "Conferir unidades, dados medidos e faixa real de operação.",
+            "Comparar o resultado com datasheet, histórico, procedimento e limite do equipamento.",
+            "Para aplicação crítica, registrar premissas e validar com responsável técnico antes de executar."
+        ]
+    },
+    "calculadora-purga-torre-resfriamento.html": {
+        "selectors": [
+            "#nota",
+            "#status",
+            "#resultado",
+            "#result",
+            "#resumo",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".calc-note",
+            ".calc-result",
+            ".result-box",
+            "[id*=\"resultado\"]",
+            "[id*=\"status\"]",
+            "[id*=\"nota\"]"
+        ],
+        "title": "Leitura técnica — Purga torre resfriamento",
+        "messages": {
+            "initial": "Preencha os dados e gere o cálculo para receber uma leitura técnica preliminar do resultado.",
+            "ok": "O resultado parece favorável como estimativa preliminar. Ainda confirme dados de entrada, unidade, margem e condição real antes de aplicar.",
+            "warn": "Há ponto de atenção, margem pequena ou resultado que depende de conferência técnica. Revise premissas, unidades e condição de operação.",
+            "bad": "O resultado indica condição crítica, insuficiente, inválida ou fora do critério. Não aplique em campo sem revisar dados, equipamento e segurança."
+        },
+        "next": [
+            "Conferir unidades, dados medidos e faixa real de operação.",
+            "Comparar o resultado com datasheet, histórico, procedimento e limite do equipamento.",
+            "Para aplicação crítica, registrar premissas e validar com responsável técnico antes de executar."
+        ]
+    },
+    "calculadora-purgador-vapor-condensado.html": {
+        "selectors": [
+            "#nota",
+            "#status",
+            "#resultado",
+            "#result",
+            "#resumo",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".calc-note",
+            ".calc-result",
+            ".result-box",
+            "[id*=\"resultado\"]",
+            "[id*=\"status\"]",
+            "[id*=\"nota\"]"
+        ],
+        "title": "Leitura técnica — Purgador vapor condensado",
+        "messages": {
+            "initial": "Preencha os dados e gere o cálculo para receber uma leitura técnica preliminar do resultado.",
+            "ok": "O resultado parece favorável como estimativa preliminar. Ainda confirme dados de entrada, unidade, margem e condição real antes de aplicar.",
+            "warn": "Há ponto de atenção, margem pequena ou resultado que depende de conferência técnica. Revise premissas, unidades e condição de operação.",
+            "bad": "O resultado indica condição crítica, insuficiente, inválida ou fora do critério. Não aplique em campo sem revisar dados, equipamento e segurança."
+        },
+        "next": [
+            "Conferir unidades, dados medidos e faixa real de operação.",
+            "Comparar o resultado com datasheet, histórico, procedimento e limite do equipamento.",
+            "Para aplicação crítica, registrar premissas e validar com responsável técnico antes de executar."
+        ]
+    },
+    "calculadora-recuperacao-condensado-energia.html": {
+        "selectors": [
+            "#nota",
+            "#status",
+            "#resultado",
+            "#result",
+            "#resumo",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".calc-note",
+            ".calc-result",
+            ".result-box",
+            "[id*=\"resultado\"]",
+            "[id*=\"status\"]",
+            "[id*=\"nota\"]"
+        ],
+        "title": "Leitura técnica — Recuperacao condensado energia",
+        "messages": {
+            "initial": "Preencha os dados e gere o cálculo para receber uma leitura técnica preliminar do resultado.",
+            "ok": "O resultado parece favorável como estimativa preliminar. Ainda confirme dados de entrada, unidade, margem e condição real antes de aplicar.",
+            "warn": "Há ponto de atenção, margem pequena ou resultado que depende de conferência técnica. Revise premissas, unidades e condição de operação.",
+            "bad": "O resultado indica condição crítica, insuficiente, inválida ou fora do critério. Não aplique em campo sem revisar dados, equipamento e segurança."
+        },
+        "next": [
+            "Conferir unidades, dados medidos e faixa real de operação.",
+            "Comparar o resultado com datasheet, histórico, procedimento e limite do equipamento.",
+            "Para aplicação crítica, registrar premissas e validar com responsável técnico antes de executar."
+        ]
+    },
+    "calculadora-reservatorio-ar-comprimido.html": {
+        "selectors": [
+            "#nota",
+            "#status",
+            "#resultado",
+            "#result",
+            "#resumo",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".calc-note",
+            ".calc-result",
+            ".result-box",
+            "[id*=\"resultado\"]",
+            "[id*=\"status\"]",
+            "[id*=\"nota\"]"
+        ],
+        "title": "Leitura técnica — Reservatorio ar comprimido",
+        "messages": {
+            "initial": "Preencha os dados e gere o cálculo para receber uma leitura técnica preliminar do resultado.",
+            "ok": "O resultado parece favorável como estimativa preliminar. Ainda confirme dados de entrada, unidade, margem e condição real antes de aplicar.",
+            "warn": "Há ponto de atenção, margem pequena ou resultado que depende de conferência técnica. Revise premissas, unidades e condição de operação.",
+            "bad": "O resultado indica condição crítica, insuficiente, inválida ou fora do critério. Não aplique em campo sem revisar dados, equipamento e segurança."
+        },
+        "next": [
+            "Conferir unidades, dados medidos e faixa real de operação.",
+            "Comparar o resultado com datasheet, histórico, procedimento e limite do equipamento.",
+            "Para aplicação crítica, registrar premissas e validar com responsável técnico antes de executar."
+        ]
+    },
+    "calculadora-solenoide-atuador-pneumatico.html": {
+        "selectors": [
+            "#nota",
+            "#status",
+            "#resultado",
+            "#result",
+            "#resumo",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".calc-note",
+            ".calc-result",
+            ".result-box",
+            "[id*=\"resultado\"]",
+            "[id*=\"status\"]",
+            "[id*=\"nota\"]"
+        ],
+        "title": "Leitura técnica — Solenoide atuador pneumatico",
+        "messages": {
+            "initial": "Preencha os dados e gere o cálculo para receber uma leitura técnica preliminar do resultado.",
+            "ok": "O resultado parece favorável como estimativa preliminar. Ainda confirme dados de entrada, unidade, margem e condição real antes de aplicar.",
+            "warn": "Há ponto de atenção, margem pequena ou resultado que depende de conferência técnica. Revise premissas, unidades e condição de operação.",
+            "bad": "O resultado indica condição crítica, insuficiente, inválida ou fora do critério. Não aplique em campo sem revisar dados, equipamento e segurança."
+        },
+        "next": [
+            "Conferir unidades, dados medidos e faixa real de operação.",
+            "Comparar o resultado com datasheet, histórico, procedimento e limite do equipamento.",
+            "Para aplicação crítica, registrar premissas e validar com responsável técnico antes de executar."
+        ]
+    },
+    "calculadora-tanque-expansao-termica-agua.html": {
+        "selectors": [
+            "#nota",
+            "#status",
+            "#resultado",
+            "#result",
+            "#resumo",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".calc-note",
+            ".calc-result",
+            ".result-box",
+            "[id*=\"resultado\"]",
+            "[id*=\"status\"]",
+            "[id*=\"nota\"]"
+        ],
+        "title": "Leitura técnica — Tanque expansao termica agua",
+        "messages": {
+            "initial": "Preencha os dados e gere o cálculo para receber uma leitura técnica preliminar do resultado.",
+            "ok": "O resultado parece favorável como estimativa preliminar. Ainda confirme dados de entrada, unidade, margem e condição real antes de aplicar.",
+            "warn": "Há ponto de atenção, margem pequena ou resultado que depende de conferência técnica. Revise premissas, unidades e condição de operação.",
+            "bad": "O resultado indica condição crítica, insuficiente, inválida ou fora do critério. Não aplique em campo sem revisar dados, equipamento e segurança."
+        },
+        "next": [
+            "Conferir unidades, dados medidos e faixa real de operação.",
+            "Comparar o resultado com datasheet, histórico, procedimento e limite do equipamento.",
+            "Para aplicação crítica, registrar premissas e validar com responsável técnico antes de executar."
+        ]
+    },
+    "calculadora-taxa-corrosao-vida-remanescente.html": {
+        "selectors": [
+            "#nota",
+            "#status",
+            "#resultado",
+            "#result",
+            "#resumo",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".calc-note",
+            ".calc-result",
+            ".result-box",
+            "[id*=\"resultado\"]",
+            "[id*=\"status\"]",
+            "[id*=\"nota\"]"
+        ],
+        "title": "Leitura técnica — Taxa corrosao vida remanescente",
+        "messages": {
+            "initial": "Preencha os dados e gere o cálculo para receber uma leitura técnica preliminar do resultado.",
+            "ok": "O resultado parece favorável como estimativa preliminar. Ainda confirme dados de entrada, unidade, margem e condição real antes de aplicar.",
+            "warn": "Há ponto de atenção, margem pequena ou resultado que depende de conferência técnica. Revise premissas, unidades e condição de operação.",
+            "bad": "O resultado indica condição crítica, insuficiente, inválida ou fora do critério. Não aplique em campo sem revisar dados, equipamento e segurança."
+        },
+        "next": [
+            "Conferir unidades, dados medidos e faixa real de operação.",
+            "Comparar o resultado com datasheet, histórico, procedimento e limite do equipamento.",
+            "Para aplicação crítica, registrar premissas e validar com responsável técnico antes de executar."
+        ]
+    },
+    "calculadora-tempo-enchimento-tanque.html": {
+        "selectors": [
+            "#nota",
+            "#status",
+            "#resultado",
+            "#result",
+            "#resumo",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".calc-note",
+            ".calc-result",
+            ".result-box",
+            "[id*=\"resultado\"]",
+            "[id*=\"status\"]",
+            "[id*=\"nota\"]"
+        ],
+        "title": "Leitura técnica — Tempo enchimento tanque",
+        "messages": {
+            "initial": "Preencha os dados e gere o cálculo para receber uma leitura técnica preliminar do resultado.",
+            "ok": "O resultado parece favorável como estimativa preliminar. Ainda confirme dados de entrada, unidade, margem e condição real antes de aplicar.",
+            "warn": "Há ponto de atenção, margem pequena ou resultado que depende de conferência técnica. Revise premissas, unidades e condição de operação.",
+            "bad": "O resultado indica condição crítica, insuficiente, inválida ou fora do critério. Não aplique em campo sem revisar dados, equipamento e segurança."
+        },
+        "next": [
+            "Conferir unidades, dados medidos e faixa real de operação.",
+            "Comparar o resultado com datasheet, histórico, procedimento e limite do equipamento.",
+            "Para aplicação crítica, registrar premissas e validar com responsável técnico antes de executar."
+        ]
+    },
+    "calculadora-tempo-pressurizacao-volume.html": {
+        "selectors": [
+            "#nota",
+            "#status",
+            "#resultado",
+            "#result",
+            "#resumo",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".calc-note",
+            ".calc-result",
+            ".result-box",
+            "[id*=\"resultado\"]",
+            "[id*=\"status\"]",
+            "[id*=\"nota\"]"
+        ],
+        "title": "Leitura técnica — Tempo pressurizacao volume",
+        "messages": {
+            "initial": "Preencha os dados e gere o cálculo para receber uma leitura técnica preliminar do resultado.",
+            "ok": "O resultado parece favorável como estimativa preliminar. Ainda confirme dados de entrada, unidade, margem e condição real antes de aplicar.",
+            "warn": "Há ponto de atenção, margem pequena ou resultado que depende de conferência técnica. Revise premissas, unidades e condição de operação.",
+            "bad": "O resultado indica condição crítica, insuficiente, inválida ou fora do critério. Não aplique em campo sem revisar dados, equipamento e segurança."
+        },
+        "next": [
+            "Conferir unidades, dados medidos e faixa real de operação.",
+            "Comparar o resultado com datasheet, histórico, procedimento e limite do equipamento.",
+            "Para aplicação crítica, registrar premissas e validar com responsável técnico antes de executar."
+        ]
+    },
+    "calculadora-tempo-residencia-tanque.html": {
+        "selectors": [
+            "#nota",
+            "#status",
+            "#resultado",
+            "#result",
+            "#resumo",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".calc-note",
+            ".calc-result",
+            ".result-box",
+            "[id*=\"resultado\"]",
+            "[id*=\"status\"]",
+            "[id*=\"nota\"]"
+        ],
+        "title": "Leitura técnica — Tempo residencia tanque",
+        "messages": {
+            "initial": "Preencha os dados e gere o cálculo para receber uma leitura técnica preliminar do resultado.",
+            "ok": "O resultado parece favorável como estimativa preliminar. Ainda confirme dados de entrada, unidade, margem e condição real antes de aplicar.",
+            "warn": "Há ponto de atenção, margem pequena ou resultado que depende de conferência técnica. Revise premissas, unidades e condição de operação.",
+            "bad": "O resultado indica condição crítica, insuficiente, inválida ou fora do critério. Não aplique em campo sem revisar dados, equipamento e segurança."
+        },
+        "next": [
+            "Conferir unidades, dados medidos e faixa real de operação.",
+            "Comparar o resultado com datasheet, histórico, procedimento e limite do equipamento.",
+            "Para aplicação crítica, registrar premissas e validar com responsável técnico antes de executar."
+        ]
+    },
+    "calculadora-termopoco-tempo-resposta.html": {
+        "selectors": [
+            "#nota",
+            "#status",
+            "#resultado",
+            "#result",
+            "#resumo",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".calc-note",
+            ".calc-result",
+            ".result-box",
+            "[id*=\"resultado\"]",
+            "[id*=\"status\"]",
+            "[id*=\"nota\"]"
+        ],
+        "title": "Leitura técnica — Termopoco tempo resposta",
+        "messages": {
+            "initial": "Preencha os dados e gere o cálculo para receber uma leitura técnica preliminar do resultado.",
+            "ok": "O resultado parece favorável como estimativa preliminar. Ainda confirme dados de entrada, unidade, margem e condição real antes de aplicar.",
+            "warn": "Há ponto de atenção, margem pequena ou resultado que depende de conferência técnica. Revise premissas, unidades e condição de operação.",
+            "bad": "O resultado indica condição crítica, insuficiente, inválida ou fora do critério. Não aplique em campo sem revisar dados, equipamento e segurança."
+        },
+        "next": [
+            "Conferir unidades, dados medidos e faixa real de operação.",
+            "Comparar o resultado com datasheet, histórico, procedimento e limite do equipamento.",
+            "Para aplicação crítica, registrar premissas e validar com responsável técnico antes de executar."
+        ]
+    },
+    "calculadora-termopoco-wake-frequency.html": {
+        "selectors": [
+            "#nota",
+            "#status",
+            "#resultado",
+            "#result",
+            "#resumo",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".calc-note",
+            ".calc-result",
+            ".result-box",
+            "[id*=\"resultado\"]",
+            "[id*=\"status\"]",
+            "[id*=\"nota\"]"
+        ],
+        "title": "Leitura técnica — Termopoco wake frequency",
+        "messages": {
+            "initial": "Preencha os dados e gere o cálculo para receber uma leitura técnica preliminar do resultado.",
+            "ok": "O resultado parece favorável como estimativa preliminar. Ainda confirme dados de entrada, unidade, margem e condição real antes de aplicar.",
+            "warn": "Há ponto de atenção, margem pequena ou resultado que depende de conferência técnica. Revise premissas, unidades e condição de operação.",
+            "bad": "O resultado indica condição crítica, insuficiente, inválida ou fora do critério. Não aplique em campo sem revisar dados, equipamento e segurança."
+        },
+        "next": [
+            "Conferir unidades, dados medidos e faixa real de operação.",
+            "Comparar o resultado com datasheet, histórico, procedimento e limite do equipamento.",
+            "Para aplicação crítica, registrar premissas e validar com responsável técnico antes de executar."
+        ]
+    },
+    "calculadora-trocador-calor-simples.html": {
+        "selectors": [
+            "#nota",
+            "#status",
+            "#resultado",
+            "#result",
+            "#resumo",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".calc-note",
+            ".calc-result",
+            ".result-box",
+            "[id*=\"resultado\"]",
+            "[id*=\"status\"]",
+            "[id*=\"nota\"]"
+        ],
+        "title": "Leitura técnica — Trocador calor simples",
+        "messages": {
+            "initial": "Preencha os dados e gere o cálculo para receber uma leitura técnica preliminar do resultado.",
+            "ok": "O resultado parece favorável como estimativa preliminar. Ainda confirme dados de entrada, unidade, margem e condição real antes de aplicar.",
+            "warn": "Há ponto de atenção, margem pequena ou resultado que depende de conferência técnica. Revise premissas, unidades e condição de operação.",
+            "bad": "O resultado indica condição crítica, insuficiente, inválida ou fora do critério. Não aplique em campo sem revisar dados, equipamento e segurança."
+        },
+        "next": [
+            "Conferir unidades, dados medidos e faixa real de operação.",
+            "Comparar o resultado com datasheet, histórico, procedimento e limite do equipamento.",
+            "Para aplicação crítica, registrar premissas e validar com responsável técnico antes de executar."
+        ]
+    },
+    "calculadora-tubo-pneumatico-instrumentacao.html": {
+        "selectors": [
+            "#nota",
+            "#status",
+            "#resultado",
+            "#result",
+            "#resumo",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".calc-note",
+            ".calc-result",
+            ".result-box",
+            "[id*=\"resultado\"]",
+            "[id*=\"status\"]",
+            "[id*=\"nota\"]"
+        ],
+        "title": "Leitura técnica — Tubo pneumatico instrumentacao",
+        "messages": {
+            "initial": "Preencha os dados e gere o cálculo para receber uma leitura técnica preliminar do resultado.",
+            "ok": "O resultado parece favorável como estimativa preliminar. Ainda confirme dados de entrada, unidade, margem e condição real antes de aplicar.",
+            "warn": "Há ponto de atenção, margem pequena ou resultado que depende de conferência técnica. Revise premissas, unidades e condição de operação.",
+            "bad": "O resultado indica condição crítica, insuficiente, inválida ou fora do critério. Não aplique em campo sem revisar dados, equipamento e segurança."
+        },
+        "next": [
+            "Conferir unidades, dados medidos e faixa real de operação.",
+            "Comparar o resultado com datasheet, histórico, procedimento e limite do equipamento.",
+            "Para aplicação crítica, registrar premissas e validar com responsável técnico antes de executar."
+        ]
+    },
+    "calculadora-vazamento-agua-orificio.html": {
+        "selectors": [
+            "#nota",
+            "#status",
+            "#resultado",
+            "#result",
+            "#resumo",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".calc-note",
+            ".calc-result",
+            ".result-box",
+            "[id*=\"resultado\"]",
+            "[id*=\"status\"]",
+            "[id*=\"nota\"]"
+        ],
+        "title": "Leitura técnica — Vazamento agua orificio",
+        "messages": {
+            "initial": "Preencha os dados e gere o cálculo para receber uma leitura técnica preliminar do resultado.",
+            "ok": "O resultado parece favorável como estimativa preliminar. Ainda confirme dados de entrada, unidade, margem e condição real antes de aplicar.",
+            "warn": "Há ponto de atenção, margem pequena ou resultado que depende de conferência técnica. Revise premissas, unidades e condição de operação.",
+            "bad": "O resultado indica condição crítica, insuficiente, inválida ou fora do critério. Não aplique em campo sem revisar dados, equipamento e segurança."
+        },
+        "next": [
+            "Conferir unidades, dados medidos e faixa real de operação.",
+            "Comparar o resultado com datasheet, histórico, procedimento e limite do equipamento.",
+            "Para aplicação crítica, registrar premissas e validar com responsável técnico antes de executar."
+        ]
+    },
+    "calculadora-vazamento-ar-comprimido-furo.html": {
+        "selectors": [
+            "#nota",
+            "#status",
+            "#resultado",
+            "#result",
+            "#resumo",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".calc-note",
+            ".calc-result",
+            ".result-box",
+            "[id*=\"resultado\"]",
+            "[id*=\"status\"]",
+            "[id*=\"nota\"]"
+        ],
+        "title": "Leitura técnica — Vazamento ar comprimido furo",
+        "messages": {
+            "initial": "Preencha os dados e gere o cálculo para receber uma leitura técnica preliminar do resultado.",
+            "ok": "O resultado parece favorável como estimativa preliminar. Ainda confirme dados de entrada, unidade, margem e condição real antes de aplicar.",
+            "warn": "Há ponto de atenção, margem pequena ou resultado que depende de conferência técnica. Revise premissas, unidades e condição de operação.",
+            "bad": "O resultado indica condição crítica, insuficiente, inválida ou fora do critério. Não aplique em campo sem revisar dados, equipamento e segurança."
+        },
+        "next": [
+            "Conferir unidades, dados medidos e faixa real de operação.",
+            "Comparar o resultado com datasheet, histórico, procedimento e limite do equipamento.",
+            "Para aplicação crítica, registrar premissas e validar com responsável técnico antes de executar."
+        ]
+    },
+    "calculadora-vazamento-ar-comprimido.html": {
+        "selectors": [
+            "#nota",
+            "#status",
+            "#resultado",
+            "#result",
+            "#resumo",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".calc-note",
+            ".calc-result",
+            ".result-box",
+            "[id*=\"resultado\"]",
+            "[id*=\"status\"]",
+            "[id*=\"nota\"]"
+        ],
+        "title": "Leitura técnica — Vazamento ar comprimido",
+        "messages": {
+            "initial": "Preencha os dados e gere o cálculo para receber uma leitura técnica preliminar do resultado.",
+            "ok": "O resultado parece favorável como estimativa preliminar. Ainda confirme dados de entrada, unidade, margem e condição real antes de aplicar.",
+            "warn": "Há ponto de atenção, margem pequena ou resultado que depende de conferência técnica. Revise premissas, unidades e condição de operação.",
+            "bad": "O resultado indica condição crítica, insuficiente, inválida ou fora do critério. Não aplique em campo sem revisar dados, equipamento e segurança."
+        },
+        "next": [
+            "Conferir unidades, dados medidos e faixa real de operação.",
+            "Comparar o resultado com datasheet, histórico, procedimento e limite do equipamento.",
+            "Para aplicação crítica, registrar premissas e validar com responsável técnico antes de executar."
+        ]
+    },
+    "calculadora-vazamento-vacuo-pressure-decay.html": {
+        "selectors": [
+            "#nota",
+            "#status",
+            "#resultado",
+            "#result",
+            "#resumo",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".calc-note",
+            ".calc-result",
+            ".result-box",
+            "[id*=\"resultado\"]",
+            "[id*=\"status\"]",
+            "[id*=\"nota\"]"
+        ],
+        "title": "Leitura técnica — Vazamento vacuo pressure decay",
+        "messages": {
+            "initial": "Preencha os dados e gere o cálculo para receber uma leitura técnica preliminar do resultado.",
+            "ok": "O resultado parece favorável como estimativa preliminar. Ainda confirme dados de entrada, unidade, margem e condição real antes de aplicar.",
+            "warn": "Há ponto de atenção, margem pequena ou resultado que depende de conferência técnica. Revise premissas, unidades e condição de operação.",
+            "bad": "O resultado indica condição crítica, insuficiente, inválida ou fora do critério. Não aplique em campo sem revisar dados, equipamento e segurança."
+        },
+        "next": [
+            "Conferir unidades, dados medidos e faixa real de operação.",
+            "Comparar o resultado com datasheet, histórico, procedimento e limite do equipamento.",
+            "Para aplicação crítica, registrar premissas e validar com responsável técnico antes de executar."
+        ]
+    },
+    "calculadora-vazao-bomba-deslocamento-positivo.html": {
+        "selectors": [
+            "#nota",
+            "#status",
+            "#resultado",
+            "#result",
+            "#resumo",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".calc-note",
+            ".calc-result",
+            ".result-box",
+            "[id*=\"resultado\"]",
+            "[id*=\"status\"]",
+            "[id*=\"nota\"]"
+        ],
+        "title": "Leitura técnica — Vazao bomba deslocamento positivo",
+        "messages": {
+            "initial": "Preencha os dados e gere o cálculo para receber uma leitura técnica preliminar do resultado.",
+            "ok": "O resultado parece favorável como estimativa preliminar. Ainda confirme dados de entrada, unidade, margem e condição real antes de aplicar.",
+            "warn": "Há ponto de atenção, margem pequena ou resultado que depende de conferência técnica. Revise premissas, unidades e condição de operação.",
+            "bad": "O resultado indica condição crítica, insuficiente, inválida ou fora do critério. Não aplique em campo sem revisar dados, equipamento e segurança."
+        },
+        "next": [
+            "Conferir unidades, dados medidos e faixa real de operação.",
+            "Comparar o resultado com datasheet, histórico, procedimento e limite do equipamento.",
+            "Para aplicação crítica, registrar premissas e validar com responsável técnico antes de executar."
+        ]
+    },
+    "calculadora-vazao-vapor-saturado.html": {
+        "selectors": [
+            "#nota",
+            "#status",
+            "#resultado",
+            "#result",
+            "#resumo",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".calc-note",
+            ".calc-result",
+            ".result-box",
+            "[id*=\"resultado\"]",
+            "[id*=\"status\"]",
+            "[id*=\"nota\"]"
+        ],
+        "title": "Leitura técnica — Vazao vapor saturado",
+        "messages": {
+            "initial": "Preencha os dados e gere o cálculo para receber uma leitura técnica preliminar do resultado.",
+            "ok": "O resultado parece favorável como estimativa preliminar. Ainda confirme dados de entrada, unidade, margem e condição real antes de aplicar.",
+            "warn": "Há ponto de atenção, margem pequena ou resultado que depende de conferência técnica. Revise premissas, unidades e condição de operação.",
+            "bad": "O resultado indica condição crítica, insuficiente, inválida ou fora do critério. Não aplique em campo sem revisar dados, equipamento e segurança."
+        },
+        "next": [
+            "Conferir unidades, dados medidos e faixa real de operação.",
+            "Comparar o resultado com datasheet, histórico, procedimento e limite do equipamento.",
+            "Para aplicação crítica, registrar premissas e validar com responsável técnico antes de executar."
+        ]
+    },
+    "calculadora-velocidade-cilindro-hidraulico.html": {
+        "selectors": [
+            "#nota",
+            "#status",
+            "#resultado",
+            "#result",
+            "#resumo",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".calc-note",
+            ".calc-result",
+            ".result-box",
+            "[id*=\"resultado\"]",
+            "[id*=\"status\"]",
+            "[id*=\"nota\"]"
+        ],
+        "title": "Leitura técnica — Velocidade cilindro hidraulico",
+        "messages": {
+            "initial": "Preencha os dados e gere o cálculo para receber uma leitura técnica preliminar do resultado.",
+            "ok": "O resultado parece favorável como estimativa preliminar. Ainda confirme dados de entrada, unidade, margem e condição real antes de aplicar.",
+            "warn": "Há ponto de atenção, margem pequena ou resultado que depende de conferência técnica. Revise premissas, unidades e condição de operação.",
+            "bad": "O resultado indica condição crítica, insuficiente, inválida ou fora do critério. Não aplique em campo sem revisar dados, equipamento e segurança."
+        },
+        "next": [
+            "Conferir unidades, dados medidos e faixa real de operação.",
+            "Comparar o resultado com datasheet, histórico, procedimento e limite do equipamento.",
+            "Para aplicação crítica, registrar premissas e validar com responsável técnico antes de executar."
+        ]
+    },
+    "calculadora-volume-tanque-vertical-horizontal.html": {
+        "selectors": [
+            "#nota",
+            "#status",
+            "#resultado",
+            "#result",
+            "#resumo",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".calc-note",
+            ".calc-result",
+            ".result-box",
+            "[id*=\"resultado\"]",
+            "[id*=\"status\"]",
+            "[id*=\"nota\"]"
+        ],
+        "title": "Leitura técnica — Volume tanque vertical horizontal",
+        "messages": {
+            "initial": "Preencha os dados e gere o cálculo para receber uma leitura técnica preliminar do resultado.",
+            "ok": "O resultado parece favorável como estimativa preliminar. Ainda confirme dados de entrada, unidade, margem e condição real antes de aplicar.",
+            "warn": "Há ponto de atenção, margem pequena ou resultado que depende de conferência técnica. Revise premissas, unidades e condição de operação.",
+            "bad": "O resultado indica condição crítica, insuficiente, inválida ou fora do critério. Não aplique em campo sem revisar dados, equipamento e segurança."
+        },
+        "next": [
+            "Conferir unidades, dados medidos e faixa real de operação.",
+            "Comparar o resultado com datasheet, histórico, procedimento e limite do equipamento.",
+            "Para aplicação crítica, registrar premissas e validar com responsável técnico antes de executar."
+        ]
+    },
+    "calculadora-volume-tanque.html": {
+        "selectors": [
+            "#nota",
+            "#status",
+            "#resultado",
+            "#result",
+            "#resumo",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".calc-note",
+            ".calc-result",
+            ".result-box",
+            "[id*=\"resultado\"]",
+            "[id*=\"status\"]",
+            "[id*=\"nota\"]"
+        ],
+        "title": "Leitura técnica — Volume tanque",
+        "messages": {
+            "initial": "Preencha os dados e gere o cálculo para receber uma leitura técnica preliminar do resultado.",
+            "ok": "O resultado parece favorável como estimativa preliminar. Ainda confirme dados de entrada, unidade, margem e condição real antes de aplicar.",
+            "warn": "Há ponto de atenção, margem pequena ou resultado que depende de conferência técnica. Revise premissas, unidades e condição de operação.",
+            "bad": "O resultado indica condição crítica, insuficiente, inválida ou fora do critério. Não aplique em campo sem revisar dados, equipamento e segurança."
+        },
+        "next": [
+            "Conferir unidades, dados medidos e faixa real de operação.",
+            "Comparar o resultado com datasheet, histórico, procedimento e limite do equipamento.",
+            "Para aplicação crítica, registrar premissas e validar com responsável técnico antes de executar."
+        ]
+    },
+    "calculadora-alinhamento-eixos-relogio.html": {
+      "selectors": [
+            "#statusFinal",
+            "#status",
+            "#res_status",
+            "#r_status",
+            "#at_status",
+            "#ct_status",
+            "#resumo",
+            "#resultado",
+            "#fonteOut",
+            "#u_nota",
+            "#u_resultado",
+            "#nr12Summary",
+            "#progBar",
+            "#nota",
+            "#r_nota",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".result-main",
+            ".nr12-result",
+            ".loop-status",
+            ".calc-result",
+            ".result-box"
+      ],
+      "title": "Leitura técnica mecânica",
+      "messages": {
+            "initial": "Informe os dados mecânicos para obter uma leitura preliminar do cálculo ou conversão.",
+            "ok": "O resultado parece favorável como referência técnica. Confirme com catálogo, medição de campo e condição real da máquina.",
+            "warn": "Há atenção em margem, vibração, torque, rotação, massa ou ajuste. Revise dados e limites do fabricante antes de aplicar.",
+            "bad": "O resultado indica condição crítica, inválida ou fora de faixa. Não use para liberação de máquina sem inspeção e validação técnica."
+      },
+      "next": [
+            "Conferir unidade, instrumento de medição, condição operacional e repetibilidade dos dados.",
+            "Comparar com catálogo do fabricante, histórico da máquina e procedimento interno.",
+            "Registrar ação de manutenção quando o resultado indicar tendência anormal ou condição crítica."
+      ]
+},
+    "calculadora-aterramento.html": {
+      "selectors": [
+            "#statusFinal",
+            "#status",
+            "#res_status",
+            "#r_status",
+            "#at_status",
+            "#ct_status",
+            "#resumo",
+            "#resultado",
+            "#fonteOut",
+            "#u_nota",
+            "#u_resultado",
+            "#nr12Summary",
+            "#progBar",
+            "#nota",
+            "#r_nota",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".result-main",
+            ".nr12-result",
+            ".loop-status",
+            ".calc-result",
+            ".result-box"
+      ],
+      "title": "Leitura técnica elétrica",
+      "messages": {
+            "initial": "Preencha os dados elétricos para obter uma leitura preliminar do circuito, carga ou acionamento.",
+            "ok": "O resultado parece favorável como triagem. Confirme proteção, instalação, temperatura, placa do equipamento e requisitos normativos antes de aplicar.",
+            "warn": "Há atenção em margem elétrica, queda, corrente, aquecimento, isolamento, burden ou regime de carga. Revise antes de aplicar em campo.",
+            "bad": "O resultado indica condição crítica, inválida ou fora de limite. Não aplique em instalação real sem revisão elétrica formal."
+      },
+      "next": [
+            "Confirmar dados de placa, catálogo, tensão real, método de instalação e temperatura ambiente.",
+            "Validar proteção, seletividade, capacidade térmica, aterramento e requisitos de segurança elétrica.",
+            "Registrar análise e revisão por profissional habilitado quando envolver painel, motor, barramento ou intervenção."
+      ]
+},
+    "calculadora-backlog-manutencao-semanas.html": {
+      "selectors": [
+            "#statusFinal",
+            "#status",
+            "#res_status",
+            "#r_status",
+            "#at_status",
+            "#ct_status",
+            "#resumo",
+            "#resultado",
+            "#fonteOut",
+            "#u_nota",
+            "#u_resultado",
+            "#nr12Summary",
+            "#progBar",
+            "#nota",
+            "#r_nota",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".result-main",
+            ".nr12-result",
+            ".loop-status",
+            ".calc-result",
+            ".result-box"
+      ],
+      "title": "Leitura técnica de manutenção e confiabilidade",
+      "messages": {
+            "initial": "Preencha os dados de manutenção, produção, falhas ou criticidade para obter uma leitura técnica preliminar.",
+            "ok": "O indicador parece favorável como triagem. Confirme histórico, período analisado, qualidade dos dados e impacto operacional antes de decidir.",
+            "warn": "Há ponto de atenção em criticidade, estoque, perda, backlog, disponibilidade ou priorização. Revise dados e impacto antes de transformar em plano de ação.",
+            "bad": "O resultado indica condição crítica ou dados incompatíveis. Não use isoladamente; acione análise de manutenção, operação, engenharia ou confiabilidade."
+      },
+      "next": [
+            "Conferir origem dos dados no CMMS/ERP, apontamento de produção ou histórico de manutenção.",
+            "Validar impacto de segurança, meio ambiente, qualidade e produção com as áreas responsáveis.",
+            "Transformar o resultado em ação rastreável: inspeção, RCA, sobressalente, plano preventivo ou melhoria."
+      ]
+},
+    "calculadora-balanceamento-rotor-campo.html": {
+      "selectors": [
+            "#statusFinal",
+            "#status",
+            "#res_status",
+            "#r_status",
+            "#at_status",
+            "#ct_status",
+            "#resumo",
+            "#resultado",
+            "#fonteOut",
+            "#u_nota",
+            "#u_resultado",
+            "#nr12Summary",
+            "#progBar",
+            "#nota",
+            "#r_nota",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".result-main",
+            ".nr12-result",
+            ".loop-status",
+            ".calc-result",
+            ".result-box"
+      ],
+      "title": "Leitura técnica mecânica",
+      "messages": {
+            "initial": "Informe os dados mecânicos para obter uma leitura preliminar do cálculo ou conversão.",
+            "ok": "O resultado parece favorável como referência técnica. Confirme com catálogo, medição de campo e condição real da máquina.",
+            "warn": "Há atenção em margem, vibração, torque, rotação, massa ou ajuste. Revise dados e limites do fabricante antes de aplicar.",
+            "bad": "O resultado indica condição crítica, inválida ou fora de faixa. Não use para liberação de máquina sem inspeção e validação técnica."
+      },
+      "next": [
+            "Conferir unidade, instrumento de medição, condição operacional e repetibilidade dos dados.",
+            "Comparar com catálogo do fabricante, histórico da máquina e procedimento interno.",
+            "Registrar ação de manutenção quando o resultado indicar tendência anormal ou condição crítica."
+      ]
+},
+    "calculadora-bocal-lavagem-cip.html": {
+      "selectors": [
+            "#statusFinal",
+            "#status",
+            "#res_status",
+            "#r_status",
+            "#at_status",
+            "#ct_status",
+            "#resumo",
+            "#resultado",
+            "#fonteOut",
+            "#u_nota",
+            "#u_resultado",
+            "#nr12Summary",
+            "#progBar",
+            "#nota",
+            "#r_nota",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".result-main",
+            ".nr12-result",
+            ".loop-status",
+            ".calc-result",
+            ".result-box"
+      ],
+      "title": "Leitura técnica de qualidade/processo",
+      "messages": {
+            "initial": "Preencha os dados de processo, analítica ou qualidade para obter uma leitura preliminar.",
+            "ok": "O resultado parece coerente como triagem. Confirme calibração, amostragem, procedimento e limites internos antes de aplicar.",
+            "warn": "Há atenção em variabilidade, sensor, amostragem, eficiência, concentração ou limite. Revise dados e condição real do processo.",
+            "bad": "O resultado indica condição crítica ou fora de faixa. Não use para liberação de processo/produto sem validação adequada."
+      },
+      "next": [
+            "Conferir calibração, limpeza do sensor, padrões, temperatura e estabilidade da amostra.",
+            "Validar limites internos, procedimento de qualidade e representatividade dos dados.",
+            "Repetir medição ou acionar laboratório/manutenção quando houver condição crítica."
+      ]
+},
+    "calculadora-burden-transformador-corrente.html": {
+      "selectors": [
+            "#statusFinal",
+            "#status",
+            "#res_status",
+            "#r_status",
+            "#at_status",
+            "#ct_status",
+            "#resumo",
+            "#resultado",
+            "#fonteOut",
+            "#u_nota",
+            "#u_resultado",
+            "#nr12Summary",
+            "#progBar",
+            "#nota",
+            "#r_nota",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".result-main",
+            ".nr12-result",
+            ".loop-status",
+            ".calc-result",
+            ".result-box"
+      ],
+      "title": "Leitura técnica elétrica",
+      "messages": {
+            "initial": "Preencha os dados elétricos para obter uma leitura preliminar do circuito, carga ou acionamento.",
+            "ok": "O resultado parece favorável como triagem. Confirme proteção, instalação, temperatura, placa do equipamento e requisitos normativos antes de aplicar.",
+            "warn": "Há atenção em margem elétrica, queda, corrente, aquecimento, isolamento, burden ou regime de carga. Revise antes de aplicar em campo.",
+            "bad": "O resultado indica condição crítica, inválida ou fora de limite. Não aplique em instalação real sem revisão elétrica formal."
+      },
+      "next": [
+            "Confirmar dados de placa, catálogo, tensão real, método de instalação e temperatura ambiente.",
+            "Validar proteção, seletividade, capacidade térmica, aterramento e requisitos de segurança elétrica.",
+            "Registrar análise e revisão por profissional habilitado quando envolver painel, motor, barramento ou intervenção."
+      ]
+},
+    "calculadora-capabilidade-cp-cpk.html": {
+      "selectors": [
+            "#statusFinal",
+            "#status",
+            "#res_status",
+            "#r_status",
+            "#at_status",
+            "#ct_status",
+            "#resumo",
+            "#resultado",
+            "#fonteOut",
+            "#u_nota",
+            "#u_resultado",
+            "#nr12Summary",
+            "#progBar",
+            "#nota",
+            "#r_nota",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".result-main",
+            ".nr12-result",
+            ".loop-status",
+            ".calc-result",
+            ".result-box"
+      ],
+      "title": "Leitura técnica de qualidade/processo",
+      "messages": {
+            "initial": "Preencha os dados de processo, analítica ou qualidade para obter uma leitura preliminar.",
+            "ok": "O resultado parece coerente como triagem. Confirme calibração, amostragem, procedimento e limites internos antes de aplicar.",
+            "warn": "Há atenção em variabilidade, sensor, amostragem, eficiência, concentração ou limite. Revise dados e condição real do processo.",
+            "bad": "O resultado indica condição crítica ou fora de faixa. Não use para liberação de processo/produto sem validação adequada."
+      },
+      "next": [
+            "Conferir calibração, limpeza do sensor, padrões, temperatura e estabilidade da amostra.",
+            "Validar limites internos, procedimento de qualidade e representatividade dos dados.",
+            "Repetir medição ou acionar laboratório/manutenção quando houver condição crítica."
+      ]
+},
+    "calculadora-classe-limpeza-oleo-iso4406.html": {
+      "selectors": [
+            "#statusFinal",
+            "#status",
+            "#res_status",
+            "#r_status",
+            "#at_status",
+            "#ct_status",
+            "#resumo",
+            "#resultado",
+            "#fonteOut",
+            "#u_nota",
+            "#u_resultado",
+            "#nr12Summary",
+            "#progBar",
+            "#nota",
+            "#r_nota",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".result-main",
+            ".nr12-result",
+            ".loop-status",
+            ".calc-result",
+            ".result-box"
+      ],
+      "title": "Leitura técnica de qualidade/processo",
+      "messages": {
+            "initial": "Preencha os dados de processo, analítica ou qualidade para obter uma leitura preliminar.",
+            "ok": "O resultado parece coerente como triagem. Confirme calibração, amostragem, procedimento e limites internos antes de aplicar.",
+            "warn": "Há atenção em variabilidade, sensor, amostragem, eficiência, concentração ou limite. Revise dados e condição real do processo.",
+            "bad": "O resultado indica condição crítica ou fora de faixa. Não use para liberação de processo/produto sem validação adequada."
+      },
+      "next": [
+            "Conferir calibração, limpeza do sensor, padrões, temperatura e estabilidade da amostra.",
+            "Validar limites internos, procedimento de qualidade e representatividade dos dados.",
+            "Repetir medição ou acionar laboratório/manutenção quando houver condição crítica."
+      ]
+},
+    "calculadora-comprimento-correia-polias.html": {
+      "selectors": [
+            "#statusFinal",
+            "#status",
+            "#res_status",
+            "#r_status",
+            "#at_status",
+            "#ct_status",
+            "#resumo",
+            "#resultado",
+            "#fonteOut",
+            "#u_nota",
+            "#u_resultado",
+            "#nr12Summary",
+            "#progBar",
+            "#nota",
+            "#r_nota",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".result-main",
+            ".nr12-result",
+            ".loop-status",
+            ".calc-result",
+            ".result-box"
+      ],
+      "title": "Leitura técnica mecânica",
+      "messages": {
+            "initial": "Informe os dados mecânicos para obter uma leitura preliminar do cálculo ou conversão.",
+            "ok": "O resultado parece favorável como referência técnica. Confirme com catálogo, medição de campo e condição real da máquina.",
+            "warn": "Há atenção em margem, vibração, torque, rotação, massa ou ajuste. Revise dados e limites do fabricante antes de aplicar.",
+            "bad": "O resultado indica condição crítica, inválida ou fora de faixa. Não use para liberação de máquina sem inspeção e validação técnica."
+      },
+      "next": [
+            "Conferir unidade, instrumento de medição, condição operacional e repetibilidade dos dados.",
+            "Comparar com catálogo do fabricante, histórico da máquina e procedimento interno.",
+            "Registrar ação de manutenção quando o resultado indicar tendência anormal ou condição crítica."
+      ]
+},
+    "calculadora-condutividade-tds.html": {
+      "selectors": [
+            "#statusFinal",
+            "#status",
+            "#res_status",
+            "#r_status",
+            "#at_status",
+            "#ct_status",
+            "#resumo",
+            "#resultado",
+            "#fonteOut",
+            "#u_nota",
+            "#u_resultado",
+            "#nr12Summary",
+            "#progBar",
+            "#nota",
+            "#r_nota",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".result-main",
+            ".nr12-result",
+            ".loop-status",
+            ".calc-result",
+            ".result-box"
+      ],
+      "title": "Leitura técnica de qualidade/processo",
+      "messages": {
+            "initial": "Preencha os dados de processo, analítica ou qualidade para obter uma leitura preliminar.",
+            "ok": "O resultado parece coerente como triagem. Confirme calibração, amostragem, procedimento e limites internos antes de aplicar.",
+            "warn": "Há atenção em variabilidade, sensor, amostragem, eficiência, concentração ou limite. Revise dados e condição real do processo.",
+            "bad": "O resultado indica condição crítica ou fora de faixa. Não use para liberação de processo/produto sem validação adequada."
+      },
+      "next": [
+            "Conferir calibração, limpeza do sensor, padrões, temperatura e estabilidade da amostra.",
+            "Validar limites internos, procedimento de qualidade e representatividade dos dados.",
+            "Repetir medição ou acionar laboratório/manutenção quando houver condição crítica."
+      ]
+},
+    "calculadora-consumo-valvula-solenoide-bobina.html": {
+      "selectors": [
+            "#statusFinal",
+            "#status",
+            "#res_status",
+            "#r_status",
+            "#at_status",
+            "#ct_status",
+            "#resumo",
+            "#resultado",
+            "#fonteOut",
+            "#u_nota",
+            "#u_resultado",
+            "#nr12Summary",
+            "#progBar",
+            "#nota",
+            "#r_nota",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".result-main",
+            ".nr12-result",
+            ".loop-status",
+            ".calc-result",
+            ".result-box"
+      ],
+      "title": "Leitura técnica de qualidade/processo",
+      "messages": {
+            "initial": "Preencha os dados de processo, analítica ou qualidade para obter uma leitura preliminar.",
+            "ok": "O resultado parece coerente como triagem. Confirme calibração, amostragem, procedimento e limites internos antes de aplicar.",
+            "warn": "Há atenção em variabilidade, sensor, amostragem, eficiência, concentração ou limite. Revise dados e condição real do processo.",
+            "bad": "O resultado indica condição crítica ou fora de faixa. Não use para liberação de processo/produto sem validação adequada."
+      },
+      "next": [
+            "Conferir calibração, limpeza do sensor, padrões, temperatura e estabilidade da amostra.",
+            "Validar limites internos, procedimento de qualidade e representatividade dos dados.",
+            "Repetir medição ou acionar laboratório/manutenção quando houver condição crítica."
+      ]
+},
+    "calculadora-conversao-sinais-industriais.html": {
+      "selectors": [
+            "#statusFinal",
+            "#status",
+            "#res_status",
+            "#r_status",
+            "#at_status",
+            "#ct_status",
+            "#resumo",
+            "#resultado",
+            "#fonteOut",
+            "#u_nota",
+            "#u_resultado",
+            "#nr12Summary",
+            "#progBar",
+            "#nota",
+            "#r_nota",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".result-main",
+            ".nr12-result",
+            ".loop-status",
+            ".calc-result",
+            ".result-box"
+      ],
+      "title": "Leitura técnica de apoio geral",
+      "messages": {
+            "initial": "Preencha os dados para obter uma leitura preliminar da conversão, seleção ou documento técnico.",
+            "ok": "O resultado parece coerente como apoio. Confirme unidade, padrão, catálogo e documento de referência antes de aplicar.",
+            "warn": "Há atenção em unidade, padrão, margem, classe, documentação ou condição de serviço. Revise antes de usar em projeto ou compra.",
+            "bad": "O resultado indica dado inválido, fora de faixa ou incompatível. Corrija a entrada e valide tecnicamente antes de aplicar."
+      },
+      "next": [
+            "Conferir unidade de origem/destino, padrão técnico e premissas do serviço.",
+            "Comparar com catálogo, folha de dados, memorial ou documento aprovado.",
+            "Registrar revisão técnica quando o resultado for usado para especificação, compra ou campo."
+      ]
+},
+    "calculadora-conversao-vibracao-frequencia.html": {
+      "selectors": [
+            "#statusFinal",
+            "#status",
+            "#res_status",
+            "#r_status",
+            "#at_status",
+            "#ct_status",
+            "#resumo",
+            "#resultado",
+            "#fonteOut",
+            "#u_nota",
+            "#u_resultado",
+            "#nr12Summary",
+            "#progBar",
+            "#nota",
+            "#r_nota",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".result-main",
+            ".nr12-result",
+            ".loop-status",
+            ".calc-result",
+            ".result-box"
+      ],
+      "title": "Leitura técnica de apoio geral",
+      "messages": {
+            "initial": "Preencha os dados para obter uma leitura preliminar da conversão, seleção ou documento técnico.",
+            "ok": "O resultado parece coerente como apoio. Confirme unidade, padrão, catálogo e documento de referência antes de aplicar.",
+            "warn": "Há atenção em unidade, padrão, margem, classe, documentação ou condição de serviço. Revise antes de usar em projeto ou compra.",
+            "bad": "O resultado indica dado inválido, fora de faixa ou incompatível. Corrija a entrada e valide tecnicamente antes de aplicar."
+      },
+      "next": [
+            "Conferir unidade de origem/destino, padrão técnico e premissas do serviço.",
+            "Comparar com catálogo, folha de dados, memorial ou documento aprovado.",
+            "Registrar revisão técnica quando o resultado for usado para especificação, compra ou campo."
+      ]
+},
+    "calculadora-correcao-fator-potencia.html": {
+      "selectors": [
+            "#statusFinal",
+            "#status",
+            "#res_status",
+            "#r_status",
+            "#at_status",
+            "#ct_status",
+            "#resumo",
+            "#resultado",
+            "#fonteOut",
+            "#u_nota",
+            "#u_resultado",
+            "#nr12Summary",
+            "#progBar",
+            "#nota",
+            "#r_nota",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".result-main",
+            ".nr12-result",
+            ".loop-status",
+            ".calc-result",
+            ".result-box"
+      ],
+      "title": "Leitura técnica elétrica",
+      "messages": {
+            "initial": "Preencha os dados elétricos para obter uma leitura preliminar do circuito, carga ou acionamento.",
+            "ok": "O resultado parece favorável como triagem. Confirme proteção, instalação, temperatura, placa do equipamento e requisitos normativos antes de aplicar.",
+            "warn": "Há atenção em margem elétrica, queda, corrente, aquecimento, isolamento, burden ou regime de carga. Revise antes de aplicar em campo.",
+            "bad": "O resultado indica condição crítica, inválida ou fora de limite. Não aplique em instalação real sem revisão elétrica formal."
+      },
+      "next": [
+            "Confirmar dados de placa, catálogo, tensão real, método de instalação e temperatura ambiente.",
+            "Validar proteção, seletividade, capacidade térmica, aterramento e requisitos de segurança elétrica.",
+            "Registrar análise e revisão por profissional habilitado quando envolver painel, motor, barramento ou intervenção."
+      ]
+},
+    "calculadora-corrente-neutro-trifasico.html": {
+      "selectors": [
+            "#statusFinal",
+            "#status",
+            "#res_status",
+            "#r_status",
+            "#at_status",
+            "#ct_status",
+            "#resumo",
+            "#resultado",
+            "#fonteOut",
+            "#u_nota",
+            "#u_resultado",
+            "#nr12Summary",
+            "#progBar",
+            "#nota",
+            "#r_nota",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".result-main",
+            ".nr12-result",
+            ".loop-status",
+            ".calc-result",
+            ".result-box"
+      ],
+      "title": "Leitura técnica elétrica",
+      "messages": {
+            "initial": "Preencha os dados elétricos para obter uma leitura preliminar do circuito, carga ou acionamento.",
+            "ok": "O resultado parece favorável como triagem. Confirme proteção, instalação, temperatura, placa do equipamento e requisitos normativos antes de aplicar.",
+            "warn": "Há atenção em margem elétrica, queda, corrente, aquecimento, isolamento, burden ou regime de carga. Revise antes de aplicar em campo.",
+            "bad": "O resultado indica condição crítica, inválida ou fora de limite. Não aplique em instalação real sem revisão elétrica formal."
+      },
+      "next": [
+            "Confirmar dados de placa, catálogo, tensão real, método de instalação e temperatura ambiente.",
+            "Validar proteção, seletividade, capacidade térmica, aterramento e requisitos de segurança elétrica.",
+            "Registrar análise e revisão por profissional habilitado quando envolver painel, motor, barramento ou intervenção."
+      ]
+},
+    "calculadora-corrente-trifasica.html": {
+      "selectors": [
+            "#statusFinal",
+            "#status",
+            "#res_status",
+            "#r_status",
+            "#at_status",
+            "#ct_status",
+            "#resumo",
+            "#resultado",
+            "#fonteOut",
+            "#u_nota",
+            "#u_resultado",
+            "#nr12Summary",
+            "#progBar",
+            "#nota",
+            "#r_nota",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".result-main",
+            ".nr12-result",
+            ".loop-status",
+            ".calc-result",
+            ".result-box"
+      ],
+      "title": "Leitura técnica elétrica",
+      "messages": {
+            "initial": "Preencha os dados elétricos para obter uma leitura preliminar do circuito, carga ou acionamento.",
+            "ok": "O resultado parece favorável como triagem. Confirme proteção, instalação, temperatura, placa do equipamento e requisitos normativos antes de aplicar.",
+            "warn": "Há atenção em margem elétrica, queda, corrente, aquecimento, isolamento, burden ou regime de carga. Revise antes de aplicar em campo.",
+            "bad": "O resultado indica condição crítica, inválida ou fora de limite. Não aplique em instalação real sem revisão elétrica formal."
+      },
+      "next": [
+            "Confirmar dados de placa, catálogo, tensão real, método de instalação e temperatura ambiente.",
+            "Validar proteção, seletividade, capacidade térmica, aterramento e requisitos de segurança elétrica.",
+            "Registrar análise e revisão por profissional habilitado quando envolver painel, motor, barramento ou intervenção."
+      ]
+},
+    "calculadora-criticidade-instrumentos.html": {
+      "selectors": [
+            "#statusFinal",
+            "#status",
+            "#res_status",
+            "#r_status",
+            "#at_status",
+            "#ct_status",
+            "#resumo",
+            "#resultado",
+            "#fonteOut",
+            "#u_nota",
+            "#u_resultado",
+            "#nr12Summary",
+            "#progBar",
+            "#nota",
+            "#r_nota",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".result-main",
+            ".nr12-result",
+            ".loop-status",
+            ".calc-result",
+            ".result-box"
+      ],
+      "title": "Leitura técnica de manutenção e confiabilidade",
+      "messages": {
+            "initial": "Preencha os dados de manutenção, produção, falhas ou criticidade para obter uma leitura técnica preliminar.",
+            "ok": "O indicador parece favorável como triagem. Confirme histórico, período analisado, qualidade dos dados e impacto operacional antes de decidir.",
+            "warn": "Há ponto de atenção em criticidade, estoque, perda, backlog, disponibilidade ou priorização. Revise dados e impacto antes de transformar em plano de ação.",
+            "bad": "O resultado indica condição crítica ou dados incompatíveis. Não use isoladamente; acione análise de manutenção, operação, engenharia ou confiabilidade."
+      },
+      "next": [
+            "Conferir origem dos dados no CMMS/ERP, apontamento de produção ou histórico de manutenção.",
+            "Validar impacto de segurança, meio ambiente, qualidade e produção com as áreas responsáveis.",
+            "Transformar o resultado em ação rastreável: inspeção, RCA, sobressalente, plano preventivo ou melhoria."
+      ]
+},
+    "calculadora-custo-parada-producao.html": {
+      "selectors": [
+            "#statusFinal",
+            "#status",
+            "#res_status",
+            "#r_status",
+            "#at_status",
+            "#ct_status",
+            "#resumo",
+            "#resultado",
+            "#fonteOut",
+            "#u_nota",
+            "#u_resultado",
+            "#nr12Summary",
+            "#progBar",
+            "#nota",
+            "#r_nota",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".result-main",
+            ".nr12-result",
+            ".loop-status",
+            ".calc-result",
+            ".result-box"
+      ],
+      "title": "Leitura técnica de manutenção e confiabilidade",
+      "messages": {
+            "initial": "Preencha os dados de manutenção, produção, falhas ou criticidade para obter uma leitura técnica preliminar.",
+            "ok": "O indicador parece favorável como triagem. Confirme histórico, período analisado, qualidade dos dados e impacto operacional antes de decidir.",
+            "warn": "Há ponto de atenção em criticidade, estoque, perda, backlog, disponibilidade ou priorização. Revise dados e impacto antes de transformar em plano de ação.",
+            "bad": "O resultado indica condição crítica ou dados incompatíveis. Não use isoladamente; acione análise de manutenção, operação, engenharia ou confiabilidade."
+      },
+      "next": [
+            "Conferir origem dos dados no CMMS/ERP, apontamento de produção ou histórico de manutenção.",
+            "Validar impacto de segurança, meio ambiente, qualidade e produção com as áreas responsáveis.",
+            "Transformar o resultado em ação rastreável: inspeção, RCA, sobressalente, plano preventivo ou melhoria."
+      ]
+},
+    "calculadora-dilatacao-termica.html": {
+      "selectors": [
+            "#statusFinal",
+            "#status",
+            "#res_status",
+            "#r_status",
+            "#at_status",
+            "#ct_status",
+            "#resumo",
+            "#resultado",
+            "#fonteOut",
+            "#u_nota",
+            "#u_resultado",
+            "#nr12Summary",
+            "#progBar",
+            "#nota",
+            "#r_nota",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".result-main",
+            ".nr12-result",
+            ".loop-status",
+            ".calc-result",
+            ".result-box"
+      ],
+      "title": "Leitura técnica de apoio geral",
+      "messages": {
+            "initial": "Preencha os dados para obter uma leitura preliminar da conversão, seleção ou documento técnico.",
+            "ok": "O resultado parece coerente como apoio. Confirme unidade, padrão, catálogo e documento de referência antes de aplicar.",
+            "warn": "Há atenção em unidade, padrão, margem, classe, documentação ou condição de serviço. Revise antes de usar em projeto ou compra.",
+            "bad": "O resultado indica dado inválido, fora de faixa ou incompatível. Corrija a entrada e valide tecnicamente antes de aplicar."
+      },
+      "next": [
+            "Conferir unidade de origem/destino, padrão técnico e premissas do serviço.",
+            "Comparar com catálogo, folha de dados, memorial ou documento aprovado.",
+            "Registrar revisão técnica quando o resultado for usado para especificação, compra ou campo."
+      ]
+},
+    "calculadora-disponibilidade-sistema-serie-paralelo.html": {
+      "selectors": [
+            "#statusFinal",
+            "#status",
+            "#res_status",
+            "#r_status",
+            "#at_status",
+            "#ct_status",
+            "#resumo",
+            "#resultado",
+            "#fonteOut",
+            "#u_nota",
+            "#u_resultado",
+            "#nr12Summary",
+            "#progBar",
+            "#nota",
+            "#r_nota",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".result-main",
+            ".nr12-result",
+            ".loop-status",
+            ".calc-result",
+            ".result-box"
+      ],
+      "title": "Leitura técnica de manutenção e confiabilidade",
+      "messages": {
+            "initial": "Preencha os dados de manutenção, produção, falhas ou criticidade para obter uma leitura técnica preliminar.",
+            "ok": "O indicador parece favorável como triagem. Confirme histórico, período analisado, qualidade dos dados e impacto operacional antes de decidir.",
+            "warn": "Há ponto de atenção em criticidade, estoque, perda, backlog, disponibilidade ou priorização. Revise dados e impacto antes de transformar em plano de ação.",
+            "bad": "O resultado indica condição crítica ou dados incompatíveis. Não use isoladamente; acione análise de manutenção, operação, engenharia ou confiabilidade."
+      },
+      "next": [
+            "Conferir origem dos dados no CMMS/ERP, apontamento de produção ou histórico de manutenção.",
+            "Validar impacto de segurança, meio ambiente, qualidade e produção com as áreas responsáveis.",
+            "Transformar o resultado em ação rastreável: inspeção, RCA, sobressalente, plano preventivo ou melhoria."
+      ]
+},
+    "calculadora-dn-nps-schedule.html": {
+      "selectors": [
+            "#statusFinal",
+            "#status",
+            "#res_status",
+            "#r_status",
+            "#at_status",
+            "#ct_status",
+            "#resumo",
+            "#resultado",
+            "#fonteOut",
+            "#u_nota",
+            "#u_resultado",
+            "#nr12Summary",
+            "#progBar",
+            "#nota",
+            "#r_nota",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".result-main",
+            ".nr12-result",
+            ".loop-status",
+            ".calc-result",
+            ".result-box"
+      ],
+      "title": "Leitura técnica de apoio geral",
+      "messages": {
+            "initial": "Preencha os dados para obter uma leitura preliminar da conversão, seleção ou documento técnico.",
+            "ok": "O resultado parece coerente como apoio. Confirme unidade, padrão, catálogo e documento de referência antes de aplicar.",
+            "warn": "Há atenção em unidade, padrão, margem, classe, documentação ou condição de serviço. Revise antes de usar em projeto ou compra.",
+            "bad": "O resultado indica dado inválido, fora de faixa ou incompatível. Corrija a entrada e valide tecnicamente antes de aplicar."
+      },
+      "next": [
+            "Conferir unidade de origem/destino, padrão técnico e premissas do serviço.",
+            "Comparar com catálogo, folha de dados, memorial ou documento aprovado.",
+            "Registrar revisão técnica quando o resultado for usado para especificação, compra ou campo."
+      ]
+},
+    "calculadora-eficiencia-filtro-beta.html": {
+      "selectors": [
+            "#statusFinal",
+            "#status",
+            "#res_status",
+            "#r_status",
+            "#at_status",
+            "#ct_status",
+            "#resumo",
+            "#resultado",
+            "#fonteOut",
+            "#u_nota",
+            "#u_resultado",
+            "#nr12Summary",
+            "#progBar",
+            "#nota",
+            "#r_nota",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".result-main",
+            ".nr12-result",
+            ".loop-status",
+            ".calc-result",
+            ".result-box"
+      ],
+      "title": "Leitura técnica de qualidade/processo",
+      "messages": {
+            "initial": "Preencha os dados de processo, analítica ou qualidade para obter uma leitura preliminar.",
+            "ok": "O resultado parece coerente como triagem. Confirme calibração, amostragem, procedimento e limites internos antes de aplicar.",
+            "warn": "Há atenção em variabilidade, sensor, amostragem, eficiência, concentração ou limite. Revise dados e condição real do processo.",
+            "bad": "O resultado indica condição crítica ou fora de faixa. Não use para liberação de processo/produto sem validação adequada."
+      },
+      "next": [
+            "Conferir calibração, limpeza do sensor, padrões, temperatura e estabilidade da amostra.",
+            "Validar limites internos, procedimento de qualidade e representatividade dos dados.",
+            "Repetir medição ou acionar laboratório/manutenção quando houver condição crítica."
+      ]
+},
+    "calculadora-flanges-juntas-parafusos.html": {
+      "selectors": [
+            "#statusFinal",
+            "#status",
+            "#res_status",
+            "#r_status",
+            "#at_status",
+            "#ct_status",
+            "#resumo",
+            "#resultado",
+            "#fonteOut",
+            "#u_nota",
+            "#u_resultado",
+            "#nr12Summary",
+            "#progBar",
+            "#nota",
+            "#r_nota",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".result-main",
+            ".nr12-result",
+            ".loop-status",
+            ".calc-result",
+            ".result-box"
+      ],
+      "title": "Leitura técnica de apoio geral",
+      "messages": {
+            "initial": "Preencha os dados para obter uma leitura preliminar da conversão, seleção ou documento técnico.",
+            "ok": "O resultado parece coerente como apoio. Confirme unidade, padrão, catálogo e documento de referência antes de aplicar.",
+            "warn": "Há atenção em unidade, padrão, margem, classe, documentação ou condição de serviço. Revise antes de usar em projeto ou compra.",
+            "bad": "O resultado indica dado inválido, fora de faixa ou incompatível. Corrija a entrada e valide tecnicamente antes de aplicar."
+      },
+      "next": [
+            "Conferir unidade de origem/destino, padrão técnico e premissas do serviço.",
+            "Comparar com catálogo, folha de dados, memorial ou documento aprovado.",
+            "Registrar revisão técnica quando o resultado for usado para especificação, compra ou campo."
+      ]
+},
+    "calculadora-fonte-24vcc.html": {
+      "selectors": [
+            "#statusFinal",
+            "#status",
+            "#res_status",
+            "#r_status",
+            "#at_status",
+            "#ct_status",
+            "#resumo",
+            "#resultado",
+            "#fonteOut",
+            "#u_nota",
+            "#u_resultado",
+            "#nr12Summary",
+            "#progBar",
+            "#nota",
+            "#r_nota",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".result-main",
+            ".nr12-result",
+            ".loop-status",
+            ".calc-result",
+            ".result-box"
+      ],
+      "title": "Leitura técnica elétrica",
+      "messages": {
+            "initial": "Preencha os dados elétricos para obter uma leitura preliminar do circuito, carga ou acionamento.",
+            "ok": "O resultado parece favorável como triagem. Confirme proteção, instalação, temperatura, placa do equipamento e requisitos normativos antes de aplicar.",
+            "warn": "Há atenção em margem elétrica, queda, corrente, aquecimento, isolamento, burden ou regime de carga. Revise antes de aplicar em campo.",
+            "bad": "O resultado indica condição crítica, inválida ou fora de limite. Não aplique em instalação real sem revisão elétrica formal."
+      },
+      "next": [
+            "Confirmar dados de placa, catálogo, tensão real, método de instalação e temperatura ambiente.",
+            "Validar proteção, seletividade, capacidade térmica, aterramento e requisitos de segurança elétrica.",
+            "Registrar análise e revisão por profissional habilitado quando envolver painel, motor, barramento ou intervenção."
+      ]
+},
+    "calculadora-frequencia-defeitos-rolamento.html": {
+      "selectors": [
+            "#statusFinal",
+            "#status",
+            "#res_status",
+            "#r_status",
+            "#at_status",
+            "#ct_status",
+            "#resumo",
+            "#resultado",
+            "#fonteOut",
+            "#u_nota",
+            "#u_resultado",
+            "#nr12Summary",
+            "#progBar",
+            "#nota",
+            "#r_nota",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".result-main",
+            ".nr12-result",
+            ".loop-status",
+            ".calc-result",
+            ".result-box"
+      ],
+      "title": "Leitura técnica mecânica",
+      "messages": {
+            "initial": "Informe os dados mecânicos para obter uma leitura preliminar do cálculo ou conversão.",
+            "ok": "O resultado parece favorável como referência técnica. Confirme com catálogo, medição de campo e condição real da máquina.",
+            "warn": "Há atenção em margem, vibração, torque, rotação, massa ou ajuste. Revise dados e limites do fabricante antes de aplicar.",
+            "bad": "O resultado indica condição crítica, inválida ou fora de faixa. Não use para liberação de máquina sem inspeção e validação técnica."
+      },
+      "next": [
+            "Conferir unidade, instrumento de medição, condição operacional e repetibilidade dos dados.",
+            "Comparar com catálogo do fabricante, histórico da máquina e procedimento interno.",
+            "Registrar ação de manutenção quando o resultado indicar tendência anormal ou condição crítica."
+      ]
+},
+    "calculadora-furo-macho-rosca-interna.html": {
+      "selectors": [
+            "#statusFinal",
+            "#status",
+            "#res_status",
+            "#r_status",
+            "#at_status",
+            "#ct_status",
+            "#resumo",
+            "#resultado",
+            "#fonteOut",
+            "#u_nota",
+            "#u_resultado",
+            "#nr12Summary",
+            "#progBar",
+            "#nota",
+            "#r_nota",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".result-main",
+            ".nr12-result",
+            ".loop-status",
+            ".calc-result",
+            ".result-box"
+      ],
+      "title": "Leitura técnica mecânica",
+      "messages": {
+            "initial": "Informe os dados mecânicos para obter uma leitura preliminar do cálculo ou conversão.",
+            "ok": "O resultado parece favorável como referência técnica. Confirme com catálogo, medição de campo e condição real da máquina.",
+            "warn": "Há atenção em margem, vibração, torque, rotação, massa ou ajuste. Revise dados e limites do fabricante antes de aplicar.",
+            "bad": "O resultado indica condição crítica, inválida ou fora de faixa. Não use para liberação de máquina sem inspeção e validação técnica."
+      },
+      "next": [
+            "Conferir unidade, instrumento de medição, condição operacional e repetibilidade dos dados.",
+            "Comparar com catálogo do fabricante, histórico da máquina e procedimento interno.",
+            "Registrar ação de manutenção quando o resultado indicar tendência anormal ou condição crítica."
+      ]
+},
+    "calculadora-indice-polarizacao-dar.html": {
+      "selectors": [
+            "#statusFinal",
+            "#status",
+            "#res_status",
+            "#r_status",
+            "#at_status",
+            "#ct_status",
+            "#resumo",
+            "#resultado",
+            "#fonteOut",
+            "#u_nota",
+            "#u_resultado",
+            "#nr12Summary",
+            "#progBar",
+            "#nota",
+            "#r_nota",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".result-main",
+            ".nr12-result",
+            ".loop-status",
+            ".calc-result",
+            ".result-box"
+      ],
+      "title": "Leitura técnica elétrica",
+      "messages": {
+            "initial": "Preencha os dados elétricos para obter uma leitura preliminar do circuito, carga ou acionamento.",
+            "ok": "O resultado parece favorável como triagem. Confirme proteção, instalação, temperatura, placa do equipamento e requisitos normativos antes de aplicar.",
+            "warn": "Há atenção em margem elétrica, queda, corrente, aquecimento, isolamento, burden ou regime de carga. Revise antes de aplicar em campo.",
+            "bad": "O resultado indica condição crítica, inválida ou fora de limite. Não aplique em instalação real sem revisão elétrica formal."
+      },
+      "next": [
+            "Confirmar dados de placa, catálogo, tensão real, método de instalação e temperatura ambiente.",
+            "Validar proteção, seletividade, capacidade térmica, aterramento e requisitos de segurança elétrica.",
+            "Registrar análise e revisão por profissional habilitado quando envolver painel, motor, barramento ou intervenção."
+      ]
+},
+    "calculadora-inversor-frequencia.html": {
+      "selectors": [
+            "#statusFinal",
+            "#status",
+            "#res_status",
+            "#r_status",
+            "#at_status",
+            "#ct_status",
+            "#resumo",
+            "#resultado",
+            "#fonteOut",
+            "#u_nota",
+            "#u_resultado",
+            "#nr12Summary",
+            "#progBar",
+            "#nota",
+            "#r_nota",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".result-main",
+            ".nr12-result",
+            ".loop-status",
+            ".calc-result",
+            ".result-box"
+      ],
+      "title": "Leitura técnica elétrica",
+      "messages": {
+            "initial": "Preencha os dados elétricos para obter uma leitura preliminar do circuito, carga ou acionamento.",
+            "ok": "O resultado parece favorável como triagem. Confirme proteção, instalação, temperatura, placa do equipamento e requisitos normativos antes de aplicar.",
+            "warn": "Há atenção em margem elétrica, queda, corrente, aquecimento, isolamento, burden ou regime de carga. Revise antes de aplicar em campo.",
+            "bad": "O resultado indica condição crítica, inválida ou fora de limite. Não aplique em instalação real sem revisão elétrica formal."
+      },
+      "next": [
+            "Confirmar dados de placa, catálogo, tensão real, método de instalação e temperatura ambiente.",
+            "Validar proteção, seletividade, capacidade térmica, aterramento e requisitos de segurança elétrica.",
+            "Registrar análise e revisão por profissional habilitado quando envolver painel, motor, barramento ou intervenção."
+      ]
+},
+    "calculadora-mtbf-mttr-disponibilidade.html": {
+      "selectors": [
+            "#statusFinal",
+            "#status",
+            "#res_status",
+            "#r_status",
+            "#at_status",
+            "#ct_status",
+            "#resumo",
+            "#resultado",
+            "#fonteOut",
+            "#u_nota",
+            "#u_resultado",
+            "#nr12Summary",
+            "#progBar",
+            "#nota",
+            "#r_nota",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".result-main",
+            ".nr12-result",
+            ".loop-status",
+            ".calc-result",
+            ".result-box"
+      ],
+      "title": "Leitura técnica de manutenção e confiabilidade",
+      "messages": {
+            "initial": "Preencha os dados de manutenção, produção, falhas ou criticidade para obter uma leitura técnica preliminar.",
+            "ok": "O indicador parece favorável como triagem. Confirme histórico, período analisado, qualidade dos dados e impacto operacional antes de decidir.",
+            "warn": "Há ponto de atenção em criticidade, estoque, perda, backlog, disponibilidade ou priorização. Revise dados e impacto antes de transformar em plano de ação.",
+            "bad": "O resultado indica condição crítica ou dados incompatíveis. Não use isoladamente; acione análise de manutenção, operação, engenharia ou confiabilidade."
+      },
+      "next": [
+            "Conferir origem dos dados no CMMS/ERP, apontamento de produção ou histórico de manutenção.",
+            "Validar impacto de segurança, meio ambiente, qualidade e produção com as áreas responsáveis.",
+            "Transformar o resultado em ação rastreável: inspeção, RCA, sobressalente, plano preventivo ou melhoria."
+      ]
+},
+    "calculadora-oee.html": {
+      "selectors": [
+            "#statusFinal",
+            "#status",
+            "#res_status",
+            "#r_status",
+            "#at_status",
+            "#ct_status",
+            "#resumo",
+            "#resultado",
+            "#fonteOut",
+            "#u_nota",
+            "#u_resultado",
+            "#nr12Summary",
+            "#progBar",
+            "#nota",
+            "#r_nota",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".result-main",
+            ".nr12-result",
+            ".loop-status",
+            ".calc-result",
+            ".result-box"
+      ],
+      "title": "Leitura técnica de manutenção e confiabilidade",
+      "messages": {
+            "initial": "Preencha os dados de manutenção, produção, falhas ou criticidade para obter uma leitura técnica preliminar.",
+            "ok": "O indicador parece favorável como triagem. Confirme histórico, período analisado, qualidade dos dados e impacto operacional antes de decidir.",
+            "warn": "Há ponto de atenção em criticidade, estoque, perda, backlog, disponibilidade ou priorização. Revise dados e impacto antes de transformar em plano de ação.",
+            "bad": "O resultado indica condição crítica ou dados incompatíveis. Não use isoladamente; acione análise de manutenção, operação, engenharia ou confiabilidade."
+      },
+      "next": [
+            "Conferir origem dos dados no CMMS/ERP, apontamento de produção ou histórico de manutenção.",
+            "Validar impacto de segurança, meio ambiente, qualidade e produção com as áreas responsáveis.",
+            "Transformar o resultado em ação rastreável: inspeção, RCA, sobressalente, plano preventivo ou melhoria."
+      ]
+},
+    "calculadora-orp-mv-percentual.html": {
+      "selectors": [
+            "#statusFinal",
+            "#status",
+            "#res_status",
+            "#r_status",
+            "#at_status",
+            "#ct_status",
+            "#resumo",
+            "#resultado",
+            "#fonteOut",
+            "#u_nota",
+            "#u_resultado",
+            "#nr12Summary",
+            "#progBar",
+            "#nota",
+            "#r_nota",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".result-main",
+            ".nr12-result",
+            ".loop-status",
+            ".calc-result",
+            ".result-box"
+      ],
+      "title": "Leitura técnica de qualidade/processo",
+      "messages": {
+            "initial": "Preencha os dados de processo, analítica ou qualidade para obter uma leitura preliminar.",
+            "ok": "O resultado parece coerente como triagem. Confirme calibração, amostragem, procedimento e limites internos antes de aplicar.",
+            "warn": "Há atenção em variabilidade, sensor, amostragem, eficiência, concentração ou limite. Revise dados e condição real do processo.",
+            "bad": "O resultado indica condição crítica ou fora de faixa. Não use para liberação de processo/produto sem validação adequada."
+      },
+      "next": [
+            "Conferir calibração, limpeza do sensor, padrões, temperatura e estabilidade da amostra.",
+            "Validar limites internos, procedimento de qualidade e representatividade dos dados.",
+            "Repetir medição ou acionar laboratório/manutenção quando houver condição crítica."
+      ]
+},
+    "calculadora-pareto-falhas-manutencao.html": {
+      "selectors": [
+            "#statusFinal",
+            "#status",
+            "#res_status",
+            "#r_status",
+            "#at_status",
+            "#ct_status",
+            "#resumo",
+            "#resultado",
+            "#fonteOut",
+            "#u_nota",
+            "#u_resultado",
+            "#nr12Summary",
+            "#progBar",
+            "#nota",
+            "#r_nota",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".result-main",
+            ".nr12-result",
+            ".loop-status",
+            ".calc-result",
+            ".result-box"
+      ],
+      "title": "Leitura técnica de manutenção e confiabilidade",
+      "messages": {
+            "initial": "Preencha os dados de manutenção, produção, falhas ou criticidade para obter uma leitura técnica preliminar.",
+            "ok": "O indicador parece favorável como triagem. Confirme histórico, período analisado, qualidade dos dados e impacto operacional antes de decidir.",
+            "warn": "Há ponto de atenção em criticidade, estoque, perda, backlog, disponibilidade ou priorização. Revise dados e impacto antes de transformar em plano de ação.",
+            "bad": "O resultado indica condição crítica ou dados incompatíveis. Não use isoladamente; acione análise de manutenção, operação, engenharia ou confiabilidade."
+      },
+      "next": [
+            "Conferir origem dos dados no CMMS/ERP, apontamento de produção ou histórico de manutenção.",
+            "Validar impacto de segurança, meio ambiente, qualidade e produção com as áreas responsáveis.",
+            "Transformar o resultado em ação rastreável: inspeção, RCA, sobressalente, plano preventivo ou melhoria."
+      ]
+},
+    "calculadora-peso-tubos-chapas-barras.html": {
+      "selectors": [
+            "#statusFinal",
+            "#status",
+            "#res_status",
+            "#r_status",
+            "#at_status",
+            "#ct_status",
+            "#resumo",
+            "#resultado",
+            "#fonteOut",
+            "#u_nota",
+            "#u_resultado",
+            "#nr12Summary",
+            "#progBar",
+            "#nota",
+            "#r_nota",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".result-main",
+            ".nr12-result",
+            ".loop-status",
+            ".calc-result",
+            ".result-box"
+      ],
+      "title": "Leitura técnica mecânica",
+      "messages": {
+            "initial": "Informe os dados mecânicos para obter uma leitura preliminar do cálculo ou conversão.",
+            "ok": "O resultado parece favorável como referência técnica. Confirme com catálogo, medição de campo e condição real da máquina.",
+            "warn": "Há atenção em margem, vibração, torque, rotação, massa ou ajuste. Revise dados e limites do fabricante antes de aplicar.",
+            "bad": "O resultado indica condição crítica, inválida ou fora de faixa. Não use para liberação de máquina sem inspeção e validação técnica."
+      },
+      "next": [
+            "Conferir unidade, instrumento de medição, condição operacional e repetibilidade dos dados.",
+            "Comparar com catálogo do fabricante, histórico da máquina e procedimento interno.",
+            "Registrar ação de manutenção quando o resultado indicar tendência anormal ou condição crítica."
+      ]
+},
+    "calculadora-ponto-ressuprimento-sobressalentes.html": {
+      "selectors": [
+            "#statusFinal",
+            "#status",
+            "#res_status",
+            "#r_status",
+            "#at_status",
+            "#ct_status",
+            "#resumo",
+            "#resultado",
+            "#fonteOut",
+            "#u_nota",
+            "#u_resultado",
+            "#nr12Summary",
+            "#progBar",
+            "#nota",
+            "#r_nota",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".result-main",
+            ".nr12-result",
+            ".loop-status",
+            ".calc-result",
+            ".result-box"
+      ],
+      "title": "Leitura técnica de manutenção e confiabilidade",
+      "messages": {
+            "initial": "Preencha os dados de manutenção, produção, falhas ou criticidade para obter uma leitura técnica preliminar.",
+            "ok": "O indicador parece favorável como triagem. Confirme histórico, período analisado, qualidade dos dados e impacto operacional antes de decidir.",
+            "warn": "Há ponto de atenção em criticidade, estoque, perda, backlog, disponibilidade ou priorização. Revise dados e impacto antes de transformar em plano de ação.",
+            "bad": "O resultado indica condição crítica ou dados incompatíveis. Não use isoladamente; acione análise de manutenção, operação, engenharia ou confiabilidade."
+      },
+      "next": [
+            "Conferir origem dos dados no CMMS/ERP, apontamento de produção ou histórico de manutenção.",
+            "Validar impacto de segurança, meio ambiente, qualidade e produção com as áreas responsáveis.",
+            "Transformar o resultado em ação rastreável: inspeção, RCA, sobressalente, plano preventivo ou melhoria."
+      ]
+},
+    "calculadora-potencia-exaustor-ventilador.html": {
+      "selectors": [
+            "#statusFinal",
+            "#status",
+            "#res_status",
+            "#r_status",
+            "#at_status",
+            "#ct_status",
+            "#resumo",
+            "#resultado",
+            "#fonteOut",
+            "#u_nota",
+            "#u_resultado",
+            "#nr12Summary",
+            "#progBar",
+            "#nota",
+            "#r_nota",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".result-main",
+            ".nr12-result",
+            ".loop-status",
+            ".calc-result",
+            ".result-box"
+      ],
+      "title": "Leitura técnica de apoio geral",
+      "messages": {
+            "initial": "Preencha os dados para obter uma leitura preliminar da conversão, seleção ou documento técnico.",
+            "ok": "O resultado parece coerente como apoio. Confirme unidade, padrão, catálogo e documento de referência antes de aplicar.",
+            "warn": "Há atenção em unidade, padrão, margem, classe, documentação ou condição de serviço. Revise antes de usar em projeto ou compra.",
+            "bad": "O resultado indica dado inválido, fora de faixa ou incompatível. Corrija a entrada e valide tecnicamente antes de aplicar."
+      },
+      "next": [
+            "Conferir unidade de origem/destino, padrão técnico e premissas do serviço.",
+            "Comparar com catálogo, folha de dados, memorial ou documento aprovado.",
+            "Registrar revisão técnica quando o resultado for usado para especificação, compra ou campo."
+      ]
+},
+    "calculadora-queda-tensao-24vcc.html": {
+      "selectors": [
+            "#statusFinal",
+            "#status",
+            "#res_status",
+            "#r_status",
+            "#at_status",
+            "#ct_status",
+            "#resumo",
+            "#resultado",
+            "#fonteOut",
+            "#u_nota",
+            "#u_resultado",
+            "#nr12Summary",
+            "#progBar",
+            "#nota",
+            "#r_nota",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".result-main",
+            ".nr12-result",
+            ".loop-status",
+            ".calc-result",
+            ".result-box"
+      ],
+      "title": "Leitura técnica elétrica",
+      "messages": {
+            "initial": "Preencha os dados elétricos para obter uma leitura preliminar do circuito, carga ou acionamento.",
+            "ok": "O resultado parece favorável como triagem. Confirme proteção, instalação, temperatura, placa do equipamento e requisitos normativos antes de aplicar.",
+            "warn": "Há atenção em margem elétrica, queda, corrente, aquecimento, isolamento, burden ou regime de carga. Revise antes de aplicar em campo.",
+            "bad": "O resultado indica condição crítica, inválida ou fora de limite. Não aplique em instalação real sem revisão elétrica formal."
+      },
+      "next": [
+            "Confirmar dados de placa, catálogo, tensão real, método de instalação e temperatura ambiente.",
+            "Validar proteção, seletividade, capacidade térmica, aterramento e requisitos de segurança elétrica.",
+            "Registrar análise e revisão por profissional habilitado quando envolver painel, motor, barramento ou intervenção."
+      ]
+},
+    "calculadora-relubrificacao-rolamento.html": {
+      "selectors": [
+            "#statusFinal",
+            "#status",
+            "#res_status",
+            "#r_status",
+            "#at_status",
+            "#ct_status",
+            "#resumo",
+            "#resultado",
+            "#fonteOut",
+            "#u_nota",
+            "#u_resultado",
+            "#nr12Summary",
+            "#progBar",
+            "#nota",
+            "#r_nota",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".result-main",
+            ".nr12-result",
+            ".loop-status",
+            ".calc-result",
+            ".result-box"
+      ],
+      "title": "Leitura técnica de manutenção e confiabilidade",
+      "messages": {
+            "initial": "Preencha os dados de manutenção, produção, falhas ou criticidade para obter uma leitura técnica preliminar.",
+            "ok": "O indicador parece favorável como triagem. Confirme histórico, período analisado, qualidade dos dados e impacto operacional antes de decidir.",
+            "warn": "Há ponto de atenção em criticidade, estoque, perda, backlog, disponibilidade ou priorização. Revise dados e impacto antes de transformar em plano de ação.",
+            "bad": "O resultado indica condição crítica ou dados incompatíveis. Não use isoladamente; acione análise de manutenção, operação, engenharia ou confiabilidade."
+      },
+      "next": [
+            "Conferir origem dos dados no CMMS/ERP, apontamento de produção ou histórico de manutenção.",
+            "Validar impacto de segurança, meio ambiente, qualidade e produção com as áreas responsáveis.",
+            "Transformar o resultado em ação rastreável: inspeção, RCA, sobressalente, plano preventivo ou melhoria."
+      ]
+},
+    "calculadora-resistor-shunt-sinal-instrumentacao.html": {
+      "selectors": [
+            "#statusFinal",
+            "#status",
+            "#res_status",
+            "#r_status",
+            "#at_status",
+            "#ct_status",
+            "#resumo",
+            "#resultado",
+            "#fonteOut",
+            "#u_nota",
+            "#u_resultado",
+            "#nr12Summary",
+            "#progBar",
+            "#nota",
+            "#r_nota",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".result-main",
+            ".nr12-result",
+            ".loop-status",
+            ".calc-result",
+            ".result-box"
+      ],
+      "title": "Leitura técnica elétrica",
+      "messages": {
+            "initial": "Preencha os dados elétricos para obter uma leitura preliminar do circuito, carga ou acionamento.",
+            "ok": "O resultado parece favorável como triagem. Confirme proteção, instalação, temperatura, placa do equipamento e requisitos normativos antes de aplicar.",
+            "warn": "Há atenção em margem elétrica, queda, corrente, aquecimento, isolamento, burden ou regime de carga. Revise antes de aplicar em campo.",
+            "bad": "O resultado indica condição crítica, inválida ou fora de limite. Não aplique em instalação real sem revisão elétrica formal."
+      },
+      "next": [
+            "Confirmar dados de placa, catálogo, tensão real, método de instalação e temperatura ambiente.",
+            "Validar proteção, seletividade, capacidade térmica, aterramento e requisitos de segurança elétrica.",
+            "Registrar análise e revisão por profissional habilitado quando envolver painel, motor, barramento ou intervenção."
+      ]
+},
+    "calculadora-roscas-industriais-conexoes.html": {
+      "selectors": [
+            "#statusFinal",
+            "#status",
+            "#res_status",
+            "#r_status",
+            "#at_status",
+            "#ct_status",
+            "#resumo",
+            "#resultado",
+            "#fonteOut",
+            "#u_nota",
+            "#u_resultado",
+            "#nr12Summary",
+            "#progBar",
+            "#nota",
+            "#r_nota",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".result-main",
+            ".nr12-result",
+            ".loop-status",
+            ".calc-result",
+            ".result-box"
+      ],
+      "title": "Leitura técnica mecânica",
+      "messages": {
+            "initial": "Informe os dados mecânicos para obter uma leitura preliminar do cálculo ou conversão.",
+            "ok": "O resultado parece favorável como referência técnica. Confirme com catálogo, medição de campo e condição real da máquina.",
+            "warn": "Há atenção em margem, vibração, torque, rotação, massa ou ajuste. Revise dados e limites do fabricante antes de aplicar.",
+            "bad": "O resultado indica condição crítica, inválida ou fora de faixa. Não use para liberação de máquina sem inspeção e validação técnica."
+      },
+      "next": [
+            "Conferir unidade, instrumento de medição, condição operacional e repetibilidade dos dados.",
+            "Comparar com catálogo do fabricante, histórico da máquina e procedimento interno.",
+            "Registrar ação de manutenção quando o resultado indicar tendência anormal ou condição crítica."
+      ]
+},
+    "calculadora-rpm-polias-reducao.html": {
+      "selectors": [
+            "#statusFinal",
+            "#status",
+            "#res_status",
+            "#r_status",
+            "#at_status",
+            "#ct_status",
+            "#resumo",
+            "#resultado",
+            "#fonteOut",
+            "#u_nota",
+            "#u_resultado",
+            "#nr12Summary",
+            "#progBar",
+            "#nota",
+            "#r_nota",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".result-main",
+            ".nr12-result",
+            ".loop-status",
+            ".calc-result",
+            ".result-box"
+      ],
+      "title": "Leitura técnica mecânica",
+      "messages": {
+            "initial": "Informe os dados mecânicos para obter uma leitura preliminar do cálculo ou conversão.",
+            "ok": "O resultado parece favorável como referência técnica. Confirme com catálogo, medição de campo e condição real da máquina.",
+            "warn": "Há atenção em margem, vibração, torque, rotação, massa ou ajuste. Revise dados e limites do fabricante antes de aplicar.",
+            "bad": "O resultado indica condição crítica, inválida ou fora de faixa. Não use para liberação de máquina sem inspeção e validação técnica."
+      },
+      "next": [
+            "Conferir unidade, instrumento de medição, condição operacional e repetibilidade dos dados.",
+            "Comparar com catálogo do fabricante, histórico da máquina e procedimento interno.",
+            "Registrar ação de manutenção quando o resultado indicar tendência anormal ou condição crítica."
+      ]
+},
+    "calculadora-rpn-fmea-manutencao.html": {
+      "selectors": [
+            "#statusFinal",
+            "#status",
+            "#res_status",
+            "#r_status",
+            "#at_status",
+            "#ct_status",
+            "#resumo",
+            "#resultado",
+            "#fonteOut",
+            "#u_nota",
+            "#u_resultado",
+            "#nr12Summary",
+            "#progBar",
+            "#nota",
+            "#r_nota",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".result-main",
+            ".nr12-result",
+            ".loop-status",
+            ".calc-result",
+            ".result-box"
+      ],
+      "title": "Leitura técnica de manutenção e confiabilidade",
+      "messages": {
+            "initial": "Preencha os dados de manutenção, produção, falhas ou criticidade para obter uma leitura técnica preliminar.",
+            "ok": "O indicador parece favorável como triagem. Confirme histórico, período analisado, qualidade dos dados e impacto operacional antes de decidir.",
+            "warn": "Há ponto de atenção em criticidade, estoque, perda, backlog, disponibilidade ou priorização. Revise dados e impacto antes de transformar em plano de ação.",
+            "bad": "O resultado indica condição crítica ou dados incompatíveis. Não use isoladamente; acione análise de manutenção, operação, engenharia ou confiabilidade."
+      },
+      "next": [
+            "Conferir origem dos dados no CMMS/ERP, apontamento de produção ou histórico de manutenção.",
+            "Validar impacto de segurança, meio ambiente, qualidade e produção com as áreas responsáveis.",
+            "Transformar o resultado em ação rastreável: inspeção, RCA, sobressalente, plano preventivo ou melhoria."
+      ]
+},
+    "calculadora-secao-barramento-cobre.html": {
+      "selectors": [
+            "#statusFinal",
+            "#status",
+            "#res_status",
+            "#r_status",
+            "#at_status",
+            "#ct_status",
+            "#resumo",
+            "#resultado",
+            "#fonteOut",
+            "#u_nota",
+            "#u_resultado",
+            "#nr12Summary",
+            "#progBar",
+            "#nota",
+            "#r_nota",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".result-main",
+            ".nr12-result",
+            ".loop-status",
+            ".calc-result",
+            ".result-box"
+      ],
+      "title": "Leitura técnica elétrica",
+      "messages": {
+            "initial": "Preencha os dados elétricos para obter uma leitura preliminar do circuito, carga ou acionamento.",
+            "ok": "O resultado parece favorável como triagem. Confirme proteção, instalação, temperatura, placa do equipamento e requisitos normativos antes de aplicar.",
+            "warn": "Há atenção em margem elétrica, queda, corrente, aquecimento, isolamento, burden ou regime de carga. Revise antes de aplicar em campo.",
+            "bad": "O resultado indica condição crítica, inválida ou fora de limite. Não aplique em instalação real sem revisão elétrica formal."
+      },
+      "next": [
+            "Confirmar dados de placa, catálogo, tensão real, método de instalação e temperatura ambiente.",
+            "Validar proteção, seletividade, capacidade térmica, aterramento e requisitos de segurança elétrica.",
+            "Registrar análise e revisão por profissional habilitado quando envolver painel, motor, barramento ou intervenção."
+      ]
+},
+    "calculadora-sil-pfd-didatica.html": {
+      "selectors": [
+            "#statusFinal",
+            "#status",
+            "#res_status",
+            "#r_status",
+            "#at_status",
+            "#ct_status",
+            "#resumo",
+            "#resultado",
+            "#fonteOut",
+            "#u_nota",
+            "#u_resultado",
+            "#nr12Summary",
+            "#progBar",
+            "#nota",
+            "#r_nota",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".result-main",
+            ".nr12-result",
+            ".loop-status",
+            ".calc-result",
+            ".result-box"
+      ],
+      "title": "Leitura técnica de SIL/PFD didático",
+      "messages": {
+            "initial": "Preencha os dados da função para obter uma leitura didática de PFD/SIL.",
+            "ok": "O resultado parece favorável como exercício conceitual. Confirme SRS, LOPA, dados de confiabilidade e cálculo formal antes de qualquer aplicação real.",
+            "warn": "Há atenção no PFD, margem de SIL ou dados informados. Revise fonte dos dados, arquitetura e intervalo de teste antes de interpretar.",
+            "bad": "O resultado indica condição crítica ou incompatível. Não aplique em segurança funcional sem revisão formal e documentação aprovada."
+      },
+      "next": [
+            "Confirmar alvo de SIL/PFD em LOPA ou análise de risco aprovada.",
+            "Validar dados de confiabilidade, arquitetura, fator de causa comum e intervalo de teste.",
+            "Registrar decisão em SRS, cálculo formal, procedimento de teste e gestão de mudanças."
+      ]
+},
+    "calculadora-slip-motor-inducao.html": {
+      "selectors": [
+            "#statusFinal",
+            "#status",
+            "#res_status",
+            "#r_status",
+            "#at_status",
+            "#ct_status",
+            "#resumo",
+            "#resultado",
+            "#fonteOut",
+            "#u_nota",
+            "#u_resultado",
+            "#nr12Summary",
+            "#progBar",
+            "#nota",
+            "#r_nota",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".result-main",
+            ".nr12-result",
+            ".loop-status",
+            ".calc-result",
+            ".result-box"
+      ],
+      "title": "Leitura técnica elétrica",
+      "messages": {
+            "initial": "Preencha os dados elétricos para obter uma leitura preliminar do circuito, carga ou acionamento.",
+            "ok": "O resultado parece favorável como triagem. Confirme proteção, instalação, temperatura, placa do equipamento e requisitos normativos antes de aplicar.",
+            "warn": "Há atenção em margem elétrica, queda, corrente, aquecimento, isolamento, burden ou regime de carga. Revise antes de aplicar em campo.",
+            "bad": "O resultado indica condição crítica, inválida ou fora de limite. Não aplique em instalação real sem revisão elétrica formal."
+      },
+      "next": [
+            "Confirmar dados de placa, catálogo, tensão real, método de instalação e temperatura ambiente.",
+            "Validar proteção, seletividade, capacidade térmica, aterramento e requisitos de segurança elétrica.",
+            "Registrar análise e revisão por profissional habilitado quando envolver painel, motor, barramento ou intervenção."
+      ]
+},
+    "calculadora-slope-sonda-ph.html": {
+      "selectors": [
+            "#statusFinal",
+            "#status",
+            "#res_status",
+            "#r_status",
+            "#at_status",
+            "#ct_status",
+            "#resumo",
+            "#resultado",
+            "#fonteOut",
+            "#u_nota",
+            "#u_resultado",
+            "#nr12Summary",
+            "#progBar",
+            "#nota",
+            "#r_nota",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".result-main",
+            ".nr12-result",
+            ".loop-status",
+            ".calc-result",
+            ".result-box"
+      ],
+      "title": "Leitura técnica de qualidade/processo",
+      "messages": {
+            "initial": "Preencha os dados de processo, analítica ou qualidade para obter uma leitura preliminar.",
+            "ok": "O resultado parece coerente como triagem. Confirme calibração, amostragem, procedimento e limites internos antes de aplicar.",
+            "warn": "Há atenção em variabilidade, sensor, amostragem, eficiência, concentração ou limite. Revise dados e condição real do processo.",
+            "bad": "O resultado indica condição crítica ou fora de faixa. Não use para liberação de processo/produto sem validação adequada."
+      },
+      "next": [
+            "Conferir calibração, limpeza do sensor, padrões, temperatura e estabilidade da amostra.",
+            "Validar limites internos, procedimento de qualidade e representatividade dos dados.",
+            "Repetir medição ou acionar laboratório/manutenção quando houver condição crítica."
+      ]
+},
+    "calculadora-sobressalentes-criticidade.html": {
+      "selectors": [
+            "#statusFinal",
+            "#status",
+            "#res_status",
+            "#r_status",
+            "#at_status",
+            "#ct_status",
+            "#resumo",
+            "#resultado",
+            "#fonteOut",
+            "#u_nota",
+            "#u_resultado",
+            "#nr12Summary",
+            "#progBar",
+            "#nota",
+            "#r_nota",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".result-main",
+            ".nr12-result",
+            ".loop-status",
+            ".calc-result",
+            ".result-box"
+      ],
+      "title": "Leitura técnica de manutenção e confiabilidade",
+      "messages": {
+            "initial": "Preencha os dados de manutenção, produção, falhas ou criticidade para obter uma leitura técnica preliminar.",
+            "ok": "O indicador parece favorável como triagem. Confirme histórico, período analisado, qualidade dos dados e impacto operacional antes de decidir.",
+            "warn": "Há ponto de atenção em criticidade, estoque, perda, backlog, disponibilidade ou priorização. Revise dados e impacto antes de transformar em plano de ação.",
+            "bad": "O resultado indica condição crítica ou dados incompatíveis. Não use isoladamente; acione análise de manutenção, operação, engenharia ou confiabilidade."
+      },
+      "next": [
+            "Conferir origem dos dados no CMMS/ERP, apontamento de produção ou histórico de manutenção.",
+            "Validar impacto de segurança, meio ambiente, qualidade e produção com as áreas responsáveis.",
+            "Transformar o resultado em ação rastreável: inspeção, RCA, sobressalente, plano preventivo ou melhoria."
+      ]
+},
+    "calculadora-tempo-aceleracao-motor-inercia.html": {
+      "selectors": [
+            "#statusFinal",
+            "#status",
+            "#res_status",
+            "#r_status",
+            "#at_status",
+            "#ct_status",
+            "#resumo",
+            "#resultado",
+            "#fonteOut",
+            "#u_nota",
+            "#u_resultado",
+            "#nr12Summary",
+            "#progBar",
+            "#nota",
+            "#r_nota",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".result-main",
+            ".nr12-result",
+            ".loop-status",
+            ".calc-result",
+            ".result-box"
+      ],
+      "title": "Leitura técnica elétrica",
+      "messages": {
+            "initial": "Preencha os dados elétricos para obter uma leitura preliminar do circuito, carga ou acionamento.",
+            "ok": "O resultado parece favorável como triagem. Confirme proteção, instalação, temperatura, placa do equipamento e requisitos normativos antes de aplicar.",
+            "warn": "Há atenção em margem elétrica, queda, corrente, aquecimento, isolamento, burden ou regime de carga. Revise antes de aplicar em campo.",
+            "bad": "O resultado indica condição crítica, inválida ou fora de limite. Não aplique em instalação real sem revisão elétrica formal."
+      },
+      "next": [
+            "Confirmar dados de placa, catálogo, tensão real, método de instalação e temperatura ambiente.",
+            "Validar proteção, seletividade, capacidade térmica, aterramento e requisitos de segurança elétrica.",
+            "Registrar análise e revisão por profissional habilitado quando envolver painel, motor, barramento ou intervenção."
+      ]
+},
+    "calculadora-tempo-amostragem-analisador.html": {
+      "selectors": [
+            "#statusFinal",
+            "#status",
+            "#res_status",
+            "#r_status",
+            "#at_status",
+            "#ct_status",
+            "#resumo",
+            "#resultado",
+            "#fonteOut",
+            "#u_nota",
+            "#u_resultado",
+            "#nr12Summary",
+            "#progBar",
+            "#nota",
+            "#r_nota",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".result-main",
+            ".nr12-result",
+            ".loop-status",
+            ".calc-result",
+            ".result-box"
+      ],
+      "title": "Leitura técnica de qualidade/processo",
+      "messages": {
+            "initial": "Preencha os dados de processo, analítica ou qualidade para obter uma leitura preliminar.",
+            "ok": "O resultado parece coerente como triagem. Confirme calibração, amostragem, procedimento e limites internos antes de aplicar.",
+            "warn": "Há atenção em variabilidade, sensor, amostragem, eficiência, concentração ou limite. Revise dados e condição real do processo.",
+            "bad": "O resultado indica condição crítica ou fora de faixa. Não use para liberação de processo/produto sem validação adequada."
+      },
+      "next": [
+            "Conferir calibração, limpeza do sensor, padrões, temperatura e estabilidade da amostra.",
+            "Validar limites internos, procedimento de qualidade e representatividade dos dados.",
+            "Repetir medição ou acionar laboratório/manutenção quando houver condição crítica."
+      ]
+},
+    "calculadora-tempo-descarga-capacitor.html": {
+      "selectors": [
+            "#statusFinal",
+            "#status",
+            "#res_status",
+            "#r_status",
+            "#at_status",
+            "#ct_status",
+            "#resumo",
+            "#resultado",
+            "#fonteOut",
+            "#u_nota",
+            "#u_resultado",
+            "#nr12Summary",
+            "#progBar",
+            "#nota",
+            "#r_nota",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".result-main",
+            ".nr12-result",
+            ".loop-status",
+            ".calc-result",
+            ".result-box"
+      ],
+      "title": "Leitura técnica elétrica",
+      "messages": {
+            "initial": "Preencha os dados elétricos para obter uma leitura preliminar do circuito, carga ou acionamento.",
+            "ok": "O resultado parece favorável como triagem. Confirme proteção, instalação, temperatura, placa do equipamento e requisitos normativos antes de aplicar.",
+            "warn": "Há atenção em margem elétrica, queda, corrente, aquecimento, isolamento, burden ou regime de carga. Revise antes de aplicar em campo.",
+            "bad": "O resultado indica condição crítica, inválida ou fora de limite. Não aplique em instalação real sem revisão elétrica formal."
+      },
+      "next": [
+            "Confirmar dados de placa, catálogo, tensão real, método de instalação e temperatura ambiente.",
+            "Validar proteção, seletividade, capacidade térmica, aterramento e requisitos de segurança elétrica.",
+            "Registrar análise e revisão por profissional habilitado quando envolver painel, motor, barramento ou intervenção."
+      ]
+},
+    "calculadora-tensao-correia-transmissao.html": {
+      "selectors": [
+            "#statusFinal",
+            "#status",
+            "#res_status",
+            "#r_status",
+            "#at_status",
+            "#ct_status",
+            "#resumo",
+            "#resultado",
+            "#fonteOut",
+            "#u_nota",
+            "#u_resultado",
+            "#nr12Summary",
+            "#progBar",
+            "#nota",
+            "#r_nota",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".result-main",
+            ".nr12-result",
+            ".loop-status",
+            ".calc-result",
+            ".result-box"
+      ],
+      "title": "Leitura técnica mecânica",
+      "messages": {
+            "initial": "Informe os dados mecânicos para obter uma leitura preliminar do cálculo ou conversão.",
+            "ok": "O resultado parece favorável como referência técnica. Confirme com catálogo, medição de campo e condição real da máquina.",
+            "warn": "Há atenção em margem, vibração, torque, rotação, massa ou ajuste. Revise dados e limites do fabricante antes de aplicar.",
+            "bad": "O resultado indica condição crítica, inválida ou fora de faixa. Não use para liberação de máquina sem inspeção e validação técnica."
+      },
+      "next": [
+            "Conferir unidade, instrumento de medição, condição operacional e repetibilidade dos dados.",
+            "Comparar com catálogo do fabricante, histórico da máquina e procedimento interno.",
+            "Registrar ação de manutenção quando o resultado indicar tendência anormal ou condição crítica."
+      ]
+},
+    "calculadora-torque-aperto-parafusos.html": {
+      "selectors": [
+            "#statusFinal",
+            "#status",
+            "#res_status",
+            "#r_status",
+            "#at_status",
+            "#ct_status",
+            "#resumo",
+            "#resultado",
+            "#fonteOut",
+            "#u_nota",
+            "#u_resultado",
+            "#nr12Summary",
+            "#progBar",
+            "#nota",
+            "#r_nota",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".result-main",
+            ".nr12-result",
+            ".loop-status",
+            ".calc-result",
+            ".result-box"
+      ],
+      "title": "Leitura técnica mecânica",
+      "messages": {
+            "initial": "Informe os dados mecânicos para obter uma leitura preliminar do cálculo ou conversão.",
+            "ok": "O resultado parece favorável como referência técnica. Confirme com catálogo, medição de campo e condição real da máquina.",
+            "warn": "Há atenção em margem, vibração, torque, rotação, massa ou ajuste. Revise dados e limites do fabricante antes de aplicar.",
+            "bad": "O resultado indica condição crítica, inválida ou fora de faixa. Não use para liberação de máquina sem inspeção e validação técnica."
+      },
+      "next": [
+            "Conferir unidade, instrumento de medição, condição operacional e repetibilidade dos dados.",
+            "Comparar com catálogo do fabricante, histórico da máquina e procedimento interno.",
+            "Registrar ação de manutenção quando o resultado indicar tendência anormal ou condição crítica."
+      ]
+},
+    "calculadora-torque-potencia-eixo.html": {
+      "selectors": [
+            "#statusFinal",
+            "#status",
+            "#res_status",
+            "#r_status",
+            "#at_status",
+            "#ct_status",
+            "#resumo",
+            "#resultado",
+            "#fonteOut",
+            "#u_nota",
+            "#u_resultado",
+            "#nr12Summary",
+            "#progBar",
+            "#nota",
+            "#r_nota",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".result-main",
+            ".nr12-result",
+            ".loop-status",
+            ".calc-result",
+            ".result-box"
+      ],
+      "title": "Leitura técnica mecânica",
+      "messages": {
+            "initial": "Informe os dados mecânicos para obter uma leitura preliminar do cálculo ou conversão.",
+            "ok": "O resultado parece favorável como referência técnica. Confirme com catálogo, medição de campo e condição real da máquina.",
+            "warn": "Há atenção em margem, vibração, torque, rotação, massa ou ajuste. Revise dados e limites do fabricante antes de aplicar.",
+            "bad": "O resultado indica condição crítica, inválida ou fora de faixa. Não use para liberação de máquina sem inspeção e validação técnica."
+      },
+      "next": [
+            "Conferir unidade, instrumento de medição, condição operacional e repetibilidade dos dados.",
+            "Comparar com catálogo do fabricante, histórico da máquina e procedimento interno.",
+            "Registrar ação de manutenção quando o resultado indicar tendência anormal ou condição crítica."
+      ]
+},
+    "calculadora-velocidade-recomendada-tubulacao.html": {
+      "selectors": [
+            "#statusFinal",
+            "#status",
+            "#res_status",
+            "#r_status",
+            "#at_status",
+            "#ct_status",
+            "#resumo",
+            "#resultado",
+            "#fonteOut",
+            "#u_nota",
+            "#u_resultado",
+            "#nr12Summary",
+            "#progBar",
+            "#nota",
+            "#r_nota",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".result-main",
+            ".nr12-result",
+            ".loop-status",
+            ".calc-result",
+            ".result-box"
+      ],
+      "title": "Leitura técnica de apoio geral",
+      "messages": {
+            "initial": "Preencha os dados para obter uma leitura preliminar da conversão, seleção ou documento técnico.",
+            "ok": "O resultado parece coerente como apoio. Confirme unidade, padrão, catálogo e documento de referência antes de aplicar.",
+            "warn": "Há atenção em unidade, padrão, margem, classe, documentação ou condição de serviço. Revise antes de usar em projeto ou compra.",
+            "bad": "O resultado indica dado inválido, fora de faixa ou incompatível. Corrija a entrada e valide tecnicamente antes de aplicar."
+      },
+      "next": [
+            "Conferir unidade de origem/destino, padrão técnico e premissas do serviço.",
+            "Comparar com catálogo, folha de dados, memorial ou documento aprovado.",
+            "Registrar revisão técnica quando o resultado for usado para especificação, compra ou campo."
+      ]
+},
+    "calculadora-vibracao-rms-pico-pico-a-pico.html": {
+      "selectors": [
+            "#statusFinal",
+            "#status",
+            "#res_status",
+            "#r_status",
+            "#at_status",
+            "#ct_status",
+            "#resumo",
+            "#resultado",
+            "#fonteOut",
+            "#u_nota",
+            "#u_resultado",
+            "#nr12Summary",
+            "#progBar",
+            "#nota",
+            "#r_nota",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".result-main",
+            ".nr12-result",
+            ".loop-status",
+            ".calc-result",
+            ".result-box"
+      ],
+      "title": "Leitura técnica mecânica",
+      "messages": {
+            "initial": "Informe os dados mecânicos para obter uma leitura preliminar do cálculo ou conversão.",
+            "ok": "O resultado parece favorável como referência técnica. Confirme com catálogo, medição de campo e condição real da máquina.",
+            "warn": "Há atenção em margem, vibração, torque, rotação, massa ou ajuste. Revise dados e limites do fabricante antes de aplicar.",
+            "bad": "O resultado indica condição crítica, inválida ou fora de faixa. Não use para liberação de máquina sem inspeção e validação técnica."
+      },
+      "next": [
+            "Conferir unidade, instrumento de medição, condição operacional e repetibilidade dos dados.",
+            "Comparar com catálogo do fabricante, histórico da máquina e procedimento interno.",
+            "Registrar ação de manutenção quando o resultado indicar tendência anormal ou condição crítica."
+      ]
+},
+    "calculadora-vida-l10-rolamento.html": {
+      "selectors": [
+            "#statusFinal",
+            "#status",
+            "#res_status",
+            "#r_status",
+            "#at_status",
+            "#ct_status",
+            "#resumo",
+            "#resultado",
+            "#fonteOut",
+            "#u_nota",
+            "#u_resultado",
+            "#nr12Summary",
+            "#progBar",
+            "#nota",
+            "#r_nota",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".result-main",
+            ".nr12-result",
+            ".loop-status",
+            ".calc-result",
+            ".result-box"
+      ],
+      "title": "Leitura técnica de manutenção e confiabilidade",
+      "messages": {
+            "initial": "Preencha os dados de manutenção, produção, falhas ou criticidade para obter uma leitura técnica preliminar.",
+            "ok": "O indicador parece favorável como triagem. Confirme histórico, período analisado, qualidade dos dados e impacto operacional antes de decidir.",
+            "warn": "Há ponto de atenção em criticidade, estoque, perda, backlog, disponibilidade ou priorização. Revise dados e impacto antes de transformar em plano de ação.",
+            "bad": "O resultado indica condição crítica ou dados incompatíveis. Não use isoladamente; acione análise de manutenção, operação, engenharia ou confiabilidade."
+      },
+      "next": [
+            "Conferir origem dos dados no CMMS/ERP, apontamento de produção ou histórico de manutenção.",
+            "Validar impacto de segurança, meio ambiente, qualidade e produção com as áreas responsáveis.",
+            "Transformar o resultado em ação rastreável: inspeção, RCA, sobressalente, plano preventivo ou melhoria."
+      ]
+},
+    "checklist-calibracao-analisadores-processo.html": {
+      "selectors": [
+            "#statusFinal",
+            "#status",
+            "#res_status",
+            "#r_status",
+            "#at_status",
+            "#ct_status",
+            "#resumo",
+            "#resultado",
+            "#fonteOut",
+            "#u_nota",
+            "#u_resultado",
+            "#nr12Summary",
+            "#progBar",
+            "#nota",
+            "#r_nota",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".result-main",
+            ".nr12-result",
+            ".loop-status",
+            ".calc-result",
+            ".result-box"
+      ],
+      "title": "Leitura técnica do checklist",
+      "messages": {
+            "initial": "Marque os itens do checklist para obter uma leitura preliminar de conclusão e pendências.",
+            "ok": "O checklist parece favorável como controle preliminar. Confirme evidências, assinaturas, procedimento interno e aceite das áreas antes de liberar.",
+            "warn": "Há pendências ou pontos de atenção. Revise itens não concluídos, documentação e impacto operacional antes de encerrar.",
+            "bad": "Existem pendências críticas ou condição de bloqueio. Não libere partida, manutenção ou operação sem corrigir e registrar evidências."
+      },
+      "next": [
+            "Separar pendências críticas de pendências administrativas.",
+            "Registrar evidências, fotos, certificados, assinaturas e responsável pela liberação.",
+            "Aplicar procedimento interno, APR/PT, bloqueio e requisitos normativos quando aplicável."
+      ]
+},
+    "checklist-fat-sat-instrumentacao.html": {
+      "selectors": [
+            "#statusFinal",
+            "#status",
+            "#res_status",
+            "#r_status",
+            "#at_status",
+            "#ct_status",
+            "#resumo",
+            "#resultado",
+            "#fonteOut",
+            "#u_nota",
+            "#u_resultado",
+            "#nr12Summary",
+            "#progBar",
+            "#nota",
+            "#r_nota",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".result-main",
+            ".nr12-result",
+            ".loop-status",
+            ".calc-result",
+            ".result-box"
+      ],
+      "title": "Leitura técnica do checklist",
+      "messages": {
+            "initial": "Marque os itens do checklist para obter uma leitura preliminar de conclusão e pendências.",
+            "ok": "O checklist parece favorável como controle preliminar. Confirme evidências, assinaturas, procedimento interno e aceite das áreas antes de liberar.",
+            "warn": "Há pendências ou pontos de atenção. Revise itens não concluídos, documentação e impacto operacional antes de encerrar.",
+            "bad": "Existem pendências críticas ou condição de bloqueio. Não libere partida, manutenção ou operação sem corrigir e registrar evidências."
+      },
+      "next": [
+            "Separar pendências críticas de pendências administrativas.",
+            "Registrar evidências, fotos, certificados, assinaturas e responsável pela liberação.",
+            "Aplicar procedimento interno, APR/PT, bloqueio e requisitos normativos quando aplicável."
+      ]
+},
+    "checklist-inspecao-bomba-centrifuga.html": {
+      "selectors": [
+            "#statusFinal",
+            "#status",
+            "#res_status",
+            "#r_status",
+            "#at_status",
+            "#ct_status",
+            "#resumo",
+            "#resultado",
+            "#fonteOut",
+            "#u_nota",
+            "#u_resultado",
+            "#nr12Summary",
+            "#progBar",
+            "#nota",
+            "#r_nota",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".result-main",
+            ".nr12-result",
+            ".loop-status",
+            ".calc-result",
+            ".result-box"
+      ],
+      "title": "Leitura técnica do checklist",
+      "messages": {
+            "initial": "Marque os itens do checklist para obter uma leitura preliminar de conclusão e pendências.",
+            "ok": "O checklist parece favorável como controle preliminar. Confirme evidências, assinaturas, procedimento interno e aceite das áreas antes de liberar.",
+            "warn": "Há pendências ou pontos de atenção. Revise itens não concluídos, documentação e impacto operacional antes de encerrar.",
+            "bad": "Existem pendências críticas ou condição de bloqueio. Não libere partida, manutenção ou operação sem corrigir e registrar evidências."
+      },
+      "next": [
+            "Separar pendências críticas de pendências administrativas.",
+            "Registrar evidências, fotos, certificados, assinaturas e responsável pela liberação.",
+            "Aplicar procedimento interno, APR/PT, bloqueio e requisitos normativos quando aplicável."
+      ]
+},
+    "checklist-inspecao-instrumentos-area-classificada.html": {
+      "selectors": [
+            "#statusFinal",
+            "#status",
+            "#res_status",
+            "#r_status",
+            "#at_status",
+            "#ct_status",
+            "#resumo",
+            "#resultado",
+            "#fonteOut",
+            "#u_nota",
+            "#u_resultado",
+            "#nr12Summary",
+            "#progBar",
+            "#nota",
+            "#r_nota",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".result-main",
+            ".nr12-result",
+            ".loop-status",
+            ".calc-result",
+            ".result-box"
+      ],
+      "title": "Leitura técnica do checklist",
+      "messages": {
+            "initial": "Marque os itens do checklist para obter uma leitura preliminar de conclusão e pendências.",
+            "ok": "O checklist parece favorável como controle preliminar. Confirme evidências, assinaturas, procedimento interno e aceite das áreas antes de liberar.",
+            "warn": "Há pendências ou pontos de atenção. Revise itens não concluídos, documentação e impacto operacional antes de encerrar.",
+            "bad": "Existem pendências críticas ou condição de bloqueio. Não libere partida, manutenção ou operação sem corrigir e registrar evidências."
+      },
+      "next": [
+            "Separar pendências críticas de pendências administrativas.",
+            "Registrar evidências, fotos, certificados, assinaturas e responsável pela liberação.",
+            "Aplicar procedimento interno, APR/PT, bloqueio e requisitos normativos quando aplicável."
+      ]
+},
+    "checklist-manutencao-preventiva-instrumentos.html": {
+      "selectors": [
+            "#statusFinal",
+            "#status",
+            "#res_status",
+            "#r_status",
+            "#at_status",
+            "#ct_status",
+            "#resumo",
+            "#resultado",
+            "#fonteOut",
+            "#u_nota",
+            "#u_resultado",
+            "#nr12Summary",
+            "#progBar",
+            "#nota",
+            "#r_nota",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".result-main",
+            ".nr12-result",
+            ".loop-status",
+            ".calc-result",
+            ".result-box"
+      ],
+      "title": "Leitura técnica do checklist",
+      "messages": {
+            "initial": "Marque os itens do checklist para obter uma leitura preliminar de conclusão e pendências.",
+            "ok": "O checklist parece favorável como controle preliminar. Confirme evidências, assinaturas, procedimento interno e aceite das áreas antes de liberar.",
+            "warn": "Há pendências ou pontos de atenção. Revise itens não concluídos, documentação e impacto operacional antes de encerrar.",
+            "bad": "Existem pendências críticas ou condição de bloqueio. Não libere partida, manutenção ou operação sem corrigir e registrar evidências."
+      },
+      "next": [
+            "Separar pendências críticas de pendências administrativas.",
+            "Registrar evidências, fotos, certificados, assinaturas e responsável pela liberação.",
+            "Aplicar procedimento interno, APR/PT, bloqueio e requisitos normativos quando aplicável."
+      ]
+},
+    "checklist-montagem-instrumentos-campo.html": {
+      "selectors": [
+            "#statusFinal",
+            "#status",
+            "#res_status",
+            "#r_status",
+            "#at_status",
+            "#ct_status",
+            "#resumo",
+            "#resultado",
+            "#fonteOut",
+            "#u_nota",
+            "#u_resultado",
+            "#nr12Summary",
+            "#progBar",
+            "#nota",
+            "#r_nota",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".result-main",
+            ".nr12-result",
+            ".loop-status",
+            ".calc-result",
+            ".result-box"
+      ],
+      "title": "Leitura técnica do checklist",
+      "messages": {
+            "initial": "Marque os itens do checklist para obter uma leitura preliminar de conclusão e pendências.",
+            "ok": "O checklist parece favorável como controle preliminar. Confirme evidências, assinaturas, procedimento interno e aceite das áreas antes de liberar.",
+            "warn": "Há pendências ou pontos de atenção. Revise itens não concluídos, documentação e impacto operacional antes de encerrar.",
+            "bad": "Existem pendências críticas ou condição de bloqueio. Não libere partida, manutenção ou operação sem corrigir e registrar evidências."
+      },
+      "next": [
+            "Separar pendências críticas de pendências administrativas.",
+            "Registrar evidências, fotos, certificados, assinaturas e responsável pela liberação.",
+            "Aplicar procedimento interno, APR/PT, bloqueio e requisitos normativos quando aplicável."
+      ]
+},
+    "checklist-nr12.html": {
+      "selectors": [
+            "#statusFinal",
+            "#status",
+            "#res_status",
+            "#r_status",
+            "#at_status",
+            "#ct_status",
+            "#resumo",
+            "#resultado",
+            "#fonteOut",
+            "#u_nota",
+            "#u_resultado",
+            "#nr12Summary",
+            "#progBar",
+            "#nota",
+            "#r_nota",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".result-main",
+            ".nr12-result",
+            ".loop-status",
+            ".calc-result",
+            ".result-box"
+      ],
+      "title": "Leitura técnica do checklist",
+      "messages": {
+            "initial": "Marque os itens do checklist para obter uma leitura preliminar de conclusão e pendências.",
+            "ok": "O checklist parece favorável como controle preliminar. Confirme evidências, assinaturas, procedimento interno e aceite das áreas antes de liberar.",
+            "warn": "Há pendências ou pontos de atenção. Revise itens não concluídos, documentação e impacto operacional antes de encerrar.",
+            "bad": "Existem pendências críticas ou condição de bloqueio. Não libere partida, manutenção ou operação sem corrigir e registrar evidências."
+      },
+      "next": [
+            "Separar pendências críticas de pendências administrativas.",
+            "Registrar evidências, fotos, certificados, assinaturas e responsável pela liberação.",
+            "Aplicar procedimento interno, APR/PT, bloqueio e requisitos normativos quando aplicável."
+      ]
+},
+    "checklist-partida-motor-inversor.html": {
+      "selectors": [
+            "#statusFinal",
+            "#status",
+            "#res_status",
+            "#r_status",
+            "#at_status",
+            "#ct_status",
+            "#resumo",
+            "#resultado",
+            "#fonteOut",
+            "#u_nota",
+            "#u_resultado",
+            "#nr12Summary",
+            "#progBar",
+            "#nota",
+            "#r_nota",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".result-main",
+            ".nr12-result",
+            ".loop-status",
+            ".calc-result",
+            ".result-box"
+      ],
+      "title": "Leitura técnica do checklist",
+      "messages": {
+            "initial": "Marque os itens do checklist para obter uma leitura preliminar de conclusão e pendências.",
+            "ok": "O checklist parece favorável como controle preliminar. Confirme evidências, assinaturas, procedimento interno e aceite das áreas antes de liberar.",
+            "warn": "Há pendências ou pontos de atenção. Revise itens não concluídos, documentação e impacto operacional antes de encerrar.",
+            "bad": "Existem pendências críticas ou condição de bloqueio. Não libere partida, manutenção ou operação sem corrigir e registrar evidências."
+      },
+      "next": [
+            "Separar pendências críticas de pendências administrativas.",
+            "Registrar evidências, fotos, certificados, assinaturas e responsável pela liberação.",
+            "Aplicar procedimento interno, APR/PT, bloqueio e requisitos normativos quando aplicável."
+      ]
+},
+    "checklist-teste-de-loop.html": {
+      "selectors": [
+            "#statusFinal",
+            "#status",
+            "#res_status",
+            "#r_status",
+            "#at_status",
+            "#ct_status",
+            "#resumo",
+            "#resultado",
+            "#fonteOut",
+            "#u_nota",
+            "#u_resultado",
+            "#nr12Summary",
+            "#progBar",
+            "#nota",
+            "#r_nota",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".result-main",
+            ".nr12-result",
+            ".loop-status",
+            ".calc-result",
+            ".result-box"
+      ],
+      "title": "Leitura técnica do checklist",
+      "messages": {
+            "initial": "Marque os itens do checklist para obter uma leitura preliminar de conclusão e pendências.",
+            "ok": "O checklist parece favorável como controle preliminar. Confirme evidências, assinaturas, procedimento interno e aceite das áreas antes de liberar.",
+            "warn": "Há pendências ou pontos de atenção. Revise itens não concluídos, documentação e impacto operacional antes de encerrar.",
+            "bad": "Existem pendências críticas ou condição de bloqueio. Não libere partida, manutenção ou operação sem corrigir e registrar evidências."
+      },
+      "next": [
+            "Separar pendências críticas de pendências administrativas.",
+            "Registrar evidências, fotos, certificados, assinaturas e responsável pela liberação.",
+            "Aplicar procedimento interno, APR/PT, bloqueio e requisitos normativos quando aplicável."
+      ]
+},
+    "conversor-grau-protecao-ip-nema.html": {
+      "selectors": [
+            "#statusFinal",
+            "#status",
+            "#res_status",
+            "#r_status",
+            "#at_status",
+            "#ct_status",
+            "#resumo",
+            "#resultado",
+            "#fonteOut",
+            "#u_nota",
+            "#u_resultado",
+            "#nr12Summary",
+            "#progBar",
+            "#nota",
+            "#r_nota",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".result-main",
+            ".nr12-result",
+            ".loop-status",
+            ".calc-result",
+            ".result-box"
+      ],
+      "title": "Leitura técnica de apoio geral",
+      "messages": {
+            "initial": "Preencha os dados para obter uma leitura preliminar da conversão, seleção ou documento técnico.",
+            "ok": "O resultado parece coerente como apoio. Confirme unidade, padrão, catálogo e documento de referência antes de aplicar.",
+            "warn": "Há atenção em unidade, padrão, margem, classe, documentação ou condição de serviço. Revise antes de usar em projeto ou compra.",
+            "bad": "O resultado indica dado inválido, fora de faixa ou incompatível. Corrija a entrada e valide tecnicamente antes de aplicar."
+      },
+      "next": [
+            "Conferir unidade de origem/destino, padrão técnico e premissas do serviço.",
+            "Comparar com catálogo, folha de dados, memorial ou documento aprovado.",
+            "Registrar revisão técnica quando o resultado for usado para especificação, compra ou campo."
+      ]
+},
+    "conversor-unidades-industriais.html": {
+      "selectors": [
+            "#statusFinal",
+            "#status",
+            "#res_status",
+            "#r_status",
+            "#at_status",
+            "#ct_status",
+            "#resumo",
+            "#resultado",
+            "#fonteOut",
+            "#u_nota",
+            "#u_resultado",
+            "#nr12Summary",
+            "#progBar",
+            "#nota",
+            "#r_nota",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".result-main",
+            ".nr12-result",
+            ".loop-status",
+            ".calc-result",
+            ".result-box"
+      ],
+      "title": "Leitura técnica de apoio geral",
+      "messages": {
+            "initial": "Preencha os dados para obter uma leitura preliminar da conversão, seleção ou documento técnico.",
+            "ok": "O resultado parece coerente como apoio. Confirme unidade, padrão, catálogo e documento de referência antes de aplicar.",
+            "warn": "Há atenção em unidade, padrão, margem, classe, documentação ou condição de serviço. Revise antes de usar em projeto ou compra.",
+            "bad": "O resultado indica dado inválido, fora de faixa ou incompatível. Corrija a entrada e valide tecnicamente antes de aplicar."
+      },
+      "next": [
+            "Conferir unidade de origem/destino, padrão técnico e premissas do serviço.",
+            "Comparar com catálogo, folha de dados, memorial ou documento aprovado.",
+            "Registrar revisão técnica quando o resultado for usado para especificação, compra ou campo."
+      ]
+},
+    "gerador-folha-dados-instrumento.html": {
+      "selectors": [
+            "#statusFinal",
+            "#status",
+            "#res_status",
+            "#r_status",
+            "#at_status",
+            "#ct_status",
+            "#resumo",
+            "#resultado",
+            "#fonteOut",
+            "#u_nota",
+            "#u_resultado",
+            "#nr12Summary",
+            "#progBar",
+            "#nota",
+            "#r_nota",
+            "#r1",
+            "#r2",
+            "#r3",
+            "#r4",
+            ".result-main",
+            ".nr12-result",
+            ".loop-status",
+            ".calc-result",
+            ".result-box"
+      ],
+      "title": "Leitura técnica de apoio geral",
+      "messages": {
+            "initial": "Preencha os dados para obter uma leitura preliminar da conversão, seleção ou documento técnico.",
+            "ok": "O resultado parece coerente como apoio. Confirme unidade, padrão, catálogo e documento de referência antes de aplicar.",
+            "warn": "Há atenção em unidade, padrão, margem, classe, documentação ou condição de serviço. Revise antes de usar em projeto ou compra.",
+            "bad": "O resultado indica dado inválido, fora de faixa ou incompatível. Corrija a entrada e valide tecnicamente antes de aplicar."
+      },
+      "next": [
+            "Conferir unidade de origem/destino, padrão técnico e premissas do serviço.",
+            "Comparar com catálogo, folha de dados, memorial ou documento aprovado.",
+            "Registrar revisão técnica quando o resultado for usado para especificação, compra ou campo."
+      ]
+}
+
+
+  });
+
+  const severityText = Object.freeze({
+    initial: {label: 'Aguardando cálculo', icon: 'fa-circle-info'},
+    ok: {label: 'Condição preliminar favorável', icon: 'fa-circle-check'},
+    warn: {label: 'Atenção técnica', icon: 'fa-triangle-exclamation'},
+    bad: {label: 'Revisar antes de aplicar', icon: 'fa-circle-xmark'}
+  });
+
+  function fileName(){
+    return (window.location.pathname.split('/').pop() || '').toLowerCase();
+  }
+
+  function normalize(text){
+    return (text || '')
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g,'')
+      .replace(/\s+/g,' ')
+      .trim();
+  }
+
+  function hasAny(text, words){
+    return words.some((word) => text.includes(word));
+  }
+
+  function getObservedText(cfg){
+    return cfg.selectors
+      .map((selector) => document.querySelector(selector)?.textContent || '')
+      .join(' ');
+  }
+
+  function inferSeverity(rawText){
+    const text = normalize(rawText);
+    if(!text || /preencha|clique em calcular|aparecerao aqui|aguardando/.test(text)) return 'initial';
+
+    const explicitBadPhrases = [
+      'nao aprovado','não aprovado','nao conforme','não conforme','reprovado','reprovada',
+      'fora da tolerancia','fora da tolerância','fora do emp','acima do limite','acima do alvo',
+      'nao atende','não atende','nao liberar','não liberar','dados invalidos','dados inválidos',
+      'nao foi possivel','não foi possível'
+    ];
+    const explicitOkPhrases = [
+      'sem alertas criticos','sem alertas críticos','sem alertas','preliminarmente ok',
+      'dentro do alvo','dentro do limite','dentro da reserva','dentro da tolerancia',
+      'dentro da tolerância','sem pendencias','sem pendências','aprovado','aprovada',
+      'conforme','adequado','favoravel','favorável'
+    ];
+
+    if(hasAny(text, explicitBadPhrases)) return 'bad';
+    if(hasAny(text, explicitOkPhrases)) return 'ok';
+
+    const badWords = [
+      'corrija','corrigir','invalido','inválido','bloqueado','falhou','fora da faixa',
+      'critico','crítico','critica','crítica','revisar antes','revisar projeto',
+      'insuficiente','inadequad','pendencias criticas','pendências críticas'
+    ];
+    const warnWords = [
+      'atencao','alerta','warn','margem baixa','pouca margem','alta energia','revisar',
+      'verifique','validar','risco','cavitacao','flashing','velocidade alta','queda elevada',
+      'proximo do limite','estimativa','sem reserva','aumentar ventilacao','queda proxima','pendencias a tratar','pendências a tratar','proximo da tolerancia','próximo da tolerância','limite de tolerancia','limite de tolerância','zona de atencao','zona de atenção'
+    ];
+    const okWords = [
+      'ok','preliminarmente ok','dentro do alvo','sem alertas criticos','sem alertas',
+      'adequado','favoravel','atendem','atende','aceitavel','dentro do limite','dentro da reserva','sem pendencias','sem pendências marcadas','aprovado','aprovada','dentro da tolerancia','dentro da tolerância','conforme'
+    ];
+
+    if(hasAny(text, badWords)) return 'bad';
+    if(hasAny(text, warnWords)) return 'warn';
+    if(hasAny(text, okWords)) return 'ok';
+    return 'warn';
+  }
+
+  function findPrimaryTarget(cfg){
+    for(const selector of cfg.selectors){
+      const el = document.querySelector(selector);
+      if(el) return el;
+    }
+    return null;
+  }
+
+  function createOrGetReadout(file, target){
+    const id = `alogy-result-readout-${file.replace(/[^a-z0-9]+/g,'-')}`;
+    let box = document.getElementById(id);
+    if(box) return box;
+
+    box = document.createElement('aside');
+    box.id = id;
+    box.className = 'alogy-result-readout';
+    box.dataset.alogyResultReadout = file;
+    box.setAttribute('aria-live', 'polite');
+    box.setAttribute('aria-label', 'Leitura técnica dinâmica do resultado');
+
+    target.insertAdjacentElement('afterend', box);
+    return box;
+  }
+
+  function renderReadout(file, cfg){
+    const target = findPrimaryTarget(cfg);
+    if(!target) return;
+
+    const rawText = getObservedText(cfg);
+    const severity = inferSeverity(rawText);
+    const meta = severityText[severity] || severityText.warn;
+    const message = cfg.messages[severity] || cfg.messages.warn;
+    const nextList = cfg.next.map((item) => `<li>${item}</li>`).join('');
+    const box = createOrGetReadout(file, target);
+
+    box.className = `alogy-result-readout alogy-result-readout-${severity}`;
+    box.innerHTML = `
+      <div class="alogy-result-readout-head">
+        <span class="alogy-result-readout-icon" aria-hidden="true"><i class="fas ${meta.icon}"></i></span>
+        <div>
+          <h3>${cfg.title}</h3>
+          <p><strong>${meta.label}.</strong> ${message}</p>
+        </div>
+      </div>
+      <details class="alogy-result-readout-details">
+        <summary>Próximas conferências recomendadas</summary>
+        <ul>${nextList}</ul>
+      </details>
+    `;
+  }
+
+  function installDynamicReadout(){
+    const file = fileName();
+    const cfg = RESULT_INTERPRETATION_MAP[file];
+    if(!cfg) return;
+
+    const target = findPrimaryTarget(cfg);
+    if(!target) return;
+
+    let timer = null;
+    const update = () => {
+      clearTimeout(timer);
+      timer = setTimeout(() => renderReadout(file, cfg), 30);
+    };
+
+    renderReadout(file, cfg);
+
+    cfg.selectors.forEach((selector) => {
+      const el = document.querySelector(selector);
+      if(!el) return;
+      const observer = new MutationObserver(update);
+      observer.observe(el, {childList: true, subtree: true, characterData: true});
+    });
+
+    document.querySelectorAll('input, select, textarea').forEach((field) => {
+      field.addEventListener('input', update, {passive: true});
+      field.addEventListener('change', update, {passive: true});
+    });
+  }
+
+  window.ALOGY_RESULT_INTERPRETATION = {
+    map: RESULT_INTERPRETATION_MAP,
+    installDynamicReadout
+  };
+
+  document.addEventListener('DOMContentLoaded', installDynamicReadout);
+})();
