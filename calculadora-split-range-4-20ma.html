@@ -73,11 +73,11 @@
         <p>Informe o comando global da malha e a escala de engenharia. A faixa padrão 4-20 mA pode ser ajustada se necessário.</p>
         <div class="calc-grid">
           <div class="field"><label for="modo">Calcular a partir de</label><select id="modo"><option value="ma">Sinal global em mA</option><option value="pct">Percentual global</option><option value="eng">Valor de engenharia</option></select></div>
-          <div class="field"><label for="valor" id="valorLabel">Sinal global medido (mA)</label><input id="valor" type="number" step="any" value="12"></div>
-          <div class="field"><label for="sig0">Sinal em 0% (mA)</label><input id="sig0" type="number" step="any" value="4"></div>
-          <div class="field"><label for="sig100">Sinal em 100% (mA)</label><input id="sig100" type="number" step="any" value="20"></div>
-          <div class="field"><label for="lrv">LRV / valor em 0%</label><input id="lrv" type="number" step="any" value="0"></div>
-          <div class="field"><label for="urv">URV / valor em 100%</label><input id="urv" type="number" step="any" value="100"></div>
+          <div class="field"><label for="valor" id="valorLabel">Sinal global medido (mA)</label><input id="valor" type="text" inputmode="decimal" step="any" value="12"></div>
+          <div class="field"><label for="sig0">Sinal em 0% (mA)</label><input id="sig0" type="text" inputmode="decimal" step="any" value="4"></div>
+          <div class="field"><label for="sig100">Sinal em 100% (mA)</label><input id="sig100" type="text" inputmode="decimal" step="any" value="20"></div>
+          <div class="field"><label for="lrv">LRV / valor em 0%</label><input id="lrv" type="text" inputmode="decimal" step="any" value="0"></div>
+          <div class="field"><label for="urv">URV / valor em 100%</label><input id="urv" type="text" inputmode="decimal" step="any" value="100"></div>
           <div class="field"><label for="unid">Unidade de engenharia</label><input id="unid" type="text" value="% demanda"></div>
           <div class="field"><label for="casas">Casas decimais</label><select id="casas"><option value="1">1 casa</option><option value="2" selected>2 casas</option><option value="3">3 casas</option></select></div>
         </div>
@@ -90,12 +90,12 @@
         <div class="calc-grid">
           <div class="field"><label for="aNome">Nome válvula A</label><input id="aNome" type="text" value="Válvula A"></div>
           <div class="field"><label for="aDir">Ação da válvula A</label><select id="aDir"><option value="direta">Direta: abre ao subir</option><option value="reversa">Reversa: fecha ao subir</option></select></div>
-          <div class="field"><label for="aIni">A começa em (%)</label><input id="aIni" type="number" step="any" value="0"></div>
-          <div class="field"><label for="aFim">A termina em (%)</label><input id="aFim" type="number" step="any" value="50"></div>
+          <div class="field"><label for="aIni">A começa em (%)</label><input id="aIni" type="text" inputmode="decimal" step="any" value="0"></div>
+          <div class="field"><label for="aFim">A termina em (%)</label><input id="aFim" type="text" inputmode="decimal" step="any" value="50"></div>
           <div class="field"><label for="bNome">Nome válvula B</label><input id="bNome" type="text" value="Válvula B"></div>
           <div class="field"><label for="bDir">Ação da válvula B</label><select id="bDir"><option value="direta">Direta: abre ao subir</option><option value="reversa">Reversa: fecha ao subir</option></select></div>
-          <div class="field"><label for="bIni">B começa em (%)</label><input id="bIni" type="number" step="any" value="50"></div>
-          <div class="field"><label for="bFim">B termina em (%)</label><input id="bFim" type="number" step="any" value="100"></div>
+          <div class="field"><label for="bIni">B começa em (%)</label><input id="bIni" type="text" inputmode="decimal" step="any" value="50"></div>
+          <div class="field"><label for="bFim">B termina em (%)</label><input id="bFim" type="text" inputmode="decimal" step="any" value="100"></div>
         </div>
       </div>
     </section>
@@ -176,23 +176,39 @@
   <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
 <script>
 const $=id=>document.getElementById(id);
-function fmt(n,d=2){ if(!isFinite(n)) return '-'; return Number(n).toLocaleString('pt-BR',{minimumFractionDigits:d,maximumFractionDigits:d}); }
+function parseNum(v){
+  const raw=String(v??'').trim();
+  if(raw==='') return NaN;
+  const norm=raw.includes(',')?raw.replace(/\./g,'').replace(',','.') : raw;
+  const n=Number(norm);
+  return Number.isFinite(n)?n:NaN;
+}
+function val(id){return parseNum($(id).value)}
+function fmt(n,d=2){ if(!Number.isFinite(n)) return '-'; return Number(n).toLocaleString('pt-BR',{minimumFractionDigits:d,maximumFractionDigits:d}); }
 function clamp(n,min,max){ return Math.max(min,Math.min(max,n)); }
 function localPct(globalPct, ini, fim, dir){
   const span=fim-ini;
-  if(span===0) return NaN;
+  if(Math.abs(span)<1e-12) return NaN;
   let p=(globalPct-ini)/span*100;
   p=clamp(p,0,100);
   return dir==='reversa' ? 100-p : p;
 }
-function status(p){ if(!isFinite(p)) return 'Erro'; if(p<=0.01) return 'Fechada'; if(p>=99.99) return 'Aberta'; return 'Modulando'; }
+function status(p){ if(!Number.isFinite(p)) return 'Erro'; if(p<=0.01) return 'Fechada'; if(p>=99.99) return 'Aberta'; return 'Modulando'; }
 function pctToMa(p,s0,s100){return s0+(p/100)*(s100-s0);} 
 function calc(){
-  const modo=$('modo').value, valor=+$('valor').value, sig0=+$('sig0').value, sig100=+$('sig100').value, lrv=+$('lrv').value, urv=+$('urv').value, unid=$('unid').value||'', d=+$('casas').value;
+  const modo=$('modo').value, valor=val('valor'), sig0=val('sig0'), sig100=val('sig100'), lrv=val('lrv'), urv=val('urv'), unid=$('unid').value||'', d=Number($('casas').value);
   const aNome=$('aNome').value||'Válvula A', bNome=$('bNome').value||'Válvula B';
-  const aIni=+$('aIni').value, aFim=+$('aFim').value, bIni=+$('bIni').value, bFim=+$('bFim').value, aDir=$('aDir').value, bDir=$('bDir').value;
+  const aIni=val('aIni'), aFim=val('aFim'), bIni=val('bIni'), bFim=val('bFim'), aDir=$('aDir').value, bDir=$('bDir').value;
   $('valorLabel').textContent = modo==='ma'?'Sinal global medido (mA)':modo==='pct'?'Comando global (%)':'Valor de engenharia';
   const spanSig=sig100-sig0, spanEng=urv-lrv;
+  const invalid=[valor,sig0,sig100,lrv,urv,aIni,aFim,bIni,bFim].some(v=>!Number.isFinite(v)) || Math.abs(spanSig)<1e-12 || Math.abs(spanEng)<1e-12 || Math.abs(aFim-aIni)<1e-12 || Math.abs(bFim-bIni)<1e-12;
+  if(invalid){
+    $('outPct').textContent='-';$('outMa').textContent='-';$('outEng').textContent='-';$('outCond').textContent='Verifique spans e dados';
+    $('aLabel').textContent=aNome;$('bLabel').textContent=bNome;$('aTitulo').textContent=aNome;$('bTitulo').textContent=bNome;
+    $('outA').textContent='-';$('outB').textContent='-';$('outAMa').textContent='-';$('outBMa').textContent='-';$('aFill').style.width='0%';$('bFill').style.width='0%';
+    $('aInfo').textContent='Revise início e fim de atuação.';$('bInfo').textContent='Revise início e fim de atuação.';$('nota').textContent='Há dados inválidos ou spans iguais a zero. Corrija antes de usar o resultado.';$('tbl').innerHTML='';
+    return;
+  }
   let pct;
   if(modo==='ma') pct=(valor-sig0)/spanSig*100;
   else if(modo==='pct') pct=valor;
@@ -202,7 +218,6 @@ function calc(){
   const ama=4+(ap/100)*16, bma=4+(bp/100)*16;
   $('outPct').textContent=fmt(pct,d)+' %'; $('outMa').textContent=fmt(ma,d)+' mA'; $('outEng').textContent=fmt(eng,d)+' '+unid;
   let cond='Dentro da faixa'; if(pct<0||pct>100) cond='Fora de 0-100%';
-  if(aFim===aIni||bFim===bIni||spanSig===0||spanEng===0) cond='Verifique spans';
   $('outCond').textContent=cond;
   $('aLabel').textContent=aNome; $('bLabel').textContent=bNome; $('aTitulo').textContent=aNome; $('bTitulo').textContent=bNome;
   $('outA').textContent=fmt(ap,d)+' %'; $('outB').textContent=fmt(bp,d)+' %'; $('outAMa').textContent=fmt(ama,d)+' mA'; $('outBMa').textContent=fmt(bma,d)+' mA';
@@ -215,14 +230,20 @@ function calc(){
   if(overlap>0) msg=`Existe sobreposição de ${fmt(overlap,1)}% entre as faixas. As duas válvulas podem modular juntas nessa região.`;
   if(aFim < bIni || bFim < aIni){ const gap=Math.max(aIni,bIni)-Math.min(aFim,bFim); if(gap>0) msg=`Existe zona morta de ${fmt(gap,1)}% entre as faixas. Confira se isso é intencional.`; }
   $('nota').textContent=msg;
-  const pts=[0,25,50,75,100,aIni,aFim,bIni,bFim,pct].filter(x=>isFinite(x));
+  const pts=[0,25,50,75,100,aIni,aFim,bIni,bFim,pct].filter(x=>Number.isFinite(x));
   const uniq=[...new Set(pts.map(x=>Math.round(x*100)/100))].sort((x,y)=>x-y);
   $('tbl').innerHTML=uniq.map(p=>{const _ma=pctToMa(p,sig0,sig100), _eng=lrv+(p/100)*spanEng, _ap=localPct(p,aIni,aFim,aDir), _bp=localPct(p,bIni,bFim,bDir);return `<tr><td>${fmt(p,1)}%</td><td>${fmt(_ma,d)} mA</td><td>${fmt(_eng,d)} ${unid}</td><td>${fmt(_ap,d)}%</td><td>${fmt(_bp,d)}%</td></tr>`;}).join('');
 }
 function exemploPadrao(){ $('modo').value='ma'; $('valor').value=12; $('sig0').value=4; $('sig100').value=20; $('lrv').value=0; $('urv').value=100; $('unid').value='% demanda'; $('aIni').value=0; $('aFim').value=50; $('bIni').value=50; $('bFim').value=100; $('aDir').value='direta'; $('bDir').value='direta'; calc(); }
 function exemploSobreposicao(){ exemploPadrao(); $('valor').value=12; $('aFim').value=55; $('bIni').value=45; calc(); }
 function exemploZonaMorta(){ exemploPadrao(); $('valor').value=12; $('aFim').value=48; $('bIni').value=52; calc(); }
-function copiarResultado(){ const texto=`Calculadora Split Range 4-20 mA - ALOGY\nComando: ${$('outPct').textContent}\nSinal global: ${$('outMa').textContent}\nValor: ${$('outEng').textContent}\n${$('aLabel').textContent}: ${$('outA').textContent}\n${$('bLabel').textContent}: ${$('outB').textContent}\nObservação: ${$('nota').textContent}`; navigator.clipboard?.writeText(texto).then(()=>alert('Resultado copiado.')); }
+function copiarResultado(){ const texto=`Calculadora Split Range 4-20 mA - ALOGY
+Comando: ${$('outPct').textContent}
+Sinal global: ${$('outMa').textContent}
+Valor: ${$('outEng').textContent}
+${$('aLabel').textContent}: ${$('outA').textContent}
+${$('bLabel').textContent}: ${$('outB').textContent}
+Observação: ${$('nota').textContent}`; navigator.clipboard?.writeText(texto).then(()=>alert('Resultado copiado.')); }
 document.querySelectorAll('input,select').forEach(el=>el.addEventListener('input',calc));
 calc();
 </script>

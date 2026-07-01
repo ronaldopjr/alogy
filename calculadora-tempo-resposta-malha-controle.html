@@ -53,7 +53,23 @@
     <section class="tools-hero"><h1>Calculadora de Tempo de Resposta de Malha de Controle</h1><p>Estime tempo de acomodação, atraso total e frequência de corte aproximada da malha por constantes de tempo e tempo morto.</p></section>
     <section class="calc-card" aria-label="Aviso de uso"><h2><i class="fas fa-triangle-exclamation"></i> Ferramenta orientativa</h2><p>Use como apoio técnico para manutenção, engenharia e conferência preliminar. Confirme sempre com normas aplicáveis, catálogos de fabricantes, procedimentos internos, medições reais e responsável técnico habilitado.</p></section>
     <section class="calc-layout"><div class="calc-card"><h2><i class="fas fa-pen-to-square"></i> Dados de entrada</h2><div class="calc-grid"><label>Constante de tempo do processo τp (s)<input id="taup" type="number" step="any" value="60"></label><label>Sensor/transmissor τs (s)<input id="taus" type="number" step="any" value="5"></label><label>Válvula/atuador τv (s)<input id="tauv" type="number" step="any" value="8"></label><label>Tempo morto total θ (s)<input id="dead" type="number" step="any" value="10"></label><label>Variação de setpoint ou distúrbio (%)<input id="sp" type="number" step="any" value="10"></label></div></div><div class="calc-card"><h2><i class="fas fa-chart-line"></i> Resultado</h2><div class="calc-result four"><div class="result-box"><span>τ equivalente</span><strong id="r1">-</strong></div><div class="result-box"><span>Tempo 95%</span><strong id="r2">-</strong></div><div class="result-box"><span>Tempo 99%</span><strong id="r3">-</strong></div><div class="result-box"><span>Frequência aprox.</span><strong id="r4">-</strong></div></div><p id="nota" class="mini-help"></p><div class="calc-actions no-print"><button class="mini-btn" onclick="window.print()"><i class="fas fa-print"></i> Imprimir</button></div></div></section>
-    <script>function n(id){return parseFloat(document.getElementById(id).value)||0}function calc(){let tp=n('taup'),ts=n('taus'),tv=n('tauv'),th=n('dead');let tau=tp+ts+tv,t95=th+3*tau,t99=th+5*tau,fc=1/(2*Math.PI*Math.max(tau,.001));document.getElementById('r1').textContent=tau.toFixed(1)+' s';document.getElementById('r2').textContent=t95.toFixed(1)+' s';document.getElementById('r3').textContent=t99.toFixed(1)+' s';document.getElementById('r4').textContent=fc.toFixed(4)+' Hz';document.getElementById('nota').innerHTML='Aproximação para primeira ordem em série. Serve para comparar lentidão de sensor, válvula, processo e atraso antes de ajustar PID.'}document.querySelectorAll('input').forEach(e=>e.addEventListener('input',calc));calc();</script>
+    <script>
+function parsePtNumber(value){const s=String(value ?? '').trim().replace(/\s/g,'');if(!s)return NaN;const normalized=s.includes(',')?s.replace(/\./g,'').replace(',','.'):s;const v=Number(normalized);return Number.isFinite(v)?v:NaN;}
+function n(id){const v=parsePtNumber(document.getElementById(id).value);return Number.isFinite(v)?v:0}
+function fmt(v,d){return Number.isFinite(v)?v.toLocaleString('pt-BR',{minimumFractionDigits:d,maximumFractionDigits:d}):'-'}
+function calc(){
+  let tp=n('taup'),ts=n('taus'),tv=n('tauv'),th=n('dead');
+  if(tp<0||ts<0||tv<0||th<0||(tp+ts+tv)<=0){
+    document.getElementById('r1').textContent='Verificar';document.getElementById('r2').textContent='Verificar';document.getElementById('r3').textContent='Verificar';document.getElementById('r4').textContent='Verificar';
+    document.getElementById('nota').innerHTML='Revise constantes de tempo e tempo morto. Não use valores negativos e informe pelo menos uma constante de tempo maior que zero.';
+    return;
+  }
+  let tau=tp+ts+tv,t95=th+3*tau,t99=th+5*tau,fc=1/(2*Math.PI*tau);
+  document.getElementById('r1').textContent=fmt(tau,1)+' s';document.getElementById('r2').textContent=fmt(t95,1)+' s';document.getElementById('r3').textContent=fmt(t99,1)+' s';document.getElementById('r4').textContent=fmt(fc,4)+' Hz';
+  document.getElementById('nota').innerHTML='Aproximação para primeira ordem em série. Serve para comparar lentidão de sensor, válvula, processo e atraso antes de ajustar PID.'
+}
+document.querySelectorAll('input').forEach(e=>e.addEventListener('input',calc));calc();
+</script>
     <section class="cta-bar" aria-label="Chamada para contato"><div><strong>Precisa validar esse cálculo em campo?</strong><br><span class="muted">A ALOGY apoia engenharia, manutenção, instrumentação, automação e utilidades industriais.</span></div><div class="cta-actions"><a class="btn" href="index.html#contato"><i class="fas fa-paper-plane"></i> Solicitar contato</a></div></section>
   
     <!-- ALOGY_REVISAO_TECNICA_FERRAMENTA -->

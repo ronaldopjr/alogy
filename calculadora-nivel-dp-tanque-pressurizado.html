@@ -193,7 +193,14 @@
   const mbarToKpa = mbar => mbar * 0.1;
   const mbarToMmH2O = mbar => mbar * 10.197162;
   const fmt = (v,d=2) => Number.isFinite(v) ? v.toLocaleString('pt-BR',{minimumFractionDigits:d, maximumFractionDigits:d}) : '-';
-  const val = id => parseFloat($(id).value.replace(',','.'));
+  function parseBR(value){
+    const raw = String(value ?? '').trim();
+    if(!raw) return NaN;
+    const norm = raw.includes(',') ? raw.replace(/\./g,'').replace(',','.') : raw;
+    const v = Number(norm);
+    return Number.isFinite(v) ? v : NaN;
+  }
+  const val = id => parseBR($(id).value);
   const commercialCapsules = [10,16,25,40,60,100,160,250,400,600,1000,1600,2500,4000,6000];
 
   function rhoLP(mount, rhoGas, rhoWet) {
@@ -225,12 +232,16 @@
       lll: val('lll'), ll: val('ll'), hh: val('hh'), hhh: val('hhh')
     };
     const errors=[]; const warnings=[];
+    if (![data.lowerElev,data.upperElev,data.level0,data.level100,data.rhoLiq,data.rawMin,data.rawMax,data.normalPct,data.selectedCapsule,data.lll,data.ll,data.hh,data.hhh].every(Number.isFinite)) errors.push('Confira se todos os campos numéricos principais foram preenchidos com valores válidos.');
     if (!(data.upperElev > data.lowerElev)) errors.push('A tomada superior deve estar acima da tomada inferior.');
     if (!(data.level100 > data.level0)) errors.push('O nível de 100% deve ser maior que o nível de 0%.');
     if (!(data.rhoLiq > 0)) errors.push('Informe densidade positiva para o líquido de processo.');
     if (data.mount === 'dry' && !(data.rhoGas >= 0)) errors.push('Informe densidade válida para gás/vapor na perna seca.');
     if (data.mount !== 'dry' && !(data.rhoWet > 0)) errors.push('Informe densidade positiva para a perna úmida ou fluido de enchimento.');
+    if (!(data.selectedCapsule > 0)) errors.push('Informe uma cápsula DP selecionada maior que zero.');
     if (!(data.rawMax > data.rawMin)) errors.push('Raw máximo deve ser maior que raw mínimo.');
+    if (data.normalPct < 0 || data.normalPct > 100) warnings.push('Nível normal fora de 0 a 100%. Revise se isso é intencional.');
+    if ([data.lll,data.ll,data.hh,data.hhh].some(p => p < 0 || p > 100)) warnings.push('Há alarme fora de 0 a 100%. Revise a configuração de alarmes.');
     if (!(data.lll < data.ll && data.ll < data.hh && data.hh < data.hhh)) warnings.push('A sequência LLL < LL < HH < HHH parece inconsistente. Revise os alarmes.');
     if (data.mount === 'dry') warnings.push('Perna seca só deve ser usada quando a linha superior permanecer realmente seca e sem condensação.');
     if (data.mount === 'seal') warnings.push('Selos remotos exigem validação do fabricante para fluido de enchimento, temperatura, capilar e pressão estática.');

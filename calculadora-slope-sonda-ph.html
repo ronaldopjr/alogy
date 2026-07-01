@@ -88,6 +88,47 @@
 
   </main>
   <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
-<script>function n(v,d=2){return Number.isFinite(v)?v.toLocaleString('pt-BR',{maximumFractionDigits:d}):'-'}function g(id){return parseFloat(document.getElementById(id).value)||0}function calc(){let T=g('temp')+273.15,zero=g('zero'),eff=g('slope')/100,ph=g('ph'),mv=g('mv');let s=59.16*T/298.15*eff;let res;if(modo.value==='ph2mv'){res=zero+(7-ph)*s;r2.textContent=n(res,2)+' mV esperado'}else{res=7-(mv-zero)/s;r2.textContent='pH '+n(res,3)}r1.textContent=n(s,2)+' mV/pH';let st=(eff>=0.95&&eff<=1.05)?'Normal':(eff>=0.90&&eff<=1.10?'Atenção':'Verificar sonda');r3.textContent=st;r3.className='small '+(st==='Normal'?'pill-ok':st==='Atenção'?'pill-warn':'pill-bad');nota.textContent='Slope teórico a '+n(T-273.15,1)+' °C com 100%: '+n(59.16*T/298.15,2)+' mV/pH.'}function copiar(){navigator.clipboard&&navigator.clipboard.writeText('Sonda pH: '+r1.textContent+', '+r2.textContent+', status '+r3.textContent)}document.querySelectorAll('input,select').forEach(e=>e.addEventListener('input',calc));calc();</script>
+<script>
+function parseBR(v){
+  const s=String(v ?? '').trim().replace(/\s/g,'');
+  if(!s) return NaN;
+  const norm=s.includes(',') ? s.replace(/\./g,'').replace(',','.') : s;
+  const num=Number(norm);
+  return Number.isFinite(num) ? num : NaN;
+}
+function val(id){return parseBR(document.getElementById(id).value)}
+function n(v,d=2){return Number.isFinite(v)?v.toLocaleString('pt-BR',{minimumFractionDigits:d,maximumFractionDigits:d}):'-'}
+function n0(v,d=2){return Number.isFinite(v)?v.toLocaleString('pt-BR',{maximumFractionDigits:d}):'-'}
+function setStatus(id,txt,cls){const el=document.getElementById(id); el.textContent=txt; el.className='small '+cls;}
+function warnStatus(msg){return '<span class="pill-warn">'+msg+'</span>'}
+function okWarn(absErr,tol){if(!Number.isFinite(absErr)||!Number.isFinite(tol)||tol<=0)return warnStatus('Verificar'); if(absErr<=tol)return '<span class="pill-ok">Aprovado</span>'; if(absErr<=tol*1.25)return '<span class="pill-warn">Próximo do limite</span>'; return '<span class="pill-bad">Reprovado</span>'}
+function copiar(){const r=document.querySelector('.calc-layout')||document.querySelector('.calc-card:nth-of-type(2)'); const t=r?r.innerText:document.body.innerText; navigator.clipboard&&navigator.clipboard.writeText(t).then(()=>alert('Resultado copiado.'))}
+
+function limpar(){r1.textContent='-';r2.textContent='-';setStatus('r3','Verificar dados','pill-warn')}
+function calc(){
+  const temp=val('temp'), zero=val('zero'), effPct=val('slope'), ph=val('ph'), mv=val('mv');
+  if(![temp,zero,effPct,ph,mv].every(Number.isFinite) || temp<=-273.15 || effPct<=0){
+    limpar(); nota.textContent='Verifique temperatura, zero/offset, slope e valores de pH/mV. O slope deve ser maior que zero.'; return;
+  }
+  const T=temp+273.15;
+  const eff=effPct/100;
+  const slopeMv=59.16*T/298.15*eff;
+  let res;
+  if(modo.value==='ph2mv'){
+    res=zero+(7-ph)*slopeMv;
+    r2.textContent=n0(res,2)+' mV esperado';
+  }else{
+    if(Math.abs(slopeMv)<1e-12){limpar(); nota.textContent='Slope calculado igual a zero. Revise o percentual informado.'; return;}
+    res=7-(mv-zero)/slopeMv;
+    r2.textContent='pH '+n0(res,3);
+  }
+  r1.textContent=n0(slopeMv,2)+' mV/pH';
+  const status=(eff>=0.95&&eff<=1.05)?'Normal':(eff>=0.90&&eff<=1.10?'Atenção':'Verificar sonda');
+  setStatus('r3',status,status==='Normal'?'pill-ok':status==='Atenção'?'pill-warn':'pill-bad');
+  nota.textContent='Slope teórico a '+n0(temp,1)+' °C com 100%: '+n0(59.16*T/298.15,2)+' mV/pH.';
+}
+function copiar(){navigator.clipboard&&navigator.clipboard.writeText('Sonda pH: '+r1.textContent+', '+r2.textContent+', status '+r3.textContent)}
+document.querySelectorAll('input,select').forEach(e=>e.addEventListener('input',calc));calc();
+</script>
 </body>
 </html>

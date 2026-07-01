@@ -305,9 +305,16 @@
 <p>© Desde 2012 ALOGY Engenharia | www.alogy.com.br</p>
 </footer>
 <script>
+    function parsePtNumber(value){
+      const s = String(value ?? '').trim().replace(/\s/g,'');
+      if(!s) return NaN;
+      const normalized = s.includes(',') ? s.replace(/\./g,'').replace(',', '.') : s;
+      const v = Number(normalized);
+      return Number.isFinite(v) ? v : NaN;
+    }
     function pidNumber(id){
       const el = document.getElementById(id);
-      return el ? Number(String(el.value).replace(',', '.')) : NaN;
+      return el ? parsePtNumber(el.value) : NaN;
     }
     function pidFmt(v, dec=3){
       if(!Number.isFinite(v)) return '-';

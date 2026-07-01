@@ -53,7 +53,42 @@
 <section class="tools-hero"><h1>Calculadora de Resolução de Cartão Analógico CLP</h1><p>Calcule resolução em engenharia, valor por contagem e conversão entre raw counts e unidade de processo.</p></section>
 <section aria-label="Aviso de uso" class="calc-card"><h2><i class="fas fa-triangle-exclamation"></i> Ferramenta orientativa</h2><p>Use como apoio técnico para manutenção, engenharia e conferência preliminar. Confirme sempre com normas aplicáveis, catálogos de fabricantes, procedimentos internos, medições reais e responsável técnico habilitado.</p></section>
 <section class="calc-layout"><div class="calc-card"><h2><i class="fas fa-pen-to-square"></i> Dados de entrada</h2><div class="calc-grid"><label>Resolução do módulo (bits)<input id="bits" step="any" type="number" value="15"/></label><label>Raw mínimo<input id="rawmin" step="any" type="number" value="0"/></label><label>Raw máximo<input id="rawmax" step="any" type="number" value="32767"/></label><label>LRV engenharia<input id="lrv" step="any" type="number" value="0"/></label><label>URV engenharia<input id="urv" step="any" type="number" value="100"/></label><label>Raw lido<input id="raw" step="any" type="number" value="16384"/></label></div></div><div class="calc-card"><h2><i class="fas fa-chart-line"></i> Resultado</h2><div class="calc-result four"><div class="result-box"><span>Contagens úteis</span><strong id="r1">-</strong></div><div class="result-box"><span>Resolução</span><strong id="r2">-</strong></div><div class="result-box"><span>Valor lido</span><strong id="r3">-</strong></div><div class="result-box"><span>% da faixa</span><strong id="r4">-</strong></div></div><p class="mini-help" id="nota"></p></div></section>
-<script>function n(id){return parseFloat(document.getElementById(id).value)||0}function calc(){let bits=n('bits'),rmin=n('rawmin'),rmax=n('rawmax'),l=n('lrv'),u=n('urv'),raw=n('raw');let counts=rmax-rmin; if(counts<=0) counts=Math.pow(2,bits)-1;let res=(u-l)/counts,val=l+(raw-rmin)*(u-l)/counts,p=(val-l)/(u-l)*100;document.getElementById('r1').textContent=counts.toFixed(0);document.getElementById('r2').textContent=res.toFixed(6)+' un/count';document.getElementById('r3').textContent=val.toFixed(4);document.getElementById('r4').textContent=p.toFixed(2)+' %';document.getElementById('nota').innerHTML='Use o range raw real do fabricante/módulo. Resolução não é a mesma coisa que exatidão, linearidade ou incerteza do canal.'}document.querySelectorAll('input').forEach(e=>e.addEventListener('input',calc));calc();</script>
+<script>
+function parsePtNumber(value){
+  const s=String(value ?? '').trim().replace(/\s/g,'');
+  if(!s) return NaN;
+  const normalized=s.includes(',') ? s.replace(/\./g,'').replace(',', '.') : s;
+  const v=Number(normalized);
+  return Number.isFinite(v) ? v : NaN;
+}
+function n(id){return parsePtNumber(document.getElementById(id).value)}
+function fmt(v,d){return Number.isFinite(v)?v.toLocaleString('pt-BR',{minimumFractionDigits:d,maximumFractionDigits:d}):'-'}
+function setInvalid(msg){
+  document.getElementById('r1').textContent='Verificar';
+  document.getElementById('r2').textContent='Verificar';
+  document.getElementById('r3').textContent='Verificar';
+  document.getElementById('r4').textContent='Verificar';
+  document.getElementById('nota').innerHTML=msg;
+}
+function calc(){
+  let bits=n('bits'),rmin=n('rawmin'),rmax=n('rawmax'),l=n('lrv'),u=n('urv'),raw=n('raw');
+  if(![bits,rmin,rmax,l,u,raw].every(Number.isFinite) || bits<=0){setInvalid('Revise os dados: bits, raw, LRV e URV precisam ser numéricos e coerentes.');return;}
+  let counts=rmax-rmin;
+  if(counts<=0){
+    counts=Math.pow(2,bits)-1;
+    if(!Number.isFinite(counts)||counts<=0){setInvalid('Não foi possível obter contagens úteis. Confira bits ou range raw do módulo.');return;}
+  }
+  const engSpan=u-l;
+  if(Math.abs(engSpan)<1e-12){setInvalid('LRV e URV não podem ser iguais. Informe uma faixa de engenharia válida.');return;}
+  let res=engSpan/counts,val=l+(raw-rmin)*engSpan/counts,p=(val-l)/engSpan*100;
+  document.getElementById('r1').textContent=fmt(counts,0);
+  document.getElementById('r2').textContent=fmt(res,6)+' un/count';
+  document.getElementById('r3').textContent=fmt(val,4);
+  document.getElementById('r4').textContent=fmt(p,2)+' %';
+  document.getElementById('nota').innerHTML=(raw<rmin||raw>rmax?'Raw lido fora do range informado. Confira saturação, escala e diagnóstico do cartão. ':'')+'Use o range raw real do fabricante/módulo. Resolução não é a mesma coisa que exatidão, linearidade ou incerteza do canal.';
+}
+document.querySelectorAll('input').forEach(e=>e.addEventListener('input',calc));calc();
+</script>
 <section aria-label="Chamada para contato" class="cta-bar"><div><strong>Precisa validar esse cálculo em campo?</strong><br/><span class="muted">A ALOGY apoia engenharia, manutenção, instrumentação, automação e utilidades industriais.</span></div><div class="cta-actions"><a class="btn" href="index.html#contato"><i class="fas fa-paper-plane"></i> Solicitar contato</a></div></section>
 <!-- ALOGY_REVISAO_TECNICA_FERRAMENTA -->
 <section aria-label="Orientação técnica complementar" class="calc-card">

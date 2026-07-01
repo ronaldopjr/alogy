@@ -185,7 +185,8 @@
   </main>
 
 <script>
-function n(id){const v=parseFloat(String(document.getElementById(id).value).replace(',','.'));return Number.isFinite(v)?v:0;}
+function parsePtNumber(value){const s=String(value ?? '').trim().replace(/\s/g,'');if(!s)return NaN;const normalized=s.includes(',')?s.replace(/\./g,'').replace(',','.'):s;const v=Number(normalized);return Number.isFinite(v)?v:NaN;}
+function n(id){const v=parsePtNumber(document.getElementById(id).value);return Number.isFinite(v)?v:0;}
 function s(id){return String(document.getElementById(id).value||'').trim();}
 function fmt(x,d=2){return Number(x).toLocaleString('pt-BR',{minimumFractionDigits:d,maximumFractionDigits:d});}
 function ceildiv(a,b){return b>0?Math.ceil(Math.max(0,a)/b):0;}

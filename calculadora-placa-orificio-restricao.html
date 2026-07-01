@@ -126,10 +126,42 @@
 </section>
 </main>
 <script>
-function n(id){return Number(document.getElementById(id)?.value||0)}
+function parseBR(value){
+  const raw=String(value ?? '').trim();
+  if(!raw) return NaN;
+  const norm=raw.includes(',') ? raw.replace(/\./g,'').replace(',','.') : raw;
+  const v=Number(norm);
+  return Number.isFinite(v) ? v : NaN;
+}
+function n(id){const v=parseBR(document.getElementById(id)?.value);return Number.isFinite(v)?v:0}
 function fmt(v,d=2){return isFinite(v)?Number(v).toLocaleString('pt-BR',{minimumFractionDigits:d,maximumFractionDigits:d}):'-'}
 function qFrom(dmm,dpkpa,rho,cd){const A=Math.PI*Math.pow(dmm/1000,2)/4;return cd*A*Math.sqrt(2*dpkpa*1000/rho)*3600}
-function calc(){const modo=modoEl.value,q=n('q'),d=Math.max(0.001,n('d')),dp=Math.max(0.001,n('dp')),rho=Math.max(1,n('rho')),cd=Math.max(0.01,n('cd')),D=Math.max(0.001,n('pipe'));let qres=q,dres=d,dpres=dp;if(modo==='q'){qres=qFrom(d,dp,rho,cd)}if(modo==='d'){const qms=q/3600;dres=Math.sqrt((4*qms)/(Math.PI*cd*Math.sqrt(2*dp*1000/rho)))*1000}if(modo==='dp'){const qms=q/3600,A=Math.PI*Math.pow(d/1000,2)/4;dpres=(Math.pow(qms/(cd*A),2)*rho/2)/1000}const beta=dres/D;rQ.textContent=fmt(qres,2)+' m³/h';rD.textContent=fmt(dres,2)+' mm';rDp.textContent=fmt(dpres,2)+' kPa';rBeta.textContent=fmt(beta,3);if(beta>0.75){status.className='calc-note warn';status.textContent='Atenção: beta alto. Verifique aplicação, norma e limites do elemento primário.'}else if(beta<0.2){status.className='calc-note warn';status.textContent='Atenção: beta baixo. Pode haver perda elevada, ruído ou sensibilidade baixa.'}else{status.className='calc-note status-ok';status.textContent='Estimativa calculada. Confirme com norma, fabricante e dados reais do fluido.'}montarTabela(dres,rho,cd,dpres)}
+function invalid(msg){rQ.textContent='-';rD.textContent='-';rDp.textContent='-';rBeta.textContent='-';status.className='calc-note warn';status.textContent=msg;tbody.innerHTML=''}
+function calc(){
+  const modo=modoEl.value,q=n('q'),d=n('d'),dp=n('dp'),rho=n('rho'),cd=n('cd'),D=n('pipe');
+  if(D<=0||rho<=0||cd<=0||cd>1){invalid('Revise diâmetro da tubulação, densidade e Cd. Use valores positivos e Cd até 1.');return}
+  if((modo==='q'||modo==='dp')&&d<=0){invalid('Informe diâmetro do orifício maior que zero.');return}
+  if((modo==='d'||modo==='dp')&&q<=0){invalid('Informe vazão maior que zero para calcular diâmetro ou ΔP.');return}
+  if((modo==='q'||modo==='d')&&dp<=0){invalid('Informe ΔP maior que zero para calcular vazão ou diâmetro.');return}
+  let qres=q,dres=d,dpres=dp;
+  if(modo==='q'){qres=qFrom(d,dp,rho,cd)}
+  if(modo==='d'){
+    const qms=q/3600;
+    dres=Math.sqrt((4*qms)/(Math.PI*cd*Math.sqrt(2*dp*1000/rho)))*1000;
+  }
+  if(modo==='dp'){
+    const qms=q/3600,A=Math.PI*Math.pow(d/1000,2)/4;
+    dpres=(Math.pow(qms/(cd*A),2)*rho/2)/1000;
+  }
+  const beta=dres/D;
+  if(!Number.isFinite(beta)||beta<=0){invalid('Não foi possível calcular beta. Revise os dados.');return}
+  rQ.textContent=fmt(qres,2)+' m³/h';rD.textContent=fmt(dres,2)+' mm';rDp.textContent=fmt(dpres,2)+' kPa';rBeta.textContent=fmt(beta,3);
+  if(beta>=1){status.className='calc-note warn';status.textContent='Atenção: orifício igual ou maior que a tubulação. Revise D e d.'}
+  else if(beta>0.75){status.className='calc-note warn';status.textContent='Atenção: beta alto. Verifique aplicação, norma e limites do elemento primário.'}
+  else if(beta<0.2){status.className='calc-note warn';status.textContent='Atenção: beta baixo. Pode haver perda elevada, ruído ou sensibilidade baixa.'}
+  else{status.className='calc-note status-ok';status.textContent='Estimativa calculada. Confirme com norma, fabricante e dados reais do fluido.'}
+  montarTabela(dres,rho,cd,dpres)
+}
 function montarTabela(d,rho,cd,dpRef){tbody.innerHTML='';[10,25,50,75,100].forEach(p=>{const dp=dpRef*p/100;const q=qFrom(d,dp,rho,cd);const ma=4+16*Math.sqrt(p/100);const tr=document.createElement('tr');tr.innerHTML=`<td>${fmt(dp,2)} kPa</td><td>${fmt(q,2)} m³/h</td><td>${fmt(ma,3)} mA</td><td>${fmt(p,0)}%</td>`;tbody.appendChild(tr)}); if(window.enhanceResponsiveToolTables) window.enhanceResponsiveToolTables()}
 function exemplo(i){if(i===1){modoEl.value='q';q.value=20;d.value=40;dp.value=50;rho.value=1000;cd.value=0.62;pipe.value=100}else{modoEl.value='d';q.value=20;d.value=40;dp.value=50;rho.value=1000;cd.value=0.62;pipe.value=100}calc()}
 function copiar(){navigator.clipboard?.writeText(`Vazão: ${rQ.textContent}\nDiâmetro: ${rD.textContent}\nΔP: ${rDp.textContent}\nBeta: ${rBeta.textContent}`).then(()=>alert('Resultado copiado.'))}
