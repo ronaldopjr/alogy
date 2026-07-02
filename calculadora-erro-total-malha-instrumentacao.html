@@ -35,7 +35,43 @@
   </script>
 <style>
     .small-muted{color:var(--muted);font-size:.92rem;line-height:1.55}.component-row{display:grid;grid-template-columns:1.1fr .75fr .6fr;gap:10px;align-items:end;margin-top:10px}.component-row .field{min-width:0}.method-pill{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:8px 11px;font-weight:900;background:rgba(0,107,177,.08);border:1px solid rgba(0,107,177,.18);color:#0b3a62;font-size:.9rem}.faq details{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:14px;padding:14px;margin-top:10px;box-shadow:0 6px 16px rgba(0,0,0,.04)}.faq summary{cursor:pointer;font-weight:900;color:#0b3a62}.faq p{margin:10px 0 0;color:var(--muted)}@media(max-width:900px){.component-row{grid-template-columns:1fr}.calc-actions .mini-btn{width:100%;justify-content:center}}@media print{header,.social-floating,.fab-wrap,.cta-bar,footer,.calc-actions,.tools-hero .btn,.no-print{display:none!important}body{background:#fff}.container{max-width:100%;padding:0}.calc-card,.tools-hero{box-shadow:none;border:1px solid #ddd}.calc-layout{display:block}.calc-card{margin:12px 0}.calc-table th{background:#eee!important;color:#111!important}}
-  </style>
+  
+    .field input.invalid,.field select.invalid{border-color:#b42318!important;background:#fff5f5!important;outline:2px solid rgba(180,35,24,.12)}
+    .validation-summary{display:none;border-left:5px solid #b42318;background:#fff5f5;color:#7a271a;padding:12px 14px;border-radius:9px;margin:12px 0;line-height:1.55}
+    .validation-summary.show{display:block}
+    .memory-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+    .memory-step{border:1px solid #d8e5ed;border-radius:12px;padding:12px;background:#fbfdff;line-height:1.55;overflow-wrap:anywhere}
+    .memory-step strong{display:block;color:#004b80;margin-bottom:4px}
+    .report-note{border-left:5px solid #004b80;background:#f4f8fb;padding:12px 14px;border-radius:9px;line-height:1.55}
+    .status-warning{background:#fff8e6!important;border-color:#d68a00!important}
+    .dominant{font-weight:800;color:#0b3a62}
+    .print-sheet{display:none}
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    @media(max-width:900px){.memory-grid{grid-template-columns:1fr}.calc-actions .mini-btn,.calc-actions .btn{width:100%;justify-content:center}}
+    @media(max-width:600px){
+      .responsive-data-table thead{display:none}
+      .responsive-data-table,.responsive-data-table tbody,.responsive-data-table tr,.responsive-data-table td{display:block;width:100%;box-sizing:border-box}
+      .responsive-data-table tr{border:1px solid #d9e5ec;border-radius:10px;margin:0 0 12px;overflow:hidden;background:#fff}
+      .responsive-data-table td{display:grid;grid-template-columns:minmax(110px,42%) minmax(0,1fr);gap:8px;border:0;border-bottom:1px solid #e6eef3;padding:9px;overflow-wrap:anywhere}
+      .responsive-data-table td:last-child{border-bottom:0}
+      .responsive-data-table td::before{content:attr(data-label);font-weight:700;color:#004b80}
+    }
+    @media print{
+      @page{size:A4;margin:14mm}
+      body{background:#fff!important;color:#000!important;font-family:Arial,sans-serif!important}
+      body>*:not(.print-sheet){display:none!important}
+      .print-sheet{display:block!important;color:#000!important;background:#fff!important;width:100%!important}
+      .print-sheet h1{font-size:20pt;margin:0 0 4mm;color:#000!important}
+      .print-sheet h2{font-size:13pt;margin:6mm 0 2mm;color:#000!important;border-bottom:1px solid #555;padding-bottom:1.5mm}
+      .print-sheet p,.print-sheet li,.print-sheet td,.print-sheet th{font-size:9.5pt;line-height:1.4}
+      .print-sheet table{width:100%;border-collapse:collapse;margin:2mm 0 5mm}
+      .print-sheet th,.print-sheet td{border:1px solid #777;padding:2.2mm;text-align:left;vertical-align:top}
+      .print-sheet th{background:#eee!important;color:#000!important}
+      .print-sheet .print-result{font-size:11pt;font-weight:700;border:1.5px solid #000;padding:3mm;margin:3mm 0}
+      .print-sheet .avoid-break{break-inside:avoid;page-break-inside:avoid}
+      .print-sheet .muted-print{color:#333}
+    }
+</style>
 <!-- Google AdSense - verificação de propriedade -->
 <script async="" crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5586837114309500"></script>
 </link></link></head>
@@ -48,7 +84,7 @@
 </header>
 <div aria-label="Redes sociais" class="social-floating"><a aria-label="LinkedIn" class="linkedin" href="https://www.linkedin.com/company/alogyengenharia" rel="noopener" target="_blank"><i class="fab fa-linkedin-in"></i></a><a aria-label="Instagram" class="instagram" href="https://www.instagram.com/alogyengenharia" rel="noopener" target="_blank"><i class="fab fa-instagram"></i></a><a aria-label="Facebook" class="facebook" href="https://www.facebook.com/alogyengenharia" rel="noopener" target="_blank"><i class="fab fa-facebook-f"></i></a><a aria-label="YouTube" class="youtube" href="https://www.youtube.com/@alogyengenharia" rel="noopener" target="_blank"><i class="fab fa-youtube"></i></a><a aria-label="Hotmart" class="hotmart" href="https://hotmart.com/pt-br/club/alogyengenharia" rel="noopener" target="_blank">H</a><a aria-label="TikTok" class="tiktok" href="https://www.tiktok.com/@alogyengenharia" rel="noopener" target="_blank"><i class="fab fa-tiktok"></i></a></div>
 <div aria-label="Ações rápidas" class="fab-wrap"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1!%20Vim%20pela%20calculadora%20de%20erro%20total%20de%20malha%20da%20ALOGY.%20Gostaria%20de%20atendimento." rel="noopener" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
-<main class="container" style="margin-top:18px"><div aria-label="Ações da ferramenta" class="tool-page-actions no-print"><button class="btn print" onclick="window.print()" type="button"><i class="fas fa-print"></i> Imprimir</button></div>
+<main class="container" style="margin-top:18px"><div aria-label="Ações da ferramenta" class="tool-page-actions no-print"><button class="btn print" id="topPrint" type="button"><i class="fas fa-print"></i> Imprimir</button><button class="btn secondary" id="topReport" type="button"><i class="fas fa-file-pdf"></i> Gerar relatório</button></div>
 <div class="no-print" style="margin-bottom:14px;display:flex;gap:10px;flex-wrap:wrap">
 
 
@@ -69,13 +105,13 @@
 <p>Informe a faixa de engenharia, o ponto de operação e a tolerância máxima aceita no processo.</p>
 <div class="calc-grid">
 <div class="field full"><label for="tag">TAG ou descrição</label><input id="tag" type="text" value="TT-101 - Malha de temperatura"/></div>
-<div class="field"><label for="lrv">LRV / início da faixa</label><input id="lrv" step="any" type="number" value="0"/></div>
-<div class="field"><label for="urv">URV / fim da faixa</label><input id="urv" step="any" type="number" value="200"/></div>
+<div class="field"><label for="lrv">LRV / início da faixa</label><input id="lrv" value="0" type="text" inputmode="decimal" autocomplete="off"/></div>
+<div class="field"><label for="urv">URV / fim da faixa</label><input id="urv" value="200" type="text" inputmode="decimal" autocomplete="off"/></div>
 <div class="field"><label for="unid">Unidade</label><input id="unid" type="text" value="°C"/></div>
-<div class="field"><label for="ponto">Ponto avaliado</label><input id="ponto" step="any" type="number" value="100"/></div>
+<div class="field"><label for="ponto">Ponto avaliado</label><input id="ponto" value="100" type="text" inputmode="decimal" autocomplete="off"/></div>
 <div class="field"><label for="casas">Casas decimais</label><select id="casas"><option value="1">1</option><option selected="" value="2">2</option><option value="3">3</option></select></div>
 <div class="field"><label for="tolTipo">Tolerância do processo</label><select id="tolTipo"><option value="abs">± valor absoluto</option><option value="pct_span">± % do span</option><option value="pct_ponto">± % do ponto</option></select></div>
-<div class="field"><label for="tol">Valor da tolerância</label><input id="tol" step="any" type="number" value="2"/></div>
+<div class="field"><label for="tol">Valor da tolerância</label><input id="tol" value="2" type="text" inputmode="decimal" autocomplete="off"/></div>
 </div>
 <div class="calc-note">Exemplo: se a tolerância do processo é ±2 °C, use tipo “valor absoluto” e valor 2. Se for ±1% do span, use tipo “% do span” e valor 1.</div>
 </div>
@@ -91,36 +127,53 @@ erro conservador = |e1| + |e2| + |e3| + ...</div>
 <h2><i class="fas fa-layer-group"></i> Componentes da malha</h2>
 <p>Informe a contribuição de cada elemento. Use % do span quando o erro for dado como “% FS”, “% fundo de escala” ou “% da faixa”. Use % do ponto quando a especificação for sobre a leitura. Use valor absoluto quando já estiver na unidade de engenharia.</p>
 <div id="componentes">
-<div class="component-row"><div class="field"><label for="n0">Componente</label><input id="n0" value="Sensor / elemento primário"/></div><div class="field"><label for="t0">Tipo</label><select id="t0"><option value="pct_span">% do span</option><option value="pct_ponto">% do ponto</option><option value="abs">valor absoluto</option></select></div><div class="field"><label for="v0">Erro ±</label><input id="v0" step="any" type="number" value="0.25"/></div></div>
-<div class="component-row"><div class="field"><label for="n1">Componente</label><input id="n1" value="Transmissor"/></div><div class="field"><label for="t1">Tipo</label><select id="t1"><option value="pct_span">% do span</option><option value="pct_ponto">% do ponto</option><option value="abs">valor absoluto</option></select></div><div class="field"><label for="v1">Erro ±</label><input id="v1" step="any" type="number" value="0.10"/></div></div>
-<div class="component-row"><div class="field"><label for="n2">Componente</label><input id="n2" value="Cartão analógico do CLP"/></div><div class="field"><label for="t2">Tipo</label><select id="t2"><option value="pct_span">% do span</option><option value="pct_ponto">% do ponto</option><option value="abs">valor absoluto</option></select></div><div class="field"><label for="v2">Erro ±</label><input id="v2" step="any" type="number" value="0.15"/></div></div>
-<div class="component-row"><div class="field"><label for="n3">Componente</label><input id="n3" value="Indicador / supervisório"/></div><div class="field"><label for="t3">Tipo</label><select id="t3"><option value="pct_span">% do span</option><option value="pct_ponto">% do ponto</option><option value="abs">valor absoluto</option></select></div><div class="field"><label for="v3">Erro ±</label><input id="v3" step="any" type="number" value="0.10"/></div></div>
-<div class="component-row"><div class="field"><label for="n4">Componente</label><input id="n4" value="Referência de calibração"/></div><div class="field"><label for="t4">Tipo</label><select id="t4"><option value="pct_span">% do span</option><option value="pct_ponto">% do ponto</option><option value="abs">valor absoluto</option></select></div><div class="field"><label for="v4">Erro ±</label><input id="v4" step="any" type="number" value="0.05"/></div></div>
-<div class="component-row"><div class="field"><label for="n5">Componente</label><input id="n5" value="Ambiente, cabo ou conversão"/></div><div class="field"><label for="t5">Tipo</label><select id="t5"><option value="pct_span">% do span</option><option value="pct_ponto">% do ponto</option><option value="abs">valor absoluto</option></select></div><div class="field"><label for="v5">Erro ±</label><input id="v5" step="any" type="number" value="0.00"/></div></div>
+<div class="component-row"><div class="field"><label for="n0">Componente</label><input id="n0" value="Sensor / elemento primário"/></div><div class="field"><label for="t0">Tipo</label><select id="t0"><option value="pct_span">% do span</option><option value="pct_ponto">% do ponto</option><option value="abs">valor absoluto</option></select></div><div class="field"><label for="v0">Erro ±</label><input id="v0" value="0.25" type="text" inputmode="decimal" autocomplete="off"/></div></div>
+<div class="component-row"><div class="field"><label for="n1">Componente</label><input id="n1" value="Transmissor"/></div><div class="field"><label for="t1">Tipo</label><select id="t1"><option value="pct_span">% do span</option><option value="pct_ponto">% do ponto</option><option value="abs">valor absoluto</option></select></div><div class="field"><label for="v1">Erro ±</label><input id="v1" value="0.10" type="text" inputmode="decimal" autocomplete="off"/></div></div>
+<div class="component-row"><div class="field"><label for="n2">Componente</label><input id="n2" value="Cartão analógico do CLP"/></div><div class="field"><label for="t2">Tipo</label><select id="t2"><option value="pct_span">% do span</option><option value="pct_ponto">% do ponto</option><option value="abs">valor absoluto</option></select></div><div class="field"><label for="v2">Erro ±</label><input id="v2" value="0.15" type="text" inputmode="decimal" autocomplete="off"/></div></div>
+<div class="component-row"><div class="field"><label for="n3">Componente</label><input id="n3" value="Indicador / supervisório"/></div><div class="field"><label for="t3">Tipo</label><select id="t3"><option value="pct_span">% do span</option><option value="pct_ponto">% do ponto</option><option value="abs">valor absoluto</option></select></div><div class="field"><label for="v3">Erro ±</label><input id="v3" value="0.10" type="text" inputmode="decimal" autocomplete="off"/></div></div>
+<div class="component-row"><div class="field"><label for="n4">Componente</label><input id="n4" value="Referência de calibração"/></div><div class="field"><label for="t4">Tipo</label><select id="t4"><option value="pct_span">% do span</option><option value="pct_ponto">% do ponto</option><option value="abs">valor absoluto</option></select></div><div class="field"><label for="v4">Erro ±</label><input id="v4" value="0.05" type="text" inputmode="decimal" autocomplete="off"/></div></div>
+<div class="component-row"><div class="field"><label for="n5">Componente</label><input id="n5" value="Ambiente, cabo ou conversão"/></div><div class="field"><label for="t5">Tipo</label><select id="t5"><option value="pct_span">% do span</option><option value="pct_ponto">% do ponto</option><option value="abs">valor absoluto</option></select></div><div class="field"><label for="v5">Erro ±</label><input id="v5" value="0.00" type="text" inputmode="decimal" autocomplete="off"/></div></div>
 </div>
-<div class="calc-actions"><button class="mini-btn dark" onclick="exemploTemperatura()" type="button"><i class="fas fa-temperature-half"></i> Exemplo temperatura</button><button class="mini-btn" onclick="exemploPressao()" type="button"><i class="fas fa-gauge-high"></i> Exemplo pressão</button><button class="mini-btn" onclick="copiarResultado()" type="button"><i class="fas fa-copy"></i> Copiar resultado</button></div>
+<div class="calc-actions no-print">
+<button class="mini-btn dark" id="btnExampleTemperature" type="button"><i class="fas fa-temperature-half"></i> Exemplo temperatura</button>
+<button class="mini-btn" id="btnExamplePressure" type="button"><i class="fas fa-gauge-high"></i> Exemplo pressão</button>
+<button class="mini-btn dark" id="btnCalculate" type="button"><i class="fas fa-calculator"></i> Calcular</button>
+<button class="mini-btn" id="btnReset" type="button"><i class="fas fa-rotate-left"></i> Limpar</button>
+<button class="mini-btn" id="btnCopy" type="button"><i class="fas fa-copy"></i> Copiar resultado</button>
+<button class="mini-btn" id="btnPrint" type="button"><i class="fas fa-print"></i> Imprimir</button>
+<button class="mini-btn" id="btnReport" type="button"><i class="fas fa-file-pdf"></i> Gerar relatório</button>
+</div>
+<div class="validation-summary" id="validationSummary" role="alert" aria-live="assertive"></div>
 </section>
 <section class="calc-layout">
 <div class="calc-card">
 <h2><i class="fas fa-square-poll-vertical"></i> Resultado</h2>
-<div class="calc-result" style="grid-template-columns:1fr 1fr">
+<div class="calc-result" style="grid-template-columns:1fr 1fr" aria-live="polite">
 <div class="result-box"><span>Span da malha</span><strong id="outSpan">-</strong></div>
 <div class="result-box"><span>Tolerância no ponto</span><strong id="outTol">-</strong></div>
 <div class="result-box"><span>Erro total RSS</span><strong id="outRss">-</strong></div>
 <div class="result-box"><span>Erro conservador</span><strong id="outAbs">-</strong></div>
 <div class="result-box"><span>RSS em % do span</span><strong id="outRssPct">-</strong></div>
+<div class="result-box"><span>Margem para a tolerância</span><strong id="outMargin">-</strong></div>
+<div class="result-box"><span>Componente dominante</span><strong id="outDominant">-</strong></div>
 <div class="result-box"><span>Status</span><strong id="outStatus">-</strong></div>
 </div>
 <div class="calc-note" id="nota">-</div>
 </div>
 <div class="calc-card">
 <h2><i class="fas fa-list-check"></i> Contribuições no ponto</h2>
-<div class="calc-table-wrap"><table class="calc-table"><thead><tr><th>Componente</th><th>Tipo</th><th>Entrada</th><th>Erro convertido</th></tr></thead><tbody id="tblComp"></tbody></table></div>
+<div class="calc-table-wrap"><table class="calc-table responsive-data-table" id="componentTable"><thead><tr><th>Componente</th><th>Tipo</th><th>Entrada</th><th>Erro convertido</th></tr></thead><tbody id="tblComp"></tbody></table></div>
 </div>
 </section>
 <section class="calc-layout">
-<div class="calc-card"><h2><i class="fas fa-table"></i> Tabela por ponto da faixa</h2><p class="small-muted">A tabela ajuda a enxergar como erros em % do ponto mudam conforme o valor de processo.</p><div class="calc-table-wrap"><table class="calc-table"><thead><tr><th>Ponto</th><th>Valor</th><th>RSS</th><th>Conservador</th><th>Status RSS</th></tr></thead><tbody id="tblPontos"></tbody></table></div></div>
+<div class="calc-card"><h2><i class="fas fa-table"></i> Tabela por ponto da faixa</h2><p class="small-muted">A tabela ajuda a enxergar como erros em % do ponto mudam conforme o valor de processo.</p><div class="calc-table-wrap"><table class="calc-table responsive-data-table" id="pointsTable"><thead><tr><th>Ponto</th><th>Valor</th><th>RSS</th><th>Conservador</th><th>Status RSS</th></tr></thead><tbody id="tblPontos"></tbody></table></div></div>
 <div class="calc-card"><h2><i class="fas fa-lightbulb"></i> Interpretação prática</h2><p><strong>RSS aprovado:</strong> a combinação provável dos erros está dentro da tolerância definida.</p><p><strong>Soma conservadora reprovada:</strong> não significa necessariamente reprovação real, mas indica que o pior caso matemático ultrapassa o limite.</p><p><strong>Erro total próximo da tolerância:</strong> vale revisar classe do instrumento, faixa configurada, incerteza da referência, cartão analógico e necessidade real do processo.</p><div class="calc-note"><strong>Dica:</strong> para avaliação metrológica formal, diferencie erro máximo permitido, incerteza expandida, resolução, repetibilidade e critério de aceitação.</div></div>
+</section>
+<section class="calc-card" id="memoryCard">
+<h2><i class="fas fa-square-root-variable"></i> Memória de cálculo</h2>
+<p class="small-muted">As etapas mostram a conversão de cada contribuição para a unidade de engenharia e a combinação pelos métodos RSS e conservador.</p>
+<div class="memory-grid" id="memorySteps"></div>
+<div class="report-note" id="assumptionNote" style="margin-top:12px">O RSS pressupõe contribuições sem correlação relevante. Erros sistemáticos conhecidos não devem ser reduzidos por RSS sem justificativa técnica.</div>
 </section>
 <section class="calc-card faq"><h2><i class="fas fa-circle-question"></i> Perguntas frequentes</h2>
 <details open=""><summary>Erro total de malha é igual à incerteza de medição?</summary><p>Não. O erro total aqui é uma estimativa prática de contribuições máximas. Incerteza de medição exige modelo, distribuição, divisor, graus de liberdade, fator de abrangência e rastreabilidade.</p></details>
@@ -159,62 +212,388 @@ erro conservador = |e1| + |e2| + |e3| + ...</div>
 <p>Esta ferramenta é indicada para estudo, triagem, conferência de campo e apoio à manutenção. Para projeto final, laudo, especificação de compra, alteração de segurança ou liberação de equipamento crítico, valide as premissas com normas aplicáveis, documentação do fabricante e profissional habilitado.</p>
 </section>
 </main>
+<section class="print-sheet" id="printSheet" aria-hidden="true">
+<h1>Memória de cálculo — Erro total de malha</h1>
+<p class="muted-print" id="printDate"></p>
+<div id="printContent"></div>
+</section>
 <footer><p>© Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
 <script>
-const $=id=>document.getElementById(id);
-function fmt(n,d=2){ if(!isFinite(n)) return '-'; return Number(n).toLocaleString('pt-BR',{minimumFractionDigits:d,maximumFractionDigits:d}); }
-function tipoNome(t){ return t==='pct_span'?'% do span':t==='pct_ponto'?'% do ponto':'valor absoluto'; }
-function compErro(tipo, valor, ponto, span){
-  valor=Math.abs(Number(valor)||0); span=Math.abs(span); ponto=Math.abs(ponto);
-  if(tipo==='pct_span') return valor/100*span;
-  if(tipo==='pct_ponto') return valor/100*ponto;
-  return valor;
-}
-function toleranciaNoPonto(tipo, valor, ponto, span){ return compErro(tipo, valor, ponto, span); }
-function componentesParaPonto(ponto, span){
-  const arr=[];
-  for(let i=0;i<6;i++){
-    const nome=$('n'+i).value.trim()||('Componente '+(i+1));
-    const tipo=$('t'+i).value;
-    const entrada=Number($('v'+i).value)||0;
-    const erro=compErro(tipo, entrada, ponto, span);
-    arr.push({nome,tipo,entrada,erro});
+(() => {
+  'use strict';
+
+  const byId = (id) => document.getElementById(id);
+  const numericIds = ['lrv','urv','ponto','tol','v0','v1','v2','v3','v4','v5'];
+  let lastCalculation = null;
+
+  function escapeHtml(value) {
+    return String(value ?? '').replace(/[&<>'"]/g, (char) => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[char]));
   }
-  return arr;
-}
-function calculaPonto(ponto, span){
-  const comps=componentesParaPonto(ponto,span);
-  const rss=Math.sqrt(comps.reduce((s,c)=>s+c.erro*c.erro,0));
-  const abs=comps.reduce((s,c)=>s+Math.abs(c.erro),0);
-  return {comps,rss,abs};
-}
-function calc(){
-  const lrv=+$('lrv').value, urv=+$('urv').value, span=urv-lrv, ponto=+$('ponto').value, unid=$('unid').value||'', d=+$('casas').value;
-  const tol=toleranciaNoPonto($('tolTipo').value, +$('tol').value, ponto, span);
-  const res=calculaPonto(ponto,span);
-  const rssPct=Math.abs(span)?res.rss/Math.abs(span)*100:NaN;
-  $('outSpan').textContent=fmt(span,d)+' '+unid;
-  $('outTol').textContent='± '+fmt(tol,d)+' '+unid;
-  $('outRss').textContent='± '+fmt(res.rss,d)+' '+unid;
-  $('outAbs').textContent='± '+fmt(res.abs,d)+' '+unid;
-  $('outRssPct').textContent=fmt(rssPct,3)+' %';
-  let status='Dentro da tolerância';
-  let classe='status-ok';
-  if(!isFinite(span)||span===0||!isFinite(tol)||tol<0){ status='Verifique faixa/tolerância'; classe='status-bad'; }
-  else if(res.rss>tol){ status='RSS acima da tolerância'; classe='status-bad'; }
-  else if(res.abs>tol){ status='RSS ok, pior caso acima'; classe='status-ok'; }
-  $('outStatus').textContent=status;
-  $('outStatus').parentElement.className='result-box '+classe;
-  $('nota').textContent = res.abs>tol && res.rss<=tol ? 'A combinação por RSS está dentro da tolerância, mas a soma conservadora ultrapassa o limite. Avalie criticidade e critério interno.' : (res.rss<=tol ? 'O erro total por RSS está dentro da tolerância informada para o ponto avaliado.' : 'O erro total por RSS ultrapassa a tolerância informada. Revise faixa, classe dos instrumentos ou critério do processo.');
-  $('tblComp').innerHTML=res.comps.map(c=>`<tr><td>${c.nome}</td><td>${tipoNome(c.tipo)}</td><td>± ${fmt(c.entrada,d)}</td><td>± ${fmt(c.erro,d)} ${unid}</td></tr>`).join('');
-  const pts=[0,25,50,75,100].map(p=>lrv+(p/100)*span);
-  $('tblPontos').innerHTML=pts.map((pv,idx)=>{const r=calculaPonto(pv,span);const t=toleranciaNoPonto($('tolTipo').value,+$('tol').value,pv,span);const ok=r.rss<=t;return `<tr><td>${idx*25}%</td><td>${fmt(pv,d)} ${unid}</td><td>± ${fmt(r.rss,d)} ${unid}</td><td>± ${fmt(r.abs,d)} ${unid}</td><td class="${ok?'good':'danger'}">${ok?'OK':'Acima'}</td></tr>`;}).join('');
-}
-function exemploTemperatura(){ $('tag').value='TT-101 - Malha de temperatura'; $('lrv').value=0; $('urv').value=200; $('unid').value='°C'; $('ponto').value=100; $('tolTipo').value='abs'; $('tol').value=2; const vals=[0.25,0.10,0.15,0.10,0.05,0]; vals.forEach((v,i)=>{$('v'+i).value=v; $('t'+i).value='pct_span';}); calc(); }
-function exemploPressao(){ $('tag').value='PT-204 - Malha de pressão'; $('lrv').value=0; $('urv').value=10; $('unid').value='bar'; $('ponto').value=6; $('tolTipo').value='pct_span'; $('tol').value=1; const vals=[0.20,0.075,0.10,0.05,0.03,0.02]; vals.forEach((v,i)=>{$('v'+i).value=v; $('t'+i).value='pct_span';}); calc(); }
-function copiarResultado(){ const texto=`Calculadora de Erro Total de Malha - ALOGY\nTAG: ${$('tag').value}\nPonto: ${$('ponto').value} ${$('unid').value}\nSpan: ${$('outSpan').textContent}\nTolerância: ${$('outTol').textContent}\nErro RSS: ${$('outRss').textContent}\nErro conservador: ${$('outAbs').textContent}\nStatus: ${$('outStatus').textContent}`; navigator.clipboard?.writeText(texto).then(()=>alert('Resultado copiado.')); }
-document.querySelectorAll('input,select').forEach(el=>el.addEventListener('input',calc));
-calc();
+
+  function parseLocalized(value) {
+    const raw = String(value ?? '').trim().replace(/\s+/g, '');
+    if (!raw || !/^[+-]?[\d.,]+$/.test(raw)) return NaN;
+    const comma = raw.lastIndexOf(',');
+    const dot = raw.lastIndexOf('.');
+    let normalized = raw;
+    if (comma >= 0 && dot >= 0) {
+      const decimal = comma > dot ? ',' : '.';
+      const group = decimal === ',' ? '.' : ',';
+      normalized = raw.split(group).join('').replace(decimal, '.');
+    } else if (comma >= 0) {
+      if ((raw.match(/,/g) || []).length > 1) return NaN;
+      normalized = raw.replace(',', '.');
+    } else if ((raw.match(/\./g) || []).length > 1) {
+      const unsigned = raw.replace(/^[+-]/, '');
+      const parts = unsigned.split('.');
+      if (parts.slice(1).every((part) => part.length === 3)) normalized = raw.replace(/\./g, '');
+      else return NaN;
+    }
+    const number = Number(normalized);
+    return Number.isFinite(number) ? number : NaN;
+  }
+
+  function format(value, digits = 2) {
+    return Number.isFinite(value)
+      ? value.toLocaleString('pt-BR', {minimumFractionDigits: digits, maximumFractionDigits: digits})
+      : '—';
+  }
+
+  function formatFlexible(value, maxDigits = 6) {
+    return Number.isFinite(value)
+      ? value.toLocaleString('pt-BR', {maximumFractionDigits: maxDigits})
+      : '—';
+  }
+
+  function typeName(type) {
+    if (type === 'pct_span') return '% do span';
+    if (type === 'pct_ponto') return '% do ponto';
+    return 'valor absoluto';
+  }
+
+  function clearValidation() {
+    numericIds.forEach((id) => byId(id)?.classList.remove('invalid'));
+    const summary = byId('validationSummary');
+    summary.classList.remove('show');
+    summary.innerHTML = '';
+  }
+
+  function showValidation(errors) {
+    clearValidation();
+    errors.forEach((error) => byId(error.id)?.classList.add('invalid'));
+    const summary = byId('validationSummary');
+    summary.innerHTML = '<strong>Revise os dados:</strong><ul>' + errors.map((error) => '<li>' + escapeHtml(error.message) + '</li>').join('') + '</ul>';
+    summary.classList.add('show');
+    const first = errors[0] && byId(errors[0].id);
+    if (first) first.focus();
+  }
+
+  function clearResults(message = 'Preencha os dados e clique em Calcular.') {
+    ['outSpan','outTol','outRss','outAbs','outRssPct','outMargin','outDominant','outStatus'].forEach((id) => { byId(id).textContent = '—'; });
+    byId('outStatus').parentElement.className = 'result-box';
+    byId('nota').textContent = message;
+    byId('tblComp').innerHTML = '';
+    byId('tblPontos').innerHTML = '';
+    byId('memorySteps').innerHTML = '';
+    byId('printContent').innerHTML = '';
+    byId('printDate').textContent = '';
+  }
+
+  function readInputs() {
+    const data = {
+      tag: byId('tag').value.trim() || 'Malha sem identificação',
+      lrv: parseLocalized(byId('lrv').value),
+      urv: parseLocalized(byId('urv').value),
+      unit: byId('unid').value.trim() || 'u.e.',
+      point: parseLocalized(byId('ponto').value),
+      digits: Number(byId('casas').value),
+      toleranceType: byId('tolTipo').value,
+      toleranceInput: parseLocalized(byId('tol').value),
+      components: []
+    };
+    for (let i = 0; i < 6; i += 1) {
+      data.components.push({
+        name: byId('n' + i).value.trim() || ('Componente ' + (i + 1)),
+        type: byId('t' + i).value,
+        input: parseLocalized(byId('v' + i).value),
+        inputId: 'v' + i
+      });
+    }
+    return data;
+  }
+
+  function validate(data) {
+    const errors = [];
+    if (!Number.isFinite(data.lrv)) errors.push({id:'lrv', message:'Informe um LRV válido.'});
+    if (!Number.isFinite(data.urv)) errors.push({id:'urv', message:'Informe um URV válido.'});
+    if (Number.isFinite(data.lrv) && Number.isFinite(data.urv) && data.urv === data.lrv) errors.push({id:'urv', message:'LRV e URV não podem ser iguais, pois o span seria zero.'});
+    if (!Number.isFinite(data.point)) errors.push({id:'ponto', message:'Informe um ponto de avaliação válido.'});
+    if (!Number.isFinite(data.toleranceInput) || data.toleranceInput < 0) errors.push({id:'tol', message:'A tolerância deve ser um número maior ou igual a zero.'});
+    data.components.forEach((component) => {
+      if (!Number.isFinite(component.input) || component.input < 0) errors.push({id:component.inputId, message:'O erro de cada componente deve ser um número maior ou igual a zero.'});
+    });
+    return errors;
+  }
+
+  function convertContribution(type, value, point, absoluteSpan) {
+    if (type === 'pct_span') return value / 100 * absoluteSpan;
+    if (type === 'pct_ponto') return value / 100 * Math.abs(point);
+    return value;
+  }
+
+  function calculateAtPoint(data, point) {
+    const absoluteSpan = Math.abs(data.urv - data.lrv);
+    const components = data.components.map((component) => ({
+      ...component,
+      converted: convertContribution(component.type, component.input, point, absoluteSpan)
+    }));
+    const rss = Math.sqrt(components.reduce((sum, component) => sum + component.converted ** 2, 0));
+    const conservative = components.reduce((sum, component) => sum + Math.abs(component.converted), 0);
+    const tolerance = convertContribution(data.toleranceType, data.toleranceInput, point, absoluteSpan);
+    return {point, components, rss, conservative, tolerance};
+  }
+
+  function calculationStatus(result) {
+    if (result.rss > result.tolerance) return {text:'RSS acima da tolerância', css:'status-bad'};
+    if (result.conservative > result.tolerance) return {text:'RSS aprovado; pior caso acima', css:'status-warning'};
+    return {text:'Dentro da tolerância', css:'status-ok'};
+  }
+
+  function buildMemory(data, result) {
+    const d = data.digits;
+    const span = data.urv - data.lrv;
+    const absoluteSpan = Math.abs(span);
+    const contributionLines = result.components.map((component) => {
+      let substitution = '';
+      if (component.type === 'pct_span') substitution = format(component.input, d) + '/100 × ' + format(absoluteSpan, d);
+      else if (component.type === 'pct_ponto') substitution = format(component.input, d) + '/100 × |' + format(result.point, d) + '|';
+      else substitution = format(component.input, d);
+      return '<li><strong>' + escapeHtml(component.name) + ':</strong> ' + escapeHtml(substitution) + ' = ' + format(component.converted, d) + ' ' + escapeHtml(data.unit) + '</li>';
+    }).join('');
+    const squares = result.components.map((component) => '(' + format(component.converted, d) + ')²').join(' + ');
+    const sums = result.components.map((component) => '|' + format(component.converted, d) + '|').join(' + ');
+    byId('memorySteps').innerHTML =
+      '<div class="memory-step"><strong>1. Span</strong>Span = URV − LRV = ' + format(data.urv, d) + ' − ' + format(data.lrv, d) + ' = ' + format(span, d) + ' ' + escapeHtml(data.unit) + '. Para erros em % do span, usa-se |span| = ' + format(absoluteSpan, d) + '.</div>' +
+      '<div class="memory-step"><strong>2. Conversão das contribuições</strong><ul>' + contributionLines + '</ul></div>' +
+      '<div class="memory-step"><strong>3. Combinação RSS</strong>RSS = √(' + escapeHtml(squares) + ') = ' + format(result.rss, d) + ' ' + escapeHtml(data.unit) + '.</div>' +
+      '<div class="memory-step"><strong>4. Soma conservadora</strong>Soma = ' + escapeHtml(sums) + ' = ' + format(result.conservative, d) + ' ' + escapeHtml(data.unit) + '.</div>' +
+      '<div class="memory-step"><strong>5. Tolerância no ponto</strong>' + escapeHtml(typeName(data.toleranceType)) + ': ' + format(data.toleranceInput, d) + ' → ± ' + format(result.tolerance, d) + ' ' + escapeHtml(data.unit) + '.</div>' +
+      '<div class="memory-step"><strong>6. Comparação</strong>Margem RSS = tolerância − RSS = ' + format(result.tolerance, d) + ' − ' + format(result.rss, d) + ' = ' + format(result.tolerance - result.rss, d) + ' ' + escapeHtml(data.unit) + '.</div>';
+  }
+
+  function render(data, result) {
+    const d = data.digits;
+    const span = data.urv - data.lrv;
+    const absoluteSpan = Math.abs(span);
+    const rssPct = result.rss / absoluteSpan * 100;
+    const margin = result.tolerance - result.rss;
+    const dominantCandidate = result.components.reduce((best, current) => current.converted > best.converted ? current : best, result.components[0]);
+    const dominant = dominantCandidate && dominantCandidate.converted > 0 ? dominantCandidate : null;
+    const status = calculationStatus(result);
+    const pointMin = Math.min(data.lrv, data.urv);
+    const pointMax = Math.max(data.lrv, data.urv);
+    const outside = data.point < pointMin || data.point > pointMax;
+
+    byId('outSpan').textContent = format(span, d) + ' ' + data.unit;
+    byId('outTol').textContent = '± ' + format(result.tolerance, d) + ' ' + data.unit;
+    byId('outRss').textContent = '± ' + format(result.rss, d) + ' ' + data.unit;
+    byId('outAbs').textContent = '± ' + format(result.conservative, d) + ' ' + data.unit;
+    byId('outRssPct').textContent = format(rssPct, 3) + ' %';
+    byId('outMargin').textContent = format(margin, d) + ' ' + data.unit;
+    byId('outDominant').textContent = dominant ? dominant.name + ' (' + format(dominant.converted, d) + ' ' + data.unit + ')' : '—';
+    byId('outStatus').textContent = status.text;
+    byId('outStatus').parentElement.className = 'result-box ' + status.css;
+
+    let note = '';
+    if (status.css === 'status-bad') note = 'O erro total por RSS ultrapassa a tolerância informada. Revise a classe dos componentes, a faixa configurada e o critério do processo.';
+    else if (status.css === 'status-warning') note = 'O RSS está dentro da tolerância, mas a soma conservadora ultrapassa o limite. Avalie correlação, criticidade e o critério interno de aceitação.';
+    else note = 'RSS e soma conservadora estão dentro da tolerância informada para o ponto avaliado.';
+    if (outside) note += ' Atenção: o ponto avaliado está fora da faixa LRV–URV.';
+    byId('nota').textContent = note;
+
+    byId('tblComp').innerHTML = result.components.map((component) =>
+      '<tr><td data-label="Componente">' + escapeHtml(component.name) + '</td><td data-label="Tipo">' + escapeHtml(typeName(component.type)) + '</td><td data-label="Entrada">± ' + format(component.input, d) + '</td><td data-label="Erro convertido">± ' + format(component.converted, d) + ' ' + escapeHtml(data.unit) + '</td></tr>'
+    ).join('');
+
+    const points = [0,25,50,75,100].map((percent) => ({percent, value:data.lrv + percent / 100 * span}));
+    byId('tblPontos').innerHTML = points.map(({percent, value}) => {
+      const pointResult = calculateAtPoint(data, value);
+      const ok = pointResult.rss <= pointResult.tolerance;
+      return '<tr><td data-label="Ponto">' + percent + '%</td><td data-label="Valor">' + format(value, d) + ' ' + escapeHtml(data.unit) + '</td><td data-label="RSS">± ' + format(pointResult.rss, d) + ' ' + escapeHtml(data.unit) + '</td><td data-label="Conservador">± ' + format(pointResult.conservative, d) + ' ' + escapeHtml(data.unit) + '</td><td data-label="Status RSS" class="' + (ok ? 'good' : 'danger') + '">' + (ok ? 'OK' : 'Acima') + '</td></tr>';
+    }).join('');
+
+    buildMemory(data, result);
+    lastCalculation = {data, result, status, rssPct, margin, dominant, outside, generatedAt:new Date()};
+    preparePrintSheet();
+  }
+
+  function calculate({focusErrors = true} = {}) {
+    const data = readInputs();
+    const errors = validate(data);
+    if (errors.length) {
+      if (focusErrors) showValidation(errors);
+      else {
+        clearValidation();
+        errors.forEach((error) => byId(error.id)?.classList.add('invalid'));
+      }
+      clearResults('Dados incompletos ou inválidos. Corrija os campos destacados para calcular.');
+      lastCalculation = null;
+      return false;
+    }
+    clearValidation();
+    const result = calculateAtPoint(data, data.point);
+    render(data, result);
+    return true;
+  }
+
+  function summaryTableHtml(calc) {
+    const {data, result, status, rssPct, margin, dominant} = calc;
+    const d = data.digits;
+    return '<table><tbody>' +
+      '<tr><th>TAG/descrição</th><td>' + escapeHtml(data.tag) + '</td></tr>' +
+      '<tr><th>Faixa</th><td>' + format(data.lrv, d) + ' a ' + format(data.urv, d) + ' ' + escapeHtml(data.unit) + '</td></tr>' +
+      '<tr><th>Ponto avaliado</th><td>' + format(data.point, d) + ' ' + escapeHtml(data.unit) + '</td></tr>' +
+      '<tr><th>Tolerância</th><td>± ' + format(result.tolerance, d) + ' ' + escapeHtml(data.unit) + ' (' + escapeHtml(typeName(data.toleranceType)) + ')</td></tr>' +
+      '<tr><th>Erro RSS</th><td>± ' + format(result.rss, d) + ' ' + escapeHtml(data.unit) + ' (' + format(rssPct, 3) + '% do span)</td></tr>' +
+      '<tr><th>Erro conservador</th><td>± ' + format(result.conservative, d) + ' ' + escapeHtml(data.unit) + '</td></tr>' +
+      '<tr><th>Margem RSS</th><td>' + format(margin, d) + ' ' + escapeHtml(data.unit) + '</td></tr>' +
+      '<tr><th>Componente dominante</th><td>' + escapeHtml(dominant ? dominant.name : '—') + '</td></tr>' +
+      '<tr><th>Status</th><td>' + escapeHtml(status.text) + '</td></tr>' +
+      '</tbody></table>';
+  }
+
+  function componentTableHtml(calc) {
+    const {data, result} = calc;
+    const d = data.digits;
+    return '<table><thead><tr><th>Componente</th><th>Tipo</th><th>Entrada</th><th>Convertido</th></tr></thead><tbody>' + result.components.map((component) =>
+      '<tr><td>' + escapeHtml(component.name) + '</td><td>' + escapeHtml(typeName(component.type)) + '</td><td>± ' + format(component.input, d) + '</td><td>± ' + format(component.converted, d) + ' ' + escapeHtml(data.unit) + '</td></tr>'
+    ).join('') + '</tbody></table>';
+  }
+
+  function memoryHtml(calc) {
+    const {data, result} = calc;
+    const d = data.digits;
+    const span = data.urv - data.lrv;
+    const absoluteSpan = Math.abs(span);
+    const componentList = result.components.map((component) => '<li>' + escapeHtml(component.name) + ': ' + format(component.converted, d) + ' ' + escapeHtml(data.unit) + '</li>').join('');
+    return '<div class="avoid-break"><h2>Memória de cálculo</h2>' +
+      '<p>Span = URV − LRV = ' + format(data.urv, d) + ' − ' + format(data.lrv, d) + ' = ' + format(span, d) + ' ' + escapeHtml(data.unit) + '.</p>' +
+      '<p>Para as contribuições em % do span, foi usado |span| = ' + format(absoluteSpan, d) + ' ' + escapeHtml(data.unit) + '.</p><ul>' + componentList + '</ul>' +
+      '<p>RSS = raiz da soma dos quadrados = ' + format(result.rss, d) + ' ' + escapeHtml(data.unit) + '.</p>' +
+      '<p>Soma conservadora = soma dos módulos = ' + format(result.conservative, d) + ' ' + escapeHtml(data.unit) + '.</p></div>';
+  }
+
+  function documentContent(calc) {
+    return '<div class="avoid-break"><h2>Dados e resultados</h2>' + summaryTableHtml(calc) + '</div>' +
+      '<div class="avoid-break"><h2>Contribuições da malha</h2>' + componentTableHtml(calc) + '</div>' +
+      memoryHtml(calc) +
+      '<div class="avoid-break"><h2>Interpretação e limitações</h2><p>O método RSS pressupõe contribuições independentes e sem correlação relevante. A soma conservadora representa o pior caso matemático. Erros sistemáticos conhecidos, incerteza de medição e critérios formais de aceitação devem ser avaliados separadamente.</p><p>Ferramenta orientativa. Para decisões críticas, confirme as premissas com procedimentos internos, certificados, documentação técnica e profissional responsável.</p></div>';
+  }
+
+  function preparePrintSheet() {
+    if (!lastCalculation) return;
+    byId('printDate').textContent = 'Gerado em ' + lastCalculation.generatedAt.toLocaleString('pt-BR');
+    byId('printContent').innerHTML = documentContent(lastCalculation);
+  }
+
+  function printCalculation() {
+    if (!calculate()) return;
+    preparePrintSheet();
+    window.print();
+  }
+
+  function generateReport() {
+    if (!calculate()) return;
+    const reportWindow = window.open('', '_blank');
+    if (!reportWindow) {
+      alert('O navegador bloqueou a abertura do relatório. Permita pop-ups para esta página e tente novamente.');
+      return;
+    }
+    reportWindow.opener = null;
+    const generatedAt = lastCalculation.generatedAt.toLocaleString('pt-BR');
+    reportWindow.document.open();
+    reportWindow.document.write('<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Relatório técnico — Erro total de malha</title><style>body{font-family:Arial,sans-serif;color:#111;max-width:920px;margin:28px auto;padding:0 18px;line-height:1.5}h1{font-size:25px;margin-bottom:4px}h2{font-size:18px;border-bottom:1px solid #555;padding-bottom:5px;margin-top:28px}table{width:100%;border-collapse:collapse}th,td{border:1px solid #777;padding:8px;text-align:left;vertical-align:top}th{background:#eee}.actions{margin:18px 0}.actions button{padding:10px 14px;font:inherit;cursor:pointer}@media print{.actions{display:none}@page{size:A4;margin:14mm}body{margin:0;max-width:none}h2,table{break-inside:avoid}}</style></head><body><div class="actions"><button type="button" onclick="window.print()">Imprimir ou salvar em PDF</button></div><h1>Relatório técnico — Erro total de malha</h1><p>Gerado em ' + escapeHtml(generatedAt) + '</p>' + documentContent(lastCalculation) + '</body></html>');
+    reportWindow.document.close();
+  }
+
+  async function copyResult() {
+    if (!calculate()) return;
+    const {data, result, status, rssPct, margin, dominant} = lastCalculation;
+    const d = data.digits;
+    const text = [
+      'Erro total de malha',
+      'TAG: ' + data.tag,
+      'Faixa: ' + format(data.lrv, d) + ' a ' + format(data.urv, d) + ' ' + data.unit,
+      'Ponto: ' + format(data.point, d) + ' ' + data.unit,
+      'Tolerância: ± ' + format(result.tolerance, d) + ' ' + data.unit,
+      'RSS: ± ' + format(result.rss, d) + ' ' + data.unit + ' (' + format(rssPct, 3) + '% do span)',
+      'Conservador: ± ' + format(result.conservative, d) + ' ' + data.unit,
+      'Margem RSS: ' + format(margin, d) + ' ' + data.unit,
+      'Dominante: ' + (dominant ? dominant.name : '—'),
+      'Status: ' + status.text
+    ].join('\n');
+    try {
+      await navigator.clipboard.writeText(text);
+      alert('Resultado copiado.');
+    } catch (_) {
+      const area = document.createElement('textarea');
+      area.value = text;
+      document.body.appendChild(area);
+      area.select();
+      document.execCommand('copy');
+      area.remove();
+      alert('Resultado copiado.');
+    }
+  }
+
+  function setTemperatureExample() {
+    byId('tag').value = 'TT-101 - Malha de temperatura';
+    byId('lrv').value = '0'; byId('urv').value = '200'; byId('unid').value = '°C'; byId('ponto').value = '100';
+    byId('tolTipo').value = 'abs'; byId('tol').value = '2';
+    const values = ['0,25','0,10','0,15','0,10','0,05','0'];
+    values.forEach((value, index) => { byId('v' + index).value = value; byId('t' + index).value = 'pct_span'; });
+    calculate({focusErrors:false});
+  }
+
+  function setPressureExample() {
+    byId('tag').value = 'PT-204 - Malha de pressão';
+    byId('lrv').value = '0'; byId('urv').value = '10'; byId('unid').value = 'bar'; byId('ponto').value = '6';
+    byId('tolTipo').value = 'pct_span'; byId('tol').value = '1';
+    const values = ['0,20','0,075','0,10','0,05','0,03','0,02'];
+    values.forEach((value, index) => { byId('v' + index).value = value; byId('t' + index).value = 'pct_span'; });
+    calculate({focusErrors:false});
+  }
+
+  function reset() {
+    byId('tag').value = '';
+    ['lrv','urv','ponto','tol'].forEach((id) => { byId(id).value = ''; });
+    byId('unid').value = '';
+    byId('casas').value = '2';
+    byId('tolTipo').value = 'abs';
+    for (let i = 0; i < 6; i += 1) byId('v' + i).value = '0';
+    clearValidation();
+    lastCalculation = null;
+    clearResults();
+    byId('lrv').focus();
+  }
+
+  byId('btnCalculate').addEventListener('click', () => calculate());
+  byId('btnReset').addEventListener('click', reset);
+  byId('btnCopy').addEventListener('click', copyResult);
+  byId('btnPrint').addEventListener('click', printCalculation);
+  byId('topPrint').addEventListener('click', printCalculation);
+  byId('btnReport').addEventListener('click', generateReport);
+  byId('topReport').addEventListener('click', generateReport);
+  byId('btnExampleTemperature').addEventListener('click', setTemperatureExample);
+  byId('btnExamplePressure').addEventListener('click', setPressureExample);
+
+  document.querySelectorAll('#tag,#unid,#lrv,#urv,#ponto,#casas,#tolTipo,#tol,#componentes input,#componentes select').forEach((element) => {
+    element.addEventListener('input', () => calculate({focusErrors:false}));
+    element.addEventListener('change', () => calculate({focusErrors:false}));
+  });
+
+  calculate({focusErrors:false});
+})();
 </script>
 
 <a aria-label="Voltar para Ferramentas" class="floating-back-tools no-print" href="ferramentas.html"><i class="fas fa-arrow-left"></i> Voltar para Ferramentas</a>
