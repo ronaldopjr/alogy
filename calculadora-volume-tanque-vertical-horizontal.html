@@ -18,6 +18,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <link rel="stylesheet" href="style.css" />
   <script src="app.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js" defer></script>
   <meta property="og:locale" content="pt_BR" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="ALOGY Engenharia" />
@@ -94,8 +96,29 @@
     pre.copybox{white-space:pre-wrap;background:#0f172a;color:#e5e7eb;border-radius:16px;padding:16px;overflow:auto;line-height:1.55}
     .faq details{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:14px;padding:14px;margin-top:10px}.faq summary{cursor:pointer;font-weight:900;color:#0b3a62}.faq p{margin:10px 0 0;color:#475569}
     .mini-meter{height:12px;background:#e5e7eb;border-radius:999px;overflow:hidden;margin:7px 0}.mini-meter span{display:block;height:100%;background:linear-gradient(90deg,#0b3a62,#006bb1);border-radius:999px;width:0%}
-    @media(max-width:900px){.calc-grid,.split{grid-template-columns:1fr}.field-grid{grid-template-columns:1fr}.tech-hero{padding:24px}.tech-hero h1{font-size:1.65rem}.wide{grid-column:auto}}
-    @media print{header,.social-floating,.fab-wrap,.tech-back,.cta-bar,footer,.calc-actions,.no-print{display:none!important}.tech-card,.tech-hero{box-shadow:none;border:1px solid #ddd}.tech-hero{color:#111;background:#fff}.tech-hero h1,.tech-hero p{color:#111}.calc-grid{display:block}.tech-wrap{max-width:100%;margin:0}.tech-table th{background:#eee!important;color:#111!important}}
+    .field input[aria-invalid="true"],.field select[aria-invalid="true"]{border-color:#b91c1c;box-shadow:0 0 0 3px rgba(185,28,28,.12)}
+    .formula-box{background:#f8fafc;border:1px solid rgba(0,75,128,.16);border-radius:16px;padding:15px;margin-top:12px;overflow-wrap:anywhere}
+    .formula-box code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#0f172a;font-size:.92rem}
+    #printArea{display:none}
+    @media(max-width:900px){.calc-grid,.split{grid-template-columns:1fr}.field-grid{grid-template-columns:1fr}.tech-hero{padding:24px}.tech-hero h1{font-size:1.65rem}.wide{grid-column:auto}.tech-table{min-width:760px}}
+    @media print{
+      @page{size:A4;margin:14mm}
+      body.print-report{background:#fff!important;color:#111!important}
+      body.print-report>header,body.print-report>.social-floating,body.print-report>.fab-wrap,body.print-report>main,body.print-report>footer{display:none!important}
+      body.print-report #printArea{display:block!important;font-family:Arial,sans-serif;color:#111;background:#fff}
+      #printArea h1{font-size:20pt;margin:0 0 4mm;color:#111}
+      #printArea h2{font-size:13pt;margin:7mm 0 2mm;color:#111;border-bottom:1px solid #777;padding-bottom:1.5mm}
+      #printArea p,#printArea li,#printArea td,#printArea th{font-size:9.5pt;line-height:1.35;color:#111}
+      #printArea table{width:100%;border-collapse:collapse;margin:2mm 0 4mm;table-layout:fixed}
+      #printArea th,#printArea td{border:1px solid #888;padding:2mm;vertical-align:top;overflow-wrap:anywhere}
+      #printArea th{background:#eee!important;font-weight:700}
+      #printArea .report-grid{display:grid;grid-template-columns:1fr 1fr;gap:3mm}
+      #printArea .report-box{border:1px solid #888;padding:3mm;break-inside:avoid}
+      #printArea .report-main{font-size:16pt;font-weight:700;margin:1mm 0}
+      #printArea .report-note{border-left:3px solid #555;padding-left:3mm;margin:2mm 0}
+      #printArea .page-break{break-before:page}
+      #printArea tr,#printArea .report-box{break-inside:avoid}
+    }
   </style>
   <script async crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5586837114309500"></script>
 </head>
@@ -125,38 +148,39 @@
       <section class="tech-card">
         <h2>Dados do tanque e da medição</h2>
         <div class="field-grid">
-          <div class="field"><label>Tag do tanque</label><input id="tag" value="TK-101" /><small>Opcional para o memorial.</small></div>
-          <div class="field"><label>Serviço / produto</label><input id="servico" value="Água de processo" /><small>Ex.: água, solvente, óleo, solução química.</small></div>
-          <div class="field wide"><label>Tipo de tanque</label><select id="tipo" onchange="ajustarCampos(); calcularTanque();"><option value="vertical">Cilíndrico vertical - fundo plano</option><option value="horizontal">Cilíndrico horizontal</option><option value="retangular">Retangular</option></select><small>Para tanque horizontal, o volume parcial é não linear em relação ao nível.</small></div>
-          <div class="field geom-d"><label>Diâmetro interno</label><input id="diametro" type="number" step="0.001" value="2.50" /><small>m</small></div>
-          <div class="field geom-h"><label>Altura cilíndrica útil</label><input id="altura" type="number" step="0.001" value="4.00" /><small>m para tanque vertical.</small></div>
-          <div class="field geom-l"><label>Comprimento cilíndrico</label><input id="comprimento" type="number" step="0.001" value="6.00" /><small>m para tanque horizontal.</small></div>
-          <div class="field geom-w"><label>Largura interna</label><input id="largura" type="number" step="0.001" value="2.00" /><small>m para tanque retangular.</small></div>
-          <div class="field geom-c"><label>Comprimento interno</label><input id="compRet" type="number" step="0.001" value="3.00" /><small>m para tanque retangular.</small></div>
-          <div class="field"><label>Nível medido atual</label><input id="nivel" type="number" step="0.001" value="1.75" /><small>m acima do zero físico considerado.</small></div>
-          <div class="field"><label>Densidade do produto</label><input id="densidade" type="number" step="1" value="1000" /><small>kg/m³ para estimar massa.</small></div>
-          <div class="field"><label>Offset de volume morto</label><input id="offsetVol" type="number" step="0.001" value="0" /><small>m³ adicionados ao volume calculado. Use 0 se não souber.</small></div>
-          <div class="field"><label>Casas decimais da tabela</label><select id="decimais"><option value="1">1 decimal</option><option value="2" selected>2 decimais</option><option value="3">3 decimais</option></select><small>Afeta apenas a exibição.</small></div>
+          <div class="field"><label for="tag">Tag do tanque</label><input id="tag" type="text" value="TK-101" autocomplete="off" /><small>Opcional para o memorial.</small></div>
+          <div class="field"><label for="servico">Serviço / produto</label><input id="servico" type="text" value="Água de processo" autocomplete="off" /><small>Ex.: água, solvente, óleo, solução química.</small></div>
+          <div class="field wide"><label for="tipo">Tipo de tanque</label><select id="tipo"><option value="vertical">Cilíndrico vertical - fundo plano</option><option value="horizontal">Cilíndrico horizontal</option><option value="retangular">Retangular</option></select><small>Para tanque horizontal, o volume parcial é não linear em relação ao nível.</small></div>
+          <div class="field geom-d"><label for="diametro">Diâmetro interno</label><input id="diametro" type="text" inputmode="decimal" value="2,50" autocomplete="off" /><small>m</small></div>
+          <div class="field geom-h"><label for="altura">Altura cilíndrica útil</label><input id="altura" type="text" inputmode="decimal" value="4,00" autocomplete="off" /><small>m para tanque vertical.</small></div>
+          <div class="field geom-l"><label for="comprimento">Comprimento cilíndrico</label><input id="comprimento" type="text" inputmode="decimal" value="6,00" autocomplete="off" /><small>m para tanque horizontal.</small></div>
+          <div class="field geom-w"><label for="largura">Largura interna</label><input id="largura" type="text" inputmode="decimal" value="2,00" autocomplete="off" /><small>m para tanque retangular.</small></div>
+          <div class="field geom-c"><label for="compRet">Comprimento interno</label><input id="compRet" type="text" inputmode="decimal" value="3,00" autocomplete="off" /><small>m para tanque retangular.</small></div>
+          <div class="field"><label for="nivel">Nível medido atual</label><input id="nivel" type="text" inputmode="decimal" value="1,75" autocomplete="off" /><small>m acima do zero físico considerado.</small></div>
+          <div class="field"><label for="densidade">Densidade do produto</label><input id="densidade" type="text" inputmode="decimal" value="1000" autocomplete="off" /><small>kg/m³ para estimar massa.</small></div>
+          <div class="field"><label for="offsetVol">Offset de volume morto</label><input id="offsetVol" type="text" inputmode="decimal" value="0" autocomplete="off" /><small>m³ adicionados ao volume calculado. Use 0 se não souber.</small></div>
+          <div class="field"><label for="decimais">Casas decimais da tabela</label><select id="decimais"><option value="1">1 decimal</option><option value="2" selected>2 decimais</option><option value="3">3 decimais</option></select><small>Afeta apenas a exibição.</small></div>
         </div>
 
         <h3>Escala de nível e sinal</h3>
         <div class="field-grid">
-          <div class="field"><label>LRV do nível</label><input id="lrvNivel" type="number" step="0.001" value="0" /><small>m correspondente a 4 mA.</small></div>
-          <div class="field"><label>URV do nível</label><input id="urvNivel" type="number" step="0.001" value="4" /><small>m correspondente a 20 mA.</small></div>
-          <div class="field"><label>Raw mínimo do CLP</label><input id="rawMin" type="number" step="1" value="0" /><small>Ex.: 0, 4000, 5530.</small></div>
-          <div class="field"><label>Raw máximo do CLP</label><input id="rawMax" type="number" step="1" value="27648" /><small>Ex.: 27648, 20000, 32767.</small></div>
+          <div class="field"><label for="lrvNivel">LRV do nível</label><input id="lrvNivel" type="text" inputmode="decimal" value="0" autocomplete="off" /><small>m correspondente a 4 mA.</small></div>
+          <div class="field"><label for="urvNivel">URV do nível</label><input id="urvNivel" type="text" inputmode="decimal" value="4" autocomplete="off" /><small>m correspondente a 20 mA.</small></div>
+          <div class="field"><label for="rawMin">Raw mínimo do CLP</label><input id="rawMin" type="text" inputmode="decimal" value="0" autocomplete="off" /><small>Ex.: 0, 4000, 5530.</small></div>
+          <div class="field"><label for="rawMax">Raw máximo do CLP</label><input id="rawMax" type="text" inputmode="decimal" value="27648" autocomplete="off" /><small>Ex.: 27648, 20000, 32767.</small></div>
         </div>
 
         <div class="calc-actions no-print">
-          <button class="btn-mini" onclick="calcularTanque()"><i class="fas fa-calculator"></i> Calcular volume</button>
-          <button class="btn-mini secondary" onclick="copiarMemorial()"><i class="fas fa-copy"></i> Copiar memorial</button>
-          <button class="btn-mini secondary" onclick="window.print()"><i class="fas fa-print"></i> Imprimir</button>
+          <button id="btnCalcular" type="button" class="btn-mini"><i class="fas fa-calculator"></i> Calcular volume</button>
+          <button id="btnCopiar" type="button" class="btn-mini secondary"><i class="fas fa-copy"></i> Copiar memorial</button>
+          <button id="btnImprimir" type="button" class="btn-mini secondary"><i class="fas fa-print"></i> Imprimir</button>
+          <button id="btnRelatorio" type="button" class="btn-mini secondary"><i class="fas fa-file-pdf"></i> Gerar relatório</button>
         </div>
       </section>
 
       <aside class="tech-card">
         <h2>Resultado rápido</h2>
-        <div id="resultadoRapido" class="result-box"><p>Preencha os dados e clique em calcular.</p></div>
+        <div id="resultadoRapido" class="result-box" role="status" aria-live="polite" tabindex="-1"><p>Preencha os dados e clique em calcular.</p></div>
         <div class="diagram" id="miniDiagrama"></div>
         <h3>Aplicações comuns</h3>
         <ul>
@@ -168,9 +192,18 @@
       </aside>
     </div>
 
-    <section class="tech-card" id="resultadoDetalhado">
+    <section class="tech-card" id="resultadoDetalhado" aria-live="polite">
       <h2>Resultado detalhado</h2>
       <p>O resultado será exibido após o cálculo.</p>
+    </section>
+
+
+    <section class="tech-card">
+      <h2>Fórmulas utilizadas</h2>
+      <div class="formula-box"><strong>Tanque cilíndrico vertical:</strong><br><code>V(h) = π × D² / 4 × h + Voffset</code></div>
+      <div class="formula-box"><strong>Tanque cilíndrico horizontal:</strong><br><code>A(h) = r² × arccos((r − h) / r) − (r − h) × √(2rh − h²)</code><br><code>V(h) = A(h) × L + Voffset</code></div>
+      <div class="formula-box"><strong>Tanque retangular:</strong><br><code>V(h) = largura × comprimento × h + Voffset</code></div>
+      <div class="formula-box"><strong>Escala do transmissor e raw:</strong><br><code>mA = 4 + 16 × (nível − LRV) / (URV − LRV)</code><br><code>Raw = Rawmín + (Rawmáx − Rawmín) × (mA − 4) / 16</code></div>
     </section>
 
     <section class="tech-card">
@@ -216,104 +249,559 @@
     <section class="cta-bar no-print"><div><h2>Precisa validar medição de nível, volume ou instrumentação de tanque?</h2><p>A ALOGY apoia empresas em instrumentação, automação, calibração, malhas 4-20 mA, transmissores de nível e soluções industriais.</p></div><a class="btn primary" href="https://wa.me/5519981442448?text=Ol%C3%A1%21%20Gostaria%20de%20apoio%20para%20medição%20de%20nível%20e%20volume%20de%20tanque." target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> Falar com a ALOGY</a></section>
   </main>
 
+  <section id="printArea" aria-hidden="true"></section>
+
   <script>
-    const $ = id => document.getElementById(id);
-    const n = id => parseFloat($(id).value)||0;
-    const s = id => ($(id).value||'').trim();
-    const fmt = (v,d=2) => Number.isFinite(v) ? v.toLocaleString('pt-BR',{minimumFractionDigits:d,maximumFractionDigits:d}) : '-';
-    const pct = (v,d=1) => Number.isFinite(v) ? v.toLocaleString('pt-BR',{minimumFractionDigits:d,maximumFractionDigits:d})+'%' : '-';
-    function ajustarCampos(){
-      const tipo=s('tipo');
-      document.querySelectorAll('.geom-d,.geom-h,.geom-l,.geom-w,.geom-c').forEach(el=>el.style.display='none');
-      if(tipo==='vertical'){document.querySelector('.geom-d').style.display='flex';document.querySelector('.geom-h').style.display='flex';$('urvNivel').value = $('urvNivel').value || $('altura').value;}
-      if(tipo==='horizontal'){document.querySelector('.geom-d').style.display='flex';document.querySelector('.geom-l').style.display='flex';}
-      if(tipo==='retangular'){document.querySelector('.geom-h').style.display='flex';document.querySelector('.geom-w').style.display='flex';document.querySelector('.geom-c').style.display='flex';}
-    }
-    function clamp(x,a,b){return Math.min(Math.max(x,a),b)}
-    function volumeParcial(tipo, h){
-      const off=n('offsetVol');
-      if(tipo==='vertical'){
-        const d=n('diametro'), H=n('altura');
-        const hc=clamp(h,0,H);
-        return Math.PI*Math.pow(d,2)/4*hc + off;
+  (() => {
+    'use strict';
+
+    const byId = id => document.getElementById(id);
+    const readText = id => (byId(id)?.value || '').trim();
+    const formatNumber = (value, decimals = 2) => Number.isFinite(value)
+      ? value.toLocaleString('pt-BR', {minimumFractionDigits: decimals, maximumFractionDigits: decimals})
+      : '-';
+    const formatPercent = (value, decimals = 1) => Number.isFinite(value)
+      ? `${formatNumber(value, decimals)}%`
+      : '-';
+    const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
+    const escapeHtml = value => String(value ?? '').replace(/[&<>'"]/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[char]));
+
+    let lastCalculation = null;
+
+    function parseLocaleNumber(rawValue) {
+      let value = String(rawValue ?? '').trim().replace(/\s+/g, '').replace(/[−–—]/g, '-');
+      if (!value) return Number.NaN;
+      if (!/^[+-]?[0-9.,]+$/.test(value)) return Number.NaN;
+
+      const comma = value.lastIndexOf(',');
+      const dot = value.lastIndexOf('.');
+      if (comma >= 0 && dot >= 0) {
+        const decimalIndex = Math.max(comma, dot);
+        const integerPart = value.slice(0, decimalIndex).replace(/[.,]/g, '');
+        const decimalPart = value.slice(decimalIndex + 1).replace(/[.,]/g, '');
+        value = `${integerPart}.${decimalPart}`;
+      } else if (comma >= 0) {
+        const pieces = value.split(',');
+        value = pieces.length === 2
+          ? `${pieces[0]}.${pieces[1]}`
+          : `${pieces.slice(0, -1).join('')}.${pieces.at(-1)}`;
+      } else if ((value.match(/\./g) || []).length > 1) {
+        const pieces = value.split('.');
+        value = `${pieces.slice(0, -1).join('')}.${pieces.at(-1)}`;
       }
-      if(tipo==='horizontal'){
-        const d=n('diametro'), L=n('comprimento'), r=d/2;
-        const hc=clamp(h,0,d);
-        if(hc<=0) return off;
-        if(hc>=d) return Math.PI*r*r*L + off;
-        const area = r*r*Math.acos((r-hc)/r) - (r-hc)*Math.sqrt(Math.max(0,2*r*hc-hc*hc));
-        return area*L + off;
+
+      const parsed = Number(value);
+      return Number.isFinite(parsed) ? parsed : Number.NaN;
+    }
+
+    function readNumber(id) {
+      return parseLocaleNumber(byId(id)?.value);
+    }
+
+    function setInvalid(id, invalid) {
+      const element = byId(id);
+      if (!element) return;
+      if (invalid) element.setAttribute('aria-invalid', 'true');
+      else element.removeAttribute('aria-invalid');
+    }
+
+    function clearInvalidState() {
+      document.querySelectorAll('[aria-invalid="true"]').forEach(element => element.removeAttribute('aria-invalid'));
+    }
+
+    function tankTypeText() {
+      return {
+        vertical: 'Cilíndrico vertical - fundo plano',
+        horizontal: 'Cilíndrico horizontal',
+        retangular: 'Retangular'
+      }[readText('tipo')] || readText('tipo');
+    }
+
+    function adjustFields() {
+      const type = readText('tipo');
+      document.querySelectorAll('.geom-d,.geom-h,.geom-l,.geom-w,.geom-c').forEach(element => {
+        element.style.display = 'none';
+      });
+      if (type === 'vertical') {
+        document.querySelector('.geom-d').style.display = 'flex';
+        document.querySelector('.geom-h').style.display = 'flex';
       }
-      const H=n('altura'), W=n('largura'), C=n('compRet');
-      const hc=clamp(h,0,H);
-      return W*C*hc + off;
-    }
-    function alturaMaxima(){
-      const tipo=s('tipo');
-      if(tipo==='horizontal') return n('diametro');
-      return n('altura');
-    }
-    function volumeTotal(){return volumeParcial(s('tipo'), alturaMaxima());}
-    function tipoTexto(){return {'vertical':'Cilíndrico vertical - fundo plano','horizontal':'Cilíndrico horizontal','retangular':'Retangular'}[s('tipo')]||s('tipo');}
-    function validar(){
-      const tipo=s('tipo'), erros=[];
-      if(tipo==='vertical' && (n('diametro')<=0 || n('altura')<=0)) erros.push('Para tanque vertical, diâmetro e altura devem ser maiores que zero.');
-      if(tipo==='horizontal' && (n('diametro')<=0 || n('comprimento')<=0)) erros.push('Para tanque horizontal, diâmetro e comprimento devem ser maiores que zero.');
-      if(tipo==='retangular' && (n('altura')<=0 || n('largura')<=0 || n('compRet')<=0)) erros.push('Para tanque retangular, altura, largura e comprimento devem ser maiores que zero.');
-      if(n('densidade')<=0) erros.push('A densidade deve ser maior que zero.');
-      if(n('urvNivel')<=n('lrvNivel')) erros.push('O URV do nível deve ser maior que o LRV.');
-      if(n('rawMax')<=n('rawMin')) erros.push('O raw máximo deve ser maior que o raw mínimo.');
-      return erros;
-    }
-    function mAfromLevel(level){return 4 + 16*((level-n('lrvNivel'))/(n('urvNivel')-n('lrvNivel')))}
-    function rawFromLevel(level){return n('rawMin') + (n('rawMax')-n('rawMin'))*((mAfromLevel(level)-4)/16)}
-    function rowAt(percent){
-      const hmax=alturaMaxima();
-      const level=hmax*percent/100;
-      const vol=volumeParcial(s('tipo'), level);
-      const total=volumeTotal();
-      return {percent, level, vol, litros:vol*1000, volPct: total>0?vol/total*100:0, massa:vol*n('densidade'), ma:mAfromLevel(level), raw:rawFromLevel(level)};
-    }
-    function calcularTanque(){
-      const erros=validar();
-      if(erros.length){
-        const html=`<div class="note bad"><strong>Não foi possível calcular.</strong><ul>${erros.map(e=>`<li>${e}</li>`).join('')}</ul></div>`;
-        $('resultadoRapido').innerHTML=html;$('resultadoDetalhado').innerHTML='<h2>Resultado detalhado</h2>'+html;$('memorial').textContent='Corrija os dados de entrada para gerar o memorial.';return;
+      if (type === 'horizontal') {
+        document.querySelector('.geom-d').style.display = 'flex';
+        document.querySelector('.geom-l').style.display = 'flex';
       }
-      const tipo=s('tipo'), hmax=alturaMaxima(), level=n('nivel'), levelClamped=clamp(level,0,hmax);
-      const total=volumeTotal(), vol=volumeParcial(tipo, levelClamped), litros=vol*1000, dens=n('densidade'), massa=vol*dens;
-      const fillByHeight=levelClamped/hmax*100, fillByVol=total>0?vol/total*100:0, ma=mAfromLevel(level), raw=rawFromLevel(level);
-      const alerts=[];
-      if(level<0 || level>hmax) alerts.push({cls:'warn',txt:`Nível informado (${fmt(level,3)} m) está fora da altura física do tanque. O volume foi calculado limitado entre 0 e ${fmt(hmax,3)} m.`});
-      if(tipo==='horizontal') alerts.push({cls:'info',txt:'Tanque horizontal tem relação não linear entre altura e volume. Para supervisório, avalie linearização por tabela ou função no CLP/DCS.'});
-      if(n('offsetVol')!==0) alerts.push({cls:'warn',txt:'Foi usado offset de volume morto. Confirme se esse volume representa corretamente fundo, bocal, sucção elevada ou volume não medido.'});
-      if(ma<3.8 || ma>20.5) alerts.push({cls:'warn',txt:`O nível informado gera ${fmt(ma,2)} mA, fora da faixa operacional típica 3,8 a 20,5 mA. Revise LRV/URV ou o nível atual.`});
-      if(tipo==='vertical') alerts.push({cls:'info',txt:'O cálculo assume tanque vertical de seção constante e fundo plano. Fundos cônicos/abaulados exigem correção.'});
-      if(tipo==='retangular') alerts.push({cls:'info',txt:'O cálculo retangular assume paredes retas e dimensões internas constantes.'});
-      const overall=alerts.some(a=>a.cls==='bad')?'bad':(alerts.some(a=>a.cls==='warn')?'warn':'ok');
-      $('resultadoRapido').innerHTML=`<div class="note ${overall}"><strong>${overall==='ok'?'Cálculo preliminar concluído':'Cálculo com observações'}</strong><div class="result-main">${fmt(litros,1)} L</div><div>Volume: <strong>${fmt(vol,3)} m³</strong> · Massa estimada: <strong>${fmt(massa,0)} kg</strong></div></div><div class="mini-meter"><span style="width:${clamp(fillByVol,0,100)}%"></span></div><div class="pill-row"><span class="pill">Nível: ${fmt(levelClamped,3)} m</span><span class="pill">Altura: ${pct(fillByHeight,1)}</span><span class="pill">Volume: ${pct(fillByVol,1)}</span><span class="pill">Sinal: ${fmt(ma,2)} mA</span></div><p class="result-sub">${alerts.map(a=>a.txt).join(' ')}</p>`;
-      desenharDiagrama(tipo, fillByHeight, fillByVol);
-      const pts=[0,10,20,25,30,40,50,60,70,75,80,90,100].map(rowAt);
-      const dec=parseInt(s('decimais')||'2',10);
-      const table=pts.map(r=>`<tr><td>${fmt(r.percent,0)}%</td><td>${fmt(r.level,3)} m</td><td>${fmt(r.vol,dec)} m³</td><td>${fmt(r.litros,0)} L</td><td>${pct(r.volPct,1)}</td><td>${fmt(r.massa,0)} kg</td><td>${fmt(r.ma,2)} mA</td><td>${fmt(r.raw,0)}</td></tr>`).join('');
-      const alertHtml=alerts.map(a=>`<p class="note ${a.cls}">${a.txt}</p>`).join('');
-      const geomHtml=tipo==='vertical'?`Diâmetro ${fmt(n('diametro'),3)} m · Altura ${fmt(n('altura'),3)} m`:tipo==='horizontal'?`Diâmetro ${fmt(n('diametro'),3)} m · Comprimento ${fmt(n('comprimento'),3)} m`:`Altura ${fmt(n('altura'),3)} m · Largura ${fmt(n('largura'),3)} m · Comprimento ${fmt(n('compRet'),3)} m`;
-      $('resultadoDetalhado').innerHTML=`<h2>Resultado detalhado</h2><div class="pill-row"><span class="pill">Tipo: ${tipoTexto()}</span><span class="pill">${geomHtml}</span><span class="pill">Volume total: ${fmt(total,3)} m³</span><span class="pill">${fmt(total*1000,0)} L</span></div><h3>Condição no nível informado</h3><div class="table-wrap"><table class="tech-table"><tbody><tr><th>Nível usado no cálculo</th><td>${fmt(levelClamped,3)} m</td></tr><tr><th>Volume parcial</th><td>${fmt(vol,3)} m³ / ${fmt(litros,1)} L</td></tr><tr><th>Enchimento por altura</th><td>${pct(fillByHeight,2)}</td></tr><tr><th>Enchimento por volume</th><td>${pct(fillByVol,2)}</td></tr><tr><th>Massa estimada</th><td>${fmt(massa,1)} kg / ${fmt(massa/1000,3)} t</td></tr><tr><th>Sinal estimado</th><td>${fmt(ma,2)} mA</td></tr><tr><th>Raw estimado</th><td>${fmt(raw,0)}</td></tr></tbody></table></div><h3>Tabela nível-volume simplificada</h3><div class="table-wrap"><table class="tech-table"><thead><tr><th>Altura</th><th>Nível</th><th>Volume</th><th>Litros</th><th>% volume</th><th>Massa</th><th>mA</th><th>Raw</th></tr></thead><tbody>${table}</tbody></table></div><h3>Alertas e observações</h3>${alertHtml}`;
-      $('memorial').textContent=gerarMemorial({tipo,hmax,level,levelClamped,total,vol,litros,dens,massa,fillByHeight,fillByVol,ma,raw,alerts,geomHtml,pts});
+      if (type === 'retangular') {
+        document.querySelector('.geom-h').style.display = 'flex';
+        document.querySelector('.geom-w').style.display = 'flex';
+        document.querySelector('.geom-c').style.display = 'flex';
+      }
     }
-    function desenharDiagrama(tipo, fillH, fillV){
-      const h=clamp(fillH,0,100), v=clamp(fillV,0,100);
-      $('miniDiagrama').innerHTML=`<svg viewBox="0 0 360 170" width="100%" role="img" aria-label="Diagrama simplificado do tanque"><rect x="90" y="25" width="180" height="120" rx="${tipo==='retangular'?8:60}" fill="#e5e7eb" stroke="#0b3a62" stroke-width="4"/><clipPath id="clipTank"><rect x="90" y="25" width="180" height="120" rx="${tipo==='retangular'?8:60}"/></clipPath><rect x="90" y="${145-120*h/100}" width="180" height="${120*h/100}" fill="#60a5fa" opacity="0.85" clip-path="url(#clipTank)"/><line x1="285" y1="145" x2="285" y2="25" stroke="#0b3a62" stroke-width="2"/><text x="298" y="88" font-size="14" fill="#0b3a62" font-weight="700">nível</text><text x="95" y="164" font-size="12" fill="#475569">Altura: ${pct(h,1)} · Volume: ${pct(v,1)}</text></svg>`;
+
+    function maxHeight(type, values) {
+      return type === 'horizontal' ? values.diameter : values.height;
     }
-    function gerarMemorial(c){
-      const alertas=c.alerts.map(a=>`- ${a.txt}`).join('\n');
-      const tabela=c.pts.map(r=>`${fmt(r.percent,0)}% altura | nível ${fmt(r.level,3)} m | volume ${fmt(r.vol,3)} m³ | ${fmt(r.litros,0)} L | ${pct(r.volPct,1)} volume | ${fmt(r.ma,2)} mA | raw ${fmt(r.raw,0)}`).join('\n');
-      return `MEMORIAL PRELIMINAR - VOLUME DE TANQUE E ESCALA DE NÍVEL\n\nTag: ${s('tag')||'não informado'}\nServiço/produto: ${s('servico')||'não informado'}\nTipo de tanque: ${tipoTexto()}\nGeometria considerada: ${c.geomHtml}\nDensidade informada: ${fmt(c.dens,1)} kg/m³\nOffset de volume morto: ${fmt(n('offsetVol'),3)} m³\n\nResultado principal:\n- Altura física máxima considerada: ${fmt(c.hmax,3)} m\n- Nível informado: ${fmt(c.level,3)} m\n- Nível usado no cálculo: ${fmt(c.levelClamped,3)} m\n- Volume total estimado: ${fmt(c.total,3)} m³ (${fmt(c.total*1000,0)} L)\n- Volume no nível informado: ${fmt(c.vol,3)} m³ (${fmt(c.litros,1)} L)\n- Enchimento por altura: ${pct(c.fillByHeight,2)}\n- Enchimento por volume: ${pct(c.fillByVol,2)}\n- Massa estimada no nível informado: ${fmt(c.massa,1)} kg\n\nEscala de nível e sinal:\n- LRV de nível: ${fmt(n('lrvNivel'),3)} m = 4 mA\n- URV de nível: ${fmt(n('urvNivel'),3)} m = 20 mA\n- Sinal no nível informado: ${fmt(c.ma,2)} mA\n- Raw mínimo/máximo: ${fmt(n('rawMin'),0)} / ${fmt(n('rawMax'),0)}\n- Raw estimado: ${fmt(c.raw,0)}\n\nTabela nível-volume simplificada:\n${tabela}\n\nAlertas e observações:\n${alertas}\n\nLimitações: cálculo preliminar para geometrias simples. Não substitui tabela de arqueação oficial, levantamento dimensional, correção de fundos/tampos, inclinação, volumes internos, medição validada, normas aplicáveis, procedimentos de segurança ou validação profissional.`;
+
+    function partialVolume(type, level, values) {
+      const offset = values.offset;
+      if (type === 'vertical') {
+        const usedLevel = clamp(level, 0, values.height);
+        return Math.PI * values.diameter ** 2 / 4 * usedLevel + offset;
+      }
+      if (type === 'horizontal') {
+        const radius = values.diameter / 2;
+        const usedLevel = clamp(level, 0, values.diameter);
+        if (usedLevel <= 0) return offset;
+        if (usedLevel >= values.diameter) return Math.PI * radius ** 2 * values.length + offset;
+        const rootTerm = Math.max(0, 2 * radius * usedLevel - usedLevel ** 2);
+        const area = radius ** 2 * Math.acos((radius - usedLevel) / radius)
+          - (radius - usedLevel) * Math.sqrt(rootTerm);
+        return area * values.length + offset;
+      }
+      const usedLevel = clamp(level, 0, values.height);
+      return values.width * values.rectLength * usedLevel + offset;
     }
-    function copiarMemorial(){const txt=$('memorial').textContent;navigator.clipboard.writeText(txt).then(()=>alert('Memorial copiado.')).catch(()=>alert('Não foi possível copiar automaticamente. Selecione o texto manualmente.'));}
-    ['tag','servico','diametro','altura','comprimento','largura','compRet','nivel','densidade','offsetVol','decimais','lrvNivel','urvNivel','rawMin','rawMax'].forEach(id=>{setTimeout(()=>{const el=$(id); if(el) el.addEventListener('input',calcularTanque);},0)});
-    ajustarCampos(); calcularTanque();
+
+    function milliampFromLevel(level, values) {
+      return 4 + 16 * ((level - values.lrv) / (values.urv - values.lrv));
+    }
+
+    function rawFromLevel(level, values) {
+      const milliamp = milliampFromLevel(level, values);
+      return values.rawMin + (values.rawMax - values.rawMin) * ((milliamp - 4) / 16);
+    }
+
+    function collectValues() {
+      return {
+        diameter: readNumber('diametro'),
+        height: readNumber('altura'),
+        length: readNumber('comprimento'),
+        width: readNumber('largura'),
+        rectLength: readNumber('compRet'),
+        level: readNumber('nivel'),
+        density: readNumber('densidade'),
+        offset: readNumber('offsetVol'),
+        lrv: readNumber('lrvNivel'),
+        urv: readNumber('urvNivel'),
+        rawMin: readNumber('rawMin'),
+        rawMax: readNumber('rawMax'),
+        decimals: Number.parseInt(readText('decimais'), 10)
+      };
+    }
+
+    function validate(type, values) {
+      clearInvalidState();
+      const errors = [];
+      const requireFinite = (id, value, label) => {
+        if (!Number.isFinite(value)) {
+          errors.push(`${label} deve ser preenchido com um número válido.`);
+          setInvalid(id, true);
+          return false;
+        }
+        return true;
+      };
+      const requirePositive = (id, value, label) => {
+        if (!requireFinite(id, value, label)) return;
+        if (value <= 0) {
+          errors.push(`${label} deve ser maior que zero.`);
+          setInvalid(id, true);
+        }
+      };
+
+      if (type === 'vertical') {
+        requirePositive('diametro', values.diameter, 'O diâmetro interno');
+        requirePositive('altura', values.height, 'A altura útil');
+      } else if (type === 'horizontal') {
+        requirePositive('diametro', values.diameter, 'O diâmetro interno');
+        requirePositive('comprimento', values.length, 'O comprimento cilíndrico');
+      } else if (type === 'retangular') {
+        requirePositive('altura', values.height, 'A altura útil');
+        requirePositive('largura', values.width, 'A largura interna');
+        requirePositive('compRet', values.rectLength, 'O comprimento interno');
+      } else {
+        errors.push('Selecione um tipo de tanque válido.');
+        setInvalid('tipo', true);
+      }
+
+      requireFinite('nivel', values.level, 'O nível medido');
+      requirePositive('densidade', values.density, 'A densidade');
+      if (requireFinite('offsetVol', values.offset, 'O offset de volume morto') !== false && values.offset < 0) {
+        errors.push('O offset de volume morto não pode ser negativo.');
+        setInvalid('offsetVol', true);
+      }
+      requireFinite('lrvNivel', values.lrv, 'O LRV do nível');
+      requireFinite('urvNivel', values.urv, 'O URV do nível');
+      requireFinite('rawMin', values.rawMin, 'O raw mínimo');
+      requireFinite('rawMax', values.rawMax, 'O raw máximo');
+
+      if (Number.isFinite(values.lrv) && Number.isFinite(values.urv) && values.urv <= values.lrv) {
+        errors.push('O URV do nível deve ser maior que o LRV.');
+        setInvalid('lrvNivel', true);
+        setInvalid('urvNivel', true);
+      }
+      if (Number.isFinite(values.rawMin) && Number.isFinite(values.rawMax) && values.rawMax <= values.rawMin) {
+        errors.push('O raw máximo deve ser maior que o raw mínimo.');
+        setInvalid('rawMin', true);
+        setInvalid('rawMax', true);
+      }
+      return errors;
+    }
+
+    function geometryText(type, values) {
+      if (type === 'vertical') return `Diâmetro ${formatNumber(values.diameter, 3)} m · Altura ${formatNumber(values.height, 3)} m`;
+      if (type === 'horizontal') return `Diâmetro ${formatNumber(values.diameter, 3)} m · Comprimento ${formatNumber(values.length, 3)} m`;
+      return `Altura ${formatNumber(values.height, 3)} m · Largura ${formatNumber(values.width, 3)} m · Comprimento ${formatNumber(values.rectLength, 3)} m`;
+    }
+
+    function formulaText(type) {
+      if (type === 'vertical') return 'V(h) = π × D² / 4 × h + Voffset';
+      if (type === 'horizontal') return 'A(h) = r² × arccos((r − h) / r) − (r − h) × √(2rh − h²); V(h) = A(h) × L + Voffset';
+      return 'V(h) = largura × comprimento × h + Voffset';
+    }
+
+    function rowAt(percent, calculation) {
+      const level = calculation.maxHeight * percent / 100;
+      const volume = partialVolume(calculation.type, level, calculation.values);
+      return {
+        percent,
+        level,
+        volume,
+        liters: volume * 1000,
+        volumePercent: calculation.totalVolume > 0 ? volume / calculation.totalVolume * 100 : 0,
+        mass: volume * calculation.values.density,
+        milliamp: milliampFromLevel(level, calculation.values),
+        raw: rawFromLevel(level, calculation.values)
+      };
+    }
+
+    function renderDiagram(type, fillHeight, fillVolume) {
+      const height = clamp(fillHeight, 0, 100);
+      const volume = clamp(fillVolume, 0, 100);
+      const radius = type === 'retangular' ? 8 : 60;
+      byId('miniDiagrama').innerHTML = `<svg viewBox="0 0 360 170" width="100%" role="img" aria-label="Diagrama simplificado do tanque"><rect x="90" y="25" width="180" height="120" rx="${radius}" fill="#e5e7eb" stroke="#0b3a62" stroke-width="4"/><clipPath id="clipTankVolume"><rect x="90" y="25" width="180" height="120" rx="${radius}"/></clipPath><rect x="90" y="${145 - 120 * height / 100}" width="180" height="${120 * height / 100}" fill="#60a5fa" opacity="0.85" clip-path="url(#clipTankVolume)"/><line x1="285" y1="145" x2="285" y2="25" stroke="#0b3a62" stroke-width="2"/><text x="298" y="88" font-size="14" fill="#0b3a62" font-weight="700">nível</text><text x="95" y="164" font-size="12" fill="#475569">Altura: ${formatPercent(height, 1)} · Volume: ${formatPercent(volume, 1)}</text></svg>`;
+    }
+
+    function renderErrors(errors) {
+      const html = `<div class="note bad"><strong>Não foi possível calcular.</strong><ul>${errors.map(error => `<li>${escapeHtml(error)}</li>`).join('')}</ul></div>`;
+      byId('resultadoRapido').innerHTML = html;
+      byId('resultadoDetalhado').innerHTML = `<h2>Resultado detalhado</h2>${html}`;
+      byId('memorial').textContent = 'Corrija os dados de entrada para gerar o memorial.';
+      byId('miniDiagrama').innerHTML = '';
+      byId('resultadoRapido').focus({preventScroll: true});
+    }
+
+    function calculateTank() {
+      const type = readText('tipo');
+      const values = collectValues();
+      const errors = validate(type, values);
+      if (errors.length) {
+        lastCalculation = null;
+        renderErrors(errors);
+        return null;
+      }
+
+      const physicalHeight = maxHeight(type, values);
+      const usedLevel = clamp(values.level, 0, physicalHeight);
+      const totalVolume = partialVolume(type, physicalHeight, values);
+      const currentVolume = partialVolume(type, usedLevel, values);
+      const liters = currentVolume * 1000;
+      const mass = currentVolume * values.density;
+      const fillByHeight = usedLevel / physicalHeight * 100;
+      const fillByVolume = totalVolume > 0 ? currentVolume / totalVolume * 100 : 0;
+      const milliamp = milliampFromLevel(values.level, values);
+      const raw = rawFromLevel(values.level, values);
+      const alerts = [];
+
+      if (values.level < 0 || values.level > physicalHeight) {
+        alerts.push({className: 'warn', text: `O nível informado (${formatNumber(values.level, 3)} m) está fora da altura física. O volume foi limitado entre 0 e ${formatNumber(physicalHeight, 3)} m; o sinal foi mantido com base no nível informado.`});
+      }
+      if (type === 'horizontal') {
+        alerts.push({className: 'info', text: 'Tanque horizontal possui relação não linear entre altura e volume. Para supervisório, use linearização por tabela ou função no CLP/DCS.'});
+      }
+      if (values.offset !== 0) {
+        alerts.push({className: 'warn', text: 'Foi aplicado offset de volume morto. Confirme se o valor representa corretamente a geometria real não modelada.'});
+      }
+      if (milliamp < 3.8 || milliamp > 20.5) {
+        alerts.push({className: 'warn', text: `O nível informado gera ${formatNumber(milliamp, 2)} mA, fora da faixa operacional típica de 3,8 a 20,5 mA.`});
+      }
+      if (type === 'vertical') {
+        alerts.push({className: 'info', text: 'O cálculo assume seção cilíndrica constante e fundo plano.'});
+      }
+      if (type === 'retangular') {
+        alerts.push({className: 'info', text: 'O cálculo assume paredes retas e dimensões internas constantes.'});
+      }
+
+      const calculation = {
+        type,
+        values,
+        maxHeight: physicalHeight,
+        usedLevel,
+        totalVolume,
+        currentVolume,
+        liters,
+        mass,
+        fillByHeight,
+        fillByVolume,
+        milliamp,
+        raw,
+        alerts,
+        geometry: geometryText(type, values),
+        formula: formulaText(type),
+        timestamp: new Date()
+      };
+      calculation.rows = [0, 10, 20, 25, 30, 40, 50, 60, 70, 75, 80, 90, 100].map(percent => rowAt(percent, calculation));
+      lastCalculation = calculation;
+
+      const overall = alerts.some(alert => alert.className === 'warn') ? 'warn' : 'ok';
+      byId('resultadoRapido').innerHTML = `<div class="note ${overall}"><strong>${overall === 'ok' ? 'Cálculo preliminar concluído' : 'Cálculo com observações'}</strong><div class="result-main">${formatNumber(liters, 1)} L</div><div>Volume: <strong>${formatNumber(currentVolume, 3)} m³</strong> · Massa estimada: <strong>${formatNumber(mass, 0)} kg</strong></div></div><div class="mini-meter"><span style="width:${clamp(fillByVolume, 0, 100)}%"></span></div><div class="pill-row"><span class="pill">Nível: ${formatNumber(usedLevel, 3)} m</span><span class="pill">Altura: ${formatPercent(fillByHeight, 1)}</span><span class="pill">Volume: ${formatPercent(fillByVolume, 1)}</span><span class="pill">Sinal: ${formatNumber(milliamp, 2)} mA</span></div><p class="result-sub">${alerts.map(alert => escapeHtml(alert.text)).join(' ')}</p>`;
+      renderDiagram(type, fillByHeight, fillByVolume);
+
+      const decimals = values.decimals;
+      const tableRows = calculation.rows.map(row => `<tr><td>${formatNumber(row.percent, 0)}%</td><td>${formatNumber(row.level, 3)} m</td><td>${formatNumber(row.volume, decimals)} m³</td><td>${formatNumber(row.liters, 0)} L</td><td>${formatPercent(row.volumePercent, 1)}</td><td>${formatNumber(row.mass, 0)} kg</td><td>${formatNumber(row.milliamp, 2)} mA</td><td>${formatNumber(row.raw, 0)}</td></tr>`).join('');
+      const alertHtml = alerts.map(alert => `<p class="note ${alert.className}">${escapeHtml(alert.text)}</p>`).join('');
+      byId('resultadoDetalhado').innerHTML = `<h2>Resultado detalhado</h2><div class="pill-row"><span class="pill">Tipo: ${escapeHtml(tankTypeText())}</span><span class="pill">${escapeHtml(calculation.geometry)}</span><span class="pill">Volume total: ${formatNumber(totalVolume, 3)} m³</span><span class="pill">${formatNumber(totalVolume * 1000, 0)} L</span></div><h3>Condição no nível informado</h3><div class="table-wrap"><table class="tech-table"><tbody><tr><th>Nível informado</th><td>${formatNumber(values.level, 3)} m</td></tr><tr><th>Nível usado no volume</th><td>${formatNumber(usedLevel, 3)} m</td></tr><tr><th>Volume parcial</th><td>${formatNumber(currentVolume, 3)} m³ / ${formatNumber(liters, 1)} L</td></tr><tr><th>Enchimento por altura</th><td>${formatPercent(fillByHeight, 2)}</td></tr><tr><th>Enchimento por volume</th><td>${formatPercent(fillByVolume, 2)}</td></tr><tr><th>Massa estimada</th><td>${formatNumber(mass, 1)} kg / ${formatNumber(mass / 1000, 3)} t</td></tr><tr><th>Sinal estimado</th><td>${formatNumber(milliamp, 2)} mA</td></tr><tr><th>Raw estimado</th><td>${formatNumber(raw, 0)}</td></tr></tbody></table></div><h3>Memória de cálculo</h3><div class="formula-box"><code>${escapeHtml(calculation.formula)}</code><br><code>mA = 4 + 16 × (nível − LRV) / (URV − LRV)</code><br><code>Raw = Rawmín + (Rawmáx − Rawmín) × (mA − 4) / 16</code></div><h3>Tabela nível-volume simplificada</h3><div class="table-wrap"><table class="tech-table"><thead><tr><th>Altura</th><th>Nível</th><th>Volume</th><th>Litros</th><th>% volume</th><th>Massa</th><th>mA</th><th>Raw</th></tr></thead><tbody>${tableRows}</tbody></table></div><h3>Alertas e observações</h3>${alertHtml}`;
+      byId('memorial').textContent = generateMemorial(calculation);
+      return calculation;
+    }
+
+    function generateMemorial(calculation) {
+      const alertText = calculation.alerts.length
+        ? calculation.alerts.map(alert => `- ${alert.text}`).join('\n')
+        : '- Nenhum alerta adicional.';
+      const tableText = calculation.rows.map(row => `${formatNumber(row.percent, 0)}% altura | nível ${formatNumber(row.level, 3)} m | volume ${formatNumber(row.volume, 3)} m³ | ${formatNumber(row.liters, 0)} L | ${formatPercent(row.volumePercent, 1)} volume | ${formatNumber(row.milliamp, 2)} mA | raw ${formatNumber(row.raw, 0)}`).join('\n');
+      return `MEMORIAL PRELIMINAR - VOLUME DE TANQUE E ESCALA DE NÍVEL
+
+Data e hora: ${calculation.timestamp.toLocaleString('pt-BR')}
+Tag: ${readText('tag') || 'não informado'}
+Serviço/produto: ${readText('servico') || 'não informado'}
+Tipo de tanque: ${tankTypeText()}
+Geometria considerada: ${calculation.geometry}
+Densidade informada: ${formatNumber(calculation.values.density, 1)} kg/m³
+Offset de volume morto: ${formatNumber(calculation.values.offset, 3)} m³
+
+RESULTADO PRINCIPAL
+- Altura física máxima considerada: ${formatNumber(calculation.maxHeight, 3)} m
+- Nível informado: ${formatNumber(calculation.values.level, 3)} m
+- Nível usado no cálculo de volume: ${formatNumber(calculation.usedLevel, 3)} m
+- Volume total estimado: ${formatNumber(calculation.totalVolume, 3)} m³ (${formatNumber(calculation.totalVolume * 1000, 0)} L)
+- Volume no nível informado: ${formatNumber(calculation.currentVolume, 3)} m³ (${formatNumber(calculation.liters, 1)} L)
+- Enchimento por altura: ${formatPercent(calculation.fillByHeight, 2)}
+- Enchimento por volume: ${formatPercent(calculation.fillByVolume, 2)}
+- Massa estimada: ${formatNumber(calculation.mass, 1)} kg
+
+ESCALA DE NÍVEL E SINAL
+- LRV: ${formatNumber(calculation.values.lrv, 3)} m = 4 mA
+- URV: ${formatNumber(calculation.values.urv, 3)} m = 20 mA
+- Sinal no nível informado: ${formatNumber(calculation.milliamp, 2)} mA
+- Raw mínimo/máximo: ${formatNumber(calculation.values.rawMin, 0)} / ${formatNumber(calculation.values.rawMax, 0)}
+- Raw estimado: ${formatNumber(calculation.raw, 0)}
+
+FÓRMULAS
+- Geometria: ${calculation.formula}
+- mA = 4 + 16 × (nível − LRV) / (URV − LRV)
+- Raw = Rawmín + (Rawmáx − Rawmín) × (mA − 4) / 16
+- Massa = volume × densidade
+
+TABELA NÍVEL-VOLUME SIMPLIFICADA
+${tableText}
+
+ALERTAS E OBSERVAÇÕES
+${alertText}
+
+LIMITAÇÕES
+Cálculo preliminar para geometrias simples. Não substitui tabela de arqueação oficial, levantamento dimensional, correção de fundos/tampos, inclinação, volumes internos, medição validada, normas aplicáveis, procedimentos de segurança ou validação profissional.`;
+    }
+
+    async function copyMemorial() {
+      const text = byId('memorial').textContent;
+      try {
+        await navigator.clipboard.writeText(text);
+        alert('Memorial copiado.');
+      } catch (_) {
+        const area = document.createElement('textarea');
+        area.value = text;
+        area.style.position = 'fixed';
+        area.style.opacity = '0';
+        document.body.appendChild(area);
+        area.select();
+        const copied = document.execCommand('copy');
+        area.remove();
+        alert(copied ? 'Memorial copiado.' : 'Não foi possível copiar automaticamente. Selecione o texto manualmente.');
+      }
+    }
+
+    function buildPrintArea(calculation) {
+      const alerts = calculation.alerts.length
+        ? calculation.alerts.map(alert => `<li>${escapeHtml(alert.text)}</li>`).join('')
+        : '<li>Nenhum alerta adicional.</li>';
+      const rows = calculation.rows.map(row => `<tr><td>${formatNumber(row.percent, 0)}%</td><td>${formatNumber(row.level, 3)} m</td><td>${formatNumber(row.volume, 3)} m³</td><td>${formatNumber(row.liters, 0)} L</td><td>${formatPercent(row.volumePercent, 1)}</td><td>${formatNumber(row.milliamp, 2)} mA</td><td>${formatNumber(row.raw, 0)}</td></tr>`).join('');
+      byId('printArea').innerHTML = `<h1>Relatório técnico — Volume de tanque</h1><p>Gerado em ${calculation.timestamp.toLocaleString('pt-BR')}</p><div class="report-grid"><div class="report-box"><strong>Identificação</strong><p>Tag: ${escapeHtml(readText('tag') || 'Não informado')}<br>Serviço/produto: ${escapeHtml(readText('servico') || 'Não informado')}<br>Tipo: ${escapeHtml(tankTypeText())}</p></div><div class="report-box"><strong>Resultado principal</strong><div class="report-main">${formatNumber(calculation.liters, 1)} L</div><p>${formatNumber(calculation.currentVolume, 3)} m³ · ${formatNumber(calculation.mass, 1)} kg</p></div></div><h2>Dados e resultados</h2><table><tbody><tr><th>Geometria</th><td>${escapeHtml(calculation.geometry)}</td><th>Densidade</th><td>${formatNumber(calculation.values.density, 1)} kg/m³</td></tr><tr><th>Nível informado</th><td>${formatNumber(calculation.values.level, 3)} m</td><th>Nível usado no volume</th><td>${formatNumber(calculation.usedLevel, 3)} m</td></tr><tr><th>Volume total</th><td>${formatNumber(calculation.totalVolume, 3)} m³</td><th>Volume parcial</th><td>${formatNumber(calculation.currentVolume, 3)} m³</td></tr><tr><th>Enchimento por altura</th><td>${formatPercent(calculation.fillByHeight, 2)}</td><th>Enchimento por volume</th><td>${formatPercent(calculation.fillByVolume, 2)}</td></tr><tr><th>Sinal</th><td>${formatNumber(calculation.milliamp, 2)} mA</td><th>Raw</th><td>${formatNumber(calculation.raw, 0)}</td></tr></tbody></table><h2>Memória de cálculo</h2><p class="report-note">${escapeHtml(calculation.formula)}<br>mA = 4 + 16 × (nível − LRV) / (URV − LRV)<br>Raw = Rawmín + (Rawmáx − Rawmín) × (mA − 4) / 16<br>Massa = volume × densidade</p><h2>Tabela nível-volume simplificada</h2><table><thead><tr><th>Altura</th><th>Nível</th><th>Volume</th><th>Litros</th><th>% volume</th><th>mA</th><th>Raw</th></tr></thead><tbody>${rows}</tbody></table><h2>Alertas e limitações</h2><ul>${alerts}</ul><p class="report-note">Documento orientativo para apoio técnico. Não substitui tabela de arqueação oficial, levantamento dimensional, documentação do fabricante, normas aplicáveis, análise de segurança ou validação profissional.</p>`;
+    }
+
+    function printResult() {
+      const calculation = calculateTank();
+      if (!calculation) return;
+      calculation.timestamp = new Date();
+      buildPrintArea(calculation);
+      document.body.classList.add('print-report');
+      byId('printArea').setAttribute('aria-hidden', 'false');
+      requestAnimationFrame(() => window.print());
+    }
+
+    function clearPrintMode() {
+      document.body.classList.remove('print-report');
+      byId('printArea').setAttribute('aria-hidden', 'true');
+    }
+
+    function slugify(value) {
+      return String(value || 'tanque').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'tanque';
+    }
+
+    function generatePdfReport() {
+      const calculation = calculateTank();
+      if (!calculation) return;
+      calculation.timestamp = new Date();
+      const JsPdf = window.jspdf?.jsPDF;
+      if (!JsPdf) {
+        alert('A biblioteca de PDF não foi carregada. Verifique a conexão e tente novamente.');
+        return;
+      }
+
+      const doc = new JsPdf({orientation: 'portrait', unit: 'mm', format: 'a4'});
+      if (typeof doc.autoTable !== 'function') {
+        alert('O componente de tabelas do relatório não foi carregado. Verifique a conexão e tente novamente.');
+        return;
+      }
+      doc.setProperties({
+        title: 'Relatório técnico - Volume de tanque',
+        subject: 'Cálculo de volume, nível, massa, sinal 4-20 mA e raw',
+        creator: 'Calculadora de volume de tanque'
+      });
+      const margin = 14;
+      const pageWidth = doc.internal.pageSize.getWidth();
+      const usableWidth = pageWidth - 2 * margin;
+      let y = 16;
+      const ensureSpace = needed => {
+        if (y + needed > 282) {
+          doc.addPage();
+          y = 16;
+        }
+      };
+      const addTitle = text => {
+        ensureSpace(12);
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(12);
+        doc.text(text, margin, y);
+        y += 6;
+      };
+      const addParagraph = text => {
+        doc.setFont('helvetica', 'normal');
+        doc.setFontSize(9);
+        const lines = doc.splitTextToSize(String(text), usableWidth);
+        ensureSpace(lines.length * 4 + 2);
+        doc.text(lines, margin, y);
+        y += lines.length * 4 + 2;
+      };
+
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(18);
+      doc.text('Relatório técnico - Volume de tanque', margin, y);
+      y += 7;
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(9);
+      doc.text(`Gerado em ${calculation.timestamp.toLocaleString('pt-BR')}`, margin, y);
+      y += 6;
+
+      doc.autoTable({
+        startY: y,
+        theme: 'grid',
+        styles: {font: 'helvetica', fontSize: 8, cellPadding: 2, textColor: 20, lineColor: 120},
+        headStyles: {fillColor: [235, 235, 235], textColor: 20},
+        head: [['Identificação', 'Valor']],
+        body: [
+          ['Tag', readText('tag') || 'Não informado'],
+          ['Serviço/produto', readText('servico') || 'Não informado'],
+          ['Tipo de tanque', tankTypeText()],
+          ['Geometria', calculation.geometry]
+        ]
+      });
+      y = doc.lastAutoTable.finalY + 6;
+
+      addTitle('Resultados principais');
+      doc.autoTable({
+        startY: y,
+        theme: 'grid',
+        styles: {font: 'helvetica', fontSize: 8, cellPadding: 2, textColor: 20, lineColor: 120},
+        headStyles: {fillColor: [235, 235, 235], textColor: 20},
+        head: [['Grandeza', 'Resultado']],
+        body: [
+          ['Nível informado', `${formatNumber(calculation.values.level, 3)} m`],
+          ['Nível usado no volume', `${formatNumber(calculation.usedLevel, 3)} m`],
+          ['Volume total', `${formatNumber(calculation.totalVolume, 3)} m³ (${formatNumber(calculation.totalVolume * 1000, 0)} L)`],
+          ['Volume parcial', `${formatNumber(calculation.currentVolume, 3)} m³ (${formatNumber(calculation.liters, 1)} L)`],
+          ['Enchimento por altura', formatPercent(calculation.fillByHeight, 2)],
+          ['Enchimento por volume', formatPercent(calculation.fillByVolume, 2)],
+          ['Massa estimada', `${formatNumber(calculation.mass, 1)} kg`],
+          ['Sinal estimado', `${formatNumber(calculation.milliamp, 2)} mA`],
+          ['Raw estimado', formatNumber(calculation.raw, 0)]
+        ]
+      });
+      y = doc.lastAutoTable.finalY + 6;
+
+      addTitle('Memória de cálculo');
+      addParagraph(calculation.formula);
+      addParagraph('mA = 4 + 16 x (nível - LRV) / (URV - LRV)');
+      addParagraph('Raw = Raw mínimo + (Raw máximo - Raw mínimo) x (mA - 4) / 16');
+      addParagraph('Massa = volume x densidade');
+
+      addTitle('Tabela nível-volume simplificada');
+      doc.autoTable({
+        startY: y,
+        theme: 'grid',
+        styles: {font: 'helvetica', fontSize: 7, cellPadding: 1.4, textColor: 20, lineColor: 140},
+        headStyles: {fillColor: [235, 235, 235], textColor: 20},
+        head: [['Altura', 'Nível (m)', 'Volume (m³)', 'Litros', '% volume', 'mA', 'Raw']],
+        body: calculation.rows.map(row => [
+          `${formatNumber(row.percent, 0)}%`,
+          formatNumber(row.level, 3),
+          formatNumber(row.volume, 3),
+          formatNumber(row.liters, 0),
+          formatPercent(row.volumePercent, 1),
+          formatNumber(row.milliamp, 2),
+          formatNumber(row.raw, 0)
+        ])
+      });
+      y = doc.lastAutoTable.finalY + 6;
+
+      addTitle('Alertas e limitações');
+      calculation.alerts.forEach(alert => addParagraph(`- ${alert.text}`));
+      addParagraph('Documento orientativo para apoio técnico. Não substitui tabela de arqueação oficial, levantamento dimensional, documentação do fabricante, normas aplicáveis, análise de segurança ou validação profissional.');
+
+      doc.save(`relatorio-volume-tanque-${slugify(readText('tag'))}.pdf`);
+    }
+
+    function initialize() {
+      adjustFields();
+      byId('tipo').addEventListener('change', () => {
+        adjustFields();
+        calculateTank();
+      });
+      ['tag','servico','diametro','altura','comprimento','largura','compRet','nivel','densidade','offsetVol','decimais','lrvNivel','urvNivel','rawMin','rawMax'].forEach(id => {
+        const element = byId(id);
+        if (!element) return;
+        const eventName = element.tagName === 'SELECT' ? 'change' : 'input';
+        element.addEventListener(eventName, calculateTank);
+      });
+      byId('btnCalcular').addEventListener('click', calculateTank);
+      byId('btnCopiar').addEventListener('click', copyMemorial);
+      byId('btnImprimir').addEventListener('click', printResult);
+      byId('btnRelatorio').addEventListener('click', generatePdfReport);
+      window.addEventListener('afterprint', clearPrintMode);
+      calculateTank();
+    }
+
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initialize, {once: true});
+    else initialize();
+  })();
   </script>
   <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
 </body>
