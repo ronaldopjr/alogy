@@ -18,6 +18,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <link rel="stylesheet" href="style.css" />
   <script src="app.js" defer></script>
+  <script src="instrumentation-report.js" defer></script>
   <meta property="og:locale" content="pt_BR" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="ALOGY Engenharia" />
@@ -84,8 +85,12 @@
     .faq p{margin:10px 0 0;color:#475569}
     code.inline{background:rgba(0,107,177,.08);padding:2px 6px;border-radius:8px;color:#0b3a62;font-weight:800}
     pre.copybox{white-space:pre-wrap;background:#0f172a;color:#e5e7eb;border-radius:16px;padding:16px;overflow:auto}
-    @media(max-width:900px){.calc-grid{grid-template-columns:1fr}.field-grid{grid-template-columns:1fr}.tech-hero{padding:24px}.tech-hero h1,.post-content h1{font-size:1.65rem}.post-content{padding:22px}}
-    @media print{header,.social-floating,.fab-wrap,footer,.tech-back,.calc-actions,.no-print{display:none!important}body{background:#fff}.tech-card,.tech-hero,.post-card{box-shadow:none;border:1px solid #ddd}.calc-grid{display:block}}
+    body.tech-page .calc-grid{grid-template-columns:minmax(0,1fr) 380px;align-items:start}
+    body.tech-page #wf-form.field-grid,body.tech-page .report-identification .field-grid{grid-template-columns:1fr 1fr;align-items:start}
+    .validation-summary{display:none;margin:0 0 16px;padding:14px;border:1px solid #fecaca;border-radius:14px;background:#fef2f2;color:#991b1b;line-height:1.55}.validation-summary.show{display:block}.validation-summary ul{margin:8px 0 0 20px}.field input[aria-invalid="true"]{border-color:#dc2626;box-shadow:0 0 0 3px rgba(220,38,38,.12)}
+    .btn-mini:disabled{opacity:.52;cursor:not-allowed}.result-state{margin-bottom:14px}.result-state strong{display:block;margin-bottom:4px}.metric-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}.metric{background:#fff;border:1px solid rgba(0,107,177,.16);border-radius:14px;padding:12px}.metric span{display:block;color:#64748b;font-size:.82rem;font-weight:800}.metric strong{display:block;color:#0b3a62;font-size:1.12rem;margin-top:4px}.memory-box{margin-top:14px;border:1px solid rgba(0,0,0,.08);border-radius:14px;background:#fff;padding:14px}.memory-box h3{margin:0 0 8px;font-size:1rem}.memory-line{display:block;color:#334155;line-height:1.55;margin-top:4px;overflow-wrap:anywhere}.report-identification{margin-top:16px;border:1px solid rgba(0,107,177,.16);border-radius:14px;padding:12px}.report-identification summary{cursor:pointer;font-weight:900;color:#0b3a62}.report-identification .field-grid{margin-top:12px}.print-only{display:none}.formula-box{background:#f8fafc;border:1px solid #e2e8f0;border-radius:14px;padding:14px;margin-top:12px}.formula-box code{display:block;white-space:normal;overflow-wrap:anywhere;margin-top:6px;color:#0f172a}.technical-warning{font-weight:800}.status-caption{font-size:.92rem;margin-top:6px}.references-list a{overflow-wrap:anywhere}
+    @media(max-width:900px){body.tech-page .calc-grid,body.tech-page #wf-form.field-grid,body.tech-page .report-identification .field-grid{grid-template-columns:1fr!important}.metric-grid{grid-template-columns:1fr}.tech-hero{padding:24px}.tech-hero h1,.post-content h1{font-size:1.65rem}.post-content{padding:22px}}
+    @media print{header,.social-floating,.fab-wrap,footer,.tech-back,.calc-actions,.no-print,.report-identification,.validation-summary{display:none!important}.print-only{display:block!important}body{background:#fff;color:#111}.container{max-width:100%;padding:0}.tech-card,.tech-hero,.post-card{box-shadow:none;border:1px solid #bbb}.tech-hero{background:#fff!important;color:#111!important;padding:18px}.tech-hero h1,.tech-hero p{color:#111!important}.tech-hero:after,.hero-tags{display:none!important}.calc-grid{display:block}.tech-card{break-inside:avoid;margin:12px 0}.result-box{background:#fff}.metric-grid{grid-template-columns:1fr 1fr}.note,.metric,.memory-box,.formula-box{background:#fff!important;color:#111!important;border-color:#bbb!important}.result-main,.metric strong,.tech-card h2,.tech-card h3{color:#111!important}}
   </style>
   <!-- Google AdSense - verificação de propriedade -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5586837114309500" crossorigin="anonymous"></script>
@@ -103,48 +108,626 @@
   <div class="fab-wrap" aria-label="Ações rápidas"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1%21%20Vim%20pelas%20ferramentas%20de%20instrumenta%C3%A7%C3%A3o%20da%20ALOGY.%20Gostaria%20de%20atendimento." target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
   <main class="container tech-wrap">
     <a aria-label="Voltar para Ferramentas" class="floating-back-tools no-print" href="ferramentas.html"><i class="fas fa-arrow-left"></i> Voltar para Ferramentas</a>
+
     <section class="tech-hero">
       <h1>Calculadora de Termopoço: Wake Frequency</h1>
-      <p>Avalie preliminarmente se a combinação de velocidade, comprimento em balanço e diâmetro do termopoço merece revisão mecânica detalhada.</p>
+      <p>Faça uma triagem conservadora da frequência de desprendimento de vórtices em relação à frequência natural aproximada de um termopoço reto e uniforme.</p>
       <div class="hero-tags"><span><i class="fas fa-check"></i> Termopoço</span><span><i class="fas fa-check"></i> Temperatura</span><span><i class="fas fa-check"></i> Wake frequency</span><span><i class="fas fa-check"></i> Vibração</span></div>
     </section>
+
+    <section class="tech-card print-only" aria-label="Identificação da impressão">
+      <h2>Registro da triagem</h2>
+      <div id="wf-print-identification" class="result-sub">Sem identificação adicional.</div>
+      <div id="wf-print-date" class="result-sub"></div>
+    </section>
+
     <section class="calc-grid">
       <div class="tech-card">
         <h2>Dados de entrada</h2>
-        <form class="field-grid" onsubmit="calcular();return false;">
-  <div class="field"><label>Comprimento em balanço U</label><input id="L" type="number" step="1" value="150"><small>mm, da fixação até a ponta.</small></div>
-  <div class="field"><label>Diâmetro externo médio</label><input id="D" type="number" step="0.1" value="16"><small>mm</small></div>
-  <div class="field"><label>Velocidade do fluido</label><input id="vel" type="number" step="0.1" value="3"><small>m/s</small></div>
-  <div class="field"><label>Densidade do fluido</label><input id="rhoF" type="number" step="1" value="1000"><small>kg/m³</small></div>
-  <div class="field"><label>Módulo elástico do material</label><input id="E" type="number" step="1" value="193"><small>GPa. Inox 316 típico próximo de 193.</small></div>
-  <div class="field"><label>Densidade do material</label><input id="rhoM" type="number" step="1" value="8000"><small>kg/m³</small></div>
-  <div class="field"><label>Número de Strouhal</label><input id="St" type="number" step="0.01" value="0.20"><small>Triagem comum: 0,2.</small></div>
-  <div class="field"><label>Limite de razão fs/fn</label><input id="lim" type="number" step="0.01" value="0.80"><small>Triagem preliminar.</small></div>
-  <div class="wide calc-actions"><button class="btn-mini" type="submit"><i class="fas fa-calculator"></i> Calcular</button><button class="btn-mini secondary" type="button" onclick="window.print()"><i class="fas fa-print"></i> Imprimir</button></div>
-</form>
+        <div id="wf-errors" class="validation-summary" role="alert" aria-live="assertive"></div>
+        <form id="wf-form" class="field-grid" novalidate>
+          <div class="field">
+            <label for="wf-length">Comprimento sem apoio U</label>
+            <input id="wf-length" type="text" inputmode="decimal" value="150" aria-describedby="wf-length-help" autocomplete="off">
+            <small id="wf-length-help">mm, da seção de apoio até a ponta exposta.</small>
+          </div>
+          <div class="field">
+            <label for="wf-diameter-equivalent">Diâmetro externo equivalente D</label>
+            <input id="wf-diameter-equivalent" type="text" inputmode="decimal" value="16" aria-describedby="wf-diameter-equivalent-help" autocomplete="off">
+            <small id="wf-diameter-equivalent-help">mm, usado na rigidez e na massa do modelo uniforme.</small>
+          </div>
+          <div class="field">
+            <label for="wf-bore">Diâmetro do furo interno d</label>
+            <input id="wf-bore" type="text" inputmode="decimal" value="6,5" aria-describedby="wf-bore-help" autocomplete="off">
+            <small id="wf-bore-help">mm. Deve ser menor que o diâmetro externo equivalente.</small>
+          </div>
+          <div class="field">
+            <label for="wf-tip-diameter">Diâmetro de ponta B</label>
+            <input id="wf-tip-diameter" type="text" inputmode="decimal" value="16" aria-describedby="wf-tip-diameter-help" autocomplete="off">
+            <small id="wf-tip-diameter-help">mm, dimensão usada na frequência de desprendimento de vórtices.</small>
+          </div>
+          <div class="field">
+            <label for="wf-velocity">Velocidade do fluido</label>
+            <input id="wf-velocity" type="text" inputmode="decimal" value="3" aria-describedby="wf-velocity-help" autocomplete="off">
+            <small id="wf-velocity-help">m/s, na condição analisada.</small>
+          </div>
+          <div class="field">
+            <label for="wf-fluid-density">Densidade do fluido</label>
+            <input id="wf-fluid-density" type="text" inputmode="decimal" value="1000" aria-describedby="wf-fluid-density-help" autocomplete="off">
+            <small id="wf-fluid-density-help">kg/m³, na pressão e temperatura de operação.</small>
+          </div>
+          <div class="field">
+            <label for="wf-elastic-modulus">Módulo de elasticidade E</label>
+            <input id="wf-elastic-modulus" type="text" inputmode="decimal" value="193" aria-describedby="wf-elastic-modulus-help" autocomplete="off">
+            <small id="wf-elastic-modulus-help">GPa, preferencialmente na temperatura de operação.</small>
+          </div>
+          <div class="field">
+            <label for="wf-material-density">Densidade do material</label>
+            <input id="wf-material-density" type="text" inputmode="decimal" value="8000" aria-describedby="wf-material-density-help" autocomplete="off">
+            <small id="wf-material-density-help">kg/m³.</small>
+          </div>
+          <div class="field">
+            <label for="wf-strouhal">Número de Strouhal St</label>
+            <input id="wf-strouhal" type="text" inputmode="decimal" value="0,22" aria-describedby="wf-strouhal-help" autocomplete="off">
+            <small id="wf-strouhal-help">Adote valor tecnicamente justificado. 0,22 é uma aproximação conservadora comum.</small>
+          </div>
+          <div class="field">
+            <label for="wf-added-mass">Coeficiente de massa adicionada Ca</label>
+            <input id="wf-added-mass" type="text" inputmode="decimal" value="1" aria-describedby="wf-added-mass-help" autocomplete="off">
+            <small id="wf-added-mass-help">Adimensional. O valor 1 representa a aproximação de cilindro imerso usada nesta triagem.</small>
+          </div>
+
+          <details class="report-identification wide no-print">
+            <summary>Identificação opcional para impressão e relatório</summary>
+            <div class="field-grid">
+              <div class="field"><label for="wf-report-responsible">Responsável</label><input id="wf-report-responsible" type="text" autocomplete="name"></div>
+              <div class="field"><label for="wf-report-company">Empresa / setor</label><input id="wf-report-company" type="text" autocomplete="organization"></div>
+              <div class="field"><label for="wf-report-tag">Equipamento / TAG</label><input id="wf-report-tag" type="text"></div>
+              <div class="field"><label for="wf-report-reference">Projeto / referência</label><input id="wf-report-reference" type="text"></div>
+              <div class="field wide"><label for="wf-report-notes">Observações</label><textarea id="wf-report-notes" rows="3"></textarea></div>
+            </div>
+          </details>
+
+          <div class="wide calc-actions no-print">
+            <button id="wf-calculate" class="btn-mini" type="submit"><i class="fas fa-calculator"></i> Calcular</button>
+            <button id="wf-clear" class="btn-mini secondary" type="button"><i class="fas fa-eraser"></i> Limpar</button>
+            <button id="wf-copy" class="btn-mini secondary" type="button" disabled><i class="fas fa-copy"></i> Copiar resultado</button>
+            <button id="wf-report" class="btn-mini secondary" type="button" disabled><i class="fas fa-file-pdf"></i> Gerar relatório</button>
+            <button id="wf-print" class="btn-mini secondary" type="button"><i class="fas fa-print"></i> Imprimir</button>
+            <button id="wf-example-water" class="btn-mini secondary" type="button">Exemplo água</button>
+            <button id="wf-example-gas" class="btn-mini secondary" type="button">Exemplo gás</button>
+          </div>
+        </form>
       </div>
-      <aside class="tech-card result-box">
-        <h2>Resultado</h2>
-        <div id="resultado" class="result-sub">Preencha os dados e clique em calcular.</div>
+
+      <aside class="tech-card result-box" aria-live="polite">
+        <h2>Resultado da triagem</h2>
+        <div id="wf-result-state" class="note result-state"><strong>Aguardando cálculo</strong><span>Preencha os dados válidos e execute a triagem.</span></div>
+        <div class="metric-grid">
+          <div class="metric"><span>Razão fs/fn</span><strong id="wf-ratio">-</strong></div>
+          <div class="metric"><span>Frequência de vórtices fs</span><strong id="wf-shedding-frequency">-</strong></div>
+          <div class="metric"><span>Frequência natural aproximada no fluido</span><strong id="wf-natural-wet">-</strong></div>
+          <div class="metric"><span>Velocidade no limite fs/fn = 0,4</span><strong id="wf-velocity-limit">-</strong></div>
+          <div class="metric"><span>Frequência natural aproximada no ar</span><strong id="wf-natural-dry">-</strong></div>
+          <div class="metric"><span>Pressão dinâmica</span><strong id="wf-dynamic-pressure">-</strong></div>
+        </div>
+        <div class="memory-box">
+          <h3>Memória de cálculo</h3>
+          <div id="wf-memory"><span class="memory-line">Os valores calculados aparecerão aqui.</span></div>
+        </div>
+        <p id="wf-result-note" class="result-sub">Esta ferramenta não emite conformidade com ASME PTC 19.3 TW.</p>
       </aside>
     </section>
-    <section class="tech-card"><h2>Aviso técnico importante</h2><p class="note">Esta ferramenta fornece uma estimativa preliminar para estudo, manutenção, orçamento e triagem de campo. Para aplicações críticas, segurança de processo, áreas classificadas, sistemas instrumentados de segurança, vasos pressurizados, contratos ou emissão de documentação oficial, valide o dimensionamento com normas aplicáveis, dados do fabricante e profissional habilitado.</p></section>
-<section class="tech-card"><h2>Por que fazer triagem de termopoço?</h2><p>Termopoços inseridos em tubulações ficam sujeitos a escoamento, vibração e esforços mecânicos. A triagem ajuda a identificar combinações perigosas de alta velocidade, grande comprimento em balanço e diâmetro reduzido antes de avançar para cálculo completo.</p><h3>Reduções comuns de risco</h3><ul><li>Reduzir comprimento de inserção quando tecnicamente aceitável.</li><li>Aumentar diâmetro ou usar perfil mais robusto.</li><li>Trocar posição de instalação para ponto de menor velocidade.</li><li>Usar cálculo completo para aplicações críticas, vapor, gás de alta velocidade ou serviço severo.</li></ul></section>
+
+    <section class="tech-card">
+      <h2>Critério usado nesta triagem</h2>
+      <p>A ferramenta compara a frequência de desprendimento de vórtices com uma frequência natural aproximada do termopoço imerso. O critério conservador adotado é <strong>fs/fn &lt; 0,4</strong>. Atender a essa relação significa apenas que a configuração passou por este filtro de separação de frequência.</p>
+      <div class="formula-box">
+        <strong>Equações simplificadas</strong>
+        <code>fs = St × V / B</code>
+        <code>fn ≈ β₁² / (2πU²) × √(EI / mefetiva), com β₁ = 1,875104</code>
+        <code>mefetiva = ρmaterial × Aanel + Ca × ρfluido × Aexterna</code>
+        <code>Aanel = π(D² − d²) / 4 e I = π(D⁴ − d⁴) / 64</code>
+      </div>
+      <p class="note technical-warning">O modelo considera uma haste reta, uniforme e engastada idealmente. Ele não aplica os fatores completos de correção de perfil, massa do sensor, complacência da montagem, propriedades na temperatura, tensões dinâmicas, fadiga ou pressão.</p>
+    </section>
+
+    <section class="tech-card">
+      <h2>Interpretação correta</h2>
+      <ul>
+        <li><strong>fs/fn &lt; 0,4:</strong> aprovado somente na triagem conservadora de separação de frequência.</li>
+        <li><strong>0,4 ≤ fs/fn &lt; 0,8:</strong> não atende ao filtro conservador; cálculo mecânico completo é obrigatório antes de aceitar a configuração.</li>
+        <li><strong>fs/fn ≥ 0,8:</strong> proximidade elevada da frequência natural; a configuração deve ser revista antes de prosseguir.</li>
+      </ul>
+      <p>Mesmo um resultado abaixo de 0,4 não verifica tensões estáticas e dinâmicas, fadiga, pressão admissível, geometria de conexão, corrosão, erosão, partida, parada ou condições transitórias.</p>
+    </section>
+
+    <section class="tech-card">
+      <h2>Dados necessários para um cálculo completo</h2>
+      <ul>
+        <li>Geometria real: diâmetros de raiz e ponta, perfil reto/cônico/escalonado, furo, comprimento sem apoio, filetes e conexão.</li>
+        <li>Propriedades do material na temperatura de operação e dados da montagem.</li>
+        <li>Densidade, viscosidade, velocidade, pressão e temperatura do fluido em todas as condições relevantes.</li>
+        <li>Massa e geometria do sensor interno, acabamento superficial e condições de suporte.</li>
+        <li>Verificações de frequência, tensões cíclicas, tensões estáticas, fadiga e pressão.</li>
+      </ul>
+    </section>
+
+    <section class="tech-card"><h2>Aviso técnico importante</h2><p class="note">Esta ferramenta é uma triagem preliminar para estudo, manutenção e comparação de alternativas. Não deve ser usada para declarar conformidade, liberar fabricação ou aprovar serviço crítico. A decisão final deve usar a norma aplicável, dados do fabricante e validação de profissional habilitado.</p></section>
+
     <section class="tech-card faq">
       <h2>Perguntas frequentes</h2>
-      <details><summary>Esta página calcula ASME PTC 19.3 TW?</summary><p>Não. É uma triagem simplificada. O cálculo completo de termopoço envolve critérios adicionais e dados geométricos detalhados.</p></details><details><summary>Razão baixa garante segurança?</summary><p>Não garante. Apenas indica menor risco preliminar. Fadiga, tensão, pressão, corrosão e instalação também contam.</p></details><details><summary>Serve para líquido e gás?</summary><p>Serve como triagem, mas gases de alta velocidade e vapor exigem cuidado especial.</p></details><details><summary>O que é wake frequency?</summary><p>É a frequência associada ao desprendimento de vórtices no escoamento ao redor do termopoço.</p></details>
+      <details><summary>Esta página calcula ASME PTC 19.3 TW?</summary><p>Não. Ela usa um modelo de viga uniforme e um critério conservador de triagem. O método completo exige correções e verificações adicionais.</p></details>
+      <details><summary>Por que existem dois diâmetros externos?</summary><p>O diâmetro equivalente D representa a rigidez e a massa do modelo uniforme. O diâmetro de ponta B é usado na frequência de desprendimento de vórtices. Em termopoços retos, eles podem ser iguais.</p></details>
+      <details><summary>Por que informar o furo interno?</summary><p>O furo altera a área, a massa por comprimento e o momento de inércia. Ignorá-lo transforma o termopoço em uma barra maciça e pode distorcer a frequência natural estimada.</p></details>
+      <details><summary>Razão abaixo de 0,4 garante segurança?</summary><p>Não. Ela apenas passa por este filtro de frequência. Ainda faltam as verificações completas de geometria, montagem, tensões, fadiga e pressão.</p></details>
     </section>
+
+    <section class="tech-card references-list">
+      <h2>Referências técnicas</h2>
+      <ul>
+        <li><a href="https://www.asme.org/codes-standards/find-codes-standards/thermowells" target="_blank" rel="noopener">ASME — PTC 19.3 TW, Thermowells</a>.</li>
+        <li><a href="https://www.asme.org/wwwasmeorg/media/resourcefiles/aboutasme/ptc-19-3-tw-example_problem.pdf" target="_blank" rel="noopener">ASME — exemplo de dimensionamento de termopoço</a>.</li>
+      </ul>
+    </section>
+
     <section class="tech-card no-print">
       <h2>Conteúdos e ferramentas relacionados</h2>
       <p>Use os links abaixo para aprofundar o tema ou continuar o dimensionamento.</p>
       <div class="calc-actions"><a class="btn-mini secondary" href="blog-instrumentacao-industrial.html"><i class="fas fa-link"></i> Artigo: instrumentação industrial</a><a class="btn-mini secondary" href="calculadora-temperatura-industrial.html"><i class="fas fa-link"></i> Temperatura industrial</a></div>
     </section>
   </main>
+
   <script>
-function n(id){return parseFloat(document.getElementById(id).value)||0} function fmt(x,d=2){return x.toLocaleString('pt-BR',{maximumFractionDigits:d,minimumFractionDigits:d})}
-function calcular(){const L=n('L')/1000, D=n('D')/1000, v=n('vel'), rhoF=n('rhoF'), E=n('E')*1e9, rhoM=n('rhoM'), St=n('St'), lim=n('lim'); const A=Math.PI*D*D/4, I=Math.PI*Math.pow(D,4)/64; const fn=(1/(2*Math.PI))*Math.pow(1.875,2)*Math.sqrt(E*I/(rhoM*A*Math.pow(L,4))); const fs=St*v/D; const ratio=fs/fn; const q=0.5*rhoF*v*v/1000; const status=ratio<0.4?'ok':(ratio<lim?'warn':'bad'); const diag=ratio<0.4?'baixo risco preliminar':(ratio<lim?'atenção: confirmar por cálculo completo':'risco elevado: revisar projeto'); document.getElementById('resultado').innerHTML=`<div class="note ${status}"><strong>Razão de frequência fs/fn:</strong><div class="result-main">${fmt(ratio,2)}</div><div>${diag}. Frequência de desprendimento: <strong>${fmt(fs,1)} Hz</strong>; frequência natural aproximada: <strong>${fmt(fn,1)} Hz</strong>.</div></div><div class="pill-row"><span class="pill">Pressão dinâmica: ${fmt(q,2)} kPa</span><span class="pill">U: ${fmt(L*1000,0)} mm</span><span class="pill">D: ${fmt(D*1000,1)} mm</span></div><p class="result-sub">Este é apenas um filtro preliminar. Termopoços devem ser verificados por método completo, considerando geometria real, conicidade, conexão, temperatura, massa do sensor e critérios de fadiga.</p>`}
-calcular();
-</script>
+  (function () {
+    'use strict';
+
+    const BETA_1 = 1.875104068711961;
+    const CONSERVATIVE_RATIO_LIMIT = 0.4;
+    const HIGH_RATIO_LIMIT = 0.8;
+    const INPUT_IDS = [
+      'wf-length', 'wf-diameter-equivalent', 'wf-bore', 'wf-tip-diameter',
+      'wf-velocity', 'wf-fluid-density', 'wf-elastic-modulus',
+      'wf-material-density', 'wf-strouhal', 'wf-added-mass'
+    ];
+    const DEFAULTS = {
+      'wf-length': '150',
+      'wf-diameter-equivalent': '16',
+      'wf-bore': '6,5',
+      'wf-tip-diameter': '16',
+      'wf-velocity': '3',
+      'wf-fluid-density': '1000',
+      'wf-elastic-modulus': '193',
+      'wf-material-density': '8000',
+      'wf-strouhal': '0,22',
+      'wf-added-mass': '1'
+    };
+    const state = { showValidation: false, lastResult: null };
+
+    function byId(id) {
+      return document.getElementById(id);
+    }
+
+    function normalizeMantissa(rawMantissa) {
+      let value = rawMantissa;
+      let sign = '';
+      if (value.startsWith('+') || value.startsWith('-')) {
+        sign = value.charAt(0);
+        value = value.slice(1);
+      }
+      if (!value || !/[0-9]/.test(value)) return null;
+
+      const commaCount = (value.match(/,/g) || []).length;
+      const dotCount = (value.match(/\./g) || []).length;
+
+      if (commaCount && dotCount) {
+        const decimalSeparator = value.lastIndexOf(',') > value.lastIndexOf('.') ? ',' : '.';
+        const groupingSeparator = decimalSeparator === ',' ? '.' : ',';
+        if ((value.match(new RegExp('\\' + decimalSeparator, 'g')) || []).length !== 1) return null;
+        const parts = value.split(decimalSeparator);
+        if (parts.length !== 2 || !/^\d+$/.test(parts[1])) return null;
+        const integerGroups = parts[0].split(groupingSeparator);
+        if (integerGroups.length > 1) {
+          if (!/^\d{1,3}$/.test(integerGroups[0]) || integerGroups.slice(1).some((group) => !/^\d{3}$/.test(group))) return null;
+        } else if (!/^\d+$/.test(parts[0])) {
+          return null;
+        }
+        return sign + integerGroups.join('') + '.' + parts[1];
+      }
+
+      const separator = commaCount ? ',' : (dotCount ? '.' : '');
+      if (!separator) return /^\d+$/.test(value) ? sign + value : null;
+
+      const count = separator === ',' ? commaCount : dotCount;
+      if (count === 1) {
+        const parts = value.split(separator);
+        if (!/^\d*$/.test(parts[0]) || !/^\d+$/.test(parts[1])) return null;
+        return sign + (parts[0] || '0') + '.' + parts[1];
+      }
+
+      const groups = value.split(separator);
+      if (!/^\d{1,3}$/.test(groups[0]) || groups.slice(1).some((group) => !/^\d{3}$/.test(group))) return null;
+      return sign + groups.join('');
+    }
+
+    function parseLocalizedNumber(rawValue) {
+      const raw = String(rawValue ?? '').trim().replace(/[\s\u00a0]/g, '');
+      if (!raw) return { value: NaN, error: 'campo vazio' };
+      const match = raw.match(/^([^eE]+)([eE][+-]?\d+)?$/);
+      if (!match) return { value: NaN, error: 'formato numérico inválido' };
+      const mantissa = normalizeMantissa(match[1]);
+      if (mantissa === null) return { value: NaN, error: 'separadores decimais ou de milhar inválidos' };
+      const value = Number(mantissa + (match[2] || ''));
+      if (!Number.isFinite(value)) return { value: NaN, error: 'valor fora da faixa numérica suportada' };
+      return { value };
+    }
+
+    function formatNumber(value, maximumFractionDigits = 3, minimumFractionDigits = 0) {
+      return Number.isFinite(value)
+        ? value.toLocaleString('pt-BR', { maximumFractionDigits, minimumFractionDigits })
+        : '-';
+    }
+
+    function formatScientific(value) {
+      return Number.isFinite(value)
+        ? value.toExponential(4).replace('.', ',')
+        : '-';
+    }
+
+    function labelText(input) {
+      return input.labels && input.labels[0] ? input.labels[0].textContent.trim() : input.id;
+    }
+
+    function readAndValidate() {
+      const values = {};
+      const errors = [];
+
+      INPUT_IDS.forEach((id) => {
+        const input = byId(id);
+        input.setAttribute('aria-invalid', 'false');
+        const parsed = parseLocalizedNumber(input.value);
+        if (!Number.isFinite(parsed.value)) {
+          errors.push({ id, message: labelText(input) + ': ' + parsed.error + '.' });
+          input.setAttribute('aria-invalid', 'true');
+        } else {
+          values[id] = parsed.value;
+        }
+      });
+
+      const positiveIds = [
+        'wf-length', 'wf-diameter-equivalent', 'wf-tip-diameter', 'wf-velocity',
+        'wf-fluid-density', 'wf-elastic-modulus', 'wf-material-density', 'wf-strouhal'
+      ];
+      positiveIds.forEach((id) => {
+        if (Number.isFinite(values[id]) && values[id] <= 0) {
+          errors.push({ id, message: labelText(byId(id)) + ': informe um valor maior que zero.' });
+          byId(id).setAttribute('aria-invalid', 'true');
+        }
+      });
+
+      if (Number.isFinite(values['wf-bore']) && values['wf-bore'] < 0) {
+        errors.push({ id: 'wf-bore', message: 'Diâmetro do furo interno: informe zero ou um valor positivo.' });
+        byId('wf-bore').setAttribute('aria-invalid', 'true');
+      }
+      if (Number.isFinite(values['wf-added-mass']) && (values['wf-added-mass'] < 0 || values['wf-added-mass'] > 10)) {
+        errors.push({ id: 'wf-added-mass', message: 'Coeficiente de massa adicionada: use um valor entre 0 e 10.' });
+        byId('wf-added-mass').setAttribute('aria-invalid', 'true');
+      }
+      if (Number.isFinite(values['wf-strouhal']) && values['wf-strouhal'] > 1) {
+        errors.push({ id: 'wf-strouhal', message: 'Número de Strouhal: use um valor maior que 0 e menor ou igual a 1.' });
+        byId('wf-strouhal').setAttribute('aria-invalid', 'true');
+      }
+      if (Number.isFinite(values['wf-bore']) && Number.isFinite(values['wf-diameter-equivalent']) && values['wf-bore'] >= values['wf-diameter-equivalent']) {
+        errors.push({ id: 'wf-bore', message: 'O diâmetro do furo interno deve ser menor que o diâmetro externo equivalente.' });
+        byId('wf-bore').setAttribute('aria-invalid', 'true');
+        byId('wf-diameter-equivalent').setAttribute('aria-invalid', 'true');
+      }
+
+      return { values, errors };
+    }
+
+    function renderErrors(errors, focusFirst) {
+      const summary = byId('wf-errors');
+      if (!state.showValidation || !errors.length) {
+        summary.classList.remove('show');
+        summary.innerHTML = '';
+        return;
+      }
+      summary.innerHTML = '<strong>Revise os dados informados:</strong><ul>' + errors.map((error) => '<li>' + error.message + '</li>').join('') + '</ul>';
+      summary.classList.add('show');
+      if (focusFirst) {
+        byId(errors[0].id).focus();
+        summary.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    }
+
+    function resetMetrics(message) {
+      ['wf-ratio', 'wf-shedding-frequency', 'wf-natural-wet', 'wf-velocity-limit', 'wf-natural-dry', 'wf-dynamic-pressure'].forEach((id) => {
+        byId(id).textContent = '-';
+      });
+      const statusBox = byId('wf-result-state');
+      statusBox.className = 'note result-state';
+      statusBox.innerHTML = '<strong>Aguardando cálculo</strong><span>' + (message || 'Preencha os dados válidos e execute a triagem.') + '</span>';
+      byId('wf-memory').innerHTML = '<span class="memory-line">Os valores calculados aparecerão aqui.</span>';
+      byId('wf-result-note').textContent = 'Esta ferramenta não emite conformidade com ASME PTC 19.3 TW.';
+      byId('wf-copy').disabled = true;
+      byId('wf-report').disabled = true;
+      state.lastResult = null;
+    }
+
+    function calculate(focusFirstError) {
+      state.showValidation = true;
+      const validation = readAndValidate();
+      renderErrors(validation.errors, Boolean(focusFirstError));
+      if (validation.errors.length) {
+        resetMetrics('O cálculo foi bloqueado porque existem campos inválidos ou incompletos.');
+        return null;
+      }
+
+      const raw = validation.values;
+      const U = raw['wf-length'] / 1000;
+      const D = raw['wf-diameter-equivalent'] / 1000;
+      const d = raw['wf-bore'] / 1000;
+      const B = raw['wf-tip-diameter'] / 1000;
+      const velocity = raw['wf-velocity'];
+      const fluidDensity = raw['wf-fluid-density'];
+      const elasticModulus = raw['wf-elastic-modulus'] * 1e9;
+      const materialDensity = raw['wf-material-density'];
+      const strouhal = raw['wf-strouhal'];
+      const addedMassCoefficient = raw['wf-added-mass'];
+
+      const annularArea = Math.PI * (D ** 2 - d ** 2) / 4;
+      const externalArea = Math.PI * D ** 2 / 4;
+      const inertia = Math.PI * (D ** 4 - d ** 4) / 64;
+      const structuralMassPerLength = materialDensity * annularArea;
+      const addedFluidMassPerLength = addedMassCoefficient * fluidDensity * externalArea;
+      const effectiveMassPerLength = structuralMassPerLength + addedFluidMassPerLength;
+      const frequencyFactor = (BETA_1 ** 2) / (2 * Math.PI * U ** 2);
+      const naturalDry = frequencyFactor * Math.sqrt(elasticModulus * inertia / structuralMassPerLength);
+      const naturalWet = frequencyFactor * Math.sqrt(elasticModulus * inertia / effectiveMassPerLength);
+      const sheddingFrequency = strouhal * velocity / B;
+      const ratio = sheddingFrequency / naturalWet;
+      const dynamicPressure = 0.5 * fluidDensity * velocity ** 2 / 1000;
+      const velocityAt04 = CONSERVATIVE_RATIO_LIMIT * naturalWet * B / strouhal;
+      const velocityAt08 = HIGH_RATIO_LIMIT * naturalWet * B / strouhal;
+
+      const calculatedValues = [
+        annularArea, externalArea, inertia, structuralMassPerLength,
+        addedFluidMassPerLength, effectiveMassPerLength, naturalDry,
+        naturalWet, sheddingFrequency, ratio, dynamicPressure, velocityAt04, velocityAt08
+      ];
+      if (calculatedValues.some((value) => !Number.isFinite(value)) || naturalWet <= 0 || naturalDry <= 0 || ratio < 0) {
+        byId('wf-errors').innerHTML = '<strong>Não foi possível concluir o cálculo.</strong><ul><li>Revise as dimensões e as propriedades informadas; o conjunto gerou um resultado matemático inválido.</li></ul>';
+        byId('wf-errors').classList.add('show');
+        resetMetrics('A combinação informada produziu um resultado inválido.');
+        return null;
+      }
+
+      let statusClass;
+      let statusTitle;
+      let statusText;
+      if (ratio < CONSERVATIVE_RATIO_LIMIT) {
+        statusClass = 'ok';
+        statusTitle = 'Aprovado na triagem conservadora';
+        statusText = 'A razão fs/fn está abaixo de 0,4. Isso não substitui a verificação mecânica completa.';
+      } else if (ratio < HIGH_RATIO_LIMIT) {
+        statusClass = 'warn';
+        statusTitle = 'Não atende ao limite conservador';
+        statusText = 'A razão fs/fn é igual ou superior a 0,4. Realize o cálculo completo antes de aceitar esta configuração.';
+      } else {
+        statusClass = 'bad';
+        statusTitle = 'Revisão imediata necessária';
+        statusText = 'A razão fs/fn é igual ou superior a 0,8 e está excessivamente próxima da frequência natural aproximada.';
+      }
+
+      const result = {
+        raw, U, D, d, B, velocity, fluidDensity, elasticModulus, materialDensity,
+        strouhal, addedMassCoefficient, annularArea, externalArea, inertia,
+        structuralMassPerLength, addedFluidMassPerLength, effectiveMassPerLength,
+        naturalDry, naturalWet, sheddingFrequency, ratio, dynamicPressure,
+        velocityAt04, velocityAt08, statusClass, statusTitle, statusText
+      };
+      state.lastResult = result;
+      renderResult(result);
+      return result;
+    }
+
+    function renderResult(result) {
+      const statusBox = byId('wf-result-state');
+      statusBox.className = 'note result-state ' + result.statusClass;
+      statusBox.innerHTML = '<strong>' + result.statusTitle + '</strong><span>' + result.statusText + '</span>';
+
+      byId('wf-ratio').textContent = formatNumber(result.ratio, 3, 3);
+      byId('wf-shedding-frequency').textContent = formatNumber(result.sheddingFrequency, 2, 2) + ' Hz';
+      byId('wf-natural-wet').textContent = formatNumber(result.naturalWet, 2, 2) + ' Hz';
+      byId('wf-velocity-limit').textContent = formatNumber(result.velocityAt04, 2, 2) + ' m/s';
+      byId('wf-natural-dry').textContent = formatNumber(result.naturalDry, 2, 2) + ' Hz';
+      byId('wf-dynamic-pressure').textContent = formatNumber(result.dynamicPressure, 3, 3) + ' kPa';
+
+      const memoryLines = [
+        'Área anular = π × (' + formatNumber(result.D * 1000, 3) + '² − ' + formatNumber(result.d * 1000, 3) + '²) / 4 = ' + formatScientific(result.annularArea) + ' m²',
+        'Momento de inércia = π × (D⁴ − d⁴) / 64 = ' + formatScientific(result.inertia) + ' m⁴',
+        'Massa estrutural por comprimento = ' + formatNumber(result.structuralMassPerLength, 5) + ' kg/m',
+        'Massa adicionada do fluido por comprimento = ' + formatNumber(result.addedFluidMassPerLength, 5) + ' kg/m',
+        'Frequência natural aproximada no fluido = ' + formatNumber(result.naturalWet, 3) + ' Hz',
+        'fs = ' + formatNumber(result.strouhal, 4) + ' × ' + formatNumber(result.velocity, 4) + ' / ' + formatNumber(result.B, 6) + ' = ' + formatNumber(result.sheddingFrequency, 3) + ' Hz',
+        'fs/fn = ' + formatNumber(result.sheddingFrequency, 3) + ' / ' + formatNumber(result.naturalWet, 3) + ' = ' + formatNumber(result.ratio, 4)
+      ];
+      byId('wf-memory').innerHTML = memoryLines.map((line) => '<span class="memory-line">' + line + '</span>').join('');
+      byId('wf-result-note').textContent = 'Velocidade correspondente a fs/fn = 0,8: ' + formatNumber(result.velocityAt08, 2) + ' m/s. Verifique também partida, parada e outras condições operacionais.';
+      byId('wf-copy').disabled = false;
+      byId('wf-report').disabled = false;
+    }
+
+    function identificationLines() {
+      const fields = [
+        ['Responsável', 'wf-report-responsible'],
+        ['Empresa / setor', 'wf-report-company'],
+        ['Equipamento / TAG', 'wf-report-tag'],
+        ['Projeto / referência', 'wf-report-reference'],
+        ['Observações', 'wf-report-notes']
+      ];
+      return fields.map(([label, id]) => {
+        const value = byId(id).value.trim();
+        return value ? label + ': ' + value : '';
+      }).filter(Boolean);
+    }
+
+    function resultText(result) {
+      return [
+        'Triagem de Termopoço — Wake Frequency',
+        result.statusTitle,
+        'Razão fs/fn: ' + formatNumber(result.ratio, 4),
+        'Frequência de desprendimento fs: ' + formatNumber(result.sheddingFrequency, 3) + ' Hz',
+        'Frequência natural aproximada no fluido: ' + formatNumber(result.naturalWet, 3) + ' Hz',
+        'Velocidade no limite fs/fn = 0,4: ' + formatNumber(result.velocityAt04, 3) + ' m/s',
+        'Pressão dinâmica: ' + formatNumber(result.dynamicPressure, 3) + ' kPa',
+        'Conclusão: ' + result.statusText,
+        'Limitação: triagem simplificada; não representa conformidade com ASME PTC 19.3 TW.'
+      ].join('\n');
+    }
+
+    async function copyResult() {
+      if (!state.lastResult) return;
+      const text = resultText(state.lastResult);
+      try {
+        await navigator.clipboard.writeText(text);
+        byId('wf-result-note').textContent = 'Resultado copiado para a área de transferência.';
+      } catch (error) {
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        textarea.style.position = 'fixed';
+        textarea.style.opacity = '0';
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        textarea.remove();
+        byId('wf-result-note').textContent = 'Resultado copiado para a área de transferência.';
+      }
+    }
+
+    function generateReport() {
+      if (!state.lastResult) return;
+      if (!window.InstrumentationReport) {
+        byId('wf-result-note').textContent = 'O gerador de relatório não foi carregado. Verifique o arquivo instrumentation-report.js.';
+        return;
+      }
+      const result = state.lastResult;
+      const identification = identificationLines();
+      const dataLines = [
+        'Comprimento sem apoio U: ' + formatNumber(result.U * 1000, 3) + ' mm',
+        'Diâmetro externo equivalente D: ' + formatNumber(result.D * 1000, 3) + ' mm',
+        'Diâmetro do furo interno d: ' + formatNumber(result.d * 1000, 3) + ' mm',
+        'Diâmetro de ponta B: ' + formatNumber(result.B * 1000, 3) + ' mm',
+        'Velocidade do fluido: ' + formatNumber(result.velocity, 4) + ' m/s',
+        'Densidade do fluido: ' + formatNumber(result.fluidDensity, 4) + ' kg/m³',
+        'Módulo de elasticidade: ' + formatNumber(result.elasticModulus / 1e9, 4) + ' GPa',
+        'Densidade do material: ' + formatNumber(result.materialDensity, 4) + ' kg/m³',
+        'Número de Strouhal: ' + formatNumber(result.strouhal, 5),
+        'Coeficiente de massa adicionada: ' + formatNumber(result.addedMassCoefficient, 5)
+      ];
+      const resultLines = [
+        result.statusTitle,
+        'Razão fs/fn: ' + formatNumber(result.ratio, 5),
+        'Frequência de desprendimento fs: ' + formatNumber(result.sheddingFrequency, 4) + ' Hz',
+        'Frequência natural aproximada no fluido: ' + formatNumber(result.naturalWet, 4) + ' Hz',
+        'Frequência natural aproximada no ar: ' + formatNumber(result.naturalDry, 4) + ' Hz',
+        'Velocidade no limite fs/fn = 0,4: ' + formatNumber(result.velocityAt04, 4) + ' m/s',
+        'Pressão dinâmica: ' + formatNumber(result.dynamicPressure, 4) + ' kPa',
+        result.statusText
+      ];
+      const memoryLines = [
+        'Aanel = π(D² - d²)/4 = ' + formatScientific(result.annularArea) + ' m²',
+        'I = π(D⁴ - d⁴)/64 = ' + formatScientific(result.inertia) + ' m⁴',
+        'Massa estrutural por comprimento = ' + formatNumber(result.structuralMassPerLength, 6) + ' kg/m',
+        'Massa adicionada por comprimento = ' + formatNumber(result.addedFluidMassPerLength, 6) + ' kg/m',
+        'fn ≈ β₁²/(2πU²) × √(EI/mefetiva), β₁ = 1,875104',
+        'fs = St × V/B',
+        'Critério conservador desta triagem: fs/fn < 0,4'
+      ];
+      const generated = window.InstrumentationReport.downloadPdf({
+        title: 'Triagem de Termopoço — Wake Frequency',
+        subtitle: 'Estimativa preliminar de separação entre frequência de vórtices e frequência natural',
+        filename: 'triagem-termopoco-wake-frequency.pdf',
+        generatedAt: new Date().toLocaleString('pt-BR'),
+        sections: [
+          { title: 'Identificação', lines: identification.length ? identification : ['Não informada.'] },
+          { title: 'Dados informados', lines: dataLines },
+          { title: 'Resultado', lines: resultLines },
+          { title: 'Memória de cálculo', lines: memoryLines },
+          { title: 'Hipóteses e limitações', lines: [
+            'Modelo de haste reta, uniforme e engastada idealmente.',
+            'A massa adicionada do fluido é aproximada pelo coeficiente Ca informado.',
+            'Não inclui correções completas de perfil, sensor, montagem, Reynolds/Strouhal, temperatura, tensões, fadiga ou pressão.',
+            'Este relatório não declara conformidade com ASME PTC 19.3 TW e não substitui cálculo de engenharia.'
+          ] }
+        ]
+      });
+      byId('wf-result-note').textContent = 'Relatório PDF gerado: ' + generated.filename + '.';
+    }
+
+    function preparePrint() {
+      const identification = identificationLines();
+      byId('wf-print-identification').textContent = identification.length ? identification.join(' | ') : 'Sem identificação adicional.';
+      byId('wf-print-date').textContent = 'Impresso em: ' + new Date().toLocaleString('pt-BR');
+      window.print();
+    }
+
+    function setValues(values) {
+      Object.entries(values).forEach(([id, value]) => {
+        byId(id).value = value;
+        byId(id).setAttribute('aria-invalid', 'false');
+      });
+      state.showValidation = false;
+      renderErrors([], false);
+      calculate(false);
+    }
+
+    function clearForm() {
+      INPUT_IDS.forEach((id) => {
+        byId(id).value = '';
+        byId(id).setAttribute('aria-invalid', 'false');
+      });
+      state.showValidation = false;
+      renderErrors([], false);
+      resetMetrics('Os campos foram limpos. Informe novos dados para calcular.');
+      byId('wf-length').focus();
+    }
+
+    function markStale() {
+      if (state.lastResult) resetMetrics('Os dados foram alterados. Execute o cálculo novamente.');
+      if (state.showValidation) {
+        const validation = readAndValidate();
+        renderErrors(validation.errors, false);
+      }
+    }
+
+    byId('wf-form').addEventListener('submit', (event) => {
+      event.preventDefault();
+      calculate(true);
+    });
+    byId('wf-clear').addEventListener('click', clearForm);
+    byId('wf-copy').addEventListener('click', copyResult);
+    byId('wf-report').addEventListener('click', generateReport);
+    byId('wf-print').addEventListener('click', preparePrint);
+    byId('wf-example-water').addEventListener('click', () => setValues(DEFAULTS));
+    byId('wf-example-gas').addEventListener('click', () => setValues({
+      'wf-length': '200',
+      'wf-diameter-equivalent': '19',
+      'wf-bore': '6,5',
+      'wf-tip-diameter': '12,7',
+      'wf-velocity': '25',
+      'wf-fluid-density': '8',
+      'wf-elastic-modulus': '193',
+      'wf-material-density': '8000',
+      'wf-strouhal': '0,22',
+      'wf-added-mass': '1'
+    }));
+    INPUT_IDS.forEach((id) => byId(id).addEventListener('input', markStale));
+
+    calculate(false);
+  })();
+  </script>
   <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
 </body>
 </html>
