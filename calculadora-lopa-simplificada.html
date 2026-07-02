@@ -18,6 +18,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <link rel="stylesheet" href="style.css" />
   <script src="app.js" defer></script>
+  <script src="instrumentation-report.js" defer></script>
   <meta property="og:locale" content="pt_BR" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="ALOGY Engenharia" />
@@ -33,8 +34,14 @@
     .faq summary{cursor:pointer;font-weight:900;color:#0b3a62}.faq p{margin:10px 0 0;color:var(--muted)}
     .result-box strong.small{font-size:1.04rem} .calc-result.two{grid-template-columns:repeat(2,1fr)}
     .formula-box .line{display:block;margin:3px 0} .risk-note{border-left:5px solid #dc2626;background:rgba(220,38,38,.07)}
+    .validation-summary{display:none;margin-top:14px;padding:12px 14px;border:1px solid #b91c1c;border-left:5px solid #b91c1c;border-radius:10px;background:#fff7f7;color:#7f1d1d}
+    .validation-summary.show{display:block}.validation-summary strong{display:block;margin-bottom:6px}.validation-summary ul{margin:0;padding-left:20px}
+    .field input[aria-invalid="true"]{border-color:#b91c1c;box-shadow:0 0 0 3px rgba(185,28,28,.12)}
+    .report-identification{margin-top:14px}.report-identification summary{cursor:pointer;font-weight:800;color:#0b3a62}
+    .report-identification .calc-grid{margin-top:12px}.print-only{display:none}.memory-lines{margin-top:12px}
+    .memory-lines .line{display:block;margin:5px 0}.calc-actions button:disabled{opacity:.55;cursor:not-allowed}
     @media(max-width:900px){.calc-result.two{grid-template-columns:1fr}}
-    @media print{header,.social-floating,.fab-wrap,.cta-bar,footer,.calc-actions,.tools-hero .btn,.no-print{display:none!important}body{background:#fff}.container{max-width:100%;padding:0}.calc-card,.tools-hero{box-shadow:none;border:1px solid #ddd}.calc-layout{display:block}.calc-card{margin:12px 0}.calc-table th{background:#eee!important;color:#111!important}}
+    @media print{header,.social-floating,.fab-wrap,.cta-bar,footer,.calc-actions,.tools-hero .btn,.no-print,.report-identification{display:none!important}.print-only{display:block!important}body{background:#fff}.container{max-width:100%;padding:0}.calc-card,.tools-hero{box-shadow:none;border:1px solid #ddd}.calc-layout{display:block}.calc-card{margin:12px 0;break-inside:avoid}.calc-table th{background:#eee!important;color:#111!important}.validation-summary{display:none!important}}
   </style>
   <!-- Google AdSense - verificação de propriedade -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5586837114309500"
@@ -55,57 +62,458 @@
     <section class="calc-card" aria-label="Aviso de uso"><h2><i class="fas fa-triangle-exclamation"></i> Ferramenta orientativa</h2><p>Use esta ferramenta para estudo, estimativa e conferência preliminar. O resultado depende dos dados inseridos, hipóteses adotadas, normas aplicáveis, catálogos de fabricantes e validação de profissional habilitado.</p></section>
     <section class="calc-layout">
       <div class="calc-card"><h2><i class="fas fa-layer-group"></i> Dados simplificados da LOPA</h2><p>Informe frequência do evento iniciador, PFD das camadas independentes e frequência tolerável.</p><div class="calc-grid">
-<div class="field"><label for="freq">Frequência iniciadora (eventos/ano)</label><input id="freq" type="number" step="any" value="0.1"></div>
-<div class="field"><label for="target">Frequência tolerável (eventos/ano)</label><input id="target" type="number" step="any" value="0.0001"></div>
-<div class="field"><label for="pfd1">PFD IPL 1</label><input id="pfd1" type="number" step="any" value="0.1"></div>
-<div class="field"><label for="pfd2">PFD IPL 2</label><input id="pfd2" type="number" step="any" value="0.1"></div>
-<div class="field"><label for="pfd3">PFD IPL 3</label><input id="pfd3" type="number" step="any" value="1"></div>
-<div class="field"><label for="pfd4">PFD IPL 4</label><input id="pfd4" type="number" step="any" value="1"></div>
-</div><div class="calc-actions"><button class="mini-btn dark" type="button" onclick="copiar()"><i class="fas fa-copy"></i> Copiar resultado</button><button class="mini-btn" type="button" onclick="exemplo(1)">Exemplo básico</button><button class="mini-btn" type="button" onclick="exemplo(2)">Com SIF</button></div></div>
-      <div class="calc-card"><h2><i class="fas fa-shield-halved"></i> Resultado</h2><div class="calc-result"><div class="result-box"><span>PFD total</span><strong id="pfd">-</strong></div><div class="result-box"><span>Frequência mitigada</span><strong id="mit" class="small">-</strong></div><div class="result-box"><span>Status</span><strong id="status" class="small">-</strong></div></div><div class="calc-note risk-note" id="nota">LOPA real exige análise formal, independência das IPLs, dados confiáveis e equipe competente.</div><h3 style="margin-top:18px">Camadas consideradas</h3><div class="calc-table-wrap"><table class="calc-table"><thead><tr><th>Camada</th><th>PFD</th><th>Redução</th></tr></thead><tbody id="tbody"></tbody></table></div></div>
+<div class="field"><label for="freq">Frequência iniciadora (eventos/ano)</label><input id="freq" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" value="0,1" aria-describedby="lopa-errors"><small>Obrigatório. Informe valor maior que zero.</small></div>
+<div class="field"><label for="target">Frequência tolerável (eventos/ano)</label><input id="target" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" value="0,0001" aria-describedby="lopa-errors"><small>Obrigatório. Informe valor maior que zero.</small></div>
+<div class="field"><label for="pfd1">PFD IPL 1</label><input id="pfd1" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" value="0,1" aria-describedby="lopa-errors"><small>Faixa permitida: maior que 0 e menor ou igual a 1.</small></div>
+<div class="field"><label for="pfd2">PFD IPL 2</label><input id="pfd2" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" value="0,1" aria-describedby="lopa-errors"><small>Faixa permitida: maior que 0 e menor ou igual a 1.</small></div>
+<div class="field"><label for="pfd3">PFD IPL 3</label><input id="pfd3" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" value="1" aria-describedby="lopa-errors"><small>Use 1 quando a camada não fornecer redução de risco.</small></div>
+<div class="field"><label for="pfd4">PFD IPL 4</label><input id="pfd4" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" value="1" aria-describedby="lopa-errors"><small>Use 1 quando a camada não fornecer redução de risco.</small></div>
+</div>
+<div id="lopa-errors" class="validation-summary" role="alert" aria-live="assertive" tabindex="-1"></div>
+<details class="report-identification no-print">
+  <summary>Identificação opcional para o relatório</summary>
+  <div class="calc-grid">
+    <div class="field"><label for="reportResponsible">Responsável</label><input id="reportResponsible" type="text" autocomplete="name"></div>
+    <div class="field"><label for="reportCompany">Empresa / setor</label><input id="reportCompany" type="text" autocomplete="organization"></div>
+    <div class="field"><label for="reportScenario">Cenário / equipamento / TAG</label><input id="reportScenario" type="text"></div>
+    <div class="field"><label for="reportReference">Projeto / estudo / referência</label><input id="reportReference" type="text"></div>
+    <div class="field full"><label for="reportNotes">Observações</label><textarea id="reportNotes" rows="3"></textarea></div>
+  </div>
+</details>
+<div class="calc-actions"><button id="lopa-calculate" class="mini-btn dark" type="button"><i class="fas fa-calculator"></i> Calcular LOPA</button><button id="lopa-clear" class="mini-btn" type="button"><i class="fas fa-eraser"></i> Limpar</button><button id="lopa-copy" class="mini-btn" type="button"><i class="fas fa-copy"></i> Copiar resultado</button><button id="lopa-report" class="mini-btn" type="button"><i class="fas fa-file-pdf"></i> Gerar relatório</button><button id="lopa-example-basic" class="mini-btn" type="button">Exemplo básico</button><button id="lopa-example-sif" class="mini-btn" type="button">Com SIF</button></div></div>
+      <div class="calc-card"><h2><i class="fas fa-shield-halved"></i> Resultado</h2><div id="lopa-print-meta" class="print-only"></div><div id="lopa-print-identification" class="print-only"></div><div class="calc-result" aria-live="polite"><div class="result-box"><span>PFD total</span><strong id="lopa-pfd-total">-</strong></div><div class="result-box"><span>Frequência mitigada</span><strong id="lopa-mitigated" class="small">-</strong></div><div id="lopa-status-box" class="result-box"><span>Status</span><strong id="lopa-status" class="small">-</strong></div></div><div class="calc-note risk-note" id="lopa-note" aria-live="polite">LOPA real exige análise formal, independência das IPLs, dados confiáveis e equipe competente.</div><h3 style="margin-top:18px">Camadas consideradas</h3><div class="calc-table-wrap"><table class="calc-table" aria-label="Camadas independentes de proteção consideradas"><thead><tr><th>Camada</th><th>PFD</th><th>Redução de risco (1/PFD)</th></tr></thead><tbody id="lopa-table-body"></tbody></table></div><h3 style="margin-top:18px">Memória de cálculo</h3><div class="formula-box"><span class="line">PFD total = PFD IPL 1 × PFD IPL 2 × PFD IPL 3 × PFD IPL 4</span><span class="line">Frequência mitigada = frequência iniciadora × PFD total</span><span class="line">Atendimento ao alvo: frequência mitigada ≤ frequência tolerável</span><span class="line">PFD: probabilidade de falha sob demanda. IPL: camada independente de proteção.</span><div id="lopa-memory" class="memory-lines" aria-live="polite"><span class="line">Preencha valores válidos para visualizar a substituição numérica.</span></div></div></div>
     </section>
-    <section class="calc-card faq"><h2>Cuidados importantes</h2><details open><summary>Posso usar como análise oficial?</summary><p>Não. LOPA oficial exige método formal, critérios da empresa, dados confiáveis, equipe multidisciplinar e validação de independência das camadas.</p></details></section>
+    <section class="calc-card faq"><h2>Cuidados importantes</h2><details open><summary>Posso usar como análise oficial?</summary><p>Não. Uma LOPA formal exige cenário claramente definido, critérios de risco da organização, fontes rastreáveis, equipe multidisciplinar e validação de cada camada creditada.</p></details><details><summary>Por que o PFD deve estar entre 0 e 1?</summary><p>O PFD representa uma probabilidade. Valor igual a 1 significa que nenhuma redução de risco está sendo creditada; valores iguais a zero, negativos ou maiores que 1 são inválidos nesta ferramenta.</p></details><details><summary>Posso multiplicar qualquer salvaguarda como IPL?</summary><p>Não. A salvaguarda precisa ser aplicável ao cenário e atender aos critérios de independência, funcionalidade, integridade, confiabilidade, validação, manutenção e gestão previstos no método adotado.</p></details><details><summary>O que esta versão não calcula?</summary><p>Não são avaliados modificadores condicionais, condições habilitadoras, dependências, falhas de causa comum, severidade da consequência, erro humano detalhado ou verificação SIL de uma SIF.</p></details></section>
   
     <!-- ALOGY_REVISAO_TECNICA_FERRAMENTA -->
     <section class="calc-card" aria-label="Orientação técnica complementar">
       <h2><i class="fas fa-clipboard-check"></i> Como usar esta ferramenta na prática</h2>
-      <p>Ferramenta didática para estimar PFD total, frequência mitigada e camadas independentes de proteção em análise LOPA simplificada. Nesta revisão, o conteúdo foi ampliado para deixar mais claro quando usar a ferramenta, quais dados precisam ser conferidos e como transformar o número calculado em uma decisão técnica.</p>
+      <p>Use esta calculadora como apoio didático para um cenário LOPA simplificado, definido por uma causa iniciadora, uma consequência e as camadas independentes de proteção aplicáveis. O resultado é uma estimativa de ordem de grandeza e não substitui a planilha, o procedimento ou a revisão formal da organização.</p>
       <h3>Quando aplicar</h3>
-      <p>Use para priorizar manutenção, confiabilidade, inspeção, comissionamento, análise de falhas, sobressalentes e tomada de decisão entre corrigir, monitorar ou planejar parada.</p>
+      <p>Ela pode apoiar estudos preliminares após uma análise de perigos, revisão de HAZOP ou discussão de um cenário específico. Analise apenas um par causa-consequência por vez e mantenha a mesma base de frequência em eventos por ano.</p>
       <h3>Dados que merecem conferência</h3>
-      <p>Antes de confiar no resultado da ferramenta <strong>Calculadora LOPA Simplificada</strong>, confira principalmente: Frequência iniciadora (eventos/ano), Frequência tolerável (eventos/ano), PFD IPL 1, PFD IPL 2, PFD IPL 3, PFD IPL 4. Pequenos erros de unidade, ponto decimal ou condição de operação podem gerar conclusões erradas.</p>
       <ul>
-          <li>Frequência iniciadora (eventos/ano)</li>
-          <li>Frequência tolerável (eventos/ano)</li>
-          <li>PFD IPL 1</li>
-          <li>PFD IPL 2</li>
-          <li>PFD IPL 3</li>
-          <li>PFD IPL 4</li>
+        <li>Frequência do evento iniciador e respectiva fonte.</li>
+        <li>Frequência tolerável definida pelo critério de risco adotado.</li>
+        <li>PFD de cada IPL, com justificativa, validade e intervalo de teste.</li>
+        <li>Independência entre as camadas e ausência de dupla contagem.</li>
+        <li>Aplicabilidade de cada camada ao cenário e à consequência analisada.</li>
       </ul>
       <h3>Como interpretar o resultado</h3>
-      <p>O resultado deve ser analisado junto com criticidade, histórico de falhas, impacto na produção, segurança, meio ambiente, custo de parada e disponibilidade de peças.</p>
-      <p>Quando a página apresentar campos de resultado como PFD total, Frequência mitigada, Status, use esses valores para comparar o cenário calculado com limite operacional, tolerância do processo, histórico de manutenção ou especificação de fabricante.</p>
+      <p>A frequência mitigada é comparada com a frequência tolerável informada. Resultado dentro do alvo não prova que o cenário esteja formalmente aceito; ele apenas indica que os números inseridos atendem à comparação matemática. Resultado acima do alvo indica necessidade de revisar o cenário, os dados ou as medidas de redução de risco.</p>
       <h3>Checklist rápido de validação</h3>
       <ul>
-          <li>Use dados históricos confiáveis, não apenas percepção da equipe.</li>
-          <li>Separe falhas repetitivas, falhas aleatórias e falhas por modo comum.</li>
-          <li>Registre ação corretiva, causa provável e evidência encontrada.</li>
-          <li>Reavalie a criticidade sempre que processo, produção ou risco mudarem.</li>
+        <li>Defina claramente causa iniciadora, evento perigoso e consequência.</li>
+        <li>Use fontes rastreáveis para frequências e PFDs.</li>
+        <li>Confirme independência, funcionalidade, confiabilidade, teste e manutenção de cada IPL.</li>
+        <li>Verifique dependências, falhas de causa comum e fatores humanos.</li>
+        <li>Registre premissas, participantes, decisões e ações pendentes.</li>
       </ul>
       <h3>Limites da estimativa</h3>
-      <p>Esta ferramenta é indicada para estudo, triagem, conferência de campo e apoio à manutenção. Para projeto final, laudo, especificação de compra, alteração de segurança ou liberação de equipamento crítico, valide as premissas com normas aplicáveis, documentação do fabricante e profissional habilitado.</p>
+      <p>A ferramenta não executa uma LOPA completa, não seleciona SIL automaticamente e não verifica o ciclo de vida de segurança. Para decisão de segurança, projeto, alteração de processo ou crédito formal de uma IPL/SIF, utilize o método corporativo aplicável e validação por equipe competente.</p>
     </section>
 
   </main>
   <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
 <script>
-function n(id){return Number(document.getElementById(id)?.value||0)}
-function fmt(x,d=3){return isFinite(x)?x.toLocaleString('pt-BR',{maximumFractionDigits:d}):'-'}
-function sci(x){return isFinite(x)?x.toExponential(2).replace('.',','):'-'}
-function exemplo(i){if(i===1){freq.value=0.1;target.value=0.0001;pfd1.value=0.1;pfd2.value=0.1;pfd3.value=1;pfd4.value=1}else{freq.value=1;target.value=0.00001;pfd1.value=0.1;pfd2.value=0.01;pfd3.value=0.1;pfd4.value=1}calc()}
-function calc(){let pfds=[n('pfd1'),n('pfd2'),n('pfd3'),n('pfd4')].map(x=>x>0?x:1);let total=pfds.reduce((a,b)=>a*b,1);let m=n('freq')*total;let ok=m<=n('target');pfd.textContent=sci(total);mit.textContent=sci(m)+' /ano';status.textContent=ok?'Dentro do alvo':'Acima do alvo';status.parentElement.className='result-box '+(ok?'status-ok':'status-bad');let rows='';pfds.forEach((x,i)=>{rows+=`<tr><td>IPL ${i+1}</td><td>${sci(x)}</td><td>${x>0?fmt(1/x,1)+'x':'-'}</td></tr>`});tbody.innerHTML=rows;nota.textContent='Resultado didático. Não use como laudo de segurança. Confirme independência, eficácia, validação e dados de falha conforme procedimento da planta.';if(window.enhanceResponsiveToolTables) enhanceResponsiveToolTables()}
-function copiar(){navigator.clipboard?.writeText(`LOPA simplificada: PFD total ${pfd.textContent}; frequência mitigada ${mit.textContent}; status ${status.textContent}`)}
-document.querySelectorAll('input').forEach(e=>e.addEventListener('input',calc));document.addEventListener('DOMContentLoaded',calc);
+(function () {
+  'use strict';
+
+  const INPUT_IDS = ['freq', 'target', 'pfd1', 'pfd2', 'pfd3', 'pfd4'];
+  const PFD_IDS = ['pfd1', 'pfd2', 'pfd3', 'pfd4'];
+  const DEFAULT_VALUES = {
+    freq: '0,1',
+    target: '0,0001',
+    pfd1: '0,1',
+    pfd2: '0,1',
+    pfd3: '1',
+    pfd4: '1'
+  };
+
+  const state = {
+    showValidation: false,
+    lastResult: null
+  };
+
+  function byId(id) {
+    return document.getElementById(id);
+  }
+
+  function normalizeMantissa(rawMantissa) {
+    let value = rawMantissa;
+    let sign = '';
+    if (value.startsWith('+') || value.startsWith('-')) {
+      sign = value.charAt(0);
+      value = value.slice(1);
+    }
+    if (!value || !/[0-9]/.test(value)) return null;
+
+    const commaCount = (value.match(/,/g) || []).length;
+    const dotCount = (value.match(/\./g) || []).length;
+
+    if (commaCount && dotCount) {
+      const decimalSeparator = value.lastIndexOf(',') > value.lastIndexOf('.') ? ',' : '.';
+      const groupingSeparator = decimalSeparator === ',' ? '.' : ',';
+      if ((value.match(new RegExp('\\' + decimalSeparator, 'g')) || []).length !== 1) return null;
+      const parts = value.split(decimalSeparator);
+      if (parts.length !== 2 || !/^\d+$/.test(parts[1])) return null;
+      const integerGroups = parts[0].split(groupingSeparator);
+      if (integerGroups.length > 1) {
+        if (!/^\d{1,3}$/.test(integerGroups[0]) || integerGroups.slice(1).some((group) => !/^\d{3}$/.test(group))) return null;
+      } else if (!/^\d+$/.test(parts[0])) {
+        return null;
+      }
+      return sign + integerGroups.join('') + '.' + parts[1];
+    }
+
+    const separator = commaCount ? ',' : (dotCount ? '.' : '');
+    if (!separator) return /^\d+$/.test(value) ? sign + value : null;
+
+    const count = separator === ',' ? commaCount : dotCount;
+    if (count === 1) {
+      const parts = value.split(separator);
+      if (!/^\d*$/.test(parts[0]) || !/^\d+$/.test(parts[1])) return null;
+      return sign + (parts[0] || '0') + '.' + parts[1];
+    }
+
+    const groups = value.split(separator);
+    if (!/^\d{1,3}$/.test(groups[0]) || groups.slice(1).some((group) => !/^\d{3}$/.test(group))) return null;
+    return sign + groups.join('');
+  }
+
+  function parseLocalizedNumber(rawValue) {
+    const raw = String(rawValue ?? '').trim().replace(/[\s\u00a0]/g, '');
+    if (!raw) return { value: NaN, error: 'campo vazio' };
+    const match = raw.match(/^([^eE]+)([eE][+-]?\d+)?$/);
+    if (!match) return { value: NaN, error: 'formato numérico inválido' };
+    const mantissa = normalizeMantissa(match[1]);
+    if (mantissa === null) return { value: NaN, error: 'separadores decimais ou de milhar inválidos' };
+    const normalized = mantissa + (match[2] || '');
+    const value = Number(normalized);
+    if (!Number.isFinite(value)) return { value: NaN, error: 'valor fora da faixa numérica suportada' };
+    return { value, normalized };
+  }
+
+  function formatNumber(value, maximumFractionDigits = 6) {
+    return Number.isFinite(value)
+      ? value.toLocaleString('pt-BR', { maximumFractionDigits })
+      : '-';
+  }
+
+  function formatScientific(value) {
+    return Number.isFinite(value) && value > 0
+      ? value.toExponential(3).replace('.', ',')
+      : '-';
+  }
+
+  function readAndValidate() {
+    const values = {};
+    const errors = [];
+
+    INPUT_IDS.forEach((id) => {
+      const input = byId(id);
+      input.setAttribute('aria-invalid', 'false');
+      const parsed = parseLocalizedNumber(input.value);
+      if (!Number.isFinite(parsed.value)) {
+        errors.push({ id, message: input.labels[0].textContent + ': ' + parsed.error + '.' });
+        input.setAttribute('aria-invalid', 'true');
+      } else {
+        values[id] = parsed.value;
+      }
+    });
+
+    if (Number.isFinite(values.freq) && values.freq <= 0) {
+      errors.push({ id: 'freq', message: 'Frequência iniciadora: informe um valor maior que zero.' });
+      byId('freq').setAttribute('aria-invalid', 'true');
+    }
+    if (Number.isFinite(values.target) && values.target <= 0) {
+      errors.push({ id: 'target', message: 'Frequência tolerável: informe um valor maior que zero.' });
+      byId('target').setAttribute('aria-invalid', 'true');
+    }
+    PFD_IDS.forEach((id, index) => {
+      if (Number.isFinite(values[id]) && (values[id] <= 0 || values[id] > 1)) {
+        errors.push({ id, message: 'PFD IPL ' + (index + 1) + ': use um valor maior que 0 e menor ou igual a 1.' });
+        byId(id).setAttribute('aria-invalid', 'true');
+      }
+    });
+
+    return { values, errors };
+  }
+
+  function renderErrors(errors, focusFirst) {
+    const summary = byId('lopa-errors');
+    if (!state.showValidation || !errors.length) {
+      summary.classList.remove('show');
+      summary.innerHTML = '';
+      return;
+    }
+    summary.innerHTML = '<strong>Revise os dados informados:</strong><ul>' + errors.map((error) => '<li>' + error.message + '</li>').join('') + '</ul>';
+    summary.classList.add('show');
+    if (focusFirst) {
+      byId(errors[0].id).focus();
+      summary.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  }
+
+  function clearResults(noteText) {
+    byId('lopa-pfd-total').textContent = '-';
+    byId('lopa-mitigated').textContent = '-';
+    byId('lopa-status').textContent = 'Revisar dados';
+    const statusBox = byId('lopa-status-box');
+    statusBox.classList.remove('status-ok', 'status-bad');
+    byId('lopa-table-body').replaceChildren();
+    byId('lopa-memory').innerHTML = '<span class="line">Preencha valores válidos para visualizar a substituição numérica.</span>';
+    byId('lopa-note').textContent = noteText || 'Informe valores válidos para executar o cálculo.';
+    byId('lopa-copy').disabled = true;
+    byId('lopa-report').disabled = true;
+    state.lastResult = null;
+  }
+
+  function renderTable(pfds) {
+    const body = byId('lopa-table-body');
+    body.replaceChildren();
+    pfds.forEach((pfdValue, index) => {
+      const row = document.createElement('tr');
+      const layerCell = document.createElement('td');
+      const pfdCell = document.createElement('td');
+      const reductionCell = document.createElement('td');
+      layerCell.textContent = 'IPL ' + (index + 1);
+      pfdCell.textContent = formatScientific(pfdValue);
+      reductionCell.textContent = formatNumber(1 / pfdValue, 2) + '×';
+      row.append(layerCell, pfdCell, reductionCell);
+      body.appendChild(row);
+    });
+  }
+
+  function renderMemory(result) {
+    const pfdExpression = result.pfds.map(formatScientific).join(' × ');
+    const lines = [
+      'PFD total = ' + pfdExpression + ' = ' + formatScientific(result.totalPfd),
+      'Frequência mitigada = ' + formatScientific(result.initiatingFrequency) + ' × ' + formatScientific(result.totalPfd) + ' = ' + formatScientific(result.mitigatedFrequency) + ' eventos/ano',
+      'Comparação = ' + formatScientific(result.mitigatedFrequency) + (result.withinTarget ? ' ≤ ' : ' > ') + formatScientific(result.targetFrequency) + ' eventos/ano',
+      'Redução de risco total = 1 / ' + formatScientific(result.totalPfd) + ' = ' + formatNumber(result.riskReductionFactor, 2) + '×'
+    ];
+    const memory = byId('lopa-memory');
+    memory.replaceChildren();
+    lines.forEach((line) => {
+      const span = document.createElement('span');
+      span.className = 'line';
+      span.textContent = line;
+      memory.appendChild(span);
+    });
+  }
+
+  function calculate(options = {}) {
+    const validation = readAndValidate();
+    renderErrors(validation.errors, Boolean(options.focusInvalid));
+    if (validation.errors.length) {
+      clearResults('O cálculo foi bloqueado para evitar resultado falso. Corrija os campos destacados.');
+      return null;
+    }
+
+    const pfds = PFD_IDS.map((id) => validation.values[id]);
+    const totalPfd = pfds.reduce((accumulator, current) => accumulator * current, 1);
+    const mitigatedFrequency = validation.values.freq * totalPfd;
+    if (!Number.isFinite(totalPfd) || totalPfd <= 0 || !Number.isFinite(mitigatedFrequency) || mitigatedFrequency <= 0) {
+      state.showValidation = true;
+      const errors = [{ id: 'pfd1', message: 'A combinação informada produz valor fora da precisão numérica suportada. Revise as frequências e os PFDs.' }];
+      byId('pfd1').setAttribute('aria-invalid', 'true');
+      renderErrors(errors, Boolean(options.focusInvalid));
+      clearResults('O cálculo foi bloqueado porque o resultado ficou fora da precisão numérica suportada.');
+      return null;
+    }
+
+    const result = {
+      initiatingFrequency: validation.values.freq,
+      targetFrequency: validation.values.target,
+      pfds,
+      totalPfd,
+      mitigatedFrequency,
+      withinTarget: mitigatedFrequency <= validation.values.target,
+      riskReductionFactor: 1 / totalPfd
+    };
+
+    byId('lopa-pfd-total').textContent = formatScientific(result.totalPfd);
+    byId('lopa-mitigated').textContent = formatScientific(result.mitigatedFrequency) + ' eventos/ano';
+    byId('lopa-status').textContent = result.withinTarget ? 'Dentro do alvo' : 'Acima do alvo';
+    const statusBox = byId('lopa-status-box');
+    statusBox.classList.remove('status-ok', 'status-bad');
+    statusBox.classList.add(result.withinTarget ? 'status-ok' : 'status-bad');
+    byId('lopa-note').textContent = result.withinTarget
+      ? 'O cenário calculado atende ao alvo informado. Confirme formalmente a independência, eficácia, validação e manutenção de cada IPL antes de creditar a redução de risco.'
+      : 'O cenário calculado permanece acima do alvo informado. Não adote automaticamente uma nova IPL: revise o cenário, os dados e as medidas de redução de risco com equipe competente.';
+    renderTable(result.pfds);
+    renderMemory(result);
+    byId('lopa-copy').disabled = false;
+    byId('lopa-report').disabled = false;
+    state.lastResult = result;
+    return result;
+  }
+
+  function setValues(values) {
+    Object.entries(values).forEach(([id, value]) => {
+      byId(id).value = value;
+      byId(id).setAttribute('aria-invalid', 'false');
+    });
+    state.showValidation = false;
+    renderErrors([], false);
+    calculate();
+  }
+
+  function clearForm() {
+    INPUT_IDS.forEach((id) => {
+      byId(id).value = '';
+      byId(id).setAttribute('aria-invalid', 'false');
+    });
+    state.showValidation = false;
+    renderErrors([], false);
+    clearResults('Campos limpos. Informe os dados do cenário para calcular.');
+    byId('freq').focus();
+  }
+
+  function restoreDefault() {
+    setValues(DEFAULT_VALUES);
+  }
+
+  function resultText(result) {
+    return [
+      'LOPA simplificada',
+      'Frequência iniciadora: ' + formatScientific(result.initiatingFrequency) + ' eventos/ano',
+      'PFD total: ' + formatScientific(result.totalPfd),
+      'Frequência mitigada: ' + formatScientific(result.mitigatedFrequency) + ' eventos/ano',
+      'Frequência tolerável: ' + formatScientific(result.targetFrequency) + ' eventos/ano',
+      'Status: ' + (result.withinTarget ? 'Dentro do alvo' : 'Acima do alvo'),
+      'Redução de risco total: ' + formatNumber(result.riskReductionFactor, 2) + '×'
+    ].join('\n');
+  }
+
+  async function copyResult() {
+    const result = state.lastResult || calculate({ focusInvalid: true });
+    if (!result) return;
+    const text = resultText(result);
+    try {
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(text);
+      } else {
+        const area = document.createElement('textarea');
+        area.value = text;
+        area.setAttribute('readonly', '');
+        area.style.position = 'fixed';
+        area.style.opacity = '0';
+        document.body.appendChild(area);
+        area.select();
+        document.execCommand('copy');
+        area.remove();
+      }
+      byId('lopa-note').textContent = 'Resultado copiado. Mantenha a validação formal do cenário e das IPLs antes de usar os dados em decisão de segurança.';
+    } catch (error) {
+      byId('lopa-note').textContent = 'Não foi possível copiar automaticamente. Selecione os resultados e copie manualmente.';
+    }
+  }
+
+  function optionalIdentificationLines() {
+    const fields = [
+      ['Responsável', 'reportResponsible'],
+      ['Empresa / setor', 'reportCompany'],
+      ['Cenário / equipamento / TAG', 'reportScenario'],
+      ['Projeto / estudo / referência', 'reportReference'],
+      ['Observações', 'reportNotes']
+    ];
+    return fields
+      .map(([label, id]) => [label, byId(id).value.trim()])
+      .filter(([, value]) => value)
+      .map(([label, value]) => label + ': ' + value);
+  }
+
+  function generateReport() {
+    state.showValidation = true;
+    const result = calculate({ focusInvalid: true });
+    if (!result) return;
+    if (!window.InstrumentationReport) {
+      byId('lopa-note').textContent = 'O gerador de relatório não foi carregado. Verifique o arquivo instrumentation-report.js.';
+      return;
+    }
+
+    const identification = optionalIdentificationLines();
+    const pfdLines = result.pfds.map((value, index) => 'IPL ' + (index + 1) + ': PFD = ' + formatScientific(value) + '; redução = ' + formatNumber(1 / value, 2) + '×');
+    const timestamp = new Date();
+    const identifier = 'LOPA-' + timestamp.toISOString().replace(/[-:TZ.]/g, '').slice(0, 14);
+    const sections = [];
+
+    sections.push({ title: 'Identificação', lines: ['Identificador: ' + identifier].concat(identification.length ? identification : ['Identificação opcional não informada.']) });
+    sections.push({ title: 'Finalidade', lines: ['Estimativa didática da frequência mitigada de um único cenário de causa e consequência, considerando PFDs informados para camadas independentes de proteção.'] });
+    sections.push({ title: 'Dados de entrada', lines: [
+      'Frequência iniciadora: ' + formatScientific(result.initiatingFrequency) + ' eventos/ano',
+      'Frequência tolerável: ' + formatScientific(result.targetFrequency) + ' eventos/ano'
+    ].concat(pfdLines) });
+    sections.push({ title: 'Resultados', lines: [
+      'PFD total: ' + formatScientific(result.totalPfd),
+      'Frequência mitigada: ' + formatScientific(result.mitigatedFrequency) + ' eventos/ano',
+      'Redução de risco total: ' + formatNumber(result.riskReductionFactor, 2) + '×',
+      'Status em relação ao alvo informado: ' + (result.withinTarget ? 'Dentro do alvo' : 'Acima do alvo')
+    ] });
+    sections.push({ title: 'Memória de cálculo', lines: [
+      'PFD total = ' + result.pfds.map(formatScientific).join(' × ') + ' = ' + formatScientific(result.totalPfd),
+      'Frequência mitigada = ' + formatScientific(result.initiatingFrequency) + ' × ' + formatScientific(result.totalPfd) + ' = ' + formatScientific(result.mitigatedFrequency) + ' eventos/ano',
+      'Comparação = ' + formatScientific(result.mitigatedFrequency) + (result.withinTarget ? ' <= ' : ' > ') + formatScientific(result.targetFrequency) + ' eventos/ano'
+    ] });
+    sections.push({ title: 'Interpretação', lines: [byId('lopa-note').textContent] });
+    sections.push({ title: 'Hipóteses e limitações', lines: [
+      'O cálculo multiplica os PFDs informados e pressupõe que as camadas creditadas sejam realmente independentes e aplicáveis ao mesmo cenário.',
+      'A ferramenta não verifica independência, causa comum, cobertura, tempo de resposta, fator humano, frequência condicional, severidade ou qualidade dos dados.',
+      'O resultado é orientativo e não substitui LOPA formal, documentação do ciclo de vida de segurança, procedimentos da planta ou validação por equipe competente.'
+    ] });
+
+    const generated = window.InstrumentationReport.downloadPdf({
+      title: 'Relatório técnico - LOPA simplificada',
+      subtitle: 'Estimativa didática de PFD total e frequência mitigada',
+      filename: 'relatorio-lopa-simplificada-' + identifier + '.pdf',
+      generatedAt: timestamp.toLocaleString('pt-BR'),
+      sections
+    });
+    byId('lopa-note').textContent = 'Relatório PDF gerado: ' + generated.filename + '. O documento é neutro e não substitui análise LOPA formal.';
+  }
+
+  function updatePrintMetadata() {
+    byId('lopa-print-meta').textContent = 'Data e hora da impressão: ' + new Date().toLocaleString('pt-BR');
+    const identification = optionalIdentificationLines();
+    byId('lopa-print-identification').innerHTML = identification.length
+      ? '<strong>Identificação:</strong><br>' + identification.join('<br>')
+      : '';
+  }
+
+  function init() {
+    INPUT_IDS.forEach((id) => {
+      byId(id).addEventListener('input', () => {
+        calculate();
+      });
+    });
+    byId('lopa-calculate').addEventListener('click', () => {
+      state.showValidation = true;
+      calculate({ focusInvalid: true });
+    });
+    byId('lopa-clear').addEventListener('click', clearForm);
+    byId('lopa-copy').addEventListener('click', copyResult);
+    byId('lopa-report').addEventListener('click', generateReport);
+    byId('lopa-example-basic').addEventListener('click', restoreDefault);
+    byId('lopa-example-sif').addEventListener('click', () => setValues({
+      freq: '1',
+      target: '0,00001',
+      pfd1: '0,1',
+      pfd2: '0,01',
+      pfd3: '0,1',
+      pfd4: '1'
+    }));
+    window.addEventListener('beforeprint', updatePrintMetadata);
+    calculate();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init, { once: true });
+  } else {
+    init();
+  }
+})();
 </script>
 </body>
 </html>
