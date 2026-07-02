@@ -61,7 +61,42 @@
     .faq details{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:14px;padding:14px;margin-top:10px;box-shadow:0 6px 16px rgba(0,0,0,.04)}.faq summary{cursor:pointer;font-weight:900;color:#0b3a62}.faq p{margin:10px 0 0;color:var(--muted)}
     @media(max-width:900px){.calc-actions .mini-btn{width:100%;justify-content:center}}
     @media print{header,.social-floating,.fab-wrap,.cta-bar,footer,.calc-actions,.tools-hero .btn,.no-print{display:none!important}body{background:#fff}.container{max-width:100%;padding:0}.calc-card,.tools-hero{box-shadow:none;border:1px solid #ddd}.calc-layout{display:block}.calc-card{margin:12px 0}.calc-table th{background:#eee!important;color:#111!important}}
-  </style>
+  
+    .field input.invalid,.field select.invalid{border-color:#b42318!important;background:#fff5f5!important;outline:2px solid rgba(180,35,24,.12)}
+    .validation-summary{display:none;border-left:5px solid #b42318;background:#fff5f5;color:#7a271a;padding:12px 14px;border-radius:9px;margin:12px 0;line-height:1.55}
+    .validation-summary.show{display:block}
+    .memory-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+    .memory-step{border:1px solid #d8e5ed;border-radius:12px;padding:12px;background:#fbfdff;line-height:1.55;overflow-wrap:anywhere}
+    .memory-step strong{display:block;color:#004b80;margin-bottom:4px}
+    .report-note{border-left:5px solid #004b80;background:#f4f8fb;padding:12px 14px;border-radius:9px;line-height:1.55}
+    .status-warning{border-color:#d68a00!important;background:#fff8e6!important;color:#7a4d00!important}
+    .print-sheet{display:none}
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    @media(max-width:900px){.memory-grid{grid-template-columns:1fr}.calc-actions .mini-btn,.calc-actions .btn{width:100%;justify-content:center}}
+    @media(max-width:600px){
+      .responsive-data-table thead{display:none}
+      .responsive-data-table,.responsive-data-table tbody,.responsive-data-table tr,.responsive-data-table td{display:block;width:100%;box-sizing:border-box}
+      .responsive-data-table tr{border:1px solid #d9e5ec;border-radius:10px;margin:0 0 12px;overflow:hidden;background:#fff}
+      .responsive-data-table td{display:grid;grid-template-columns:minmax(118px,42%) minmax(0,1fr);gap:8px;border:0;border-bottom:1px solid #e6eef3;padding:9px;overflow-wrap:anywhere}
+      .responsive-data-table td:last-child{border-bottom:0}
+      .responsive-data-table td::before{content:attr(data-label);font-weight:700;color:#004b80}
+    }
+    @media print{
+      @page{size:A4;margin:14mm}
+      body{background:#fff!important;color:#000!important;font-family:Arial,sans-serif!important}
+      body>*:not(.print-sheet){display:none!important}
+      .print-sheet{display:block!important;color:#000!important;background:#fff!important;width:100%!important}
+      .print-sheet h1{font-size:20pt;margin:0 0 4mm;color:#000!important}
+      .print-sheet h2{font-size:13pt;margin:6mm 0 2mm;color:#000!important;border-bottom:1px solid #555;padding-bottom:1.5mm}
+      .print-sheet p,.print-sheet li,.print-sheet td,.print-sheet th{font-size:9.5pt;line-height:1.4}
+      .print-sheet table{width:100%;border-collapse:collapse;margin:2mm 0 5mm}
+      .print-sheet th,.print-sheet td{border:1px solid #777;padding:2.2mm;text-align:left;vertical-align:top}
+      .print-sheet th{background:#eee!important;color:#000!important}
+      .print-sheet .print-result{font-size:11pt;font-weight:700;border:1.5px solid #000;padding:3mm;margin:3mm 0}
+      .print-sheet .avoid-break{break-inside:avoid;page-break-inside:avoid}
+      .print-sheet .muted-print{color:#333}
+    }
+</style>
 <!-- Google AdSense - verificação de propriedade -->
 <script async="" crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5586837114309500"></script>
 </link></link></head>
@@ -74,7 +109,7 @@
 </header>
 <div aria-label="Redes sociais" class="social-floating"><a aria-label="LinkedIn" class="linkedin" href="https://www.linkedin.com/company/alogyengenharia" rel="noopener" target="_blank"><i class="fab fa-linkedin-in"></i></a><a aria-label="Instagram" class="instagram" href="https://www.instagram.com/alogyengenharia" rel="noopener" target="_blank"><i class="fab fa-instagram"></i></a><a aria-label="Facebook" class="facebook" href="https://www.facebook.com/alogyengenharia" rel="noopener" target="_blank"><i class="fab fa-facebook-f"></i></a><a aria-label="YouTube" class="youtube" href="https://www.youtube.com/@alogyengenharia" rel="noopener" target="_blank"><i class="fab fa-youtube"></i></a><a aria-label="Hotmart" class="hotmart" href="https://hotmart.com/pt-br/club/alogyengenharia" rel="noopener" target="_blank">H</a><a aria-label="TikTok" class="tiktok" href="https://www.tiktok.com/@alogyengenharia" rel="noopener" target="_blank"><i class="fab fa-tiktok"></i></a></div>
 <div aria-label="Ações rápidas" class="fab-wrap"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1!%20Vim%20pela%20calculadora%20PT100%20da%20ALOGY.%20Gostaria%20de%20atendimento." rel="noopener" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
-<main class="container" style="margin-top:18px"><div aria-label="Ações da ferramenta" class="tool-page-actions no-print"><button class="btn print" onclick="window.print()" type="button"><i class="fas fa-print"></i> Imprimir</button></div>
+<main class="container" style="margin-top:18px"><div aria-label="Ações da ferramenta" class="tool-page-actions no-print"><button class="btn print" id="topPrint" type="button"><i class="fas fa-print"></i> Imprimir</button><button class="btn secondary" id="topReport" type="button"><i class="fas fa-file-pdf"></i> Gerar relatório</button></div>
 <div class="no-print" style="margin-bottom:14px;display:flex;gap:10px;flex-wrap:wrap">
 
 
@@ -89,19 +124,33 @@
 <div class="calc-card"><h2><i class="fas fa-temperature-half"></i> Dados do sensor RTD</h2><p>Escolha o tipo de sensor, o modo de cálculo e a ligação usada. Para ligação 2 fios, informe a resistência de cada condutor para compensação orientativa.</p>
 <div class="calc-grid">
 <div class="field"><label for="tipo">Tipo de sensor</label><select id="tipo"><option value="100">PT100 - 100 Ω em 0 °C</option><option value="500">PT500 - 500 Ω em 0 °C</option><option value="1000">PT1000 - 1000 Ω em 0 °C</option></select></div>
+<div class="field"><label for="classe">Classe de tolerância</label><select id="classe"><option value="AA">Classe AA</option><option value="A" selected>Classe A</option><option value="B">Classe B</option><option value="C">Classe C</option></select></div>
 <div class="field"><label for="modo">Calcular a partir de</label><select id="modo"><option value="temp">Temperatura para resistência</option><option value="res">Resistência para temperatura</option></select></div>
-<div class="field"><label for="valor" id="valorLabel">Temperatura (°C)</label><input id="valor" step="any" type="number" value="100"/></div>
+<div class="field"><label for="valor" id="valorLabel">Temperatura (°C)</label><input id="valor" value="100" type="text" inputmode="decimal" autocomplete="off"/></div>
 <div class="field"><label for="ligacao">Ligação do sensor</label><select id="ligacao"><option value="2">2 fios - compensar cabo</option><option selected="" value="3">3 fios - compensação usual</option><option value="4">4 fios - melhor compensação</option></select></div>
-<div class="field"><label for="cabo">Resistência de cada condutor (Ω)</label><input id="cabo" step="any" type="number" value="0.5"/></div>
+<div class="field"><label for="cabo">Resistência de cada condutor (Ω)</label><input id="cabo" value="0.5" type="text" inputmode="decimal" autocomplete="off"/></div>
 <div class="field"><label for="unidade">Unidade de saída da resistência</label><select id="unidade"><option value="ohm">Ω</option><option value="kohm">kΩ</option></select></div>
 </div>
-<div class="calc-actions"><button class="mini-btn dark" onclick="copiarResultado()" type="button"><i class="fas fa-copy"></i> Copiar resultado</button><button class="mini-btn" onclick="exemplo('100','temp',100,'3',0)" type="button">Exemplo PT100 100 °C</button><button class="mini-btn" onclick="exemplo('100','res',138.505,'3',0)" type="button">138,505 Ω PT100</button><button class="mini-btn" onclick="exemplo('1000','temp',50,'2',0.8)" type="button">PT1000 2 fios</button></div>
+<div class="calc-actions no-print">
+<button class="mini-btn dark" id="btnCalculate" type="button"><i class="fas fa-calculator"></i> Calcular</button>
+<button class="mini-btn" id="btnReset" type="button"><i class="fas fa-rotate-left"></i> Limpar</button>
+<button class="mini-btn" id="btnCopy" type="button"><i class="fas fa-copy"></i> Copiar resultado</button>
+<button class="mini-btn" id="btnPrint" type="button"><i class="fas fa-print"></i> Imprimir</button>
+<button class="mini-btn" id="btnReport" type="button"><i class="fas fa-file-pdf"></i> Gerar relatório</button>
+<button class="mini-btn" id="btnExample100" type="button">Exemplo PT100 100 °C</button>
+<button class="mini-btn" id="btnExampleResistance" type="button">138,505 Ω PT100</button>
+<button class="mini-btn" id="btnExample1000" type="button">PT1000 2 fios</button>
+</div>
+<div class="validation-summary" id="validationSummary" role="alert" aria-live="assertive"></div>
 </div>
 <div class="calc-card"><h2><i class="fas fa-square-poll-vertical"></i> Resultado</h2>
-<div class="calc-result" style="grid-template-columns:1fr 1fr">
-<div class="result-box"><span>Temperatura</span><strong id="outTemp">-</strong></div>
-<div class="result-box"><span>Resistência corrigida</span><strong id="outRes">-</strong></div>
-<div class="result-box"><span>Resistência medida estimada</span><strong id="outMedida">-</strong></div>
+<div class="calc-result" style="grid-template-columns:1fr 1fr" aria-live="polite">
+<div class="result-box"><span>Temperatura corrigida</span><strong id="outTemp">-</strong></div>
+<div class="result-box"><span>Resistência do elemento</span><strong id="outRes">-</strong></div>
+<div class="result-box"><span>Resistência nos terminais</span><strong id="outMedida">-</strong></div>
+<div class="result-box"><span>Erro estimado dos cabos</span><strong id="outCableError">-</strong></div>
+<div class="result-box"><span>Tolerância da classe</span><strong id="outTolerance">-</strong></div>
+<div class="result-box"><span>Faixa de resistência pela classe</span><strong id="outResistanceBand">-</strong></div>
 <div class="result-box"><span>Observação</span><strong id="outStatus">-</strong></div>
 </div>
 <div style="margin-top:14px"><span class="span-pill" id="pillR0">R0: -</span><span class="span-pill" id="pillLig">Ligação: -</span><span class="span-pill" id="pillFaixa">Faixa: -200 a 850 °C</span></div>
@@ -109,8 +158,14 @@
 </div>
 </section>
 <section class="calc-layout">
-<div class="calc-card"><h2><i class="fas fa-table"></i> Tabela rápida do sensor selecionado</h2><p class="small-muted">Valores aproximados para consulta em campo. A tabela muda conforme PT100, PT500 ou PT1000.</p><div class="calc-table-wrap"><table class="calc-table"><thead><tr><th>Temperatura</th><th>Resistência</th><th>Observação</th></tr></thead><tbody id="tbl"></tbody></table></div></div>
+<div class="calc-card"><h2><i class="fas fa-table"></i> Tabela rápida do sensor selecionado</h2><p class="small-muted">Valores aproximados para consulta em campo. A tabela muda conforme PT100, PT500 ou PT1000.</p><div class="calc-table-wrap"><table class="calc-table responsive-data-table" id="quickTable"><thead><tr><th>Temperatura</th><th>Resistência</th><th>Observação</th></tr></thead><tbody id="tbl"></tbody></table></div></div>
 <div class="calc-card"><h2><i class="fas fa-circle-info"></i> Ligação 2, 3 e 4 fios</h2><p><strong>2 fios:</strong> a resistência dos cabos soma com a resistência do sensor e pode gerar erro de leitura.</p><p><strong>3 fios:</strong> é muito usada em indústria porque compensa boa parte da resistência dos cabos quando os condutores são semelhantes.</p><p><strong>4 fios:</strong> é a melhor ligação para medição de resistência, pois reduz fortemente o efeito dos cabos.</p><div class="calc-note">Em calibração real, confirme a ligação no instrumento, classe do sensor, corrente de excitação, incerteza do padrão e procedimento aplicado.</div></div>
+</section>
+<section class="calc-card" id="memoryCard">
+<h2><i class="fas fa-square-root-variable"></i> Memória de cálculo</h2>
+<p class="small-muted">A memória mostra a equação aplicada, a compensação dos cabos e a tolerância orientativa da classe selecionada.</p>
+<div class="memory-grid" id="memorySteps"></div>
+<div class="report-note" style="margin-top:12px">Coeficientes de platina usados: A = 3,9083 × 10⁻³ °C⁻¹, B = −5,775 × 10⁻⁷ °C⁻² e C = −4,183 × 10⁻¹² °C⁻⁴. A corrente de excitação, o autoaquecimento, a incerteza e o desequilíbrio real dos cabos não são calculados.</div>
 </section>
 <section class="calc-card faq"><h2><i class="fas fa-circle-question"></i> Perguntas frequentes</h2>
 <details open=""><summary>O que significa PT100?</summary><p>PT100 é um sensor RTD de platina com aproximadamente 100 Ω em 0 °C. A resistência aumenta conforme a temperatura sobe.</p></details>
@@ -149,46 +204,406 @@
 <p>Esta ferramenta é indicada para estudo, triagem, conferência de campo e apoio à manutenção. Para projeto final, laudo, especificação de compra, alteração de segurança ou liberação de equipamento crítico, valide as premissas com normas aplicáveis, documentação do fabricante e profissional habilitado.</p>
 </section>
 </main>
+<section class="print-sheet" id="printSheet" aria-hidden="true">
+<h1>Memória de cálculo — Sensor RTD de platina</h1>
+<p class="muted-print" id="printDate"></p>
+<div id="printContent"></div>
+</section>
 <footer><p>© Desde 2012 ALOGY Engenharia | www.alogy.com.br</p></footer>
 <script>
-const A=3.9083e-3, B=-5.775e-7, C=-4.183e-12;
-const $=id=>document.getElementById(id);
-function fmt(n,d=3){ if(!isFinite(n)) return '-'; return Number(n).toLocaleString('pt-BR',{minimumFractionDigits:d,maximumFractionDigits:d}); }
-function rtdR(t,r0){ return t>=0 ? r0*(1 + A*t + B*t*t) : r0*(1 + A*t + B*t*t + C*(t-100)*t*t*t); }
-function rtdT(r,r0){ let lo=-200, hi=850; for(let i=0;i<80;i++){ const mid=(lo+hi)/2; if(rtdR(mid,r0)<r) lo=mid; else hi=mid; } return (lo+hi)/2; }
-function resOut(r){ return $('unidade').value==='kohm' ? `${fmt(r/1000,5)} kΩ` : `${fmt(r,3)} Ω`; }
-function calc(){
-  const r0=+$('tipo').value; const modo=$('modo').value; const val=+$('valor').value; const lig=$('ligacao').value; const rc=Math.max(0,+$('cabo').value||0);
-  $('valorLabel').textContent = modo==='temp' ? 'Temperatura (°C)' : 'Resistência medida (Ω)';
-  let temp, rCorr, rMed;
-  if(modo==='temp'){
-    temp=val; rCorr=rtdR(temp,r0); rMed = lig==='2' ? rCorr + 2*rc : rCorr;
-  }else{
-    rMed=val; rCorr = lig==='2' ? rMed - 2*rc : rMed; temp=rtdT(rCorr,r0);
+(() => {
+  'use strict';
+
+  const COEFFICIENTS = {A: 3.9083e-3, B: -5.775e-7, C: -4.183e-12};
+  const LIMITS = {minTemperature: -200, maxTemperature: 850};
+  const byId = (id) => document.getElementById(id);
+  let lastCalculation = null;
+
+  function escapeHtml(value) {
+    return String(value ?? '').replace(/[&<>'"]/g, (char) => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[char]));
   }
-  const fora = temp < -200 || temp > 850 || rCorr <= 0;
-  $('outTemp').textContent = `${fmt(temp,2)} °C`;
-  $('outRes').textContent = resOut(rCorr);
-  $('outMedida').textContent = resOut(rMed);
-  $('outStatus').textContent = fora ? 'Verificar faixa' : (lig==='2' ? 'Compensação 2 fios' : 'Dentro da faixa auxiliar');
-  $('outStatus').parentElement.classList.toggle('status-bad', fora);
-  $('outStatus').parentElement.classList.toggle('status-ok', !fora);
-  $('pillR0').textContent = `R0: ${r0} Ω em 0 °C`;
-  $('pillLig').textContent = `Ligação: ${lig} fios`;
-  $('nota').textContent = lig==='2' ? `Em 2 fios, foi subtraído 2 × ${fmt(rc,3)} Ω da resistência medida para estimar a resistência real do sensor.` : 'Em 3 ou 4 fios, a resistência de cabo foi tratada como compensada de forma orientativa.';
-  renderTable(r0);
-}
-function renderTable(r0){
-  const pts=[-200,-100,-50,0,25,50,75,100,150,200,300,400,500,600,700,850];
-  $('tbl').innerHTML = pts.map(t=>`<tr><td>${t} °C</td><td>${resOut(rtdR(t,r0))}</td><td>${t===0?'Ponto nominal':t<0?'Baixa temperatura':'Consulta'}</td></tr>`).join('');
-}
-function exemplo(tipo,modo,valor,lig,cabo){ $('tipo').value=tipo; $('modo').value=modo; $('valor').value=valor; $('ligacao').value=lig; $('cabo').value=cabo; calc(); }
-function copiarResultado(){
-  const txt=`Calculadora PT100 ALOGY\nTemperatura: ${$('outTemp').textContent}\nResistência corrigida: ${$('outRes').textContent}\nResistência medida estimada: ${$('outMedida').textContent}\n${$('pillR0').textContent}\n${$('pillLig').textContent}`;
-  navigator.clipboard?.writeText(txt).then(()=>alert('Resultado copiado.')).catch(()=>alert(txt));
-}
-['tipo','modo','valor','ligacao','cabo','unidade'].forEach(id=>$(id).addEventListener('input',calc));
-calc();
+
+  function parseLocalized(value) {
+    const raw = String(value ?? '').trim().replace(/\s+/g, '');
+    if (!raw || !/^[+-]?[\d.,]+$/.test(raw)) return NaN;
+    const comma = raw.lastIndexOf(',');
+    const dot = raw.lastIndexOf('.');
+    let normalized = raw;
+    if (comma >= 0 && dot >= 0) {
+      const decimal = comma > dot ? ',' : '.';
+      const group = decimal === ',' ? '.' : ',';
+      normalized = raw.split(group).join('').replace(decimal, '.');
+    } else if (comma >= 0) {
+      if ((raw.match(/,/g) || []).length > 1) return NaN;
+      normalized = raw.replace(',', '.');
+    } else if ((raw.match(/\./g) || []).length > 1) {
+      const unsigned = raw.replace(/^[+-]/, '');
+      const parts = unsigned.split('.');
+      if (parts.slice(1).every((part) => part.length === 3)) normalized = raw.replace(/\./g, '');
+      else return NaN;
+    }
+    const number = Number(normalized);
+    return Number.isFinite(number) ? number : NaN;
+  }
+
+  function format(value, digits = 3) {
+    return Number.isFinite(value)
+      ? value.toLocaleString('pt-BR', {minimumFractionDigits: digits, maximumFractionDigits: digits})
+      : '—';
+  }
+
+  function resistanceAtTemperature(temperature, r0) {
+    const {A, B, C} = COEFFICIENTS;
+    return temperature >= 0
+      ? r0 * (1 + A * temperature + B * temperature * temperature)
+      : r0 * (1 + A * temperature + B * temperature * temperature + C * (temperature - 100) * temperature * temperature * temperature);
+  }
+
+  function temperatureAtResistance(resistance, r0) {
+    const minResistance = resistanceAtTemperature(LIMITS.minTemperature, r0);
+    const maxResistance = resistanceAtTemperature(LIMITS.maxTemperature, r0);
+    if (!Number.isFinite(resistance) || resistance < minResistance || resistance > maxResistance) return NaN;
+    let low = LIMITS.minTemperature;
+    let high = LIMITS.maxTemperature;
+    for (let index = 0; index < 100; index += 1) {
+      const middle = (low + high) / 2;
+      if (resistanceAtTemperature(middle, r0) < resistance) low = middle;
+      else high = middle;
+    }
+    return (low + high) / 2;
+  }
+
+  function classTolerance(temperature, sensorClass) {
+    const absoluteTemperature = Math.abs(temperature);
+    const rules = {
+      AA: {base: 0.10, slope: 0.0017},
+      A: {base: 0.15, slope: 0.0020},
+      B: {base: 0.30, slope: 0.0050},
+      C: {base: 0.60, slope: 0.0100}
+    };
+    const rule = rules[sensorClass] || rules.A;
+    return rule.base + rule.slope * absoluteTemperature;
+  }
+
+  function resistanceText(resistance, unit) {
+    if (!Number.isFinite(resistance)) return '—';
+    return unit === 'kohm' ? format(resistance / 1000, 5) + ' kΩ' : format(resistance, 3) + ' Ω';
+  }
+
+  function clearValidation() {
+    ['valor','cabo','tipo','modo','ligacao','classe'].forEach((id) => byId(id)?.classList.remove('invalid'));
+    const summary = byId('validationSummary');
+    summary.classList.remove('show');
+    summary.innerHTML = '';
+  }
+
+  function showValidation(errors, focusErrors = true) {
+    clearValidation();
+    errors.forEach((error) => byId(error.id)?.classList.add('invalid'));
+    const summary = byId('validationSummary');
+    summary.innerHTML = '<strong>Revise os dados:</strong><ul>' + errors.map((error) => '<li>' + escapeHtml(error.message) + '</li>').join('') + '</ul>';
+    summary.classList.add('show');
+    if (focusErrors && errors[0]) byId(errors[0].id)?.focus();
+  }
+
+  function clearResults(message = 'Preencha os dados e clique em Calcular.') {
+    ['outTemp','outRes','outMedida','outCableError','outTolerance','outResistanceBand','outStatus'].forEach((id) => { byId(id).textContent = '—'; });
+    byId('outStatus').parentElement.className = 'result-box';
+    byId('pillR0').textContent = 'R0: —';
+    byId('pillLig').textContent = 'Ligação: —';
+    byId('nota').textContent = message;
+    byId('tbl').innerHTML = '';
+    byId('memorySteps').innerHTML = '';
+    byId('printContent').innerHTML = '';
+    byId('printDate').textContent = '';
+  }
+
+  function updateValueLabel() {
+    byId('valorLabel').textContent = byId('modo').value === 'temp' ? 'Temperatura (°C)' : 'Resistência medida nos terminais (Ω)';
+  }
+
+  function readInputs() {
+    return {
+      r0: Number(byId('tipo').value),
+      sensorName: 'PT' + byId('tipo').value,
+      sensorClass: byId('classe').value,
+      mode: byId('modo').value,
+      value: parseLocalized(byId('valor').value),
+      connection: byId('ligacao').value,
+      leadResistance: parseLocalized(byId('cabo').value),
+      outputUnit: byId('unidade').value
+    };
+  }
+
+  function validate(data) {
+    const errors = [];
+    if (!Number.isFinite(data.value)) errors.push({id:'valor', message:'Informe um valor numérico válido. Use, por exemplo, 100 ou 138,505.'});
+    if (!Number.isFinite(data.leadResistance) || data.leadResistance < 0) errors.push({id:'cabo', message:'A resistência de cada condutor deve ser zero ou positiva.'});
+    if (data.mode === 'temp' && Number.isFinite(data.value) && (data.value < LIMITS.minTemperature || data.value > LIMITS.maxTemperature)) {
+      errors.push({id:'valor', message:'A temperatura deve estar entre −200 °C e 850 °C para esta curva.'});
+    }
+    if (data.mode === 'res' && Number.isFinite(data.value) && data.value <= 0) errors.push({id:'valor', message:'A resistência medida deve ser maior que zero.'});
+    if (data.connection === '2' && Number.isFinite(data.value) && Number.isFinite(data.leadResistance) && data.mode === 'res' && data.value <= 2 * data.leadResistance) {
+      errors.push({id:'valor', message:'A resistência medida precisa ser maior que a soma dos dois condutores.'});
+    }
+    if (data.mode === 'res' && Number.isFinite(data.value) && Number.isFinite(data.leadResistance)) {
+      const corrected = data.connection === '2' ? data.value - 2 * data.leadResistance : data.value;
+      const minimum = resistanceAtTemperature(LIMITS.minTemperature, data.r0);
+      const maximum = resistanceAtTemperature(LIMITS.maxTemperature, data.r0);
+      if (corrected < minimum || corrected > maximum) {
+        errors.push({id:'valor', message:'Após a compensação, a resistência fica fora da faixa correspondente a −200 °C até 850 °C (' + format(minimum, 3) + ' Ω a ' + format(maximum, 3) + ' Ω).'});
+      }
+    }
+    return errors;
+  }
+
+  function calculateValues(data) {
+    let temperature;
+    let elementResistance;
+    let terminalResistance;
+    let uncompensatedTemperature;
+
+    if (data.mode === 'temp') {
+      temperature = data.value;
+      elementResistance = resistanceAtTemperature(temperature, data.r0);
+      terminalResistance = data.connection === '2' ? elementResistance + 2 * data.leadResistance : elementResistance;
+      uncompensatedTemperature = data.connection === '2' ? temperatureAtResistance(terminalResistance, data.r0) : temperature;
+    } else {
+      terminalResistance = data.value;
+      elementResistance = data.connection === '2' ? terminalResistance - 2 * data.leadResistance : terminalResistance;
+      temperature = temperatureAtResistance(elementResistance, data.r0);
+      uncompensatedTemperature = temperatureAtResistance(terminalResistance, data.r0);
+    }
+
+    const cableError = data.connection === '2' ? uncompensatedTemperature - temperature : 0;
+    const tolerance = classTolerance(temperature, data.sensorClass);
+    const resistanceLow = resistanceAtTemperature(Math.max(LIMITS.minTemperature, temperature - tolerance), data.r0);
+    const resistanceHigh = resistanceAtTemperature(Math.min(LIMITS.maxTemperature, temperature + tolerance), data.r0);
+    return {temperature, elementResistance, terminalResistance, uncompensatedTemperature, cableError, tolerance, resistanceLow, resistanceHigh};
+  }
+
+  function statusFor(data, result) {
+    if (data.connection === '2' && data.leadResistance > 0) {
+      return {text:'Compensação orientativa de 2 fios', className:'status-warning'};
+    }
+    if (data.connection === '3') return {text:'3 fios — compensação ideal assumida', className:'status-ok'};
+    return {text:'4 fios — efeito dos cabos desprezado', className:'status-ok'};
+  }
+
+  function renderQuickTable(data) {
+    const points = [-200,-100,-50,0,25,50,75,100,150,200,300,400,500,600,700,850];
+    byId('tbl').innerHTML = points.map((temperature) => {
+      const tolerance = classTolerance(temperature, data.sensorClass);
+      return '<tr><td data-label="Temperatura">' + format(temperature, 0) + ' °C</td><td data-label="Resistência">' + resistanceText(resistanceAtTemperature(temperature, data.r0), data.outputUnit) + '</td><td data-label="Tolerância">± ' + format(tolerance, 3) + ' °C — Classe ' + escapeHtml(data.sensorClass) + '</td></tr>';
+    }).join('');
+  }
+
+  function renderMemory(data, result) {
+    const {A, B, C} = COEFFICIENTS;
+    const equation = result.temperature >= 0
+      ? 'R(T) = R0 × [1 + A×T + B×T²]'
+      : 'R(T) = R0 × [1 + A×T + B×T² + C×(T−100)×T³]';
+    const leadText = data.connection === '2'
+      ? 'R dos terminais = R do elemento + 2 × Rcabo = ' + format(result.elementResistance, 6) + ' + 2 × ' + format(data.leadResistance, 6) + ' = ' + format(result.terminalResistance, 6) + ' Ω.'
+      : 'Para ' + data.connection + ' fios, a resistência dos condutores foi considerada compensada idealmente.';
+    const inverseText = data.mode === 'res'
+      ? 'A temperatura foi obtida por busca numérica dentro de −200 °C a 850 °C, usando a curva completa até convergir para ' + format(result.temperature, 6) + ' °C.'
+      : 'A resistência foi calculada diretamente a partir da temperatura informada.';
+    const toleranceFormula = {AA:'±(0,10 + 0,0017 × |T|)', A:'±(0,15 + 0,0020 × |T|)', B:'±(0,30 + 0,0050 × |T|)', C:'±(0,60 + 0,0100 × |T|)'}[data.sensorClass];
+    const steps = [
+      ['1. Curva utilizada', equation + '. R0 = ' + format(data.r0, 0) + ' Ω; A = ' + A + '; B = ' + B + (result.temperature < 0 ? '; C = ' + C : '') + '.'],
+      ['2. Resultado da curva', 'T = ' + format(result.temperature, 6) + ' °C e R do elemento = ' + format(result.elementResistance, 6) + ' Ω.'],
+      ['3. Ligação elétrica', leadText],
+      ['4. Conversão inversa', inverseText],
+      ['5. Erro dos cabos', 'Erro estimado sem compensação = ' + format(result.cableError, 6) + ' °C.'],
+      ['6. Classe do sensor', 'Classe ' + data.sensorClass + ': ' + toleranceFormula + ' = ± ' + format(result.tolerance, 4) + ' °C. Faixa resistiva aproximada: ' + format(result.resistanceLow, 6) + ' Ω a ' + format(result.resistanceHigh, 6) + ' Ω.']
+    ];
+    byId('memorySteps').innerHTML = steps.map(([title, text]) => '<div class="memory-step"><strong>' + escapeHtml(title) + '</strong>' + escapeHtml(text) + '</div>').join('');
+  }
+
+  function render(data, result) {
+    const status = statusFor(data, result);
+    byId('outTemp').textContent = format(result.temperature, 3) + ' °C';
+    byId('outRes').textContent = resistanceText(result.elementResistance, data.outputUnit);
+    byId('outMedida').textContent = resistanceText(result.terminalResistance, data.outputUnit);
+    byId('outCableError').textContent = data.connection === '2' ? format(result.cableError, 4) + ' °C' : '0,0000 °C (ideal)';
+    byId('outTolerance').textContent = '± ' + format(result.tolerance, 3) + ' °C — Classe ' + data.sensorClass;
+    byId('outResistanceBand').textContent = resistanceText(result.resistanceLow, data.outputUnit) + ' a ' + resistanceText(result.resistanceHigh, data.outputUnit);
+    byId('outStatus').textContent = status.text;
+    byId('outStatus').parentElement.className = 'result-box ' + status.className;
+    byId('pillR0').textContent = 'R0: ' + format(data.r0, 0) + ' Ω em 0 °C';
+    byId('pillLig').textContent = 'Ligação: ' + data.connection + ' fios';
+    byId('nota').textContent = data.connection === '2'
+      ? 'Foram considerados dois condutores com ' + format(data.leadResistance, 3) + ' Ω cada. A compensação é matemática e não substitui a medição real dos cabos.'
+      : 'A compensação de ' + data.connection + ' fios foi considerada ideal. Desequilíbrio dos condutores, autoaquecimento e incerteza não estão incluídos.';
+    renderQuickTable(data);
+    renderMemory(data, result);
+    lastCalculation = {data, result, status, generatedAt: new Date()};
+  }
+
+  function calculate({focusErrors = true} = {}) {
+    updateValueLabel();
+    const data = readInputs();
+    const errors = validate(data);
+    if (errors.length) {
+      showValidation(errors, focusErrors);
+      clearResults('Dados incompletos ou fora da faixa. Corrija os campos destacados.');
+      lastCalculation = null;
+      return false;
+    }
+    clearValidation();
+    const result = calculateValues(data);
+    if (![result.temperature,result.elementResistance,result.terminalResistance,result.tolerance].every(Number.isFinite)) {
+      showValidation([{id:'valor', message:'Não foi possível obter um resultado finito para os dados informados.'}], focusErrors);
+      clearResults('Não foi possível concluir o cálculo.');
+      lastCalculation = null;
+      return false;
+    }
+    render(data, result);
+    return true;
+  }
+
+  function summaryTableHtml(calc) {
+    const {data, result, status} = calc;
+    return '<table><tbody>' +
+      '<tr><th>Sensor</th><td>' + escapeHtml(data.sensorName) + ' — Classe ' + escapeHtml(data.sensorClass) + '</td></tr>' +
+      '<tr><th>Modo de cálculo</th><td>' + (data.mode === 'temp' ? 'Temperatura para resistência' : 'Resistência para temperatura') + '</td></tr>' +
+      '<tr><th>Ligação</th><td>' + escapeHtml(data.connection) + ' fios</td></tr>' +
+      '<tr><th>Resistência por condutor</th><td>' + format(data.leadResistance, 6) + ' Ω</td></tr>' +
+      '<tr><th>Temperatura corrigida</th><td>' + format(result.temperature, 4) + ' °C</td></tr>' +
+      '<tr><th>Resistência do elemento</th><td>' + format(result.elementResistance, 6) + ' Ω</td></tr>' +
+      '<tr><th>Resistência nos terminais</th><td>' + format(result.terminalResistance, 6) + ' Ω</td></tr>' +
+      '<tr><th>Erro estimado dos cabos</th><td>' + format(result.cableError, 6) + ' °C</td></tr>' +
+      '<tr><th>Tolerância da classe</th><td>± ' + format(result.tolerance, 4) + ' °C</td></tr>' +
+      '<tr><th>Faixa resistiva da classe</th><td>' + format(result.resistanceLow, 6) + ' Ω a ' + format(result.resistanceHigh, 6) + ' Ω</td></tr>' +
+      '<tr><th>Interpretação</th><td>' + escapeHtml(status.text) + '</td></tr>' +
+      '</tbody></table>';
+  }
+
+  function quickTableHtml(calc) {
+    const {data} = calc;
+    const points = [-200,-100,-50,0,25,50,75,100,150,200,300,400,500,600,700,850];
+    return '<table><thead><tr><th>Temperatura</th><th>Resistência</th><th>Tolerância da classe</th></tr></thead><tbody>' + points.map((temperature) => '<tr><td>' + format(temperature, 0) + ' °C</td><td>' + format(resistanceAtTemperature(temperature, data.r0), 6) + ' Ω</td><td>± ' + format(classTolerance(temperature, data.sensorClass), 4) + ' °C</td></tr>').join('') + '</tbody></table>';
+  }
+
+  function memoryHtml(calc) {
+    const {data, result} = calc;
+    const formula = result.temperature >= 0
+      ? 'R(T) = R0 × [1 + A×T + B×T²]'
+      : 'R(T) = R0 × [1 + A×T + B×T² + C×(T−100)×T³]';
+    return '<div class="avoid-break"><h2>Memória de cálculo</h2><p>Equação aplicada: ' + escapeHtml(formula) + '.</p>' +
+      '<p>R0 = ' + format(data.r0, 0) + ' Ω; temperatura = ' + format(result.temperature, 6) + ' °C; resistência do elemento = ' + format(result.elementResistance, 6) + ' Ω.</p>' +
+      '<p>Ligação: ' + escapeHtml(data.connection) + ' fios. Resistência por condutor = ' + format(data.leadResistance, 6) + ' Ω. Resistência nos terminais = ' + format(result.terminalResistance, 6) + ' Ω.</p>' +
+      '<p>Erro estimado dos cabos sem compensação = ' + format(result.cableError, 6) + ' °C.</p>' +
+      '<p>Tolerância Classe ' + escapeHtml(data.sensorClass) + ' = ± ' + format(result.tolerance, 4) + ' °C; resistência equivalente aproximada entre ' + format(result.resistanceLow, 6) + ' Ω e ' + format(result.resistanceHigh, 6) + ' Ω.</p></div>';
+  }
+
+  function documentContent(calc) {
+    return '<div class="avoid-break"><h2>Dados e resultados</h2>' + summaryTableHtml(calc) + '</div>' +
+      memoryHtml(calc) +
+      '<div><h2>Tabela rápida</h2>' + quickTableHtml(calc) + '</div>' +
+      '<div class="avoid-break"><h2>Hipóteses e limitações</h2><p>Curva industrial de platina com α nominal 0,00385 e coeficientes de Callendar–Van Dusen. Para ligações 3 e 4 fios, a compensação dos cabos foi considerada ideal. Não foram incluídos autoaquecimento, corrente de excitação, resistência de isolação, desequilíbrio dos condutores, tolerância do instrumento indicador, deriva nem incerteza de calibração.</p><p>Resultado orientativo. Para ajuste, calibração, certificado ou decisão de segurança, aplique procedimento aprovado, padrão rastreado e critérios técnicos do fabricante e da instalação.</p></div>';
+  }
+
+  function preparePrintSheet() {
+    if (!lastCalculation) return;
+    byId('printDate').textContent = 'Gerado em ' + lastCalculation.generatedAt.toLocaleString('pt-BR');
+    byId('printContent').innerHTML = documentContent(lastCalculation);
+  }
+
+  function printCalculation() {
+    if (!calculate()) return;
+    preparePrintSheet();
+    window.print();
+  }
+
+  function generateReport() {
+    if (!calculate()) return;
+    const reportWindow = window.open('', '_blank');
+    if (!reportWindow) {
+      alert('O navegador bloqueou a abertura do relatório. Permita pop-ups para esta página e tente novamente.');
+      return;
+    }
+    reportWindow.opener = null;
+    const generatedAt = lastCalculation.generatedAt.toLocaleString('pt-BR');
+    reportWindow.document.open();
+    reportWindow.document.write('<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Relatório técnico — Sensor RTD de platina</title><style>body{font-family:Arial,sans-serif;color:#111;max-width:920px;margin:28px auto;padding:0 18px;line-height:1.5}h1{font-size:25px;margin-bottom:4px}h2{font-size:18px;border-bottom:1px solid #555;padding-bottom:5px;margin-top:28px}table{width:100%;border-collapse:collapse}th,td{border:1px solid #777;padding:8px;text-align:left;vertical-align:top}th{background:#eee}.actions{margin:18px 0}.actions button{padding:10px 14px;font:inherit;cursor:pointer}@media print{.actions{display:none}@page{size:A4;margin:14mm}body{margin:0;max-width:none}h2,table{break-inside:avoid}}</style></head><body><div class="actions"><button type="button" onclick="window.print()">Imprimir ou salvar em PDF</button></div><h1>Relatório técnico — Sensor RTD de platina</h1><p>Gerado em ' + escapeHtml(generatedAt) + '</p>' + documentContent(lastCalculation) + '</body></html>');
+    reportWindow.document.close();
+  }
+
+  async function copyResult() {
+    if (!calculate()) return;
+    const {data, result, status} = lastCalculation;
+    const text = [
+      'Sensor RTD de platina',
+      'Sensor: ' + data.sensorName + ' — Classe ' + data.sensorClass,
+      'Ligação: ' + data.connection + ' fios',
+      'Temperatura corrigida: ' + format(result.temperature, 4) + ' °C',
+      'Resistência do elemento: ' + format(result.elementResistance, 6) + ' Ω',
+      'Resistência nos terminais: ' + format(result.terminalResistance, 6) + ' Ω',
+      'Erro estimado dos cabos: ' + format(result.cableError, 6) + ' °C',
+      'Tolerância da classe: ± ' + format(result.tolerance, 4) + ' °C',
+      'Status: ' + status.text
+    ].join('\n');
+    try {
+      await navigator.clipboard.writeText(text);
+      alert('Resultado copiado.');
+    } catch (_) {
+      const area = document.createElement('textarea');
+      area.value = text;
+      document.body.appendChild(area);
+      area.select();
+      document.execCommand('copy');
+      area.remove();
+      alert('Resultado copiado.');
+    }
+  }
+
+  function setExample(sensor, mode, value, connection, leadResistance, sensorClass = 'A') {
+    byId('tipo').value = sensor;
+    byId('classe').value = sensorClass;
+    byId('modo').value = mode;
+    byId('valor').value = String(value).replace('.', ',');
+    byId('ligacao').value = connection;
+    byId('cabo').value = String(leadResistance).replace('.', ',');
+    updateValueLabel();
+    calculate({focusErrors:false});
+  }
+
+  function reset() {
+    byId('tipo').value = '100';
+    byId('classe').value = 'A';
+    byId('modo').value = 'temp';
+    byId('valor').value = '';
+    byId('ligacao').value = '3';
+    byId('cabo').value = '0';
+    byId('unidade').value = 'ohm';
+    updateValueLabel();
+    clearValidation();
+    lastCalculation = null;
+    clearResults();
+    byId('valor').focus();
+  }
+
+  byId('btnCalculate').addEventListener('click', () => calculate());
+  byId('btnReset').addEventListener('click', reset);
+  byId('btnCopy').addEventListener('click', copyResult);
+  byId('btnPrint').addEventListener('click', printCalculation);
+  byId('topPrint').addEventListener('click', printCalculation);
+  byId('btnReport').addEventListener('click', generateReport);
+  byId('topReport').addEventListener('click', generateReport);
+  byId('btnExample100').addEventListener('click', () => setExample('100','temp',100,'3',0,'A'));
+  byId('btnExampleResistance').addEventListener('click', () => setExample('100','res',138.505,'3',0,'A'));
+  byId('btnExample1000').addEventListener('click', () => setExample('1000','temp',50,'2',0.8,'B'));
+
+  ['tipo','classe','modo','valor','ligacao','cabo','unidade'].forEach((id) => {
+    byId(id).addEventListener('input', () => calculate({focusErrors:false}));
+    byId(id).addEventListener('change', () => calculate({focusErrors:false}));
+  });
+
+  updateValueLabel();
+  calculate({focusErrors:false});
+})();
 </script>
 
 <a aria-label="Voltar para Ferramentas" class="floating-back-tools no-print" href="ferramentas.html"><i class="fas fa-arrow-left"></i> Voltar para Ferramentas</a>
