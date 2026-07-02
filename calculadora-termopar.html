@@ -60,6 +60,25 @@
     .faq details{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:14px;padding:14px;margin-top:10px;box-shadow:0 6px 16px rgba(0,0,0,.04)}.faq summary{cursor:pointer;font-weight:900;color:#0b3a62}.faq p{margin:10px 0 0;color:var(--muted)}
     @media(max-width:900px){.calc-actions .mini-btn{width:100%;justify-content:center}}
     @media print{header,.social-floating,.fab-wrap,.cta-bar,footer,.calc-actions,.tools-hero .btn,.no-print{display:none!important}body{background:#fff}.container{max-width:100%;padding:0}.calc-card,.tools-hero{box-shadow:none;border:1px solid #ddd}.calc-layout{display:block}.calc-card{margin:12px 0}.calc-table th{background:#eee!important;color:#111!important}}
+
+    .form-message{display:none;margin-top:14px;border:1px solid rgba(239,68,68,.35);background:rgba(239,68,68,.09);color:#991b1b;border-radius:12px;padding:12px 14px;font-weight:700;line-height:1.5}
+    .form-message.show{display:block}.field-error{outline:2px solid rgba(239,68,68,.45)!important;border-color:#dc2626!important}
+    .memory-box{background:#f8fafc;border:1px solid rgba(11,58,98,.16);border-radius:14px;padding:16px;line-height:1.65}
+    .memory-box h3{margin:0 0 10px;color:#0b3a62}.memory-box p{margin:7px 0}.memory-box code{white-space:normal;overflow-wrap:anywhere;color:#111;background:#fff;border:1px solid #e5e7eb;border-radius:8px;padding:3px 7px}
+    .print-only{display:none}.result-box.status-neutral{border-color:rgba(100,116,139,.3)!important;background:rgba(100,116,139,.08)!important;color:#334155!important}
+    textarea.report-note{min-height:92px;resize:vertical}
+    @media(max-width:640px){.calc-result[style]{grid-template-columns:1fr!important}.calc-table{min-width:620px}.calc-table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}}
+    @media print{
+      @page{size:A4;margin:14mm}
+      .print-only{display:block!important}
+      main>section:not(.print-section){display:none!important}
+      .print-neutral-header{border-bottom:2px solid #111;padding-bottom:10px;margin-bottom:14px}
+      .print-neutral-header h1{font-size:20pt;margin:0 0 4px;color:#111}.print-neutral-header p{margin:0;color:#333}
+      .print-section{break-inside:avoid}.memory-box{background:#fff;border-color:#bbb}
+      input,select,textarea{border:1px solid #aaa!important;background:#fff!important;color:#111!important}
+      .calc-card h2,.tools-hero h1{color:#111!important}.span-pill{background:#fff!important;color:#111!important;border-color:#aaa!important}
+    }
+
   </style>
   <!-- Google AdSense - verificação de propriedade -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5586837114309500"
@@ -78,43 +97,62 @@
   <main class="container" style="margin-top:18px">
     <div style="margin-bottom:14px;display:flex;gap:10px;flex-wrap:wrap" class="no-print">
       <a class="floating-back-tools no-print" href="ferramentas.html"><i class="fas fa-arrow-left"></i> Voltar para Ferramentas</a>
-      <button class="btn print" type="button" onclick="window.print()"><i class="fas fa-print"></i> Imprimir</button>
+      <button class="btn print" id="btnPrint" type="button"><i class="fas fa-print"></i> Imprimir</button>
+      <button class="btn secondary" id="btnReport" type="button"><i class="fas fa-file-pdf"></i> Gerar relatório</button>
       <a class="btn secondary" href="calculadora-temperatura-industrial.html"><i class="fas fa-temperature-half"></i> Temperatura industrial</a>
       <a class="btn secondary" href="calculadora-pt100.html"><i class="fas fa-thermometer-half"></i> PT100</a>
     </div>
 
-    <section class="tools-hero"><h1>Calculadora Termopar Online</h1><p>Converta milivolts em temperatura e temperatura em milivolts para termopares J, K, T, E, N, R, S e B. Inclui compensação de junta fria, faixa de trabalho, tabela rápida e apoio para teste de campo, calibração e manutenção.</p></section>
+    <section class="print-only print-neutral-header"><h1>Relatório de conversão de termopar</h1><p>Documento técnico orientativo — sem identificação comercial.</p></section>
+
+    <section class="tools-hero print-section"><h1>Calculadora Termopar Online</h1><p>Converta milivolts em temperatura e temperatura em milivolts para termopares J, K, T, E, N, R, S e B. Inclui compensação de junta fria, faixa de trabalho, tabela rápida e apoio para teste de campo, calibração e manutenção.</p></section>
 
     <section class="calc-card" aria-label="Aviso de uso da ferramenta">
       <h2><i class="fas fa-triangle-exclamation"></i> Ferramenta para estudo e apoio técnico</h2>
       <p>Esta calculadora é orientativa e usa interpolação aproximada em tabela de referência para apoio técnico, estudo e pré-análise. Não substitui tabela oficial do fabricante ou norma aplicável, certificado rastreado, calibração, medição em campo, análise de incerteza, laudo ou profissional habilitado. A ALOGY Engenharia não se responsabiliza por decisões, ajustes, instalações ou intervenções realizadas exclusivamente com base nesta ferramenta.</p>
     </section>
 
-    <section class="calc-layout">
-      <div class="calc-card"><h2><i class="fas fa-fire-flame-simple"></i> Dados do termopar</h2><p>Escolha o tipo de termopar e informe a temperatura ou o sinal medido em mV. A compensação de junta fria considera que o sinal medido equivale a E quente menos E junta fria.</p>
+    <section class="calc-layout print-section" id="calculatorSection">
+      <div class="calc-card"><h2><i class="fas fa-fire-flame-simple"></i> Dados do termopar</h2><p>Escolha o tipo e informe a temperatura ou o sinal medido. A compensação considera <strong>E medida = E quente − E junta fria</strong>.</p>
         <div class="calc-grid">
           <div class="field"><label for="tipo">Tipo de termopar</label><select id="tipo"><option value="K" selected>Tipo K - uso geral</option><option value="J">Tipo J - ferro/constantan</option><option value="T">Tipo T - baixa temperatura</option><option value="E">Tipo E - alta sensibilidade</option><option value="N">Tipo N - alta temperatura</option><option value="R">Tipo R - platina/ródio</option><option value="S">Tipo S - platina/ródio</option><option value="B">Tipo B - alta temperatura</option></select></div>
           <div class="field"><label for="modo">Calcular a partir de</label><select id="modo"><option value="temp">Temperatura para mV</option><option value="mv">mV para temperatura</option></select></div>
-          <div class="field"><label for="valor" id="valorLabel">Temperatura da junta quente (°C)</label><input id="valor" type="number" step="any" value="300"></div>
-          <div class="field"><label for="jf">Temperatura da junta fria / ambiente (°C)</label><input id="jf" type="number" step="any" value="25"></div>
+          <div class="field"><label for="valor" id="valorLabel">Temperatura da junta quente (°C)</label><input id="valor" type="text" inputmode="decimal" autocomplete="off" value="300" aria-describedby="formMessage"></div>
+          <div class="field"><label for="jf">Temperatura da junta fria / ambiente (°C)</label><input id="jf" type="text" inputmode="decimal" autocomplete="off" value="25" aria-describedby="formMessage"></div>
           <div class="field"><label for="casas">Casas decimais</label><select id="casas"><option value="3" selected>3 casas</option><option value="2">2 casas</option><option value="4">4 casas</option></select></div>
+          <div class="field"><label for="tag">Identificação ou TAG (opcional)</label><input id="tag" type="text" autocomplete="off" maxlength="80" placeholder="Ex.: TE-101"></div>
+          <div class="field" style="grid-column:1/-1"><label for="reportNote">Observação para o relatório (opcional)</label><textarea id="reportNote" class="report-note" maxlength="500" placeholder="Ex.: Verificação preliminar durante teste de malha."></textarea></div>
         </div>
-        <div class="calc-actions"><button class="mini-btn dark" type="button" onclick="copiarResultado()"><i class="fas fa-copy"></i> Copiar resultado</button><button class="mini-btn" type="button" onclick="exemplo('K','temp',300,25)">Exemplo K 300 °C</button><button class="mini-btn" type="button" onclick="exemplo('J','mv',15,25)">J 15 mV</button><button class="mini-btn" type="button" onclick="exemplo('T','temp',-50,20)">T -50 °C</button></div>
+        <div id="formMessage" class="form-message" role="alert" aria-live="assertive"></div>
+        <div class="calc-actions no-print">
+          <button class="mini-btn dark" id="btnCalculate" type="button"><i class="fas fa-calculator"></i> Calcular</button>
+          <button class="mini-btn" id="btnClear" type="button"><i class="fas fa-eraser"></i> Limpar</button>
+          <button class="mini-btn" id="btnCopy" type="button"><i class="fas fa-copy"></i> Copiar resultado</button>
+          <button class="mini-btn example-btn" type="button" data-type="K" data-mode="temp" data-value="300" data-cj="25">Exemplo K 300 °C</button>
+          <button class="mini-btn example-btn" type="button" data-type="J" data-mode="mv" data-value="15" data-cj="25">J 15 mV</button>
+          <button class="mini-btn example-btn" type="button" data-type="T" data-mode="temp" data-value="-50" data-cj="20">T -50 °C</button>
+        </div>
       </div>
 
       <div class="calc-card"><h2><i class="fas fa-square-poll-vertical"></i> Resultado</h2>
         <div class="calc-result" style="grid-template-columns:1fr 1fr">
           <div class="result-box"><span>Temperatura estimada</span><strong id="outTemp">-</strong></div>
           <div class="result-box"><span>mV referência 0 °C</span><strong id="outMv0">-</strong></div>
-          <div class="result-box"><span>mV medido com junta fria</span><strong id="outMvMed">-</strong></div>
-          <div class="result-box"><span>Status</span><strong id="outStatus">-</strong></div>
+          <div class="result-box"><span>mV esperado no instrumento</span><strong id="outMvMed">-</strong></div>
+          <div class="result-box"><span>Sensibilidade local aproximada</span><strong id="outSensitivity">-</strong></div>
+          <div class="result-box status-neutral" id="statusBox" style="grid-column:1/-1"><span>Status</span><strong id="outStatus">Aguardando cálculo</strong></div>
         </div>
         <div style="margin-top:14px"><span class="span-pill" id="pillTipo">Tipo: -</span><span class="span-pill" id="pillFaixa">Faixa: -</span><span class="span-pill" id="pillJf">Junta fria: -</span></div>
-        <div class="calc-note" id="nota" style="margin-top:14px">A compensação da junta fria é aplicada de forma orientativa.</div>
+        <div class="calc-note" id="nota" style="margin-top:14px">Informe os dados e selecione Calcular.</div>
       </div>
     </section>
 
-    <section class="calc-layout">
+    <section class="calc-card print-section" id="memorySection">
+      <h2><i class="fas fa-square-root-variable"></i> Memória de cálculo</h2>
+      <div class="memory-box" id="memoryBox"><p>A memória será apresentada após um cálculo válido.</p></div>
+    </section>
+
+    <section class="calc-layout print-section">
       <div class="calc-card"><h2><i class="fas fa-table"></i> Tabela rápida do tipo selecionado</h2><p class="small-muted">Valores aproximados por interpolação para consulta inicial. Para calibração, use tabela oficial, certificado e procedimento metrológico.</p><div class="calc-table-wrap"><table class="calc-table"><thead><tr><th>Temperatura</th><th>mV ref. 0 °C</th><th>mV com junta fria</th></tr></thead><tbody id="tbl"></tbody></table></div></div>
       <div class="calc-card"><h2><i class="fas fa-circle-info"></i> Aplicação e cuidados</h2><p id="aplicacao"><strong>Tipo K:</strong> muito usado em aplicações industriais gerais pela ampla faixa de temperatura.</p><p><strong>Junta fria:</strong> se a junta de referência não está em 0 °C, o instrumento precisa compensar essa temperatura para indicar corretamente.</p><p><strong>Polaridade:</strong> inversão dos fios pode causar leitura negativa ou comportamento incorreto.</p><div class="calc-note">Cores de cabos podem variar conforme padrão IEC, ANSI ou fabricante. Confirme a identificação no cabo, borne e documentação da instalação.</div></div>
     </section>
@@ -197,8 +235,10 @@
   <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p></footer>
 
 <script>
-const $=id=>document.getElementById(id);
-const dados={
+(() => {
+  'use strict';
+
+  const thermocoupleData={
  K:{range:[-200,1372],desc:'Tipo K: uso geral, ampla faixa, comum em fornos, máquinas, processos térmicos e manutenção industrial.',pts:[[-200,-5.891],[-100,-3.554],[0,0],[100,4.096],[200,8.138],[300,12.209],[400,16.397],[500,20.644],[600,24.905],[700,29.129],[800,33.277],[900,37.326],[1000,41.276],[1100,45.108],[1200,48.838],[1300,52.410],[1372,54.886]]},
  J:{range:[-210,1200],desc:'Tipo J: comum em aplicações industriais, indicado para faixas moderadas e ambientes compatíveis com ferro/constantan.',pts:[[-210,-8.095],[-100,-4.633],[0,0],[100,5.269],[200,10.779],[300,16.327],[400,21.848],[500,27.393],[600,33.102],[700,39.130],[800,45.498],[900,51.877],[1000,57.953],[1100,63.792],[1200,69.553]]},
  T:{range:[-200,400],desc:'Tipo T: muito usado em baixas temperaturas e aplicações que exigem boa estabilidade em faixa reduzida.',pts:[[-200,-5.603],[-100,-3.379],[0,0],[100,4.279],[200,9.288],[300,14.862],[400,20.872]]},
@@ -208,59 +248,305 @@ const dados={
  S:{range:[-50,1768],desc:'Tipo S: termopar nobre para altas temperaturas, usado em padrões, fornos e medições especiais.',pts:[[-50,-0.236],[0,0],[100,0.646],[200,1.441],[300,2.323],[400,3.260],[500,4.234],[600,5.239],[700,6.275],[800,7.345],[900,8.448],[1000,9.585],[1100,10.757],[1200,11.947],[1300,13.159],[1400,14.392],[1500,15.643],[1600,16.911],[1700,18.186],[1768,18.694]]},
  B:{range:[0,1820],desc:'Tipo B: termopar nobre para temperaturas muito altas. Em baixas temperaturas a sensibilidade é pequena e a leitura deve ser avaliada com cuidado.',pts:[[0,0],[100,0.033],[200,0.178],[300,0.431],[400,0.787],[500,1.242],[600,1.792],[700,2.431],[800,3.154],[900,3.957],[1000,4.834],[1100,5.780],[1200,6.786],[1300,7.848],[1400,8.956],[1500,10.099],[1600,11.263],[1700,12.433],[1800,13.591],[1820,13.820]]}
 };
-function fmt(n,d){ if(!isFinite(n)) return '-'; return Number(n).toLocaleString('pt-BR',{minimumFractionDigits:d,maximumFractionDigits:d}); }
-function interp(x,pts){
-  if(x<=pts[0][0]) return pts[0][1];
-  if(x>=pts[pts.length-1][0]) return pts[pts.length-1][1];
-  for(let i=0;i<pts.length-1;i++){
-    const [x1,y1]=pts[i], [x2,y2]=pts[i+1];
-    if(x>=x1 && x<=x2) return y1+(y2-y1)*(x-x1)/(x2-x1);
+  const getEl = (id) => document.getElementById(id);
+  let lastResult = null;
+
+  function parseLocaleNumber(value) {
+    if (typeof value === 'number') return Number.isFinite(value) ? value : NaN;
+    let raw = String(value ?? '').trim().replace(/\s+/g, '');
+    if (!raw) return NaN;
+    const comma = raw.lastIndexOf(',');
+    const dot = raw.lastIndexOf('.');
+    if (comma >= 0 && dot >= 0) {
+      const decimalMark = comma > dot ? ',' : '.';
+      const thousandsMark = decimalMark === ',' ? '.' : ',';
+      raw = raw.split(thousandsMark).join('');
+      if (decimalMark === ',') raw = raw.replace(',', '.');
+    } else if (comma >= 0) {
+      raw = raw.replace(',', '.');
+    }
+    return Number(raw);
   }
-  return NaN;
-}
-function invInterp(y,pts){
-  const min=Math.min(...pts.map(p=>p[1])), max=Math.max(...pts.map(p=>p[1]));
-  if(y<=min) return pts[0][0];
-  if(y>=max) return pts[pts.length-1][0];
-  for(let i=0;i<pts.length-1;i++){
-    const [x1,y1]=pts[i], [x2,y2]=pts[i+1];
-    if((y>=y1 && y<=y2) || (y<=y1 && y>=y2)) return x1+(x2-x1)*(y-y1)/(y2-y1);
+
+  function formatNumber(value, decimals) {
+    if (!Number.isFinite(value)) return '-';
+    return value.toLocaleString('pt-BR', {minimumFractionDigits: decimals, maximumFractionDigits: decimals});
   }
-  return NaN;
-}
-function calc(){
-  const tipo=$('tipo').value, d=+$('casas').value, modo=$('modo').value, val=+$('valor').value, jf=+$('jf').value||0, info=dados[tipo];
-  $('valorLabel').textContent = modo==='temp' ? 'Temperatura da junta quente (°C)' : 'mV medido pelo instrumento';
-  const eJf=interp(jf,info.pts);
-  let temp,mv0,mvMed;
-  if(modo==='temp'){ temp=val; mv0=interp(temp,info.pts); mvMed=mv0-eJf; }
-  else{ mvMed=val; mv0=mvMed+eJf; temp=invInterp(mv0,info.pts); }
-  const fora=temp<info.range[0] || temp>info.range[1] || !isFinite(temp) || !isFinite(mv0);
-  $('outTemp').textContent=`${fmt(temp,2)} °C`;
-  $('outMv0').textContent=`${fmt(mv0,d)} mV`;
-  $('outMvMed').textContent=`${fmt(mvMed,d)} mV`;
-  $('outStatus').textContent=fora?'Verificar faixa':'Dentro da faixa auxiliar';
-  $('outStatus').parentElement.classList.toggle('status-bad',fora);
-  $('outStatus').parentElement.classList.toggle('status-ok',!fora);
-  $('pillTipo').textContent=`Tipo ${tipo}`;
-  $('pillFaixa').textContent=`Faixa aprox.: ${info.range[0]} a ${info.range[1]} °C`;
-  $('pillJf').textContent=`Junta fria: ${fmt(jf,1)} °C`;
-  $('nota').textContent=`Compensação orientativa: E equivalente ref. 0 °C = mV medido + E da junta fria. Para ${fmt(jf,1)} °C, E junta fria ≈ ${fmt(eJf,d)} mV.`;
-  $('aplicacao').innerHTML='<strong>'+info.desc.split(':')[0]+':</strong>'+info.desc.substring(info.desc.indexOf(':')+1);
-  renderTable(info,jf,d);
-}
-function renderTable(info,jf,d){
-  const eJf=interp(jf,info.pts);
-  const pts=info.pts.filter((p,i)=> i===0 || i===info.pts.length-1 || p[0]%200===0 || p[0]===100 || p[0]===300 || p[0]===500 || p[0]===700 || p[0]===900 || p[0]===1100 || p[0]===1300 || p[0]===1500 || p[0]===1700).slice(0,18);
-  $('tbl').innerHTML=pts.map(p=>`<tr><td>${p[0]} °C</td><td>${fmt(p[1],d)} mV</td><td>${fmt(p[1]-eJf,d)} mV</td></tr>`).join('');
-}
-function exemplo(tipo,modo,valor,jf){ $('tipo').value=tipo; $('modo').value=modo; $('valor').value=valor; $('jf').value=jf; calc(); }
-function copiarResultado(){
-  const txt=`Calculadora Termopar ALOGY\n${$('pillTipo').textContent}\nTemperatura estimada: ${$('outTemp').textContent}\nmV referência 0 °C: ${$('outMv0').textContent}\nmV medido com junta fria: ${$('outMvMed').textContent}\n${$('pillJf').textContent}\n${$('pillFaixa').textContent}`;
-  navigator.clipboard?.writeText(txt).then(()=>alert('Resultado copiado.')).catch(()=>alert(txt));
-}
-['tipo','modo','valor','jf','casas'].forEach(id=>$(id).addEventListener('input',calc));
-calc();
+
+  function escapeHtml(value) {
+    return String(value ?? '').replace(/[&<>"']/g, (char) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[char]));
+  }
+
+  function setFieldError(element, hasError) {
+    element.classList.toggle('field-error', Boolean(hasError));
+    element.setAttribute('aria-invalid', hasError ? 'true' : 'false');
+  }
+
+  function showError(message, fieldIds = []) {
+    const box = getEl('formMessage');
+    box.textContent = message;
+    box.classList.add('show');
+    ['valor','jf'].forEach((id) => setFieldError(getEl(id), fieldIds.includes(id)));
+    clearResults(message);
+    const first = fieldIds.length ? getEl(fieldIds[0]) : null;
+    if (first) first.focus();
+  }
+
+  function clearError() {
+    const box = getEl('formMessage');
+    box.textContent = '';
+    box.classList.remove('show');
+    ['valor','jf'].forEach((id) => setFieldError(getEl(id), false));
+  }
+
+  function clearResults(statusText = 'Aguardando cálculo') {
+    ['outTemp','outMv0','outMvMed','outSensitivity'].forEach((id) => getEl(id).textContent = '-');
+    getEl('outStatus').textContent = statusText;
+    const statusBox = getEl('statusBox');
+    statusBox.classList.remove('status-ok','status-bad');
+    statusBox.classList.add('status-neutral');
+    getEl('pillTipo').textContent = 'Tipo: -';
+    getEl('pillFaixa').textContent = 'Faixa: -';
+    getEl('pillJf').textContent = 'Junta fria: -';
+    getEl('nota').textContent = 'Revise os dados informados.';
+    getEl('memoryBox').innerHTML = '<p>A memória será apresentada após um cálculo válido.</p>';
+    getEl('tbl').innerHTML = '';
+    lastResult = null;
+  }
+
+  function findSegmentByX(x, points) {
+    if (x < points[0][0] || x > points[points.length - 1][0]) return null;
+    if (x === points[points.length - 1][0]) return [points.length - 2, points.length - 1];
+    for (let i = 0; i < points.length - 1; i += 1) {
+      if (x >= points[i][0] && x <= points[i + 1][0]) return [i, i + 1];
+    }
+    return null;
+  }
+
+  function interpolateEmf(temperature, points) {
+    const segment = findSegmentByX(temperature, points);
+    if (!segment) return null;
+    const [i1, i2] = segment;
+    const [t1, e1] = points[i1];
+    const [t2, e2] = points[i2];
+    const emf = e1 + (e2 - e1) * (temperature - t1) / (t2 - t1);
+    const sensitivity = (e2 - e1) / (t2 - t1) * 1000;
+    return {emf, sensitivity, t1, e1, t2, e2};
+  }
+
+  function inverseInterpolateTemperature(emf, points) {
+    const minEmf = Math.min(...points.map((p) => p[1]));
+    const maxEmf = Math.max(...points.map((p) => p[1]));
+    if (emf < minEmf || emf > maxEmf) return null;
+    for (let i = 0; i < points.length - 1; i += 1) {
+      const [t1, e1] = points[i];
+      const [t2, e2] = points[i + 1];
+      const inside = (emf >= e1 && emf <= e2) || (emf <= e1 && emf >= e2);
+      if (inside && e2 !== e1) {
+        const temperature = t1 + (t2 - t1) * (emf - e1) / (e2 - e1);
+        const sensitivity = (e2 - e1) / (t2 - t1) * 1000;
+        return {temperature, sensitivity, t1, e1, t2, e2};
+      }
+    }
+    return null;
+  }
+
+  function updateModeLabel() {
+    const mode = getEl('modo').value;
+    getEl('valorLabel').textContent = mode === 'temp' ? 'Temperatura da junta quente (°C)' : 'mV medido pelo instrumento';
+    getEl('valor').placeholder = mode === 'temp' ? 'Ex.: 300 ou 300,5' : 'Ex.: 12,209 ou 12.209';
+  }
+
+  function renderReferenceTable(info, coldJunctionEmf, decimals) {
+    getEl('tbl').innerHTML = info.pts.map(([temperature, emf]) => `
+      <tr>
+        <td>${formatNumber(temperature, temperature % 1 ? 1 : 0)} °C</td>
+        <td>${formatNumber(emf, decimals)} mV</td>
+        <td>${formatNumber(emf - coldJunctionEmf, decimals)} mV</td>
+      </tr>`).join('');
+  }
+
+  function calculate() {
+    clearError();
+    updateModeLabel();
+    const type = getEl('tipo').value;
+    const mode = getEl('modo').value;
+    const decimals = Number(getEl('casas').value);
+    const inputValue = parseLocaleNumber(getEl('valor').value);
+    const coldJunctionTemperature = parseLocaleNumber(getEl('jf').value);
+    const info = thermocoupleData[type];
+
+    if (!Number.isFinite(inputValue)) return showError('Informe um valor numérico válido no campo principal. São aceitos ponto ou vírgula decimal.', ['valor']);
+    if (!Number.isFinite(coldJunctionTemperature)) return showError('Informe uma temperatura válida para a junta fria.', ['jf']);
+    if (coldJunctionTemperature < info.range[0] || coldJunctionTemperature > info.range[1]) {
+      return showError(`A junta fria deve estar entre ${info.range[0]} °C e ${info.range[1]} °C para o tipo ${type} nesta tabela.`, ['jf']);
+    }
+
+    const coldData = interpolateEmf(coldJunctionTemperature, info.pts);
+    if (!coldData) return showError('Não foi possível calcular a tensão equivalente da junta fria com a tabela disponível.', ['jf']);
+
+    let temperature;
+    let emfReferenceZero;
+    let measuredEmf;
+    let conversion;
+
+    if (mode === 'temp') {
+      temperature = inputValue;
+      if (temperature < info.range[0] || temperature > info.range[1]) {
+        return showError(`A temperatura deve estar entre ${info.range[0]} °C e ${info.range[1]} °C para o termopar tipo ${type}.`, ['valor']);
+      }
+      conversion = interpolateEmf(temperature, info.pts);
+      emfReferenceZero = conversion.emf;
+      measuredEmf = emfReferenceZero - coldData.emf;
+    } else {
+      measuredEmf = inputValue;
+      emfReferenceZero = measuredEmf + coldData.emf;
+      conversion = inverseInterpolateTemperature(emfReferenceZero, info.pts);
+      if (!conversion) {
+        const minEmf = Math.min(...info.pts.map((p) => p[1]));
+        const maxEmf = Math.max(...info.pts.map((p) => p[1]));
+        return showError(`Com a compensação da junta fria, o sinal equivale a ${formatNumber(emfReferenceZero, decimals)} mV. A tabela reduzida do tipo ${type} cobre aproximadamente ${formatNumber(minEmf, decimals)} a ${formatNumber(maxEmf, decimals)} mV.`, ['valor']);
+      }
+      temperature = conversion.temperature;
+    }
+
+    if (![temperature, emfReferenceZero, measuredEmf, conversion.sensitivity].every(Number.isFinite)) {
+      return showError('O cálculo produziu um resultado não finito. Revise os dados informados.', ['valor','jf']);
+    }
+
+    const warnings = [];
+    if (type === 'B' && temperature < 300) warnings.push('O tipo B tem baixa sensibilidade em temperaturas baixas; confirme a aplicação e utilize tabela oficial.');
+    if (['R','S','B'].includes(type)) warnings.push('Para termopares nobres e altas temperaturas, confirme a curva e os limites do conjunto completo com documentação técnica.');
+    warnings.push('Resultado por interpolação linear em tabela reduzida: adequado para estudo e pré-análise, não para certificado de calibração.');
+
+    getEl('outTemp').textContent = `${formatNumber(temperature, 2)} °C`;
+    getEl('outMv0').textContent = `${formatNumber(emfReferenceZero, decimals)} mV`;
+    getEl('outMvMed').textContent = `${formatNumber(measuredEmf, decimals)} mV`;
+    getEl('outSensitivity').textContent = `${formatNumber(conversion.sensitivity, 2)} µV/°C`;
+    getEl('outStatus').textContent = 'Estimativa dentro da faixa tabelada';
+    const statusBox = getEl('statusBox');
+    statusBox.classList.remove('status-neutral','status-bad');
+    statusBox.classList.add('status-ok');
+    getEl('pillTipo').textContent = `Tipo ${type}`;
+    getEl('pillFaixa').textContent = `Faixa tabelada: ${info.range[0]} a ${info.range[1]} °C`;
+    getEl('pillJf').textContent = `Junta fria: ${formatNumber(coldJunctionTemperature, 2)} °C`;
+    getEl('nota').textContent = warnings.join(' ');
+    getEl('aplicacao').innerHTML = `<strong>${escapeHtml(info.desc.split(':')[0])}:</strong>${escapeHtml(info.desc.substring(info.desc.indexOf(':') + 1))}`;
+
+    const inputDescription = mode === 'temp'
+      ? `Temperatura informada = ${formatNumber(inputValue, 3)} °C`
+      : `Sinal medido informado = ${formatNumber(inputValue, decimals)} mV`;
+    const formulaLine = mode === 'temp'
+      ? 'E medida = E(T quente) − E(T junta fria)'
+      : 'E referência 0 °C = E medida + E(T junta fria)';
+    const substitutionLine = mode === 'temp'
+      ? `E medida = ${formatNumber(emfReferenceZero, decimals)} − ${formatNumber(coldData.emf, decimals)} = ${formatNumber(measuredEmf, decimals)} mV`
+      : `E referência 0 °C = ${formatNumber(measuredEmf, decimals)} + ${formatNumber(coldData.emf, decimals)} = ${formatNumber(emfReferenceZero, decimals)} mV`;
+
+    getEl('memoryBox').innerHTML = `
+      <h3>Conversão do termopar tipo ${escapeHtml(type)}</h3>
+      <p><strong>Entrada:</strong> ${escapeHtml(inputDescription)}.</p>
+      <p><strong>Junta fria:</strong> ${formatNumber(coldJunctionTemperature, 3)} °C → E ≈ ${formatNumber(coldData.emf, decimals)} mV.</p>
+      <p><strong>Fórmula:</strong> <code>${escapeHtml(formulaLine)}</code></p>
+      <p><strong>Substituição:</strong> <code>${escapeHtml(substitutionLine)}</code></p>
+      <p><strong>Interpolação usada:</strong> entre ${formatNumber(conversion.t1, 1)} °C / ${formatNumber(conversion.e1, decimals)} mV e ${formatNumber(conversion.t2, 1)} °C / ${formatNumber(conversion.e2, decimals)} mV.</p>
+      <p><strong>Resultado:</strong> temperatura ≈ ${formatNumber(temperature, 2)} °C; E ref. 0 °C ≈ ${formatNumber(emfReferenceZero, decimals)} mV; E esperada no instrumento ≈ ${formatNumber(measuredEmf, decimals)} mV.</p>
+      <p><strong>Limitação:</strong> interpolação linear em pontos reduzidos. Utilize referência ITS-90/tabela oficial e análise de incerteza em trabalhos metrológicos.</p>`;
+
+    renderReferenceTable(info, coldData.emf, decimals);
+    lastResult = {type, mode, decimals, inputValue, coldJunctionTemperature, coldJunctionEmf: coldData.emf, temperature, emfReferenceZero, measuredEmf, sensitivity: conversion.sensitivity, formulaLine, substitutionLine, warnings, range: info.range.slice(), tag: getEl('tag').value.trim(), note: getEl('reportNote').value.trim()};
+  }
+
+  function applyExample(button) {
+    getEl('tipo').value = button.dataset.type;
+    getEl('modo').value = button.dataset.mode;
+    getEl('valor').value = button.dataset.value;
+    getEl('jf').value = button.dataset.cj;
+    updateModeLabel();
+    calculate();
+  }
+
+  function resetForm() {
+    getEl('tipo').value = 'K';
+    getEl('modo').value = 'temp';
+    getEl('valor').value = '300';
+    getEl('jf').value = '25';
+    getEl('casas').value = '3';
+    getEl('tag').value = '';
+    getEl('reportNote').value = '';
+    clearError();
+    updateModeLabel();
+    calculate();
+  }
+
+  function copyResult() {
+    if (!lastResult) { showError('Realize um cálculo válido antes de copiar o resultado.'); return; }
+    const r = lastResult;
+    const text = [
+      'Conversão de termopar',
+      r.tag ? `Identificação: ${r.tag}` : '',
+      `Tipo: ${r.type}`,
+      `Temperatura estimada: ${formatNumber(r.temperature, 2)} °C`,
+      `mV referência 0 °C: ${formatNumber(r.emfReferenceZero, r.decimals)} mV`,
+      `mV esperado no instrumento: ${formatNumber(r.measuredEmf, r.decimals)} mV`,
+      `Junta fria: ${formatNumber(r.coldJunctionTemperature, 2)} °C`,
+      `Sensibilidade local: ${formatNumber(r.sensitivity, 2)} µV/°C`,
+      r.note ? `Observação: ${r.note}` : ''
+    ].filter(Boolean).join('\n');
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(text).then(() => alert('Resultado copiado.')).catch(() => window.prompt('Copie o resultado:', text));
+    } else {
+      window.prompt('Copie o resultado:', text);
+    }
+  }
+
+  function printCalculation() {
+    if (!lastResult) { showError('Realize um cálculo válido antes de imprimir.'); return; }
+    const originalTitle = document.title;
+    document.title = 'Relatório de conversão de termopar';
+    window.addEventListener('afterprint', () => { document.title = originalTitle; }, {once:true});
+    window.print();
+  }
+
+  function generateReport() {
+    if (!lastResult) { showError('Realize um cálculo válido antes de gerar o relatório.'); return; }
+    const r = lastResult;
+    const date = new Date().toLocaleString('pt-BR');
+    const reportWindow = window.open('', '_blank');
+    if (!reportWindow) { showError('O navegador bloqueou a janela do relatório. Permita pop-ups para esta página e tente novamente.'); return; }
+    reportWindow.opener = null;
+    const rows = [
+      ['Data e hora', date], ['Identificação/TAG', r.tag || 'Não informada'], ['Tipo de termopar', `Tipo ${r.type}`],
+      ['Modo de cálculo', r.mode === 'temp' ? 'Temperatura para mV' : 'mV para temperatura'],
+      ['Temperatura da junta fria', `${formatNumber(r.coldJunctionTemperature, 3)} °C`],
+      ['E da junta fria', `${formatNumber(r.coldJunctionEmf, r.decimals)} mV`],
+      ['Temperatura estimada', `${formatNumber(r.temperature, 2)} °C`],
+      ['mV referência 0 °C', `${formatNumber(r.emfReferenceZero, r.decimals)} mV`],
+      ['mV esperado no instrumento', `${formatNumber(r.measuredEmf, r.decimals)} mV`],
+      ['Sensibilidade local aproximada', `${formatNumber(r.sensitivity, 2)} µV/°C`],
+      ['Faixa tabelada', `${r.range[0]} a ${r.range[1]} °C`]
+    ];
+    const bodyRows = rows.map(([label,value]) => `<tr><th>${escapeHtml(label)}</th><td>${escapeHtml(value)}</td></tr>`).join('');
+    reportWindow.document.open();
+    reportWindow.document.write(`<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Relatório de conversão de termopar</title><style>body{font-family:Arial,sans-serif;color:#111;margin:0;background:#fff}main{max-width:820px;margin:0 auto;padding:28px}h1{font-size:24px;margin:0 0 6px}.sub{color:#444;margin:0 0 24px}table{width:100%;border-collapse:collapse;margin:16px 0 24px}th,td{border:1px solid #aaa;padding:9px;text-align:left;vertical-align:top}th{width:38%;background:#eee}section{margin:22px 0;break-inside:avoid}code{white-space:normal}.warning{border:1px solid #999;padding:12px;background:#f7f7f7}.actions{margin-bottom:18px}button{padding:10px 14px;font-weight:bold}@media print{.actions{display:none}main{padding:0}@page{size:A4;margin:14mm}}</style></head><body><main><div class="actions"><button onclick="window.print()">Imprimir ou salvar em PDF</button></div><h1>Relatório de conversão de termopar</h1><p class="sub">Documento técnico orientativo — sem identificação comercial.</p><table>${bodyRows}</table><section><h2>Memória de cálculo</h2><p><strong>Fórmula:</strong> ${escapeHtml(r.formulaLine)}</p><p><strong>Substituição:</strong> ${escapeHtml(r.substitutionLine)}</p></section><section><h2>Interpretação e limitações</h2><div class="warning">${r.warnings.map((w) => `<p>${escapeHtml(w)}</p>`).join('')}</div></section>${r.note ? `<section><h2>Observação</h2><p>${escapeHtml(r.note)}</p></section>` : ''}<section><p><strong>Aviso:</strong> resultado orientativo. Não substitui tabela oficial, certificado rastreado, procedimento de calibração, análise de incerteza ou validação por profissional habilitado.</p></section></main></body></html>`);
+    reportWindow.document.close();
+    reportWindow.focus();
+  }
+
+  getEl('btnCalculate').addEventListener('click', calculate);
+  getEl('btnClear').addEventListener('click', resetForm);
+  getEl('btnCopy').addEventListener('click', copyResult);
+  getEl('btnPrint').addEventListener('click', printCalculation);
+  getEl('btnReport').addEventListener('click', generateReport);
+  getEl('modo').addEventListener('change', updateModeLabel);
+  getEl('tipo').addEventListener('change', () => { clearError(); calculate(); });
+  getEl('casas').addEventListener('change', calculate);
+  document.querySelectorAll('.example-btn').forEach((button) => button.addEventListener('click', () => applyExample(button)));
+  ['valor','jf'].forEach((id) => getEl(id).addEventListener('keydown', (event) => { if (event.key === 'Enter') calculate(); }));
+
+  updateModeLabel();
+  calculate();
+})();
 </script>
 </body>
 </html>
