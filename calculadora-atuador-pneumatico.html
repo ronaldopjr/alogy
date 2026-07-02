@@ -31,7 +31,39 @@
     .tool-hero h1{color:#fff;margin:8px 0 10px;font-size:clamp(1.8rem,3.2vw,2.6rem)}
     .tool-hero p{font-size:1.05rem;max-width:980px;opacity:.96}.breadcrumb{font-size:.92rem;opacity:.9}.breadcrumb a{color:#fff;text-decoration:underline}
     .calc-layout{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(320px,.92fr);gap:20px;align-items:start}.calc-card{background:#fff;border:1px solid #e5edf3;border-radius:16px;padding:20px;box-shadow:0 10px 26px rgba(0,0,0,.08);margin-bottom:18px}.calc-card h2{margin-top:0;color:#004b80;font-size:1.25rem}.calc-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.field{display:flex;flex-direction:column;gap:6px}.field label{font-weight:700;color:#243746}.field input,.field select{border:1px solid #c9d7e1;border-radius:10px;padding:11px;font:inherit;background:#fff}.field small{color:#5d6b76;font-size:.82rem}.span-2{grid-column:1/-1}.result-main{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:12px 0}.result-box{background:#f5f9fc;border:1px solid #dceaf2;border-radius:14px;padding:14px}.result-box strong{display:block;color:#004b80;font-size:1.45rem;margin-top:4px}.result-box small{color:#5d6b76}.status{border-radius:12px;padding:12px;margin-top:12px;font-weight:700}.ok{background:#e9f8ef;color:#146c2e;border:1px solid #bfe8cc}.warn{background:#fff7e6;color:#8a5a00;border:1px solid #f4d38a}.bad{background:#fdecec;color:#9d1c1c;border:1px solid #f4b6b6}.info{background:#eef6ff;color:#004b80;border:1px solid #c8dfff}.table-wrap{overflow-x:auto}.tool-table{width:100%;border-collapse:collapse;margin-top:12px}.tool-table th,.tool-table td{border:1px solid #d9e5ec;padding:10px;text-align:left}.tool-table th{background:#eef6fb;color:#004b80}.notice{border-left:6px solid #f0ad4e}.calc-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}.btn.secondary{background:#eef6fb;color:#004b80}.formula{background:#f7fbfe;border:1px solid #dbeaf2;border-radius:12px;padding:12px;color:#314656;line-height:1.55}.muted{color:#5d6b76}.faq details{border:1px solid #dfeaf1;border-radius:12px;padding:12px;margin:10px 0;background:#fff}.faq summary{font-weight:700;color:#004b80;cursor:pointer}.example-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.example-btn{border:1px solid #cfe0eb;background:#f8fbfd;border-radius:12px;padding:11px;text-align:left;cursor:pointer;color:#004b80;font-weight:700}.example-btn:hover{background:#eef6fb}.copybox{width:100%;min-height:132px;border:1px solid #c9d7e1;border-radius:12px;padding:12px;font:inherit;resize:vertical;background:#fbfdff}@media (max-width:900px){.calc-layout{grid-template-columns:1fr}.calc-grid,.result-main,.example-grid{grid-template-columns:1fr}.span-2{grid-column:auto}.tool-hero{padding:22px}}
-    @media print{header,.social-floating,.fab-wrap,.no-print,.calc-actions{display:none!important}.calc-card,.tool-hero{box-shadow:none}.tool-hero{color:#111;background:#fff;border:1px solid #ddd}.tool-hero h1{color:#111}}
+    
+    .field input.invalid,.field select.invalid{border-color:#b42318;background:#fff5f5;outline:2px solid rgba(180,35,24,.12)}
+    .field-error{color:#b42318;font-size:.8rem;font-weight:700;min-height:1em}
+    .memory-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+    .memory-step{border:1px solid #dce8ef;border-radius:12px;padding:12px;background:#fbfdff;line-height:1.55}
+    .memory-step strong{color:#004b80;display:block;margin-bottom:4px}
+    .report-note{border-left:5px solid #004b80;background:#f4f8fb;padding:12px;border-radius:8px;line-height:1.55}
+    .print-sheet{display:none}
+    @media (max-width:900px){.memory-grid{grid-template-columns:1fr}}
+    @media (max-width:600px){
+      #pressureTable thead{display:none}
+      #pressureTable,#pressureTable tbody,#pressureTable tr,#pressureTable td{display:block;width:100%;box-sizing:border-box}
+      #pressureTable tr{border:1px solid #d9e5ec;border-radius:10px;margin:0 0 12px;overflow:hidden;background:#fff}
+      #pressureTable td{display:grid;grid-template-columns:minmax(105px,42%) minmax(0,1fr);gap:8px;border:0;border-bottom:1px solid #e6eef3;padding:9px;overflow-wrap:anywhere}
+      #pressureTable td:last-child{border-bottom:0}
+      #pressureTable td::before{content:attr(data-label);font-weight:700;color:#004b80}
+    }
+    @media print{
+      @page{size:A4;margin:14mm}
+      body{background:#fff!important;color:#000!important;font-family:Arial,sans-serif!important}
+      body>*:not(.print-sheet){display:none!important}
+      .print-sheet{display:block!important;color:#000!important;background:#fff!important;width:100%!important}
+      .print-sheet h1{font-size:20pt;margin:0 0 5mm;color:#000!important}
+      .print-sheet h2{font-size:13pt;margin:6mm 0 2mm;color:#000!important;border-bottom:1px solid #555;padding-bottom:1.5mm}
+      .print-sheet p,.print-sheet li,.print-sheet td,.print-sheet th{font-size:9.5pt;line-height:1.4}
+      .print-sheet table{width:100%;border-collapse:collapse;margin:2mm 0 5mm}
+      .print-sheet th,.print-sheet td{border:1px solid #777;padding:2.2mm;text-align:left;vertical-align:top}
+      .print-sheet th{background:#eee!important;color:#000!important}
+      .print-sheet .print-result{font-size:12pt;font-weight:700;border:1.5px solid #000;padding:3mm;margin:3mm 0}
+      .print-sheet .avoid-break{break-inside:avoid;page-break-inside:avoid}
+      .print-sheet .muted-print{color:#333}
+    }
+  
   </style>
   <script type="application/ld+json">
   {
@@ -106,19 +138,27 @@
             </select>
             <small>Em dupla ação, o retorno desconta a área da haste.</small>
           </div>
+          <div class="field">
+            <label for="direction">Movimento usado no dimensionamento</label>
+            <select id="direction">
+              <option value="advance">Avanço</option>
+              <option value="return">Retorno</option>
+            </select>
+            <small>No retorno de dupla ação, a área da haste é descontada.</small>
+          </div>
           <div class="field input-force input-pressure">
             <label for="bore">Diâmetro do pistão / êmbolo (mm)</label>
-            <input id="bore" type="number" value="50" min="1" step="0.1" />
+            <input id="bore" type="text" inputmode="decimal" autocomplete="off" value="50" />
             <small>Exemplo: 32, 40, 50, 63, 80 ou 100 mm.</small>
           </div>
           <div class="field rod-field input-force input-pressure input-diameter">
             <label for="rod">Diâmetro da haste (mm)</label>
-            <input id="rod" type="number" value="20" min="0" step="0.1" />
+            <input id="rod" type="text" inputmode="decimal" autocomplete="off" value="20" />
             <small>Usado para força de retorno em cilindro dupla ação.</small>
           </div>
           <div class="field input-force input-diameter">
             <label for="pressure">Pressão disponível</label>
-            <input id="pressure" type="number" value="6" min="0" step="0.01" />
+            <input id="pressure" type="text" inputmode="decimal" autocomplete="off" value="6" />
             <small>Pressão manométrica de trabalho.</small>
           </div>
           <div class="field input-force input-diameter">
@@ -130,9 +170,9 @@
             </select>
           </div>
           <div class="field input-pressure input-diameter">
-            <label for="targetForce">Força necessária</label>
-            <input id="targetForce" type="number" value="1000" min="0" step="0.1" />
-            <small>Força exigida pela aplicação.</small>
+            <label for="targetForce">Força total necessária do conjunto</label>
+            <input id="targetForce" type="text" inputmode="decimal" autocomplete="off" value="1000" />
+            <small>Valor total antes do fator de segurança; será dividido pela quantidade de atuadores.</small>
           </div>
           <div class="field input-pressure input-diameter">
             <label for="forceUnit">Unidade da força necessária</label>
@@ -144,18 +184,18 @@
           </div>
           <div class="field input-force input-pressure input-diameter">
             <label for="eff">Eficiência / perdas mecânicas (%)</label>
-            <input id="eff" type="number" value="85" min="1" max="100" step="1" />
+            <input id="eff" type="text" inputmode="decimal" autocomplete="off" value="85" />
             <small>Valor orientativo para perdas por atrito e vedação.</small>
           </div>
           <div class="field input-force input-pressure input-diameter">
             <label for="safety">Fator de segurança desejado</label>
-            <input id="safety" type="number" value="1.3" min="1" step="0.05" />
+            <input id="safety" type="text" inputmode="decimal" autocomplete="off" value="1.3" />
             <small>Exemplo: 1,2 a 2,0 conforme criticidade.</small>
           </div>
           <div class="field input-force">
-            <label for="loadForce">Força/carga a vencer para comparar</label>
-            <input id="loadForce" type="number" value="800" min="0" step="0.1" />
-            <small>Opcional. Use zero se não quiser comparar.</small>
+            <label for="loadForce">Carga total do conjunto para comparar</label>
+            <input id="loadForce" type="text" inputmode="decimal" autocomplete="off" value="800" />
+            <small>Opcional. O fator de segurança será aplicado à carga total informada.</small>
           </div>
           <div class="field input-force">
             <label for="loadUnit">Unidade da carga a vencer</label>
@@ -167,12 +207,12 @@
           </div>
           <div class="field">
             <label for="qty">Quantidade de atuadores iguais</label>
-            <input id="qty" type="number" value="1" min="1" step="1" />
-            <small>Calcula força total quando há mais de um atuador.</small>
+            <input id="qty" type="text" inputmode="numeric" autocomplete="off" value="1" />
+            <small>Número inteiro. Nos dimensionamentos, a força total é distribuída igualmente.</small>
           </div>
           <div class="field">
             <label for="stroke">Curso aproximado (mm)</label>
-            <input id="stroke" type="number" value="100" min="0" step="0.1" />
+            <input id="stroke" type="text" inputmode="decimal" autocomplete="off" value="100" />
             <small>Informativo para observações de montagem e haste.</small>
           </div>
           <div class="field span-2">
@@ -181,23 +221,33 @@
           </div>
         </div>
         <div class="calc-actions no-print">
-          <button class="btn" type="button" onclick="calcActuator()"><i class="fas fa-calculator"></i> Calcular</button>
-          <button class="btn secondary" type="button" onclick="resetActuator()"><i class="fas fa-rotate-left"></i> Limpar</button>
-          <button class="btn secondary" type="button" onclick="window.print()"><i class="fas fa-print"></i> Imprimir</button>
+          <button class="btn" id="btnCalculate" type="button"><i class="fas fa-calculator"></i> Calcular</button>
+          <button class="btn secondary" id="btnReset" type="button"><i class="fas fa-rotate-left"></i> Limpar</button>
+          <button class="btn secondary" id="btnPrint" type="button"><i class="fas fa-print"></i> Imprimir</button>
+          <button class="btn secondary" id="btnReport" type="button"><i class="fas fa-file-pdf"></i> Gerar relatório</button>
         </div>
       </form>
 
-      <aside class="calc-card" aria-label="Resultado">
+      <aside class="calc-card" aria-label="Resultado" aria-live="polite">
         <h2><i class="fas fa-gauge-high"></i> Resultado</h2>
         <div class="result-main">
-          <div class="result-box"><small>Força de avanço</small><strong id="advanceForce">-</strong><small id="advanceConv">-</small></div>
-          <div class="result-box"><small>Força de retorno</small><strong id="returnForce">-</strong><small id="returnConv">-</small></div>
-          <div class="result-box"><small>Pressão necessária</small><strong id="reqPressure">-</strong><small>para a força informada</small></div>
-          <div class="result-box"><small>Diâmetro necessário</small><strong id="reqDiameter">-</strong><small>com pressão e segurança</small></div>
+          <div class="result-box"><small>Força total de avanço</small><strong id="advanceForce">-</strong><small id="advanceConv">-</small></div>
+          <div class="result-box"><small>Força total de retorno</small><strong id="returnForce">-</strong><small id="returnConv">-</small></div>
+          <div class="result-box"><small>Pressão necessária</small><strong id="reqPressure">-</strong><small id="reqPressureConv">Selecione o modo correspondente</small></div>
+          <div class="result-box"><small>Diâmetro calculado</small><strong id="reqDiameter">-</strong><small id="commercialDiameter">Selecione o modo correspondente</small></div>
+          <div class="result-box"><small>Margem sobre a carga</small><strong id="forceMargin">-</strong><small id="marginDetail">Disponível no modo de força</small></div>
+          <div class="result-box"><small>Área efetiva selecionada</small><strong id="effectiveArea">-</strong><small id="areaDetail">Conforme avanço ou retorno</small></div>
         </div>
-        <div id="status" class="status info">Preencha os dados e clique em calcular.</div>
-        <div class="formula" id="explain" style="margin-top:12px">Fórmula base: força = pressão manométrica x área efetiva x eficiência.</div>
+        <div id="status" class="status info" role="status">Preencha os dados e clique em calcular.</div>
+        <div class="formula" id="explain" style="margin-top:12px">Fórmula base: força = pressão manométrica × área efetiva × eficiência.</div>
       </aside>
+    </section>
+
+    <section class="calc-card" id="memoryCard">
+      <h2><i class="fas fa-square-root-variable"></i> Memória de cálculo</h2>
+      <p class="muted">As etapas abaixo mostram as unidades-base, a fórmula aplicada e a substituição dos valores.</p>
+      <div class="memory-grid" id="memorySteps"></div>
+      <div class="report-note" id="assumptionNote" style="margin-top:12px">O cálculo considera pressão manométrica uniforme, carga dividida igualmente entre atuadores idênticos e eficiência global informada.</div>
     </section>
 
     <section class="calc-card">
@@ -209,17 +259,17 @@
     <section class="calc-card">
       <h2><i class="fas fa-lightbulb"></i> Exemplos rápidos</h2>
       <div class="example-grid">
-        <button class="example-btn" type="button" onclick="setExample(1)">Cilindro Ø50 mm a 6 bar</button>
-        <button class="example-btn" type="button" onclick="setExample(2)">Selecionar pressão para 100 kgf</button>
-        <button class="example-btn" type="button" onclick="setExample(3)">Selecionar diâmetro para 2000 N</button>
-        <button class="example-btn" type="button" onclick="setExample(4)">Atuador genérico sem haste</button>
+        <button class="example-btn" type="button" data-example="1">Cilindro Ø50 mm a 6 bar</button>
+        <button class="example-btn" type="button" data-example="2">Selecionar pressão para 100 kgf</button>
+        <button class="example-btn" type="button" data-example="3">Selecionar diâmetro para 2000 N</button>
+        <button class="example-btn" type="button" data-example="4">Atuador genérico sem haste</button>
       </div>
     </section>
 
     <section class="calc-card">
       <h2><i class="fas fa-copy"></i> Resumo para copiar</h2>
       <textarea class="copybox" id="copyText" readonly></textarea>
-      <div class="calc-actions no-print"><button class="btn secondary" type="button" onclick="copySummary()"><i class="fas fa-copy"></i> Copiar resumo</button></div>
+      <div class="calc-actions no-print"><button class="btn secondary" id="btnCopy" type="button"><i class="fas fa-copy"></i> Copiar resumo</button></div>
     </section>
 
     <section class="calc-card faq">
@@ -266,129 +316,542 @@
 
   </main>
 
+
+  <section class="print-sheet" id="printSheet" aria-hidden="true">
+    <h1>Memória de cálculo — Atuador pneumático</h1>
+    <p class="muted-print" id="printDate"></p>
+    <div id="printContent"></div>
+  </section>
+
   <footer><div class="container"><p>&copy; 2026 ALOGY Engenharia. Todos os direitos reservados.</p></div></footer>
 
   <script>
-    const $ = (id)=>document.getElementById(id);
-    const fmt = (v,d=2)=>Number.isFinite(v) ? v.toLocaleString('pt-BR',{maximumFractionDigits:d,minimumFractionDigits:d}) : '-';
-    const kgf = 9.80665;
-    const lbfN = 4.4482216153;
-    function parseBR(value){
-      const raw=String(value ?? '').trim();
-      if(!raw) return NaN;
-      const norm=raw.includes(',') ? raw.replace(/\./g,'').replace(',','.') : raw;
-      const v=Number(norm);
-      return Number.isFinite(v) ? v : NaN;
+  (() => {
+    'use strict';
+
+    const byId = (id) => document.getElementById(id);
+    const KGF_N = 9.80665;
+    const LBF_N = 4.4482216153;
+    const COMMERCIAL_BORES = [8,10,12,16,20,25,32,40,50,63,80,100,125,160,200,250,320];
+    let lastCalculation = null;
+
+    const format = (value, digits = 2) => Number.isFinite(value)
+      ? value.toLocaleString('pt-BR', {minimumFractionDigits: digits, maximumFractionDigits: digits})
+      : '—';
+
+    const formatFlexible = (value, maxDigits = 4) => Number.isFinite(value)
+      ? value.toLocaleString('pt-BR', {maximumFractionDigits: maxDigits})
+      : '—';
+
+    function parseLocalized(value) {
+      const raw = String(value ?? '').trim().replace(/\s+/g, '');
+      if (!raw) return NaN;
+      if (!/^[+-]?[\d.,]+$/.test(raw)) return NaN;
+      const comma = raw.lastIndexOf(',');
+      const dot = raw.lastIndexOf('.');
+      let normalized = raw;
+      if (comma >= 0 && dot >= 0) {
+        const decimal = comma > dot ? ',' : '.';
+        const group = decimal === ',' ? '.' : ',';
+        normalized = raw.split(group).join('').replace(decimal, '.');
+      } else if (comma >= 0) {
+        if ((raw.match(/,/g) || []).length > 1) return NaN;
+        normalized = raw.replace(',', '.');
+      } else if ((raw.match(/\./g) || []).length > 1) {
+        const parts = raw.replace(/^[+-]/, '').split('.');
+        if (parts.slice(1).every((part) => part.length === 3)) normalized = raw.replace(/\./g, '');
+        else return NaN;
+      }
+      const number = Number(normalized);
+      return Number.isFinite(number) ? number : NaN;
     }
-    function pToPa(v,u){ v=parseBR(v); if(!Number.isFinite(v)) v=0; if(u==='bar') return v*100000; if(u==='kpa') return v*1000; if(u==='psi') return v*6894.757293; return v; }
-    function paToBar(pa){return pa/100000}
-    function forceToN(v,u){ v=parseBR(v); if(!Number.isFinite(v)) v=0; if(u==='kgf') return v*kgf; if(u==='lbf') return v*lbfN; return v; }
-    function areaCircleMm(d){ d=parseBR(d); return Math.PI*Math.pow((Number.isFinite(d)?d:0)/1000,2)/4; }
-    function showMode(){
-      const mode=$('mode').value;
-      document.querySelectorAll('.input-force,.input-pressure,.input-diameter').forEach(el=>el.style.display='none');
-      document.querySelectorAll('.input-'+mode).forEach(el=>el.style.display='flex');
-      const generic=$('actType').value==='generic' || $('actType').value==='single';
-      document.querySelectorAll('.rod-field').forEach(el=>{ if(generic){el.style.opacity=.55}else{el.style.opacity=1} });
+
+    function pressureToPa(value, unit) {
+      if (unit === 'bar') return value * 100000;
+      if (unit === 'kpa') return value * 1000;
+      if (unit === 'psi') return value * 6894.757293168;
+      return NaN;
     }
-    function calcValues(customPressurePa){
-      const type=$('actType').value;
-      const bore=parseBR($('bore').value)||0;
-      const rod=parseBR($('rod').value)||0;
-      const eff=Math.max(0.01,Math.min(1,(parseBR($('eff').value)||100)/100));
-      const qty=Math.max(1,parseBR($('qty').value)||1);
-      const pPa=Number.isFinite(customPressurePa) ? customPressurePa : pToPa($('pressure').value,$('pressureUnit').value);
-      const aAdv=areaCircleMm(bore);
-      const aRod=areaCircleMm(rod);
-      let aRet=aAdv;
-      if(type==='double') aRet=Math.max(0,aAdv-aRod);
-      if(type==='single') aRet=0;
-      const fAdv=pPa*aAdv*eff;
-      const fRet=pPa*aRet*eff;
-      return {type,bore,rod,eff,qty,pPa,aAdv,aRet,fAdv,fRet,totalAdv:fAdv*qty,totalRet:fRet*qty};
+
+    function forceToN(value, unit) {
+      if (unit === 'kgf') return value * KGF_N;
+      if (unit === 'lbf') return value * LBF_N;
+      return value;
     }
-    function calcActuator(){
+
+    function circleAreaM2(diameterMm) {
+      return Math.PI * Math.pow(diameterMm / 1000, 2) / 4;
+    }
+
+    function escapeHtml(value) {
+      return String(value ?? '')
+        .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;').replace(/'/g, '&#039;');
+    }
+
+    function clearInvalidState() {
+      document.querySelectorAll('.invalid').forEach((element) => {
+        element.classList.remove('invalid');
+        element.removeAttribute('aria-invalid');
+      });
+      document.querySelectorAll('.field-error').forEach((element) => element.remove());
+    }
+
+    function markInvalid(id, message) {
+      const element = byId(id);
+      if (!element) return;
+      element.classList.add('invalid');
+      element.setAttribute('aria-invalid', 'true');
+      const error = document.createElement('div');
+      error.className = 'field-error';
+      error.textContent = message;
+      element.closest('.field')?.appendChild(error);
+    }
+
+    function showMode() {
+      const mode = byId('mode').value;
+      const type = byId('actType').value;
+      document.querySelectorAll('.input-force,.input-pressure,.input-diameter').forEach((element) => {
+        element.style.display = 'none';
+      });
+      document.querySelectorAll('.input-' + mode).forEach((element) => {
+        element.style.display = 'flex';
+      });
+      const rodField = byId('rod').closest('.rod-field');
+      const usesRod = type === 'double';
+      byId('rod').disabled = !usesRod;
+      rodField.style.opacity = usesRod ? '1' : '.55';
+      const returnOption = byId('direction').querySelector('option[value="return"]');
+      returnOption.disabled = type === 'single';
+      if (type === 'single' && byId('direction').value === 'return') byId('direction').value = 'advance';
+    }
+
+    function readInputs() {
+      clearInvalidState();
+      const mode = byId('mode').value;
+      const type = byId('actType').value;
+      const direction = byId('direction').value;
+      const values = {
+        mode, type, direction,
+        bore: parseLocalized(byId('bore').value),
+        rod: parseLocalized(byId('rod').value),
+        pressure: parseLocalized(byId('pressure').value),
+        pressureUnit: byId('pressureUnit').value,
+        targetForce: parseLocalized(byId('targetForce').value),
+        forceUnit: byId('forceUnit').value,
+        efficiencyPercent: parseLocalized(byId('eff').value),
+        safety: parseLocalized(byId('safety').value),
+        loadForce: parseLocalized(byId('loadForce').value),
+        loadUnit: byId('loadUnit').value,
+        quantity: parseLocalized(byId('qty').value),
+        stroke: parseLocalized(byId('stroke').value),
+        notes: byId('notes').value.trim()
+      };
+      const errors = [];
+      const needBore = mode === 'force' || mode === 'pressure';
+      const needPressure = mode === 'force' || mode === 'diameter';
+      const needTarget = mode === 'pressure' || mode === 'diameter';
+      if (needBore && (!Number.isFinite(values.bore) || values.bore <= 0)) errors.push(['bore', 'Informe um diâmetro de pistão maior que zero.']);
+      if (type === 'double' && (!Number.isFinite(values.rod) || values.rod < 0)) errors.push(['rod', 'Informe um diâmetro de haste válido.']);
+      if (type === 'double' && needBore && Number.isFinite(values.bore) && Number.isFinite(values.rod) && values.rod >= values.bore) errors.push(['rod', 'A haste deve ser menor que o pistão.']);
+      if (needPressure && (!Number.isFinite(values.pressure) || values.pressure <= 0)) errors.push(['pressure', 'Informe uma pressão manométrica maior que zero.']);
+      if (needTarget && (!Number.isFinite(values.targetForce) || values.targetForce <= 0)) errors.push(['targetForce', 'Informe uma força total necessária maior que zero.']);
+      if (!Number.isFinite(values.efficiencyPercent) || values.efficiencyPercent <= 0 || values.efficiencyPercent > 100) errors.push(['eff', 'Use eficiência maior que 0% e menor ou igual a 100%.']);
+      if (!Number.isFinite(values.safety) || values.safety < 1) errors.push(['safety', 'O fator de segurança deve ser igual ou maior que 1.']);
+      if (mode === 'force' && (!Number.isFinite(values.loadForce) || values.loadForce < 0)) errors.push(['loadForce', 'Informe carga zero ou positiva.']);
+      if (!Number.isFinite(values.quantity) || values.quantity < 1 || !Number.isInteger(values.quantity)) errors.push(['qty', 'Informe uma quantidade inteira igual ou maior que 1.']);
+      if (!Number.isFinite(values.stroke) || values.stroke < 0) errors.push(['stroke', 'Informe curso zero ou positivo.']);
+      if (type === 'single' && direction === 'return') errors.push(['direction', 'O retorno do cilindro simples ação depende da mola ou da carga.']);
+      errors.forEach(([id, message]) => markInvalid(id, message));
+      return {values, errors};
+    }
+
+    function calculateForGeometry(boreMm, rodMm, pressurePa, efficiency, quantity, type) {
+      const pistonArea = circleAreaM2(boreMm);
+      const rodArea = type === 'double' ? circleAreaM2(rodMm) : 0;
+      const returnArea = type === 'single' ? 0 : Math.max(0, pistonArea - rodArea);
+      const advancePer = pressurePa * pistonArea * efficiency;
+      const returnPer = pressurePa * returnArea * efficiency;
+      return {
+        pistonArea, rodArea, returnArea,
+        advancePer, returnPer,
+        advanceTotal: advancePer * quantity,
+        returnTotal: returnPer * quantity
+      };
+    }
+
+    function nearestCommercialBore(requiredMm) {
+      return COMMERCIAL_BORES.find((diameter) => diameter >= requiredMm) ?? null;
+    }
+
+    function calculate(showValidation = true) {
       showMode();
-      const mode=$('mode').value;
-      const v=calcValues();
-      const safety=Math.max(1,parseBR($('safety').value)||1);
-      const targetN=forceToN($('targetForce').value,$('forceUnit').value)*safety;
-      const loadN=forceToN($('loadForce').value,$('loadUnit').value)*safety;
-      let reqPressurePa=NaN, reqDiameterMm=NaN;
-      if(v.aAdv>0) reqPressurePa=targetN/(v.aAdv*v.eff);
-      if(v.pPa>0) reqDiameterMm=Math.sqrt((4*targetN)/(Math.PI*v.pPa*v.eff))*1000;
-      $('advanceForce').textContent=fmt(v.totalAdv,1)+' N';
-      $('advanceConv').textContent=fmt(v.totalAdv/kgf,1)+' kgf | '+fmt(v.totalAdv/lbfN,1)+' lbf';
-      if(v.type==='single'){
-        $('returnForce').textContent='-'; $('returnConv').textContent='simples ação / retorno por mola ou carga';
-      } else {
-        $('returnForce').textContent=fmt(v.totalRet,1)+' N'; $('returnConv').textContent=fmt(v.totalRet/kgf,1)+' kgf | '+fmt(v.totalRet/lbfN,1)+' lbf';
+      const {values: input, errors} = readInputs();
+      if (errors.length) {
+        lastCalculation = null;
+        clearResults();
+        setStatus('bad', errors[0][1]);
+        if (showValidation) byId(errors[0][0])?.focus();
+        return false;
       }
-      $('reqPressure').textContent=Number.isFinite(reqPressurePa) ? fmt(paToBar(reqPressurePa),2)+' bar' : '-';
-      $('reqDiameter').textContent=Number.isFinite(reqDiameterMm) ? fmt(reqDiameterMm,1)+' mm' : '-';
-      let statusClass='info', statusText='Resultado orientativo calculado. Confirme catálogo do fabricante e condições reais de aplicação.';
-      if(v.bore <= 0 || v.pPa <= 0){
-        statusClass='bad'; statusText='Revise os dados: diâmetro do pistão e pressão devem ser maiores que zero.';
-      } else if(v.type==='double' && v.rod >= v.bore){
-        statusClass='bad'; statusText='Revise a geometria: em cilindro dupla ação, a haste deve ser menor que o diâmetro do pistão.';
-      } else if(mode==='force' && loadN>0){
-        const margin=v.totalAdv/loadN;
-        if(margin>=1.2){statusClass='ok'; statusText='Força de avanço acima da carga informada com margem orientativa. Ainda assim, confirme velocidade, atrito, curso, haste e fabricante.';}
-        else if(margin>=1){statusClass='warn'; statusText='Força de avanço atende no limite. Recomenda-se aumentar diâmetro, pressão disponível ou fator de segurança.';}
-        else {statusClass='bad'; statusText='Força de avanço menor que a carga informada com segurança. Verifique atuador maior, pressão ou aplicação.';}
-      } else if(mode==='pressure'){
-        if(Number.isFinite(reqPressurePa) && paToBar(reqPressurePa)<=8) {statusClass='ok'; statusText='Pressão necessária dentro de uma faixa comum de ar comprimido industrial, mas confirme a pressão real disponível no ponto de uso.';}
-        else if(Number.isFinite(reqPressurePa) && paToBar(reqPressurePa)<=10) {statusClass='warn'; statusText='Pressão necessária elevada. Verifique queda de pressão, regulador, válvula, mangueiras e margem.';}
-        else {statusClass='bad'; statusText='Pressão necessária muito alta para muitas redes industriais. Considere diâmetro maior ou outra solução.';}
-      } else if(mode==='diameter'){
-        if(Number.isFinite(reqDiameterMm) && reqDiameterMm>0){statusClass='info'; statusText='Escolha um diâmetro comercial acima do valor calculado e confirme curso, haste, fixação e fabricante.';}
+
+      const efficiency = input.efficiencyPercent / 100;
+      const pressurePaInput = (input.mode === 'force' || input.mode === 'diameter')
+        ? pressureToPa(input.pressure, input.pressureUnit) : NaN;
+      const targetTotalN = (input.mode === 'pressure' || input.mode === 'diameter')
+        ? forceToN(input.targetForce, input.forceUnit) : NaN;
+      const designTotalN = Number.isFinite(targetTotalN) ? targetTotalN * input.safety : NaN;
+      const designPerActuatorN = Number.isFinite(designTotalN) ? designTotalN / input.quantity : NaN;
+      const loadTotalN = input.mode === 'force' ? forceToN(input.loadForce, input.loadUnit) : NaN;
+      const designLoadTotalN = Number.isFinite(loadTotalN) ? loadTotalN * input.safety : NaN;
+
+      let boreUsed = input.bore;
+      let pressurePaUsed = pressurePaInput;
+      let requiredPressurePa = NaN;
+      let requiredDiameterMm = NaN;
+      let commercialBore = null;
+
+      if (input.mode === 'pressure') {
+        const pistonArea = circleAreaM2(input.bore);
+        const rodArea = input.type === 'double' ? circleAreaM2(input.rod) : 0;
+        const effectiveArea = input.direction === 'return' ? pistonArea - rodArea : pistonArea;
+        if (!(effectiveArea > 0)) {
+          markInvalid('rod', 'A área efetiva de retorno deve ser maior que zero.');
+          clearResults();
+          setStatus('bad', 'A geometria informada não produz área útil de retorno.');
+          lastCalculation = null;
+          return false;
+        }
+        requiredPressurePa = designPerActuatorN / (effectiveArea * efficiency);
+        pressurePaUsed = requiredPressurePa;
       }
-      $('status').className='status '+statusClass;
-      $('status').textContent=statusText;
-      $('explain').innerHTML='Área avanço: <b>'+fmt(v.aAdv*1e6,1)+' mm²</b>. Área retorno: <b>'+fmt(v.aRet*1e6,1)+' mm²</b>. Eficiência usada: <b>'+fmt(v.eff*100,0)+'%</b>. Pressão usada: <b>'+fmt(paToBar(v.pPa),2)+' bar(g)</b>.';
-      makeTable(); makeSummary(v, reqPressurePa, reqDiameterMm, statusText);
+
+      if (input.mode === 'diameter') {
+        const requiredEffectiveArea = designPerActuatorN / (pressurePaInput * efficiency);
+        const rodArea = input.type === 'double' ? circleAreaM2(input.rod) : 0;
+        const pistonAreaRequired = input.direction === 'return' ? requiredEffectiveArea + rodArea : requiredEffectiveArea;
+        requiredDiameterMm = Math.sqrt(4 * pistonAreaRequired / Math.PI) * 1000;
+        boreUsed = requiredDiameterMm;
+        commercialBore = nearestCommercialBore(requiredDiameterMm);
+      }
+
+      const geometry = calculateForGeometry(
+        boreUsed,
+        input.type === 'double' ? input.rod : 0,
+        pressurePaUsed,
+        efficiency,
+        input.quantity,
+        input.type
+      );
+      const selectedArea = input.direction === 'return' ? geometry.returnArea : geometry.pistonArea;
+      const selectedTotalForce = input.direction === 'return' ? geometry.returnTotal : geometry.advanceTotal;
+      const margin = input.mode === 'force' && designLoadTotalN > 0 ? selectedTotalForce / designLoadTotalN : NaN;
+
+      if (![geometry.pistonArea, geometry.advanceTotal, selectedArea, selectedTotalForce].every(Number.isFinite)) {
+        clearResults();
+        setStatus('bad', 'Não foi possível concluir o cálculo. Revise os valores informados.');
+        lastCalculation = null;
+        return false;
+      }
+
+      const result = {
+        input, efficiency, pressurePaInput, pressurePaUsed,
+        targetTotalN, designTotalN, designPerActuatorN,
+        loadTotalN, designLoadTotalN,
+        boreUsed, requiredPressurePa, requiredDiameterMm, commercialBore,
+        geometry, selectedArea, selectedTotalForce, margin,
+        directionLabel: input.direction === 'return' ? 'Retorno' : 'Avanço',
+        typeLabel: byId('actType').selectedOptions[0].text,
+        modeLabel: byId('mode').selectedOptions[0].text
+      };
+
+      renderResults(result);
+      renderPressureTable(result);
+      renderMemory(result);
+      renderSummary(result);
+      lastCalculation = result;
+      return true;
     }
-    function makeTable(){
-      const tb=$('pressureTable').querySelector('tbody'); tb.innerHTML='';
-      [2,3,4,5,6,7,8].forEach(p=>{
-        const v=calcValues(p*100000);
-        const ret=v.type==='single' ? 'simples ação' : fmt(v.totalRet,1)+' N / '+fmt(v.totalRet/kgf,1)+' kgf';
-        const tr=document.createElement('tr');
-        tr.innerHTML='<td>'+p+' bar</td><td>'+fmt(v.totalAdv,1)+' N / '+fmt(v.totalAdv/kgf,1)+' kgf</td><td>'+ret+'</td><td>'+((p<=6)?'faixa comum':'pressão mais elevada')+'</td>';
-        tb.appendChild(tr);
+
+    function clearResults() {
+      ['advanceForce','returnForce','reqPressure','reqDiameter','forceMargin','effectiveArea'].forEach((id) => byId(id).textContent = '—');
+      byId('advanceConv').textContent = '—';
+      byId('returnConv').textContent = '—';
+      byId('reqPressureConv').textContent = '—';
+      byId('commercialDiameter').textContent = '—';
+      byId('marginDetail').textContent = '—';
+      byId('areaDetail').textContent = '—';
+      byId('explain').textContent = 'Fórmula base: força = pressão manométrica × área efetiva × eficiência.';
+      byId('memorySteps').innerHTML = '';
+      byId('pressureTable').querySelector('tbody').innerHTML = '';
+      byId('copyText').value = '';
+    }
+
+    function setStatus(className, message) {
+      byId('status').className = 'status ' + className;
+      byId('status').textContent = message;
+    }
+
+    function renderResults(result) {
+      const {input, geometry} = result;
+      byId('advanceForce').textContent = format(geometry.advanceTotal, 1) + ' N';
+      byId('advanceConv').textContent = format(geometry.advanceTotal / KGF_N, 1) + ' kgf | ' + format(geometry.advanceTotal / LBF_N, 1) + ' lbf';
+      if (input.type === 'single') {
+        byId('returnForce').textContent = 'Não calculado';
+        byId('returnConv').textContent = 'retorno por mola ou carga externa';
+      } else {
+        byId('returnForce').textContent = format(geometry.returnTotal, 1) + ' N';
+        byId('returnConv').textContent = format(geometry.returnTotal / KGF_N, 1) + ' kgf | ' + format(geometry.returnTotal / LBF_N, 1) + ' lbf';
+      }
+
+      if (input.mode === 'pressure') {
+        const bar = result.requiredPressurePa / 100000;
+        byId('reqPressure').textContent = format(bar, 2) + ' bar(g)';
+        byId('reqPressureConv').textContent = format(result.requiredPressurePa / 1000, 1) + ' kPa(g) | ' + format(result.requiredPressurePa / 6894.757293168, 1) + ' psi(g)';
+      } else {
+        byId('reqPressure').textContent = '—';
+        byId('reqPressureConv').textContent = 'Disponível no modo de pressão necessária';
+      }
+
+      if (input.mode === 'diameter') {
+        byId('reqDiameter').textContent = format(result.requiredDiameterMm, 1) + ' mm';
+        byId('commercialDiameter').textContent = result.commercialBore
+          ? 'Próximo diâmetro comercial sugerido: ' + formatFlexible(result.commercialBore, 1) + ' mm'
+          : 'Acima da lista comercial considerada; consultar fabricante';
+      } else {
+        byId('reqDiameter').textContent = '—';
+        byId('commercialDiameter').textContent = 'Disponível no modo de diâmetro necessário';
+      }
+
+      if (input.mode === 'force' && Number.isFinite(result.margin)) {
+        byId('forceMargin').textContent = format(result.margin, 2) + ' ×';
+        byId('marginDetail').textContent = format((result.margin - 1) * 100, 1) + '% sobre a carga já majorada';
+      } else if (input.mode === 'force') {
+        byId('forceMargin').textContent = 'Sem comparação';
+        byId('marginDetail').textContent = 'Informe uma carga maior que zero para comparar';
+      } else {
+        byId('forceMargin').textContent = '—';
+        byId('marginDetail').textContent = 'Disponível no modo de força';
+      }
+
+      byId('effectiveArea').textContent = format(result.selectedArea * 1e6, 1) + ' mm²';
+      byId('areaDetail').textContent = result.directionLabel + ' por atuador';
+      byId('explain').innerHTML = 'Área do pistão: <b>' + format(geometry.pistonArea * 1e6, 1) + ' mm²</b>. Área da haste: <b>' + format(geometry.rodArea * 1e6, 1) + ' mm²</b>. Área efetiva de retorno: <b>' + format(geometry.returnArea * 1e6, 1) + ' mm²</b>. Eficiência: <b>' + format(input.efficiencyPercent, 1) + '%</b>.';
+
+      let statusClass = 'info';
+      let statusText = 'Resultado orientativo calculado. Confirme catálogo e condições reais de instalação.';
+      if (input.mode === 'force' && Number.isFinite(result.margin)) {
+        if (result.margin >= 1.25) {
+          statusClass = 'ok';
+          statusText = 'A força no movimento selecionado supera a carga total já majorada com margem orientativa de pelo menos 25%.';
+        } else if (result.margin >= 1) {
+          statusClass = 'warn';
+          statusText = 'A força atende à carga majorada, porém com margem inferior a 25%. Verifique pressão mínima, atrito, dinâmica e fabricante.';
+        } else {
+          statusClass = 'bad';
+          statusText = 'A força no movimento selecionado é menor que a carga total com fator de segurança.';
+        }
+      } else if (input.mode === 'pressure') {
+        const bar = result.requiredPressurePa / 100000;
+        if (bar <= 7) {
+          statusClass = 'ok';
+          statusText = 'A pressão calculada está em uma faixa comum de redes industriais. Confirme a pressão mínima disponível no ponto de uso.';
+        } else if (bar <= 10) {
+          statusClass = 'warn';
+          statusText = 'A pressão calculada é elevada. Verifique queda de pressão, válvula direcional, regulador e limites do atuador.';
+        } else {
+          statusClass = 'bad';
+          statusText = 'A pressão calculada supera 10 bar(g), valor inadequado para muitos sistemas pneumáticos. Considere diâmetro maior ou outra solução.';
+        }
+      } else if (input.mode === 'diameter') {
+        statusClass = result.commercialBore ? 'info' : 'warn';
+        statusText = result.commercialBore
+          ? 'Selecione um diâmetro comercial igual ou superior ao sugerido e refaça a verificação com os dados do fabricante.'
+          : 'O diâmetro calculado está acima da lista comercial considerada. Consulte fabricante e revise a arquitetura da aplicação.';
+      }
+      if (input.type === 'single') {
+        if (statusClass === 'ok' || statusClass === 'info') statusClass = 'warn';
+        statusText += ' Em cilindro simples ação, a força de avanço foi calculada sem descontar a força da mola; consulte a curva do fabricante.';
+      }
+      setStatus(statusClass, statusText);
+      result.statusClass = statusClass;
+      result.statusText = statusText;
+    }
+
+    function renderPressureTable(result) {
+      const tbody = byId('pressureTable').querySelector('tbody');
+      tbody.innerHTML = '';
+      const bore = result.input.mode === 'diameter' ? result.boreUsed : result.input.bore;
+      [2,3,4,5,6,7,8,10].forEach((bar) => {
+        const geometry = calculateForGeometry(
+          bore,
+          result.input.type === 'double' ? result.input.rod : 0,
+          bar * 100000,
+          result.efficiency,
+          result.input.quantity,
+          result.input.type
+        );
+        const row = document.createElement('tr');
+        const returnText = result.input.type === 'single'
+          ? 'Não calculado'
+          : format(geometry.returnTotal, 1) + ' N / ' + format(geometry.returnTotal / KGF_N, 1) + ' kgf';
+        row.innerHTML = '<td data-label="Pressão">' + bar + ' bar(g)</td>' +
+          '<td data-label="Força de avanço">' + format(geometry.advanceTotal, 1) + ' N / ' + format(geometry.advanceTotal / KGF_N, 1) + ' kgf</td>' +
+          '<td data-label="Força de retorno">' + returnText + '</td>' +
+          '<td data-label="Observação">' + (bar <= 7 ? 'faixa usual orientativa' : 'pressão elevada; confirmar componentes') + '</td>';
+        tbody.appendChild(row);
       });
     }
-    function makeSummary(v, reqPressurePa, reqDiameterMm, statusText){
-      const lines=[
-        'Resumo orientativo - Atuador pneumático / força por pressão',
-        'Aplicação: '+($('notes').value || '-'),
-        'Tipo: '+$('actType').selectedOptions[0].text,
-        'Modo: '+$('mode').selectedOptions[0].text,
-        'Diâmetro do pistão: '+fmt(v.bore,1)+' mm',
-        'Diâmetro da haste: '+fmt(v.rod,1)+' mm',
-        'Pressão considerada: '+fmt(paToBar(v.pPa),2)+' bar(g)',
-        'Eficiência considerada: '+fmt(v.eff*100,0)+'%',
-        'Quantidade: '+v.qty,
-        'Força de avanço total: '+fmt(v.totalAdv,1)+' N / '+fmt(v.totalAdv/kgf,1)+' kgf / '+fmt(v.totalAdv/lbfN,1)+' lbf',
-        'Força de retorno total: '+(v.type==='single' ? 'simples ação / retorno por mola ou carga' : fmt(v.totalRet,1)+' N / '+fmt(v.totalRet/kgf,1)+' kgf / '+fmt(v.totalRet/lbfN,1)+' lbf'),
-        'Pressão necessária estimada: '+(Number.isFinite(reqPressurePa)?fmt(paToBar(reqPressurePa),2)+' bar':'-'),
-        'Diâmetro necessário estimado: '+(Number.isFinite(reqDiameterMm)?fmt(reqDiameterMm,1)+' mm':'-'),
-        'Status: '+statusText,
-        'Aviso: cálculo para estudo e pré-análise. Confirmar catálogo, carga dinâmica, atrito, velocidade, haste, válvula, pressão real e profissional habilitado.'
+
+    function renderMemory(result) {
+      const {input, geometry} = result;
+      const steps = [];
+      steps.push(['1. Conversão geométrica', 'Área do pistão = π × D² / 4 = π × ' + formatFlexible(result.boreUsed, 3) + '² / 4 = ' + format(geometry.pistonArea * 1e6, 2) + ' mm².']);
+      if (input.type === 'double') {
+        steps.push(['2. Área da haste e retorno', 'Área da haste = π × ' + formatFlexible(input.rod, 3) + '² / 4 = ' + format(geometry.rodArea * 1e6, 2) + ' mm². Área de retorno = ' + format(geometry.pistonArea * 1e6, 2) + ' − ' + format(geometry.rodArea * 1e6, 2) + ' = ' + format(geometry.returnArea * 1e6, 2) + ' mm².']);
+      } else {
+        steps.push(['2. Área de retorno', input.type === 'single' ? 'O retorno depende de mola ou carga externa e não foi calculado.' : 'Atuador sem haste: a área considerada é igual nos dois sentidos.']);
+      }
+      if (input.mode === 'force') {
+        steps.push(['3. Pressão em unidade-base', formatFlexible(input.pressure, 4) + ' ' + byId('pressureUnit').selectedOptions[0].text + ' = ' + format(result.pressurePaUsed, 0) + ' Pa.']);
+        steps.push(['4. Força por atuador', 'F = P × A × η. No ' + result.directionLabel.toLowerCase() + ': ' + format(result.pressurePaUsed, 0) + ' × ' + format(result.selectedArea, 7) + ' × ' + format(result.efficiency, 3) + ' = ' + format(result.selectedTotalForce / input.quantity, 2) + ' N por atuador.']);
+        steps.push(['5. Força total', format(result.selectedTotalForce / input.quantity, 2) + ' × ' + input.quantity + ' = ' + format(result.selectedTotalForce, 2) + ' N no conjunto.']);
+        if (result.designLoadTotalN > 0) steps.push(['6. Comparação com a carga', 'Carga majorada = ' + format(result.loadTotalN, 2) + ' × ' + format(input.safety, 2) + ' = ' + format(result.designLoadTotalN, 2) + ' N. Margem = ' + format(result.selectedTotalForce, 2) + ' / ' + format(result.designLoadTotalN, 2) + ' = ' + format(result.margin, 3) + ' ×.']);
+      } else {
+        steps.push(['3. Força de projeto', 'Força total majorada = ' + format(result.targetTotalN, 2) + ' × ' + format(input.safety, 2) + ' = ' + format(result.designTotalN, 2) + ' N. Por atuador = ' + format(result.designTotalN, 2) + ' / ' + input.quantity + ' = ' + format(result.designPerActuatorN, 2) + ' N.']);
+        if (input.mode === 'pressure') {
+          steps.push(['4. Pressão necessária', 'P = F / (A × η) = ' + format(result.designPerActuatorN, 2) + ' / (' + format(result.selectedArea, 7) + ' × ' + format(result.efficiency, 3) + ') = ' + format(result.requiredPressurePa, 0) + ' Pa = ' + format(result.requiredPressurePa / 100000, 3) + ' bar(g).']);
+        } else {
+          const effectiveRequired = result.designPerActuatorN / (result.pressurePaUsed * result.efficiency);
+          steps.push(['4. Área efetiva necessária', 'A = F / (P × η) = ' + format(result.designPerActuatorN, 2) + ' / (' + format(result.pressurePaUsed, 0) + ' × ' + format(result.efficiency, 3) + ') = ' + format(effectiveRequired * 1e6, 2) + ' mm².']);
+          steps.push(['5. Diâmetro necessário', 'D = raiz(4 × A_pistão / π) = ' + format(result.requiredDiameterMm, 3) + ' mm' + (result.commercialBore ? '. Próximo diâmetro comercial da lista: ' + result.commercialBore + ' mm.' : '. Consultar fabricante.')]);
+        }
+      }
+      byId('memorySteps').innerHTML = steps.map(([title, text]) => '<div class="memory-step"><strong>' + escapeHtml(title) + '</strong>' + escapeHtml(text) + '</div>').join('');
+      byId('assumptionNote').textContent = 'Premissas: pressão manométrica constante; eficiência global de ' + format(input.efficiencyPercent, 1) + '%; ' + input.quantity + ' atuador(es) idêntico(s) compartilhando igualmente a carga. Não foram calculados força de mola, atrito variável, impacto, aceleração, flambagem, vazão, tempo de curso ou queda dinâmica de pressão.';
+    }
+
+    function buildRows(result) {
+      const {input, geometry} = result;
+      return [
+        ['Aplicação', input.notes || 'Não informada'],
+        ['Modo de cálculo', result.modeLabel],
+        ['Tipo de atuador', result.typeLabel],
+        ['Movimento dimensionado', result.directionLabel],
+        ['Quantidade', String(input.quantity)],
+        ['Diâmetro considerado', format(result.boreUsed, 2) + ' mm'],
+        ['Diâmetro da haste', input.type === 'double' ? format(input.rod, 2) + ' mm' : 'Não aplicável'],
+        ['Eficiência', format(input.efficiencyPercent, 1) + '%'],
+        ['Fator de segurança', format(input.safety, 2)],
+        ['Pressão usada', format(result.pressurePaUsed / 100000, 3) + ' bar(g)'],
+        ['Força total de avanço', format(geometry.advanceTotal, 2) + ' N / ' + format(geometry.advanceTotal / KGF_N, 2) + ' kgf'],
+        ['Força total de retorno', input.type === 'single' ? 'Não calculada' : format(geometry.returnTotal, 2) + ' N / ' + format(geometry.returnTotal / KGF_N, 2) + ' kgf'],
+        ['Pressão necessária', input.mode === 'pressure' ? format(result.requiredPressurePa / 100000, 3) + ' bar(g)' : 'Não aplicável ao modo'],
+        ['Diâmetro necessário', input.mode === 'diameter' ? format(result.requiredDiameterMm, 3) + ' mm' : 'Não aplicável ao modo'],
+        ['Diâmetro comercial sugerido', input.mode === 'diameter' ? (result.commercialBore ? result.commercialBore + ' mm' : 'Consultar fabricante') : 'Não aplicável ao modo'],
+        ['Margem sobre carga majorada', Number.isFinite(result.margin) ? format(result.margin, 3) + ' ×' : 'Não aplicável']
       ];
-      $('copyText').value=lines.join('\n');
     }
-    function copySummary(){ $('copyText').select(); document.execCommand('copy'); }
-    function setExample(n){
-      if(n===1){$('mode').value='force';$('actType').value='double';$('bore').value=50;$('rod').value=20;$('pressure').value=6;$('pressureUnit').value='bar';$('eff').value=85;$('safety').value=1.3;$('loadForce').value=800;$('loadUnit').value='N';$('qty').value=1;$('stroke').value=200;$('notes').value='Cilindro pneumático dupla ação Ø50 mm a 6 bar';}
-      if(n===2){$('mode').value='pressure';$('actType').value='double';$('bore').value=50;$('rod').value=20;$('targetForce').value=100;$('forceUnit').value='kgf';$('eff').value=85;$('safety').value=1.3;$('qty').value=1;$('notes').value='Pressão necessária para força de 100 kgf';}
-      if(n===3){$('mode').value='diameter';$('actType').value='generic';$('pressure').value=6;$('pressureUnit').value='bar';$('targetForce').value=2000;$('forceUnit').value='N';$('eff').value=85;$('safety').value=1.5;$('qty').value=1;$('notes').value='Diâmetro aproximado para 2000 N';}
-      if(n===4){$('mode').value='force';$('actType').value='generic';$('bore').value=80;$('rod').value=0;$('pressure').value=5;$('pressureUnit').value='bar';$('eff').value=80;$('safety').value=1.3;$('loadForce').value=1500;$('loadUnit').value='N';$('qty').value=1;$('notes').value='Atuador pneumático genérico sem haste';}
-      calcActuator();
+
+    function renderSummary(result) {
+      const rows = buildRows(result);
+      const lines = [
+        'Resumo técnico — Atuador pneumático',
+        ...rows.map(([label, value]) => label + ': ' + value),
+        'Status: ' + result.statusText,
+        'Limitações: cálculo orientativo; confirmar força de mola, carga dinâmica, atrito, velocidade, flambagem, válvula, pressão mínima e catálogo do fabricante.'
+      ];
+      byId('copyText').value = lines.join('\n');
     }
-    function resetActuator(){ $('actForm').reset(); calcActuator(); }
-    ['mode','actType','bore','rod','pressure','pressureUnit','targetForce','forceUnit','eff','safety','loadForce','loadUnit','qty','stroke','notes'].forEach(id=>$(id).addEventListener('input',calcActuator));
-    document.addEventListener('DOMContentLoaded',calcActuator);
+
+    function memoryPlainText() {
+      return Array.from(byId('memorySteps').children).map((element) => element.innerText.trim());
+    }
+
+    function preparePrintContent(result) {
+      const rows = buildRows(result);
+      const table = '<table><thead><tr><th>Parâmetro</th><th>Valor</th></tr></thead><tbody>' + rows.map(([label, value]) => '<tr><td>' + escapeHtml(label) + '</td><td>' + escapeHtml(value) + '</td></tr>').join('') + '</tbody></table>';
+      const memory = memoryPlainText().map((step) => '<li>' + escapeHtml(step) + '</li>').join('');
+      return '<div class="avoid-break"><h2>Resultado</h2><div class="print-result">' + escapeHtml(result.statusText) + '</div></div>' +
+        '<h2>Dados e resultados</h2>' + table +
+        '<h2>Memória de cálculo</h2><ol>' + memory + '</ol>' +
+        '<h2>Premissas e limitações</h2><p>' + escapeHtml(byId('assumptionNote').textContent) + '</p>' +
+        '<p><strong>Aviso:</strong> documento orientativo. Para seleção final, valide catálogo do fabricante, pressão mínima, força de mola, atrito, velocidade, flambagem, montagem, segurança e normas aplicáveis.</p>';
+    }
+
+    function printCalculation() {
+      if (!calculate(true) || !lastCalculation) return;
+      byId('printDate').textContent = 'Gerado em ' + new Date().toLocaleString('pt-BR');
+      byId('printContent').innerHTML = preparePrintContent(lastCalculation);
+      window.print();
+    }
+
+    function generateReport() {
+      if (!calculate(true) || !lastCalculation) return;
+      const reportWindow = window.open('', '_blank');
+      if (!reportWindow) {
+        setStatus('warn', 'O navegador bloqueou a abertura do relatório. Autorize pop-ups para esta página e tente novamente.');
+        return;
+      }
+      reportWindow.opener = null;
+      const content = preparePrintContent(lastCalculation);
+      const generatedAt = new Date().toLocaleString('pt-BR');
+      reportWindow.document.open();
+      reportWindow.document.write('<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Relatório técnico — Atuador pneumático</title><style>body{font-family:Arial,sans-serif;color:#111;max-width:900px;margin:28px auto;padding:0 18px;line-height:1.5}h1{font-size:25px;margin-bottom:4px}h2{font-size:18px;border-bottom:1px solid #555;padding-bottom:5px;margin-top:28px}table{width:100%;border-collapse:collapse}th,td{border:1px solid #777;padding:8px;text-align:left;vertical-align:top}th{background:#eee}.print-result{border:2px solid #111;padding:12px;font-weight:700}.actions{margin:18px 0}.actions button{padding:10px 14px;font:inherit;cursor:pointer}@media print{.actions{display:none}@page{size:A4;margin:14mm}body{margin:0;max-width:none}}</style></head><body><div class="actions"><button type="button" onclick="window.print()">Imprimir ou salvar em PDF</button></div><h1>Relatório técnico — Atuador pneumático</h1><p>Gerado em ' + escapeHtml(generatedAt) + '</p>' + content + '</body></html>');
+      reportWindow.document.close();
+    }
+
+    async function copySummary() {
+      if (!calculate(true)) return;
+      const text = byId('copyText').value;
+      try {
+        await navigator.clipboard.writeText(text);
+        setStatus('ok', 'Resumo copiado para a área de transferência.');
+      } catch (_error) {
+        byId('copyText').focus();
+        byId('copyText').select();
+        document.execCommand('copy');
+        setStatus('ok', 'Resumo copiado para a área de transferência.');
+      }
+    }
+
+    function applyExample(number) {
+      const examples = {
+        1: {mode:'force',actType:'double',direction:'advance',bore:'50',rod:'20',pressure:'6',pressureUnit:'bar',eff:'85',safety:'1,3',loadForce:'800',loadUnit:'n',qty:'1',stroke:'200',notes:'Cilindro pneumático dupla ação Ø50 mm a 6 bar'},
+        2: {mode:'pressure',actType:'double',direction:'advance',bore:'50',rod:'20',targetForce:'100',forceUnit:'kgf',eff:'85',safety:'1,3',qty:'1',stroke:'100',notes:'Pressão necessária para força total de 100 kgf'},
+        3: {mode:'diameter',actType:'double',direction:'advance',rod:'20',pressure:'6',pressureUnit:'bar',targetForce:'2000',forceUnit:'n',eff:'85',safety:'1,5',qty:'1',stroke:'100',notes:'Diâmetro aproximado para força total de 2000 N'},
+        4: {mode:'force',actType:'generic',direction:'advance',bore:'80',rod:'0',pressure:'5',pressureUnit:'bar',eff:'80',safety:'1,3',loadForce:'1500',loadUnit:'n',qty:'1',stroke:'100',notes:'Atuador pneumático genérico sem haste'}
+      };
+      const selected = examples[number];
+      if (!selected) return;
+      Object.entries(selected).forEach(([id, value]) => { if (byId(id)) byId(id).value = value; });
+      calculate(false);
+    }
+
+    function resetForm() {
+      byId('actForm').reset();
+      clearInvalidState();
+      calculate(false);
+    }
+
+    function initialize() {
+      const watched = ['mode','actType','direction','bore','rod','pressure','pressureUnit','targetForce','forceUnit','eff','safety','loadForce','loadUnit','qty','stroke','notes'];
+      watched.forEach((id) => {
+        const element = byId(id);
+        element.addEventListener(element.tagName === 'SELECT' ? 'change' : 'input', () => calculate(false));
+      });
+      byId('btnCalculate').addEventListener('click', () => calculate(true));
+      byId('btnReset').addEventListener('click', resetForm);
+      byId('btnPrint').addEventListener('click', printCalculation);
+      byId('btnReport').addEventListener('click', generateReport);
+      byId('btnCopy').addEventListener('click', copySummary);
+      document.querySelectorAll('[data-example]').forEach((button) => button.addEventListener('click', () => applyExample(Number(button.dataset.example))));
+      showMode();
+      calculate(false);
+    }
+
+    initialize();
+  })();
   </script>
 <a aria-label="Voltar para Ferramentas" class="floating-back-tools no-print" href="ferramentas.html"><i class="fas fa-arrow-left"></i> Voltar para Ferramentas</a>
 </body>
