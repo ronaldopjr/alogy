@@ -1,128 +1,356 @@
 <!DOCTYPE html>
-
 <html lang="pt-br">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Calculadora Resistor Shunt 4-20 mA | ALOGY Engenharia</title>
-<meta content="Calcule tensão, corrente, potência e carga de resistor shunt em sinais 4-20 mA, 1-5 V, 2-10 V e malhas HART." name="description"/>
-<meta content="index,follow" name="robots"/>
-<meta content="#004b80" name="theme-color"/>
-<link href="https://www.alogy.com.br/calculadora-resistor-shunt-sinal-instrumentacao.html" rel="canonical"/>
-<link href="/favicon-48x48.png" rel="icon" sizes="48x48" type="image/png"/>
-<link href="/favicon-192x192.png" rel="icon" sizes="192x192" type="image/png"/>
-<link href="/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
-<link href="/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180"/>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-<link href="style.css" rel="stylesheet"/>
-<script defer="" src="app.js"></script>
-<meta content="pt_BR" property="og:locale"/>
-<meta content="website" property="og:type"/>
-<meta content="ALOGY Engenharia" property="og:site_name"/>
-<meta content="Calculadora Resistor Shunt 4-20 mA" property="og:title"/>
-<meta content="Calcule tensão, corrente, potência e carga de resistor shunt em sinais 4-20 mA, 1-5 V, 2-10 V e malhas HART." property="og:description"/>
-<meta content="https://www.alogy.com.br/calculadora-resistor-shunt-sinal-instrumentacao.html" property="og:url"/>
-<meta content="https://www.alogy.com.br/favicon-512x512.png" property="og:image"/>
-<meta content="summary_large_image" name="twitter:card"/>
-<script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"WebApplication","name":"Calculadora Resistor Shunt 4-20 mA","url":"https://www.alogy.com.br/calculadora-resistor-shunt-sinal-instrumentacao.html","applicationCategory":"EngineeringApplication","operatingSystem":"Web","description":"Calcule tensão, corrente, potência e carga de resistor shunt em sinais 4-20 mA, 1-5 V, 2-10 V e malhas HART.","publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"}}
-  </script>
-<script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Quanto dá 4-20 mA em 250 ohms?","acceptedAnswer":{"@type":"Answer","text":"Com resistor de 250 Ω, 4 mA gera 1 V, 12 mA gera 3 V e 20 mA gera 5 V."}},{"@type":"Question","name":"Resistor shunt serve para HART?","acceptedAnswer":{"@type":"Answer","text":"Em muitas malhas, 250 Ω é usado para garantir carga mínima de comunicação HART, mas o valor deve ser confirmado com o transmissor e comunicador."}},{"@type":"Question","name":"Posso converter 4-20 mA para 0-10 V com resistor?","acceptedAnswer":{"@type":"Answer","text":"Com resistor simples, 4-20 mA gera uma faixa deslocada, como 2-10 V em 500 Ω. Para 0-10 V real pode ser necessário condicionador de sinal."}}]}
-  </script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculadora de Resistor Shunt 4–20 mA | ALOGY Engenharia</title>
+<meta name="description" content="Calcule resistor shunt, tensão, corrente, potência, carga da malha, margem de tensão e referência HART para sinais de instrumentação 4–20 mA.">
+<meta name="robots" content="index,follow">
+<meta name="theme-color" content="#004b80">
+<link rel="canonical" href="https://www.alogy.com.br/calculadora-resistor-shunt-sinal-instrumentacao.html">
+<link rel="icon" sizes="48x48" type="image/png" href="/favicon-48x48.png">
+<link rel="icon" sizes="192x192" type="image/png" href="/favicon-192x192.png">
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="style.css">
+<script defer src="app.js"></script>
+<meta property="og:locale" content="pt_BR">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ALOGY Engenharia">
+<meta property="og:title" content="Calculadora de Resistor Shunt 4–20 mA">
+<meta property="og:description" content="Calcule tensão, corrente, resistor, potência e disponibilidade de tensão em malhas de instrumentação.">
+<meta property="og:url" content="https://www.alogy.com.br/calculadora-resistor-shunt-sinal-instrumentacao.html">
+<meta property="og:image" content="https://www.alogy.com.br/favicon-512x512.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Calculadora de Resistor Shunt 4–20 mA","url":"https://www.alogy.com.br/calculadora-resistor-shunt-sinal-instrumentacao.html","applicationCategory":"EngineeringApplication","operatingSystem":"Web","description":"Ferramenta auxiliar para calcular resistor shunt, conversão corrente-tensão, potência e carga de malhas 4–20 mA.","publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Quanto gera um resistor de 250 ohms em 4–20 mA?","acceptedAnswer":{"@type":"Answer","text":"Pela lei de Ohm, 4 mA gera 1 V, 12 mA gera 3 V e 20 mA gera 5 V em 250 ohms."}},{"@type":"Question","name":"Todo sistema HART exige exatamente 250 ohms?","acceptedAnswer":{"@type":"Answer","text":"Não necessariamente. A carga mínima e a faixa total permitida dependem do transmissor, comunicador, fonte, barreiras e demais equipamentos. Confirme os manuais."}},{"@type":"Question","name":"Como escolher a potência do resistor shunt?","acceptedAnswer":{"@type":"Answer","text":"Calcule a dissipação no maior valor de corrente e aplique margem térmica, considerando temperatura ambiente, tolerância, montagem e derating do fabricante."}}]}</script>
 <style>
-    .mini-help{color:var(--muted);font-size:.92rem;line-height:1.55;margin-top:8px}.faq details{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:14px;padding:14px;margin-top:10px;box-shadow:0 6px 16px rgba(0,0,0,.04)}.faq summary{cursor:pointer;font-weight:900;color:#0b3a62}.faq p{margin:10px 0 0;color:var(--muted)}.result-box strong.small{font-size:1.08rem}@media print{header,.social-floating,.fab-wrap,.cta-bar,footer,.calc-actions,.tools-hero .btn,.no-print{display:none!important}body{background:#fff}.container{max-width:100%;padding:0}.calc-card,.tools-hero{box-shadow:none;border:1px solid #ddd}.calc-layout{display:block}.calc-card{margin:12px 0}.calc-table th{background:#eee!important;color:#111!important}}
-  </style>
-<!-- Google AdSense - verificação de propriedade -->
-<script async="" crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5586837114309500"></script>
-</link></link></head>
+  .small-muted{color:var(--muted);font-size:.92rem;line-height:1.55}
+  .field input.invalid,.field select.invalid{border-color:#b42318!important;background:#fff5f5!important;outline:2px solid rgba(180,35,24,.12)}
+  .validation-summary{display:none;border-left:5px solid #b42318;background:#fff5f5;color:#7a271a;padding:12px 14px;border-radius:9px;margin:12px 0;line-height:1.55}
+  .validation-summary.show{display:block}
+  .status-panel{border-left:5px solid #667085;background:#f5f7f8;color:#344054;padding:13px 15px;border-radius:10px;margin-top:14px;line-height:1.55}
+  .status-panel.ok{border-color:#178447;background:#edf9f1;color:#14532d}
+  .status-panel.warn{border-color:#c47b00;background:#fff8e7;color:#754900}
+  .status-panel.fail{border-color:#b42318;background:#fff1f1;color:#7a271a}
+  .memory-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+  .memory-step{border:1px solid #d8e5ed;border-radius:12px;padding:12px;background:#fbfdff;line-height:1.55;overflow-wrap:anywhere}
+  .memory-step strong{display:block;color:#004b80;margin-bottom:4px}
+  .result-box strong.small-result{font-size:1.08rem;line-height:1.35}
+  .report-note{border-left:5px solid #004b80;background:#f4f8fb;padding:12px 14px;border-radius:9px;line-height:1.55}
+  .calc-table td.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .print-sheet{display:none}
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+  @media(max-width:900px){.memory-grid{grid-template-columns:1fr}.calc-actions .mini-btn,.calc-actions .btn{width:100%;justify-content:center}}
+  @media(max-width:680px){
+    .responsive-data-table thead{display:none}
+    .responsive-data-table,.responsive-data-table tbody,.responsive-data-table tr,.responsive-data-table td{display:block;width:100%;box-sizing:border-box}
+    .responsive-data-table tr{border:1px solid #d9e5ec;border-radius:10px;margin:0 0 12px;overflow:hidden;background:#fff}
+    .responsive-data-table td{display:grid;grid-template-columns:minmax(118px,42%) minmax(0,1fr);gap:8px;align-items:center;border:0;border-bottom:1px solid #e6eef3;padding:9px;overflow-wrap:anywhere}
+    .responsive-data-table td:last-child{border-bottom:0}
+    .responsive-data-table td::before{content:attr(data-label);font-weight:700;color:#004b80}
+    .responsive-data-table td.num{text-align:left;white-space:normal}
+  }
+  @media print{
+    @page{size:A4;margin:14mm}
+    body{background:#fff!important;color:#000!important;font-family:Arial,sans-serif!important}
+    body>*:not(.print-sheet){display:none!important}
+    .print-sheet{display:block!important;color:#000!important;background:#fff!important;width:100%!important}
+    .print-sheet h1{font-size:20pt;margin:0 0 4mm;color:#000!important}
+    .print-sheet h2{font-size:13pt;margin:6mm 0 2mm;color:#000!important;border-bottom:1px solid #555;padding-bottom:1.5mm}
+    .print-sheet p,.print-sheet li,.print-sheet td,.print-sheet th{font-size:9.3pt;line-height:1.4}
+    .print-sheet table{width:100%;border-collapse:collapse;margin:2mm 0 5mm}
+    .print-sheet th,.print-sheet td{border:1px solid #777;padding:2.2mm;text-align:left;vertical-align:top}
+    .print-sheet th{background:#eee!important;color:#000!important}
+    .print-sheet .print-result{font-size:11pt;font-weight:700;border:1.5px solid #000;padding:3mm;margin:3mm 0}
+    .print-sheet .avoid-break{break-inside:avoid;page-break-inside:avoid}
+    .print-sheet .muted-print{color:#333}
+  }
+</style>
+<script async crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5586837114309500"></script>
+</head>
 <body class="tools-page alogy-stage3-forms">
 <header>
-<div class="container headbar"><a aria-label="Voltar para o início" class="logo-wrapper" href="/"><img alt="ALOGY Engenharia" decoding="async" height="308" src="logo-alogy.webp" width="878"/></a>
-<button aria-label="Abrir menu" class="menu-toggle" onclick="toggleMobileMenu()"><i class="fas fa-bars"></i></button></div>
-<nav aria-label="Menu principal" class="desktop"><div class="container navlinks"><a href="index.html">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="index.html#contato">Contato</a></div></nav>
-<nav aria-label="Menu mobile" class="mobile"><a href="index.html">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="index.html#contato">Contato</a></nav>
+  <div class="container headbar"><a aria-label="Voltar para o início" class="logo-wrapper" href="/"><img alt="ALOGY Engenharia" decoding="async" height="308" src="logo-alogy.webp" width="878"></a><button aria-label="Abrir menu" class="menu-toggle" onclick="toggleMobileMenu()"><i class="fas fa-bars"></i></button></div>
+  <nav aria-label="Menu principal" class="desktop"><div class="container navlinks"><a href="index.html">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="index.html#contato">Contato</a></div></nav>
+  <nav aria-label="Menu mobile" class="mobile"><a href="index.html">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="index.html#contato">Contato</a></nav>
 </header>
 <div aria-label="Redes sociais" class="social-floating"><a aria-label="LinkedIn" class="linkedin" href="https://www.linkedin.com/company/alogyengenharia" rel="noopener" target="_blank"><i class="fab fa-linkedin-in"></i></a><a aria-label="Instagram" class="instagram" href="https://www.instagram.com/alogyengenharia" rel="noopener" target="_blank"><i class="fab fa-instagram"></i></a><a aria-label="Facebook" class="facebook" href="https://www.facebook.com/alogyengenharia" rel="noopener" target="_blank"><i class="fab fa-facebook-f"></i></a><a aria-label="YouTube" class="youtube" href="https://www.youtube.com/@alogyengenharia" rel="noopener" target="_blank"><i class="fab fa-youtube"></i></a><a aria-label="Hotmart" class="hotmart" href="https://hotmart.com/pt-br/club/alogyengenharia" rel="noopener" target="_blank">H</a><a aria-label="TikTok" class="tiktok" href="https://www.tiktok.com/@alogyengenharia" rel="noopener" target="_blank"><i class="fab fa-tiktok"></i></a></div>
-<div aria-label="Ações rápidas" class="fab-wrap"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1%21%20Vim%20pela%20calculadora%20resistor%20shunt%204-20%20mA%20da%20ALOGY.%20Gostaria%20de%20atendimento." rel="noopener" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
-<main class="container" style="margin-top:18px"><div aria-label="Ações da ferramenta" class="tool-page-actions no-print"><button class="btn print" onclick="window.print()" type="button"><i class="fas fa-print"></i> Imprimir</button></div>
+<div aria-label="Ações rápidas" class="fab-wrap"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1%21%20Vim%20pela%20calculadora%20de%20resistor%20shunt%20da%20ALOGY.%20Gostaria%20de%20atendimento." rel="noopener" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
+<main class="container" style="margin-top:18px">
+  <div aria-label="Ações da ferramenta" class="tool-page-actions no-print"><button class="btn print" id="topPrint" type="button"><i class="fas fa-print"></i> Imprimir</button><button class="btn secondary" id="topReport" type="button"><i class="fas fa-file-pdf"></i> Gerar relatório</button></div>
+  <section class="tools-hero"><h1>Calculadora de Resistor Shunt 4–20 mA</h1><p>Converta corrente em tensão, determine o resistor necessário e verifique potência, carga total e margem de tensão da malha.</p></section>
+  <section aria-label="Aviso de uso" class="calc-card"><h2><i class="fas fa-triangle-exclamation"></i> Ferramenta para apoio técnico</h2><p>O cálculo usa relações elétricas ideais. Antes de instalar o resistor, confirme a carga máxima do transmissor, tensão mínima de operação, barreiras, isoladores, entrada analógica, tolerância, temperatura, derating e requisitos do fabricante. Em sistemas HART, não trate 250 Ω como regra universal.</p></section>
 
-<section class="tools-hero"><h1>Calculadora Resistor Shunt 4-20 mA</h1><p>Converta sinal 4-20 mA para tensão, estime potência no resistor, carga da malha e referência para 1-5 V, 2-10 V e comunicação HART.</p></section>
-<section aria-label="Aviso de uso" class="calc-card"><h2><i class="fas fa-triangle-exclamation"></i> Ferramenta para apoio técnico</h2><p>Use como conferência preliminar, estudo e organização de dados. O resultado pode ter simplificações e depende das informações inseridas. Para projeto, compra, alteração de processo, segurança, comissionamento ou intervenção em campo, confirme com normas aplicáveis, catálogos de fabricantes, medições reais e profissional habilitado.</p></section>
-<section class="calc-layout">
-<div class="calc-card">
-<h2><i class="fas fa-wave-square"></i> Dados do sinal</h2>
-<p>Use para converter 4-20 mA em tensão, conferir resistor de 250 Ω para HART ou calcular resistor para uma faixa de tensão.</p>
-<div class="calc-grid">
-<div class="field"><label for="modo">Calcular</label><select id="modo"><option value="iv">Corrente + resistor → tensão</option><option value="vi">Tensão + resistor → corrente</option><option value="rv">Tensão desejada em 20 mA → resistor</option></select></div>
-<div class="field"><label for="i">Corrente medida (mA)</label><input id="i" step="any" type="number" value="12"/></div>
-<div class="field"><label for="r">Resistor shunt (Ω)</label><input id="r" step="any" type="number" value="250"/></div>
-<div class="field"><label for="v">Tensão medida/desejada (V)</label><input id="v" step="any" type="number" value="3"/></div>
-<div class="field"><label for="fonte">Fonte da malha (Vcc)</label><input id="fonte" step="any" type="number" value="24"/></div>
-<div class="field"><label for="carga">Outras cargas da malha (Ω)</label><input id="carga" step="any" type="number" value="0"/></div>
-</div>
-<div class="calc-actions"><button class="mini-btn dark" onclick="copiar()" type="button"><i class="fas fa-copy"></i> Copiar resultado</button><button class="mini-btn" onclick="exemplo(1)" type="button">250 Ω / HART</button><button class="mini-btn" onclick="exemplo(2)" type="button">1-5 V</button></div>
-</div>
-<div class="calc-card">
-<h2><i class="fas fa-square-poll-vertical"></i> Resultado</h2>
-<div class="calc-result" style="grid-template-columns:1fr 1fr">
-<div class="result-box"><span>Tensão no shunt</span><strong id="rV">-</strong></div>
-<div class="result-box"><span>Corrente calculada</span><strong id="rI">-</strong></div>
-<div class="result-box"><span>Potência no resistor</span><strong id="rP">-</strong></div>
-<div class="result-box"><span>Faixa 4-20 mA</span><strong class="small" id="rFaixa">-</strong></div>
-</div>
-<div class="calc-note" id="nota">Informe os dados para calcular.</div>
-</div>
-</section>
-<section class="calc-card"><h2><i class="fas fa-table"></i> Resistores comuns em 4-20 mA</h2><div class="calc-table-wrap"><table class="calc-table"><thead><tr><th>Resistor</th><th>4 mA</th><th>12 mA</th><th>20 mA</th><th>Uso comum</th></tr></thead><tbody id="tbody"></tbody></table></div></section>
-<section class="calc-layout"><div class="calc-card"><h2><i class="fas fa-gears"></i> Fórmulas usadas</h2><div class="formula-box">Tensão (V) = Corrente (A) × Resistência (Ω)
-Corrente (mA) = Tensão (V) / Resistência (Ω) × 1000
-Potência (W) = Corrente² × Resistência</div></div><div class="calc-card faq"><h2><i class="fas fa-circle-question"></i> Perguntas rápidas</h2><details open=""><summary>Por que 250 Ω é tão usado?</summary><p>Com 250 Ω, o sinal 4-20 mA vira 1-5 V. Além disso, muitas malhas HART precisam de carga mínima próxima de 250 Ω para comunicação adequada.</p></details><details><summary>Posso colocar resistor muito alto?</summary><p>Não sem verificar a fonte e a carga total da malha. Resistência alta aumenta a queda de tensão e pode fazer o transmissor saturar ou perder alimentação.</p></details></div></section>
-<script>
-function n(id){return Number(document.getElementById(id)?.value||0)}
-function fmt(x,d=3){return isFinite(x)?Number(x).toLocaleString('pt-BR',{minimumFractionDigits:d,maximumFractionDigits:d}):'-'}
-function calc(){let modo=document.getElementById('modo').value,ma=n('i'),ohm=Math.max(0.0001,n('r')),volt=n('v'),fonte=n('fonte'),carga=n('carga');let vsh=0,icalc=0,rfinal=ohm;if(modo==='iv'){icalc=ma;vsh=ma/1000*ohm}else if(modo==='vi'){icalc=volt/ohm*1000;vsh=volt}else{rfinal=volt/0.020;ohm=rfinal;icalc=20;vsh=volt;r.value=fmt(rfinal,1)}const p=Math.pow(icalc/1000,2)*ohm;const v4=0.004*ohm,v20=0.020*ohm;const vTotal=0.020*(ohm+carga);rV.textContent=fmt(vsh,3)+' V';rI.textContent=fmt(icalc,3)+' mA';rP.textContent=fmt(p,4)+' W';rFaixa.textContent=fmt(v4,2)+' a '+fmt(v20,2)+' V';let ok=vTotal<fonte*0.8;nota.className='calc-note '+(ok?'status-ok':'warn');nota.textContent=ok?'Carga preliminar compatível com a fonte informada.':'Atenção: a queda de tensão estimada na malha pode ficar alta. Verifique alimentação e carga máxima do transmissor.';montar()}
-function montar(){tbody.innerHTML='';[[50,'0,2-1 V'],[100,'0,4-2 V'],[250,'1-5 V / HART'],[500,'2-10 V']].forEach(([r,u])=>{const tr=document.createElement('tr');tr.innerHTML=`<td>${r} Ω</td><td>${fmt(0.004*r,2)} V</td><td>${fmt(0.012*r,2)} V</td><td>${fmt(0.020*r,2)} V</td><td>${u}</td>`;tbody.appendChild(tr)});if(window.enhanceResponsiveToolTables) window.enhanceResponsiveToolTables()}
-function exemplo(i){if(i===1){modo.value='iv';iEl().value=12;r.value=250;v.value=3;fonte.value=24;carga.value=0}else{modo.value='rv';v.value=5;fonte.value=24;carga.value=0}calc()}
-function iEl(){return document.getElementById('i')}
-function copiar(){navigator.clipboard?.writeText(`Tensão: ${rV.textContent}\nCorrente: ${rI.textContent}\nPotência: ${rP.textContent}\nFaixa: ${rFaixa.textContent}`).then(()=>alert('Resultado copiado.'))}
-document.addEventListener('DOMContentLoaded',()=>{document.querySelectorAll('input,select').forEach(el=>el.addEventListener('input',calc));calc()});
-</script>
-<!-- ALOGY_REVISAO_TECNICA_FERRAMENTA -->
-<section aria-label="Orientação técnica complementar" class="calc-card">
-<h2><i class="fas fa-clipboard-check"></i> Como usar esta ferramenta na prática</h2>
-<p>Calcule tensão, corrente, potência e carga de resistor shunt em sinais 4-20 mA, 1-5 V, 2-10 V e malhas HART. Nesta revisão, o conteúdo foi ampliado para deixar mais claro quando usar a ferramenta, quais dados precisam ser conferidos e como transformar o número calculado em uma decisão técnica.</p>
-<h3>Quando aplicar</h3>
-<p>Use em partida, manutenção e diagnóstico de malhas, painéis, cartões analógicos, redes industriais e sinais de controle quando for necessário conferir escala, carga, resolução, tempo de resposta ou comunicação.</p>
-<h3>Dados que merecem conferência</h3>
-<p>Antes de confiar no resultado da ferramenta <strong>Calculadora Resistor Shunt 4-20 mA</strong>, confira principalmente: Calcular, Corrente medida (mA), Resistor shunt (Ω), Tensão medida/desejada (V), Fonte da malha (Vcc), Outras cargas da malha (Ω). Pequenos erros de unidade, ponto decimal ou condição de operação podem gerar conclusões erradas.</p>
-<ul>
-<li>Calcular</li>
-<li>Corrente medida (mA)</li>
-<li>Resistor shunt (Ω)</li>
-<li>Tensão medida/desejada (V)</li>
-<li>Fonte da malha (Vcc)</li>
-<li>Outras cargas da malha (Ω)</li>
-</ul>
-<h3>Como interpretar o resultado</h3>
-<p>O resultado ajuda a separar erro de configuração, limitação do cartão, queda na malha, ruído elétrico ou problema de instrumento. Em automação, a conferência deve considerar o sinal físico e também a escala configurada no CLP, supervisório ou controlador.</p>
-<p>Quando a página apresentar campos de resultado como Tensão no shunt, Corrente calculada, Potência no resistor, Faixa 4-20 mA, use esses valores para comparar o cenário calculado com limite operacional, tolerância do processo, histórico de manutenção ou especificação de fabricante.</p>
-<h3>Checklist rápido de validação</h3>
-<ul>
-<li>Confirme se a escala do campo é igual à escala configurada no CLP ou supervisório.</li>
-<li>Verifique alimentação, aterramento funcional, blindagem e carga total da malha.</li>
-<li>Em redes, confira endereço, baud rate, paridade, terminação e polaridade.</li>
-<li>Registre o valor físico e o valor visto no sistema para facilitar diagnóstico.</li>
-</ul>
-<h3>Limites da estimativa</h3>
-<p>Esta ferramenta é indicada para estudo, triagem, conferência de campo e apoio à manutenção. Para projeto final, laudo, especificação de compra, alteração de segurança ou liberação de equipamento crítico, valide as premissas com normas aplicáveis, documentação do fabricante e profissional habilitado.</p>
-</section>
+  <section class="calc-layout">
+    <div class="calc-card">
+      <h2><i class="fas fa-wave-square"></i> Dados do cálculo</h2>
+      <div class="calc-grid">
+        <div class="field"><label for="tag">Identificação/TAG <span class="small-muted">(opcional)</span></label><input id="tag" type="text" maxlength="80" placeholder="Ex.: FT-101 / AI-03"></div>
+        <div class="field"><label for="mode">Calcular</label><select id="mode"><option value="currentToVoltage">Corrente + resistor → tensão</option><option value="voltageToCurrent">Tensão + resistor → corrente</option><option value="resistorFromVoltage">Tensão + corrente → resistor</option></select></div>
+        <div class="field"><label for="current">Corrente de cálculo (mA)</label><input id="current" type="text" inputmode="decimal" autocomplete="off" value="12"></div>
+        <div class="field"><label for="resistor">Resistor shunt (Ω)</label><input id="resistor" type="text" inputmode="decimal" autocomplete="off" value="250"></div>
+        <div class="field"><label for="voltage">Tensão medida/desejada (V)</label><input id="voltage" type="text" inputmode="decimal" autocomplete="off" value="3"></div>
+        <div class="field"><label for="currentMin">Corrente mínima da faixa (mA)</label><input id="currentMin" type="text" inputmode="decimal" autocomplete="off" value="4"></div>
+        <div class="field"><label for="currentMax">Corrente máxima da faixa (mA)</label><input id="currentMax" type="text" inputmode="decimal" autocomplete="off" value="20"></div>
+        <div class="field"><label for="supplyVoltage">Fonte da malha (Vcc)</label><input id="supplyVoltage" type="text" inputmode="decimal" autocomplete="off" value="24"></div>
+        <div class="field"><label for="transmitterMinVoltage">Tensão mínima do transmissor (V)</label><input id="transmitterMinVoltage" type="text" inputmode="decimal" autocomplete="off" value="12"></div>
+        <div class="field"><label for="otherResistance">Outras resistências da malha (Ω)</label><input id="otherResistance" type="text" inputmode="decimal" autocomplete="off" value="0"></div>
+        <div class="field"><label for="tolerance">Tolerância do resistor (%)</label><input id="tolerance" type="text" inputmode="decimal" autocomplete="off" value="1"></div>
+        <div class="field"><label for="nominalPower">Potência nominal escolhida (W)</label><input id="nominalPower" type="text" inputmode="decimal" autocomplete="off" value="0,25"></div>
+        <div class="field"><label for="hartReference">Carga mínima HART de referência (Ω)</label><input id="hartReference" type="text" inputmode="decimal" autocomplete="off" value="250"></div>
+        <div class="field"><label for="notes">Observações <span class="small-muted">(opcional)</span></label><textarea id="notes" rows="3" maxlength="500" placeholder="Ex.: entrada analógica 1–5 V, barreira instalada, temperatura do painel..."></textarea></div>
+      </div>
+      <div class="validation-summary" id="validationSummary" role="alert" aria-live="assertive"></div>
+      <div class="calc-actions no-print"><button class="mini-btn" id="btnExample250" type="button">Exemplo 250 Ω / 1–5 V</button><button class="mini-btn" id="btnExample500" type="button">Exemplo 500 Ω / 2–10 V</button><button class="mini-btn dark" id="btnCopy" type="button"><i class="fas fa-copy"></i> Copiar resultado</button><button class="mini-btn" id="btnPrint" type="button"><i class="fas fa-print"></i> Imprimir</button><button class="mini-btn" id="btnReport" type="button"><i class="fas fa-file-pdf"></i> Gerar relatório</button></div>
+      <p class="small-muted" id="copyFeedback" aria-live="polite"></p>
+    </div>
+
+    <div class="calc-card">
+      <h2><i class="fas fa-square-poll-vertical"></i> Resultado</h2>
+      <div class="calc-result" style="grid-template-columns:repeat(2,minmax(0,1fr))">
+        <div class="result-box"><span id="primaryLabel">Tensão no shunt</span><strong id="primaryValue">—</strong></div>
+        <div class="result-box"><span>Resistor aplicado</span><strong id="resultResistance">—</strong></div>
+        <div class="result-box"><span>Corrente aplicada</span><strong id="resultCurrent">—</strong></div>
+        <div class="result-box"><span>Potência no ponto</span><strong id="resultPowerAtPoint">—</strong></div>
+        <div class="result-box"><span>Faixa de tensão do sinal</span><strong class="small-result" id="resultVoltageRange">—</strong></div>
+        <div class="result-box"><span>Potência no máximo da faixa</span><strong id="resultPowerMax">—</strong></div>
+        <div class="result-box"><span>Potência mínima sugerida</span><strong id="resultRecommendedPower">—</strong></div>
+        <div class="result-box"><span>Utilização da potência nominal</span><strong id="resultPowerUse">—</strong></div>
+        <div class="result-box"><span>Resistência total da malha</span><strong id="resultTotalResistance">—</strong></div>
+        <div class="result-box"><span>Queda da malha em Imax</span><strong id="resultLoopDrop">—</strong></div>
+        <div class="result-box"><span>Margem de tensão em Imax</span><strong id="resultVoltageMargin">—</strong></div>
+        <div class="result-box"><span>Corrente máxima pela tensão</span><strong id="resultMaxCurrent">—</strong></div>
+        <div class="result-box"><span>Faixa com tolerância do resistor</span><strong class="small-result" id="resultToleranceRange">—</strong></div>
+        <div class="result-box"><span>Referência de carga HART</span><strong class="small-result" id="resultHart">—</strong></div>
+      </div>
+      <div class="status-panel" id="statusPanel" role="status" aria-live="polite">Informe dados válidos para calcular.</div>
+    </div>
+  </section>
+
+  <section class="calc-card">
+    <h2><i class="fas fa-list-ol"></i> Memória de cálculo</h2>
+    <div class="memory-grid" id="memoryGrid"><div class="memory-step"><strong>Aguardando dados válidos</strong>Preencha os campos para visualizar as fórmulas e substituições.</div></div>
+  </section>
+
+  <section class="calc-card">
+    <h2><i class="fas fa-table"></i> Resistores comuns para referência</h2>
+    <div class="calc-table-wrap"><table class="calc-table responsive-data-table"><thead><tr><th>Resistor</th><th>4 mA</th><th>12 mA</th><th>20 mA</th><th>Potência em 20 mA</th><th>Conversão típica</th></tr></thead><tbody id="referenceTable"></tbody></table></div>
+    <p class="small-muted">A tabela é apenas referência elétrica ideal. Verifique se a entrada suporta a tensão, se a malha possui tensão suficiente e se o resistor atende à potência e à temperatura.</p>
+  </section>
+
+  <section class="calc-layout">
+    <div class="calc-card"><h2><i class="fas fa-gears"></i> Fórmulas usadas</h2><div class="formula-box">V = I × R
+I = V ÷ R
+R = V ÷ I
+P = I² × R
+Vqueda = Imax × (Rshunt + Routras)
+Margem = Vfonte − Vmín.transmissor − Vqueda</div></div>
+    <div class="calc-card faq"><h2><i class="fas fa-circle-question"></i> Perguntas rápidas</h2><details open><summary>Por que 250 Ω é tão utilizado?</summary><p>Em 250 Ω, 4–20 mA corresponde a 1–5 V. Esse valor também aparece com frequência em aplicações HART, mas a exigência real deve ser confirmada nos manuais da malha.</p></details><details><summary>Posso escolher o resistor apenas pela tensão desejada?</summary><p>Não. Também é necessário verificar a queda total de tensão, a potência dissipada, a tolerância, a temperatura e o limite da fonte e do transmissor.</p></details><details><summary>Por que a potência sugerida é maior que a calculada?</summary><p>A ferramenta aplica uma margem térmica de duas vezes a dissipação calculada no maior valor da faixa. O derating final deve seguir o fabricante.</p></details></div>
+  </section>
+
+  <section class="calc-card"><h2><i class="fas fa-clipboard-check"></i> Como usar na prática</h2><p>Confirme a faixa real do sinal, a resistência da entrada, barreiras, isoladores, cabos, fonte e tensão mínima do transmissor. Em uma medição de campo, desligue ou intervenha na malha apenas conforme procedimento e autorização aplicáveis.</p><div class="report-note"><strong>Limitação:</strong> a ferramenta não modela capacitância, impedância em frequência, isolação, ruído, dinâmica do sinal, aquecimento localizado ou curva de derating. O resultado não substitui análise de projeto ou documentação do fabricante.</div></section>
 </main>
+<section class="print-sheet" id="printSheet" aria-hidden="true"><h1>Relatório de cálculo — Resistor shunt de instrumentação</h1><p class="muted-print" id="printDate"></p><div id="printContent"></div></section>
 <footer><p>© Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
+<script>
+(function(){
+  'use strict';
+  const byId = id => document.getElementById(id);
+  const state = {lastCalculation:null};
+  const fieldIds = ['tag','mode','current','resistor','voltage','currentMin','currentMax','supplyVoltage','transmitterMinVoltage','otherResistance','tolerance','nominalPower','hartReference','notes'];
 
+  function parseLocalized(value){
+    const raw=String(value??'').trim().replace(/\s+/g,'');
+    if(!raw) return NaN;
+    const sign=raw.startsWith('-')?'-':raw.startsWith('+')?'+':'';
+    const unsigned=sign?raw.slice(1):raw;
+    if(!unsigned||!/^[0-9.,]+$/.test(unsigned)) return NaN;
+    const commas=(unsigned.match(/,/g)||[]).length,dots=(unsigned.match(/\./g)||[]).length;
+    let normalized=unsigned;
+    if(commas&&dots){
+      const decimalSeparator=unsigned.lastIndexOf(',')>unsigned.lastIndexOf('.')?',':'.';
+      const thousandSeparator=decimalSeparator===','?'.':',';
+      normalized=unsigned.split(thousandSeparator).join('').replace(decimalSeparator,'.');
+    }else if(commas){
+      if(commas>1){const parts=unsigned.split(',');if(parts.slice(1).every(part=>part.length===3)) normalized=parts.join('');else return NaN;}
+      else normalized=unsigned.replace(',','.');
+    }else if(dots>1){
+      const parts=unsigned.split('.');if(parts.slice(1).every(part=>part.length===3)) normalized=parts.join('');else return NaN;
+    }
+    const number=Number(sign+normalized);
+    return Number.isFinite(number)?number:NaN;
+  }
+  function formatNumber(value,digits=3){return Number.isFinite(value)?value.toLocaleString('pt-BR',{minimumFractionDigits:digits,maximumFractionDigits:digits}):'—';}
+  function formatFlexible(value,maxDigits=4){return Number.isFinite(value)?value.toLocaleString('pt-BR',{minimumFractionDigits:0,maximumFractionDigits:maxDigits}):'—';}
+  function escapeHtml(value){return String(value??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));}
+  function valueOf(id){return parseLocalized(byId(id).value);}
+  function setInvalid(id,invalid){byId(id).classList.toggle('invalid',Boolean(invalid));}
+  function modeLabel(mode){return ({currentToVoltage:'Corrente + resistor → tensão',voltageToCurrent:'Tensão + resistor → corrente',resistorFromVoltage:'Tensão + corrente → resistor'})[mode]||mode;}
+
+  function updateMode(){
+    const mode=byId('mode').value;
+    byId('current').disabled=false;byId('resistor').disabled=false;byId('voltage').disabled=false;
+    if(mode==='currentToVoltage') byId('voltage').disabled=true;
+    if(mode==='voltageToCurrent') byId('current').disabled=true;
+    if(mode==='resistorFromVoltage') byId('resistor').disabled=true;
+  }
+
+  function validate(){
+    const mode=byId('mode').value;
+    const values={current:valueOf('current'),resistor:valueOf('resistor'),voltage:valueOf('voltage'),currentMin:valueOf('currentMin'),currentMax:valueOf('currentMax'),supplyVoltage:valueOf('supplyVoltage'),transmitterMinVoltage:valueOf('transmitterMinVoltage'),otherResistance:valueOf('otherResistance'),tolerance:valueOf('tolerance'),nominalPower:valueOf('nominalPower'),hartReference:valueOf('hartReference')};
+    const errors=[];
+    const required={current:mode!=='voltageToCurrent',resistor:mode!=='resistorFromVoltage',voltage:mode!=='currentToVoltage'};
+    Object.entries(required).forEach(([id,isRequired])=>{const invalid=isRequired&&(!Number.isFinite(values[id])||values[id]<=0);setInvalid(id,invalid);if(invalid) errors.push('Informe '+({current:'uma corrente maior que zero',resistor:'um resistor maior que zero',voltage:'uma tensão maior que zero'})[id]+'.');});
+    ['currentMin','currentMax','supplyVoltage','transmitterMinVoltage','otherResistance','tolerance','nominalPower','hartReference'].forEach(id=>setInvalid(id,false));
+    if(!Number.isFinite(values.currentMin)||values.currentMin<0){setInvalid('currentMin',true);errors.push('A corrente mínima deve ser maior ou igual a zero.');}
+    if(!Number.isFinite(values.currentMax)||values.currentMax<=0){setInvalid('currentMax',true);errors.push('A corrente máxima deve ser maior que zero.');}
+    if(Number.isFinite(values.currentMin)&&Number.isFinite(values.currentMax)&&values.currentMax<=values.currentMin){setInvalid('currentMin',true);setInvalid('currentMax',true);errors.push('A corrente máxima deve ser maior que a corrente mínima.');}
+    if(!Number.isFinite(values.supplyVoltage)||values.supplyVoltage<=0){setInvalid('supplyVoltage',true);errors.push('A tensão da fonte deve ser maior que zero.');}
+    if(!Number.isFinite(values.transmitterMinVoltage)||values.transmitterMinVoltage<0){setInvalid('transmitterMinVoltage',true);errors.push('A tensão mínima do transmissor deve ser maior ou igual a zero.');}
+    if(!Number.isFinite(values.otherResistance)||values.otherResistance<0){setInvalid('otherResistance',true);errors.push('As outras resistências da malha não podem ser negativas.');}
+    if(!Number.isFinite(values.tolerance)||values.tolerance<0||values.tolerance>=100){setInvalid('tolerance',true);errors.push('A tolerância deve estar entre 0% e menos de 100%.');}
+    if(!Number.isFinite(values.nominalPower)||values.nominalPower<=0){setInvalid('nominalPower',true);errors.push('A potência nominal escolhida deve ser maior que zero.');}
+    if(!Number.isFinite(values.hartReference)||values.hartReference<0){setInvalid('hartReference',true);errors.push('A referência HART deve ser maior ou igual a zero. Use zero para não avaliar.');}
+    return {mode,values,errors};
+  }
+
+  function clearResults(){
+    state.lastCalculation=null;
+    ['primaryValue','resultResistance','resultCurrent','resultPowerAtPoint','resultVoltageRange','resultPowerMax','resultRecommendedPower','resultPowerUse','resultTotalResistance','resultLoopDrop','resultVoltageMargin','resultMaxCurrent','resultToleranceRange','resultHart'].forEach(id=>byId(id).textContent='—');
+    byId('statusPanel').className='status-panel';byId('statusPanel').textContent='Corrija os campos destacados para calcular.';
+    byId('memoryGrid').innerHTML='<div class="memory-step"><strong>Aguardando dados válidos</strong>Preencha os campos para visualizar as fórmulas e substituições.</div>';
+    byId('printContent').innerHTML='';byId('printDate').textContent='';
+  }
+
+  function recommendedPower(power){
+    const target=power*2;
+    const standards=[0.125,0.25,0.5,1,2,3,5,7,10,15,20,25,50];
+    return standards.find(value=>value>=target)??target;
+  }
+
+  function calculate(){
+    updateMode();
+    const check=validate(),summary=byId('validationSummary');
+    if(check.errors.length){summary.className='validation-summary show';summary.innerHTML='<strong>Revise os dados:</strong><ul><li>'+check.errors.map(escapeHtml).join('</li><li>')+'</li></ul>';clearResults();return;}
+    summary.className='validation-summary';summary.innerHTML='';
+    const v=check.values;
+    let effectiveResistance=v.resistor,selectedCurrent=v.current,selectedVoltage=v.voltage,primaryLabel='Tensão no shunt',primaryValue='';
+    if(check.mode==='currentToVoltage'){
+      selectedVoltage=(selectedCurrent/1000)*effectiveResistance;
+      primaryLabel='Tensão no shunt';primaryValue=formatNumber(selectedVoltage,4)+' V';
+    }else if(check.mode==='voltageToCurrent'){
+      selectedCurrent=(selectedVoltage/effectiveResistance)*1000;
+      primaryLabel='Corrente calculada';primaryValue=formatNumber(selectedCurrent,4)+' mA';
+    }else{
+      effectiveResistance=selectedVoltage/(selectedCurrent/1000);
+      primaryLabel='Resistor calculado';primaryValue=formatNumber(effectiveResistance,3)+' Ω';
+    }
+    const currentA=selectedCurrent/1000,minA=v.currentMin/1000,maxA=v.currentMax/1000;
+    const powerAtPoint=currentA*currentA*effectiveResistance;
+    const voltageMin=minA*effectiveResistance,voltageMax=maxA*effectiveResistance;
+    const powerMax=maxA*maxA*effectiveResistance;
+    const minSuggestedPower=recommendedPower(powerMax);
+    const powerUse=powerMax/v.nominalPower*100;
+    const totalResistance=effectiveResistance+v.otherResistance;
+    const loopDrop=maxA*totalResistance;
+    const voltageMargin=v.supplyVoltage-v.transmitterMinVoltage-loopDrop;
+    const maxCurrentByVoltage=totalResistance>0?((v.supplyVoltage-v.transmitterMinVoltage)/totalResistance)*1000:Infinity;
+    const rLow=effectiveResistance*(1-v.tolerance/100),rHigh=effectiveResistance*(1+v.tolerance/100);
+    const voltageRangeLow=minA*rLow,voltageRangeHigh=maxA*rHigh;
+    const hartEvaluated=v.hartReference>0;
+    const hartOk=!hartEvaluated||totalResistance>=v.hartReference;
+    const selectedOutside=selectedCurrent<v.currentMin-1e-9||selectedCurrent>v.currentMax+1e-9;
+    const powerOk=v.nominalPower+1e-12>=powerMax*2;
+    const warnings=[];
+    let statusClass='ok';
+    if(voltageMargin<0){statusClass='fail';warnings.push('A fonte informada não mantém a tensão mínima do transmissor no maior valor da faixa.');}
+    else if(voltageMargin<1){statusClass='warn';warnings.push('A margem de tensão no maior valor da faixa é inferior a 1 V.');}
+    if(!powerOk){if(statusClass==='ok')statusClass='warn';warnings.push('A potência nominal escolhida é inferior à margem térmica de 2× adotada pela ferramenta.');}
+    if(!hartOk){if(statusClass==='ok')statusClass='warn';warnings.push('A resistência total está abaixo da carga HART de referência informada. Confirme os manuais.');}
+    if(selectedOutside){if(statusClass==='ok')statusClass='warn';warnings.push('A corrente calculada/selecionada está fora da faixa informada.');}
+    if(v.supplyVoltage<=v.transmitterMinVoltage){statusClass='fail';warnings.push('A fonte é menor ou igual à tensão mínima informada para o transmissor.');}
+    const statusText=warnings.length?warnings.join(' '):'Os dados informados são preliminarmente compatíveis com as verificações de tensão, potência e carga configuradas.';
+
+    byId('primaryLabel').textContent=primaryLabel;byId('primaryValue').textContent=primaryValue;
+    byId('resultResistance').textContent=formatNumber(effectiveResistance,3)+' Ω';
+    byId('resultCurrent').textContent=formatNumber(selectedCurrent,4)+' mA';
+    byId('resultPowerAtPoint').textContent=formatNumber(powerAtPoint,5)+' W';
+    byId('resultVoltageRange').textContent=formatNumber(voltageMin,3)+' a '+formatNumber(voltageMax,3)+' V';
+    byId('resultPowerMax').textContent=formatNumber(powerMax,5)+' W';
+    byId('resultRecommendedPower').textContent='≥ '+formatFlexible(minSuggestedPower,3)+' W';
+    byId('resultPowerUse').textContent=formatNumber(powerUse,1)+' %';
+    byId('resultTotalResistance').textContent=formatNumber(totalResistance,2)+' Ω';
+    byId('resultLoopDrop').textContent=formatNumber(loopDrop,3)+' V';
+    byId('resultVoltageMargin').textContent=formatNumber(voltageMargin,3)+' V';
+    byId('resultMaxCurrent').textContent=Number.isFinite(maxCurrentByVoltage)?formatNumber(maxCurrentByVoltage,3)+' mA':'Sem limite resistivo';
+    byId('resultToleranceRange').textContent=formatNumber(voltageRangeLow,3)+' a '+formatNumber(voltageRangeHigh,3)+' V';
+    byId('resultHart').textContent=hartEvaluated?(hartOk?'Atende a referência de '+formatFlexible(v.hartReference,2)+' Ω':'Abaixo da referência de '+formatFlexible(v.hartReference,2)+' Ω'):'Não avaliada';
+    byId('statusPanel').className='status-panel '+statusClass;byId('statusPanel').textContent=statusText;
+
+    const generatedAt=new Date();
+    state.lastCalculation={tag:byId('tag').value.trim()||'Não informado',notes:byId('notes').value.trim(),mode:check.mode,currentInput:v.current,resistorInput:v.resistor,voltageInput:v.voltage,currentMin:v.currentMin,currentMax:v.currentMax,supplyVoltage:v.supplyVoltage,transmitterMinVoltage:v.transmitterMinVoltage,otherResistance:v.otherResistance,tolerance:v.tolerance,nominalPower:v.nominalPower,hartReference:v.hartReference,effectiveResistance,selectedCurrent,selectedVoltage,powerAtPoint,voltageMin,voltageMax,powerMax,minSuggestedPower,powerUse,totalResistance,loopDrop,voltageMargin,maxCurrentByVoltage,rLow,rHigh,voltageRangeLow,voltageRangeHigh,hartEvaluated,hartOk,statusClass,statusText,generatedAt};
+    renderMemory(state.lastCalculation);preparePrint(state.lastCalculation);
+  }
+
+  function renderMemory(c){
+    const inputFormula=c.mode==='currentToVoltage'?'V = I × R = '+formatNumber(c.selectedCurrent/1000,6)+' × '+formatNumber(c.effectiveResistance,3)+' = '+formatNumber(c.selectedVoltage,4)+' V':c.mode==='voltageToCurrent'?'I = V ÷ R = '+formatNumber(c.selectedVoltage,4)+' ÷ '+formatNumber(c.effectiveResistance,3)+' = '+formatNumber(c.selectedCurrent,4)+' mA':'R = V ÷ I = '+formatNumber(c.selectedVoltage,4)+' ÷ '+formatNumber(c.selectedCurrent/1000,6)+' = '+formatNumber(c.effectiveResistance,3)+' Ω';
+    byId('memoryGrid').innerHTML='<div class="memory-step"><strong>1. Conversão principal</strong>'+escapeHtml(inputFormula)+'</div>'+
+      '<div class="memory-step"><strong>2. Faixa de tensão</strong>Vmín = '+formatNumber(c.currentMin/1000,6)+' × '+formatNumber(c.effectiveResistance,3)+' = '+formatNumber(c.voltageMin,3)+' V<br>Vmáx = '+formatNumber(c.currentMax/1000,6)+' × '+formatNumber(c.effectiveResistance,3)+' = '+formatNumber(c.voltageMax,3)+' V</div>'+
+      '<div class="memory-step"><strong>3. Potência no maior valor</strong>P = I² × R = '+formatNumber(c.currentMax/1000,6)+'² × '+formatNumber(c.effectiveResistance,3)+' = '+formatNumber(c.powerMax,5)+' W</div>'+
+      '<div class="memory-step"><strong>4. Carga total da malha</strong>Rtotal = '+formatNumber(c.effectiveResistance,3)+' + '+formatNumber(c.otherResistance,3)+' = '+formatNumber(c.totalResistance,3)+' Ω</div>'+
+      '<div class="memory-step"><strong>5. Queda e margem em Imax</strong>Vqueda = '+formatNumber(c.currentMax/1000,6)+' × '+formatNumber(c.totalResistance,3)+' = '+formatNumber(c.loopDrop,3)+' V<br>Margem = '+formatNumber(c.supplyVoltage,3)+' − '+formatNumber(c.transmitterMinVoltage,3)+' − '+formatNumber(c.loopDrop,3)+' = '+formatNumber(c.voltageMargin,3)+' V</div>'+
+      '<div class="memory-step"><strong>6. Tolerância do resistor</strong>R = '+formatNumber(c.rLow,3)+' a '+formatNumber(c.rHigh,3)+' Ω<br>Extremos da faixa: '+formatNumber(c.voltageRangeLow,3)+' a '+formatNumber(c.voltageRangeHigh,3)+' V</div>';
+  }
+
+  function documentContent(c){
+    const maxCurrentText=Number.isFinite(c.maxCurrentByVoltage)?formatNumber(c.maxCurrentByVoltage,3)+' mA':'Sem limite resistivo';
+    return '<div class="avoid-break"><h2>Identificação e entradas</h2><table><tbody><tr><th>TAG</th><td>'+escapeHtml(c.tag)+'</td></tr><tr><th>Modo</th><td>'+escapeHtml(modeLabel(c.mode))+'</td></tr><tr><th>Faixa de corrente</th><td>'+formatNumber(c.currentMin,3)+' a '+formatNumber(c.currentMax,3)+' mA</td></tr><tr><th>Fonte / tensão mínima do transmissor</th><td>'+formatNumber(c.supplyVoltage,3)+' V / '+formatNumber(c.transmitterMinVoltage,3)+' V</td></tr><tr><th>Outras resistências</th><td>'+formatNumber(c.otherResistance,3)+' Ω</td></tr><tr><th>Tolerância / potência nominal</th><td>'+formatNumber(c.tolerance,3)+' % / '+formatNumber(c.nominalPower,3)+' W</td></tr><tr><th>Referência HART</th><td>'+formatNumber(c.hartReference,3)+' Ω</td></tr><tr><th>Observações</th><td>'+escapeHtml(c.notes||'Não informado')+'</td></tr></tbody></table></div>'+
+      '<div class="print-result">Resistor aplicado: '+formatNumber(c.effectiveResistance,3)+' Ω | Corrente: '+formatNumber(c.selectedCurrent,4)+' mA | Tensão: '+formatNumber(c.selectedVoltage,4)+' V | Status: '+escapeHtml(c.statusText)+'</div>'+
+      '<h2>Resultados</h2><table><tbody><tr><th>Faixa de tensão</th><td>'+formatNumber(c.voltageMin,3)+' a '+formatNumber(c.voltageMax,3)+' V</td></tr><tr><th>Potência no ponto / em Imax</th><td>'+formatNumber(c.powerAtPoint,5)+' W / '+formatNumber(c.powerMax,5)+' W</td></tr><tr><th>Potência mínima sugerida</th><td>≥ '+formatFlexible(c.minSuggestedPower,3)+' W, usando margem de 2×</td></tr><tr><th>Utilização da potência nominal</th><td>'+formatNumber(c.powerUse,1)+' %</td></tr><tr><th>Resistência total da malha</th><td>'+formatNumber(c.totalResistance,3)+' Ω</td></tr><tr><th>Queda / margem de tensão em Imax</th><td>'+formatNumber(c.loopDrop,3)+' V / '+formatNumber(c.voltageMargin,3)+' V</td></tr><tr><th>Corrente máxima pela tensão</th><td>'+maxCurrentText+'</td></tr><tr><th>Extremos com tolerância</th><td>'+formatNumber(c.voltageRangeLow,3)+' a '+formatNumber(c.voltageRangeHigh,3)+' V</td></tr><tr><th>Avaliação HART configurada</th><td>'+(c.hartEvaluated?(c.hartOk?'Atende':'Abaixo')+' da referência de '+formatNumber(c.hartReference,3)+' Ω':'Não avaliada')+'</td></tr></tbody></table>'+
+      '<div class="avoid-break"><h2>Memória e fórmulas</h2><ul><li>V = I × R</li><li>I = V ÷ R</li><li>R = V ÷ I</li><li>P = I² × R</li><li>Rtotal = Rshunt + Routras</li><li>Vqueda = Imax × Rtotal</li><li>Margem = Vfonte − Vmín.transmissor − Vqueda</li></ul></div>'+
+      '<div class="avoid-break"><h2>Limitações</h2><p>Resultado orientativo baseado em modelo resistivo ideal. Confirme carga máxima, tensão mínima, tolerância, temperatura, derating, segurança, barreiras, isoladores, entrada analógica e requisitos HART nos documentos dos fabricantes.</p></div>';
+  }
+
+  function preparePrint(c){byId('printDate').textContent='Gerado em '+c.generatedAt.toLocaleString('pt-BR');byId('printContent').innerHTML=documentContent(c);}
+  function ensureCalculation(){calculate();if(!state.lastCalculation){byId('validationSummary').scrollIntoView({behavior:'smooth',block:'center'});return false;}return true;}
+  function printCalculation(){if(!ensureCalculation())return;preparePrint(state.lastCalculation);window.print();}
+  function generateReport(){
+    if(!ensureCalculation())return;
+    const c=state.lastCalculation,generatedAt=c.generatedAt.toLocaleString('pt-BR');
+    const reportWindow=window.open('','_blank');
+    if(!reportWindow){byId('copyFeedback').textContent='O navegador bloqueou a janela do relatório. Permita pop-ups para esta página.';return;}
+    try{reportWindow.opener=null;}catch(error){}
+    reportWindow.document.open();
+    reportWindow.document.write('<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Relatório técnico — Resistor shunt</title><style>body{font-family:Arial,sans-serif;color:#111;max-width:980px;margin:28px auto;padding:0 18px;line-height:1.5}h1{font-size:25px;margin-bottom:4px}h2{font-size:18px;border-bottom:1px solid #555;padding-bottom:5px;margin-top:28px}table{width:100%;border-collapse:collapse}th,td{border:1px solid #777;padding:8px;text-align:left;vertical-align:top}th{background:#eee}.print-result{font-size:16px;font-weight:700;border:2px solid #222;padding:12px;margin:16px 0}.actions{margin:18px 0}.actions button{padding:10px 14px;font:inherit;cursor:pointer}@media print{.actions{display:none}@page{size:A4;margin:14mm}body{margin:0;max-width:none}.avoid-break{break-inside:avoid}}</style></head><body><div class="actions"><button type="button" onclick="window.print()">Imprimir ou salvar em PDF</button></div><h1>Relatório técnico — Resistor shunt de instrumentação</h1><p>Gerado em '+escapeHtml(generatedAt)+'</p>'+documentContent(c)+'</body></html>');
+    reportWindow.document.close();
+  }
+
+  function copyResult(){
+    if(!ensureCalculation())return;
+    const c=state.lastCalculation;
+    const text=['Resistor shunt de instrumentação','TAG: '+c.tag,'Modo: '+modeLabel(c.mode),'Resistor: '+formatNumber(c.effectiveResistance,3)+' Ω','Corrente: '+formatNumber(c.selectedCurrent,4)+' mA','Tensão: '+formatNumber(c.selectedVoltage,4)+' V','Faixa: '+formatNumber(c.voltageMin,3)+' a '+formatNumber(c.voltageMax,3)+' V','Potência em Imax: '+formatNumber(c.powerMax,5)+' W','Potência mínima sugerida: ≥ '+formatFlexible(c.minSuggestedPower,3)+' W','Resistência total: '+formatNumber(c.totalResistance,3)+' Ω','Margem de tensão: '+formatNumber(c.voltageMargin,3)+' V','Status: '+c.statusText].join('\n');
+    const done=()=>{byId('copyFeedback').textContent='Resultado copiado.';setTimeout(()=>byId('copyFeedback').textContent='',2500);};
+    if(navigator.clipboard&&window.isSecureContext) navigator.clipboard.writeText(text).then(done).catch(()=>fallbackCopy(text,done));else fallbackCopy(text,done);
+  }
+  function fallbackCopy(text,done){const area=document.createElement('textarea');area.value=text;area.style.position='fixed';area.style.opacity='0';document.body.appendChild(area);area.select();try{document.execCommand('copy');done();}catch(error){byId('copyFeedback').textContent='Não foi possível copiar automaticamente.';}area.remove();}
+  function setInput(id,value){byId(id).value=String(value).replace('.',',');}
+  function example(resistor,voltage){byId('mode').value='currentToVoltage';setInput('current',12);setInput('resistor',resistor);setInput('voltage',voltage);setInput('currentMin',4);setInput('currentMax',20);setInput('supplyVoltage',24);setInput('transmitterMinVoltage',12);setInput('otherResistance',0);setInput('tolerance',1);setInput('nominalPower',resistor===500?0.5:0.25);setInput('hartReference',250);calculate();}
+  function buildReferenceTable(){
+    const rows=[[50,'0,2–1 V'],[100,'0,4–2 V'],[125,'0,5–2,5 V'],[250,'1–5 V'],[500,'2–10 V'],[1000,'4–20 V']];
+    byId('referenceTable').innerHTML=rows.map(row=>{const r=row[0],v4=.004*r,v12=.012*r,v20=.020*r,p=.020*.020*r;return '<tr><td data-label="Resistor">'+r+' Ω</td><td data-label="4 mA" class="num">'+formatNumber(v4,3)+' V</td><td data-label="12 mA" class="num">'+formatNumber(v12,3)+' V</td><td data-label="20 mA" class="num">'+formatNumber(v20,3)+' V</td><td data-label="Potência em 20 mA" class="num">'+formatNumber(p,4)+' W</td><td data-label="Conversão típica">'+row[1]+'</td></tr>';}).join('');
+  }
+
+  fieldIds.forEach(id=>{const element=byId(id);element.addEventListener('input',calculate);element.addEventListener('change',calculate);});
+  byId('btnExample250').addEventListener('click',()=>example(250,3));byId('btnExample500').addEventListener('click',()=>example(500,6));
+  byId('btnCopy').addEventListener('click',copyResult);byId('btnPrint').addEventListener('click',printCalculation);byId('topPrint').addEventListener('click',printCalculation);byId('btnReport').addEventListener('click',generateReport);byId('topReport').addEventListener('click',generateReport);
+  buildReferenceTable();calculate();
+})();
+</script>
 <a aria-label="Voltar para Ferramentas" class="floating-back-tools no-print" href="ferramentas.html"><i class="fas fa-arrow-left"></i> Voltar para Ferramentas</a>
 </body>
 </html>
