@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Calculadora de LRV, URV e Span | ALOGY Engenharia</title>
-  <meta name="description" content="Calculadora de LRV, URV e span para instrumentação industrial. Converta 4-20 mA, percentual e valor de engenharia, calcule zero vivo, rangeabilidade e"/>
+  <meta name="description" content="Calculadora de LRV, URV e span para instrumentação industrial. Converta sinal 4-20 mA, percentual e valor de engenharia, avalie faixa direta ou reversa e rangeabilidade."/>
   <meta name="robots" content="index,follow" />
   <meta name="theme-color" content="#062138" />
   <link rel="canonical" href="https://www.alogy.com.br/calculadora-lrv-urv-span.html" />
@@ -52,17 +52,33 @@
   }
   </script>
   <style>
-    .mini-btn{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(0,107,177,.25);background:rgba(0,107,177,.08);color:#0b3a62;border-radius:12px;padding:10px 12px;font-weight:900;cursor:pointer;text-decoration:none;font:inherit}
-    .mini-btn:hover{background:rgba(0,107,177,.12)}.mini-btn.dark{background:#0b3a62;color:#fff;border-color:#0b3a62}
-    .small-muted{color:var(--muted);font-size:.92rem;line-height:1.55}.calc-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+    .mini-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:1px solid rgba(0,107,177,.25);background:rgba(0,107,177,.08);color:#0b3a62;border-radius:12px;padding:10px 12px;font-weight:900;cursor:pointer;text-decoration:none;font:inherit}
+    .mini-btn:hover{background:rgba(0,107,177,.12)}.mini-btn.dark{background:#0b3a62;color:#fff;border-color:#0b3a62}.mini-btn:disabled,.btn:disabled{opacity:.55;cursor:not-allowed}
+    .small-muted{color:var(--muted);font-size:.92rem;line-height:1.55}.calc-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;align-items:center}
+    .report-status{margin-left:auto;color:var(--muted);font-size:.88rem;align-self:center}
     .status-ok{border-color:rgba(34,197,94,.35)!important;background:rgba(34,197,94,.10)!important;color:#166534!important}
     .status-warn{border-color:rgba(245,158,11,.40)!important;background:rgba(245,158,11,.12)!important;color:#92400e!important}
     .status-bad{border-color:rgba(239,68,68,.35)!important;background:rgba(239,68,68,.10)!important;color:#991b1b!important}
     .span-pill{display:inline-flex;align-items:center;gap:8px;border-radius:999px;background:rgba(0,107,177,.08);border:1px solid rgba(0,107,177,.18);color:#0b3a62;font-weight:900;padding:8px 11px;font-size:.9rem;margin:4px 4px 0 0}
-    .formula-box{background:#f7fbff;border:1px solid rgba(0,107,177,.14);border-radius:14px;padding:13px;margin-top:12px;color:#14324a;line-height:1.6}
+    .formula-box{background:#f7fbff;border:1px solid rgba(0,107,177,.14);border-radius:14px;padding:13px;margin-top:12px;color:#14324a;line-height:1.6;overflow-wrap:anywhere}
     .faq details{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:14px;padding:14px;margin-top:10px;box-shadow:0 6px 16px rgba(0,0,0,.04)}.faq summary{cursor:pointer;font-weight:900;color:#0b3a62}.faq p{margin:10px 0 0;color:var(--muted)}
-    @media(max-width:900px){.calc-actions .mini-btn{width:100%;justify-content:center}}
-    @media print{header,.social-floating,.fab-wrap,.cta-bar,footer,.calc-actions,.tools-hero .btn,.no-print{display:none!important}body{background:#fff}.container{max-width:100%;padding:0}.calc-card,.tools-hero{box-shadow:none;border:1px solid #ddd}.calc-layout{display:block}.calc-card{margin:12px 0}.calc-table th{background:#eee!important;color:#111!important}}
+    .validation-summary{display:none;margin-top:14px;border:1px solid rgba(239,68,68,.35);background:rgba(239,68,68,.08);color:#8b1e1e;border-radius:12px;padding:12px;line-height:1.5}.validation-summary.show{display:block}.validation-summary ul{margin:7px 0 0;padding-left:22px}
+    [aria-invalid="true"]{border-color:#c62828!important;box-shadow:0 0 0 3px rgba(198,40,40,.12)!important}
+    .memory-grid{display:grid;gap:10px}.memory-step{border:1px solid rgba(0,0,0,.10);background:#fff;border-radius:12px;padding:12px}.memory-step strong{display:block;color:#0b3a62;margin-bottom:5px}.formula-line{font-family:Consolas,"Courier New",monospace;overflow-wrap:anywhere;font-size:.92rem}
+    .technical-alert{margin-top:12px;border:1px solid rgba(245,158,11,.40);background:rgba(245,158,11,.10);color:#704500;border-radius:12px;padding:11px;line-height:1.5}
+    .print-only{display:none}
+    @media(max-width:900px){.calc-actions .mini-btn{width:100%}.report-status{width:100%;margin-left:0}.calc-result[style]{grid-template-columns:1fr!important}}
+    @media print{
+      @page{size:A4;margin:14mm}
+      body{background:#fff!important;color:#111!important;font-family:Arial,sans-serif!important}
+      body>:not(main){display:none!important}main>:not(#printSheet){display:none!important}
+      main{max-width:none!important;margin:0!important;padding:0!important}#printSheet{display:block!important}
+      #printSheet h1{font-size:20pt;margin:0 0 4px}#printSheet h2{font-size:13pt;margin:18px 0 7px;border-bottom:1px solid #777;padding-bottom:4px}
+      #printSheet .print-meta{color:#444;margin-bottom:14px}#printSheet table{width:100%;border-collapse:collapse;margin:7px 0 12px}
+      #printSheet th,#printSheet td{border:1px solid #999;padding:7px;text-align:left;vertical-align:top}#printSheet th{background:#eee!important;width:34%;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+      #printSheet .wide th{width:auto}#printSheet .memory-step{border:1px solid #aaa;border-radius:0;break-inside:avoid}#printSheet tr{break-inside:avoid}
+      #printSheet .disclaimer{font-size:9pt;color:#444;border-top:1px solid #777;padding-top:8px;margin-top:16px}
+    }
   </style>
   <!-- Google AdSense - verificação de propriedade -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5586837114309500"
@@ -81,7 +97,8 @@
   <main class="container" style="margin-top:18px">
     <div style="margin-bottom:14px;display:flex;gap:10px;flex-wrap:wrap" class="no-print">
       <a class="floating-back-tools no-print" href="ferramentas.html"><i class="fas fa-arrow-left"></i> Voltar para Ferramentas</a>
-      <button class="btn print" type="button" onclick="window.print()"><i class="fas fa-print"></i> Imprimir</button>
+      <button class="btn print" id="btnImprimirTopo" type="button"><i class="fas fa-print"></i> Imprimir</button>
+      <button class="btn secondary" id="btnRelatorioTopo" type="button"><i class="fas fa-file-lines"></i> Gerar relatório</button>
       <a class="btn secondary" href="calculadora-4-20ma.html"><i class="fas fa-wave-square"></i> 4-20 mA</a>
       <a class="btn secondary" href="calculadora-diagnostico-4-20ma-hart.html"><i class="fas fa-stethoscope"></i> Diagnóstico HART</a>
     </div>
@@ -97,15 +114,24 @@
       <div class="calc-card"><h2><i class="fas fa-sliders"></i> Dados de entrada</h2>
         <div class="calc-grid">
           <div class="field"><label for="modo">Calcular a partir de</label><select id="modo"><option value="ma">Corrente 4-20 mA</option><option value="eng">Valor de engenharia</option><option value="pct">Percentual da faixa</option></select></div>
-          <div class="field"><label for="valor" id="valorLabel">Corrente medida (mA)</label><input id="valor" type="number" step="any" value="12"></div>
-          <div class="field"><label for="lrv">LRV / valor em 0%</label><input id="lrv" type="number" step="any" value="0"></div>
-          <div class="field"><label for="urv">URV / valor em 100%</label><input id="urv" type="number" step="any" value="10"></div>
-          <div class="field"><label for="unid">Unidade de engenharia</label><input id="unid" type="text" value="bar"></div>
+          <div class="field"><label for="valor" id="valorLabel">Corrente medida (mA)</label><input id="valor" type="text" inputmode="decimal" autocomplete="off" value="12"></div>
+          <div class="field"><label for="lrv">LRV / valor em 0%</label><input id="lrv" type="text" inputmode="decimal" autocomplete="off" value="0"></div>
+          <div class="field"><label for="urv">URV / valor em 100%</label><input id="urv" type="text" inputmode="decimal" autocomplete="off" value="10"></div>
+          <div class="field"><label for="unid">Unidade de engenharia</label><input id="unid" type="text" value="bar" maxlength="24"></div>
           <div class="field"><label for="casas">Casas decimais</label><select id="casas"><option value="2" selected>2 casas</option><option value="1">1 casa</option><option value="3">3 casas</option></select></div>
-          <div class="field"><label for="minInst">Limite inferior do instrumento <small>(opcional)</small></label><input id="minInst" type="number" step="any" placeholder="Ex.: -1"></div>
-          <div class="field"><label for="maxInst">Limite superior do instrumento <small>(opcional)</small></label><input id="maxInst" type="number" step="any" placeholder="Ex.: 25"></div>
+          <div class="field"><label for="minInst">Limite inferior do instrumento <small>(opcional)</small></label><input id="minInst" type="text" inputmode="decimal" autocomplete="off" placeholder="Ex.: -1"></div>
+          <div class="field"><label for="maxInst">Limite superior do instrumento <small>(opcional)</small></label><input id="maxInst" type="text" inputmode="decimal" autocomplete="off" placeholder="Ex.: 25"></div>
         </div>
-        <div class="calc-actions"><button class="mini-btn dark" type="button" onclick="copiarResultado()"><i class="fas fa-copy"></i> Copiar resultado</button><button class="mini-btn" type="button" onclick="exemplo('ma',12,0,10,'bar','','')">Pressão 0-10 bar</button><button class="mini-btn" type="button" onclick="exemplo('ma',16,-50,150,'°C','-50','150')">Temperatura -50 a 150 °C</button><button class="mini-btn" type="button" onclick="exemplo('eng',2.5,0,5,'m','','')">Nível 0-5 m</button><button class="mini-btn" type="button" onclick="exemplo('ma',8,100,0,'%','','')">Range reverso 100-0%</button></div>
+        <div id="validationSummary" class="validation-summary" role="alert" aria-live="assertive" tabindex="-1"></div>
+        <div class="calc-actions">
+          <button class="mini-btn dark" id="btnCalcular" type="button"><i class="fas fa-calculator"></i> Calcular</button>
+          <button class="mini-btn" id="btnCopiar" type="button"><i class="fas fa-copy"></i> Copiar resultado</button>
+          <button class="mini-btn" id="btnExPressao" type="button">Pressão 0-10 bar</button>
+          <button class="mini-btn" id="btnExTemperatura" type="button">Temperatura -50 a 150 °C</button>
+          <button class="mini-btn" id="btnExNivel" type="button">Nível 0-5 m</button>
+          <button class="mini-btn" id="btnExReverso" type="button">Range reverso 100-0%</button>
+          <span class="report-status" id="calcStatus" aria-live="polite"></span>
+        </div>
       </div>
 
       <div class="calc-card"><h2><i class="fas fa-square-poll-vertical"></i> Resultado</h2>
@@ -119,12 +145,18 @@
         </div>
         <div style="margin-top:14px"><span class="span-pill" id="pillRange">Range: -</span><span class="span-pill" id="pillZero">Zero vivo: 4 mA</span><span class="span-pill" id="pillTurn">Rangeabilidade: -</span></div>
         <div class="formula-box" id="formula">Fórmula: Valor = LRV + ((mA - 4) / 16) × Span</div>
+        <div class="technical-alert" id="technicalAlert">Informe os dados para realizar a avaliação.</div>
       </div>
     </section>
 
     <section class="calc-layout">
       <div class="calc-card"><h2><i class="fas fa-table"></i> Tabela 4-20 mA da faixa</h2><p class="small-muted">Tabela linear de referência para conferência em bancada, CLP, SDCD, supervisório, IHM e teste de loop.</p><div class="calc-table-wrap"><table class="calc-table"><thead><tr><th>Ponto</th><th>%</th><th>mA</th><th>Valor de engenharia</th><th>Observação</th></tr></thead><tbody id="tbl"></tbody></table></div></div>
       <div class="calc-card"><h2><i class="fas fa-circle-info"></i> Conceitos rápidos</h2><p><strong>LRV:</strong> valor inferior configurado. Em 4-20 mA linear, corresponde ao ponto de 4 mA e 0%.</p><p><strong>URV:</strong> valor superior configurado. Em 4-20 mA linear, corresponde ao ponto de 20 mA e 100%.</p><p><strong>Span:</strong> diferença entre URV e LRV. Exemplo: LRV 0 bar e URV 10 bar geram span de 10 bar.</p><p><strong>Range reverso:</strong> quando o URV é menor que o LRV. A calculadora aceita essa condição, mas a configuração real deve ser confirmada no instrumento e no sistema.</p><div class="calc-note"><strong>Atenção:</strong> a escala do transmissor, do cartão analógico e da tela do supervisório precisam estar coerentes. Erro de LRV/URV pode causar indicação errada mesmo com corrente correta.</div></div>
+    </section>
+
+    <section class="calc-card" id="memoryCard"><h2><i class="fas fa-list-ol"></i> Memória de cálculo</h2>
+      <p class="small-muted">A memória mostra a relação linear utilizada, a substituição dos valores e as verificações da faixa configurada.</p>
+      <div class="memory-grid" id="memoryContent"><div class="memory-step">Preencha dados válidos para visualizar a memória de cálculo.</div></div>
     </section>
 
     <section class="calc-card"><h2><i class="fas fa-screwdriver-wrench"></i> Aplicações práticas</h2><div class="calc-table-wrap"><table class="calc-table"><thead><tr><th>Aplicação</th><th>Exemplo de LRV</th><th>Exemplo de URV</th><th>Comentário</th></tr></thead><tbody><tr><td>Pressão</td><td>0 bar</td><td>10 bar</td><td>12 mA representa 5 bar.</td></tr><tr><td>Temperatura</td><td>-50 °C</td><td>150 °C</td><td>12 mA representa 50 °C, pois está no meio da faixa.</td></tr><tr><td>Nível</td><td>0 m</td><td>5 m</td><td>16 mA representa 75% da faixa, ou 3,75 m.</td></tr><tr><td>Vazão linearizada</td><td>0 m³/h</td><td>100 m³/h</td><td>Somente se o sinal já estiver linear em vazão.</td></tr><tr><td>Range reverso</td><td>100%</td><td>0%</td><td>O valor de engenharia diminui conforme o mA aumenta.</td></tr></tbody></table></div></section>
@@ -169,72 +201,331 @@
       <p>Esta ferramenta é indicada para estudo, triagem, conferência de campo e apoio à manutenção. Para projeto final, laudo, especificação de compra, alteração de segurança ou liberação de equipamento crítico, valide as premissas com normas aplicáveis, documentação do fabricante e profissional habilitado.</p>
     </section>
 
+    <section id="printSheet" class="print-only" aria-label="Documento técnico para impressão">
+      <h1>Calculadora de LRV, URV e Span</h1>
+      <div class="print-meta" id="printMeta"></div>
+      <h2>Dados informados</h2><table id="printInputs"></table>
+      <h2>Resultados</h2><table id="printResults"></table>
+      <h2>Tabela 4-20 mA da faixa</h2><table class="wide"><thead><tr><th>Ponto</th><th>%</th><th>mA</th><th>Valor de engenharia</th><th>Observação</th></tr></thead><tbody id="printTable"></tbody></table>
+      <h2>Memória de cálculo</h2><div id="printMemory"></div>
+      <p class="disclaimer">Documento orientativo para estudo, conferência e apoio técnico. Confirme a faixa configurada, os limites físicos do instrumento, a parametrização do cartão analógico, o sentido da escala e os resultados do teste de loop. Não substitui procedimento aprovado, calibração rastreável, documentação do fabricante ou validação por profissional habilitado.</p>
+    </section>
+
   </main>
   <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p></footer>
 
 <script>
-const $=id=>document.getElementById(id);
-function fmt(n,d){ if(!isFinite(n)) return '-'; return Number(n).toLocaleString('pt-BR',{minimumFractionDigits:d,maximumFractionDigits:d}); }
-function parseNum(v){
-  const s=String(v ?? '').trim();
-  if(s==='') return NaN;
-  const normalizado = s.includes(',') ? s.replace(/\./g,'').replace(',', '.') : s;
-  return Number(normalizado);
-}
-function rawVal(id){ return parseNum($(id).value); }
-function calc(){
-  const modo=$('modo').value, val=rawVal('valor'), lrv=rawVal('lrv'), urv=rawVal('urv'), unid=$('unid').value||'', d=Number($('casas').value);
-  $('valorLabel').textContent = modo==='ma' ? 'Corrente medida (mA)' : modo==='eng' ? 'Valor de engenharia' : 'Percentual da faixa (%)';
-  const span=urv-lrv, amp=Math.abs(span);
-  let pct, ma, eng;
-  if(!isFinite(val)||!isFinite(lrv)||!isFinite(urv)||Math.abs(span)<1e-12){ pct=NaN; ma=NaN; eng=NaN; }
-  else if(modo==='ma'){ ma=val; pct=(ma-4)/16*100; eng=lrv+(pct/100)*span; }
-  else if(modo==='eng'){ eng=val; pct=(eng-lrv)/span*100; ma=4+(pct/100)*16; }
-  else { pct=val; ma=4+(pct/100)*16; eng=lrv+(pct/100)*span; }
-  let status='Dentro da faixa', cls='status-ok';
-  if(!isFinite(ma)||!isFinite(pct)){ status='Verificar dados'; cls='status-bad'; }
-  else if(ma<3.6){ status='Falha baixa / muito abaixo'; cls='status-bad'; }
-  else if(ma<4){ status='Abaixo da faixa'; cls='status-warn'; }
-  else if(ma>21){ status='Falha alta / muito acima'; cls='status-bad'; }
-  else if(ma>20){ status='Acima da faixa'; cls='status-warn'; }
-  $('outPct').textContent=`${fmt(pct,d)} %`;
-  $('outEng').textContent=`${fmt(eng,d)} ${unid}`;
-  $('outMa').textContent=`${fmt(ma,3)} mA`;
-  $('outSpan').textContent=`${fmt(span,d)} ${unid}`;
-  $('outAmp').textContent=`${fmt(amp,d)} ${unid}`;
-  $('outStatus').textContent=status;
-  $('outStatus').parentElement.className='result-box '+cls;
-  $('pillRange').textContent=`Range: ${fmt(lrv,d)} a ${fmt(urv,d)} ${unid}`;
-  $('formula').textContent=`Fórmula: Valor = ${fmt(lrv,d)} + ((mA - 4) / 16) × ${fmt(span,d)} = valor em ${unid || 'engenharia'}`;
-  const minInst=rawVal('minInst'), maxInst=rawVal('maxInst');
-  if(isFinite(minInst)&&isFinite(maxInst)&&Math.abs(maxInst-minInst)>1e-12&&amp>0){
-    const total=Math.abs(maxInst-minInst), turn=total/amp;
-    $('pillTurn').textContent=`Rangeabilidade aprox.: ${fmt(turn,2)}:1`;
-  } else { $('pillTurn').textContent='Rangeabilidade: informe limites do instrumento'; }
-  montarTabela(lrv,urv,span,unid,d);
-}
-function montarTabela(lrv,urv,span,unid,d){
-  const pontos=[[-2.5,3.6,'Falha baixa comum'],[0,4,'LRV / 0%'],[25,8,'25%'],[50,12,'50%'],[75,16,'75%'],[100,20,'URV / 100%'],[106.25,21,'Falha alta comum']];
-  $('tbl').innerHTML=pontos.map(p=>{ const eng=lrv+(p[0]/100)*span; return `<tr><td>${p[2]}</td><td>${fmt(p[0],2)}%</td><td>${fmt(p[1],3)} mA</td><td>${fmt(eng,d)} ${unid}</td><td>${p[1]<4||p[1]>20?'Diagnóstico / fora da faixa':'Ponto normal'}</td></tr>`; }).join('');
-}
-function exemplo(modo,val,lrv,urv,unid,min,max){ $('modo').value=modo; $('valor').value=val; $('lrv').value=lrv; $('urv').value=urv; $('unid').value=unid; $('minInst').value=min; $('maxInst').value=max; calc(); window.scrollTo({top:0,behavior:'smooth'}); }
-function copiarResultado(){
-  const txt=[
-    'Resultado - Calculadora de LRV, URV e Span ALOGY',
-    `LRV: ${$('lrv').value} ${$('unid').value}`,
-    `URV: ${$('urv').value} ${$('unid').value}`,
-    `Span: ${$('outSpan').textContent}`,
-    `Percentual: ${$('outPct').textContent}`,
-    `Valor de engenharia: ${$('outEng').textContent}`,
-    `Sinal: ${$('outMa').textContent}`,
-    `Status: ${$('outStatus').textContent}`,
-    'Observação: resultado orientativo; não substitui procedimento, calibração, teste de loop, documentação ou profissional habilitado.'
-  ].join('\n');
-  navigator.clipboard?.writeText(txt).then(()=>alert('Resultado copiado.')).catch(()=>alert(txt));
-}
-['modo','valor','lrv','urv','unid','casas','minInst','maxInst'].forEach(id=>$(id).addEventListener('input',calc));
-['modo','casas'].forEach(id=>$(id).addEventListener('change',calc));
-calc();
+(() => {
+  'use strict';
+
+  const byId = (id) => document.getElementById(id);
+  const numericIds = ['valor','lrv','urv','minInst','maxInst'];
+  const watchedIds = [...numericIds,'modo','unid','casas'];
+  let lastResult = null;
+  let originalTitle = document.title;
+
+  function parseNumber(value) {
+    let raw = String(value ?? '').trim().replace(/\s+/g, '');
+    if (!raw || !/^[+-]?[\d.,]+$/.test(raw)) return NaN;
+    const commas = (raw.match(/,/g) || []).length;
+    const dots = (raw.match(/\./g) || []).length;
+    if (commas && dots) {
+      const decimalSeparator = raw.lastIndexOf(',') > raw.lastIndexOf('.') ? ',' : '.';
+      const thousandsSeparator = decimalSeparator === ',' ? '.' : ',';
+      raw = raw.split(thousandsSeparator).join('');
+      if ((raw.match(new RegExp('\\' + decimalSeparator, 'g')) || []).length !== 1) return NaN;
+      raw = raw.replace(decimalSeparator, '.');
+    } else if (commas) {
+      if (commas !== 1) return NaN;
+      raw = raw.replace(',', '.');
+    } else if (dots > 1) {
+      return NaN;
+    }
+    const number = Number(raw);
+    return Number.isFinite(number) ? number : NaN;
+  }
+
+  function readNumber(id) { return parseNumber(byId(id).value); }
+  function isBlank(id) { return byId(id).value.trim() === ''; }
+  function formatNumber(number, digits = 2) {
+    if (!Number.isFinite(number)) return '-';
+    return Number(number).toLocaleString('pt-BR',{minimumFractionDigits:digits,maximumFractionDigits:digits});
+  }
+  function formatPlain(number, digits = 6) {
+    if (!Number.isFinite(number)) return '-';
+    return Number(number).toLocaleString('pt-BR',{maximumFractionDigits:digits});
+  }
+  function escapeHtml(value) {
+    return String(value ?? '').replace(/[&<>'"]/g,(character)=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'})[character]);
+  }
+
+  function modeLabel(mode) {
+    if (mode === 'eng') return 'Valor de engenharia';
+    if (mode === 'pct') return 'Percentual da faixa (%)';
+    return 'Corrente medida (mA)';
+  }
+
+  function updateModeLabel() { byId('valorLabel').textContent = modeLabel(byId('modo').value); }
+
+  function collectInputs() {
+    return {
+      mode: byId('modo').value,
+      value: readNumber('valor'),
+      lrv: readNumber('lrv'),
+      urv: readNumber('urv'),
+      unit: byId('unid').value.trim(),
+      digits: Number(byId('casas').value),
+      minInstrument: isBlank('minInst') ? null : readNumber('minInst'),
+      maxInstrument: isBlank('maxInst') ? null : readNumber('maxInst'),
+      minBlank: isBlank('minInst'),
+      maxBlank: isBlank('maxInst')
+    };
+  }
+
+  function validateInputs(data) {
+    const errors = [];
+    if (!Number.isFinite(data.value)) errors.push({id:'valor',message:`Informe ${modeLabel(data.mode).toLowerCase()} válido.`});
+    if (!Number.isFinite(data.lrv)) errors.push({id:'lrv',message:'Informe um LRV válido.'});
+    if (!Number.isFinite(data.urv)) errors.push({id:'urv',message:'Informe um URV válido.'});
+    if (Number.isFinite(data.lrv) && Number.isFinite(data.urv) && Math.abs(data.urv - data.lrv) < 1e-12) errors.push({id:'urv',message:'URV deve ser diferente de LRV; o span não pode ser zero.'});
+    if (data.minBlank !== data.maxBlank) errors.push({id:data.minBlank?'minInst':'maxInst',message:'Para calcular a rangeabilidade, informe os dois limites físicos do instrumento.'});
+    if (!data.minBlank && !Number.isFinite(data.minInstrument)) errors.push({id:'minInst',message:'Informe um limite inferior válido.'});
+    if (!data.maxBlank && !Number.isFinite(data.maxInstrument)) errors.push({id:'maxInst',message:'Informe um limite superior válido.'});
+    if (Number.isFinite(data.minInstrument) && Number.isFinite(data.maxInstrument) && data.maxInstrument <= data.minInstrument) errors.push({id:'maxInst',message:'O limite superior físico deve ser maior que o limite inferior.'});
+    return errors;
+  }
+
+  function clearFieldErrors() { numericIds.forEach((id)=>byId(id).removeAttribute('aria-invalid')); }
+  function showErrors(errors) {
+    const summary = byId('validationSummary');
+    clearFieldErrors();
+    if (!errors.length) { summary.classList.remove('show'); summary.innerHTML=''; return; }
+    errors.forEach((error)=>{ if (error.id && byId(error.id)) byId(error.id).setAttribute('aria-invalid','true'); });
+    summary.innerHTML = '<strong>Revise os dados informados:</strong><ul>' + errors.map((error)=>`<li>${escapeHtml(error.message)}</li>`).join('') + '</ul>';
+    summary.classList.add('show');
+  }
+
+  function clearResults(message) {
+    ['outPct','outEng','outMa','outSpan','outAmp'].forEach((id)=>byId(id).textContent='-');
+    byId('outStatus').textContent='Verificar dados';
+    byId('outStatus').parentElement.className='result-box status-bad';
+    byId('pillRange').textContent='Range: -';
+    byId('pillTurn').textContent='Rangeabilidade: -';
+    byId('formula').textContent='Fórmula: Valor = LRV + ((mA - 4) / 16) × Span';
+    byId('technicalAlert').textContent=message;
+    byId('technicalAlert').className='technical-alert status-bad';
+    byId('tbl').innerHTML='';
+    byId('memoryContent').innerHTML='<div class="memory-step">Corrija os campos destacados para visualizar a memória de cálculo.</div>';
+    byId('calcStatus').textContent='Cálculo não realizado';
+    lastResult=null;
+    updateActionState();
+  }
+
+  function buildTable(data,result) {
+    const points=[
+      {percent:-2.5,ma:3.6,label:'Falha baixa comum'},
+      {percent:0,ma:4,label:'LRV / 0%'},
+      {percent:25,ma:8,label:'25%'},
+      {percent:50,ma:12,label:'50%'},
+      {percent:75,ma:16,label:'75%'},
+      {percent:100,ma:20,label:'URV / 100%'},
+      {percent:106.25,ma:21,label:'Falha alta comum'}
+    ];
+    return points.map((point)=>({
+      ...point,
+      engineering:data.lrv+(point.percent/100)*result.span,
+      observation:point.ma<4||point.ma>20?'Diagnóstico / fora da faixa':'Ponto normal'
+    }));
+  }
+
+  function buildMemory(data,result) {
+    const d=data.digits;
+    let firstStep;
+    if (data.mode==='ma') firstStep=`Percentual = ((${formatPlain(data.value)} − 4) ÷ 16) × 100 = ${formatNumber(result.percent,d)}%`;
+    else if (data.mode==='eng') firstStep=`Percentual = ((${formatPlain(data.value)} − ${formatPlain(data.lrv)}) ÷ (${formatPlain(data.urv)} − ${formatPlain(data.lrv)})) × 100 = ${formatNumber(result.percent,d)}%`;
+    else firstStep=`Percentual informado diretamente = ${formatNumber(result.percent,d)}%`;
+    const turnStep=result.rangeability===null
+      ? 'Rangeabilidade não calculada: limites físicos do instrumento não informados.'
+      : `Rangeabilidade aproximada = (${formatPlain(data.maxInstrument)} − ${formatPlain(data.minInstrument)}) ÷ |${formatPlain(result.span)}| = ${formatNumber(result.rangeability,2)}:1`;
+    byId('memoryContent').innerHTML=`
+      <div class="memory-step"><strong>1. Span configurado</strong><div class="formula-line">Span = URV − LRV = ${formatPlain(data.urv)} − (${formatPlain(data.lrv)}) = ${formatNumber(result.span,d)} ${escapeHtml(data.unit)}</div></div>
+      <div class="memory-step"><strong>2. Percentual da faixa</strong><div class="formula-line">${escapeHtml(firstStep)}</div></div>
+      <div class="memory-step"><strong>3. Sinal equivalente</strong><div class="formula-line">mA = 4 + (${formatNumber(result.percent,d)} ÷ 100) × 16 = ${formatNumber(result.ma,3)} mA</div></div>
+      <div class="memory-step"><strong>4. Valor de engenharia</strong><div class="formula-line">PV = ${formatPlain(data.lrv)} + (${formatNumber(result.percent,d)} ÷ 100) × (${formatPlain(data.urv)} − ${formatPlain(data.lrv)}) = ${formatNumber(result.engineering,d)} ${escapeHtml(data.unit)}</div></div>
+      <div class="memory-step"><strong>5. Amplitude e rangeabilidade</strong><div class="formula-line">Amplitude = |Span| = ${formatNumber(result.amplitude,d)} ${escapeHtml(data.unit)}<br>${escapeHtml(turnStep)}</div></div>`;
+  }
+
+  function setStatusBox(statusClass) { byId('outStatus').parentElement.className=`result-box ${statusClass}`; }
+
+  function calculate(options={}) {
+    updateModeLabel();
+    const data=collectInputs();
+    const errors=validateInputs(data);
+    showErrors(errors);
+    if (errors.length) {
+      clearResults('Há dados inválidos. Corrija os campos destacados antes de utilizar o resultado.');
+      if (options.focusError) (byId(errors[0].id)||byId('validationSummary')).focus();
+      return false;
+    }
+
+    const span=data.urv-data.lrv;
+    const amplitude=Math.abs(span);
+    let percent;
+    if (data.mode==='ma') percent=((data.value-4)/16)*100;
+    else if (data.mode==='eng') percent=((data.value-data.lrv)/span)*100;
+    else percent=data.value;
+    const ma=4+(percent/100)*16;
+    const engineering=data.lrv+(percent/100)*span;
+    const rangeability=data.minInstrument===null?null:(data.maxInstrument-data.minInstrument)/amplitude;
+    const configuredInside=data.minInstrument===null?null:(Math.min(data.lrv,data.urv)>=data.minInstrument && Math.max(data.lrv,data.urv)<=data.maxInstrument);
+
+    let status='Dentro da faixa';
+    let statusClass='status-ok';
+    if (ma<3.6) { status='Falha baixa / muito abaixo'; statusClass='status-bad'; }
+    else if (ma<4) { status='Abaixo da faixa'; statusClass='status-warn'; }
+    else if (ma>21) { status='Falha alta / muito acima'; statusClass='status-bad'; }
+    else if (ma>20) { status='Acima da faixa'; statusClass='status-warn'; }
+
+    const direction=span<0?'reversa':'direta';
+    const alerts=[];
+    if (span<0) alerts.push('Faixa reversa: o valor de engenharia diminui quando o sinal aumenta.');
+    if (percent<0||percent>100) alerts.push('O ponto calculado está fora da faixa configurada de 0% a 100%.');
+    if (configuredInside===false) alerts.push('LRV ou URV está fora dos limites físicos informados para o instrumento.');
+    if (rangeability!==null && rangeability<1) alerts.push('A amplitude configurada é maior que a faixa física informada.');
+    if (!alerts.length) alerts.push('Faixa direta e ponto calculado dentro das condições informadas.');
+
+    const result={span,amplitude,percent,ma,engineering,rangeability,configuredInside,status,statusClass,direction,alerts};
+    const tableRows=buildTable(data,result);
+
+    byId('outPct').textContent=`${formatNumber(percent,data.digits)} %`;
+    byId('outEng').textContent=`${formatNumber(engineering,data.digits)} ${data.unit}`.trim();
+    byId('outMa').textContent=`${formatNumber(ma,3)} mA`;
+    byId('outSpan').textContent=`${formatNumber(span,data.digits)} ${data.unit}`.trim();
+    byId('outAmp').textContent=`${formatNumber(amplitude,data.digits)} ${data.unit}`.trim();
+    byId('outStatus').textContent=status;
+    setStatusBox(statusClass);
+    byId('pillRange').textContent=`Range ${direction}: ${formatNumber(data.lrv,data.digits)} a ${formatNumber(data.urv,data.digits)} ${data.unit}`.trim();
+    byId('pillTurn').textContent=rangeability===null?'Rangeabilidade: informe os limites físicos':`Rangeabilidade aprox.: ${formatNumber(rangeability,2)}:1`;
+    byId('formula').textContent=`PV = ${formatNumber(data.lrv,data.digits)} + ((mA − 4) ÷ 16) × (${formatNumber(data.urv,data.digits)} − ${formatNumber(data.lrv,data.digits)})`;
+    byId('technicalAlert').textContent=alerts.join(' ');
+    byId('technicalAlert').className=`technical-alert ${alerts.length===1 && alerts[0].startsWith('Faixa direta')?'status-ok':'status-warn'}`;
+    byId('tbl').innerHTML=tableRows.map((row)=>`<tr><td>${escapeHtml(row.label)}</td><td>${formatNumber(row.percent,2)}%</td><td>${formatNumber(row.ma,3)} mA</td><td>${formatNumber(row.engineering,data.digits)} ${escapeHtml(data.unit)}</td><td>${escapeHtml(row.observation)}</td></tr>`).join('');
+    buildMemory(data,result);
+
+    lastResult={data,result,tableRows};
+    byId('calcStatus').textContent=`Atualizado às ${new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'})}`;
+    updateActionState();
+    return true;
+  }
+
+  function updateActionState() {
+    const disabled=!lastResult;
+    byId('btnCopiar').disabled=disabled;
+    byId('btnRelatorioTopo').disabled=disabled;
+    byId('btnImprimirTopo').disabled=disabled;
+  }
+
+  function applyExample(mode,value,lrv,urv,unit,min='',max='') {
+    byId('modo').value=mode; byId('valor').value=value; byId('lrv').value=lrv; byId('urv').value=urv; byId('unid').value=unit; byId('minInst').value=min; byId('maxInst').value=max;
+    calculate();
+    byId('modo').focus({preventScroll:true});
+  }
+
+  function resultText() {
+    if (!lastResult) return '';
+    const {data,result}=lastResult;
+    return [
+      'Calculadora de LRV, URV e Span',
+      `LRV: ${formatPlain(data.lrv)} ${data.unit}`.trim(),
+      `URV: ${formatPlain(data.urv)} ${data.unit}`.trim(),
+      `Span: ${formatNumber(result.span,data.digits)} ${data.unit}`.trim(),
+      `Percentual: ${formatNumber(result.percent,data.digits)} %`,
+      `Valor de engenharia: ${formatNumber(result.engineering,data.digits)} ${data.unit}`.trim(),
+      `Sinal: ${formatNumber(result.ma,3)} mA`,
+      `Status: ${result.status}`,
+      `Observações: ${result.alerts.join(' ')}`
+    ].join('\n');
+  }
+
+  async function copyResult() {
+    if (!lastResult) return;
+    const text=resultText();
+    try {
+      if (navigator.clipboard && window.isSecureContext) await navigator.clipboard.writeText(text);
+      else {
+        const area=document.createElement('textarea'); area.value=text; area.style.position='fixed'; area.style.opacity='0'; document.body.appendChild(area); area.select();
+        if (!document.execCommand('copy')) throw new Error('Falha ao copiar'); area.remove();
+      }
+      byId('calcStatus').textContent='Resultado copiado';
+    } catch (error) { byId('calcStatus').textContent='Não foi possível copiar automaticamente'; }
+  }
+
+  function rowsHtml(items) { return items.map(([label,value])=>`<tr><th>${escapeHtml(label)}</th><td>${escapeHtml(value)}</td></tr>`).join(''); }
+
+  function documentParts() {
+    const {data,result,tableRows}=lastResult;
+    const unit=data.unit||'-';
+    const inputs=rowsHtml([
+      ['Origem do cálculo',modeLabel(data.mode)],['Valor informado',formatPlain(data.value)],['LRV',`${formatPlain(data.lrv)} ${unit}`],['URV',`${formatPlain(data.urv)} ${unit}`],
+      ['Limite físico inferior',data.minInstrument===null?'Não informado':`${formatPlain(data.minInstrument)} ${unit}`],['Limite físico superior',data.maxInstrument===null?'Não informado':`${formatPlain(data.maxInstrument)} ${unit}`]
+    ]);
+    const results=rowsHtml([
+      ['Percentual da faixa',`${formatNumber(result.percent,data.digits)} %`],['Valor de engenharia',`${formatNumber(result.engineering,data.digits)} ${unit}`],['Sinal equivalente',`${formatNumber(result.ma,3)} mA`],
+      ['Span configurado',`${formatNumber(result.span,data.digits)} ${unit}`],['Amplitude da faixa',`${formatNumber(result.amplitude,data.digits)} ${unit}`],['Sentido da faixa',result.direction],
+      ['Rangeabilidade aproximada',result.rangeability===null?'Não calculada':`${formatNumber(result.rangeability,2)}:1`],['Status',result.status],['Observações',result.alerts.join(' ')]
+    ]);
+    const table=tableRows.map((row)=>`<tr><td>${escapeHtml(row.label)}</td><td>${formatNumber(row.percent,2)}%</td><td>${formatNumber(row.ma,3)} mA</td><td>${formatNumber(row.engineering,data.digits)} ${escapeHtml(unit)}</td><td>${escapeHtml(row.observation)}</td></tr>`).join('');
+    return {inputs,results,table,memory:byId('memoryContent').innerHTML};
+  }
+
+  function preparePrintSheet() {
+    if (!lastResult) return;
+    const parts=documentParts();
+    byId('printMeta').textContent=`Gerado em ${new Date().toLocaleString('pt-BR')}`;
+    byId('printInputs').innerHTML=parts.inputs;
+    byId('printResults').innerHTML=parts.results;
+    byId('printTable').innerHTML=parts.table;
+    byId('printMemory').innerHTML=parts.memory;
+  }
+
+  function printPage() {
+    if (!lastResult && !calculate({focusError:true})) return;
+    preparePrintSheet();
+    window.print();
+  }
+
+  function generateReport() {
+    if (!lastResult && !calculate({focusError:true})) return;
+    const parts=documentParts();
+    const reportWindow=window.open('','_blank');
+    if (!reportWindow) { byId('calcStatus').textContent='Permita pop-ups para gerar o relatório'; return; }
+    try { reportWindow.opener=null; } catch (error) { /* sem ação */ }
+    const generated=new Date().toLocaleString('pt-BR');
+    const reportHtml=`<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Relatório técnico - LRV, URV e Span</title><style>
+      @page{size:A4;margin:14mm}*{box-sizing:border-box}body{font-family:Arial,sans-serif;color:#111;margin:0;line-height:1.45;font-size:10.5pt}h1{font-size:20pt;margin:0 0 4px}h2{font-size:13pt;margin:20px 0 8px;border-bottom:1px solid #777;padding-bottom:4px}.meta{color:#444;margin-bottom:16px}.actions{display:flex;gap:8px;margin-bottom:16px}.actions button{padding:8px 12px;border:1px solid #444;background:#fff;border-radius:6px;cursor:pointer}table{width:100%;border-collapse:collapse;margin:8px 0 12px}th,td{border:1px solid #aaa;padding:7px;text-align:left;vertical-align:top}th{background:#eee;width:36%}.wide th{width:auto}.memory-step{border:1px solid #bbb;padding:9px;margin:7px 0}.formula-line{font-family:Consolas,monospace;font-size:9pt;overflow-wrap:anywhere}.disclaimer{font-size:9pt;color:#444;margin-top:18px;border-top:1px solid #777;padding-top:8px}@media print{.actions{display:none}.memory-step,tr{break-inside:avoid}h2{break-after:avoid}}
+    </style></head><body><div class="actions"><button onclick="window.print()">Imprimir / Salvar em PDF</button><button onclick="window.close()">Fechar</button></div><h1>Relatório técnico — LRV, URV e Span</h1><div class="meta">Gerado em ${escapeHtml(generated)}</div><h2>Dados informados</h2><table>${parts.inputs}</table><h2>Resultados</h2><table>${parts.results}</table><h2>Tabela 4-20 mA da faixa</h2><table class="wide"><thead><tr><th>Ponto</th><th>%</th><th>mA</th><th>Valor de engenharia</th><th>Observação</th></tr></thead><tbody>${parts.table}</tbody></table><h2>Memória de cálculo</h2>${parts.memory}<p class="disclaimer">Documento orientativo para estudo, conferência e apoio técnico. Confirme a faixa configurada, os limites físicos do instrumento, a parametrização do cartão analógico, o sentido da escala e os resultados do teste de loop. Não substitui procedimento aprovado, calibração rastreável, documentação do fabricante ou validação por profissional habilitado.</p></body></html>`;
+    reportWindow.document.open(); reportWindow.document.write(reportHtml); reportWindow.document.close();
+    byId('calcStatus').textContent='Relatório gerado em nova aba';
+  }
+
+  watchedIds.forEach((id)=>{
+    byId(id).addEventListener('input',()=>calculate());
+    byId(id).addEventListener('change',()=>calculate());
+  });
+  byId('btnCalcular').addEventListener('click',()=>calculate({focusError:true}));
+  byId('btnCopiar').addEventListener('click',copyResult);
+  byId('btnImprimirTopo').addEventListener('click',printPage);
+  byId('btnRelatorioTopo').addEventListener('click',generateReport);
+  byId('btnExPressao').addEventListener('click',()=>applyExample('ma','12','0','10','bar','',''));
+  byId('btnExTemperatura').addEventListener('click',()=>applyExample('ma','16','-50','150','°C','-50','150'));
+  byId('btnExNivel').addEventListener('click',()=>applyExample('eng','2,5','0','5','m','',''));
+  byId('btnExReverso').addEventListener('click',()=>applyExample('ma','8','100','0','%','',''));
+  window.addEventListener('beforeprint',()=>{ originalTitle=document.title; document.title='Calculadora de LRV, URV e Span'; preparePrintSheet(); });
+  window.addEventListener('afterprint',()=>{ document.title=originalTitle; });
+
+  updateModeLabel();
+  calculate();
+})();
 </script>
 </body>
 </html>
