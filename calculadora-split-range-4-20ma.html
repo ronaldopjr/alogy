@@ -33,7 +33,44 @@
   {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"O que é split range em 4-20 mA?","acceptedAnswer":{"@type":"Answer","text":"Split range é uma estratégia em que um mesmo comando de controle é dividido entre dois ou mais elementos finais, como duas válvulas, cada um atuando em uma parte da faixa do sinal."}},{"@type":"Question","name":"12 mA é sempre o ponto de split?","acceptedAnswer":{"@type":"Answer","text":"Não necessariamente. Em uma divisão 50/50 de 4-20 mA, 12 mA representa 50% e costuma ser o ponto de transição. Porém a faixa pode ter sobreposição, zona morta ou divisão diferente."}},{"@type":"Question","name":"A ferramenta serve para válvula de aquecimento e resfriamento?","acceptedAnswer":{"@type":"Answer","text":"Sim, pode apoiar a análise de estratégias com válvula de aquecimento e resfriamento, válvulas pequena e grande, dosagem por baixa e alta vazão ou outras combinações."}},{"@type":"Question","name":"A calculadora substitui comissionamento da malha?","acceptedAnswer":{"@type":"Answer","text":"Não. Ela é orientativa. O comissionamento deve validar sentido de ação, falha segura, intertravamentos, posicionadores, CLP, supervisório e comportamento real do processo."}}]}
   </script>
   <style>
-    .split-diagram{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}.split-bar{background:rgba(0,107,177,.06);border:1px solid rgba(0,107,177,.16);border-radius:14px;padding:12px}.split-track{height:18px;border-radius:999px;background:#e5e7eb;overflow:hidden;margin-top:8px}.split-fill{height:100%;width:0%;background:#0b3a62;border-radius:999px;transition:width .2s ease}.small-muted{color:var(--muted);font-size:.92rem;line-height:1.55}.faq details{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:14px;padding:14px;margin-top:10px;box-shadow:0 6px 16px rgba(0,0,0,.04)}.faq summary{cursor:pointer;font-weight:900;color:#0b3a62}.faq p{margin:10px 0 0;color:var(--muted)}@media(max-width:900px){.split-diagram{grid-template-columns:1fr}.calc-actions .mini-btn{width:100%;justify-content:center}}@media print{header,.social-floating,.fab-wrap,.cta-bar,footer,.calc-actions,.tools-hero .btn,.no-print{display:none!important}body{background:#fff}.container{max-width:100%;padding:0}.calc-card,.tools-hero{box-shadow:none;border:1px solid #ddd}.calc-layout{display:block}.calc-card{margin:12px 0}.calc-table th{background:#eee!important;color:#111!important}}
+    .split-diagram{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+    .split-bar{background:rgba(0,107,177,.06);border:1px solid rgba(0,107,177,.16);border-radius:14px;padding:12px}
+    .split-track{height:18px;border-radius:999px;background:#e5e7eb;overflow:hidden;margin-top:8px}
+    .split-fill{height:100%;width:0%;background:#0b3a62;border-radius:999px;transition:width .2s ease}
+    .small-muted{color:var(--muted);font-size:.92rem;line-height:1.55}
+    .input-hint{margin:8px 0 0;color:var(--muted);font-size:.88rem}
+    .validation-summary{display:none;margin-top:12px;padding:12px 14px;border:1px solid #b91c1c;border-radius:12px;background:#fff1f2;color:#7f1d1d;line-height:1.5}
+    .validation-summary.show{display:block}
+    .validation-summary strong{display:block;margin-bottom:4px}
+    .field input[aria-invalid="true"],.field select[aria-invalid="true"]{border-color:#b91c1c!important;box-shadow:0 0 0 3px rgba(185,28,28,.12)!important}
+    .memory-list{display:grid;gap:10px;margin-top:12px}
+    .memory-step{padding:12px;border:1px solid rgba(0,75,128,.16);border-radius:12px;background:rgba(0,107,177,.04);overflow-wrap:anywhere}
+    .memory-step strong{color:#0b3a62}
+    .formula-line{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:.92rem;line-height:1.55}
+    .report-status{margin-left:auto;color:var(--muted);font-size:.88rem;align-self:center}
+    .mini-btn:disabled,.btn:disabled{opacity:.55;cursor:not-allowed;filter:grayscale(.3)}
+    .faq details{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:14px;padding:14px;margin-top:10px;box-shadow:0 6px 16px rgba(0,0,0,.04)}
+    .faq summary{cursor:pointer;font-weight:900;color:#0b3a62}
+    .faq p{margin:10px 0 0;color:var(--muted)}
+    @media(max-width:900px){.split-diagram{grid-template-columns:1fr}.calc-actions .mini-btn{width:100%;justify-content:center}.report-status{width:100%;margin-left:0}}
+    @media print{
+      @page{size:A4;margin:14mm}
+      header,.social-floating,.fab-wrap,.cta-bar,footer,.calc-actions,.tools-hero .btn,.no-print,.faq,section[aria-label="Aviso de uso"],section[aria-label="Orientação técnica complementar"]{display:none!important}
+      html,body{background:#fff!important;color:#111!important}
+      body{font-family:Arial,sans-serif;font-size:10.5pt}
+      main.container{max-width:100%!important;padding:0!important;margin:0!important}
+      .tools-hero{box-shadow:none!important;border:0!important;padding:0 0 10px!important;margin:0 0 10px!important}
+      .tools-hero h1{color:#111!important;font-size:20pt!important}
+      .calc-layout{display:block!important}
+      .calc-card{box-shadow:none!important;border:1px solid #bbb!important;margin:0 0 10px!important;padding:12px!important;break-inside:avoid}
+      .calc-table-wrap{overflow:visible!important}
+      .calc-table{font-size:9pt!important;width:100%!important}
+      .calc-table th{background:#eee!important;color:#111!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+      .split-fill{background:#555!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+      input,select{border:0!important;background:transparent!important;padding:0!important;color:#111!important;appearance:none!important}
+      .validation-summary{display:none!important}
+      a{color:#111!important;text-decoration:none!important}
+    }
   </style>
   <!-- Google AdSense - verificação de propriedade -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5586837114309500"
@@ -52,7 +89,8 @@
   <main class="container" style="margin-top:18px">
     <div style="margin-bottom:14px;display:flex;gap:10px;flex-wrap:wrap" class="no-print">
       <a class="floating-back-tools no-print" href="ferramentas.html"><i class="fas fa-arrow-left"></i> Voltar para Ferramentas</a>
-      <button class="btn print" type="button" onclick="window.print()"><i class="fas fa-print"></i> Imprimir</button>
+      <button class="btn print" id="btnImprimirTopo" type="button"><i class="fas fa-print"></i> Imprimir</button>
+      <button class="btn secondary" id="btnRelatorioTopo" type="button"><i class="fas fa-file-lines"></i> Gerar relatório</button>
       <a class="btn secondary" href="calculadora-4-20ma.html"><i class="fas fa-wave-square"></i> 4-20 mA</a>
       <a class="btn secondary" href="checklist-teste-de-loop.html"><i class="fas fa-list-check"></i> Teste de loop</a>
     </div>
@@ -73,29 +111,38 @@
         <p>Informe o comando global da malha e a escala de engenharia. A faixa padrão 4-20 mA pode ser ajustada se necessário.</p>
         <div class="calc-grid">
           <div class="field"><label for="modo">Calcular a partir de</label><select id="modo"><option value="ma">Sinal global em mA</option><option value="pct">Percentual global</option><option value="eng">Valor de engenharia</option></select></div>
-          <div class="field"><label for="valor" id="valorLabel">Sinal global medido (mA)</label><input id="valor" type="text" inputmode="decimal" step="any" value="12"></div>
-          <div class="field"><label for="sig0">Sinal em 0% (mA)</label><input id="sig0" type="text" inputmode="decimal" step="any" value="4"></div>
-          <div class="field"><label for="sig100">Sinal em 100% (mA)</label><input id="sig100" type="text" inputmode="decimal" step="any" value="20"></div>
-          <div class="field"><label for="lrv">LRV / valor em 0%</label><input id="lrv" type="text" inputmode="decimal" step="any" value="0"></div>
-          <div class="field"><label for="urv">URV / valor em 100%</label><input id="urv" type="text" inputmode="decimal" step="any" value="100"></div>
-          <div class="field"><label for="unid">Unidade de engenharia</label><input id="unid" type="text" value="% demanda"></div>
+          <div class="field"><label for="valor" id="valorLabel">Sinal global medido (mA)</label><input id="valor" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" step="any" value="12"></div>
+          <div class="field"><label for="sig0">Sinal em 0% (mA)</label><input id="sig0" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" step="any" value="4"></div>
+          <div class="field"><label for="sig100">Sinal em 100% (mA)</label><input id="sig100" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" step="any" value="20"></div>
+          <div class="field"><label for="lrv">LRV / valor em 0%</label><input id="lrv" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" step="any" value="0"></div>
+          <div class="field"><label for="urv">URV / valor em 100%</label><input id="urv" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" step="any" value="100"></div>
+          <div class="field"><label for="unid">Unidade de engenharia</label><input id="unid" type="text" value="% demanda" maxlength="24"></div>
           <div class="field"><label for="casas">Casas decimais</label><select id="casas"><option value="1">1 casa</option><option value="2" selected>2 casas</option><option value="3">3 casas</option></select></div>
         </div>
-        <div class="calc-actions"><button class="mini-btn dark" type="button" onclick="copiarResultado()"><i class="fas fa-copy"></i> Copiar resultado</button><button class="mini-btn" type="button" onclick="exemploPadrao()">A 4-12 / B 12-20</button><button class="mini-btn" type="button" onclick="exemploSobreposicao()">Sobreposição 45-55%</button><button class="mini-btn" type="button" onclick="exemploZonaMorta()">Zona morta 48-52%</button></div>
+        <p class="input-hint">Aceita decimal com vírgula ou ponto, por exemplo: 12,5 ou 12.5.</p>
+        <div class="calc-actions">
+          <button class="mini-btn dark" id="btnCalcular" type="button"><i class="fas fa-calculator"></i> Calcular</button>
+          <button class="mini-btn dark" id="btnCopiar" type="button"><i class="fas fa-copy"></i> Copiar resultado</button>
+          <button class="mini-btn" id="btnExemploPadrao" type="button">A 4-12 / B 12-20</button>
+          <button class="mini-btn" id="btnExemploSobreposicao" type="button">Sobreposição 45-55%</button>
+          <button class="mini-btn" id="btnExemploZonaMorta" type="button">Zona morta 48-52%</button>
+          <span class="report-status" id="calcStatus" aria-live="polite"></span>
+        </div>
+        <div class="validation-summary" id="validationSummary" role="alert" aria-live="assertive" tabindex="-1"></div>
       </div>
 
       <div class="calc-card">
         <h2><i class="fas fa-code-branch"></i> Faixas de atuação</h2>
         <p>Configure em qual parte do comando global cada elemento começa e termina sua atuação.</p>
         <div class="calc-grid">
-          <div class="field"><label for="aNome">Nome válvula A</label><input id="aNome" type="text" value="Válvula A"></div>
+          <div class="field"><label for="aNome">Nome válvula A</label><input id="aNome" type="text" value="Válvula A" maxlength="40"></div>
           <div class="field"><label for="aDir">Ação da válvula A</label><select id="aDir"><option value="direta">Direta: abre ao subir</option><option value="reversa">Reversa: fecha ao subir</option></select></div>
-          <div class="field"><label for="aIni">A começa em (%)</label><input id="aIni" type="text" inputmode="decimal" step="any" value="0"></div>
-          <div class="field"><label for="aFim">A termina em (%)</label><input id="aFim" type="text" inputmode="decimal" step="any" value="50"></div>
-          <div class="field"><label for="bNome">Nome válvula B</label><input id="bNome" type="text" value="Válvula B"></div>
+          <div class="field"><label for="aIni">A começa em (%)</label><input id="aIni" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" step="any" value="0"></div>
+          <div class="field"><label for="aFim">A termina em (%)</label><input id="aFim" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" step="any" value="50"></div>
+          <div class="field"><label for="bNome">Nome válvula B</label><input id="bNome" type="text" value="Válvula B" maxlength="40"></div>
           <div class="field"><label for="bDir">Ação da válvula B</label><select id="bDir"><option value="direta">Direta: abre ao subir</option><option value="reversa">Reversa: fecha ao subir</option></select></div>
-          <div class="field"><label for="bIni">B começa em (%)</label><input id="bIni" type="text" inputmode="decimal" step="any" value="50"></div>
-          <div class="field"><label for="bFim">B termina em (%)</label><input id="bFim" type="text" inputmode="decimal" step="any" value="100"></div>
+          <div class="field"><label for="bIni">B começa em (%)</label><input id="bIni" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" step="any" value="50"></div>
+          <div class="field"><label for="bFim">B termina em (%)</label><input id="bFim" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" step="any" value="100"></div>
         </div>
       </div>
     </section>
@@ -103,7 +150,7 @@
     <section class="calc-layout">
       <div class="calc-card">
         <h2><i class="fas fa-square-poll-vertical"></i> Resultado do comando</h2>
-        <div class="calc-result" style="grid-template-columns:1fr 1fr">
+        <div class="calc-result" style="grid-template-columns:1fr 1fr" aria-live="polite">
           <div class="result-box"><span>Comando global</span><strong id="outPct">-</strong></div>
           <div class="result-box"><span>Sinal global</span><strong id="outMa">-</strong></div>
           <div class="result-box"><span>Valor de engenharia</span><strong id="outEng">-</strong></div>
@@ -113,12 +160,12 @@
           <div class="split-bar"><strong id="aTitulo">Válvula A</strong><div class="split-track"><div class="split-fill" id="aFill"></div></div><p class="small-muted" id="aInfo">-</p></div>
           <div class="split-bar"><strong id="bTitulo">Válvula B</strong><div class="split-track"><div class="split-fill" id="bFill"></div></div><p class="small-muted" id="bInfo">-</p></div>
         </div>
-        <div class="calc-note" id="nota">Em uma divisão 50/50, a válvula A atua de 4 a 12 mA e a válvula B atua de 12 a 20 mA.</div>
+        <div class="calc-note" id="nota" aria-live="polite">Em uma divisão 50/50, a válvula A atua de 4 a 12 mA e a válvula B atua de 12 a 20 mA.</div>
       </div>
 
       <div class="calc-card">
         <h2><i class="fas fa-screwdriver-wrench"></i> Saídas dos elementos finais</h2>
-        <div class="calc-result" style="grid-template-columns:1fr 1fr">
+        <div class="calc-result" style="grid-template-columns:1fr 1fr" aria-live="polite">
           <div class="result-box"><span id="aLabel">Abertura A</span><strong id="outA">-</strong></div>
           <div class="result-box"><span>Equiv. bancada A</span><strong id="outAMa">-</strong></div>
           <div class="result-box"><span id="bLabel">Abertura B</span><strong id="outB">-</strong></div>
@@ -129,8 +176,16 @@
     </section>
 
     <section class="calc-layout">
-      <div class="calc-card"><h2><i class="fas fa-table"></i> Tabela de teste de loop</h2><p class="small-muted">Use a tabela para conferir pontos de comando global e resposta esperada de cada válvula.</p><div class="calc-table-wrap"><table class="calc-table"><thead><tr><th>Comando</th><th>Sinal global</th><th>Valor</th><th>Válvula A</th><th>Válvula B</th></tr></thead><tbody id="tbl"></tbody></table></div></div>
+      <div class="calc-card"><h2><i class="fas fa-table"></i> Tabela de teste de loop</h2><p class="small-muted">Use a tabela para conferir pontos de comando global e resposta esperada de cada válvula.</p><div class="calc-table-wrap"><table class="calc-table"><thead><tr><th>Comando</th><th>Sinal global</th><th>Valor</th><th id="thValveA">Válvula A</th><th id="thValveB">Válvula B</th></tr></thead><tbody id="tbl"></tbody></table></div></div>
       <div class="calc-card"><h2><i class="fas fa-circle-info"></i> Como interpretar</h2><p><strong>Split range sem sobreposição:</strong> uma válvula atua até determinado ponto e a outra começa depois dele, como 4-12 mA e 12-20 mA.</p><p><strong>Sobreposição:</strong> as duas válvulas atuam juntas em uma pequena região para suavizar transição.</p><p><strong>Zona morta:</strong> existe intervalo em que nenhuma válvula altera abertura. Pode ser intencional ou consequência de ajuste incorreto.</p><div class="calc-note"><strong>Atenção:</strong> antes de aplicar no processo, confirme o sentido de ação no CLP, no posicionador e na falha segura de cada válvula.</div></div>
+    </section>
+
+    <section class="calc-card" aria-label="Memória de cálculo">
+      <h2><i class="fas fa-square-root-variable"></i> Memória de cálculo</h2>
+      <p class="small-muted">As expressões abaixo são atualizadas com os valores informados. Percentuais locais são limitados entre 0% e 100%.</p>
+      <div class="memory-list" id="memoryContent" aria-live="polite">
+        <div class="memory-step">Preencha os dados para visualizar as etapas do cálculo.</div>
+      </div>
     </section>
 
     <section class="calc-card faq"><h2><i class="fas fa-circle-question"></i> Perguntas frequentes</h2>
@@ -175,77 +230,429 @@
   </main>
   <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
 <script>
-const $=id=>document.getElementById(id);
-function parseNum(v){
-  const raw=String(v??'').trim();
-  if(raw==='') return NaN;
-  const norm=raw.includes(',')?raw.replace(/\./g,'').replace(',','.') : raw;
-  const n=Number(norm);
-  return Number.isFinite(n)?n:NaN;
-}
-function val(id){return parseNum($(id).value)}
-function fmt(n,d=2){ if(!Number.isFinite(n)) return '-'; return Number(n).toLocaleString('pt-BR',{minimumFractionDigits:d,maximumFractionDigits:d}); }
-function clamp(n,min,max){ return Math.max(min,Math.min(max,n)); }
-function localPct(globalPct, ini, fim, dir){
-  const span=fim-ini;
-  if(Math.abs(span)<1e-12) return NaN;
-  let p=(globalPct-ini)/span*100;
-  p=clamp(p,0,100);
-  return dir==='reversa' ? 100-p : p;
-}
-function status(p){ if(!Number.isFinite(p)) return 'Erro'; if(p<=0.01) return 'Fechada'; if(p>=99.99) return 'Aberta'; return 'Modulando'; }
-function pctToMa(p,s0,s100){return s0+(p/100)*(s100-s0);} 
-function calc(){
-  const modo=$('modo').value, valor=val('valor'), sig0=val('sig0'), sig100=val('sig100'), lrv=val('lrv'), urv=val('urv'), unid=$('unid').value||'', d=Number($('casas').value);
-  const aNome=$('aNome').value||'Válvula A', bNome=$('bNome').value||'Válvula B';
-  const aIni=val('aIni'), aFim=val('aFim'), bIni=val('bIni'), bFim=val('bFim'), aDir=$('aDir').value, bDir=$('bDir').value;
-  $('valorLabel').textContent = modo==='ma'?'Sinal global medido (mA)':modo==='pct'?'Comando global (%)':'Valor de engenharia';
-  const spanSig=sig100-sig0, spanEng=urv-lrv;
-  const invalid=[valor,sig0,sig100,lrv,urv,aIni,aFim,bIni,bFim].some(v=>!Number.isFinite(v)) || Math.abs(spanSig)<1e-12 || Math.abs(spanEng)<1e-12 || Math.abs(aFim-aIni)<1e-12 || Math.abs(bFim-bIni)<1e-12;
-  if(invalid){
-    $('outPct').textContent='-';$('outMa').textContent='-';$('outEng').textContent='-';$('outCond').textContent='Verifique spans e dados';
-    $('aLabel').textContent=aNome;$('bLabel').textContent=bNome;$('aTitulo').textContent=aNome;$('bTitulo').textContent=bNome;
-    $('outA').textContent='-';$('outB').textContent='-';$('outAMa').textContent='-';$('outBMa').textContent='-';$('aFill').style.width='0%';$('bFill').style.width='0%';
-    $('aInfo').textContent='Revise início e fim de atuação.';$('bInfo').textContent='Revise início e fim de atuação.';$('nota').textContent='Há dados inválidos ou spans iguais a zero. Corrija antes de usar o resultado.';$('tbl').innerHTML='';
-    return;
+(() => {
+  'use strict';
+
+  const byId = (id) => document.getElementById(id);
+  const numericIds = ['valor','sig0','sig100','lrv','urv','aIni','aFim','bIni','bFim'];
+  const watchedIds = [...numericIds,'modo','unid','casas','aNome','aDir','bNome','bDir'];
+  let lastResult = null;
+  let originalTitle = document.title;
+
+  function parseNumber(value) {
+    let raw = String(value ?? '').trim().replace(/\s+/g, '');
+    if (!raw) return NaN;
+    if (!/^[+-]?[\d.,]+$/.test(raw)) return NaN;
+
+    const commas = (raw.match(/,/g) || []).length;
+    const dots = (raw.match(/\./g) || []).length;
+
+    if (commas && dots) {
+      const decimalSeparator = raw.lastIndexOf(',') > raw.lastIndexOf('.') ? ',' : '.';
+      const thousandsSeparator = decimalSeparator === ',' ? '.' : ',';
+      raw = raw.split(thousandsSeparator).join('');
+      if ((raw.match(new RegExp('\\' + decimalSeparator, 'g')) || []).length !== 1) return NaN;
+      raw = raw.replace(decimalSeparator, '.');
+    } else if (commas) {
+      if (commas !== 1) return NaN;
+      raw = raw.replace(',', '.');
+    } else if (dots > 1) {
+      return NaN;
+    }
+
+    const number = Number(raw);
+    return Number.isFinite(number) ? number : NaN;
   }
-  let pct;
-  if(modo==='ma') pct=(valor-sig0)/spanSig*100;
-  else if(modo==='pct') pct=valor;
-  else pct=(valor-lrv)/spanEng*100;
-  const ma=pctToMa(pct,sig0,sig100), eng=lrv+(pct/100)*spanEng;
-  const ap=localPct(pct,aIni,aFim,aDir), bp=localPct(pct,bIni,bFim,bDir);
-  const ama=4+(ap/100)*16, bma=4+(bp/100)*16;
-  $('outPct').textContent=fmt(pct,d)+' %'; $('outMa').textContent=fmt(ma,d)+' mA'; $('outEng').textContent=fmt(eng,d)+' '+unid;
-  let cond='Dentro da faixa'; if(pct<0||pct>100) cond='Fora de 0-100%';
-  $('outCond').textContent=cond;
-  $('aLabel').textContent=aNome; $('bLabel').textContent=bNome; $('aTitulo').textContent=aNome; $('bTitulo').textContent=bNome;
-  $('outA').textContent=fmt(ap,d)+' %'; $('outB').textContent=fmt(bp,d)+' %'; $('outAMa').textContent=fmt(ama,d)+' mA'; $('outBMa').textContent=fmt(bma,d)+' mA';
-  $('aFill').style.width=clamp(ap,0,100)+'%'; $('bFill').style.width=clamp(bp,0,100)+'%';
-  const aMi=pctToMa(aIni,sig0,sig100), aMf=pctToMa(aFim,sig0,sig100), bMi=pctToMa(bIni,sig0,sig100), bMf=pctToMa(bFim,sig0,sig100);
-  $('aInfo').textContent=`${status(ap)} • faixa global ${fmt(aIni,1)}% a ${fmt(aFim,1)}% (${fmt(aMi,d)} a ${fmt(aMf,d)} mA)`;
-  $('bInfo').textContent=`${status(bp)} • faixa global ${fmt(bIni,1)}% a ${fmt(bFim,1)}% (${fmt(bMi,d)} a ${fmt(bMf,d)} mA)`;
-  const overlap=Math.min(aFim,bFim)-Math.max(aIni,bIni);
-  let msg='Sem sobreposição evidente entre as faixas configuradas.';
-  if(overlap>0) msg=`Existe sobreposição de ${fmt(overlap,1)}% entre as faixas. As duas válvulas podem modular juntas nessa região.`;
-  if(aFim < bIni || bFim < aIni){ const gap=Math.max(aIni,bIni)-Math.min(aFim,bFim); if(gap>0) msg=`Existe zona morta de ${fmt(gap,1)}% entre as faixas. Confira se isso é intencional.`; }
-  $('nota').textContent=msg;
-  const pts=[0,25,50,75,100,aIni,aFim,bIni,bFim,pct].filter(x=>Number.isFinite(x));
-  const uniq=[...new Set(pts.map(x=>Math.round(x*100)/100))].sort((x,y)=>x-y);
-  $('tbl').innerHTML=uniq.map(p=>{const _ma=pctToMa(p,sig0,sig100), _eng=lrv+(p/100)*spanEng, _ap=localPct(p,aIni,aFim,aDir), _bp=localPct(p,bIni,bFim,bDir);return `<tr><td>${fmt(p,1)}%</td><td>${fmt(_ma,d)} mA</td><td>${fmt(_eng,d)} ${unid}</td><td>${fmt(_ap,d)}%</td><td>${fmt(_bp,d)}%</td></tr>`;}).join('');
-}
-function exemploPadrao(){ $('modo').value='ma'; $('valor').value=12; $('sig0').value=4; $('sig100').value=20; $('lrv').value=0; $('urv').value=100; $('unid').value='% demanda'; $('aIni').value=0; $('aFim').value=50; $('bIni').value=50; $('bFim').value=100; $('aDir').value='direta'; $('bDir').value='direta'; calc(); }
-function exemploSobreposicao(){ exemploPadrao(); $('valor').value=12; $('aFim').value=55; $('bIni').value=45; calc(); }
-function exemploZonaMorta(){ exemploPadrao(); $('valor').value=12; $('aFim').value=48; $('bIni').value=52; calc(); }
-function copiarResultado(){ const texto=`Calculadora Split Range 4-20 mA - ALOGY
-Comando: ${$('outPct').textContent}
-Sinal global: ${$('outMa').textContent}
-Valor: ${$('outEng').textContent}
-${$('aLabel').textContent}: ${$('outA').textContent}
-${$('bLabel').textContent}: ${$('outB').textContent}
-Observação: ${$('nota').textContent}`; navigator.clipboard?.writeText(texto).then(()=>alert('Resultado copiado.')); }
-document.querySelectorAll('input,select').forEach(el=>el.addEventListener('input',calc));
-calc();
+
+  function readNumber(id) {
+    return parseNumber(byId(id).value);
+  }
+
+  function formatNumber(number, digits = 2) {
+    if (!Number.isFinite(number)) return '-';
+    return Number(number).toLocaleString('pt-BR', {
+      minimumFractionDigits: digits,
+      maximumFractionDigits: digits
+    });
+  }
+
+  function formatPlain(number, digits = 4) {
+    if (!Number.isFinite(number)) return '-';
+    return Number(number).toLocaleString('pt-BR', {
+      maximumFractionDigits: digits
+    });
+  }
+
+  function clamp(number, minimum, maximum) {
+    return Math.max(minimum, Math.min(maximum, number));
+  }
+
+  function localPercent(globalPercent, start, end, direction) {
+    const linear = clamp(((globalPercent - start) / (end - start)) * 100, 0, 100);
+    return direction === 'reversa' ? 100 - linear : linear;
+  }
+
+  function valveStatus(percent) {
+    if (!Number.isFinite(percent)) return 'Indefinida';
+    if (percent <= 0.01) return 'Fechada';
+    if (percent >= 99.99) return 'Aberta';
+    return 'Modulando';
+  }
+
+  function percentToSignal(percent, signalAtZero, signalAtHundred) {
+    return signalAtZero + (percent / 100) * (signalAtHundred - signalAtZero);
+  }
+
+  function escapeHtml(value) {
+    return String(value ?? '').replace(/[&<>'"]/g, (character) => ({
+      '&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'
+    })[character]);
+  }
+
+  function clearFieldErrors() {
+    numericIds.forEach((id) => byId(id).removeAttribute('aria-invalid'));
+  }
+
+  function showErrors(errors) {
+    const summary = byId('validationSummary');
+    clearFieldErrors();
+    if (!errors.length) {
+      summary.classList.remove('show');
+      summary.innerHTML = '';
+      return;
+    }
+    errors.forEach((error) => {
+      if (error.id && byId(error.id)) byId(error.id).setAttribute('aria-invalid', 'true');
+    });
+    summary.innerHTML = '<strong>Revise os dados informados:</strong><ul>' +
+      errors.map((error) => `<li>${escapeHtml(error.message)}</li>`).join('') + '</ul>';
+    summary.classList.add('show');
+  }
+
+  function collectInputs() {
+    return {
+      mode: byId('modo').value,
+      value: readNumber('valor'),
+      signalZero: readNumber('sig0'),
+      signalHundred: readNumber('sig100'),
+      lrv: readNumber('lrv'),
+      urv: readNumber('urv'),
+      unit: byId('unid').value.trim(),
+      digits: Number(byId('casas').value),
+      valveA: {
+        name: byId('aNome').value.trim() || 'Válvula A',
+        direction: byId('aDir').value,
+        start: readNumber('aIni'),
+        end: readNumber('aFim')
+      },
+      valveB: {
+        name: byId('bNome').value.trim() || 'Válvula B',
+        direction: byId('bDir').value,
+        start: readNumber('bIni'),
+        end: readNumber('bFim')
+      }
+    };
+  }
+
+  function validateInputs(data) {
+    const errors = [];
+    const labels = {
+      valor: byId('valorLabel').textContent,
+      sig0: 'Sinal em 0%', sig100: 'Sinal em 100%', lrv: 'LRV', urv: 'URV',
+      aIni: 'Início da válvula A', aFim: 'Fim da válvula A',
+      bIni: 'Início da válvula B', bFim: 'Fim da válvula B'
+    };
+    const values = {
+      valor:data.value, sig0:data.signalZero, sig100:data.signalHundred,
+      lrv:data.lrv, urv:data.urv,
+      aIni:data.valveA.start, aFim:data.valveA.end,
+      bIni:data.valveB.start, bFim:data.valveB.end
+    };
+
+    Object.entries(values).forEach(([id, value]) => {
+      if (!Number.isFinite(value)) errors.push({id, message:`${labels[id]} deve ser um número válido.`});
+    });
+    if (errors.length) return errors;
+
+    if (Math.abs(data.signalHundred - data.signalZero) < 1e-12) {
+      errors.push({id:'sig100', message:'Os sinais de 0% e 100% não podem ser iguais.'});
+    }
+    if (Math.abs(data.urv - data.lrv) < 1e-12) {
+      errors.push({id:'urv', message:'LRV e URV não podem ser iguais.'});
+    }
+    [['aIni','aFim',data.valveA],['bIni','bFim',data.valveB]].forEach(([startId,endId,valve]) => {
+      if (valve.start < 0 || valve.start > 100) errors.push({id:startId, message:`O início de ${valve.name} deve ficar entre 0% e 100%.`});
+      if (valve.end < 0 || valve.end > 100) errors.push({id:endId, message:`O fim de ${valve.name} deve ficar entre 0% e 100%.`});
+      if (valve.end <= valve.start) errors.push({id:endId, message:`O fim de ${valve.name} deve ser maior que o início.`});
+    });
+    return errors;
+  }
+
+  function clearResults(message = 'Revise os dados informados.') {
+    ['outPct','outMa','outEng','outA','outAMa','outB','outBMa'].forEach((id) => { byId(id).textContent = '-'; });
+    byId('outCond').textContent = 'Dados inválidos';
+    byId('aFill').style.width = '0%';
+    byId('bFill').style.width = '0%';
+    byId('aInfo').textContent = '-';
+    byId('bInfo').textContent = '-';
+    byId('nota').textContent = message;
+    byId('tbl').innerHTML = '';
+    byId('memoryContent').innerHTML = '<div class="memory-step">Corrija os campos destacados para visualizar a memória de cálculo.</div>';
+    byId('calcStatus').textContent = 'Cálculo não realizado';
+    lastResult = null;
+    updateActionState();
+  }
+
+  function updateActionState() {
+    const disabled = !lastResult;
+    byId('btnCopiar').disabled = disabled;
+    byId('btnRelatorioTopo').disabled = disabled;
+  }
+
+  function modeLabel(mode) {
+    if (mode === 'ma') return 'Sinal global medido (mA)';
+    if (mode === 'pct') return 'Comando global (%)';
+    return 'Valor de engenharia';
+  }
+
+  function updateModeLabel() {
+    byId('valorLabel').textContent = modeLabel(byId('modo').value);
+  }
+
+  function buildMemory(data, result) {
+    const d = data.digits;
+    let conversion;
+    if (data.mode === 'ma') {
+      conversion = `Comando global = ((${formatPlain(data.value)} − ${formatPlain(data.signalZero)}) ÷ (${formatPlain(data.signalHundred)} − ${formatPlain(data.signalZero)})) × 100 = ${formatNumber(result.percent,d)}%`;
+    } else if (data.mode === 'pct') {
+      conversion = `Comando global informado diretamente = ${formatNumber(result.percent,d)}%`;
+    } else {
+      conversion = `Comando global = ((${formatPlain(data.value)} − ${formatPlain(data.lrv)}) ÷ (${formatPlain(data.urv)} − ${formatPlain(data.lrv)})) × 100 = ${formatNumber(result.percent,d)}%`;
+    }
+    const directionA = data.valveA.direction === 'reversa' ? '100 − percentual linear' : 'percentual linear';
+    const directionB = data.valveB.direction === 'reversa' ? '100 − percentual linear' : 'percentual linear';
+    byId('memoryContent').innerHTML = `
+      <div class="memory-step"><strong>1. Comando global</strong><div class="formula-line">${escapeHtml(conversion)}</div></div>
+      <div class="memory-step"><strong>2. Sinal global equivalente</strong><div class="formula-line">I = ${formatPlain(data.signalZero)} + (${formatNumber(result.percent,d)} ÷ 100) × (${formatPlain(data.signalHundred)} − ${formatPlain(data.signalZero)}) = ${formatNumber(result.signal,d)} mA</div></div>
+      <div class="memory-step"><strong>3. Valor de engenharia</strong><div class="formula-line">PV = ${formatPlain(data.lrv)} + (${formatNumber(result.percent,d)} ÷ 100) × (${formatPlain(data.urv)} − ${formatPlain(data.lrv)}) = ${formatNumber(result.engineering,d)} ${escapeHtml(data.unit)}</div></div>
+      <div class="memory-step"><strong>4. ${escapeHtml(data.valveA.name)}</strong><div class="formula-line">Abertura = limitar((comando − ${formatPlain(data.valveA.start)}) ÷ (${formatPlain(data.valveA.end)} − ${formatPlain(data.valveA.start)}) × 100) e aplicar ação ${escapeHtml(data.valveA.direction)} (${directionA}) = ${formatNumber(result.valveAPercent,d)}%</div></div>
+      <div class="memory-step"><strong>5. ${escapeHtml(data.valveB.name)}</strong><div class="formula-line">Abertura = limitar((comando − ${formatPlain(data.valveB.start)}) ÷ (${formatPlain(data.valveB.end)} − ${formatPlain(data.valveB.start)}) × 100) e aplicar ação ${escapeHtml(data.valveB.direction)} (${directionB}) = ${formatNumber(result.valveBPercent,d)}%</div></div>`;
+  }
+
+  function calculate(options = {}) {
+    updateModeLabel();
+    const data = collectInputs();
+    const errors = validateInputs(data);
+    showErrors(errors);
+    if (errors.length) {
+      clearResults('Há dados inválidos. Corrija os campos destacados antes de utilizar o resultado.');
+      if (options.focusError) {
+        const target = byId(errors[0].id) || byId('validationSummary');
+        target.focus();
+      }
+      return false;
+    }
+
+    const signalSpan = data.signalHundred - data.signalZero;
+    const engineeringSpan = data.urv - data.lrv;
+    let percent;
+    if (data.mode === 'ma') percent = ((data.value - data.signalZero) / signalSpan) * 100;
+    else if (data.mode === 'pct') percent = data.value;
+    else percent = ((data.value - data.lrv) / engineeringSpan) * 100;
+
+    const signal = percentToSignal(percent, data.signalZero, data.signalHundred);
+    const engineering = data.lrv + (percent / 100) * engineeringSpan;
+    const valveAPercent = localPercent(percent, data.valveA.start, data.valveA.end, data.valveA.direction);
+    const valveBPercent = localPercent(percent, data.valveB.start, data.valveB.end, data.valveB.direction);
+    const valveASignal = 4 + (valveAPercent / 100) * 16;
+    const valveBSignal = 4 + (valveBPercent / 100) * 16;
+
+    const overlap = Math.min(data.valveA.end, data.valveB.end) - Math.max(data.valveA.start, data.valveB.start);
+    const hasGap = data.valveA.end < data.valveB.start || data.valveB.end < data.valveA.start;
+    const gap = hasGap ? Math.max(data.valveA.start, data.valveB.start) - Math.min(data.valveA.end, data.valveB.end) : 0;
+    let observation = 'As faixas se encontram sem sobreposição nem zona morta.';
+    if (overlap > 0) observation = `Existe sobreposição de ${formatNumber(overlap,1)}% entre as faixas. As duas válvulas podem modular juntas nessa região.`;
+    else if (gap > 0) observation = `Existe zona morta de ${formatNumber(gap,1)}% entre as faixas. Confira se isso é intencional.`;
+
+    const condition = percent < 0 || percent > 100 ? 'Fora de 0–100%' : 'Dentro da faixa';
+    const result = {
+      percent, signal, engineering, valveAPercent, valveBPercent,
+      valveASignal, valveBSignal, overlap, gap, observation, condition
+    };
+
+    byId('outPct').textContent = `${formatNumber(percent,data.digits)} %`;
+    byId('outMa').textContent = `${formatNumber(signal,data.digits)} mA`;
+    byId('outEng').textContent = `${formatNumber(engineering,data.digits)} ${data.unit}`.trim();
+    byId('outCond').textContent = condition;
+    byId('aLabel').textContent = `Abertura ${data.valveA.name}`;
+    byId('bLabel').textContent = `Abertura ${data.valveB.name}`;
+    byId('aTitulo').textContent = data.valveA.name;
+    byId('bTitulo').textContent = data.valveB.name;
+    byId('thValveA').textContent = data.valveA.name;
+    byId('thValveB').textContent = data.valveB.name;
+    byId('outA').textContent = `${formatNumber(valveAPercent,data.digits)} %`;
+    byId('outB').textContent = `${formatNumber(valveBPercent,data.digits)} %`;
+    byId('outAMa').textContent = `${formatNumber(valveASignal,data.digits)} mA`;
+    byId('outBMa').textContent = `${formatNumber(valveBSignal,data.digits)} mA`;
+    byId('aFill').style.width = `${clamp(valveAPercent,0,100)}%`;
+    byId('bFill').style.width = `${clamp(valveBPercent,0,100)}%`;
+
+    const valveAStartSignal = percentToSignal(data.valveA.start,data.signalZero,data.signalHundred);
+    const valveAEndSignal = percentToSignal(data.valveA.end,data.signalZero,data.signalHundred);
+    const valveBStartSignal = percentToSignal(data.valveB.start,data.signalZero,data.signalHundred);
+    const valveBEndSignal = percentToSignal(data.valveB.end,data.signalZero,data.signalHundred);
+    byId('aInfo').textContent = `${valveStatus(valveAPercent)} • faixa global ${formatNumber(data.valveA.start,1)}% a ${formatNumber(data.valveA.end,1)}% (${formatNumber(valveAStartSignal,data.digits)} a ${formatNumber(valveAEndSignal,data.digits)} mA)`;
+    byId('bInfo').textContent = `${valveStatus(valveBPercent)} • faixa global ${formatNumber(data.valveB.start,1)}% a ${formatNumber(data.valveB.end,1)}% (${formatNumber(valveBStartSignal,data.digits)} a ${formatNumber(valveBEndSignal,data.digits)} mA)`;
+    byId('nota').textContent = observation;
+
+    const points = [0,25,50,75,100,data.valveA.start,data.valveA.end,data.valveB.start,data.valveB.end,percent]
+      .filter(Number.isFinite)
+      .map((point) => Math.round(point * 100) / 100);
+    const uniquePoints = [...new Set(points)].sort((a,b) => a-b);
+    const tableRows = uniquePoints.map((point) => {
+      const pointSignal = percentToSignal(point,data.signalZero,data.signalHundred);
+      const pointEngineering = data.lrv + (point / 100) * engineeringSpan;
+      const pointA = localPercent(point,data.valveA.start,data.valveA.end,data.valveA.direction);
+      const pointB = localPercent(point,data.valveB.start,data.valveB.end,data.valveB.direction);
+      return {point,pointSignal,pointEngineering,pointA,pointB};
+    });
+    byId('tbl').innerHTML = tableRows.map((row) => `<tr><td>${formatNumber(row.point,1)}%</td><td>${formatNumber(row.pointSignal,data.digits)} mA</td><td>${formatNumber(row.pointEngineering,data.digits)} ${escapeHtml(data.unit)}</td><td>${formatNumber(row.pointA,data.digits)}%</td><td>${formatNumber(row.pointB,data.digits)}%</td></tr>`).join('');
+
+    buildMemory(data,result);
+    lastResult = {data,result,tableRows};
+    byId('calcStatus').textContent = `Atualizado às ${new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'})}`;
+    updateActionState();
+    return true;
+  }
+
+  function setStandardExample() {
+    const values = {modo:'ma',valor:'12',sig0:'4',sig100:'20',lrv:'0',urv:'100',unid:'% demanda',aNome:'Válvula A',aIni:'0',aFim:'50',aDir:'direta',bNome:'Válvula B',bIni:'50',bFim:'100',bDir:'direta'};
+    Object.entries(values).forEach(([id,value]) => { byId(id).value = value; });
+    calculate();
+  }
+
+  function setOverlapExample() {
+    setStandardExample();
+    byId('aFim').value = '55';
+    byId('bIni').value = '45';
+    calculate();
+  }
+
+  function setDeadbandExample() {
+    setStandardExample();
+    byId('aFim').value = '48';
+    byId('bIni').value = '52';
+    calculate();
+  }
+
+  function resultText() {
+    if (!lastResult) return '';
+    const {data,result} = lastResult;
+    return [
+      'Calculadora Split Range 4–20 mA',
+      `Comando global: ${formatNumber(result.percent,data.digits)} %`,
+      `Sinal global: ${formatNumber(result.signal,data.digits)} mA`,
+      `Valor de engenharia: ${formatNumber(result.engineering,data.digits)} ${data.unit}`.trim(),
+      `${data.valveA.name}: ${formatNumber(result.valveAPercent,data.digits)} %`,
+      `${data.valveB.name}: ${formatNumber(result.valveBPercent,data.digits)} %`,
+      `Condição: ${result.condition}`,
+      `Observação: ${result.observation}`
+    ].join('\n');
+  }
+
+  async function copyResult() {
+    if (!lastResult) return;
+    const text = resultText();
+    try {
+      if (navigator.clipboard && window.isSecureContext) await navigator.clipboard.writeText(text);
+      else {
+        const area = document.createElement('textarea');
+        area.value = text;
+        area.style.position = 'fixed';
+        area.style.opacity = '0';
+        document.body.appendChild(area);
+        area.select();
+        if (!document.execCommand('copy')) throw new Error('Falha ao copiar');
+        area.remove();
+      }
+      byId('calcStatus').textContent = 'Resultado copiado';
+    } catch (error) {
+      byId('calcStatus').textContent = 'Não foi possível copiar automaticamente';
+    }
+  }
+
+  function reportRows(items) {
+    return items.map(([label,value]) => `<tr><th>${escapeHtml(label)}</th><td>${escapeHtml(value)}</td></tr>`).join('');
+  }
+
+  function generateReport() {
+    if (!lastResult && !calculate({focusError:true})) return;
+    const {data,result,tableRows} = lastResult;
+    const date = new Date();
+    const unit = data.unit || '-';
+    const windowReport = window.open('', '_blank');
+    if (!windowReport) {
+      byId('calcStatus').textContent = 'Permita pop-ups para gerar o relatório';
+      return;
+    }
+    try { windowReport.opener = null; } catch (error) { /* sem ação */ }
+    const inputRows = reportRows([
+      ['Origem do comando', modeLabel(data.mode)],
+      ['Valor informado', formatPlain(data.value)],
+      ['Sinal em 0%', `${formatPlain(data.signalZero)} mA`],
+      ['Sinal em 100%', `${formatPlain(data.signalHundred)} mA`],
+      ['LRV', `${formatPlain(data.lrv)} ${unit}`],
+      ['URV', `${formatPlain(data.urv)} ${unit}`],
+      [`${data.valveA.name} — faixa`, `${formatPlain(data.valveA.start)}% a ${formatPlain(data.valveA.end)}% (${data.valveA.direction})`],
+      [`${data.valveB.name} — faixa`, `${formatPlain(data.valveB.start)}% a ${formatPlain(data.valveB.end)}% (${data.valveB.direction})`]
+    ]);
+    const outputRows = reportRows([
+      ['Comando global', `${formatNumber(result.percent,data.digits)} %`],
+      ['Sinal global', `${formatNumber(result.signal,data.digits)} mA`],
+      ['Valor de engenharia', `${formatNumber(result.engineering,data.digits)} ${unit}`],
+      [data.valveA.name, `${formatNumber(result.valveAPercent,data.digits)} % (${formatNumber(result.valveASignal,data.digits)} mA equivalente)`],
+      [data.valveB.name, `${formatNumber(result.valveBPercent,data.digits)} % (${formatNumber(result.valveBSignal,data.digits)} mA equivalente)`],
+      ['Condição', result.condition],
+      ['Análise das faixas', result.observation]
+    ]);
+    const loopRows = tableRows.map((row) => `<tr><td>${formatNumber(row.point,1)}%</td><td>${formatNumber(row.pointSignal,data.digits)} mA</td><td>${formatNumber(row.pointEngineering,data.digits)} ${escapeHtml(unit)}</td><td>${formatNumber(row.pointA,data.digits)}%</td><td>${formatNumber(row.pointB,data.digits)}%</td></tr>`).join('');
+    const memoryHtml = byId('memoryContent').innerHTML;
+    const reportHtml = `<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Relatório técnico - Split Range 4-20 mA</title><style>
+      @page{size:A4;margin:14mm}*{box-sizing:border-box}body{font-family:Arial,sans-serif;color:#111;margin:0;line-height:1.45;font-size:10.5pt}h1{font-size:20pt;margin:0 0 4px}h2{font-size:13pt;margin:20px 0 8px;border-bottom:1px solid #777;padding-bottom:4px}.meta{color:#444;margin-bottom:16px}.actions{display:flex;gap:8px;margin:0 0 16px}.actions button{padding:8px 12px;border:1px solid #444;background:#fff;border-radius:6px;cursor:pointer}table{width:100%;border-collapse:collapse;margin:8px 0 12px}th,td{border:1px solid #aaa;padding:7px;text-align:left;vertical-align:top}th{background:#eee;width:36%}.loop th{width:auto}.note{border:1px solid #aaa;padding:10px;margin-top:12px}.memory-step{border:1px solid #bbb;padding:9px;margin:7px 0}.formula-line{font-family:Consolas,monospace;font-size:9pt;overflow-wrap:anywhere}.disclaimer{font-size:9pt;color:#444;margin-top:18px;border-top:1px solid #777;padding-top:8px}@media print{.actions{display:none}h2{break-after:avoid}.memory-step,tr{break-inside:avoid}}
+    </style></head><body><div class="actions"><button onclick="window.print()">Imprimir / Salvar em PDF</button><button onclick="window.close()">Fechar</button></div><h1>Relatório técnico — Split Range 4–20 mA</h1><div class="meta">Gerado em ${escapeHtml(date.toLocaleString('pt-BR'))}</div><h2>Dados informados</h2><table>${inputRows}</table><h2>Resultados</h2><table>${outputRows}</table><h2>Tabela de teste de loop</h2><table class="loop"><thead><tr><th>Comando</th><th>Sinal global</th><th>Valor</th><th>${escapeHtml(data.valveA.name)}</th><th>${escapeHtml(data.valveB.name)}</th></tr></thead><tbody>${loopRows}</tbody></table><h2>Memória de cálculo</h2>${memoryHtml}<div class="note"><strong>Observação:</strong> ${escapeHtml(result.observation)}</div><p class="disclaimer">Documento orientativo para estudo, conferência e apoio técnico. Antes de aplicar os valores no processo, confirme a estratégia de controle, sentido de ação, falha segura, parametrização do posicionador, lógica do controlador e resultados do teste de loop. Não substitui projeto, análise de risco, procedimento aprovado ou validação por profissional habilitado.</p></body></html>`;
+    windowReport.document.open();
+    windowReport.document.write(reportHtml);
+    windowReport.document.close();
+    byId('calcStatus').textContent = 'Relatório gerado em nova aba';
+  }
+
+  function printPage() {
+    if (!lastResult && !calculate({focusError:true})) return;
+    window.print();
+  }
+
+  watchedIds.forEach((id) => {
+    const element = byId(id);
+    element.addEventListener('input', () => calculate());
+    element.addEventListener('change', () => calculate());
+  });
+  byId('btnCalcular').addEventListener('click', () => calculate({focusError:true}));
+  byId('btnCopiar').addEventListener('click', copyResult);
+  byId('btnExemploPadrao').addEventListener('click', setStandardExample);
+  byId('btnExemploSobreposicao').addEventListener('click', setOverlapExample);
+  byId('btnExemploZonaMorta').addEventListener('click', setDeadbandExample);
+  byId('btnRelatorioTopo').addEventListener('click', generateReport);
+  byId('btnImprimirTopo').addEventListener('click', printPage);
+
+  window.addEventListener('beforeprint', () => {
+    originalTitle = document.title;
+    document.title = 'Calculadora Split Range 4-20 mA';
+  });
+  window.addEventListener('afterprint', () => { document.title = originalTitle; });
+
+  updateModeLabel();
+  calculate();
+})();
 </script>
 </body>
 </html>
