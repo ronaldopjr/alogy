@@ -124,3 +124,59 @@ Este arquivo registra a origem das fotografias externas usadas no site ALOGY. A 
 - Data de obtenção: 17 de julho de 2026
 - Tratamento aplicado: recorte central, redimensionamento para 960 × 540 px, remoção de metadados e conversão para WebP
 - Observação editorial: imagem contextual de tanque; não comprova o método de medição instalado nem representa instalação da ALOGY
+
+## blog-capa-comissionamento-hart.webp
+
+- Uso no site: capa e imagem interna do artigo `blog-comissionamento-hart.html`
+- Descrição: medição elétrica em painel de controle durante verificação de campo
+- Fotógrafo: Toolmash Expo
+- Acervo: Unsplash
+- Página de origem: https://unsplash.com/photos/electrician-testing-electrical-panel-with-multimeter-PkHf7BUWbtk
+- Arquivo de origem consultado: https://unsplash.com/photos/PkHf7BUWbtk/download?force=true
+- Licença informada na página: Unsplash License
+- Licença: https://unsplash.com/license
+- Data de obtenção: 17 de julho de 2026
+- Tratamento aplicado: recorte central, redimensionamento para 960 × 540 px, remoção de metadados e conversão para WebP
+- Observação editorial: imagem contextual de teste elétrico; não comprova comunicação HART e não retrata equipe, cliente ou instalação da ALOGY
+
+## blog-capa-cartao-analogico-clp.webp
+
+- Uso no site: capa e imagem interna do artigo `blog-calibracao-cartao-analogico-clp.html`
+- Descrição: painel industrial com botoeiras e interface de operação
+- Fotógrafo: Fernando Narvaez
+- Acervo: Pexels
+- Página de origem: https://www.pexels.com/photo/industrial-control-panel-with-colorful-buttons-32529354/
+- Arquivo de origem consultado: https://images.pexels.com/photos/32529354/pexels-photo-32529354.jpeg
+- Licença informada na página: Pexels License
+- Licença: https://www.pexels.com/license/
+- Data de obtenção: 17 de julho de 2026
+- Tratamento aplicado: recorte central, redimensionamento para 960 × 540 px, remoção de metadados e conversão para WebP
+- Observação editorial: imagem contextual de painel de controle; não identifica o cartão analógico e não retrata instalação ou serviço da ALOGY
+
+## blog-capa-conversor-ip-pi.webp
+
+- Uso no site: capa e imagem interna do artigo `blog-calibracao-conversor-ip-pi.html`
+- Descrição: reguladores pneumáticos, manômetros e mangueiras de teste
+- Fotógrafo: Mikhail Nilov
+- Acervo: Pexels
+- Página de origem: https://www.pexels.com/photo/gasoline-counters-in-a-machine-8943269/
+- Arquivo de origem consultado: https://images.pexels.com/photos/8943269/pexels-photo-8943269.jpeg
+- Licença informada na página: Pexels License
+- Licença: https://www.pexels.com/license/
+- Data de obtenção: 17 de julho de 2026
+- Tratamento aplicado: recorte central, redimensionamento para 960 × 540 px, remoção de metadados e conversão para WebP
+- Observação editorial: imagem contextual de bancada pneumática; não identifica um conversor I/P ou P/I específico nem retrata serviço da ALOGY
+
+## blog-capa-totalizador-vazao.webp
+
+- Uso no site: capa e imagem interna do artigo `blog-calibracao-totalizador-vazao.html`
+- Descrição: conjunto de medidores instalados em ramais de tubulação
+- Fotógrafo: Godspower Abdulahi
+- Acervo: Unsplash
+- Página de origem: https://unsplash.com/photos/multiple-water-meters-attached-to-pipes-on-a-wall-NoyKvHBb2JM
+- Arquivo de origem consultado: https://unsplash.com/photos/NoyKvHBb2JM/download?force=true
+- Licença informada na página: Unsplash License
+- Licença: https://unsplash.com/license
+- Data de obtenção: 17 de julho de 2026
+- Tratamento aplicado: recorte central, redimensionamento para 960 × 540 px, remoção de metadados e conversão para WebP
+- Observação editorial: imagem contextual de medição acumulada; não demonstra o método de calibração nem retrata instalação ou cliente da ALOGY
