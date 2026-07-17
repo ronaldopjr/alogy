@@ -99,7 +99,7 @@ Este arquivo registra a origem das fotografias externas usadas no site ALOGY. A 
 
 ## blog-capa-calibracao-valvula-controle.webp
 
-- Uso no site: capa e imagem interna do artigo `blog-calibracao-valvula-controle.html` e contexto visual da ferramenta `calculadora-calibracao-valvula-controle.html`
+- Uso no site: capa e imagem interna dos artigos `blog-calibracao-valvula-controle.html` e `blog-cavitacao-valvula-controle.html`, além do contexto visual da ferramenta `calculadora-calibracao-valvula-controle.html`
 - Descrição: válvula de controle com atuador e posicionador em bancada
 - Fotógrafo: Raymond Sime
 - Acervo: Unsplash
@@ -113,7 +113,7 @@ Este arquivo registra a origem das fotografias externas usadas no site ALOGY. A 
 
 ## blog-capa-calibracao-nivel-dp.webp
 
-- Uso no site: capa e imagem interna do artigo `blog-calibracao-transmissor-nivel-dp.html` e contexto visual da ferramenta `calculadora-calibracao-transmissor-nivel-dp.html`
+- Uso no site: capa e imagem interna dos artigos `blog-calibracao-transmissor-nivel-dp.html` e `blog-dp-nivel-tanque-fechado.html`, além do contexto visual da ferramenta `calculadora-calibracao-transmissor-nivel-dp.html`
 - Descrição: tanque industrial de armazenamento com escada de acesso
 - Fotógrafo: Brixiv
 - Acervo: Pexels
