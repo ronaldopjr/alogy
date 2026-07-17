@@ -106,33 +106,34 @@
 
 <section class="tech-hero">
 <h1>Calculadora de Comprimento Máximo de Cabo HART</h1>
-<p>Verifique se uma malha 4-20 mA com HART tem margem de tensão, resistência e capacitância adequadas para comunicação confiável.</p>
+<p>Faça uma triagem do comprimento de cabo pelos limites de tensão, resistência e capacitância informados para a malha 4-20 mA/HART. O resultado não confirma a comunicação.</p>
 <div class="hero-tags"><span><i class="fas fa-check"></i> HART</span><span><i class="fas fa-check"></i> 4-20 mA</span><span><i class="fas fa-check"></i> Cabo</span><span><i class="fas fa-check"></i> Capacitância</span></div>
 </section>
 <section class="calc-grid">
 <div class="tech-card">
 <h2>Dados de entrada</h2>
 <form class="field-grid" onsubmit="calcular();return false;">
-<div class="field"><label>Tensão da fonte</label><input id="vs" step="0.1" type="text" inputmode="decimal" value="24"/><small>Vcc</small></div>
-<div class="field"><label>Tensão mínima no instrumento</label><input id="vdev" step="0.1" type="text" inputmode="decimal" value="12"/><small>Vcc no pior caso</small></div>
-<div class="field"><label>Corrente máxima da malha</label><input id="i" step="0.1" type="text" inputmode="decimal" value="20"/><small>mA</small></div>
-<div class="field"><label>Resistor/carga HART</label><input id="rload" step="1" type="text" inputmode="decimal" value="250"/><small>Ω</small></div>
-<div class="field"><label>Outras cargas da malha</label><input id="rother" step="1" type="text" inputmode="decimal" value="0"/><small>Ω: barreira, cartão, indicadores.</small></div>
-<div class="field"><label>Resistência do cabo por condutor</label><input id="rkm" step="0.1" type="text" inputmode="decimal" value="36.6"/><small>Ω/km por condutor</small></div>
-<div class="field"><label>Capacitância do cabo</label><input id="ckm" step="1" type="text" inputmode="decimal" value="100"/><small>nF/km</small></div>
-<div class="field"><label>Capacitância máxima admissível</label><input id="cmax" step="1" type="text" inputmode="decimal" value="200"/><small>nF. Use limite do sistema/barreira.</small></div>
-<div class="field"><label>Capacitância de equipamento/barreira</label><input id="cdev" step="1" type="text" inputmode="decimal" value="20"/><small>nF</small></div>
-<div class="field"><label>Comprimento instalado a verificar</label><input id="linst" step="1" type="text" inputmode="decimal" value="800"/><small>m</small></div>
-<div class="wide calc-actions"><button class="btn-mini" type="submit"><i class="fas fa-calculator"></i> Calcular</button></div>
+<div class="field"><label>Tensão da fonte</label><input id="vs" step="0.1" type="text" inputmode="decimal" autocomplete="off" maxlength="24" value="24"/><small>Vcc</small></div>
+<div class="field"><label>Tensão mínima no instrumento</label><input id="vdev" step="0.1" type="text" inputmode="decimal" autocomplete="off" maxlength="24" value="12"/><small>Vcc no pior caso</small></div>
+<div class="field"><label>Corrente máxima da malha</label><input id="i" step="0.1" type="text" inputmode="decimal" autocomplete="off" maxlength="24" value="20"/><small>mA no pior caso, incluindo corrente de alarme quando aplicável.</small></div>
+<div class="field"><label>Resistor/carga HART</label><input id="rload" step="1" type="text" inputmode="decimal" autocomplete="off" maxlength="24" value="250"/><small>Ω</small></div>
+<div class="field"><label>Outras cargas da malha</label><input id="rother" step="1" type="text" inputmode="decimal" autocomplete="off" maxlength="24" value="0"/><small>Ω: barreira, cartão, indicadores.</small></div>
+<div class="field"><label>Resistência do cabo por condutor</label><input id="rkm" step="0.1" type="text" inputmode="decimal" autocomplete="off" maxlength="24" value="36.6"/><small>Ω/km por condutor</small></div>
+<div class="field"><label>Capacitância do cabo</label><input id="ckm" step="1" type="text" inputmode="decimal" autocomplete="off" maxlength="24" value="100"/><small>nF/km</small></div>
+<div class="field"><label>Capacitância máxima admissível</label><input id="cmax" step="1" type="text" inputmode="decimal" autocomplete="off" maxlength="24" value="200"/><small>nF. O valor de 200 nF é apenas exemplo; use o limite documentado do sistema/barreira.</small></div>
+<div class="field"><label>Capacitância de equipamento/barreira</label><input id="cdev" step="1" type="text" inputmode="decimal" autocomplete="off" maxlength="24" value="20"/><small>nF</small></div>
+<div class="field"><label>Comprimento instalado a verificar</label><input id="linst" step="1" type="text" inputmode="decimal" autocomplete="off" maxlength="24" value="800"/><small>m</small></div>
+<div class="wide calc-actions"><button class="btn-mini" type="submit"><i class="fas fa-calculator"></i> Calcular</button><button class="btn-mini secondary" id="copyHartCable" type="button"><i class="fas fa-copy"></i> Copiar resultado</button></div><p class="wide small-muted" id="copyHartCableFeedback" aria-live="polite"></p>
 </form>
 </div>
 <aside class="tech-card result-box">
 <h2>Resultado</h2>
-<div class="result-sub" id="resultado">Preencha os dados e clique em calcular.</div>
+<div class="result-sub" id="resultado" role="status" aria-live="polite">Preencha os dados e clique em calcular.</div>
 </aside>
 </section>
 <section class="tech-card"><h2>Aviso técnico importante</h2><p class="note">Esta ferramenta fornece uma estimativa preliminar para estudo, manutenção, orçamento e triagem de campo. Para aplicações críticas, segurança de processo, áreas classificadas, sistemas instrumentados de segurança, vasos pressurizados, contratos ou emissão de documentação oficial, valide o dimensionamento com normas aplicáveis, dados do fabricante e profissional habilitado.</p></section>
 <section class="tech-card"><h2>O que pode derrubar a comunicação HART?</h2><p>O HART usa comunicação digital sobre a mesma fiação 4-20 mA. Problemas comuns são falta de carga mínima, fonte insuficiente, queda de tensão em cabos longos, barreira com impedância inadequada, capacitância excessiva, blindagem aterrada em mais de um ponto e ruído elétrico próximo a inversores.</p><h3>Checklist rápido</h3><ul><li>Confirmar se há carga adequada para o comunicador.</li><li>Medir tensão no instrumento com a malha em 20 mA.</li><li>Verificar resistência de cabo considerando ida e volta.</li><li>Conferir limites de barreira isoladora ou zener em área classificada.</li><li>Evitar passar cabo de instrumento junto a potência ou VFD.</li></ul></section>
+<section class="tech-card"><h2>Fórmulas, exemplo e limites</h2><div class="formula-box">Margem para o cabo = V<sub>fonte</sub> − V<sub>mín</sub> − I × (R<sub>carga</sub> + R<sub>outras</sub>)<br/>L<sub>resistência</sub> = margem ÷ I ÷ (2 × R<sub>cabo/km</sub>)<br/>L<sub>capacitância</sub> = (C<sub>máx</sub> − C<sub>equipamentos</sub>) ÷ C<sub>cabo/km</sub><br/>Comprimento preliminar = menor dos dois limites</div><p>Com os valores de exemplo, o limite por resistência é aproximadamente 4.781 m e o limite por capacitância é 1.800 m. Para 800 m instalados, a tensão estimada no instrumento é 17,83 V e a capacitância total é 100 nF.</p><p class="small-muted"><strong>Base técnica:</strong> o <a href="https://www.fieldcommgroup.org/sites/default/files/imce_files/technology/documents/HART_ApplicationGuide_r7.1.pdf" target="_blank" rel="noopener">HART Application Guide da FieldComm Group</a> descreve a infraestrutura da malha, e o <a href="https://www.emerson.com/is/content/emerson/en/final-control/shared-assets/biffi/installation-and-maintenance-instructions/documents/manual-biffi-icon3000-hart-bus-module.pdf" target="_blank" rel="noopener">manual Biffi ICON3000 HART</a> registra que capacitância do cabo e combinação de dispositivos afetam o comprimento admissível. Os limites devem vir dos equipamentos e barreiras realmente instalados.</p></section>
 <section class="tech-card faq">
 <h2>Perguntas frequentes</h2>
 <details><summary>HART usa o mesmo cabo do 4-20 mA?</summary><p>Sim. O sinal digital é sobreposto à malha analógica, desde que a malha atenda requisitos elétricos e de comunicação.</p></details><details><summary>Sempre preciso de resistor de 250 Ω?</summary><p>Muitas aplicações precisam de carga adequada para comunicação, frequentemente próxima de 250 Ω, mas cartões modernos podem ter impedância interna.</p></details><details><summary>Capacitância do cabo importa?</summary><p>Sim. Cabos longos e barreiras podem aumentar capacitância e atenuar o sinal HART.</p></details><details><summary>A calculadora serve para área classificada?</summary><p>Serve como triagem elétrica, mas circuitos em área classificada exigem validação de entidade, barreiras e documentação específica.</p></details>
@@ -170,8 +171,14 @@ function calcular(){
   const vDevice=vs-I*(rload+rother+Rinst);
   const ok=linst<=maxM && vDevice>=vdev && Cinst<=cmax;
   const status=ok?'ok':(linst<=maxM*1.2?'warn':'bad');
-  resultado.innerHTML=`<div class="note ${status}"><strong>Comprimento máximo preliminar:</strong><div class="result-main">${fmt(maxM,0)} m</div><div>Limite por resistência: <strong>${fmt(Math.max(maxKmR*1000,0),0)} m</strong>. Limite por capacitância: <strong>${fmt(Math.max(maxKmC*1000,0),0)} m</strong>.</div></div><div class="pill-row"><span class="pill">Tensão no instrumento: ${fmt(vDevice,2)} V</span><span class="pill">Cabo instalado: R ${fmt(Rinst,1)} Ω</span><span class="pill">Capacitância total: ${fmt(Cinst,1)} nF</span><span class="pill">Status: ${ok?'aceitável':'verificar'}</span></div><p class="result-sub">Para HART, além da tensão, confirme resistor/carga mínima, aterramento, blindagem, barreiras de segurança intrínseca e limite de capacitância/indutância do circuito.</p>`;
+  resultado.innerHTML=`<div class="note ${status}"><strong>Comprimento máximo preliminar:</strong><div class="result-main">${fmt(maxM,0)} m</div><div>Limite por resistência: <strong>${fmt(Math.max(maxKmR*1000,0),0)} m</strong>. Limite por capacitância: <strong>${fmt(Math.max(maxKmC*1000,0),0)} m</strong>.</div></div><div class="pill-row"><span class="pill">Tensão no instrumento: ${fmt(vDevice,2)} V</span><span class="pill">Cabo instalado: R ${fmt(Rinst,1)} Ω</span><span class="pill">Capacitância total: ${fmt(Cinst,1)} nF</span><span class="pill">Status: ${ok?'limites informados atendidos':'revisar limites informados'}</span></div><p class="result-sub">Este resultado verifica apenas o orçamento calculado. Não comprova comunicação HART. Confirme carga, impedância em frequência, aterramento, blindagem, barreiras, capacitância, indutância, ruído e documentação dos dispositivos.</p>`;
 }
+async function copiarHartCable(){
+  const feedback=document.getElementById('copyHartCableFeedback');
+  const texto='Comprimento de cabo HART — ALOGY\n'+document.getElementById('resultado').innerText+'\nUso orientativo; confirmar documentação da malha.';
+  try{await navigator.clipboard.writeText(texto);feedback.textContent='Resultado copiado.'}catch{feedback.textContent='Não foi possível copiar automaticamente.'}
+}
+document.getElementById('copyHartCable').addEventListener('click',copiarHartCable);
 calcular();
 </script>
 <footer><p>© Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
