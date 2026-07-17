@@ -52,7 +52,7 @@
 
 <section class="tools-hero"><h1>Calculadora de Carga de Malha 4-20 mA</h1><p>Verifique orçamento de tensão, carga total, queda em cabos, resistor HART e margem da malha 4-20 mA.</p></section>
 <section aria-label="Aviso de uso" class="calc-card"><h2><i class="fas fa-triangle-exclamation"></i> Ferramenta orientativa</h2><p>Use como apoio técnico para manutenção, engenharia e conferência preliminar. Confirme sempre com normas aplicáveis, catálogos de fabricantes, procedimentos internos, medições reais e responsável técnico habilitado.</p></section>
-<section class="calc-layout"><div class="calc-card"><h2><i class="fas fa-pen-to-square"></i> Dados de entrada</h2><div class="calc-grid"><label>Fonte da malha (Vcc)<input id="vs" step="any" type="text" inputmode="decimal" value="24"/></label><label>Tensão mínima do transmissor (V)<input id="vmin" step="any" type="text" inputmode="decimal" value="12"/></label><label>Entrada/AI/resistor (Ω)<input id="rinput" step="any" type="text" inputmode="decimal" value="250"/></label><label>Barreira/isolador total (Ω)<input id="rbar" step="any" type="text" inputmode="decimal" value="100"/></label><label>Resistência do cabo por condutor (Ω/km)<input id="rkm" step="any" type="text" inputmode="decimal" value="39"/></label><label>Distância ida (m)<input id="dist" step="any" type="text" inputmode="decimal" value="200"/></label></div></div><div class="calc-card"><h2><i class="fas fa-chart-line"></i> Resultado</h2><div class="calc-result four"><div class="result-box"><span>Carga total</span><strong id="r1">-</strong></div><div class="result-box"><span>Carga máxima</span><strong id="r2">-</strong></div><div class="result-box"><span>Margem de tensão</span><strong id="r3">-</strong></div><div class="result-box"><span>Status</span><strong id="r4">-</strong></div></div><p class="mini-help" id="nota"></p></div></section>
+<section class="calc-layout"><div class="calc-card"><h2><i class="fas fa-pen-to-square"></i> Dados de entrada</h2><div class="calc-grid"><label>Fonte da malha (Vcc)<input id="vs" step="any" type="text" inputmode="decimal" autocomplete="off" maxlength="24" value="24"/></label><label>Tensão mínima do transmissor (V)<input id="vmin" step="any" type="text" inputmode="decimal" autocomplete="off" maxlength="24" value="12"/></label><label>Corrente de cálculo/pior caso (mA)<input id="imax" step="any" type="text" inputmode="decimal" autocomplete="off" maxlength="24" value="20"/><small>Use o maior valor previsto no manual; 20 mA é apenas o exemplo nominal.</small></label><label>Entrada/AI/resistor (Ω)<input id="rinput" step="any" type="text" inputmode="decimal" autocomplete="off" maxlength="24" value="250"/></label><label>Barreira/isolador total (Ω)<input id="rbar" step="any" type="text" inputmode="decimal" autocomplete="off" maxlength="24" value="100"/></label><label>Resistência do cabo por condutor (Ω/km)<input id="rkm" step="any" type="text" inputmode="decimal" autocomplete="off" maxlength="24" value="39"/></label><label>Distância de ida (m)<input id="dist" step="any" type="text" inputmode="decimal" autocomplete="off" maxlength="24" value="200"/></label></div></div><div class="calc-card"><h2><i class="fas fa-chart-line"></i> Resultado</h2><div class="calc-result four" role="status" aria-live="polite"><div class="result-box"><span>Carga total</span><strong id="r1">-</strong></div><div class="result-box"><span>Carga máxima</span><strong id="r2">-</strong></div><div class="result-box"><span>Margem de tensão</span><strong id="r3">-</strong></div><div class="result-box"><span>Status</span><strong id="r4">-</strong></div></div><p class="mini-help" id="nota"></p><div class="calc-actions no-print"><button class="mini-btn dark" id="copyLoop" type="button"><i class="fas fa-copy"></i> Copiar resultado</button></div><p class="mini-help" id="copyLoopFeedback" aria-live="polite"></p></div></section>
 <script>
 function n(id){
   const raw=String(document.getElementById(id).value||'').trim();
@@ -63,34 +63,42 @@ function n(id){
 }
 function fmt(v,d=2){return Number.isFinite(v)?Number(v).toLocaleString('pt-BR',{minimumFractionDigits:d,maximumFractionDigits:d}):'-'}
 function calc(){
-  const Vs=n('vs'),Vmin=n('vmin'),Rin=n('rinput'),Rb=n('rbar'),Rkm=n('rkm'),dist=n('dist');
+  const Vs=n('vs'),Vmin=n('vmin'),imA=n('imax'),I=imA/1000,Rin=n('rinput'),Rb=n('rbar'),Rkm=n('rkm'),dist=n('dist');
   const out=(id,val)=>{document.getElementById(id).textContent=val};
-  if([Vs,Vmin,Rin,Rb,Rkm,dist].some(v=>!Number.isFinite(v)) || Vs<=0 || Vmin<0 || Vs<=Vmin || [Rin,Rb,Rkm,dist].some(v=>v<0)){
+  if([Vs,Vmin,imA,Rin,Rb,Rkm,dist].some(v=>!Number.isFinite(v)) || Vs<=0 || Vmin<0 || Vs<=Vmin || imA<=0 || [Rin,Rb,Rkm,dist].some(v=>v<0)){
     out('r1','-');out('r2','-');out('r3','-');out('r4','Revisar dados');
-    document.getElementById('nota').innerHTML='Informe valores numéricos coerentes: fonte maior que a tensão mínima, resistências e distância não negativas.';
+    document.getElementById('nota').textContent='Informe valores coerentes: fonte maior que a tensão mínima, corrente maior que zero, resistências e distância não negativas.';
     return;
   }
   const Rc=2*dist*Rkm/1000;
   const Rtot=Rin+Rb+Rc;
-  const Rmax=(Vs-Vmin)/0.02;
-  const margin=Vs-Vmin-0.02*Rtot;
-  const hart=Rtot>=230&&Rtot<=1100;
-  let st=margin>=0?(hart?'OK / HART':'OK sem faixa HART típica'):'Sem margem';
+  const Rmax=(Vs-Vmin)/I;
+  const margin=Vs-Vmin-I*Rtot;
+  let st='Sem margem de tensão';
+  if(margin>=0) st=Rtot>=250?'Tensão OK; referência de 250 Ω atendida':'Tensão OK; conferir carga HART';
   out('r1',fmt(Rtot,1)+' Ω');
   out('r2',fmt(Rmax,1)+' Ω');
   out('r3',fmt(margin,2)+' V');
   out('r4',st);
-  document.getElementById('nota').innerHTML='Confirme a tensão mínima do transmissor, cargas de barreiras/isoladores, cabo real e requisitos HART do fabricante.';
+  document.getElementById('nota').textContent='Cabo ida e volta: '+fmt(Rc,1)+' Ω. Resultado calculado em '+fmt(imA,2)+' mA. A resistência de 250 Ω é apenas referência comum; a ferramenta não testa comunicação HART.';
 }
-document.querySelectorAll('input').forEach(e=>e.addEventListener('input',calc));calc();
+async function copiarLoop(){
+  const texto='Carga de malha 4-20 mA — ALOGY\nCarga total: '+document.getElementById('r1').textContent+'\nCarga máxima: '+document.getElementById('r2').textContent+'\nMargem de tensão: '+document.getElementById('r3').textContent+'\nStatus: '+document.getElementById('r4').textContent+'\nUso orientativo; confirmar documentação da malha.';
+  const feedback=document.getElementById('copyLoopFeedback');
+  try{await navigator.clipboard.writeText(texto);feedback.textContent='Resultado copiado.'}catch{feedback.textContent='Não foi possível copiar automaticamente.'}
+}
+document.querySelectorAll('input').forEach(e=>e.addEventListener('input',calc));
+document.getElementById('copyLoop').addEventListener('click',copiarLoop);
+calc();
 </script>
+<section class="calc-card"><h2><i class="fas fa-calculator"></i> Fórmula e exemplo</h2><div class="formula-box">R<sub>cabo</sub> = 2 × distância × resistência por condutor ÷ 1000<br/>R<sub>total</sub> = R<sub>entrada</sub> + R<sub>barreira</sub> + R<sub>cabo</sub><br/>R<sub>máx</sub> = (V<sub>fonte</sub> − V<sub>mín</sub>) ÷ I<br/>Margem = V<sub>fonte</sub> − V<sub>mín</sub> − I × R<sub>total</sub></div><p>Exemplo preenchido: 24 V, mínimo de 12 V, 20 mA, entrada de 250 Ω, barreira de 100 Ω, cabo de 39 Ω/km por condutor e 200 m de ida resultam em 15,6 Ω de cabo, 365,6 Ω de carga total e 4,69 V de margem.</p><p class="mini-help"><strong>Base técnica:</strong> o orçamento de tensão segue a relação documentada no <a href="https://www.emerson.com/is/content/emerson/en/final-control/flow-controls/documents/instruction-manual-fieldvue-dvc6200-hw2-digital-valve-controller-en.pdf" target="_blank" rel="noopener">manual Fisher FIELDVUE DVC6200</a>. A referência de 250 Ω para comunicação aparece, por exemplo, no <a href="https://www.emerson.com/is/content/emerson/en/measurement-instrumentation/technical/products/pressure/documents/dl-rmt-00809-0100-4107.pdf" target="_blank" rel="noopener">manual Rosemount 2051</a>; prevalecem os dados dos equipamentos instalados.</p></section>
 <section aria-label="Chamada para contato" class="cta-bar"><div><strong>Precisa validar esse cálculo em campo?</strong><br/><span class="muted">A ALOGY apoia engenharia, manutenção, instrumentação, automação e utilidades industriais.</span></div><div class="cta-actions"><a class="btn" href="index.html#contato"><i class="fas fa-paper-plane"></i> Solicitar contato</a></div></section>
 <!-- ALOGY_REVISAO_TECNICA_FERRAMENTA -->
 <section aria-label="Orientação técnica complementar" class="calc-card">
 <h2><i class="fas fa-clipboard-check"></i> Como usar esta ferramenta na prática</h2>
 <p>Verifique orçamento de tensão, carga total, queda em cabos, resistor HART e margem da malha 4-20 mA. Nesta revisão, o conteúdo foi ampliado para deixar mais claro quando usar a ferramenta, quais dados precisam ser conferidos e como transformar o número calculado em uma decisão técnica.</p>
 <h3>Quando aplicar</h3>
-<p>Use em partida, manutenção e diagnóstico de malhas, painéis, cartões analógicos, redes industriais e sinais de controle quando for necessário conferir escala, carga, resolução, tempo de resposta ou comunicação.</p>
+<p>Use em partida, manutenção e teste de loop para verificar se a fonte consegue alimentar o transmissor no maior valor de corrente previsto, considerando entrada analógica, barreiras, isoladores e resistência de ida e volta do cabo.</p>
 <h3>Dados que merecem conferência</h3>
 <p>Antes de confiar no resultado da ferramenta <strong>Calculadora de Carga de Malha 4-20 mA</strong>, confira principalmente: Fonte da malha (Vcc), Tensão mínima do transmissor (V), Entrada/AI/resistor (Ω), Barreira/isolador total (Ω), Resistência do cabo por condutor (Ω/km), Distância ida (m). Pequenos erros de unidade, ponto decimal ou condição de operação podem gerar conclusões erradas.</p>
 <ul>
