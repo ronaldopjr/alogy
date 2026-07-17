@@ -32,6 +32,10 @@
     .blog-group{margin-top:26px}
     .blog-group > h2{margin-bottom:14px}
     .blog-empty{display:none;background:#fff;border-radius:14px;padding:18px;margin-top:18px;color:var(--muted);box-shadow:0 8px 22px rgba(0,0,0,.06)}
+    .blog-card .thumb{padding:0;overflow:hidden;background:#dbe8f2}
+    .blog-card .thumb img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .25s ease}
+    .blog-card:hover .thumb img{transform:scale(1.025)}
+    @media(prefers-reduced-motion:reduce){.blog-card .thumb img{transition:none}.blog-card:hover .thumb img{transform:none}}
   </style>
 <!-- Google AdSense / Auto Ads nos artigos -->
 <script async="" crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5586837114309500"></script>
@@ -215,6 +219,37 @@
 <footer><p>© Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
+      const coverByArticle = {
+        'blog-dimensionamento-tubo-pneumatico-instrumentacao.html': {
+          src: 'blog-capa-tubo-pneumatico.webp',
+          alt: 'Tubos transparentes conectados a componentes de um sistema pneumático industrial',
+          priority: true
+        },
+        'blog-conexoes-pneumaticas-instrumentacao.html': {
+          src: 'blog-capa-conexoes-pneumaticas.webp',
+          alt: 'Conexões e curvas em tubulação industrial'
+        },
+        'blog-solenoide-atuador-pneumatico-cv.html': {
+          src: 'blog-capa-valvula-atuador.webp',
+          alt: 'Válvula industrial equipada com atuador pneumático'
+        }
+      };
+      document.querySelectorAll('.blog-card').forEach(function (card) {
+        const link = card.querySelector('a[href^="blog-"]');
+        const cover = link ? coverByArticle[link.getAttribute('href')] : null;
+        const thumb = card.querySelector('.thumb');
+        if (!cover || !thumb) return;
+        const img = document.createElement('img');
+        img.src = cover.src;
+        img.alt = cover.alt;
+        img.width = 960;
+        img.height = 540;
+        img.decoding = 'async';
+        if (cover.priority) img.fetchPriority = 'high';
+        else img.loading = 'lazy';
+        thumb.replaceChildren(img);
+        thumb.removeAttribute('style');
+      });
       const input = document.getElementById('blogSearch');
       const count = document.getElementById('blogSearchCount');
       const empty = document.getElementById('blogEmpty');
