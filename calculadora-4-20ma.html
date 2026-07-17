@@ -132,7 +132,7 @@
   </div>
 
   <main class="container" style="margin-top:18px">
-    <div style="margin-bottom:14px;display:flex;gap:10px;flex-wrap:wrap" class="no-print"><a class="floating-back-tools no-print" href="ferramentas.html"><i class="fas fa-arrow-left"></i> Voltar para Ferramentas</a><button class="btn print" type="button" onclick="window.print()"><i class="fas fa-print"></i> Imprimir</button></div>
+    <div style="margin-bottom:14px;display:flex;gap:10px;flex-wrap:wrap" class="no-print"><a class="floating-back-tools no-print" href="ferramentas-instrumentacao-industrial.html"><i class="fas fa-arrow-left"></i> Voltar para Instrumentação</a><button class="btn print" type="button" onclick="window.print()"><i class="fas fa-print"></i> Imprimir</button></div>
     <section class="tools-hero">
       <h1>Calculadora 4-20 mA</h1>
       <p>Converta sinal 4-20 mA, percentual 0-100% e valor de engenharia conforme a faixa configurada no instrumento. A ferramenta também gera tabela de referência para teste de loop, calibração e consulta rápida em campo.</p>
@@ -141,6 +141,7 @@
     <section class="calc-card" aria-label="Aviso de responsabilidade">
       <h2><i class="fas fa-triangle-exclamation"></i> Uso orientativo e responsabilidade técnica</h2>
       <p>Esta ferramenta é apenas para estudo, apoio técnico e pré-análise. Os resultados podem conter simplificações, aproximações ou erros de preenchimento e não substituem normas aplicáveis, catálogos de fabricantes, procedimentos internos, medições em campo, projetos, laudos ou análise de profissional habilitado. A ALOGY Engenharia não se responsabiliza por decisões, instalações, ajustes, manobras, compras ou intervenções realizadas exclusivamente com base nesta ferramenta.</p>
+      <p><a href="termos-de-uso-ferramentas.html"><strong>Consulte os Termos de Uso das Ferramentas</strong></a>.</p>
     </section>
 
 
@@ -261,36 +262,20 @@
 
     <section class="cta-bar" aria-label="Chamada para atendimento em instrumentação">
       <div><strong>Precisa validar uma malha 4-20 mA em campo?</strong><br/><span class="muted">A ALOGY Engenharia pode apoiar em teste de loop, calibração, comissionamento e diagnóstico de instrumentação industrial.</span></div>
-      <div class="cta-actions"><a class="btn secondary" href="blog-teste-de-loop-instrumentacao.html"><i class="fas fa-book-open"></i> Ler sobre teste de loop</a><a class="btn secondary" href="ferramentas.html"><i class="fas fa-toolbox"></i> Outras ferramentas</a></div>
+      <div class="cta-actions"><a class="btn secondary" href="blog-teste-de-loop-instrumentacao.html"><i class="fas fa-book-open"></i> Ler sobre teste de loop</a><a class="btn secondary" href="ferramentas-instrumentacao-industrial.html"><i class="fas fa-toolbox"></i> Ferramentas de instrumentação</a></div>
     </section>
   
-    <!-- ALOGY_REVISAO_TECNICA_FERRAMENTA -->
-    <section class="calc-card" aria-label="Orientação técnica complementar">
-      <h2><i class="fas fa-clipboard-check"></i> Como usar esta ferramenta na prática</h2>
-      <p>Calculadora 4-20 mA online com conversão para 0-100%, valor de engenharia, tabela da faixa em mA, pontos de calibração, LRV, URV e span. Nesta revisão, o conteúdo foi ampliado para deixar mais claro quando usar a ferramenta, quais dados precisam ser conferidos e como transformar o número calculado em uma decisão técnica.</p>
-      <h3>Quando aplicar</h3>
-      <p>Use em partida, manutenção e diagnóstico de malhas, painéis, cartões analógicos, redes industriais e sinais de controle quando for necessário conferir escala, carga, resolução, tempo de resposta ou comunicação.</p>
-      <h3>Dados que merecem conferência</h3>
-      <p>Antes de confiar no resultado da ferramenta <strong>Calculadora 4-20 mA</strong>, confira principalmente: Faixa mínima / LRV, Faixa máxima / URV, Unidade, Calcular a partir de, Valor de engenharia. Pequenos erros de unidade, ponto decimal ou condição de operação podem gerar conclusões erradas.</p>
+    <!-- ALOGY_ORIENTACAO_ESPECIFICA_420 -->
+    <section class="calc-card" aria-label="Conferência específica de malha 4-20 mA">
+      <h2><i class="fas fa-clipboard-check"></i> Conferência prática da malha 4-20 mA</h2>
+      <p>Compare três pontos antes de interpretar o resultado: a faixa LRV/URV gravada no transmissor, a escala configurada no cartão ou sistema e a corrente realmente medida na malha.</p>
       <ul>
-          <li>Faixa mínima / LRV</li>
-          <li>Faixa máxima / URV</li>
-          <li>Unidade</li>
-          <li>Calcular a partir de</li>
-          <li>Valor de engenharia</li>
+        <li>Confirme a unidade e se a faixa é crescente ou invertida.</li>
+        <li>Meça a corrente com instrumento adequado e sem interromper indevidamente a malha.</li>
+        <li>Compare o valor calculado com a indicação local, CLP, DCS ou supervisório.</li>
+        <li>Para sinais abaixo de 4 mA ou acima de 20 mA, verifique configuração, alimentação, carga, cabos e diagnóstico do fabricante.</li>
       </ul>
-      <h3>Como interpretar o resultado</h3>
-      <p>O resultado ajuda a separar erro de configuração, limitação do cartão, queda na malha, ruído elétrico ou problema de instrumento. Em automação, a conferência deve considerar o sinal físico e também a escala configurada no CLP, supervisório ou controlador.</p>
-      <p>Quando a página apresentar campos de resultado como Sinal, Percentual, Valor na faixa, use esses valores para comparar o cenário calculado com limite operacional, tolerância do processo, histórico de manutenção ou especificação de fabricante.</p>
-      <h3>Checklist rápido de validação</h3>
-      <ul>
-          <li>Confirme se a escala do campo é igual à escala configurada no CLP ou supervisório.</li>
-          <li>Verifique alimentação, aterramento funcional, blindagem e carga total da malha.</li>
-          <li>Em redes, confira endereço, baud rate, paridade, terminação e polaridade.</li>
-          <li>Registre o valor físico e o valor visto no sistema para facilitar diagnóstico.</li>
-      </ul>
-      <h3>Limites da estimativa</h3>
-      <p>Esta ferramenta é indicada para estudo, triagem, conferência de campo e apoio à manutenção. Para projeto final, laudo, especificação de compra, alteração de segurança ou liberação de equipamento crítico, valide as premissas com normas aplicáveis, documentação do fabricante e profissional habilitado.</p>
+      <p class="small-muted">Esta calculadora considera relação linear entre 4 e 20 mA. Aplicações com extração de raiz quadrada ou outra função exigem tratamento específico.</p>
     </section>
 
   </main>
