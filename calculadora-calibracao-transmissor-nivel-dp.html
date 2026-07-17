@@ -32,10 +32,10 @@
     .mini-help{color:var(--muted);font-size:.92rem;line-height:1.55;margin-top:8px}
     .faq details{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:14px;padding:14px;margin-top:10px;box-shadow:0 6px 16px rgba(0,0,0,.04)}
     .faq summary{cursor:pointer;font-weight:900;color:#0b3a62}.faq p{margin:10px 0 0;color:var(--muted)}
-    .calc-result.two{grid-template-columns:repeat(2,1fr)} .calc-result.three{grid-template-columns:repeat(3,1fr)} .calc-result.four{grid-template-columns:repeat(4,1fr)} .result-box strong.small{font-size:1.05rem}
+    .calc-result.two{grid-template-columns:repeat(2,1fr)} .calc-result.three{grid-template-columns:repeat(3,1fr)} .calc-result.four{grid-template-columns:repeat(4,1fr)} .calc-result.five{grid-template-columns:repeat(5,1fr)} .result-box strong.small{font-size:1.05rem}
     .pill-ok{color:#146c2e;font-weight:900}.pill-warn{color:#a65f00;font-weight:900}.pill-bad{color:#a10000;font-weight:900}.pill-info{color:#0b3a62;font-weight:900}
     .subcat-nav{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}.subcat-nav a{background:#fff;border:1px solid rgba(0,75,128,.18);border-radius:999px;padding:9px 12px;text-decoration:none;font-weight:800;color:#0b3a62}
-    @media(max-width:900px){.calc-result.two,.calc-result.three,.calc-result.four{grid-template-columns:1fr}}
+    @media(max-width:900px){.calc-result.two,.calc-result.three,.calc-result.four,.calc-result.five{grid-template-columns:1fr}}
     @media print{header,.social-floating,.fab-wrap,.cta-bar,footer,.calc-actions,.tools-hero .btn,.no-print{display:none!important}body{background:#fff}.container{max-width:100%;padding:0}.calc-card,.tools-hero{box-shadow:none;border:1px solid #ddd}.calc-layout{display:block}.calc-card{margin:12px 0}.calc-table th{background:#eee!important;color:#111!important}}
   </style>
 <!-- Google AdSense - verificação de propriedade -->
@@ -50,55 +50,44 @@
 </header>
 <div aria-label="Redes sociais" class="social-floating"><a aria-label="LinkedIn" class="linkedin" href="https://www.linkedin.com/company/alogyengenharia" rel="noopener" target="_blank"><i class="fab fa-linkedin-in"></i></a><a aria-label="Instagram" class="instagram" href="https://www.instagram.com/alogyengenharia" rel="noopener" target="_blank"><i class="fab fa-instagram"></i></a><a aria-label="Facebook" class="facebook" href="https://www.facebook.com/alogyengenharia" rel="noopener" target="_blank"><i class="fab fa-facebook-f"></i></a><a aria-label="YouTube" class="youtube" href="https://www.youtube.com/@alogyengenharia" rel="noopener" target="_blank"><i class="fab fa-youtube"></i></a><a aria-label="Hotmart" class="hotmart" href="https://hotmart.com/pt-br/club/alogyengenharia" rel="noopener" target="_blank">H</a><a aria-label="TikTok" class="tiktok" href="https://www.tiktok.com/@alogyengenharia" rel="noopener" target="_blank"><i class="fab fa-tiktok"></i></a></div>
 <div aria-label="Ações rápidas" class="fab-wrap"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1%21%20Vim%20pelas%20ferramentas%20da%20ALOGY.%20Gostaria%20de%20atendimento." rel="noopener" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
-<main class="container" style="margin-top:18px"><div aria-label="Ações da ferramenta" class="tool-page-actions no-print"><a class="tool-category-link" href="ferramentas-calibracao-instrumentacao.html"><i class="fas fa-check-double"></i> Calibração e metrologia</a><button class="btn print" onclick="window.print()" type="button"><i class="fas fa-print"></i> Imprimir</button></div>
+<main class="container" style="margin-top:18px"><div aria-label="Ações da ferramenta" class="tool-page-actions no-print"><a class="tool-category-link" href="ferramentas-instrumentacao-industrial.html"><i class="fas fa-gauge-high"></i> Central de Instrumentação</a><a class="tool-category-link" href="ferramentas-calibracao-instrumentacao.html"><i class="fas fa-check-double"></i> Calibração e metrologia</a><button class="btn print" onclick="window.print()" type="button"><i class="fas fa-print"></i> Imprimir</button></div>
 
 <section class="tools-hero"><h1>Calculadora de Calibração de Transmissor de Nível DP</h1><p>Confira pontos de nível 0%, 25%, 50%, 75% e 100% para transmissor DP/hidrostático, incluindo LRV e URV definidos.</p></section>
-<section aria-label="Aviso de uso" class="calc-card"><h2><i class="fas fa-triangle-exclamation"></i> Ferramenta orientativa</h2><p>Use esta ferramenta para estudo, pré-avaliação e conferência de campo. A decisão de aprovação, ajuste, reprovação ou emissão de certificado deve seguir procedimento interno, norma aplicável, classe do instrumento, incerteza da referência, condição do processo e validação de profissional habilitado.</p></section>
-<section class="calc-layout"><div class="calc-card"><h2><i class="fas fa-water"></i> Dados do ponto</h2><div class="calc-grid"><div class="field"><label for="lrv">LRV configurado (mbar)</label><input id="lrv" step="any" type="number" value="-50"/></div><div class="field"><label for="urv">URV configurado (mbar)</label><input id="urv" step="any" type="number" value="450"/></div><div class="field"><label for="nivel">Nível de teste (%)</label><input id="nivel" step="any" type="number" value="50"/></div><div class="field"><label for="dpmed">DP aplicado/medido (mbar)</label><input id="dpmed" step="any" type="number" value="200"/></div><div class="field"><label for="ma">Corrente medida (mA)</label><input id="ma" step="any" type="number" value="12"/></div><div class="field"><label for="tol">Tolerância (% do span)</label><input id="tol" step="any" type="number" value="0.5"/></div></div><div class="calc-actions"><button class="mini-btn dark" onclick="copiar()" type="button"><i class="fas fa-copy"></i> Copiar resultado</button></div></div><div class="calc-card"><h2><i class="fas fa-chart-simple"></i> Resultado</h2><div class="calc-result four"><div class="result-box"><span>DP esperado</span><strong id="r1">-</strong></div><div class="result-box"><span>mA esperado</span><strong id="r2">-</strong></div><div class="result-box"><span>Erro DP</span><strong id="r3">-</strong></div><div class="result-box"><span>Status</span><strong class="small" id="r4">-</strong></div></div><div class="calc-note">Para tanque fechado, confirme perna seca/molhada, densidade, tomada alta/baixa e offset antes de usar os pontos.</div><div class="table-wrap"><table class="calc-table"><thead><tr><th>Nível</th><th>DP esperado</th><th>mA</th></tr></thead><tbody id="tbl"></tbody></table></div></div></section>
+<section aria-label="Aviso de uso" class="calc-card"><h2><i class="fas fa-triangle-exclamation"></i> Ferramenta orientativa</h2><p>Use esta ferramenta para estudo, pré-avaliação e conferência de campo. Ela não substitui levantamento, projeto, memorial, laudo, ART, certificado, normas, manuais de fabricantes, procedimento de calibração, rastreabilidade, avaliação da incerteza nem validação por profissional habilitado.</p></section>
+<section class="calc-layout"><div class="calc-card"><h2><i class="fas fa-water"></i> Dados do ponto</h2><div class="calc-grid"><div class="field"><label for="lrv">LRV configurado (mbar)</label><input id="lrv" step="any" type="number" value="-50"/></div><div class="field"><label for="urv">URV configurado (mbar)</label><input id="urv" step="any" type="number" value="450"/></div><div class="field"><label for="nivel">Nível de teste (%)</label><input id="nivel" step="any" type="number" value="50"/></div><div class="field"><label for="dpmed">DP aplicado/medido (mbar)</label><input id="dpmed" step="any" type="number" value="200"/></div><div class="field"><label for="ma">Corrente medida (mA)</label><input id="ma" step="any" type="number" value="12"/></div><div class="field"><label for="tol">Tolerância (% do span)</label><input id="tol" step="any" type="number" value="0.5"/></div></div><div class="calc-actions"><button class="mini-btn dark" onclick="copiar()" type="button"><i class="fas fa-copy"></i> Copiar resultado</button></div></div><div class="calc-card"><h2><i class="fas fa-chart-simple"></i> Resultado</h2><div class="calc-result five"><div class="result-box"><span>DP esperado no alvo</span><strong id="r1">-</strong></div><div class="result-box"><span>mA esperado pelo DP aplicado</span><strong id="r2">-</strong></div><div class="result-box"><span>Erro de aplicação</span><strong id="r3">-</strong></div><div class="result-box"><span>Erro da saída</span><strong id="r4">-</strong></div><div class="result-box"><span>Status da saída</span><strong class="small" id="r5">-</strong></div></div><div class="calc-note" id="nota">A relação entre LRV, URV, nível e saída é linear. O range informado deve incorporar elevação ou supressão de zero já definidas.</div><div class="table-wrap"><table class="calc-table"><thead><tr><th>Nível</th><th>DP esperado</th><th>mA</th></tr></thead><tbody id="tbl"></tbody></table></div></div></section>
 <section class="calc-card faq"><h2><i class="fas fa-circle-question"></i> Perguntas frequentes</h2><details><summary>Esta ferramenta calcula LRV/URV de tanque fechado?</summary><p>Não. Ela confere pontos de calibração a partir do LRV e URV já definidos. Para cálculo de range, use a ferramenta de DP para tanque fechado.</p></details><details><summary>Serve para nível hidrostático aberto?</summary><p>Sim, desde que LRV e URV representem a pressão equivalente da faixa.</p></details></section>
-<!-- ALOGY_REVISAO_TECNICA_FERRAMENTA -->
 <section aria-label="Orientação técnica complementar" class="calc-card">
-<h2><i class="fas fa-clipboard-check"></i> Como usar esta ferramenta na prática</h2>
-<p>Calcule pressão equivalente, sinal esperado e erro na calibração de transmissor de nível por pressão diferencial. Nesta revisão, o conteúdo foi ampliado para deixar mais claro quando usar a ferramenta, quais dados precisam ser conferidos e como transformar o número calculado em uma decisão técnica.</p>
-<h3>Quando aplicar</h3>
-<p>Use em bancada, campo ou laboratório para preparar pontos de teste, comparar indicação do instrumento com referência rastreável e decidir se o equipamento está aprovado, reprovado ou se precisa de ajuste.</p>
-<h3>Dados que merecem conferência</h3>
-<p>Antes de confiar no resultado da ferramenta <strong>Calculadora de Calibração de Transmissor de Nível DP</strong>, confira principalmente: LRV configurado (mbar), URV configurado (mbar), Nível de teste (%), DP aplicado/medido (mbar), Corrente medida (mA), Tolerância (% do span). Pequenos erros de unidade, ponto decimal ou condição de operação podem gerar conclusões erradas.</p>
-<ul>
-<li>LRV configurado (mbar)</li>
-<li>URV configurado (mbar)</li>
-<li>Nível de teste (%)</li>
-<li>DP aplicado/medido (mbar)</li>
-<li>Corrente medida (mA)</li>
-<li>Tolerância (% do span)</li>
-</ul>
-<h3>Como interpretar o resultado</h3>
-<p>O resultado deve ser comparado com a tolerância do processo e com o erro máximo permitido definido no plano de calibração. Um erro pequeno no instrumento pode ser aceitável para utilidades, mas crítico em malhas de segurança, qualidade ou dosagem.</p>
-<p>Quando a página apresentar campos de resultado como DP esperado, mA esperado, Erro DP, Status, use esses valores para comparar o cenário calculado com limite operacional, tolerância do processo, histórico de manutenção ou especificação de fabricante.</p>
-<h3>Checklist rápido de validação</h3>
-<ul>
-<li>Confirme TAG, faixa LRV/URV, unidade de engenharia e damping antes do teste.</li>
-<li>Use padrão de referência com resolução e incerteza adequadas ao instrumento em teste.</li>
-<li>Registre as leituras de subida e descida para observar histerese, repetibilidade e retorno ao zero.</li>
-<li>Quando houver ajuste, repita o ciclo completo antes de liberar o instrumento.</li>
-</ul>
-<h3>Limites da estimativa</h3>
-<p>Esta ferramenta é indicada para estudo, triagem, conferência de campo e apoio à manutenção. Para projeto final, laudo, especificação de compra, alteração de segurança ou liberação de equipamento crítico, valide as premissas com normas aplicáveis, documentação do fabricante e profissional habilitado.</p>
+<h2><i class="fas fa-clipboard-check"></i> Como conferir o ponto</h2>
+<ol>
+<li>Confirme o range configurado, a unidade, a tolerância e se LRV/URV já incluem elevação ou supressão de zero.</li>
+<li>Informe o nível-alvo e o DP realmente aplicado pelo padrão.</li>
+<li>Registre a corrente medida após a estabilização.</li>
+<li>Repita os pontos de subida e descida exigidos após qualquer ajuste.</li>
+</ol>
+<h3>Fórmulas exibidas</h3>
+<div class="formula-box">DP alvo = LRV + (URV − LRV) × Nível alvo % ÷ 100<br/>Nível equivalente pelo DP = 100 × (DP aplicado − LRV) ÷ (URV − LRV)<br/>mA esperado = 4 + 16 × Nível equivalente pelo DP ÷ 100<br/>Nível equivalente pela saída = 100 × (mA medido − 4) ÷ 16<br/>Erro da saída = Nível pela saída − Nível pelo DP<br/>Status simples: aprovado quando |Erro da saída| ≤ Tolerância</div>
+<p class="mini-help">O erro de aplicação mostra a diferença entre o DP realmente aplicado e o nível-alvo. O status avalia somente a saída do transmissor. A página não calcula LRV/URV, densidade, perna molhada, selos remotos ou efeitos de temperatura.</p>
+<h3>Referências para os conceitos</h3>
+<ul><li><a href="https://www.emerson.com/is/content/emerson/en/measurement-instrumentation/technical/products/dp-level/documents/dl-rmt-00813-0100-4016.pdf" rel="noopener" target="_blank">Emerson — Transmissores DP de nível</a></li><li><a href="https://www.bipm.org/en/doi/10.59161/jcgm200-2012" rel="noopener" target="_blank">BIPM — Vocabulário Internacional de Metrologia (VIM)</a></li></ul>
 </section>
 </main>
 <footer><p>© Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
 <script>
-function val(id){return parseFloat(String(document.getElementById(id).value).replace(',','.'))||0}
-function txt(id){return document.getElementById(id).value}
+function val(id){const raw=String(document.getElementById(id).value).trim();if(!raw)return NaN;const num=Number(raw.replace(',','.'));return Number.isFinite(num)?num:NaN}
 function n(v,d=2){return Number.isFinite(v)?v.toLocaleString('pt-BR',{minimumFractionDigits:d,maximumFractionDigits:d}):'-'}
-function cls(ok){return ok?'pill-ok':'pill-bad'}
-function st(absErr,tol){if(!Number.isFinite(absErr)||!Number.isFinite(tol))return '<span class="pill-warn">Verificar</span>'; if(absErr<=tol)return '<span class="pill-ok">Aprovado</span>'; if(absErr<=tol*1.25)return '<span class="pill-warn">Próximo do limite</span>'; return '<span class="pill-bad">Reprovado</span>'}
+function st(absErr,tol){if(!Number.isFinite(absErr)||!Number.isFinite(tol))return '<span class="pill-warn">Verificar</span>';const eps=1e-12*Math.max(1,tol);return absErr<=tol+eps?'<span class="pill-ok">Aprovado</span>':'<span class="pill-bad">Reprovado</span>'}
+function invalidResult(message){['r1','r2','r3','r4'].forEach(id=>document.getElementById(id).textContent='-');document.getElementById('r5').innerHTML='<span class="pill-warn">Revise os dados</span>';document.getElementById('tbl').innerHTML='';document.getElementById('nota').textContent=message}
 function copiar(){const r=document.querySelector('.calc-card:nth-of-type(2)'); const t=r?r.innerText:document.body.innerText; navigator.clipboard.writeText(t).then(()=>alert('Resultado copiado.'))}
 document.querySelectorAll('input,select').forEach(e=>e.addEventListener('input',calcular));
 
-function calcular(){let l=val('lrv'),u=val('urv'),span=u-l,nv=val('nivel'),dpmed=val('dpmed'),ma=val('ma'),tolp=val('tol');let dpExp=l+span*nv/100, maExp=4+16*nv/100, err=dpmed-dpExp, tol=Math.abs(span)*tolp/100;document.getElementById('r1').innerHTML=n(dpExp,3)+' mbar';document.getElementById('r2').innerHTML=n(maExp,3)+' mA';document.getElementById('r3').innerHTML=n(err,3)+' mbar';document.getElementById('r4').innerHTML=st(Math.abs(err),Math.abs(tol));document.getElementById('tbl').innerHTML=[0,25,50,75,100].map(p=>`<tr><td>${p}%</td><td>${n(l+span*p/100,3)} mbar</td><td>${n(4+16*p/100,3)} mA</td></tr>`).join('');}
+function calcular(){let l=val('lrv'),u=val('urv'),nv=val('nivel'),dpmed=val('dpmed'),ma=val('ma'),tol=val('tol'),span=u-l;
+  if(![l,u,nv,dpmed,ma,tol].every(Number.isFinite)){invalidResult('Preencha todos os campos com valores numéricos válidos.');return;}
+  if(span===0){invalidResult('LRV e URV precisam ser diferentes para formar um span válido.');return;}
+  if(nv<0||nv>100){invalidResult('O nível de teste deve ficar entre 0% e 100%.');return;}
+  if(tol<0){invalidResult('A tolerância deve ser maior ou igual a zero.');return;}
+  let dpExp=l+span*nv/100,levelByDp=(dpmed-l)/span*100,maExp=4+16*levelByDp/100,levelByMa=(ma-4)/16*100,applyErr=levelByDp-nv,outputErr=levelByMa-levelByDp;document.getElementById('r1').textContent=n(dpExp,3)+' mbar';document.getElementById('r2').textContent=n(maExp,3)+' mA';document.getElementById('r3').textContent=n(applyErr,3)+' % nível';document.getElementById('r4').textContent=n(outputErr,3)+' % span';document.getElementById('r5').innerHTML=st(Math.abs(outputErr),tol);document.getElementById('nota').textContent='Nível equivalente pelo DP aplicado: '+n(levelByDp,3)+'%. Critério: |erro da saída| ≤ '+n(tol,3)+'% do span.';document.getElementById('tbl').innerHTML=[0,25,50,75,100].map(p=>`<tr><td>${p}%</td><td>${n(l+span*p/100,3)} mbar</td><td>${n(4+16*p/100,3)} mA</td></tr>`).join('');}
 calcular();</script>
 
-<a aria-label="Voltar para Ferramentas" class="floating-back-tools no-print" href="ferramentas.html"><i class="fas fa-arrow-left"></i> Voltar para Ferramentas</a>
+<a aria-label="Voltar para a Central de Instrumentação" class="floating-back-tools no-print" href="ferramentas-instrumentacao-industrial.html"><i class="fas fa-arrow-left"></i> Central de Instrumentação</a>
 </body>
 </html>
