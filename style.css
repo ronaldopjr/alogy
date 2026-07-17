@@ -1977,3 +1977,31 @@ body.alogy-stage3-forms details{
 @media print{
   .alogy-result-readout{break-inside:avoid;box-shadow:none;background:#fff;border:1px solid #ddd;border-left:5px solid #777}
 }
+
+
+/* =========================
+   SISTEMA VISUAL - ACESSIBILIDADE E AÇÕES
+   Base compartilhada sem alterar fórmulas ou conteúdo.
+========================= */
+:where(a,button,input,select,textarea,summary):focus-visible{
+  outline:3px solid #ffbf47;
+  outline-offset:3px;
+}
+:where(.btn,.mini-btn,.fab-btn,.menu-toggle,.banner-nav,.floating-back-tools){
+  min-height:44px;
+}
+:where(.btn,.mini-btn){
+  justify-content:center;
+}
+button,input,select,textarea{
+  font:inherit;
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{
+    animation-duration:.01ms!important;
+    animation-iteration-count:1!important;
+    transition-duration:.01ms!important;
+    scroll-behavior:auto!important;
+  }
+}
