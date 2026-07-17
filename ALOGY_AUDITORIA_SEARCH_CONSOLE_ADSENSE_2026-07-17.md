@@ -30,9 +30,9 @@ Finalidade: permitir acompanhamento separado de descoberta, rastreamento e index
 
 Uma varredura dos arquivos HTML encontrou repetição em larga escala:
 
-- 272 páginas ainda contêm ao menos um dos principais blocos padronizados auditados;
+- 270 páginas ainda contêm ao menos um dos principais blocos padronizados auditados;
 - 157 páginas repetem a abertura “Nesta revisão, o conteúdo foi ampliado...”;
-- 74 artigos ainda repetem “Este conteúdo foi ampliado para ajudar...”;
+- 72 artigos ainda repetem “Este conteúdo foi ampliado para ajudar...”;
 - 198 páginas repetem “Como usar esta ferramenta na prática”;
 - 198 páginas repetem “Dados que merecem conferência”;
 - um mesmo aviso aparece em 157 arquivos;
@@ -49,7 +49,9 @@ Quatro artigos estratégicos foram diferenciados em 17/07/2026:
 - slope de sonda de pH;
 - ORP em mV para controle industrial.
 
-Os blocos genéricos foram substituídos por procedimentos, premissas, exemplos e limitações próprios de cada tema. O lote reduziu de 276 para 272 o conjunto de páginas com os principais padrões auditados e de 78 para 74 a repetição da abertura editorial dos artigos. Os quatro `lastmod` foram atualizados no sitemap do Blog; nenhuma outra data foi alterada.
+Os blocos genéricos foram substituídos por procedimentos, premissas, exemplos e limitações próprios de cada tema. O primeiro lote reduziu de 276 para 272 o conjunto de páginas com os principais padrões auditados e de 78 para 74 a repetição da abertura editorial dos artigos.
+
+Na sequência, os artigos sobre condutividade/TDS e tempo de amostragem de analisadores também foram diferenciados. O total caiu para 270 páginas com os padrões auditados e 72 artigos com a abertura genérica. Os seis artigos materialmente revisados receberam `lastmod` de 17/07/2026 no sitemap do Blog; nenhuma outra data foi alterada.
 
 ## Estratégia de correção
 
