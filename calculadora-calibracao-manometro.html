@@ -31,10 +31,10 @@
     .mini-help{color:var(--muted);font-size:.92rem;line-height:1.55;margin-top:8px}
     .faq details{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:14px;padding:14px;margin-top:10px;box-shadow:0 6px 16px rgba(0,0,0,.04)}
     .faq summary{cursor:pointer;font-weight:900;color:#0b3a62}.faq p{margin:10px 0 0;color:var(--muted)}
-    .calc-result.two{grid-template-columns:repeat(2,1fr)} .calc-result.three{grid-template-columns:repeat(3,1fr)} .calc-result.four{grid-template-columns:repeat(4,1fr)} .result-box strong.small{font-size:1.05rem}
+    .calc-result.two{grid-template-columns:repeat(2,1fr)} .calc-result.three{grid-template-columns:repeat(3,1fr)} .calc-result.four{grid-template-columns:repeat(4,1fr)} .calc-result.five{grid-template-columns:repeat(5,1fr)} .result-box strong.small{font-size:1.05rem}
     .pill-ok{color:#146c2e;font-weight:900}.pill-warn{color:#a65f00;font-weight:900}.pill-bad{color:#a10000;font-weight:900}.pill-info{color:#0b3a62;font-weight:900}
     .subcat-nav{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}.subcat-nav a{background:#fff;border:1px solid rgba(0,75,128,.18);border-radius:999px;padding:9px 12px;text-decoration:none;font-weight:800;color:#0b3a62}
-    @media(max-width:900px){.calc-result.two,.calc-result.three,.calc-result.four{grid-template-columns:1fr}}
+    @media(max-width:900px){.calc-result.two,.calc-result.three,.calc-result.four,.calc-result.five{grid-template-columns:1fr}}
     @media print{header,.social-floating,.fab-wrap,.cta-bar,footer,.calc-actions,.tools-hero .btn,.no-print{display:none!important}body{background:#fff}.container{max-width:100%;padding:0}.calc-card,.tools-hero{box-shadow:none;border:1px solid #ddd}.calc-layout{display:block}.calc-card{margin:12px 0}.calc-table th{background:#eee!important;color:#111!important}}
   </style>
   <!-- Google AdSense - verificação de propriedade -->
@@ -51,41 +51,26 @@
   <div class="social-floating" aria-label="Redes sociais"><a href="https://www.linkedin.com/company/alogyengenharia" class="linkedin" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a><a href="https://www.instagram.com/alogyengenharia" class="instagram" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="https://www.facebook.com/alogyengenharia" class="facebook" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><a href="https://www.youtube.com/@alogyengenharia" class="youtube" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a><a href="https://hotmart.com/pt-br/club/alogyengenharia" class="hotmart" target="_blank" rel="noopener" aria-label="Hotmart">H</a><a href="https://www.tiktok.com/@alogyengenharia" class="tiktok" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a></div>
   <div class="fab-wrap" aria-label="Ações rápidas"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1%21%20Vim%20pelas%20ferramentas%20da%20ALOGY.%20Gostaria%20de%20atendimento." target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
   <main class="container" style="margin-top:18px">
-    <div style="margin-bottom:14px;display:flex;gap:10px;flex-wrap:wrap" class="no-print"><a class="floating-back-tools no-print" href="ferramentas.html"><i class="fas fa-arrow-left"></i> Voltar para Ferramentas</a><a class="floating-back-tools no-print" href="ferramentas-calibracao-instrumentacao.html"><i class="fas fa-check-double"></i> Calibração e metrologia</a></div>
+    <div style="margin-bottom:14px;display:flex;gap:10px;flex-wrap:wrap" class="no-print"><a class="floating-back-tools no-print" href="ferramentas-instrumentacao-industrial.html"><i class="fas fa-gauge-high"></i> Central de Instrumentação</a><a class="floating-back-tools no-print" href="ferramentas-calibracao-instrumentacao.html"><i class="fas fa-check-double"></i> Calibração e metrologia</a></div>
     <section class="tools-hero"><h1>Calculadora de Calibração de Manômetro</h1><p>Confira manômetros analógicos e digitais por classe, fundo de escala, pressão de referência e indicação em subida/descida.</p></section>
-    <section class="calc-card" aria-label="Aviso de uso"><h2><i class="fas fa-triangle-exclamation"></i> Ferramenta orientativa</h2><p>Use esta ferramenta para estudo, pré-avaliação e conferência de campo. A decisão de aprovação, ajuste, reprovação ou emissão de certificado deve seguir procedimento interno, norma aplicável, classe do instrumento, incerteza da referência, condição do processo e validação de profissional habilitado.</p></section>
-    <section class="calc-layout"><div class="calc-card"><h2><i class="fas fa-gauge"></i> Dados do manômetro</h2><div class="calc-grid"><div class="field"><label for="fs">Fundo de escala (bar)</label><input id="fs" type="number" step="any" value="10"></div><div class="field"><label for="classe">Classe/EMP (% do fundo de escala)</label><input id="classe" type="number" step="any" value="1.0"></div><div class="field"><label for="ref">Pressão de referência (bar)</label><input id="ref" type="number" step="any" value="5"></div><div class="field"><label for="subida">Indicação na subida (bar)</label><input id="subida" type="number" step="any" value="5.05"></div><div class="field"><label for="descida">Indicação na descida (bar)</label><input id="descida" type="number" step="any" value="4.98"></div><div class="field"><label for="toladd">Tolerância adicional opcional (bar)</label><input id="toladd" type="number" step="any" value="0"></div></div><div class="calc-actions"><button class="mini-btn dark" onclick="copiar()" type="button"><i class="fas fa-copy"></i> Copiar resultado</button><button class="mini-btn" onclick="window.print()" type="button"><i class="fas fa-print"></i> Imprimir</button></div></div><div class="calc-card"><h2><i class="fas fa-chart-simple"></i> Resultado</h2><div class="calc-result four"><div class="result-box"><span>EMP por classe</span><strong id="r1">-</strong></div><div class="result-box"><span>Erro subida</span><strong id="r2">-</strong></div><div class="result-box"><span>Histerese</span><strong id="r3">-</strong></div><div class="result-box"><span>Status</span><strong id="r4" class="small">-</strong></div></div><div class="calc-note">Em manômetros, avaliar zero, repetibilidade, histerese, estado físico, posição de montagem e sobrepressão sofrida.</div></div></section>
+    <section class="calc-card" aria-label="Aviso de uso"><h2><i class="fas fa-triangle-exclamation"></i> Ferramenta orientativa</h2><p>Use esta ferramenta para estudo, pré-avaliação e conferência de campo. Ela não substitui levantamento, projeto, memorial, laudo, ART, certificado, normas, manuais de fabricantes, procedimento de calibração, rastreabilidade, avaliação da incerteza nem validação por profissional habilitado.</p></section>
+    <section class="calc-layout"><div class="calc-card"><h2><i class="fas fa-gauge"></i> Dados do manômetro</h2><div class="calc-grid"><div class="field"><label for="fs">Amplitude total da escala / span (bar)</label><input id="fs" type="number" step="any" value="10"></div><div class="field"><label for="classe">Classe/EMP (% do fundo de escala)</label><input id="classe" type="number" step="any" value="1.0"></div><div class="field"><label for="ref">Pressão de referência (bar)</label><input id="ref" type="number" step="any" value="5"></div><div class="field"><label for="subida">Indicação na subida (bar)</label><input id="subida" type="number" step="any" value="5.05"></div><div class="field"><label for="descida">Indicação na descida (bar)</label><input id="descida" type="number" step="any" value="4.98"></div><div class="field"><label for="toladd">Margem adicional definida no procedimento (bar)</label><input id="toladd" type="number" step="any" value="0"></div></div><div class="calc-actions"><button class="mini-btn dark" onclick="copiar()" type="button"><i class="fas fa-copy"></i> Copiar resultado</button><button class="mini-btn" onclick="window.print()" type="button"><i class="fas fa-print"></i> Imprimir</button></div></div><div class="calc-card"><h2><i class="fas fa-chart-simple"></i> Resultado</h2><div class="calc-result five"><div class="result-box"><span>EMP aplicado</span><strong id="r1">-</strong></div><div class="result-box"><span>Erro subida</span><strong id="r2">-</strong></div><div class="result-box"><span>Erro descida</span><strong id="r3">-</strong></div><div class="result-box"><span>Histerese</span><strong id="r4">-</strong></div><div class="result-box"><span>Status do ponto</span><strong id="r5" class="small">-</strong></div></div><div class="calc-note" id="nota">O status compara o maior erro absoluto de subida ou descida com o EMP aplicado neste ponto.</div></div></section>
     <section class="calc-card faq"><h2><i class="fas fa-circle-question"></i> Perguntas frequentes</h2><details><summary>Classe 1,0 significa 1% da leitura?</summary><p>Em muitos manômetros industriais, a classe é aplicada ao fundo de escala. Confirme a norma/modelo do instrumento.</p></details><details><summary>Devo testar descida também?</summary><p>Sim. A comparação subida/descida ajuda a identificar histerese e atrito mecânico.</p></details></section>
   
-    <!-- ALOGY_REVISAO_TECNICA_FERRAMENTA -->
     <section class="calc-card" aria-label="Orientação técnica complementar">
-      <h2><i class="fas fa-clipboard-check"></i> Como usar esta ferramenta na prática</h2>
-      <p>Calcule erro, histerese, limite por classe de exatidão e status de calibração de manômetro industrial. Nesta revisão, o conteúdo foi ampliado para deixar mais claro quando usar a ferramenta, quais dados precisam ser conferidos e como transformar o número calculado em uma decisão técnica.</p>
-      <h3>Quando aplicar</h3>
-      <p>Use em bancada, campo ou laboratório para preparar pontos de teste, comparar indicação do instrumento com referência rastreável e decidir se o equipamento está aprovado, reprovado ou se precisa de ajuste.</p>
-      <h3>Dados que merecem conferência</h3>
-      <p>Antes de confiar no resultado da ferramenta <strong>Calculadora de Calibração de Manômetro</strong>, confira principalmente: Fundo de escala (bar), Classe/EMP (% do fundo de escala), Pressão de referência (bar), Indicação na subida (bar), Indicação na descida (bar), Tolerância adicional opcional (bar). Pequenos erros de unidade, ponto decimal ou condição de operação podem gerar conclusões erradas.</p>
-      <ul>
-          <li>Fundo de escala (bar)</li>
-          <li>Classe/EMP (% do fundo de escala)</li>
-          <li>Pressão de referência (bar)</li>
-          <li>Indicação na subida (bar)</li>
-          <li>Indicação na descida (bar)</li>
-          <li>Tolerância adicional opcional (bar)</li>
-      </ul>
-      <h3>Como interpretar o resultado</h3>
-      <p>O resultado deve ser comparado com a tolerância do processo e com o erro máximo permitido definido no plano de calibração. Um erro pequeno no instrumento pode ser aceitável para utilidades, mas crítico em malhas de segurança, qualidade ou dosagem.</p>
-      <p>Quando a página apresentar campos de resultado como EMP por classe, Erro subida, Histerese, Status, use esses valores para comparar o cenário calculado com limite operacional, tolerância do processo, histórico de manutenção ou especificação de fabricante.</p>
-      <h3>Checklist rápido de validação</h3>
-      <ul>
-          <li>Confirme TAG, faixa LRV/URV, unidade de engenharia e damping antes do teste.</li>
-          <li>Use padrão de referência com resolução e incerteza adequadas ao instrumento em teste.</li>
-          <li>Registre as leituras de subida e descida para observar histerese, repetibilidade e retorno ao zero.</li>
-          <li>Quando houver ajuste, repita o ciclo completo antes de liberar o instrumento.</li>
-      </ul>
-      <h3>Limites da estimativa</h3>
-      <p>Esta ferramenta é indicada para estudo, triagem, conferência de campo e apoio à manutenção. Para projeto final, laudo, especificação de compra, alteração de segurança ou liberação de equipamento crítico, valide as premissas com normas aplicáveis, documentação do fabricante e profissional habilitado.</p>
-    </section>
+<h2><i class="fas fa-clipboard-check"></i> Como conferir o ponto</h2>
+<ol>
+<li>Confirme a amplitude total da escala, a classe do instrumento e o critério definido no procedimento.</li>
+<li>Aplique a referência com o instrumento na posição de uso e aguarde a estabilização.</li>
+<li>Registre as indicações na subida e na descida sem interpolar além da resolução disponível.</li>
+<li>Repita o ciclo exigido após qualquer ajuste.</li>
+</ol>
+<h3>Fórmulas exibidas</h3>
+<div class="formula-box">EMP da classe = |Span| × Classe % ÷ 100<br/>EMP aplicado = EMP da classe + Margem adicional definida no procedimento<br/>Erro subida = Indicação subida − Referência<br/>Erro descida = Indicação descida − Referência<br/>Histerese no ponto = |Indicação subida − Indicação descida|<br/>Status simples: aprovado quando o maior |Erro| ≤ EMP aplicado</div>
+<p class="mini-help">A margem adicional deve permanecer em zero, salvo quando um procedimento aprovado determinar sua aplicação. O status vale somente para o ponto informado e não substitui o ciclo completo, a avaliação de repetibilidade, incerteza, resolução ou requisitos específicos do modelo.</p>
+<h3>Referências técnicas</h3>
+<ul><li><a href="https://www.wika.com/en-us/pressure_gauges.WIKA" rel="noopener" target="_blank">WIKA — Classes de exatidão de manômetros</a></li><li><a href="https://www.ashcroft.com/wp-content/uploads/2020/09/datasheet-2462-duragauge-pressure-gauge.pdf" rel="noopener" target="_blank">Ashcroft — Exemplo de exatidão em percentual do span</a></li></ul>
+</section>
 
   </main>
   <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
@@ -98,17 +83,18 @@ function parseBrNumber(value){
   const num = Number(normalized);
   return Number.isFinite(num) ? num : NaN;
 }
-function val(id){const v=parseBrNumber(document.getElementById(id).value); return Number.isFinite(v)?v:0}
-function txt(id){return document.getElementById(id).value}
+function val(id){return parseBrNumber(document.getElementById(id).value)}
 function n(v,d=2){return Number.isFinite(v)?v.toLocaleString('pt-BR',{minimumFractionDigits:d,maximumFractionDigits:d}):'-'}
-function cls(ok){return ok?'pill-ok':'pill-bad'}
-function st(absErr,tol){if(!Number.isFinite(absErr)||!Number.isFinite(tol))return '<span class="pill-warn">Verificar</span>'; if(absErr<=tol)return '<span class="pill-ok">Aprovado</span>'; if(absErr<=tol*1.25)return '<span class="pill-warn">Próximo do limite</span>'; return '<span class="pill-bad">Reprovado</span>'}
+function st(absErr,tol){if(!Number.isFinite(absErr)||!Number.isFinite(tol))return '<span class="pill-warn">Verificar</span>';const eps=1e-12*Math.max(1,tol);return absErr<=tol+eps?'<span class="pill-ok">Aprovado</span>':'<span class="pill-bad">Reprovado</span>'}
+function invalidResult(message){['r1','r2','r3','r4'].forEach(id=>document.getElementById(id).textContent='-');document.getElementById('r5').innerHTML='<span class="pill-warn">Revise os dados</span>';document.getElementById('nota').textContent=message}
 function copiar(){const r=document.querySelector('.calc-card:nth-of-type(2)'); const t=r?r.innerText:document.body.innerText; navigator.clipboard.writeText(t).then(()=>alert('Resultado copiado.'))}
 document.querySelectorAll('input,select').forEach(e=>e.addEventListener('input',calcular));
 
-function calcular(){let fs=val('fs'),cl=val('classe'),ref=val('ref'),s=val('subida'),d=val('descida'),ta=val('toladd');
-  if(fs<=0||cl<0||ta<0){document.getElementById('r1').innerHTML='-';document.getElementById('r2').innerHTML='-';document.getElementById('r3').innerHTML='-';document.getElementById('r4').innerHTML='<span class="pill-warn">Verificar escala/classe</span>';return;}
-  let emp=Math.abs(fs)*cl/100+Math.abs(ta);let es=s-ref, ed=d-ref, h=s-d;let maxErr=Math.max(Math.abs(es),Math.abs(ed));document.getElementById('r1').innerHTML='± '+n(emp,4)+' bar';document.getElementById('r2').innerHTML=n(es,4)+' bar';document.getElementById('r3').innerHTML=n(h,4)+' bar';document.getElementById('r4').innerHTML=st(maxErr,emp);}
+function calcular(){let fs=val('fs'),cl=val('classe'),ref=val('ref'),up=val('subida'),down=val('descida'),extra=val('toladd');
+  if(![fs,cl,ref,up,down,extra].every(Number.isFinite)){invalidResult('Preencha todos os campos com valores numéricos válidos.');return;}
+  if(fs<=0){invalidResult('A amplitude total da escala deve ser maior que zero.');return;}
+  if(cl<0||extra<0){invalidResult('Classe e margem adicional devem ser maiores ou iguais a zero.');return;}
+  let empClass=Math.abs(fs)*cl/100,emp=empClass+extra,errUp=up-ref,errDown=down-ref,hyst=Math.abs(up-down),maxErr=Math.max(Math.abs(errUp),Math.abs(errDown));document.getElementById('r1').textContent='± '+n(emp,4)+' bar';document.getElementById('r2').textContent=n(errUp,4)+' bar';document.getElementById('r3').textContent=n(errDown,4)+' bar';document.getElementById('r4').textContent=n(hyst,4)+' bar';document.getElementById('r5').innerHTML=st(maxErr,emp);document.getElementById('nota').textContent='EMP da classe: ± '+n(empClass,4)+' bar; margem adicional: '+n(extra,4)+' bar. Critério aplicado ao maior erro do ponto.';}
 calcular();</script>
 </body>
 </html>
