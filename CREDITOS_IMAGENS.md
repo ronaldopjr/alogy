@@ -46,8 +46,9 @@ Este arquivo registra a origem das fotografias externas usadas no site ALOGY. A 
 
 ## blog-capa-conexoes-pneumaticas.webp
 
-- Uso no site: capa do artigo `blog-conexoes-pneumaticas-instrumentacao.html`
-- Descrição: conexões e curvas em tubulação industrial
+- Uso no site: sem uso após auditoria visual de 17 de julho de 2026
+- Status editorial: retirada do cartão do Blog e da imagem social do artigo; a fotografia mostra tubos e conexões roscadas de encanamento, sem engates rápidos, conexões push-in ou componentes pneumáticos de instrumentação reconhecíveis
+- Descrição factual: tubos rígidos brancos com joelho e tê roscados em uma montagem de encanamento
 - Fotógrafo: Life-Of-Pix
 - Acervo: Pixabay
 - Página de origem: https://pixabay.com/photos/pipe-plumbing-connection-pipeline-406906/
@@ -56,6 +57,7 @@ Este arquivo registra a origem das fotografias externas usadas no site ALOGY. A 
 - Licença: https://pixabay.com/service/license-summary/
 - Data de obtenção: 17 de julho de 2026
 - Tratamento aplicado: recorte central, redimensionamento para 960 × 540 px, remoção de metadados e conversão para WebP
+- Observação editorial: arquivo preservado no repositório com origem e licença registradas, mas sem associação pública a conteúdo de conexões pneumáticas; ausência de foto foi preferida a uma correspondência apenas genérica
 
 ## blog-capa-valvula-atuador.webp
 
