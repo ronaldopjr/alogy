@@ -30,15 +30,26 @@ Finalidade: permitir acompanhamento separado de descoberta, rastreamento e index
 
 Uma varredura dos arquivos HTML encontrou repetição em larga escala:
 
-- 276 páginas contêm ao menos um dos principais blocos padronizados auditados;
+- 272 páginas ainda contêm ao menos um dos principais blocos padronizados auditados;
 - 157 páginas repetem a abertura “Nesta revisão, o conteúdo foi ampliado...”;
-- 78 artigos repetem “Este conteúdo foi ampliado para ajudar...”;
+- 74 artigos ainda repetem “Este conteúdo foi ampliado para ajudar...”;
 - 198 páginas repetem “Como usar esta ferramenta na prática”;
 - 198 páginas repetem “Dados que merecem conferência”;
 - um mesmo aviso aparece em 157 arquivos;
 - cinco parágrafos genéricos aparecem em aproximadamente 78 a 80 artigos.
 
 Essas ocorrências não comprovam isoladamente a causa da reprovação, mas reduzem diferenciação, originalidade percebida e utilidade específica de cada URL. A revisão editorial deve remover o padrão por famílias, preservando somente avisos técnicos compartilhados que sejam realmente necessários.
+
+## Lote editorial de analítica industrial
+
+Quatro artigos estratégicos foram diferenciados em 17/07/2026:
+
+- calibração de analisadores de processo;
+- calibração de pHmetro;
+- slope de sonda de pH;
+- ORP em mV para controle industrial.
+
+Os blocos genéricos foram substituídos por procedimentos, premissas, exemplos e limitações próprios de cada tema. O lote reduziu de 276 para 272 o conjunto de páginas com os principais padrões auditados e de 78 para 74 a repetição da abertura editorial dos artigos. Os quatro `lastmod` foram atualizados no sitemap do Blog; nenhuma outra data foi alterada.
 
 ## Estratégia de correção
 
@@ -77,4 +88,3 @@ Essas ocorrências não comprovam isoladamente a causa da reprovação, mas redu
 - Search Central — sitemaps: https://developers.google.com/search/docs/crawling-indexing/sitemaps/overview
 - Search Central — conteúdo útil e centrado nas pessoas: https://developers.google.com/search/docs/fundamentals/creating-helpful-content
 - Google AdSense — valor do inventário: https://support.google.com/adsense/answer/10502938
-
