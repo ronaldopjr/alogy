@@ -19,14 +19,15 @@
   <link rel="stylesheet" href="style.css" />
   <script src="app.js" defer></script>
   <meta property="og:locale" content="pt_BR" />
-  <meta property="og:type" content="website" />
+  <meta property="og:type" content="article" />
   <meta property="og:site_name" content="ALOGY Engenharia" />
   <meta property="og:title" content="K-Factor em Medidores de Vazão por Pulsos" />
   <meta property="og:description" content="Entenda como usar fator K, frequência e totalização de pulsos em medidores de vazão industriais." />
   <meta property="og:url" content="https://www.alogy.com.br/blog-k-factor-vazao-pulsos.html" />
-  <meta property="og:image" content="https://www.alogy.com.br/favicon-512x512.png" />
+  <meta property="og:image" content="https://www.alogy.com.br/blog-capa-totalizador-vazao.webp" />
   <meta name="twitter:card" content="summary_large_image" />
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","name":"K-Factor em Medidores de Vazão por Pulsos","url":"https://www.alogy.com.br/blog-k-factor-vazao-pulsos.html","applicationCategory":"EngineeringApplication","operatingSystem":"Web","description":"Entenda como usar fator K, frequência e totalização de pulsos em medidores de vazão industriais.","publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"}}</script>
+  <meta name="twitter:image" content="https://www.alogy.com.br/blog-capa-totalizador-vazao.webp" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"K-Factor em Medidores de Vazão por Pulsos","description":"Entenda como usar fator K, frequência e totalização de pulsos em medidores de vazão industriais.","dateModified":"2026-07-17","image":"https://www.alogy.com.br/blog-capa-totalizador-vazao.webp","author":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"},"publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/","logo":{"@type":"ImageObject","url":"https://www.alogy.com.br/logo-alogy.webp"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://www.alogy.com.br/blog-k-factor-vazao-pulsos.html"},"inLanguage":"pt-BR"}</script>
   <style>
     .mini-help{color:var(--muted);font-size:.92rem;line-height:1.55;margin-top:8px}
     .faq details{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:14px;padding:14px;margin-top:10px;box-shadow:0 6px 16px rgba(0,0,0,.04)}
@@ -52,46 +53,47 @@
   <main class="container" style="margin-top:18px">
     <a class="floating-back-blog no-print" href="blog.html"><i class="fas fa-arrow-left"></i> Voltar ao Blog</a>
     <section class="tools-hero"><h1>K-Factor: vazão por pulsos e frequência</h1><p>Entenda como usar fator K, frequência e totalização de pulsos em medidores de vazão industriais.</p></section>
+    <figure class="post-cover-photo">
+      <img src="blog-capa-totalizador-vazao.webp" alt="Conjunto de medidores instalados em ramais de tubulação" width="960" height="540" decoding="async" fetchpriority="high" />
+      <figcaption>Imagem contextual de medição de vazão. A fotografia não demonstra o princípio do medidor nem representa instalação, cliente ou serviço da ALOGY.</figcaption>
+    </figure>
     <section class="calc-card"><p>Entenda como usar fator K, frequência e totalização de pulsos em medidores de vazão industriais.</p>
-<p>Este conteúdo foi ampliado para ajudar técnicos, instrumentistas, eletricistas, mecânicos, planejadores e engenheiros a usar o tema <strong>k-factor: vazão por pulsos e frequência</strong> como apoio de diagnóstico, especificação preliminar e conferência de campo. A ideia não é apenas chegar a um número, mas entender quais dados precisam ser confiáveis antes de tomar uma decisão.</p>
+<p>O K-factor informa quantos pulsos o medidor gera para cada unidade de volume. Um valor de 100 pulsos/L, por exemplo, significa que 100 pulsos acumulados correspondem a 1 litro nas condições e na faixa para as quais o fator foi determinado.</p>
 
-<h2>Onde esse tema aparece na indústria?</h2>
-<p>O assunto é comum em rotinas de processo, vazão e hidráulica, principalmente quando manutenção, operação e engenharia precisam comparar condição real de processo com valores esperados de projeto. Em muitos casos, a dúvida nasce de uma falha em campo: leitura instável, equipamento subdimensionado, instrumento fora de faixa, perda de desempenho, consumo elevado ou dificuldade para comprovar a condição real do sistema.</p>
-<p>Em processo, a condição real de operação faz diferença: densidade, viscosidade, pressão, temperatura, regime de escoamento, perda de carga e margem operacional devem ser avaliados antes de especificar equipamento ou aceitar um resultado.</p>
+<h2>Vazão instantânea e volume totalizado</h2>
+<p>A soma dos pulsos representa volume. A frequência representa quantos pulsos chegam por segundo e permite obter vazão instantânea. Se o K estiver em pulsos/L, o volume em litros é <strong>pulsos ÷ K</strong>; a vazão em L/s é <strong>frequência em Hz ÷ K</strong>.</p>
+<div class="formula-box"><span class="line">Volume = N ÷ K</span><span class="line">Vazão = f ÷ K</span></div>
+<p>As unidades precisam permanecer coerentes. Um K em pulsos/m³ não pode ser usado como pulsos/L sem conversão, e a saída em L/s precisa ser multiplicada por 60 para obter L/min.</p>
 
-<h2>Dados que devem ser levantados antes do cálculo</h2>
+<h2>Dados que devem ser confirmados</h2>
 <ul>
-  <li><strong>Condição real de operação:</strong> pressão, temperatura, vazão, nível, concentração, tensão, corrente, rotação ou outra grandeza aplicável ao caso.</li>
-  <li><strong>Unidades corretas:</strong> confirme se os dados estão em bar, kPa, mbar, psi, °C, L/min, Nm³/h, m³/h, mm, mA, V ou outra unidade usada pela ferramenta.</li>
-  <li><strong>Faixa de trabalho:</strong> verifique mínimo, normal, máximo e condição de alarme. Trabalhar apenas com o ponto nominal pode esconder problemas.</li>
-  <li><strong>Dados de fabricante:</strong> consulte folha de dados, manual, curva característica, limite de operação e recomendações de instalação.</li>
-  <li><strong>Condições de campo:</strong> comprimento de cabo ou tubulação, posição de montagem, temperatura ambiente, vibração, umidade, sujeira, acessibilidade e interferências.</li>
+  <li><strong>K-factor individual:</strong> use o valor do certificado, etiqueta ou configuração do medidor, não um valor genérico de outro equipamento.</li>
+  <li><strong>Unidade do K:</strong> pulsos/L, pulsos/m³, pulsos/galão ou outra unidade definida pelo fabricante.</li>
+  <li><strong>Tipo elétrico da saída:</strong> contato, coletor aberto, NPN, PNP, NAMUR ou saída ativa, conforme o manual.</li>
+  <li><strong>Limites de frequência:</strong> confira a frequência máxima do sensor, da entrada do CLP e do totalizador.</li>
+  <li><strong>Faixa válida:</strong> alguns medidores usam curva ou tabela de linearização; um único K pode não representar toda a faixa.</li>
 </ul>
 
-<h2>Como interpretar o resultado</h2>
-<p>O resultado deve ser tratado como <strong>estimativa técnica preliminar</strong>. Ele ajuda a validar ordem de grandeza e aponta se o valor informado está coerente, mas não deve ser usado sozinho para liberar compra, alteração de processo, mudança de proteção, calibração crítica ou partida de equipamento.</p>
-<p>Quando o resultado fica muito próximo do limite do equipamento, a recomendação é revisar margens. Um dimensionamento muito “no limite” pode funcionar em bancada e falhar em campo por variação de processo, envelhecimento, sujeira, perda de carga, temperatura, queda de tensão, histerese ou erro de medição.</p>
+<h2>Exemplo numérico</h2>
+<p>Considere K = 100 pulsos/L. Ao contar 250 pulsos, o volume calculado é 250 ÷ 100 = <strong>2,5 L</strong>. Se a frequência medida for 50 Hz, a vazão é 50 ÷ 100 = <strong>0,5 L/s</strong>, equivalente a <strong>30 L/min</strong>.</p>
+<p>Esse exemplo confere somente a relação matemática. A exatidão real depende do K aplicável ao medidor, da faixa de vazão, do condicionamento do escoamento, da instalação e da capacidade da entrada de pulsos.</p>
 
-<h2>Erros comuns de campo</h2>
+<h2>Falhas comuns na integração</h2>
 <ul>
-  <li>Usar condição nominal de catálogo sem conferir a condição real da instalação.</li>
-  <li>Converter unidade de forma incorreta ou misturar unidade absoluta com relativa.</li>
-  <li>Desconsiderar perdas, tolerâncias, tempo de resposta, margem de segurança e influência da temperatura.</li>
-  <li>Trocar componente sem investigar causa raiz, repetindo a mesma falha após a manutenção.</li>
-  <li>Usar o cálculo como substituto de procedimento, norma, projeto ou validação do responsável técnico.</li>
+  <li>Configurar pulsos/L no medidor e interpretar pulsos/m³ no CLP.</li>
+  <li>Perder pulsos porque a entrada ou a varredura do programa é lenta para a frequência gerada.</li>
+  <li>Usar entrada digital comum quando a aplicação exige contador rápido.</li>
+  <li>Ignorar rebote de contato, polaridade, alimentação ou resistor de pull-up da saída.</li>
+  <li>Alterar o K para “corrigir” indicação sem investigar instalação, faixa, calibração e unidade.</li>
 </ul>
 
-<h2>Exemplo prático de aplicação</h2>
-<p>Imagine uma equipe tentando justificar uma intervenção durante uma parada de manutenção. Antes de comprar um novo componente ou alterar um ajuste, o responsável levanta os dados de operação, aplica a ferramenta relacionada, compara o resultado com o histórico e verifica se há coerência com a folha de dados do equipamento. Esse processo simples evita decisões por tentativa e erro e melhora a conversa entre manutenção, operação, engenharia e fornecedor.</p>
-<p>Quando a conta indica uma diferença grande entre o valor esperado e o valor medido, o próximo passo não é necessariamente substituir o equipamento. Primeiro devem ser avaliados instalação, calibração, obstruções, vazamentos, ruídos elétricos, parametrização, condição de processo e documentação disponível.</p>
-
-<h2>Checklist rápido antes de decidir</h2>
+<h2>Roteiro de conferência em campo</h2>
 <ul>
-  <li>O valor calculado está na mesma unidade usada pelo instrumento, CLP, supervisório ou folha de dados?</li>
-  <li>Existe margem suficiente entre operação normal, limite de alarme e limite físico do equipamento?</li>
-  <li>O resultado foi comparado com histórico, tendência, inspeção visual ou medição independente?</li>
-  <li>A instalação atende boas práticas de montagem, acesso, proteção mecânica e manutenção?</li>
-  <li>A decisão envolve segurança, parada de produção, qualidade do produto ou requisito legal? Se sim, valide formalmente.</li>
+  <li>Leia o K e sua unidade na documentação do medidor.</li>
+  <li>Compare pulsos acumulados no instrumento, no CLP e no supervisório.</li>
+  <li>Meça a frequência e verifique se ela está dentro dos limites de todos os equipamentos.</li>
+  <li>Confirme escalas de tempo: segundo, minuto e hora.</li>
+  <li>Teste com volume de referência somente quando houver procedimento, condições seguras e padrão adequado.</li>
 </ul>
 
 <h2>Ferramenta e conteúdos relacionados</h2>
@@ -107,6 +109,12 @@
   <li><a href="calculadora-calibracao-medidor-vazao-ultrassonico.html">Calculadora de Medidor Ultrassônico</a> <span class="mini-help">(ferramenta)</span></li>
   <li><a href="blog-calibracao-totalizador-vazao.html">Calibração de Totalizador de Vazão: erro e K-factor</a> <span class="mini-help">(artigo)</span></li>
   <li><a href="blog-vazao-normalizada-gases.html">Nm³/h, Sm³/h e m³/h: Como Converter Vazão de Gases</a> <span class="mini-help">(artigo)</span></li>
+</ul>
+
+<h2>Referências técnicas</h2>
+<ul>
+  <li><a href="https://assets.omega.com/manuals/M4523.pdf" target="_blank" rel="noopener">OMEGA — Flow Monitor: definição e configuração do K-factor</a>.</li>
+  <li><a href="https://cache.industry.siemens.com/dl/files/108/28533108/att_56208/v1/SITRANS_F_RA_110_ATEX_en.pdf" target="_blank" rel="noopener">Siemens — SITRANS F RA 110: conversão de pulsos em vazão por K-factor</a>.</li>
 </ul>
 
 <h2>Aviso técnico</h2>
