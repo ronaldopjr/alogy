@@ -18,8 +18,9 @@ Este arquivo registra a origem das fotografias externas usadas no site ALOGY. A 
 
 ## blog-capa-calibracao-dp-vazao.webp
 
-- Uso no site: capa e imagem interna do artigo `blog-calibracao-transmissor-dp-vazao.html` e contexto visual da ferramenta `calculadora-calibracao-transmissor-dp-vazao.html`
-- Descrição: medidores de vazão instalados em um coletor de distribuição
+- Uso no site: sem uso após auditoria visual de 17 de julho de 2026
+- Status editorial: retirada do artigo, da ferramenta e do cartão do Blog; a fotografia mostra rotâmetros de área variável, não um transmissor DP, manifold ou elemento primário de pressão diferencial
+- Descrição factual: bateria de rotâmetros de área variável instalada em um coletor de distribuição
 - Fotógrafo: Pavel Danilyuk
 - Acervo: Pexels
 - Página de origem: https://www.pexels.com/photo/close-up-of-pipes-on-wall-7937309/
@@ -28,7 +29,7 @@ Este arquivo registra a origem das fotografias externas usadas no site ALOGY. A 
 - Licença: https://www.pexels.com/license/
 - Data de obtenção: 17 de julho de 2026
 - Tratamento aplicado: recorte central, redimensionamento para 960 × 540 px, remoção de metadados e conversão para WebP
-- Observação editorial: fotografia contextual de medidores de vazão; não representa transmissor DP, cliente, instalação ou serviço da ALOGY
+- Observação editorial: arquivo preservado no repositório com origem e licença registradas, mas sem associação pública a conteúdo de transmissor DP; ausência de imagem foi preferida à correspondência apenas contextual
 
 ## blog-capa-tubo-pneumatico.webp
 
