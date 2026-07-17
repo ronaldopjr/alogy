@@ -28,6 +28,9 @@
   --success:#16a34a;
   --warning:#f59e0b;
   --danger:#dc2626;
+  --control-border:#7c899b;
+  --focus-ring:#075985;
+  --focus-halo:#ffffff;
 }
 
 
@@ -404,7 +407,7 @@ section{margin:18px auto;}
 label{font-weight:700;color:#223}
 input, textarea, select{
   width:100%;
-  border:1px solid rgba(0,0,0,.12);
+  border:1px solid var(--control-border);
   border-radius:12px;
   padding:12px 12px;
   outline:none;
@@ -925,7 +928,7 @@ nav.mobile a.active{
 .formula-box{background:#0b1220;color:#e5e7eb;border-radius:14px;padding:14px;overflow:auto;font-family:Consolas, Monaco, monospace;font-size:.92rem;line-height:1.65}
 @media(max-width:900px){.tools-grid{grid-template-columns:1fr}.calc-layout{grid-template-columns:1fr}.calc-result{grid-template-columns:1fr}.calc-grid{grid-template-columns:1fr}}
 
-.tags button.tag{cursor:pointer;font:inherit;}
+.tags button.tag{cursor:pointer;font:inherit;min-height:44px;padding:9px 12px;}
 
 
 /* =========================
@@ -1984,17 +1987,35 @@ body.alogy-stage3-forms details{
    Base compartilhada sem alterar fórmulas ou conteúdo.
 ========================= */
 :where(a,button,input,select,textarea,summary):focus-visible{
-  outline:3px solid #ffbf47;
+  outline:3px solid var(--focus-ring);
   outline-offset:3px;
+  box-shadow:0 0 0 2px var(--focus-halo);
 }
-:where(.btn,.mini-btn,.fab-btn,.menu-toggle,.banner-nav,.floating-back-tools){
+:where(.btn,.mini-btn,.fab-btn,.menu-toggle,.banner-nav,.floating-back-tools,.tags button.tag,.alogy-cookie-actions button){
   min-height:44px;
+}
+:where(.menu-toggle,.banner-nav){
+  min-width:44px;
 }
 :where(.btn,.mini-btn){
   justify-content:center;
 }
+:where(.faq summary,.alogy-result-readout-details summary){
+  min-height:44px;
+  padding-block:10px;
+}
+:where(button,.btn,.mini-btn,.fab-btn,.tag,summary){
+  touch-action:manipulation;
+}
 button,input,select,textarea{
   font:inherit;
+}
+@media(forced-colors:active){
+  :where(a,button,input,select,textarea,summary):focus-visible{
+    outline:3px solid Highlight;
+    outline-offset:3px;
+    box-shadow:none;
+  }
 }
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
