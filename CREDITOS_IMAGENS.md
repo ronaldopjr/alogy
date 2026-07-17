@@ -141,7 +141,7 @@ Este arquivo registra a origem das fotografias externas usadas no site ALOGY. A 
 
 ## blog-capa-cartao-analogico-clp.webp
 
-- Uso no site: capa e imagem interna do artigo `blog-calibracao-cartao-analogico-clp.html`
+- Uso no site: capa e imagem interna dos artigos `blog-calibracao-cartao-analogico-clp.html` e `blog-resistor-shunt-4-20ma.html`
 - Descrição: painel industrial com botoeiras e interface de operação
 - Fotógrafo: Fernando Narvaez
 - Acervo: Pexels
@@ -169,7 +169,7 @@ Este arquivo registra a origem das fotografias externas usadas no site ALOGY. A 
 
 ## blog-capa-totalizador-vazao.webp
 
-- Uso no site: capa e imagem interna do artigo `blog-calibracao-totalizador-vazao.html`
+- Uso no site: capa e imagem interna dos artigos `blog-calibracao-totalizador-vazao.html` e `blog-k-factor-vazao-pulsos.html`
 - Descrição: conjunto de medidores instalados em ramais de tubulação
 - Fotógrafo: Godspower Abdulahi
 - Acervo: Unsplash
