@@ -35,7 +35,7 @@
 <h2><i class="fas fa-triangle-exclamation"></i> Uso orientativo e responsabilidade técnica</h2>
 <p>Esta ferramenta é apenas para estudo, apoio técnico e pré-análise. Os resultados podem conter simplificações, aproximações ou erros de preenchimento e não substituem normas aplicáveis, catálogos de fabricantes, procedimentos internos, medições em campo, projetos, laudos ou análise de profissional habilitado. A ALOGY Engenharia não se responsabiliza por decisões, instalações, ajustes, manobras, compras ou intervenções realizadas exclusivamente com base nesta ferramenta.</p>
 </section>
-<section class="calc-layout"><div class="calc-card"><h2><i class="fas fa-square-root-variable"></i> Dados da aplicação</h2><p>Use quando o transmissor/sistema trabalha com extração de raiz quadrada para vazão por DP.</p><div class="calc-grid"><div class="field full"><label for="sq_modo">Calcular a partir de</label><select id="sq_modo"><option value="ma">Sinal em mA</option><option value="dp">Percentual de DP</option><option value="flow">Vazão</option></select></div><div class="field"><label for="sq_valor" id="sq_label">Sinal em mA</label><input id="sq_valor" step="any" type="text" inputmode="decimal" value="12"/></div><div class="field"><label for="sq_max">Vazão máxima / 100%</label><input id="sq_max" step="any" type="text" inputmode="decimal" value="1000"/></div><div class="field"><label for="sq_unit">Unidade de vazão</label><input id="sq_unit" value="m³/h"/></div></div><div class="calc-note" id="sq_note">Resultado auxiliar para relação de vazão por raiz quadrada.</div><div class="calc-actions"><button class="mini-btn dark" onclick="copySQ()" type="button"><i class="fas fa-copy"></i> Copiar resultado</button><button class="mini-btn" onclick="exSQ('ma',12,1000,'m³/h')" type="button">Restaurar exemplo</button></div></div><div class="calc-card"><h2><i class="fas fa-square-poll-vertical"></i> Resultado</h2><div class="calc-result" style="grid-template-columns:1fr 1fr"><div class="result-box"><span>Sinal</span><strong id="sq_ma">-</strong></div><div class="result-box"><span>DP</span><strong id="sq_dp">-</strong></div><div class="result-box"><span>Vazão</span><strong id="sq_flowpct">-</strong></div><div class="result-box"><span>Valor de vazão</span><strong id="sq_flow">-</strong></div></div><h3 style="margin-top:18px">Exemplos rápidos</h3><div class="tags"><button class="tag" onclick="exSQ('ma',8,1000,'m³/h')" type="button">8 mA</button><button class="tag" onclick="exSQ('ma',12,1000,'m³/h')" type="button">12 mA</button><button class="tag" onclick="exSQ('dp',25,1000,'L/h')" type="button">25% DP</button><button class="tag" onclick="exSQ('flow',500,1000,'m³/h')" type="button">500 m³/h de 1000</button></div></div></section><section class="calc-layout"><div class="calc-card"><h2>Tabela raiz quadrada</h2><p>Referência entre DP, sinal 4-20 mA e vazão calculada.</p><div class="calc-table-wrap"><table class="calc-table"><thead><tr><th>DP</th><th>Sinal</th><th>Vazão %</th><th>Vazão</th></tr></thead><tbody id="sq_table"></tbody></table></div></div><div class="calc-card"><h2>Fórmulas usadas</h2><div class="formula-box">%DP = ((mA - 4) / 16) × 100<br/>%Vazão = √(%DP / 100) × 100<br/>Vazão = Vazão máxima × √(%DP / 100)<br/><br/>Para calcular o mA a partir da vazão:<br/>%DP = (Vazão / Vazão máxima)² × 100<br/>mA = 4 + (%DP / 100) × 16</div><div class="calc-note warn">Use somente quando a aplicação realmente exigir extração de raiz quadrada. Se o transmissor já lineariza a vazão, use a calculadora 4-20 mA linear.</div></div></section><section class="calc-card faq"><h2>Perguntas frequentes</h2><details><summary>Por que vazão por DP usa raiz quadrada?</summary><p>Em elementos primários de pressão diferencial, a vazão é proporcional à raiz quadrada da pressão diferencial.</p></details><details><summary>12 mA significa 50% de vazão?</summary><p>Não nesse caso. Em raiz quadrada, 12 mA representa 50% de DP, o que corresponde aproximadamente a 70,71% da vazão máxima.</p></details></section><section class="cta-bar"><div><strong>Precisa validar malha de vazão por DP?</strong><br/><span class="muted">A ALOGY pode apoiar em teste de loop, comissionamento e diagnóstico de instrumentação.</span></div><div class="cta-actions"><a class="btn secondary" href="calculadora-4-20ma.html"><i class="fas fa-wave-square"></i> Calculadora 4-20 mA</a><a class="btn secondary" href="ferramentas.html"><i class="fas fa-toolbox"></i> Outras ferramentas</a></div></section>
+<section class="calc-layout"><div class="calc-card"><h2><i class="fas fa-square-root-variable"></i> Dados da aplicação</h2><p>Use quando o transmissor/sistema trabalha com extração de raiz quadrada para vazão por DP.</p><div class="calc-grid"><div class="field full"><label for="sq_modo">Calcular a partir de</label><select id="sq_modo"><option value="ma">Sinal em mA</option><option value="dp">Percentual de DP</option><option value="flow">Vazão</option></select></div><div class="field"><label for="sq_valor" id="sq_label">Sinal em mA</label><input id="sq_valor" step="any" type="text" inputmode="decimal" autocomplete="off" maxlength="24" value="12"/></div><div class="field"><label for="sq_max">Vazão máxima / 100%</label><input id="sq_max" step="any" type="text" inputmode="decimal" autocomplete="off" maxlength="24" value="1000"/></div><div class="field"><label for="sq_unit">Unidade de vazão</label><input id="sq_unit" autocomplete="off" maxlength="20" value="m³/h"/></div></div><div class="calc-note" id="sq_note" role="status" aria-live="polite">Resultado auxiliar para relação de vazão por raiz quadrada.</div><div class="calc-actions"><button class="mini-btn dark" onclick="copySQ()" type="button"><i class="fas fa-copy"></i> Copiar resultado</button><button class="mini-btn" onclick="exSQ('ma',12,1000,'m³/h')" type="button">Restaurar exemplo</button></div></div><div class="calc-card"><h2><i class="fas fa-square-poll-vertical"></i> Resultado</h2><div class="calc-result" style="grid-template-columns:1fr 1fr" role="status" aria-live="polite"><div class="result-box"><span>Sinal</span><strong id="sq_ma">-</strong></div><div class="result-box"><span>DP</span><strong id="sq_dp">-</strong></div><div class="result-box"><span>Vazão</span><strong id="sq_flowpct">-</strong></div><div class="result-box"><span>Valor de vazão</span><strong id="sq_flow">-</strong></div></div><h3 style="margin-top:18px">Exemplos rápidos</h3><div class="tags"><button class="tag" onclick="exSQ('ma',8,1000,'m³/h')" type="button">8 mA</button><button class="tag" onclick="exSQ('ma',12,1000,'m³/h')" type="button">12 mA</button><button class="tag" onclick="exSQ('dp',25,1000,'L/h')" type="button">25% DP</button><button class="tag" onclick="exSQ('flow',500,1000,'m³/h')" type="button">500 m³/h de 1000</button></div></div></section><section class="calc-layout"><div class="calc-card"><h2>Tabela raiz quadrada</h2><p>Referência entre DP, sinal 4-20 mA e vazão calculada.</p><div class="calc-table-wrap"><table class="calc-table"><thead><tr><th>DP</th><th>Sinal</th><th>Vazão %</th><th>Vazão</th></tr></thead><tbody id="sq_table"></tbody></table></div></div><div class="calc-card"><h2>Fórmulas usadas</h2><div class="formula-box">%DP = ((mA - 4) / 16) × 100<br/>%Vazão = √(%DP / 100) × 100<br/>Vazão = Vazão máxima × √(%DP / 100)<br/><br/>Para calcular o mA a partir da vazão:<br/>%DP = (Vazão / Vazão máxima)² × 100<br/>mA = 4 + (%DP / 100) × 16</div><div class="calc-note warn">Use somente quando a aplicação realmente exigir extração de raiz quadrada. Se o transmissor já lineariza a vazão, use a calculadora 4-20 mA linear.</div><p class="small-muted"><strong>Base técnica:</strong> a relação de raiz quadrada em medição de vazão por pressão diferencial é descrita na <a href="https://www.emerson.com/is/content/emerson/en/measurement-instrumentation/technical/products/pressure/documents/technical-note-rosemount-3051s-multivariable-accuracy.pdf" target="_blank" rel="noopener">nota técnica Rosemount 3051S MultiVariable</a>. O documento é usado apenas como referência verificável do princípio físico; confirme a configuração do instrumento instalado.</p></div></section><section class="calc-card faq"><h2>Perguntas frequentes</h2><details><summary>Por que vazão por DP usa raiz quadrada?</summary><p>Em elementos primários de pressão diferencial, a vazão é proporcional à raiz quadrada da pressão diferencial.</p></details><details><summary>12 mA significa 50% de vazão?</summary><p>Não nesse caso. Em raiz quadrada, 12 mA representa 50% de DP, o que corresponde aproximadamente a 70,71% da vazão máxima.</p></details></section><section class="cta-bar"><div><strong>Precisa validar malha de vazão por DP?</strong><br/><span class="muted">A ALOGY pode apoiar em teste de loop, comissionamento e diagnóstico de instrumentação.</span></div><div class="cta-actions"><a class="btn secondary" href="calculadora-4-20ma.html"><i class="fas fa-wave-square"></i> Calculadora 4-20 mA</a><a class="btn secondary" href="ferramentas.html"><i class="fas fa-toolbox"></i> Outras ferramentas</a></div></section>
 <!-- ALOGY_REVISAO_TECNICA_FERRAMENTA -->
 <section aria-label="Orientação técnica complementar" class="calc-card">
 <h2><i class="fas fa-clipboard-check"></i> Como usar esta ferramenta na prática</h2>
@@ -72,39 +72,53 @@ function parseSQ(v){
   return Number.isFinite(n)?n:NaN;
 }
 const fsq=(n,d=2)=>Number.isFinite(n)?Number(n).toLocaleString('pt-BR',{minimumFractionDigits:d,maximumFractionDigits:d}):'-';
+const escapeSQ=value=>String(value??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+function clearSQ(message){
+  sq_ma.textContent='-';sq_dp.textContent='-';sq_flowpct.textContent='-';sq_flow.textContent='-';
+  sq_note.className='calc-note warn';
+  sq_note.textContent=message;
+  tabelaSQ();
+}
 function calcSQ(){
-  const modo=sq_modo.value, v=parseSQ(sq_valor.value), max=parseSQ(sq_max.value), unit=sq_unit.value||'';
+  const modo=sq_modo.value, v=parseSQ(sq_valor.value), max=parseSQ(sq_max.value), unit=(sq_unit.value||'').trim();
   sq_label.textContent=modo==='ma'?'Sinal em mA':(modo==='dp'?'Percentual de DP':'Vazão');
   let ma=NaN,dpPct=NaN,flowPct=NaN,flow=NaN;
   if(!Number.isFinite(v)||!Number.isFinite(max)||max<=0){
-    sq_ma.textContent='-';sq_dp.textContent='-';sq_flowpct.textContent='-';sq_flow.textContent='-';
-    sq_note.className='calc-note warn';
-    sq_note.textContent='Informe valores numéricos coerentes. A vazão máxima precisa ser maior que zero.';
-    tabelaSQ();
+    clearSQ('Informe valores numéricos coerentes. A vazão máxima precisa ser maior que zero.');
+    return;
+  }
+  if((modo==='ma'&&v<4)||(modo==='dp'&&v<0)||(modo==='flow'&&v<0)){
+    clearSQ(modo==='ma'
+      ?'Corrente abaixo de 4 mA gera percentual de DP negativo; a raiz quadrada não é definida. Verifique alarme, cutoff e configuração do transmissor.'
+      :'DP e vazão não podem ser negativos nesta relação. Verifique a escala e a direção configuradas.');
     return;
   }
   if(modo==='ma'){
-    ma=v;dpPct=(ma-4)/16*100;flowPct=Math.sqrt(Math.max(dpPct,0)/100)*100;flow=max*flowPct/100;
+    ma=v;dpPct=(ma-4)/16*100;flowPct=Math.sqrt(dpPct/100)*100;flow=max*flowPct/100;
   }else if(modo==='dp'){
-    dpPct=v;ma=4+dpPct/100*16;flowPct=Math.sqrt(Math.max(dpPct,0)/100)*100;flow=max*flowPct/100;
+    dpPct=v;ma=4+dpPct/100*16;flowPct=Math.sqrt(dpPct/100)*100;flow=max*flowPct/100;
   }else{
     flow=v;flowPct=flow/max*100;dpPct=Math.pow(flowPct/100,2)*100;ma=4+dpPct/100*16;
   }
   sq_ma.textContent=Number.isFinite(ma)?fsq(ma,3)+' mA':'-';
   sq_dp.textContent=Number.isFinite(dpPct)?fsq(dpPct,2)+'%':'-';
   sq_flowpct.textContent=Number.isFinite(flowPct)?fsq(flowPct,2)+'%':'-';
-  sq_flow.textContent=Number.isFinite(flow)?fsq(flow,2)+' '+unit:'-';
+  sq_flow.textContent=Number.isFinite(flow)?fsq(flow,2)+(unit?' '+unit:''):'-';
   sq_note.className='calc-note';
-  if(dpPct<0||dpPct>100||flowPct<0||flowPct>100){sq_note.textContent='Atenção: valor fora da faixa 0-100%. Resultado em extrapolação matemática.';sq_note.classList.add('warn')}
-  else sq_note.textContent='Resultado auxiliar para relação de vazão por raiz quadrada.';
+  if(dpPct>100||flowPct>100){
+    sq_note.textContent='Atenção: valor acima de 100%. O resultado é uma extrapolação matemática e pode estar fora dos limites configurados do instrumento.';
+    sq_note.classList.add('warn');
+  }else{
+    sq_note.textContent='Resultado auxiliar para relação de vazão por raiz quadrada.';
+  }
   tabelaSQ();
 }
 function tabelaSQ(){
-  const max=parseSQ(sq_max.value),unit=sq_unit.value||'';
+  const max=parseSQ(sq_max.value),unit=escapeSQ((sq_unit.value||'').trim());
   const base=Number.isFinite(max)&&max>0?max:0;
   const pts=[0,6.25,12.5,25,50,75,100];
-  sq_table.innerHTML=pts.map(dp=>{const ma=4+dp/100*16,fp=Math.sqrt(dp/100)*100,fl=base*fp/100;return `<tr><td>${fsq(dp,2)}%</td><td class="num">${fsq(ma,3)} mA</td><td class="num">${fsq(fp,2)}%</td><td class="num">${fsq(fl,2)} ${unit}</td></tr>`}).join('');
-  enhanceResponsiveToolTables?.();
+  sq_table.innerHTML=pts.map(dp=>{const ma=4+dp/100*16,fp=Math.sqrt(dp/100)*100,fl=base*fp/100;return `<tr><td>${fsq(dp,2)}%</td><td class="num">${fsq(ma,3)} mA</td><td class="num">${fsq(fp,2)}%</td><td class="num">${fsq(fl,2)}${unit?' '+unit:''}</td></tr>`}).join('');
+  if(window.enhanceResponsiveToolTables) window.enhanceResponsiveToolTables();
 }
 function exSQ(m,v,max,u){sq_modo.value=m;sq_valor.value=v;sq_max.value=max;sq_unit.value=u;calcSQ()}
 function copySQ(){navigator.clipboard?.writeText(`Raiz quadrada 4-20mA ALOGY
