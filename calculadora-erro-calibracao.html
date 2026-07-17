@@ -91,9 +91,9 @@
 <div aria-label="Ações rápidas" class="fab-wrap"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1!%20Vim%20pela%20calculadora%20de%20erro%20de%20calibra%C3%A7%C3%A3o%20da%20ALOGY.%20Gostaria%20de%20atendimento." rel="noopener" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
 <main class="container" style="margin-top:18px">
   <div aria-label="Ações da ferramenta" class="tool-page-actions no-print"><button class="btn print" id="topPrint" type="button"><i class="fas fa-print"></i> Imprimir</button><button class="btn secondary" id="topReport" type="button"><i class="fas fa-file-pdf"></i> Gerar relatório</button></div>
-  <div class="no-print" style="margin-bottom:14px;display:flex;gap:10px;flex-wrap:wrap"><a class="btn secondary" href="blog-calibracao-instrumentos-industriais.html"><i class="fas fa-book-open"></i> Artigo sobre calibração</a></div>
+  <div class="no-print" style="margin-bottom:14px;display:flex;gap:10px;flex-wrap:wrap"><a class="btn secondary" href="ferramentas-instrumentacao-industrial.html"><i class="fas fa-gauge-high"></i> Central de Instrumentação</a><a class="btn secondary" href="blog-calibracao-instrumentos-industriais.html"><i class="fas fa-book-open"></i> Artigo sobre calibração</a></div>
   <section class="tools-hero"><h1>Calculadora de Erro de Calibração</h1><p>Compare referência e indicação, calcule erro, correção, erro percentual, limite permitido e status de cada ponto. A ferramenta também permite aplicar uma regra de decisão conservadora com incerteza expandida.</p></section>
-  <section aria-label="Aviso de responsabilidade" class="calc-card"><h2><i class="fas fa-triangle-exclamation"></i> Uso orientativo e responsabilidade técnica</h2><p>Esta ferramenta auxilia nos cálculos e na organização dos pontos. Não substitui certificado, procedimento de calibração, rastreabilidade metrológica, avaliação da incerteza, condições ambientais, ajuste do instrumento ou decisão de profissional responsável.</p></section>
+  <section aria-label="Aviso de responsabilidade" class="calc-card"><h2><i class="fas fa-triangle-exclamation"></i> Uso orientativo e responsabilidade técnica</h2><p>Esta ferramenta auxilia nos cálculos e na organização dos pontos. Não substitui certificado ou procedimento de calibração, rastreabilidade metrológica, avaliação da incerteza, levantamento de campo, projeto, memorial, laudo, ART, normas, manuais de fabricantes nem validação por profissional habilitado.</p></section>
   <section class="calc-layout">
     <div class="calc-card">
       <h2><i class="fas fa-clipboard-check"></i> Dados da calibração</h2>
@@ -155,7 +155,16 @@
     <p>Confirme TAG, unidade, faixa LRV/URV, EMP, padrão de referência, resolução e condições ambientais. Registre pontos de subida e descida quando o procedimento exigir avaliação de histerese. Após qualquer ajuste, repita o ciclo completo antes de liberar o instrumento.</p>
     <div class="report-note"><strong>Limitação:</strong> o status calculado é uma triagem matemática. Certificado, conformidade metrológica, rastreabilidade e liberação de equipamento crítico dependem de método formal e responsável técnico.</div>
   </section>
-  <section class="cta-bar no-print"><div><strong>Precisa validar calibração, teste de loop ou documentação técnica?</strong><br><span class="muted">A ALOGY Engenharia pode apoiar em diagnóstico, calibração, comissionamento e validação de instrumentos industriais.</span></div><div class="cta-actions"><a class="btn secondary" href="blog-calibracao-instrumentos-industriais.html"><i class="fas fa-book-open"></i> Ler sobre calibração</a><a class="btn secondary" href="ferramentas.html"><i class="fas fa-toolbox"></i> Outras ferramentas</a></div></section>
+  <section class="calc-card">
+    <h2><i class="fas fa-book"></i> Referências para conferir os conceitos</h2>
+    <p>As definições metrológicas e a regra de decisão adotada devem ser confirmadas no procedimento aplicável antes de uma declaração de conformidade.</p>
+    <ul>
+      <li><a href="https://www.bipm.org/en/doi/10.59161/jcgm200-2012" rel="noopener" target="_blank">BIPM — Vocabulário Internacional de Metrologia (VIM)</a></li>
+      <li><a href="https://ilac.org/publications-and-resources/ilac-guidance-series/" rel="noopener" target="_blank">ILAC G8 — Regras de decisão e declarações de conformidade</a></li>
+    </ul>
+    <p class="small-muted">Essas referências ajudam a interpretar os conceitos; não substituem o procedimento, os requisitos contratuais ou a avaliação técnica aplicável ao instrumento.</p>
+  </section>
+  <section class="cta-bar no-print"><div><strong>Precisa validar calibração, teste de loop ou documentação técnica?</strong><br><span class="muted">A ALOGY Engenharia pode apoiar em diagnóstico, calibração, comissionamento e validação de instrumentos industriais.</span></div><div class="cta-actions"><a class="btn secondary" href="blog-calibracao-instrumentos-industriais.html"><i class="fas fa-book-open"></i> Ler sobre calibração</a><a class="btn secondary" href="ferramentas-instrumentacao-industrial.html"><i class="fas fa-gauge-high"></i> Central de Instrumentação</a></div></section>
 </main>
 <section class="print-sheet" id="printSheet" aria-hidden="true"><h1>Relatório de cálculo — Erro de calibração</h1><p class="muted-print" id="printDate"></p><div id="printContent"></div></section>
 <footer><p>© Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
@@ -344,7 +353,7 @@
     if(!reportWindow){byId('copyFeedback').textContent='O navegador bloqueou a janela do relatório. Permita pop-ups para esta página.';return;}
     try{reportWindow.opener=null;}catch(e){}
     reportWindow.document.open();
-    reportWindow.document.write('<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Relatório técnico — Erro de calibração</title><style>body{font-family:Arial,sans-serif;color:#111;max-width:980px;margin:28px auto;padding:0 18px;line-height:1.5}h1{font-size:25px;margin-bottom:4px}h2{font-size:18px;border-bottom:1px solid #555;padding-bottom:5px;margin-top:28px}table{width:100%;border-collapse:collapse}th,td{border:1px solid #777;padding:8px;text-align:left;vertical-align:top}th{background:#eee}.print-result{font-size:16px;font-weight:700;border:2px solid #222;padding:12px;margin:16px 0}.actions{margin:18px 0}.actions button{padding:10px 14px;font:inherit;cursor:pointer}@media print{.actions{display:none}@page{size:A4;margin:14mm}body{margin:0;max-width:none}h2,table{break-inside:avoid}}</style></head><body><div class="actions"><button type="button" onclick="window.print()">Imprimir ou salvar em PDF</button></div><h1>Relatório técnico — Erro de calibração</h1><p>Gerado em '+escapeHtml(generatedAt)+'</p>'+documentContent(calc)+'</body></html>');
+    reportWindow.document.write('<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Relatório de cálculo — Erro de calibração</title><style>body{font-family:Arial,sans-serif;color:#111;max-width:980px;margin:28px auto;padding:0 18px;line-height:1.5}h1{font-size:25px;margin-bottom:4px}h2{font-size:18px;border-bottom:1px solid #555;padding-bottom:5px;margin-top:28px}table{width:100%;border-collapse:collapse}th,td{border:1px solid #777;padding:8px;text-align:left;vertical-align:top}th{background:#eee}.print-result{font-size:16px;font-weight:700;border:2px solid #222;padding:12px;margin:16px 0}.actions{margin:18px 0}.actions button{padding:10px 14px;font:inherit;cursor:pointer}@media print{.actions{display:none}@page{size:A4;margin:14mm}body{margin:0;max-width:none}h2,table{break-inside:avoid}}</style></head><body><div class="actions"><button type="button" onclick="window.print()">Imprimir ou salvar em PDF</button></div><h1>Relatório de cálculo — Erro de calibração</h1><p>Gerado em '+escapeHtml(generatedAt)+'</p>'+documentContent(calc)+'</body></html>');
     reportWindow.document.close();
   }
   function copyResult(){
@@ -376,6 +385,6 @@
   examplePoints();
 })();
 </script>
-<a aria-label="Voltar para Ferramentas" class="floating-back-tools no-print" href="ferramentas.html"><i class="fas fa-arrow-left"></i> Voltar para Ferramentas</a>
+<a aria-label="Voltar para a Central de Instrumentação" class="floating-back-tools no-print" href="ferramentas-instrumentacao-industrial.html"><i class="fas fa-arrow-left"></i> Central de Instrumentação</a>
 </body>
 </html>
