@@ -18,7 +18,7 @@ Este arquivo registra a origem das fotografias externas usadas no site ALOGY. A 
 
 ## blog-capa-calibracao-dp-vazao.webp
 
-- Uso no site: capa e imagem interna do artigo `blog-calibracao-transmissor-dp-vazao.html`
+- Uso no site: capa e imagem interna do artigo `blog-calibracao-transmissor-dp-vazao.html` e contexto visual da ferramenta `calculadora-calibracao-transmissor-dp-vazao.html`
 - Descrição: medidores de vazão instalados em um coletor de distribuição
 - Fotógrafo: Pavel Danilyuk
 - Acervo: Pexels
@@ -71,7 +71,7 @@ Este arquivo registra a origem das fotografias externas usadas no site ALOGY. A 
 
 ## blog-capa-calibracao-pressao.webp
 
-- Uso no site: capa e imagem interna do artigo `blog-calibracao-transmissor-pressao.html`
+- Uso no site: capa e imagem interna do artigo `blog-calibracao-transmissor-pressao.html` e contexto visual da ferramenta `calculadora-calibracao-transmissor-pressao.html`
 - Descrição: conjunto de manômetros instalados em linha de processo
 - Fotógrafo: cottonbro studio
 - Acervo: Pexels
@@ -85,7 +85,7 @@ Este arquivo registra a origem das fotografias externas usadas no site ALOGY. A 
 
 ## blog-capa-calibracao-temperatura.webp
 
-- Uso no site: capa e imagem interna do artigo `blog-calibracao-transmissor-temperatura.html`
+- Uso no site: capa e imagem interna do artigo `blog-calibracao-transmissor-temperatura.html` e contexto visual da ferramenta `calculadora-calibracao-transmissor-temperatura.html`
 - Descrição: termômetro analógico industrial em graus Celsius
 - Fotógrafo: Ady Escobar
 - Acervo: Pexels
@@ -99,7 +99,7 @@ Este arquivo registra a origem das fotografias externas usadas no site ALOGY. A 
 
 ## blog-capa-calibracao-valvula-controle.webp
 
-- Uso no site: capa e imagem interna do artigo `blog-calibracao-valvula-controle.html`
+- Uso no site: capa e imagem interna do artigo `blog-calibracao-valvula-controle.html` e contexto visual da ferramenta `calculadora-calibracao-valvula-controle.html`
 - Descrição: válvula de controle com atuador e posicionador em bancada
 - Fotógrafo: Raymond Sime
 - Acervo: Unsplash
@@ -113,7 +113,7 @@ Este arquivo registra a origem das fotografias externas usadas no site ALOGY. A 
 
 ## blog-capa-calibracao-nivel-dp.webp
 
-- Uso no site: capa e imagem interna do artigo `blog-calibracao-transmissor-nivel-dp.html`
+- Uso no site: capa e imagem interna do artigo `blog-calibracao-transmissor-nivel-dp.html` e contexto visual da ferramenta `calculadora-calibracao-transmissor-nivel-dp.html`
 - Descrição: tanque industrial de armazenamento com escada de acesso
 - Fotógrafo: Brixiv
 - Acervo: Pexels
