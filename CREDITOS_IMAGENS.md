@@ -4,7 +4,7 @@ Este arquivo registra a origem das fotografias externas usadas no site ALOGY. A 
 
 ## imagem-manometro-industrial-real.webp
 
-- Uso no site: `calculadora-calibracao-manometro.html`
+- Uso no site: `calculadora-calibracao-manometro.html`, capa e imagem interna de `blog-calibracao-manometro.html`
 - Descrição: manômetro analógico instalado em tubulação de processo industrial
 - Fotógrafa: Peggy_Marco
 - Acervo: Pixabay
@@ -15,6 +15,20 @@ Este arquivo registra a origem das fotografias externas usadas no site ALOGY. A 
 - Data de obtenção: 17 de julho de 2026
 - Tratamento aplicado: recorte central, redimensionamento para 960 × 540 px, remoção de metadados e conversão para WebP
 - Observação editorial: fotografia real usada apenas como contexto visual; sem pessoas reconhecíveis e sem logotipo comercial evidente
+
+## blog-capa-calibracao-dp-vazao.webp
+
+- Uso no site: capa e imagem interna do artigo `blog-calibracao-transmissor-dp-vazao.html`
+- Descrição: medidores de vazão instalados em um coletor de distribuição
+- Fotógrafo: Pavel Danilyuk
+- Acervo: Pexels
+- Página de origem: https://www.pexels.com/photo/close-up-of-pipes-on-wall-7937309/
+- Arquivo de origem consultado: https://images.pexels.com/photos/7937309/pexels-photo-7937309.jpeg
+- Licença informada na página: Pexels License
+- Licença: https://www.pexels.com/license/
+- Data de obtenção: 17 de julho de 2026
+- Tratamento aplicado: recorte central, redimensionamento para 960 × 540 px, remoção de metadados e conversão para WebP
+- Observação editorial: fotografia contextual de medidores de vazão; não representa transmissor DP, cliente, instalação ou serviço da ALOGY
 
 ## blog-capa-tubo-pneumatico.webp
 
