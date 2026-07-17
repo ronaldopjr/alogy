@@ -2080,7 +2080,10 @@ button,input,select,textarea{
 }
 
 
-/* Rodapé e retornos fixos: navegação legível e sem sobreposição no mobile. */
+/* Rodapé e retornos fixos: navegação legível e sem sobreposição. */
+footer{
+  padding-bottom:calc(84px + env(safe-area-inset-bottom));
+}
 footer p{
   margin:.35rem 0;
 }
