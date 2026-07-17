@@ -14,7 +14,7 @@ Registrar o diagnóstico técnico usado para priorizar indexação orgânica e p
 - O conjunto não possui URLs duplicadas e todas usam HTTPS com o host canônico `www.alogy.com.br`.
 - O `robots.txt` permite rastreamento e aponta para `https://www.alogy.com.br/sitemap.xml`.
 - O `ads.txt` contém a entrada direta do editor Google informada no site.
-- As 25 páginas efetivamente revisadas em 17/07/2026 receberam `lastmod` correspondente. As demais datas não foram alteradas artificialmente.
+- As 27 páginas efetivamente revisadas em 17/07/2026 receberam `lastmod` correspondente. As demais datas não foram alteradas artificialmente.
 
 ## Segmentação implantada
 
@@ -30,9 +30,9 @@ Finalidade: permitir acompanhamento separado de descoberta, rastreamento e index
 
 Uma varredura dos arquivos HTML encontrou repetição em larga escala:
 
-- 264 páginas ainda contêm ao menos um dos principais blocos padronizados auditados;
+- 262 páginas ainda contêm ao menos um dos principais blocos padronizados auditados;
 - 157 páginas repetem a abertura “Nesta revisão, o conteúdo foi ampliado...”;
-- 66 artigos ainda repetem “Este conteúdo foi ampliado para ajudar...”;
+- 64 artigos ainda repetem “Este conteúdo foi ampliado para ajudar...”;
 - 198 páginas repetem “Como usar esta ferramenta na prática”;
 - 198 páginas repetem “Dados que merecem conferência”;
 - um mesmo aviso aparece em 157 arquivos;
@@ -58,6 +58,8 @@ O terceiro lote aprofundou dosagem de cloro livre e neutralização de pH. Com i
 O quarto lote diferenciou K-factor de vazão por pulsos e resistor shunt 4–20 mA/HART. Foram incluídos exemplos numéricos, limitações de integração, referências primárias e capas reais já licenciadas. Restam 266 páginas com os padrões auditados e 68 artigos com a abertura genérica. Somente essas duas URLs receberam novo `lastmod`.
 
 O quinto lote diferenciou cavitação em válvulas de controle e medição de nível por DP em tanque fechado. Os textos passaram a tratar fenômenos, dados de processo, falhas de campo, limitações e referências específicas. Restam 264 páginas com os padrões auditados e 66 artigos com a abertura genérica. Somente essas duas URLs receberam novo `lastmod`.
+
+O sexto lote diferenciou tempo de resposta de termopoços e emissividade em termografia industrial. Foram incluídos modelos de interpretação, diagnóstico de campo, exemplos, limitações de segurança, referências oficiais e links internos relacionados. Restam 262 páginas com os padrões auditados e 64 artigos com a abertura genérica. Somente essas duas URLs receberam novo `lastmod`.
 
 ## Estratégia de correção
 
