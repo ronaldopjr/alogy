@@ -83,18 +83,18 @@
 <h2><i class="fas fa-wave-square"></i> Dados do sinal e da faixa</h2>
 <p>Informe a corrente medida e a faixa configurada do instrumento. A ferramenta calcula o percentual e o valor de engenharia para uma escala linear 4-20 mA.</p>
 <div class="calc-grid">
-<div class="field"><label for="ha_ma">Corrente medida (mA)</label><input id="ha_ma" inputmode="decimal" step="any" type="text" value="12"/></div>
-<div class="field"><label for="ha_lrv">LRV / 0%</label><input id="ha_lrv" inputmode="decimal" step="any" type="text" value="0"/></div>
-<div class="field"><label for="ha_urv">URV / 100%</label><input id="ha_urv" inputmode="decimal" step="any" type="text" value="100"/></div>
-<div class="field"><label for="ha_unidade">Unidade</label><input id="ha_unidade" placeholder="bar, °C, m³/h, mmH2O..." type="text" value="%"/></div>
-<div class="field"><label for="ha_vfonte">Fonte da malha (Vcc)</label><input id="ha_vfonte" inputmode="decimal" step="any" type="text" value="24"/></div>
-<div class="field"><label for="ha_vtx">Tensão mínima do transmissor (V)</label><input id="ha_vtx" inputmode="decimal" step="any" type="text" value="12"/></div>
-<div class="field"><label for="ha_rcarga">Carga/entrada/cabos sem HART (Ω)</label><input id="ha_rcarga" inputmode="decimal" step="any" type="text" value="250"/></div>
-<div class="field"><label for="ha_hart">Resistor HART adicional</label><select id="ha_hart"><option value="0">Não adicionar</option><option selected="" value="250">Adicionar 250 Ω</option></select></div>
+<div class="field"><label for="ha_ma">Corrente medida (mA)</label><input id="ha_ma" inputmode="decimal" step="any" type="text" autocomplete="off" maxlength="24" value="12"/></div>
+<div class="field"><label for="ha_lrv">LRV / 0%</label><input id="ha_lrv" inputmode="decimal" step="any" type="text" autocomplete="off" maxlength="24" value="0"/></div>
+<div class="field"><label for="ha_urv">URV / 100%</label><input id="ha_urv" inputmode="decimal" step="any" type="text" autocomplete="off" maxlength="24" value="100"/></div>
+<div class="field"><label for="ha_unidade">Unidade</label><input id="ha_unidade" placeholder="bar, °C, m³/h, mmH2O..." type="text" autocomplete="off" maxlength="24" value="%"/></div>
+<div class="field"><label for="ha_vfonte">Fonte da malha (Vcc)</label><input id="ha_vfonte" inputmode="decimal" step="any" type="text" autocomplete="off" maxlength="24" value="24"/></div>
+<div class="field"><label for="ha_vtx">Tensão mínima do transmissor (V)</label><input id="ha_vtx" inputmode="decimal" step="any" type="text" autocomplete="off" maxlength="24" value="12"/></div>
+<div class="field"><label for="ha_rcarga">Carga/entrada/cabos sem HART (Ω)</label><input id="ha_rcarga" inputmode="decimal" step="any" type="text" autocomplete="off" maxlength="24" value="250"/></div>
+<div class="field"><label for="ha_hart">Resistor HART adicional</label><select id="ha_hart"><option selected="" value="0">Não adicionar</option><option value="250">Adicionar 250 Ω</option></select></div>
 </div>
-<div class="pill-row"><button class="mini-btn dark" onclick="copiarHart()" type="button"><i class="fas fa-copy"></i> Copiar resultado</button><button class="mini-btn" onclick="exHart(12,0,100,'%',24,12,250,250)" type="button">12 mA / 50%</button><button class="mini-btn" onclick="exHart(3.6,0,10,'bar',24,12,250,0)" type="button">Falha baixa</button><button class="mini-btn" onclick="exHart(20,0,1000,'mmH₂O',24,12,400,250)" type="button">20 mA com HART</button></div>
+<div class="pill-row"><button class="mini-btn dark" onclick="copiarHart()" type="button"><i class="fas fa-copy"></i> Copiar resultado</button><button class="mini-btn" onclick="exHart(12,0,100,'%',24,12,250,0)" type="button">12 mA / 50%</button><button class="mini-btn" onclick="exHart(3.6,0,10,'bar',24,12,250,0)" type="button">Falha baixa</button><button class="mini-btn" onclick="exHart(20,0,1000,'mmH₂O',24,12,100,250)" type="button">20 mA com HART</button></div>
 </div>
-<div class="calc-card">
+<div class="calc-card" role="status" aria-live="polite">
 <h2><i class="fas fa-stethoscope"></i> Resultado do diagnóstico</h2>
 <div class="calc-result" style="grid-template-columns:1fr 1fr">
 <div class="result-box"><span>Percentual da faixa</span><strong id="ha_pct">-</strong></div>
@@ -105,7 +105,7 @@
 <div class="result-box"><span>Carga máxima estimada</span><strong id="ha_rmax">-</strong></div>
 </div>
 <div class="pill-row"><span class="pill" id="ha_vnec">V necessária: -</span><span class="pill" id="ha_hart_status">HART: -</span><span class="pill" id="ha_fault">Falha: -</span></div>
-<div class="notice-box" id="ha_aviso"><strong>Atenção:</strong> resultado auxiliar.</div>
+<div class="notice-box" id="ha_aviso" role="alert" aria-live="assertive"><strong>Atenção:</strong> resultado auxiliar.</div>
 </div>
 </section>
 <section class="calc-card">
@@ -118,7 +118,7 @@
 <h2><i class="fas fa-circle-info"></i> Como interpretar</h2>
 <p>Em uma malha 4-20 mA linear, 4 mA representa 0% e 20 mA representa 100% da faixa. Valores abaixo ou acima podem indicar subfaixa, sobre faixa, saturação ou condição de falha, conforme configuração do transmissor e do sistema.</p>
 <div class="pill-row"><span class="pill">12 mA = 50%</span><span class="pill">250 Ω gera 1 a 5 V</span><span class="pill">Carga total consome tensão</span><span class="pill">HART depende da instalação</span></div>
-<p style="margin-top:12px">Para comunicação HART, verifique se a malha possui carga suficiente, se a fonte tem margem de tensão, se o cartão analógico permite comunicação, se a blindagem/aterramento estão adequados e se o transmissor está corretamente energizado.</p>
+<p style="margin-top:12px">Para comunicação HART, verifique se a malha possui carga suficiente, se a fonte tem margem de tensão, se o cartão analógico permite comunicação, se a blindagem/aterramento estão adequados e se o transmissor está corretamente energizado. A ferramenta não testa comunicação, impedância em frequência, capacitância, ruído, polaridade nem compatibilidade do cartão.</p><p class="small-muted"><strong>Referências técnicas:</strong> os limiares de falha são apresentados como referência configurável da <a href="https://www.namur.net/en/publications/news-archive/ne-43-has-been-revised.html" target="_blank" rel="noopener">NAMUR NE 43, revisão de 2021</a>, com exemplo documental no <a href="https://cache.industry.siemens.com/dl/files/874/109817874/att_1133307/v1/A5E41864869-AFen_TH320420_TR320420_TF320420_TS500_FunctSafety.pdf" target="_blank" rel="noopener">manual funcional Siemens SITRANS</a>. A resistência de 250 Ω é uma referência comum documentada, por exemplo, no <a href="https://www.emerson.com/is/content/emerson/en/measurement-instrumentation/technical/products/pressure/documents/doc-rosemount-3051s-00809-0100-4801.pdf" target="_blank" rel="noopener">manual Rosemount 3051S</a>; prevalecem os manuais dos equipamentos instalados.</p>
 </div>
 <div class="calc-card faq">
 <h2><i class="fas fa-question-circle"></i> Perguntas frequentes</h2>
@@ -161,26 +161,27 @@
 <script>
 function n(id){return document.getElementById(id)}
 function parseNum(v){const raw=String(v??'').trim();if(!raw)return NaN;const norm=raw.includes(',')?raw.replace(/\./g,'').replace(',','.') : raw;const num=Number(norm);return Number.isFinite(num)?num:NaN}
-function fmt(v,d=2){return isFinite(v)?Number(v).toLocaleString('pt-BR',{maximumFractionDigits:d,minimumFractionDigits:d}):'-'}
+function fmt(v,d=2){return Number.isFinite(v)?Number(v).toLocaleString('pt-BR',{maximumFractionDigits:d,minimumFractionDigits:d}):'-'}
+function escapeHtml(value){return String(value??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]))}
 function diagStatus(ma){
   if(ma<=0.2) return ['Sem sinal','status-bad','possível circuito aberto, sem alimentação ou ligação incorreta'];
-  if(ma<3.6) return ['Falha baixa','status-bad','corrente abaixo da faixa de falha baixa'];
+  if(ma<=3.6) return ['Falha baixa','status-bad','corrente no limiar ou abaixo da referência de falha baixa'];
   if(ma<4.0) return ['Abaixo de 4 mA','status-warn','subfaixa ou alarme baixo conforme configuração'];
-  if(ma<=20.0) return ['Normal','status-ok','sinal dentro da faixa 4-20 mA'];
-  if(ma<=20.5) return ['Acima de 20 mA','status-warn','sobrefaixa ou saturação alta'];
-  return ['Falha alta','status-bad','corrente acima da faixa normal de operação'];
+  if(ma<=20.0) return ['Normal','status-ok','sinal dentro da faixa nominal 4-20 mA'];
+  if(ma<21.0) return ['Acima de 20 mA','status-warn','sobrefaixa ou saturação alta; confirme os limites configurados'];
+  return ['Falha alta','status-bad','corrente no limiar ou acima da referência de falha alta'];
 }
 function calcHart(){
-  const ma=parseNum(n('ha_ma').value), lrv=parseNum(n('ha_lrv').value), urv=parseNum(n('ha_urv').value), unit=n('ha_unidade').value||'';
-  const vf=parseNum(n('ha_vfonte').value), vtx=parseNum(n('ha_vtx').value), rbase=Math.max(parseNum(n('ha_rcarga').value),0), rhart=parseNum(n('ha_hart').value);
-  const dadosInvalidos=[ma,lrv,urv,vf,vtx,rbase,rhart].some(v=>!Number.isFinite(v)) || urv===lrv || vf<=0 || vtx<=0 || vf<=vtx;
+  const ma=parseNum(n('ha_ma').value), lrv=parseNum(n('ha_lrv').value), urv=parseNum(n('ha_urv').value), unit=(n('ha_unidade').value||'').trim();
+  const vf=parseNum(n('ha_vfonte').value), vtx=parseNum(n('ha_vtx').value), rbase=parseNum(n('ha_rcarga').value), rhart=parseNum(n('ha_hart').value);
+  const dadosInvalidos=[ma,lrv,urv,vf,vtx,rbase,rhart].some(v=>!Number.isFinite(v)) || ma<0 || urv===lrv || vf<=0 || vtx<=0 || vf<=vtx || rbase<0 || rhart<0;
   if(dadosInvalidos){
     n('ha_pct').textContent='-'; n('ha_eng').textContent='-';
     n('ha_status').textContent='Revisar dados'; n('ha_status').className='status-bad';
     n('ha_rtotal').textContent='-'; n('ha_rmax').textContent='-'; n('ha_margem').textContent='-'; n('ha_margem').className='status-bad';
     n('ha_vnec').textContent='V necessária: -'; n('ha_hart_status').textContent='HART: revisar dados'; n('ha_hart_status').className='pill status-bad';
     n('ha_fault').textContent='Falha: dados inválidos'; n('ha_fault').className='pill status-bad';
-    n('ha_aviso').innerHTML='<strong>Atenção:</strong> informe uma escala válida, fonte maior que a tensão mínima e valores numéricos coerentes.';
+    n('ha_aviso').innerHTML='<strong>Atenção:</strong> informe corrente e resistências não negativas, uma escala válida e fonte maior que a tensão mínima do transmissor.';
     n('ha_tabela').innerHTML='';
     return;
   }
@@ -191,8 +192,8 @@ function calcHart(){
   n('ha_status').textContent=st[0]; n('ha_status').className=st[1];
   n('ha_rtotal').textContent=fmt(rtot,0)+' Ω'; n('ha_rmax').textContent=fmt(rmax,0)+' Ω'; n('ha_margem').textContent=fmt(margem,2)+' V'; n('ha_margem').className=margem>=2?'status-ok':margem>=0?'status-warn':'status-bad';
   n('ha_vnec').textContent='V necessária @22 mA: '+fmt(vnec,2)+' V';
-  let hs='HART: verificar manual', hcls='pill status-warn';
-  if(rhart>=250 || (rtot>=230 && rtot<=600)){hs='HART: carga provável adequada'; hcls='pill status-ok'}
+  let hs=rtot>=250?'HART: referência de 250 Ω atendida; confirmar comunicação':'HART: carga abaixo da referência de 250 Ω';
+  let hcls='pill status-warn';
   if(rtot>rmax){hs='HART/carga: tensão insuficiente'; hcls='pill status-bad'}
   n('ha_hart_status').textContent=hs; n('ha_hart_status').className=hcls;
   n('ha_fault').textContent='Falha: '+st[2]; n('ha_fault').className='pill '+st[1];
@@ -203,7 +204,7 @@ function calcHart(){
   const tbody=n('ha_tabela'); tbody.innerHTML='';
   [[0,4,'0%'],[25,8,'25%'],[50,12,'50%'],[75,16,'75%'],[100,20,'100%'],['Falha baixa',3.6,'limite típico'],['Falha alta',21,'limite típico']].forEach(row=>{
     const p=row[0], m=row[1]; const pc=typeof p==='number'?p:((m-4)/16*100); const val=lrv+(pc/100)*(urv-lrv); const obs=typeof p==='number'?'ponto de teste':'verificar configuração do instrumento';
-    const tr=document.createElement('tr'); tr.innerHTML=`<td><strong>${row[0]}</strong></td><td>${fmt(m,2)} mA</td><td>${typeof p==='number'?fmt(p,0)+'%':fmt(pc,1)+'%'}</td><td>${fmt(val,3)} ${unit}</td><td>${obs}</td>`; tbody.appendChild(tr);
+    const tr=document.createElement('tr'); tr.innerHTML=`<td><strong>${escapeHtml(row[0])}</strong></td><td>${fmt(m,2)} mA</td><td>${typeof p==='number'?fmt(p,0)+'%':fmt(pc,1)+'%'}</td><td>${fmt(val,3)}${unit?' '+escapeHtml(unit):''}</td><td>${escapeHtml(obs)}</td>`; tbody.appendChild(tr);
   });
   if(window.enhanceResponsiveToolTables) window.enhanceResponsiveToolTables();
 }
