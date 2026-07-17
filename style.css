@@ -2005,3 +2005,29 @@ button,input,select,textarea{
     scroll-behavior:auto!important;
   }
 }
+
+/* Imagem contextual de ferramentas: uso pontual, com fonte/licença documentadas. */
+.tool-context-photo{
+  margin:18px 0;
+  overflow:hidden;
+  border:1px solid rgba(0,75,128,.14);
+  border-radius:16px;
+  background:#fff;
+  box-shadow:0 8px 22px rgba(0,0,0,.06);
+}
+.tool-context-photo img{
+  display:block;
+  width:100%;
+  height:auto;
+  aspect-ratio:16/9;
+  object-fit:cover;
+}
+.tool-context-photo figcaption{
+  padding:10px 14px;
+  color:var(--muted);
+  font-size:.88rem;
+  line-height:1.5;
+}
+@media(max-width:700px){
+  .tool-context-photo{border-radius:12px}
+}
