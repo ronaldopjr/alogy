@@ -19,14 +19,15 @@
   <link rel="stylesheet" href="style.css" />
   <script src="app.js" defer></script>
   <meta property="og:locale" content="pt_BR" />
-  <meta property="og:type" content="website" />
+  <meta property="og:type" content="article" />
   <meta property="og:site_name" content="ALOGY Engenharia" />
   <meta property="og:title" content="Calibração de Transmissor de Pressão: erro, span e 4-20 mA" />
   <meta property="og:description" content="Entenda como conferir pontos de calibração de transmissor de pressão, calcular erro, mA esperado e tolerância por span." />
   <meta property="og:url" content="https://www.alogy.com.br/blog-calibracao-transmissor-pressao.html" />
-  <meta property="og:image" content="https://www.alogy.com.br/favicon-512x512.png" />
+  <meta property="og:image" content="https://www.alogy.com.br/blog-capa-calibracao-pressao.webp" />
   <meta name="twitter:card" content="summary_large_image" />
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","name":"Calibração de Transmissor de Pressão: erro, span e 4-20 mA","url":"https://www.alogy.com.br/blog-calibracao-transmissor-pressao.html","applicationCategory":"EngineeringApplication","operatingSystem":"Web","description":"Entenda como conferir pontos de calibração de transmissor de pressão, calcular erro, mA esperado e tolerância por span.","publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"}}</script>
+  <meta name="twitter:image" content="https://www.alogy.com.br/blog-capa-calibracao-pressao.webp" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Calibração de Transmissor de Pressão: erro, span e 4-20 mA","description":"Entenda como conferir pontos de calibração de transmissor de pressão, calcular erro, mA esperado e tolerância por span.","dateModified":"2026-07-17","image":"https://www.alogy.com.br/blog-capa-calibracao-pressao.webp","author":{"@type":"Organization","name":"ALOGY Engenharia"},"publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://www.alogy.com.br/blog-calibracao-transmissor-pressao.html"},"inLanguage":"pt-BR"}</script>
   <style>
     .mini-help{color:var(--muted);font-size:.92rem;line-height:1.55;margin-top:8px}
     .faq details{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:14px;padding:14px;margin-top:10px;box-shadow:0 6px 16px rgba(0,0,0,.04)}
@@ -52,46 +53,50 @@
   <div class="fab-wrap" aria-label="Ações rápidas"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1%21%20Vim%20pelas%20ferramentas%20da%20ALOGY.%20Gostaria%20de%20atendimento." target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
   <main class="container" style="margin-top:22px">
     <article class="blog-post"><h1>Calibração de Transmissor de Pressão</h1>
-<p>Entenda como conferir pontos de calibração de transmissor de pressão, calcular erro, mA esperado e tolerância por span.</p>
-<p>Este conteúdo foi ampliado para ajudar técnicos, instrumentistas, eletricistas, mecânicos, planejadores e engenheiros a usar o tema <strong>calibração de transmissor de pressão</strong> como apoio de diagnóstico, especificação preliminar e conferência de campo. A ideia não é apenas chegar a um número, mas entender quais dados precisam ser confiáveis antes de tomar uma decisão.</p>
+<p>Calibrar um transmissor de pressão significa comparar a pressão aplicada por um padrão adequado com a saída indicada pelo instrumento — normalmente 4–20 mA — em pontos definidos da faixa. A verificação deve separar o erro do padrão, o erro do transmissor e eventuais problemas da malha.</p>
+<figure class="post-cover-photo">
+  <img src="blog-capa-calibracao-pressao.webp" alt="Três manômetros instalados em uma linha de processo" width="960" height="540" decoding="async" fetchpriority="high" />
+  <figcaption>Imagem ilustrativa de medição de pressão. A fotografia não representa instalação, cliente ou serviço executado pela ALOGY.</figcaption>
+</figure>
 
-<h2>Onde esse tema aparece na indústria?</h2>
-<p>O assunto é comum em rotinas de calibração e instrumentação, principalmente quando manutenção, operação e engenharia precisam comparar condição real de processo com valores esperados de projeto. Em muitos casos, a dúvida nasce de uma falha em campo: leitura instável, equipamento subdimensionado, instrumento fora de faixa, perda de desempenho, consumo elevado ou dificuldade para comprovar a condição real do sistema.</p>
-<p>Na instrumentação, pequenas diferenças de unidade, faixa, ponto de calibração ou condição de processo podem gerar erro acumulado na malha. Por isso, o cálculo deve ser usado junto com certificado, folha de dados, procedimento de calibração e histórico do instrumento.</p>
+<h2>O que está sendo verificado</h2>
+<p>O teste mais simples verifica apenas o conjunto sensor eletrônico/saída do transmissor. Um teste de malha inclui ainda alimentação, cabeamento, cartão analógico, escala no CLP ou DCS e indicação no supervisório. Registrar qual fronteira foi testada evita declarar que toda a malha foi aprovada quando somente o transmissor foi conferido.</p>
+<p>Antes de iniciar, identifique se a pressão é manométrica, absoluta ou diferencial. Zero absoluto, pressão atmosférica e equalização de um transmissor DP não são condições equivalentes. Confirme também LRV, URV, unidade configurada, amortecimento, extração de raiz quadrada e sentido da faixa.</p>
 
-<h2>Dados que devem ser levantados antes do cálculo</h2>
+<h2>Dados e condições antes de aplicar pressão</h2>
 <ul>
-  <li><strong>Condição real de operação:</strong> pressão, temperatura, vazão, nível, concentração, tensão, corrente, rotação ou outra grandeza aplicável ao caso.</li>
-  <li><strong>Unidades corretas:</strong> confirme se os dados estão em bar, kPa, mbar, psi, °C, L/min, Nm³/h, m³/h, mm, mA, V ou outra unidade usada pela ferramenta.</li>
-  <li><strong>Faixa de trabalho:</strong> verifique mínimo, normal, máximo e condição de alarme. Trabalhar apenas com o ponto nominal pode esconder problemas.</li>
-  <li><strong>Dados de fabricante:</strong> consulte folha de dados, manual, curva característica, limite de operação e recomendações de instalação.</li>
-  <li><strong>Condições de campo:</strong> comprimento de cabo ou tubulação, posição de montagem, temperatura ambiente, vibração, umidade, sujeira, acessibilidade e interferências.</li>
+  <li><strong>Identificação:</strong> TAG, fabricante, modelo, número de série e serviço.</li>
+  <li><strong>Configuração:</strong> LRV, URV, unidade, saída linear e alimentação da malha.</li>
+  <li><strong>Padrão:</strong> faixa compatível, certificado vigente e incerteza adequada ao critério adotado.</li>
+  <li><strong>Conexão:</strong> mangueiras, adaptadores e manifold compatíveis, estanques e limpos.</li>
+  <li><strong>Segurança:</strong> processo isolado, despressurizado conforme procedimento e sem risco de atuar intertravamentos indevidamente.</li>
 </ul>
 
-<h2>Como interpretar o resultado</h2>
-<p>O resultado deve ser tratado como <strong>estimativa técnica preliminar</strong>. Ele ajuda a validar ordem de grandeza e aponta se o valor informado está coerente, mas não deve ser usado sozinho para liberar compra, alteração de processo, mudança de proteção, calibração crítica ou partida de equipamento.</p>
-<p>Quando o resultado fica muito próximo do limite do equipamento, a recomendação é revisar margens. Um dimensionamento muito “no limite” pode funcionar em bancada e falhar em campo por variação de processo, envelhecimento, sujeira, perda de carga, temperatura, queda de tensão, histerese ou erro de medição.</p>
+<h2>Sequência de pontos e cálculo da saída esperada</h2>
+<p>Um roteiro comum usa 0%, 25%, 50%, 75% e 100% da faixa em subida e depois em descida, desde que o procedimento aplicável defina esses pontos. Para saída linear 4–20 mA, a corrente esperada é <strong>4 mA + 16 mA × fração da faixa</strong>. Assim, 50% corresponde a 12 mA.</p>
+<p>O erro de indicação é a diferença entre o valor medido e o valor de referência no mesmo ponto. Quando o critério é expresso em percentual do span, use o módulo de URV − LRV no denominador. Não confunda percentual da leitura com percentual do span.</p>
 
 <h2>Erros comuns de campo</h2>
 <ul>
-  <li>Usar condição nominal de catálogo sem conferir a condição real da instalação.</li>
-  <li>Converter unidade de forma incorreta ou misturar unidade absoluta com relativa.</li>
-  <li>Desconsiderar perdas, tolerâncias, tempo de resposta, margem de segurança e influência da temperatura.</li>
-  <li>Trocar componente sem investigar causa raiz, repetindo a mesma falha após a manutenção.</li>
-  <li>Usar o cálculo como substituto de procedimento, norma, projeto ou validação do responsável técnico.</li>
+  <li>Não eliminar vazamentos ou bolhas no conjunto de teste.</li>
+  <li>Aplicar sobrepressão durante a aproximação do ponto.</li>
+  <li>Zerar o instrumento sem conferir posição de montagem e condição de equalização.</li>
+  <li>Ajustar zero e span antes de registrar a condição encontrada.</li>
+  <li>Avaliar somente a corrente e ignorar a leitura digital/HART ou a escala no sistema de controle.</li>
+  <li>Usar um padrão cuja faixa ou incerteza não sustenta o critério de aceitação.</li>
 </ul>
 
 <h2>Exemplo prático de aplicação</h2>
-<p>Imagine uma equipe tentando justificar uma intervenção durante uma parada de manutenção. Antes de comprar um novo componente ou alterar um ajuste, o responsável levanta os dados de operação, aplica a ferramenta relacionada, compara o resultado com o histórico e verifica se há coerência com a folha de dados do equipamento. Esse processo simples evita decisões por tentativa e erro e melhora a conversa entre manutenção, operação, engenharia e fornecedor.</p>
-<p>Quando a conta indica uma diferença grande entre o valor esperado e o valor medido, o próximo passo não é necessariamente substituir o equipamento. Primeiro devem ser avaliados instalação, calibração, obstruções, vazamentos, ruídos elétricos, parametrização, condição de processo e documentação disponível.</p>
+<p>Considere um transmissor configurado de 0 a 10 bar. Ao aplicar 5 bar, a saída linear esperada é 12 mA. Se a corrente medida for 12,08 mA, a diferença de saída é +0,08 mA. Convertida para a faixa de engenharia, essa diferença equivale a +0,05 bar, ou +0,5% do span.</p>
+<p>Esse valor só pode ser classificado como conforme ou não conforme quando comparado ao erro máximo permitido e à regra de decisão definidos no procedimento. O cálculo isolado não substitui a avaliação de incerteza, estabilidade, repetibilidade nem condição encontrada/condição deixada.</p>
 
 <h2>Checklist rápido antes de decidir</h2>
 <ul>
-  <li>O valor calculado está na mesma unidade usada pelo instrumento, CLP, supervisório ou folha de dados?</li>
-  <li>Existe margem suficiente entre operação normal, limite de alarme e limite físico do equipamento?</li>
-  <li>O resultado foi comparado com histórico, tendência, inspeção visual ou medição independente?</li>
-  <li>A instalação atende boas práticas de montagem, acesso, proteção mecânica e manutenção?</li>
-  <li>A decisão envolve segurança, parada de produção, qualidade do produto ou requisito legal? Se sim, valide formalmente.</li>
+  <li>Os pontos de subida e descida foram registrados antes de qualquer ajuste?</li>
+  <li>A unidade e a faixa configuradas coincidem com a folha de dados e o sistema de controle?</li>
+  <li>O zero foi verificado na condição física correta para o tipo de transmissor?</li>
+  <li>O resultado informa separadamente pressão aplicada, corrente esperada e corrente medida?</li>
+  <li>A condição final foi documentada e a malha devolvida ao processo conforme procedimento?</li>
 </ul>
 
 <h2>Ferramenta e conteúdos relacionados</h2>
@@ -107,6 +112,12 @@
   <li><a href="calculadora-calibracao-transmissor-temperatura.html">Calculadora de Calibração de Transmissor de Temperatura</a> <span class="mini-help">(ferramenta)</span></li>
   <li><a href="blog-calibracao-conversor-ip-pi.html">Calibração de Conversor I/P e P/I: 4-20 mA e 3-15 psi</a> <span class="mini-help">(artigo)</span></li>
   <li><a href="blog-calibracao-transmissor-nivel-dp.html">Calibração de Transmissor de Nível DP: pontos e mA</a> <span class="mini-help">(artigo)</span></li>
+</ul>
+
+<h2>Referências para aprofundamento</h2>
+<ul>
+  <li><a href="https://www.fluke.com/en/product/calibration-tools/pressure-calibrators/fluke-721" target="_blank" rel="noopener">Fluke 721 — medição de pressão, 4–20 mA e alimentação de malha</a>.</li>
+  <li><a href="https://www.bipm.org/en/doi/10.59161/jcgm200-2012" target="_blank" rel="noopener">BIPM/JCGM — Vocabulário Internacional de Metrologia (VIM)</a>.</li>
 </ul>
 
 <h2>Aviso técnico</h2>

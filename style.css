@@ -2031,3 +2031,29 @@ button,input,select,textarea{
 @media(max-width:700px){
   .tool-context-photo{border-radius:12px}
 }
+
+/* Capa editorial dos artigos: fotografia real com origem/licença documentadas. */
+.post-cover-photo{
+  margin:16px 0 24px;
+  overflow:hidden;
+  border:1px solid rgba(0,75,128,.14);
+  border-radius:16px;
+  background:#dbe8f2;
+}
+.post-cover-photo img{
+  display:block;
+  width:100%;
+  height:auto;
+  aspect-ratio:16/9;
+  object-fit:cover;
+}
+.post-cover-photo figcaption{
+  padding:9px 13px;
+  color:var(--muted);
+  background:#fff;
+  font-size:.84rem;
+  line-height:1.5;
+}
+@media(max-width:700px){
+  .post-cover-photo{border-radius:12px}
+}

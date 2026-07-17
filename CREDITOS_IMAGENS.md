@@ -54,3 +54,59 @@ Este arquivo registra a origem das fotografias externas usadas no site ALOGY. A 
 - Licença: https://unsplash.com/license
 - Data de obtenção: 17 de julho de 2026
 - Tratamento aplicado: recorte central, redimensionamento para 960 × 540 px, remoção de metadados e conversão para WebP
+
+## blog-capa-calibracao-pressao.webp
+
+- Uso no site: capa e imagem interna do artigo `blog-calibracao-transmissor-pressao.html`
+- Descrição: conjunto de manômetros instalados em linha de processo
+- Fotógrafo: cottonbro studio
+- Acervo: Pexels
+- Página de origem: https://www.pexels.com/photo/analog-pressure-gauges-in-close-up-shot-5532838/
+- Arquivo de origem consultado: https://images.pexels.com/photos/5532838/pexels-photo-5532838.jpeg
+- Licença informada na página: Pexels License
+- Licença: https://www.pexels.com/license/
+- Data de obtenção: 17 de julho de 2026
+- Tratamento aplicado: recorte central, redimensionamento para 960 × 540 px, remoção de metadados e conversão para WebP
+- Observação editorial: imagem ilustrativa de medição de pressão; não retrata instalação, cliente ou serviço da ALOGY
+
+## blog-capa-calibracao-temperatura.webp
+
+- Uso no site: capa e imagem interna do artigo `blog-calibracao-transmissor-temperatura.html`
+- Descrição: termômetro analógico industrial em graus Celsius
+- Fotógrafo: Ady Escobar
+- Acervo: Pexels
+- Página de origem: https://www.pexels.com/photo/rusty-vintage-thermometer-close-up-in-industrial-setting-34637294/
+- Arquivo de origem consultado: https://images.pexels.com/photos/34637294/pexels-photo-34637294.jpeg
+- Licença informada na página: Pexels License
+- Licença: https://www.pexels.com/license/
+- Data de obtenção: 17 de julho de 2026
+- Tratamento aplicado: recorte central, redimensionamento para 960 × 540 px, remoção de metadados e conversão para WebP
+- Observação editorial: imagem ilustrativa de medição de temperatura; não representa o transmissor calibrado pela ferramenta
+
+## blog-capa-calibracao-valvula-controle.webp
+
+- Uso no site: capa e imagem interna do artigo `blog-calibracao-valvula-controle.html`
+- Descrição: válvula de controle com atuador e posicionador em bancada
+- Fotógrafo: Raymond Sime
+- Acervo: Unsplash
+- Página de origem: https://unsplash.com/photos/an-industrial-valve-with-an-actuator-on-a-blue-stand-dUL6El5W7Mg
+- Arquivo de origem consultado: https://unsplash.com/photos/dUL6El5W7Mg/download?force=true
+- Licença informada na página: Unsplash License
+- Licença: https://unsplash.com/license
+- Data de obtenção: 17 de julho de 2026
+- Tratamento aplicado: recorte central, redimensionamento para 960 × 540 px, remoção de metadados e conversão para WebP
+- Observação editorial: fotografia de equipamento em bancada; não retrata equipamento, cliente ou serviço da ALOGY
+
+## blog-capa-calibracao-nivel-dp.webp
+
+- Uso no site: capa e imagem interna do artigo `blog-calibracao-transmissor-nivel-dp.html`
+- Descrição: tanque industrial de armazenamento com escada de acesso
+- Fotógrafo: Brixiv
+- Acervo: Pexels
+- Página de origem: https://www.pexels.com/photo/industrial-plant-under-the-blue-sky-6537731/
+- Arquivo de origem consultado: https://images.pexels.com/photos/6537731/pexels-photo-6537731.jpeg
+- Licença informada na página: Pexels License
+- Licença: https://www.pexels.com/license/
+- Data de obtenção: 17 de julho de 2026
+- Tratamento aplicado: recorte central, redimensionamento para 960 × 540 px, remoção de metadados e conversão para WebP
+- Observação editorial: imagem contextual de tanque; não comprova o método de medição instalado nem representa instalação da ALOGY
