@@ -49,7 +49,8 @@ Este arquivo registra a origem das fotografias externas usadas no site ALOGY. A 
 
 ## imagem-manometro-industrial-real.webp
 
-- Uso no site: `calculadora-calibracao-manometro.html`, capa e imagem interna de `blog-calibracao-manometro.html`
+- Uso no site: sem uso após auditoria visual de 18 de julho de 2026
+- Status editorial: retirada do artigo, da ferramenta, do cartão do Blog, das imagens sociais e do JSON-LD; o recorte ampliado revelou o logotipo WIKA legível no mostrador
 - Descrição: manômetro analógico instalado em tubulação de processo industrial
 - Fotógrafa: Peggy_Marco
 - Acervo: Pixabay
@@ -59,7 +60,7 @@ Este arquivo registra a origem das fotografias externas usadas no site ALOGY. A 
 - Licença: https://pixabay.com/service/license-summary/
 - Data de obtenção: 17 de julho de 2026
 - Tratamento aplicado: recorte central, redimensionamento para 960 × 540 px, remoção de metadados e conversão para WebP
-- Observação editorial: fotografia real usada apenas como contexto visual; sem pessoas reconhecíveis e sem logotipo comercial evidente
+- Observação editorial: o arquivo foi preservado para rastreabilidade, mas não deve ser publicado enquanto mantiver marca identificável; ausência de fotografia foi preferida mesmo com correspondência correta ao tipo de instrumento
 
 ## blog-capa-calibracao-dp-vazao.webp
 
