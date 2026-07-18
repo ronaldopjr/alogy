@@ -19,7 +19,7 @@ Este documento não autoriza mídia kit, venda direta, patrocínio, publieditori
 
 - Cada uma das 374 páginas identificadas contém exatamente uma referência estática ao carregador; não foram encontradas duplicações na mesma página.
 - O carregador está presente mesmo com a infraestrutura de blocos manuais desativada no `app.js`. Esse estado pode servir à vinculação do site ou ao Auto Ads configurado externamente, portanto a ausência de blocos no repositório não autoriza removê-lo.
-- Em uma requisição diagnóstica feita em 18/07/2026, o endereço do carregador respondeu `HTTP 200` e informou `content-length: 198340` bytes e cache privado de uma hora. É uma amostra do recurso naquele instante, não uma medida de transferência para todos os usuários nem evidência de impacto em LCP, INP ou CLS.
+- Em uma requisição diagnóstica feita em 18/07/2026 às 06:45 BRT, o endereço do carregador respondeu `HTTP 200` e informou `content-length: 198167` bytes e cache privado de uma hora. É uma amostra do recurso naquele instante, não uma medida de transferência para todos os usuários nem evidência de impacto em LCP, INP ou CLS.
 - A consulta automatizada ao PageSpeed Insights não produziu relatório porque a API pública respondeu `429 RESOURCE_EXHAUSTED`. Nenhuma pontuação ou métrica foi estimada para preencher essa lacuna.
 - Não foi feita alteração no carregador: uma remoção em massa sem confirmar a configuração da conta poderia interromper vinculação, verificação ou Auto Ads, enquanto mantê-lo tem custo de rede que ainda precisa ser medido em navegador e em dados de campo.
 
