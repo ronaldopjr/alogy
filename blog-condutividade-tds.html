@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Condutividade, TDS e Compensação de Temperatura | ALOGY</title>
-  <meta name="description" content="Entenda a relação entre condutividade, TDS, temperatura e correção para 25 °C." />
+  <meta name="description" content="Entenda constante de célula, compensação térmica, TDS e diagnóstico de sensores de condutividade em processos industriais." />
   <meta name="robots" content="index,follow" />
   <meta name="theme-color" content="#004b80" />
   <link rel="canonical" href="https://www.alogy.com.br/blog-condutividade-tds.html" />
@@ -26,7 +26,7 @@
   <meta property="og:url" content="https://www.alogy.com.br/blog-condutividade-tds.html" />
   <meta property="og:image" content="https://www.alogy.com.br/favicon-512x512.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Condutividade, TDS e compensação de temperatura","description":"Entenda constante de célula, compensação para temperatura de referência e as limitações da conversão entre condutividade e TDS.","url":"https://www.alogy.com.br/blog-condutividade-tds.html","mainEntityOfPage":"https://www.alogy.com.br/blog-condutividade-tds.html","dateModified":"2026-07-17","inLanguage":"pt-BR","author":{"@type":"Organization","name":"ALOGY Engenharia"},"publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Condutividade, TDS e compensação de temperatura","description":"Entenda condutância, constante de célula, tecnologias de sensor, compensação térmica e por que o fator de TDS precisa representar a solução medida.","url":"https://www.alogy.com.br/blog-condutividade-tds.html","mainEntityOfPage":"https://www.alogy.com.br/blog-condutividade-tds.html","dateModified":"2026-07-18","inLanguage":"pt-BR","author":{"@type":"Organization","name":"ALOGY Engenharia"},"publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"}}</script>
   <style>
     .mini-help{color:var(--muted);font-size:.92rem;line-height:1.55;margin-top:8px}
     .faq details{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:14px;padding:14px;margin-top:10px;box-shadow:0 6px 16px rgba(0,0,0,.04)}
@@ -58,13 +58,26 @@
 <p>A condutividade real muda com a temperatura. Muitos transmissores apresentam um valor convertido para uma temperatura de referência, frequentemente 25 °C, usando compensação linear, curva de NaCl ou tabela específica. Para comparar laboratório, campo e histórico, confirme se todos exibem o valor bruto ou o mesmo modo de compensação.</p>
 
 <h2>Constante de célula e faixa</h2>
-<p>Sensores condutivos usam uma constante de célula relacionada à geometria dos eletrodos. Células diferentes atendem faixas diferentes; uma constante inadequada pode reduzir resolução ou levar a leitura para fora da faixa útil. Sensores indutivos são comuns em soluções mais condutivas ou sujeitas a incrustação, mas também exigem instalação e faixa compatíveis.</p>
+<p>O sensor mede primeiro a condutância elétrica, expressa em siemens. Para obter a condutividade da solução, o transmissor aplica a constante de célula: de forma simplificada, condutividade = condutância × constante da célula. Essa constante representa a geometria efetiva dos eletrodos e pode ser ajustada por calibração somente dentro do procedimento previsto pelo fabricante.</p>
+<p>Células diferentes atendem faixas diferentes; uma constante inadequada pode reduzir resolução ou levar a leitura para fora da faixa útil. Sensores condutivos de dois eletrodos, versões de quatro eletrodos e sensores indutivos não são intercambiáveis por conveniência. A seleção depende de faixa, material, incrustação, polarização, instalação e compatibilidade do transmissor.</p>
 
 <h2>TDS não é uma conversão universal</h2>
 <p>TDS é frequentemente estimado multiplicando a condutividade por um fator. Esse fator depende da composição iônica e do método adotado. Duas soluções com a mesma condutividade podem ter massas dissolvidas diferentes; portanto, a conversão não substitui análise gravimétrica ou método laboratorial aplicável.</p>
+<p>Exemplo: para 1.000 µS/cm, um fator de 0,50 apresenta 500 mg/L, enquanto 0,70 apresenta 700 mg/L. São 200 mg/L de diferença — 40% em relação ao primeiro resultado — sem qualquer mudança na condutividade medida. Instrumentos comerciais permitem configurar esse fator; a disponibilidade do ajuste não valida automaticamente o valor escolhido.</p>
 
 <h2>Exemplo de compensação linear</h2>
 <p>Uma leitura de 1.200 µS/cm a 35 °C, com coeficiente assumido de 2%/°C e referência em 25 °C, resulta em aproximadamente 1.000 µS/cm pela relação simplificada 1.200 ÷ [1 + 0,02 × (35 − 25)]. O coeficiente precisa representar a solução real; usar 2%/°C por hábito pode criar erro sistemático.</p>
+<p>A compensação não resfria a amostra nem altera sua condutividade física. Ela calcula qual valor seria apresentado na temperatura de referência segundo o modelo configurado. Por isso, compare resultados somente depois de confirmar temperatura de referência, coeficiente ou curva, unidade e se o visor mostra valor bruto ou compensado.</p>
+
+<h2>Verificação e calibração em campo</h2>
+<ol>
+  <li>registre valor encontrado, temperatura, unidade, faixa, constante de célula e modo de compensação;</li>
+  <li>inspecione cabo, conectores, montagem, bolhas e condição do sensor antes de ajustar;</li>
+  <li>limpe pelo método compatível com o material e enxágue sem contaminar o padrão;</li>
+  <li>use padrão rastreável próximo da faixa de trabalho e respeite sua temperatura declarada;</li>
+  <li>aguarde estabilidade, ajuste apenas quando o procedimento permitir e registre o valor final.</li>
+</ol>
+<p>O registro antes da limpeza ajuda a separar deriva de processo, contaminação e ajuste eletrônico. Corrigir a constante de célula para mascarar incrustação pode produzir bom resultado no padrão e erro novamente quando o sensor retorna ao processo.</p>
 
 <h2>Checklist de diagnóstico</h2>
 <ul>
@@ -74,6 +87,7 @@
   <li>inspecione bolhas, incrustação, polarização, vazão e posição de montagem;</li>
   <li>use padrão adequado à faixa e registre leitura antes e depois da limpeza.</li>
 </ul>
+<p>Uma leitura baixa ou nula pode indicar circuito aberto, sensor fora da amostra ou bolha persistente. Leitura alta e instável pode resultar de contaminação, curto elétrico, aterramento ou mudança real de composição. Divergência com o laboratório também pode surgir quando a amostra esfria, absorve contaminantes ou é comparada com outro modo de compensação.</p>
 
 <h2>Ferramentas e referências</h2>
 <div class="calc-actions">
@@ -83,6 +97,9 @@
 <ul class="mini-help" style="margin-top:12px">
   <li><a href="ferramentas-analitica-industrial.html">Ferramentas de analítica industrial</a></li>
   <li><a href="blog-calibracao-analisadores-processo.html">Calibração de analisadores de processo</a></li>
+  <li><a href="blog-tempo-amostragem-analisador.html">Tempo de amostragem em analisadores</a></li>
+  <li><a href="https://www.yokogawa.com/pl/solutions/products-and-services/measurement/analyzers/liquid-analyzers/ph-analyzers/two-wire-transmitter-analyzer-flxa21/" target="_blank" rel="noopener">Yokogawa — modos de compensação e compatibilidade de sensores do FLXA21</a></li>
+  <li><a href="https://www.thermofisher.com/order/catalog/product/jp/en/ELITECTSPINKIT" target="_blank" rel="noopener">Thermo Fisher Scientific — exemplo de fator TDS configurável</a></li>
   <li><a href="https://portal.endress.com/dla/5000012/4255/000/05/TI00401CEN_1418.pdf" target="_blank" rel="noopener">Endress+Hauser — modos de compensação e medição de concentração</a></li>
   <li><a href="https://portal.endress.com/dla/5001122/5892/000/02/CP01313CEN_0223_cond_selection_guide_web.pdf" target="_blank" rel="noopener">Endress+Hauser — seleção de sensores de condutividade</a></li>
 </ul>
