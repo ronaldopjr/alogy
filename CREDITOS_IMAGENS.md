@@ -106,8 +106,9 @@ Este arquivo registra a origem das fotografias externas usadas no site ALOGY. A 
 
 ## blog-capa-valvula-atuador.webp
 
-- Uso no site: capa do artigo `blog-solenoide-atuador-pneumatico-cv.html`
-- Descrição: válvula industrial equipada com atuador pneumático
+- Uso no site: sem uso após auditoria visual de 18 de julho de 2026
+- Status editorial: retirada do cartão do Blog e da imagem social de `blog-solenoide-atuador-pneumatico-cv.html`; a fotografia mostra atuador pneumático e posicionador, mas não uma válvula solenóide reconhecível, bobina, conexões elétricas ou montagem NAMUR
+- Descrição factual: válvula de controle equipada com atuador pneumático e posicionador
 - Fotógrafo: Raymond Sime
 - Acervo: Unsplash
 - Página de origem: https://unsplash.com/photos/an-industrial-valve-with-an-actuator-on-a-blue-stand-dUL6El5W7Mg
@@ -116,6 +117,7 @@ Este arquivo registra a origem das fotografias externas usadas no site ALOGY. A 
 - Licença: https://unsplash.com/license
 - Data de obtenção: 17 de julho de 2026
 - Tratamento aplicado: recorte central, redimensionamento para 960 × 540 px, remoção de metadados e conversão para WebP
+- Observação editorial: arquivo preservado para rastreabilidade; ausência de fotografia foi preferida a representar uma solenóide apenas pelo equipamento acionado por ela
 
 ## blog-capa-calibracao-pressao.webp
 
@@ -149,7 +151,8 @@ Este arquivo registra a origem das fotografias externas usadas no site ALOGY. A 
 
 ## blog-capa-calibracao-valvula-controle.webp
 
-- Uso no site: capa e imagem interna dos artigos `blog-calibracao-valvula-controle.html` e `blog-cavitacao-valvula-controle.html`, além do contexto visual da ferramenta `calculadora-calibracao-valvula-controle.html`
+- Uso no site: capa e imagem interna de `blog-calibracao-valvula-controle.html`, além do contexto visual de `calculadora-calibracao-valvula-controle.html`
+- Status editorial de cavitação: retirada de `blog-cavitacao-valvula-controle.html`, do cartão do Blog, da imagem social e do JSON-LD em 18 de julho de 2026; a foto identifica a válvula e seus acessórios, mas não mostra bolhas, erosão, flashing, ensaio ou outro indício reconhecível de cavitação
 - Descrição: válvula de controle com atuador e posicionador em bancada
 - Fotógrafo: Raymond Sime
 - Acervo: Unsplash
@@ -159,7 +162,7 @@ Este arquivo registra a origem das fotografias externas usadas no site ALOGY. A 
 - Licença: https://unsplash.com/license
 - Data de obtenção: 17 de julho de 2026
 - Tratamento aplicado: recorte central, redimensionamento para 960 × 540 px, remoção de metadados e conversão para WebP
-- Observação editorial: fotografia de equipamento em bancada; não retrata equipamento, cliente ou serviço da ALOGY
+- Observação editorial: fotografia de equipamento em bancada mantida apenas onde o objeto corresponde à válvula de controle e ao posicionador; não retrata equipamento, cliente ou serviço da ALOGY
 
 ## blog-capa-calibracao-nivel-dp.webp
 
