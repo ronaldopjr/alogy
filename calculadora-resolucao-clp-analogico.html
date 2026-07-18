@@ -4,8 +4,8 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Calculadora de Resolução de Cartão Analógico CLP | ALOGY</title>
-<meta content="Calcule resolução em engenharia, valor por contagem e conversão entre raw counts e unidade de processo." name="description"/>
+<title>Calculadora de Resolução da Escala Raw de Cartão Analógico | ALOGY</title>
+<meta content="Calcule o passo de engenharia por unidade raw e converta a leitura do cartão analógico para a escala do processo." name="description"/>
 <meta content="index,follow" name="robots"/>
 <meta content="#004b80" name="theme-color"/>
 <link href="https://www.alogy.com.br/calculadora-resolucao-clp-analogico.html" rel="canonical"/>
@@ -22,12 +22,12 @@
 <meta content="pt_BR" property="og:locale"/>
 <meta content="website" property="og:type"/>
 <meta content="ALOGY Engenharia" property="og:site_name"/>
-<meta content="Calculadora de Resolução de Cartão Analógico CLP" property="og:title"/>
-<meta content="Calcule resolução em engenharia, valor por contagem e conversão entre raw counts e unidade de processo." property="og:description"/>
+<meta content="Calculadora de Resolução da Escala Raw de Cartão Analógico" property="og:title"/>
+<meta content="Calcule o passo de engenharia por unidade raw e converta a leitura do cartão analógico para a escala do processo." property="og:description"/>
 <meta content="https://www.alogy.com.br/calculadora-resolucao-clp-analogico.html" property="og:url"/>
 <meta content="https://www.alogy.com.br/favicon-512x512.png" property="og:image"/>
 <meta content="summary_large_image" name="twitter:card"/>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Calculadora de Resolução de Cartão Analógico CLP", "url": "https://www.alogy.com.br/calculadora-resolucao-clp-analogico.html", "description": "Calcule resolução em engenharia, valor por contagem e conversão entre raw counts e unidade de processo.", "applicationCategory": "EngineeringApplication", "operatingSystem": "Web", "publisher": {"@type": "Organization", "name": "ALOGY Engenharia", "url": "https://www.alogy.com.br/"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Calculadora de Resolução da Escala Raw de Cartão Analógico","url":"https://www.alogy.com.br/calculadora-resolucao-clp-analogico.html","description":"Calcule o passo de engenharia por unidade raw e converta a leitura do cartão analógico para a escala do processo.","applicationCategory":"EngineeringApplication","operatingSystem":"Web","publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"}}</script>
 <style>
     .mini-help{color:var(--muted);font-size:.92rem;line-height:1.55;margin-top:8px}
     .calc-result.two{grid-template-columns:repeat(2,1fr)} .calc-result.three{grid-template-columns:repeat(3,1fr)} .calc-result.four{grid-template-columns:repeat(4,1fr)}
@@ -50,9 +50,9 @@
 <div aria-label="Ações rápidas" class="fab-wrap"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1%21%20Vim%20pelas%20ferramentas%20da%20ALOGY.%20Gostaria%20de%20atendimento." rel="noopener" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
 <main class="container" style="margin-top:18px"><div aria-label="Ações da ferramenta" class="tool-page-actions no-print"><a class="tool-category-link" href="ferramentas-automacao-clp.html"><i class="fas fa-layer-group"></i> Automação e CLP</a><button class="btn print" onclick="window.print()" type="button"><i class="fas fa-print"></i> Imprimir</button></div>
 
-<section class="tools-hero"><h1>Calculadora de Resolução de Cartão Analógico CLP</h1><p>Calcule resolução em engenharia, valor por contagem e conversão entre raw counts e unidade de processo.</p></section>
+<section class="tools-hero"><h1>Resolução da Escala Raw de Cartão Analógico</h1><p>Calcule o passo de engenharia por unidade raw e converta uma leitura do CLP ou DCS para a escala do processo.</p></section>
 <section aria-label="Aviso de uso" class="calc-card"><h2><i class="fas fa-triangle-exclamation"></i> Ferramenta orientativa</h2><p>Use como apoio técnico para manutenção, engenharia e conferência preliminar. Confirme sempre com normas aplicáveis, catálogos de fabricantes, procedimentos internos, medições reais e responsável técnico habilitado.</p></section>
-<section class="calc-layout"><div class="calc-card"><h2><i class="fas fa-pen-to-square"></i> Dados de entrada</h2><div class="calc-grid"><label>Resolução do módulo (bits)<input id="bits" step="any" type="number" value="15"/></label><label>Raw mínimo<input id="rawmin" step="any" type="number" value="0"/></label><label>Raw máximo<input id="rawmax" step="any" type="number" value="32767"/></label><label>LRV engenharia<input id="lrv" step="any" type="number" value="0"/></label><label>URV engenharia<input id="urv" step="any" type="number" value="100"/></label><label>Raw lido<input id="raw" step="any" type="number" value="16384"/></label></div></div><div class="calc-card"><h2><i class="fas fa-chart-line"></i> Resultado</h2><div class="calc-result four"><div class="result-box"><span>Contagens úteis</span><strong id="r1">-</strong></div><div class="result-box"><span>Resolução</span><strong id="r2">-</strong></div><div class="result-box"><span>Valor lido</span><strong id="r3">-</strong></div><div class="result-box"><span>% da faixa</span><strong id="r4">-</strong></div></div><p class="mini-help" id="nota"></p></div></section>
+<section class="calc-layout"><div class="calc-card"><h2><i class="fas fa-pen-to-square"></i> Dados de entrada</h2><div class="calc-grid"><label>Raw mínimo<input id="rawmin" inputmode="decimal" type="text" value="0"/></label><label>Raw máximo<input id="rawmax" inputmode="decimal" type="text" value="32767"/></label><label>LRV de engenharia<input id="lrv" inputmode="decimal" type="text" value="0"/></label><label>URV de engenharia<input id="urv" inputmode="decimal" type="text" value="100"/></label><label>Raw lido<input id="raw" inputmode="decimal" type="text" value="16384"/></label></div></div><div class="calc-card" id="resultados" aria-live="polite"><h2><i class="fas fa-chart-line"></i> Resultado</h2><div class="calc-result four"><div class="result-box"><span>Intervalos raw</span><strong id="r1">-</strong></div><div class="result-box"><span>Passo por unidade raw</span><strong id="r2">-</strong></div><div class="result-box"><span>Valor escalonado</span><strong id="r3">-</strong></div><div class="result-box"><span>% da faixa</span><strong id="r4">-</strong></div></div><p class="mini-help" id="nota"></p></div></section>
 <script>
 function parsePtNumber(value){
   const s=String(value ?? '').trim().replace(/\s/g,'');
@@ -68,24 +68,21 @@ function setInvalid(msg){
   document.getElementById('r2').textContent='Verificar';
   document.getElementById('r3').textContent='Verificar';
   document.getElementById('r4').textContent='Verificar';
-  document.getElementById('nota').innerHTML=msg;
+  document.getElementById('nota').textContent=msg;
 }
 function calc(){
-  let bits=n('bits'),rmin=n('rawmin'),rmax=n('rawmax'),l=n('lrv'),u=n('urv'),raw=n('raw');
-  if(![bits,rmin,rmax,l,u,raw].every(Number.isFinite) || bits<=0){setInvalid('Revise os dados: bits, raw, LRV e URV precisam ser numéricos e coerentes.');return;}
-  let counts=rmax-rmin;
-  if(counts<=0){
-    counts=Math.pow(2,bits)-1;
-    if(!Number.isFinite(counts)||counts<=0){setInvalid('Não foi possível obter contagens úteis. Confira bits ou range raw do módulo.');return;}
-  }
+  const rmin=n('rawmin'),rmax=n('rawmax'),l=n('lrv'),u=n('urv'),raw=n('raw');
+  if(![rmin,rmax,l,u,raw].every(Number.isFinite)){setInvalid('Preencha raw mínimo, raw máximo, LRV, URV e raw lido com números válidos.');return;}
+  if(rmax<=rmin){setInvalid('Raw máximo deve ser maior que o raw mínimo. Use a faixa documentada para o módulo e o formato de dados configurado.');return;}
+  const counts=rmax-rmin;
   const engSpan=u-l;
   if(Math.abs(engSpan)<1e-12){setInvalid('LRV e URV não podem ser iguais. Informe uma faixa de engenharia válida.');return;}
-  let res=engSpan/counts,val=l+(raw-rmin)*engSpan/counts,p=(val-l)/engSpan*100;
+  const res=engSpan/counts,val=l+(raw-rmin)*engSpan/counts,p=(raw-rmin)/counts*100;
   document.getElementById('r1').textContent=fmt(counts,0);
   document.getElementById('r2').textContent=fmt(res,6)+' un/count';
   document.getElementById('r3').textContent=fmt(val,4);
   document.getElementById('r4').textContent=fmt(p,2)+' %';
-  document.getElementById('nota').innerHTML=(raw<rmin||raw>rmax?'Raw lido fora do range informado. Confira saturação, escala e diagnóstico do cartão. ':'')+'Use o range raw real do fabricante/módulo. Resolução não é a mesma coisa que exatidão, linearidade ou incerteza do canal.';
+  document.getElementById('nota').textContent=(raw<rmin||raw>rmax?'Raw lido fora da faixa informada; o valor exibido é uma extrapolação matemática. Confira overflow, underflow e diagnóstico do canal. ':'')+'O passo calculado pertence à representação raw configurada. Ele não determina sozinho resolução efetiva do conversor, exatidão, linearidade ou incerteza do canal.';
 }
 document.querySelectorAll('input').forEach(e=>e.addEventListener('input',calc));calc();
 </script>
@@ -93,13 +90,12 @@ document.querySelectorAll('input').forEach(e=>e.addEventListener('input',calc));
 <!-- ALOGY_REVISAO_TECNICA_FERRAMENTA -->
 <section aria-label="Orientação técnica complementar" class="calc-card">
 <h2><i class="fas fa-clipboard-check"></i> Como usar esta ferramenta na prática</h2>
-<p>Calcule resolução em engenharia, valor por contagem e conversão entre raw counts e unidade de processo. Nesta revisão, o conteúdo foi ampliado para deixar mais claro quando usar a ferramenta, quais dados precisam ser conferidos e como transformar o número calculado em uma decisão técnica.</p>
+<p>Use esta ferramenta para conferir a relação linear entre a faixa raw entregue pelo módulo e a escala de engenharia configurada no CLP ou DCS. Ela resolve uma dúvida de manutenção e programação: quanto representa uma unidade raw e qual valor de processo corresponde à leitura observada.</p>
 <h3>Quando aplicar</h3>
-<p>Use em bancada, campo ou laboratório para preparar pontos de teste, comparar indicação do instrumento com referência rastreável e decidir se o equipamento está aprovado, reprovado ou se precisa de ajuste.</p>
+<p>Use ao revisar escalas, diagnosticar divergências entre IHM e programa ou estimar a granularidade da representação numérica. A ferramenta não calibra o módulo e não aprova ou reprova o canal.</p>
 <h3>Dados que merecem conferência</h3>
-<p>Antes de confiar no resultado da ferramenta <strong>Calculadora de Resolução de Cartão Analógico CLP</strong>, confira principalmente: Resolução do módulo (bits), Raw mínimo, Raw máximo, LRV engenharia, URV engenharia, Raw lido. Pequenos erros de unidade, ponto decimal ou condição de operação podem gerar conclusões erradas.</p>
+<p>Copie da documentação e da configuração ativa o raw mínimo e máximo. O mesmo módulo pode entregar faixas diferentes conforme tipo de sinal, formato de dados e parametrização. Depois informe LRV, URV e a leitura raw observada.</p>
 <ul>
-<li>Resolução do módulo (bits)</li>
 <li>Raw mínimo</li>
 <li>Raw máximo</li>
 <li>LRV engenharia</li>
@@ -107,17 +103,18 @@ document.querySelectorAll('input').forEach(e=>e.addEventListener('input',calc));
 <li>Raw lido</li>
 </ul>
 <h3>Como interpretar o resultado</h3>
-<p>O resultado deve ser comparado com a tolerância do processo e com o erro máximo permitido definido no plano de calibração. Um erro pequeno no instrumento pode ser aceitável para utilidades, mas crítico em malhas de segurança, qualidade ou dosagem.</p>
-<p>Quando a página apresentar campos de resultado como Contagens úteis, Resolução, Valor lido, % da faixa, use esses valores para comparar o cenário calculado com limite operacional, tolerância do processo, histórico de manutenção ou especificação de fabricante.</p>
+<p><strong>Intervalos raw</strong> é a diferença entre os extremos informados. <strong>Passo por unidade raw</strong> é o span de engenharia dividido por esses intervalos. O valor escalonado usa a mesma relação linear e aceita escala de engenharia reversa.</p>
+<p>Exemplo: raw de 0 a 32767 e engenharia de 0 a 100 produzem passo aproximado de 0,003052 por unidade raw; raw 16384 corresponde a aproximadamente 50,0015.</p>
 <h3>Checklist rápido de validação</h3>
 <ul>
-<li>Confirme TAG, faixa LRV/URV, unidade de engenharia e damping antes do teste.</li>
-<li>Use padrão de referência com resolução e incerteza adequadas ao instrumento em teste.</li>
-<li>Registre as leituras de subida e descida para observar histerese, repetibilidade e retorno ao zero.</li>
-<li>Quando houver ajuste, repita o ciclo completo antes de liberar o instrumento.</li>
+<li>Confirme se o valor raw representa faixa nominal, faixa total ou código de diagnóstico.</li>
+<li>Verifique sinal configurado, formato numérico, canal e escala usada no programa.</li>
+<li>Não confunda quantidade de bits do conversor com a faixa raw apresentada ao controlador.</li>
+<li>Se a leitura estiver fora da faixa, consulte os códigos de overflow e underflow do módulo.</li>
 </ul>
 <h3>Limites da estimativa</h3>
-<p>Esta ferramenta é indicada para estudo, triagem, conferência de campo e apoio à manutenção. Para projeto final, laudo, especificação de compra, alteração de segurança ou liberação de equipamento crítico, valide as premissas com normas aplicáveis, documentação do fabricante e profissional habilitado.</p>
+<p>A conta descreve uma escala linear. Ela não inclui resolução efetiva, ruído, filtro, tempo de conversão, erro do módulo, incerteza do padrão ou códigos reservados de diagnóstico.</p>
+<p>Base técnica: consulte a documentação oficial da <a href="https://support.industry.siemens.com/cs/mdm/109741593?c=79989678731&amp;lc=en-AF" target="_blank" rel="noopener">Siemens sobre representação de valores analógicos</a> e a <a href="https://www.rockwellautomation.com/en-us/docs/add-on-profiles/ra-5069-analog/40/pv5069analog-ditamap/scaling-and-the-scaling-equation.html" target="_blank" rel="noopener">equação de escala da Rockwell Automation</a>.</p>
 </section>
 </main>
 <footer><p>© Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>

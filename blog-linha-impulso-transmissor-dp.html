@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Linha de Impulso em Transmissor DP | ALOGY</title>
-  <meta name="description" content="Veja erros comuns em linha de impulso de transmissor DP, purga, coluna líquida, manifold e boas práticas." />
+  <meta name="description" content="Linhas de impulso DP em gás, líquido e vapor: inclinação, coluna hidrostática, manifold, purga, sintomas e diagnóstico de campo." />
   <meta name="robots" content="index,follow" />
   <meta name="theme-color" content="#004b80" />
   <link rel="canonical" href="https://www.alogy.com.br/blog-linha-impulso-transmissor-dp.html" />
@@ -22,12 +22,12 @@
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="ALOGY Engenharia" />
   <meta property="og:title" content="Linha de Impulso em Transmissor DP" />
-  <meta property="og:description" content="Veja erros comuns em linha de impulso de transmissor DP, purga, coluna líquida, manifold e boas práticas." />
+  <meta property="og:description" content="Linhas de impulso DP em gás, líquido e vapor: inclinação, coluna hidrostática, manifold, purga e diagnóstico de campo." />
   <meta property="og:url" content="https://www.alogy.com.br/blog-linha-impulso-transmissor-dp.html" />
   <meta property="og:image" content="https://www.alogy.com.br/favicon-512x512.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Linha de impulso em transmissor DP: erros comuns, purga e boas práticas","description":"Veja erros comuns em linha de impulso de transmissor DP, purga, coluna líquida, manifold e boas práticas.","datePublished":"2026-06-29","dateModified":"2026-06-29","author":{"@type":"Organization","name":"ALOGY Engenharia"},"publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/","logo":{"@type":"ImageObject","url":"https://www.alogy.com.br/logo-alogy.webp"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://www.alogy.com.br/blog-linha-impulso-transmissor-dp.html"},"inLanguage":"pt-BR"}</script>
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Linha de impulso pode causar erro?","acceptedAnswer":{"@type":"Answer","text":"Sim. Coluna líquida, gás preso, condensado e obstrução podem alterar a leitura."}},{"@type":"Question","name":"Devo igualar HP e LP?","acceptedAnswer":{"@type":"Answer","text":"A equalização é procedimento de manutenção/calibração e deve ser feita de forma controlada conforme procedimento."}},{"@type":"Question","name":"Transmissor DP ruim sempre é defeito eletrônico?","acceptedAnswer":{"@type":"Answer","text":"Não. Muitas falhas vêm da instalação mecânica."}},{"@type":"Question","name":"Purga altera medição?","acceptedAnswer":{"@type":"Answer","text":"Pode alterar se vazão, pressão ou restrição de purga não forem adequadas."}}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Linha de impulso em transmissor DP: erros comuns, purga e boas práticas","description":"Linhas de impulso DP em gás, líquido e vapor: inclinação, coluna hidrostática, manifold, purga, sintomas e diagnóstico de campo.","datePublished":"2026-06-29","dateModified":"2026-07-17","author":{"@type":"Organization","name":"ALOGY Engenharia"},"publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/","logo":{"@type":"ImageObject","url":"https://www.alogy.com.br/logo-alogy.webp"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://www.alogy.com.br/blog-linha-impulso-transmissor-dp.html"},"inLanguage":"pt-BR"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Como a altura da linha de impulso afeta o transmissor DP?","acceptedAnswer":{"@type":"Answer","text":"Uma coluna de fluido gera pressão hidrostática igual a densidade vezes gravidade vezes altura. Parcelas iguais nas duas pernas podem se cancelar; diferenças de altura, densidade ou enchimento produzem deslocamento de zero."}},{"@type":"Question","name":"Onde instalar o transmissor para serviço líquido, gás ou vapor?","acceptedAnswer":{"@type":"Answer","text":"Como regra de roteamento, transmissores de gás costumam ficar acima das tomadas para o condensado retornar ao processo; em líquido ou vapor, abaixo, favorecendo linhas cheias. O projeto e o manual do conjunto prevalecem."}},{"@type":"Question","name":"Linhas HP e LP precisam ter o mesmo comprimento?","acceptedAnswer":{"@type":"Answer","text":"O objetivo principal é manter condições equivalentes de enchimento e temperatura. Roteá-las juntas e evitar diferenças térmicas costuma ser mais importante do que igualar geometricamente cada centímetro."}},{"@type":"Question","name":"Purga pode alterar a medição DP?","acceptedAnswer":{"@type":"Answer","text":"Sim. Vazões ou restrições diferentes entre HP e LP criam pressão diferencial adicional. A purga deve ser estável, documentada e verificada nas condições operacionais."}}]}</script>
   <style>
     .tech-page{background:linear-gradient(180deg,rgba(0,75,128,.04),rgba(255,255,255,0) 260px)}
     .tech-wrap{max-width:1120px;margin:18px auto 34px}
@@ -105,13 +105,78 @@
     <a class="tech-back no-print" href="blog.html"><i class="fas fa-arrow-left"></i> Voltar para o Blog</a>
     <article class="post-card">
       <div class="post-content">
-        <div class="post-meta">Transmissores DP • Atualizado em 2026-06-29</div>
+        <div class="post-meta">Transmissores DP • Atualizado em 2026-07-17</div>
         <h1>Linha de impulso em transmissor DP: erros comuns, purga e boas práticas</h1>
-        <p>A linha de impulso conecta o processo ao transmissor de pressão diferencial. Em teoria é apenas uma tubulação pequena. Na prática, é uma das maiores fontes de erro em medição de nível, vazão e pressão diferencial.</p><h2>Erro por coluna líquida</h2><p>Quando existe diferença de altura e fluido dentro da linha, surge uma pressão hidrostática adicional. Esse offset pode representar pequena correção ou grande parcela do span. Em transmissores de baixo range, poucos centímetros podem fazer diferença.</p><h2>Bolsões de gás e condensado</h2><p>Linhas mal inclinadas podem aprisionar gás em serviço líquido ou condensado em serviço gasoso. Isso causa leitura instável, atraso e erro de zero. A orientação da linha deve favorecer drenagem ou ventilação conforme o tipo de serviço.</p><h2>Manifold</h2><p>O manifold permite isolar, equalizar, drenar e calibrar o transmissor. Erros de operação no manifold, como equalizar com válvulas de bloqueio abertas ou deixar dreno vazando, podem gerar leituras falsas.</p><h2>Purga</h2><p>Purga pode proteger contra entupimento e cristalização, mas precisa ser estável. Purga excessiva altera a pressão medida; purga insuficiente permite obstrução. Em aplicações críticas, a purga deve ser documentada e verificada.</p><h2>Boas práticas</h2><ul><li>Usar inclinação correta nas linhas.</li><li>Manter comprimentos parecidos em HP e LP quando possível.</li><li>Evitar pontos altos/baixos sem dreno ou vent.</li><li>Identificar claramente HP, LP, bloqueio e equalização.</li><li>Registrar posição do transmissor em relação às tomadas.</li><li>Validar zero após montagem e após manutenção.</li></ul><h2>Conclusão</h2><p>Uma malha DP boa depende da instalação mecânica. Antes de trocar transmissor ou recalibrar repetidamente, vale verificar linha de impulso, manifold, purga, condensado, obstrução e geometria.</p>
+        <p>A linha de impulso não é apenas uma conexão mecânica: ela precisa transmitir até o sensor as pressões das tomadas HP e LP sem criar uma diferença adicional. Bolsão de gás, condensado, obstrução, vazamento, aquecimento desigual ou erro de manifold pode parecer defeito eletrônico e levar a ajustes desnecessários no transmissor.</p>
+
+        <h2>Comece pelo tipo de serviço</h2>
+        <p>O roteamento deve permitir que a fase indesejada retorne naturalmente ao processo ou seja removida de forma controlada. Como orientação de fabricante, o manual Yokogawa IM 01C25B01-01E recomenda:</p>
+        <ul>
+          <li><strong>Gás:</strong> tomadas na região superior da tubulação e transmissor, em regra, acima delas, para o condensado retornar ao processo.</li>
+          <li><strong>Líquido:</strong> tomadas laterais ou abaixo da horizontal e transmissor abaixo, mantendo as linhas cheias e permitindo que gás retorne ao processo ou seja ventilado.</li>
+          <li><strong>Vapor:</strong> tomadas laterais ou acima da horizontal, potes de condensado quando previstos e transmissor abaixo, com pernas de condensado equivalentes.</li>
+        </ul>
+        <p>Essas posições não substituem o desenho de instalação. Viscosidade, solidificação, corrosão, toxicidade, temperatura, selo remoto, purga e requisitos de segurança podem exigir outra solução.</p>
+
+        <h2>Inclinação e temperatura das duas pernas</h2>
+        <p>A linha deve ter queda ou subida contínua, sem “barrigas” que aprisionem fase. O mesmo manual usa inclinação mínima de 1:10 como orientação para seus transmissores. Trate esse número como referência de instalação do fabricante, não como regra universal: o padrão do projeto e a documentação do conjunto prevalecem.</p>
+        <p>Em medição de vazão DP, roteie HP e LP juntas para que recebam condições térmicas semelhantes. Se uma perna ficar exposta ao sol e a outra sombreada, a diferença de densidade do fluido de enchimento pode deslocar o zero, especialmente em spans baixos.</p>
+
+        <h2>Quanto uma coluna líquida pode deslocar o zero</h2>
+        <p>A contribuição hidrostática de uma coluna é aproximada por <strong>ΔP = ρ × g × h</strong>. Quando HP e LP têm colunas iguais, com mesma densidade e altura efetiva, essas parcelas podem se cancelar. O erro aparece quando existe desequilíbrio.</p>
+        <div class="post-highlight"><strong>Exemplo:</strong> uma diferença não compensada de 0,30 m de água produz cerca de 1.000 × 9,80665 × 0,30 = <strong>2,94 kPa</strong>, equivalente a aproximadamente 300 mmH₂O. Em um transmissor com span de 10 kPa, isso representa 29,4% do span. Antes de executar zero trim, confirme se essa coluna faz parte da instalação normal.</div>
+        <p>O ajuste de zero pode mascarar uma linha parcialmente vazia. Quando a linha volta a encher, o erro reaparece com sinal oposto ou como deriva.</p>
+
+        <h2>Manifold: isolar e equalizar não são a mesma ação</h2>
+        <p>Um manifold de três válvulas tem dois bloqueios e uma equalizadora; versões de cinco válvulas acrescentam vents ou drenos. A equalizadora aplica pressão semelhante aos dois lados do sensor, mas não despressuriza automaticamente o conjunto nem garante condição segura para desmontagem.</p>
+        <p>A sequência de abertura e fechamento depende do manifold, do processo e do procedimento da planta. Operação incorreta pode submeter um lado do sensor à pressão estática total, causar leitura falsa ou liberar fluido perigoso. Antes de intervir, identifique HP, LP, equalização, vent e dreno no desenho e no corpo do conjunto.</p>
+
+        <h2>Purga, condensado e obstrução</h2>
+        <p>Purga contínua pode reduzir entupimento em fluidos sujos, mas as restrições de HP e LP precisam produzir condições repetíveis. Vazões diferentes criam DP adicional; pressão de purga insuficiente permite retorno do processo, enquanto excesso pode alterar a medição ou introduzir risco.</p>
+        <p>Em vapor, níveis diferentes nos potes de condensado geram erro de coluna. Em líquido, bolhas comprimem e aumentam o tempo de resposta. Em gás, condensado acumulado cria coluna variável. Drenar ou ventilar provoca perturbação momentânea e deve seguir procedimento seguro, principalmente com vapor, produto tóxico, inflamável ou alta pressão.</p>
+
+        <h2>Sintomas que ajudam a localizar a falha</h2>
+        <div class="table-wrap"><table class="tech-table"><thead><tr><th>Sintoma</th><th>Hipóteses de instalação</th><th>Conferência</th></tr></thead><tbody>
+          <tr><td>Offset estável após partida</td><td>Coluna desigual, HP/LP invertidos ou zero feito fora da condição normal.</td><td>Geometria, enchimento, identificação das tomadas e configuração H/L.</td></tr>
+          <tr><td>Resposta lenta em um sentido</td><td>Obstrução parcial, válvula não totalmente aberta ou bolha comprimida.</td><td>Teste de resposta controlado, manifold e continuidade de cada perna.</td></tr>
+          <tr><td>Leitura oscila</td><td>Bolhas, condensado móvel, flashing, vibração ou purga instável.</td><td>Fase presente, inclinação, suportação e pressão/vazão de purga.</td></tr>
+          <tr><td>Zero muda com o clima</td><td>Diferença térmica entre pernas ou densidade variável em perna molhada.</td><td>Roteamento conjunto, isolamento e exposição solar.</td></tr>
+          <tr><td>Valor não zera ao equalizar</td><td>Equalizadora restrita, bloqueios vazando, pressão aprisionada ou sensor deslocado.</td><td>Procedimento do manifold e teste seguro fora do processo quando necessário.</td></tr>
+        </tbody></table></div>
+
+        <h2>Roteiro de inspeção antes de recalibrar</h2>
+        <ol>
+          <li>Confirme serviço, faixa, unidade, pressão estática e posição prevista do transmissor.</li>
+          <li>Identifique fisicamente HP, LP, bloqueios, equalização, vents, drenos e sentido das tomadas.</li>
+          <li>Compare elevação real das tomadas e do transmissor com o desenho.</li>
+          <li>Inspecione inclinação contínua, pontos altos ou baixos, suportes, aquecimento e isolamento.</li>
+          <li>Procure vazamento, obstrução, congelamento, sedimento, bolha ou condensado.</li>
+          <li>Verifique se ambas as pernas estão na condição de enchimento usada para definir LRV e URV.</li>
+          <li>Somente depois avalie zero, sensor trim ou recalibração conforme procedimento aprovado.</li>
+        </ol>
+
+        <h2>Conteúdos relacionados</h2>
+        <ul>
+          <li><a href="blog-dp-nivel-tanque-fechado.html">Nível por DP em tanque fechado: perna seca, perna molhada e elevação de zero</a>.</li>
+          <li><a href="blog-calibracao-transmissor-dp-vazao.html">Calibração de transmissor DP aplicado à vazão</a>.</li>
+          <li><a href="calculadora-pressao-hidrostatica-densidade.html">Calculadora de pressão por coluna hidrostática</a>.</li>
+        </ul>
+
+        <h2>Referências técnicas</h2>
+        <ul>
+          <li><a href="https://web-material3.yokogawa.com/IM01C25B01-01EN.pdf" target="_blank" rel="noopener">Yokogawa — Differential Pressure and Pressure Transmitters, IM 01C25B01-01E, 28ª edição</a>, junho de 2026, capítulo 5.</li>
+          <li><a href="https://www.emerson.com/is/content/emerson/en/measurement-instrumentation/technical/products/dp-level/documents/doc-rosemount-dp-00809-0100-4002.pdf" target="_blank" rel="noopener">Emerson — Rosemount Differential Pressure Level Transmitters and Diaphragm Seal Systems, 00809-0100-4002, Rev. FC</a>, setembro de 2024.</li>
+        </ul>
+
+        <h2>Aviso técnico</h2>
+        <p>Este conteúdo é educativo. Não opere manifold, vent, dreno ou purga sem autorização, isolamento, despressurização e medidas compatíveis com o fluido e a área. Para projeto, SIS, vapor, produto perigoso ou mudança permanente, use documentação vigente, procedimento da planta e profissional habilitado.</p>
         <div class="post-highlight"><strong>Ferramenta relacionada:</strong> aplique este conteúdo em uma calculadora prática da ALOGY.<div style="margin-top:12px"><a class="btn" href="calculadora-linha-impulso-transmissor-dp.html"><i class="fas fa-calculator"></i> Abrir calculadora de linha DP</a></div></div>
         <section class="faq">
           <h2>Perguntas frequentes</h2>
-          <details><summary>Linha de impulso pode causar erro?</summary><p>Sim. Coluna líquida, gás preso, condensado e obstrução podem alterar a leitura.</p></details><details><summary>Devo igualar HP e LP?</summary><p>A equalização é procedimento de manutenção/calibração e deve ser feita de forma controlada conforme procedimento.</p></details><details><summary>Transmissor DP ruim sempre é defeito eletrônico?</summary><p>Não. Muitas falhas vêm da instalação mecânica.</p></details><details><summary>Purga altera medição?</summary><p>Pode alterar se vazão, pressão ou restrição de purga não forem adequadas.</p></details>
+          <details><summary>Como a altura da linha afeta o transmissor DP?</summary><p>A coluna gera pressão ρgh. Parcelas iguais podem se cancelar; diferenças de altura, densidade ou enchimento deslocam o zero.</p></details>
+          <details><summary>Onde instalar o transmissor em gás, líquido ou vapor?</summary><p>Como regra de roteamento, acima das tomadas em gás e abaixo em líquido ou vapor, favorecendo retorno de condensado ou linhas cheias. O desenho e o manual prevalecem.</p></details>
+          <details><summary>HP e LP precisam ter exatamente o mesmo comprimento?</summary><p>O mais importante é manter enchimento e temperatura equivalentes. Roteá-las juntas costuma ser mais relevante do que igualar cada centímetro.</p></details>
+          <details><summary>Purga altera a medição?</summary><p>Pode alterar. Diferença de vazão ou restrição entre as pernas cria DP adicional; documente e verifique a purga em operação.</p></details>
         </section>
       </div>
     </article>

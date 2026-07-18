@@ -54,17 +54,17 @@
     <div style="margin-bottom:14px;display:flex;gap:10px;flex-wrap:wrap" class="no-print"><a class="floating-back-tools no-print" href="ferramentas.html"><i class="fas fa-arrow-left"></i> Voltar para Ferramentas</a><a class="floating-back-tools no-print" href="ferramentas-calibracao-instrumentacao.html"><i class="fas fa-check-double"></i> Calibração e metrologia</a></div>
     <section class="tools-hero"><h1>Calculadora de Calibração de Cartão Analógico CLP/DCS</h1><p>Confira entrada analógica 4-20 mA, 0-10 V ou 1-5 V comparando sinal aplicado, contagem raw e valor de engenharia.</p></section>
     <section class="calc-card" aria-label="Aviso de uso"><h2><i class="fas fa-triangle-exclamation"></i> Ferramenta orientativa</h2><p>Use esta ferramenta para estudo, pré-avaliação e conferência de campo. A decisão de aprovação, ajuste, reprovação ou emissão de certificado deve seguir procedimento interno, norma aplicável, classe do instrumento, incerteza da referência, condição do processo e validação de profissional habilitado.</p></section>
-    <section class="calc-layout"><div class="calc-card"><h2><i class="fas fa-microchip"></i> Dados do cartão</h2><div class="calc-grid"><div class="field"><label for="sigMin">Sinal mínimo</label><input id="sigMin" type="number" step="any" value="4"></div><div class="field"><label for="sigMax">Sinal máximo</label><input id="sigMax" type="number" step="any" value="20"></div><div class="field"><label for="rawMin">Raw mínimo</label><input id="rawMin" type="number" step="any" value="0"></div><div class="field"><label for="rawMax">Raw máximo</label><input id="rawMax" type="number" step="any" value="27648"></div><div class="field"><label for="engMin">Engenharia mínima</label><input id="engMin" type="number" step="any" value="0"></div><div class="field"><label for="engMax">Engenharia máxima</label><input id="engMax" type="number" step="any" value="100"></div><div class="field"><label for="sig">Sinal aplicado</label><input id="sig" type="number" step="any" value="12"></div><div class="field"><label for="raw">Raw lido no CLP/DCS</label><input id="raw" type="number" step="any" value="13820"></div><div class="field"><label for="tol">Tolerância em counts</label><input id="tol" type="number" step="any" value="30"></div></div><div class="calc-actions"><button class="mini-btn dark" onclick="copiar()" type="button"><i class="fas fa-copy"></i> Copiar resultado</button><button class="mini-btn" onclick="window.print()" type="button"><i class="fas fa-print"></i> Imprimir</button></div></div><div class="calc-card"><h2><i class="fas fa-chart-simple"></i> Resultado</h2><div class="calc-result four"><div class="result-box"><span>Raw esperado</span><strong id="r1">-</strong></div><div class="result-box"><span>Erro raw</span><strong id="r2">-</strong></div><div class="result-box"><span>Engenharia lida</span><strong id="r3">-</strong></div><div class="result-box"><span>Status</span><strong id="r4" class="small">-</strong></div></div><div class="calc-note">Útil para comissionamento de AI em CLP/DCS, diagnóstico de escala e conferência de cartões analógicos.</div><div class="table-wrap"><table class="calc-table"><thead><tr><th>Ponto</th><th>Sinal</th><th>Raw esperado</th><th>Engenharia</th></tr></thead><tbody id="tbl"></tbody></table></div></div></section>
-    <section class="calc-card faq"><h2><i class="fas fa-circle-question"></i> Perguntas frequentes</h2><details><summary>Serve para Siemens 0-27648?</summary><p>Sim. Já vem com 0 a 27648 como exemplo, mas você pode alterar para 0-32767, 0-4095 ou outra faixa.</p></details><details><summary>É calibração do instrumento de campo?</summary><p>Não. É conferência/calibração do canal analógico e da escala no CLP/DCS.</p></details></section>
+    <section class="calc-layout"><div class="calc-card"><h2><i class="fas fa-microchip"></i> Dados do cartão</h2><div class="calc-grid"><div class="field"><label for="sigMin">Sinal mínimo (mA ou V)</label><input id="sigMin" inputmode="decimal" type="text" value="4"></div><div class="field"><label for="sigMax">Sinal máximo (mesma unidade)</label><input id="sigMax" inputmode="decimal" type="text" value="20"></div><div class="field"><label for="rawMin">Raw mínimo</label><input id="rawMin" inputmode="decimal" type="text" value="0"></div><div class="field"><label for="rawMax">Raw máximo</label><input id="rawMax" inputmode="decimal" type="text" value="27648"></div><div class="field"><label for="engMin">Engenharia mínima</label><input id="engMin" inputmode="decimal" type="text" value="0"></div><div class="field"><label for="engMax">Engenharia máxima</label><input id="engMax" inputmode="decimal" type="text" value="100"></div><div class="field"><label for="sig">Sinal aplicado</label><input id="sig" inputmode="decimal" type="text" value="12"></div><div class="field"><label for="raw">Raw lido no CLP/DCS</label><input id="raw" inputmode="decimal" type="text" value="13820"></div><div class="field"><label for="tol">Tolerância em counts</label><input id="tol" inputmode="decimal" type="text" value="30"></div></div><div class="calc-actions"><button class="mini-btn dark" onclick="copiar()" type="button"><i class="fas fa-copy"></i> Copiar resultado</button><button class="mini-btn" onclick="window.print()" type="button"><i class="fas fa-print"></i> Imprimir</button></div></div><div class="calc-card" id="resultados" aria-live="polite"><h2><i class="fas fa-chart-simple"></i> Resultado</h2><div class="calc-result four"><div class="result-box"><span>Raw esperado</span><strong id="r1">-</strong></div><div class="result-box"><span>Erro raw</span><strong id="r2">-</strong></div><div class="result-box"><span>Engenharia lida</span><strong id="r3">-</strong></div><div class="result-box"><span>Status</span><strong id="r4" class="small">-</strong></div></div><div class="calc-note" id="nota">O status compara somente o erro raw com a tolerância informada.</div><div class="table-wrap"><table class="calc-table"><thead><tr><th>Ponto</th><th>Sinal</th><th>Raw esperado</th><th>Engenharia</th></tr></thead><tbody id="tbl"></tbody></table></div></div></section>
+    <section class="calc-card faq"><h2><i class="fas fa-circle-question"></i> Perguntas frequentes</h2><details><summary>Posso usar raw de 0 a 27648?</summary><p>Sim, somente quando essa for a representação documentada para o módulo, o tipo de sinal e a configuração ativa. Altere os extremos para qualquer outra faixa comprovada no equipamento.</p></details><details><summary>É calibração do instrumento de campo?</summary><p>Não. É uma conferência do canal analógico e da escala no CLP/DCS; sensor, transmissor e malha completa exigem testes próprios.</p></details></section>
   
     <!-- ALOGY_REVISAO_TECNICA_FERRAMENTA -->
     <section class="calc-card" aria-label="Orientação técnica complementar">
       <h2><i class="fas fa-clipboard-check"></i> Como usar esta ferramenta na prática</h2>
-      <p>Calcule contagem esperada, erro em raw counts, engenharia e porcentagem na calibração de entrada analógica de CLP ou DCS. Nesta revisão, o conteúdo foi ampliado para deixar mais claro quando usar a ferramenta, quais dados precisam ser conferidos e como transformar o número calculado em uma decisão técnica.</p>
+      <p>Use esta ferramenta para comparar o sinal aplicado a uma entrada analógica com o valor raw observado no CLP ou DCS. Ela ajuda no comissionamento do canal, na conferência da escala e no registro de pontos de teste.</p>
       <h3>Quando aplicar</h3>
-      <p>Use em bancada, campo ou laboratório para preparar pontos de teste, comparar indicação do instrumento com referência rastreável e decidir se o equipamento está aprovado, reprovado ou se precisa de ajuste.</p>
+      <p>Use ao aplicar corrente ou tensão conhecida diretamente no canal, conforme procedimento seguro e documentação do módulo. O teste não inclui automaticamente sensor, transmissor, cabeamento ou lógica de processo.</p>
       <h3>Dados que merecem conferência</h3>
-      <p>Antes de confiar no resultado da ferramenta <strong>Calculadora de Calibração de Cartão Analógico CLP/DCS</strong>, confira principalmente: Sinal mínimo, Sinal máximo, Raw mínimo, Raw máximo, Engenharia mínima, Engenharia máxima. Pequenos erros de unidade, ponto decimal ou condição de operação podem gerar conclusões erradas.</p>
+      <p>Confirme o tipo de sinal, a faixa nominal, o formato de dados e os extremos raw na configuração ativa. Use a mesma unidade para sinal mínimo, máximo e aplicado. A tolerância em counts deve vir do procedimento ou critério definido para o teste.</p>
       <ul>
           <li>Sinal mínimo</li>
           <li>Sinal máximo</li>
@@ -74,31 +74,59 @@
           <li>Engenharia máxima</li>
       </ul>
       <h3>Como interpretar o resultado</h3>
-      <p>O resultado deve ser comparado com a tolerância do processo e com o erro máximo permitido definido no plano de calibração. Um erro pequeno no instrumento pode ser aceitável para utilidades, mas crítico em malhas de segurança, qualidade ou dosagem.</p>
-      <p>Quando a página apresentar campos de resultado como Raw esperado, Erro raw, Engenharia lida, Status, use esses valores para comparar o cenário calculado com limite operacional, tolerância do processo, histórico de manutenção ou especificação de fabricante.</p>
+      <p>Raw esperado é obtido pela posição do sinal dentro da faixa elétrica. Erro raw é a leitura observada menos a esperada. O status compara o valor absoluto desse erro somente com a tolerância preenchida; ele não comprova sozinho conformidade metrológica do módulo.</p>
+      <p>Exemplo padrão: em 4–20 mA e raw 0–27648, 12 mA corresponde a raw 13824. Uma leitura 13820 produz erro de −4 counts e aproximadamente 49,986 na escala 0–100.</p>
       <h3>Checklist rápido de validação</h3>
       <ul>
-          <li>Confirme TAG, faixa LRV/URV, unidade de engenharia e damping antes do teste.</li>
-          <li>Use padrão de referência com resolução e incerteza adequadas ao instrumento em teste.</li>
-          <li>Registre as leituras de subida e descida para observar histerese, repetibilidade e retorno ao zero.</li>
-          <li>Quando houver ajuste, repita o ciclo completo antes de liberar o instrumento.</li>
+          <li>Confirme canal, tipo de entrada, faixa elétrica e formato raw antes de aplicar o sinal.</li>
+          <li>Use fonte ou calibrador compatível, com conexão e proteção conforme o manual.</li>
+          <li>Registre pontos de subida e descida quando o procedimento exigir.</li>
+          <li>Trate overflow, underflow e códigos de diagnóstico conforme o módulo específico.</li>
       </ul>
       <h3>Limites da estimativa</h3>
-      <p>Esta ferramenta é indicada para estudo, triagem, conferência de campo e apoio à manutenção. Para projeto final, laudo, especificação de compra, alteração de segurança ou liberação de equipamento crítico, valide as premissas com normas aplicáveis, documentação do fabricante e profissional habilitado.</p>
+      <p>A ferramenta supõe relação linear e não incorpora incerteza do padrão, erro permitido do módulo, ruído, filtro, tempo de conversão ou códigos reservados. Aprovação formal depende do procedimento e da documentação do equipamento.</p>
+      <p>Base técnica: consulte a <a href="https://www.rockwellautomation.com/en-us/docs/add-on-profiles/ra-5069-analog/40/pv5069analog-ditamap/scaling-and-the-scaling-equation.html" target="_blank" rel="noopener">equação de escala da Rockwell Automation</a> e a documentação da <a href="https://support.industry.siemens.com/cs/mdm/109741593?c=79989678731&amp;lc=en-AF" target="_blank" rel="noopener">Siemens sobre representação de valores analógicos</a>.</p>
     </section>
 
   </main>
   <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
 <script>
-function val(id){return parseFloat(String(document.getElementById(id).value).replace(',','.'))||0}
-function txt(id){return document.getElementById(id).value}
+function parsePtNumber(value){
+  const s=String(value ?? '').trim().replace(/\s/g,'');
+  if(!s) return NaN;
+  const normalized=s.includes(',') ? s.replace(/\./g,'').replace(',', '.') : s;
+  const v=Number(normalized);
+  return Number.isFinite(v) ? v : NaN;
+}
+function val(id){return parsePtNumber(document.getElementById(id).value)}
 function n(v,d=2){return Number.isFinite(v)?v.toLocaleString('pt-BR',{minimumFractionDigits:d,maximumFractionDigits:d}):'-'}
-function cls(ok){return ok?'pill-ok':'pill-bad'}
-function st(absErr,tol){if(!Number.isFinite(absErr)||!Number.isFinite(tol))return '<span class="pill-warn">Verificar</span>'; if(absErr<=tol)return '<span class="pill-ok">Aprovado</span>'; if(absErr<=tol*1.25)return '<span class="pill-warn">Próximo do limite</span>'; return '<span class="pill-bad">Reprovado</span>'}
-function copiar(){const r=document.querySelector('.calc-card:nth-of-type(2)'); const t=r?r.innerText:document.body.innerText; navigator.clipboard.writeText(t).then(()=>alert('Resultado copiado.'))}
+function setInvalid(msg){
+  ['r1','r2','r3','r4'].forEach(id=>document.getElementById(id).textContent='Verificar');
+  document.getElementById('tbl').innerHTML='';
+  document.getElementById('nota').textContent=msg;
+}
+function copiar(){
+  const r=document.getElementById('resultados');
+  navigator.clipboard.writeText(r.innerText).then(()=>{document.getElementById('nota').textContent='Resultado copiado.';}).catch(()=>{document.getElementById('nota').textContent='Não foi possível copiar automaticamente. Selecione o resultado e copie manualmente.';});
+}
 document.querySelectorAll('input,select').forEach(e=>e.addEventListener('input',calcular));
 
-function calcular(){let smin=val('sigMin'),smax=val('sigMax'),rmin=val('rawMin'),rmax=val('rawMax'),emin=val('engMin'),emax=val('engMax'),sig=val('sig'),raw=val('raw'),tol=val('tol');let pct=(sig-smin)/(smax-smin), rawExp=rmin+(rmax-rmin)*pct, err=raw-rawExp, eng=emin+(emax-emin)*((raw-rmin)/(rmax-rmin));document.getElementById('r1').innerHTML=n(rawExp,0);document.getElementById('r2').innerHTML=n(err,0)+' counts';document.getElementById('r3').innerHTML=n(eng,3);document.getElementById('r4').innerHTML=st(Math.abs(err),Math.abs(tol));document.getElementById('tbl').innerHTML=[0,25,50,75,100].map(p=>`<tr><td>${p}%</td><td>${n(smin+(smax-smin)*p/100,3)}</td><td>${n(rmin+(rmax-rmin)*p/100,0)}</td><td>${n(emin+(emax-emin)*p/100,3)}</td></tr>`).join('');}
+function calcular(){
+  const smin=val('sigMin'),smax=val('sigMax'),rmin=val('rawMin'),rmax=val('rawMax'),emin=val('engMin'),emax=val('engMax'),sig=val('sig'),raw=val('raw'),tol=val('tol');
+  if(![smin,smax,rmin,rmax,emin,emax,sig,raw,tol].every(Number.isFinite)){setInvalid('Preencha todos os campos com números válidos. Vírgula e ponto decimal são aceitos.');return;}
+  if(smax<=smin){setInvalid('Sinal máximo deve ser maior que o sinal mínimo.');return;}
+  if(rmax<=rmin){setInvalid('Raw máximo deve ser maior que o raw mínimo.');return;}
+  if(Math.abs(emax-emin)<1e-12){setInvalid('Engenharia mínima e máxima não podem ser iguais. Escala reversa continua permitida.');return;}
+  if(tol<0){setInvalid('A tolerância em counts não pode ser negativa.');return;}
+  const pct=(sig-smin)/(smax-smin),rawExp=rmin+(rmax-rmin)*pct,err=raw-rawExp,eng=emin+(emax-emin)*((raw-rmin)/(rmax-rmin));
+  const foraSinal=sig<smin||sig>smax,foraRaw=raw<rmin||raw>rmax;
+  document.getElementById('r1').textContent=n(rawExp,0);
+  document.getElementById('r2').textContent=n(err,0)+' counts';
+  document.getElementById('r3').textContent=n(eng,3);
+  document.getElementById('r4').innerHTML=foraSinal||foraRaw?'<span class="pill-warn">Fora da faixa</span>':Math.abs(err)<=tol?'<span class="pill-ok">Dentro da tolerância</span>':'<span class="pill-bad">Fora da tolerância</span>';
+  document.getElementById('nota').textContent=(foraSinal||foraRaw?'Sinal aplicado ou raw lido fora da faixa informada; confira overflow, underflow e diagnóstico do canal. ':'')+'O status compara apenas o erro raw com a tolerância preenchida e não substitui o procedimento de calibração.';
+  document.getElementById('tbl').innerHTML=[0,25,50,75,100].map(p=>`<tr><td>${p}%</td><td>${n(smin+(smax-smin)*p/100,3)}</td><td>${n(rmin+(rmax-rmin)*p/100,0)}</td><td>${n(emin+(emax-emin)*p/100,3)}</td></tr>`).join('');
+}
 calcular();</script>
 </body>
 </html>
