@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Linha de Impulso para Transmissor DP | ALOGY</title>
-  <meta name="description" content="Calcule offset hidrostático, volume e risco preliminar de resposta lenta em linhas de impulso de transmissor DP." />
+  <title>Calculadora de Offset e Volume em Linhas de Impulso DP | ALOGY</title>
+  <meta name="description" content="Calcule offset hidrostático e volume interno de linhas de impulso de transmissor DP, com premissas e limitações explícitas." />
   <meta name="robots" content="index,follow" />
   <meta name="theme-color" content="#004b80" />
   <link rel="canonical" href="https://www.alogy.com.br/calculadora-linha-impulso-transmissor-dp.html" />
@@ -21,13 +21,13 @@
   <meta property="og:locale" content="pt_BR" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="ALOGY Engenharia" />
-  <meta property="og:title" content="Linha de Impulso para Transmissor DP" />
-  <meta property="og:description" content="Calcule offset hidrostático, volume e risco preliminar de resposta lenta em linhas de impulso de transmissor DP." />
+  <meta property="og:title" content="Calculadora de Offset e Volume em Linhas de Impulso DP" />
+  <meta property="og:description" content="Calcule offset hidrostático e volume interno de linhas de impulso de transmissor DP, com premissas e limitações explícitas." />
   <meta property="og:url" content="https://www.alogy.com.br/calculadora-linha-impulso-transmissor-dp.html" />
   <meta property="og:image" content="https://www.alogy.com.br/favicon-512x512.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Calculadora de Linha de Impulso para Transmissor DP","url":"https://www.alogy.com.br/calculadora-linha-impulso-transmissor-dp.html","applicationCategory":"EngineeringApplication","operatingSystem":"Web","description":"Calcule offset hidrostático, volume e risco preliminar de resposta lenta em linhas de impulso de transmissor DP.","publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"},"inLanguage":"pt-BR"}</script>
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"O sinal do offset pode ser negativo?","acceptedAnswer":{"@type":"Answer","text":"Sim. Depende de qual lado do transmissor recebe a coluna e do sentido HP/LP."}},{"@type":"Question","name":"Volume alto sempre é problema?","acceptedAnswer":{"@type":"Answer","text":"Não sempre, mas aumenta chance de resposta lenta e sensibilidade a bolhas, condensado ou obstrução."}},{"@type":"Question","name":"Serve para placa de orifício?","acceptedAnswer":{"@type":"Answer","text":"Serve para avaliar volume e efeito hidrostático das linhas, mas não calcula vazão."}},{"@type":"Question","name":"Preciso corrigir no transmissor?","acceptedAnswer":{"@type":"Answer","text":"Quando existe elevação ou supressão de zero, a faixa deve ser configurada considerando a instalação real."}}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Calculadora de Offset e Volume em Linhas de Impulso DP","url":"https://www.alogy.com.br/calculadora-linha-impulso-transmissor-dp.html","applicationCategory":"EngineeringApplication","operatingSystem":"Web","description":"Calcule offset hidrostático e volume interno de linhas de impulso de transmissor DP, com premissas e limitações explícitas.","publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"},"inLanguage":"pt-BR"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"O sinal do offset pode ser negativo?","acceptedAnswer":{"@type":"Answer","text":"Sim. Nesta ferramenta, o sinal segue a diferença de coluna HP menos LP informada pelo usuário."}},{"@type":"Question","name":"O volume calcula o tempo de resposta?","acceptedAnswer":{"@type":"Answer","text":"Não. O volume é um inventário geométrico; o tempo de resposta também depende de fase, compressibilidade, viscosidade, restrições, bolhas, obstruções, montagem e transmissor."}},{"@type":"Question","name":"Serve para placa de orifício?","acceptedAnswer":{"@type":"Answer","text":"Serve para conferir volume geométrico e um efeito hidrostático informado, mas não calcula vazão nem valida a instalação."}},{"@type":"Question","name":"Preciso corrigir no transmissor?","acceptedAnswer":{"@type":"Answer","text":"A necessidade e o método de ajuste dependem da montagem HP/LP, condição de processo, procedimento aprovado e documentação do instrumento."}}]}</script>
   <style>
     .tech-page{background:linear-gradient(180deg,rgba(0,75,128,.04),rgba(255,255,255,0) 260px)}
     .tech-wrap{max-width:1120px;margin:18px auto 34px}
@@ -104,35 +104,34 @@
   <main class="container tech-wrap">
     <a aria-label="Voltar para Ferramentas" class="floating-back-tools no-print" href="ferramentas.html"><i class="fas fa-arrow-left"></i> Voltar para Ferramentas</a>
     <section class="tech-hero">
-      <h1>Calculadora de Linha de Impulso para Transmissor DP</h1>
-      <p>Estime erro por coluna líquida, volume interno das linhas e impacto qualitativo no tempo de resposta de transmissores de pressão diferencial.</p>
+      <h1>Calculadora de Offset e Volume em Linhas de Impulso DP</h1>
+      <p>Calcule o efeito hidrostático de uma diferença efetiva de coluna e o volume geométrico das linhas, sem inferir aprovação ou tempo de resposta.</p>
       <div class="hero-tags"><span><i class="fas fa-check"></i> Transmissor DP</span><span><i class="fas fa-check"></i> Linha de impulso</span><span><i class="fas fa-check"></i> Offset</span><span><i class="fas fa-check"></i> Nível e vazão</span></div>
     </section>
     <section class="calc-grid">
       <div class="tech-card">
         <h2>Dados de entrada</h2>
         <form class="field-grid" onsubmit="calcular();return false;">
-  <div class="field"><label>Densidade do fluido de selagem/processo</label><input id="rho" type="number" step="1" value="1000"><small>kg/m³</small></div>
-  <div class="field"><label>Diferença vertical entre tomadas</label><input id="h" type="number" step="0.01" value="1.2"><small>m. Use sinal positivo conforme efeito hidrostático.</small></div>
-  <div class="field"><label>Span do transmissor DP</label><input id="span" type="number" step="0.1" value="500"><small>mbar</small></div>
-  <div class="field"><label>Diâmetro interno da linha</label><input id="di" type="number" step="0.1" value="6"><small>mm</small></div>
-  <div class="field"><label>Comprimento total das duas linhas</label><input id="len" type="number" step="0.1" value="12"><small>m</small></div>
-  <div class="field"><label>Volume adicional de manifold/transmissor</label><input id="vadd" type="number" step="0.1" value="20"><small>mL</small></div>
-  <div class="field"><label>Damping configurado</label><input id="damp" type="number" step="0.1" value="1"><small>s</small></div>
-  <div class="field"><label>Tempo do processo aceitável</label><input id="tacc" type="number" step="0.1" value="3"><small>s</small></div>
-  <div class="wide calc-actions"><button class="btn-mini" type="submit"><i class="fas fa-calculator"></i> Calcular</button><button class="btn-mini secondary" type="button" onclick="window.print()"><i class="fas fa-print"></i> Imprimir</button></div>
+  <div class="field"><label for="rho">Densidade da coluna líquida considerada</label><input id="rho" inputmode="decimal" type="text" value="1000"><small>kg/m³</small></div>
+  <div class="field"><label for="h">Diferença efetiva de coluna (HP − LP)</label><input id="h" inputmode="decimal" type="text" value="1,2"><small>m. Use valor negativo quando a coluna no lado LP for dominante.</small></div>
+  <div class="field"><label for="span">Span do transmissor DP</label><input id="span" inputmode="decimal" type="text" value="500"><small>mbar; deve ser maior que zero.</small></div>
+  <div class="field"><label for="di">Diâmetro interno da linha</label><input id="di" inputmode="decimal" type="text" value="6"><small>mm</small></div>
+  <div class="field"><label for="len">Comprimento total das linhas</label><input id="len" inputmode="decimal" type="text" value="12"><small>m; some HP e LP.</small></div>
+  <div class="field"><label for="vadd">Volume adicional informado</label><input id="vadd" inputmode="decimal" type="text" value="20"><small>mL; inclua somente volumes conhecidos.</small></div>
+  <div class="field"><label for="damp">Damping configurado no transmissor</label><input id="damp" inputmode="decimal" type="text" value="1"><small>s; exibido separadamente, sem estimar resposta total.</small></div>
+  <div class="wide calc-actions"><button class="btn-mini" type="submit"><i class="fas fa-calculator"></i> Calcular</button><button class="btn-mini secondary" type="button" onclick="copiar()"><i class="fas fa-copy"></i> Copiar resultado</button><button class="btn-mini secondary" type="button" onclick="window.print()"><i class="fas fa-print"></i> Imprimir</button><span id="copyStatus" role="status" aria-live="polite"></span></div>
 </form>
       </div>
       <aside class="tech-card result-box">
         <h2>Resultado</h2>
-        <div id="resultado" class="result-sub">Preencha os dados e clique em calcular.</div>
+        <div id="resultado" class="result-sub" role="status" aria-live="polite">Preencha os dados e clique em calcular.</div>
       </aside>
     </section>
     <section class="tech-card"><h2>Aviso técnico importante</h2><p class="note">Esta ferramenta fornece uma estimativa preliminar para estudo, manutenção, orçamento e triagem de campo. Para aplicações críticas, segurança de processo, áreas classificadas, sistemas instrumentados de segurança, vasos pressurizados, contratos ou emissão de documentação oficial, valide o dimensionamento com normas aplicáveis, dados do fabricante e profissional habilitado.</p></section>
-<section class="tech-card"><h2>Aplicação em transmissores DP</h2><p>Linhas de impulso mal projetadas podem criar erro por coluna líquida, aprisionamento de gás, condensado indevido, tempo de resposta lento e manutenção frequente. Em nível por DP, vazão com placa de orifício e filtros, a instalação mecânica tem tanto peso quanto a configuração eletrônica.</p><h3>Checklist de campo</h3><ul><li>Confirmar tomada de alta e baixa pressão.</li><li>Verificar inclinação das linhas para evitar bolsões de gás ou líquido.</li><li>Conferir manifold, drenos, vents e equalização.</li><li>Registrar altura relativa entre tomadas e transmissor.</li><li>Validar zero com o processo em condição conhecida.</li></ul></section>
+<section class="tech-card"><h2>Equações, exemplo e limites</h2><p>O offset usa <strong>ΔP = ρ × g × Δh</strong>, com g = 9,80665 m/s² e Δh informado como HP menos LP. O volume usa <strong>V = π × Di² × L ÷ 4 + V adicional</strong>. Para 1,2 m de água, span de 500 mbar, linhas de 6 mm e 12 m no total, mais 20 mL, o resultado é 117,68 mbar (23,54% do span) e 359,29 mL.</p><p><strong>O volume não determina sozinho o tempo de resposta.</strong> Fase, compressibilidade, viscosidade, restrições, bolsas de gás ou líquido, obstruções, montagem, manifold e dinâmica do transmissor também influenciam. Por isso, a ferramenta não classifica volume nem converte volume em segundos.</p><h3>Checklist de campo</h3><ul><li>Confirmar lados HP e LP e o sinal adotado para a coluna efetiva.</li><li>Verificar inclinação, condensado, bolsas de gás, vazamento e obstrução.</li><li>Conferir diâmetro interno e comprimento efetivo de cada trecho.</li><li>Registrar manifold, drenos, vents, fluido de enchimento e damping configurado.</li><li>Validar zero e resposta por procedimento de campo aprovado.</li></ul><p>Referências técnicas: <a href="https://web-material3.yokogawa.com/IM01C25B01-01EN.pdf" rel="noopener" target="_blank">Yokogawa, IM 01C25B01-01E, 28ª edição</a> e <a href="https://www.emerson.com/en/measurement-instrumentation/catalog/pressure-measurement/4051s-manual" rel="noopener" target="_blank">Emerson, manual digital Rosemount 4051S</a>.</p></section>
     <section class="tech-card faq">
       <h2>Perguntas frequentes</h2>
-      <details><summary>O sinal do offset pode ser negativo?</summary><p>Sim. Depende de qual lado do transmissor recebe a coluna e do sentido HP/LP.</p></details><details><summary>Volume alto sempre é problema?</summary><p>Não sempre, mas aumenta chance de resposta lenta e sensibilidade a bolhas, condensado ou obstrução.</p></details><details><summary>Serve para placa de orifício?</summary><p>Serve para avaliar volume e efeito hidrostático das linhas, mas não calcula vazão.</p></details><details><summary>Preciso corrigir no transmissor?</summary><p>Quando existe elevação ou supressão de zero, a faixa deve ser configurada considerando a instalação real.</p></details>
+      <details><summary>O sinal do offset pode ser negativo?</summary><p>Sim. Nesta ferramenta, o sinal segue a diferença de coluna HP menos LP informada pelo usuário.</p></details><details><summary>O volume calcula o tempo de resposta?</summary><p>Não. Ele representa apenas o inventário geométrico preenchido. A resposta deve ser verificada na instalação real.</p></details><details><summary>Serve para placa de orifício?</summary><p>Serve para conferir volume geométrico e um efeito hidrostático informado, mas não calcula vazão nem valida a instalação.</p></details><details><summary>Preciso corrigir no transmissor?</summary><p>A necessidade e o método de ajuste dependem da montagem HP/LP, condição de processo, procedimento aprovado e documentação do instrumento.</p></details>
     </section>
     <section class="tech-card no-print">
       <h2>Conteúdos e ferramentas relacionados</h2>
@@ -141,8 +140,11 @@
     </section>
   </main>
   <script>
-function n(id){return parseFloat(document.getElementById(id).value)||0} function fmt(x,d=2){return x.toLocaleString('pt-BR',{maximumFractionDigits:d,minimumFractionDigits:d})}
-function calcular(){const rho=n('rho'), h=n('h'), span=n('span'), di=n('di')/1000, len=n('len'), vadd=n('vadd'), damp=n('damp'), tacc=n('tacc'); const dpPa=rho*9.80665*h, dpmbar=dpPa/100, pct=span?dpmbar/span*100:0; const vol=Math.PI*di*di/4*len*1e6+vadd; let classe=vol<80?'ok':(vol<250?'warn':'bad'); let msg=vol<80?'volume baixo, resposta tende a ser melhor':'volume elevado, verificar atraso, bolhas, obstrução e damping'; const t_est=damp + vol/200; const status=(Math.abs(pct)<5 && t_est<=tacc)?'ok':(Math.abs(pct)<15?'warn':'bad'); document.getElementById('resultado').innerHTML=`<div class="note ${status}"><strong>Offset hidrostático estimado:</strong><div class="result-main">${fmt(dpmbar,2)} mbar</div><div>Equivale a <strong>${fmt(pct,1)}%</strong> do span informado.</div></div><div class="pill-row"><span class="pill">Volume das linhas: ${fmt(vol,1)} mL</span><span class="pill">Tempo qualitativo: ${fmt(t_est,1)} s</span><span class="pill">Diagnóstico: ${msg}</span></div><p class="result-sub">Ajuste de zero, elevação/supressão e sentido do offset dependem da montagem das tomadas HP/LP, fluido, condensação, selagem e posição do transmissor.</p>`}
+function n(id){const raw=String(document.getElementById(id).value||'').trim();if(!raw)return NaN;const norm=raw.includes(',')?raw.replace(/\./g,'').replace(',','.') : raw;const value=Number(norm);return Number.isFinite(value)?value:NaN}
+function fmt(x,d=2){return x.toLocaleString('pt-BR',{maximumFractionDigits:d,minimumFractionDigits:d})}
+function erro(msg){document.getElementById('resultado').innerHTML=`<div class="note bad"><strong>Dados inválidos:</strong> ${msg}</div>`}
+function calcular(){const rho=n('rho'),h=n('h'),span=n('span'),diMm=n('di'),len=n('len'),vadd=n('vadd'),damp=n('damp');if([rho,h,span,diMm,len,vadd,damp].some(v=>!Number.isFinite(v))){erro('preencha todos os campos com números válidos.');return}if(rho<=0){erro('a densidade deve ser maior que zero.');return}if(span<=0){erro('o span do transmissor deve ser maior que zero.');return}if(diMm<=0||len<0||vadd<0||damp<0){erro('diâmetro deve ser maior que zero; comprimento, volume adicional e damping não podem ser negativos.');return}const dpPa=rho*9.80665*h,dpmbar=dpPa/100,pct=dpmbar/span*100,di=diMm/1000,volTubo=Math.PI*di*di/4*len*1e6,vol=volTubo+vadd;document.getElementById('resultado').innerHTML=`<div class="note"><strong>Offset hidrostático calculado:</strong><div class="result-main">${fmt(dpmbar)} mbar</div><div>Equivale a <strong>${fmt(pct)}%</strong> do span informado; o sinal segue HP − LP.</div></div><div class="pill-row"><span class="pill">Volume dos tubos: ${fmt(volTubo)} mL</span><span class="pill">Volume total informado: ${fmt(vol)} mL</span><span class="pill">Damping configurado: ${fmt(damp)} s</span></div><p class="result-sub">O volume e o damping são apresentados separadamente. Esta ferramenta não calcula tempo total de resposta nem comprova que a instalação está adequada; confirme fase, inclinação, restrições, bolsas, vazamentos e dinâmica em campo.</p>`}
+async function copiar(){const status=document.getElementById('copyStatus'),resultado=document.getElementById('resultado');if(resultado.querySelector('.bad')){status.textContent='Calcule um resultado válido antes de copiar.';return}const texto=resultado.innerText.trim();try{await navigator.clipboard.writeText(texto);status.textContent='Resultado copiado.'}catch(e){status.textContent='Não foi possível copiar automaticamente.'}}
 calcular();
 </script>
   <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
