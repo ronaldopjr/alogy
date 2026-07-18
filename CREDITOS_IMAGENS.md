@@ -2,6 +2,18 @@
 
 Este arquivo registra a origem das fotografias externas usadas no site ALOGY. A inclusão de uma imagem não significa que ela retrate equipe, cliente, instalação, projeto ou serviço executado pela ALOGY.
 
+## Banners históricos sem proveniência verificável — início e cursos
+
+- Uso no site: sem uso após auditoria visual de 18 de julho de 2026
+- Páginas corrigidas: `index.html` e `cursos.html`
+- Arquivos: `banner1.webp`, `banner1_mobile.webp`, `banner2.webp`, `banner2_mobile.webp`, `banner3.webp` e `banner3_mobile.webp`
+- Descrição factual: três composições em versões horizontal e vertical; mostram pessoas reconhecíveis diante de painéis e instrumentos com interfaces, fiação e detalhes visuais não verificáveis
+- Origem, autor, licença e data de obtenção: não registrados no repositório
+- Motivo da retirada: a inspeção dos arquivos integrais encontrou aparência sintética e repetição do mesmo personagem, além de painéis e telas com elementos inconsistentes. Nenhum ativo possui proveniência ou licença verificável.
+- Tratamento: associações removidas do carrossel inicial e do card do curso; metadados sociais de `cursos.html` passaram a usar o ícone neutro da ALOGY; arquivos preservados para rastreabilidade
+- Recorte e mobile: as três versões móveis também foram abertas e inspecionadas; mantêm pessoas reconhecíveis e os mesmos elementos não verificáveis das versões horizontais
+- Critério editorial: o carrossel e o card permanecem funcionais com seus fundos neutros e conteúdo textual. Ausência de fotografia foi preferida a atribuir imagens sem licença ou possivelmente sintéticas à empresa, aos serviços ou ao curso.
+
 ## Ilustrações abstratas sem proveniência — artigos de tecnologia industrial
 
 - Uso no site: sem uso após auditoria visual de 18 de julho de 2026
