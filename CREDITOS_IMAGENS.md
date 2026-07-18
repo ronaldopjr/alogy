@@ -147,8 +147,9 @@ Este arquivo registra a origem das fotografias externas usadas no site ALOGY. A 
 
 ## blog-capa-cartao-analogico-clp.webp
 
-- Uso no site: capa e imagem interna dos artigos `blog-calibracao-cartao-analogico-clp.html` e `blog-resistor-shunt-4-20ma.html`
-- Descrição: painel industrial com botoeiras e interface de operação
+- Uso no site: sem uso após auditoria visual de 18 de julho de 2026
+- Status editorial: retirada dos dois artigos, dos cartões do Blog, das imagens sociais e do JSON-LD por não mostrar cartão analógico, rack de CLP/DCS, bornes ou calibração do canal
+- Descrição: mesa de operação com botoeiras, sinalizadores e pequena interface local
 - Fotógrafo: Fernando Narvaez
 - Acervo: Pexels
 - Página de origem: https://www.pexels.com/photo/industrial-control-panel-with-colorful-buttons-32529354/
@@ -157,12 +158,13 @@ Este arquivo registra a origem das fotografias externas usadas no site ALOGY. A 
 - Licença: https://www.pexels.com/license/
 - Data de obtenção: 17 de julho de 2026
 - Tratamento aplicado: recorte central, redimensionamento para 960 × 540 px, remoção de metadados e conversão para WebP
-- Observação editorial: imagem contextual de painel de controle; não identifica o cartão analógico e não retrata instalação ou serviço da ALOGY
+- Observação editorial: arquivo preservado para rastreabilidade, sem associação pública; a imagem também não representa resistor shunt ou conversão 4–20 mA para tensão
 
 ## blog-capa-conversor-ip-pi.webp
 
-- Uso no site: capa e imagem interna do artigo `blog-calibracao-conversor-ip-pi.html`
-- Descrição: reguladores pneumáticos, manômetros e mangueiras de teste
+- Uso no site: sem uso após auditoria visual de 18 de julho de 2026
+- Status editorial: retirada do artigo, do cartão do Blog, das imagens sociais e do JSON-LD por não mostrar conversor I/P ou P/I, ligação 4–20 mA ou sinal pneumático 3–15 psi
+- Descrição: reguladores de pressão, manômetros e mangueira associados a cilindros de gás
 - Fotógrafo: Mikhail Nilov
 - Acervo: Pexels
 - Página de origem: https://www.pexels.com/photo/gasoline-counters-in-a-machine-8943269/
@@ -171,7 +173,7 @@ Este arquivo registra a origem das fotografias externas usadas no site ALOGY. A 
 - Licença: https://www.pexels.com/license/
 - Data de obtenção: 17 de julho de 2026
 - Tratamento aplicado: recorte central, redimensionamento para 960 × 540 px, remoção de metadados e conversão para WebP
-- Observação editorial: imagem contextual de bancada pneumática; não identifica um conversor I/P ou P/I específico nem retrata serviço da ALOGY
+- Observação editorial: arquivo preservado para rastreabilidade, sem associação pública; regulador de cilindro não deve ser apresentado como conversor eletropneumático
 
 ## blog-capa-totalizador-vazao.webp
 

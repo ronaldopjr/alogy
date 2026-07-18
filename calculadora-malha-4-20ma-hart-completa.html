@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Calculadora de Malha 4-20 mA / HART | ALOGY</title>
-  <meta name="description" content="Valide malha 4-20 mA/HART: fonte, carga, cabo, resistor HART, tensão no transmissor, raw do CLP, falhas NAMUR NE43 e memorial." />
+  <meta name="description" content="Confira escala, raw do CLP e orçamento de tensão de uma malha 4-20 mA/HART, com carga, cabo e corrente de verificação configuráveis." />
   <meta name="robots" content="index,follow" />
   <meta name="theme-color" content="#004b80" />
   <link rel="canonical" href="https://www.alogy.com.br/calculadora-malha-4-20ma-hart-completa.html" />
@@ -36,7 +36,7 @@
     "url":"https://www.alogy.com.br/calculadora-malha-4-20ma-hart-completa.html",
     "applicationCategory":"EngineeringApplication",
     "operatingSystem":"Web",
-    "description":"Ferramenta para validar malha 4-20 mA/HART com fonte, carga, cabo, resistor HART, tensão no transmissor, raw do CLP, falhas NAMUR NE43 e memorial técnico preliminar.",
+    "description":"Ferramenta orientativa para conferir escala, raw do CLP e orçamento de tensão de uma malha 4-20 mA/HART com fonte, carga, cabo e corrente de verificação configuráveis.",
     "provider":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"}
   }
   </script>
@@ -45,8 +45,8 @@
     "@context":"https://schema.org",
     "@type":"FAQPage",
     "mainEntity":[
-      {"@type":"Question","name":"Para que serve a calculadora de malha 4-20 mA/HART?","acceptedAnswer":{"@type":"Answer","text":"Ela ajuda a verificar se a fonte, a carga total da malha, o cabo, a resistência HART e a tensão disponível no transmissor são compatíveis com uma malha analógica industrial."}},
-      {"@type":"Question","name":"Por que a resistência HART é importante?","acceptedAnswer":{"@type":"Answer","text":"A comunicação HART precisa de impedância mínima na malha, normalmente associada a uma resistência de aproximadamente 250 ohms. Sem carga adequada, o comunicador pode não estabelecer comunicação estável."}},
+      {"@type":"Question","name":"Para que serve a calculadora de malha 4-20 mA/HART?","acceptedAnswer":{"@type":"Answer","text":"Ela ajuda a conferir a escala analógica, o raw do CLP e se a fonte deixa tensão suficiente no transmissor após as quedas nas cargas e no cabo."}},
+      {"@type":"Question","name":"A resistência calculada comprova a comunicação HART?","acceptedAnswer":{"@type":"Answer","text":"Não. O cálculo usa resistências em corrente contínua para o orçamento de tensão. A comunicação HART também depende das exigências do dispositivo, da impedância na frequência do sinal, da capacitância, das interfaces, do aterramento e do ruído, devendo ser testada em campo."}},
       {"@type":"Question","name":"A ferramenta substitui projeto ou comissionamento?","acceptedAnswer":{"@type":"Answer","text":"Não. O cálculo é preliminar e deve ser validado com manuais dos fabricantes, condições reais de campo, normas aplicáveis, testes de loop e procedimentos internos."}}
     ]
   }
@@ -123,8 +123,8 @@
     <a aria-label="Voltar para Ferramentas" class="floating-back-tools no-print" href="ferramentas.html"><i class="fas fa-arrow-left"></i> Voltar para Ferramentas</a>
     <section class="tech-hero">
       <h1>Calculadora Completa de Malha 4-20 mA / HART</h1>
-      <p>Valide uma malha analógica industrial considerando fonte 24 Vcc, carga do cartão de entrada, resistor HART, barreira/isolador, resistência do cabo, tensão mínima do transmissor, diagnóstico por corrente, raw do CLP e escala de engenharia. A ferramenta também gera um memorial técnico preliminar para comissionamento, manutenção e projeto.</p>
-      <div class="hero-tags"><span><i class="fas fa-wave-square"></i> 4-20 mA</span><span><i class="fas fa-signal"></i> HART</span><span><i class="fas fa-microchip"></i> CLP/DCS</span><span><i class="fas fa-bolt"></i> Fonte 24 Vcc</span><span><i class="fas fa-file-lines"></i> Memorial técnico</span></div>
+      <p>Confira uma malha analógica industrial considerando fonte, cargas em série, resistência de ida e volta do cabo, tensão mínima do transmissor, corrente de verificação, raw do CLP e escala de engenharia. Ao final, gere um resumo orientativo para apoiar a conferência em campo.</p>
+      <div class="hero-tags"><span><i class="fas fa-wave-square"></i> 4-20 mA</span><span><i class="fas fa-signal"></i> HART</span><span><i class="fas fa-microchip"></i> CLP/DCS</span><span><i class="fas fa-bolt"></i> Orçamento de tensão</span><span><i class="fas fa-file-lines"></i> Resumo de conferência</span></div>
     </section>
 
     <section class="tech-card">
@@ -164,10 +164,11 @@
           <select id="hartReq"><option value="sim" selected>Sim</option><option value="nao">Não</option></select>
         </label>
       </div>
-      <div class="actions no-print"><button class="btn" onclick="calcularMalha()"><i class="fas fa-calculator"></i> Calcular malha</button><button class="btn secondary" onclick="copiarMemorial()"><i class="fas fa-copy"></i> Copiar memorial</button></div>
+      <div class="actions no-print"><button class="btn" onclick="calcularMalha()"><i class="fas fa-calculator"></i> Calcular malha</button><button class="btn secondary" onclick="copiarMemorial()"><i class="fas fa-copy"></i> Copiar resumo</button></div>
+      <p id="copyStatus" role="status" aria-live="polite"></p>
     </section>
 
-    <section class="calc-card" id="resultado">
+    <section class="calc-card" id="resultado" aria-live="polite">
       <h2><i class="fas fa-gauge-high"></i> Resultado da validação</h2>
       <div id="statusBox" class="result-box">Preencha os dados e clique em calcular.</div>
       <div class="result-grid">
@@ -187,7 +188,7 @@
         <div class="table-scroll"><table><thead><tr><th>Ponto</th><th>PV</th><th>Corrente</th><th>Raw</th></tr></thead><tbody id="tbodyEscala"></tbody></table></div>
       </div>
       <div class="tech-card">
-        <h2>Diagnóstico por corrente</h2>
+        <h2>Referências de corrente</h2>
         <div class="table-scroll"><table><thead><tr><th>Corrente</th><th>Interpretação</th><th>PV equivalente</th></tr></thead><tbody id="tbodyDiag"></tbody></table></div>
       </div>
     </section>
@@ -195,8 +196,8 @@
     <section class="tech-card">
       <h2>Como interpretar a malha</h2>
       <p>Uma malha 4-20 mA de dois fios precisa que a fonte vença a queda de tensão em todas as cargas em série e ainda deixe tensão suficiente no transmissor. A carga total inclui cartão de entrada analógica, resistor HART, barreiras, isoladores, indicadores, registradores e resistência de ida e volta do cabo.</p>
-      <p>Para HART, além da alimentação, é necessário que exista impedância suficiente na malha. Em muitas instalações, uma entrada analógica de 250 Ω já atende. Em cartões de baixa impedância, pode ser necessário resistor dedicado, isolador compatível ou cartão preparado para HART.</p>
-      <p>Se a carga total for alta demais, o transmissor pode saturar antes de atingir 20 mA ou falha alta. Se a carga for baixa demais, a comunicação HART pode ficar instável, mesmo que a leitura analógica pareça correta.</p>
+      <p>Para HART, a resistência em corrente contínua é apenas uma parte da verificação. Cada transmissor, comunicador, cartão, barreira e isolador pode impor requisitos próprios; a impedância na frequência do sinal, a capacitância do cabo, o aterramento e o ruído também influenciam. Por isso, esta página não aprova nem reprova a comunicação HART apenas pela soma de resistências.</p>
+      <p>Se a carga total for alta demais, pode faltar tensão no transmissor em 20 mA ou na corrente alta configurada. Se o orçamento de tensão estiver adequado, ainda é necessário confirmar a comunicação HART com o instrumento e a interface reais.</p>
     </section>
 
     <section class="tech-card">
@@ -214,18 +215,20 @@
     </section>
 
     <section class="tech-card">
-      <h2>Memorial técnico preliminar</h2>
-      <pre id="memorial" class="copy-box">Calcule para gerar o memorial.</pre>
+      <h2>Resumo orientativo da conferência</h2>
+      <pre id="memorial" class="copy-box">Calcule para gerar o resumo.</pre>
     </section>
 
     <section class="tech-card">
       <h2>Perguntas frequentes</h2>
       <h3>O resistor HART precisa sempre ser externo?</h3>
-      <p>Não. Alguns cartões de entrada analógica já possuem impedância suficiente ou resistor interno. Em outros casos, a entrada pode ter baixa resistência e exigir resistor externo ou isolador compatível com HART.</p>
+      <p>Não necessariamente. A ligação e a carga exigidas dependem do transmissor, comunicador e interface usados. Consulte os manuais de todos os elementos da malha e não acrescente resistência sem recalcular a tensão disponível.</p>
       <h3>Por que validar a corrente de falha alta?</h3>
       <p>Porque muitos transmissores podem sinalizar falha acima de 20 mA. Se a malha não tiver tensão suficiente nessa condição, o diagnóstico pode não chegar corretamente ao CLP ou DCS.</p>
       <h3>O cabo ajuda na comunicação HART?</h3>
       <p>A resistência do cabo entra na queda de tensão da malha. Para comunicação HART, o mais importante é a impedância efetiva vista pelo sinal de comunicação, além de cabo adequado, aterramento, blindagem e baixo ruído.</p>
+      <h3>Referências técnicas</h3>
+      <p>O orçamento de tensão segue a relação entre fonte, corrente e resistência total. Os limites de alimentação, carga e alarme devem ser preenchidos conforme o equipamento real. Consulte o <a href="https://www.emerson.com/en/measurement-instrumentation/catalog/temperature-measurement/3144s-manual" target="_blank" rel="noopener">manual do Rosemount 3144S</a> como exemplo oficial de curva de carga específica e o <a href="https://www.fieldcommgroup.org/sites/default/files/imce_files/technology/documents/HART_ApplicationGuide_r7.1.pdf" target="_blank" rel="noopener">HART Application Guide da FieldComm Group</a> para requisitos de instalação e comunicação.</p>
     </section>
 
     <section class="tech-card cta-card no-print">
@@ -253,13 +256,11 @@ function pvToMa(pv,lrv,urv){return 4 + ((pv-lrv)/(urv-lrv))*16;}
 function maToPv(ma,lrv,urv){return lrv + ((ma-4)/16)*(urv-lrv);}
 function maToRaw(ma,rawMin,rawMax){return rawMin + ((ma-4)/16)*(rawMax-rawMin);}
 function classificarCorrente(ma){
-  if(ma < 3.6) return 'Falha baixa / circuito aberto provável';
-  if(ma < 3.8) return 'Subfaixa ou falha baixa conforme configuração';
-  if(ma < 4) return 'Abaixo do range, mas ainda próximo da faixa útil';
+  if(ma < 3.6) return 'Abaixo de 3,6 mA: conferir alarme baixo configurado e diagnosticar a malha';
+  if(ma < 4) return 'Abaixo de 4 mA: subfaixa ou diagnóstico, conforme o dispositivo';
   if(ma <= 20) return 'Faixa normal de medição';
-  if(ma <= 20.5) return 'Sobrefaixa acima de 100%';
-  if(ma < 21) return 'Alerta alto / região de diagnóstico';
-  return 'Falha alta ou saturação acima do range';
+  if(ma < 21) return 'Acima de 20 mA: sobrefaixa ou diagnóstico, conforme o dispositivo';
+  return 'A partir de 21 mA: conferir alarme alto configurado e diagnosticar a malha';
 }
 function calcularMalha(){
   const tag=txt('tag')||'Malha';
@@ -274,13 +275,14 @@ function calcularMalha(){
   const erros=[];
   if(vals.some(v=>!Number.isFinite(v))) erros.push('Preencha todos os campos numéricos.');
   if(urv===lrv) erros.push('URV não pode ser igual ao LRV.');
-  if(rawMax===rawMin) erros.push('Raw máximo não pode ser igual ao raw mínimo.');
+  if(rawMax<=rawMin) erros.push('Raw máximo precisa ser maior que o raw mínimo.');
+  if(correnteMedida<0) erros.push('A corrente medida não pode ser negativa.');
   if(fonte<=0 || vminTx<=0 || fonte<=vminTx) erros.push('A fonte precisa ser maior que a tensão mínima do transmissor.');
   if([rAi,rHart,rBarreira,rExtra,comprimento,rCond].some(v=>v<0)) erros.push('Resistências e comprimento não podem ser negativos.');
-  if(iFalhaAlta<=20 || iFalhaAlta>23) erros.push('Use uma corrente de falha alta maior que 20 mA e normalmente até 23 mA.');
+  if(iFalhaAlta<=20) erros.push('A corrente de verificação alta precisa ser maior que 20 mA. Use o limite documentado para o transmissor e a entrada analógica reais.');
   if(erros.length){
     set('statusBox','<strong>Dados inválidos.</strong><br>'+erros.join('<br>'));
-    set('alertas',''); set('tbodyEscala',''); set('tbodyDiag',''); set('memorial','Corrija os dados para gerar o memorial.');
+    set('alertas',''); set('tbodyEscala',''); set('tbodyDiag',''); set('memorial','Corrija os dados para gerar o resumo.');
     return;
   }
   const rCabo = (rCond/1000)*comprimento*2;
@@ -303,14 +305,11 @@ function calcularMalha(){
   if(vTx20 < vminTx){status='Malha inválida'; classe='bad'; alertas.push('A tensão no transmissor em 20 mA fica abaixo da tensão mínima informada. Reduza cargas, aumente a fonte ou revise a arquitetura.');}
   if(vTxFalha < vminTx){status=status==='OK'?'Atenção':status; classe=classe==='bad'?'bad':'warn'; alertas.push('Em corrente de falha alta, a tensão no transmissor fica abaixo do mínimo. O diagnóstico alto pode não chegar corretamente ao CLP/DCS.');}
   if(rTotal > rMax20){status='Malha inválida'; classe='bad'; alertas.push('A resistência total ultrapassa a resistência máxima permitida pela fonte em 20 mA.');}
-  if(hartReq){
-    if(rCargaPainel < 230){status=status==='OK'?'Atenção':status; classe=classe==='bad'?'bad':'warn'; alertas.push('A carga efetiva no painel está abaixo de aproximadamente 230 Ω. A comunicação HART pode falhar; normalmente usa-se referência de 250 Ω.');}
-    if(rCargaPainel > 1100){status=status==='OK'?'Atenção':status; classe=classe==='bad'?'bad':'warn'; alertas.push('A carga efetiva no painel ficou acima de 1100 Ω. Verifique limite do transmissor, isoladores e comunicação.');}
-  }
-  if(correnteNormal<3.8 || correnteNormal>20.5){status=status==='OK'?'Atenção':status; classe=classe==='bad'?'bad':'warn'; alertas.push('O valor normal informado gera corrente fora da faixa usual 3,8 a 20,5 mA. Revise LRV/URV ou o valor de processo.');}
-  if(correnteMedida<3.6 || correnteMedida>21){alertas.push('A corrente medida está em região típica de falha/diagnóstico, não apenas medição normal.');}
+  if(hartReq){alertas.push('O cálculo confirma somente o orçamento de tensão em corrente contínua. Confirme os requisitos de carga e impedância nos manuais e execute uma comunicação HART real.');}
+  if(correnteNormal<4 || correnteNormal>20){status=status==='OK'?'Atenção':status; classe=classe==='bad'?'bad':'warn'; alertas.push('O valor normal informado fica fora de 4 a 20 mA e o resultado é uma extrapolação da escala. Revise LRV, URV e o valor de processo.');}
+  if(correnteMedida<3.6 || correnteMedida>=21){alertas.push('A corrente medida cruzou referências comuns de alarme. Confirme os limites configurados no transmissor e no CLP/DCS antes de interpretar a causa.');}
   if(rCabo > rCargaPainel && rCabo > 100){alertas.push('A resistência do cabo ficou relevante em relação à carga do painel. Revise bitola, distância ou arquitetura da malha.');}
-  const hartStatus = !hartReq ? 'Não requerido' : (rCargaPainel>=230 && rCargaPainel<=1100 ? 'Carga adequada' : 'Revisar carga');
+  const hartStatus = !hartReq ? 'Não requerido' : 'Teste em campo requerido';
   set('statusBox', `<strong>Status preliminar: ${status}</strong><br>Resultado orientativo para ${tag} - ${servico}. Classe: ${classe==='ok'?'sem alertas críticos':classe==='warn'?'atenção técnica':'corrigir antes de usar'}.`);
   set('outCorrente', `${fmt(correnteNormal,3)} mA`);
   set('outPvMedida', `${fmt(pvMedida,3)} ${unidade}<br><small>Raw ${fmt(rawMedida,0)}</small>`);
@@ -327,12 +326,14 @@ function calcularMalha(){
   const diag=[3.6,3.8,4,8,12,16,20,20.5,21,iFalhaAlta];
   const unique=[...new Set(diag.map(x=>Number(x.toFixed(3))))].sort((a,b)=>a-b);
   set('tbodyDiag', unique.map(ma=>`<tr><td>${fmt(ma,3)} mA</td><td>${classificarCorrente(ma)}</td><td>${fmt(maToPv(ma,lrv,urv),3)} ${unidade}</td></tr>`).join(''));
-  const memorial = `MEMORIAL PRELIMINAR - MALHA 4-20 mA / HART\n\nTag: ${tag}\nServiço: ${servico}\nEscala: ${fmt(lrv,3)} a ${fmt(urv,3)} ${unidade}\nValor normal informado: ${fmt(pvNormal,3)} ${unidade}\nCorrente esperada no valor normal: ${fmt(correnteNormal,3)} mA\nCorrente medida: ${fmt(correnteMedida,3)} mA\nPV equivalente pela corrente medida: ${fmt(pvMedida,3)} ${unidade}\nRaw equivalente: ${fmt(rawMedida,0)}\n\nAlimentação e carga:\nFonte: ${fmt(fonte,2)} Vcc\nTensão mínima do transmissor: ${fmt(vminTx,2)} V\nEntrada analógica: ${fmt(rAi,1)} Ω\nResistor HART adicional: ${fmt(rHart,1)} Ω\nBarreira/isolador/indicador: ${fmt(rBarreira,1)} Ω\nOutras cargas: ${fmt(rExtra,1)} Ω\nComprimento do cabo ida: ${fmt(comprimento,1)} m\nResistência por condutor: ${fmt(rCond,2)} Ω/km\nResistência total do cabo ida+volta: ${fmt(rCabo,1)} Ω\nResistência total da malha: ${fmt(rTotal,1)} Ω\n\nVerificação de tensão:\nTensão no transmissor em 20 mA: ${fmt(vTx20,2)} V\nTensão no transmissor em ${fmt(iFalhaAlta,1)} mA: ${fmt(vTxFalha,2)} V\nResistência máxima permitida em 20 mA: ${fmt(rMax20,1)} Ω\nResistência máxima permitida em falha alta: ${fmt(rMaxFalha,1)} Ω\n\nHART:\nHART requerido: ${hartReq?'sim':'não'}\nCarga efetiva no painel para comunicação: ${fmt(rCargaPainel,1)} Ω\nStatus HART: ${hartStatus}\n\nStatus preliminar: ${status}\nAlertas:\n${alertas.length?alertas.map(a=>'- '+a).join('\n'):'- Sem alertas críticos pelos dados informados.'}\n\nObservação: cálculo preliminar. Validar com datasheets, manuais, teste de loop, medição real de tensão/carga, aterramento, blindagem, ruído, requisitos de área classificada, documentação de barreiras/isoladores e procedimento da planta.`;
+  const memorial = `RESUMO ORIENTATIVO - MALHA 4-20 mA / HART\n\nTag: ${tag}\nServiço: ${servico}\nEscala: ${fmt(lrv,3)} a ${fmt(urv,3)} ${unidade}\nValor normal informado: ${fmt(pvNormal,3)} ${unidade}\nCorrente esperada no valor normal: ${fmt(correnteNormal,3)} mA\nCorrente medida: ${fmt(correnteMedida,3)} mA\nPV equivalente pela corrente medida: ${fmt(pvMedida,3)} ${unidade}\nRaw equivalente: ${fmt(rawMedida,0)}\n\nAlimentação e carga:\nFonte: ${fmt(fonte,2)} Vcc\nTensão mínima do transmissor: ${fmt(vminTx,2)} V\nEntrada analógica: ${fmt(rAi,1)} Ω\nResistor HART adicional: ${fmt(rHart,1)} Ω\nBarreira/isolador/indicador: ${fmt(rBarreira,1)} Ω\nOutras cargas: ${fmt(rExtra,1)} Ω\nComprimento do cabo ida: ${fmt(comprimento,1)} m\nResistência por condutor: ${fmt(rCond,2)} Ω/km\nResistência total do cabo ida+volta: ${fmt(rCabo,1)} Ω\nResistência total da malha: ${fmt(rTotal,1)} Ω\n\nVerificação de tensão:\nTensão no transmissor em 20 mA: ${fmt(vTx20,2)} V\nTensão no transmissor em ${fmt(iFalhaAlta,1)} mA: ${fmt(vTxFalha,2)} V\nResistência máxima permitida em 20 mA: ${fmt(rMax20,1)} Ω\nResistência máxima permitida na corrente alta: ${fmt(rMaxFalha,1)} Ω\n\nHART:\nHART requerido: ${hartReq?'sim':'não'}\nCarga DC informada no painel: ${fmt(rCargaPainel,1)} Ω\nStatus HART: ${hartStatus}\n\nStatus preliminar: ${status}\nAlertas e observações:\n${alertas.length?alertas.map(a=>'- '+a).join('\n'):'- Sem alertas críticos pelos dados informados.'}\n\nObservação: resumo orientativo. Não constitui projeto, laudo, certificado ou aprovação da malha. Validar com datasheets, manuais, teste de loop, comunicação HART real, medição de tensão/carga, aterramento, blindagem, ruído, requisitos de área classificada e procedimento da planta.`;
   document.getElementById('memorial').textContent=memorial;
 }
 function copiarMemorial(){
   const txt=document.getElementById('memorial').textContent;
-  navigator.clipboard.writeText(txt).then(()=>alert('Memorial copiado.')).catch(()=>alert('Não foi possível copiar automaticamente. Selecione o texto manualmente.'));
+  const status=document.getElementById('copyStatus');
+  if(!navigator.clipboard){status.textContent='A cópia automática não está disponível. Selecione o resumo manualmente.'; return;}
+  navigator.clipboard.writeText(txt).then(()=>{status.textContent='Resumo copiado.';}).catch(()=>{status.textContent='Não foi possível copiar automaticamente. Selecione o resumo manualmente.';});
 }
 calcularMalha();
 </script>
