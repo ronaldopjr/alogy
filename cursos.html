@@ -40,25 +40,28 @@
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
-    "@type":"Course",
-    "name":"Curso de Instrumentação Industrial e Automação",
-    "description":"Curso online de instrumentação industrial e automação com foco em sensores, transmissores, sinais industriais, calibração, teste de loop, CLP, SCADA e rotina prática de campo.",
-    "provider":{
-      "@type":"Organization",
-      "name":"ALOGY Engenharia",
-      "sameAs":"https://www.alogy.com.br/"
-    },
-    "url":"https://www.alogy.com.br/cursos.html",
-    "inLanguage":"pt-BR",
-    "hasCourseInstance":{
-      "@type":"CourseInstance",
-      "courseMode":"online"
-    },
-    "offers":{
-      "@type":"Offer",
-      "url":"https://hotmart.com/pt-br/club/alogyengenharia",
-      "availability":"https://schema.org/InStock"
-    }
+    "@graph":[
+      {
+        "@type":"WebPage",
+        "@id":"https://www.alogy.com.br/cursos.html#webpage",
+        "url":"https://www.alogy.com.br/cursos.html",
+        "name":"Curso de Instrumentação Industrial e Automação | ALOGY Engenharia",
+        "description":"Curso online de instrumentação industrial e automação com foco em sensores, transmissores, sinais industriais, calibração, teste de loop, CLP, SCADA e rotina prática de campo.",
+        "isPartOf":{"@id":"https://www.alogy.com.br/#website"},
+        "mainEntity":{"@id":"https://www.alogy.com.br/cursos.html#course"},
+        "inLanguage":"pt-BR"
+      },
+      {
+        "@type":"Course",
+        "@id":"https://www.alogy.com.br/cursos.html#course",
+        "name":"Curso de Instrumentação Industrial e Automação",
+        "description":"Curso online de instrumentação industrial e automação com foco em sensores, transmissores, sinais industriais, calibração, teste de loop, CLP, SCADA e rotina prática de campo.",
+        "provider":{"@id":"https://www.alogy.com.br/#organization"},
+        "url":"https://www.alogy.com.br/cursos.html",
+        "inLanguage":"pt-BR",
+        "hasCourseInstance":{"@type":"CourseInstance","courseMode":"online"}
+      }
+    ]
   }
   </script>
 
