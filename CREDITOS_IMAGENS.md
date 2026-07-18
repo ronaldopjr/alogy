@@ -154,8 +154,10 @@ Este arquivo registra a origem das fotografias externas usadas no site ALOGY. A 
 
 ## blog-capa-comissionamento-hart.webp
 
-- Uso no site: capa e imagem interna do artigo `blog-comissionamento-hart.html`
-- Descrição: medição elétrica em painel de controle durante verificação de campo
+- Uso no site: associação ainda publicada no artigo `blog-comissionamento-hart.html` e no cartão do Blog; correção adiada porque a página está em alteração pela frente editorial
+- Status da auditoria visual de 18 de julho de 2026: incoerente para HART; deve ser removida após a conclusão do lote editorial
+- Descrição factual: mãos com luvas seguram duas pontas de prova diante de contatores de potência e cabos trifásicos em um painel elétrico
+- Correspondência com a página: inadequada; não aparecem transmissor 4–20 mA, comunicador HART, resistor de carga, bornes da malha ou qualquer evidência de comunicação digital HART
 - Fotógrafo: Toolmash Expo
 - Acervo: Unsplash
 - Página de origem: https://unsplash.com/photos/electrician-testing-electrical-panel-with-multimeter-PkHf7BUWbtk
@@ -165,6 +167,22 @@ Este arquivo registra a origem das fotografias externas usadas no site ALOGY. A 
 - Data de obtenção: 17 de julho de 2026
 - Tratamento aplicado: recorte central, redimensionamento para 960 × 540 px, remoção de metadados e conversão para WebP
 - Observação editorial: imagem contextual de teste elétrico; não comprova comunicação HART e não retrata equipe, cliente ou instalação da ALOGY
+
+## img-teste-de-loop-instrumentacao.webp
+
+- Uso no site: associação ainda publicada no artigo `blog-teste-de-loop-instrumentacao.html`; correção adiada porque a página está em alteração pela frente editorial
+- Status da auditoria visual de 18 de julho de 2026: incoerente e sem licença verificável; deve ser removida após a conclusão do lote editorial
+- Descrição factual: ilustração abstrata em tons de azul, composta por linhas horizontais, uma linha vertical, círculos e uma sequência de pontos
+- Correspondência com a página: inadequada; não aparecem calibrador de loop, multímetro, transmissor, cartão analógico, bornes, sinal 4–20 mA ou procedimento ponto a ponto
+- Autor: não registrado
+- Origem: não registrada
+- URL de origem: não registrada
+- Licença: não registrada
+- Data de obtenção: não registrada
+- Dimensões inspecionadas: 1280 × 720 px
+- Recorte publicado: proporção 16:9; o arquivo integral confirma que nenhum instrumento ou procedimento aparece
+- Verificação adicional: sem pessoa, marca, logotipo ou dado sensível reconhecível, porém não é fotografia real e não possui licença registrada
+- Observação editorial: nenhuma página foi alterada nesta auditoria para evitar conflito com `agent/blog-editorial`; ausência de imagem deverá ser preferida quando a branch for liberada
 
 ## blog-capa-cartao-analogico-clp.webp
 
@@ -210,3 +228,19 @@ Este arquivo registra a origem das fotografias externas usadas no site ALOGY. A 
 - Data de obtenção: 17 de julho de 2026
 - Tratamento aplicado: recorte central, redimensionamento para 960 × 540 px, remoção de metadados e conversão para WebP
 - Observação editorial: arquivo preservado para rastreabilidade; hidrômetros prediais não devem representar calibração de totalizador industrial ou K-factor de medidor por pulsos
+
+## img-calibracao-instrumentos-industriais.webp
+
+- Uso no site: sem uso após auditoria visual de 18 de julho de 2026
+- Status editorial: retirada do artigo, das imagens sociais e do JSON-LD porque não é fotografia e não mostra técnico, transmissor, manômetro, padrão de referência ou procedimento de calibração reconhecível
+- Descrição factual: ilustração abstrata em tons de azul, composta por três linhas horizontais, uma linha vertical, círculos e um arco semelhante a ponteiro
+- Correspondência com a página: inadequada; formas geométricas genéricas não representam a comparação entre instrumento e padrão tratada no artigo
+- Autor: não registrado
+- Origem: não registrada
+- URL de origem: não registrada
+- Licença: não registrada
+- Data de obtenção: não registrada
+- Dimensões inspecionadas: 1280 × 720 px
+- Recorte publicado: proporção 16:9; a inspeção do arquivo integral e do recorte confirma que nenhum instrumento aparece
+- Verificação adicional: sem pessoa, marca, logotipo ou dado sensível reconhecível, porém sem licença verificável e incompatível com a exigência de fotografia real
+- Observação editorial: arquivo preservado para rastreabilidade e sem associação pública; o artigo permanece sem fotografia até existir imagem real, licenciada e semanticamente correta de uma calibração industrial
