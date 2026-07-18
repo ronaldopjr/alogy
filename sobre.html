@@ -42,23 +42,34 @@
 <script type="application/ld+json">
 {
 "@context":"https://schema.org",
-"@type":"ProfessionalService",
-"name":"ALOGY Engenharia",
-"url":"https://www.alogy.com.br/",
-"foundingDate":"2012",
-"areaServed":{
-"@type":"AdministrativeArea",
-"name":"Campinas e região"
-},
-"address":{
-"@type":"PostalAddress",
-"streetAddress":"Av. Pref. Isaías Hermínio Romano, 667 - Dodson",
-"addressLocality":"Santa Bárbara d'Oeste",
-"addressRegion":"SP",
-"postalCode":"13456-664",
-"addressCountry":"BR"
-},
-"description":"Engenharia aplicada em automação industrial, instrumentação e projetos elétricos com atendimento técnico em Campinas e região."
+"@graph":[
+  {
+    "@type":"AboutPage",
+    "@id":"https://www.alogy.com.br/sobre.html#webpage",
+    "url":"https://www.alogy.com.br/sobre.html",
+    "name":"Sobre a ALOGY Engenharia",
+    "isPartOf":{"@id":"https://www.alogy.com.br/#website"},
+    "mainEntity":{"@id":"https://www.alogy.com.br/#organization"},
+    "inLanguage":"pt-BR"
+  },
+  {
+    "@type":"ProfessionalService",
+    "@id":"https://www.alogy.com.br/#organization",
+    "name":"ALOGY Engenharia",
+    "url":"https://www.alogy.com.br/",
+    "foundingDate":"2012",
+    "areaServed":{"@type":"AdministrativeArea","name":"Campinas e região"},
+    "address":{
+      "@type":"PostalAddress",
+      "streetAddress":"Av. Pref. Isaías Hermínio Romano, 667 - Dodson",
+      "addressLocality":"Santa Bárbara d'Oeste",
+      "addressRegion":"SP",
+      "postalCode":"13456-664",
+      "addressCountry":"BR"
+    },
+    "description":"Engenharia aplicada em automação industrial, instrumentação e projetos elétricos com atendimento técnico em Campinas e região."
+  }
+]
 }
 </script>
 </head>

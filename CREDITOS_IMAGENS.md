@@ -74,8 +74,9 @@ Este arquivo registra a origem das fotografias externas usadas no site ALOGY. A 
 
 ## blog-capa-calibracao-pressao.webp
 
-- Uso no site: capa e imagem interna do artigo `blog-calibracao-transmissor-pressao.html` e contexto visual da ferramenta `calculadora-calibracao-transmissor-pressao.html`
-- Descrição: conjunto de manômetros instalados em linha de processo
+- Uso no site: sem uso após auditoria visual de 17 de julho de 2026
+- Status editorial: retirada do artigo, da ferramenta, do cartão do Blog e das imagens sociais; a fotografia mostra manômetros analógicos, não um transmissor eletrônico de pressão nem o procedimento de calibração 4–20 mA
+- Descrição factual: três manômetros analógicos com escala de 0 a 1,0 MPa instalados em conexões de uma linha
 - Fotógrafo: cottonbro studio
 - Acervo: Pexels
 - Página de origem: https://www.pexels.com/photo/analog-pressure-gauges-in-close-up-shot-5532838/
@@ -84,7 +85,7 @@ Este arquivo registra a origem das fotografias externas usadas no site ALOGY. A 
 - Licença: https://www.pexels.com/license/
 - Data de obtenção: 17 de julho de 2026
 - Tratamento aplicado: recorte central, redimensionamento para 960 × 540 px, remoção de metadados e conversão para WebP
-- Observação editorial: imagem ilustrativa de medição de pressão; não retrata instalação, cliente ou serviço da ALOGY
+- Observação editorial: arquivo preservado no repositório com origem e licença registradas, mas sem associação pública à calibração de transmissor de pressão; ausência de foto foi preferida a uma imagem de outro tipo de instrumento
 
 ## blog-capa-calibracao-temperatura.webp
 

@@ -45,24 +45,38 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    "name": "ALOGY Engenharia",
-    "url": "https://www.alogy.com.br/residencial.html",
-    "description": "Serviços residenciais em engenharia elétrica: projeto elétrico residencial, automação residencial, adequações e segurança, padrão de entrada e documentação técnica.",
-    "areaServed": "BR",
-    "foundingDate": "2012",
-    "hasOfferCatalog": {
-      "@type": "OfferCatalog",
-      "name": "Serviços Residenciais",
-      "itemListElement": [
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Projeto Elétrico Residencial" } },
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Automação Residencial" } },
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Adequações e Segurança Elétrica" } },
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Diagramas e Detalhamento" } },
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Padrão de Entrada" } },
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Consultoria Técnica" } }
-      ]
-    }
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": "https://www.alogy.com.br/residencial.html#webpage",
+        "url": "https://www.alogy.com.br/residencial.html",
+        "name": "Serviços Residenciais em Projetos Elétricos e Automação | ALOGY",
+        "description": "Serviços residenciais em engenharia elétrica: projeto elétrico residencial, automação residencial, adequações e segurança, padrão de entrada e documentação técnica.",
+        "isPartOf": { "@id": "https://www.alogy.com.br/#website" },
+        "about": { "@id": "https://www.alogy.com.br/#organization" },
+        "mainEntity": { "@id": "https://www.alogy.com.br/residencial.html#service" },
+        "inLanguage": "pt-BR"
+      },
+      {
+        "@type": "Service",
+        "@id": "https://www.alogy.com.br/residencial.html#service",
+        "name": "Serviços Residenciais em Projetos Elétricos e Automação",
+        "provider": { "@id": "https://www.alogy.com.br/#organization" },
+        "areaServed": "BR",
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Serviços Residenciais",
+          "itemListElement": [
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Projeto Elétrico Residencial" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Automação Residencial" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Adequações e Segurança Elétrica" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Diagramas e Detalhamento" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Padrão de Entrada" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Consultoria Técnica" } }
+          ]
+        }
+      }
+    ]
   }
   </script>
 </head>
