@@ -2,6 +2,17 @@
 
 Este arquivo registra a origem das fotografias externas usadas no site ALOGY. A inclusão de uma imagem não significa que ela retrate equipe, cliente, instalação, projeto ou serviço executado pela ALOGY.
 
+## Ilustrações abstratas sem proveniência — artigos de tecnologia industrial
+
+- Uso no site: sem uso após auditoria visual de 18 de julho de 2026
+- Páginas corrigidas: `blog-gemeo-digital-instrumentacao.html`, `blog-ia-na-industria.html`, `blog-industria-5-0.html` e `blog-instrumentacao-industrial.html`
+- Arquivos: `img-gemeo-digital-instrumentacao.webp`, `img-ia-na-industria.webp`, `img-industria-5-0.webp` e `img-instrumentacao-industrial.webp`
+- Descrição factual: composições vetoriais abstratas de linhas, círculos e blocos sobre fundo azul; não mostram sensores, transmissores, CLP, supervisório, operador, robô ou instalação industrial reconhecível
+- Origem, autor, licença e data de obtenção: não registrados no repositório
+- Motivo da retirada: os quatro arquivos reutilizam praticamente a mesma composição e não atendem ao requisito de fotografia real nem à correspondência semântica declarada nos textos alternativos
+- Tratamento: associações retiradas das capas, imagens sociais e JSON-LD; arquivos preservados para rastreabilidade; metadados sociais passaram a usar o ícone neutro da ALOGY
+- Critério editorial: para temas abstratos, ausência de fotografia foi preferida a ilustração genérica apresentada como aplicação industrial específica
+
 ## Imagens históricas sem proveniência verificável — serviços institucionais
 
 - Uso no site: sem uso após auditoria visual de 18 de julho de 2026
