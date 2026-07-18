@@ -53,17 +53,17 @@
     <div style="margin-bottom:14px;display:flex;gap:10px;flex-wrap:wrap" class="no-print"><a class="floating-back-tools no-print" href="ferramentas.html"><i class="fas fa-arrow-left"></i> Voltar para Ferramentas</a><button class="btn print" type="button" onclick="window.print()"><i class="fas fa-print"></i> Imprimir</button></div>
     <section class="tools-hero"><h1>Calculadora de Slope e mV de Sonda de pH</h1><p>Estime comportamento de uma sonda de pH pela relação mV por pH, temperatura, zero e eficiência do eletrodo.</p></section>
     <section class="calc-card" aria-label="Aviso de uso"><h2><i class="fas fa-triangle-exclamation"></i> Ferramenta orientativa</h2><p>Use esta ferramenta para estudo, estimativa e conferência preliminar. O resultado depende dos dados inseridos, hipóteses adotadas, normas aplicáveis, catálogos de fabricantes e validação de profissional habilitado.</p></section>
-    <section class="calc-layout"><div class="calc-card"><h2><i class="fas fa-wave-square"></i> Dados da sonda</h2><div class="calc-grid"><div class="field"><label for="temp">Temperatura (°C)</label><input id="temp" type="number" step="any" value="25"></div><div class="field"><label for="zero">Zero/offset em pH 7 (mV)</label><input id="zero" type="number" step="any" value="0"></div><div class="field"><label for="slope">Slope informado (%)</label><input id="slope" type="number" step="any" value="98"></div><div class="field"><label for="ph">pH do processo ou buffer</label><input id="ph" type="number" step="any" value="6.50"></div><div class="field"><label for="mv">mV medido</label><input id="mv" type="number" step="any" value="29"></div><div class="field"><label for="modo">Modo</label><select id="modo"><option value="ph2mv">Calcular mV esperado</option><option value="mv2ph">Calcular pH pelo mV</option></select></div></div><div class="calc-actions"><button class="mini-btn dark" onclick="copiar()" type="button"><i class="fas fa-copy"></i> Copiar</button></div></div><div class="calc-card"><h2><i class="fas fa-chart-line"></i> Resultado</h2><div class="calc-result"><div class="result-box"><span>mV por pH</span><strong id="r1">-</strong></div><div class="result-box"><span>Resultado calculado</span><strong id="r2">-</strong></div><div class="result-box"><span>Status do slope</span><strong id="r3" class="small">-</strong></div></div><div class="calc-note" id="nota">pH abaixo de 7 tende a gerar mV positivo em eletrodo de pH convencional.</div></div></section>
+    <section class="calc-layout"><div class="calc-card"><h2><i class="fas fa-wave-square"></i> Dados da sonda</h2><div class="calc-grid"><div class="field"><label for="temp">Temperatura (°C)</label><input id="temp" inputmode="decimal" type="text" value="25"></div><div class="field"><label for="zero">Zero/offset em pH 7 (mV)</label><input id="zero" inputmode="decimal" type="text" value="0"></div><div class="field"><label for="slope">Slope informado (%)</label><input id="slope" inputmode="decimal" type="text" value="98"></div><div class="field"><label for="ph">pH do processo ou buffer</label><input id="ph" inputmode="decimal" type="text" value="6,50"></div><div class="field"><label for="mv">mV medido</label><input id="mv" inputmode="decimal" type="text" value="29"></div><div class="field"><label for="modo">Modo</label><select id="modo"><option value="ph2mv">Calcular mV esperado</option><option value="mv2ph">Calcular pH pelo mV</option></select></div></div><div class="calc-actions"><button class="mini-btn dark" onclick="copiar()" type="button"><i class="fas fa-copy"></i> Copiar resultado</button><span id="copyStatus" role="status" aria-live="polite"></span></div></div><div class="calc-card"><h2><i class="fas fa-chart-line"></i> Resultado</h2><div class="calc-result"><div class="result-box"><span>mV por pH</span><strong id="r1">-</strong></div><div class="result-box"><span>Resultado calculado</span><strong id="r2">-</strong></div><div class="result-box"><span>Slope informado</span><strong id="r3" class="small">-</strong></div></div><div class="calc-note" id="nota" role="status" aria-live="polite">pH abaixo de 7 tende a gerar mV positivo em eletrodo de pH convencional.</div></div></section>
     <section class="calc-card faq"><h2><i class="fas fa-circle-question"></i> Perguntas frequentes</h2><details><summary>Temperatura muda o slope?</summary><p>Sim. O valor mV por pH aumenta com a temperatura, por isso compensação de temperatura é importante.</p></details><details><summary>Isso substitui calibração com buffer?</summary><p>Não. Serve para estimativa e diagnóstico; a calibração deve ser feita com soluções padrão adequadas.</p></details></section>
   
     <!-- ALOGY_REVISAO_TECNICA_FERRAMENTA -->
     <section class="calc-card" aria-label="Orientação técnica complementar">
       <h2><i class="fas fa-clipboard-check"></i> Como usar esta ferramenta na prática</h2>
-      <p>Calcule mV teórico, pH estimado, slope percentual e eficiência da sonda de pH pela equação de Nernst. Nesta revisão, o conteúdo foi ampliado para deixar mais claro quando usar a ferramenta, quais dados precisam ser conferidos e como transformar o número calculado em uma decisão técnica.</p>
+      <p>Use a relação de Nernst para estimar o potencial de um eletrodo de pH ou converter um potencial medido em pH. A ferramenta aplica o slope percentual informado ao valor teórico da temperatura; ela não avalia automaticamente a condição da sonda.</p>
       <h3>Quando aplicar</h3>
-      <p>Use para apoiar rotinas de processo químico, tratamento de água, efluentes, utilidades e analisadores industriais, principalmente quando o operador precisa converter leitura, dosagem ou resposta eletroquímica em uma decisão prática.</p>
+      <p>Use em diagnóstico, preparação de teste ou conferência da indicação de um transmissor quando slope e offset já foram obtidos por calibração. No modo pH → mV, informe o pH; no modo mV → pH, somente a leitura em mV é exigida.</p>
       <h3>Dados que merecem conferência</h3>
-      <p>Antes de confiar no resultado da ferramenta <strong>Calculadora de Slope e mV de Sonda de pH</strong>, confira principalmente: Temperatura (°C), Zero/offset em pH 7 (mV), Slope informado (%), pH do processo ou buffer, mV medido, Modo. Pequenos erros de unidade, ponto decimal ou condição de operação podem gerar conclusões erradas.</p>
+      <p>Confirme a temperatura usada na compensação, o offset em pH 7 e o slope obtido na calibração. O valor nominal do buffer muda com a temperatura; compensar o eletrodo não corrige automaticamente mudanças químicas da amostra.</p>
       <ul>
           <li>Temperatura (°C)</li>
           <li>Zero/offset em pH 7 (mV)</li>
@@ -72,9 +72,10 @@
           <li>mV medido</li>
           <li>Modo</li>
       </ul>
+      <h3>Exemplo reproduzível</h3>
+      <p>A 25 °C, slope de 98%, offset zero e pH 6,50, o slope aplicado é 57,98 mV/pH e o potencial esperado é aproximadamente +28,99 mV. No sentido inverso, 28,99 mV retorna aproximadamente pH 6,50.</p>
       <h3>Como interpretar o resultado</h3>
-      <p>Em analítica, pequenas diferenças de temperatura, concentração, limpeza da sonda e tempo de estabilização podem alterar bastante o resultado. Por isso, o cálculo deve ser usado junto com amostragem correta e verificação do sensor.</p>
-      <p>Quando a página apresentar campos de resultado como mV por pH, Resultado calculado, Status do slope, use esses valores para comparar o cenário calculado com limite operacional, tolerância do processo, histórico de manutenção ou especificação de fabricante.</p>
+      <p>O percentual informado é exibido sem “aprovar” ou “reprovar” a sonda. Limites de slope e offset dependem do analisador, eletrodo, procedimento e aplicação; compare o resultado com a documentação aplicável.</p>
       <h3>Checklist rápido de validação</h3>
       <ul>
           <li>Verifique limpeza, hidratação e condição da sonda antes de confiar na leitura.</li>
@@ -83,7 +84,9 @@
           <li>Compare o resultado com histórico do processo, não apenas com um ponto isolado.</li>
       </ul>
       <h3>Limites da estimativa</h3>
-      <p>Esta ferramenta é indicada para estudo, triagem, conferência de campo e apoio à manutenção. Para projeto final, laudo, especificação de compra, alteração de segurança ou liberação de equipamento crítico, valide as premissas com normas aplicáveis, documentação do fabricante e profissional habilitado.</p>
+      <p>O modelo considera um eletrodo convencional com ponto de referência em pH 7 e relação linear. Não substitui buffers rastreáveis, estabilização, inspeção da junção, verificação de impedância ou calibração do conjunto sensor-transmissor.</p>
+      <p>Referências técnicas: <a href="https://www.thermofisher.com/jp/en/home/technical-resources/products-faqs/ph-ion-meter-faq.html" target="_blank" rel="noopener">Thermo Fisher Scientific — equação de Nernst e slope teórico</a> e <a href="https://www.yokogawa.com/us/library/documents-downloads/technical-information/sensor-diagnostics/" target="_blank" rel="noopener">Yokogawa — diagnóstico por slope e potencial de assimetria</a>.</p>
+      <p><a href="blog-slope-sonda-ph.html">Leia também: slope de eletrodo de pH e diagnóstico</a>.</p>
     </section>
 
   </main>
@@ -99,15 +102,13 @@ function parseBR(v){
 function val(id){return parseBR(document.getElementById(id).value)}
 function n(v,d=2){return Number.isFinite(v)?v.toLocaleString('pt-BR',{minimumFractionDigits:d,maximumFractionDigits:d}):'-'}
 function n0(v,d=2){return Number.isFinite(v)?v.toLocaleString('pt-BR',{maximumFractionDigits:d}):'-'}
-function setStatus(id,txt,cls){const el=document.getElementById(id); el.textContent=txt; el.className='small '+cls;}
-function warnStatus(msg){return '<span class="pill-warn">'+msg+'</span>'}
-function okWarn(absErr,tol){if(!Number.isFinite(absErr)||!Number.isFinite(tol)||tol<=0)return warnStatus('Verificar'); if(absErr<=tol)return '<span class="pill-ok">Aprovado</span>'; if(absErr<=tol*1.25)return '<span class="pill-warn">Próximo do limite</span>'; return '<span class="pill-bad">Reprovado</span>'}
-function copiar(){const r=document.querySelector('.calc-layout')||document.querySelector('.calc-card:nth-of-type(2)'); const t=r?r.innerText:document.body.innerText; navigator.clipboard&&navigator.clipboard.writeText(t).then(()=>alert('Resultado copiado.'))}
-
-function limpar(){r1.textContent='-';r2.textContent='-';setStatus('r3','Verificar dados','pill-warn')}
+function limpar(){r1.textContent='-';r2.textContent='-';r3.textContent='-'}
+function sincronizarModo(){const porPh=modo.value==='ph2mv';ph.disabled=!porPh;mv.disabled=porPh}
 function calc(){
+  sincronizarModo();
   const temp=val('temp'), zero=val('zero'), effPct=val('slope'), ph=val('ph'), mv=val('mv');
-  if(![temp,zero,effPct,ph,mv].every(Number.isFinite) || temp<=-273.15 || effPct<=0){
+  const entrada=modo.value==='ph2mv'?ph:mv;
+  if(![temp,zero,effPct,entrada].every(Number.isFinite) || temp<=-273.15 || effPct<=0){
     limpar(); nota.textContent='Verifique temperatura, zero/offset, slope e valores de pH/mV. O slope deve ser maior que zero.'; return;
   }
   const T=temp+273.15;
@@ -123,11 +124,10 @@ function calc(){
     r2.textContent='pH '+n0(res,3);
   }
   r1.textContent=n0(slopeMv,2)+' mV/pH';
-  const status=(eff>=0.95&&eff<=1.05)?'Normal':(eff>=0.90&&eff<=1.10?'Atenção':'Verificar sonda');
-  setStatus('r3',status,status==='Normal'?'pill-ok':status==='Atenção'?'pill-warn':'pill-bad');
-  nota.textContent='Slope teórico a '+n0(temp,1)+' °C com 100%: '+n0(59.16*T/298.15,2)+' mV/pH.';
+  r3.textContent=n0(effPct,2)+' %';
+  nota.textContent='Slope teórico a '+n0(temp,1)+' °C com 100%: '+n0(59.16*T/298.15,2)+' mV/pH. Compare o percentual informado com o procedimento e a documentação do sensor.';
 }
-function copiar(){navigator.clipboard&&navigator.clipboard.writeText('Sonda pH: '+r1.textContent+', '+r2.textContent+', status '+r3.textContent)}
+async function copiar(){const status=document.getElementById('copyStatus');if(r1.textContent==='-'){status.textContent='Calcule um resultado válido antes de copiar.';return}try{await navigator.clipboard.writeText('Sonda pH: '+r1.textContent+', '+r2.textContent+', slope informado '+r3.textContent);status.textContent='Resultado copiado.'}catch(e){status.textContent='Não foi possível copiar automaticamente.'}}
 document.querySelectorAll('input,select').forEach(e=>e.addEventListener('input',calc));calc();
 </script>
 </body>
