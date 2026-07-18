@@ -44,24 +44,38 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    "name": "ALOGY Engenharia",
-    "url": "https://www.alogy.com.br/industrial.html",
-    "description": "Serviços de engenharia em instrumentação industrial, automação, calibração, testes de malha e projetos elétricos industriais.",
-    "areaServed": "BR",
-    "foundingDate": "2012",
-    "hasOfferCatalog": {
-      "@type": "OfferCatalog",
-      "name": "Serviços Industriais",
-      "itemListElement": [
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Automação Industrial" }},
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Instrumentação Industrial" }},
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Projetos Elétricos Industriais" }},
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Diagramas e Documentação Técnica" }},
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "NR10 e NR12 – Segurança e Adequação" }},
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Consultoria Técnica Industrial" }}
-      ]
-    }
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": "https://www.alogy.com.br/industrial.html#webpage",
+        "url": "https://www.alogy.com.br/industrial.html",
+        "name": "Instrumentação e Automação Industrial | ALOGY Engenharia",
+        "description": "Serviços de engenharia em instrumentação industrial, automação, calibração, testes de malha e projetos elétricos industriais.",
+        "isPartOf": { "@id": "https://www.alogy.com.br/#website" },
+        "about": { "@id": "https://www.alogy.com.br/#organization" },
+        "mainEntity": { "@id": "https://www.alogy.com.br/industrial.html#service" },
+        "inLanguage": "pt-BR"
+      },
+      {
+        "@type": "Service",
+        "@id": "https://www.alogy.com.br/industrial.html#service",
+        "name": "Serviços de Instrumentação, Automação e Engenharia Industrial",
+        "provider": { "@id": "https://www.alogy.com.br/#organization" },
+        "areaServed": "BR",
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Serviços Industriais",
+          "itemListElement": [
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Automação Industrial" }},
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Instrumentação Industrial" }},
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Projetos Elétricos Industriais" }},
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Diagramas e Documentação Técnica" }},
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "NR10 e NR12 – Segurança e Adequação" }},
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Consultoria Técnica Industrial" }}
+          ]
+        }
+      }
+    ]
   }
   </script>
 
