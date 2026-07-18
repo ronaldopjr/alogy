@@ -53,12 +53,12 @@
 
 <section class="tools-hero"><h1>Calculadora ORP mV e Faixa de Controle</h1><p>Avalie rapidamente uma leitura de ORP em processos de oxidação/redução, dosagem química e controle analítico.</p></section>
 <section aria-label="Aviso de uso" class="calc-card"><h2><i class="fas fa-triangle-exclamation"></i> Ferramenta orientativa</h2><p>Use esta ferramenta para estudo, estimativa e conferência preliminar. O resultado depende dos dados inseridos, hipóteses adotadas, normas aplicáveis, catálogos de fabricantes e validação de profissional habilitado.</p></section>
-<section class="calc-layout"><div class="calc-card"><h2><i class="fas fa-bolt"></i> Dados de ORP</h2><div class="calc-grid"><div class="field"><label for="mv">ORP medido (mV)</label><input id="mv" step="any" type="number" value="650"/></div><div class="field"><label for="sp">Setpoint (mV)</label><input id="sp" step="any" type="number" value="700"/></div><div class="field"><label for="db">Banda morta ± (mV)</label><input id="db" step="any" type="number" value="25"/></div><div class="field"><label for="lo">Mínimo da escala (mV)</label><input id="lo" step="any" type="number" value="0"/></div><div class="field"><label for="hi">Máximo da escala (mV)</label><input id="hi" step="any" type="number" value="1000"/></div></div><div class="calc-actions"><button class="mini-btn dark" onclick="copiar()" type="button"><i class="fas fa-copy"></i> Copiar</button></div></div><div class="calc-card"><h2><i class="fas fa-chart-simple"></i> Resultado</h2><div class="calc-result"><div class="result-box"><span>Desvio</span><strong id="r1">-</strong></div><div class="result-box"><span>Percentual da escala</span><strong id="r2">-</strong></div><div class="result-box"><span>Status</span><strong class="small" id="r3">-</strong></div></div><div class="calc-note" id="nota">ORP depende de processo, eletrodo, referência e temperatura.</div></div></section>
+<section class="calc-layout"><div class="calc-card"><h2><i class="fas fa-bolt"></i> Dados de ORP</h2><div class="calc-grid"><div class="field"><label for="mv">ORP medido (mV)</label><input id="mv" inputmode="decimal" type="text" value="650"/></div><div class="field"><label for="sp">Setpoint (mV)</label><input id="sp" inputmode="decimal" type="text" value="700"/></div><div class="field"><label for="db">Banda configurada ± (mV)</label><input id="db" inputmode="decimal" type="text" value="25"/></div><div class="field"><label for="lo">Mínimo da escala (mV)</label><input id="lo" inputmode="decimal" type="text" value="0"/></div><div class="field"><label for="hi">Máximo da escala (mV)</label><input id="hi" inputmode="decimal" type="text" value="1000"/></div></div><p class="mini-help">Desvio = ORP medido − setpoint. Percentual = (ORP medido − mínimo) ÷ (máximo − mínimo) × 100.</p><div class="calc-actions"><button class="mini-btn dark" onclick="copiar()" type="button"><i class="fas fa-copy"></i> Copiar resultado</button><span id="copyStatus" role="status" aria-live="polite"></span></div></div><div class="calc-card"><h2><i class="fas fa-chart-simple"></i> Resultado</h2><div class="calc-result"><div class="result-box"><span>Desvio</span><strong id="r1">-</strong></div><div class="result-box"><span>Percentual da escala</span><strong id="r2">-</strong></div><div class="result-box"><span>Posição relativa</span><strong class="small" id="r3">-</strong></div></div><div class="calc-note" id="nota" role="status" aria-live="polite">ORP depende da química do processo, do eletrodo, da referência e da estabilização.</div></div></section>
 <section class="calc-card faq"><h2><i class="fas fa-circle-question"></i> Perguntas frequentes</h2><details><summary>ORP é o mesmo que pH?</summary><p>Não. pH mede atividade de hidrogênio; ORP mede potencial de oxidação/redução em mV.</p></details><details><summary>Posso comparar ORP de processos diferentes?</summary><p>Com cuidado. O significado do mV depende da química do processo, eletrodo e condições de operação.</p></details></section>
 <!-- ALOGY_REVISAO_TECNICA_FERRAMENTA -->
 <section aria-label="Orientação técnica complementar" class="calc-card">
 <h2><i class="fas fa-clipboard-check"></i> Como usar esta ferramenta na prática</h2>
-<p>Avalie leitura de ORP em mV, desvio do setpoint, banda morta e percentual dentro da faixa de controle. Nesta revisão, o conteúdo foi ampliado para deixar mais claro quando usar a ferramenta, quais dados precisam ser conferidos e como transformar o número calculado em uma decisão técnica.</p>
+<p>Compare uma leitura de ORP com o setpoint e com a faixa configurada no transmissor ou sistema de controle. A ferramenta informa posição relativa; não determina ação de dosagem nem comprova que o processo está adequado.</p>
 <h3>Quando aplicar</h3>
 <p>Use para apoiar rotinas de processo químico, tratamento de água, efluentes, utilidades e analisadores industriais, principalmente quando o operador precisa converter leitura, dosagem ou resposta eletroquímica em uma decisão prática.</p>
 <h3>Dados que merecem conferência</h3>
@@ -71,8 +71,8 @@
 <li>Máximo da escala (mV)</li>
 </ul>
 <h3>Como interpretar o resultado</h3>
-<p>Em analítica, pequenas diferenças de temperatura, concentração, limpeza da sonda e tempo de estabilização podem alterar bastante o resultado. Por isso, o cálculo deve ser usado junto com amostragem correta e verificação do sensor.</p>
-<p>Quando a página apresentar campos de resultado como Desvio, Percentual da escala, Status, use esses valores para comparar o cenário calculado com limite operacional, tolerância do processo, histórico de manutenção ou especificação de fabricante.</p>
+<p>Um percentual abaixo de 0% ou acima de 100% indica extrapolação da escala preenchida. “Dentro da banda” significa apenas que o desvio absoluto não ultrapassa o valor configurado; não equivale a processo aprovado.</p>
+<p><strong>Exemplo:</strong> 650 mV, setpoint de 700 mV, banda de ±25 mV e escala de 0 a 1.000 mV resultam em desvio de −50 mV e posição de 65%. A leitura está abaixo da banda configurada.</p>
 <h3>Checklist rápido de validação</h3>
 <ul>
 <li>Verifique limpeza, hidratação e condição da sonda antes de confiar na leitura.</li>
@@ -82,6 +82,8 @@
 </ul>
 <h3>Limites da estimativa</h3>
 <p>Esta ferramenta é indicada para estudo, triagem, conferência de campo e apoio à manutenção. Para projeto final, laudo, especificação de compra, alteração de segurança ou liberação de equipamento crítico, valide as premissas com normas aplicáveis, documentação do fabricante e profissional habilitado.</p>
+<h3>Referência e leitura relacionada</h3>
+<p>Fundamentos de medição, estabilização e influência da superfície do eletrodo: <a href="https://www.yokogawa.com/library/resources/white-papers/basics-of-orp/" rel="noopener" target="_blank">Yokogawa — Basics of ORP</a>. Para diagnóstico de campo, consulte também <a href="blog-orp-mv-controle.html">ORP em mV: interpretação e controle</a>.</p>
 </section>
 </main>
 <footer><p>© Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
@@ -96,26 +98,24 @@ function parseBR(v){
 function val(id){return parseBR(document.getElementById(id).value)}
 function n(v,d=2){return Number.isFinite(v)?v.toLocaleString('pt-BR',{minimumFractionDigits:d,maximumFractionDigits:d}):'-'}
 function n0(v,d=2){return Number.isFinite(v)?v.toLocaleString('pt-BR',{maximumFractionDigits:d}):'-'}
-function setStatus(id,txt,cls){const el=document.getElementById(id); el.textContent=txt; el.className='small '+cls;}
-function warnStatus(msg){return '<span class="pill-warn">'+msg+'</span>'}
-function okWarn(absErr,tol){if(!Number.isFinite(absErr)||!Number.isFinite(tol)||tol<=0)return warnStatus('Verificar'); if(absErr<=tol)return '<span class="pill-ok">Aprovado</span>'; if(absErr<=tol*1.25)return '<span class="pill-warn">Próximo do limite</span>'; return '<span class="pill-bad">Reprovado</span>'}
-function copiar(){const r=document.querySelector('.calc-layout')||document.querySelector('.calc-card:nth-of-type(2)'); const t=r?r.innerText:document.body.innerText; navigator.clipboard&&navigator.clipboard.writeText(t).then(()=>alert('Resultado copiado.'))}
-
-function limpar(){r1.textContent='-';r2.textContent='-';setStatus('r3','Verificar dados','pill-warn')}
+function setStatus(txt,cls){r3.textContent=txt;r3.className='small '+cls}
+function limpar(){r1.textContent='-';r2.textContent='-';setStatus('Verificar dados','pill-warn')}
 function calc(){
   const mv=val('mv'), sp=val('sp'), db=val('db'), lo=val('lo'), hi=val('hi');
-  if(![mv,sp,db,lo,hi].every(Number.isFinite) || Math.abs(hi-lo)<1e-12 || db<0){
-    limpar(); nota.textContent='Verifique a escala de ORP: mínimo e máximo devem ser diferentes e a banda morta não pode ser negativa.'; return;
+  copyStatus.textContent='';
+  if(![mv,sp,db,lo,hi].every(Number.isFinite) || hi<=lo || db<0){
+    limpar(); nota.textContent='Preencha todos os campos; o máximo deve ser maior que o mínimo e a banda não pode ser negativa.'; return;
   }
   const dev=mv-sp;
   const pct=(mv-lo)/(hi-lo)*100;
-  const status=Math.abs(dev)<=db?'Dentro da banda':(dev<0?'Abaixo do setpoint':'Acima do setpoint');
+  const status=Math.abs(dev)<=db?'Dentro da banda configurada':(dev<0?'Abaixo da banda configurada':'Acima da banda configurada');
   r1.textContent=n0(dev,1)+' mV';
   r2.textContent=n0(pct,1)+' %';
-  setStatus('r3',status,Math.abs(dev)<=db?'pill-ok':'pill-warn');
-  nota.textContent= dev<0?'Tendência de menor potencial oxidante em relação ao setpoint.':'Tendência de maior potencial oxidante em relação ao setpoint.';
+  setStatus(status,'pill-warn');
+  const extrapolado=mv<lo||mv>hi||sp<lo||sp>hi;
+  nota.textContent=extrapolado?'A leitura ou o setpoint está fora da escala informada. O percentual é uma extrapolação.':'A posição é relativa à escala informada e não define, sozinha, a condição química ou a ação de controle.';
 }
-function copiar(){navigator.clipboard&&navigator.clipboard.writeText('ORP: desvio '+r1.textContent+', escala '+r2.textContent+', '+r3.textContent)}
+async function copiar(){if(r1.textContent==='-'){copyStatus.textContent='Calcule um resultado válido antes de copiar.';return}try{await navigator.clipboard.writeText('ORP: desvio '+r1.textContent+', posição '+r2.textContent+', '+r3.textContent+'. '+nota.textContent);copyStatus.textContent='Resultado copiado.'}catch(e){copyStatus.textContent='Não foi possível copiar automaticamente.'}}
 document.querySelectorAll('input').forEach(e=>e.addEventListener('input',calc));calc();
 </script>
 
