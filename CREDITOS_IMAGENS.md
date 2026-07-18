@@ -177,7 +177,8 @@ Este arquivo registra a origem das fotografias externas usadas no site ALOGY. A 
 
 ## blog-capa-totalizador-vazao.webp
 
-- Uso no site: capa e imagem interna dos artigos `blog-calibracao-totalizador-vazao.html` e `blog-k-factor-vazao-pulsos.html`
+- Uso no site: sem uso após auditoria visual de 18 de julho de 2026
+- Status editorial: retirada dos artigos, cartões do Blog, imagens sociais e JSON-LD porque a fotografia mostra hidrômetros prediais, não totalizador industrial, saída de pulsos, ensaio volumétrico ou verificação de K-factor
 - Descrição: conjunto de medidores instalados em ramais de tubulação
 - Fotógrafo: Godspower Abdulahi
 - Acervo: Unsplash
@@ -187,4 +188,4 @@ Este arquivo registra a origem das fotografias externas usadas no site ALOGY. A 
 - Licença: https://unsplash.com/license
 - Data de obtenção: 17 de julho de 2026
 - Tratamento aplicado: recorte central, redimensionamento para 960 × 540 px, remoção de metadados e conversão para WebP
-- Observação editorial: imagem contextual de medição acumulada; não demonstra o método de calibração nem retrata instalação ou cliente da ALOGY
+- Observação editorial: arquivo preservado para rastreabilidade; hidrômetros prediais não devem representar calibração de totalizador industrial ou K-factor de medidor por pulsos
