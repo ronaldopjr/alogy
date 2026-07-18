@@ -52,7 +52,7 @@
   </script>
 <style>
     .loop-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
-    .loop-status-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px}
+    .loop-status-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:12px}
     .loop-status{background:rgba(0,107,177,.07);border:1px solid rgba(0,107,177,.16);border-radius:14px;padding:12px;text-align:center}
     .loop-status strong{display:block;color:#0b3a62;font-size:1.3rem}.loop-status span{color:var(--muted);font-weight:800;font-size:.9rem}
     .loop-progress{height:16px;border-radius:999px;background:rgba(0,0,0,.08);overflow:hidden;margin-top:12px;border:1px solid rgba(0,0,0,.08)}
@@ -60,7 +60,7 @@
     .loop-item{display:grid;grid-template-columns:1fr 170px;gap:12px;align-items:center;border:1px solid rgba(0,0,0,.08);background:#fff;border-radius:14px;padding:12px;margin-top:10px;box-shadow:0 6px 16px rgba(0,0,0,.04)}
     .loop-item strong{display:block;color:#0b3a62;line-height:1.25}.loop-item span{display:block;color:var(--muted);font-size:.92rem;line-height:1.45;margin-top:3px}
     .loop-item select{padding:10px;border-radius:12px;font-weight:800}
-    .loop-ok{border-left:5px solid #16a34a}.loop-att{border-left:5px solid #f59e0b}.loop-bad{border-left:5px solid #dc2626}
+    .loop-ok{border-left:5px solid #16a34a}.loop-nc{border-left:5px solid #dc2626}.loop-na{border-left:5px solid #64748b}.loop-pending{border-left:5px solid #f59e0b}
     .loop-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}.loop-actions .mini-btn{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(0,107,177,.25);background:rgba(0,107,177,.08);color:#0b3a62;border-radius:12px;padding:10px 12px;font-weight:900;cursor:pointer;text-decoration:none;font:inherit}.loop-actions .mini-btn.dark{background:#0b3a62;color:#fff;border-color:#0b3a62}
     .loop-summary{white-space:pre-wrap;background:#f8fafc;border:1px solid rgba(0,0,0,.08);border-radius:14px;padding:14px;margin-top:12px;color:#1f2937;line-height:1.55}
     .loop-note{background:rgba(245,158,11,.10);border:1px solid rgba(245,158,11,.24);border-radius:14px;padding:14px;margin-top:12px;color:#604000;line-height:1.55}
@@ -69,7 +69,7 @@
   </style>
 <!-- Google AdSense - verificação de propriedade -->
 <script async="" crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5586837114309500"></script>
-</link></link></head>
+</head>
 <body class="tools-page alogy-stage3-forms">
 <header>
 <div class="container headbar"><a aria-label="Voltar para o início" class="logo-wrapper" href="/"><img alt="ALOGY Engenharia" decoding="async" height="308" src="logo-alogy.webp" width="878"/></a>
@@ -100,20 +100,21 @@
 </section>
 <section class="calc-card">
 <h2><i class="fas fa-list-check"></i> Itens do checklist</h2>
-<p>Marque cada item como conforme, atenção ou não iniciado. A ferramenta calcula o progresso e monta um resumo automático.</p>
+<p>Avalie cada item como conforme, não conforme, não aplicável ou não iniciado. O progresso indica quantos itens foram efetivamente avaliados, sem tratar “não conforme” como pendência de preenchimento.</p>
 <div id="loop_items"></div>
 <div class="loop-status-grid">
 <div class="loop-status"><strong id="okN">0</strong><span>Conformes</span></div>
-<div class="loop-status"><strong id="attN">0</strong><span>Atenção</span></div>
-<div class="loop-status"><strong id="badN">0</strong><span>Não iniciados</span></div>
+<div class="loop-status"><strong id="ncN">0</strong><span>Não conformes</span></div>
+<div class="loop-status"><strong id="naN">0</strong><span>Não aplicáveis</span></div>
+<div class="loop-status"><strong id="pendingN">0</strong><span>Não iniciados</span></div>
 <div class="loop-status"><strong id="progN">0%</strong><span>Progresso</span></div>
 </div>
-<div class="loop-progress"><div class="loop-progress-bar" id="progBar"></div></div>
-<div class="loop-actions"><button class="mini-btn dark" onclick="marcarTudo('ok')" type="button"><i class="fas fa-check"></i> Marcar tudo conforme</button><button class="mini-btn" onclick="marcarTudo('att')" type="button"><i class="fas fa-triangle-exclamation"></i> Marcar atenção</button><button class="mini-btn" onclick="copiarResumo()" type="button"><i class="fas fa-copy"></i> Copiar resumo</button></div>
+<div class="loop-progress" id="progTrack" role="progressbar" aria-label="Itens avaliados" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="loop-progress-bar" id="progBar"></div></div>
+<div class="loop-actions"><button class="mini-btn" onclick="reiniciar()" type="button"><i class="fas fa-rotate-left"></i> Reiniciar checklist</button><button class="mini-btn dark" onclick="copiarResumo()" type="button"><i class="fas fa-copy"></i> Copiar resumo</button><span id="copyStatus" role="status" aria-live="polite"></span></div>
 </section>
 <section class="calc-card">
 <h2><i class="fas fa-file-lines"></i> Resumo do teste</h2>
-<div class="loop-summary" id="resumo"></div>
+<div class="loop-summary" id="resumo" role="status" aria-live="polite"></div>
 </section>
 <section class="calc-card">
 <h2><i class="fas fa-wave-square"></i> Pontos clássicos para sinal 4-20 mA</h2>
@@ -132,7 +133,7 @@
 <h2><i class="fas fa-clipboard-check"></i> Como usar esta ferramenta na prática</h2>
 <p>Checklist online para teste de loop em instrumentação industrial: TAG, transmissor, sinal 4-20 mA, CLP, borne, cartão analógico, supervisório, intertravamentos e relatório de apoio. Nesta revisão, o conteúdo foi ampliado para deixar mais claro quando usar a ferramenta, quais dados precisam ser conferidos e como transformar o número calculado em uma decisão técnica.</p>
 <h3>Quando aplicar</h3>
-<p>Use para priorizar manutenção, confiabilidade, inspeção, comissionamento, análise de falhas, sobressalentes e tomada de decisão entre corrigir, monitorar ou planejar parada.</p>
+<p>Use para organizar a verificação ponta a ponta de uma malha durante comissionamento, manutenção ou investigação de falha, conforme o procedimento e as permissões da planta.</p>
 <h3>Dados que merecem conferência</h3>
 <p>Antes de confiar no resultado da ferramenta <strong>Checklist de Teste de Loop</strong>, confira principalmente: TAG da malha, Área / equipamento, Tipo de sinal, Sistema de destino, Faixa de engenharia, Responsável / observação. Pequenos erros de unidade, ponto decimal ou condição de operação podem gerar conclusões erradas.</p>
 <ul>
@@ -144,17 +145,19 @@
 <li>Responsável / observação</li>
 </ul>
 <h3>Como interpretar o resultado</h3>
-<p>O resultado deve ser analisado junto com criticidade, histórico de falhas, impacto na produção, segurança, meio ambiente, custo de parada e disponibilidade de peças.</p>
+<p>O resumo diferencia itens avaliados, não conformidades, itens não aplicáveis e pendências. Progresso de 100% significa apenas que todos os itens receberam uma classificação; não significa aprovação da malha.</p>
 <p>Quando a página apresentar campos de resultado como Ponto, Sinal, Uso típico, use esses valores para comparar o cenário calculado com limite operacional, tolerância do processo, histórico de manutenção ou especificação de fabricante.</p>
 <h3>Checklist rápido de validação</h3>
 <ul>
-<li>Use dados históricos confiáveis, não apenas percepção da equipe.</li>
-<li>Separe falhas repetitivas, falhas aleatórias e falhas por modo comum.</li>
-<li>Registre ação corretiva, causa provável e evidência encontrada.</li>
-<li>Reavalie a criticidade sempre que processo, produção ou risco mudarem.</li>
+<li>Defina previamente o método: aplicação da variável física, simulação do transmissor ou injeção direta no cartão.</li>
+<li>Registre valores aplicados e observados, não apenas a classificação final.</li>
+<li>Trate cada não conformidade como pendência explícita antes da liberação.</li>
+<li>Teste alarmes e intertravamentos somente com autorização e condição segura.</li>
 </ul>
 <h3>Limites da estimativa</h3>
 <p>Esta ferramenta é indicada para estudo, triagem, conferência de campo e apoio à manutenção. Para projeto final, laudo, especificação de compra, alteração de segurança ou liberação de equipamento crítico, valide as premissas com normas aplicáveis, documentação do fabricante e profissional habilitado.</p>
+<h3>Referência técnica</h3>
+<p>A verificação em 4–20 mA por medição, simulação, rampa e passos de 25% é compatível com as funções descritas pela <a href="https://www.fluke.com/en-us/product/calibration-tools/ma-loop-calibrators/fluke-772" target="_blank" rel="noopener">Fluke para o calibrador de malha 772</a>. O método efetivo deve seguir o procedimento e os instrumentos disponíveis na planta.</p>
 </section>
 </main>
 <footer><p>© Desde 2012 ALOGY Engenharia | www.alogy.com.br</p></footer>
@@ -175,21 +178,21 @@
     ];
     const el=document.getElementById('loop_items');
     itens.forEach((it,i)=>{
-      const div=document.createElement('div'); div.className='loop-item loop-bad';
-      div.innerHTML=`<div><strong>${i+1}. ${it[0]}</strong><span>${it[1]}</span></div><select data-idx="${i}"><option value="bad">Não iniciado</option><option value="att">Atenção</option><option value="ok">Conforme</option></select>`;
+      const div=document.createElement('div'); div.className='loop-item loop-pending';
+      div.innerHTML=`<div><strong>${i+1}. ${it[0]}</strong><span>${it[1]}</span></div><select data-idx="${i}" aria-label="Status do item ${i+1}: ${it[0]}"><option value="pending">Não iniciado</option><option value="ok">Conforme</option><option value="nc">Não conforme</option><option value="na">Não aplicável</option></select>`;
       el.appendChild(div);
     });
     function calc(){
-      let ok=0,att=0,bad=0; document.querySelectorAll('#loop_items select').forEach(s=>{const p=s.closest('.loop-item');p.classList.remove('loop-ok','loop-att','loop-bad'); if(s.value==='ok'){ok++;p.classList.add('loop-ok')}else if(s.value==='att'){att++;p.classList.add('loop-att')}else{bad++;p.classList.add('loop-bad')}});
-      const total=itens.length; const prog=Math.round((ok/total)*100);
-      okN.textContent=ok; attN.textContent=att; badN.textContent=bad; progN.textContent=prog+'%'; progBar.style.width=prog+'%';
+      let ok=0,nc=0,na=0,pending=0; document.querySelectorAll('#loop_items select').forEach(s=>{const p=s.closest('.loop-item');p.classList.remove('loop-ok','loop-nc','loop-na','loop-pending');if(s.value==='ok'){ok++;p.classList.add('loop-ok')}else if(s.value==='nc'){nc++;p.classList.add('loop-nc')}else if(s.value==='na'){na++;p.classList.add('loop-na')}else{pending++;p.classList.add('loop-pending')}});
+      const total=itens.length; const prog=Math.round(((ok+nc+na)/total)*100);
+      okN.textContent=ok; ncN.textContent=nc; naN.textContent=na; pendingN.textContent=pending; progN.textContent=prog+'%'; progBar.style.width=prog+'%'; progTrack.setAttribute('aria-valuenow',String(prog));
       const tag=document.getElementById('tag').value||'-', area=document.getElementById('area').value||'-', tipo=document.getElementById('tipo').value||'-', sistema=document.getElementById('sistema').value||'-', faixa=document.getElementById('faixa').value||'-', resp=document.getElementById('resp').value||'-';
-      const pend=[]; document.querySelectorAll('#loop_items select').forEach((s,i)=>{if(s.value!=='ok') pend.push(`${i+1}. ${itens[i][0]} - ${s.value==='att'?'atenção':'não iniciado'}`)});
-      resumo.textContent=`CHECKLIST DE TESTE DE LOOP - ALOGY\nTAG: ${tag}\nÁrea/equipamento: ${area}\nTipo de sinal: ${tipo}\nSistema: ${sistema}\nFaixa: ${faixa}\nResponsável/observação: ${resp}\n\nConformes: ${ok}/${total}\nAtenção: ${att}\nNão iniciados: ${bad}\nProgresso: ${prog}%\n\nPendências:\n${pend.length?pend.join('\n'):'Sem pendências marcadas.'}\n\nObservação: resumo orientativo. Não substitui procedimento oficial, análise de risco, liberação operacional ou responsável técnico.`;
+      const achados=[]; document.querySelectorAll('#loop_items select').forEach((s,i)=>{if(s.value==='nc'||s.value==='pending')achados.push(`${i+1}. ${itens[i][0]} - ${s.value==='nc'?'não conforme':'não iniciado'}`)});
+      resumo.textContent=`CHECKLIST DE TESTE DE LOOP - ALOGY\nTAG: ${tag}\nÁrea/equipamento: ${area}\nTipo de sinal: ${tipo}\nSistema: ${sistema}\nFaixa: ${faixa}\nResponsável/observação: ${resp}\n\nConformes: ${ok}\nNão conformes: ${nc}\nNão aplicáveis: ${na}\nNão iniciados: ${pending}\nItens avaliados: ${prog}%\n\nNão conformidades e pendências:\n${achados.length?achados.join('\n'):'Nenhuma não conformidade ou pendência marcada.'}\n\nObservação: 100% avaliado não significa malha aprovada. Resumo orientativo; não substitui procedimento oficial, valores aplicados/observados, análise de risco, liberação operacional ou responsável técnico.`;
     }
     document.addEventListener('input',calc); document.addEventListener('change',calc);
-    function marcarTudo(v){document.querySelectorAll('#loop_items select').forEach(s=>s.value=v);calc()}
-    function copiarResumo(){navigator.clipboard.writeText(resumo.textContent).then(()=>alert('Resumo copiado.')).catch(()=>alert('Não foi possível copiar automaticamente.'))}
+    function reiniciar(){document.querySelectorAll('#loop_items select').forEach(s=>s.value='pending');calc()}
+    function copiarResumo(){navigator.clipboard.writeText(resumo.textContent).then(()=>copyStatus.textContent='Resumo copiado.').catch(()=>copyStatus.textContent='Não foi possível copiar automaticamente.')}
     calc();
   </script>
 
