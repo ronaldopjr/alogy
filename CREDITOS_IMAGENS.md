@@ -89,8 +89,9 @@ Este arquivo registra a origem das fotografias externas usadas no site ALOGY. A 
 
 ## blog-capa-calibracao-temperatura.webp
 
-- Uso no site: capa e imagem interna do artigo `blog-calibracao-transmissor-temperatura.html` e contexto visual da ferramenta `calculadora-calibracao-transmissor-temperatura.html`
-- Descrição: termômetro analógico industrial em graus Celsius
+- Uso no site: sem uso após auditoria visual de 17 de julho de 2026
+- Status editorial: retirada do artigo, da ferramenta, do cartão do Blog e das imagens sociais por não mostrar transmissor eletrônico de temperatura nem uma calibração RTD/termopar
+- Descrição: termômetro analógico de mostrador, com escala em graus Celsius, instalado em ambiente industrial
 - Fotógrafo: Ady Escobar
 - Acervo: Pexels
 - Página de origem: https://www.pexels.com/photo/rusty-vintage-thermometer-close-up-in-industrial-setting-34637294/
@@ -99,7 +100,7 @@ Este arquivo registra a origem das fotografias externas usadas no site ALOGY. A 
 - Licença: https://www.pexels.com/license/
 - Data de obtenção: 17 de julho de 2026
 - Tratamento aplicado: recorte central, redimensionamento para 960 × 540 px, remoção de metadados e conversão para WebP
-- Observação editorial: imagem ilustrativa de medição de temperatura; não representa o transmissor calibrado pela ferramenta
+- Observação editorial: arquivo preservado para rastreabilidade, sem associação pública; para esta página, a ausência de fotografia é preferível a uma imagem de categoria diferente
 
 ## blog-capa-calibracao-valvula-controle.webp
 
@@ -117,8 +118,9 @@ Este arquivo registra a origem das fotografias externas usadas no site ALOGY. A 
 
 ## blog-capa-calibracao-nivel-dp.webp
 
-- Uso no site: capa e imagem interna dos artigos `blog-calibracao-transmissor-nivel-dp.html` e `blog-dp-nivel-tanque-fechado.html`, além do contexto visual da ferramenta `calculadora-calibracao-transmissor-nivel-dp.html`
-- Descrição: tanque industrial de armazenamento com escada de acesso
+- Uso no site: sem uso após auditoria visual de 17 de julho de 2026
+- Status editorial: retirada dos dois artigos, da ferramenta, dos cartões do Blog e das imagens sociais por não mostrar transmissor DP, manifold, linhas de impulso ou tomadas de pressão reconhecíveis
+- Descrição: tanque industrial de armazenamento com escada externa, visto a distância
 - Fotógrafo: Brixiv
 - Acervo: Pexels
 - Página de origem: https://www.pexels.com/photo/industrial-plant-under-the-blue-sky-6537731/
@@ -127,7 +129,7 @@ Este arquivo registra a origem das fotografias externas usadas no site ALOGY. A 
 - Licença: https://www.pexels.com/license/
 - Data de obtenção: 17 de julho de 2026
 - Tratamento aplicado: recorte central, redimensionamento para 960 × 540 px, remoção de metadados e conversão para WebP
-- Observação editorial: imagem contextual de tanque; não comprova o método de medição instalado nem representa instalação da ALOGY
+- Observação editorial: arquivo preservado para rastreabilidade, sem associação pública; um tanque genérico não identifica a medição de nível por pressão diferencial
 
 ## blog-capa-comissionamento-hart.webp
 
