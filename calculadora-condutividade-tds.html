@@ -53,7 +53,7 @@
 
 <section class="tools-hero"><h1>Calculadora de Condutividade, TDS e Compensação de Temperatura</h1><p>Corrija condutividade para referência de 25 °C e estime TDS em mg/L para água industrial, utilidades e controle de processo.</p></section>
 <section aria-label="Aviso de uso" class="calc-card"><h2><i class="fas fa-triangle-exclamation"></i> Ferramenta orientativa</h2><p>Use esta ferramenta para estudo, estimativa e conferência preliminar. O resultado depende dos dados inseridos, hipóteses adotadas, normas aplicáveis, catálogos de fabricantes e validação de profissional habilitado.</p></section>
-<section class="calc-layout"><div class="calc-card"><h2><i class="fas fa-droplet"></i> Dados de condutividade</h2><div class="calc-grid"><div class="field"><label for="cond">Condutividade medida (µS/cm)</label><input id="cond" step="any" type="number" value="500"/></div><div class="field"><label for="temp">Temperatura medida (°C)</label><input id="temp" step="any" type="number" value="30"/></div><div class="field"><label for="ref">Temperatura de referência (°C)</label><input id="ref" step="any" type="number" value="25"/></div><div class="field"><label for="alpha">Coeficiente (%/°C)</label><input id="alpha" step="any" type="number" value="2.0"/></div><div class="field"><label for="fator">Fator TDS</label><input id="fator" step="any" type="number" value="0.65"/></div></div><div class="calc-actions"><button class="mini-btn dark" onclick="copiar()" type="button"><i class="fas fa-copy"></i> Copiar</button></div></div><div class="calc-card"><h2><i class="fas fa-chart-simple"></i> Resultado</h2><div class="calc-result"><div class="result-box"><span>Condutividade corrigida</span><strong id="r1">-</strong></div><div class="result-box"><span>TDS estimado</span><strong id="r2">-</strong></div><div class="result-box"><span>Correção aplicada</span><strong id="r3">-</strong></div></div><div class="calc-note" id="nota">TDS por fator é estimativo e depende da composição dos sais.</div></div></section>
+<section class="calc-layout"><div class="calc-card"><h2><i class="fas fa-droplet"></i> Dados de condutividade</h2><div class="calc-grid"><div class="field"><label for="cond">Condutividade medida (µS/cm)</label><input id="cond" inputmode="decimal" type="text" value="500"/></div><div class="field"><label for="temp">Temperatura medida (°C)</label><input id="temp" inputmode="decimal" type="text" value="30"/></div><div class="field"><label for="ref">Temperatura de referência (°C)</label><input id="ref" inputmode="decimal" type="text" value="25"/></div><div class="field"><label for="alpha">Coeficiente linear (%/°C)</label><input id="alpha" inputmode="decimal" type="text" value="2,0"/></div><div class="field"><label for="fator">Fator TDS informado</label><input id="fator" inputmode="decimal" type="text" value="0,65"/></div></div><p class="mini-help">Condutividade na referência = leitura ÷ [1 + α × (temperatura medida − referência)]. TDS estimado = condutividade corrigida × fator informado.</p><div class="calc-actions"><button class="mini-btn dark" onclick="copiar()" type="button"><i class="fas fa-copy"></i> Copiar resultado</button><span id="copyStatus" role="status" aria-live="polite"></span></div></div><div class="calc-card"><h2><i class="fas fa-chart-simple"></i> Resultado</h2><div class="calc-result"><div class="result-box"><span>Condutividade corrigida</span><strong id="r1">-</strong></div><div class="result-box"><span>TDS estimado</span><strong id="r2">-</strong></div><div class="result-box"><span>Correção aplicada</span><strong id="r3">-</strong></div></div><div class="calc-note" id="nota" role="status" aria-live="polite">O modelo usa compensação linear; TDS por fator é estimativo e depende da composição iônica.</div></div></section>
 <section class="calc-card faq"><h2><i class="fas fa-circle-question"></i> Perguntas frequentes</h2><details><summary>O fator TDS é fixo?</summary><p>Não. 0,5 a 0,7 é comum em estimativas, mas o fator real depende da composição iônica da água.</p></details><details><summary>Serve para calibração?</summary><p>Serve como conferência. Calibração deve usar solução padrão e procedimento do fabricante.</p></details></section>
 <!-- ALOGY_REVISAO_TECNICA_FERRAMENTA -->
 <section aria-label="Orientação técnica complementar" class="calc-card">
@@ -71,8 +71,8 @@
 <li>Fator TDS</li>
 </ul>
 <h3>Como interpretar o resultado</h3>
-<p>Em analítica, pequenas diferenças de temperatura, concentração, limpeza da sonda e tempo de estabilização podem alterar bastante o resultado. Por isso, o cálculo deve ser usado junto com amostragem correta e verificação do sensor.</p>
-<p>Quando a página apresentar campos de resultado como Condutividade corrigida, TDS estimado, Correção aplicada, use esses valores para comparar o cenário calculado com limite operacional, tolerância do processo, histórico de manutenção ou especificação de fabricante.</p>
+<p>A compensação linear só representa o coeficiente preenchido. Soluções não lineares, água de alta pureza e instrumentos com algoritmos próprios exigem o método definido para a aplicação.</p>
+<p><strong>Exemplo:</strong> 500 µS/cm a 30 °C, referência de 25 °C e coeficiente de 2%/°C resultam em 454,5 µS/cm. Com fator TDS 0,65, a estimativa é 295,5 mg/L.</p>
 <h3>Checklist rápido de validação</h3>
 <ul>
 <li>Verifique limpeza, hidratação e condição da sonda antes de confiar na leitura.</li>
@@ -82,6 +82,8 @@
 </ul>
 <h3>Limites da estimativa</h3>
 <p>Esta ferramenta é indicada para estudo, triagem, conferência de campo e apoio à manutenção. Para projeto final, laudo, especificação de compra, alteração de segurança ou liberação de equipamento crítico, valide as premissas com normas aplicáveis, documentação do fabricante e profissional habilitado.</p>
+<h3>Referência e leitura relacionada</h3>
+<p>Exemplo oficial de instrumento com compensação de temperatura e fator TDS ajustável: <a href="https://www.thermofisher.com/order/catalog/product/ELITECTSPINKIT" rel="noopener" target="_blank">Thermo Fisher Scientific — Elite CTS</a>. Veja também <a href="blog-condutividade-tds.html">condutividade, compensação e TDS</a>.</p>
 </section>
 </main>
 <footer><p>© Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
@@ -96,16 +98,12 @@ function parseBR(v){
 function val(id){return parseBR(document.getElementById(id).value)}
 function n(v,d=2){return Number.isFinite(v)?v.toLocaleString('pt-BR',{minimumFractionDigits:d,maximumFractionDigits:d}):'-'}
 function n0(v,d=2){return Number.isFinite(v)?v.toLocaleString('pt-BR',{maximumFractionDigits:d}):'-'}
-function setStatus(id,txt,cls){const el=document.getElementById(id); el.textContent=txt; el.className='small '+cls;}
-function warnStatus(msg){return '<span class="pill-warn">'+msg+'</span>'}
-function okWarn(absErr,tol){if(!Number.isFinite(absErr)||!Number.isFinite(tol)||tol<=0)return warnStatus('Verificar'); if(absErr<=tol)return '<span class="pill-ok">Aprovado</span>'; if(absErr<=tol*1.25)return '<span class="pill-warn">Próximo do limite</span>'; return '<span class="pill-bad">Reprovado</span>'}
-function copiar(){const r=document.querySelector('.calc-layout')||document.querySelector('.calc-card:nth-of-type(2)'); const t=r?r.innerText:document.body.innerText; navigator.clipboard&&navigator.clipboard.writeText(t).then(()=>alert('Resultado copiado.'))}
-
 function limpar(){r1.textContent='-';r2.textContent='-';r3.textContent='-'}
 function calc(){
   const c=val('cond'), t=val('temp'), ref=val('ref'), alphaPct=val('alpha'), fator=val('fator');
-  if(![c,t,ref,alphaPct,fator].every(Number.isFinite) || c<=0 || t<=-273.15 || ref<=-273.15 || fator<0){
-    limpar(); nota.textContent='Verifique condutividade, temperatura e fator TDS. A condutividade deve ser maior que zero e o fator TDS não pode ser negativo.'; return;
+  copyStatus.textContent='';
+  if(![c,t,ref,alphaPct,fator].every(Number.isFinite) || c<0 || t<=-273.15 || ref<=-273.15 || fator<=0){
+    limpar(); nota.textContent='Preencha todos os campos; condutividade não pode ser negativa e o fator TDS deve ser maior que zero.'; return;
   }
   const a=alphaPct/100;
   const denom=1+a*(t-ref);
@@ -116,10 +114,10 @@ function calc(){
   const tds=corr*fator;
   r1.textContent=n0(corr,1)+' µS/cm';
   r2.textContent=n0(tds,1)+' mg/L';
-  r3.textContent=n0((corr/c-1)*100,1)+' %';
-  nota.textContent='Coeficiente usado: '+n0(alphaPct,2)+' %/°C e fator TDS '+n0(fator,2)+'.';
+  r3.textContent=n0((1/denom-1)*100,1)+' %';
+  nota.textContent='Modelo linear com '+n0(alphaPct,2)+' %/°C e fator TDS '+n0(fator,2)+'. Confirme ambos no procedimento ou por correlação da amostra.';
 }
-function copiar(){navigator.clipboard&&navigator.clipboard.writeText('Condutividade corrigida '+r1.textContent+', TDS '+r2.textContent)}
+async function copiar(){if(r1.textContent==='-'){copyStatus.textContent='Calcule um resultado válido antes de copiar.';return}try{await navigator.clipboard.writeText('Condutividade corrigida '+r1.textContent+', TDS estimado '+r2.textContent+', correção '+r3.textContent+'. '+nota.textContent);copyStatus.textContent='Resultado copiado.'}catch(e){copyStatus.textContent='Não foi possível copiar automaticamente.'}}
 document.querySelectorAll('input').forEach(e=>e.addEventListener('input',calc));calc();
 </script>
 
