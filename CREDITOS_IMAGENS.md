@@ -2,6 +2,16 @@
 
 Este arquivo registra a origem das fotografias externas usadas no site ALOGY. A inclusão de uma imagem não significa que ela retrate equipe, cliente, instalação, projeto ou serviço executado pela ALOGY.
 
+## Imagens históricas sem proveniência verificável — serviços institucionais
+
+- Uso no site: sem uso após auditoria visual de 18 de julho de 2026
+- Páginas corrigidas: `industrial.html` e `residencial.html`
+- Arquivos industriais: `automacao.webp`, `instrumentacao.webp`, `projetos-eletricos.webp`, `documentacao.webp`, `nr10-nr12.webp` e `consultoria.webp`
+- Arquivos residenciais: `res-projeto-eletrico.webp`, `res-automacao.webp`, `res-seguranca.webp`, `res-diagramas.webp`, `res-padrao-entrada.webp` e `res-consultoria.webp`
+- Motivo da retirada: não foram encontrados autor, página de origem, licença ou data de obtenção no repositório. A inspeção em resolução suficiente também encontrou aparência sintética, textos e interfaces não verificáveis, situações elétricas inadequadas e pessoas reconhecíveis.
+- Tratamento: as associações públicas foram removidas dos cartões de serviço; os arquivos foram preservados no repositório para rastreabilidade.
+- Critério editorial: ausência de imagem foi preferida a apresentar material sem licença verificável, fotografia possivelmente sintética, situação insegura ou pessoas como se representassem equipe, cliente ou serviço da ALOGY.
+
 ## imagem-manometro-industrial-real.webp
 
 - Uso no site: `calculadora-calibracao-manometro.html`, capa e imagem interna de `blog-calibracao-manometro.html`
