@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Comissionamento HART: checklist de campo | ALOGY Engenharia</title>
-  <meta name="description" content="Checklist técnico para comissionamento HART em malhas 4-20 mA com resistor, comunicador, TAG, range, damping e diagnóstico." />
+  <title>Comissionamento HART: configuração e loop test | ALOGY</title>
+  <meta name="description" content="Veja como comissionar uma malha HART: registro as-found, configuração, modo ponto a ponto, loop test, trims, diagnóstico e encerramento." />
   <meta name="robots" content="index,follow" />
   <meta name="theme-color" content="#004b80" />
   <link rel="canonical" href="https://www.alogy.com.br/blog-comissionamento-hart.html" />
@@ -17,10 +17,10 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <link rel="stylesheet" href="style.css" />
   <script src="app.js" defer></script>
-  <meta property="og:locale" content="pt_BR" /><meta property="og:type" content="article" /><meta property="og:site_name" content="ALOGY Engenharia" /><meta property="og:title" content="Comissionamento HART: checklist de campo" /><meta property="og:description" content="Checklist técnico para comissionamento HART em malhas 4-20 mA com resistor, comunicador, TAG, range, damping e diagnóstico." /><meta property="og:url" content="https://www.alogy.com.br/blog-comissionamento-hart.html" /><meta property="og:image" content="https://www.alogy.com.br/blog-capa-comissionamento-hart.webp" />
+  <meta property="og:locale" content="pt_BR" /><meta property="og:type" content="article" /><meta property="og:site_name" content="ALOGY Engenharia" /><meta property="og:title" content="Comissionamento HART: configuração e loop test" /><meta property="og:description" content="Sequência técnica para registrar configuração, testar a saída 4–20 mA e encerrar uma malha HART sem confundir comunicação com calibração." /><meta property="og:url" content="https://www.alogy.com.br/blog-comissionamento-hart.html" /><meta property="og:image" content="https://www.alogy.com.br/blog-capa-comissionamento-hart.webp" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="https://www.alogy.com.br/blog-capa-comissionamento-hart.webp" />
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Comissionamento HART: checklist de campo","description":"Checklist técnico para comissionamento HART em malhas 4-20 mA com resistor, comunicador, TAG, range, damping e diagnóstico.","image":"https://www.alogy.com.br/blog-capa-comissionamento-hart.webp","datePublished":"2026-06-29","dateModified":"2026-07-17","author":{"@type":"Organization","name":"ALOGY Engenharia"},"publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/","logo":{"@type":"ImageObject","url":"https://www.alogy.com.br/logo-alogy.webp"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://www.alogy.com.br/blog-comissionamento-hart.html"},"inLanguage":"pt-BR"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Comissionamento HART: configuração e loop test","description":"Veja como comissionar uma malha HART: registro as-found, configuração, modo ponto a ponto, loop test, trims, diagnóstico e encerramento.","image":"https://www.alogy.com.br/blog-capa-comissionamento-hart.webp","datePublished":"2026-06-29","dateModified":"2026-07-18","author":{"@type":"Organization","name":"ALOGY Engenharia"},"publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/","logo":{"@type":"ImageObject","url":"https://www.alogy.com.br/logo-alogy.webp"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://www.alogy.com.br/blog-comissionamento-hart.html"},"inLanguage":"pt-BR"}</script>
   <style>.post-wrap{max-width:900px;margin:18px auto}.post-card{background:var(--card);border:1px solid rgba(0,0,0,.08);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}.post-content{padding:30px}.post-meta{color:var(--muted);font-size:.95rem;margin-bottom:12px}.post-content h1{font-size:2.15rem;line-height:1.15;margin-bottom:12px;color:var(--text)}.post-content h2{font-size:1.45rem;line-height:1.25;margin:26px 0 10px;color:var(--text)}.post-content p{color:var(--text);margin:0 0 16px;font-size:1.04rem;line-height:1.75}.post-content ul{margin:0 0 18px 20px}.post-content li{margin:8px 0;line-height:1.65}.post-highlight{background:rgba(0,107,177,.08);border:1px solid rgba(0,107,177,.18);border-radius:14px;padding:16px;margin:22px 0}.post-highlight strong{color:#0b3a62}@media(max-width:768px){.post-content{padding:22px}.post-content h1{font-size:1.65rem}.post-content h2{font-size:1.25rem}}</style>
   <!-- Google AdSense - verificação de propriedade -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5586837114309500"
@@ -36,13 +36,21 @@
   <div class="social-floating" aria-label="Redes sociais"><a href="https://www.linkedin.com/company/alogyengenharia" class="linkedin" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a><a href="https://www.instagram.com/alogyengenharia" class="instagram" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="https://www.facebook.com/alogyengenharia" class="facebook" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><a href="https://www.youtube.com/@alogyengenharia" class="youtube" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a><a href="https://hotmart.com/pt-br/club/alogyengenharia" class="hotmart" target="_blank" rel="noopener" aria-label="Hotmart">H</a><a href="https://www.tiktok.com/@alogyengenharia" class="tiktok" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a></div>
   <div class="fab-wrap" aria-label="Ações rápidas"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1%21%20Vim%20pelo%20blog%20da%20ALOGY.%20Gostaria%20de%20atendimento." target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
   <main class="container post-wrap">
-    <article class="post-card"><div class="post-content"><div class="post-meta">Artigo técnico • ALOGY Engenharia</div><h1>Comissionamento HART: checklist de campo</h1>
+    <article class="post-card"><div class="post-content"><div class="post-meta">Artigo técnico • ALOGY Engenharia</div><h1>Comissionamento HART: configuração e loop test</h1>
 <figure class="post-cover-photo"><img src="blog-capa-comissionamento-hart.webp" alt="Medição elétrica em painel de controle durante verificação de campo" width="960" height="540" decoding="async" fetchpriority="high" /><figcaption>Imagem contextual de verificação elétrica; não retrata equipe, cliente ou instalação da ALOGY.</figcaption></figure>
 <p>Uma malha HART combina a variável primária no sinal analógico de 4–20 mA com comunicação digital bidirecional no mesmo par de fios. Por isso, comissionar não é apenas “conseguir comunicar”: é confirmar que identificação, faixa, corrente, variável de processo e diagnóstico contam a mesma história.</p>
+
+<h2>Comece pelo registro “as-found”</h2>
+<p>Antes de gravar qualquer parâmetro, salve ou transcreva a configuração encontrada. Registre TAG curto e longo quando disponíveis, fabricante, tipo e revisão do dispositivo, revisão de software, descrição do serviço, LRV, URV, unidade, função de transferência, damping, direção de alarme, proteção contra escrita, endereço e diagnósticos ativos. Esse retrato permite distinguir correção planejada de alteração acidental e sustenta o registro “as-left” ao final.</p>
+<p>Também confirme se a descrição de dispositivo usada pelo comunicador ou sistema de ativos corresponde à revisão instalada. Uma comunicação básica pode funcionar mesmo quando menus e parâmetros específicos não estão corretamente interpretados.</p>
 
 <h2>O que o HART acrescenta à malha 4–20 mA?</h2>
 <p>O sinal analógico continua representando a variável primária. Sobre ele, uma comunicação digital por FSK transporta TAG, faixa configurada, unidade, damping, status e outras variáveis do dispositivo. Essa separação é útil no diagnóstico: um problema pode estar no sensor, na conversão para corrente, na fiação, no cartão ou na escala do sistema de controle.</p>
 <div class="post-highlight"><strong>Atenção:</strong> a resistência necessária para comunicação depende do conjunto fonte, instrumento, barreiras, cartão e comunicador. O valor de 250 Ω é comum em bancadas e entradas, mas não deve ser imposto sem conferir o diagrama e os manuais dos equipamentos.</div>
+
+<h2>Ponto a ponto, multidrop e saída analógica</h2>
+<p>Em uma malha HART ponto a ponto convencional, a corrente 4–20 mA representa a variável primária e o canal digital acrescenta configuração e diagnóstico. Em uma rede multidrop, vários dispositivos podem compartilhar o par e a comunicação passa a ser predominantemente digital; a corrente pode permanecer fixa em vez de representar individualmente cada variável. Antes do teste, confirme topologia, endereço e comportamento previsto para a revisão HART e para os equipamentos instalados.</p>
+<p>Esse detalhe evita um erro comum: interpretar uma corrente fixa como falha do transmissor quando a malha foi configurada para multidrop, ou deixar endereço diferente de zero em uma aplicação que deveria operar ponto a ponto.</p>
 
 <h2>Checklist antes de gravar parâmetros</h2>
 <ul>
@@ -62,9 +70,22 @@
 </ol>
 <p>Essa sequência localiza a discrepância. A variável HART pode estar correta e a corrente errada; a corrente pode estar correta e a escala no sistema incorreta; ou ambos podem divergir do padrão aplicado.</p>
 
+<h2>Loop test não é trim</h2>
+<p>No <strong>loop test</strong>, o transmissor força valores de saída conhecidos para verificar eletrônica de saída, fiação, cartão e indicação do sistema. O teste não comprova a exatidão do sensor, pois a variável de processo não precisa ser aplicada. Antes de forçar corrente, coloque a malha na condição operacional prevista, trate permissivos, alarmes e intertravamentos e avise as áreas envolvidas.</p>
+<p>O <strong>sensor trim</strong> corrige a relação entre a referência física aplicada e a variável digital. O <strong>trim da saída analógica</strong> corrige a relação entre a corrente comandada digitalmente e a corrente real medida por um padrão adequado. Alterar trim para compensar escala errada no CLP transfere o problema para o instrumento e prejudica a rastreabilidade.</p>
+
 <h2>Exemplo: 0–10 bar em 12 mA</h2>
 <p>Em uma escala linear de 0 a 10 bar, 12 mA correspondem a 50% do span, portanto o valor esperado é 5 bar. Se o transmissor informa 5,2 bar via HART e a corrente medida permanece em 12 mA, verifique faixa, simulação, trim de sensor e trim de saída. Se a variável HART e a corrente correspondem a 5 bar, mas o DCS mostra 5,2 bar, a investigação deve avançar para o cartão, a conversão do valor bruto e a escala de engenharia.</p>
-<p><strong>Sensor trim</strong> e <strong>output trim</strong> não são sinônimos: o primeiro ajusta a relação entre sensor e variável medida; o segundo ajusta a saída analógica. Aplique apenas o ajuste previsto no procedimento e pelo fabricante.</p>
+<p>Se a variável digital corresponde ao padrão, mas a corrente real não corresponde à corrente informada pelo dispositivo, investigue a saída analógica e o método de medição. Se variável e corrente concordam, mas o sistema diverge, avance para fiação, cartão, raw e escala de engenharia.</p>
+
+<h2>Sequência segura de encerramento</h2>
+<ol>
+  <li>Retire o dispositivo do modo de corrente fixa ou simulação e confirme que a saída voltou a acompanhar a variável.</li>
+  <li>Restaure alarmes, permissivos, controle automático e intertravamentos conforme o procedimento da planta.</li>
+  <li>Leia novamente status e diagnósticos; não encerre somente porque a comunicação voltou.</li>
+  <li>Compare “as-found” e “as-left”, identificando cada mudança autorizada e a referência documental usada.</li>
+  <li>Reaplique proteção contra escrita quando prevista e salve o registro final.</li>
+</ol>
 
 <h2>Critério de encerramento</h2>
 <ul>
@@ -76,7 +97,7 @@
 </ul>
 
 <h2>Referência técnica</h2>
-<p>A <a href="https://www.fieldcommgroup.org/technologies/hart/hart-technology-explained" target="_blank" rel="noopener">FieldComm Group</a> descreve os dois canais simultâneos do HART — analógico 4–20 mA e digital FSK — e os dados adicionais disponíveis para diagnóstico.</p>
+<p>A <a href="https://www.fieldcommgroup.org/technologies/hart/hart-technology-explained" target="_blank" rel="noopener">FieldComm Group</a> descreve os canais analógico e digital do HART. Como exemplo de aplicação, o manual on-line do <a href="https://www.emerson.com/en/measurement-instrumentation/catalog/temperature-measurement/3144s-manual" target="_blank" rel="noopener">Rosemount 3144S</a> separa loop test, trim da saída e trim do sensor e orienta que o teste da malha seja feito após a instalação. Os menus, limites e requisitos devem ser confirmados no manual do modelo efetivamente instalado.</p>
 
 <h2>Ferramenta e conteúdos relacionados</h2>
 <p>Use o checklist e o diagnóstico como apoio à preparação e ao registro da verificação.</p>
