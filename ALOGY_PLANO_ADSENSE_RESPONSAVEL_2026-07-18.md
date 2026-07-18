@@ -10,10 +10,18 @@ Este documento não autoriza mídia kit, venda direta, patrocínio, publieditori
 
 - 390 arquivos HTML públicos foram encontrados na raiz do site.
 - 374 páginas carregam uma única referência ao script assíncrono `pagead2.googlesyndication.com/pagead/js/adsbygoogle.js`.
-- Não foi encontrado bloco publicitário ativo (`<ins class="adsbygoogle">`) nem chamada executável `adsbygoogle.push(...)`.
+- Não foi encontrado bloco publicitário ativo (`<ins class="adsbygoogle">`) no HTML. O `app.js` contém funções preparatórias que criariam blocos e executariam `adsbygoogle.push(...)`, mas elas permanecem inativas porque `ALOGY_ADS_CONFIG.enabled` está como `false` e os três IDs de slot estão vazios.
 - As 16 páginas sem o carregador incluem as páginas institucionais principais, políticas, termos, projetos, cursos, sete calculadoras e o arquivo de verificação do Search Console.
 - O `ads.txt` mantém o editor direto `google.com, pub-5586837114309500, DIRECT, f08c47fec0942fa0`.
 - Nenhuma métrica de impressão, clique, CTR, RPM, Core Web Vitals ou receita foi inferida a partir desse inventário.
+
+## Auditoria do carregador — 18/07/2026
+
+- Cada uma das 374 páginas identificadas contém exatamente uma referência estática ao carregador; não foram encontradas duplicações na mesma página.
+- O carregador está presente mesmo com a infraestrutura de blocos manuais desativada no `app.js`. Esse estado pode servir à vinculação do site ou ao Auto Ads configurado externamente, portanto a ausência de blocos no repositório não autoriza removê-lo.
+- Em uma requisição diagnóstica feita em 18/07/2026, o endereço do carregador respondeu `HTTP 200` e informou `content-length: 198340` bytes e cache privado de uma hora. É uma amostra do recurso naquele instante, não uma medida de transferência para todos os usuários nem evidência de impacto em LCP, INP ou CLS.
+- A consulta automatizada ao PageSpeed Insights não produziu relatório porque a API pública respondeu `429 RESOURCE_EXHAUSTED`. Nenhuma pontuação ou métrica foi estimada para preencher essa lacuna.
+- Não foi feita alteração no carregador: uma remoção em massa sem confirmar a configuração da conta poderia interromper vinculação, verificação ou Auto Ads, enquanto mantê-lo tem custo de rede que ainda precisa ser medido em navegador e em dados de campo.
 
 Os comentários históricos “Auto Ads” ou “verificação de propriedade” não comprovam que anúncios estejam ativos. O estado externo da conta deve ser conferido no AdSense antes de qualquer implantação.
 
@@ -73,6 +81,7 @@ Somente após autorização explícita e situação externa da conta confirmada:
 - Não ativar Auto Ads ou formatos de sobreposição.
 - Não adicionar blocos manuais enquanto conteúdo genérico e auditorias visuais ainda estiverem em correção.
 - Não alterar o carregador existente em massa sem medição e sem confirmar seu papel na vinculação do site à conta.
+- Não interpretar a amostra de tamanho do JavaScript como resultado de desempenho; repetir a medição em navegador controlado e consultar CrUX/Search Console quando houver dados.
 - Não inventar projeções de tráfego ou receita.
 
 ## Validação exigida antes da ativação
@@ -83,6 +92,7 @@ Somente após autorização explícita e situação externa da conta confirmada:
 - páginas piloto sem erro de HTML, JSON-LD, canonical ou link interno;
 - anúncios claramente separados de ações técnicas;
 - métricas reais registradas com data, dispositivo e URL;
+- função atual do carregador confirmada na conta (vinculação, verificação, Auto Ads ou apenas código legado);
 - aprovação explícita para ativar ou solicitar revisão.
 
 ## Referências oficiais
