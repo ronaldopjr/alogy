@@ -221,132 +221,522 @@
 <script>
     document.addEventListener('DOMContentLoaded', function () {
       const coverByArticle = {
-        'blog-dimensionamento-tubo-pneumatico-instrumentacao.html': { src: 'Como%20dimensionar%20tubo%20pneum%23U00e1tico%20para%20instrumenta%23U00e7%23U00e3o%20industrial.webp', alt: 'Como dimensionar tubo pneumático para instrumentação industrial', priority: true },
-        'blog-conexoes-pneumaticas-instrumentacao.html': { src: 'Conex%23U00f5es%20pneum%23U00e1ticas%20em%20instrumenta%23U00e7%23U00e3o%20perda%20de%20press%23U00e3o%20e%20atraso.webp', alt: 'Conexões pneumáticas em instrumentação: perda de pressão e atraso' },
-        'blog-solenoide-atuador-pneumatico-cv.html': { src: 'V%23U00e1lvula%20solen%23U00f3ide%20para%20atuador%20pneum%23U00e1tico%20Cv%2C%20vaz%23U00e3o%20e%20resposta.webp', alt: 'Válvula solenóide para atuador pneumático: Cv, vazão e resposta' },
-        'blog-ar-instrumentos-qualidade-ponto-orvalho.html': { src: 'Ar%20de%20instrumentos%20qualidade%2C%20ponto%20de%20orvalho%20e%20falhas.webp', alt: 'Ar de instrumentos: qualidade, ponto de orvalho e falhas' },
-        'blog-linha-impulso-transmissor-dp.html': { src: 'Linha%20de%20impulso%20em%20transmissor%20DP%20erros%20comuns%20e%20boas%20pr%23U00e1ticas.webp', alt: 'Linha de impulso em transmissor DP: erros comuns e boas práticas' },
-        'blog-selo-remoto-capilar-nivel.html': { src: 'Selo%20remoto%20e%20capilar%20em%20transmissor%20de%20n%23U00edvel.webp', alt: 'Selo remoto e capilar em transmissor de nível' },
-        'blog-comunicacao-hart-falhas-cabo-resistencia.html': { src: 'Comunica%23U00e7%23U00e3o%20HART%20falhando%20cabo%2C%20resist%23U00eancia%2C%20fonte%20e%20carga.webp', alt: 'Comunicação HART falhando: cabo, resistência, fonte e carga' },
-        'blog-ot-cybersecurity-instrumentacao.html': { src: 'OT%20Cybersecurity%20na%20instrumenta%23U00e7%23U00e3o%20industrial.webp', alt: 'OT Cybersecurity na instrumentação industrial' },
-        'blog-manutencao-preditiva-instrumentacao-sensores.html': { src: 'Manuten%23U00e7%23U00e3o%20preditiva%20come%23U00e7a%20na%20instrumenta%23U00e7%23U00e3o.webp', alt: 'Manutenção preditiva começa na instrumentação' },
-        'blog-gemeo-digital-tags-instrumentacao.html': { src: 'G%23U00eameo%20digital%20industrial%20tags%20de%20instrumenta%23U00e7%23U00e3o%20confi%23U00e1veis.webp', alt: 'Gêmeo digital industrial: tags de instrumentação confiáveis' },
-        'blog-backlog-manutencao-semanas.html': { src: 'Backlog%20de%20manuten%23U00e7%23U00e3o%20em%20semanas.webp', alt: 'Backlog de manutenção em semanas' },
-        'blog-diametro-cilindro-pneumatico.html': { src: 'Como%20dimensionar%20di%23U00e2metro%20de%20cilindro%20pneum%23U00e1tico.webp', alt: 'Como dimensionar diâmetro de cilindro pneumático' },
-        'blog-perda-carga-mangueira-hidraulica.html': { src: 'Perda%20de%20carga%20em%20mangueira%20hidr%23U00e1ulica.webp', alt: 'Perda de carga em mangueira hidráulica' },
-        'blog-classe-limpeza-oleo-iso4406.html': { src: 'Classe%20de%20limpeza%20ISO%204406%20em%20%23U00f3leo%20hidr%23U00e1ulico.webp', alt: 'Classe de limpeza ISO 4406 em óleo hidráulico' },
-        'blog-comprimento-correia-polias.html': { src: 'Comprimento%20de%20correia%20entre%20polias.webp', alt: 'Comprimento de correia entre polias' },
-        'blog-ponto-ressuprimento-sobressalentes.html': { src: 'Ponto%20de%20ressuprimento%20de%20sobressalentes%20cr%23U00edticos.webp', alt: 'Ponto de ressuprimento de sobressalentes críticos' },
-        'blog-frequencia-defeitos-rolamento.html': { src: 'Frequ%23U00eancias%20de%20defeito%20em%20rolamentos%20na%20an%23U00e1lise%20de%20vibra%23U00e7%23U00e3o.webp', alt: 'Frequências de defeito em rolamentos na análise de vibração' },
-        'blog-conversao-vibracao-frequencia.html': { src: 'Convers%23U00e3o%20de%20vibra%23U00e7%23U00e3o%20velocidade%2C%20deslocamento%20e%20acelera%23U00e7%23U00e3o.webp', alt: 'Conversão de vibração: velocidade, deslocamento e aceleração' },
-        'blog-rpn-fmea-manutencao.html': { src: 'FMEA%20e%20RPN%20na%20manuten%23U00e7%23U00e3o%20industrial.webp', alt: 'FMEA e RPN na manutenção industrial' },
-        'blog-capabilidade-cp-cpk.html': { src: 'IA%20Cp%20e%20Cpk%20capabilidade%20de%20processo%20para%20engenharia%20e%20qualidade.webp', alt: 'Cp e Cpk: capabilidade de processo para engenharia e qualidade' },
-        'blog-alinhamento-eixos-relogio.html': { src: 'Alinhamento%20de%20eixos%20offset%2C%20angularidade%20e%20corre%23U00e7%23U00e3o%20nos%20p%23U00e9s.webp', alt: 'Alinhamento de eixos: offset, angularidade e correção nos pés' },
-        'blog-balanceamento-rotor-campo.html': { src: 'Balanceamento%20de%20rotor%20em%20campo%20massa%20de%20teste%20e%20vetor%20de%20corre%23U00e7%23U00e3o.webp', alt: 'Balanceamento de rotor em campo: massa de teste e vetor de correção' },
-        'blog-inspecao-bomba-centrifuga.html': { src: 'Inspe%23U00e7%23U00e3o%20de%20bomba%20centr%23U00edfuga%20checklist%20para%20manuten%23U00e7%23U00e3o.webp', alt: 'Inspeção de bomba centrífuga: checklist para manutenção' },
-        'blog-relubrificacao-rolamento.html': { src: 'Relubrifica%23U00e7%23U00e3o%20de%20rolamentos%20quantidade%20de%20graxa%20e%20intervalo.webp', alt: 'Relubrificação de rolamentos: quantidade de graxa e intervalo' },
-        'blog-tensao-correia-transmissao.html': { src: 'Tens%23U00e3o%20em%20correias%20pot%23U00eancia%2C%20velocidade%20e%20lado%20tenso.webp', alt: 'Tensão em correias: potência, velocidade e lado tenso' },
-        'blog-torque-potencia-eixo.html': { src: 'Torque%20e%20pot%23U00eancia%20de%20eixo%20como%20interpretar%20em%20m%23U00e1quinas%20rotativas.webp', alt: 'Torque e potência de eixo: como interpretar em máquinas rotativas' },
-        'blog-comissionamento-hart.html': { src: 'Comissionamento%20HART%20checklist%20de%20campo.webp', alt: 'Comissionamento HART: checklist de campo' },
-        'blog-criticidade-instrumentos.html': { src: 'Criticidade%20de%20Instrumentos%20Industriais.webp', alt: 'Criticidade de Instrumentos Industriais' },
-        'blog-emissividade-termografia.html': { src: 'Emissividade%20em%20termografia%20industrial.webp', alt: 'Emissividade em termografia industrial' },
-        'blog-fat-sat-instrumentacao.html': { src: 'FAT%20e%20SAT%20em%20instrumenta%23U00e7%23U00e3o%20e%20automa%23U00e7%23U00e3o%20industrial.webp', alt: 'FAT e SAT em instrumentação e automação industrial' },
-        'blog-ia-na-industria.html': { src: 'IA%20na%20Ind%23U00fastria%20Manuten%23U00e7%23U00e3o%2C%20Qualidade%20e%20Produ%23U00e7%23U00e3o.webp', alt: 'IA na Indústria: Manutenção, Qualidade e Produção' },
-        'blog-inspecao-instrumentos-area-classificada.html': { src: 'Inspe%23U00e7%23U00e3o%20de%20Instrumentos%20em%20%23U00c1rea%20Classificada.webp', alt: 'Inspeção de Instrumentos em Área Classificada' },
-        'blog-mtbf-mttr-disponibilidade.html': { src: 'MTBF%2C%20MTTR%20e%20Disponibilidade%20indicadores%20para%20manuten%23U00e7%23U00e3o%20industrial.webp', alt: 'MTBF, MTTR e Disponibilidade: indicadores para manutenção industrial' },
-        'blog-pareto-falhas-manutencao.html': { src: 'Pareto%20de%20Falhas%20como%20priorizar%20manuten%23U00e7%23U00e3o%20e%20RCA.webp', alt: 'Pareto de Falhas: como priorizar manutenção e RCA' },
-        'blog-sobressalentes-criticidade.html': { src: 'Sobressalentes%20cr%23U00edticos%20como%20estimar%20estoque%20m%23U00ednimo.webp', alt: 'Sobressalentes críticos: como estimar estoque mínimo' },
-        'blog-vazao-vapor-saturado.html': { src: 'Vaz%23U00e3o%20de%20Vapor%20Saturado%20em%20Tubula%23U00e7%23U00e3o.webp', alt: 'Vazão de Vapor Saturado em Tubulação' },
-        'blog-vibracao-rms-pico-pico-a-pico.html': { src: 'Vibra%23U00e7%23U00e3o%20RMS%2C%20pico%20e%20pico%20a%20pico%20em%20manuten%23U00e7%23U00e3o%20preditiva.webp', alt: 'Vibração RMS, pico e pico a pico em manutenção preditiva' },
-        'blog-calibracao-analisadores-processo.html': { src: 'Calibra%23U00e7%23U00e3o%20e%20Diagn%23U00f3stico%20de%20Analisadores%20de%20Processo.webp', alt: 'Calibração e Diagnóstico de Analisadores de Processo' },
-        'blog-calibracao-balanca-industrial.html': { src: 'Calibra%23U00e7%23U00e3o%20de%20Balan%23U00e7a%20Industrial%20e%20C%23U00e9lulas%20de%20Carga.webp', alt: 'Calibração de Balança Industrial e Células de Carga' },
-        'blog-calibracao-cartao-analogico-clp.html': { src: 'Calibra%23U00e7%23U00e3o%20de%20Cart%23U00e3o%20Anal%23U00f3gico%20CLPDCS%20raw%2C%20mA%20e%20engenharia.webp', alt: 'Calibração de Cartão Analógico CLP/DCS: raw, mA e engenharia' },
-        'blog-calibracao-conversor-ip-pi.html': { src: 'Calibra%23U00e7%23U00e3o%20de%20Conversor%20IP%20e%20PI%204-20%20mA%20e%203-15%20psi.webp', alt: 'Calibração de Conversor I/P e P/I: 4-20 mA e 3-15 psi' },
-        'blog-calibracao-indicador-controlador.html': { src: 'Calibra%23U00e7%23U00e3o%20de%20Indicador%20e%20Controlador%20Industrial.webp', alt: 'Calibração de Indicador e Controlador Industrial' },
-        'blog-calibracao-instrumentos-industriais.html': { src: 'Calibra%23U00e7%23U00e3o%20de%20Instrumentos%20Industriais%20Erro%2C%20Toler%23U00e2ncia%20e%20Confiabilidade.webp', alt: 'Calibração de Instrumentos Industriais: Erro, Tolerância e Confiabilidade' },
-        'blog-calibracao-manometro.html': { src: 'Calibra%23U00e7%23U00e3o%20de%20Man%23U00f4metro%20classe%2C%20erro%20e%20histerese.webp', alt: 'Calibração de Manômetro: classe, erro e histerese' },
-        'blog-calibracao-totalizador-vazao.html': { src: 'Calibra%23U00e7%23U00e3o%20de%20Totalizador%20de%20Vaz%23U00e3o%20erro%20e%20K-factor.webp', alt: 'Calibração de Totalizador de Vazão: erro e K-factor' },
-        'blog-calibracao-transmissor-dp-vazao.html': { src: 'Calibra%23U00e7%23U00e3o%20de%20Transmissor%20DP%20de%20Vaz%23U00e3o%20com%20Raiz%20Quadrada.webp', alt: 'Calibração de Transmissor DP de Vazão com Raiz Quadrada' },
-        'blog-calibracao-transmissor-nivel-dp.html': { src: 'Calibra%23U00e7%23U00e3o%20de%20Transmissor%20de%20N%23U00edvel%20DP%20pontos%20e%20mA.webp', alt: 'Calibração de Transmissor de Nível DP: pontos e mA' },
-        'blog-calibracao-transmissor-pressao.html': { src: 'Calibra%23U00e7%23U00e3o%20de%20Transmissor%20de%20Press%23U00e3o%20erro%2C%20span%20e%204-20%20mA.webp', alt: 'Calibração de Transmissor de Pressão: erro, span e 4-20 mA' },
-        'blog-calibracao-transmissor-temperatura.html': { src: 'Calibra%23U00e7%23U00e3o%20de%20Transmissor%20de%20Temperatura%20RTD%20e%20Termopar.webp', alt: 'Calibração de Transmissor de Temperatura RTD e Termopar' },
-        'blog-calibracao-valvula-controle.html': { src: 'Calibra%23U00e7%23U00e3o%20de%20V%23U00e1lvula%20de%20Controle%204-20%20mA.webp', alt: 'Calibração de Válvula de Controle 4-20 mA' },
-        'blog-calibracao-phmetro.html': { src: 'Calibra%23U00e7%23U00e3o%20de%20pHmetro%20Slope%2C%20Offset%20e%20Buffer.webp', alt: 'Calibração de pHmetro: Slope, Offset e Buffer' },
-        'blog-histerese-pressostato-termostato.html': { src: 'Histerese%20de%20Pressostato%20e%20Termostato.webp', alt: 'Histerese de Pressostato e Termostato' },
-        'blog-lsi-langelier-agua.html': { src: '%23U00cdndice%20de%20Langelier%20LSI%20em%20%23U00e1gua%20industrial.webp', alt: 'Índice de Langelier LSI em água industrial' },
-        'blog-bomba-dosadora-quimica.html': { src: 'Bomba%20Dosadora%20Qu%23U00edmica%20como%20calcular%20vaz%23U00e3o%20em%20Lh.webp', alt: 'Bomba Dosadora Química: como calcular vazão em L/h' },
-        'blog-condutividade-tds.html': { src: 'Bomba%20Dosadora%20Qu%23U00edmica%20Condutividade%2C%20TDS%20e%20Compensa%23U00e7%23U00e3o%20de%20Temperatura.webp', alt: 'Condutividade, TDS e Compensação de Temperatura' },
-        'blog-dosagem-quimica-ppm.html': { src: 'Dosagem%20Qu%23U00edmica%20em%20ppm%20e%20mgL.webp', alt: 'Dosagem Química em ppm e mg/L' },
-        'blog-dosagem-cloro-livre.html': { src: 'Dosagem%20de%20Cloro%20Livre%20em%20%23U00c1gua%20Industrial.webp', alt: 'Dosagem de Cloro Livre em Água Industrial' },
-        'blog-mistura-diluicao-solucoes.html': { src: 'Mistura%20e%20Dilui%23U00e7%23U00e3o%20de%20Solu%23U00e7%23U00f5es.webp', alt: 'Mistura e Diluição de Soluções' },
-        'blog-neutralizacao-ph-industrial.html': { src: 'Neutraliza%23U00e7%23U00e3o%20%23U00c1cidoBase%20Industrial.webp', alt: 'Neutralização Ácido/Base Industrial' },
-        'blog-orp-mv-controle.html': { src: 'ORP%20em%20mV%20Controle%20e%20Interpreta%23U00e7%23U00e3o%20Industrial.webp', alt: 'ORP em mV: Controle e Interpretação Industrial' },
-        'blog-tempo-amostragem-analisador.html': { src: 'Tempo%20de%20Amostragem%20para%20Analisadores%20Online.webp', alt: 'Tempo de Amostragem para Analisadores Online' },
-        'blog-vazao-bomba-deslocamento-positivo.html': { src: 'Vaz%23U00e3o%20de%20bomba%20de%20deslocamento%20positivo.webp', alt: 'Vazão de bomba de deslocamento positivo' },
-        'blog-volume-cilindro-horizontal-nivel.html': { src: 'Volume%20em%20tanque%20cil%23U00edndrico%20horizontal%20por%20n%23U00edvel.webp', alt: 'Volume em tanque cilíndrico horizontal por nível' },
-        'blog-recuperacao-condensado-energia.html': { src: 'Energia%20recuperada%20no%20retorno%20de%20condensado.webp', alt: 'Energia recuperada no retorno de condensado' },
-        'blog-purga-caldeira-tds.html': { src: 'Purga%20de%20caldeira%20por%20TDS.webp', alt: 'Purga de caldeira por TDS' },
-        'blog-purga-torre-resfriamento.html': { src: 'Purga%20em%20torre%20de%20resfriamento%20por%20ciclos%20de%20concentra%23U00e7%23U00e3o.webp', alt: 'Purga em torre de resfriamento por ciclos de concentração' },
-        'blog-golpe-ariete-joukowsky.html': { src: 'Golpe%20de%20ar%23U00edete%20c%23U00e1lculo%20preliminar%20e%20riscos%20em%20tubula%23U00e7%23U00f5es.webp', alt: 'Golpe de aríete: cálculo preliminar e riscos em tubulações' },
-        'blog-vazao-vertedouro-canaleta.html': { src: 'Medi%23U00e7%23U00e3o%20de%20vaz%23U00e3o%20em%20vertedouro%20e%20canaleta%20aberta.webp', alt: 'Medição de vazão em vertedouro e canaleta aberta' },
-        'blog-bocal-lavagem-cip.html': { src: 'Bocais%20de%20lavagem%20e%20CIP%20vaz%23U00e3o%2C%20press%23U00e3o%20e%20consumo%20qu%23U00edmico.webp', alt: 'Bocais de lavagem e CIP: vazão, pressão e consumo químico' },
-        'blog-tanque-expansao-termica-agua.html': { src: 'Tanque%20de%20expans%23U00e3o%20em%20%23U00e1gua%20quente%20e%20%23U00e1gua%20gelada.webp', alt: 'Tanque de expansão em água quente e água gelada' },
-        'blog-acumulador-hidraulico.html': { src: 'Acumulador%20hidr%23U00e1ulico%20pr%23U00e9-carga%2C%20volume%20%23U00fatil%20e%20press%23U00e3o.webp', alt: 'Acumulador hidráulico: pré-carga, volume útil e pressão' },
-        'blog-forca-cilindro-hidraulico.html': { src: 'For%23U00e7a%20de%20cilindro%20hidr%23U00e1ulico%20avan%23U00e7o%2C%20retorno%20e%20tempo%20de%20curso.webp', alt: 'Força de cilindro hidráulico: avanço, retorno e tempo de curso' },
-        'blog-vazamento-vacuo-pressure-decay.html': { src: 'Teste%20de%20vazamento%20por%20pressure%20decay%20e%20v%23U00e1cuo.webp', alt: 'Teste de vazamento por pressure decay e vácuo' },
-        'blog-autonomia-cilindro-gas.html': { src: 'Autonomia%20de%20Cilindro%20de%20G%23U00e1s%20Industrial.webp', alt: 'Autonomia de Cilindro de Gás Industrial' },
-        'blog-cavitacao-valvula-controle.html': { src: 'Cavita%23U00e7%23U00e3o%20em%20V%23U00e1lvula%20de%20Controle.webp', alt: 'Cavitação em Válvula de Controle' },
-        'blog-consumo-nitrogenio-purga.html': { src: 'Consumo%20de%20Nitrog%23U00eanio%20em%20Purga%20e%20Inertiza%23U00e7%23U00e3o.webp', alt: 'Consumo de Nitrogênio em Purga e Inertização' },
-        'blog-ppm-mg-m3-gases.html': { src: 'Convers%23U00e3o%20ppm%20para%20mgm%23U00b3%20em%20Gases.webp', alt: 'Conversão ppm para mg/m³ em Gases' },
-        'blog-rotametro-correcao-vazao.html': { src: 'Corre%23U00e7%23U00e3o%20de%20Vaz%23U00e3o%20em%20Rot%23U00e2metro.webp', alt: 'Correção de Vazão em Rotâmetro' },
-        'blog-custo-ar-comprimido.html': { src: 'Custo%20de%20Ar%20Comprimido%20Industrial.webp', alt: 'Custo de Ar Comprimido Industrial' },
-        'blog-cv-gases-valvula-controle.html': { src: 'Cv%20para%20Gases%20em%20V%23U00e1lvula%20de%20Controle.webp', alt: 'Cv para Gases em Válvula de Controle' },
-        'blog-celula-carga-tanque.html': { src: 'C%23U00e9lula%20de%20Carga%20para%20Tanques%20e%20Reatores.webp', alt: 'Célula de Carga para Tanques e Reatores' },
-        'blog-duto-exaustao-industrial.html': { src: 'Dutos%20de%20Exaust%23U00e3o%20Industrial%20Vaz%23U00e3o%2C%20Velocidade%20e%20Di%23U00e2metro.webp', alt: 'Dutos de Exaustão Industrial: Vazão, Velocidade e Diâmetro' },
-        'blog-k-factor-vazao-pulsos.html': { src: 'K-Factor%20em%20Medidores%20de%20Vaz%23U00e3o%20por%20Pulsos.webp', alt: 'K-Factor em Medidores de Vazão por Pulsos' },
-        'blog-massa-tanque-nivel.html': { src: 'Massa%20em%20Tanque%20por%20N%23U00edvel%20e%20Densidade.webp', alt: 'Massa em Tanque por Nível e Densidade' },
-        'blog-npsh-bomba.html': { src: 'NPSH%20de%20Bomba%20como%20evitar%20cavita%23U00e7%23U00e3o%20na%20suc%23U00e7%23U00e3o.webp', alt: 'NPSH de Bomba: como evitar cavitação na sucção' },
-        'blog-vazao-normalizada-gases.html': { src: 'NPSH%20de%20Bomba%20Nm%23U00b3h%2C%20Sm%23U00b3h%20e%20m%23U00b3h%20Como%20Converter%20Vaz%23U00e3o%20de%20Gases.webp', alt: 'Nm³/h, Sm³/h e m³/h: Como Converter Vazão de Gases' },
-        'blog-dp-nivel-tanque-fechado.html': { src: 'N%23U00edvel%20por%20Press%23U00e3o%20Diferencial%20em%20Tanque%20Fechado.webp', alt: 'Nível por Pressão Diferencial em Tanque Fechado' },
-        'blog-reynolds-regime-escoamento.html': { src: 'N%23U00famero%20de%20Reynolds%20e%20Regime%20de%20Escoamento.webp', alt: 'Número de Reynolds e Regime de Escoamento' },
-        'blog-perda-carga-ar-comprimido.html': { src: 'Perda%20de%20Carga%20em%20Ar%20Comprimido.webp', alt: 'Perda de Carga em Ar Comprimido' },
-        'blog-ponto-orvalho-ar-comprimido.html': { src: 'Ponto%20de%20Orvalho%20em%20Ar%20Comprimido.webp', alt: 'Ponto de Orvalho em Ar Comprimido' },
-        'blog-potencia-bomba.html': { src: 'Pot%23U00eancia%20de%20Bomba%20como%20estimar%20kW%2C%20cv%20e%20corrente.webp', alt: 'Potência de Bomba: como estimar kW, cv e corrente' },
-        'blog-purgador-vapor-condensado.html': { src: 'Purgador%20de%20Vapor%20e%20Carga%20de%20Condensado.webp', alt: 'Purgador de Vapor e Carga de Condensado' },
-        'blog-reservatorio-ar-comprimido.html': { src: 'Reservat%23U00f3rio%20de%20Ar%20Comprimido.webp', alt: 'Reservatório de Ar Comprimido' },
-        'blog-tempo-enchimento-tanque.html': { src: 'Tempo%20de%20Enchimento%20de%20Tanque.webp', alt: 'Tempo de Enchimento de Tanque' },
-        'blog-tempo-residencia-tanque.html': { src: 'Tempo%20de%20Resid%23U00eancia%20em%20Tanques%20Industriais.webp', alt: 'Tempo de Residência em Tanques Industriais' },
-        'blog-velocidade-recomendada-tubulacao.html': { src: 'Velocidade%20Recomendada%20em%20Tubula%23U00e7%23U00e3o%20como%20avaliar.webp', alt: 'Velocidade Recomendada em Tubulação: como avaliar' },
-        'blog-carga-termica-lote-aquecimento.html': { src: 'Carga%20t%23U00e9rmica%20de%20lote%20como%20estimar%20aquecimento%20e%20resfriamento.webp', alt: 'Carga térmica de lote: como estimar aquecimento e resfriamento' },
-        'blog-trocador-calor-carga-termica.html': { src: 'Carga%20T%23U00e9rmica%20em%20Trocadores%20de%20Calor.webp', alt: 'Carga Térmica em Trocadores de Calor' },
-        'blog-lmtd-trocador-calor.html': { src: 'LMTD%20em%20Trocadores%20de%20Calor.webp', alt: 'LMTD em Trocadores de Calor' },
-        'blog-perda-calor-tubulacao.html': { src: 'Perda%20de%20Calor%20em%20Tubula%23U00e7%23U00e3o%20Industrial.webp', alt: 'Perda de Calor em Tubulação Industrial' },
-        'blog-termopoco-tempo-resposta.html': { src: 'Termopo%23U00e7o%20e%20tempo%20de%20resposta%20por%20que%20a%20medi%23U00e7%23U00e3o%20atrasa.webp', alt: 'Termopoço e tempo de resposta: por que a medição atrasa' },
-        'blog-area-trocador-calor.html': { src: '%23U00c1rea%20de%20Trocador%20de%20Calor%20por%20U%20e%20LMTD.webp', alt: 'Área de Trocador de Calor por U e LMTD' },
-        'blog-secao-barramento-cobre.html': { src: 'Se%23U00e7%23U00e3o%20de%20barramento%20de%20cobre%20em%20pain%23U00e9is%20el%23U00e9tricos.webp', alt: 'Seção de barramento de cobre em painéis elétricos' },
-        'blog-queda-tensao-partida-motor.html': { src: 'Queda%20de%20tens%23U00e3o%20na%20partida%20de%20motor.webp', alt: 'Queda de tensão na partida de motor' },
-        'blog-partida-estrela-triangulo-corrente.html': { src: 'Corrente%20de%20partida%20estrela-tri%23U00e2ngulo.webp', alt: 'Corrente de partida estrela-triângulo' },
-        'blog-consumo-energia-resistencia-aquecimento.html': { src: 'Consumo%20de%20energia%20de%20resist%23U00eancia%20de%20aquecimento.webp', alt: 'Consumo de energia de resistência de aquecimento' },
-        'blog-corrente-neutro-trifasico.html': { src: 'Corrente%20de%20neutro%20em%20sistemas%20trif%23U00e1sicos%20desequilibrados.webp', alt: 'Corrente de neutro em sistemas trifásicos desequilibrados' },
-        'blog-tempo-aceleracao-motor-inercia.html': { src: 'Tempo%20de%20acelera%23U00e7%23U00e3o%20de%20motor%20e%20carga%20de%20alta%20in%23U00e9rcia.webp', alt: 'Tempo de aceleração de motor e carga de alta inércia' },
-        'blog-corrente-partida-motor.html': { src: 'Corrente%20de%20partida%20de%20motor%20como%20interpretar%20em%20campo.webp', alt: 'Corrente de partida de motor: como interpretar em campo' },
-        'blog-desequilibrio-tensao-motor.html': { src: 'Desequil%23U00edbrio%20de%20tens%23U00e3o%20em%20motor%20trif%23U00e1sico.webp', alt: 'Desequilíbrio de tensão em motor trifásico' },
-        'blog-bateria-ups-24vcc.html': { src: 'Bateria%20UPS%2024%20Vcc%20para%20CLP%20e%20Instrumenta%23U00e7%23U00e3o.webp', alt: 'Bateria UPS 24 Vcc para CLP e Instrumentação' },
-        'blog-cabo-profibus-rs485.html': { src: 'Cabo%20PROFIBUS%20e%20RS-485%20comprimento%2C%20taxa%20e%20termina%23U00e7%23U00e3o.webp', alt: 'Cabo PROFIBUS e RS-485: comprimento, taxa e terminação' },
-        'blog-modbus-polling.html': { src: 'Ciclo%20de%20Polling%20Modbus%20RTU.webp', alt: 'Ciclo de Polling Modbus RTU' },
-        'blog-economia-inversor-bomba-ventilador.html': { src: 'Economia%20com%20Inversor%20em%20Bombas%20e%20Ventiladores.webp', alt: 'Economia com Inversor em Bombas e Ventiladores' },
-        'blog-ocupacao-eletroduto-cabos.html': { src: 'Ocupa%23U00e7%23U00e3o%20de%20Eletroduto%20e%20Cabos.webp', alt: 'Ocupação de Eletroduto e Cabos' },
-        'blog-slip-motor-inducao.html': { src: 'Slip%20de%20motor%20de%20indu%23U00e7%23U00e3o%20rota%23U00e7%23U00e3o%20s%23U00edncrona%20e%20escorregamento.webp', alt: 'Slip de motor de indução: rotação síncrona e escorregamento' },
-        'blog-thd-distorcao-harmonica.html': { src: 'THD%20e%20harm%23U00f4nicas%20em%20sistemas%20el%23U00e9tricos%20industriais.webp', alt: 'THD e harmônicas em sistemas elétricos industriais' },
-        'blog-tempo-transmissao-serial-industrial.html': { src: 'Tempo%20de%20Transmiss%23U00e3o%20em%20Redes%20Seriais%20Industriais.webp', alt: 'Tempo de Transmissão em Redes Seriais Industriais' },
-        'blog-tempo-descarga-capacitor.html': { src: 'Tempo%20de%20descarga%20de%20capacitor%20em%20pain%23U00e9is%20industriais.webp', alt: 'Tempo de descarga de capacitor em painéis industriais' },
-        'blog-teste-de-loop-instrumentacao.html': { src: 'Teste%20de%20Loop%20em%20Instrumenta%23U00e7%23U00e3o%20do%20Campo%20ao%20CLP.webp', alt: 'Teste de Loop em Instrumentação: do Campo ao CLP' },
-        'blog-ventilacao-painel-eletrico.html': { src: 'Ventila%23U00e7%23U00e3o%20de%20Painel%20El%23U00e9trico.webp', alt: 'Ventilação de Painel Elétrico' },
-        'blog-indice-polarizacao-dar.html': { src: 'indice%20de%20Polariza%23U00e7%23U00e3o%20e%20DAR%20em%20testes%20de%20isola%23U00e7%23U00e3o.webp', alt: 'Índice de Polarização e DAR em testes de isolação' },
-        'blog-densidade-api-grau-api.html': { src: 'Densidade%20e%20Grau%20API.webp', alt: 'Densidade e Grau API' },
-        'blog-gemeo-digital-instrumentacao.html': { src: 'img-gemeo-digital-instrumentacao.webp', alt: 'Gêmeo Digital Industrial: instrumentação e dados confiáveis' },
-        'blog-industria-5-0.html': { src: 'img-industria-5-0.webp', alt: 'Indústria 5.0: Integração Homem-Máquina na Automação Industrial' },
-        'blog-instrumentacao-industrial.html': { src: 'img-instrumentacao-industrial.webp', alt: 'Instrumentação Industrial: o que é e por que é essencial na automação' }
+        'blog-dimensionamento-tubo-pneumatico-instrumentacao.html': {
+          src: 'Como dimensionar tubo pneum%23U00e1tico para instrumenta%23U00e7%23U00e3o industrial.webp',
+          alt: 'Como dimensionar tubo pneumático para instrumentação industrial'
+        },
+        'blog-conexoes-pneumaticas-instrumentacao.html': {
+          src: 'Conex%23U00f5es pneum%23U00e1ticas em instrumenta%23U00e7%23U00e3o perda de press%23U00e3o e atraso.webp',
+          alt: 'Conexões pneumáticas em instrumentação: perda de pressão e atraso'
+        },
+        'blog-solenoide-atuador-pneumatico-cv.html': {
+          src: 'V%23U00e1lvula solen%23U00f3ide para atuador pneum%23U00e1tico Cv, vaz%23U00e3o e resposta.webp',
+          alt: 'Válvula solenóide para atuador pneumático: Cv, vazão e resposta'
+        },
+        'blog-ar-instrumentos-qualidade-ponto-orvalho.html': {
+          src: 'Ar de instrumentos qualidade, ponto de orvalho e falhas.webp',
+          alt: 'Ar de instrumentos: qualidade, ponto de orvalho e falhas'
+        },
+        'blog-linha-impulso-transmissor-dp.html': {
+          src: 'Linha de impulso em transmissor DP erros comuns e boas pr%23U00e1ticas.webp',
+          alt: 'Linha de impulso em transmissor DP: erros comuns e boas práticas'
+        },
+        'blog-selo-remoto-capilar-nivel.html': {
+          src: 'Selo remoto e capilar em transmissor de n%23U00edvel.webp',
+          alt: 'Selo remoto e capilar em transmissor de nível'
+        },
+        'blog-comunicacao-hart-falhas-cabo-resistencia.html': {
+          src: 'Comunica%23U00e7%23U00e3o HART falhando cabo, resist%23U00eancia, fonte e carga.webp',
+          alt: 'Comunicação HART falhando: cabo, resistência, fonte e carga'
+        },
+        'blog-ot-cybersecurity-instrumentacao.html': {
+          src: 'OT Cybersecurity na instrumenta%23U00e7%23U00e3o industrial.webp',
+          alt: 'OT Cybersecurity na instrumentação industrial'
+        },
+        'blog-manutencao-preditiva-instrumentacao-sensores.html': {
+          src: 'Manuten%23U00e7%23U00e3o preditiva come%23U00e7a na instrumenta%23U00e7%23U00e3o.webp',
+          alt: 'Manutenção preditiva começa na instrumentação'
+        },
+        'blog-gemeo-digital-tags-instrumentacao.html': {
+          src: 'G%23U00eameo digital industrial tags de instrumenta%23U00e7%23U00e3o confi%23U00e1veis.webp',
+          alt: 'Gêmeo digital industrial: tags de instrumentação confiáveis'
+        },
+        'blog-backlog-manutencao-semanas.html': {
+          src: 'Backlog de manuten%23U00e7%23U00e3o em semanas.webp',
+          alt: 'Backlog de manutenção em semanas'
+        },
+        'blog-diametro-cilindro-pneumatico.html': {
+          src: 'Como dimensionar di%23U00e2metro de cilindro pneum%23U00e1tico.webp',
+          alt: 'Como dimensionar diâmetro de cilindro pneumático'
+        },
+        'blog-perda-carga-mangueira-hidraulica.html': {
+          src: 'Perda de carga em mangueira hidr%23U00e1ulica.webp',
+          alt: 'Perda de carga em mangueira hidráulica'
+        },
+        'blog-classe-limpeza-oleo-iso4406.html': {
+          src: 'Classe de limpeza ISO 4406 em %23U00f3leo hidr%23U00e1ulico.webp',
+          alt: 'Classe de limpeza ISO 4406 em óleo hidráulico'
+        },
+        'blog-comprimento-correia-polias.html': {
+          src: 'Comprimento de correia entre polias.webp',
+          alt: 'Comprimento de correia entre polias'
+        },
+        'blog-disponibilidade-sistema-serie-paralelo.html': {
+          src: 'Disponibilidade n%23U00e3o deve ser analisada apenas por equipamento isolado..webp',
+          alt: 'Disponibilidade de sistemas em série e paralelo'
+        },
+        'blog-ponto-ressuprimento-sobressalentes.html': {
+          src: 'Ponto de ressuprimento de sobressalentes cr%23U00edticos.webp',
+          alt: 'Ponto de ressuprimento de sobressalentes críticos'
+        },
+        'blog-frequencia-defeitos-rolamento.html': {
+          src: 'Frequ%23U00eancias de defeito em rolamentos na an%23U00e1lise de vibra%23U00e7%23U00e3o.webp',
+          alt: 'Frequências de defeito em rolamentos na análise de vibração'
+        },
+        'blog-conversao-vibracao-frequencia.html': {
+          src: 'Convers%23U00e3o de vibra%23U00e7%23U00e3o velocidade, deslocamento e acelera%23U00e7%23U00e3o.webp',
+          alt: 'Conversão de vibração: velocidade, deslocamento e aceleração'
+        },
+        'blog-rpn-fmea-manutencao.html': {
+          src: 'FMEA e RPN na manuten%23U00e7%23U00e3o industrial.webp',
+          alt: 'FMEA e RPN na manutenção industrial'
+        },
+        'blog-capabilidade-cp-cpk.html': {
+          src: 'IA Cp e Cpk capabilidade de processo para engenharia e qualidade.webp',
+          alt: 'Cp e Cpk: capabilidade de processo para engenharia e qualidade'
+        },
+        'blog-alinhamento-eixos-relogio.html': {
+          src: 'Alinhamento de eixos offset, angularidade e corre%23U00e7%23U00e3o nos p%23U00e9s.webp',
+          alt: 'Alinhamento de eixos: offset, angularidade e correção nos pés'
+        },
+        'blog-balanceamento-rotor-campo.html': {
+          src: 'Balanceamento de rotor em campo massa de teste e vetor de corre%23U00e7%23U00e3o.webp',
+          alt: 'Balanceamento de rotor em campo: massa de teste e vetor de correção'
+        },
+        'blog-inspecao-bomba-centrifuga.html': {
+          src: 'Inspe%23U00e7%23U00e3o de bomba centr%23U00edfuga checklist para manuten%23U00e7%23U00e3o.webp',
+          alt: 'Inspeção de bomba centrífuga: checklist para manutenção'
+        },
+        'blog-relubrificacao-rolamento.html': {
+          src: 'Relubrifica%23U00e7%23U00e3o de rolamentos quantidade de graxa e intervalo.webp',
+          alt: 'Relubrificação de rolamentos: quantidade de graxa e intervalo'
+        },
+        'blog-tensao-correia-transmissao.html': {
+          src: 'Tens%23U00e3o em correias pot%23U00eancia, velocidade e lado tenso.webp',
+          alt: 'Tensão em correias: potência, velocidade e lado tenso'
+        },
+        'blog-torque-potencia-eixo.html': {
+          src: 'Torque e pot%23U00eancia de eixo como interpretar em m%23U00e1quinas rotativas.webp',
+          alt: 'Torque e potência de eixo: como interpretar em máquinas rotativas'
+        },
+        'blog-comissionamento-hart.html': {
+          src: 'Comissionamento HART checklist de campo.webp',
+          alt: 'Comissionamento HART: checklist de campo'
+        },
+        'blog-criticidade-instrumentos.html': {
+          src: 'Criticidade de Instrumentos Industriais.webp',
+          alt: 'Criticidade de Instrumentos Industriais'
+        },
+        'blog-emissividade-termografia.html': {
+          src: 'Emissividade em termografia industrial.webp',
+          alt: 'Emissividade em termografia industrial'
+        },
+        'blog-fat-sat-instrumentacao.html': {
+          src: 'FAT e SAT em instrumenta%23U00e7%23U00e3o e automa%23U00e7%23U00e3o industrial.webp',
+          alt: 'FAT e SAT em instrumentação e automação industrial'
+        },
+        'blog-ia-na-industria.html': {
+          src: 'IA na Ind%23U00fastria Manuten%23U00e7%23U00e3o, Qualidade e Produ%23U00e7%23U00e3o.webp',
+          alt: 'IA na Indústria: Manutenção, Qualidade e Produção'
+        },
+        'blog-inspecao-instrumentos-area-classificada.html': {
+          src: 'Inspe%23U00e7%23U00e3o de Instrumentos em %23U00c1rea Classificada.webp',
+          alt: 'Inspeção de Instrumentos em Área Classificada'
+        },
+        'blog-mtbf-mttr-disponibilidade.html': {
+          src: 'MTBF, MTTR e Disponibilidade indicadores para manuten%23U00e7%23U00e3o industrial.webp',
+          alt: 'MTBF, MTTR e Disponibilidade: indicadores para manutenção industrial'
+        },
+        'blog-pareto-falhas-manutencao.html': {
+          src: 'Pareto de Falhas como priorizar manuten%23U00e7%23U00e3o e RCA.webp',
+          alt: 'Pareto de Falhas: como priorizar manutenção e RCA'
+        },
+        'blog-sobressalentes-criticidade.html': {
+          src: 'Sobressalentes cr%23U00edticos como estimar estoque m%23U00ednimo.webp',
+          alt: 'Sobressalentes críticos: como estimar estoque mínimo'
+        },
+        'blog-vazao-vapor-saturado.html': {
+          src: 'Vaz%23U00e3o de Vapor Saturado em Tubula%23U00e7%23U00e3o.webp',
+          alt: 'Vazão de Vapor Saturado em Tubulação'
+        },
+        'blog-vibracao-rms-pico-pico-a-pico.html': {
+          src: 'Vibra%23U00e7%23U00e3o RMS, pico e pico a pico em manuten%23U00e7%23U00e3o preditiva.webp',
+          alt: 'Vibração RMS, pico e pico a pico em manutenção preditiva'
+        },
+        'blog-calibracao-analisadores-processo.html': {
+          src: 'Calibra%23U00e7%23U00e3o e Diagn%23U00f3stico de Analisadores de Processo.webp',
+          alt: 'Calibração e Diagnóstico de Analisadores de Processo'
+        },
+        'blog-calibracao-balanca-industrial.html': {
+          src: 'Calibra%23U00e7%23U00e3o de Balan%23U00e7a Industrial e C%23U00e9lulas de Carga.webp',
+          alt: 'Calibração de Balança Industrial e Células de Carga'
+        },
+        'blog-calibracao-cartao-analogico-clp.html': {
+          src: 'Calibra%23U00e7%23U00e3o de Cart%23U00e3o Anal%23U00f3gico CLPDCS raw, mA e engenharia.webp',
+          alt: 'Calibração de Cartão Analógico CLP/DCS: raw, mA e engenharia'
+        },
+        'blog-calibracao-conversor-ip-pi.html': {
+          src: 'Calibra%23U00e7%23U00e3o de Conversor IP e PI 4-20 mA e 3-15 psi.webp',
+          alt: 'Calibração de Conversor I/P e P/I: 4-20 mA e 3-15 psi'
+        },
+        'blog-calibracao-indicador-controlador.html': {
+          src: 'Calibra%23U00e7%23U00e3o de Indicador e Controlador Industrial.webp',
+          alt: 'Calibração de Indicador e Controlador Industrial'
+        },
+        'blog-calibracao-instrumentos-industriais.html': {
+          src: 'Calibra%23U00e7%23U00e3o de Instrumentos Industriais Erro, Toler%23U00e2ncia e Confiabilidade.webp',
+          alt: 'Calibração de Instrumentos Industriais: Erro, Tolerância e Confiabilidade'
+        },
+        'blog-calibracao-manometro.html': {
+          src: 'Calibra%23U00e7%23U00e3o de Man%23U00f4metro classe, erro e histerese.webp',
+          alt: 'Calibração de Manômetro: classe, erro e histerese'
+        },
+        'blog-calibracao-totalizador-vazao.html': {
+          src: 'Calibra%23U00e7%23U00e3o de Totalizador de Vaz%23U00e3o erro e K-factor.webp',
+          alt: 'Calibração de Totalizador de Vazão: erro e K-factor'
+        },
+        'blog-calibracao-transmissor-dp-vazao.html': {
+          src: 'Calibra%23U00e7%23U00e3o de Transmissor DP de Vaz%23U00e3o com Raiz Quadrada.webp',
+          alt: 'Calibração de Transmissor DP de Vazão com Raiz Quadrada'
+        },
+        'blog-calibracao-transmissor-nivel-dp.html': {
+          src: 'Calibra%23U00e7%23U00e3o de Transmissor de N%23U00edvel DP pontos e mA.webp',
+          alt: 'Calibração de Transmissor de Nível DP: pontos e mA'
+        },
+        'blog-calibracao-transmissor-pressao.html': {
+          src: 'Calibra%23U00e7%23U00e3o de Transmissor de Press%23U00e3o erro, span e 4-20 mA.webp',
+          alt: 'Calibração de Transmissor de Pressão: erro, span e 4-20 mA'
+        },
+        'blog-calibracao-transmissor-temperatura.html': {
+          src: 'Calibra%23U00e7%23U00e3o de Transmissor de Temperatura RTD e Termopar.webp',
+          alt: 'Calibração de Transmissor de Temperatura RTD e Termopar'
+        },
+        'blog-calibracao-valvula-controle.html': {
+          src: 'Calibra%23U00e7%23U00e3o de V%23U00e1lvula de Controle 4-20 mA.webp',
+          alt: 'Calibração de Válvula de Controle 4-20 mA'
+        },
+        'blog-calibracao-phmetro.html': {
+          src: 'Calibra%23U00e7%23U00e3o de pHmetro Slope, Offset e Buffer.webp',
+          alt: 'Calibração de pHmetro: Slope, Offset e Buffer'
+        },
+        'blog-histerese-pressostato-termostato.html': {
+          src: 'Histerese de Pressostato e Termostato.webp',
+          alt: 'Histerese de Pressostato e Termostato'
+        },
+        'blog-lsi-langelier-agua.html': {
+          src: '%23U00cdndice de Langelier LSI em %23U00e1gua industrial.webp',
+          alt: 'Índice de Langelier LSI em água industrial'
+        },
+        'blog-bomba-dosadora-quimica.html': {
+          src: 'Bomba Dosadora Qu%23U00edmica como calcular vaz%23U00e3o em Lh.webp',
+          alt: 'Bomba Dosadora Química: como calcular vazão em L/h'
+        },
+        'blog-condutividade-tds.html': {
+          src: 'Bomba Dosadora Qu%23U00edmica Condutividade, TDS e Compensa%23U00e7%23U00e3o de Temperatura.webp',
+          alt: 'Condutividade, TDS e Compensação de Temperatura'
+        },
+        'blog-dosagem-quimica-ppm.html': {
+          src: 'Dosagem Qu%23U00edmica em ppm e mgL.webp',
+          alt: 'Dosagem Química em ppm e mg/L'
+        },
+        'blog-dosagem-cloro-livre.html': {
+          src: 'Dosagem de Cloro Livre em %23U00c1gua Industrial.webp',
+          alt: 'Dosagem de Cloro Livre em Água Industrial'
+        },
+        'blog-mistura-diluicao-solucoes.html': {
+          src: 'Mistura e Dilui%23U00e7%23U00e3o de Solu%23U00e7%23U00f5es.webp',
+          alt: 'Mistura e Diluição de Soluções'
+        },
+        'blog-neutralizacao-ph-industrial.html': {
+          src: 'Neutraliza%23U00e7%23U00e3o %23U00c1cidoBase Industrial.webp',
+          alt: 'Neutralização Ácido/Base Industrial'
+        },
+        'blog-orp-mv-controle.html': {
+          src: 'ORP em mV Controle e Interpreta%23U00e7%23U00e3o Industrial.webp',
+          alt: 'ORP em mV: Controle e Interpretação Industrial'
+        },
+        'blog-tempo-amostragem-analisador.html': {
+          src: 'Tempo de Amostragem para Analisadores Online.webp',
+          alt: 'Tempo de Amostragem para Analisadores Online'
+        },
+        'blog-vazao-bomba-deslocamento-positivo.html': {
+          src: 'Vaz%23U00e3o de bomba de deslocamento positivo.webp',
+          alt: 'Vazão de bomba de deslocamento positivo'
+        },
+        'blog-volume-cilindro-horizontal-nivel.html': {
+          src: 'Volume em tanque cil%23U00edndrico horizontal por n%23U00edvel.webp',
+          alt: 'Volume em tanque cilíndrico horizontal por nível'
+        },
+        'blog-recuperacao-condensado-energia.html': {
+          src: 'Energia recuperada no retorno de condensado.webp',
+          alt: 'Energia recuperada no retorno de condensado'
+        },
+        'blog-purga-caldeira-tds.html': {
+          src: 'Purga de caldeira por TDS.webp',
+          alt: 'Purga de caldeira por TDS'
+        },
+        'blog-purga-torre-resfriamento.html': {
+          src: 'Purga em torre de resfriamento por ciclos de concentra%23U00e7%23U00e3o.webp',
+          alt: 'Purga em torre de resfriamento por ciclos de concentração'
+        },
+        'blog-golpe-ariete-joukowsky.html': {
+          src: 'Golpe de ar%23U00edete c%23U00e1lculo preliminar e riscos em tubula%23U00e7%23U00f5es.webp',
+          alt: 'Golpe de aríete: cálculo preliminar e riscos em tubulações'
+        },
+        'blog-vazao-vertedouro-canaleta.html': {
+          src: 'Medi%23U00e7%23U00e3o de vaz%23U00e3o em vertedouro e canaleta aberta.webp',
+          alt: 'Medição de vazão em vertedouro e canaleta aberta'
+        },
+        'blog-bocal-lavagem-cip.html': {
+          src: 'Bocais de lavagem e CIP vaz%23U00e3o, press%23U00e3o e consumo qu%23U00edmico.webp',
+          alt: 'Bocais de lavagem e CIP: vazão, pressão e consumo químico'
+        },
+        'blog-tanque-expansao-termica-agua.html': {
+          src: 'Tanque de expans%23U00e3o em %23U00e1gua quente e %23U00e1gua gelada.webp',
+          alt: 'Tanque de expansão em água quente e água gelada'
+        },
+        'blog-acumulador-hidraulico.html': {
+          src: 'Acumulador hidr%23U00e1ulico pr%23U00e9-carga, volume %23U00fatil e press%23U00e3o.webp',
+          alt: 'Acumulador hidráulico: pré-carga, volume útil e pressão'
+        },
+        'blog-forca-cilindro-hidraulico.html': {
+          src: 'For%23U00e7a de cilindro hidr%23U00e1ulico avan%23U00e7o, retorno e tempo de curso.webp',
+          alt: 'Força de cilindro hidráulico: avanço, retorno e tempo de curso'
+        },
+        'blog-vazamento-vacuo-pressure-decay.html': {
+          src: 'Teste de vazamento por pressure decay e v%23U00e1cuo.webp',
+          alt: 'Teste de vazamento por pressure decay e vácuo'
+        },
+        'blog-autonomia-cilindro-gas.html': {
+          src: 'Autonomia de Cilindro de G%23U00e1s Industrial.webp',
+          alt: 'Autonomia de Cilindro de Gás Industrial'
+        },
+        'blog-cavitacao-valvula-controle.html': {
+          src: 'Cavita%23U00e7%23U00e3o em V%23U00e1lvula de Controle.webp',
+          alt: 'Cavitação em Válvula de Controle'
+        },
+        'blog-consumo-nitrogenio-purga.html': {
+          src: 'Consumo de Nitrog%23U00eanio em Purga e Inertiza%23U00e7%23U00e3o.webp',
+          alt: 'Consumo de Nitrogênio em Purga e Inertização'
+        },
+        'blog-ppm-mg-m3-gases.html': {
+          src: 'Convers%23U00e3o ppm para mgm%23U00b3 em Gases.webp',
+          alt: 'Conversão ppm para mg/m³ em Gases'
+        },
+        'blog-rotametro-correcao-vazao.html': {
+          src: 'Corre%23U00e7%23U00e3o de Vaz%23U00e3o em Rot%23U00e2metro.webp',
+          alt: 'Correção de Vazão em Rotâmetro'
+        },
+        'blog-custo-ar-comprimido.html': {
+          src: 'Custo de Ar Comprimido Industrial.webp',
+          alt: 'Custo de Ar Comprimido Industrial'
+        },
+        'blog-cv-gases-valvula-controle.html': {
+          src: 'Cv para Gases em V%23U00e1lvula de Controle.webp',
+          alt: 'Cv para Gases em Válvula de Controle'
+        },
+        'blog-celula-carga-tanque.html': {
+          src: 'C%23U00e9lula de Carga para Tanques e Reatores.webp',
+          alt: 'Célula de Carga para Tanques e Reatores'
+        },
+        'blog-duto-exaustao-industrial.html': {
+          src: 'Dutos de Exaust%23U00e3o Industrial Vaz%23U00e3o, Velocidade e Di%23U00e2metro.webp',
+          alt: 'Dutos de Exaustão Industrial: Vazão, Velocidade e Diâmetro'
+        },
+        'blog-k-factor-vazao-pulsos.html': {
+          src: 'K-Factor em Medidores de Vaz%23U00e3o por Pulsos.webp',
+          alt: 'K-Factor em Medidores de Vazão por Pulsos'
+        },
+        'blog-massa-tanque-nivel.html': {
+          src: 'Massa em Tanque por N%23U00edvel e Densidade.webp',
+          alt: 'Massa em Tanque por Nível e Densidade'
+        },
+        'blog-npsh-bomba.html': {
+          src: 'NPSH de Bomba como evitar cavita%23U00e7%23U00e3o na suc%23U00e7%23U00e3o.webp',
+          alt: 'NPSH de Bomba: como evitar cavitação na sucção'
+        },
+        'blog-vazao-normalizada-gases.html': {
+          src: 'NPSH de Bomba Nm%23U00b3h, Sm%23U00b3h e m%23U00b3h Como Converter Vaz%23U00e3o de Gases.webp',
+          alt: 'Nm³/h, Sm³/h e m³/h: Como Converter Vazão de Gases'
+        },
+        'blog-dp-nivel-tanque-fechado.html': {
+          src: 'N%23U00edvel por Press%23U00e3o Diferencial em Tanque Fechado.webp',
+          alt: 'Nível por Pressão Diferencial em Tanque Fechado'
+        },
+        'blog-reynolds-regime-escoamento.html': {
+          src: 'N%23U00famero de Reynolds e Regime de Escoamento.webp',
+          alt: 'Número de Reynolds e Regime de Escoamento'
+        },
+        'blog-perda-carga-ar-comprimido.html': {
+          src: 'Perda de Carga em Ar Comprimido.webp',
+          alt: 'Perda de Carga em Ar Comprimido'
+        },
+        'blog-ponto-orvalho-ar-comprimido.html': {
+          src: 'Ponto de Orvalho em Ar Comprimido.webp',
+          alt: 'Ponto de Orvalho em Ar Comprimido'
+        },
+        'blog-potencia-bomba.html': {
+          src: 'Pot%23U00eancia de Bomba como estimar kW, cv e corrente.webp',
+          alt: 'Potência de Bomba: como estimar kW, cv e corrente'
+        },
+        'blog-purgador-vapor-condensado.html': {
+          src: 'Purgador de Vapor e Carga de Condensado.webp',
+          alt: 'Purgador de Vapor e Carga de Condensado'
+        },
+        'blog-reservatorio-ar-comprimido.html': {
+          src: 'Reservat%23U00f3rio de Ar Comprimido.webp',
+          alt: 'Reservatório de Ar Comprimido'
+        },
+        'blog-split-range-4-20ma.html': {
+          src: 'como funciona em v%23U00e1lvulas de controle.webp',
+          alt: 'Split Range 4-20 mA: como funciona em válvulas de controle'
+        },
+        'blog-tempo-enchimento-tanque.html': {
+          src: 'Tempo de Enchimento de Tanque.webp',
+          alt: 'Tempo de Enchimento de Tanque'
+        },
+        'blog-tempo-residencia-tanque.html': {
+          src: 'Tempo de Resid%23U00eancia em Tanques Industriais.webp',
+          alt: 'Tempo de Residência em Tanques Industriais'
+        },
+        'blog-velocidade-recomendada-tubulacao.html': {
+          src: 'Velocidade Recomendada em Tubula%23U00e7%23U00e3o como avaliar.webp',
+          alt: 'Velocidade Recomendada em Tubulação: como avaliar'
+        },
+        'blog-carga-termica-lote-aquecimento.html': {
+          src: 'Carga t%23U00e9rmica de lote como estimar aquecimento e resfriamento.webp',
+          alt: 'Carga térmica de lote: como estimar aquecimento e resfriamento'
+        },
+        'blog-trocador-calor-carga-termica.html': {
+          src: 'Carga T%23U00e9rmica em Trocadores de Calor.webp',
+          alt: 'Carga Térmica em Trocadores de Calor'
+        },
+        'blog-lmtd-trocador-calor.html': {
+          src: 'LMTD em Trocadores de Calor.webp',
+          alt: 'LMTD em Trocadores de Calor'
+        },
+        'blog-perda-calor-tubulacao.html': {
+          src: 'Perda de Calor em Tubula%23U00e7%23U00e3o Industrial.webp',
+          alt: 'Perda de Calor em Tubulação Industrial'
+        },
+        'blog-termopoco-tempo-resposta.html': {
+          src: 'Termopo%23U00e7o e tempo de resposta por que a medi%23U00e7%23U00e3o atrasa.webp',
+          alt: 'Termopoço e tempo de resposta: por que a medição atrasa'
+        },
+        'blog-area-trocador-calor.html': {
+          src: '%23U00c1rea de Trocador de Calor por U e LMTD.webp',
+          alt: 'Área de Trocador de Calor por U e LMTD'
+        },
+        'blog-secao-barramento-cobre.html': {
+          src: 'Se%23U00e7%23U00e3o de barramento de cobre em pain%23U00e9is el%23U00e9tricos.webp',
+          alt: 'Seção de barramento de cobre em painéis elétricos'
+        },
+        'blog-queda-tensao-partida-motor.html': {
+          src: 'Queda de tens%23U00e3o na partida de motor.webp',
+          alt: 'Queda de tensão na partida de motor'
+        },
+        'blog-partida-estrela-triangulo-corrente.html': {
+          src: 'Corrente de partida estrela-tri%23U00e2ngulo.webp',
+          alt: 'Corrente de partida estrela-triângulo'
+        },
+        'blog-consumo-energia-resistencia-aquecimento.html': {
+          src: 'Consumo de energia de resist%23U00eancia de aquecimento.webp',
+          alt: 'Consumo de energia de resistência de aquecimento'
+        },
+        'blog-corrente-neutro-trifasico.html': {
+          src: 'Corrente de neutro em sistemas trif%23U00e1sicos desequilibrados.webp',
+          alt: 'Corrente de neutro em sistemas trifásicos desequilibrados'
+        },
+        'blog-tempo-aceleracao-motor-inercia.html': {
+          src: 'Tempo de acelera%23U00e7%23U00e3o de motor e carga de alta in%23U00e9rcia.webp',
+          alt: 'Tempo de aceleração de motor e carga de alta inércia'
+        },
+        'blog-corrente-partida-motor.html': {
+          src: 'Corrente de partida de motor como interpretar em campo.webp',
+          alt: 'Corrente de partida de motor: como interpretar em campo'
+        },
+        'blog-desequilibrio-tensao-motor.html': {
+          src: 'Desequil%23U00edbrio de tens%23U00e3o em motor trif%23U00e1sico.webp',
+          alt: 'Desequilíbrio de tensão em motor trifásico'
+        },
+        'blog-bateria-ups-24vcc.html': {
+          src: 'Bateria UPS 24 Vcc para CLP e Instrumenta%23U00e7%23U00e3o.webp',
+          alt: 'Bateria UPS 24 Vcc para CLP e Instrumentação'
+        },
+        'blog-cabo-profibus-rs485.html': {
+          src: 'Cabo PROFIBUS e RS-485 comprimento, taxa e termina%23U00e7%23U00e3o.webp',
+          alt: 'Cabo PROFIBUS e RS-485: comprimento, taxa e terminação'
+        },
+        'blog-modbus-polling.html': {
+          src: 'Ciclo de Polling Modbus RTU.webp',
+          alt: 'Ciclo de Polling Modbus RTU'
+        },
+        'blog-economia-inversor-bomba-ventilador.html': {
+          src: 'Economia com Inversor em Bombas e Ventiladores.webp',
+          alt: 'Economia com Inversor em Bombas e Ventiladores'
+        },
+        'blog-ocupacao-eletroduto-cabos.html': {
+          src: 'Ocupa%23U00e7%23U00e3o de Eletroduto e Cabos.webp',
+          alt: 'Ocupação de Eletroduto e Cabos'
+        },
+        'blog-slip-motor-inducao.html': {
+          src: 'Slip de motor de indu%23U00e7%23U00e3o rota%23U00e7%23U00e3o s%23U00edncrona e escorregamento.webp',
+          alt: 'Slip de motor de indução: rotação síncrona e escorregamento'
+        },
+        'blog-thd-distorcao-harmonica.html': {
+          src: 'THD e harm%23U00f4nicas em sistemas el%23U00e9tricos industriais.webp',
+          alt: 'THD e harmônicas em sistemas elétricos industriais'
+        },
+        'blog-tempo-transmissao-serial-industrial.html': {
+          src: 'Tempo de Transmiss%23U00e3o em Redes Seriais Industriais.webp',
+          alt: 'Tempo de Transmissão em Redes Seriais Industriais'
+        },
+        'blog-tempo-descarga-capacitor.html': {
+          src: 'Tempo de descarga de capacitor em pain%23U00e9is industriais.webp',
+          alt: 'Tempo de descarga de capacitor em painéis industriais'
+        },
+        'blog-teste-de-loop-instrumentacao.html': {
+          src: 'Teste de Loop em Instrumenta%23U00e7%23U00e3o do Campo ao CLP.webp',
+          alt: 'Teste de Loop em Instrumentação: do Campo ao CLP'
+        },
+        'blog-ventilacao-painel-eletrico.html': {
+          src: 'Ventila%23U00e7%23U00e3o de Painel El%23U00e9trico.webp',
+          alt: 'Ventilação de Painel Elétrico'
+        },
+        'blog-indice-polarizacao-dar.html': {
+          src: 'indice de Polariza%23U00e7%23U00e3o e DAR em testes de isola%23U00e7%23U00e3o.webp',
+          alt: 'Índice de Polarização e DAR em testes de isolação'
+        },
+        'blog-densidade-api-grau-api.html': {
+          src: 'Densidade e Grau API.webp',
+          alt: 'Densidade e Grau API'
+        },
+        'blog-gemeo-digital-instrumentacao.html': {
+          src: 'img-gemeo-digital-instrumentacao.webp',
+          alt: 'Gêmeo Digital Industrial: instrumentação e dados confiáveis'
+        },
+        'blog-industria-5-0.html': {
+          src: 'img-industria-5-0.webp',
+          alt: 'Indústria 5.0: Integração Homem-Máquina na Automação Industrial'
+        },
+        'blog-instrumentacao-industrial.html': {
+          src: 'img-instrumentacao-industrial.webp',
+          alt: 'Instrumentação Industrial: o que é e por que é essencial na automação'
+        },
+        'blog-perda-carga-filtro.html': {
+          src: 'Perda de Calor em Tubula%23U00e7%23U00e3o Industrial.webp',
+          alt: 'Perda de Carga em Filtro Industrial'
+        }
       };
       document.querySelectorAll('.blog-card').forEach(function (card) {
         const link = card.querySelector('a[href^="blog-"]');
