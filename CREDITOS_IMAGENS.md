@@ -2,6 +2,18 @@
 
 Este arquivo registra a origem das fotografias externas usadas no site ALOGY. A inclusão de uma imagem não significa que ela retrate equipe, cliente, instalação, projeto ou serviço executado pela ALOGY.
 
+## Imagens históricas de casos sem autorização e proveniência registradas
+
+- Uso no site: sem uso após auditoria visual de 18 de julho de 2026
+- Página corrigida: `cases.html`
+- Arquivos: `destilaria-scada.webp` e `supervisorio-modernizado.jpg`
+- Descrição factual de `destilaria-scada.webp`: monitor com sinótico em uma sala de controle; a janela expõe instalação industrial, identificação em estrutura externa e um veículo
+- Descrição factual de `supervisorio-modernizado.jpg`: captura de HMI/SCADA com marca ALOGY, usuário, data e hora, TAGs, setpoints, valores de processo e alarmes visíveis
+- Origem, autor, autorização ou licença e data de obtenção: não registrados no repositório
+- Motivo da retirada: a primeira fotografia pode identificar uma instalação privada; a segunda expõe dados operacionais e de acesso de uma interface real. Sem autorização e proveniência documentadas, nenhuma das duas é adequada para publicação.
+- Tratamento: associações públicas removidas dos cartões; arquivos preservados para rastreabilidade; textos e links dos casos mantidos; áreas visuais usam o fundo neutro já existente
+- Critério editorial: ausência de fotografia foi preferida até que a ALOGY possa comprovar titularidade ou autorização e fornecer ativos sem dados sensíveis
+
 ## Banners históricos sem proveniência verificável — início e cursos
 
 - Uso no site: sem uso após auditoria visual de 18 de julho de 2026
@@ -37,7 +49,8 @@ Este arquivo registra a origem das fotografias externas usadas no site ALOGY. A 
 
 ## imagem-manometro-industrial-real.webp
 
-- Uso no site: `calculadora-calibracao-manometro.html`, capa e imagem interna de `blog-calibracao-manometro.html`
+- Uso no site: sem uso após auditoria visual de 18 de julho de 2026
+- Status editorial: retirada do artigo, da ferramenta, do cartão do Blog, das imagens sociais e do JSON-LD; o recorte ampliado revelou o logotipo WIKA legível no mostrador
 - Descrição: manômetro analógico instalado em tubulação de processo industrial
 - Fotógrafa: Peggy_Marco
 - Acervo: Pixabay
@@ -47,7 +60,7 @@ Este arquivo registra a origem das fotografias externas usadas no site ALOGY. A 
 - Licença: https://pixabay.com/service/license-summary/
 - Data de obtenção: 17 de julho de 2026
 - Tratamento aplicado: recorte central, redimensionamento para 960 × 540 px, remoção de metadados e conversão para WebP
-- Observação editorial: fotografia real usada apenas como contexto visual; sem pessoas reconhecíveis e sem logotipo comercial evidente
+- Observação editorial: o arquivo foi preservado para rastreabilidade, mas não deve ser publicado enquanto mantiver marca identificável; ausência de fotografia foi preferida mesmo com correspondência correta ao tipo de instrumento
 
 ## blog-capa-calibracao-dp-vazao.webp
 
