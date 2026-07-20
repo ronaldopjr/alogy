@@ -1,0 +1,82 @@
+name: Corrigir imagens dos cartoes do blog
+
+on:
+  push:
+    branches:
+      - agent/fix-blog-card-images-v2
+    paths:
+      - .github/workflows/fix-blog-card-images.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  patch-blog:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixar o repositorio
+        uses: actions/checkout@v4
+        with:
+          ref: agent/fix-blog-card-images-v2
+
+      - name: Aplicar fallback visual seguro aos cartoes
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          path = Path("blog.html")
+          text = path.read_text(encoding="utf-8")
+
+          replacements = [
+              (
+                  "    .blog-card .thumb img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .25s ease}\n",
+                  "    .blog-card .thumb img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .25s ease}\n"
+                  "    .blog-card .thumb img.blog-card-fallback{object-fit:contain;padding:20px;box-sizing:border-box;background:#fff}\n",
+              ),
+              (
+                  "        const cover = link ? coverByArticle[link.getAttribute('href')] : null;\n",
+                  "        const cover = link ? (coverByArticle[link.getAttribute('href')] || { src: 'logo-alogy.webp', alt: 'ALOGY Engenharia', fallback: true }) : null;\n",
+              ),
+              (
+                  "        img.decoding = 'async';\n",
+                  "        img.decoding = 'async';\n"
+                  "        if (cover.fallback) img.classList.add('blog-card-fallback');\n",
+              ),
+          ]
+
+          changed = False
+          for old, new in replacements:
+              if new in text:
+                  continue
+              if old not in text:
+                  raise RuntimeError(f"Trecho esperado nao encontrado: {old!r}")
+              text = text.replace(old, new, 1)
+              changed = True
+
+          if changed:
+              path.write_text(text, encoding="utf-8")
+              print("blog.html atualizado")
+          else:
+              print("blog.html ja estava atualizado")
+          PY
+
+      - name: Validar a alteracao
+        shell: bash
+        run: |
+          grep -F "blog-card-fallback" blog.html
+          grep -F "logo-alogy.webp', alt: 'ALOGY Engenharia', fallback: true" blog.html
+
+      - name: Publicar a correcao na branch
+        shell: bash
+        run: |
+          if git diff --quiet -- blog.html; then
+            echo "Nenhuma alteracao pendente."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add blog.html
+          git commit -m "Corrige imagens dos cartoes do blog"
+          git push origin HEAD:agent/fix-blog-card-images-v2
