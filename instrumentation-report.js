@@ -71,8 +71,7 @@
     doc.text('Página ' + pageNumber, 192, pageHeight - 9, { align: 'right' });
   }
 
-  async function downloadPdf(options) {
-    const config = options || {};
+  async function generatePdf(config, filename) {
     const jsPDF = await loadJsPdf();
     const doc = new jsPDF({ unit: 'mm', format: 'a4', orientation: 'portrait' });
     const pageWidth = doc.internal.pageSize.getWidth();
@@ -133,8 +132,8 @@
       doc.setFontSize(9.5);
       doc.setTextColor(35, 50, 65);
 
-      if (!section.lines.length) section.lines.push('Não informado.');
-      section.lines.forEach((line) => {
+      const lines = section.lines.length ? section.lines : ['Não informado.'];
+      lines.forEach((line) => {
         const textLines = doc.splitTextToSize('• ' + line, maxWidth);
         ensureSpace(textLines.length * 4.8 + 2);
         doc.text(textLines, left, y);
@@ -144,9 +143,22 @@
     });
 
     addFooter(doc, pageNumber);
-    const filename = safeFilename(config.filename);
     doc.save(filename);
-    return { filename, pages: pageNumber };
+    return pageNumber;
+  }
+
+  function notifyError(error) {
+    console.error('[ALOGY] Falha ao gerar relatório PDF:', error);
+    window.dispatchEvent(new CustomEvent('alogy:report-error', {
+      detail: { message: error && error.message ? error.message : 'Falha ao gerar o relatório PDF.' }
+    }));
+  }
+
+  function downloadPdf(options) {
+    const config = options || {};
+    const filename = safeFilename(config.filename);
+    generatePdf(config, filename).catch(notifyError);
+    return { filename };
   }
 
   window.InstrumentationReport = Object.freeze({ downloadPdf });
