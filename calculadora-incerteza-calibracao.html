@@ -2,215 +2,54 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Calculadora de Incerteza de Calibração | ALOGY Engenharia</title>
-  <meta name="description" content="Calcule incerteza combinada e incerteza expandida de calibração a partir de padrão, resolução, repetibilidade, deriva, ambiente e tolerância do processo."/>
-  <meta name="robots" content="index,follow" />
-  <meta name="theme-color" content="#062138" />
-  <link rel="canonical" href="https://www.alogy.com.br/calculadora-incerteza-calibracao.html" />
+  <meta name="description" content="Esta ferramenta foi consolidada na calculadora completa de incerteza de calibração, TUR, TAR e regra de decisão." />
+  <meta name="robots" content="noindex,follow" />
+  <meta name="theme-color" content="#004b80" />
+  <link rel="canonical" href="https://www.alogy.com.br/calculadora-incerteza-calibracao-tur-tar.html" />
+  <meta http-equiv="refresh" content="5;url=calculadora-incerteza-calibracao-tur-tar.html" />
   <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
-  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png" />
-  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <link rel="stylesheet" href="style.css" />
   <script src="app.js" defer></script>
-  <meta property="og:locale" content="pt_BR" />
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="ALOGY Engenharia" />
-  <meta property="og:title" content="Calculadora de Incerteza de Calibração" />
-  <meta property="og:description" content="Calcule incerteza combinada e incerteza expandida em calibração de instrumentos industriais." />
-  <meta property="og:url" content="https://www.alogy.com.br/calculadora-incerteza-calibracao.html" />
-  <meta property="og:image" content="https://www.alogy.com.br/favicon-512x512.png" />
-  <meta name="twitter:card" content="summary_large_image" />
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"WebApplication","name":"Calculadora de Incerteza de Calibração","url":"https://www.alogy.com.br/calculadora-incerteza-calibracao.html","applicationCategory":"EngineeringApplication","operatingSystem":"Web","description":"Calculadora online para estimar incerteza combinada, incerteza expandida, contribuição por fonte e relação entre tolerância e incerteza em calibração de instrumentos industriais.","publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"}}
-  </script>
-  <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"O que é incerteza de calibração?","acceptedAnswer":{"@type":"Answer","text":"É uma estimativa da dúvida associada ao resultado de uma medição ou calibração. Normalmente é expressa como incerteza expandida, usando um fator de abrangência como k igual a 2."}},{"@type":"Question","name":"Qual a diferença entre incerteza combinada e expandida?","acceptedAnswer":{"@type":"Answer","text":"A incerteza combinada reúne as fontes de incerteza por soma quadrática. A incerteza expandida é a incerteza combinada multiplicada por um fator k, geralmente usado para comunicar o resultado final."}},{"@type":"Question","name":"Essa calculadora substitui certificado de calibração?","acceptedAnswer":{"@type":"Answer","text":"Não. A ferramenta é apenas apoio didático e pré-análise. Certificados, incerteza oficial, rastreabilidade, método, graus de liberdade e decisão de conformidade devem seguir procedimento aprovado e responsável técnico."}},{"@type":"Question","name":"Posso comparar a incerteza com a tolerância do processo?","acceptedAnswer":{"@type":"Answer","text":"Sim, como apoio inicial. A ferramenta calcula uma relação entre tolerância informada e incerteza expandida, mas a regra de aceitação deve ser definida por procedimento, norma aplicável e responsável técnico."}}]}
+  {
+    "@context":"https://schema.org",
+    "@type":"WebPage",
+    "name":"Calculadora de Incerteza de Calibração — página consolidada",
+    "url":"https://www.alogy.com.br/calculadora-incerteza-calibracao.html",
+    "isPartOf":{"@type":"WebSite","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"},
+    "mainEntity":{"@type":"WebApplication","name":"Calculadora de Incerteza de Calibração, TUR e TAR","url":"https://www.alogy.com.br/calculadora-incerteza-calibracao-tur-tar.html"}
+  }
   </script>
   <style>
-    .calc-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
-    .mini-btn{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(0,107,177,.25);background:rgba(0,107,177,.08);color:#0b3a62;border-radius:12px;padding:10px 12px;font-weight:900;cursor:pointer;text-decoration:none;font:inherit}
-    .mini-btn:hover{background:rgba(0,107,177,.12)}.mini-btn.dark{background:#0b3a62;color:#fff;border-color:#0b3a62}
-    .calc-note.warn{border-color:rgba(245,158,11,.35);background:rgba(245,158,11,.10);color:#7c2d12}
-    .calc-note.danger{border-color:rgba(220,38,38,.35);background:rgba(220,38,38,.10);color:#7f1d1d}
-    .status-good{border-color:rgba(34,197,94,.35)!important;background:rgba(34,197,94,.10)!important;color:#166534!important}
-    .status-warn{border-color:rgba(245,158,11,.35)!important;background:rgba(245,158,11,.10)!important;color:#7c2d12!important}
-    .status-bad{border-color:rgba(239,68,68,.35)!important;background:rgba(239,68,68,.10)!important;color:#991b1b!important}
-    .source-grid{display:grid;grid-template-columns:1.25fr repeat(3,1fr);gap:10px;align-items:end;margin-top:12px}
-    .source-head{font-weight:900;color:#0b3a62;font-size:.9rem}
-    .small-muted{color:var(--muted);font-size:.92rem;line-height:1.55}.faq details{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:14px;padding:14px;margin-top:10px;box-shadow:0 6px 16px rgba(0,0,0,.04)}.faq summary{cursor:pointer;font-weight:900;color:#0b3a62}.faq p{margin:10px 0 0;color:var(--muted)}
-    @media(max-width:900px){.source-grid{grid-template-columns:1fr}.source-head{display:none}.calc-actions .mini-btn{width:100%;justify-content:center}}
-    @media print{header,.social-floating,.fab-wrap,.cta-bar,footer,.calc-actions,.tools-hero .btn,.no-print{display:none!important}body{background:#fff}.container{max-width:100%;padding:0}.calc-card,.tools-hero{box-shadow:none;border:1px solid #ddd}.calc-layout{display:block}.calc-card{margin:12px 0}.calc-table th{background:#eee!important;color:#111!important}}
+    .redirect-wrap{max-width:760px;margin:70px auto;padding:0 18px}
+    .redirect-card{background:#fff;border:1px solid rgba(0,75,128,.16);border-radius:22px;padding:32px;box-shadow:0 16px 40px rgba(0,75,128,.10)}
+    .redirect-card h1{color:#0b3a62;margin-top:0;line-height:1.2}
+    .redirect-card p{color:#334155;line-height:1.7}
+    .redirect-card .btn{display:inline-flex;margin-top:8px;text-decoration:none}
+    .redirect-note{margin-top:20px;padding:14px;border-radius:14px;background:#eff6ff;color:#1e3a8a}
   </style>
-  <!-- Google AdSense - verificação de propriedade -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5586837114309500"
-     crossorigin="anonymous"></script>
 </head>
-<body class="tools-page alogy-stage3-forms">
+<body class="tech-page">
   <header>
-    <div class="container headbar"><a href="/" class="logo-wrapper" aria-label="Voltar para o início"><img src="logo-alogy.webp" alt="ALOGY Engenharia"  width="878"  height="308"  decoding="async" /></a>
-<button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menu"><i class="fas fa-bars"></i></button></div>
-    <nav class="desktop" aria-label="Menu principal"><div class="container navlinks"><a href="index.html">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="index.html#contato">Contato</a></div></nav>
-    <nav class="mobile" aria-label="Menu mobile"><a href="index.html">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="index.html#contato">Contato</a></nav>
+    <div class="container headbar">
+      <a href="/" class="logo-wrapper" aria-label="Voltar para o início"><img src="logo-alogy.webp" alt="ALOGY Engenharia" width="878" height="308" decoding="async" /></a>
+      <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menu"><i class="fas fa-bars"></i></button>
+    </div>
   </header>
-  <div class="social-floating" aria-label="Redes sociais"><a href="https://www.linkedin.com/company/alogyengenharia" class="linkedin" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a><a href="https://www.instagram.com/alogyengenharia" class="instagram" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="https://www.facebook.com/alogyengenharia" class="facebook" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><a href="https://www.youtube.com/@alogyengenharia" class="youtube" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a><a href="https://hotmart.com/pt-br/club/alogyengenharia" class="hotmart" target="_blank" rel="noopener" aria-label="Hotmart">H</a><a href="https://www.tiktok.com/@alogyengenharia" class="tiktok" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a></div>
-  <div class="fab-wrap" aria-label="Ações rápidas"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1!%20Vim%20pela%20calculadora%20de%20incerteza%20de%20calibra%C3%A7%C3%A3o%20da%20ALOGY.%20Gostaria%20de%20atendimento." target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
-
-  <main class="container" style="margin-top:18px">
-    <div style="margin-bottom:14px;display:flex;gap:10px;flex-wrap:wrap" class="no-print"><a class="floating-back-tools no-print" href="ferramentas.html"><i class="fas fa-arrow-left"></i> Voltar para Ferramentas</a><button class="btn print" type="button" onclick="window.print()"><i class="fas fa-print"></i> Imprimir</button><a class="btn secondary" href="calculadora-erro-calibracao.html"><i class="fas fa-clipboard-check"></i> Erro de calibração</a></div>
-    <section class="tools-hero"><h1>Calculadora de Incerteza de Calibração</h1><p>Estime incerteza combinada e incerteza expandida a partir de fontes comuns em calibração: padrão, resolução, repetibilidade, deriva, ambiente e fontes adicionais. Use como apoio para estudo, pré-análise e revisão técnica inicial.</p></section>
-
-    <section class="calc-layout">
-      <div class="calc-card">
-        <h2><i class="fas fa-chart-simple"></i> Dados da medição</h2>
-        <p>Informe a unidade, o valor de referência e as principais fontes de incerteza. Use sempre a mesma unidade em todos os campos.</p>
-        <div class="calc-grid">
-          <div class="field"><label for="tag">Instrumento / TAG</label><input id="tag" type="text" value="TT-101" placeholder="Ex.: TT-101, PT-205, balança..."></div>
-          <div class="field"><label for="unidade">Unidade</label><input id="unidade" type="text" value="°C" placeholder="°C, bar, kg, %, mA..."></div>
-          <div class="field"><label for="valor_ref">Valor de referência</label><input id="valor_ref" type="number" step="any" value="100"></div>
-          <div class="field"><label for="k_final">Fator de abrangência k</label><input id="k_final" type="number" step="any" value="2"></div>
-          <div class="field"><label for="tolerancia">Tolerância / EMP total (opcional)</label><input id="tolerancia" type="number" step="any" value="2"></div>
-          <div class="field"><label for="casas">Casas decimais</label><input id="casas" type="number" step="1" min="0" max="8" value="4"></div>
-        </div>
-        <div class="calc-note">Todos os valores abaixo devem estar na mesma unidade. Exemplo: se a unidade for °C, informe padrão, resolução, repetibilidade e tolerância em °C.</div>
-      </div>
-      <div class="calc-card">
-        <h2><i class="fas fa-circle-info"></i> Como a ferramenta combina as fontes</h2>
-        <p>A ferramenta converte cada fonte para incerteza padrão e combina por raiz da soma dos quadrados. Depois aplica o fator k para obter a incerteza expandida.</p>
-        <div class="calc-result" style="grid-template-columns:1fr 1fr"><div class="result-box"><span>Fórmula base</span><strong>uc = √Σu²</strong></div><div class="result-box"><span>Expandida</span><strong>U = k × uc</strong></div></div>
-        <div class="calc-note warn">Resultado orientativo. Cálculo oficial de incerteza pode exigir graus de liberdade efetivos, correlação, distribuição adequada, procedimento validado e rastreabilidade metrológica.</div>
-      </div>
+  <main class="redirect-wrap">
+    <section class="redirect-card">
+      <h1>Esta calculadora foi atualizada</h1>
+      <p>A calculadora de incerteza de calibração foi consolidada em uma ferramenta mais completa, que reúne erro por ponto, incerteza combinada e expandida, TUR, TAR, guard band, regra de decisão e memorial técnico preliminar.</p>
+      <p>Você será encaminhado automaticamente para a versão atual. O endereço antigo continua disponível apenas para preservar links e favoritos existentes.</p>
+      <a class="btn" href="calculadora-incerteza-calibracao-tur-tar.html">Abrir calculadora completa</a>
+      <div class="redirect-note" role="status">Redirecionamento automático em alguns segundos.</div>
     </section>
-
-    <section class="calc-layout">
-      <div class="calc-card">
-        <h2><i class="fas fa-list-ul"></i> Fontes de incerteza</h2>
-        <div class="source-grid">
-          <div class="source-head">Fonte</div><div class="source-head">Valor informado</div><div class="source-head">Tipo</div><div class="source-head">Divisor</div>
-          <div class="field"><label>Padrão de referência / certificado</label><span class="small-muted">Use a incerteza expandida do certificado.</span></div><div class="field"><input id="u_padrao" type="number" step="any" value="0.10"></div><div class="field"><select id="tipo_padrao"><option value="cert">Expandida U do certificado</option><option value="std">Já é incerteza padrão u</option></select></div><div class="field"><input id="k_cert" type="number" step="any" value="2"></div>
-          <div class="field"><label>Resolução do instrumento</label><span class="small-muted">Divisão mínima do instrumento ou indicador.</span></div><div class="field"><input id="resolucao" type="number" step="any" value="0.01"></div><div class="field"><select disabled><option>Retangular</option></select></div><div class="field"><input disabled value="√12"></div>
-          <div class="field"><label>Repetibilidade</label><span class="small-muted">Desvio padrão das leituras repetidas.</span></div><div class="field"><input id="desvio" type="number" step="any" value="0.03"></div><div class="field"><select disabled><option>Tipo A</option></select></div><div class="field"><input id="n_leituras" type="number" step="1" min="1" value="3"></div>
-          <div class="field"><label>Deriva / estabilidade</label><span class="small-muted">Limite máximo estimado: ± valor.</span></div><div class="field"><input id="deriva" type="number" step="any" value="0.05"></div><div class="field"><select disabled><option>Retangular</option></select></div><div class="field"><input disabled value="√3"></div>
-          <div class="field"><label>Ambiente / influência externa</label><span class="small-muted">Temperatura ambiente, montagem, cabo, instalação etc.</span></div><div class="field"><input id="ambiente" type="number" step="any" value="0.02"></div><div class="field"><select disabled><option>Retangular</option></select></div><div class="field"><input disabled value="√3"></div>
-          <div class="field"><label>Fonte adicional</label><span class="small-muted">Histerese, linearidade, método, operador ou outra fonte.</span></div><div class="field"><input id="extra" type="number" step="any" value="0"></div><div class="field"><select id="tipo_extra"><option value="ret">Retangular ± valor</option><option value="std">Já é padrão u</option></select></div><div class="field"><input disabled value="√3 ou 1"></div>
-        </div>
-        <div class="calc-actions"><button class="mini-btn dark" type="button" onclick="calcInc()"><i class="fas fa-calculator"></i> Calcular</button><button class="mini-btn" type="button" onclick="exemploTemp()">Exemplo temperatura</button><button class="mini-btn" type="button" onclick="exemploPressao()">Exemplo pressão</button><button class="mini-btn" type="button" onclick="copiarResultado()"><i class="fas fa-copy"></i> Copiar resultado</button></div>
-      </div>
-      <div class="calc-card">
-        <h2><i class="fas fa-square-poll-vertical"></i> Resultado</h2>
-        <div class="calc-result" style="grid-template-columns:1fr 1fr">
-          <div class="result-box"><span>Incerteza combinada uc</span><strong id="r_uc">-</strong></div>
-          <div class="result-box"><span>Incerteza expandida U</span><strong id="r_U">-</strong></div>
-          <div class="result-box"><span>Resultado de calibração</span><strong id="r_resultado">-</strong></div>
-          <div class="result-box" id="box_tur"><span>Tolerância / U</span><strong id="r_tur">-</strong></div>
-        </div>
-        <div class="calc-note" id="r_status">Informe os dados para calcular.</div>
-        <h3 style="margin-top:18px">Contribuição por fonte</h3>
-        <div class="calc-table-wrap"><table class="calc-table"><thead><tr><th>Fonte</th><th>u padrão</th><th>Contribuição</th></tr></thead><tbody id="tbody_fontes"></tbody></table></div>
-      </div>
-    </section>
-
-    <section class="calc-layout">
-      <div class="calc-card">
-        <h2><i class="fas fa-scale-balanced"></i> Leitura prática do resultado</h2>
-        <p>Quanto maior a contribuição de uma fonte, maior o impacto dela na incerteza final. Em calibração de campo, fontes comuns são padrão de referência, resolução, repetibilidade, deriva, ambiente e método.</p>
-        <ul style="margin-left:18px;color:var(--text)"><li>Se a resolução domina, o instrumento pode ser grosseiro para a tolerância desejada.</li><li>Se o padrão domina, pode ser necessário usar padrão mais adequado.</li><li>Se repetibilidade domina, revise estabilidade do processo, técnica de leitura e instalação.</li><li>Se a relação tolerância/U for muito baixa, a decisão de conformidade fica mais crítica.</li></ul>
-      </div>
-      <div class="calc-card faq">
-        <h2><i class="fas fa-circle-question"></i> Perguntas frequentes</h2>
-        <details><summary>Esta ferramenta gera incerteza oficial?</summary><p>Não. Ela é apenas apoio didático e pré-análise. A incerteza oficial deve seguir procedimento aprovado, rastreabilidade, método validado e responsável técnico.</p></details>
-        <details><summary>Por que algumas fontes são divididas por raiz de 3?</summary><p>Quando uma fonte é informada como limite máximo ± valor e se assume distribuição retangular, a incerteza padrão aproximada é o limite dividido por raiz de 3.</p></details>
-        <details><summary>Por que a resolução é dividida por raiz de 12?</summary><p>Para um indicador digital, a variação de arredondamento costuma ser considerada como uma distribuição retangular de uma divisão completa. A incerteza padrão aproximada é a resolução dividida por raiz de 12.</p></details>
-        <details><summary>O que significa k igual a 2?</summary><p>É um fator de abrangência usado para obter a incerteza expandida. Em muitos certificados é usado k próximo de 2, mas o valor correto depende do método e do relatório metrológico.</p></details>
-      </div>
-    </section>
-
-    <section class="calc-card" style="margin-top:18px">
-      <h2><i class="fas fa-triangle-exclamation"></i> Aviso de responsabilidade</h2>
-      <p>Esta ferramenta é apenas para estudo, apoio técnico e pré-análise. Ela não substitui certificado de calibração, procedimento metrológico, cálculo oficial de incerteza, normas aplicáveis, rastreabilidade, análise de conformidade, laudo, ART/RRT ou avaliação de profissional habilitado. A ALOGY Engenharia não se responsabiliza por decisões tomadas exclusivamente com base nos resultados desta ferramenta.</p>
-    </section>
-
-    <section class="cta-bar"><h2>Precisa validar calibração, tolerância ou incerteza no seu processo?</h2><p>A ALOGY pode apoiar com análise técnica, instrumentação, automação, documentação e critérios de aceitação para aplicações industriais.</p><a class="btn" href="index.html#contato"><i class="fab fa-whatsapp"></i> Falar com a ALOGY</a></section>
-  
-    <!-- ALOGY_REVISAO_TECNICA_FERRAMENTA -->
-    <section class="calc-card" aria-label="Orientação técnica complementar">
-      <h2><i class="fas fa-clipboard-check"></i> Como usar esta ferramenta na prática</h2>
-      <p>Calcule incerteza combinada e incerteza expandida de calibração a partir de padrão, resolução, repetibilidade, deriva, ambiente e tolerância do processo. Nesta revisão, o conteúdo foi ampliado para deixar mais claro quando usar a ferramenta, quais dados precisam ser conferidos e como transformar o número calculado em uma decisão técnica.</p>
-      <h3>Quando aplicar</h3>
-      <p>Use em bancada, campo ou laboratório para preparar pontos de teste, comparar indicação do instrumento com referência rastreável e decidir se o equipamento está aprovado, reprovado ou se precisa de ajuste.</p>
-      <h3>Dados que merecem conferência</h3>
-      <p>Antes de confiar no resultado da ferramenta <strong>Calculadora de Incerteza de Calibração</strong>, confira principalmente: Instrumento / TAG, Unidade, Valor de referência, Fator de abrangência k, Tolerância / EMP total (opcional), Casas decimais. Pequenos erros de unidade, ponto decimal ou condição de operação podem gerar conclusões erradas.</p>
-      <ul>
-          <li>Instrumento / TAG</li>
-          <li>Unidade</li>
-          <li>Valor de referência</li>
-          <li>Fator de abrangência k</li>
-          <li>Tolerância / EMP total (opcional)</li>
-          <li>Casas decimais</li>
-      </ul>
-      <h3>Como interpretar o resultado</h3>
-      <p>O resultado deve ser comparado com a tolerância do processo e com o erro máximo permitido definido no plano de calibração. Um erro pequeno no instrumento pode ser aceitável para utilidades, mas crítico em malhas de segurança, qualidade ou dosagem.</p>
-      <p>Quando a página apresentar campos de resultado como Fórmula base, Expandida, Incerteza combinada uc, Incerteza expandida U, Resultado de calibração, Tolerância / U, use esses valores para comparar o cenário calculado com limite operacional, tolerância do processo, histórico de manutenção ou especificação de fabricante.</p>
-      <h3>Checklist rápido de validação</h3>
-      <ul>
-          <li>Confirme TAG, faixa LRV/URV, unidade de engenharia e damping antes do teste.</li>
-          <li>Use padrão de referência com resolução e incerteza adequadas ao instrumento em teste.</li>
-          <li>Registre as leituras de subida e descida para observar histerese, repetibilidade e retorno ao zero.</li>
-          <li>Quando houver ajuste, repita o ciclo completo antes de liberar o instrumento.</li>
-      </ul>
-      <h3>Limites da estimativa</h3>
-      <p>Esta ferramenta é indicada para estudo, triagem, conferência de campo e apoio à manutenção. Para projeto final, laudo, especificação de compra, alteração de segurança ou liberação de equipamento crítico, valide as premissas com normas aplicáveis, documentação do fabricante e profissional habilitado.</p>
-    </section>
-
   </main>
-
-  <footer><p>&copy; 2026 ALOGY Engenharia. Todos os direitos reservados.</p></footer>
+  <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
   <script>
-    const SQRT3=Math.sqrt(3), SQRT12=Math.sqrt(12);
-    function parseBrNumber(value){
-  const raw = String(value ?? '').trim();
-  if(!raw) return NaN;
-  const cleaned = raw.replace(/\s/g,'');
-  const normalized = cleaned.includes(',') ? cleaned.replace(/\./g,'').replace(',', '.') : cleaned;
-  const num = Number(normalized);
-  return Number.isFinite(num) ? num : NaN;
-}
-    function n(id){const v=parseBrNumber(document.getElementById(id).value);return Number.isFinite(v)?v:0}
-    function txt(id){return document.getElementById(id).value||''}
-    function fmt(v){const c=Math.max(0,Math.min(8,parseInt(document.getElementById('casas').value||4,10))); if(!Number.isFinite(v)) return '-'; return v.toLocaleString('pt-BR',{maximumFractionDigits:c,minimumFractionDigits:Math.min(c,4)}).replace(/,?0+$/,'')}
-    function calcInc(){
-      const unidade=txt('unidade')||'un'; const valor=n('valor_ref'); const k=Math.abs(n('k_final'))||2; const tol=Math.abs(n('tolerancia'));
-      const uPad = document.getElementById('tipo_padrao').value==='cert' ? Math.abs(n('u_padrao'))/(Math.abs(n('k_cert'))||2) : Math.abs(n('u_padrao'));
-      const uRes = Math.abs(n('resolucao'))/SQRT12;
-      const nleit = Math.max(1,Math.round(n('n_leituras')||1));
-      const uRep = Math.abs(n('desvio'))/Math.sqrt(nleit);
-      const uDer = Math.abs(n('deriva'))/SQRT3;
-      const uAmb = Math.abs(n('ambiente'))/SQRT3;
-      const uExt = document.getElementById('tipo_extra').value==='ret' ? Math.abs(n('extra'))/SQRT3 : Math.abs(n('extra'));
-      const fontes=[['Padrão / certificado',uPad],['Resolução',uRes],['Repetibilidade',uRep],['Deriva / estabilidade',uDer],['Ambiente / influência externa',uAmb],['Fonte adicional',uExt]];
-      const soma=fontes.reduce((a, f)=>a+f[1]*f[1],0); const uc=Math.sqrt(soma); const U=k*uc;
-      document.getElementById('r_uc').textContent=fmt(uc)+' '+unidade;
-      document.getElementById('r_U').textContent='± '+fmt(U)+' '+unidade+' (k='+fmt(k)+')';
-      document.getElementById('r_resultado').textContent=fmt(valor)+' ± '+fmt(U)+' '+unidade;
-      const tb=document.getElementById('tbody_fontes'); tb.innerHTML='';
-      fontes.forEach(([nome,u])=>{const perc=soma>0?(u*u/soma*100):0; tb.insertAdjacentHTML('beforeend',`<tr><td>${nome}</td><td>${fmt(u)} ${unidade}</td><td>${fmt(perc)}%</td></tr>`)});
-      const tur = U>0 && tol>0 ? tol/U : NaN; const box=document.getElementById('box_tur'); box.classList.remove('status-good','status-warn','status-bad');
-      if(Number.isFinite(tur)){ document.getElementById('r_tur').textContent=fmt(tur)+':1'; if(tur>=4){box.classList.add('status-good')} else if(tur>=2){box.classList.add('status-warn')} else {box.classList.add('status-bad')} } else { document.getElementById('r_tur').textContent='-'; }
-      const st=document.getElementById('r_status'); st.className='calc-note';
-      if(!Number.isFinite(tur)){st.textContent='Resultado calculado. Informe a tolerância para comparar tolerância/U.'}
-      else if(tur>=4){st.textContent='Relação tolerância/U confortável para pré-análise. Confirme critérios no procedimento aplicável.'; st.classList.add('status-good')}
-      else if(tur>=2){st.textContent='Relação tolerância/U intermediária. A decisão de conformidade pode exigir mais cuidado.'; st.classList.add('status-warn')}
-      else{st.textContent='Relação tolerância/U baixa. Avalie padrão, método, resolução e critério de aceitação antes de decidir conformidade.'; st.classList.add('status-bad')}
-    }
-    function exemploTemp(){document.getElementById('tag').value='TT-101';document.getElementById('unidade').value='°C';document.getElementById('valor_ref').value=100;document.getElementById('u_padrao').value=0.10;document.getElementById('k_cert').value=2;document.getElementById('resolucao').value=0.01;document.getElementById('desvio').value=0.03;document.getElementById('n_leituras').value=3;document.getElementById('deriva').value=0.05;document.getElementById('ambiente').value=0.02;document.getElementById('extra').value=0;document.getElementById('tolerancia').value=2;calcInc()}
-    function exemploPressao(){document.getElementById('tag').value='PT-205';document.getElementById('unidade').value='bar';document.getElementById('valor_ref').value=6;document.getElementById('u_padrao').value=0.012;document.getElementById('k_cert').value=2;document.getElementById('resolucao').value=0.001;document.getElementById('desvio').value=0.004;document.getElementById('n_leituras').value=5;document.getElementById('deriva').value=0.006;document.getElementById('ambiente').value=0.003;document.getElementById('extra').value=0.002;document.getElementById('tolerancia').value=0.12;calcInc()}
-    function copiarResultado(){calcInc(); const t=`Incerteza de calibração - ${txt('tag')}\nResultado: ${document.getElementById('r_resultado').textContent}\nuc: ${document.getElementById('r_uc').textContent}\nU: ${document.getElementById('r_U').textContent}\nTolerância/U: ${document.getElementById('r_tur').textContent}\nObservação: cálculo orientativo, não substitui certificado, procedimento ou responsável técnico.`; navigator.clipboard?.writeText(t);}
-    document.querySelectorAll('input,select').forEach(e=>e.addEventListener('input',calcInc)); calcInc();
+    window.setTimeout(function(){ window.location.replace('calculadora-incerteza-calibracao-tur-tar.html'); }, 5000);
   </script>
 </body>
 </html>
