@@ -32,7 +32,7 @@ jobs:
             ],
             'calculadora-erro-calibracao.html': [
               ('.print-sheet h1{font-size:20pt;margin:0 0 4mm;color:#000!important}', '.print-sheet .print-title{font-size:20pt;font-weight:700;margin:0 0 4mm;color:#000!important}'),
-              ('<h1>Relatório de cálculo — Erro de calibração</h1>', '<div class="print-title">Relatório de cálculo — Erro de calibração</div>'),
+              ('<section class="print-sheet" id="printSheet" aria-hidden="true"><h1>Relatório de cálculo — Erro de calibração</h1><p class="muted-print" id="printDate"></p><div id="printContent"></div></section>', '<section class="print-sheet" id="printSheet" aria-hidden="true"><div class="print-title">Relatório de cálculo — Erro de calibração</div><p class="muted-print" id="printDate"></p><div id="printContent"></div></section>'),
             ],
             'calculadora-erro-total-malha-instrumentacao.html': [
               ('.print-sheet h1{font-size:20pt;margin:0 0 4mm;color:#000!important}', '.print-sheet .print-title{font-size:20pt;font-weight:700;margin:0 0 4mm;color:#000!important}'),
@@ -40,7 +40,7 @@ jobs:
             ],
             'calculadora-lrv-urv-span.html': [
               ('#printSheet h1{font-size:20pt;margin:0 0 4px}', '#printSheet .print-title{font-size:20pt;font-weight:700;margin:0 0 4px}'),
-              ('<h1>Calculadora de LRV, URV e Span</h1>', '<div class="print-title">Calculadora de LRV, URV e Span</div>'),
+              ('<section id="printSheet" class="print-only" aria-label="Documento técnico para impressão">\n      <h1>Calculadora de LRV, URV e Span</h1>', '<section id="printSheet" class="print-only" aria-label="Documento técnico para impressão">\n      <div class="print-title">Calculadora de LRV, URV e Span</div>'),
             ],
             'calculadora-pt100.html': [
               ('.print-sheet h1{font-size:20pt;margin:0 0 4mm;color:#000!important}', '.print-sheet .print-title{font-size:20pt;font-weight:700;margin:0 0 4mm;color:#000!important}'),
@@ -52,11 +52,11 @@ jobs:
             ],
             'calculadora-temperatura-industrial.html': [
               ('.print-sheet h1{font-size:22px;margin:0 0 5px}', '.print-sheet .print-title{font-size:22px;font-weight:700;margin:0 0 5px}'),
-              ('<h1>Relatório de temperatura industrial</h1>', '<div class="print-title">Relatório de temperatura industrial</div>'),
+              ('</main><section aria-hidden="true" class="print-sheet" id="printSheet"><h1>Relatório de temperatura industrial</h1><p id="printDate"></p><div id="printContent"></div></section>', '</main><section aria-hidden="true" class="print-sheet" id="printSheet"><div class="print-title">Relatório de temperatura industrial</div><p id="printDate"></p><div id="printContent"></div></section>'),
             ],
             'calculadora-termopar.html': [
               ('.print-neutral-header h1{font-size:20pt;margin:0 0 4px;color:#111}', '.print-neutral-header .print-title{font-size:20pt;font-weight:700;margin:0 0 4px;color:#111}'),
-              ('<h1>Relatório de conversão de termopar</h1>', '<div class="print-title">Relatório de conversão de termopar</div>'),
+              ('<section class="print-only print-neutral-header"><h1>Relatório de conversão de termopar</h1><p>Documento técnico orientativo — sem identificação comercial.</p></section>', '<section class="print-only print-neutral-header"><div class="print-title">Relatório de conversão de termopar</div><p>Documento técnico orientativo — sem identificação comercial.</p></section>'),
             ],
           }
 
