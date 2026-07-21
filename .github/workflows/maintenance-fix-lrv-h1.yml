@@ -1,0 +1,33 @@
+name: Maintenance fix LRV H1
+on:
+  push:
+    paths:
+      - '.alogy-maintenance/fix-lrv-h1'
+permissions:
+  contents: write
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+      - name: Apply exact fix
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('calculadora-lrv-urv-span.html')
+          s=p.read_text()
+          old='<section id="printSheet" class="print-only" aria-label="Documento técnico para impressão">\n      <h1>Calculadora de LRV, URV e Span</h1>'
+          new='<section id="printSheet" class="print-only" aria-label="Documento técnico para impressão">\n      <h2 class="print-title">Calculadora de LRV, URV e Span</h2>'
+          assert s.count(old)==1
+          s=s.replace(old,new)
+          assert s.count('<h1>')==1
+          p.write_text(s)
+          PY
+          rm .alogy-maintenance/fix-lrv-h1
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add calculadora-lrv-urv-span.html .alogy-maintenance/fix-lrv-h1
+          git commit -m 'Corrige H1 duplicado em LRV URV span'
+          git push
