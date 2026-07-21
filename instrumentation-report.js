@@ -9,10 +9,20 @@
     if (loaderPromise) return loaderPromise;
 
     loaderPromise = new Promise((resolve, reject) => {
+      const fail = (message) => {
+        loaderPromise = null;
+        reject(new Error(message));
+      };
       const existing = document.querySelector('script[data-alogy-jspdf]');
       if (existing) {
-        existing.addEventListener('load', () => resolve(window.jspdf.jsPDF), { once: true });
-        existing.addEventListener('error', () => reject(new Error('Não foi possível carregar o gerador de PDF.')), { once: true });
+        existing.addEventListener('load', () => {
+          if (!window.jspdf || !window.jspdf.jsPDF) {
+            fail('A biblioteca de PDF foi carregada, mas não ficou disponível.');
+            return;
+          }
+          resolve(window.jspdf.jsPDF);
+        }, { once: true });
+        existing.addEventListener('error', () => fail('Não foi possível carregar o gerador de PDF.'), { once: true });
         return;
       }
 
@@ -24,12 +34,16 @@
       script.dataset.alogyJspdf = 'true';
       script.addEventListener('load', () => {
         if (!window.jspdf || !window.jspdf.jsPDF) {
-          reject(new Error('A biblioteca de PDF foi carregada, mas não ficou disponível.'));
+          script.remove();
+          fail('A biblioteca de PDF foi carregada, mas não ficou disponível.');
           return;
         }
         resolve(window.jspdf.jsPDF);
       }, { once: true });
-      script.addEventListener('error', () => reject(new Error('Não foi possível carregar o gerador de PDF.')), { once: true });
+      script.addEventListener('error', () => {
+        script.remove();
+        fail('Não foi possível carregar o gerador de PDF.');
+      }, { once: true });
       document.head.appendChild(script);
     });
 
@@ -67,7 +81,7 @@
     doc.setFont('helvetica', 'normal');
     doc.setFontSize(8);
     doc.setTextColor(90, 105, 120);
-    doc.text('ALOGY Engenharia — relatório orientativo', 18, pageHeight - 9);
+    doc.text('ALOGY Engenharia - relatório orientativo', 18, pageHeight - 9);
     doc.text('Página ' + pageNumber, 192, pageHeight - 9, { align: 'right' });
   }
 
@@ -134,7 +148,7 @@
 
       const lines = section.lines.length ? section.lines : ['Não informado.'];
       lines.forEach((line) => {
-        const textLines = doc.splitTextToSize('• ' + line, maxWidth);
+        const textLines = doc.splitTextToSize('- ' + line, maxWidth);
         ensureSpace(textLines.length * 4.8 + 2);
         doc.text(textLines, left, y);
         y += textLines.length * 4.8 + 1.5;
