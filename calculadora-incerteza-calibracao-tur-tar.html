@@ -94,8 +94,8 @@
           <div class="field"><label for="tag">Tag / instrumento</label><input id="tag" value="PT-101" /></div>
           <div class="field"><label for="servico">Serviço</label><input id="servico" value="Transmissor de pressão" /></div>
           <div class="field"><label for="unidade">Unidade de engenharia</label><input id="unidade" value="bar" /></div>
-          <div class="field"><label for="lrv">LRV / início de escala</label><input id="lrv" type="number" step="any" value="0" /></div>
-          <div class="field"><label for="urv">URV / fim de escala</label><input id="urv" type="number" step="any" value="10" /></div>
+          <div class="field"><label for="lrv">LRV / início de escala</label><input id="lrv" type="text" inputmode="decimal" autocomplete="off" value="0" /></div>
+          <div class="field"><label for="urv">URV / fim de escala</label><input id="urv" type="text" inputmode="decimal" autocomplete="off" value="10" /></div>
           <div class="field"><label for="criterio">Regra de decisão</label><select id="criterio"><option value="guard" selected>Guard band: |erro| + U ≤ tolerância</option><option value="simples">Simples: |erro| ≤ tolerância</option><option value="informativo">Informativo: não julgar aprovação</option></select></div>
         </div>
       </section>
@@ -110,24 +110,24 @@
       <section class="calc-card">
         <h2><i class="fas fa-bullseye"></i> Tolerância de aceitação</h2>
         <div class="field-grid">
-          <div class="field"><label for="tolAbs">Tolerância absoluta ±</label><input id="tolAbs" type="number" step="any" value="0.05" /><small>Na unidade de engenharia.</small></div>
-          <div class="field"><label for="tolSpan">Tolerância ± % do span</label><input id="tolSpan" type="number" step="any" value="0" /></div>
-          <div class="field"><label for="tolLeitura">Tolerância ± % da leitura</label><input id="tolLeitura" type="number" step="any" value="0" /></div>
-          <div class="field"><label for="tolMin">Tolerância mínima prática ±</label><input id="tolMin" type="number" step="any" value="0" /><small>Opcional. A ferramenta usa a maior entre tolerância calculada e mínima.</small></div>
+          <div class="field"><label for="tolAbs">Tolerância absoluta ±</label><input id="tolAbs" type="text" inputmode="decimal" autocomplete="off" value="0.05" /><small>Na unidade de engenharia.</small></div>
+          <div class="field"><label for="tolSpan">Tolerância ± % do span</label><input id="tolSpan" type="text" inputmode="decimal" autocomplete="off" value="0" /></div>
+          <div class="field"><label for="tolLeitura">Tolerância ± % da leitura</label><input id="tolLeitura" type="text" inputmode="decimal" autocomplete="off" value="0" /></div>
+          <div class="field"><label for="tolMin">Tolerância mínima prática ±</label><input id="tolMin" type="text" inputmode="decimal" autocomplete="off" value="0" /><small>Opcional. A ferramenta usa a maior entre tolerância calculada e mínima.</small></div>
         </div>
       </section>
       <section class="calc-card">
         <h2><i class="fas fa-flask-vial"></i> Padrão e componentes de incerteza</h2>
         <div class="field-grid">
-          <div class="field"><label for="uPadrao">Incerteza expandida do padrão ±</label><input id="uPadrao" type="number" step="any" value="0.01" /></div>
-          <div class="field"><label for="kPadrao">k do certificado do padrão</label><input id="kPadrao" type="number" step="any" value="2" /></div>
-          <div class="field"><label for="accPadrao">Exatidão/especificação do padrão ±</label><input id="accPadrao" type="number" step="any" value="0.02" /><small>Usado para TAR.</small></div>
-          <div class="field"><label for="resPadrao">Resolução do padrão</label><input id="resPadrao" type="number" step="any" value="0.001" /></div>
-          <div class="field"><label for="resUut">Resolução do instrumento calibrado</label><input id="resUut" type="number" step="any" value="0.01" /></div>
-          <div class="field"><label for="repStd">Desvio padrão de repetibilidade</label><input id="repStd" type="number" step="any" value="0.005" /></div>
+          <div class="field"><label for="uPadrao">Incerteza expandida do padrão ±</label><input id="uPadrao" type="text" inputmode="decimal" autocomplete="off" value="0.01" /></div>
+          <div class="field"><label for="kPadrao">k do certificado do padrão</label><input id="kPadrao" type="text" inputmode="decimal" autocomplete="off" value="2" /></div>
+          <div class="field"><label for="accPadrao">Exatidão/especificação do padrão ±</label><input id="accPadrao" type="text" inputmode="decimal" autocomplete="off" value="0.02" /><small>Usado para TAR.</small></div>
+          <div class="field"><label for="resPadrao">Resolução do padrão</label><input id="resPadrao" type="text" inputmode="decimal" autocomplete="off" value="0.001" /></div>
+          <div class="field"><label for="resUut">Resolução do instrumento calibrado</label><input id="resUut" type="text" inputmode="decimal" autocomplete="off" value="0.01" /></div>
+          <div class="field"><label for="repStd">Desvio padrão de repetibilidade</label><input id="repStd" type="text" inputmode="decimal" autocomplete="off" value="0.005" /></div>
           <div class="field"><label for="nRep">Número de leituras repetidas</label><input id="nRep" type="number" step="1" value="3" /></div>
-          <div class="field"><label for="uAmb">Outros efeitos padrão</label><input id="uAmb" type="number" step="any" value="0.002" /><small>Temperatura, montagem, estabilidade etc. em incerteza padrão.</small></div>
-          <div class="field"><label for="kExp">Fator k para incerteza expandida</label><input id="kExp" type="number" step="any" value="2" /></div>
+          <div class="field"><label for="uAmb">Outros efeitos padrão</label><input id="uAmb" type="text" inputmode="decimal" autocomplete="off" value="0.002" /><small>Temperatura, montagem, estabilidade etc. em incerteza padrão.</small></div>
+          <div class="field"><label for="kExp">Fator k para incerteza expandida</label><input id="kExp" type="text" inputmode="decimal" autocomplete="off" value="2" /></div>
         </div>
       </section>
     </div>
@@ -261,7 +261,7 @@ function adicionarPonto(pct='', med=null, obs=''){
   const body=document.getElementById('pointsBody');
   const idx=body.children.length+1;
   const tr=document.createElement('tr');
-  tr.innerHTML=`<td><input class="ptPct" type="number" step="any" value="${pct}"></td><td class="refCell">--</td><td><input class="ptMed" type="number" step="any" value="${med===null?'':med}"></td><td><input class="ptObs" value="${esc(obs)}"></td><td class="ptStatus">--</td>`;
+  tr.innerHTML=`<td><input class="ptPct" type="text" inputmode="decimal" autocomplete="off" aria-label="Ponto ${idx} em porcentagem" value="${pct}"></td><td class="refCell">--</td><td><input class="ptMed" type="text" inputmode="decimal" autocomplete="off" aria-label="Valor medido do ponto ${idx}" value="${med===null?'':med}"></td><td><input class="ptObs" aria-label="Observação do ponto ${idx}" value="${esc(obs)}"></td><td class="ptStatus">--</td>`;
   body.appendChild(tr);
   tr.querySelector('.ptPct').addEventListener('input', atualizarRefs);
   atualizarRefs();
@@ -303,7 +303,7 @@ function calcularIncerteza(){
   const U = kExp*uc;
   const rows=[]; let piorErro=-1, pontoCrit='--', minTur=Infinity, minTar=Infinity, aprov=0, repro=0, ind=0, alertas=[];
   document.querySelectorAll('#pointsBody tr').forEach((tr,idx)=>{
-    const pct=numFrom(tr.querySelector('.ptPct').value); const med=parseFloat(tr.querySelector('.ptMed').value); const obs=tr.querySelector('.ptObs').value||'';
+    const pct=numFrom(tr.querySelector('.ptPct').value); const med=numFrom(tr.querySelector('.ptMed').value); const obs=tr.querySelector('.ptObs').value||'';
     if(!Number.isFinite(pct) || !Number.isFinite(med)) return;
     const ref=lrv + span*pct/100; const erro=med-ref; const erroAbs=Math.abs(erro);
     const tolCalc = tolAbs + Math.abs(span)*tolSpan/100 + Math.abs(ref)*tolLeitura/100;
