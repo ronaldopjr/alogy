@@ -27,7 +27,7 @@
 <meta content="https://www.alogy.com.br/calculadora-queda-tensao-partida-motor.html" property="og:url"/>
 <meta content="https://www.alogy.com.br/favicon-512x512.png" property="og:image"/>
 <meta content="summary_large_image" name="twitter:card"/>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Calculadora de Queda de Tensão na Partida de Motor", "url": "https://www.alogy.com.br/calculadora-queda-tensao-partida-motor.html", "description": "Estima afundamento de tensão durante partida de motor usando potência de curto-circuito aproximada do transformador.", "publisher": {"@type": "Organization", "name": "ALOGY Engenharia", "url": "https://www.alogy.com.br/"}, "applicationCategory": "EngineeringApplication", "operatingSystem": "Web"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Calculadora de Queda de Tensão na Partida de Motor","url":"https://www.alogy.com.br/calculadora-queda-tensao-partida-motor.html","description":"Estima afundamento de tensão durante partida de motor usando potência de curto-circuito aproximada do transformador.","publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"},"applicationCategory":"EngineeringApplication","operatingSystem":"Web","dateModified":"2026-07-21","author":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"}}</script>
 <style>
     .mini-help{color:var(--muted);font-size:.92rem;line-height:1.55;margin-top:8px}
     .calc-result.two{grid-template-columns:repeat(2,1fr)} .calc-result.three{grid-template-columns:repeat(3,1fr)} .calc-result.four{grid-template-columns:repeat(4,1fr)}
@@ -37,8 +37,6 @@
     @media(max-width:900px){.calc-result.two,.calc-result.three,.calc-result.four{grid-template-columns:1fr}}
     @media print{header,.social-floating,.fab-wrap,.cta-bar,footer,.calc-actions,.tools-hero .btn,.no-print{display:none!important}body{background:#fff}.container{max-width:100%;padding:0}.calc-card,.tools-hero{box-shadow:none;border:1px solid #ddd}.calc-layout{display:block}.calc-card{margin:12px 0}.calc-table th{background:#eee!important;color:#111!important}}
 </style>
-<!-- Google AdSense / Auto Ads -->
-<script async="" crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5586837114309500"></script>
 </link></link></head>
 <body class="tools-page alogy-stage3-forms">
 <header>
@@ -51,7 +49,8 @@
 <div aria-label="Ações rápidas" class="fab-wrap"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1%21%20Vim%20pelas%20ferramentas%20da%20ALOGY.%20Gostaria%20de%20atendimento." rel="noopener" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
 <main class="container" style="margin-top:18px"><div aria-label="Ações da ferramenta" class="tool-page-actions no-print"><a class="tool-category-link" href="ferramentas-eletrica-industrial.html"><i class="fas fa-layer-group"></i> Elétrica Industrial</a><button class="btn print" onclick="window.print()" type="button"><i class="fas fa-print"></i> Imprimir</button></div>
 
-<section class="tools-hero"><h1>Calculadora de Queda de Tensão na Partida de Motor</h1><p>Estima afundamento de tensão durante partida de motor usando potência de curto-circuito aproximada do transformador.</p></section>
+<section class="tools-hero"><h1>Calculadora de Queda de Tensão na Partida de Motor</h1>
+<p class="muted" data-alogy-content-meta><strong>Conteúdo técnico:</strong> ALOGY Engenharia · <strong>Atualizado em:</strong> 21/07/2026</p><p>Estima afundamento de tensão durante partida de motor usando potência de curto-circuito aproximada do transformador.</p></section>
 <section aria-label="Aviso de uso" class="calc-card"><h2><i class="fas fa-triangle-exclamation"></i> Ferramenta orientativa</h2><p>Use esta ferramenta para triagem, conferência de campo e apoio a decisão técnica. Ela não substitui projeto executivo, laudo, procedimento de segurança, norma aplicável ou recomendação do fabricante.</p></section>
 <section class="calc-layout"><div class="calc-card"><h2><i class="fas fa-wave-square"></i> Dados de entrada</h2><div class="calc-grid"><label>Potência do transformador (kVA)<input id="trafo" step="any" type="number" value="500"/></label><label>Impedância do transformador Z (%)<input id="z" step="any" type="number" value="5.5"/></label><label>Tensão de linha (V)<input id="v" step="any" type="number" value="380"/></label><label>Corrente de partida do motor (A)<input id="ip" step="any" type="number" value="350"/></label><label>Fator de potência na partida (informativo)<input id="fp" step="any" type="number" value="0.35"/></label></div></div><div class="calc-card"><h2><i class="fas fa-chart-line"></i> Resultado</h2><div class="calc-result four"><div class="result-box"><span>Potência curto-circuito</span><strong class="small" id="scc">-</strong></div><div class="result-box"><span>kVA partida</span><strong class="small" id="spart">-</strong></div><div class="result-box"><span>Queda estimada</span><strong class="small" id="queda">-</strong></div><div class="result-box"><span>Avaliação</span><strong class="small" id="classe">-</strong></div></div><p class="mini-help" id="nota"></p></div></section>
 <script>
@@ -59,9 +58,9 @@ function n(id){return parseFloat(document.getElementById(id).value)||0}function 
 function calc(){let S=n('trafo'),Z=n('z'),V=n('v'),Ip=n('ip'),fp=n('fp');let Scc=Z>0?S*100/Z:0;let Sp=Math.sqrt(3)*V*Ip/1000;let q=Scc>0?Sp/Scc*100:0;let cls=q<5?'baixa':q<10?'moderada':'elevada';document.getElementById('scc').textContent=f(Scc,0)+' kVA';document.getElementById('spart').textContent=f(Sp,1)+' kVA';document.getElementById('queda').textContent=f(q,1)+' %';document.getElementById('classe').textContent=cls;document.getElementById('nota').innerHTML=(q>10?'Queda elevada: avaliar soft-starter, inversor, partida sequencial ou reforço de alimentação.':'A queda estimada parece administrável, mas confirme cabos e cargas sensíveis.')+' Estimativa por kVA aparente; FP informado = '+f(fp,2)+' e deve ser considerado em estudo completo com impedância da rede.'}
 document.querySelectorAll('input,select').forEach(e=>e.addEventListener('input',calc));calc();</script>
 <section aria-label="Orientação técnica complementar" class="calc-card">
-<h2><i class="fas fa-clipboard-check"></i> Como usar esta ferramenta na prática</h2>
+<h2><i class="fas fa-clipboard-check"></i> Aplicação prática: Queda de Tensão na Partida de Motor</h2>
 <p>Use para triagem quando a partida de um motor derruba iluminação, CLP, contatores, inversores, fontes 24 Vcc ou outros equipamentos sensíveis.</p>
-<h3>Dados que merecem conferência</h3>
+<h3>Entradas críticas para Queda de Tensão na Partida de Motor</h3>
 <ul><li>Potência e impedância percentual do transformador.</li><li>Corrente real de partida, não apenas corrente nominal.</li><li>Tensão de linha no barramento onde ocorre a partida.</li><li>Cargas simultâneas e distância/cabos entre transformador e motor.</li></ul>
 <h3>Como interpretar o resultado</h3>
 <p>Queda acima de 10% merece atenção, principalmente em painéis com CLP, contatores, fontes e instrumentação. A solução pode envolver partida suave, inversor, cabo maior ou partida escalonada.</p>

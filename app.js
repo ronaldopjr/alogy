@@ -354,30 +354,63 @@ function observeResponsiveToolTables(){
 ========================= */
 const ALOGY_ADS_CONFIG = {
   enabled: false,
-  adClient: "ca-pub-5586837114309500", // ID do editor AdSense
-  desktopLeftSlot: "", // ID do bloco lateral esquerdo
-  desktopRightSlot: "", // ID do bloco lateral direito
-  mobileSlot: "" // ID do bloco horizontal responsivo para celular
+  siteApproved: false,
+  consentManagedBy: "Google CMP / Privacidade e mensagens",
+  adClient: "ca-pub-5586837114309500",
+  desktopLeftSlot: "",
+  desktopRightSlot: "",
+  mobileSlot: "",
+  eligiblePages: new Set([
+    "ferramentas.html",
+    "ferramentas-instrumentacao-industrial.html",
+    "ferramentas-calibracao-instrumentacao.html",
+    "calculadora-4-20ma.html",
+    "calculadora-malha-4-20ma-hart-completa.html",
+    "calculadora-diagnostico-4-20ma-hart.html",
+    "calculadora-carga-malha-4-20ma.html",
+    "calculadora-comprimento-cabo-hart.html",
+    "calculadora-incerteza-calibracao-tur-tar.html",
+    "calculadora-erro-calibracao.html",
+    "calculadora-erro-total-malha-instrumentacao.html",
+    "calculadora-calibracao-transmissor-pressao.html",
+    "calculadora-calibracao-transmissor-temperatura.html",
+    "calculadora-calibracao-transmissor-nivel-dp.html",
+    "calculadora-calibracao-transmissor-dp-vazao.html",
+    "calculadora-calibracao-manometro.html",
+    "calculadora-pt100.html",
+    "calculadora-termopar.html",
+    "checklist-teste-de-loop.html",
+    "checklist-comissionamento-hart.html"
+  ]),
+  reviewHoldPages: new Set([
+    "calculadora-nivel-caldeira-transmissor-dp.html",
+    "calculadora-nivel-dp-tanque-pressurizado.html",
+    "calculadora-placa-orificio-vazao-dp.html",
+    "calculadora-vazao-pressao-diferencial.html",
+    "calculadora-termopoco-wake-frequency.html",
+    "calculadora-cv-valvula-controle.html",
+    "calculadora-cv-kv-valvula-controle.html",
+    "calculadora-atuador-pneumatico.html",
+    "calculadora-tempo-atuacao-valvula.html",
+    "calculadora-lopa-simplificada.html",
+    "calculadora-barreira-intrinseca-area-classificada.html",
+    "checklist-fat-sat-instrumentacao.html"
+  ])
 };
 
 function isAlogyToolArea(){
   const path = window.location.pathname.split('/').pop() || 'index.html';
-  return document.body?.classList.contains('tools-page') && (
-    path === 'ferramentas.html' ||
-    path.startsWith('ferramentas-') ||
-    path.startsWith('calculadora-') ||
-    path.startsWith('conversor-') ||
-    path.startsWith('gerador-') ||
-    path.startsWith('checklist-')
-  );
+  const robots = (document.querySelector('meta[name="robots"]')?.content || '').toLowerCase();
+  if(robots.includes('noindex')) return false;
+  return ALOGY_ADS_CONFIG.eligiblePages.has(path);
 }
 
 function hasAdsenseData(slot){
-  return !!(ALOGY_ADS_CONFIG.enabled && ALOGY_ADS_CONFIG.adClient && slot);
+  return !!(ALOGY_ADS_CONFIG.enabled && ALOGY_ADS_CONFIG.siteApproved && ALOGY_ADS_CONFIG.adClient && slot);
 }
 
 function loadAlogyAdsenseScript(){
-  if(!ALOGY_ADS_CONFIG.enabled || !ALOGY_ADS_CONFIG.adClient) return;
+  if(!ALOGY_ADS_CONFIG.enabled || !ALOGY_ADS_CONFIG.siteApproved || !ALOGY_ADS_CONFIG.adClient) return;
   if(document.querySelector('script[data-alogy-adsense="true"], script[src*="pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"]')) return;
 
   const script = document.createElement('script');
@@ -421,7 +454,7 @@ function createAlogyAdUnit(slot, type){
 }
 
 function pushAlogyAds(){
-  if(!ALOGY_ADS_CONFIG.enabled) return;
+  if(!ALOGY_ADS_CONFIG.enabled || !ALOGY_ADS_CONFIG.siteApproved) return;
   window.adsbygoogle = window.adsbygoogle || [];
   document.querySelectorAll('.alogy-ad-slot ins.adsbygoogle:not([data-alogy-pushed="true"])').forEach((ins) => {
     try{
@@ -437,16 +470,11 @@ function insertAlogyMobileAd(main){
   if(!hasAdsenseData(ALOGY_ADS_CONFIG.mobileSlot)) return;
   if(main.querySelector('.alogy-mobile-ad')) return;
 
+  // Posição conservadora: ao final do conteúdo principal, longe de campos,
+  // botões, resultados e navegação. A ativação continua condicionada às travas.
   const mobileAd = createAlogyAdUnit(ALOGY_ADS_CONFIG.mobileSlot, 'mobile');
-  const disclaimer = main.querySelector('.calc-card[aria-label*="Aviso"], .calc-card[aria-label*="aviso"]');
-  const hero = main.querySelector('.tools-hero, .tool-page-intro');
-  const ref = disclaimer || hero;
-
-  if(ref && ref.parentNode === main){
-    ref.insertAdjacentElement('afterend', mobileAd);
-  }else{
-    main.insertBefore(mobileAd, main.firstElementChild?.nextSibling || main.firstChild);
-  }
+  mobileAd.setAttribute('data-alogy-placement', 'end-of-main');
+  main.appendChild(mobileAd);
 }
 
 function initAlogyAdsLayout(){
@@ -523,28 +551,6 @@ function ensurePrivacyFooterLink(){
 }
 
 
-
-function initAlogyCookieNotice(){
-  try{
-    if(localStorage.getItem('alogyCookieNoticeOk') === 'true') return;
-  }catch(e){}
-
-  if(document.querySelector('.alogy-cookie-notice')) return;
-
-  const notice = document.createElement('div');
-  notice.className = 'alogy-cookie-notice no-print';
-  notice.setAttribute('role', 'dialog');
-  notice.setAttribute('aria-label', 'Aviso de cookies');
-  notice.innerHTML = '<div><strong>Privacidade e cookies</strong><br><span>Usamos cookies e tecnologias semelhantes para melhorar a navegação, medir acessos e exibir anúncios quando aplicável.</span></div><div class="alogy-cookie-actions"><a href="politica-de-privacidade.html">Saiba mais</a><button type="button">Entendi</button></div>';
-
-  const btn = notice.querySelector('button');
-  btn.addEventListener('click', () => {
-    try{ localStorage.setItem('alogyCookieNoticeOk','true'); }catch(e){}
-    notice.remove();
-  });
-
-  document.body.appendChild(notice);
-}
 
 
 
@@ -640,8 +646,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // link de política de privacidade/cookies no rodapé
   ensurePrivacyFooterLink();
 
-  // aviso simples de privacidade/cookies
-  initAlogyCookieNotice();
+  // O consentimento publicitário será gerenciado pela CMP configurada na conta AdSense.
 
   // usabilidade conservadora dos formulários das ferramentas
   enhanceToolFormsUsability();

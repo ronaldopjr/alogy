@@ -27,7 +27,7 @@
 <meta content="https://www.alogy.com.br/calculadora-orp-mv-percentual.html" property="og:url"/>
 <meta content="https://www.alogy.com.br/favicon-512x512.png" property="og:image"/>
 <meta content="summary_large_image" name="twitter:card"/>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Calculadora ORP mV e Faixa de Controle","url":"https://www.alogy.com.br/calculadora-orp-mv-percentual.html","applicationCategory":"EngineeringApplication","operatingSystem":"Web","description":"Avalie leitura de ORP em mV, desvio do setpoint, banda morta e percentual dentro da faixa de controle.","publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Calculadora ORP mV e Faixa de Controle","url":"https://www.alogy.com.br/calculadora-orp-mv-percentual.html","applicationCategory":"EngineeringApplication","operatingSystem":"Web","description":"Avalie leitura de ORP em mV, desvio do setpoint, banda morta e percentual dentro da faixa de controle.","publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"},"dateModified":"2026-07-21","author":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"}}</script>
 <style>
     .mini-help{color:var(--muted);font-size:.92rem;line-height:1.55;margin-top:8px}
     .faq details{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:14px;padding:14px;margin-top:10px;box-shadow:0 6px 16px rgba(0,0,0,.04)}
@@ -37,8 +37,6 @@
     @media(max-width:900px){.calc-result.two,.calc-result.four{grid-template-columns:1fr}}
     @media print{header,.social-floating,.fab-wrap,.cta-bar,footer,.calc-actions,.tools-hero .btn,.no-print{display:none!important}body{background:#fff}.container{max-width:100%;padding:0}.calc-card,.tools-hero{box-shadow:none;border:1px solid #ddd}.calc-layout{display:block}.calc-card{margin:12px 0}.calc-table th{background:#eee!important;color:#111!important}}
   </style>
-<!-- Google AdSense - verificação de propriedade -->
-<script async="" crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5586837114309500"></script>
 </link></link></head>
 <body class="tools-page alogy-stage3-forms">
 <header>
@@ -51,18 +49,19 @@
 <div aria-label="Ações rápidas" class="fab-wrap"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1%21%20Vim%20pelas%20ferramentas%20da%20ALOGY.%20Gostaria%20de%20atendimento." rel="noopener" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
 <main class="container" style="margin-top:18px"><div aria-label="Ações da ferramenta" class="tool-page-actions no-print"><button class="btn print" onclick="window.print()" type="button"><i class="fas fa-print"></i> Imprimir</button></div>
 
-<section class="tools-hero"><h1>Calculadora ORP mV e Faixa de Controle</h1><p>Avalie rapidamente uma leitura de ORP em processos de oxidação/redução, dosagem química e controle analítico.</p></section>
-<section aria-label="Aviso de uso" class="calc-card"><h2><i class="fas fa-triangle-exclamation"></i> Ferramenta orientativa</h2><p>Use esta ferramenta para estudo, estimativa e conferência preliminar. O resultado depende dos dados inseridos, hipóteses adotadas, normas aplicáveis, catálogos de fabricantes e validação de profissional habilitado.</p></section>
+<section class="tools-hero"><h1>Calculadora ORP mV e Faixa de Controle</h1>
+<p class="muted" data-alogy-content-meta><strong>Conteúdo técnico:</strong> ALOGY Engenharia · <strong>Atualizado em:</strong> 21/07/2026</p><p>Avalie rapidamente uma leitura de ORP em processos de oxidação/redução, dosagem química e controle analítico.</p></section>
+<section aria-label="Aviso de uso" class="calc-card"><h2><i class="fas fa-triangle-exclamation"></i> Ferramenta orientativa</h2><p>Use esta ferramenta de ORP mV e Faixa de Controle para estudo, estimativa e conferência preliminar. O resultado depende dos dados inseridos, das hipóteses, da condição de operação, da documentação do fabricante e da validação adequada ao risco.</p></section>
 <section class="calc-layout"><div class="calc-card"><h2><i class="fas fa-bolt"></i> Dados de ORP</h2><div class="calc-grid"><div class="field"><label for="mv">ORP medido (mV)</label><input id="mv" inputmode="decimal" type="text" value="650"/></div><div class="field"><label for="sp">Setpoint (mV)</label><input id="sp" inputmode="decimal" type="text" value="700"/></div><div class="field"><label for="db">Banda configurada ± (mV)</label><input id="db" inputmode="decimal" type="text" value="25"/></div><div class="field"><label for="lo">Mínimo da escala (mV)</label><input id="lo" inputmode="decimal" type="text" value="0"/></div><div class="field"><label for="hi">Máximo da escala (mV)</label><input id="hi" inputmode="decimal" type="text" value="1000"/></div></div><p class="mini-help">Desvio = ORP medido − setpoint. Percentual = (ORP medido − mínimo) ÷ (máximo − mínimo) × 100.</p><div class="calc-actions"><button class="mini-btn dark" onclick="copiar()" type="button"><i class="fas fa-copy"></i> Copiar resultado</button><span id="copyStatus" role="status" aria-live="polite"></span></div></div><div class="calc-card"><h2><i class="fas fa-chart-simple"></i> Resultado</h2><div class="calc-result"><div class="result-box"><span>Desvio</span><strong id="r1">-</strong></div><div class="result-box"><span>Percentual da escala</span><strong id="r2">-</strong></div><div class="result-box"><span>Posição relativa</span><strong class="small" id="r3">-</strong></div></div><div class="calc-note" id="nota" role="status" aria-live="polite">ORP depende da química do processo, do eletrodo, da referência e da estabilização.</div></div></section>
 <section class="calc-card faq"><h2><i class="fas fa-circle-question"></i> Perguntas frequentes</h2><details><summary>ORP é o mesmo que pH?</summary><p>Não. pH mede atividade de hidrogênio; ORP mede potencial de oxidação/redução em mV.</p></details><details><summary>Posso comparar ORP de processos diferentes?</summary><p>Com cuidado. O significado do mV depende da química do processo, eletrodo e condições de operação.</p></details></section>
 <!-- ALOGY_REVISAO_TECNICA_FERRAMENTA -->
 <section aria-label="Orientação técnica complementar" class="calc-card">
-<h2><i class="fas fa-clipboard-check"></i> Como usar esta ferramenta na prática</h2>
+<h2><i class="fas fa-clipboard-check"></i> Aplicação prática: ORP mV e Faixa de Controle</h2>
 <p>Compare uma leitura de ORP com o setpoint e com a faixa configurada no transmissor ou sistema de controle. A ferramenta informa posição relativa; não determina ação de dosagem nem comprova que o processo está adequado.</p>
 <h3>Quando aplicar</h3>
 <p>Use para apoiar rotinas de processo químico, tratamento de água, efluentes, utilidades e analisadores industriais, principalmente quando o operador precisa converter leitura, dosagem ou resposta eletroquímica em uma decisão prática.</p>
-<h3>Dados que merecem conferência</h3>
-<p>Antes de confiar no resultado da ferramenta <strong>Calculadora ORP mV e Faixa de Controle</strong>, confira principalmente: ORP medido (mV), Setpoint (mV), Banda morta ± (mV), Mínimo da escala (mV), Máximo da escala (mV). Pequenos erros de unidade, ponto decimal ou condição de operação podem gerar conclusões erradas.</p>
+<h3>Entradas críticas para ORP mV e Faixa de Controle</h3>
+<p>Confira a unidade, a condição real de operação e os campos principais desta análise: ORP medido (mV), Setpoint (mV), Banda morta ± (mV), Mínimo da escala (mV), Máximo da escala (mV). Registre as premissas usadas para que o cálculo possa ser repetido e revisado.</p>
 <ul>
 <li>ORP medido (mV)</li>
 <li>Setpoint (mV)</li>
@@ -81,7 +80,7 @@
 <li>Compare o resultado com histórico do processo, não apenas com um ponto isolado.</li>
 </ul>
 <h3>Limites da estimativa</h3>
-<p>Esta ferramenta é indicada para estudo, triagem, conferência de campo e apoio à manutenção. Para projeto final, laudo, especificação de compra, alteração de segurança ou liberação de equipamento crítico, valide as premissas com normas aplicáveis, documentação do fabricante e profissional habilitado.</p>
+<p>Use esta análise de ORP mV e Faixa de Controle como apoio preliminar. Para projeto final, laudo, compra, mudança de segurança ou liberação de equipamento crítico, confirme premissas, condições de campo, documentação do fabricante e requisitos aplicáveis.</p>
 <h3>Referência e leitura relacionada</h3>
 <p>Fundamentos de medição, estabilização e influência da superfície do eletrodo: <a href="https://www.yokogawa.com/library/resources/white-papers/basics-of-orp/" rel="noopener" target="_blank">Yokogawa — Basics of ORP</a>. Para diagnóstico de campo, consulte também <a href="blog-orp-mv-controle.html">ORP em mV: interpretação e controle</a>.</p>
 </section>

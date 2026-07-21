@@ -26,7 +26,7 @@
   <meta property="og:url" content="https://www.alogy.com.br/blog-fat-sat-instrumentacao.html" />
   <meta property="og:image" content="https://www.alogy.com.br/favicon-512x512.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "name": "FAT e SAT em instrumentação e automação industrial", "url": "https://www.alogy.com.br/blog-fat-sat-instrumentacao.html", "description": "Veja como estruturar testes de aceitação em fábrica e em campo para reduzir retrabalho no comissionamento.", "publisher": {"@type": "Organization", "name": "ALOGY Engenharia", "url": "https://www.alogy.com.br/"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","name":"FAT e SAT em instrumentação e automação industrial","url":"https://www.alogy.com.br/blog-fat-sat-instrumentacao.html","description":"Veja como estruturar testes de aceitação em fábrica e em campo para reduzir retrabalho no comissionamento.","publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"},"dateModified":"2026-07-21","author":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"}}</script>
   <style>
     .mini-help{color:var(--muted);font-size:.92rem;line-height:1.55;margin-top:8px}
     .faq details{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:14px;padding:14px;margin-top:10px;box-shadow:0 6px 16px rgba(0,0,0,.04)}
@@ -37,9 +37,6 @@
     @media(max-width:900px){.calc-result.two,.calc-result.three,.calc-result.four{grid-template-columns:1fr}}
     @media print{header,.social-floating,.fab-wrap,.cta-bar,footer,.calc-actions,.tools-hero .btn,.no-print{display:none!important}body{background:#fff}.container{max-width:100%;padding:0}.calc-card,.tools-hero{box-shadow:none;border:1px solid #ddd}.calc-layout{display:block}.calc-card{margin:12px 0}.calc-table th{background:#eee!important;color:#111!important}}
   </style>
-  <!-- Google AdSense - verificação de propriedade -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5586837114309500"
-     crossorigin="anonymous"></script>
 </head>
 <body>
   <header>
@@ -54,49 +51,35 @@
     <div style="margin-bottom:14px;display:flex;gap:10px;flex-wrap:wrap"><a class="floating-back-tools" href="blog.html"><i class="fas fa-arrow-left"></i> Voltar ao Blog</a><a class="floating-back-tools" href="checklist-fat-sat-instrumentacao.html"><i class="fas fa-calculator"></i> Abrir ferramenta</a></div>
     <article class="calc-card"><h1>FAT e SAT em instrumentação e automação industrial</h1>
 <p>Veja como estruturar testes de aceitação em fábrica e em campo para reduzir retrabalho no comissionamento.</p>
-<p>Este conteúdo foi ampliado para ajudar técnicos, instrumentistas, eletricistas, mecânicos, planejadores e engenheiros a usar o tema <strong>fat e sat em instrumentação e automação industrial</strong> como apoio de diagnóstico, especificação preliminar e conferência de campo. A ideia não é apenas chegar a um número, mas entender quais dados precisam ser confiáveis antes de tomar uma decisão.</p>
-
-<h2>Onde esse tema aparece na indústria?</h2>
-<p>O assunto é comum em rotinas de engenharia industrial aplicada, principalmente quando manutenção, operação e engenharia precisam comparar condição real de processo com valores esperados de projeto. Em muitos casos, a dúvida nasce de uma falha em campo: leitura instável, equipamento subdimensionado, instrumento fora de faixa, perda de desempenho, consumo elevado ou dificuldade para comprovar a condição real do sistema.</p>
-<p>Em engenharia industrial, o valor calculado deve ser interpretado como referência inicial. Condições reais de campo, dados de fabricante, tolerâncias e requisitos do processo devem ser conferidos antes de qualquer decisão final.</p>
-
-<h2>Dados que devem ser levantados antes do cálculo</h2>
+<p data-alogy-content-meta class="muted"><strong>Conteúdo técnico:</strong> ALOGY Engenharia · <strong>Atualizado em:</strong> 21/07/2026</p>
+<h2>FAT e SAT não são o mesmo teste</h2>
+<p>O FAT é executado antes do envio ou da instalação definitiva, normalmente em fábrica, oficina de integração ou bancada. Ele verifica documentação, montagem, alimentação, lógica, telas, comunicação e respostas simuladas em ambiente controlado. O SAT ocorre no local de instalação e confirma se o sistema funciona com cabos, instrumentos, utilidades, redes e condições reais da planta.</p>
+<p>Um FAT bem feito reduz retrabalho, mas não elimina o SAT. Vários problemas só aparecem depois da instalação: polaridade invertida, queda de tensão, aterramento, identificação de cabos, sentido de válvulas, escala divergente, atraso de processo e interferência entre sistemas.</p>
+<h2>Como preparar uma matriz de testes</h2>
 <ul>
-  <li><strong>Condição real de operação:</strong> pressão, temperatura, vazão, nível, concentração, tensão, corrente, rotação ou outra grandeza aplicável ao caso.</li>
-  <li><strong>Unidades corretas:</strong> confirme se os dados estão em bar, kPa, mbar, psi, °C, L/min, Nm³/h, m³/h, mm, mA, V ou outra unidade usada pela ferramenta.</li>
-  <li><strong>Faixa de trabalho:</strong> verifique mínimo, normal, máximo e condição de alarme. Trabalhar apenas com o ponto nominal pode esconder problemas.</li>
-  <li><strong>Dados de fabricante:</strong> consulte folha de dados, manual, curva característica, limite de operação e recomendações de instalação.</li>
-  <li><strong>Condições de campo:</strong> comprimento de cabo ou tubulação, posição de montagem, temperatura ambiente, vibração, umidade, sujeira, acessibilidade e interferências.</li>
+  <li><strong>Objeto:</strong> painel, skid, transmissor, válvula, CLP, IHM, rede ou sistema supervisório.</li>
+  <li><strong>Requisito:</strong> documento que define o comportamento esperado.</li>
+  <li><strong>Método:</strong> inspeção, simulação, injeção de sinal, acionamento ou teste funcional.</li>
+  <li><strong>Critério de aceitação:</strong> resultado objetivo, faixa, tolerância ou estado esperado.</li>
+  <li><strong>Evidência:</strong> valor medido, captura de tela, foto, relatório ou registro de tendência.</li>
+  <li><strong>Responsáveis:</strong> quem executa, acompanha, aceita e trata pendências.</li>
 </ul>
-
-<h2>Como interpretar o resultado</h2>
-<p>O resultado deve ser tratado como <strong>estimativa técnica preliminar</strong>. Ele ajuda a validar ordem de grandeza e aponta se o valor informado está coerente, mas não deve ser usado sozinho para liberar compra, alteração de processo, mudança de proteção, calibração crítica ou partida de equipamento.</p>
-<p>Quando o resultado fica muito próximo do limite do equipamento, a recomendação é revisar margens. Um dimensionamento muito “no limite” pode funcionar em bancada e falhar em campo por variação de processo, envelhecimento, sujeira, perda de carga, temperatura, queda de tensão, histerese ou erro de medição.</p>
-
-<h2>Erros comuns de campo</h2>
+<h2>Pontos mínimos para instrumentação</h2>
+<p>Para cada TAG, confira identificação, folha de dados, faixa, unidade, alimentação, ligação, configuração, sentido de ação, alarmes e documentação. Em malhas analógicas, simule pontos de 0%, 25%, 50%, 75% e 100% quando o procedimento permitir. Em válvulas, verifique comando, posição, feedback, fim de curso e posição de falha. Em redes, registre endereço, versão, diagnóstico e comunicação com perda e retorno de energia.</p>
+<h2>Como controlar pendências</h2>
+<p>Uma pendência deve ter descrição verificável, responsável, prioridade, prazo e evidência de reteste. Não misture item não testado com item reprovado. Alterações aceitas durante FAT ou SAT precisam retornar para desenhos, listas de I/O, lógica, telas, manuais e cópias de segurança; caso contrário, o sistema entregue fica diferente da documentação.</p>
+<h2>Falhas frequentes</h2>
 <ul>
-  <li>Usar condição nominal de catálogo sem conferir a condição real da instalação.</li>
-  <li>Converter unidade de forma incorreta ou misturar unidade absoluta com relativa.</li>
-  <li>Desconsiderar perdas, tolerâncias, tempo de resposta, margem de segurança e influência da temperatura.</li>
-  <li>Trocar componente sem investigar causa raiz, repetindo a mesma falha após a manutenção.</li>
-  <li>Usar o cálculo como substituto de procedimento, norma, projeto ou validação do responsável técnico.</li>
+  <li>testar somente a lógica interna sem verificar o caminho completo do sinal;</li>
+  <li>aceitar telas e alarmes sem conferir unidade, faixa e prioridade;</li>
+  <li>não testar perda de alimentação, comunicação ou ar de instrumento;</li>
+  <li>encerrar o teste com desvios sem responsável e prazo;</li>
+  <li>alterar software durante o teste sem controle de versão.</li>
 </ul>
-
-<h2>Exemplo prático de aplicação</h2>
-<p>Imagine uma equipe tentando justificar uma intervenção durante uma parada de manutenção. Antes de comprar um novo componente ou alterar um ajuste, o responsável levanta os dados de operação, aplica a ferramenta relacionada, compara o resultado com o histórico e verifica se há coerência com a folha de dados do equipamento. Esse processo simples evita decisões por tentativa e erro e melhora a conversa entre manutenção, operação, engenharia e fornecedor.</p>
-<p>Quando a conta indica uma diferença grande entre o valor esperado e o valor medido, o próximo passo não é necessariamente substituir o equipamento. Primeiro devem ser avaliados instalação, calibração, obstruções, vazamentos, ruídos elétricos, parametrização, condição de processo e documentação disponível.</p>
-
-<h2>Checklist rápido antes de decidir</h2>
-<ul>
-  <li>O valor calculado está na mesma unidade usada pelo instrumento, CLP, supervisório ou folha de dados?</li>
-  <li>Existe margem suficiente entre operação normal, limite de alarme e limite físico do equipamento?</li>
-  <li>O resultado foi comparado com histórico, tendência, inspeção visual ou medição independente?</li>
-  <li>A instalação atende boas práticas de montagem, acesso, proteção mecânica e manutenção?</li>
-  <li>A decisão envolve segurança, parada de produção, qualidade do produto ou requisito legal? Se sim, valide formalmente.</li>
-</ul>
-
+<h2>Referências para o plano de teste</h2>
+<p>Use especificação funcional, matriz causa e efeito, lista de I/O, diagramas de malha, folhas de dados, manuais dos fabricantes e procedimentos internos. Para sistemas de segurança ou áreas classificadas, aplique também os requisitos específicos e a edição vigente das normas adotadas pela organização.</p>
 <h2>Ferramenta e conteúdos relacionados</h2>
-<p>Use a ferramenta relacionada para fazer uma primeira simulação e depois navegue pelos materiais complementares para fechar o raciocínio técnico.</p>
+<p>Para aprofundar FAT e SAT em instrumentação e automação industrial, use a ferramenta relacionada e confronte o resultado com os materiais complementares listados abaixo.</p>
 <div class="calc-actions">
   <a class="mini-btn dark" href="checklist-fat-sat-instrumentacao.html"><i class="fas fa-calculator"></i> Abrir ferramenta</a>
   <a class="mini-btn" href="ferramentas.html"><i class="fas fa-toolbox"></i> Ver todas as ferramentas</a>
@@ -111,7 +94,7 @@
 </ul>
 
 <h2>Aviso técnico</h2>
-<p>Este material é educativo e serve para pré-dimensionamento, conferência e apoio à análise técnica. Para aplicações críticas, segurança de processo, eletricidade, pressão, caldeiras, áreas classificadas, intertravamentos, laudos, compra final de equipamento ou alteração permanente de instalação, a validação deve considerar normas aplicáveis, documentação do fabricante, condições reais de campo e profissional habilitado.</p></article>
+<p>Este artigo sobre FAT e SAT em instrumentação e automação industrial é educativo e apoia pré-dimensionamento e conferência técnica. Em aplicações críticas, compra final ou alteração permanente da instalação, valide o cenário com documentação do fabricante, condições reais de campo, requisitos aplicáveis e profissional habilitado.</p></article>
     <section class="cta-bar" aria-label="Chamada para contato">
       <div><strong>Precisa de apoio técnico em engenharia, manutenção ou instrumentação?</strong><br><span class="muted">Use as ferramentas como apoio e fale com a ALOGY para análise técnica aplicada ao seu processo.</span></div>
       <div class="cta-actions"><a class="btn" href="index.html#contato"><i class="fas fa-paper-plane"></i> Solicitar contato</a></div>

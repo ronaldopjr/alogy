@@ -26,7 +26,7 @@
   <meta property="og:url" content="https://www.alogy.com.br/calculadora-calibracao-phmetro.html" />
   <meta property="og:image" content="https://www.alogy.com.br/favicon-512x512.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Calculadora de Calibração de pHmetro","url":"https://www.alogy.com.br/calculadora-calibracao-phmetro.html","applicationCategory":"EngineeringApplication","operatingSystem":"Web","description":"Calcule slope, eficiência e offset de pHmetro usando buffers de calibração e leituras em mV.","publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Calculadora de Calibração de pHmetro","url":"https://www.alogy.com.br/calculadora-calibracao-phmetro.html","applicationCategory":"EngineeringApplication","operatingSystem":"Web","description":"Calcule slope, eficiência e offset de pHmetro usando buffers de calibração e leituras em mV.","publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"},"dateModified":"2026-07-21","author":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"}}</script>
   <style>
     .mini-help{color:var(--muted);font-size:.92rem;line-height:1.55;margin-top:8px}
     .faq details{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:14px;padding:14px;margin-top:10px;box-shadow:0 6px 16px rgba(0,0,0,.04)}
@@ -36,9 +36,6 @@
     @media(max-width:900px){.calc-result.two,.calc-result.four{grid-template-columns:1fr}}
     @media print{header,.social-floating,.fab-wrap,.cta-bar,footer,.calc-actions,.tools-hero .btn,.no-print{display:none!important}body{background:#fff}.container{max-width:100%;padding:0}.calc-card,.tools-hero{box-shadow:none;border:1px solid #ddd}.calc-layout{display:block}.calc-card{margin:12px 0}.calc-table th{background:#eee!important;color:#111!important}}
   </style>
-  <!-- Google AdSense - verificação de propriedade -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5586837114309500"
-     crossorigin="anonymous"></script>
 </head>
 <body class="tools-page alogy-stage3-forms">
   <header>
@@ -51,18 +48,19 @@
   <div class="fab-wrap" aria-label="Ações rápidas"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1%21%20Vim%20pelas%20ferramentas%20da%20ALOGY.%20Gostaria%20de%20atendimento." target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
   <main class="container" style="margin-top:18px">
     <div style="margin-bottom:14px;display:flex;gap:10px;flex-wrap:wrap" class="no-print"><a class="floating-back-tools no-print" href="ferramentas.html"><i class="fas fa-arrow-left"></i> Voltar para Ferramentas</a><button class="btn print" type="button" onclick="window.print()"><i class="fas fa-print"></i> Imprimir</button></div>
-    <section class="tools-hero"><h1>Calculadora de Calibração de pHmetro</h1><p>Calcule slope medido, eficiência relativa ao valor teórico e offset em pH 7 a partir de dois buffers.</p></section>
-    <section class="calc-card" aria-label="Aviso de uso"><h2><i class="fas fa-triangle-exclamation"></i> Ferramenta orientativa</h2><p>Use esta ferramenta para estudo, estimativa e conferência preliminar. O resultado depende dos dados inseridos, hipóteses adotadas, normas aplicáveis, catálogos de fabricantes e validação de profissional habilitado.</p></section>
+    <section class="tools-hero"><h1>Calculadora de Calibração de pHmetro</h1>
+<p class="muted" data-alogy-content-meta><strong>Conteúdo técnico:</strong> ALOGY Engenharia · <strong>Atualizado em:</strong> 21/07/2026</p><p>Calcule slope medido, eficiência relativa ao valor teórico e offset em pH 7 a partir de dois buffers.</p></section>
+    <section class="calc-card" aria-label="Aviso de uso"><h2><i class="fas fa-triangle-exclamation"></i> Ferramenta orientativa</h2><p>Use esta ferramenta de Calibração de pHmetro para estudo, estimativa e conferência preliminar. O resultado depende dos dados inseridos, das hipóteses, da condição de operação, da documentação do fabricante e da validação adequada ao risco.</p></section>
     <section class="calc-layout"><div class="calc-card"><h2><i class="fas fa-vial"></i> Dados da calibração</h2><div class="calc-grid"><div class="field"><label for="ph1">Buffer 1 pH</label><input id="ph1" inputmode="decimal" type="text" value="7,00"></div><div class="field"><label for="mv1">Leitura no buffer 1 (mV)</label><input id="mv1" inputmode="decimal" type="text" value="0"></div><div class="field"><label for="ph2">Buffer 2 pH</label><input id="ph2" inputmode="decimal" type="text" value="4,01"></div><div class="field"><label for="mv2">Leitura no buffer 2 (mV)</label><input id="mv2" inputmode="decimal" type="text" value="177"></div><div class="field"><label for="temp">Temperatura (°C)</label><input id="temp" inputmode="decimal" type="text" value="25"></div></div><div class="calc-actions"><button class="mini-btn dark" onclick="copiar()" type="button"><i class="fas fa-copy"></i> Copiar resultado</button><span id="copyStatus" role="status" aria-live="polite"></span></div></div><div class="calc-card"><h2><i class="fas fa-chart-simple"></i> Resultado</h2><div class="calc-result four"><div class="result-box"><span>Slope medido</span><strong id="r1">-</strong></div><div class="result-box"><span>Eficiência</span><strong id="r2">-</strong></div><div class="result-box"><span>Offset em pH 7</span><strong id="r3">-</strong></div><div class="result-box"><span>Slope teórico</span><strong id="r4" class="small">-</strong></div></div><div class="calc-note" id="nota" role="status" aria-live="polite">Use buffers novos e aguarde estabilização.</div></div></section>
     <section class="calc-card faq"><h2><i class="fas fa-circle-question"></i> Perguntas frequentes</h2><details><summary>Qual slope é aceitável?</summary><p>O critério depende do analisador, do eletrodo, do procedimento e da aplicação. A ferramenta mostra o percentual calculado, mas não aprova a calibração automaticamente.</p></details><details><summary>O que pode causar offset elevado?</summary><p>Junção contaminada, referência degradada, cabo ou conexão com problema, buffer inadequado e falta de estabilização estão entre as causas que devem ser investigadas.</p></details></section>
   
     <!-- ALOGY_REVISAO_TECNICA_FERRAMENTA -->
     <section class="calc-card" aria-label="Orientação técnica complementar">
-      <h2><i class="fas fa-clipboard-check"></i> Como usar esta ferramenta na prática</h2>
+      <h2><i class="fas fa-clipboard-check"></i> Aplicação prática: Calibração de pHmetro</h2>
       <p>Calcule a reta definida por dois buffers: o módulo da variação de mV por unidade de pH, sua relação com o slope teórico na temperatura informada e o potencial interpolado em pH 7.</p>
       <h3>Quando aplicar</h3>
       <p>Use em bancada, campo ou laboratório para conferir os valores registrados durante uma calibração de dois pontos. A ferramenta não substitui a calibração executada pelo analisador nem determina sozinha a aceitação do conjunto.</p>
-      <h3>Dados que merecem conferência</h3>
+      <h3>Entradas críticas para Calibração de pHmetro</h3>
       <p>Informe o valor de cada buffer na temperatura do ensaio, não apenas o valor nominal a 25 °C. Use leituras estabilizadas em mV e buffers diferentes que envolvam a faixa de medição sempre que o procedimento exigir.</p>
       <ul>
           <li>Buffer 1 pH</li>

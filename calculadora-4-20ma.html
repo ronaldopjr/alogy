@@ -72,9 +72,7 @@
     @media(max-width:900px){.classic-grid{grid-template-columns:1fr 1fr}.calc-actions .mini-btn{width:100%;justify-content:center}}
     @media print{header,.social-floating,.fab-wrap,.cta-bar,footer,.calc-actions,.tools-hero .btn,.no-print{display:none!important}body{background:#fff}.container{max-width:100%;padding:0}.calc-card,.tools-hero{box-shadow:none;border:1px solid #ddd}.calc-layout{display:block}.calc-card{margin:12px 0}.calc-table th{background:#eee!important;color:#111!important}}
   </style>
-  <!-- Google AdSense - verificação de propriedade -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5586837114309500"
-     crossorigin="anonymous"></script>
+<meta name="author" content="ALOGY Engenharia">
 </head>
 <body class="tools-page alogy-stage3-forms">
   <header>
@@ -135,6 +133,7 @@
     <div style="margin-bottom:14px;display:flex;gap:10px;flex-wrap:wrap" class="no-print"><a class="floating-back-tools no-print" href="ferramentas-instrumentacao-industrial.html"><i class="fas fa-arrow-left"></i> Voltar para Instrumentação</a><button class="btn print" type="button" onclick="window.print()"><i class="fas fa-print"></i> Imprimir</button></div>
     <section class="tools-hero">
       <h1>Calculadora 4-20 mA</h1>
+<p class="muted" data-alogy-content-meta><strong>Conteúdo técnico:</strong> ALOGY Engenharia · <strong>Atualizado em:</strong> 21/07/2026</p>
       <p>Converta sinal 4-20 mA, percentual 0-100% e valor de engenharia conforme a faixa configurada no instrumento. A ferramenta também gera tabela de referência para teste de loop, calibração e consulta rápida em campo.</p>
     </section>
 
@@ -278,7 +277,16 @@
       <p class="small-muted">Esta calculadora considera relação linear entre 4 e 20 mA. Aplicações com extração de raiz quadrada ou outra função exigem tratamento específico.</p>
     </section>
 
-  </main>
+  
+<!-- ALOGY_STAGE3_CURATION -->
+
+<section class="calc-card" aria-label="Base técnica e limites da calculadora 4-20 mA">
+  <h2><i class="fas fa-book"></i> Base técnica, fórmulas e limites</h2>
+  <p>A conversão linear usa <strong>percentual = (mA − 4) ÷ 16 × 100</strong> e <strong>valor de engenharia = LRV + percentual × (URV − LRV)</strong>. Para converter no sentido inverso, aplica-se <strong>mA = 4 + 16 × (valor − LRV) ÷ (URV − LRV)</strong>.</p>
+  <p><strong>Referências para conferência:</strong> IEC 60381-1 para sinais analógicos de corrente contínua; NAMUR NE 43 para faixas de informação de falha quando adotadas pelo equipamento; e os manuais do transmissor, cartão analógico e sistema de controle instalados.</p>
+  <p><strong>Limite:</strong> a calculadora trata somente a relação matemática da escala. Ela não comprova alimentação, carga de malha, comunicação HART, isolação, ruído, linearidade, exatidão, incerteza ou condição do instrumento.</p>
+</section>
+</main>
   <footer>
     <p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p>
   </footer>

@@ -79,7 +79,8 @@
     .print-sheet .muted-print{color:#333}
   }
 </style>
-<script async crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5586837114309500"></script>
+
+<meta name="author" content="ALOGY Engenharia">
 </head>
 <body class="tools-page alogy-stage3-forms">
 <header>
@@ -92,7 +93,8 @@
 <main class="container" style="margin-top:18px">
   <div aria-label="Ações da ferramenta" class="tool-page-actions no-print"><button class="btn print" id="topPrint" type="button"><i class="fas fa-print"></i> Imprimir</button><button class="btn secondary" id="topReport" type="button"><i class="fas fa-file-pdf"></i> Gerar relatório</button></div>
   <div class="no-print" style="margin-bottom:14px;display:flex;gap:10px;flex-wrap:wrap"><a class="btn secondary" href="ferramentas-instrumentacao-industrial.html"><i class="fas fa-gauge-high"></i> Central de Instrumentação</a><a class="btn secondary" href="blog-calibracao-instrumentos-industriais.html"><i class="fas fa-book-open"></i> Artigo sobre calibração</a></div>
-  <section class="tools-hero"><h1>Calculadora de Erro de Calibração</h1><p>Compare referência e indicação, calcule erro, correção, erro percentual, limite permitido e status de cada ponto. A ferramenta também permite aplicar uma regra de decisão conservadora com incerteza expandida.</p></section>
+  <section class="tools-hero"><h1>Calculadora de Erro de Calibração</h1>
+<p class="muted" data-alogy-content-meta><strong>Conteúdo técnico:</strong> ALOGY Engenharia · <strong>Atualizado em:</strong> 21/07/2026</p><p>Compare referência e indicação, calcule erro, correção, erro percentual, limite permitido e status de cada ponto. A ferramenta também permite aplicar uma regra de decisão conservadora com incerteza expandida.</p></section>
   <section aria-label="Aviso de responsabilidade" class="calc-card"><h2><i class="fas fa-triangle-exclamation"></i> Uso orientativo e responsabilidade técnica</h2><p>Esta ferramenta auxilia nos cálculos e na organização dos pontos. Não substitui certificado ou procedimento de calibração, rastreabilidade metrológica, avaliação da incerteza, levantamento de campo, projeto, memorial, laudo, ART, normas, manuais de fabricantes nem validação por profissional habilitado.</p></section>
   <section class="calc-layout">
     <div class="calc-card">
@@ -165,6 +167,15 @@
     <p class="small-muted">Essas referências ajudam a interpretar os conceitos; não substituem o procedimento, os requisitos contratuais ou a avaliação técnica aplicável ao instrumento.</p>
   </section>
   <section class="cta-bar no-print"><div><strong>Precisa validar calibração, teste de loop ou documentação técnica?</strong><br><span class="muted">A ALOGY Engenharia pode apoiar em diagnóstico, calibração, comissionamento e validação de instrumentos industriais.</span></div><div class="cta-actions"><a class="btn secondary" href="blog-calibracao-instrumentos-industriais.html"><i class="fas fa-book-open"></i> Ler sobre calibração</a><a class="btn secondary" href="ferramentas-instrumentacao-industrial.html"><i class="fas fa-gauge-high"></i> Central de Instrumentação</a></div></section>
+
+<!-- ALOGY_STAGE3_CURATION -->
+
+<section class="calc-card" aria-label="Exemplo e referências de erro de calibração">
+  <h2><i class="fas fa-book"></i> Exemplo, decisão e referências</h2>
+  <p><strong>Exemplo:</strong> referência de 50,00 e indicação de 50,20 resultam em erro de +0,20 e correção de −0,20. Se o limite permitido for ±0,50, o ponto atende matematicamente ao limite antes da consideração da incerteza.</p>
+  <p>Quando houver declaração formal de conformidade, aplique a regra de decisão documentada e considere a incerteza expandida. Um resultado próximo ao limite não deve ser liberado apenas pela comparação direta entre erro e tolerância.</p>
+  <p><strong>Referências para conferência:</strong> ISO/IEC 17025, ILAC-G8, JCGM 100 (GUM) e JCGM 200 (VIM).</p>
+</section>
 </main>
 <section class="print-sheet" id="printSheet" aria-hidden="true"><div class="print-title">Relatório de cálculo — Erro de calibração</div><p class="muted-print" id="printDate"></p><div id="printContent"></div></section>
 <footer><p>© Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
