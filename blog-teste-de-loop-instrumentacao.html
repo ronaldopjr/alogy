@@ -4,9 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-  <title>Teste de Loop em Instrumentação: do Campo ao CLP | ALOGY</title>
+  <title>Teste de Loop 4–20 mA: campo, CLP e IHM | ALOGY</title>
 
-  <meta name="description" content="Entenda o que é teste de loop em instrumentação industrial, como validar o sinal do campo ao CLP, sinais 4-20 mA, cartões analógicos, supervisório e"/>
+  <meta name="description" content="Aprenda a executar teste de loop 4–20 mA do campo ao CLP: métodos, pontos de teste, raw do cartão, escala da IHM, diagnóstico e registro."/>
   <meta name="robots" content="index,follow" />
   <meta name="theme-color" content="#004b80" />
   <link rel="canonical" href="https://www.alogy.com.br/blog-teste-de-loop-instrumentacao.html" />
@@ -27,25 +27,25 @@
   <meta property="og:locale" content="pt_BR" />
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="ALOGY Engenharia" />
-  <meta property="og:title" content="Teste de Loop em Instrumentação: do Campo ao CLP" />
-  <meta property="og:description" content="Como o teste de loop valida sensores, transmissores, cabos, bornes, cartões analógicos, CLP e supervisório." />
+  <meta property="og:title" content="Teste de Loop 4–20 mA: campo, CLP e IHM" />
+  <meta property="og:description" content="Métodos e sequência para testar transmissor, fiação, cartão analógico, escala do CLP e indicação na IHM." />
   <meta property="og:image" content="https://www.alogy.com.br/img-teste-de-loop-instrumentacao.webp" />
   <meta property="og:url" content="https://www.alogy.com.br/blog-teste-de-loop-instrumentacao.html" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Teste de Loop em Instrumentação: do Campo ao CLP" />
-  <meta name="twitter:description" content="Entenda a importância do teste de loop para comissionamento, manutenção e confiabilidade da instrumentação industrial." />
+  <meta name="twitter:title" content="Teste de Loop 4–20 mA: campo, CLP e IHM" />
+  <meta name="twitter:description" content="Veja como separar teste por corrente forçada, injeção no cartão e aplicação da variável física." />
   <meta name="twitter:image" content="https://www.alogy.com.br/img-teste-de-loop-instrumentacao.webp" />
 
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
     "@type":"BlogPosting",
-    "headline":"Teste de Loop em Instrumentação: do Campo ao CLP",
-    "description":"Entenda o que é teste de loop em instrumentação industrial, como validar o sinal do campo ao CLP, sinais 4-20 mA, cartões analógicos, supervisório e comissionamento.",
+    "headline":"Teste de Loop 4–20 mA: campo, CLP e IHM",
+    "description":"Aprenda a executar teste de loop 4–20 mA do campo ao CLP: métodos, pontos de teste, raw do cartão, escala da IHM, diagnóstico e registro.",
     "image":"https://www.alogy.com.br/img-teste-de-loop-instrumentacao.webp",
     "datePublished":"2026-06-26",
-    "dateModified":"2026-06-26",
+    "dateModified":"2026-07-18",
     "author":{
       "@type":"Organization",
       "name":"ALOGY Engenharia",
@@ -250,7 +250,7 @@
 
       <div class="post-content">
         <div class="post-meta">
-          <time datetime="2026-06-26">Publicado em 26/06/2026</time> • Instrumentação Industrial • Comissionamento • CLP
+          <time datetime="2026-06-26">Publicado em 26/06/2026</time> • Atualizado em 18/07/2026 • Instrumentação Industrial • Comissionamento • CLP
         </div>
 
         <div class="tags" style="margin-bottom:14px">
@@ -260,7 +260,7 @@
           <span class="tag">4-20 mA</span>
         </div>
 
-        <h1>Teste de Loop em Instrumentação: como garantir o sinal do campo ao CLP</h1>
+        <h1>Teste de Loop 4–20 mA: do campo ao CLP e à IHM</h1>
 
         <p>
           O teste de loop em instrumentação é uma etapa essencial para validar se o sinal gerado por um
@@ -291,9 +291,18 @@
         </p>
 
         <div class="post-highlight">
-          <strong>Resumo técnico:</strong> o teste de loop comprova que o sinal percorre corretamente todo
-          o caminho entre o campo e o sistema de controle.
+          <strong>Defina o limite do teste:</strong> forçar corrente no transmissor, injetar sinal no painel e aplicar a variável física verificam partes diferentes da malha. O relatório deve dizer onde o sinal foi aplicado e até onde a resposta foi observada.
         </div>
+
+        <h2>Antes de aplicar ou forçar qualquer sinal</h2>
+
+        <ul>
+          <li>Confirme TAG, folha de dados, diagrama de malha, faixa, unidade, tipo de entrada e canal no CLP/DCS.</li>
+          <li>Identifique controladores em automático, alarmes, permissivos, intertravamentos, totalizações e históricos afetados.</li>
+          <li>Combine a condição segura com operação e manutenção; uma corrente forçada pode movimentar lógica mesmo sem alterar o processo.</li>
+          <li>Registre valores “as-found” antes de desconectar fios, abrir bornes ou mudar parâmetros.</li>
+          <li>Use fonte, calibrador e método de conexão compatíveis com entrada ativa ou passiva e com a área de instalação.</li>
+        </ul>
 
         <h2>Por que o teste de loop é importante?</h2>
 
@@ -316,19 +325,39 @@
           <li>Melhora a confiabilidade da operação e da manutenção.</li>
         </ul>
 
-        <h2>Exemplo prático de uma malha 4-20 mA</h2>
+        <h2>Três métodos que não devem ser confundidos</h2>
 
-        <p>
-          Imagine um transmissor de pressão configurado para medir de 0 a 10 bar. Em uma escala 4-20 mA,
-          o valor de 0 bar corresponde a 4 mA, enquanto o valor de 10 bar corresponde a 20 mA.
-        </p>
+        <p><strong>1. Corrente forçada pelo transmissor:</strong> o loop test do dispositivo comanda valores conhecidos na saída 4–20 mA. Ele verifica a eletrônica de saída, a fiação a partir do transmissor, o cartão e a indicação, mas não testa a resposta do sensor à variável física.</p>
 
-        <p>
-          Durante o teste de loop, é possível simular ou aplicar sinais intermediários, como 4 mA, 12 mA
-          e 20 mA, verificando se o CLP e o supervisório indicam corretamente 0 bar, 5 bar e 10 bar.
-          Se a indicação estiver errada, o problema pode estar na escala, na ligação, no cartão analógico
-          ou na configuração do sistema.
-        </p>
+        <p><strong>2. Injeção de corrente no painel ou no cartão:</strong> isola a entrada analógica, o processamento e a escala do sistema. Se o sinal for aplicado diretamente no cartão, o trecho de cabo até o campo fica fora do ensaio.</p>
+
+        <p><strong>3. Aplicação da variável física:</strong> pressão, temperatura, nível ou outra referência é aplicada ao conjunto. Esse é o caminho mais completo, pois pode incluir sensor, transmissor, saída, cabeamento, cartão e indicação; exige padrão, montagem e procedimento apropriados à variável.</p>
+
+        <h2>Exemplo completo: 0–10 bar e raw 0–27648</h2>
+
+        <p>Considere uma malha linear de 4–20 mA, escala de 0 a 10 bar e cartão configurado para raw de 0 a 27648. Esse raw é apenas um exemplo documentado em determinadas famílias e configurações; use os extremos reais do equipamento instalado.</p>
+
+        <div class="table-wrap"><table class="calc-table"><thead><tr><th>Ponto</th><th>Corrente</th><th>Raw esperado</th><th>Indicação</th></tr></thead><tbody>
+          <tr><td>0%</td><td>4 mA</td><td>0</td><td>0 bar</td></tr>
+          <tr><td>25%</td><td>8 mA</td><td>6912</td><td>2,5 bar</td></tr>
+          <tr><td>50%</td><td>12 mA</td><td>13824</td><td>5,0 bar</td></tr>
+          <tr><td>75%</td><td>16 mA</td><td>20736</td><td>7,5 bar</td></tr>
+          <tr><td>100%</td><td>20 mA</td><td>27648</td><td>10,0 bar</td></tr>
+        </tbody></table></div>
+
+        <p>Se 12 mA medidos chegam ao cartão e o raw é 13824, mas a IHM indica 5,2 bar, a corrente e a conversão analógica estão coerentes; revise a escala de engenharia, a tag usada pela tela ou algum processamento intermediário. Se o transmissor comanda 12 mA, o amperímetro mede 11,8 mA e o cartão acompanha 11,8 mA, investigue a saída, a alimentação, a carga e o método de medição antes de alterar a escala do CLP.</p>
+
+        <h2>Comparações que localizam a falha</h2>
+
+        <ol>
+          <li>Referência aplicada versus variável digital do transmissor, quando o sensor faz parte do teste.</li>
+          <li>Corrente comandada ou informada pelo transmissor versus corrente medida.</li>
+          <li>Corrente medida versus valor raw recebido pelo cartão.</li>
+          <li>Raw do cartão versus unidade de engenharia no CLP/DCS.</li>
+          <li>Valor do controlador versus indicação, alarme e histórico na IHM ou supervisório.</li>
+        </ol>
+
+        <p>Evite “corrigir” o primeiro parâmetro disponível. Um ajuste de saída não resolve borne errado; uma nova escala no CLP não corrige transmissor configurado com range diferente; e um trim de sensor não deve compensar erro da entrada analógica.</p>
 
         <h2>Diferença entre calibração e teste de loop</h2>
 
@@ -356,13 +385,13 @@
           manutenção para validar malhas críticas e reduzir riscos na retomada da produção.
         </p>
 
+        <h2>E as malhas de saída e sinais discretos?</h2>
+
+        <p>Em uma saída analógica, o caminho é inverso: o sistema comanda um valor, o cartão gera corrente ou tensão e o elemento final responde. A movimentação de válvula, inversor ou atuador exige isolamento e autorização próprios. Para entradas e saídas discretas, o teste deve confirmar estado normal, estado atuado, lógica, indicação e condição de falha, sem transportar automaticamente os critérios da malha analógica.</p>
+
         <h2>Documentação do teste</h2>
 
-        <p>
-          Além de executar o teste, é importante registrar os resultados. Um relatório de teste de loop pode
-          conter tag do instrumento, variável medida, range, sinal aplicado, valor indicado no CLP, valor
-          indicado na IHM ou supervisório, status do teste e observações técnicas.
-        </p>
+        <p>O registro deve identificar TAG, desenho e revisão, limite físico do ensaio, instrumento de teste, ponto e método de conexão, valores aplicados, corrente medida, raw, engenharia no controlador, indicação na IHM, alarmes verificados, desvios, correções e configuração final.</p>
 
         <p>
           Essa documentação facilita auditorias, manutenção futura, rastreabilidade e análise de problemas.
@@ -370,24 +399,19 @@
           confiabilidade do sistema.
         </p>
 
-        <h2>Como a ALOGY Engenharia pode apoiar?</h2>
+        <h2>Referências e ferramentas relacionadas</h2>
 
-        <p>
-          A ALOGY Engenharia atua com instrumentação industrial, automação, testes de malha, documentação
-          técnica, apoio em comissionamento e integração com sistemas de controle. Esse trabalho contribui
-          para que os sinais de campo sejam confiáveis e estejam corretamente representados no CLP, IHM
-          e supervisório.
-        </p>
+        <p>O manual on-line do <a href="https://www.emerson.com/en/measurement-instrumentation/catalog/temperature-measurement/3144s-manual" target="_blank" rel="noopener">Rosemount 3144S</a> descreve o loop test como verificação da saída, fiação e dispositivos instalados na malha. A <a href="https://www.rockwellautomation.com/pt-pt/docs/add-on-profiles/ra-5069-analog/40/pv5069analog-ditamap/scaling-and-the-scaling-equation.html" target="_blank" rel="noopener">Rockwell Automation</a> documenta a conversão linear entre sinal elétrico e unidade de engenharia. A <a href="https://support.industry.siemens.com/cs/mdm/109741593?c=79989678731&amp;lc=en-AF" target="_blank" rel="noopener">Siemens</a> mostra como valores inteiros, inclusive 0–27648 em configurações específicas, representam a faixa nominal de entradas analógicas.</p>
 
-        <p>
-          Uma malha testada e documentada oferece mais segurança para operação, manutenção e futuras melhorias
-          no sistema de automação.
-        </p>
-
-        <div class="post-highlight">
-          <strong>Precisa validar sinais de campo, CLP ou supervisório?</strong><br>
-          O teste de loop ajuda a garantir que a informação do processo esteja correta antes de decisões operacionais.
+        <div class="calc-actions" style="margin-top:18px">
+          <a class="mini-btn dark" href="checklist-teste-de-loop.html"><i class="fas fa-list-check"></i> Checklist de teste de loop</a>
+          <a class="mini-btn" href="calculadora-calibracao-cartao-analogico-clp.html"><i class="fas fa-microchip"></i> Conferir cartão analógico</a>
+          <a class="mini-btn" href="calculadora-4-20ma.html"><i class="fas fa-calculator"></i> Converter 4–20 mA</a>
         </div>
+
+        <h2>Aviso técnico</h2>
+
+        <p>Este conteúdo é informativo e orientativo. O teste deve seguir procedimento aprovado, documentação da planta e dos fabricantes, requisitos da área, controle de energias, análise de risco e atuação de profissional habilitado. Não force sinais em malhas de controle ou segurança sem tratar previamente as consequências no processo.</p>
 
         <div class="cta-actions" style="margin-top:18px">
           <a class="btn" href="industrial.html">
