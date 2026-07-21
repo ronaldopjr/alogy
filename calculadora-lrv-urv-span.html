@@ -73,7 +73,7 @@
       body{background:#fff!important;color:#111!important;font-family:Arial,sans-serif!important}
       body>:not(main){display:none!important}main>:not(#printSheet){display:none!important}
       main{max-width:none!important;margin:0!important;padding:0!important}#printSheet{display:block!important}
-      #printSheet h1{font-size:20pt;margin:0 0 4px}#printSheet h2{font-size:13pt;margin:18px 0 7px;border-bottom:1px solid #777;padding-bottom:4px}
+      #printSheet .print-title{font-size:20pt;font-weight:700;margin:0 0 4px}#printSheet h2{font-size:13pt;margin:18px 0 7px;border-bottom:1px solid #777;padding-bottom:4px}
       #printSheet .print-meta{color:#444;margin-bottom:14px}#printSheet table{width:100%;border-collapse:collapse;margin:7px 0 12px}
       #printSheet th,#printSheet td{border:1px solid #999;padding:7px;text-align:left;vertical-align:top}#printSheet th{background:#eee!important;width:34%;-webkit-print-color-adjust:exact;print-color-adjust:exact}
       #printSheet .wide th{width:auto}#printSheet .memory-step{border:1px solid #aaa;border-radius:0;break-inside:avoid}#printSheet tr{break-inside:avoid}
@@ -202,7 +202,7 @@
     </section>
 
     <section id="printSheet" class="print-only" aria-label="Documento técnico para impressão">
-      <h1>Calculadora de LRV, URV e Span</h1>
+      <div class="print-title">Calculadora de LRV, URV e Span</div>
       <div class="print-meta" id="printMeta"></div>
       <h2>Dados informados</h2><table id="printInputs"></table>
       <h2>Resultados</h2><table id="printResults"></table>
