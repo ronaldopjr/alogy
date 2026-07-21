@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Comprimento de correia entre polias | ALOGY Engenharia</title>
-  <meta name="description" content="Como estimar comprimento de correia aberta ou cruzada e usar o resultado na manutenção mecânica." />
+  <title>Como calcular o comprimento de correia entre polias | ALOGY Engenharia</title>
+  <meta name="description" content="Aprenda a calcular o comprimento de correias abertas e cruzadas entre polias, com fórmulas, exemplo prático, limitações e cuidados de manutenção." />
   <meta name="robots" content="index,follow" />
   <meta name="theme-color" content="#004b80" />
   <link rel="canonical" href="https://www.alogy.com.br/blog-comprimento-correia-polias.html" />
@@ -19,14 +19,14 @@
   <link rel="stylesheet" href="style.css" />
   <script src="app.js" defer></script>
   <meta property="og:locale" content="pt_BR" />
-  <meta property="og:type" content="website" />
+  <meta property="og:type" content="article" />
   <meta property="og:site_name" content="ALOGY Engenharia" />
-  <meta property="og:title" content="Comprimento de correia entre polias" />
-  <meta property="og:description" content="Como estimar comprimento de correia aberta ou cruzada e usar o resultado na manutenção mecânica." />
+  <meta property="og:title" content="Como calcular o comprimento de correia entre polias" />
+  <meta property="og:description" content="Fórmulas para correias abertas e cruzadas, exemplo prático e cuidados de manutenção." />
   <meta property="og:url" content="https://www.alogy.com.br/blog-comprimento-correia-polias.html" />
   <meta property="og:image" content="https://www.alogy.com.br/favicon-512x512.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "name": "Comprimento de correia entre polias", "url": "https://www.alogy.com.br/blog-comprimento-correia-polias.html", "description": "Como estimar comprimento de correia aberta ou cruzada e usar o resultado na manutenção mecânica.", "publisher": {"@type": "Organization", "name": "ALOGY Engenharia", "url": "https://www.alogy.com.br/"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Como calcular o comprimento de correia entre polias","name":"Como calcular o comprimento de correia entre polias","url":"https://www.alogy.com.br/blog-comprimento-correia-polias.html","description":"Aprenda a calcular o comprimento de correias abertas e cruzadas entre polias, com fórmulas, exemplo prático, limitações e cuidados de manutenção.","dateModified":"2026-07-21","author":{"@type":"Organization","name":"Equipe técnica da ALOGY Engenharia","url":"https://www.alogy.com.br/sobre.html"},"publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://www.alogy.com.br/blog-comprimento-correia-polias.html"}}</script>
   <style>
     .mini-help{color:var(--muted);font-size:.92rem;line-height:1.55;margin-top:8px}
     .calc-result.two{grid-template-columns:repeat(2,1fr)} .calc-result.three{grid-template-columns:repeat(3,1fr)} .calc-result.four{grid-template-columns:repeat(4,1fr)}
@@ -35,15 +35,15 @@
     .textarea-lines{min-height:120px;font-family:monospace;white-space:pre}
     @media(max-width:900px){.calc-result.two,.calc-result.three,.calc-result.four{grid-template-columns:1fr}}
     @media print{header,.social-floating,.fab-wrap,.cta-bar,footer,.calc-actions,.tools-hero .btn,.no-print{display:none!important}body{background:#fff}.container{max-width:100%;padding:0}.calc-card,.tools-hero{box-shadow:none;border:1px solid #ddd}.calc-layout{display:block}.calc-card{margin:12px 0}.calc-table th{background:#eee!important;color:#111!important}}
-</style>
+  </style>
   <!-- Google AdSense / Auto Ads -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5586837114309500"
-     crossorigin="anonymous"></script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5586837114309500" crossorigin="anonymous"></script>
 </head>
 <body>
   <header>
-    <div class="container headbar"><a href="/" class="logo-wrapper" aria-label="Voltar para o início"><img src="logo-alogy.webp" alt="ALOGY Engenharia"  width="878"  height="308"  decoding="async" /></a>
-<button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menu"><i class="fas fa-bars"></i></button></div>
+    <div class="container headbar"><a href="/" class="logo-wrapper" aria-label="Voltar para o início"><img src="logo-alogy.webp" alt="ALOGY Engenharia" width="878" height="308" decoding="async" /></a>
+      <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menu"><i class="fas fa-bars"></i></button>
+    </div>
     <nav class="desktop" aria-label="Menu principal"><div class="container navlinks"><a href="index.html">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="index.html#contato">Contato</a></div></nav>
     <nav class="mobile" aria-label="Menu mobile"><a href="index.html">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="index.html#contato">Contato</a></nav>
   </header>
@@ -51,32 +51,73 @@
   <div class="fab-wrap" aria-label="Ações rápidas"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1%21%20Vim%20pelas%20ferramentas%20da%20ALOGY.%20Gostaria%20de%20atendimento." target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
   <main class="container" style="margin-top:18px">
     <a class="floating-back-blog no-print" href="blog.html"><i class="fas fa-arrow-left"></i> Voltar ao Blog</a>
-    <section class="tools-hero"><h1>Comprimento de correia entre polias</h1><p>Como estimar comprimento de correia aberta ou cruzada e usar o resultado na manutenção mecânica.</p></section>
+    <section class="tools-hero"><h1>Como calcular o comprimento de correia entre polias</h1><p>Fórmulas para transmissão aberta e cruzada, exemplo numérico e cuidados para selecionar a correia corretamente.</p></section>
     <article class="calc-card">
-      <p class="mini-help"><strong>Categoria:</strong> Manutenção, comissionamento e confiabilidade · <strong>Aplicação:</strong> engenharia, manutenção, operação e utilidades industriais.</p>
+      <p class="mini-help"><strong>Categoria:</strong> Manutenção mecânica e confiabilidade · <strong>Revisado em:</strong> 21/07/2026 · <strong>Autoria:</strong> Equipe técnica da ALOGY Engenharia.</p>
       <div class="tags"><span class="tag">Correia</span><span class="tag">Polia</span><span class="tag">Transmissão</span></div>
-      <p>A troca de correia parece simples, mas erros de comprimento, perfil e tensionamento geram patinação, aquecimento, vibração e desgaste prematuro.</p>
-      <p>O valor desse tipo de análise está em transformar dados de campo em decisão prática: comprar ou não comprar, ajustar ou não ajustar, abrir inspeção, priorizar parada, alterar setpoint, chamar fornecedor ou apenas monitorar tendência.</p>
-      <h2>Onde este tema aparece na rotina industrial</h2>
-      <p>O assunto aparece em ordens de serviço, reuniões de confiabilidade, inspeções de campo, rotas de manutenção, estudos de melhoria, comissionamento e relatórios técnicos. Normalmente a pergunta principal é: o resultado está dentro de uma condição aceitável para manter o equipamento operando com segurança e disponibilidade?</p>
-      <h2>Dados que precisam ser levantados</h2>
-      <ul><li>Identificação do ativo, linha ou sistema avaliado.</li><li>Condição operacional no momento da medição: carga, vazão, pressão, temperatura, rotação, lote ou regime de operação.</li><li>Valor medido, unidade, instrumento usado e data da medição.</li><li>Limite de aceitação: projeto, fabricante, norma interna, histórico ou critério de manutenção.</li><li>Ação esperada caso o resultado fique fora da faixa aceitável.</li></ul>
-      <h2>Fórmula ou lógica principal</h2>
-      <div class="formula-box"><strong>Relação usada na análise</strong><span class="line">Correia aberta: L = 2C + π(D+d)/2 + (D-d)²/(4C)</span><span class="line">Use unidades coerentes e registre as premissas usadas.</span></div>
-      <p>Uma fórmula só é útil quando os dados de entrada representam a condição real. Por isso, antes de confiar no resultado, confirme unidade, ponto de medição, calibração do instrumento e estabilidade operacional.</p>
-      <h2>Como aplicar passo a passo</h2>
-      <ol><li><strong>Defina o objetivo:</strong> triagem, dimensionamento preliminar, diagnóstico, aceite técnico ou justificativa de melhoria.</li><li><strong>Levante os dados reais:</strong> dê preferência para medição de campo e histórico do sistema.</li><li><strong>Calcule e registre premissas:</strong> unidade, fonte dos dados, condição de operação e critério de comparação.</li><li><strong>Compare com referência:</strong> projeto, fabricante, histórico, limite de processo ou meta de manutenção.</li><li><strong>Defina ação:</strong> monitorar, corrigir, comprar, ajustar, limpar, recalibrar, inspecionar ou abrir análise de causa.</li></ol>
-      <h2>Exemplo de interpretação</h2>
-      <p>Quando o resultado está próximo do limite, a decisão não deve depender apenas de um número. Compare tendência, criticidade e consequência da falha. Um desvio pequeno em equipamento crítico pode exigir ação imediata, enquanto o mesmo desvio em equipamento reserva pode entrar em plano programado.</p>
+
+      <p>O comprimento geométrico de uma correia depende do diâmetro primitivo das polias, da distância entre os centros dos eixos e do tipo de montagem. O cálculo é útil para estimativas, seleção inicial e conferência de campo, mas a escolha final deve respeitar o perfil da correia, a faixa de ajuste do motor e a tabela do fabricante.</p>
+
+      <h2>Quais medidas usar</h2>
+      <p>Considere <strong>D</strong> como o diâmetro primitivo da polia maior, <strong>d</strong> como o diâmetro primitivo da polia menor e <strong>C</strong> como a distância entre centros. Todas as medidas precisam estar na mesma unidade. Se os dados estiverem em milímetros, o resultado também será obtido em milímetros.</p>
+      <p>O diâmetro externo medido com paquímetro nem sempre coincide com o diâmetro primitivo usado no cálculo. Para correias em V, o diâmetro primitivo depende do perfil da correia e da geometria do canal. Por isso, quando houver catálogo da polia, prefira o valor informado pelo fabricante.</p>
+
+      <h2>Fórmula para correia aberta</h2>
+      <p>Na transmissão aberta, as duas polias giram no mesmo sentido. Uma aproximação amplamente usada para o comprimento primitivo é:</p>
+      <div class="formula-box"><strong>L = 2C + π(D + d)/2 + (D - d)²/(4C)</strong><span class="line">L = comprimento primitivo da correia</span><span class="line">D = diâmetro primitivo da polia maior</span><span class="line">d = diâmetro primitivo da polia menor</span><span class="line">C = distância entre centros</span></div>
+
+      <h2>Fórmula para correia cruzada</h2>
+      <p>Na transmissão cruzada, as polias giram em sentidos opostos. A aproximação muda porque os ramos da correia se cruzam:</p>
+      <div class="formula-box"><strong>L = 2C + π(D + d)/2 + (D + d)²/(4C)</strong><span class="line">A montagem cruzada aumenta o contato, mas também provoca flexão inversa e atrito entre os ramos quando a geometria é inadequada.</span></div>
+
+      <h2>Exemplo de cálculo para correia aberta</h2>
+      <p>Considere uma polia motora com 120 mm, uma polia movida com 300 mm e distância entre centros de 800 mm.</p>
+      <ol>
+        <li><strong>Trecho reto:</strong> 2 × 800 = 1.600 mm.</li>
+        <li><strong>Parcela dos arcos:</strong> π × (300 + 120) / 2 ≈ 659,7 mm.</li>
+        <li><strong>Correção pela diferença de diâmetros:</strong> (300 - 120)² / (4 × 800) = 10,1 mm.</li>
+        <li><strong>Comprimento aproximado:</strong> 1.600 + 659,7 + 10,1 = 2.269,8 mm.</li>
+      </ol>
+      <p>O valor calculado não significa que exista uma correia comercial com exatamente 2.269,8 mm. Deve-se selecionar o comprimento padronizado mais próximo e verificar se a base do motor ou o sistema tensor possui curso suficiente para montagem e tensionamento.</p>
+
+      <h2>Como escolher o comprimento comercial</h2>
+      <p>Antes da compra, confirme como o fabricante declara o comprimento: interno, externo, efetivo ou primitivo. Duas correias com o mesmo número nominal podem seguir sistemas de medição diferentes. Também é importante verificar seção, largura, ângulo, construção, material e aplicação.</p>
+      <p>Em conjuntos com múltiplas correias em paralelo, use correias do mesmo fabricante, mesma série e preferencialmente do mesmo lote ou conjunto casado. Misturar correias com comprimentos efetivos diferentes distribui mal a carga e acelera o desgaste.</p>
+
+      <h2>Verificações de campo antes de condenar a correia</h2>
+      <ul>
+        <li>Inspecione o alinhamento angular e paralelo das polias.</li>
+        <li>Verifique desgaste, brilho, trincas, contaminação por óleo e borracha acumulada nos canais.</li>
+        <li>Confirme se a polia não está com canal gasto ou diâmetro diferente do projeto.</li>
+        <li>Meça a distância entre centros com o equipamento parado e bloqueado.</li>
+        <li>Confira a tensão pelo método recomendado pelo fabricante, não apenas pela sensação manual.</li>
+        <li>Avalie se existe curso para retensionamento após o assentamento inicial.</li>
+      </ul>
+
+      <h2>Limitações do cálculo</h2>
+      <p>As fórmulas acima são aproximações geométricas. Elas não dimensionam potência transmissível, quantidade de correias, ângulo mínimo de abraçamento, frequência de flexão, tensão inicial ou vida útil. Para um projeto novo, esses itens precisam ser avaliados com dados de potência, rotação, fator de serviço, diâmetro mínimo permitido e recomendações do fabricante.</p>
+      <p>Quando a distância entre centros é pequena em relação aos diâmetros, a aproximação perde qualidade e o ângulo de contato na polia menor pode ficar insuficiente. Nessa condição, consulte o procedimento de cálculo do fabricante ou faça a solução geométrica exata.</p>
+
       <h2>Erros comuns</h2>
-      <ul><li>Usar dado nominal no lugar de dado medido.</li><li>Não registrar condição operacional da medição.</li><li>Comparar resultado com referência errada ou sem unidade.</li><li>Ignorar histórico do ativo e sintomas de campo.</li><li>Tomar decisão de troca sem confirmar causa raiz.</li></ul>
-      <h2>Checklist rápido para relatório</h2>
-      <ul><li>Registrar ativo, tag, local e data.</li><li>Informar dados de entrada e unidade.</li><li>Apresentar resultado, limite e interpretação.</li><li>Indicar risco caso nenhuma ação seja tomada.</li><li>Definir responsável e prazo quando houver desvio.</li></ul>
-      <h2>Quando escalar para engenharia ou fornecedor</h2>
-      <p>Escalone quando houver impacto em segurança, qualidade, meio ambiente, parada de produção, garantia de equipamento, requisito legal ou quando medições de campo não batem com CLP, supervisório, laudo de laboratório ou catálogo do fabricante.</p>
-      <div class="faq"><details><summary>Esse cálculo substitui análise técnica completa?</summary><p>Não. Ele serve como apoio para triagem e decisão preliminar. Projetos, laudos e alterações definitivas devem seguir normas, procedimento interno e responsável técnico.</p></details><details><summary>Posso usar no relatório de manutenção?</summary><p>Sim, desde que o relatório inclua premissas, dados de entrada, unidade, resultado, limite de comparação e ação recomendada.</p></details><details><summary>Qual é o maior cuidado?</summary><p>Não misturar unidade nem comparar dados medidos em condições operacionais diferentes.</p></details></div>
+      <ul>
+        <li>Usar diâmetro externo como se fosse diâmetro primitivo.</li>
+        <li>Somar medidas em unidades diferentes.</li>
+        <li>Comprar pelo comprimento calculado sem verificar a nomenclatura do fabricante.</li>
+        <li>Ignorar o curso de ajuste da base do motor.</li>
+        <li>Instalar a correia forçando-a sobre a borda da polia.</li>
+        <li>Compensar desalinhamento com tensão excessiva.</li>
+      </ul>
+
+      <h2>Referências para conferência</h2>
+      <p>Para seleção final, consulte o catálogo técnico do fabricante das correias e polias instaladas. As dimensões nominais, fatores de correção, potência por correia e método de tensionamento variam conforme perfil e construção.</p>
+
+      <div class="faq">
+        <details><summary>Posso medir a correia antiga para comprar outra?</summary><p>Pode usar a medida como referência, mas uma correia usada pode estar alongada ou desgastada. Confirme também o código, o perfil e a faixa de ajuste do conjunto.</p></details>
+        <details><summary>Qual é a diferença entre correia aberta e cruzada?</summary><p>A aberta mantém o mesmo sentido de rotação entre as polias. A cruzada inverte o sentido, porém impõe flexão inversa e exige cuidado com interferência entre os ramos.</p></details>
+        <details><summary>O cálculo define a tensão correta?</summary><p>Não. O comprimento geométrico e a tensão são verificações diferentes. A tensão deve seguir o método e os limites do fabricante.</p></details>
+      </div>
     </article>
-    <section class="calc-card no-print" aria-label="Ferramenta relacionada"><h2>Ferramenta relacionada</h2><p>Use a ferramenta abaixo para aplicar o conceito com seus dados de campo.</p><div class="calc-actions"><a class="mini-btn dark" href="calculadora-comprimento-correia-polias.html"><i class="fas fa-calculator"></i> Abrir ferramenta relacionada</a><a class="mini-btn" href="ferramentas.html"><i class="fas fa-toolbox"></i> Ver todas as ferramentas</a></div></section>
+    <section class="calc-card no-print" aria-label="Ferramenta relacionada"><h2>Calcule com seus dados</h2><p>Use a calculadora para estimar o comprimento e depois compare o resultado com as dimensões comerciais do fabricante.</p><div class="calc-actions"><a class="mini-btn dark" href="calculadora-comprimento-correia-polias.html"><i class="fas fa-calculator"></i> Abrir calculadora</a><a class="mini-btn" href="ferramentas.html"><i class="fas fa-toolbox"></i> Ver todas as ferramentas</a></div></section>
     <section class="cta-bar" aria-label="Chamada para contato"><div><strong>Precisa de apoio técnico em engenharia, manutenção ou utilidades?</strong><br><span class="muted">A ALOGY apoia análises aplicadas, automação, instrumentação, elétrica e manutenção industrial.</span></div><div class="cta-actions"><a class="btn" href="index.html#contato"><i class="fas fa-paper-plane"></i> Solicitar contato</a></div></section>
   </main>
   <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
