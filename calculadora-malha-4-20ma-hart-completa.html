@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Calculadora de Malha 4-20 mA / HART | ALOGY</title>
-  <meta name="description" content="Confira escala, raw do CLP e orçamento de tensão de uma malha 4-20 mA/HART, com carga, cabo e corrente de verificação configuráveis." />
+  <title>Calculadora de Malha 4-20 mA e HART | ALOGY Engenharia</title>
+  <meta name="description" content="Calcule escala, raw do CLP, resistência do cabo, carga total e tensão disponível em uma malha 4-20 mA/HART, com fórmulas, exemplo e checklist técnico." />
   <meta name="robots" content="index,follow" />
   <meta name="theme-color" content="#004b80" />
   <link rel="canonical" href="https://www.alogy.com.br/calculadora-malha-4-20ma-hart-completa.html" />
@@ -21,22 +21,24 @@
   <meta property="og:locale" content="pt_BR" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="ALOGY Engenharia" />
-  <meta property="og:title" content="Calculadora de Malha 4-20 mA / HART" />
-  <meta property="og:description" content="Verifique fonte, carga, cabo, resistor HART, tensão disponível, raw do CLP e diagnóstico de falhas em malhas 4-20 mA." />
+  <meta property="og:title" content="Calculadora de Malha 4-20 mA e HART" />
+  <meta property="og:description" content="Ferramenta técnica para conferir escala, raw, cabo, carga e orçamento de tensão em malhas 4-20 mA/HART." />
   <meta property="og:url" content="https://www.alogy.com.br/calculadora-malha-4-20ma-hart-completa.html" />
   <meta property="og:image" content="https://www.alogy.com.br/logo-alogy.webp" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Calculadora de Malha 4-20 mA / HART" />
-  <meta name="twitter:description" content="Ferramenta completa para validar malhas 4-20 mA/HART em campo, painel e CLP." />
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
     "@type":"WebApplication",
-    "name":"Calculadora de Malha 4-20 mA / HART Completa",
+    "name":"Calculadora de Malha 4-20 mA e HART",
     "url":"https://www.alogy.com.br/calculadora-malha-4-20ma-hart-completa.html",
     "applicationCategory":"EngineeringApplication",
     "operatingSystem":"Web",
-    "description":"Ferramenta orientativa para conferir escala, raw do CLP e orçamento de tensão de uma malha 4-20 mA/HART com fonte, carga, cabo e corrente de verificação configuráveis.",
+    "inLanguage":"pt-BR",
+    "datePublished":"2026-07-21",
+    "dateModified":"2026-07-21",
+    "description":"Ferramenta técnica para conferir escala, raw do CLP, resistência do cabo, carga total e tensão disponível em uma malha 4-20 mA/HART.",
+    "author":{"@type":"Organization","name":"Equipe técnica da ALOGY Engenharia","url":"https://www.alogy.com.br/sobre.html"},
     "provider":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"}
   }
   </script>
@@ -45,296 +47,164 @@
     "@context":"https://schema.org",
     "@type":"FAQPage",
     "mainEntity":[
-      {"@type":"Question","name":"Para que serve a calculadora de malha 4-20 mA/HART?","acceptedAnswer":{"@type":"Answer","text":"Ela ajuda a conferir a escala analógica, o raw do CLP e se a fonte deixa tensão suficiente no transmissor após as quedas nas cargas e no cabo."}},
-      {"@type":"Question","name":"A resistência calculada comprova a comunicação HART?","acceptedAnswer":{"@type":"Answer","text":"Não. O cálculo usa resistências em corrente contínua para o orçamento de tensão. A comunicação HART também depende das exigências do dispositivo, da impedância na frequência do sinal, da capacitância, das interfaces, do aterramento e do ruído, devendo ser testada em campo."}},
-      {"@type":"Question","name":"A ferramenta substitui projeto ou comissionamento?","acceptedAnswer":{"@type":"Answer","text":"Não. O cálculo é preliminar e deve ser validado com manuais dos fabricantes, condições reais de campo, normas aplicáveis, testes de loop e procedimentos internos."}}
+      {"@type":"Question","name":"Para que serve a calculadora de malha 4-20 mA/HART?","acceptedAnswer":{"@type":"Answer","text":"Ela ajuda a conferir a escala analógica, o raw do CLP e se a fonte mantém tensão suficiente no transmissor após as quedas nas cargas e no cabo."}},
+      {"@type":"Question","name":"A resistência calculada comprova a comunicação HART?","acceptedAnswer":{"@type":"Answer","text":"Não. O cálculo verifica o orçamento de tensão em corrente contínua. A comunicação HART também depende da impedância na frequência do sinal, capacitância, interfaces, aterramento, blindagem e ruído."}},
+      {"@type":"Question","name":"A ferramenta substitui teste de loop?","acceptedAnswer":{"@type":"Answer","text":"Não. O resultado é preliminar e deve ser confirmado com manuais, medições, simulação de corrente e comunicação real com o instrumento."}}
     ]
   }
   </script>
-<style>
-    .tech-page{background:linear-gradient(180deg,rgba(0,75,128,.04),rgba(255,255,255,0) 260px)}
+  <style>
+    .tech-page{background:linear-gradient(180deg,rgba(0,75,128,.04),transparent 260px)}
     .tech-wrap{max-width:1120px;margin:18px auto 34px}
-    .tech-back{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:900;color:#0b3a62;background:#fff;border:1px solid rgba(0,107,177,.18);border-radius:999px;padding:10px 14px;box-shadow:0 6px 18px rgba(0,0,0,.04);margin-bottom:14px}
-    .tech-hero{background:linear-gradient(135deg,#0b3a62,#006bb1);color:#fff;border-radius:22px;padding:30px;box-shadow:0 18px 42px rgba(0,75,128,.22);overflow:hidden;position:relative}
-    .tech-hero:after{content:"";position:absolute;right:-80px;top:-80px;width:240px;height:240px;border-radius:50%;background:rgba(255,255,255,.13)}
-    .tech-hero h1{font-size:2.25rem;line-height:1.12;margin:0 0 12px;max-width:900px;color:#fff}
-    .tech-hero p{font-size:1.08rem;line-height:1.65;margin:0;max-width:930px;color:rgba(255,255,255,.92)}
-    .hero-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
-    .hero-tags span,.hero-tags a{display:inline-flex;align-items:center;gap:7px;border:1px solid rgba(255,255,255,.26);background:rgba(255,255,255,.12);color:#fff;text-decoration:none;border-radius:999px;padding:8px 10px;font-size:.88rem;font-weight:900}
-    .calc-grid{display:grid;grid-template-columns:minmax(0,1fr) 390px;gap:18px;margin-top:18px}
-    .tech-card{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:20px;box-shadow:0 12px 30px rgba(0,0,0,.06);padding:24px;margin-top:18px}
-    .tech-card h2{font-size:1.45rem;line-height:1.25;margin:0 0 12px;color:#0b3a62}
-    .tech-card h3{font-size:1.12rem;line-height:1.3;margin:20px 0 8px;color:#0b3a62}
-    .tech-card p,.tech-card li{font-size:1rem;line-height:1.72;color:#253243}
-    .tech-card ul,.tech-card ol{margin:0 0 16px 20px}
-    .field-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-    .field{display:flex;flex-direction:column;gap:6px}
-    .field label{font-weight:900;color:#0b3a62;font-size:.92rem}
-    .field input,.field select,.field textarea{border:1px solid rgba(0,0,0,.14);border-radius:12px;padding:12px;background:#fff;font:inherit;width:100%;box-sizing:border-box}
-    .field small{color:#6b7280;line-height:1.4}
-    .wide{grid-column:1/-1}
-    .calc-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
-    .btn-mini{display:inline-flex;align-items:center;gap:8px;border:none;border-radius:999px;padding:11px 14px;font-weight:900;cursor:pointer;text-decoration:none;background:#0b3a62;color:#fff;font:inherit}
-    .btn-mini.secondary{background:rgba(0,107,177,.09);color:#0b3a62;border:1px solid rgba(0,107,177,.18)}
-    .result-box{border-radius:18px;background:linear-gradient(180deg,rgba(0,107,177,.10),rgba(0,107,177,.04));border:1px solid rgba(0,107,177,.18);padding:18px}
-    .result-main{font-size:1.85rem;font-weight:900;color:#0b3a62;line-height:1.1;margin:10px 0}
-    .result-sub{color:#475569;line-height:1.6}
-    .pill-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
-    .pill{display:inline-flex;align-items:center;gap:7px;border-radius:999px;background:#fff;border:1px solid rgba(0,107,177,.18);padding:8px 10px;font-size:.88rem;font-weight:900;color:#0b3a62;text-decoration:none}
-    .note{background:#fff7ed;border:1px solid #fed7aa;color:#7c2d12;border-radius:16px;padding:14px;line-height:1.6}
-    .ok{background:#ecfdf5;border-color:#bbf7d0;color:#166534}
-    .warn{background:#fffbeb;border-color:#fde68a;color:#92400e}
-    .bad{background:#fef2f2;border-color:#fecaca;color:#991b1b}
-    .info{background:#eff6ff;border-color:#bfdbfe;color:#1e3a8a}
-    .table-wrap{overflow:auto;border-radius:16px;border:1px solid rgba(0,0,0,.08);margin-top:12px}
-    table.tech-table{width:100%;border-collapse:collapse;background:#fff;font-size:.94rem}
-    .tech-table th{background:#0b3a62;color:#fff;text-align:left;padding:11px;white-space:nowrap}
-    .tech-table td{padding:10px;border-bottom:1px solid rgba(0,0,0,.07);vertical-align:top}
-    .tech-table tr:last-child td{border-bottom:none}
-    .split{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-    .mini-meter{height:12px;background:#e5e7eb;border-radius:999px;overflow:hidden;margin:6px 0}
-    .mini-meter span{display:block;height:100%;background:linear-gradient(90deg,#0b3a62,#006bb1);border-radius:999px;width:0%}
-    .diagram{background:#f8fafc;border:1px solid rgba(0,0,0,.08);border-radius:16px;padding:12px;margin-top:14px}
-    pre.copybox{white-space:pre-wrap;background:#0f172a;color:#e5e7eb;border-radius:16px;padding:16px;overflow:auto;line-height:1.55}
-    .faq details{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:14px;padding:14px;margin-top:10px}
-    .faq summary{cursor:pointer;font-weight:900;color:#0b3a62}
-    .faq p{margin:10px 0 0;color:#475569}
-    .load-table input,.load-table select{width:105px;max-width:100%;padding:8px;border:1px solid rgba(0,0,0,.14);border-radius:10px;font:inherit}
-    .load-table .load-name{width:170px}
-    @media(max-width:900px){.calc-grid,.split{grid-template-columns:1fr}.field-grid{grid-template-columns:1fr}.tech-hero{padding:24px}.tech-hero h1{font-size:1.65rem}.load-table input,.load-table select{width:90px}.load-table .load-name{width:140px}}
-    @media print{header,.social-floating,.fab-wrap,footer,.tech-back,.calc-actions,.no-print{display:none!important}body{background:#fff}.tech-card,.tech-hero{box-shadow:none;border:1px solid #ddd}.calc-grid,.split{display:block}}
+    .tech-hero{background:linear-gradient(135deg,#0b3a62,#006bb1);color:#fff;border-radius:22px;padding:30px;box-shadow:0 18px 42px rgba(0,75,128,.22)}
+    .tech-hero h1{font-size:2.2rem;line-height:1.15;margin:0 0 12px;color:#fff}.tech-hero p{max-width:900px;line-height:1.65;color:#fff}
+    .hero-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}.hero-tags span{border:1px solid rgba(255,255,255,.3);border-radius:999px;padding:8px 10px;font-weight:700}
+    .tech-card,.calc-card{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:20px;box-shadow:0 12px 30px rgba(0,0,0,.06);padding:24px;margin-top:18px}
+    .tech-card h2,.calc-card h2{color:#0b3a62;margin-top:0}.tech-card p,.tech-card li{line-height:1.72;color:#253243}
+    .calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.calc-grid label{font-weight:700;color:#0b3a62}.calc-grid input,.calc-grid select{display:block;width:100%;box-sizing:border-box;margin-top:6px;padding:12px;border:1px solid #cbd5e1;border-radius:12px;font:inherit}
+    .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}.result-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px}.result-kpi{border:1px solid #dbeafe;border-radius:14px;padding:14px;background:#f8fbff}.result-kpi span{display:block;color:#64748b;font-size:.88rem}.result-kpi strong{display:block;color:#0b3a62;margin-top:6px}
+    .result-box,.notice{border-radius:14px;padding:14px;background:#eff6ff;border:1px solid #bfdbfe}.notice{margin-top:14px}.formula{background:#0f172a;color:#e2e8f0;border-radius:14px;padding:14px;overflow:auto;white-space:pre-wrap}.meta-line{font-size:.94rem;color:#475569;border-top:1px solid #e2e8f0;padding-top:12px;margin-top:16px}
+    .table-scroll{overflow:auto}table{width:100%;border-collapse:collapse}th{background:#0b3a62;color:#fff;text-align:left;padding:10px}td{padding:10px;border-bottom:1px solid #e5e7eb}.split{display:grid;grid-template-columns:1fr 1fr;gap:18px}.copy-box{white-space:pre-wrap;background:#0f172a;color:#e5e7eb;border-radius:16px;padding:16px;overflow:auto}
+    @media(max-width:900px){.calc-grid,.result-grid,.split{grid-template-columns:1fr}.tech-hero h1{font-size:1.65rem}}
   </style>
-  <!-- Google AdSense - verificação de propriedade -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5586837114309500" crossorigin="anonymous"></script>
 </head>
 <body class="tech-page alogy-stage3-forms">
   <header>
-    <div class="container headbar">
-      <a href="/" class="logo-wrapper" aria-label="Voltar para o início"><img src="logo-alogy.webp" alt="ALOGY Engenharia" width="878" height="308" decoding="async" /></a>
-      <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menu"><i class="fas fa-bars"></i></button>
-    </div>
+    <div class="container headbar"><a href="/" class="logo-wrapper" aria-label="Voltar para o início"><img src="logo-alogy.webp" alt="ALOGY Engenharia" width="878" height="308" decoding="async" /></a><button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menu"><i class="fas fa-bars"></i></button></div>
     <nav class="desktop" aria-label="Menu principal"><div class="container navlinks"><a href="index.html">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="index.html#contato">Contato</a></div></nav>
     <nav class="mobile" aria-label="Menu mobile"><a href="index.html">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="index.html#contato">Contato</a></nav>
   </header>
-  <div class="social-floating" aria-label="Redes sociais"><a href="https://www.linkedin.com/company/alogyengenharia" class="linkedin" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a><a href="https://www.instagram.com/alogyengenharia" class="instagram" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="https://www.facebook.com/alogyengenharia" class="facebook" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><a href="https://www.youtube.com/@alogyengenharia" class="youtube" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a><a href="https://hotmart.com/pt-br/club/alogyengenharia" class="hotmart" target="_blank" rel="noopener" aria-label="Hotmart">H</a><a href="https://www.tiktok.com/@alogyengenharia" class="tiktok" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a></div>
-  <div class="fab-wrap" aria-label="Ações rápidas"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1%21%20Vim%20pela%20calculadora%20de%20malha%204-20%20mA%20%2F%20HART%20da%20ALOGY.%20Gostaria%20de%20apoio%20em%20instrumenta%C3%A7%C3%A3o%20e%20automa%C3%A7%C3%A3o." target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
-  
   <main class="container tech-wrap">
-    <a aria-label="Voltar para Ferramentas" class="floating-back-tools no-print" href="ferramentas.html"><i class="fas fa-arrow-left"></i> Voltar para Ferramentas</a>
+    <a class="floating-back-tools no-print" href="ferramentas.html"><i class="fas fa-arrow-left"></i> Voltar para Ferramentas</a>
     <section class="tech-hero">
-      <h1>Calculadora Completa de Malha 4-20 mA / HART</h1>
-      <p>Confira uma malha analógica industrial considerando fonte, cargas em série, resistência de ida e volta do cabo, tensão mínima do transmissor, corrente de verificação, raw do CLP e escala de engenharia. Ao final, gere um resumo orientativo para apoiar a conferência em campo.</p>
-      <div class="hero-tags"><span><i class="fas fa-wave-square"></i> 4-20 mA</span><span><i class="fas fa-signal"></i> HART</span><span><i class="fas fa-microchip"></i> CLP/DCS</span><span><i class="fas fa-bolt"></i> Orçamento de tensão</span><span><i class="fas fa-file-lines"></i> Resumo de conferência</span></div>
+      <h1>Calculadora de Malha 4-20 mA e HART</h1>
+      <p>Confira escala, raw do CLP/DCS, resistência de ida e volta do cabo, carga total da malha e tensão disponível no transmissor em 20 mA e em condição de falha alta.</p>
+      <div class="hero-tags"><span>4-20 mA</span><span>HART</span><span>CLP/DCS</span><span>Orçamento de tensão</span></div>
     </section>
 
     <section class="tech-card">
-      <h2>Aviso de segurança e uso correto</h2>
-      <p>Esta ferramenta é um apoio preliminar para análise de malhas 4-20 mA e HART. Ela não substitui teste de loop, datasheet do transmissor, manual do cartão de entrada, estudo de área classificada, documentação de barreiras/isoladores, procedimento de comissionamento, calibração rastreável ou validação por profissional habilitado.</p>
-      <p>Em malhas de segurança, intertravamento, SIS, ESD, queimadores, caldeiras, gás, pressão, temperatura crítica ou área classificada, use os resultados apenas como referência de engenharia e valide todos os limites em documentação aprovada.</p>
+      <h2>Escopo e limites da ferramenta</h2>
+      <p>A calculadora foi preparada para malhas analógicas de dois fios alimentadas por fonte externa. Ela permite verificar a relação entre faixa de engenharia e corrente, converter corrente em raw e estimar a tensão que permanece disponível no transmissor depois das quedas no cartão, resistor HART, barreiras, indicadores e cabo.</p>
+      <p>O resultado não substitui datasheet, curva de carga do transmissor, manual do cartão de entrada, teste de loop, comunicação HART real, estudo de área classificada ou validação por profissional habilitado.</p>
+      <p class="meta-line"><strong>Elaboração:</strong> equipe técnica da ALOGY Engenharia · <strong>Publicação:</strong> 21/07/2026 · <strong>Revisão técnica:</strong> 21/07/2026</p>
     </section>
 
     <section class="calc-card">
-      <h2><i class="fas fa-sliders"></i> Dados da escala e leitura</h2>
+      <h2>Dados da escala e leitura</h2>
       <div class="calc-grid">
-        <label>Tag da malha<input id="tag" value="LT-101" /></label>
-        <label>Variável / serviço<input id="servico" value="Nível do tanque" /></label>
-        <label>Unidade de engenharia<input id="unidade" value="%" /></label>
-        <label>LRV - valor em 4 mA<input id="lrv" type="text" inputmode="decimal" step="0.001" value="0" /></label>
-        <label>URV - valor em 20 mA<input id="urv" type="text" inputmode="decimal" step="0.001" value="100" /></label>
-        <label>Valor normal de processo<input id="pvNormal" type="text" inputmode="decimal" step="0.001" value="50" /></label>
-        <label>Corrente medida em campo (mA)<input id="correnteMedida" type="text" inputmode="decimal" step="0.001" value="12" /></label>
-        <label>Raw mínimo do CLP/DCS<input id="rawMin" type="text" inputmode="decimal" step="1" value="0" /></label>
-        <label>Raw máximo do CLP/DCS<input id="rawMax" type="text" inputmode="decimal" step="1" value="27648" /></label>
+        <label for="tag">Tag da malha<input id="tag" value="LT-101" autocomplete="off" /></label>
+        <label for="servico">Variável ou serviço<input id="servico" value="Nível do tanque" autocomplete="off" /></label>
+        <label for="unidade">Unidade de engenharia<input id="unidade" value="%" autocomplete="off" /></label>
+        <label for="lrv">LRV, valor em 4 mA<input id="lrv" type="text" inputmode="decimal" value="0" /></label>
+        <label for="urv">URV, valor em 20 mA<input id="urv" type="text" inputmode="decimal" value="100" /></label>
+        <label for="pvNormal">Valor normal de processo<input id="pvNormal" type="text" inputmode="decimal" value="50" /></label>
+        <label for="correnteMedida">Corrente medida em campo, mA<input id="correnteMedida" type="text" inputmode="decimal" value="12" /></label>
+        <label for="rawMin">Raw mínimo do CLP/DCS<input id="rawMin" type="text" inputmode="numeric" value="0" /></label>
+        <label for="rawMax">Raw máximo do CLP/DCS<input id="rawMax" type="text" inputmode="numeric" value="27648" /></label>
       </div>
     </section>
 
     <section class="calc-card">
-      <h2><i class="fas fa-bolt"></i> Fonte, carga, cabo e HART</h2>
+      <h2>Fonte, carga, cabo e HART</h2>
       <div class="calc-grid">
-        <label>Tensão da fonte (Vcc)<input id="fonte" type="text" inputmode="decimal" step="0.01" value="24" /></label>
-        <label>Tensão mínima no transmissor (V)<input id="vminTx" type="text" inputmode="decimal" step="0.01" value="12" /></label>
-        <label>Resistência da entrada analógica (Ω)<input id="rAi" type="text" inputmode="decimal" step="0.1" value="250" /></label>
-        <label>Resistor HART adicional (Ω)<input id="rHart" type="text" inputmode="decimal" step="0.1" value="0" /></label>
-        <label>Barreira / isolador / indicador (Ω)<input id="rBarreira" type="text" inputmode="decimal" step="0.1" value="0" /></label>
-        <label>Outras cargas em série (Ω)<input id="rExtra" type="text" inputmode="decimal" step="0.1" value="0" /></label>
-        <label>Comprimento do cabo - ida (m)<input id="comprimento" type="text" inputmode="decimal" step="0.1" value="150" /></label>
-        <label>Resistência por condutor (Ω/km)<input id="rCond" type="text" inputmode="decimal" step="0.01" value="26" /></label>
-        <label>Corrente de verificação/falha alta (mA)<input id="iFalhaAlta" type="text" inputmode="decimal" step="0.1" value="21" /></label>
-        <label>HART requerido?
-          <select id="hartReq"><option value="sim" selected>Sim</option><option value="nao">Não</option></select>
-        </label>
+        <label for="fonte">Tensão da fonte, Vcc<input id="fonte" type="text" inputmode="decimal" value="24" /></label>
+        <label for="vminTx">Tensão mínima no transmissor, V<input id="vminTx" type="text" inputmode="decimal" value="12" /></label>
+        <label for="rAi">Resistência da entrada analógica, Ω<input id="rAi" type="text" inputmode="decimal" value="250" /></label>
+        <label for="rHart">Resistor HART adicional, Ω<input id="rHart" type="text" inputmode="decimal" value="0" /></label>
+        <label for="rBarreira">Barreira, isolador ou indicador, Ω<input id="rBarreira" type="text" inputmode="decimal" value="0" /></label>
+        <label for="rExtra">Outras cargas em série, Ω<input id="rExtra" type="text" inputmode="decimal" value="0" /></label>
+        <label for="comprimento">Comprimento do cabo, somente ida, m<input id="comprimento" type="text" inputmode="decimal" value="150" /></label>
+        <label for="rCond">Resistência por condutor, Ω/km<input id="rCond" type="text" inputmode="decimal" value="26" /></label>
+        <label for="iFalhaAlta">Corrente de falha alta, mA<input id="iFalhaAlta" type="text" inputmode="decimal" value="21" /></label>
+        <label for="hartReq">HART requerido?<select id="hartReq"><option value="sim" selected>Sim</option><option value="nao">Não</option></select></label>
       </div>
-      <div class="actions no-print"><button class="btn" onclick="calcularMalha()"><i class="fas fa-calculator"></i> Calcular malha</button><button class="btn secondary" onclick="copiarMemorial()"><i class="fas fa-copy"></i> Copiar resumo</button></div>
+      <div class="actions no-print"><button class="btn" type="button" onclick="calcularMalha()"><i class="fas fa-calculator"></i> Calcular malha</button><button class="btn secondary" type="button" onclick="copiarMemorial()"><i class="fas fa-copy"></i> Copiar resumo</button></div>
       <p id="copyStatus" role="status" aria-live="polite"></p>
     </section>
 
     <section class="calc-card" id="resultado" aria-live="polite">
-      <h2><i class="fas fa-gauge-high"></i> Resultado da validação</h2>
+      <h2>Resultado da validação</h2>
       <div id="statusBox" class="result-box">Preencha os dados e clique em calcular.</div>
       <div class="result-grid">
         <div class="result-kpi"><span>Corrente no valor normal</span><strong id="outCorrente">--</strong></div>
         <div class="result-kpi"><span>PV pela corrente medida</span><strong id="outPvMedida">--</strong></div>
-        <div class="result-kpi"><span>Resistência total da malha</span><strong id="outRTotal">--</strong></div>
+        <div class="result-kpi"><span>Resistência total</span><strong id="outRTotal">--</strong></div>
         <div class="result-kpi"><span>Tensão no transmissor a 20 mA</span><strong id="outVTx20">--</strong></div>
-        <div class="result-kpi"><span>Tensão no transmissor em falha alta</span><strong id="outVTxFalha">--</strong></div>
+        <div class="result-kpi"><span>Tensão em falha alta</span><strong id="outVTxFalha">--</strong></div>
         <div class="result-kpi"><span>Status HART</span><strong id="outHart">--</strong></div>
       </div>
       <div id="alertas" class="notice"></div>
     </section>
 
+    <section class="tech-card">
+      <h2>Fórmulas utilizadas</h2>
+      <pre class="formula">Corrente esperada: I = 4 + 16 × (PV − LRV) / (URV − LRV)
+PV pela corrente: PV = LRV + (I − 4) × (URV − LRV) / 16
+Resistência do cabo: Rcabo = (Ω/km ÷ 1000) × comprimento × 2
+Carga total: Rtotal = RAI + RHART + Rbarreira + Rextras + Rcabo
+Tensão no transmissor: Vtx = Vfonte − I × Rtotal
+Resistência máxima: Rmáx = (Vfonte − Vmín transmissor) ÷ I</pre>
+      <p>O fator 2 na resistência do cabo representa os condutores de ida e volta. A corrente deve ser convertida de miliampères para ampères antes de aplicar a lei de Ohm.</p>
+    </section>
+
+    <section class="tech-card">
+      <h2>Exemplo numérico reproduzível</h2>
+      <p>Considere fonte de 24 Vcc, transmissor com tensão mínima de 12 V, entrada analógica de 250 Ω, cabo de 150 m por trecho e resistência de 26 Ω/km por condutor. A resistência de ida e volta do cabo é 7,8 Ω. A carga total fica em 257,8 Ω.</p>
+      <p>Em 20 mA, a queda na carga é 5,156 V e restam aproximadamente 18,84 V no transmissor. Em 21 mA, restam aproximadamente 18,59 V. Como ambos os valores permanecem acima dos 12 V informados, o orçamento de tensão é aceitável para este exemplo. Isso não comprova, isoladamente, a comunicação HART.</p>
+    </section>
+
     <section class="split">
-      <div class="tech-card">
-        <h2>Tabela de escala 4-20 mA</h2>
-        <div class="table-scroll"><table><thead><tr><th>Ponto</th><th>PV</th><th>Corrente</th><th>Raw</th></tr></thead><tbody id="tbodyEscala"></tbody></table></div>
-      </div>
-      <div class="tech-card">
-        <h2>Referências de corrente</h2>
-        <div class="table-scroll"><table><thead><tr><th>Corrente</th><th>Interpretação</th><th>PV equivalente</th></tr></thead><tbody id="tbodyDiag"></tbody></table></div>
-      </div>
+      <div class="tech-card"><h2>Tabela de escala 4-20 mA</h2><div class="table-scroll"><table><thead><tr><th>Ponto</th><th>PV</th><th>Corrente</th><th>Raw</th></tr></thead><tbody id="tbodyEscala"></tbody></table></div></div>
+      <div class="tech-card"><h2>Referências de corrente</h2><div class="table-scroll"><table><thead><tr><th>Corrente</th><th>Interpretação</th><th>PV equivalente</th></tr></thead><tbody id="tbodyDiag"></tbody></table></div></div>
     </section>
 
     <section class="tech-card">
       <h2>Como interpretar a malha</h2>
-      <p>Uma malha 4-20 mA de dois fios precisa que a fonte vença a queda de tensão em todas as cargas em série e ainda deixe tensão suficiente no transmissor. A carga total inclui cartão de entrada analógica, resistor HART, barreiras, isoladores, indicadores, registradores e resistência de ida e volta do cabo.</p>
-      <p>Para HART, a resistência em corrente contínua é apenas uma parte da verificação. Cada transmissor, comunicador, cartão, barreira e isolador pode impor requisitos próprios; a impedância na frequência do sinal, a capacitância do cabo, o aterramento e o ruído também influenciam. Por isso, esta página não aprova nem reprova a comunicação HART apenas pela soma de resistências.</p>
-      <p>Se a carga total for alta demais, pode faltar tensão no transmissor em 20 mA ou na corrente alta configurada. Se o orçamento de tensão estiver adequado, ainda é necessário confirmar a comunicação HART com o instrumento e a interface reais.</p>
+      <p>Uma malha de dois fios precisa manter tensão suficiente no transmissor em toda a faixa de operação e também nas correntes usadas para diagnóstico. Se a carga total for excessiva, o transmissor pode saturar antes de atingir a corrente esperada ou deixar de sinalizar corretamente uma falha alta.</p>
+      <p>Para HART, a resistência em corrente contínua é apenas uma parte da verificação. A comunicação também depende da impedância efetiva vista pelo sinal, capacitância do cabo, aterramento, blindagem, ruído e compatibilidade das interfaces.</p>
     </section>
 
     <section class="tech-card">
-      <h2>Checklist rápido de comissionamento</h2>
-      <ul>
-        <li>Confirmar se o transmissor é ativo/passivo e se a malha é realmente 2 fios.</li>
-        <li>Conferir tensão real da fonte com a malha energizada.</li>
-        <li>Medir resistência do cartão de entrada e verificar se há resistor HART interno.</li>
-        <li>Somar barreiras, isoladores, indicadores e cargas em série.</li>
-        <li>Conferir se a tensão mínima do transmissor é atendida em 20 mA e em falha alta.</li>
-        <li>Testar comunicação HART no painel e no campo, quando aplicável.</li>
-        <li>Executar simulação em 4, 12 e 20 mA e comparar leitura em engenharia e raw do CLP.</li>
-        <li>Registrar desvios, ajustes, range final, LRV/URV e documentação da malha.</li>
-      </ul>
+      <h2>Checklist de comissionamento</h2>
+      <ul><li>Confirmar arquitetura ativa ou passiva e alimentação real da malha.</li><li>Conferir curva de carga e tensão mínima no datasheet do transmissor.</li><li>Somar cartão, resistor HART, barreiras, isoladores, indicadores e cabo.</li><li>Medir tensão no transmissor com a malha energizada.</li><li>Simular 4, 12 e 20 mA e comparar PV e raw no CLP/DCS.</li><li>Testar comunicação HART no painel e no campo.</li><li>Registrar LRV, URV, range final e desvios encontrados.</li></ul>
     </section>
+
+    <section class="tech-card"><h2>Resumo orientativo da conferência</h2><pre id="memorial" class="copy-box">Calcule para gerar o resumo.</pre></section>
 
     <section class="tech-card">
-      <h2>Resumo orientativo da conferência</h2>
-      <pre id="memorial" class="copy-box">Calcule para gerar o resumo.</pre>
-    </section>
-
-    <section class="tech-card">
-      <h2>Perguntas frequentes</h2>
-      <h3>O resistor HART precisa sempre ser externo?</h3>
-      <p>Não necessariamente. A ligação e a carga exigidas dependem do transmissor, comunicador e interface usados. Consulte os manuais de todos os elementos da malha e não acrescente resistência sem recalcular a tensão disponível.</p>
-      <h3>Por que validar a corrente de falha alta?</h3>
-      <p>Porque muitos transmissores podem sinalizar falha acima de 20 mA. Se a malha não tiver tensão suficiente nessa condição, o diagnóstico pode não chegar corretamente ao CLP ou DCS.</p>
-      <h3>O cabo ajuda na comunicação HART?</h3>
-      <p>A resistência do cabo entra na queda de tensão da malha. Para comunicação HART, o mais importante é a impedância efetiva vista pelo sinal de comunicação, além de cabo adequado, aterramento, blindagem e baixo ruído.</p>
-      <h3>Referências técnicas</h3>
-      <p>O orçamento de tensão segue a relação entre fonte, corrente e resistência total. Os limites de alimentação, carga e alarme devem ser preenchidos conforme o equipamento real. Consulte o <a href="https://www.emerson.com/en/measurement-instrumentation/catalog/temperature-measurement/3144s-manual" target="_blank" rel="noopener">manual do Rosemount 3144S</a> como exemplo oficial de curva de carga específica e o <a href="https://www.fieldcommgroup.org/sites/default/files/imce_files/technology/documents/HART_ApplicationGuide_r7.1.pdf" target="_blank" rel="noopener">HART Application Guide da FieldComm Group</a> para requisitos de instalação e comunicação.</p>
-    </section>
-
-    <section class="tech-card cta-card no-print">
-      <h2>Precisa validar uma malha real?</h2>
-      <p>A ALOGY apoia empresas em instrumentação, automação, calibração, comissionamento, painéis, CLP, troubleshooting de malhas 4-20 mA/HART e documentação técnica.</p>
-      <a class="btn" href="index.html#contato"><i class="fas fa-envelope"></i> Falar com a ALOGY</a>
-      <a class="btn secondary" href="calculadora-fonte-24vcc-painel-automacao.html"><i class="fas fa-plug-circle-bolt"></i> Dimensionar fonte 24 Vcc</a>
-      <a class="btn secondary" href="calculadora-comprimento-cabo-hart.html"><i class="fas fa-cable-car"></i> Ver cabo HART</a>
+      <h2>Referências técnicas</h2>
+      <ul><li><a href="https://www.fieldcommgroup.org/sites/default/files/imce_files/technology/documents/HART_ApplicationGuide_r7.1.pdf" target="_blank" rel="noopener">FieldComm Group — HART Application Guide</a>.</li><li><a href="https://www.emerson.com/en/measurement-instrumentation/catalog/temperature-measurement/3144s-manual" target="_blank" rel="noopener">Emerson — manual do Rosemount 3144S</a>, exemplo de curva de carga específica.</li><li>Manuais do transmissor, cartão de entrada, barreira e isolador efetivamente instalados na malha.</li></ul>
     </section>
   </main>
 
 <script>
-function num(id){
-  const raw = String(document.getElementById(id).value ?? '').trim();
-  if(raw === '') return NaN;
-  const normalized = raw.includes(',') ? raw.replace(/\./g, '').replace(',', '.') : raw;
-  const value = Number(normalized);
-  return Number.isFinite(value) ? value : NaN;
-}
+function num(id){const raw=String(document.getElementById(id).value??'').trim();if(raw==='')return NaN;const normalized=raw.includes(',')?raw.replace(/\./g,'').replace(',','.'):raw;const value=Number(normalized);return Number.isFinite(value)?value:NaN;}
 function txt(id){return document.getElementById(id).value.trim();}
 function fmt(v,d=2){return Number.isFinite(v)?v.toLocaleString('pt-BR',{minimumFractionDigits:d,maximumFractionDigits:d}):'--';}
 function set(id,html){document.getElementById(id).innerHTML=html;}
-function clamp(v,a,b){return Math.min(Math.max(v,a),b);}
-function pvToMa(pv,lrv,urv){return 4 + ((pv-lrv)/(urv-lrv))*16;}
-function maToPv(ma,lrv,urv){return lrv + ((ma-4)/16)*(urv-lrv);}
-function maToRaw(ma,rawMin,rawMax){return rawMin + ((ma-4)/16)*(rawMax-rawMin);}
-function classificarCorrente(ma){
-  if(ma < 3.6) return 'Abaixo de 3,6 mA: conferir alarme baixo configurado e diagnosticar a malha';
-  if(ma < 4) return 'Abaixo de 4 mA: subfaixa ou diagnóstico, conforme o dispositivo';
-  if(ma <= 20) return 'Faixa normal de medição';
-  if(ma < 21) return 'Acima de 20 mA: sobrefaixa ou diagnóstico, conforme o dispositivo';
-  return 'A partir de 21 mA: conferir alarme alto configurado e diagnosticar a malha';
-}
+function pvToMa(pv,lrv,urv){return 4+((pv-lrv)/(urv-lrv))*16;}
+function maToPv(ma,lrv,urv){return lrv+((ma-4)/16)*(urv-lrv);}
+function maToRaw(ma,rawMin,rawMax){return rawMin+((ma-4)/16)*(rawMax-rawMin);}
+function classificarCorrente(ma){if(ma<3.6)return'Abaixo de 3,6 mA: conferir alarme baixo e diagnosticar a malha';if(ma<4)return'Abaixo de 4 mA: subfaixa ou diagnóstico';if(ma<=20)return'Faixa normal de medição';if(ma<21)return'Acima de 20 mA: sobrefaixa ou diagnóstico';return'A partir de 21 mA: conferir alarme alto e diagnosticar a malha';}
 function calcularMalha(){
-  const tag=txt('tag')||'Malha';
-  const servico=txt('servico')||'Variável de processo';
-  const unidade=txt('unidade')||'un';
-  const lrv=num('lrv'), urv=num('urv'), pvNormal=num('pvNormal'), correnteMedida=num('correnteMedida');
-  const rawMin=num('rawMin'), rawMax=num('rawMax');
-  const fonte=num('fonte'), vminTx=num('vminTx'), rAi=num('rAi'), rHart=num('rHart'), rBarreira=num('rBarreira'), rExtra=num('rExtra');
-  const comprimento=num('comprimento'), rCond=num('rCond'), iFalhaAlta=num('iFalhaAlta');
+  const tag=txt('tag')||'Malha',servico=txt('servico')||'Variável de processo',unidade=txt('unidade')||'un';
+  const lrv=num('lrv'),urv=num('urv'),pvNormal=num('pvNormal'),correnteMedida=num('correnteMedida'),rawMin=num('rawMin'),rawMax=num('rawMax');
+  const fonte=num('fonte'),vminTx=num('vminTx'),rAi=num('rAi'),rHart=num('rHart'),rBarreira=num('rBarreira'),rExtra=num('rExtra'),comprimento=num('comprimento'),rCond=num('rCond'),iFalhaAlta=num('iFalhaAlta');
   const hartReq=document.getElementById('hartReq').value==='sim';
-  const vals=[lrv,urv,pvNormal,correnteMedida,rawMin,rawMax,fonte,vminTx,rAi,rHart,rBarreira,rExtra,comprimento,rCond,iFalhaAlta];
-  const erros=[];
-  if(vals.some(v=>!Number.isFinite(v))) erros.push('Preencha todos os campos numéricos.');
-  if(urv===lrv) erros.push('URV não pode ser igual ao LRV.');
-  if(rawMax<=rawMin) erros.push('Raw máximo precisa ser maior que o raw mínimo.');
-  if(correnteMedida<0) erros.push('A corrente medida não pode ser negativa.');
-  if(fonte<=0 || vminTx<=0 || fonte<=vminTx) erros.push('A fonte precisa ser maior que a tensão mínima do transmissor.');
-  if([rAi,rHart,rBarreira,rExtra,comprimento,rCond].some(v=>v<0)) erros.push('Resistências e comprimento não podem ser negativos.');
-  if(iFalhaAlta<=20) erros.push('A corrente de verificação alta precisa ser maior que 20 mA. Use o limite documentado para o transmissor e a entrada analógica reais.');
-  if(erros.length){
-    set('statusBox','<strong>Dados inválidos.</strong><br>'+erros.join('<br>'));
-    set('alertas',''); set('tbodyEscala',''); set('tbodyDiag',''); set('memorial','Corrija os dados para gerar o resumo.');
-    return;
-  }
-  const rCabo = (rCond/1000)*comprimento*2;
-  const rCargaPainel = rAi + rHart + rBarreira + rExtra;
-  const rTotal = rCargaPainel + rCabo;
-  const i20=0.020;
-  const iFalha=iFalhaAlta/1000;
-  const vDrop20 = i20*rTotal;
-  const vTx20 = fonte - vDrop20;
-  const vDropFalha = iFalha*rTotal;
-  const vTxFalha = fonte - vDropFalha;
-  const rMax20=(fonte-vminTx)/i20;
-  const rMaxFalha=(fonte-vminTx)/iFalha;
-  const correnteNormal=pvToMa(pvNormal,lrv,urv);
-  const pvMedida=maToPv(correnteMedida,lrv,urv);
-  const rawMedida=maToRaw(correnteMedida,rawMin,rawMax);
-  const rawNormal=maToRaw(correnteNormal,rawMin,rawMax);
-  const alertas=[];
-  let status='OK', classe='ok';
-  if(vTx20 < vminTx){status='Malha inválida'; classe='bad'; alertas.push('A tensão no transmissor em 20 mA fica abaixo da tensão mínima informada. Reduza cargas, aumente a fonte ou revise a arquitetura.');}
-  if(vTxFalha < vminTx){status=status==='OK'?'Atenção':status; classe=classe==='bad'?'bad':'warn'; alertas.push('Em corrente de falha alta, a tensão no transmissor fica abaixo do mínimo. O diagnóstico alto pode não chegar corretamente ao CLP/DCS.');}
-  if(rTotal > rMax20){status='Malha inválida'; classe='bad'; alertas.push('A resistência total ultrapassa a resistência máxima permitida pela fonte em 20 mA.');}
-  if(hartReq){alertas.push('O cálculo confirma somente o orçamento de tensão em corrente contínua. Confirme os requisitos de carga e impedância nos manuais e execute uma comunicação HART real.');}
-  if(correnteNormal<4 || correnteNormal>20){status=status==='OK'?'Atenção':status; classe=classe==='bad'?'bad':'warn'; alertas.push('O valor normal informado fica fora de 4 a 20 mA e o resultado é uma extrapolação da escala. Revise LRV, URV e o valor de processo.');}
-  if(correnteMedida<3.6 || correnteMedida>=21){alertas.push('A corrente medida cruzou referências comuns de alarme. Confirme os limites configurados no transmissor e no CLP/DCS antes de interpretar a causa.');}
-  if(rCabo > rCargaPainel && rCabo > 100){alertas.push('A resistência do cabo ficou relevante em relação à carga do painel. Revise bitola, distância ou arquitetura da malha.');}
-  const hartStatus = !hartReq ? 'Não requerido' : 'Teste em campo requerido';
-  set('statusBox', `<strong>Status preliminar: ${status}</strong><br>Resultado orientativo para ${tag} - ${servico}. Classe: ${classe==='ok'?'sem alertas críticos':classe==='warn'?'atenção técnica':'corrigir antes de usar'}.`);
-  set('outCorrente', `${fmt(correnteNormal,3)} mA`);
-  set('outPvMedida', `${fmt(pvMedida,3)} ${unidade}<br><small>Raw ${fmt(rawMedida,0)}</small>`);
-  set('outRTotal', `${fmt(rTotal,1)} Ω<br><small>Cabo ${fmt(rCabo,1)} Ω</small>`);
-  set('outVTx20', `${fmt(vTx20,2)} V<br><small>mín. ${fmt(vminTx,2)} V</small>`);
-  set('outVTxFalha', `${fmt(vTxFalha,2)} V<br><small>${fmt(iFalhaAlta,1)} mA</small>`);
-  set('outHart', hartStatus);
-  set('alertas', alertas.length?'<h3>Alertas</h3><ul>'+alertas.map(a=>`<li>${a}</li>`).join('')+'</ul>':'<p><strong>Sem alertas críticos pelos dados informados.</strong> Ainda assim, valide em campo e na documentação dos fabricantes.</p>');
-  const pontos=[0,25,50,75,100];
-  set('tbodyEscala', pontos.map(p=>{
-    const pv=lrv+(urv-lrv)*p/100, ma=4+16*p/100, raw=maToRaw(ma,rawMin,rawMax);
-    return `<tr><td>${p}%</td><td>${fmt(pv,3)} ${unidade}</td><td>${fmt(ma,3)} mA</td><td>${fmt(raw,0)}</td></tr>`;
-  }).join(''));
-  const diag=[3.6,3.8,4,8,12,16,20,20.5,21,iFalhaAlta];
-  const unique=[...new Set(diag.map(x=>Number(x.toFixed(3))))].sort((a,b)=>a-b);
-  set('tbodyDiag', unique.map(ma=>`<tr><td>${fmt(ma,3)} mA</td><td>${classificarCorrente(ma)}</td><td>${fmt(maToPv(ma,lrv,urv),3)} ${unidade}</td></tr>`).join(''));
-  const memorial = `RESUMO ORIENTATIVO - MALHA 4-20 mA / HART\n\nTag: ${tag}\nServiço: ${servico}\nEscala: ${fmt(lrv,3)} a ${fmt(urv,3)} ${unidade}\nValor normal informado: ${fmt(pvNormal,3)} ${unidade}\nCorrente esperada no valor normal: ${fmt(correnteNormal,3)} mA\nCorrente medida: ${fmt(correnteMedida,3)} mA\nPV equivalente pela corrente medida: ${fmt(pvMedida,3)} ${unidade}\nRaw equivalente: ${fmt(rawMedida,0)}\n\nAlimentação e carga:\nFonte: ${fmt(fonte,2)} Vcc\nTensão mínima do transmissor: ${fmt(vminTx,2)} V\nEntrada analógica: ${fmt(rAi,1)} Ω\nResistor HART adicional: ${fmt(rHart,1)} Ω\nBarreira/isolador/indicador: ${fmt(rBarreira,1)} Ω\nOutras cargas: ${fmt(rExtra,1)} Ω\nComprimento do cabo ida: ${fmt(comprimento,1)} m\nResistência por condutor: ${fmt(rCond,2)} Ω/km\nResistência total do cabo ida+volta: ${fmt(rCabo,1)} Ω\nResistência total da malha: ${fmt(rTotal,1)} Ω\n\nVerificação de tensão:\nTensão no transmissor em 20 mA: ${fmt(vTx20,2)} V\nTensão no transmissor em ${fmt(iFalhaAlta,1)} mA: ${fmt(vTxFalha,2)} V\nResistência máxima permitida em 20 mA: ${fmt(rMax20,1)} Ω\nResistência máxima permitida na corrente alta: ${fmt(rMaxFalha,1)} Ω\n\nHART:\nHART requerido: ${hartReq?'sim':'não'}\nCarga DC informada no painel: ${fmt(rCargaPainel,1)} Ω\nStatus HART: ${hartStatus}\n\nStatus preliminar: ${status}\nAlertas e observações:\n${alertas.length?alertas.map(a=>'- '+a).join('\n'):'- Sem alertas críticos pelos dados informados.'}\n\nObservação: resumo orientativo. Não constitui projeto, laudo, certificado ou aprovação da malha. Validar com datasheets, manuais, teste de loop, comunicação HART real, medição de tensão/carga, aterramento, blindagem, ruído, requisitos de área classificada e procedimento da planta.`;
-  document.getElementById('memorial').textContent=memorial;
+  const vals=[lrv,urv,pvNormal,correnteMedida,rawMin,rawMax,fonte,vminTx,rAi,rHart,rBarreira,rExtra,comprimento,rCond,iFalhaAlta],erros=[];
+  if(vals.some(v=>!Number.isFinite(v)))erros.push('Preencha todos os campos numéricos.');if(urv===lrv)erros.push('URV não pode ser igual ao LRV.');if(rawMax<=rawMin)erros.push('Raw máximo precisa ser maior que o mínimo.');if(correnteMedida<0)erros.push('A corrente medida não pode ser negativa.');if(fonte<=0||vminTx<=0||fonte<=vminTx)erros.push('A fonte precisa ser maior que a tensão mínima do transmissor.');if([rAi,rHart,rBarreira,rExtra,comprimento,rCond].some(v=>v<0))erros.push('Resistências e comprimento não podem ser negativos.');if(iFalhaAlta<=20)erros.push('A corrente de falha alta precisa ser maior que 20 mA.');
+  if(erros.length){set('statusBox','<strong>Dados inválidos.</strong><br>'+erros.join('<br>'));set('alertas','');set('tbodyEscala','');set('tbodyDiag','');document.getElementById('memorial').textContent='Corrija os dados para gerar o resumo.';return;}
+  const rCabo=(rCond/1000)*comprimento*2,rCargaPainel=rAi+rHart+rBarreira+rExtra,rTotal=rCargaPainel+rCabo,i20=.020,iFalha=iFalhaAlta/1000,vTx20=fonte-i20*rTotal,vTxFalha=fonte-iFalha*rTotal,rMax20=(fonte-vminTx)/i20,rMaxFalha=(fonte-vminTx)/iFalha,correnteNormal=pvToMa(pvNormal,lrv,urv),pvMedida=maToPv(correnteMedida,lrv,urv),rawMedida=maToRaw(correnteMedida,rawMin,rawMax);
+  const alertas=[];let status='OK',classe='ok';
+  if(vTx20<vminTx){status='Malha inválida';classe='bad';alertas.push('A tensão no transmissor em 20 mA fica abaixo da tensão mínima informada.');}if(vTxFalha<vminTx){status=status==='OK'?'Atenção':status;classe=classe==='bad'?'bad':'warn';alertas.push('Em falha alta, a tensão no transmissor fica abaixo do mínimo.');}if(rTotal>rMax20){status='Malha inválida';classe='bad';alertas.push('A resistência total ultrapassa a máxima permitida em 20 mA.');}if(hartReq)alertas.push('Confirme requisitos HART nos manuais e execute comunicação real.');if(correnteNormal<4||correnteNormal>20){status=status==='OK'?'Atenção':status;alertas.push('O valor normal informado fica fora de 4 a 20 mA.');}
+  const hartStatus=!hartReq?'Não requerido':'Teste em campo requerido';
+  set('statusBox',`<strong>Status preliminar: ${status}</strong><br>Resultado orientativo para ${tag} - ${servico}.`);set('outCorrente',`${fmt(correnteNormal,3)} mA`);set('outPvMedida',`${fmt(pvMedida,3)} ${unidade}<br><small>Raw ${fmt(rawMedida,0)}</small>`);set('outRTotal',`${fmt(rTotal,1)} Ω<br><small>Cabo ${fmt(rCabo,1)} Ω</small>`);set('outVTx20',`${fmt(vTx20,2)} V<br><small>mín. ${fmt(vminTx,2)} V</small>`);set('outVTxFalha',`${fmt(vTxFalha,2)} V<br><small>${fmt(iFalhaAlta,1)} mA</small>`);set('outHart',hartStatus);set('alertas',alertas.length?'<h3>Alertas</h3><ul>'+alertas.map(a=>`<li>${a}</li>`).join('')+'</ul>':'<p><strong>Sem alertas críticos pelos dados informados.</strong></p>');
+  set('tbodyEscala',[0,25,50,75,100].map(p=>{const pv=lrv+(urv-lrv)*p/100,ma=4+16*p/100,raw=maToRaw(ma,rawMin,rawMax);return`<tr><td>${p}%</td><td>${fmt(pv,3)} ${unidade}</td><td>${fmt(ma,3)} mA</td><td>${fmt(raw,0)}</td></tr>`;}).join(''));
+  const unique=[...new Set([3.6,3.8,4,8,12,16,20,20.5,21,iFalhaAlta].map(x=>Number(x.toFixed(3))))].sort((a,b)=>a-b);set('tbodyDiag',unique.map(ma=>`<tr><td>${fmt(ma,3)} mA</td><td>${classificarCorrente(ma)}</td><td>${fmt(maToPv(ma,lrv,urv),3)} ${unidade}</td></tr>`).join(''));
+  document.getElementById('memorial').textContent=`RESUMO ORIENTATIVO - MALHA 4-20 mA / HART\n\nTag: ${tag}\nServiço: ${servico}\nEscala: ${fmt(lrv,3)} a ${fmt(urv,3)} ${unidade}\nCorrente esperada: ${fmt(correnteNormal,3)} mA\nCorrente medida: ${fmt(correnteMedida,3)} mA\nPV equivalente: ${fmt(pvMedida,3)} ${unidade}\nRaw equivalente: ${fmt(rawMedida,0)}\n\nFonte: ${fmt(fonte,2)} Vcc\nTensão mínima do transmissor: ${fmt(vminTx,2)} V\nResistência do cabo: ${fmt(rCabo,1)} Ω\nResistência total: ${fmt(rTotal,1)} Ω\nTensão no transmissor em 20 mA: ${fmt(vTx20,2)} V\nTensão no transmissor em ${fmt(iFalhaAlta,1)} mA: ${fmt(vTxFalha,2)} V\nResistência máxima em 20 mA: ${fmt(rMax20,1)} Ω\nResistência máxima na corrente alta: ${fmt(rMaxFalha,1)} Ω\n\nHART: ${hartStatus}\nStatus preliminar: ${status}\n\nResultado orientativo. Validar com manuais, teste de loop e comunicação HART real.`;
 }
-function copiarMemorial(){
-  const txt=document.getElementById('memorial').textContent;
-  const status=document.getElementById('copyStatus');
-  if(!navigator.clipboard){status.textContent='A cópia automática não está disponível. Selecione o resumo manualmente.'; return;}
-  navigator.clipboard.writeText(txt).then(()=>{status.textContent='Resumo copiado.';}).catch(()=>{status.textContent='Não foi possível copiar automaticamente. Selecione o resumo manualmente.';});
-}
+function copiarMemorial(){const texto=document.getElementById('memorial').textContent,status=document.getElementById('copyStatus');if(!navigator.clipboard){status.textContent='Selecione o resumo manualmente.';return;}navigator.clipboard.writeText(texto).then(()=>status.textContent='Resumo copiado.').catch(()=>status.textContent='Não foi possível copiar automaticamente.');}
 calcularMalha();
 </script>
 <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
