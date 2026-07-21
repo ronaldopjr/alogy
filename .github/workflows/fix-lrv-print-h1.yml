@@ -1,0 +1,31 @@
+name: Fix LRV print H1
+on: pull_request
+permissions:
+  contents: write
+jobs:
+  fix:
+    if: github.head_ref == 'agent/corrige-h1-relatorios'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+      - name: Patch and validate
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('calculadora-lrv-urv-span.html')
+          s=p.read_text()
+          old='<section id="printSheet" class="print-only" aria-label="Documento técnico para impressão">\n      <h1>Calculadora de LRV, URV e Span</h1>'
+          new='<section id="printSheet" class="print-only" aria-label="Documento técnico para impressão">\n      <h2 class="print-title">Calculadora de LRV, URV e Span</h2>'
+          assert s.count(old)==1
+          s=s.replace(old,new)
+          assert s.count('<h1>')==1
+          p.write_text(s)
+          PY
+          rm .github/workflows/fix-lrv-print-h1.yml
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add .
+          git commit -m 'Corrige H1 duplicado em LRV URV span'
+          git push
