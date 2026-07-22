@@ -2217,3 +2217,10 @@ footer p{
   }
 }
 
+
+/* NAVEGACAO PRINCIPAL EM CAIXA ALTA
+   Completa a identidade visual dos titulos e botoes sem alterar o texto-fonte. */
+:where(nav.desktop a,nav.mobile a,.navlinks a){
+  text-transform:uppercase;
+  letter-spacing:.025em;
+}
