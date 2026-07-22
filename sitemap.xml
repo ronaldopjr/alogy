@@ -1,15 +1,2 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <sitemap>
-    <loc>https://www.alogy.com.br/sitemap-institucional.xml</loc>
-    <lastmod>2026-07-18</lastmod>
-  </sitemap>
-  <sitemap>
-    <loc>https://www.alogy.com.br/sitemap-blog.xml</loc>
-    <lastmod>2026-07-21</lastmod>
-  </sitemap>
-  <sitemap>
-    <loc>https://www.alogy.com.br/sitemap-ferramentas-prioritarias.xml</loc>
-    <lastmod>2026-07-21</lastmod>
-  </sitemap>
-</sitemapindex>
+<?xml version='1.0' encoding='utf-8'?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><sitemap><loc>https://www.alogy.com.br/sitemap-institucional.xml</loc><lastmod>2026-07-18</lastmod></sitemap><sitemap><loc>https://www.alogy.com.br/sitemap-blog.xml</loc><lastmod>2026-07-22</lastmod></sitemap><sitemap><loc>https://www.alogy.com.br/sitemap-ferramentas-prioritarias.xml</loc><lastmod>2026-07-21</lastmod></sitemap><sitemap><loc>https://www.alogy.com.br/sitemap-ferramentas-complementares.xml</loc><lastmod>2026-07-22</lastmod></sitemap></sitemapindex>

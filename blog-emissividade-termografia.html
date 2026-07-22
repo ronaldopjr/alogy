@@ -1,33 +1,34 @@
 <!DOCTYPE html>
+
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Emissividade em termografia industrial | ALOGY Engenharia</title>
-  <meta name="description" content="Entenda por que superfícies refletivas distorcem medições térmicas e como ajustar inspeções de manutenção." />
-  <meta name="robots" content="index,follow" />
-  <meta name="theme-color" content="#004b80" />
-  <link rel="canonical" href="https://www.alogy.com.br/blog-emissividade-termografia.html" />
-  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
-  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png" />
-  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <link rel="stylesheet" href="style.css" />
-  <script src="app.js" defer></script>
-  <meta property="og:locale" content="pt_BR" />
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="ALOGY Engenharia" />
-  <meta property="og:title" content="Emissividade em termografia industrial" />
-  <meta property="og:description" content="Entenda por que superfícies refletivas distorcem medições térmicas e como ajustar inspeções de manutenção." />
-  <meta property="og:url" content="https://www.alogy.com.br/blog-emissividade-termografia.html" />
-  <meta property="og:image" content="https://www.alogy.com.br/favicon-512x512.png" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Emissividade em termografia industrial","description":"Entenda por que superfícies refletivas distorcem medições térmicas e como ajustar inspeções de manutenção.","dateModified":"2026-07-17","author":{"@type":"Organization","name":"ALOGY Engenharia"},"publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://www.alogy.com.br/blog-emissividade-termografia.html"},"inLanguage":"pt-BR"}</script>
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Emissividade em termografia industrial | ALOGY Engenharia</title>
+<meta content="Entenda por que superfícies refletivas distorcem medições térmicas e como ajustar inspeções de manutenção." name="description"/>
+<meta content="index,follow" name="robots"/>
+<meta content="#2C78B9" name="theme-color"/>
+<link href="https://www.alogy.com.br/blog-emissividade-termografia.html" rel="canonical"/>
+<link href="/favicon-48x48.png" rel="icon" sizes="48x48" type="image/png"/>
+<link href="/favicon-192x192.png" rel="icon" sizes="192x192" type="image/png"/>
+<link href="/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+<link href="/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Asap:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<link href="style.css?v=20260722-visual2-uppercase" rel="stylesheet"/>
+<script defer="" src="app.js"></script>
+<meta content="pt_BR" property="og:locale"/>
+<meta content="website" property="og:type"/>
+<meta content="ALOGY Engenharia" property="og:site_name"/>
+<meta content="Emissividade em termografia industrial" property="og:title"/>
+<meta content="Entenda por que superfícies refletivas distorcem medições térmicas e como ajustar inspeções de manutenção." property="og:description"/>
+<meta content="https://www.alogy.com.br/blog-emissividade-termografia.html" property="og:url"/>
+<meta content="https://www.alogy.com.br/favicon-512x512.png" property="og:image"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Emissividade em termografia industrial","description":"Entenda por que superfícies refletivas distorcem medições térmicas e como ajustar inspeções de manutenção.","dateModified":"2026-07-17","author":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"},"publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/","logo":{"@type":"ImageObject","url":"https://www.alogy.com.br/logo-alogy.webp"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://www.alogy.com.br/blog-emissividade-termografia.html"},"inLanguage":"pt-BR","image":"https://www.alogy.com.br/favicon-512x512.png"}</script>
+<style>
     .mini-help{color:var(--muted);font-size:.92rem;line-height:1.55;margin-top:8px}
     .faq details{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:14px;padding:14px;margin-top:10px;box-shadow:0 6px 16px rgba(0,0,0,.04)}
     .faq summary{cursor:pointer;font-weight:900;color:#0b3a62}.faq p{margin:10px 0 0;color:var(--muted)}
@@ -37,84 +38,78 @@
     @media(max-width:900px){.calc-result.two,.calc-result.three,.calc-result.four{grid-template-columns:1fr}}
     @media print{header,.social-floating,.fab-wrap,.cta-bar,footer,.calc-actions,.tools-hero .btn,.no-print{display:none!important}body{background:#fff}.container{max-width:100%;padding:0}.calc-card,.tools-hero{box-shadow:none;border:1px solid #ddd}.calc-layout{display:block}.calc-card{margin:12px 0}.calc-table th{background:#eee!important;color:#111!important}}
   </style>
+<!-- Google AdSense: carregado somente em páginas editoriais monetizáveis. A exibição e os formatos são controlados no painel do AdSense. -->
+<script async="" crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5586837114309500"></script>
 </head>
 <body>
-  <header>
-    <div class="container headbar"><a href="/" class="logo-wrapper" aria-label="Voltar para o início"><img src="logo-alogy.webp" alt="ALOGY Engenharia"  width="878"  height="308"  decoding="async" /></a>
-<button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menu"><i class="fas fa-bars"></i></button></div>
-    <nav class="desktop" aria-label="Menu principal"><div class="container navlinks"><a href="index.html">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="index.html#contato">Contato</a></div></nav>
-    <nav class="mobile" aria-label="Menu mobile"><a href="index.html">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="index.html#contato">Contato</a></nav>
-  </header>
-  <div class="social-floating" aria-label="Redes sociais"><a href="https://www.linkedin.com/company/alogyengenharia" class="linkedin" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a><a href="https://www.instagram.com/alogyengenharia" class="instagram" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="https://www.facebook.com/alogyengenharia" class="facebook" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><a href="https://www.youtube.com/@alogyengenharia" class="youtube" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a><a href="https://hotmart.com/pt-br/club/alogyengenharia" class="hotmart" target="_blank" rel="noopener" aria-label="Hotmart">H</a><a href="https://www.tiktok.com/@alogyengenharia" class="tiktok" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a></div>
-  <div class="fab-wrap" aria-label="Ações rápidas"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1%21%20Vim%20pelas%20ferramentas%20da%20ALOGY.%20Gostaria%20de%20atendimento." target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
-  <main class="container" style="margin-top:18px">
-    <div style="margin-bottom:14px;display:flex;gap:10px;flex-wrap:wrap"><a class="floating-back-tools" href="blog.html"><i class="fas fa-arrow-left"></i> Voltar ao Blog</a><a class="floating-back-tools" href="calculadora-emissividade-termografia.html"><i class="fas fa-calculator"></i> Abrir ferramenta</a></div>
-    <article class="calc-card"><h1>Emissividade em termografia industrial</h1>
+<header>
+<div class="container headbar"><a aria-label="Voltar para o início" class="logo-wrapper" href="/"><img alt="ALOGY Engenharia" decoding="async" height="308" src="logo-alogy.webp" width="878"/></a>
+<button aria-label="Abrir menu" class="menu-toggle" onclick="toggleMobileMenu()"><i class="fas fa-bars"></i></button></div>
+<nav aria-label="Menu principal" class="desktop"><div class="container navlinks"><a href="index.html">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="index.html#contato">Contato</a></div></nav>
+<nav aria-label="Menu mobile" class="mobile"><a href="index.html">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="index.html#contato">Contato</a></nav>
+</header>
+<div aria-label="Redes sociais" class="social-floating"><a aria-label="LinkedIn" class="linkedin" href="https://www.linkedin.com/company/alogyengenharia" rel="noopener noreferrer" target="_blank"><i class="fab fa-linkedin-in"></i></a><a aria-label="Instagram" class="instagram" href="https://www.instagram.com/alogyengenharia" rel="noopener noreferrer" target="_blank"><i class="fab fa-instagram"></i></a><a aria-label="Facebook" class="facebook" href="https://www.facebook.com/alogyengenharia" rel="noopener noreferrer" target="_blank"><i class="fab fa-facebook-f"></i></a><a aria-label="YouTube" class="youtube" href="https://www.youtube.com/@alogyengenharia" rel="noopener noreferrer" target="_blank"><i class="fab fa-youtube"></i></a><a aria-label="Hotmart" class="hotmart" href="https://hotmart.com/pt-br/club/alogyengenharia" rel="noopener noreferrer" target="_blank">H</a><a aria-label="TikTok" class="tiktok" href="https://www.tiktok.com/@alogyengenharia" rel="noopener noreferrer" target="_blank"><i class="fab fa-tiktok"></i></a></div>
+<div aria-label="Ações rápidas" class="fab-wrap"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1%21%20Vim%20pelas%20ferramentas%20da%20ALOGY.%20Gostaria%20de%20atendimento." rel="noopener noreferrer" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
+<main class="container" style="margin-top:18px">
+<div style="margin-bottom:14px;display:flex;gap:10px;flex-wrap:wrap"><a class="floating-back-tools" href="blog.html"><i class="fas fa-arrow-left"></i> Voltar ao Blog</a><a class="floating-back-tools" href="calculadora-emissividade-termografia.html"><i class="fas fa-calculator"></i> Abrir ferramenta</a></div>
+<article class="calc-card"><h1>Emissividade em termografia industrial</h1>
 <p>A câmera termográfica não mede diretamente a temperatura interna do equipamento. Ela detecta radiação infravermelha que chega à lente e calcula uma temperatura aparente a partir dos parâmetros informados. Em superfície metálica brilhante, grande parte dessa radiação pode vir do ambiente refletido, não da peça observada.</p>
 <p>Emissividade é a eficiência com que uma superfície emite radiação térmica em comparação com um emissor ideal, em uma escala de 0 a 1. Superfícies pintadas, oxidadas ou não metálicas costumam emitir melhor que metais polidos, mas o valor real depende do material, acabamento, comprimento de onda, temperatura e ângulo de observação. Tabelas são ponto de partida, não certificado da superfície.</p>
-
 <h2>O que a câmera precisa separar</h2>
 <ul>
-  <li><strong>Radiação emitida pelo objeto:</strong> parcela relacionada à temperatura e à emissividade da superfície.</li>
-  <li><strong>Radiação refletida:</strong> energia de pessoas, céu, paredes, fornos, tubulações ou outras fontes que a superfície devolve à câmera.</li>
-  <li><strong>Efeito da atmosfera:</strong> distância, temperatura do ar e umidade influenciam a transmissão, principalmente em trajetos maiores.</li>
-  <li><strong>Óptica e tamanho do alvo:</strong> o ponto medido precisa preencher pixels suficientes; um alvo menor que o ponto de medição mistura temperaturas vizinhas.</li>
+<li><strong>Radiação emitida pelo objeto:</strong> parcela relacionada à temperatura e à emissividade da superfície.</li>
+<li><strong>Radiação refletida:</strong> energia de pessoas, céu, paredes, fornos, tubulações ou outras fontes que a superfície devolve à câmera.</li>
+<li><strong>Efeito da atmosfera:</strong> distância, temperatura do ar e umidade influenciam a transmissão, principalmente em trajetos maiores.</li>
+<li><strong>Óptica e tamanho do alvo:</strong> o ponto medido precisa preencher pixels suficientes; um alvo menor que o ponto de medição mistura temperaturas vizinhas.</li>
 </ul>
 <p>Quando a emissividade é alta, a influência relativa da reflexão tende a ser menor. Quando é baixa, pequenos erros de emissividade ou de temperatura aparente refletida podem alterar muito o resultado calculado.</p>
-
 <h2>Reflexo térmico não é necessariamente aquecimento</h2>
 <p>Uma conexão polida pode mostrar a silhueta quente do operador ou o reflexo de uma tubulação próxima. Um indício prático é a área “quente” mudar de posição quando o ângulo da câmera muda. Um aquecimento real permanece associado ao componente, embora a leitura numérica ainda dependa dos parâmetros corretos.</p>
 <p>Paleta de cores também não prova temperatura absoluta. A escala pode se reajustar automaticamente e transformar pequenas diferenças em cores fortes. Registre limites da escala, emissividade, temperatura refletida, distância e condição de carga para permitir comparação posterior.</p>
-
 <h2>Procedimento de campo para uma comparação confiável</h2>
 <ol>
-  <li>Defina se a tarefa é <strong>qualitativa</strong> — localizar anomalias — ou <strong>quantitativa</strong> — informar temperatura com incerteza conhecida.</li>
-  <li>Limpe a linha de visada e verifique foco, distância, resolução espacial e possíveis fontes de reflexão.</li>
-  <li>Compare componentes equivalentes sob carga e condição semelhantes, usando a mesma escala e ângulo quando possível.</li>
-  <li>Determine a emissividade da superfície e a temperatura aparente refletida por método compatível com o procedimento e com o manual da câmera.</li>
-  <li>Confirme uma temperatura crítica com método independente adequado e registre as condições do ensaio.</li>
+<li>Defina se a tarefa é <strong>qualitativa</strong> — localizar anomalias — ou <strong>quantitativa</strong> — informar temperatura com incerteza conhecida.</li>
+<li>Limpe a linha de visada e verifique foco, distância, resolução espacial e possíveis fontes de reflexão.</li>
+<li>Compare componentes equivalentes sob carga e condição semelhantes, usando a mesma escala e ângulo quando possível.</li>
+<li>Determine a emissividade da superfície e a temperatura aparente refletida por método compatível com o procedimento e com o manual da câmera.</li>
+<li>Confirme uma temperatura crítica com método independente adequado e registre as condições do ensaio.</li>
 </ol>
 <div class="post-highlight"><strong>Segurança:</strong> não aplique fita, tinta ou marcador em parte energizada, quente, móvel ou incompatível com o processo. Uma referência de alta emissividade só deve ser preparada em condição segura, autorizada e prevista no procedimento.</div>
-
 <h2>Exemplo: barramento brilhante em painel</h2>
 <p>Considere três conexões visualmente iguais e com cargas próximas. Duas mostram temperatura aparente semelhante; a terceira parece muito mais quente, mas seu brilho se desloca quando o inspetor muda de posição. Antes de concluir que há mau contato, é preciso controlar o ângulo, a reflexão e a emissividade. Se a anomalia permanecer fixa no componente e for confirmada sob condição de carga registrada, a evidência fica mais consistente.</p>
 <p>A diferença de temperatura entre componentes comparáveis costuma ser mais útil para triagem do que um valor absoluto obtido com parâmetros desconhecidos. Ainda assim, diferença aparente não substitui inspeção elétrica, análise de carga, torque conforme procedimento ou decisão de manutenção autorizada.</p>
-
 <h2>Erros frequentes</h2>
 <ul>
-  <li>Usar emissividade 0,95 para qualquer material sem avaliar a superfície.</li>
-  <li>Medir metal polido de frente para uma fonte quente ou para o céu aberto.</li>
-  <li>Confundir imagem nítida com medição radiométrica correta.</li>
-  <li>Comparar imagens com escalas, cargas, distâncias ou ângulos diferentes.</li>
-  <li>Medir através de vidro comum ou janela sem configurar sua transmitância e sem verificar a faixa espectral.</li>
-  <li>Apontar para alvo menor que o ponto de medição da câmera.</li>
-  <li>Emitir diagnóstico conclusivo sem registrar carga, ambiente e parâmetros usados.</li>
+<li>Usar emissividade 0,95 para qualquer material sem avaliar a superfície.</li>
+<li>Medir metal polido de frente para uma fonte quente ou para o céu aberto.</li>
+<li>Confundir imagem nítida com medição radiométrica correta.</li>
+<li>Comparar imagens com escalas, cargas, distâncias ou ângulos diferentes.</li>
+<li>Medir através de vidro comum ou janela sem configurar sua transmitância e sem verificar a faixa espectral.</li>
+<li>Apontar para alvo menor que o ponto de medição da câmera.</li>
+<li>Emitir diagnóstico conclusivo sem registrar carga, ambiente e parâmetros usados.</li>
 </ul>
-
 <h2>Ferramentas e conteúdos relacionados</h2>
 <div class="calc-actions">
-  <a class="mini-btn dark" href="calculadora-emissividade-termografia.html"><i class="fas fa-calculator"></i> Simular emissividade</a>
-  <a class="mini-btn" href="ferramentas.html"><i class="fas fa-toolbox"></i> Ver ferramentas</a>
+<a class="mini-btn dark" href="calculadora-emissividade-termografia.html"><i class="fas fa-calculator"></i> Simular emissividade</a>
+<a class="mini-btn" href="ferramentas.html"><i class="fas fa-toolbox"></i> Ver ferramentas</a>
 </div>
 <ul class="mini-help" style="margin-top:12px">
-  <li><a href="blog-termopoco-tempo-resposta.html">Termopoço e tempo de resposta</a> — contraponto para medição de temperatura por contato.</li>
-  <li><a href="blog-calibracao-transmissor-temperatura.html">Calibração de transmissor de temperatura</a> — diferencia eletrônica, sensor e conjunto instalado.</li>
-  <li><a href="blog-ventilacao-painel-eletrico.html">Ventilação de painel elétrico</a> — contexto para investigar aquecimento sem atribuir toda anomalia a uma única causa.</li>
-</ul>
+<li><a href="blog-termopoco-tempo-resposta.html">Termopoço e tempo de resposta</a> — contraponto para medição de temperatura por contato.</li>
+<li><a href="blog-calibracao-transmissor-temperatura.html">Calibração de transmissor de temperatura</a> — diferencia eletrônica, sensor e conjunto instalado.</li>
 
+</ul>
 <h2>Referências técnicas</h2>
 <ul>
-  <li><a href="https://support.flir.com/DSDownload/Assets/T810442-en-US_A4.pdf" target="_blank" rel="noopener">Teledyne FLIR — <em>Reference Documentation: Thermography</em></a>. Manual de referência sobre emissividade, temperatura refletida, distância, umidade e temperatura atmosférica.</li>
-  <li><a href="https://www.fluke.com/en-us/learn/blog/thermal-imaging/what-you-need-to-know-about-emissivity-and-infrared-energy" target="_blank" rel="noopener">Fluke — <em>Understanding the relevance of emissivity to temperature measurement</em></a>. Explicação oficial sobre energia infravermelha e cálculo de temperatura aparente.</li>
+<li><a href="https://support.flir.com/DSDownload/Assets/T810442-en-US_A4.pdf" rel="noopener noreferrer" target="_blank">Teledyne FLIR — <em>Reference Documentation: Thermography</em></a>. Manual de referência sobre emissividade, temperatura refletida, distância, umidade e temperatura atmosférica.</li>
+<li><a href="https://www.fluke.com/en-us/learn/blog/thermal-imaging/what-you-need-to-know-about-emissivity-and-infrared-energy" rel="noopener noreferrer" target="_blank">Fluke — <em>Understanding the relevance of emissivity to temperature measurement</em></a>. Explicação oficial sobre energia infravermelha e cálculo de temperatura aparente.</li>
 </ul>
-
 <h2>Aviso técnico</h2>
 <p>Este material é educativo e serve para triagem e apoio à inspeção. Não substitui capacitação em termografia, procedimento de segurança, avaliação elétrica ou mecânica, manual da câmera e decisão de profissional habilitado. Não abra painel, remova proteção nem se aproxime de parte energizada ou quente apenas para obter uma imagem melhor.</p></article>
-    <section class="cta-bar" aria-label="Chamada para contato">
-      <div><strong>Precisa de apoio técnico em engenharia, manutenção ou instrumentação?</strong><br><span class="muted">Use as ferramentas como apoio e fale com a ALOGY para análise técnica aplicada ao seu processo.</span></div>
-      <div class="cta-actions"><a class="btn" href="index.html#contato"><i class="fas fa-paper-plane"></i> Solicitar contato</a></div>
-    </section>
-  </main>
-  <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p></footer>
+<section aria-label="Chamada para contato" class="cta-bar">
+<div><strong>Precisa de apoio técnico em engenharia, manutenção ou instrumentação?</strong><br/><span class="muted">Use as ferramentas como apoio e fale com a ALOGY para análise técnica aplicada ao seu processo.</span></div>
+<div class="cta-actions"><a class="btn" href="index.html#contato"><i class="fas fa-paper-plane"></i> Solicitar contato</a></div>
+</section>
+</main>
+<footer><p>© Desde 2012 ALOGY Engenharia | www.alogy.com.br</p></footer>
 </body>
 </html>

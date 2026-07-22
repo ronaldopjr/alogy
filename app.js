@@ -345,16 +345,21 @@ function observeResponsiveToolTables(){
 
 
 /* =========================
-   ESPAÇOS PARA GOOGLE ADSENSE
+   ESPAÇOS MANUAIS PARA GOOGLE ADSENSE
    Ferramentas + calculadoras/checklists
-   
-   Status inicial: DESATIVADO.
+
+   IMPORTANTE: o script geral do AdSense é inserido estaticamente somente nas
+   páginas editoriais elegíveis. Auto Ads e Side Rail são controlados no painel.
+   Este bloco controla apenas unidades manuais opcionais.
+
+   Status das unidades manuais: DESATIVADO.
    Quando o AdSense aprovar o site, basta informar o cliente e os slots abaixo
    ou pedir para a ALOGY/ChatGPT gerar o arquivo com seus IDs reais.
 ========================= */
 const ALOGY_ADS_CONFIG = {
   enabled: false,
   siteApproved: false,
+  manualUnitsEnabled: false,
   consentManagedBy: "Google CMP / Privacidade e mensagens",
   adClient: "ca-pub-5586837114309500",
   desktopLeftSlot: "",
@@ -382,35 +387,156 @@ const ALOGY_ADS_CONFIG = {
     "checklist-teste-de-loop.html",
     "checklist-comissionamento-hart.html"
   ]),
+  // A área institucional e as páginas legais permanecem sem publicidade.
+  institutionalPages: new Set([
+    "index.html",
+    "industrial.html",
+    "residencial.html",
+    "cases.html",
+    "cursos.html",
+    "sobre.html"
+  ]),
+  legalPages: new Set([
+    "politica-de-privacidade.html",
+    "termos-de-uso-ferramentas.html"
+  ]),
+  // Páginas retiradas: nunca carregar script, unidade manual ou Auto Ads por este código.
+  retiredPages: new Set([
+    "calculadora-barreira-intrinseca-area-classificada.html",
+    "calculadora-lopa-simplificada.html",
+    "calculadora-sil-pfd-didatica.html",
+    "checklist-nova-nr10.html",
+    "checklist-nr12.html",
+    "checklist-inspecao-instrumentos-area-classificada.html",
+    "calculadora-termopoco-wake-frequency.html",
+    "calculadora-taxa-corrosao-vida-remanescente.html"
+  ]),
+  // Artigos temporariamente bloqueados até revisão editorial individual.
+  editorialReviewPages: new Set([
+    "blog-acumulador-hidraulico.html",
+    "blog-alinhamento-eixos-relogio.html",
+    "blog-area-trocador-calor.html",
+    "blog-autonomia-cilindro-gas.html",
+    "blog-backlog-manutencao-semanas.html",
+    "blog-balanceamento-rotor-campo.html",
+    "blog-bateria-ups-24vcc.html",
+    "blog-bocal-lavagem-cip.html",
+    "blog-cabo-profibus-rs485.html",
+    "blog-calibracao-balanca-industrial.html",
+    "blog-calibracao-indicador-controlador.html",
+    "blog-capabilidade-cp-cpk.html",
+    "blog-carga-termica-lote-aquecimento.html",
+    "blog-celula-carga-tanque.html",
+    "blog-classe-limpeza-oleo-iso4406.html",
+    "blog-consumo-energia-resistencia-aquecimento.html",
+    "blog-consumo-nitrogenio-purga.html",
+    "blog-conversao-vibracao-frequencia.html",
+    "blog-corrente-neutro-trifasico.html",
+    "blog-corrente-partida-motor.html",
+    "blog-custo-ar-comprimido.html",
+    "blog-densidade-api-grau-api.html",
+    "blog-desequilibrio-tensao-motor.html",
+    "blog-diametro-cilindro-pneumatico.html",
+    "blog-disponibilidade-sistema-serie-paralelo.html",
+    "blog-duto-exaustao-industrial.html",
+    "blog-economia-inversor-bomba-ventilador.html",
+    "blog-forca-cilindro-hidraulico.html",
+    "blog-frequencia-defeitos-rolamento.html",
+    "blog-golpe-ariete-joukowsky.html",
+    "blog-grau-protecao-ip-nema.html",
+    "blog-indice-polarizacao-dar.html",
+    "blog-inspecao-bomba-centrifuga.html",
+    "blog-lmtd-trocador-calor.html",
+    "blog-lsi-langelier-agua.html",
+    "blog-mistura-diluicao-solucoes.html",
+    "blog-modbus-polling.html",
+    "blog-mtbf-mttr-disponibilidade.html",
+    "blog-ocupacao-eletroduto-cabos.html",
+    "blog-pareto-falhas-manutencao.html",
+    "blog-partida-estrela-triangulo-corrente.html",
+    "blog-perda-calor-tubulacao.html",
+    "blog-perda-carga-ar-comprimido.html",
+    "blog-perda-carga-filtro.html",
+    "blog-perda-carga-mangueira-hidraulica.html",
+    "blog-placa-orificio-restricao.html",
+    "blog-ponto-orvalho-ar-comprimido.html",
+    "blog-ponto-ressuprimento-sobressalentes.html",
+    "blog-potencia-exaustor-ventilador.html",
+    "blog-ppm-mg-m3-gases.html",
+    "blog-purga-caldeira-tds.html",
+    "blog-purga-torre-resfriamento.html",
+    "blog-purgador-vapor-condensado.html",
+    "blog-queda-tensao-partida-motor.html",
+    "blog-recuperacao-condensado-energia.html",
+    "blog-relubrificacao-rolamento.html",
+    "blog-reservatorio-ar-comprimido.html",
+    "blog-reynolds-regime-escoamento.html",
+    "blog-rpn-fmea-manutencao.html",
+    "blog-secao-barramento-cobre.html",
+    "blog-slip-motor-inducao.html",
+    "blog-sobressalentes-criticidade.html",
+    "blog-tanque-expansao-termica-agua.html",
+    "blog-tempo-aceleracao-motor-inercia.html",
+    "blog-tempo-descarga-capacitor.html",
+    "blog-tempo-enchimento-tanque.html",
+    "blog-tempo-residencia-tanque.html",
+    "blog-tempo-transmissao-serial-industrial.html",
+    "blog-tensao-correia-transmissao.html",
+    "blog-thd-distorcao-harmonica.html",
+    "blog-torque-potencia-eixo.html",
+    "blog-trocador-calor-carga-termica.html",
+    "blog-vazao-bomba-deslocamento-positivo.html",
+    "blog-vazao-vapor-saturado.html",
+    "blog-vazao-vertedouro-canaleta.html",
+    "blog-velocidade-recomendada-tubulacao.html",
+    "blog-ventilacao-painel-eletrico.html",
+    "blog-vibracao-rms-pico-pico-a-pico.html",
+    "blog-vida-l10-rolamento.html",
+    "blog-volume-cilindro-horizontal-nivel.html"
+  ]),
+  // Páginas funcionais que permanecem bloqueadas até revisão técnica individual.
   reviewHoldPages: new Set([
     "calculadora-nivel-caldeira-transmissor-dp.html",
     "calculadora-nivel-dp-tanque-pressurizado.html",
     "calculadora-placa-orificio-vazao-dp.html",
     "calculadora-vazao-pressao-diferencial.html",
-    "calculadora-termopoco-wake-frequency.html",
     "calculadora-cv-valvula-controle.html",
     "calculadora-cv-kv-valvula-controle.html",
     "calculadora-atuador-pneumatico.html",
     "calculadora-tempo-atuacao-valvula.html",
-    "calculadora-lopa-simplificada.html",
-    "calculadora-barreira-intrinseca-area-classificada.html",
     "checklist-fat-sat-instrumentacao.html"
   ])
 };
 
-function isAlogyToolArea(){
+function isAlogyMonetizablePage(){
   const path = window.location.pathname.split('/').pop() || 'index.html';
   const robots = (document.querySelector('meta[name="robots"]')?.content || '').toLowerCase();
   if(robots.includes('noindex')) return false;
+  if(ALOGY_ADS_CONFIG.institutionalPages.has(path)) return false;
+  if(ALOGY_ADS_CONFIG.legalPages.has(path)) return false;
+  if(ALOGY_ADS_CONFIG.retiredPages.has(path)) return false;
+  if(ALOGY_ADS_CONFIG.reviewHoldPages.has(path)) return false;
+  if(ALOGY_ADS_CONFIG.editorialReviewPages.has(path)) return false;
+
+  // Artigos e hubs editoriais são elegíveis por padrão. Ferramentas continuam
+  // em lista branca individual para evitar monetização acidental de páginas críticas.
+  if(path === 'blog.html' || path.startsWith('blog-')) return true;
+  if(path === 'ferramentas.html' || path.startsWith('ferramentas-')) return true;
   return ALOGY_ADS_CONFIG.eligiblePages.has(path);
 }
 
 function hasAdsenseData(slot){
-  return !!(ALOGY_ADS_CONFIG.enabled && ALOGY_ADS_CONFIG.siteApproved && ALOGY_ADS_CONFIG.adClient && slot);
+  return !!(ALOGY_ADS_CONFIG.enabled && ALOGY_ADS_CONFIG.siteApproved && ALOGY_ADS_CONFIG.manualUnitsEnabled && ALOGY_ADS_CONFIG.adClient && slot);
+}
+
+function shouldLoadAlogyAdsense(){
+  if(!ALOGY_ADS_CONFIG.enabled || !ALOGY_ADS_CONFIG.siteApproved || !ALOGY_ADS_CONFIG.adClient) return false;
+  if(!isAlogyMonetizablePage()) return false;
+  return ALOGY_ADS_CONFIG.manualUnitsEnabled;
 }
 
 function loadAlogyAdsenseScript(){
-  if(!ALOGY_ADS_CONFIG.enabled || !ALOGY_ADS_CONFIG.siteApproved || !ALOGY_ADS_CONFIG.adClient) return;
+  if(!shouldLoadAlogyAdsense()) return;
   if(document.querySelector('script[data-alogy-adsense="true"], script[src*="pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"]')) return;
 
   const script = document.createElement('script');
@@ -478,7 +604,7 @@ function insertAlogyMobileAd(main){
 }
 
 function initAlogyAdsLayout(){
-  if(!isAlogyToolArea()) return;
+  if(!isAlogyMonetizablePage()) return;
 
   const main = document.querySelector('main.container');
   if(!main || main.dataset.alogyAdsReady === 'true') return;
@@ -487,11 +613,14 @@ function initAlogyAdsLayout(){
   const desktopRight = hasAdsenseData(ALOGY_ADS_CONFIG.desktopRightSlot);
   const mobile = hasAdsenseData(ALOGY_ADS_CONFIG.mobileSlot);
 
-  // Enquanto não houver ID real do AdSense, nada aparece e o layout atual fica preservado.
-  if(!desktopLeft && !desktopRight && !mobile) return;
+  // Unidades manuais são opcionais. Auto Ads e Side Rail usam o script geral
+  // já presente apenas nas páginas elegíveis e são controlados no painel.
+  if(!shouldLoadAlogyAdsense()) return;
 
   loadAlogyAdsenseScript();
   main.dataset.alogyAdsReady = 'true';
+
+  if(!desktopLeft && !desktopRight && !mobile) return;
 
   if(desktopLeft || desktopRight){
     const wrapper = document.createElement('div');
@@ -640,7 +769,7 @@ document.addEventListener('DOMContentLoaded', () => {
   bindMobileMenuClickOutside();
   bindMobileMenuEscClose();
 
-  // espaços preparados para anúncios nas ferramentas
+  // publicidade somente em artigos, hubs e ferramentas aprovadas
   initAlogyAdsLayout();
 
   // link de política de privacidade/cookies no rodapé

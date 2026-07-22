@@ -1,103 +1,41 @@
-<!DOCTYPE html>
-
-<html lang="pt-br">
+<!doctype html>
+<html lang="pt-BR">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Calculadora SIL e PFDavg Didática | ALOGY Engenharia</title>
-<meta content="Calcule PFDavg estimado e faixa SIL didática para funções instrumentadas de segurança em baixa demanda, com avisos de limitação." name="description"/>
-<meta content="index,follow" name="robots"/>
-<meta content="#004b80" name="theme-color"/>
-<link href="https://www.alogy.com.br/calculadora-sil-pfd-didatica.html" rel="canonical"/>
-<link href="/favicon-48x48.png" rel="icon" sizes="48x48" type="image/png"/>
-<link href="/favicon-192x192.png" rel="icon" sizes="192x192" type="image/png"/>
-<link href="/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
-<link href="/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180"/>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-<link href="style.css" rel="stylesheet"/>
-<script defer="" src="app.js"></script>
-<meta content="pt_BR" property="og:locale"/>
-<meta content="website" property="og:type"/>
-<meta content="ALOGY Engenharia" property="og:site_name"/>
-<meta content="Calculadora SIL e PFDavg Didática" property="og:title"/>
-<meta content="Calcule PFDavg estimado e faixa SIL didática para funções instrumentadas de segurança em baixa demanda, com avisos de limitação." property="og:description"/>
-<meta content="https://www.alogy.com.br/calculadora-sil-pfd-didatica.html" property="og:url"/>
-<meta content="https://www.alogy.com.br/favicon-512x512.png" property="og:image"/>
-<meta content="summary_large_image" name="twitter:card"/>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Calculadora SIL e PFDavg Didática","url":"https://www.alogy.com.br/calculadora-sil-pfd-didatica.html","applicationCategory":"EngineeringApplication","operatingSystem":"Web","description":"Calcule PFDavg estimado e faixa SIL didática para funções instrumentadas de segurança em baixa demanda, com avisos de limitação.","publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"},"dateModified":"2026-07-21","author":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"}}</script>
-<style>
-    .mini-help{color:var(--muted);font-size:.92rem;line-height:1.55;margin-top:8px}
-    .faq details{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:14px;padding:14px;margin-top:10px;box-shadow:0 6px 16px rgba(0,0,0,.04)}
-    .faq summary{cursor:pointer;font-weight:900;color:#0b3a62}.faq p{margin:10px 0 0;color:var(--muted)}
-    .result-box strong.small{font-size:1.04rem} .calc-result.two{grid-template-columns:repeat(2,1fr)}
-    .formula-box .line{display:block;margin:3px 0} .risk-note{border-left:5px solid #dc2626;background:rgba(220,38,38,.07)}
-    @media(max-width:900px){.calc-result.two{grid-template-columns:1fr}}
-    @media print{header,.social-floating,.fab-wrap,.cta-bar,footer,.calc-actions,.tools-hero .btn,.no-print{display:none!important}body{background:#fff}.container{max-width:100%;padding:0}.calc-card,.tools-hero{box-shadow:none;border:1px solid #ddd}.calc-layout{display:block}.calc-card{margin:12px 0}.calc-table th{background:#eee!important;color:#111!important}}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <meta name="googlebot" content="noindex, nofollow, noarchive">
+  <title>Calculadora Didática de SIL e PFDavg — em revisão técnica | ALOGY</title>
+  <meta name="description" content="Calculadora Didática de SIL e PFDavg: ferramenta temporariamente retirada do uso público para revisão técnica pela ALOGY Engenharia.">
+  <link rel="canonical" href="https://www.alogy.com.br/calculadora-sil-pfd-didatica.html">
+  <link rel="icon" href="favicon.ico">
+  <link rel="stylesheet" href="style.css?v=20260722-visual2-uppercase">
+  <style>
+    .retired-tool{max-width:820px;margin:48px auto;padding:0 18px}
+    .retired-tool-card{background:#fff;border:1px solid rgba(0,75,128,.14);border-radius:18px;padding:30px;box-shadow:0 12px 32px rgba(0,45,82,.08)}
+    .retired-tool-badge{display:inline-block;margin-bottom:14px;padding:7px 11px;border-radius:999px;background:#fff3cd;color:#664d03;font-weight:800;font-size:.86rem}
+    .retired-tool h1{margin:0 0 14px;color:#003b66}
+    .retired-tool p{line-height:1.7}
+    .retired-tool-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+    .retired-tool-note{margin-top:20px;padding:14px 16px;border-left:4px solid #c98a00;background:#fffaf0}
   </style>
-</link></link></head>
-<body class="tools-page alogy-stage3-forms">
-<header>
-<div class="container headbar"><a aria-label="Voltar para o início" class="logo-wrapper" href="/"><img alt="ALOGY Engenharia" decoding="async" height="308" src="logo-alogy.webp" width="878"/></a>
-<button aria-label="Abrir menu" class="menu-toggle" onclick="toggleMobileMenu()"><i class="fas fa-bars"></i></button></div>
-<nav aria-label="Menu principal" class="desktop"><div class="container navlinks"><a href="index.html">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="index.html#contato">Contato</a></div></nav>
-<nav aria-label="Menu mobile" class="mobile"><a href="index.html">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="index.html#contato">Contato</a></nav>
-</header>
-<div aria-label="Redes sociais" class="social-floating"><a aria-label="LinkedIn" class="linkedin" href="https://www.linkedin.com/company/alogyengenharia" rel="noopener" target="_blank"><i class="fab fa-linkedin-in"></i></a><a aria-label="Instagram" class="instagram" href="https://www.instagram.com/alogyengenharia" rel="noopener" target="_blank"><i class="fab fa-instagram"></i></a><a aria-label="Facebook" class="facebook" href="https://www.facebook.com/alogyengenharia" rel="noopener" target="_blank"><i class="fab fa-facebook-f"></i></a><a aria-label="YouTube" class="youtube" href="https://www.youtube.com/@alogyengenharia" rel="noopener" target="_blank"><i class="fab fa-youtube"></i></a><a aria-label="Hotmart" class="hotmart" href="https://hotmart.com/pt-br/club/alogyengenharia" rel="noopener" target="_blank">H</a><a aria-label="TikTok" class="tiktok" href="https://www.tiktok.com/@alogyengenharia" rel="noopener" target="_blank"><i class="fab fa-tiktok"></i></a></div>
-<div aria-label="Ações rápidas" class="fab-wrap"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1%21%20Vim%20pelas%20ferramentas%20da%20ALOGY.%20Gostaria%20de%20atendimento." rel="noopener" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
-<main class="container" style="margin-top:18px"><div aria-label="Ações da ferramenta" class="tool-page-actions no-print"><button class="btn print" onclick="window.print()" type="button"><i class="fas fa-print"></i> Imprimir</button></div>
-
-<section class="tools-hero"><h1>Calculadora SIL e PFDavg Didática</h1>
-<p class="muted" data-alogy-content-meta><strong>Conteúdo técnico:</strong> ALOGY Engenharia · <strong>Atualizado em:</strong> 21/07/2026</p><p>Ferramenta didática para entender PFDavg, intervalo de teste, taxa de falha perigosa não detectada e faixa SIL em aplicações de segurança funcional.</p></section>
-<section aria-label="Aviso de uso" class="calc-card"><h2><i class="fas fa-triangle-exclamation"></i> Ferramenta orientativa</h2><p>Use esta ferramenta de SIL e PFDavg Didática para estudo, estimativa e conferência preliminar. O resultado depende dos dados inseridos, das hipóteses, da condição de operação, da documentação do fabricante e da validação adequada ao risco.</p></section>
-<section class="calc-layout">
-<div class="calc-card"><h2><i class="fas fa-shield"></i> Dados da função instrumentada</h2><p>Use uma estimativa didática de PFDavg por taxa de falha perigosa não detectada e intervalo de teste.</p><div class="calc-grid">
-<div class="field"><label for="lambda">λDU total (falhas/h)</label><input id="lambda" step="any" type="number" value="0.0000001"/></div>
-<div class="field"><label for="ti">Intervalo de teste - TI (meses)</label><input id="ti" step="any" type="number" value="12"/></div>
-<div class="field"><label for="dc">Crédito de diagnóstico (%)</label><input id="dc" step="any" type="number" value="0"/></div>
-<div class="field"><label for="arquitetura">Arquitetura didática</label><select id="arquitetura"><option value="1oo1">1oo1</option><option value="1oo2">1oo2 simplificado</option><option value="2oo3">2oo3 simplificado</option></select></div>
-<div class="field"><label for="demanda">Modo de demanda</label><select id="demanda"><option>baixa demanda</option><option>alta demanda</option></select></div>
-<div class="field"><label for="target">PFD alvo opcional</label><input id="target" step="any" type="number" value="0.01"/></div>
-</div><div class="calc-actions"><button class="mini-btn dark" onclick="copiar()" type="button"><i class="fas fa-copy"></i> Copiar resultado</button><button class="mini-btn" onclick="exemplo(1)" type="button">SIL 1 didático</button><button class="mini-btn" onclick="exemplo(2)" type="button">Teste maior</button></div></div>
-<div class="calc-card"><h2><i class="fas fa-chart-simple"></i> Resultado</h2><div class="calc-result"><div class="result-box"><span>PFDavg estimado</span><strong id="pfd">-</strong></div><div class="result-box"><span>Faixa SIL didática</span><strong class="small" id="sil">-</strong></div><div class="result-box"><span>Comparação</span><strong class="small" id="comp">-</strong></div></div><div class="calc-note risk-note" id="nota">Cálculo didático simplificado. Segurança funcional real exige IEC 61508/61511, dados certificados e verificação completa.</div><h3 style="margin-top:18px">Faixas PFDavg em baixa demanda</h3><div class="calc-table-wrap"><table class="calc-table"><thead><tr><th>Faixa</th><th>PFDavg</th></tr></thead><tbody><tr><td>SIL 1</td><td>≥ 0,01 e &lt; 0,1</td></tr><tr><td>SIL 2</td><td>≥ 0,001 e &lt; 0,01</td></tr><tr><td>SIL 3</td><td>≥ 0,0001 e &lt; 0,001</td></tr><tr><td>SIL 4</td><td>≥ 0,00001 e &lt; 0,0001</td></tr></tbody></table></div></div>
-</section>
-<!-- ALOGY_REVISAO_TECNICA_FERRAMENTA -->
-<section class="calc-card" aria-label="Uso didático de SIL e PFDavg">
-  <h2><i class="fas fa-clipboard-check"></i> Uso didático de SIL e PFDavg</h2>
-  <p>Use a ferramenta para observar como taxa de falha perigosa, intervalo de teste, diagnóstico e arquitetura alteram uma estimativa simplificada de PFDavg. O resultado não determina sozinho o SIL de uma função instrumentada.</p>
-  <h3>Premissas que precisam ser documentadas</h3>
-  <ul>
-    <li>modo de demanda e período considerado;</li>
-    <li>origem da taxa de falha perigosa não detectada;</li>
-    <li>cobertura real do diagnóstico;</li>
-    <li>intervalo, eficácia e duração do teste de prova;</li>
-    <li>arquitetura e independência dos canais.</li>
-  </ul>
-  <h3>Como interpretar a faixa didática</h3>
-  <p>A faixa exibida apenas compara a estimativa com limites numéricos de referência. Uma verificação real precisa considerar sensores, lógica, elementos finais, causa comum, reparo, indisponibilidade durante teste, restrições sistemáticas e requisitos do ciclo de vida.</p>
-  <h3>Antes de usar em decisão de segurança</h3>
-  <ul>
-    <li>Defina a SIF e o cenário perigoso de forma inequívoca.</li>
-    <li>Separe requisito de redução de risco da capacidade calculada.</li>
-    <li>Use dados aprovados e método corporativo de cálculo.</li>
-    <li>Submeta premissas e resultados à equipe competente.</li>
-  </ul>
-  <p><strong>Limite:</strong> esta ferramenta é exclusivamente educacional e não substitui verificação SIL, validação de SIF ou documentação de segurança funcional.</p>
-</section>
-</main>
-<footer><p>© Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
-<script>
-function n(id){return Number(document.getElementById(id)?.value||0)}
-function sci(x){return isFinite(x)?x.toExponential(2).replace('.',','):'-'}
-function exemplo(i){if(i===1){lambda.value=0.0000001;ti.value=12;dc.value=0;arquitetura.value='1oo1';target.value=0.01}else{lambda.value=0.0000001;ti.value=36;dc.value=0;arquitetura.value='1oo1';target.value=0.01}calc()}
-function silBand(p){if(p>=0.01&&p<0.1)return 'SIL 1';if(p>=0.001&&p<0.01)return 'SIL 2';if(p>=0.0001&&p<0.001)return 'SIL 3';if(p>=0.00001&&p<0.0001)return 'SIL 4';if(p<0.00001)return 'Acima de SIL 4';return 'Sem SIL'}
-function calc(){let l=n('lambda')*(1-n('dc')/100),T=n('ti')*30.4375*24;let base=l*T/2;let arq=document.getElementById('arquitetura').value;let val=base;if(arq==='1oo2')val=base*base; if(arq==='2oo3')val=3*base*base; pfd.textContent=sci(val);sil.textContent=silBand(val);let ok=val<=n('target');comp.textContent=ok?'Atinge alvo':'Não atinge alvo';comp.parentElement.className='result-box '+(ok?'status-ok':'status-bad');nota.textContent='Estimativa simplificada. Não considera CCF, SFF, restrições arquiteturais, capacidade sistemática, proof test coverage, falhas seguras e dados certificados.'}
-function copiar(){navigator.clipboard?.writeText(`PFDavg estimado ${pfd.textContent}; faixa ${sil.textContent}; comparação ${comp.textContent}`)}
-document.querySelectorAll('input,select').forEach(e=>e.addEventListener('input',calc));document.addEventListener('DOMContentLoaded',calc);
-</script>
-
-<a aria-label="Voltar para Ferramentas" class="floating-back-tools no-print" href="ferramentas.html"><i class="fas fa-arrow-left"></i> Voltar para Ferramentas</a>
+</head>
+<body class="tools-page">
+  <main class="retired-tool">
+    <section class="retired-tool-card" aria-labelledby="retired-title">
+      <span class="retired-tool-badge">Ferramenta temporariamente indisponível</span>
+      <h1 id="retired-title">Calculadora Didática de SIL e PFDavg</h1>
+      <p>Esta ferramenta foi retirada do uso público em <strong>22 de julho de 2026</strong> para revisão técnica e de segurança.</p>
+      <p>A determinação ou verificação de SIL não pode ser reduzida a uma estimativa isolada de PFDavg.</p>
+      <div class="retired-tool-note">
+        <strong>Nenhum cálculo ou resultado está disponível nesta página.</strong><br>
+        A retirada evita que uma estimativa simplificada seja confundida com projeto, laudo, certificado, inspeção, conformidade normativa, autorização operacional ou ART.
+      </div>
+      <div class="retired-tool-actions">
+        <a class="btn" href="blog-sil-pfd-didatico.html">Ler o artigo didático sobre SIL e PFDavg</a>
+        <a class="btn secondary" href="ferramentas.html">Ver ferramentas disponíveis</a>
+      </div>
+    </section>
+  </main>
 </body>
 </html>

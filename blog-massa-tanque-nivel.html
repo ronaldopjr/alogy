@@ -1,59 +1,62 @@
 <!DOCTYPE html>
+
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Massa em Tanque por Nível e Densidade | ALOGY Engenharia</title>
-  <meta name="description" content="Veja como estimar massa em tanques usando nível, volume, densidade e geometria simplificada para apoio em processo e instrumentação." />
-  <meta name="robots" content="index,follow" />
-  <meta name="theme-color" content="#004b80" />
-  <link rel="canonical" href="https://www.alogy.com.br/blog-massa-tanque-nivel.html" />
-  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
-  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png" />
-  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <link rel="stylesheet" href="style.css" />
-  <script src="app.js" defer></script>
-  <meta property="og:locale" content="pt_BR" /><meta property="og:type" content="article" /><meta property="og:site_name" content="ALOGY Engenharia" /><meta property="og:title" content="Massa em Tanque por Nível e Densidade: como estimar" /><meta property="og:description" content="Veja como estimar massa em tanques usando nível, volume, densidade e geometria simplificada para apoio em processo e instrumentação." /><meta property="og:url" content="https://www.alogy.com.br/blog-massa-tanque-nivel.html" /><meta property="og:image" content="https://www.alogy.com.br/favicon-512x512.png" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Massa em Tanque por Nível e Densidade: como estimar","description":"Veja como estimar massa em tanques usando nível, volume, densidade e geometria simplificada para apoio em processo e instrumentação.","datePublished":"2026-06-29","dateModified":"2026-07-21","author":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"},"publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/","logo":{"@type":"ImageObject","url":"https://www.alogy.com.br/logo-alogy.webp"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://www.alogy.com.br/blog-massa-tanque-nivel.html"},"inLanguage":"pt-BR"}</script>
-  <style>.post-wrap{max-width:900px;margin:18px auto}.post-card{background:var(--card);border:1px solid rgba(0,0,0,.08);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}.post-content{padding:30px}.post-meta{color:var(--muted);font-size:.95rem;margin-bottom:12px}.post-content h1{font-size:2.15rem;line-height:1.15;margin-bottom:12px;color:var(--text)}.post-content h2{font-size:1.45rem;line-height:1.25;margin:26px 0 10px;color:var(--text)}.post-content p{color:var(--text);margin:0 0 16px;font-size:1.04rem;line-height:1.75}.post-content ul{margin:0 0 18px 20px}.post-content li{margin:8px 0;line-height:1.65}.post-highlight{background:rgba(0,107,177,.08);border:1px solid rgba(0,107,177,.18);border-radius:14px;padding:16px;margin:22px 0}.post-highlight strong{color:#0b3a62}@media(max-width:768px){.post-content{padding:22px}.post-content h1{font-size:1.65rem}.post-content h2{font-size:1.25rem}}</style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Massa em Tanque por Nível e Densidade | ALOGY Engenharia</title>
+<meta content="Veja como estimar massa em tanques usando nível, volume, densidade e geometria simplificada para apoio em processo e instrumentação." name="description"/>
+<meta content="index,follow" name="robots"/>
+<meta content="#2C78B9" name="theme-color"/>
+<link href="https://www.alogy.com.br/blog-massa-tanque-nivel.html" rel="canonical"/>
+<link href="/favicon-48x48.png" rel="icon" sizes="48x48" type="image/png"/>
+<link href="/favicon-192x192.png" rel="icon" sizes="192x192" type="image/png"/>
+<link href="/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+<link href="/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Asap:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<link href="style.css?v=20260722-visual2-uppercase" rel="stylesheet">
+<script defer="" src="app.js"></script>
+<meta content="pt_BR" property="og:locale"/><meta content="article" property="og:type"/><meta content="ALOGY Engenharia" property="og:site_name"/><meta content="Massa em Tanque por Nível e Densidade: como estimar" property="og:title"/><meta content="Veja como estimar massa em tanques usando nível, volume, densidade e geometria simplificada para apoio em processo e instrumentação." property="og:description"/><meta content="https://www.alogy.com.br/blog-massa-tanque-nivel.html" property="og:url"/><meta content="https://www.alogy.com.br/favicon-512x512.png" property="og:image"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Massa em Tanque por Nível e Densidade: como estimar","description":"Veja como estimar massa em tanques usando nível, volume, densidade e geometria simplificada para apoio em processo e instrumentação.","datePublished":"2026-06-29","dateModified":"2026-07-21","author":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"},"publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/","logo":{"@type":"ImageObject","url":"https://www.alogy.com.br/logo-alogy.webp"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://www.alogy.com.br/blog-massa-tanque-nivel.html"},"inLanguage":"pt-BR","image":"https://www.alogy.com.br/favicon-512x512.png"}</script>
+<style>.post-wrap{max-width:900px;margin:18px auto}.post-card{background:var(--card);border:1px solid rgba(0,0,0,.08);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}.post-content{padding:30px}.post-meta{color:var(--muted);font-size:.95rem;margin-bottom:12px}.post-content h1{font-size:2.15rem;line-height:1.15;margin-bottom:12px;color:var(--text)}.post-content h2{font-size:1.45rem;line-height:1.25;margin:26px 0 10px;color:var(--text)}.post-content p{color:var(--text);margin:0 0 16px;font-size:1.04rem;line-height:1.75}.post-content ul{margin:0 0 18px 20px}.post-content li{margin:8px 0;line-height:1.65}.post-highlight{background:rgba(0,107,177,.08);border:1px solid rgba(0,107,177,.18);border-radius:14px;padding:16px;margin:22px 0}.post-highlight strong{color:#0b3a62}@media(max-width:768px){.post-content{padding:22px}.post-content h1{font-size:1.65rem}.post-content h2{font-size:1.25rem}}</style>
+<!-- Google AdSense: carregado somente em páginas editoriais monetizáveis. A exibição e os formatos são controlados no painel do AdSense. -->
+<script async="" crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5586837114309500"></script>
 </head>
 <body>
-  <header>
-    <div class="container headbar"><a href="/" class="logo-wrapper" aria-label="Voltar para o início"><img src="logo-alogy.webp" alt="ALOGY Engenharia"  width="878"  height="308"  decoding="async" /></a>
-<button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menu"><i class="fas fa-bars"></i></button></div>
-    <nav class="desktop" aria-label="Menu principal"><div class="container navlinks"><a href="index.html">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="index.html#contato">Contato</a></div></nav>
-    <nav class="mobile" aria-label="Menu mobile"><a href="index.html">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="index.html#contato">Contato</a></nav>
-  </header>
-  <div class="social-floating" aria-label="Redes sociais"><a href="https://www.linkedin.com/company/alogyengenharia" class="linkedin" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a><a href="https://www.instagram.com/alogyengenharia" class="instagram" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="https://www.facebook.com/alogyengenharia" class="facebook" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><a href="https://www.youtube.com/@alogyengenharia" class="youtube" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a><a href="https://hotmart.com/pt-br/club/alogyengenharia" class="hotmart" target="_blank" rel="noopener" aria-label="Hotmart">H</a><a href="https://www.tiktok.com/@alogyengenharia" class="tiktok" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a></div>
-  <div class="fab-wrap" aria-label="Ações rápidas"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1%21%20Vim%20pelo%20blog%20da%20ALOGY.%20Gostaria%20de%20atendimento." target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
-  <main class="container post-wrap">
-    <article class="post-card"><div class="post-content"><div class="post-meta">Artigo técnico • ALOGY Engenharia</div><h1>Massa em Tanque por Nível e Densidade: como estimar</h1>
+<header>
+<div class="container headbar"><a aria-label="Voltar para o início" class="logo-wrapper" href="/"><img alt="ALOGY Engenharia" decoding="async" height="308" src="logo-alogy.webp" width="878"/></a>
+<button aria-label="Abrir menu" class="menu-toggle" onclick="toggleMobileMenu()"><i class="fas fa-bars"></i></button></div>
+<nav aria-label="Menu principal" class="desktop"><div class="container navlinks"><a href="index.html">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="index.html#contato">Contato</a></div></nav>
+<nav aria-label="Menu mobile" class="mobile"><a href="index.html">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="index.html#contato">Contato</a></nav>
+</header>
+<div aria-label="Redes sociais" class="social-floating"><a aria-label="LinkedIn" class="linkedin" href="https://www.linkedin.com/company/alogyengenharia" rel="noopener noreferrer" target="_blank"><i class="fab fa-linkedin-in"></i></a><a aria-label="Instagram" class="instagram" href="https://www.instagram.com/alogyengenharia" rel="noopener noreferrer" target="_blank"><i class="fab fa-instagram"></i></a><a aria-label="Facebook" class="facebook" href="https://www.facebook.com/alogyengenharia" rel="noopener noreferrer" target="_blank"><i class="fab fa-facebook-f"></i></a><a aria-label="YouTube" class="youtube" href="https://www.youtube.com/@alogyengenharia" rel="noopener noreferrer" target="_blank"><i class="fab fa-youtube"></i></a><a aria-label="Hotmart" class="hotmart" href="https://hotmart.com/pt-br/club/alogyengenharia" rel="noopener noreferrer" target="_blank">H</a><a aria-label="TikTok" class="tiktok" href="https://www.tiktok.com/@alogyengenharia" rel="noopener noreferrer" target="_blank"><i class="fab fa-tiktok"></i></a></div>
+<div aria-label="Ações rápidas" class="fab-wrap"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1%21%20Vim%20pelo%20blog%20da%20ALOGY.%20Gostaria%20de%20atendimento." rel="noopener noreferrer" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
+<main class="container post-wrap">
+<article class="post-card"><div class="post-content"><div class="post-meta">Artigo técnico • ALOGY Engenharia</div><h1>Massa em Tanque por Nível e Densidade: como estimar</h1>
 <p>Veja como estimar massa em tanques usando nível, volume, densidade e geometria simplificada para apoio em processo e instrumentação.</p>
-<p data-alogy-content-meta class="muted"><strong>Conteúdo técnico:</strong> ALOGY Engenharia · <strong>Atualizado em:</strong> 21/07/2026</p>
+<p class="muted" data-alogy-content-meta=""><strong>Conteúdo técnico:</strong> ALOGY Engenharia · <strong>Atualizado em:</strong> 21/07/2026</p>
 <h2>A sequência correta é nível, volume e massa</h2>
 <p>O nível indica altura, mas a massa depende do volume correspondente e da densidade do produto. Em tanque vertical de seção constante, volume e nível são proporcionais. Em tanque horizontal, fundo abaulado ou geometria irregular, é necessário usar tabela de arqueação ou relação geométrica adequada.</p>
 <h2>Dados necessários</h2>
 <ul>
-  <li>geometria interna e dimensões úteis do tanque;</li>
-  <li>zero e span reais do instrumento de nível;</li>
-  <li>densidade na temperatura e composição de operação;</li>
-  <li>volume morto, fundo, teto e internos relevantes;</li>
-  <li>unidade e base da densidade.</li>
+<li>geometria interna e dimensões úteis do tanque;</li>
+<li>zero e span reais do instrumento de nível;</li>
+<li>densidade na temperatura e composição de operação;</li>
+<li>volume morto, fundo, teto e internos relevantes;</li>
+<li>unidade e base da densidade.</li>
 </ul>
 <h2>Densidade não é sempre constante</h2>
 <p>Temperatura, concentração, pressão e presença de gás podem alterar a densidade. Se a massa for usada para inventário, transferência ou balanço, a compensação precisa seguir o método adotado. Usar densidade nominal de ficha técnica pode ser suficiente para uma estimativa, mas não para medição fiscal ou controle rigoroso.</p>
 <h2>Erros típicos de instrumentação</h2>
 <ul>
-  <li>usar altura total em vez da faixa efetivamente medida;</li>
-  <li>ignorar elevação ou supressão de zero;</li>
-  <li>aplicar relação linear em tanque horizontal;</li>
-  <li>misturar densidade em kg/L com volume em m³;</li>
-  <li>não considerar espuma, interface ou variação de composição.</li>
+<li>usar altura total em vez da faixa efetivamente medida;</li>
+<li>ignorar elevação ou supressão de zero;</li>
+<li>aplicar relação linear em tanque horizontal;</li>
+<li>misturar densidade em kg/L com volume em m³;</li>
+<li>não considerar espuma, interface ou variação de composição.</li>
 </ul>
 <h2>Exemplo de raciocínio</h2>
 <p>Para um tanque vertical com área constante, 60% de nível corresponde aproximadamente a 60% do volume útil. Multiplica-se esse volume pela densidade na condição definida. Se o tanque tiver seção variável, primeiro converta o nível pela tabela nível-volume e somente depois calcule a massa.</p>
@@ -62,21 +65,19 @@
 <h2>Ferramenta e conteúdos relacionados</h2>
 <p>Para aprofundar Massa em Tanque por Nível e Densidade: como estimar, use a ferramenta relacionada e confronte o resultado com os materiais complementares listados abaixo.</p>
 <div class="calc-actions">
-  <a class="mini-btn dark" href="calculadora-massa-tanque-nivel.html"><i class="fas fa-calculator"></i> Abrir ferramenta</a>
-  <a class="mini-btn" href="ferramentas.html"><i class="fas fa-toolbox"></i> Ver todas as ferramentas</a>
+<a class="mini-btn dark" href="calculadora-massa-tanque-nivel.html"><i class="fas fa-calculator"></i> Abrir ferramenta</a>
+<a class="mini-btn" href="ferramentas.html"><i class="fas fa-toolbox"></i> Ver todas as ferramentas</a>
 </div>
 <ul class="mini-help" style="margin-top:12px">
-  <li><a href="calculadora-volume-cilindro-horizontal-nivel.html">Volume em Cilindro Horizontal por Nível</a> <span class="mini-help">(ferramenta)</span></li>
-  <li><a href="calculadora-volume-tanque.html">Calculadora de Volume de Tanque | Cilíndrico e Retangular</a> <span class="mini-help">(ferramenta)</span></li>
-  <li><a href="calculadora-dp-nivel-tanque-fechado.html">Calculadora DP para Nível em Tanque Fechado</a> <span class="mini-help">(ferramenta)</span></li>
-  <li><a href="calculadora-tempo-enchimento-tanque.html">Calculadora de Tempo de Enchimento de Tanque</a> <span class="mini-help">(ferramenta)</span></li>
-  <li><a href="blog-volume-cilindro-horizontal-nivel.html">Volume em tanque cilíndrico horizontal por nível</a> <span class="mini-help">(artigo)</span></li>
-  <li><a href="blog-tempo-enchimento-tanque.html">Tempo de Enchimento de Tanque</a> <span class="mini-help">(artigo)</span></li>
-</ul>
+<li><a href="calculadora-volume-cilindro-horizontal-nivel.html">Volume em Cilindro Horizontal por Nível</a> <span class="mini-help">(ferramenta)</span></li>
+<li><a href="calculadora-volume-tanque.html">Calculadora de Volume de Tanque | Cilíndrico e Retangular</a> <span class="mini-help">(ferramenta)</span></li>
+<li><a href="calculadora-dp-nivel-tanque-fechado.html">Calculadora DP para Nível em Tanque Fechado</a> <span class="mini-help">(ferramenta)</span></li>
+<li><a href="calculadora-tempo-enchimento-tanque.html">Calculadora de Tempo de Enchimento de Tanque</a> <span class="mini-help">(ferramenta)</span></li>
 
+</ul>
 <h2>Aviso técnico</h2>
 <p>Este artigo sobre Massa em Tanque por Nível e Densidade: como estimar é educativo e apoia pré-dimensionamento e conferência técnica. Em aplicações críticas, compra final ou alteração permanente da instalação, valide o cenário com documentação do fabricante, condições reais de campo, requisitos aplicáveis e profissional habilitado.</p></div></article>
-  </main>
-  <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
+</main>
+<footer><p>© Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
 </body>
 </html>

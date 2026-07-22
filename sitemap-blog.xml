@@ -1,43 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://www.alogy.com.br/blog.html</loc>
     <lastmod>2026-07-18</lastmod>
   </url>
   <url>
-    <loc>https://www.alogy.com.br/blog-acumulador-hidraulico.html</loc>
-    <lastmod>2026-07-21</lastmod>
-  </url>
-  <url>
-    <loc>https://www.alogy.com.br/blog-alinhamento-eixos-relogio.html</loc>
-    <lastmod>2026-07-21</lastmod>
-  </url>
-  <url>
     <loc>https://www.alogy.com.br/blog-ar-instrumentos-qualidade-ponto-orvalho.html</loc>
-    <lastmod>2026-06-29</lastmod>
-  </url>
-  <url>
-    <loc>https://www.alogy.com.br/blog-area-trocador-calor.html</loc>
-    <lastmod>2026-07-21</lastmod>
-  </url>
-  <url>
-    <loc>https://www.alogy.com.br/blog-autonomia-cilindro-gas.html</loc>
-    <lastmod>2026-07-21</lastmod>
-  </url>
-  <url>
-    <loc>https://www.alogy.com.br/blog-backlog-manutencao-semanas.html</loc>
-    <lastmod>2026-06-29</lastmod>
-  </url>
-  <url>
-    <loc>https://www.alogy.com.br/blog-balanceamento-rotor-campo.html</loc>
-    <lastmod>2026-07-21</lastmod>
-  </url>
-  <url>
-    <loc>https://www.alogy.com.br/blog-bateria-ups-24vcc.html</loc>
-    <lastmod>2026-07-21</lastmod>
-  </url>
-  <url>
-    <loc>https://www.alogy.com.br/blog-bocal-lavagem-cip.html</loc>
     <lastmod>2026-06-29</lastmod>
   </url>
   <url>
@@ -45,16 +13,8 @@
     <lastmod>2026-07-21</lastmod>
   </url>
   <url>
-    <loc>https://www.alogy.com.br/blog-cabo-profibus-rs485.html</loc>
-    <lastmod>2026-07-21</lastmod>
-  </url>
-  <url>
     <loc>https://www.alogy.com.br/blog-calibracao-analisadores-processo.html</loc>
     <lastmod>2026-07-18</lastmod>
-  </url>
-  <url>
-    <loc>https://www.alogy.com.br/blog-calibracao-balanca-industrial.html</loc>
-    <lastmod>2026-07-21</lastmod>
   </url>
   <url>
     <loc>https://www.alogy.com.br/blog-calibracao-cartao-analogico-clp.html</loc>
@@ -63,10 +23,6 @@
   <url>
     <loc>https://www.alogy.com.br/blog-calibracao-conversor-ip-pi.html</loc>
     <lastmod>2026-07-17</lastmod>
-  </url>
-  <url>
-    <loc>https://www.alogy.com.br/blog-calibracao-indicador-controlador.html</loc>
-    <lastmod>2026-07-21</lastmod>
   </url>
   <url>
     <loc>https://www.alogy.com.br/blog-calibracao-instrumentos-industriais.html</loc>
@@ -105,24 +61,8 @@
     <lastmod>2026-07-17</lastmod>
   </url>
   <url>
-    <loc>https://www.alogy.com.br/blog-capabilidade-cp-cpk.html</loc>
-    <lastmod>2026-06-29</lastmod>
-  </url>
-  <url>
-    <loc>https://www.alogy.com.br/blog-carga-termica-lote-aquecimento.html</loc>
-    <lastmod>2026-06-29</lastmod>
-  </url>
-  <url>
     <loc>https://www.alogy.com.br/blog-cavitacao-valvula-controle.html</loc>
     <lastmod>2026-07-21</lastmod>
-  </url>
-  <url>
-    <loc>https://www.alogy.com.br/blog-celula-carga-tanque.html</loc>
-    <lastmod>2026-07-21</lastmod>
-  </url>
-  <url>
-    <loc>https://www.alogy.com.br/blog-classe-limpeza-oleo-iso4406.html</loc>
-    <lastmod>2026-06-29</lastmod>
   </url>
   <url>
     <loc>https://www.alogy.com.br/blog-comissionamento-hart.html</loc>
@@ -145,31 +85,7 @@
     <lastmod>2026-06-29</lastmod>
   </url>
   <url>
-    <loc>https://www.alogy.com.br/blog-consumo-energia-resistencia-aquecimento.html</loc>
-    <lastmod>2026-06-29</lastmod>
-  </url>
-  <url>
-    <loc>https://www.alogy.com.br/blog-consumo-nitrogenio-purga.html</loc>
-    <lastmod>2026-07-21</lastmod>
-  </url>
-  <url>
-    <loc>https://www.alogy.com.br/blog-conversao-vibracao-frequencia.html</loc>
-    <lastmod>2026-06-29</lastmod>
-  </url>
-  <url>
-    <loc>https://www.alogy.com.br/blog-corrente-neutro-trifasico.html</loc>
-    <lastmod>2026-06-29</lastmod>
-  </url>
-  <url>
-    <loc>https://www.alogy.com.br/blog-corrente-partida-motor.html</loc>
-    <lastmod>2026-06-29</lastmod>
-  </url>
-  <url>
     <loc>https://www.alogy.com.br/blog-criticidade-instrumentos.html</loc>
-    <lastmod>2026-07-21</lastmod>
-  </url>
-  <url>
-    <loc>https://www.alogy.com.br/blog-custo-ar-comprimido.html</loc>
     <lastmod>2026-07-21</lastmod>
   </url>
   <url>
@@ -177,23 +93,7 @@
     <lastmod>2026-07-21</lastmod>
   </url>
   <url>
-    <loc>https://www.alogy.com.br/blog-densidade-api-grau-api.html</loc>
-    <lastmod>2026-07-21</lastmod>
-  </url>
-  <url>
-    <loc>https://www.alogy.com.br/blog-desequilibrio-tensao-motor.html</loc>
-    <lastmod>2026-06-29</lastmod>
-  </url>
-  <url>
-    <loc>https://www.alogy.com.br/blog-diametro-cilindro-pneumatico.html</loc>
-    <lastmod>2026-06-29</lastmod>
-  </url>
-  <url>
     <loc>https://www.alogy.com.br/blog-dimensionamento-tubo-pneumatico-instrumentacao.html</loc>
-    <lastmod>2026-06-29</lastmod>
-  </url>
-  <url>
-    <loc>https://www.alogy.com.br/blog-disponibilidade-sistema-serie-paralelo.html</loc>
     <lastmod>2026-06-29</lastmod>
   </url>
   <url>
@@ -209,14 +109,6 @@
     <lastmod>2026-07-21</lastmod>
   </url>
   <url>
-    <loc>https://www.alogy.com.br/blog-duto-exaustao-industrial.html</loc>
-    <lastmod>2026-07-21</lastmod>
-  </url>
-  <url>
-    <loc>https://www.alogy.com.br/blog-economia-inversor-bomba-ventilador.html</loc>
-    <lastmod>2026-07-21</lastmod>
-  </url>
-  <url>
     <loc>https://www.alogy.com.br/blog-emissividade-termografia.html</loc>
     <lastmod>2026-07-17</lastmod>
   </url>
@@ -229,28 +121,12 @@
     <lastmod>2026-07-21</lastmod>
   </url>
   <url>
-    <loc>https://www.alogy.com.br/blog-forca-cilindro-hidraulico.html</loc>
-    <lastmod>2026-07-21</lastmod>
-  </url>
-  <url>
-    <loc>https://www.alogy.com.br/blog-frequencia-defeitos-rolamento.html</loc>
-    <lastmod>2026-06-29</lastmod>
-  </url>
-  <url>
     <loc>https://www.alogy.com.br/blog-gemeo-digital-instrumentacao.html</loc>
     <lastmod>2026-06-29</lastmod>
   </url>
   <url>
     <loc>https://www.alogy.com.br/blog-gemeo-digital-tags-instrumentacao.html</loc>
     <lastmod>2026-06-29</lastmod>
-  </url>
-  <url>
-    <loc>https://www.alogy.com.br/blog-golpe-ariete-joukowsky.html</loc>
-    <lastmod>2026-06-29</lastmod>
-  </url>
-  <url>
-    <loc>https://www.alogy.com.br/blog-grau-protecao-ip-nema.html</loc>
-    <lastmod>2026-07-21</lastmod>
   </url>
   <url>
     <loc>https://www.alogy.com.br/blog-histerese-pressostato-termostato.html</loc>
@@ -261,16 +137,8 @@
     <lastmod>2026-06-29</lastmod>
   </url>
   <url>
-    <loc>https://www.alogy.com.br/blog-indice-polarizacao-dar.html</loc>
-    <lastmod>2026-07-21</lastmod>
-  </url>
-  <url>
     <loc>https://www.alogy.com.br/blog-industria-5-0.html</loc>
     <lastmod>2026-06-29</lastmod>
-  </url>
-  <url>
-    <loc>https://www.alogy.com.br/blog-inspecao-bomba-centrifuga.html</loc>
-    <lastmod>2026-07-21</lastmod>
   </url>
   <url>
     <loc>https://www.alogy.com.br/blog-inspecao-instrumentos-area-classificada.html</loc>
@@ -289,16 +157,8 @@
     <lastmod>2026-07-17</lastmod>
   </url>
   <url>
-    <loc>https://www.alogy.com.br/blog-lmtd-trocador-calor.html</loc>
-    <lastmod>2026-07-21</lastmod>
-  </url>
-  <url>
     <loc>https://www.alogy.com.br/blog-lopa-simplificada.html</loc>
     <lastmod>2026-07-21</lastmod>
-  </url>
-  <url>
-    <loc>https://www.alogy.com.br/blog-lsi-langelier-agua.html</loc>
-    <lastmod>2026-06-29</lastmod>
   </url>
   <url>
     <loc>https://www.alogy.com.br/blog-manutencao-preditiva-instrumentacao-sensores.html</loc>
@@ -306,18 +166,6 @@
   </url>
   <url>
     <loc>https://www.alogy.com.br/blog-massa-tanque-nivel.html</loc>
-    <lastmod>2026-07-21</lastmod>
-  </url>
-  <url>
-    <loc>https://www.alogy.com.br/blog-mistura-diluicao-solucoes.html</loc>
-    <lastmod>2026-07-21</lastmod>
-  </url>
-  <url>
-    <loc>https://www.alogy.com.br/blog-modbus-polling.html</loc>
-    <lastmod>2026-07-21</lastmod>
-  </url>
-  <url>
-    <loc>https://www.alogy.com.br/blog-mtbf-mttr-disponibilidade.html</loc>
     <lastmod>2026-07-21</lastmod>
   </url>
   <url>
@@ -333,10 +181,6 @@
     <lastmod>2026-06-29</lastmod>
   </url>
   <url>
-    <loc>https://www.alogy.com.br/blog-ocupacao-eletroduto-cabos.html</loc>
-    <lastmod>2026-07-21</lastmod>
-  </url>
-  <url>
     <loc>https://www.alogy.com.br/blog-orp-mv-controle.html</loc>
     <lastmod>2026-07-18</lastmod>
   </url>
@@ -345,83 +189,11 @@
     <lastmod>2026-06-29</lastmod>
   </url>
   <url>
-    <loc>https://www.alogy.com.br/blog-pareto-falhas-manutencao.html</loc>
-    <lastmod>2026-07-21</lastmod>
-  </url>
-  <url>
-    <loc>https://www.alogy.com.br/blog-partida-estrela-triangulo-corrente.html</loc>
-    <lastmod>2026-06-29</lastmod>
-  </url>
-  <url>
-    <loc>https://www.alogy.com.br/blog-perda-calor-tubulacao.html</loc>
-    <lastmod>2026-07-21</lastmod>
-  </url>
-  <url>
-    <loc>https://www.alogy.com.br/blog-perda-carga-ar-comprimido.html</loc>
-    <lastmod>2026-07-21</lastmod>
-  </url>
-  <url>
-    <loc>https://www.alogy.com.br/blog-perda-carga-filtro.html</loc>
-    <lastmod>2026-07-21</lastmod>
-  </url>
-  <url>
-    <loc>https://www.alogy.com.br/blog-perda-carga-mangueira-hidraulica.html</loc>
-    <lastmod>2026-06-29</lastmod>
-  </url>
-  <url>
-    <loc>https://www.alogy.com.br/blog-placa-orificio-restricao.html</loc>
-    <lastmod>2026-07-21</lastmod>
-  </url>
-  <url>
-    <loc>https://www.alogy.com.br/blog-ponto-orvalho-ar-comprimido.html</loc>
-    <lastmod>2026-07-21</lastmod>
-  </url>
-  <url>
-    <loc>https://www.alogy.com.br/blog-ponto-ressuprimento-sobressalentes.html</loc>
-    <lastmod>2026-06-29</lastmod>
-  </url>
-  <url>
     <loc>https://www.alogy.com.br/blog-potencia-bomba.html</loc>
     <lastmod>2026-06-29</lastmod>
   </url>
   <url>
-    <loc>https://www.alogy.com.br/blog-potencia-exaustor-ventilador.html</loc>
-    <lastmod>2026-07-21</lastmod>
-  </url>
-  <url>
-    <loc>https://www.alogy.com.br/blog-ppm-mg-m3-gases.html</loc>
-    <lastmod>2026-07-21</lastmod>
-  </url>
-  <url>
     <loc>https://www.alogy.com.br/blog-pressao-hidrostatica-densidade.html</loc>
-    <lastmod>2026-07-21</lastmod>
-  </url>
-  <url>
-    <loc>https://www.alogy.com.br/blog-purga-caldeira-tds.html</loc>
-    <lastmod>2026-06-29</lastmod>
-  </url>
-  <url>
-    <loc>https://www.alogy.com.br/blog-purga-torre-resfriamento.html</loc>
-    <lastmod>2026-06-29</lastmod>
-  </url>
-  <url>
-    <loc>https://www.alogy.com.br/blog-purgador-vapor-condensado.html</loc>
-    <lastmod>2026-07-21</lastmod>
-  </url>
-  <url>
-    <loc>https://www.alogy.com.br/blog-queda-tensao-partida-motor.html</loc>
-    <lastmod>2026-06-29</lastmod>
-  </url>
-  <url>
-    <loc>https://www.alogy.com.br/blog-recuperacao-condensado-energia.html</loc>
-    <lastmod>2026-06-29</lastmod>
-  </url>
-  <url>
-    <loc>https://www.alogy.com.br/blog-relubrificacao-rolamento.html</loc>
-    <lastmod>2026-07-21</lastmod>
-  </url>
-  <url>
-    <loc>https://www.alogy.com.br/blog-reservatorio-ar-comprimido.html</loc>
     <lastmod>2026-07-21</lastmod>
   </url>
   <url>
@@ -429,20 +201,8 @@
     <lastmod>2026-07-21</lastmod>
   </url>
   <url>
-    <loc>https://www.alogy.com.br/blog-reynolds-regime-escoamento.html</loc>
-    <lastmod>2026-07-21</lastmod>
-  </url>
-  <url>
     <loc>https://www.alogy.com.br/blog-rotametro-correcao-vazao.html</loc>
     <lastmod>2026-07-17</lastmod>
-  </url>
-  <url>
-    <loc>https://www.alogy.com.br/blog-rpn-fmea-manutencao.html</loc>
-    <lastmod>2026-06-29</lastmod>
-  </url>
-  <url>
-    <loc>https://www.alogy.com.br/blog-secao-barramento-cobre.html</loc>
-    <lastmod>2026-06-29</lastmod>
   </url>
   <url>
     <loc>https://www.alogy.com.br/blog-selo-remoto-capilar-nivel.html</loc>
@@ -453,16 +213,8 @@
     <lastmod>2026-07-21</lastmod>
   </url>
   <url>
-    <loc>https://www.alogy.com.br/blog-slip-motor-inducao.html</loc>
-    <lastmod>2026-07-21</lastmod>
-  </url>
-  <url>
     <loc>https://www.alogy.com.br/blog-slope-sonda-ph.html</loc>
     <lastmod>2026-07-18</lastmod>
-  </url>
-  <url>
-    <loc>https://www.alogy.com.br/blog-sobressalentes-criticidade.html</loc>
-    <lastmod>2026-07-21</lastmod>
   </url>
   <url>
     <loc>https://www.alogy.com.br/blog-solenoide-atuador-pneumatico-cv.html</loc>
@@ -473,36 +225,8 @@
     <lastmod>2026-06-29</lastmod>
   </url>
   <url>
-    <loc>https://www.alogy.com.br/blog-tanque-expansao-termica-agua.html</loc>
-    <lastmod>2026-06-29</lastmod>
-  </url>
-  <url>
-    <loc>https://www.alogy.com.br/blog-tempo-aceleracao-motor-inercia.html</loc>
-    <lastmod>2026-06-29</lastmod>
-  </url>
-  <url>
     <loc>https://www.alogy.com.br/blog-tempo-amostragem-analisador.html</loc>
     <lastmod>2026-07-18</lastmod>
-  </url>
-  <url>
-    <loc>https://www.alogy.com.br/blog-tempo-descarga-capacitor.html</loc>
-    <lastmod>2026-07-21</lastmod>
-  </url>
-  <url>
-    <loc>https://www.alogy.com.br/blog-tempo-enchimento-tanque.html</loc>
-    <lastmod>2026-07-21</lastmod>
-  </url>
-  <url>
-    <loc>https://www.alogy.com.br/blog-tempo-residencia-tanque.html</loc>
-    <lastmod>2026-07-21</lastmod>
-  </url>
-  <url>
-    <loc>https://www.alogy.com.br/blog-tempo-transmissao-serial-industrial.html</loc>
-    <lastmod>2026-07-21</lastmod>
-  </url>
-  <url>
-    <loc>https://www.alogy.com.br/blog-tensao-correia-transmissao.html</loc>
-    <lastmod>2026-07-21</lastmod>
   </url>
   <url>
     <loc>https://www.alogy.com.br/blog-termopoco-tempo-resposta.html</loc>
@@ -513,55 +237,11 @@
     <lastmod>2026-06-29</lastmod>
   </url>
   <url>
-    <loc>https://www.alogy.com.br/blog-thd-distorcao-harmonica.html</loc>
-    <lastmod>2026-07-21</lastmod>
-  </url>
-  <url>
-    <loc>https://www.alogy.com.br/blog-torque-potencia-eixo.html</loc>
-    <lastmod>2026-07-21</lastmod>
-  </url>
-  <url>
-    <loc>https://www.alogy.com.br/blog-trocador-calor-carga-termica.html</loc>
-    <lastmod>2026-07-21</lastmod>
-  </url>
-  <url>
     <loc>https://www.alogy.com.br/blog-vazamento-vacuo-pressure-decay.html</loc>
     <lastmod>2026-07-21</lastmod>
-  </url>
-  <url>
-    <loc>https://www.alogy.com.br/blog-vazao-bomba-deslocamento-positivo.html</loc>
-    <lastmod>2026-06-29</lastmod>
   </url>
   <url>
     <loc>https://www.alogy.com.br/blog-vazao-normalizada-gases.html</loc>
     <lastmod>2026-07-17</lastmod>
   </url>
-  <url>
-    <loc>https://www.alogy.com.br/blog-vazao-vapor-saturado.html</loc>
-    <lastmod>2026-07-21</lastmod>
-  </url>
-  <url>
-    <loc>https://www.alogy.com.br/blog-vazao-vertedouro-canaleta.html</loc>
-    <lastmod>2026-06-29</lastmod>
-  </url>
-  <url>
-    <loc>https://www.alogy.com.br/blog-velocidade-recomendada-tubulacao.html</loc>
-    <lastmod>2026-07-21</lastmod>
-  </url>
-  <url>
-    <loc>https://www.alogy.com.br/blog-ventilacao-painel-eletrico.html</loc>
-    <lastmod>2026-07-21</lastmod>
-  </url>
-  <url>
-    <loc>https://www.alogy.com.br/blog-vibracao-rms-pico-pico-a-pico.html</loc>
-    <lastmod>2026-07-21</lastmod>
-  </url>
-  <url>
-    <loc>https://www.alogy.com.br/blog-vida-l10-rolamento.html</loc>
-    <lastmod>2026-07-21</lastmod>
-  </url>
-  <url>
-    <loc>https://www.alogy.com.br/blog-volume-cilindro-horizontal-nivel.html</loc>
-    <lastmod>2026-06-29</lastmod>
-  </url>
-</urlset>
+  </urlset>
