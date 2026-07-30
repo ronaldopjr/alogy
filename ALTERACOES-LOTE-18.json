@@ -1,0 +1,13 @@
+{
+  "lote": 18,
+  "data": "2026-07-29",
+  "base": "Lote 17 - pacote final",
+  "alteracoes": [
+    {
+      "arquivo": "sitemap-ferramentas-complementares.xml",
+      "acao": "Inclusao de URL indexavel ausente",
+      "url": "https://www.alogy.com.br/calculadora-flanges-juntas-parafusos.html"
+    }
+  ],
+  "total_urls_sitemap_complementares": 174
+}

@@ -1,0 +1,41 @@
+{
+  "checks": {
+    "calculadora-acumulador-hidraulico.html": {
+      "canonical": true,
+      "h1": 1,
+      "indexable": true,
+      "breadcrumb": true,
+      "marker": true
+    },
+    "calculadora-autonomia-ar-instrumentos.html": {
+      "canonical": true,
+      "h1": 1,
+      "indexable": true,
+      "breadcrumb": true,
+      "marker": true
+    },
+    "calculadora-balanceamento-rotor-campo.html": {
+      "canonical": true,
+      "h1": 1,
+      "indexable": true,
+      "breadcrumb": true,
+      "marker": true
+    },
+    "calculadora-bateria-ups-24vcc.html": {
+      "canonical": true,
+      "h1": 1,
+      "indexable": true,
+      "breadcrumb": true,
+      "marker": true
+    },
+    "calculadora-bomba-dosadora-quimica.html": {
+      "canonical": true,
+      "h1": 1,
+      "indexable": true,
+      "breadcrumb": true,
+      "marker": true
+    }
+  },
+  "broken_new_links": [],
+  "status": "aprovado"
+}

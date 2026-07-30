@@ -1,0 +1,13 @@
+{
+  "lote": 17,
+  "tipo": "auditoria final e pacote definitivo",
+  "base": "Lote 16",
+  "alteracoes": [
+    "Restauração de três arquivos HTML que estavam vazios no pacote intermediário",
+    "Restauração dos arquivos estáticos originais ausentes no pacote intermediário",
+    "Criação de robots.txt e sitemaps finais",
+    "Auditoria global de 390 páginas HTML",
+    "Validação de canonicals, H1, noindex, AdSense, recursos locais e links internos",
+    "Sitemap legado mantido vazio para evitar duplicação"
+  ]
+}

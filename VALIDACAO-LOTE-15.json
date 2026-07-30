@@ -1,0 +1,13 @@
+{
+  "html_verificados": 390,
+  "paginas_lote": [
+    "calculadora-4-20ma.html",
+    "calculadora-erro-calibracao.html",
+    "calculadora-escala-clp.html",
+    "calculadora-dimensionamento-cabos.html",
+    "calculadora-sintonia-pid.html"
+  ],
+  "erros": [],
+  "links_internos_quebrados": [],
+  "aprovado": true
+}

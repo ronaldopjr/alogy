@@ -1,0 +1,53 @@
+{
+  "status": "aprovado",
+  "data": "2026-07-29",
+  "base": "Lote 16",
+  "html_total": 390,
+  "indexaveis_self_canonical": 299,
+  "noindex_total": 90,
+  "redirecionamentos_html": 2,
+  "adsense_paginas": 87,
+  "adsense_em_noindex": [],
+  "adsense_em_redirecionamento": [],
+  "canonical_ausente": [],
+  "h1_invalido": [],
+  "arquivos_vazios": [],
+  "links_locais_verificados": 13098,
+  "links_quebrados": [],
+  "links_para_noindex": [
+    {
+      "source": "calculadora-duto-exaustao-industrial.html",
+      "target": "blog-duto-exaustao-industrial.html"
+    },
+    {
+      "source": "calculadora-modbus-polling.html",
+      "target": "blog-modbus-polling.html"
+    },
+    {
+      "source": "calculadora-perda-calor-tubulacao.html",
+      "target": "blog-perda-calor-tubulacao.html"
+    },
+    {
+      "source": "calculadora-perda-carga.html",
+      "target": "blog-perda-carga-filtro.html"
+    },
+    {
+      "source": "calculadora-ponto-orvalho-ar-comprimido.html",
+      "target": "blog-ponto-orvalho-ar-comprimido.html"
+    }
+  ],
+  "titulos_duplicados": {},
+  "descricoes_duplicadas": {},
+  "sitemaps": {
+    "institucional": 17,
+    "blog": 70,
+    "ferramentas-prioritarias": 38,
+    "ferramentas-complementares": 173
+  },
+  "sitemap_total_unico": 298,
+  "correcoes_finais": [
+    "Restauração de três arquivos HTML que estavam vazios no pacote intermediário",
+    "Restauração dos arquivos estáticos originais ausentes no pacote intermediário",
+    "Criação de robots.txt e sitemaps finais"
+  ]
+}

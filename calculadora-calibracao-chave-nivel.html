@@ -37,13 +37,13 @@
     @media(max-width:900px){.calc-result.two,.calc-result.three,.calc-result.four{grid-template-columns:1fr}}
     @media print{header,.social-floating,.fab-wrap,.cta-bar,footer,.calc-actions,.tools-hero .btn,.no-print{display:none!important}body{background:#fff}.container{max-width:100%;padding:0}.calc-card,.tools-hero{box-shadow:none;border:1px solid #ddd}.calc-layout{display:block}.calc-card{margin:12px 0}.calc-table th{background:#eee!important;color:#111!important}}
   </style>
-</head>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Início","item":"https://www.alogy.com.br/"},{"@type":"ListItem","position":2,"name":"Calibração e metrologia","item":"https://www.alogy.com.br/ferramentas-calibracao-instrumentacao.html"},{"@type":"ListItem","position":3,"name":"Calibração de Chave de Nível","item":"https://www.alogy.com.br/calculadora-calibracao-chave-nivel.html"}]}</script></head>
 <body class="tools-page alogy-stage3-forms">
   <header>
     <div class="container headbar"><a href="/" class="logo-wrapper" aria-label="Voltar para o início"><img src="logo-alogy.webp" alt="ALOGY Engenharia"  width="878"  height="308"  decoding="async" /></a>
 <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menu"><i class="fas fa-bars"></i></button></div>
-    <nav class="desktop" aria-label="Menu principal"><div class="container navlinks"><a href="index.html">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="index.html#contato">Contato</a></div></nav>
-    <nav class="mobile" aria-label="Menu mobile"><a href="index.html">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="index.html#contato">Contato</a></nav>
+    <nav class="desktop" aria-label="Menu principal"><div class="container navlinks"><a href="/">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></div></nav>
+    <nav class="mobile" aria-label="Menu mobile"><a href="/">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></nav>
   </header>
   <div class="social-floating" aria-label="Redes sociais"><a href="https://www.linkedin.com/company/alogyengenharia" class="linkedin" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a><a href="https://www.instagram.com/alogyengenharia" class="instagram" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="https://www.facebook.com/alogyengenharia" class="facebook" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><a href="https://www.youtube.com/@alogyengenharia" class="youtube" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a><a href="https://hotmart.com/pt-br/club/alogyengenharia" class="hotmart" target="_blank" rel="noopener noreferrer" aria-label="Hotmart">H</a><a href="https://www.tiktok.com/@alogyengenharia" class="tiktok" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fab fa-tiktok"></i></a></div>
   <div class="fab-wrap" aria-label="Ações rápidas"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1%21%20Vim%20pelas%20ferramentas%20da%20ALOGY.%20Gostaria%20de%20atendimento." target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
@@ -61,36 +61,8 @@
 <div class="field"><label for="rep">Repetibilidade observada (%)</label><input id="rep" type="number" step="any" value="0.05"></div>
 </div><p class="mini-help">Use valores médios de pelo menos três ciclos de subida e descida quando possível.</p><div class="calc-actions"><button class="mini-btn dark" onclick="copiar()" type="button"><i class="fas fa-copy"></i> Copiar resultado</button><button class="mini-btn" onclick="window.print()" type="button"><i class="fas fa-print"></i> Imprimir</button></div></div><div class="calc-card"><h2><i class="fas fa-chart-simple"></i> Resultado</h2><div class="calc-result four"><div class="result-box"><span>Erro atuação</span><strong id="r1">-</strong></div><div class="result-box"><span>Erro retorno</span><strong id="r2">-</strong></div><div class="result-box"><span>Histerese medida</span><strong id="r3">-</strong></div><div class="result-box"><span>Status</span><strong id="r4" class="small">-</strong></div></div><div class="calc-note" id="nota">Confira ajuste mecânico, contato elétrico e repetibilidade antes de liberar o instrumento.</div><div class="table-wrap"><table class="calc-table"><thead><tr><th>Item</th><th>Desejado</th><th>Medido</th><th>Erro</th></tr></thead><tbody id="tbl"></tbody></table></div></div></section>
     <section class="calc-card faq"><h2><i class="fas fa-circle-question"></i> Perguntas frequentes</h2><details><summary>Funciona para chave vibratória?</summary><p>Sim, usando o ponto equivalente de atuação ou ensaio funcional definido no procedimento.</p></details><details><summary>Devo calibrar em bancada ou instalado?</summary><p>Depende do tipo; muitas chaves exigem teste funcional instalado com condição de processo simulada ou real controlada.</p></details></section>
-  
-    <!-- ALOGY_REVISAO_TECNICA_FERRAMENTA -->
-    <section class="calc-card" aria-label="Orientação técnica complementar">
-      <h2><i class="fas fa-clipboard-check"></i> Aplicação prática: Calibração de Chave de Nível</h2>
-      <p>Calcule erro de atuação, retorno e histerese em chaves de nível tipo boia, vibratória, capacitiva ou condutiva.</p>
-      <h3>Quando aplicar</h3>
-      <p>Use em bancada, campo ou laboratório para preparar pontos de teste, comparar indicação do instrumento com referência rastreável e decidir se o equipamento está aprovado, reprovado ou se precisa de ajuste.</p>
-      <h3>Entradas críticas para Calibração de Chave de Nível</h3>
-      <p>Confira a unidade, a condição real de operação e os campos principais desta análise: Ponto de atuação desejado (%), Ponto de retorno desejado (%), Atuação medida (%), Retorno medido (%), Tolerância admissível (%), Repetibilidade observada (%). Registre as premissas usadas para que o cálculo possa ser repetido e revisado.</p>
-      <ul>
-          <li>Ponto de atuação desejado (%)</li>
-          <li>Ponto de retorno desejado (%)</li>
-          <li>Atuação medida (%)</li>
-          <li>Retorno medido (%)</li>
-          <li>Tolerância admissível (%)</li>
-          <li>Repetibilidade observada (%)</li>
-      </ul>
-      <h3>Como interpretar o resultado</h3>
-      <p>O resultado deve ser comparado com a tolerância do processo e com o erro máximo permitido definido no plano de calibração. Um erro pequeno no instrumento pode ser aceitável para utilidades, mas crítico em malhas de segurança, qualidade ou dosagem.</p>
-      <p>Analise em conjunto os resultados Erro atuação, Erro retorno, Histerese medida, Status. Compare-os com limites operacionais, tolerâncias, histórico e documentação do equipamento, evitando decidir com base em um único indicador.</p>
-      <h3>Checklist rápido de validação</h3>
-      <ul>
-          <li>Confirme TAG, faixa LRV/URV, unidade de engenharia e damping antes do teste.</li>
-          <li>Use padrão de referência com resolução e incerteza adequadas ao instrumento em teste.</li>
-          <li>Registre as leituras de subida e descida para observar histerese, repetibilidade e retorno ao zero.</li>
-          <li>Quando houver ajuste, repita o ciclo completo antes de liberar o instrumento.</li>
-      </ul>
-      <h3>Limites da estimativa</h3>
-      <p>Use esta análise de Calibração de Chave de Nível como apoio preliminar. Para projeto final, laudo, compra, mudança de segurança ou liberação de equipamento crítico, confirme premissas, condições de campo, documentação do fabricante e requisitos aplicáveis.</p>
-    </section>
+<!-- ALOGY_LOTE_8_CONTEUDO_ESPECIFICO -->
+<section class="calc-card" aria-label="Orientação técnica complementar"><h2><i class="fas fa-clipboard-check"></i> Como validar uma chave de nível em campo</h2><p>A chave de nível deve ser avaliada pelo ponto em que muda de estado, pelo ponto de retorno e pela repetibilidade ao longo de vários ciclos. O teste precisa reproduzir, tanto quanto possível, a forma real de atuação do sensor.</p><h3>Exemplo prático</h3><p>Com atuação desejada em 70%, atuação medida em 70,1% e tolerância de 0,2%, o erro de atuação é +0,1% e está dentro do limite. Se o retorno desejado for 62% e o medido 61,95%, o erro de retorno é -0,05%.</p><h3>Como interpretar</h3><ul><li>Erro de atuação indica o deslocamento do ponto em que o contato muda de estado.</li><li>Erro de retorno ajuda a verificar a histerese e a estabilidade do chaveamento.</li><li>Repetibilidade ruim pode indicar incrustação, folga mecânica, instalação inadequada ou instabilidade elétrica.</li></ul><h3>Erros comuns</h3><ul><li>Testar apenas um ciclo de subida.</li><li>Ignorar o ponto de retorno.</li><li>Usar a porcentagem sem registrar a altura ou condição física equivalente.</li><li>Confundir tolerância do processo com resolução do padrão.</li></ul><h3>Limitações</h3><p>Chaves vibratórias, capacitivas e condutivas podem depender do produto, densidade, constante dielétrica, condutividade e montagem. A liberação deve seguir o procedimento da planta e o manual do fabricante.</p><p><strong>Conteúdos relacionados:</strong> <a href="calculadora-calibracao-chave-fluxo.html">calibração de chave de fluxo</a> e <a href="checklist-manutencao-preventiva-instrumentos.html">checklist de manutenção preventiva</a>.</p></section>
 
   </main>
   <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>

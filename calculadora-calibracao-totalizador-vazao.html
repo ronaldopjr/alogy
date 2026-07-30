@@ -42,8 +42,8 @@
   <header>
     <div class="container headbar"><a href="/" class="logo-wrapper" aria-label="Voltar para o início"><img src="logo-alogy.webp" alt="ALOGY Engenharia"  width="878"  height="308"  decoding="async" /></a>
 <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menu"><i class="fas fa-bars"></i></button></div>
-    <nav class="desktop" aria-label="Menu principal"><div class="container navlinks"><a href="index.html">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="index.html#contato">Contato</a></div></nav>
-    <nav class="mobile" aria-label="Menu mobile"><a href="index.html">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="index.html#contato">Contato</a></nav>
+    <nav class="desktop" aria-label="Menu principal"><div class="container navlinks"><a href="/">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></div></nav>
+    <nav class="mobile" aria-label="Menu mobile"><a href="/">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></nav>
   </header>
   <div class="social-floating" aria-label="Redes sociais"><a href="https://www.linkedin.com/company/alogyengenharia" class="linkedin" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a><a href="https://www.instagram.com/alogyengenharia" class="instagram" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="https://www.facebook.com/alogyengenharia" class="facebook" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><a href="https://www.youtube.com/@alogyengenharia" class="youtube" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a><a href="https://hotmart.com/pt-br/club/alogyengenharia" class="hotmart" target="_blank" rel="noopener noreferrer" aria-label="Hotmart">H</a><a href="https://www.tiktok.com/@alogyengenharia" class="tiktok" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fab fa-tiktok"></i></a></div>
   <div class="fab-wrap" aria-label="Ações rápidas"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1%21%20Vim%20pelas%20ferramentas%20da%20ALOGY.%20Gostaria%20de%20atendimento." target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
@@ -54,35 +54,14 @@
     <section class="calc-card" aria-label="Aviso de uso"><h2><i class="fas fa-triangle-exclamation"></i> Ferramenta orientativa</h2><p>Use esta ferramenta para estudo, pré-avaliação e conferência de campo. A decisão de aprovação, ajuste, reprovação ou emissão de certificado deve seguir procedimento interno, norma aplicável, classe do instrumento, incerteza da referência, condição do processo e validação de profissional habilitado.</p></section>
     <section class="calc-layout"><div class="calc-card"><h2><i class="fas fa-stopwatch"></i> Dados do ensaio</h2><div class="calc-grid"><div class="field"><label for="k">K-factor configurado (pulsos/unidade)</label><input id="k" type="number" step="any" value="1000"></div><div class="field"><label for="pulsos">Pulsos contados</label><input id="pulsos" type="number" step="any" value="50000"></div><div class="field"><label for="volref">Volume de referência/unidade padrão</label><input id="volref" type="number" step="any" value="49.8"></div><div class="field"><label for="volind">Volume indicado no totalizador</label><input id="volind" type="number" step="any" value="50"></div><div class="field"><label for="tol">Tolerância (%)</label><input id="tol" type="number" step="any" value="0.3"></div></div><div class="calc-actions"><button class="mini-btn dark" onclick="copiar()" type="button"><i class="fas fa-copy"></i> Copiar resultado</button><button class="mini-btn" onclick="window.print()" type="button"><i class="fas fa-print"></i> Imprimir</button></div></div><div class="calc-card"><h2><i class="fas fa-chart-simple"></i> Resultado</h2><div class="calc-result four"><div class="result-box"><span>Volume por pulsos</span><strong id="r1">-</strong></div><div class="result-box"><span>Erro do indicador</span><strong id="r2">-</strong></div><div class="result-box"><span>Novo K sugerido</span><strong id="r3">-</strong></div><div class="result-box"><span>Status</span><strong id="r4" class="small">-</strong></div></div><div class="calc-note">Ajuste de K-factor deve seguir procedimento do fabricante e repetibilidade do ensaio.</div></div></section>
     <section class="calc-card faq"><h2><i class="fas fa-circle-question"></i> Perguntas frequentes</h2><details><summary>O novo K-factor sempre deve ser aplicado?</summary><p>Não. Primeiro confirme repetibilidade, condição de processo, bolhas, densidade, temperatura, instalação e método de referência.</p></details><details><summary>É igual à calculadora K-factor?</summary><p>Não. A outra converte pulsos/frequência em vazão. Esta é focada em erro de calibração e correção de totalizador.</p></details></section>
-  
     <!-- ALOGY_REVISAO_TECNICA_FERRAMENTA -->
     <section class="calc-card" aria-label="Orientação técnica complementar">
-      <h2><i class="fas fa-clipboard-check"></i> Aplicação prática: Calibração de Totalizador de Vazão</h2>
-      <p>Calcule volume indicado, erro percentual e fator de correção para calibração de totalizador de vazão por pulsos ou volume padrão.</p>
-      <h3>Quando aplicar</h3>
-      <p>Use em bancada, campo ou laboratório para preparar pontos de teste, comparar indicação do instrumento com referência rastreável e decidir se o equipamento está aprovado, reprovado ou se precisa de ajuste.</p>
-      <h3>Entradas críticas para Calibração de Totalizador de Vazão</h3>
-      <p>Confira a unidade, a condição real de operação e os campos principais desta análise: K-factor configurado (pulsos/unidade), Pulsos contados, Volume de referência/unidade padrão, Volume indicado no totalizador, Tolerância (%). Registre as premissas usadas para que o cálculo possa ser repetido e revisado.</p>
-      <ul>
-          <li>K-factor configurado (pulsos/unidade)</li>
-          <li>Pulsos contados</li>
-          <li>Volume de referência/unidade padrão</li>
-          <li>Volume indicado no totalizador</li>
-          <li>Tolerância (%)</li>
-      </ul>
-      <h3>Como interpretar o resultado</h3>
-      <p>O resultado deve ser comparado com a tolerância do processo e com o erro máximo permitido definido no plano de calibração. Um erro pequeno no instrumento pode ser aceitável para utilidades, mas crítico em malhas de segurança, qualidade ou dosagem.</p>
-      <p>Analise em conjunto os resultados Volume por pulsos, Erro do indicador, Novo K sugerido, Status. Compare-os com limites operacionais, tolerâncias, histórico e documentação do equipamento, evitando decidir com base em um único indicador.</p>
-      <h3>Checklist rápido de validação</h3>
-      <ul>
-          <li>Confirme TAG, faixa LRV/URV, unidade de engenharia e damping antes do teste.</li>
-          <li>Use padrão de referência com resolução e incerteza adequadas ao instrumento em teste.</li>
-          <li>Registre as leituras de subida e descida para observar histerese, repetibilidade e retorno ao zero.</li>
-          <li>Quando houver ajuste, repita o ciclo completo antes de liberar o instrumento.</li>
-      </ul>
-      <h3>Limites da estimativa</h3>
-      <p>Use esta análise de Calibração de Totalizador de Vazão como apoio preliminar. Para projeto final, laudo, compra, mudança de segurança ou liberação de equipamento crítico, confirme premissas, condições de campo, documentação do fabricante e requisitos aplicáveis.</p>
-    </section>
+<h2><i class="fas fa-clipboard-check"></i> Como validar a calibração de um totalizador de vazão</h2>
+<p>O totalizador deve ser comparado com uma referência independente, como tanque padrão, balança ou provador. O ensaio precisa usar a mesma unidade configurada no instrumento e quantidade acumulada suficiente para reduzir o efeito da resolução.</p>
+<h3>Exemplo prático</h3><p>Com 50.000 pulsos e K-factor de 1.000 pulsos/L, o volume calculado é 50 L. Se a referência indicar 49,8 L, o erro do totalizador é aproximadamente 0,40%. Para tolerância de 0,30%, o ponto deve ser investigado antes de qualquer ajuste.</p>
+<h3>Interpretação</h3><ul><li>Erro consistente em todos os ensaios pode indicar K-factor inadequado.</li><li>Erro variável sugere repetibilidade ruim, bolhas, pulsos perdidos, ruído ou referência instável.</li><li>Antes de aplicar o novo K-factor, repita o ensaio em mais de uma vazão.</li></ul>
+<h3>Limitações</h3><p>A ferramenta não incorpora automaticamente incerteza da referência, compressibilidade, densidade, temperatura, expansão volumétrica nem tempo de resposta do sistema.</p>
+<p><a href="calculadora-k-factor-vazao-pulsos.html">Calcular vazão por K-factor</a> · <a href="calculadora-erro-calibracao.html">Calcular erro de calibração</a></p></section>
 
   </main>
   <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>

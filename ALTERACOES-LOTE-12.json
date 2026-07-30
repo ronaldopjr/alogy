@@ -1,0 +1,16 @@
+{
+  "base": "Lote 11",
+  "paginas_revisadas": [
+    "calculadora-calibracao-transmissor-pressao.html",
+    "calculadora-corrente-trifasica.html",
+    "calculadora-perda-carga-ar-comprimido.html",
+    "calculadora-mtbf-mttr-disponibilidade.html",
+    "calculadora-vazamento-ar-comprimido.html"
+  ],
+  "categorias_reforcadas": [
+    "ferramentas-calibracao-instrumentacao.html",
+    "ferramentas-eletrica-industrial.html",
+    "ferramentas-processo-vazao-nivel.html",
+    "ferramentas-manutencao-industrial.html"
+  ]
+}

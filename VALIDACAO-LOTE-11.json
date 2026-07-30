@@ -1,0 +1,41 @@
+{
+  "status": "aprovado",
+  "erros": [],
+  "paginas": {
+    "calculadora-calibracao-manometro.html": {
+      "canonical": true,
+      "one_h1": true,
+      "breadcrumb": true,
+      "lote_block": true,
+      "noindex": false
+    },
+    "calculadora-calibracao-phmetro.html": {
+      "canonical": true,
+      "one_h1": true,
+      "breadcrumb": true,
+      "lote_block": true,
+      "noindex": false
+    },
+    "calculadora-cv-valvula-controle.html": {
+      "canonical": true,
+      "one_h1": true,
+      "breadcrumb": true,
+      "lote_block": true,
+      "noindex": false
+    },
+    "calculadora-npsh-bomba.html": {
+      "canonical": true,
+      "one_h1": true,
+      "breadcrumb": true,
+      "lote_block": true,
+      "noindex": false
+    },
+    "calculadora-queda-de-tensao.html": {
+      "canonical": true,
+      "one_h1": true,
+      "breadcrumb": true,
+      "lote_block": true,
+      "noindex": false
+    }
+  }
+}

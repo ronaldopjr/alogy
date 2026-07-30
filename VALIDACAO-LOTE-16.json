@@ -1,0 +1,64 @@
+{
+  "status": "aprovado",
+  "paginas_html": 390,
+  "paginas_verificadas": [
+    {
+      "arquivo": "ferramentas.html",
+      "h1": 1,
+      "canonical": true,
+      "breadcrumb": true,
+      "nova_secao": true
+    },
+    {
+      "arquivo": "ferramentas-instrumentacao-industrial.html",
+      "h1": 1,
+      "canonical": true,
+      "breadcrumb": true,
+      "nova_secao": true
+    },
+    {
+      "arquivo": "ferramentas-calibracao-instrumentacao.html",
+      "h1": 1,
+      "canonical": true,
+      "breadcrumb": true,
+      "nova_secao": true
+    },
+    {
+      "arquivo": "ferramentas-automacao-clp.html",
+      "h1": 1,
+      "canonical": true,
+      "breadcrumb": true,
+      "nova_secao": true
+    },
+    {
+      "arquivo": "ferramentas-eletrica-industrial.html",
+      "h1": 1,
+      "canonical": true,
+      "breadcrumb": true,
+      "nova_secao": true
+    },
+    {
+      "arquivo": "ferramentas-processo-vazao-nivel.html",
+      "h1": 1,
+      "canonical": true,
+      "breadcrumb": true,
+      "nova_secao": true
+    },
+    {
+      "arquivo": "ferramentas-manutencao-industrial.html",
+      "h1": 1,
+      "canonical": true,
+      "breadcrumb": true,
+      "nova_secao": true
+    },
+    {
+      "arquivo": "ferramentas-analitica-industrial.html",
+      "h1": 1,
+      "canonical": true,
+      "breadcrumb": true,
+      "nova_secao": true
+    }
+  ],
+  "erros": [],
+  "noindex_em_sitemap": []
+}

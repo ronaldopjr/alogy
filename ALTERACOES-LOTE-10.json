@@ -1,0 +1,16 @@
+{
+  "lote": 10,
+  "arquivos": [
+    "calculadora-acumulador-hidraulico.html",
+    "calculadora-autonomia-ar-instrumentos.html",
+    "calculadora-balanceamento-rotor-campo.html",
+    "calculadora-bateria-ups-24vcc.html",
+    "calculadora-bomba-dosadora-quimica.html"
+  ],
+  "categorias": [
+    "ferramentas-manutencao-industrial.html",
+    "ferramentas-instrumentacao-industrial.html",
+    "ferramentas-eletrica-industrial.html",
+    "ferramentas-processo-vazao-nivel.html"
+  ]
+}

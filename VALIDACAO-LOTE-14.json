@@ -1,0 +1,12 @@
+{
+  "status": "aprovado",
+  "erros": [],
+  "html_verificados": 390,
+  "paginas_lote": [
+    "calculadora-calibracao-totalizador-vazao.html",
+    "calculadora-condensado-ar-comprimido.html",
+    "calculadora-eficiencia-compressor.html",
+    "calculadora-tempo-varredura-modbus-rtu.html",
+    "calculadora-consumo-vapor-aquecimento.html"
+  ]
+}

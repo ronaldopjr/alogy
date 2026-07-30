@@ -1,0 +1,41 @@
+{
+  "status": "aprovado",
+  "erros": [],
+  "paginas": {
+    "calculadora-calibracao-transmissor-pressao.html": {
+      "canonical": true,
+      "one_h1": true,
+      "breadcrumb": true,
+      "lote_block": true,
+      "noindex": false
+    },
+    "calculadora-corrente-trifasica.html": {
+      "canonical": true,
+      "one_h1": true,
+      "breadcrumb": true,
+      "lote_block": true,
+      "noindex": false
+    },
+    "calculadora-perda-carga-ar-comprimido.html": {
+      "canonical": true,
+      "one_h1": true,
+      "breadcrumb": true,
+      "lote_block": true,
+      "noindex": false
+    },
+    "calculadora-mtbf-mttr-disponibilidade.html": {
+      "canonical": true,
+      "one_h1": true,
+      "breadcrumb": true,
+      "lote_block": true,
+      "noindex": false
+    },
+    "calculadora-vazamento-ar-comprimido.html": {
+      "canonical": true,
+      "one_h1": true,
+      "breadcrumb": true,
+      "lote_block": true,
+      "noindex": false
+    }
+  }
+}
