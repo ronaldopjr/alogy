@@ -1,5 +1,25 @@
 # Registro da recuperação do AdSense
 
+## 2026-08-13 — AUTOMATION-HARDENING
+
+- Adicionado protocolo de concorrência otimista baseado no SHA inicial da branch.
+- Cada execução passa a criar no máximo um commit atômico com blobs, árvore e estado no mesmo objeto Git.
+- Proibidos commits separados por arquivo para transações de lote.
+- A referência só pode avançar com force=false; mudança concorrente ou rejeição interrompe a execução sem mesclar nem repetir.
+- O auditor passou a preservar decisões editoriais existentes em reexecuções.
+- Separadas métricas do documento e do conteúdo principal; adicionados título, descrição e contagens de H2/H3 para triagem futura.
+- O script revisado passou em compilação e teste de regressão com preservação de classificação.
+- Nenhuma página do site foi alterada.
+
+## 2026-08-13 — F2-CLASSIFY-P0-INSTITUTIONAL
+
+- Classificadas exatamente cinco páginas institucionais prioritárias: index.html, sobre.html, industrial.html, residencial.html e cases.html.
+- Home, Sobre, Industrial e Residencial receberam improve, prioridade P0 e confiança alta.
+- Cases recebeu manual-review, prioridade P0 e confiança alta devido a alegações de resultados, locais, marcas e necessidade de confirmar autorização de divulgação.
+- Os PDFs anexados não foram lidos nem usados na classificação; permanecem fora de qualquer fluxo automático de publicação.
+- Nenhuma página HTML, fórmula, JavaScript, sitemap ou arquivo publicado foi alterado.
+- main permaneceu no baseline.
+
 ## 2026-08-13 — F1-TECHNICAL-PLAN
 
 - Confirmada a hospedagem em GitHub Pages, build legado, branch `main`, raiz `/`, CNAME `www.alogy.com.br` e HTTPS obrigatório.

@@ -1,14 +1,14 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "project": "ALOGY AdSense Recovery",
   "repository": "ronaldopjr/alogy",
   "work_branch": "agent/adsense-recovery",
   "base_branch": "main",
   "phase": "F2",
   "status": "ready",
-  "last_completed_batch": "F1-TECHNICAL-PLAN",
-  "next_batch": "F2-CLASSIFY-P0-INSTITUTIONAL",
-  "next_action": "Classify exactly five P0 institutional pages in the inventory: index.html, sobre.html, industrial.html, residencial.html and cases.html. Record evidence and recommendations only; do not edit site pages.",
+  "last_completed_batch": "F2-CLASSIFY-P0-INSTITUTIONAL",
+  "next_batch": "F2-CLASSIFY-P0-MONETIZED-ARTICLES-01",
+  "next_action": "Classify exactly five monetized articles in the inventory: blog-manutencao-preditiva-instrumentacao-sensores.html, blog-ot-cybersecurity-instrumentacao.html, blog-gemeo-digital-tags-instrumentacao.html, blog-selo-remoto-capilar-nivel.html and blog-ar-instrumentos-qualidade-ponto-orvalho.html. Record evidence and recommendations only; do not edit site pages.",
   "max_pages_per_edit_batch": 5,
   "automation_may_edit_content": false,
   "automation_may_commit_to_work_branch": true,
@@ -24,6 +24,8 @@
     "search_console_indexed_snapshot": 352,
     "adsense_status": "low_value_content"
   },
-  "updated_at": "2026-08-13T12:08:00-03:00",
-  "stop_reason": null
+  "updated_at": "2026-08-13T12:48:03-03:00",
+  "stop_reason": null,
+  "run_protocol_version": 2,
+  "auditor_schema_version": 2
 }
