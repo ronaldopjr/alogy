@@ -1,5 +1,18 @@
 # Registro da recuperação do AdSense
 
+## 2026-08-13 — F2-CLASSIFY-P0-MONETIZED-ARTICLES-01
+
+- Classificados exatamente cinco artigos monetizados e indexáveis definidos pelo estado.
+- Os cinco receberam `improve`, prioridade P0 e confiança alta.
+- Manutenção preditiva: faltam exemplo diagnóstico, critérios de baseline/amostragem, fontes e experiência verificável.
+- Cibersegurança OT: tema sensível sem fontes oficiais ou framework identificado; qualquer melhoria exigirá fontes primárias e revisão especializada.
+- Gêmeo digital: faltam arquitetura, proveniência e qualidade das TAGs, validação e exemplo reproduzível.
+- Selo remoto: a ligação com a calculadora é positiva, mas faltam exemplo numérico, diagrama, premissas, fontes de fabricante e validação de engenharia.
+- Ar de instrumentos: a ISO 8573-1 é citada sem edição/classes/fontes; a ferramenta ligada calcula consumo, não qualidade.
+- Nenhuma página HTML, fórmula, JavaScript, canonical, robots, sitemap ou arquivo publicado foi alterado.
+- Os PDFs confidenciais não foram lidos nem utilizados.
+- `main` permaneceu no baseline.
+
 ## 2026-08-13 — AUTOMATION-HARDENING
 
 - Adicionado protocolo de concorrência otimista baseado no SHA inicial da branch.
