@@ -1,5 +1,14 @@
 # Registro da recuperação do AdSense
 
+## 2026-08-13 — F2-CLASSIFY-P0-CALIBRATION-ARTICLES-01
+
+- Classificados exatamente cinco artigos monetizados e indexáveis de calibração definidos pelo estado.
+- Analisadores de processo, cartão analógico de CLP, conversor I/P–P/I e manômetro receberam `keep`, prioridade P1 e confiança alta: apresentam método, exemplos ou cálculos delimitados, ressalvas e referências técnicas úteis.
+- Calibração de instrumentos industriais recebeu `improve`, prioridade P0 e confiança alta: é um hub introdutório ainda genérico, sem exemplo completo, critérios de decisão, tratamento de incerteza ou fontes primárias identificadas.
+- A lacuna comum de autoria ou revisão pessoal permanece reservada para a F6.
+- Nenhum HTML, fórmula, JavaScript, canonical, robots, sitemap ou arquivo publicado foi alterado. Os PDFs confidenciais não foram lidos nem utilizados.
+- `main` permaneceu no baseline.
+
 ## 2026-08-13 — F2-CLASSIFY-P0-MONETIZED-ARTICLES-03
 
 - Classificados exatamente cinco artigos monetizados e indexáveis definidos pelo estado.
