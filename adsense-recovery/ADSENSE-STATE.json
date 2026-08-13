@@ -4,11 +4,11 @@
   "repository": "ronaldopjr/alogy",
   "work_branch": "agent/adsense-recovery",
   "base_branch": "main",
-  "phase": "F0",
+  "phase": "F1",
   "status": "ready",
-  "last_completed_batch": "F0-INVENTORY",
-  "next_batch": "F0-RECONCILE",
-  "next_action": "Reconcile technical anomalies from the inventory, quantify repeated editorial patterns and produce a read-only remediation queue. Do not edit site pages.",
+  "last_completed_batch": "F0-RECONCILE",
+  "next_batch": "F1-TECHNICAL-PLAN",
+  "next_action": "Prepare exact, reversible technical patches for the obsolete verification file and legacy HTML redirects, and verify hosting constraints. Do not apply page changes until the patch plan passes review gates.",
   "max_pages_per_edit_batch": 5,
   "automation_may_edit_content": false,
   "automation_may_commit_to_work_branch": true,
@@ -24,6 +24,6 @@
     "search_console_indexed_snapshot": 352,
     "adsense_status": "low_value_content"
   },
-  "updated_at": "2026-08-13T11:15:00-03:00",
+  "updated_at": "2026-08-13T11:30:00-03:00",
   "stop_reason": null
 }

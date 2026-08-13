@@ -33,6 +33,16 @@ def visible_text(html: str) -> str:
     return re.sub(r'\s+', ' ', unescape(html)).strip()
 
 
+def rendered_markup(html: str) -> str:
+    """Return markup that can contribute elements to the initial document.
+
+    HTML strings embedded in scripts (for example printable report templates)
+    must not be counted as headings in the rendered page.
+    """
+    html = re.sub(r'<(script|style|noscript)\b[^>]*>.*?</\1>', ' ', html, flags=re.I | re.S)
+    return re.sub(r'<!--.*?-->', ' ', html, flags=re.S)
+
+
 def sitemap_paths(root: Path) -> set[str]:
     result: set[str] = set()
     for sitemap in root.glob('sitemap*.xml'):
@@ -69,7 +79,7 @@ def main() -> int:
         adsense = 'ca-pub-5586837114309500' in html
         in_sitemap = rel in sitemap or (rel == 'index.html' and 'index.html' in sitemap)
         words = len(visible_text(html).split())
-        h1_count = len(re.findall(r'<h1\b', html, flags=re.I))
+        h1_count = len(re.findall(r'<h1\b', rendered_markup(html), flags=re.I))
 
         evidence: list[str] = []
         status = 'unclassified'

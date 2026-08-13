@@ -22,7 +22,7 @@ Auditoria somente leitura de todos os arquivos HTML da branch `agent/adsense-rec
 | `noindex` presente em sitemap | 0 |
 | Indexável fora do sitemap | 1 |
 | Sem canonical | 1 |
-| H1 diferente de 1 | 12 |
+| H1 diferente de 1 | 1 |
 
 ## Consistências aprovadas
 
@@ -37,21 +37,9 @@ Auditoria somente leitura de todos os arquivos HTML da branch `agent/adsense-rec
 
 `google00ce371ffda114a1.html` contém apenas o token de verificação. Não possui canonical, meta robots ou H1, não carrega AdSense e não está no sitemap. O Search Console o classificou como soft 404. A decisão adequada é confirmar se ainda é necessário e, caso contrário, fazer a URL responder 404 ou 410 real. Nenhuma alteração foi aplicada.
 
-### Páginas com dois H1
+### Contagem de H1 reconciliada
 
-- `calculadora-4-20ma.html`
-- `calculadora-atuador-pneumatico.html`
-- `calculadora-dimensionamento-cabos.html`
-- `calculadora-erro-calibracao.html`
-- `calculadora-erro-total-malha-instrumentacao.html`
-- `calculadora-pt100.html`
-- `calculadora-resistor-shunt-sinal-instrumentacao.html`
-- `calculadora-split-range-4-20ma.html`
-- `calculadora-temperatura-industrial.html`
-- `calculadora-termopar.html`
-- `calculadora-volume-tanque-vertical-horizontal.html`
-
-O décimo segundo caso é o arquivo antigo de verificação, que não possui H1. Os 11 casos acima precisam ser inspecionados para determinar se existe um H1 oculto global somado ao título principal. Nenhuma correção foi aplicada.
+A primeira execução contou também trechos `<h1>` existentes dentro de modelos de impressão em JavaScript e produziu 11 falsos positivos. O auditor foi corrigido para analisar apenas o markup renderizável inicial. Todas as 299 páginas editoriais indexáveis possuem exatamente um H1; somente o arquivo técnico antigo de verificação não possui H1.
 
 ### Páginas indexáveis com conteúdo visível curto
 
@@ -69,4 +57,4 @@ O Search Console mostrou 352 páginas indexadas, enquanto o pacote atual possui 
 
 ## Próximo lote
 
-`F0-RECONCILE`: inspecionar as anomalias, medir padrões editoriais repetidos e produzir uma fila de correção classificada, ainda sem editar páginas do site.
+`F1-TECHNICAL-PLAN`: preparar correções técnicas reversíveis para o arquivo de verificação antigo e os redirecionamentos HTML legados, sem aplicar alterações antes da validação do plano.
