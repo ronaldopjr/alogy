@@ -1,5 +1,13 @@
 # Registro da recuperação do AdSense
 
+## 2026-08-13 — F2-CLASSIFY-P0-MONETIZED-ARTICLES-03
+
+- Classificados exatamente cinco artigos monetizados e indexáveis definidos pelo estado.
+- ORP, rotâmetro e slope de pH foram classificados como `keep` P1: apresentam método, exemplos delimitados, limitações e referências externas úteis; falta somente autoria/revisão pessoal, tratada na F6.
+- SIL/PFD e LOPA foram classificados como `manual-review` P0: ambos tratam segurança funcional e segurança de processo; toda revisão de conteúdo depende de fontes primárias e validação de especialista.
+- Nenhum HTML, fórmula, JavaScript, canonical, robots, sitemap ou arquivo publicado foi alterado. Os PDFs confidenciais não foram lidos nem utilizados.
+- `main` permaneceu no baseline.
+
 ## 2026-08-13 — F2-CLASSIFY-P0-MONETIZED-ARTICLES-02
 
 - Classificados exatamente cinco artigos monetizados e indexáveis definidos pelo estado; todos receberam `improve`, prioridade P0 e confiança alta.

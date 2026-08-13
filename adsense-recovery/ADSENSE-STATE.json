@@ -6,9 +6,9 @@
   "base_branch": "main",
   "phase": "F2",
   "status": "ready",
-  "last_completed_batch": "F2-CLASSIFY-P0-MONETIZED-ARTICLES-02",
-  "next_batch": "F2-CLASSIFY-P0-MONETIZED-ARTICLES-03",
-  "next_action": "Classify exactly five monetized articles in the inventory: blog-orp-mv-controle.html, blog-rotametro-correcao-vazao.html, blog-sil-pfd-didatico.html, blog-slope-sonda-ph.html and blog-lopa-simplificada.html. Record evidence and recommendations only; do not edit site pages.",
+  "last_completed_batch": "F2-CLASSIFY-P0-MONETIZED-ARTICLES-03",
+  "next_batch": "F2-CLASSIFY-P0-CALIBRATION-ARTICLES-01",
+  "next_action": "Classify exactly five monetized calibration articles in the inventory: blog-calibracao-analisadores-processo.html, blog-calibracao-cartao-analogico-clp.html, blog-calibracao-conversor-ip-pi.html, blog-calibracao-instrumentos-industriais.html and blog-calibracao-manometro.html. Record evidence and recommendations only; do not edit site pages.",
   "max_pages_per_edit_batch": 5,
   "automation_may_edit_content": false,
   "automation_may_commit_to_work_branch": true,
@@ -24,7 +24,7 @@
     "search_console_indexed_snapshot": 352,
     "adsense_status": "low_value_content"
   },
-  "updated_at": "2026-08-13T14:03:30-03:00",
+  "updated_at": "2026-08-13T17:04:45-03:00",
   "stop_reason": null,
   "run_protocol_version": 2,
   "auditor_schema_version": 2
