@@ -1,5 +1,18 @@
 # Registro da recuperação do AdSense
 
+## 2026-08-13 — F1-TECHNICAL-PLAN
+
+- Confirmada a hospedagem em GitHub Pages, build legado, branch `main`, raiz `/`, CNAME `www.alogy.com.br` e HTTPS obrigatório.
+- Confirmado que o GitHub Pages não oferece configuração de status HTTP 301 por caminho neste repositório estático.
+- Determinado que redirecionar `/index.html` por alteração do próprio arquivo quebraria também a home `/`, pois ambos usam o mesmo recurso no GitHub Pages; mantida a canonical para `/` como solução segura.
+- Confirmado que os dois redirects legados já usam `noindex,follow`, canonical para o destino, meta refresh, JavaScript e link manual, sem AdSense e fora dos sitemaps.
+- Determinado que os redirects devem permanecer como fallback estático até existir camada de CDN/proxy ou hospedagem com regras HTTP 301.
+- Confirmado que `google00ce371ffda114a1.html` é um token de propriedade do Google; sua remoção pode invalidar a propriedade se for o único método ativo.
+- Determinado manter o arquivo de verificação por enquanto; ele está fora do sitemap e não carrega AdSense, portanto seu soft 404 histórico não justifica risco de perda da propriedade.
+- Nenhuma correção técnica de página foi aplicada porque as alternativas disponíveis seriam neutras ou mais arriscadas na hospedagem atual.
+- Nenhuma página do site foi alterada.
+- A branch `main` não foi alterada.
+
 ## 2026-08-13 — F0-RECONCILE
 
 - Corrigido o auditor para ignorar HTML embutido em scripts ao contar elementos H1.
