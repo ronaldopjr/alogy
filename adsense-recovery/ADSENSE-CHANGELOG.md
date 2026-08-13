@@ -1,5 +1,15 @@
 # Registro da recuperação do AdSense
 
+## 2026-08-13 — F2-CLASSIFY-P0-MONETIZED-ARTICLES-02
+
+- Classificados exatamente cinco artigos monetizados e indexáveis definidos pelo estado; todos receberam `improve`, prioridade P0 e confiança alta.
+- NPSH e potência de bomba: textos introdutórios sem exemplo numérico, unidades, condições operacionais, curvas de fabricante ou fontes identificadas.
+- Solenóide para atuador: faltam método reproduzível para ar comprimido, dados de fabricante, distinção entre alimentação e exaustão e delimitação para funções de segurança.
+- Inspeção em área classificada: o checklist é útil, mas a futura edição depende de revisão técnica, fontes normativas confirmadas e escopo por tipo de proteção e inspeção.
+- Massa em tanque: há diferenciação inicial entre geometria e densidade, porém faltam cálculo completo, limites metrológicos, referências e revisão pessoal.
+- Nenhum HTML, fórmula, JavaScript, canonical, robots, sitemap ou arquivo publicado foi alterado. Os PDFs confidenciais não foram lidos nem utilizados.
+- `main` permaneceu no baseline.
+
 ## 2026-08-13 — F2-CLASSIFY-P0-MONETIZED-ARTICLES-01
 
 - Classificados exatamente cinco artigos monetizados e indexáveis definidos pelo estado.
