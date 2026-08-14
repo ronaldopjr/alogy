@@ -1,5 +1,14 @@
 # Registro da recuperação do AdSense
 
+## 2026-08-14 — F2-CLASSIFY-P0-HART-ARTICLES-01
+
+- Classificados exatamente dois artigos monetizados e indexáveis sobre HART definidos pelo estado.
+- Comissionamento HART e diagnóstico de falhas de comunicação receberam `keep`, prioridade P1 e confiança alta.
+- Os conteúdos são complementares: o primeiro verifica coerência entre dispositivo, corrente e sistema; o segundo aprofunda carga, tensão, cabo, capacitância, ruído e barreiras.
+- Ambos usam fontes técnicas primárias e delimitam os riscos de alterações em campo; a autoria pessoal permanece para a F6.
+- Nenhum HTML, fórmula, JavaScript, canonical, robots, sitemap ou arquivo publicado foi alterado. Os PDFs confidenciais não foram lidos nem utilizados.
+- `main` permaneceu no baseline.
+
 ## 2026-08-14 — F2-CLASSIFY-P0-CALIBRATION-ARTICLES-03
 
 - Classificados exatamente os dois artigos monetizados e indexáveis restantes do grupo de calibração.
