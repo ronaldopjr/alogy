@@ -6,9 +6,9 @@
   "base_branch": "main",
   "phase": "F2",
   "status": "ready",
-  "last_completed_batch": "F2-CLASSIFY-P0-VALVE-ARTICLES-01",
-  "next_batch": "F2-CLASSIFY-P0-PROCESS-ANALYTICS-ARTICLES-01",
-  "next_action": "Classify exactly three monetized process-analytics articles in the inventory: blog-condutividade-tds.html, blog-dosagem-cloro-livre.html and blog-neutralizacao-ph-industrial.html. Record evidence and recommendations only; do not edit site pages.",
+  "last_completed_batch": "F2-CLASSIFY-P0-PROCESS-ANALYTICS-ARTICLES-01",
+  "next_batch": "F2-CLASSIFY-P0-RESPONSE-TIME-ARTICLES-01",
+  "next_action": "Classify exactly two monetized response-time articles in the inventory: blog-tempo-amostragem-analisador.html and blog-termopoco-tempo-resposta.html. Record evidence and recommendations only; do not edit site pages.",
   "max_pages_per_edit_batch": 5,
   "automation_may_edit_content": false,
   "automation_may_commit_to_work_branch": true,
@@ -24,7 +24,7 @@
     "search_console_indexed_snapshot": 352,
     "adsense_status": "low_value_content"
   },
-  "updated_at": "2026-08-14T11:06:58-03:00",
+  "updated_at": "2026-08-14T14:03:51-03:00",
   "stop_reason": null,
   "run_protocol_version": 2,
   "auditor_schema_version": 2

@@ -1,5 +1,14 @@
 # Registro da recuperação do AdSense
 
+## 2026-08-14 — F2-CLASSIFY-P0-PROCESS-ANALYTICS-ARTICLES-01
+
+- Classificados exatamente três artigos monetizados e indexáveis de analítica de processo definidos pelo estado.
+- Condutividade/TDS, dosagem de cloro livre e neutralização de pH receberam `keep`, prioridade P1 e confiança alta.
+- Os três distinguem premissas críticas, incluem exemplos reproduzíveis, limites de aplicação, referências técnicas e alertas de segurança; nenhum prescreve setpoint ou autoriza projeto.
+- A autoria pessoal permanece pendente para a F6.
+- Nenhum HTML, fórmula, JavaScript, canonical, robots, sitemap ou arquivo publicado foi alterado. Os PDFs confidenciais não foram lidos nem utilizados.
+- `main` permaneceu no baseline.
+
 ## 2026-08-14 — F2-CLASSIFY-P0-VALVE-ARTICLES-01
 
 - Classificados exatamente dois artigos monetizados e indexáveis sobre válvulas de controle definidos pelo estado.
