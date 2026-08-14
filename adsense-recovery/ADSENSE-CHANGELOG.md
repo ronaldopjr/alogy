@@ -1,5 +1,13 @@
 # Registro da recuperação do AdSense
 
+## 2026-08-14 — F2-CLASSIFY-P0-CALIBRATION-ARTICLES-03
+
+- Classificados exatamente os dois artigos monetizados e indexáveis restantes do grupo de calibração.
+- Transmissor de temperatura recebeu `keep`, prioridade P1 e confiança alta: distingue fronteiras do teste, inclui método, exemplo, limitações e referências de fabricante.
+- Válvula de controle recebeu `improve`, prioridade P0 e confiança alta: o roteiro básico e as travas de segurança são úteis, mas faltam fontes primárias e maior separação entre comando, curso, feedback e comportamento mecânico.
+- Nenhum HTML, fórmula, JavaScript, canonical, robots, sitemap ou arquivo publicado foi alterado. Os PDFs confidenciais não foram lidos nem utilizados.
+- `main` permaneceu no baseline.
+
 ## 2026-08-13 — F2-CLASSIFY-P0-CALIBRATION-ARTICLES-02
 
 - Classificados exatamente cinco artigos monetizados e indexáveis de calibração definidos pelo estado.
