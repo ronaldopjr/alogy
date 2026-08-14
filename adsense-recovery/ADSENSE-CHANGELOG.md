@@ -1,5 +1,13 @@
 # Registro da recuperação do AdSense
 
+## 2026-08-14 — F2-CLASSIFY-P0-VALVE-ARTICLES-01
+
+- Classificados exatamente dois artigos monetizados e indexáveis sobre válvulas de controle definidos pelo estado.
+- Cavitação em válvula de controle recebeu `keep`, prioridade P1 e confiança alta: delimita cavitação e flashing, extremos operacionais, triagem e referências primárias de fabricante.
+- Cv para gases recebeu `manual-review`, prioridade P0 e confiança alta: dimensionamento compressível e fluxo crítico exigem método, fontes vigentes, exemplo e validação especializada antes de qualquer edição.
+- Nenhum HTML, fórmula, JavaScript, canonical, robots, sitemap ou arquivo publicado foi alterado. Os PDFs confidenciais não foram lidos nem utilizados.
+- `main` permaneceu no baseline.
+
 ## 2026-08-14 — F2-CLASSIFY-P0-HART-TOOLS-01
 
 - Classificadas exatamente quatro ferramentas HART monetizadas e indexáveis definidas pelo estado.
