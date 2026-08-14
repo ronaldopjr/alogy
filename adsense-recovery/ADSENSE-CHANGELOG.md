@@ -1,5 +1,14 @@
 # Registro da recuperação do AdSense
 
+## 2026-08-14 — F2-CLASSIFY-P0-HART-TOOLS-01
+
+- Classificadas exatamente quatro ferramentas HART monetizadas e indexáveis definidas pelo estado.
+- Comprimento de cabo HART e malha 4–20 mA/HART completa receberam `keep`, prioridade P1 e confiança alta.
+- Diagnóstico 4–20 mA/HART recebeu `improve`, prioridade P0 e confiança alta, devido à sobreposição com a calculadora completa e necessidade de explicitar seu diferencial de triagem rápida.
+- Checklist de comissionamento HART recebeu `manual-review`, prioridade P0 e confiança alta: orienta atividade de campo, não liga diretamente as referências e contém orientação genérica de redes cuja aplicabilidade precisa ser validada por especialista.
+- Nenhum HTML, fórmula, JavaScript, canonical, robots, sitemap ou arquivo publicado foi alterado. Os PDFs confidenciais não foram lidos nem utilizados.
+- `main` permaneceu no baseline.
+
 ## 2026-08-14 — F2-CLASSIFY-P0-HART-ARTICLES-01
 
 - Classificados exatamente dois artigos monetizados e indexáveis sobre HART definidos pelo estado.

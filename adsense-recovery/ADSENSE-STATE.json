@@ -6,9 +6,9 @@
   "base_branch": "main",
   "phase": "F2",
   "status": "ready",
-  "last_completed_batch": "F2-CLASSIFY-P0-HART-ARTICLES-01",
-  "next_batch": "F2-CLASSIFY-P0-HART-TOOLS-01",
-  "next_action": "Classify exactly four monetized HART tools in the inventory: calculadora-comprimento-cabo-hart.html, calculadora-diagnostico-4-20ma-hart.html, calculadora-malha-4-20ma-hart-completa.html and checklist-comissionamento-hart.html. Record evidence and recommendations only; do not edit site pages.",
+  "last_completed_batch": "F2-CLASSIFY-P0-HART-TOOLS-01",
+  "next_batch": "F2-CLASSIFY-P0-VALVE-ARTICLES-01",
+  "next_action": "Classify exactly two monetized valve-control articles in the inventory: blog-cavitacao-valvula-controle.html and blog-cv-gases-valvula-controle.html. Record evidence and recommendations only; do not edit site pages.",
   "max_pages_per_edit_batch": 5,
   "automation_may_edit_content": false,
   "automation_may_commit_to_work_branch": true,
@@ -24,7 +24,7 @@
     "search_console_indexed_snapshot": 352,
     "adsense_status": "low_value_content"
   },
-  "updated_at": "2026-08-14T05:03:33-03:00",
+  "updated_at": "2026-08-14T08:06:54-03:00",
   "stop_reason": null,
   "run_protocol_version": 2,
   "auditor_schema_version": 2
