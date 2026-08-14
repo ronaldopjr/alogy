@@ -1,5 +1,14 @@
 # Registro da recuperação do AdSense
 
+## 2026-08-14 — F2-CLASSIFY-P0-RESPONSE-TIME-ARTICLES-01
+
+- Classificados exatamente dois artigos monetizados e indexáveis sobre tempo de resposta definidos pelo estado.
+- Tempo de amostragem de analisadores e resposta de termopoços receberam `keep`, prioridade P1 e confiança alta.
+- Ambos separam corretamente atraso dinâmico de erro de calibração, trazem exemplos reproduzíveis, diagnóstico, limites de uso e referências de fabricantes.
+- A autoria pessoal permanece pendente para a F6.
+- Nenhum HTML, fórmula, JavaScript, canonical, robots, sitemap ou arquivo publicado foi alterado. Os PDFs confidenciais não foram lidos nem utilizados.
+- `main` permaneceu no baseline.
+
 ## 2026-08-14 — F2-CLASSIFY-P0-PROCESS-ANALYTICS-ARTICLES-01
 
 - Classificados exatamente três artigos monetizados e indexáveis de analítica de processo definidos pelo estado.
