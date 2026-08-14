@@ -1,5 +1,13 @@
 # Registro da recuperação do AdSense
 
+## 2026-08-13 — F2-CLASSIFY-P0-CALIBRATION-ARTICLES-02
+
+- Classificados exatamente cinco artigos monetizados e indexáveis de calibração definidos pelo estado.
+- pHmetro, totalizador de vazão, transmissor DP de vazão, transmissor DP de nível e transmissor de pressão receberam `keep`, prioridade P1 e confiança alta.
+- Os cinco apresentam métodos e exemplos delimitados, limitações de uso e referências técnicas externas; a lacuna comum de autoria ou revisão pessoal permanece reservada para a F6.
+- Nenhum HTML, fórmula, JavaScript, canonical, robots, sitemap ou arquivo publicado foi alterado. Os PDFs confidenciais não foram lidos nem utilizados.
+- `main` permaneceu no baseline.
+
 ## 2026-08-13 — F2-CLASSIFY-P0-CALIBRATION-ARTICLES-01
 
 - Classificados exatamente cinco artigos monetizados e indexáveis de calibração definidos pelo estado.

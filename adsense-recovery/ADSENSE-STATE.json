@@ -6,9 +6,9 @@
   "base_branch": "main",
   "phase": "F2",
   "status": "ready",
-  "last_completed_batch": "F2-CLASSIFY-P0-CALIBRATION-ARTICLES-01",
-  "next_batch": "F2-CLASSIFY-P0-CALIBRATION-ARTICLES-02",
-  "next_action": "Classify exactly five monetized calibration articles in the inventory: blog-calibracao-phmetro.html, blog-calibracao-totalizador-vazao.html, blog-calibracao-transmissor-dp-vazao.html, blog-calibracao-transmissor-nivel-dp.html and blog-calibracao-transmissor-pressao.html. Record evidence and recommendations only; do not edit site pages.",
+  "last_completed_batch": "F2-CLASSIFY-P0-CALIBRATION-ARTICLES-02",
+  "next_batch": "F2-CLASSIFY-P0-CALIBRATION-ARTICLES-03",
+  "next_action": "Classify exactly the two remaining monetized calibration articles in the inventory: blog-calibracao-transmissor-temperatura.html and blog-calibracao-valvula-controle.html. Record evidence and recommendations only; do not edit site pages.",
   "max_pages_per_edit_batch": 5,
   "automation_may_edit_content": false,
   "automation_may_commit_to_work_branch": true,
@@ -24,7 +24,7 @@
     "search_console_indexed_snapshot": 352,
     "adsense_status": "low_value_content"
   },
-  "updated_at": "2026-08-13T20:07:57-03:00",
+  "updated_at": "2026-08-13T23:03:29-03:00",
   "stop_reason": null,
   "run_protocol_version": 2,
   "auditor_schema_version": 2
