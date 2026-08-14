@@ -1,5 +1,14 @@
 # Registro da recuperação do AdSense
 
+## 2026-08-14 — F2-CLASSIFY-P0-MEASUREMENT-QUALITY-ARTICLES-01
+
+- Classificados exatamente três artigos monetizados e indexáveis sobre qualidade da medição definidos pelo estado.
+- Emissividade em termografia recebeu `keep`, prioridade P1 e confiança alta: apresenta procedimento, exemplo, limites, referências de fabricantes e travas de segurança.
+- Erro total de malha recebeu `improve`, prioridade P0 e confiança alta: faltam conclusão do exemplo, fontes metrológicas e premissas de independência e correlação.
+- Histerese de pressostato e termostato recebeu `manual-review`, prioridade P0 e confiança alta: orienta testes ligados a alarmes e proteção sem fontes primárias ou exemplo validado.
+- Nenhum HTML, fórmula, JavaScript, canonical, robots, sitemap ou arquivo publicado foi alterado. Os PDFs confidenciais não foram lidos nem utilizados.
+- `main` permaneceu no baseline.
+
 ## 2026-08-14 — F2-CLASSIFY-P0-RESPONSE-TIME-ARTICLES-01
 
 - Classificados exatamente dois artigos monetizados e indexáveis sobre tempo de resposta definidos pelo estado.
