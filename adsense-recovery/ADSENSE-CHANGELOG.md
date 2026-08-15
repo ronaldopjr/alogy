@@ -1,5 +1,13 @@
 # Registro da recuperação do AdSense
 
+## 2026-08-15 — F2-CLASSIFY-P0-FLOW-MEASUREMENT-ARTICLES-01
+
+- Classificados exatamente três artigos monetizados e indexáveis de medição de vazão definidos pelo estado.
+- K-factor e vazão normalizada receberam `keep`, prioridade P1 e confiança alta.
+- Linha de impulso DP recebeu `manual-review`, prioridade P0 e confiança alta, devido a orientações potencialmente críticas sobre manifold, purga e fluidos perigosos.
+- Nenhum HTML, fórmula, JavaScript, canonical, robots, sitemap ou arquivo publicado foi alterado. Os PDFs confidenciais não foram lidos nem utilizados.
+- `main` permaneceu no baseline.
+
 ## 2026-08-15 — F2-CLASSIFY-P0-INDUSTRY-5-ARTICLE-01
 
 - Classificado exatamente o artigo monetizado e indexável de Indústria 5.0 definido pelo estado.
