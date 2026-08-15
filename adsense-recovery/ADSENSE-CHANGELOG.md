@@ -1,5 +1,13 @@
 # Registro da recuperação do AdSense
 
+## 2026-08-15 — F2-CLASSIFY-P0-CHEMICAL-DOSING-ARTICLES-01
+
+- Classificados exatamente dois artigos monetizados e indexáveis de dosagem química definidos pelo estado.
+- Dosagem química em ppm recebeu `keep`, prioridade P1 e confiança alta.
+- Bomba dosadora química recebeu `manual-review`, prioridade P0 e confiança alta, por combinar dimensionamento e intervenção com produtos potencialmente perigosos.
+- Nenhum HTML, fórmula, JavaScript, canonical, robots, sitemap ou arquivo publicado foi alterado. Os PDFs confidenciais não foram lidos nem utilizados.
+- `main` permaneceu no baseline.
+
 ## 2026-08-15 — F2-CLASSIFY-P0-PRESSURE-LEVEL-ARTICLES-01
 
 - Classificados exatamente dois artigos monetizados e indexáveis de pressão e nível definidos pelo estado.
