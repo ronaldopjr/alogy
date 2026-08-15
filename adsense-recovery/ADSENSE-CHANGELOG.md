@@ -1,5 +1,13 @@
 # Registro da recuperação do AdSense
 
+## 2026-08-15 — F2-CLASSIFY-P0-PRESSURE-LEVEL-ARTICLES-01
+
+- Classificados exatamente dois artigos monetizados e indexáveis de pressão e nível definidos pelo estado.
+- Nível DP em tanque fechado recebeu `keep`, prioridade P1 e confiança alta.
+- Pressão hidrostática por densidade recebeu `improve`, prioridade P0 e confiança alta, por falta de equação, exemplo numérico e fontes externas.
+- Nenhum HTML, fórmula, JavaScript, canonical, robots, sitemap ou arquivo publicado foi alterado. Os PDFs confidenciais não foram lidos nem utilizados.
+- `main` permaneceu no baseline.
+
 ## 2026-08-15 — F2-CLASSIFY-P0-FLOW-MEASUREMENT-ARTICLES-01
 
 - Classificados exatamente três artigos monetizados e indexáveis de medição de vazão definidos pelo estado.
