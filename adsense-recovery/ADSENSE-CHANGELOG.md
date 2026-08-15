@@ -1,5 +1,13 @@
 # Registro da recuperação do AdSense
 
+## 2026-08-15 — F2-CLASSIFY-P0-INSTRUMENTATION-STRATEGY-ARTICLES-01
+
+- Classificados exatamente dois artigos monetizados e indexáveis de estratégia de instrumentação definidos pelo estado.
+- Criticidade de instrumentos e instrumentação industrial receberam `improve`, prioridade P0 e confiança alta.
+- Criticidade precisa de matriz exemplificada, governança e fontes; o hub de instrumentação precisa de fontes, exemplo aprofundado e validação das alegações de serviços.
+- Nenhum HTML, fórmula, JavaScript, canonical, robots, sitemap ou arquivo publicado foi alterado. Os PDFs confidenciais não foram lidos nem utilizados.
+- `main` permaneceu no baseline.
+
 ## 2026-08-15 — F2-CLASSIFY-P0-COMMISSIONING-ARTICLES-01
 
 - Classificados exatamente dois artigos monetizados e indexáveis de comissionamento e testes definidos pelo estado.
