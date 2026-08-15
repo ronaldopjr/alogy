@@ -1,5 +1,14 @@
 # Registro da recuperação do AdSense
 
+## 2026-08-14 — F2-CLASSIFY-P0-PNEUMATIC-INSTRUMENTATION-ARTICLES-01
+
+- Classificados exatamente dois artigos monetizados e indexáveis sobre instrumentação pneumática definidos pelo estado.
+- Conexões pneumáticas recebeu `merge`, prioridade P0 e confiança alta: sobrepõe amplamente o guia de dimensionamento, sem fonte, exemplo ou método quantitativo.
+- Dimensionamento de tubo pneumático recebeu `manual-review`, prioridade P0 e confiança alta: faltam fontes, curvas, método e exemplo, e o texto inclui atuadores de shutdown.
+- Nenhuma consolidação, remoção, redirecionamento ou edição foi aplicada; as decisões ficam para revisão editorial e técnica futura.
+- Nenhum HTML, fórmula, JavaScript, canonical, robots, sitemap ou arquivo publicado foi alterado. Os PDFs confidenciais não foram lidos nem utilizados.
+- `main` permaneceu no baseline.
+
 ## 2026-08-14 — F2-CLASSIFY-P0-MEASUREMENT-QUALITY-ARTICLES-01
 
 - Classificados exatamente três artigos monetizados e indexáveis sobre qualidade da medição definidos pelo estado.
