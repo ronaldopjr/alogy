@@ -1,5 +1,13 @@
 # Registro da recuperação do AdSense
 
+## 2026-08-15 — F2-CLASSIFY-P0-DIGITAL-INDUSTRY-ARTICLES-01
+
+- Classificados exatamente dois artigos monetizados e indexáveis de indústria digital definidos pelo estado.
+- Gêmeo digital e IA na indústria receberam `improve`, prioridade P0 e confiança alta.
+- Ambos precisam de fontes, exemplos verificáveis, diferenciação editorial e validação de benefícios e alegações de serviços.
+- Nenhum HTML, fórmula, JavaScript, canonical, robots, sitemap ou arquivo publicado foi alterado. Os PDFs confidenciais não foram lidos nem utilizados.
+- A ALOGY foi tratada como importadora e revendedora, nunca como fabricante; `main` permaneceu no baseline.
+
 ## 2026-08-15 — F2-CLASSIFY-P0-INSTRUMENTATION-STRATEGY-ARTICLES-01
 
 - Classificados exatamente dois artigos monetizados e indexáveis de estratégia de instrumentação definidos pelo estado.
