@@ -1,5 +1,13 @@
 # Registro da recuperação do AdSense
 
+## 2026-08-15 — F2-CLASSIFY-P0-INDUSTRY-5-ARTICLE-01
+
+- Classificado exatamente o artigo monetizado e indexável de Indústria 5.0 definido pelo estado.
+- O artigo recebeu `improve`, prioridade P0 e confiança alta.
+- Foram registrados riscos de enquadramento sem fontes, falta de exemplo ou métricas e alegações amplas de ganhos e serviços.
+- Nenhum HTML, fórmula, JavaScript, canonical, robots, sitemap ou arquivo publicado foi alterado. Os PDFs confidenciais não foram lidos nem utilizados.
+- A ALOGY foi tratada como importadora e revendedora, nunca como fabricante; `main` permaneceu no baseline.
+
 ## 2026-08-15 — F2-CLASSIFY-P0-DIGITAL-INDUSTRY-ARTICLES-01
 
 - Classificados exatamente dois artigos monetizados e indexáveis de indústria digital definidos pelo estado.

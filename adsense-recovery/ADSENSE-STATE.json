@@ -6,9 +6,9 @@
   "base_branch": "main",
   "phase": "F2",
   "status": "ready",
-  "last_completed_batch": "F2-CLASSIFY-P0-DIGITAL-INDUSTRY-ARTICLES-01",
-  "next_batch": "F2-CLASSIFY-P0-INDUSTRY-5-ARTICLE-01",
-  "next_action": "Classify exactly one monetized Industry 5.0 article in the inventory: blog-industria-5-0.html. Record evidence and recommendations only; do not edit the site page.",
+  "last_completed_batch": "F2-CLASSIFY-P0-INDUSTRY-5-ARTICLE-01",
+  "next_batch": "F2-CLASSIFY-P0-FLOW-MEASUREMENT-ARTICLES-01",
+  "next_action": "Classify exactly three monetized flow-measurement articles in the inventory: blog-k-factor-vazao-pulsos.html, blog-linha-impulso-transmissor-dp.html, and blog-vazao-normalizada-gases.html. Record evidence and recommendations only; do not edit site pages.",
   "max_pages_per_edit_batch": 5,
   "automation_may_edit_content": false,
   "automation_may_commit_to_work_branch": true,
@@ -24,7 +24,7 @@
     "search_console_indexed_snapshot": 352,
     "adsense_status": "low_value_content"
   },
-  "updated_at": "2026-08-15T08:05:06-03:00",
+  "updated_at": "2026-08-15T11:03:50-03:00",
   "stop_reason": null,
   "run_protocol_version": 2,
   "auditor_schema_version": 2
