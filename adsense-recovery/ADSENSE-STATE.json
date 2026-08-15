@@ -6,9 +6,9 @@
   "base_branch": "main",
   "phase": "F2",
   "status": "ready",
-  "last_completed_batch": "F2-CLASSIFY-P0-PNEUMATIC-INSTRUMENTATION-ARTICLES-01",
-  "next_batch": "F2-CLASSIFY-P0-COMMISSIONING-ARTICLES-01",
-  "next_action": "Classify exactly two monetized commissioning and testing articles in the inventory: blog-fat-sat-instrumentacao.html and blog-teste-de-loop-instrumentacao.html. Record evidence and recommendations only; do not edit site pages.",
+  "last_completed_batch": "F2-CLASSIFY-P0-COMMISSIONING-ARTICLES-01",
+  "next_batch": "F2-CLASSIFY-P0-INSTRUMENTATION-STRATEGY-ARTICLES-01",
+  "next_action": "Classify exactly two monetized instrumentation-strategy articles in the inventory: blog-criticidade-instrumentos.html and blog-instrumentacao-industrial.html. Record evidence and recommendations only; do not edit site pages.",
   "max_pages_per_edit_batch": 5,
   "automation_may_edit_content": false,
   "automation_may_commit_to_work_branch": true,
@@ -24,7 +24,7 @@
     "search_console_indexed_snapshot": 352,
     "adsense_status": "low_value_content"
   },
-  "updated_at": "2026-08-14T23:03:53-03:00",
+  "updated_at": "2026-08-15T02:02:58-03:00",
   "stop_reason": null,
   "run_protocol_version": 2,
   "auditor_schema_version": 2
