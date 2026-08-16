@@ -1,5 +1,14 @@
 # Registro da recuperação do AdSense
 
+## 2026-08-16 — F2-CLASSIFY-P0-NR10-ARTICLE-01
+
+- Classificado exatamente o artigo monetizado e indexável sobre a revisão da NR-10 definido pelo estado.
+- O artigo recebeu `manual-review`, prioridade P0 e confiança alta.
+- A verificação oficial confirmou que a redação anterior permanece vigente até 31/05/2027, a nova entra em vigor em 01/06/2027 e houve retificação em 24/06/2026; o artigo precisa explicitar a vigência, registrar a retificação e validar as obrigações item a item.
+- Também foram registrados riscos por fonte secundária, autoria apenas organizacional e alegações amplas de apoio técnico da ALOGY sem comprovação no repositório.
+- Nenhum HTML, fórmula, JavaScript, canonical, robots, sitemap ou arquivo publicado foi alterado. Os PDFs confidenciais não foram lidos nem utilizados.
+- `main` permaneceu no baseline.
+
 ## 2026-08-16 — F2-CLASSIFY-P0-BELT-LENGTH-ARTICLE-01
 
 - Classificado exatamente o artigo monetizado e indexável de comprimento de correias definido pelo estado.

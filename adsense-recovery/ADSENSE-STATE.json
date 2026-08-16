@@ -6,9 +6,9 @@
   "base_branch": "main",
   "phase": "F2",
   "status": "ready",
-  "last_completed_batch": "F2-CLASSIFY-P0-BELT-LENGTH-ARTICLE-01",
-  "next_batch": "F2-CLASSIFY-P0-NR10-ARTICLE-01",
-  "next_action": "Classify exactly one monetized NR-10 article in the inventory: blog-nova-nr10-2026.html. Record evidence and recommendations only; do not edit the site page.",
+  "last_completed_batch": "F2-CLASSIFY-P0-NR10-ARTICLE-01",
+  "next_batch": "F2-CLASSIFY-P0-CALIBRATION-CALCULATORS-10",
+  "next_action": "Classify exactly ten similar monetized calibration and measurement calculators in the inventory: calculadora-4-20ma.html; calculadora-calibracao-manometro.html; calculadora-calibracao-transmissor-dp-vazao.html; calculadora-calibracao-transmissor-nivel-dp.html; calculadora-calibracao-transmissor-pressao.html; calculadora-calibracao-transmissor-temperatura.html; calculadora-carga-malha-4-20ma.html; calculadora-erro-calibracao.html; calculadora-erro-total-malha-instrumentacao.html; calculadora-incerteza-calibracao-tur-tar.html. Record evidence and recommendations only; do not edit site pages.",
   "max_pages_per_edit_batch": 5,
   "automation_may_edit_content": false,
   "automation_may_commit_to_work_branch": true,
@@ -24,7 +24,7 @@
     "search_console_indexed_snapshot": 352,
     "adsense_status": "low_value_content"
   },
-  "updated_at": "2026-08-16T05:06:25-03:00",
+  "updated_at": "2026-08-16T08:05:00-03:00",
   "stop_reason": null,
   "run_protocol_version": 2,
   "auditor_schema_version": 2
