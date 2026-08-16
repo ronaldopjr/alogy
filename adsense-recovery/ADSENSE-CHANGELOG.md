@@ -1,5 +1,14 @@
 # Registro da recuperação do AdSense
 
+## 2026-08-16 — F2-CLASSIFY-P0-LOOP-TEST-CHECKLIST-01
+
+- Classificado exatamente o checklist monetizado e indexável de teste de loop definido pelo estado.
+- A página recebeu `manual-review`, prioridade P0 e confiança alta.
+- Os 12 itens, os pontos 4–20 mA e os alertas de segurança foram conferidos; a ferramenta diferencia progresso de aprovação.
+- Foram registrados riscos por alarmes, intertravamentos, liberação operacional, referência insuficiente e possibilidade de 100% de progresso com todos os itens como não aplicáveis.
+- Nenhum HTML, fórmula, JavaScript, canonical, robots, sitemap ou arquivo publicado foi alterado. Os PDFs confidenciais não foram lidos nem utilizados.
+- `main` permaneceu no baseline.
+
 ## 2026-08-16 — F2-CLASSIFY-P0-TEMPERATURE-CALCULATORS-02
 
 - Classificadas exatamente duas calculadoras monetizadas e indexáveis de temperatura definidas pelo estado.

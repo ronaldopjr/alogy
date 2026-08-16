@@ -6,9 +6,9 @@
   "base_branch": "main",
   "phase": "F2",
   "status": "ready",
-  "last_completed_batch": "F2-CLASSIFY-P0-TEMPERATURE-CALCULATORS-02",
-  "next_batch": "F2-CLASSIFY-P0-LOOP-TEST-CHECKLIST-01",
-  "next_action": "Classify exactly one monetized loop-test checklist in the inventory: checklist-teste-de-loop.html. Record evidence and recommendations only; do not edit the site page or technical JavaScript.",
+  "last_completed_batch": "F2-CLASSIFY-P0-LOOP-TEST-CHECKLIST-01",
+  "next_batch": "F2-CLASSIFY-P0-BLOG-HUB-01",
+  "next_action": "Classify exactly one remaining monetized blog hub in the inventory: blog.html. Record evidence, overlap and recommendations only; do not edit the site page.",
   "max_pages_per_edit_batch": 5,
   "automation_may_edit_content": false,
   "automation_may_commit_to_work_branch": true,
@@ -24,7 +24,7 @@
     "search_console_indexed_snapshot": 352,
     "adsense_status": "low_value_content"
   },
-  "updated_at": "2026-08-16T17:02:34-03:00",
+  "updated_at": "2026-08-16T20:07:02-03:00",
   "stop_reason": null,
   "run_protocol_version": 2,
   "auditor_schema_version": 2
