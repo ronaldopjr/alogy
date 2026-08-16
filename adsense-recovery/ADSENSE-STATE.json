@@ -6,9 +6,9 @@
   "base_branch": "main",
   "phase": "F2",
   "status": "ready",
-  "last_completed_batch": "F2-CLASSIFY-P0-CALIBRATION-CALCULATORS-10",
-  "next_batch": "F2-CLASSIFY-P0-MONETIZED-TOOL-HUBS-08",
-  "next_action": "Classify exactly eight similar monetized tool hubs in the inventory: ferramentas-analitica-industrial.html; ferramentas-automacao-clp.html; ferramentas-calibracao-instrumentacao.html; ferramentas-eletrica-industrial.html; ferramentas-instrumentacao-industrial.html; ferramentas-manutencao-industrial.html; ferramentas-processo-vazao-nivel.html; ferramentas.html. Record evidence, overlap and recommendations only; do not edit site pages.",
+  "last_completed_batch": "F2-CLASSIFY-P0-MONETIZED-TOOL-HUBS-08",
+  "next_batch": "F2-CLASSIFY-P0-TEMPERATURE-CALCULATORS-02",
+  "next_action": "Classify exactly two similar monetized temperature calculators in the inventory: calculadora-pt100.html and calculadora-termopar.html. Record evidence and recommendations only; do not edit site pages or technical JavaScript.",
   "max_pages_per_edit_batch": 5,
   "automation_may_edit_content": false,
   "automation_may_commit_to_work_branch": true,
@@ -24,7 +24,7 @@
     "search_console_indexed_snapshot": 352,
     "adsense_status": "low_value_content"
   },
-  "updated_at": "2026-08-16T11:04:44-03:00",
+  "updated_at": "2026-08-16T14:06:40-03:00",
   "stop_reason": null,
   "run_protocol_version": 2,
   "auditor_schema_version": 2

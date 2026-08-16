@@ -1,5 +1,14 @@
 # Registro da recuperação do AdSense
 
+## 2026-08-16 — F2-CLASSIFY-P0-MONETIZED-TOOL-HUBS-08
+
+- Classificados exatamente oito hubs monetizados e indexáveis de ferramentas definidos pelo estado.
+- O diretório central `ferramentas.html` recebeu `keep`, prioridade P1 e confiança alta por oferecer busca, categorias e descoberta geral de 222 ferramentas.
+- Os sete sub-hubs receberam `improve`, prioridade P0 e confiança alta: 100% de seus destinos já aparecem no diretório central e grande parte do texto repete cartões; a recomendação preserva cada intenção temática e propõe trilhas decisórias próprias.
+- As alegações de revisão técnica encontradas em quatro sub-hubs foram registradas para validação humana; nenhuma autoria ou credencial foi presumida.
+- Nenhum HTML, fórmula, JavaScript, canonical, robots, sitemap ou arquivo publicado foi alterado. Os PDFs confidenciais não foram lidos nem utilizados.
+- `main` permaneceu no baseline.
+
 ## 2026-08-16 — F2-CLASSIFY-P0-CALIBRATION-CALCULATORS-10
 
 - Classificadas exatamente dez calculadoras monetizadas e indexáveis de calibração e medição definidas pelo estado.
