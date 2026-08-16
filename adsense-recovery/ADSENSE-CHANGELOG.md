@@ -1,5 +1,13 @@
 # Registro da recuperação do AdSense
 
+## 2026-08-16 — F2-CLASSIFY-P0-VACUUM-LEAK-ARTICLE-01
+
+- Classificado exatamente o artigo monetizado e indexável de teste de vazamento definido pelo estado.
+- O artigo recebeu `manual-review`, prioridade P0 e confiança alta.
+- Foram registrados riscos por ausência de equação, exemplo, fontes, incerteza e critério reproduzível em um ensaio que pode sustentar decisões de estanqueidade e segurança.
+- Nenhum HTML, fórmula, JavaScript, canonical, robots, sitemap ou arquivo publicado foi alterado. Os PDFs confidenciais não foram lidos nem utilizados.
+- `main` permaneceu no baseline.
+
 ## 2026-08-15 — F2-CLASSIFY-P0-4-20MA-ARTICLES-01
 
 - Classificados exatamente dois artigos monetizados e indexáveis de sinais 4–20 mA definidos pelo estado.
