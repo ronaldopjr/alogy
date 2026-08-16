@@ -1,5 +1,13 @@
 # Registro da recuperação do AdSense
 
+## 2026-08-15 — F2-CLASSIFY-P0-4-20MA-ARTICLES-01
+
+- Classificados exatamente dois artigos monetizados e indexáveis de sinais 4–20 mA definidos pelo estado.
+- Resistor shunt recebeu `keep`, prioridade P1 e confiança alta.
+- Split range recebeu `manual-review`, prioridade P0 e confiança alta, por envolver estratégia de controle, falha segura, intertravamentos e atuação de válvulas sem fontes externas.
+- Nenhum HTML, fórmula, JavaScript, canonical, robots, sitemap ou arquivo publicado foi alterado. Os PDFs confidenciais não foram lidos nem utilizados.
+- `main` permaneceu no baseline.
+
 ## 2026-08-15 — F2-CLASSIFY-P0-CHEMICAL-DOSING-ARTICLES-01
 
 - Classificados exatamente dois artigos monetizados e indexáveis de dosagem química definidos pelo estado.
