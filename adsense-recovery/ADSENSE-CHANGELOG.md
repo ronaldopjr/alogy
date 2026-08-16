@@ -1,5 +1,14 @@
 # Registro da recuperação do AdSense
 
+## 2026-08-16 — F2-CLASSIFY-P0-TEMPERATURE-CALCULATORS-02
+
+- Classificadas exatamente duas calculadoras monetizadas e indexáveis de temperatura definidas pelo estado.
+- PT100 e termopar receberam `manual-review`, prioridade P0 e confiança alta.
+- A curva PT100 e o exemplo de 100 °C foram conferidos, mas as faixas de validade das classes não são controladas.
+- O termopar usa interpolação linear em tabelas reduzidas com intervalos de até 110 °C; normas e padrões de cores são citados sem links ou edições.
+- Nenhuma fórmula, tabela, JavaScript ou página foi alterada. Os PDFs confidenciais não foram lidos nem utilizados.
+- `main` permaneceu no baseline.
+
 ## 2026-08-16 — F2-CLASSIFY-P0-MONETIZED-TOOL-HUBS-08
 
 - Classificados exatamente oito hubs monetizados e indexáveis de ferramentas definidos pelo estado.
