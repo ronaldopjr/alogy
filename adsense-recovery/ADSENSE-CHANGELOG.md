@@ -1,5 +1,14 @@
 # Registro da recuperação do AdSense
 
+## 2026-08-16 — F2-CLASSIFY-P0-CALIBRATION-CALCULATORS-10
+
+- Classificadas exatamente dez calculadoras monetizadas e indexáveis de calibração e medição definidas pelo estado.
+- Conversão 4–20 mA, calibração de manômetro, calibração de transmissores DP de vazão, nível DP, pressão e temperatura e carga de malha 4–20 mA receberam `keep`, prioridade P1 e confiança alta.
+- Erro de calibração, erro total de malha e incerteza/TUR/TAR receberam `manual-review`, prioridade P0 e confiança alta, porque geram status ou memória de conformidade dependentes de premissas e regras metrológicas formais.
+- Os exemplos numéricos declarados foram conferidos mecanicamente; nenhuma fórmula ou rotina técnica foi alterada.
+- Nenhum HTML, fórmula, JavaScript, canonical, robots, sitemap ou arquivo publicado foi alterado. Os PDFs confidenciais não foram lidos nem utilizados.
+- `main` permaneceu no baseline.
+
 ## 2026-08-16 — F2-CLASSIFY-P0-NR10-ARTICLE-01
 
 - Classificado exatamente o artigo monetizado e indexável sobre a revisão da NR-10 definido pelo estado.
