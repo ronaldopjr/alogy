@@ -1,5 +1,13 @@
 # Registro da recuperação do AdSense
 
+## 2026-08-16 — F2-CLASSIFY-P0-BELT-LENGTH-ARTICLE-01
+
+- Classificado exatamente o artigo monetizado e indexável de comprimento de correias definido pelo estado.
+- O artigo recebeu `improve`, prioridade P0 e confiança alta.
+- O cálculo e o exemplo estão corretos, mas faltam fontes técnicas identificáveis e confirmação da autoria e revisão atribuídas à equipe técnica.
+- Nenhum HTML, fórmula, JavaScript, canonical, robots, sitemap ou arquivo publicado foi alterado. Os PDFs confidenciais não foram lidos nem utilizados.
+- `main` permaneceu no baseline.
+
 ## 2026-08-16 — F2-CLASSIFY-P0-VACUUM-LEAK-ARTICLE-01
 
 - Classificado exatamente o artigo monetizado e indexável de teste de vazamento definido pelo estado.

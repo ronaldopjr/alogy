@@ -6,9 +6,9 @@
   "base_branch": "main",
   "phase": "F2",
   "status": "ready",
-  "last_completed_batch": "F2-CLASSIFY-P0-VACUUM-LEAK-ARTICLE-01",
-  "next_batch": "F2-CLASSIFY-P0-BELT-LENGTH-ARTICLE-01",
-  "next_action": "Classify exactly one monetized belt-length article in the inventory: blog-comprimento-correia-polias.html. Record evidence and recommendations only; do not edit the site page.",
+  "last_completed_batch": "F2-CLASSIFY-P0-BELT-LENGTH-ARTICLE-01",
+  "next_batch": "F2-CLASSIFY-P0-NR10-ARTICLE-01",
+  "next_action": "Classify exactly one monetized NR-10 article in the inventory: blog-nova-nr10-2026.html. Record evidence and recommendations only; do not edit the site page.",
   "max_pages_per_edit_batch": 5,
   "automation_may_edit_content": false,
   "automation_may_commit_to_work_branch": true,
@@ -24,7 +24,7 @@
     "search_console_indexed_snapshot": 352,
     "adsense_status": "low_value_content"
   },
-  "updated_at": "2026-08-16T02:04:08-03:00",
+  "updated_at": "2026-08-16T05:06:25-03:00",
   "stop_reason": null,
   "run_protocol_version": 2,
   "auditor_schema_version": 2
