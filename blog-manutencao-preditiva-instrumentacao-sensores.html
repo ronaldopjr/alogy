@@ -107,8 +107,51 @@
       <div class="post-content">
         <div class="post-meta">Manutenção industrial • Atualizado em 2026-06-29</div>
         <h1>Manutenção preditiva começa na instrumentação: sensores, dados e confiabilidade</h1>
-        <p>Manutenção preditiva depende de dados. Mas dados industriais só são úteis quando os sensores estão bem instalados, calibrados, identificados e interpretados. Antes de falar em IA, dashboard ou algoritmo, é preciso garantir confiabilidade da instrumentação.</p><h2>Sensor ruim gera decisão ruim</h2><p>Um sensor mal instalado pode indicar vibração falsa, temperatura atrasada, pressão com ruído ou vazão inconsistente. Se esse dado alimenta um modelo preditivo, o modelo aprende um comportamento errado e pode gerar alarmes falsos ou deixar de detectar falhas reais.</p><h2>Variáveis mais usadas</h2><ul><li>Vibração em motores, bombas, redutores e ventiladores.</li><li>Temperatura de mancais, enrolamentos, óleo e processo.</li><li>Pressão diferencial em filtros e trocadores.</li><li>Corrente elétrica e potência de motores.</li><li>Vazão, nível e pressão de processo.</li><li>Qualidade de ar comprimido e utilidades.</li></ul><h2>Qualidade do dado</h2><p>O dado precisa ter TAG correto, unidade coerente, escala configurada, calibração válida, frequência de coleta adequada e contexto operacional. Sem isso, uma tendência pode parecer falha quando na verdade é mudança de receita, carga, setpoint ou condição de operação.</p><h2>Do campo ao dashboard</h2><p>A cadeia começa no sensor, passa por cabo, transmissor, CLP, rede, historiador e sistema de análise. Cada etapa pode inserir erro, atraso ou perda de informação. Por isso, manutenção preditiva deve ser construída junto com instrumentação e automação.</p><h2>Como começar</h2><ul><li>Escolha ativos críticos.</li><li>Defina modos de falha esperados.</li><li>Liste variáveis que antecipam esses modos de falha.</li><li>Verifique se os sensores existentes são confiáveis.</li><li>Padronize TAGs, unidades e alarmes.</li><li>Crie baseline antes de automatizar decisões.</li></ul><h2>Conclusão</h2><p>A manutenção preditiva não começa no software. Começa no campo, com sensor correto, instalação correta e dado confiável. Instrumentação bem cuidada reduz ruído, melhora diagnóstico e torna a análise muito mais útil.</p>
-        
+        <p>Manutenção preditiva usa sinais de condição para decidir quando investigar um ativo. O ponto de partida não é o algoritmo: é um modo de falha definido, uma variável capaz de mudar antes da perda funcional e um método para separar mudança de carga, ruído de medição e degradação.</p>
+
+        <h2>Do modo de falha à variável</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Pergunta</th><th>Registro necessário</th><th>Limite</th></tr></thead>
+            <tbody>
+              <tr><td>O que pode degradar?</td><td>Componente, modo de falha e efeito observável.</td><td>Uma variável genérica não diagnostica qualquer falha.</td></tr>
+              <tr><td>Qual sinal pode antecipar?</td><td>Relação física esperada, posição e direção de mudança.</td><td>Correlação sem mecanismo pode desaparecer.</td></tr>
+              <tr><td>Em quais condições comparar?</td><td>Carga, rotação, receita, temperatura ambiente e modo operacional.</td><td>Condições diferentes criam falsos desvios.</td></tr>
+              <tr><td>Quanto tempo existe para agir?</td><td>Horizonte entre alerta, confirmação e intervenção.</td><td>Alerta tardio não sustenta planejamento.</td></tr>
+              <tr><td>Como confirmar?</td><td>Segunda evidência, inspeção e responsável.</td><td>Alerta isolado não é diagnóstico.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Baseline: referência antes do limite</h2>
+        <p>O baseline descreve o comportamento conhecido em condições comparáveis. Registre período, carga, rotação, configuração do sensor, frequência de coleta, intervenções e critérios para excluir dados inválidos. Se o processo muda, preserve a versão anterior e crie uma nova referência; não reescreva o histórico silenciosamente.</p>
+        <ul>
+          <li><strong>Nível:</strong> valor típico ou faixa por condição operacional.</li>
+          <li><strong>Tendência:</strong> velocidade e persistência da mudança, não apenas um ponto alto.</li>
+          <li><strong>Qualidade:</strong> lacunas, saturação, congelamento, ruído e alteração de escala.</li>
+          <li><strong>Contexto:</strong> partida, parada, carga, produto e manutenção recente.</li>
+        </ul>
+
+        <h2>Exemplo fictício: bomba centrífuga</h2>
+        <p>Uma bomba fictícia é acompanhada por vibração, temperatura de mancal, corrente e pressão de sucção. A vibração aumenta, mas a rotação e a carga também mudaram. O primeiro passo é normalizar a comparação pelas condições operacionais e verificar sensor, fixação e histórico. Se a elevação persiste e outra evidência converge, a equipe abre uma investigação. O conjunto reduz hipóteses; não confirma sozinho desalinhamento, rolamento ou cavitação.</p>
+
+        <h2>Indicadores que mostram se o alerta ajuda</h2>
+        <ul>
+          <li>alertas confirmados e descartados, com a justificativa;</li>
+          <li>falhas ou degradações relevantes sem alerta prévio;</li>
+          <li>antecedência útil entre alerta, confirmação e ação;</li>
+          <li>desempenho separado por ativo e condição operacional;</li>
+          <li>tempo em que o sensor ou a cadeia de dados esteve indisponível.</li>
+        </ul>
+        <p>Esses indicadores devem ser interpretados com o custo de falso alarme e de falha não detectada. Uma média global pode esconder desempenho ruim no ativo mais crítico.</p>
+
+        <h2>Alerta, diagnóstico e decisão</h2>
+        <p>O alerta informa que uma regra encontrou desvio. O diagnóstico reúne evidências para explicar uma causa provável. A decisão de manutenção acrescenta consequência, janela de intervenção, recursos e autoridade. Automatizar a primeira etapa não autoriza automatizar as demais.</p>
+        <p>Use a página de <a href="blog-criticidade-instrumentos.html">criticidade de instrumentos</a> para priorizar consequências, o <a href="checklist-inspecao-bomba-centrifuga.html">checklist de bomba centrífuga</a> para organizar evidências de campo e o hub de <a href="ferramentas-manutencao-industrial.html">ferramentas de manutenção</a> para planejamento e condição.</p>
+
+        <h2>Fonte institucional consultada</h2>
+        <p>O projeto <a href="https://www.nist.gov/programs-projects/monitoring-diagnostics-and-prognostics-manufacturing-operations" rel="noopener noreferrer">Monitoring, Diagnostics and Prognostics for Manufacturing Operations, do NIST</a>, enfatiza confiança na infraestrutura de dados e nos métodos de monitoramento, além de verificação e validação das tecnologias de diagnóstico e prognóstico.</p>
+
         <section class="faq">
           <h2>Perguntas frequentes</h2>
           <details><summary>Preciso de IA para manutenção preditiva?</summary><p>Não no começo. Tendências, limites, análise de vibração e dados confiáveis já geram valor.</p></details><details><summary>Qual sensor é mais importante?</summary><p>Depende do modo de falha do ativo. Vibração, temperatura, pressão diferencial e corrente são muito comuns.</p></details><details><summary>Calibração importa na preditiva?</summary><p>Sim. Medição incorreta gera tendência incorreta.</p></details><details><summary>Dados de CLP servem?</summary><p>Servem, desde que estejam bem identificados, com escala correta e contexto operacional.</p></details>

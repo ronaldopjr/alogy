@@ -290,23 +290,48 @@
           para aumentar confiabilidade operacional, reduzir falhas e melhorar a qualidade dos dados industriais.
         </p>
 
-        <h2>Como a ALOGY Engenharia pode ajudar?</h2>
+        <h2>Guia de decisão: verificação, calibração e ajuste</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Atividade</th><th>Pergunta respondida</th><th>Registro esperado</th></tr></thead>
+            <tbody>
+              <tr><td>Verificação</td><td>O desempenho observado atende ao critério definido para esta checagem?</td><td>Condição, pontos, referência, resultado e decisão.</td></tr>
+              <tr><td>Calibração</td><td>Qual é a relação entre as indicações e os valores fornecidos pela referência?</td><td>Resultados, condições, referência, incerteza e rastreabilidade declarada.</td></tr>
+              <tr><td>Ajuste</td><td>Que intervenção foi feita para modificar a indicação?</td><td>Condição encontrada, parâmetros alterados e nova avaliação.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Calibração e ajuste não são sinônimos. Para preservar a evidência, registre a condição encontrada (<em>as found</em>) antes de qualquer ajuste e a condição final (<em>as left</em>) depois da intervenção. Um resultado de calibração também não declara conformidade sozinho: o critério, a incerteza e a regra de decisão precisam estar definidos.</p>
 
-        <p>
-          A ALOGY Engenharia apoia empresas em instrumentação industrial, automação, documentação técnica,
-          testes de malha, organização de sinais, levantamento em campo e análise de sistemas de medição e
-          controle. Esse trabalho ajuda a identificar pontos críticos e melhorar a confiabilidade da base de
-          dados usada pela operação e manutenção.
-        </p>
+        <h2>Erro, incerteza e tolerância cumprem papéis diferentes</h2>
+        <ul>
+          <li><strong>Erro observado:</strong> diferença obtida na comparação para um ponto e condição.</li>
+          <li><strong>Incerteza:</strong> quantifica a dispersão atribuída ao resultado e acompanha a declaração de medição.</li>
+          <li><strong>Tolerância:</strong> limite definido pela necessidade de uso, especificação ou requisito aplicável.</li>
+          <li><strong>Regra de decisão:</strong> explica como resultado e incerteza serão usados para concluir.</li>
+        </ul>
+        <p>Não reduza a decisão à comparação “erro menor que tolerância” sem saber como a incerteza foi considerada. Este artigo não estabelece critérios de conformidade nem intervalos universais.</p>
 
-        <p>
-          Com instrumentos bem especificados, calibrados, documentados e testados, a planta industrial ganha
-          mais segurança, previsibilidade e qualidade nas decisões de processo.
-        </p>
+        <h2>Exemplo fictício de registro</h2>
+        <p>Um transmissor de pressão fictício é comparado em pontos distribuídos pela faixa. O registro identifica TAG, instrumento, range, unidade, referência, condições, sequência crescente e decrescente, indicações antes do ajuste, incerteza informada e observações. Se houver ajuste, os pontos são repetidos e registrados separadamente. A decisão de uso só é tomada depois de aplicar o critério aprovado para aquela função.</p>
 
+        <h2>Qual atividade escolher?</h2>
+        <ol>
+          <li>Defina a decisão que depende da medição e o risco de uma indicação inadequada.</li>
+          <li>Determine o mensurando, a faixa e as condições de uso.</li>
+          <li>Escolha pontos e referência capazes de responder à necessidade de medição.</li>
+          <li>Decida antes do ensaio como incerteza e resultados serão avaliados.</li>
+          <li>Preserve dados brutos, condição encontrada, intervenção, condição final e aprovação.</li>
+        </ol>
+        <p>Para organizar a prioridade, consulte <a href="blog-criticidade-instrumentos.html">criticidade de instrumentos</a>. Para a cadeia de sinal, use o guia de <a href="blog-instrumentacao-industrial.html">instrumentação industrial</a>.</p>
+
+        <h2>Fonte institucional consultada</h2>
+        <p>A <a href="https://www.nist.gov/calibrations/traceability" rel="noopener noreferrer">política de rastreabilidade metrológica do NIST</a> relaciona o resultado a uma cadeia documentada de calibrações, cada uma contribuindo para a incerteza, e esclarece que rastreabilidade sozinha não garante adequação ao uso.</p>
+
+        <h2>Como consultar o portfólio com requisitos claros</h2>
+        <p>A ALOGY atua como importadora e revendedora, não como fabricante. Ao avaliar um instrumento do portfólio, informe variável, faixa, condições de processo, conexão, sinal e documentação necessária. A seleção final e os requisitos de calibração devem ser confirmados com a documentação do fabricante e com os responsáveis pela aplicação.</p>
         <div class="post-highlight">
-          <strong>Precisa avaliar instrumentos, sinais ou malhas de medição?</strong><br>
-          A calibração e a validação dos sinais ajudam a garantir dados confiáveis para operação, manutenção e automação.
+          <strong>Próximo passo:</strong> defina necessidade de medição, evidência e regra de decisão antes de escolher o instrumento ou o ensaio.
         </div>
 
         <div class="cta-actions" style="margin-top:18px">
