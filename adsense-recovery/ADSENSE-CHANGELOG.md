@@ -1,5 +1,15 @@
 # Registro da recuperação do AdSense
 
+## 2026-08-16 — F2-CLASSIFY-P0-BLOG-HUB-01
+
+- Classificado exatamente o último hub monetizado e indexável definido pelo estado.
+- `blog.html` recebeu `keep`, prioridade P1 e confiança alta.
+- O diretório reúne busca, oito categorias técnicas, 60 links únicos de artigos e 60 entradas `BlogPosting`; todos os destinos foram confirmados no SHA do lote.
+- A validação global confirmou que as 87 páginas monetizadas e indexáveis estão classificadas, encerrando a F2.
+- Nenhum HTML, JavaScript, fórmula, PDF ou desenho foi alterado ou utilizado.
+- A referência de `main` permaneceu no baseline `eab09572d950c7b0072f6183705ba4d779ae472d`.
+- A F3 ficou travada para aprovação humana do piloto editorial e do tratamento das alegações de revisão técnica ainda não verificadas.
+
 ## 2026-08-16 — F2-CLASSIFY-P0-LOOP-TEST-CHECKLIST-01
 
 - Classificado exatamente o checklist monetizado e indexável de teste de loop definido pelo estado.
