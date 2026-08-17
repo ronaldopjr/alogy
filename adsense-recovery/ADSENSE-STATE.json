@@ -6,9 +6,9 @@
   "base_branch": "main",
   "phase": "F3",
   "status": "waiting_human",
-  "last_completed_batch": "F2-CLASSIFY-P0-BLOG-HUB-01",
-  "next_batch": "F3-PILOT",
-  "next_action": "Human decision required before F3-PILOT: approve or reject an editorial pilot limited to ferramentas-analitica-industrial.html; ferramentas-automacao-clp.html; ferramentas-calibracao-instrumentacao.html; ferramentas-eletrica-industrial.html; ferramentas-instrumentacao-industrial.html. If approved, authorize editorial HTML edits on agent/adsense-recovery only, limited to reducing duplicated card copy and adding unique decision guidance; no formula or JavaScript changes. Also decide whether unverified 'revisão técnica' claims must be removed until a reviewer is confirmed or provide the confirmed reviewer identity and credentials.",
+  "last_completed_batch": "F3-PILOT",
+  "next_batch": "F3-PILOT-REVIEW",
+  "next_action": "Human review required: inspect the F3 pilot limited to ferramentas-analitica-industrial.html; ferramentas-automacao-clp.html; ferramentas-calibracao-instrumentacao.html; ferramentas-eletrica-industrial.html; ferramentas-instrumentacao-industrial.html. The pilot reduced repeated highlight cards, added distinct decision guidance, and removed unverified review claims. Do not start scaled editorial edits without explicit approval.",
   "max_pages_per_edit_batch": 5,
   "automation_may_edit_content": false,
   "automation_may_commit_to_work_branch": true,
@@ -24,8 +24,8 @@
     "search_console_indexed_snapshot": 352,
     "adsense_status": "low_value_content"
   },
-  "updated_at": "2026-08-16T23:03:27-03:00",
-  "stop_reason": "Awaiting human approval of the exact F3 pilot scope and authorization for editorial edits; no content may be edited until approval is recorded.",
+  "updated_at": "2026-08-17T00:00:00-03:00",
+  "stop_reason": "F3-PILOT completed after explicit user authorization. Awaiting human review of the pilot before any scaled editorial edits.",
   "run_protocol_version": 2,
   "auditor_schema_version": 2
 }

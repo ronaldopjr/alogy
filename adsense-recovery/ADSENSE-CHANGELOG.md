@@ -1,5 +1,14 @@
 # Registro da recuperação do AdSense
 
+## 2026-08-17 — F3-PILOT
+
+- Após autorização humana explícita, foram editados somente os cinco hubs aprovados: analítica, automação/CLP, calibração, elétrica e instrumentação.
+- Cada hub recebeu orientação própria para escolha do recurso por decisão, etapa de trabalho ou tipo de evidência; nenhum texto foi copiado entre os cinco roteiros.
+- Destaques repetidos foram consolidados nos hubs de automação, calibração, elétrica e instrumentação.
+- As alegações não verificadas de “revisão técnica” foram removidas; nenhuma pessoa, credencial, autoria individual ou experiência foi inventada.
+- Nenhuma fórmula, JavaScript, sitemap, canonical, robots, PDF ou arquivo de desenho foi alterado ou utilizado. `main` não foi modificada.
+- A automação deve permanecer parada para revisão humana deste piloto antes de qualquer edição editorial em escala.
+
 ## 2026-08-16 — F2-CLASSIFY-P0-BLOG-HUB-01
 
 - Classificado exatamente o último hub monetizado e indexável definido pelo estado.
