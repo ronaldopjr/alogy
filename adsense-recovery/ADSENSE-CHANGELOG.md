@@ -1,5 +1,16 @@
 # Registro da recuperação do AdSense
 
+## 2026-08-17 — F4-EDITORIAL-02
+
+- Melhoradas cinco páginas `improve` P0: ciclo de TAG em gêmeo digital, manutenção preditiva, calibração e os hubs de manutenção e processo.
+- Os artigos receberam exemplos fictícios, proveniência, baseline, indicadores, separação entre alerta e diagnóstico e guia entre verificação, calibração, ajuste, erro, incerteza e registro.
+- Os hubs receberam trilhas por decisão, variável e etapa; os 98 cartões de manutenção e 112 cartões de processo foram preservados.
+- Consolidados seis blocos repetidos de destaque/revisão e removidas duas alegações de “revisão técnica” sem revisor confirmado.
+- Fontes institucionais primárias do NIST foram verificadas; nenhum PDF ou desenho foi usado.
+- Preservados título, H1 único, canonical, robots, AdSense e todos os blocos JavaScript; nenhuma fórmula, calculadora ou página `manual-review` foi alterada.
+- Os oito novos links internos foram verificados na branch.
+- A fila explícita terminou. O estado avançou para `F4-QUEUE-REFRESH`, mas a reposição está bloqueada porque `F4-ROLLING-EDITORIAL-RULES.md` não existe no repositório.
+
 ## 2026-08-17 — F4-EDITORIAL-01
 
 - Melhoradas cinco páginas `improve` P0: instrumentação industrial, criticidade de instrumentos, gêmeo digital, IA na indústria e Indústria 5.0.

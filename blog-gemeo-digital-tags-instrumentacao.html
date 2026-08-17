@@ -107,8 +107,47 @@
       <div class="post-content">
         <div class="post-meta">Dados industriais • Atualizado em 2026-06-29</div>
         <h1>Gêmeo digital industrial: quais tags de instrumentação precisam estar confiáveis</h1>
-        <p>Gêmeo digital industrial é uma representação digital de um processo, equipamento ou sistema físico. Para funcionar bem, ele precisa receber dados confiáveis da planta. E esses dados normalmente vêm da instrumentação.</p><h2>O problema não é só software</h2><p>Muitos projetos começam pelo modelo, dashboard ou plataforma. Mas se as tags de campo estiverem erradas, sem calibração, com escala invertida ou sem contexto, o gêmeo digital terá baixa confiabilidade. O modelo parecerá sofisticado, mas vai representar uma planta que não existe.</p><h2>Tags críticas</h2><p>Nem todas as tags têm o mesmo peso. Para gêmeo digital, geralmente são críticas as variáveis que fecham balanços de massa e energia, indicam estado operacional ou protegem limites do processo.</p><ul><li>Vazões principais de entrada e saída.</li><li>Temperaturas de processo e utilidades.</li><li>Pressões e pressões diferenciais.</li><li>Níveis de tanques e vasos.</li><li>Estados de válvulas e bombas.</li><li>Correntes, potência e rotação de motores.</li><li>Qualidade de produto e analisadores.</li></ul><h2>Padronização de TAGs</h2><p>TAGs precisam ser consistentes entre campo, CLP, supervisório, historiador e documentação. Quando o mesmo instrumento aparece com nomes diferentes, a análise fica frágil e o risco de usar dado errado aumenta.</p><h2>Calibração e validação</h2><p>Antes de alimentar modelos, é importante validar range, unidade, linearização, alarmes, status de falha e qualidade do sinal. Em alguns casos, uma tag deve ser excluída do modelo até passar por manutenção ou calibração.</p><h2>Checklist para preparar tags</h2><ul><li>Confirmar TAG físico e eletrônico.</li><li>Verificar unidade e escala.</li><li>Checar range configurado no transmissor e no CLP.</li><li>Validar status de comunicação e diagnóstico.</li><li>Marcar tags críticas para balanço ou controle.</li><li>Criar histórico confiável antes de treinar modelos.</li></ul><h2>Conclusão</h2><p>O gêmeo digital depende de uma base invisível: instrumentação confiável. Quanto melhor a qualidade das tags, mais útil será a simulação, a análise de desempenho, a manutenção preditiva e a tomada de decisão industrial.</p>
-        
+        <p>Uma TAG só pode alimentar um gêmeo digital quando existe correspondência verificável entre o ponto físico, a configuração da automação, o histórico e o significado usado pelo modelo. O nome isolado não garante que todos os sistemas estejam falando da mesma variável.</p>
+
+        <h2>Ciclo de vida de uma TAG</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Etapa</th><th>Registro mínimo</th><th>Risco se o contexto se perder</th></tr></thead>
+            <tbody>
+              <tr><td>Definição</td><td>Função, variável, unidade, faixa esperada e responsável.</td><td>O modelo recebe uma variável com significado ambíguo.</td></tr>
+              <tr><td>Engenharia</td><td>Folha de dados, desenho aplicável, escala e destino do sinal.</td><td>Campo e sistema usam premissas diferentes.</td></tr>
+              <tr><td>Configuração</td><td>Range no transmissor, CLP, supervisório e historiador.</td><td>O mesmo valor bruto representa grandezas diferentes.</td></tr>
+              <tr><td>Operação</td><td>Carimbo de tempo, qualidade, modo operacional e eventos.</td><td>Dados válidos são comparados em condições incompatíveis.</td></tr>
+              <tr><td>Intervenção</td><td>Data, motivo, condição encontrada, ajuste e condição final.</td><td>Uma mudança parece desvio do processo ou do modelo.</td></tr>
+              <tr><td>Substituição ou retirada</td><td>Novo instrumento, versão, data de corte e regra para o histórico.</td><td>Séries anteriores e posteriores são combinadas sem reconciliação.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Proveniência: o caminho precisa ser reconstruível</h2>
+        <p>Para cada valor usado, registre ao menos TAG de origem, sistema que coletou, unidade, escala, horário, indicador de qualidade e transformações aplicadas. Quando uma conversão, filtro ou cálculo cria uma TAG derivada, preserve a ligação com as TAGs de entrada e a versão da regra.</p>
+
+        <h2>Exemplo fictício de reconciliação</h2>
+        <p>Considere a TAG PT-204 de uma linha de água. No campo, o transmissor está identificado como PT-204; no CLP aparece como <code>AI_204</code>; no historiador, como <code>PRESS_LINE_2</code>. Antes de usar a série, a equipe cria uma tabela de correspondência e confere unidade, range, carimbo de tempo e data da última troca. Se o historiador está em bar e o modelo espera kPa, a conversão fica documentada como transformação, não escondida no dashboard.</p>
+        <p>Uma divergência entre os sistemas não deve ser corrigida por conveniência. A origem autorizada para cada atributo precisa ser definida: por exemplo, cadastro de engenharia para identidade, instrumento para diagnóstico e historiador para série temporal. Conflitos ficam registrados até a aprovação pelos responsáveis.</p>
+
+        <h2>Critérios para liberar uma TAG ao modelo</h2>
+        <ul>
+          <li>Identidade física e eletrônica reconciliada.</li>
+          <li>Unidade, escala e direção do sinal confirmadas ponta a ponta.</li>
+          <li>Relógio, frequência, atraso e tratamento de lacunas conhecidos.</li>
+          <li>Estados inválido, manutenção, falha e substituição distinguíveis.</li>
+          <li>Domínio de operação e condição usada na validação registrados.</li>
+          <li>Responsável e gatilho de revalidação definidos.</li>
+        </ul>
+        <p>Esses itens organizam evidências, mas não criam um limite universal de aceitação. A liberação depende do uso do dado, da incerteza tolerável e das consequências da decisão.</p>
+
+        <h2>Conexões úteis</h2>
+        <p>O guia de <a href="blog-gemeo-digital-instrumentacao.html">gêmeo digital e instrumentação</a> mostra a cadeia completa; o artigo de <a href="blog-calibracao-instrumentos-industriais.html">calibração</a> ajuda a registrar a evidência de medição; e o roteiro de <a href="blog-ia-na-industria.html">IA industrial</a> trata validação e supervisão.</p>
+
+        <h2>Fonte institucional consultada</h2>
+        <p>O projeto <a href="https://www.nist.gov/programs-projects/digital-twins-advanced-manufacturing" rel="noopener noreferrer">Digital Twins for Advanced Manufacturing, do NIST</a>, trata requisitos, gestão de dados, integração pelo ciclo de vida, validação, incerteza e rastreabilidade. Esses elementos sustentam o controle de proveniência acima sem prometer resultado do modelo.</p>
+
         <section class="faq">
           <h2>Perguntas frequentes</h2>
           <details><summary>Toda tag serve para gêmeo digital?</summary><p>Não. Tags críticas são as que representam estado, balanço, controle, segurança ou desempenho do processo.</p></details><details><summary>Preciso recalibrar tudo?</summary><p>Não necessariamente, mas tags críticas devem ser verificadas e priorizadas.</p></details><details><summary>TAG errada prejudica IA?</summary><p>Sim. Modelo treinado com dado incorreto tende a gerar resultado incorreto.</p></details><details><summary>Quem deve validar tags?</summary><p>Instrumentação, automação, processo, manutenção e operação devem trabalhar juntos.</p></details>
