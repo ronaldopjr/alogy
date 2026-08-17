@@ -1,36 +1,54 @@
 # Prompt da execução recorrente
 
-Continue o projeto de recuperação do AdSense do site ALOGY no repositório `ronaldopjr/alogy`.
+Continue a recuperação editorial do AdSense do site ALOGY no repositório `ronaldopjr/alogy`, exclusivamente na branch `agent/adsense-recovery`.
 
-Use o plugin GitHub e trabalhe exclusivamente na branch `agent/adsense-recovery`. Antes de agir, leia integralmente:
+## Fonte de verdade e leitura mínima
 
-- `adsense-recovery/ADSENSE-MASTER-PLAN.md`
-- `adsense-recovery/ADSENSE-STATE.json`
-- `adsense-recovery/ADSENSE-INVENTORY.csv`
-- `adsense-recovery/ADSENSE-CHANGELOG.md`
-- `adsense-recovery/ADSENSE-BLOCKERS.md`
-- `adsense-recovery/AUTOMATION-PROMPT.md`
+Antes de agir, leia `ADSENSE-STATE.json`, `F4-EDITORIAL-QUEUE.md`, este prompt e somente as linhas do inventário, o trecho do changelog e as páginas indicadas em `next_batch`. Não releia o inventário, changelog ou plano completos sem necessidade.
 
-Regras por execução:
+O GitHub é o estado persistente entre execuções. Use o SHA da branch no começo da execução como `run_head`; não use informação lembrada de execuções anteriores.
 
-1. Leia o SHA atual da branch de trabalho e registre-o como `run_head`. Confirme que a branch existe, que o estado é válido e que não há bloqueio ativo.
-2. Compare `main` com o baseline. Se `main` mudou, não edite: registre o conflito quando isso puder ser feito com segurança e pare.
-3. Execute somente `next_batch` e `next_action` definidos no estado. Releia no `run_head` todas as páginas que fundamentam o lote; não use conteúdo lembrado de outra execução.
-4. Na Fase F0, faça apenas inventário e auditoria; não altere páginas do site.
-5. O limite futuro é de no máximo 5 páginas editadas por execução.
-6. Nunca altere `main`, faça merge, publique diretamente ou solicite revisão ao AdSense.
-7. Nunca invente autoria, experiência, credenciais, normas, fontes, cálculos ou resultados.
-8. A ALOGY é importadora e revendedora dos produtos; nunca a descreva como fabricante.
-9. Trate PDFs e desenhos fornecidos como confidenciais. Não reproduza clientes, nomes, tags, layouts, valores ou imagens e não os use como fonte automática para conteúdo público.
-10. Não altere fórmulas ou JavaScript técnico sem autorização explícita e validação humana.
-11. Não aplique `noindex`, redirecionamento ou remoção em massa.
-12. Rode os gates definidos no plano. Se algum falhar, não avance o estado.
-13. Preserve decisões editoriais existentes no inventário. A reexecução de `audit_adsense.py` deve atualizar métricas técnicas sem apagar `status`, `priority`, `confidence`, `evidence` ou `next_action`.
-14. Faça no máximo um commit por execução. Monte todas as mudanças do lote em uma única árvore Git baseada na árvore de `run_head`; inventário, changelog, relatório e estado devem entrar no mesmo commit.
-15. Não use atualizações individuais de arquivo que criem commits separados para uma transação com vários arquivos. Crie blobs, uma árvore e um commit cujo único pai seja `run_head`.
-16. Imediatamente antes de mover a branch, releia seu SHA. Se ele não for igual a `run_head`, outra execução venceu a corrida: não mova a referência, não tente mesclar e pare para reler o estado na próxima execução.
-17. Atualize a referência somente por avanço normal (`force=false`). Se a atualização for rejeitada ou não for fast-forward, pare sem repetir automaticamente. Um commit órfão não conta como lote concluído.
-18. Depois da atualização, confirme que a branch aponta para o novo commit e que o diff contém somente os arquivos declarados. Só então considere o lote concluído.
-19. Diante de dúvida, conflito, informação insuficiente ou decisão subjetiva, registre em `ADSENSE-BLOCKERS.md`, mude o status para `blocked` e pare.
-20. Quando chegar a `F3-PILOT`, pare antes de editar conteúdo e solicite revisão humana do escopo do piloto.
-21. Ao final, informe lote, arquivos, verificações, riscos, próximo lote e eventual intervenção necessária.
+## Regra de decisão
+
+1. Se `status` não for `ready`, não edite. Informe o motivo e encerre sem criar commit.
+2. Execute somente o lote exatamente indicado em `next_batch`. Não escolha páginas novas, não reclassifique o site e não aumente o lote.
+3. Edite apenas páginas com status `improve` presentes na fila F4 e nunca mais de cinco páginas em uma execução.
+4. Em cada página, acrescente valor editorial próprio: orientação de decisão, método ou contexto delimitado, premissas, limites de uso, links internos úteis e referências externas primárias quando fizer afirmações técnicas verificáveis.
+5. Não copie texto entre páginas nem amplie alegações de serviço, resultados, experiência, autoria, credenciais ou conformidade. A ALOGY é importadora e revendedora, nunca fabricante.
+6. Não use os PDFs ou desenhos confidenciais como fonte, exemplo ou material publicável.
+7. Não edite páginas `manual-review`, itens de consolidação, `noindex`, redirects, páginas institucionais de confiança, fórmulas ou JavaScript técnico.
+
+## Pré-flight obrigatório
+
+1. Releia o SHA de `agent/adsense-recovery` e registre-o como `run_head`.
+2. Confirme que as páginas do lote existem, são indexáveis e continuam `improve` no inventário.
+3. Leia integralmente apenas as páginas do lote e suas páginas diretamente vinculadas quando forem necessárias para evitar links quebrados ou repetição.
+4. Se houver mudança concorrente na branch, no `main` ou no lote, pare sem mesclar e sem repetir automaticamente.
+
+## Edição e validação
+
+1. Faça as alterações editoriais do lote, preservando título, URL, canonical, robots, estrutura de uma única H1, AdSense, fórmulas e JavaScript.
+2. Verifique que nenhum link ou recurso local introduzido está quebrado; não introduza fonte ou norma que não tenha sido verificada.
+3. Rode os gates: JSON legível, inventário preservado, HTML coerente, uma H1 por página, canonical/robots inalterados, nenhum JavaScript ou fórmula alterado e diff limitado ao lote declarado e aos arquivos de controle.
+4. Atualize estado, changelog e relatório do lote no mesmo conjunto de mudanças.
+5. Crie no máximo um commit atômico, com árvore baseada em `run_head` e avanço normal da referência (`force=false`). Releia o SHA antes de mover a branch; se ele mudou, pare sem mesclar nem repetir.
+
+## Publicação automática de lote seguro
+
+Após um commit aprovado por todos os gates, publique o lote em `main` somente por pull request de `agent/adsense-recovery` para `main`.
+
+- Confirme que o diff da pull request contém somente as páginas do lote, estado, changelog, relatório e arquivos de fila explicitamente previstos.
+- Faça merge automático apenas se a pull request estiver limpa, sem conflito e com o mesmo SHA de cabeça validado.
+- Nunca use `force`, nunca faça merge se houver arquivo inesperado, e pare se o repositório exigir revisão ou se o merge falhar.
+- Relate a URL e o commit da publicação. Um lote só é considerado concluído quando a branch e `main` refletem a mudança.
+
+## Transição de estado
+
+- Ao concluir e publicar um lote, avance somente para o próximo lote listado em `F4-EDITORIAL-QUEUE.md`.
+- Após o último lote da fila, mude para `waiting_human` e `F4-QUEUE-REFRESH`; não escolha páginas fora da fila.
+- Diante de falha, conflito, falta de fonte primária, alegação não comprovável ou risco técnico, registre o bloqueio e pare.
+- Nunca solicite revisão ao AdSense. Itens `manual-review` continuam bloqueados até autorização e validação específica.
+
+## Relato ao final
+
+Informe lote, páginas alteradas, verificações, fontes consultadas, riscos, próximo estado e URL de publicação quando houver. Não informe uma página como concluída se o commit, a pull request ou o merge falhar.

@@ -14,5 +14,5 @@ Nenhum bloqueio ativo.
 - Confirmar nome, formação, experiência e credenciais que podem ser exibidos como autoria ou revisão técnica.
 - Confirmar quais casos e experiências podem ser publicados de forma anonimizada.
 - Se houver futura migração de hospedagem ou uso de CDN/proxy, confirmar o mecanismo disponível para redirecionamentos HTTP 301/404/410.
-- Revisar e aprovar o lote piloto concluído antes de qualquer edição editorial em escala.
-- Autorizar separadamente o merge em `main` e, depois, o pedido de revisão ao AdSense.
+- A publicação automática só pode incluir lotes `improve` presentes na fila F4, aprovados pelos gates e sem conflito; qualquer outro tipo de página continua bloqueado.
+- O pedido de revisão ao AdSense continua exigindo autorização separada.
