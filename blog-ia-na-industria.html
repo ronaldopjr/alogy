@@ -339,6 +339,36 @@
           <li>Aplicar análises e IA em problemas reais, com validação da equipe técnica.</li>
         </ul>
 
+        <h2>Do problema à métrica: um roteiro verificável</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Decisão</th><th>Métrica útil</th><th>Erro que deve ser medido</th><th>Alternativa segura</th></tr></thead>
+            <tbody>
+              <tr><td>Priorizar inspeção</td><td>Precisão e cobertura dos alertas no horizonte definido.</td><td>Alarme falso e falha não sinalizada.</td><td>Manter a rotina existente até validação suficiente.</td></tr>
+              <tr><td>Investigar desvio de qualidade</td><td>Desempenho por produto, lote e condição operacional.</td><td>Associação espúria ou mudança de receita.</td><td>Confirmação por ensaio e equipe de processo.</td></tr>
+              <tr><td>Ajustar produção</td><td>Resultado dentro de limites previamente aprovados.</td><td>Ação fora do domínio de treinamento.</td><td>Recomendação sem atuação automática.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>A métrica deve refletir o custo dos dois tipos de erro e o tempo disponível para agir. Uma acurácia agregada pode esconder falhas justamente na condição rara que motivou o projeto.</p>
+
+        <h2>Validação de dados e modelo</h2>
+        <ol>
+          <li>Defina a pergunta, o usuário da resposta e o limite de autoridade antes de escolher o algoritmo.</li>
+          <li>Registre origem, unidade, frequência, lacunas, intervenções e mudanças de configuração dos dados.</li>
+          <li>Separe períodos de desenvolvimento e avaliação de modo compatível com o tempo, evitando usar informação futura para prever o passado.</li>
+          <li>Compare o modelo com uma linha de base simples e com o processo atual.</li>
+          <li>Avalie por equipamento, produto e condição operacional relevante, não apenas pela média.</li>
+          <li>Monitore mudança de dados, desempenho e consequências depois da implantação; defina retirada e retorno ao método anterior.</li>
+        </ol>
+
+        <h2>Supervisão humana precisa de uma ação definida</h2>
+        <p>“Ter uma pessoa no processo” não basta. O projeto deve dizer quem recebe o alerta, qual evidência é mostrada, quando a pessoa pode rejeitar a recomendação, como escalar uma dúvida e como registrar a decisão. Para funções críticas, a IA não deve substituir proteções, procedimentos ou validações exigidas.</p>
+        <p>Use a página de <a href="blog-criticidade-instrumentos.html">criticidade de instrumentos</a> para separar consequência e prioridade, e o guia de <a href="blog-gemeo-digital-instrumentacao.html">gêmeo digital</a> para organizar proveniência e sincronização dos dados.</p>
+
+        <h2>Fonte institucional consultada</h2>
+        <p>O <a href="https://www.nist.gov/itl/ai-risk-management-framework" rel="noopener noreferrer">AI Risk Management Framework do NIST</a> organiza a gestão voluntária de riscos nas funções governar, mapear, medir e gerenciar, com atenção a validade, confiabilidade, segurança, transparência e acompanhamento ao longo do ciclo de vida.</p>
+
         <h2>IA não substitui pessoas: potencializa decisões</h2>
 
         <p>
@@ -353,23 +383,10 @@
           técnico, não como substituição do conhecimento humano.
         </p>
 
-        <h2>Como a ALOGY Engenharia pode apoiar?</h2>
-
-        <p>
-          A ALOGY Engenharia atua com automação industrial, instrumentação, projetos elétricos, documentação técnica,
-          testes de malha e apoio em sistemas de controle. Essas frentes ajudam a criar uma base confiável para empresas
-          que desejam evoluir em direção a dados industriais mais organizados e decisões mais inteligentes.
-        </p>
-
-        <p>
-          Antes de aplicar IA, muitas plantas precisam revisar sinais, instrumentos, diagramas, lógica de CLP, telas de
-          supervisório, alarmes, tendências e documentação. Essa organização técnica é o que permite transformar dados
-          industriais em informação útil para manutenção, qualidade e produção.
-        </p>
-
+        <h2>Onde produtos de instrumentação entram — e onde não entram</h2>
+        <p>A ALOGY atua como importadora e revendedora, não como fabricante. Instrumentos e interfaces do portfólio podem fazer parte da coleta de dados, mas não validam por si só um modelo de IA. A aplicação precisa de critérios próprios de dados, avaliação, supervisão e retorno seguro.</p>
         <div class="post-highlight">
-          <strong>Quer preparar sua planta para dados industriais mais confiáveis?</strong><br>
-          A ALOGY pode apoiar na organização da automação, instrumentação, supervisório e documentação técnica.
+          <strong>Próximo passo:</strong> escolha uma decisão delimitada, uma métrica e uma alternativa segura antes de ampliar o uso da IA.
         </div>
 
         <div class="cta-actions" style="margin-top:18px">

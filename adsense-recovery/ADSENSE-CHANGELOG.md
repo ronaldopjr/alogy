@@ -1,5 +1,15 @@
 # Registro da recuperação do AdSense
 
+## 2026-08-17 — F4-EDITORIAL-01
+
+- Melhoradas cinco páginas `improve` P0: instrumentação industrial, criticidade de instrumentos, gêmeo digital, IA na indústria e Indústria 5.0.
+- Acrescentados roteiros de decisão, exemplos fictícios sem dados de cliente, critérios de evidência e limites de uso específicos para cada tema.
+- Incluídas fontes institucionais primárias do NIST, da Comissão Europeia e da ISO; nenhum PDF ou desenho foi usado.
+- A posição da ALOGY foi delimitada como importadora e revendedora, não fabricante; alegações amplas de serviços foram substituídas por orientação de consulta ao portfólio.
+- Preservados H1 único, títulos, canonical, robots, AdSense e todos os blocos JavaScript; nenhum item `manual-review`, fórmula, sitemap ou PDF foi alterado.
+- Links internos novos foram verificados na branch.
+- A ausência de `F4-ROLLING-EDITORIAL-RULES.md` permanece como risco para a reposição de fila após os lotes explícitos; não afetou a execução do lote 01.
+
 ## 2026-08-17 — F4-AUTOMATION-REDESIGN
 
 - A automação deixou de operar como classificação recorrente e passou a operar por fila editorial explícita.

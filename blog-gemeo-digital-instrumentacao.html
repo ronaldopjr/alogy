@@ -332,22 +332,40 @@
           <li>Histórico de dados confiável para análise.</li>
         </ul>
 
-        <h2>Como a ALOGY Engenharia pode apoiar?</h2>
+        <h2>Cadeia mínima: fonte, contexto, modelo e decisão</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Etapa</th><th>Evidência necessária</th><th>Falha que precisa aparecer</th></tr></thead>
+            <tbody>
+              <tr><td>Fonte física</td><td>TAG, unidade, faixa, condição de instalação e estado da medição.</td><td>Leitura inválida, congelada, fora de faixa ou sem qualidade.</td></tr>
+              <tr><td>Aquisição</td><td>Origem, carimbo de tempo, frequência, escala e conversões.</td><td>Atraso, lacuna, duplicidade ou desalinhamento temporal.</td></tr>
+              <tr><td>Contexto</td><td>Modo operacional, lote, estado do equipamento e evento de manutenção.</td><td>Comparação de condições que não são equivalentes.</td></tr>
+              <tr><td>Modelo</td><td>Versão, premissas, domínio validado e incerteza conhecida.</td><td>Uso fora do domínio ou resultado sem explicação suficiente.</td></tr>
+              <tr><td>Decisão</td><td>Usuário, limite de autoridade, confirmação e registro da ação.</td><td>Automação de uma decisão que exigia validação humana.</td></tr>
+            </tbody>
+          </table>
+        </div>
 
-        <p>
-          A ALOGY Engenharia atua na base técnica que torna projetos de digitalização mais confiáveis: instrumentação,
-          automação, documentação elétrica, levantamento de campo, organização de sinais, testes de malha, melhorias
-          em supervisório e apoio em sistemas de controle.
-        </p>
+        <h2>Critérios de qualidade antes de sincronizar</h2>
+        <ul>
+          <li><strong>Proveniência:</strong> saber de qual TAG, sistema e versão veio cada valor.</li>
+          <li><strong>Coerência temporal:</strong> alinhar relógios, frequência e atraso compatíveis com o fenômeno.</li>
+          <li><strong>Completude:</strong> tornar lacunas e dados inválidos visíveis, sem preenchê-los silenciosamente.</li>
+          <li><strong>Validação:</strong> comparar dados, modelo e resultado com evidências independentes e registrar incerteza.</li>
+          <li><strong>Gestão de mudança:</strong> revalidar quando instrumento, lógica, escala, modelo ou processo mudar.</li>
+        </ul>
 
-        <p>
-          Esse trabalho ajuda a preparar a planta para evoluir com mais segurança para aplicações como IA industrial,
-          manutenção preditiva, gêmeo digital e análise avançada de processos.
-        </p>
+        <h2>Exemplo conceitual sem dados de cliente</h2>
+        <p>Em um tanque fictício, o modelo recebe nível, vazão de entrada, vazão de saída e estado das válvulas. Uma diferença entre nível medido e balanço calculado é um sinal para investigação, não diagnóstico automático: pode haver atraso temporal, densidade incorreta, escala errada, condição de processo não modelada ou falha de medição. O registro deve preservar as hipóteses descartadas e a evidência usada.</p>
+        <p>Veja também o ciclo de <a href="blog-gemeo-digital-tags-instrumentacao.html">TAGs em um gêmeo digital</a> e os critérios de avaliação em <a href="blog-ia-na-industria.html">IA na indústria</a>.</p>
 
+        <h2>Fonte institucional consultada</h2>
+        <p>O projeto <a href="https://www.nist.gov/programs-projects/digital-twins-advanced-manufacturing" rel="noopener noreferrer">Digital Twins for Advanced Manufacturing, do NIST</a>, destaca requisitos, gestão de dados, validação, incerteza, rastreabilidade e integração ao longo do ciclo de vida. Esses pontos sustentam o roteiro acima sem prometer precisão ou resultado operacional.</p>
+
+        <h2>Como usar o portfólio sem confundir produto e modelo</h2>
+        <p>A ALOGY atua como importadora e revendedora, não como fabricante. Sensores, transmissores e interfaces podem compor a aquisição de dados, mas não constituem, isoladamente, um gêmeo digital. Requisitos de medição, comunicação e documentação devem ser conferidos com o fabricante e com a arquitetura validada do projeto.</p>
         <div class="post-highlight">
-          <strong>Quer preparar sua planta para dados industriais mais confiáveis?</strong><br>
-          O primeiro passo é revisar a base: instrumentação, sinais, CLP, supervisório e documentação técnica.
+          <strong>Critério de avanço:</strong> só conecte o dado ao modelo depois de tornar explícitas origem, qualidade, tempo, versão e limite de uso.
         </div>
 
         <div class="cta-actions" style="margin-top:18px">

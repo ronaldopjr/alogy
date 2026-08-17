@@ -6,9 +6,9 @@
   "base_branch": "main",
   "phase": "F4",
   "status": "ready",
-  "last_completed_batch": "F3-PILOT",
-  "next_batch": "F4-EDITORIAL-01",
-  "next_action": "Execute and publish only F4-EDITORIAL-01 from F4-EDITORIAL-QUEUE.md: improve the five listed P0 pages with original decision guidance, bounded technical context, verified primary sources where claims require them, and internal links. Do not alter formulas, JavaScript, manual-review pages, PDFs, or items outside the queue.",
+  "last_completed_batch": "F4-EDITORIAL-01",
+  "next_batch": "F4-EDITORIAL-02",
+  "next_action": "Execute and publish only F4-EDITORIAL-02 from F4-EDITORIAL-QUEUE.md: improve the five listed P0 pages with original decision guidance, bounded technical context, verified primary sources where claims require them, and internal links. Do not alter formulas, JavaScript, manual-review pages, PDFs, or items outside the queue.",
   "max_pages_per_edit_batch": 5,
   "automation_may_edit_content": true,
   "automation_may_commit_to_work_branch": true,
@@ -24,7 +24,7 @@
     "search_console_indexed_snapshot": 352,
     "adsense_status": "low_value_content"
   },
-  "updated_at": "2026-08-17T00:00:00-03:00",
+  "updated_at": "2026-08-17T17:01:41-03:00",
   "stop_reason": null,
   "workflow_version": 3,
   "publication": {
@@ -38,9 +38,24 @@
   },
   "editorial_scope": {
     "allowed_status": "improve",
-    "allowed_batches": ["F4-EDITORIAL-01", "F4-EDITORIAL-02"],
-    "forbidden_status": ["manual-review", "merge", "noindex-review", "redirect", "remove-candidate"],
-    "forbidden_changes": ["formula", "technical_javascript", "pdf_or_drawing_use", "authorship_or_credentials", "unvalidated_publication"]
+    "allowed_batches": [
+      "F4-EDITORIAL-01",
+      "F4-EDITORIAL-02"
+    ],
+    "forbidden_status": [
+      "manual-review",
+      "merge",
+      "noindex-review",
+      "redirect",
+      "remove-candidate"
+    ],
+    "forbidden_changes": [
+      "formula",
+      "technical_javascript",
+      "pdf_or_drawing_use",
+      "authorship_or_credentials",
+      "unvalidated_publication"
+    ]
   },
   "run_protocol_version": 2,
   "auditor_schema_version": 2
