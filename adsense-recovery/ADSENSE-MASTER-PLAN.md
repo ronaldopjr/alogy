@@ -68,6 +68,8 @@ Este projeto não promete aprovação do AdSense. A decisão pertence ao Google.
 
 - Trabalhar em 20 a 30 páginas prioritárias em lotes pequenos.
 - Incluir valor original, método, premissas, limitações, exemplos e referências confiáveis.
+- Operar por lotes de no máximo cinco páginas: validar, registrar e publicar automaticamente apenas o lote seguro por pull request para `main`.
+- Usar fila explícita; cada execução só pode editar o lote indicado no estado e deve parar em conflito, falta de fonte, arquivo inesperado no diff ou risco técnico.
 
 ### F5 — Consolidação
 

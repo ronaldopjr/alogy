@@ -1,5 +1,12 @@
 # Registro da recuperação do AdSense
 
+## 2026-08-17 — F4-AUTOMATION-REDESIGN
+
+- A automação deixou de operar como classificação recorrente e passou a operar por fila editorial explícita.
+- Definidos dois lotes iniciais de cinco páginas `improve` P0; cada lote precisa editar conteúdo real e passar pelos gates antes de publicação.
+- Após validação e commit atômico, cada lote seguro será publicado automaticamente em `main` por pull request limpa e merge sem força.
+- Permanecem proibidas mudanças em fórmulas, JavaScript técnico, PDFs/desenhos confidenciais, páginas `manual-review`, autoria não confirmada e pedido de revisão ao AdSense.
+
 ## 2026-08-17 — F3-PILOT
 
 - Após autorização humana explícita, foram editados somente os cinco hubs aprovados: analítica, automação/CLP, calibração, elétrica e instrumentação.

@@ -4,18 +4,18 @@
   "repository": "ronaldopjr/alogy",
   "work_branch": "agent/adsense-recovery",
   "base_branch": "main",
-  "phase": "F3",
-  "status": "waiting_human",
+  "phase": "F4",
+  "status": "ready",
   "last_completed_batch": "F3-PILOT",
-  "next_batch": "F3-PILOT-REVIEW",
-  "next_action": "Human review required: inspect the F3 pilot limited to ferramentas-analitica-industrial.html; ferramentas-automacao-clp.html; ferramentas-calibracao-instrumentacao.html; ferramentas-eletrica-industrial.html; ferramentas-instrumentacao-industrial.html. The pilot reduced repeated highlight cards, added distinct decision guidance, and removed unverified review claims. Do not start scaled editorial edits without explicit approval.",
+  "next_batch": "F4-EDITORIAL-01",
+  "next_action": "Execute and publish only F4-EDITORIAL-01 from F4-EDITORIAL-QUEUE.md: improve the five listed P0 pages with original decision guidance, bounded technical context, verified primary sources where claims require them, and internal links. Do not alter formulas, JavaScript, manual-review pages, PDFs, or items outside the queue.",
   "max_pages_per_edit_batch": 5,
-  "automation_may_edit_content": false,
+  "automation_may_edit_content": true,
   "automation_may_commit_to_work_branch": true,
-  "automation_may_merge": false,
-  "automation_may_modify_main": false,
+  "automation_may_merge": true,
+  "automation_may_modify_main": true,
   "automation_may_request_adsense_review": false,
-  "requires_human_review_after": "F3-PILOT",
+  "requires_human_review_after": "F4-QUEUE-REFRESH",
   "baseline": {
     "base_commit": "eab09572d950c7b0072f6183705ba4d779ae472d",
     "html_files": 390,
@@ -25,7 +25,23 @@
     "adsense_status": "low_value_content"
   },
   "updated_at": "2026-08-17T00:00:00-03:00",
-  "stop_reason": "F3-PILOT completed after explicit user authorization. Awaiting human review of the pilot before any scaled editorial edits.",
+  "stop_reason": null,
+  "workflow_version": 3,
+  "publication": {
+    "enabled": true,
+    "target_branch": "main",
+    "method": "pull-request-merge",
+    "max_pages_per_release": 5,
+    "require_clean_validated_diff": true,
+    "allow_force": false,
+    "auto_request_adsense_review": false
+  },
+  "editorial_scope": {
+    "allowed_status": "improve",
+    "allowed_batches": ["F4-EDITORIAL-01", "F4-EDITORIAL-02"],
+    "forbidden_status": ["manual-review", "merge", "noindex-review", "redirect", "remove-candidate"],
+    "forbidden_changes": ["formula", "technical_javascript", "pdf_or_drawing_use", "authorship_or_credentials", "unvalidated_publication"]
+  },
   "run_protocol_version": 2,
   "auditor_schema_version": 2
 }
