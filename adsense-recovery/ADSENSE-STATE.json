@@ -1,0 +1,31 @@
+{
+  "schema_version": 2,
+  "project": "ALOGY AdSense Recovery",
+  "repository": "ronaldopjr/alogy",
+  "work_branch": "agent/adsense-recovery",
+  "base_branch": "main",
+  "phase": "F3",
+  "status": "waiting_human",
+  "last_completed_batch": "F3-PILOT",
+  "next_batch": "F3-PILOT-REVIEW",
+  "next_action": "Human review required: inspect the F3 pilot limited to ferramentas-analitica-industrial.html; ferramentas-automacao-clp.html; ferramentas-calibracao-instrumentacao.html; ferramentas-eletrica-industrial.html; ferramentas-instrumentacao-industrial.html. The pilot reduced repeated highlight cards, added distinct decision guidance, and removed unverified review claims. Do not start scaled editorial edits without explicit approval.",
+  "max_pages_per_edit_batch": 5,
+  "automation_may_edit_content": false,
+  "automation_may_commit_to_work_branch": true,
+  "automation_may_merge": false,
+  "automation_may_modify_main": false,
+  "automation_may_request_adsense_review": false,
+  "requires_human_review_after": "F3-PILOT",
+  "baseline": {
+    "base_commit": "eab09572d950c7b0072f6183705ba4d779ae472d",
+    "html_files": 390,
+    "internally_reported_indexable_pages": 299,
+    "internally_reported_noindex_pages": 90,
+    "search_console_indexed_snapshot": 352,
+    "adsense_status": "low_value_content"
+  },
+  "updated_at": "2026-08-17T00:00:00-03:00",
+  "stop_reason": "F3-PILOT completed after explicit user authorization. Awaiting human review of the pilot before any scaled editorial edits.",
+  "run_protocol_version": 2,
+  "auditor_schema_version": 2
+}

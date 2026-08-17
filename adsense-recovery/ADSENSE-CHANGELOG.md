@@ -1,0 +1,333 @@
+# Registro da recuperação do AdSense
+
+## 2026-08-17 — F3-PILOT
+
+- Após autorização humana explícita, foram editados somente os cinco hubs aprovados: analítica, automação/CLP, calibração, elétrica e instrumentação.
+- Cada hub recebeu orientação própria para escolha do recurso por decisão, etapa de trabalho ou tipo de evidência; nenhum texto foi copiado entre os cinco roteiros.
+- Destaques repetidos foram consolidados nos hubs de automação, calibração, elétrica e instrumentação.
+- As alegações não verificadas de “revisão técnica” foram removidas; nenhuma pessoa, credencial, autoria individual ou experiência foi inventada.
+- Nenhuma fórmula, JavaScript, sitemap, canonical, robots, PDF ou arquivo de desenho foi alterado ou utilizado. `main` não foi modificada.
+- A automação deve permanecer parada para revisão humana deste piloto antes de qualquer edição editorial em escala.
+
+## 2026-08-16 — F2-CLASSIFY-P0-BLOG-HUB-01
+
+- Classificado exatamente o último hub monetizado e indexável definido pelo estado.
+- `blog.html` recebeu `keep`, prioridade P1 e confiança alta.
+- O diretório reúne busca, oito categorias técnicas, 60 links únicos de artigos e 60 entradas `BlogPosting`; todos os destinos foram confirmados no SHA do lote.
+- A validação global confirmou que as 87 páginas monetizadas e indexáveis estão classificadas, encerrando a F2.
+- Nenhum HTML, JavaScript, fórmula, PDF ou desenho foi alterado ou utilizado.
+- A referência de `main` permaneceu no baseline `eab09572d950c7b0072f6183705ba4d779ae472d`.
+- A F3 ficou travada para aprovação humana do piloto editorial e do tratamento das alegações de revisão técnica ainda não verificadas.
+
+## 2026-08-16 — F2-CLASSIFY-P0-LOOP-TEST-CHECKLIST-01
+
+- Classificado exatamente o checklist monetizado e indexável de teste de loop definido pelo estado.
+- A página recebeu `manual-review`, prioridade P0 e confiança alta.
+- Os 12 itens, os pontos 4–20 mA e os alertas de segurança foram conferidos; a ferramenta diferencia progresso de aprovação.
+- Foram registrados riscos por alarmes, intertravamentos, liberação operacional, referência insuficiente e possibilidade de 100% de progresso com todos os itens como não aplicáveis.
+- Nenhum HTML, fórmula, JavaScript, canonical, robots, sitemap ou arquivo publicado foi alterado. Os PDFs confidenciais não foram lidos nem utilizados.
+- `main` permaneceu no baseline.
+
+## 2026-08-16 — F2-CLASSIFY-P0-TEMPERATURE-CALCULATORS-02
+
+- Classificadas exatamente duas calculadoras monetizadas e indexáveis de temperatura definidas pelo estado.
+- PT100 e termopar receberam `manual-review`, prioridade P0 e confiança alta.
+- A curva PT100 e o exemplo de 100 °C foram conferidos, mas as faixas de validade das classes não são controladas.
+- O termopar usa interpolação linear em tabelas reduzidas com intervalos de até 110 °C; normas e padrões de cores são citados sem links ou edições.
+- Nenhuma fórmula, tabela, JavaScript ou página foi alterada. Os PDFs confidenciais não foram lidos nem utilizados.
+- `main` permaneceu no baseline.
+
+## 2026-08-16 — F2-CLASSIFY-P0-MONETIZED-TOOL-HUBS-08
+
+- Classificados exatamente oito hubs monetizados e indexáveis de ferramentas definidos pelo estado.
+- O diretório central `ferramentas.html` recebeu `keep`, prioridade P1 e confiança alta por oferecer busca, categorias e descoberta geral de 222 ferramentas.
+- Os sete sub-hubs receberam `improve`, prioridade P0 e confiança alta: 100% de seus destinos já aparecem no diretório central e grande parte do texto repete cartões; a recomendação preserva cada intenção temática e propõe trilhas decisórias próprias.
+- As alegações de revisão técnica encontradas em quatro sub-hubs foram registradas para validação humana; nenhuma autoria ou credencial foi presumida.
+- Nenhum HTML, fórmula, JavaScript, canonical, robots, sitemap ou arquivo publicado foi alterado. Os PDFs confidenciais não foram lidos nem utilizados.
+- `main` permaneceu no baseline.
+
+## 2026-08-16 — F2-CLASSIFY-P0-CALIBRATION-CALCULATORS-10
+
+- Classificadas exatamente dez calculadoras monetizadas e indexáveis de calibração e medição definidas pelo estado.
+- Conversão 4–20 mA, calibração de manômetro, calibração de transmissores DP de vazão, nível DP, pressão e temperatura e carga de malha 4–20 mA receberam `keep`, prioridade P1 e confiança alta.
+- Erro de calibração, erro total de malha e incerteza/TUR/TAR receberam `manual-review`, prioridade P0 e confiança alta, porque geram status ou memória de conformidade dependentes de premissas e regras metrológicas formais.
+- Os exemplos numéricos declarados foram conferidos mecanicamente; nenhuma fórmula ou rotina técnica foi alterada.
+- Nenhum HTML, fórmula, JavaScript, canonical, robots, sitemap ou arquivo publicado foi alterado. Os PDFs confidenciais não foram lidos nem utilizados.
+- `main` permaneceu no baseline.
+
+## 2026-08-16 — F2-CLASSIFY-P0-NR10-ARTICLE-01
+
+- Classificado exatamente o artigo monetizado e indexável sobre a revisão da NR-10 definido pelo estado.
+- O artigo recebeu `manual-review`, prioridade P0 e confiança alta.
+- A verificação oficial confirmou que a redação anterior permanece vigente até 31/05/2027, a nova entra em vigor em 01/06/2027 e houve retificação em 24/06/2026; o artigo precisa explicitar a vigência, registrar a retificação e validar as obrigações item a item.
+- Também foram registrados riscos por fonte secundária, autoria apenas organizacional e alegações amplas de apoio técnico da ALOGY sem comprovação no repositório.
+- Nenhum HTML, fórmula, JavaScript, canonical, robots, sitemap ou arquivo publicado foi alterado. Os PDFs confidenciais não foram lidos nem utilizados.
+- `main` permaneceu no baseline.
+
+## 2026-08-16 — F2-CLASSIFY-P0-BELT-LENGTH-ARTICLE-01
+
+- Classificado exatamente o artigo monetizado e indexável de comprimento de correias definido pelo estado.
+- O artigo recebeu `improve`, prioridade P0 e confiança alta.
+- O cálculo e o exemplo estão corretos, mas faltam fontes técnicas identificáveis e confirmação da autoria e revisão atribuídas à equipe técnica.
+- Nenhum HTML, fórmula, JavaScript, canonical, robots, sitemap ou arquivo publicado foi alterado. Os PDFs confidenciais não foram lidos nem utilizados.
+- `main` permaneceu no baseline.
+
+## 2026-08-16 — F2-CLASSIFY-P0-VACUUM-LEAK-ARTICLE-01
+
+- Classificado exatamente o artigo monetizado e indexável de teste de vazamento definido pelo estado.
+- O artigo recebeu `manual-review`, prioridade P0 e confiança alta.
+- Foram registrados riscos por ausência de equação, exemplo, fontes, incerteza e critério reproduzível em um ensaio que pode sustentar decisões de estanqueidade e segurança.
+- Nenhum HTML, fórmula, JavaScript, canonical, robots, sitemap ou arquivo publicado foi alterado. Os PDFs confidenciais não foram lidos nem utilizados.
+- `main` permaneceu no baseline.
+
+## 2026-08-15 — F2-CLASSIFY-P0-4-20MA-ARTICLES-01
+
+- Classificados exatamente dois artigos monetizados e indexáveis de sinais 4–20 mA definidos pelo estado.
+- Resistor shunt recebeu `keep`, prioridade P1 e confiança alta.
+- Split range recebeu `manual-review`, prioridade P0 e confiança alta, por envolver estratégia de controle, falha segura, intertravamentos e atuação de válvulas sem fontes externas.
+- Nenhum HTML, fórmula, JavaScript, canonical, robots, sitemap ou arquivo publicado foi alterado. Os PDFs confidenciais não foram lidos nem utilizados.
+- `main` permaneceu no baseline.
+
+## 2026-08-15 — F2-CLASSIFY-P0-CHEMICAL-DOSING-ARTICLES-01
+
+- Classificados exatamente dois artigos monetizados e indexáveis de dosagem química definidos pelo estado.
+- Dosagem química em ppm recebeu `keep`, prioridade P1 e confiança alta.
+- Bomba dosadora química recebeu `manual-review`, prioridade P0 e confiança alta, por combinar dimensionamento e intervenção com produtos potencialmente perigosos.
+- Nenhum HTML, fórmula, JavaScript, canonical, robots, sitemap ou arquivo publicado foi alterado. Os PDFs confidenciais não foram lidos nem utilizados.
+- `main` permaneceu no baseline.
+
+## 2026-08-15 — F2-CLASSIFY-P0-PRESSURE-LEVEL-ARTICLES-01
+
+- Classificados exatamente dois artigos monetizados e indexáveis de pressão e nível definidos pelo estado.
+- Nível DP em tanque fechado recebeu `keep`, prioridade P1 e confiança alta.
+- Pressão hidrostática por densidade recebeu `improve`, prioridade P0 e confiança alta, por falta de equação, exemplo numérico e fontes externas.
+- Nenhum HTML, fórmula, JavaScript, canonical, robots, sitemap ou arquivo publicado foi alterado. Os PDFs confidenciais não foram lidos nem utilizados.
+- `main` permaneceu no baseline.
+
+## 2026-08-15 — F2-CLASSIFY-P0-FLOW-MEASUREMENT-ARTICLES-01
+
+- Classificados exatamente três artigos monetizados e indexáveis de medição de vazão definidos pelo estado.
+- K-factor e vazão normalizada receberam `keep`, prioridade P1 e confiança alta.
+- Linha de impulso DP recebeu `manual-review`, prioridade P0 e confiança alta, devido a orientações potencialmente críticas sobre manifold, purga e fluidos perigosos.
+- Nenhum HTML, fórmula, JavaScript, canonical, robots, sitemap ou arquivo publicado foi alterado. Os PDFs confidenciais não foram lidos nem utilizados.
+- `main` permaneceu no baseline.
+
+## 2026-08-15 — F2-CLASSIFY-P0-INDUSTRY-5-ARTICLE-01
+
+- Classificado exatamente o artigo monetizado e indexável de Indústria 5.0 definido pelo estado.
+- O artigo recebeu `improve`, prioridade P0 e confiança alta.
+- Foram registrados riscos de enquadramento sem fontes, falta de exemplo ou métricas e alegações amplas de ganhos e serviços.
+- Nenhum HTML, fórmula, JavaScript, canonical, robots, sitemap ou arquivo publicado foi alterado. Os PDFs confidenciais não foram lidos nem utilizados.
+- A ALOGY foi tratada como importadora e revendedora, nunca como fabricante; `main` permaneceu no baseline.
+
+## 2026-08-15 — F2-CLASSIFY-P0-DIGITAL-INDUSTRY-ARTICLES-01
+
+- Classificados exatamente dois artigos monetizados e indexáveis de indústria digital definidos pelo estado.
+- Gêmeo digital e IA na indústria receberam `improve`, prioridade P0 e confiança alta.
+- Ambos precisam de fontes, exemplos verificáveis, diferenciação editorial e validação de benefícios e alegações de serviços.
+- Nenhum HTML, fórmula, JavaScript, canonical, robots, sitemap ou arquivo publicado foi alterado. Os PDFs confidenciais não foram lidos nem utilizados.
+- A ALOGY foi tratada como importadora e revendedora, nunca como fabricante; `main` permaneceu no baseline.
+
+## 2026-08-15 — F2-CLASSIFY-P0-INSTRUMENTATION-STRATEGY-ARTICLES-01
+
+- Classificados exatamente dois artigos monetizados e indexáveis de estratégia de instrumentação definidos pelo estado.
+- Criticidade de instrumentos e instrumentação industrial receberam `improve`, prioridade P0 e confiança alta.
+- Criticidade precisa de matriz exemplificada, governança e fontes; o hub de instrumentação precisa de fontes, exemplo aprofundado e validação das alegações de serviços.
+- Nenhum HTML, fórmula, JavaScript, canonical, robots, sitemap ou arquivo publicado foi alterado. Os PDFs confidenciais não foram lidos nem utilizados.
+- `main` permaneceu no baseline.
+
+## 2026-08-15 — F2-CLASSIFY-P0-COMMISSIONING-ARTICLES-01
+
+- Classificados exatamente dois artigos monetizados e indexáveis de comissionamento e testes definidos pelo estado.
+- FAT/SAT e teste de loop receberam `improve`, prioridade P0 e confiança alta.
+- FAT/SAT precisa de fontes e caso completo de aceitação; teste de loop precisa de método seguro, critérios, referências e validação das alegações promocionais.
+- Nenhum HTML, fórmula, JavaScript, canonical, robots, sitemap ou arquivo publicado foi alterado. Os PDFs confidenciais não foram lidos nem utilizados.
+- `main` permaneceu no baseline.
+
+## 2026-08-14 — F2-CLASSIFY-P0-PNEUMATIC-INSTRUMENTATION-ARTICLES-01
+
+- Classificados exatamente dois artigos monetizados e indexáveis sobre instrumentação pneumática definidos pelo estado.
+- Conexões pneumáticas recebeu `merge`, prioridade P0 e confiança alta: sobrepõe amplamente o guia de dimensionamento, sem fonte, exemplo ou método quantitativo.
+- Dimensionamento de tubo pneumático recebeu `manual-review`, prioridade P0 e confiança alta: faltam fontes, curvas, método e exemplo, e o texto inclui atuadores de shutdown.
+- Nenhuma consolidação, remoção, redirecionamento ou edição foi aplicada; as decisões ficam para revisão editorial e técnica futura.
+- Nenhum HTML, fórmula, JavaScript, canonical, robots, sitemap ou arquivo publicado foi alterado. Os PDFs confidenciais não foram lidos nem utilizados.
+- `main` permaneceu no baseline.
+
+## 2026-08-14 — F2-CLASSIFY-P0-MEASUREMENT-QUALITY-ARTICLES-01
+
+- Classificados exatamente três artigos monetizados e indexáveis sobre qualidade da medição definidos pelo estado.
+- Emissividade em termografia recebeu `keep`, prioridade P1 e confiança alta: apresenta procedimento, exemplo, limites, referências de fabricantes e travas de segurança.
+- Erro total de malha recebeu `improve`, prioridade P0 e confiança alta: faltam conclusão do exemplo, fontes metrológicas e premissas de independência e correlação.
+- Histerese de pressostato e termostato recebeu `manual-review`, prioridade P0 e confiança alta: orienta testes ligados a alarmes e proteção sem fontes primárias ou exemplo validado.
+- Nenhum HTML, fórmula, JavaScript, canonical, robots, sitemap ou arquivo publicado foi alterado. Os PDFs confidenciais não foram lidos nem utilizados.
+- `main` permaneceu no baseline.
+
+## 2026-08-14 — F2-CLASSIFY-P0-RESPONSE-TIME-ARTICLES-01
+
+- Classificados exatamente dois artigos monetizados e indexáveis sobre tempo de resposta definidos pelo estado.
+- Tempo de amostragem de analisadores e resposta de termopoços receberam `keep`, prioridade P1 e confiança alta.
+- Ambos separam corretamente atraso dinâmico de erro de calibração, trazem exemplos reproduzíveis, diagnóstico, limites de uso e referências de fabricantes.
+- A autoria pessoal permanece pendente para a F6.
+- Nenhum HTML, fórmula, JavaScript, canonical, robots, sitemap ou arquivo publicado foi alterado. Os PDFs confidenciais não foram lidos nem utilizados.
+- `main` permaneceu no baseline.
+
+## 2026-08-14 — F2-CLASSIFY-P0-PROCESS-ANALYTICS-ARTICLES-01
+
+- Classificados exatamente três artigos monetizados e indexáveis de analítica de processo definidos pelo estado.
+- Condutividade/TDS, dosagem de cloro livre e neutralização de pH receberam `keep`, prioridade P1 e confiança alta.
+- Os três distinguem premissas críticas, incluem exemplos reproduzíveis, limites de aplicação, referências técnicas e alertas de segurança; nenhum prescreve setpoint ou autoriza projeto.
+- A autoria pessoal permanece pendente para a F6.
+- Nenhum HTML, fórmula, JavaScript, canonical, robots, sitemap ou arquivo publicado foi alterado. Os PDFs confidenciais não foram lidos nem utilizados.
+- `main` permaneceu no baseline.
+
+## 2026-08-14 — F2-CLASSIFY-P0-VALVE-ARTICLES-01
+
+- Classificados exatamente dois artigos monetizados e indexáveis sobre válvulas de controle definidos pelo estado.
+- Cavitação em válvula de controle recebeu `keep`, prioridade P1 e confiança alta: delimita cavitação e flashing, extremos operacionais, triagem e referências primárias de fabricante.
+- Cv para gases recebeu `manual-review`, prioridade P0 e confiança alta: dimensionamento compressível e fluxo crítico exigem método, fontes vigentes, exemplo e validação especializada antes de qualquer edição.
+- Nenhum HTML, fórmula, JavaScript, canonical, robots, sitemap ou arquivo publicado foi alterado. Os PDFs confidenciais não foram lidos nem utilizados.
+- `main` permaneceu no baseline.
+
+## 2026-08-14 — F2-CLASSIFY-P0-HART-TOOLS-01
+
+- Classificadas exatamente quatro ferramentas HART monetizadas e indexáveis definidas pelo estado.
+- Comprimento de cabo HART e malha 4–20 mA/HART completa receberam `keep`, prioridade P1 e confiança alta.
+- Diagnóstico 4–20 mA/HART recebeu `improve`, prioridade P0 e confiança alta, devido à sobreposição com a calculadora completa e necessidade de explicitar seu diferencial de triagem rápida.
+- Checklist de comissionamento HART recebeu `manual-review`, prioridade P0 e confiança alta: orienta atividade de campo, não liga diretamente as referências e contém orientação genérica de redes cuja aplicabilidade precisa ser validada por especialista.
+- Nenhum HTML, fórmula, JavaScript, canonical, robots, sitemap ou arquivo publicado foi alterado. Os PDFs confidenciais não foram lidos nem utilizados.
+- `main` permaneceu no baseline.
+
+## 2026-08-14 — F2-CLASSIFY-P0-HART-ARTICLES-01
+
+- Classificados exatamente dois artigos monetizados e indexáveis sobre HART definidos pelo estado.
+- Comissionamento HART e diagnóstico de falhas de comunicação receberam `keep`, prioridade P1 e confiança alta.
+- Os conteúdos são complementares: o primeiro verifica coerência entre dispositivo, corrente e sistema; o segundo aprofunda carga, tensão, cabo, capacitância, ruído e barreiras.
+- Ambos usam fontes técnicas primárias e delimitam os riscos de alterações em campo; a autoria pessoal permanece para a F6.
+- Nenhum HTML, fórmula, JavaScript, canonical, robots, sitemap ou arquivo publicado foi alterado. Os PDFs confidenciais não foram lidos nem utilizados.
+- `main` permaneceu no baseline.
+
+## 2026-08-14 — F2-CLASSIFY-P0-CALIBRATION-ARTICLES-03
+
+- Classificados exatamente os dois artigos monetizados e indexáveis restantes do grupo de calibração.
+- Transmissor de temperatura recebeu `keep`, prioridade P1 e confiança alta: distingue fronteiras do teste, inclui método, exemplo, limitações e referências de fabricante.
+- Válvula de controle recebeu `improve`, prioridade P0 e confiança alta: o roteiro básico e as travas de segurança são úteis, mas faltam fontes primárias e maior separação entre comando, curso, feedback e comportamento mecânico.
+- Nenhum HTML, fórmula, JavaScript, canonical, robots, sitemap ou arquivo publicado foi alterado. Os PDFs confidenciais não foram lidos nem utilizados.
+- `main` permaneceu no baseline.
+
+## 2026-08-13 — F2-CLASSIFY-P0-CALIBRATION-ARTICLES-02
+
+- Classificados exatamente cinco artigos monetizados e indexáveis de calibração definidos pelo estado.
+- pHmetro, totalizador de vazão, transmissor DP de vazão, transmissor DP de nível e transmissor de pressão receberam `keep`, prioridade P1 e confiança alta.
+- Os cinco apresentam métodos e exemplos delimitados, limitações de uso e referências técnicas externas; a lacuna comum de autoria ou revisão pessoal permanece reservada para a F6.
+- Nenhum HTML, fórmula, JavaScript, canonical, robots, sitemap ou arquivo publicado foi alterado. Os PDFs confidenciais não foram lidos nem utilizados.
+- `main` permaneceu no baseline.
+
+## 2026-08-13 — F2-CLASSIFY-P0-CALIBRATION-ARTICLES-01
+
+- Classificados exatamente cinco artigos monetizados e indexáveis de calibração definidos pelo estado.
+- Analisadores de processo, cartão analógico de CLP, conversor I/P–P/I e manômetro receberam `keep`, prioridade P1 e confiança alta: apresentam método, exemplos ou cálculos delimitados, ressalvas e referências técnicas úteis.
+- Calibração de instrumentos industriais recebeu `improve`, prioridade P0 e confiança alta: é um hub introdutório ainda genérico, sem exemplo completo, critérios de decisão, tratamento de incerteza ou fontes primárias identificadas.
+- A lacuna comum de autoria ou revisão pessoal permanece reservada para a F6.
+- Nenhum HTML, fórmula, JavaScript, canonical, robots, sitemap ou arquivo publicado foi alterado. Os PDFs confidenciais não foram lidos nem utilizados.
+- `main` permaneceu no baseline.
+
+## 2026-08-13 — F2-CLASSIFY-P0-MONETIZED-ARTICLES-03
+
+- Classificados exatamente cinco artigos monetizados e indexáveis definidos pelo estado.
+- ORP, rotâmetro e slope de pH foram classificados como `keep` P1: apresentam método, exemplos delimitados, limitações e referências externas úteis; falta somente autoria/revisão pessoal, tratada na F6.
+- SIL/PFD e LOPA foram classificados como `manual-review` P0: ambos tratam segurança funcional e segurança de processo; toda revisão de conteúdo depende de fontes primárias e validação de especialista.
+- Nenhum HTML, fórmula, JavaScript, canonical, robots, sitemap ou arquivo publicado foi alterado. Os PDFs confidenciais não foram lidos nem utilizados.
+- `main` permaneceu no baseline.
+
+## 2026-08-13 — F2-CLASSIFY-P0-MONETIZED-ARTICLES-02
+
+- Classificados exatamente cinco artigos monetizados e indexáveis definidos pelo estado; todos receberam `improve`, prioridade P0 e confiança alta.
+- NPSH e potência de bomba: textos introdutórios sem exemplo numérico, unidades, condições operacionais, curvas de fabricante ou fontes identificadas.
+- Solenóide para atuador: faltam método reproduzível para ar comprimido, dados de fabricante, distinção entre alimentação e exaustão e delimitação para funções de segurança.
+- Inspeção em área classificada: o checklist é útil, mas a futura edição depende de revisão técnica, fontes normativas confirmadas e escopo por tipo de proteção e inspeção.
+- Massa em tanque: há diferenciação inicial entre geometria e densidade, porém faltam cálculo completo, limites metrológicos, referências e revisão pessoal.
+- Nenhum HTML, fórmula, JavaScript, canonical, robots, sitemap ou arquivo publicado foi alterado. Os PDFs confidenciais não foram lidos nem utilizados.
+- `main` permaneceu no baseline.
+
+## 2026-08-13 — F2-CLASSIFY-P0-MONETIZED-ARTICLES-01
+
+- Classificados exatamente cinco artigos monetizados e indexáveis definidos pelo estado.
+- Os cinco receberam `improve`, prioridade P0 e confiança alta.
+- Manutenção preditiva: faltam exemplo diagnóstico, critérios de baseline/amostragem, fontes e experiência verificável.
+- Cibersegurança OT: tema sensível sem fontes oficiais ou framework identificado; qualquer melhoria exigirá fontes primárias e revisão especializada.
+- Gêmeo digital: faltam arquitetura, proveniência e qualidade das TAGs, validação e exemplo reproduzível.
+- Selo remoto: a ligação com a calculadora é positiva, mas faltam exemplo numérico, diagrama, premissas, fontes de fabricante e validação de engenharia.
+- Ar de instrumentos: a ISO 8573-1 é citada sem edição/classes/fontes; a ferramenta ligada calcula consumo, não qualidade.
+- Nenhuma página HTML, fórmula, JavaScript, canonical, robots, sitemap ou arquivo publicado foi alterado.
+- Os PDFs confidenciais não foram lidos nem utilizados.
+- `main` permaneceu no baseline.
+
+## 2026-08-13 — AUTOMATION-HARDENING
+
+- Adicionado protocolo de concorrência otimista baseado no SHA inicial da branch.
+- Cada execução passa a criar no máximo um commit atômico com blobs, árvore e estado no mesmo objeto Git.
+- Proibidos commits separados por arquivo para transações de lote.
+- A referência só pode avançar com force=false; mudança concorrente ou rejeição interrompe a execução sem mesclar nem repetir.
+- O auditor passou a preservar decisões editoriais existentes em reexecuções.
+- Separadas métricas do documento e do conteúdo principal; adicionados título, descrição e contagens de H2/H3 para triagem futura.
+- O script revisado passou em compilação e teste de regressão com preservação de classificação.
+- Nenhuma página do site foi alterada.
+
+## 2026-08-13 — F2-CLASSIFY-P0-INSTITUTIONAL
+
+- Classificadas exatamente cinco páginas institucionais prioritárias: index.html, sobre.html, industrial.html, residencial.html e cases.html.
+- Home, Sobre, Industrial e Residencial receberam improve, prioridade P0 e confiança alta.
+- Cases recebeu manual-review, prioridade P0 e confiança alta devido a alegações de resultados, locais, marcas e necessidade de confirmar autorização de divulgação.
+- Os PDFs anexados não foram lidos nem usados na classificação; permanecem fora de qualquer fluxo automático de publicação.
+- Nenhuma página HTML, fórmula, JavaScript, sitemap ou arquivo publicado foi alterado.
+- main permaneceu no baseline.
+
+## 2026-08-13 — F1-TECHNICAL-PLAN
+
+- Confirmada a hospedagem em GitHub Pages, build legado, branch `main`, raiz `/`, CNAME `www.alogy.com.br` e HTTPS obrigatório.
+- Confirmado que o GitHub Pages não oferece configuração de status HTTP 301 por caminho neste repositório estático.
+- Determinado que redirecionar `/index.html` por alteração do próprio arquivo quebraria também a home `/`, pois ambos usam o mesmo recurso no GitHub Pages; mantida a canonical para `/` como solução segura.
+- Confirmado que os dois redirects legados já usam `noindex,follow`, canonical para o destino, meta refresh, JavaScript e link manual, sem AdSense e fora dos sitemaps.
+- Determinado que os redirects devem permanecer como fallback estático até existir camada de CDN/proxy ou hospedagem com regras HTTP 301.
+- Confirmado que `google00ce371ffda114a1.html` é um token de propriedade do Google; sua remoção pode invalidar a propriedade se for o único método ativo.
+- Determinado manter o arquivo de verificação por enquanto; ele está fora do sitemap e não carrega AdSense, portanto seu soft 404 histórico não justifica risco de perda da propriedade.
+- Nenhuma correção técnica de página foi aplicada porque as alternativas disponíveis seriam neutras ou mais arriscadas na hospedagem atual.
+- Nenhuma página do site foi alterada.
+- A branch `main` não foi alterada.
+
+## 2026-08-13 — F0-RECONCILE
+
+- Corrigido o auditor para ignorar HTML embutido em scripts ao contar elementos H1.
+- Eliminados 11 falsos positivos de H1 duplicado; eram títulos em modelos JavaScript de memória de cálculo/impressão.
+- Confirmado que todas as 299 páginas editoriais indexáveis possuem exatamente um H1 renderizado.
+- Quantificados padrões editoriais: 60 artigos, 209 calculadoras, 10 checklists, oito hubs e 12 outras páginas indexáveis.
+- Apenas 18 das 299 páginas indexáveis apresentam indicação visível de autoria ou revisão no conteúdo.
+- 255 páginas usam a organização como autora em JSON-LD; nenhuma usa uma pessoa identificada como autora em JSON-LD.
+- Apenas 30 páginas possuem `datePublished` no código estruturado.
+- Identificados parágrafos idênticos repetidos em grupos de até 16 páginas e o título “Erros comuns” em 41 páginas indexáveis.
+- A repetição de um título isolado não é defeito; os blocos completos repetidos serão usados como sinal de priorização editorial.
+- Nenhuma página do site foi alterada.
+- A branch `main` não foi alterada.
+
+## 2026-08-13 — F0-INVENTORY
+
+- Inventariadas as 390 páginas HTML da branch de recuperação.
+- Confirmadas 299 páginas `index,follow` e 90 páginas `noindex`; existe ainda um arquivo de verificação sem meta robots.
+- Confirmadas 299 URLs de páginas nos sitemaps ativos.
+- Confirmado que nenhuma página `noindex` está nos sitemaps.
+- Confirmado que nenhuma página `noindex` carrega AdSense.
+- Identificadas 87 páginas com o identificador do AdSense e 303 sem ele.
+- Identificado o arquivo antigo `google00ce371ffda114a1.html`, sem canonical, robots ou H1 e fora dos sitemaps.
+- A primeira versão do auditor sinalizou 11 páginas com dois H1; a reconciliação posterior confirmou que os segundos títulos estavam dentro de modelos JavaScript e não eram elementos renderizados.
+- Identificadas cinco páginas institucionais indexáveis com menos de 300 palavras visíveis; a contagem é apenas um sinal de triagem, não um critério do Google.
+- Nenhuma página do site foi alterada.
+- A branch `main` não foi alterada.
+
+## 2026-08-13 — F0-BOOTSTRAP
+
+- Criado o sistema persistente de controle na branch `agent/adsense-recovery`.
+- Registrado o baseline conhecido do repositório, AdSense e Search Console.
+- Definidos gates de segurança, fases, limites e ações proibidas.
+- Criado inventário vazio para preenchimento no lote `F0-INVENTORY`.
+- Nenhuma página do site foi alterada.
+- A branch `main` não foi alterada.
