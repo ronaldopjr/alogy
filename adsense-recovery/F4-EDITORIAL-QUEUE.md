@@ -8,6 +8,14 @@
 - Não alterar fórmulas, JavaScript, canonical, robots, sitemap, páginas `manual-review` ou conteúdo confidencial.
 - Lote aprovado pelos gates deve ser publicado em `main` por pull request limpa, sem força e sem arquivos inesperados.
 
+## F4-EDITORIAL-04 — qualidade e umidade do ar de instrumentos
+
+1. `blog-ar-instrumentos-qualidade-ponto-orvalho.html`
+   - Escopo editorial: transformar o texto introdutório em uma sequência de decisão entre requisito da aplicação, classe de pureza, ponto de medição, pressão da amostra, estabilização e registro; distinguir ponto de orvalho sob pressão de comparação em condição atmosférica sem prescrever classe ou valor universal.
+   - Fontes a verificar na edição: páginas oficiais da ISO para ISO 8573-1:2010, o trabalho de revisão ISO/AWI 8573-1 e ISO 8573-3:1999; documentação pública do fabricante sobre medição de ponto de orvalho em ar comprimido.
+   - Links internos pretendidos: preservar `calculadora-consumo-ar-instrumentos.html` e explicar que consumo não determina pureza nem ponto de orvalho; usar apenas links locais já existentes e confirmados.
+   - Mudanças proibidas: classe, setpoint ou critério universal; seleção de secador, sensor ou ponto de instalação final; procedimento de intervenção; alegação de conformidade; fórmula, JavaScript, canonical, robots, sitemap, autoria, credencial ou dado de cliente.
+
 ## F4-EDITORIAL-03 — clareza de escopo em ferramenta e artigo
 
 1. `blog-comprimento-correia-polias.html`
