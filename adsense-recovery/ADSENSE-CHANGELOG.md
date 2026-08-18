@@ -1,5 +1,13 @@
 # Registro da recuperação do AdSense
 
+## 2026-08-18 — F4-ROLLING-QUEUE-RECOVERY
+
+- Restauradas regras persistentes para recomposição segura da fila editorial F4.
+- A automação deixa de entrar em `waiting_human` apenas porque a fila explícita terminou: ela passa a recompor lotes de até cinco páginas previamente classificadas, com filtros de risco e exclusões rígidas.
+- Definido `F4-EDITORIAL-03` com duas páginas de escopo editorial limitado: comprimento de correias/polias e triagem 4–20 mA/HART.
+- Publicação continua limitada a pull request limpa e merge sem força de lote validado; esta configuração não alterou nenhuma página pública.
+- PDFs, desenhos confidenciais, fórmulas, JavaScript técnico, itens `manual-review`, autoria e credenciais permanecem bloqueados.
+
 ## 2026-08-17 — F4-EDITORIAL-02
 
 - Melhoradas cinco páginas `improve` P0: ciclo de TAG em gêmeo digital, manutenção preditiva, calibração e os hubs de manutenção e processo.
