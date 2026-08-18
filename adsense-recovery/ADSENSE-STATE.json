@@ -6,9 +6,9 @@
   "base_branch": "main",
   "phase": "F4",
   "status": "ready",
-  "last_completed_batch": "F4-EDITORIAL-03",
-  "next_batch": "F4-EDITORIAL-04",
-  "next_action": "Execute only F4-EDITORIAL-04 as listed in F4-EDITORIAL-QUEUE.md. Verify the named official ISO status and public manufacturer documentation, preserve technical boundaries, and publish only after all gates pass.",
+  "last_completed_batch": "F4-EDITORIAL-04",
+  "next_batch": "F4-QUEUE-REFRESH",
+  "next_action": "Recompose the next F4 editorial queue only under F4-ROLLING-EDITORIAL-RULES.md. Do not wait for human review and do not edit pages in the same run as queue recomposition.",
   "max_pages_per_edit_batch": 5,
   "automation_may_edit_content": true,
   "automation_may_commit_to_work_branch": true,
@@ -24,7 +24,7 @@
     "search_console_indexed_snapshot": 352,
     "adsense_status": "low_value_content"
   },
-  "updated_at": "2026-08-18T14:01:30-03:00",
+  "updated_at": "2026-08-18T17:00:49-03:00",
   "stop_reason": null,
   "workflow_version": 4,
   "publication": {
