@@ -107,8 +107,51 @@
       <div class="post-content">
         <div class="post-meta">Utilidades industriais • Atualizado em 2026-06-29</div>
         <h1>Ar de instrumentos: qualidade, ponto de orvalho e falhas em posicionadores</h1>
-        <p>Ar de instrumentos não é apenas ar comprimido. Ele precisa ser limpo, seco e estável para alimentar posicionadores, conversores I/P, válvulas, analisadores, purgas e atuadores. Quando a qualidade do ar é ruim, a falha aparece no instrumento, mas a causa está na utilidade.</p><h2>Principais contaminantes</h2><p>Os contaminantes mais importantes são partículas sólidas, água líquida, vapor de água, aerossol de óleo e vapores de óleo. A ISO 8573-1 é amplamente usada para classificar pureza do ar comprimido por partículas, água e óleo.</p><h2>Ponto de orvalho</h2><p>O ponto de orvalho indica a temperatura na qual o vapor de água começa a condensar. Se a linha passa por área fria e o ponto de orvalho não é adequado, pode formar água dentro da tubulação. Isso causa corrosão, travamento, oscilação e falha pneumática.</p><h2>Falhas típicas em posicionadores</h2><ul><li>Oscilação da válvula por restrição ou sujeira.</li><li>Bicos internos obstruídos por óleo ou partículas.</li><li>Resposta lenta por pressão instável.</li><li>Falha intermitente após chuva, lavagem ou queda de temperatura.</li><li>Corrosão interna em manifold e reguladores.</li></ul><h2>Filtragem e secagem</h2><p>Um sistema robusto normalmente combina compressor adequado, separação de condensado, secador, filtros, drenos automáticos, reservatório e distribuição correta. Na chegada aos instrumentos, filtros reguladores ajudam, mas não devem ser usados como única solução para ar ruim.</p><h2>Monitoramento</h2><p>Pressão, ponto de orvalho, troca de filtros e drenagem devem entrar na rotina de manutenção. Quando há muitos problemas em posicionadores de uma mesma área, a qualidade do ar deve ser investigada antes de trocar instrumentos em sequência.</p><h2>Conclusão</h2><p>Ar de instrumentos é uma base invisível da confiabilidade. Melhorar qualidade de ar reduz falhas em campo, retrabalho, consumo, paradas e intervenções desnecessárias em válvulas de controle.</p>
-        <div class="post-highlight"><strong>Ferramenta relacionada:</strong> aplique este conteúdo em uma calculadora prática da ALOGY.<div style="margin-top:12px"><a class="btn" href="calculadora-consumo-ar-instrumentos.html"><i class="fas fa-calculator"></i> Calcular consumo de ar</a></div></div>
+        <p>Ar de instrumentos não é apenas ar comprimido disponível na rede. A condição necessária depende da aplicação, do equipamento alimentado e do ponto em que o requisito será verificado. Uma leitura isolada não demonstra a qualidade de toda a rede: é preciso relacionar requisito, local de medição, pressão, estabilidade e registro.</p>
+
+        <h2>O que a classificação de pureza organiza</h2>
+        <p>A <a href="https://www.iso.org/standard/46418.html" target="_blank" rel="noopener noreferrer">ISO 8573-1:2010</a>, edição 3, organiza classes de pureza para partículas, água e óleo. A página oficial da ISO ainda apresenta essa edição como publicada, mas informa que ela será revisada e que existe uma substituta em desenvolvimento. Por isso, a edição e a situação do documento devem ser conferidas antes de usá-lo em especificação, contrato ou critério de aceitação.</p>
+        <p>A norma não transforma uma classe em requisito universal para todos os instrumentos. O valor aplicável precisa vir da documentação do equipamento, da necessidade do processo e do critério formal adotado para aquele ponto da rede. Partículas, água e óleo também devem ser registrados separadamente: bom resultado em um contaminante não comprova os demais.</p>
+
+        <h2>Ponto de orvalho: a condição da medição importa</h2>
+        <p>O ponto de orvalho representa a temperatura em que o vapor de água atinge a condição de condensação. Em ar comprimido, a leitura depende da pressão considerada. Portanto, um ponto de orvalho medido sob pressão e um valor convertido para condição atmosférica não devem ser comparados sem declarar a mesma base.</p>
+        <p>A <a href="https://www.iso.org/standard/25282.html" target="_blank" rel="noopener noreferrer">ISO 8573-3:1999</a> trata métodos para umidade em ar comprimido, incluindo amostragem, avaliação, incerteza e apresentação do resultado. Ela se refere à água no estado de vapor; presença de água líquida exige avaliação separada.</p>
+        <p>Na prática documental, a leitura só fica interpretável quando acompanha o ponto da rede, a pressão e a temperatura da amostra, a identificação do instrumento, sua condição de calibração e a evidência de estabilização. O <a href="https://docs.vaisala.com/r/M010091EN-G/en-US/GUID-A10464F7-DAB8-4B4B-B9A2-3DF79FAC2B53" target="_blank" rel="noopener noreferrer">guia público do medidor DM70 da Vaisala</a> orienta configurar corretamente a pressão e aguardar a estabilização; o tempo necessário pode aumentar em medições de ponto de orvalho muito baixo.</p>
+
+        <h2>Roteiro de decisão antes de interpretar o resultado</h2>
+        <div class="table-responsive"><table>
+          <thead><tr><th>Etapa</th><th>Pergunta que precisa ser respondida</th><th>Evidência mínima</th></tr></thead>
+          <tbody>
+            <tr><td>Requisito</td><td>Qual documento define a condição necessária para a aplicação?</td><td>Manual, especificação ou critério interno identificado por edição ou revisão.</td></tr>
+            <tr><td>Local</td><td>A medição representa a saída do tratamento, um ramal ou o ponto de uso?</td><td>TAG ou descrição inequívoca do ponto e relação com o equipamento atendido.</td></tr>
+            <tr><td>Condição</td><td>Em qual pressão e temperatura a amostra foi observada?</td><td>Pressão, temperatura e base usada para expressar o ponto de orvalho.</td></tr>
+            <tr><td>Qualidade da leitura</td><td>O instrumento e o tempo de estabilização são adequados ao intervalo observado?</td><td>Identificação, faixa, calibração e critério de estabilidade conforme documentação aplicável.</td></tr>
+            <tr><td>Conclusão</td><td>O resultado será apenas tendência, diagnóstico ou evidência para aceitação?</td><td>Regra de decisão previamente definida, responsáveis e tratamento da incerteza quando aplicável.</td></tr>
+          </tbody>
+        </table></div>
+
+        <h2>Exemplo de registro sem prescrever uma classe</h2>
+        <p>Considere uma equipe que precisa verificar se um ramal preserva a condição declarada na saída do sistema de tratamento. Antes de comparar resultados, ela registra a origem do requisito, os dois pontos medidos, pressão e temperatura de cada amostra, instrumento utilizado, condição de calibração e momento em que a leitura estabilizou. Se as bases forem diferentes, os números não são tratados como diretamente equivalentes.</p>
+        <p>Esse registro permite separar três perguntas: o tratamento entregou a condição declarada, a distribuição a preservou e o ponto de uso recebeu o ar esperado. A página não define classe, setpoint nem aprova conformidade; essas decisões dependem dos documentos aplicáveis e de validação técnica.</p>
+
+        <h2>Sintoma não é diagnóstico</h2>
+        <div class="table-responsive"><table>
+          <thead><tr><th>Observação</th><th>Hipóteses que ainda precisam ser separadas</th><th>Dados úteis</th></tr></thead>
+          <tbody>
+            <tr><td>Condensado após resfriamento da linha</td><td>Umidade do ar, condição térmica local ou drenagem.</td><td>Ponto e horário, temperatura ambiente, pressão e histórico de ponto de orvalho.</td></tr>
+            <tr><td>Resposta lenta em vários instrumentos</td><td>Pressão disponível, restrição, demanda simultânea ou contaminação.</td><td>Tendência de pressão, distribuição dos eventos e registros de filtros e drenos.</td></tr>
+            <tr><td>Falha repetida em um único ponto</td><td>Problema local do instrumento, regulador, conexão ou ramal.</td><td>Comparação com pontos próximos e histórico de manutenção, sem presumir causa comum.</td></tr>
+            <tr><td>Oscilação durante picos de consumo</td><td>Capacidade, queda de pressão ou perfil de demanda.</td><td>Pressão e consumo no mesmo período; pureza e capacidade permanecem avaliações diferentes.</td></tr>
+          </tbody>
+        </table></div>
+
+        <h2>Monitoramento e limites</h2>
+        <p>Uma rotina útil separa tendências de pressão, umidade e manutenção dos elementos de tratamento. Mudança de tendência pode justificar investigação, mas não identifica sozinha a causa nem autoriza substituir instrumentos, ajustar secadores ou alterar a rede. A análise deve considerar documentação do fabricante, condições reais e procedimentos aplicáveis.</p>
+
+        <h2>Conclusão</h2>
+        <p>A qualidade do ar de instrumentos fica verificável quando requisito, ponto de medição e evidência usam a mesma base. Esse encadeamento evita atribuir toda falha ao posicionador ou, no extremo oposto, culpar a utilidade sem dados suficientes.</p>
+
+        <div class="post-highlight"><strong>Ferramenta relacionada:</strong> a calculadora estima demanda e consumo de ar; ela não mede pureza nem ponto de orvalho.<div style="margin-top:12px"><a class="btn" href="calculadora-consumo-ar-instrumentos.html"><i class="fas fa-calculator"></i> Calcular consumo de ar</a></div></div>
         <section class="faq">
           <h2>Perguntas frequentes</h2>
           <details><summary>O que é ponto de orvalho?</summary><p>É a temperatura na qual a umidade do ar começa a condensar.</p></details><details><summary>Óleo no ar prejudica posicionador?</summary><p>Sim. Óleo pode obstruir passagens internas, atacar componentes e alterar resposta pneumática.</p></details><details><summary>Filtro regulador resolve tudo?</summary><p>Não. Ele ajuda no ponto de uso, mas não substitui secagem e tratamento central do ar.</p></details><details><summary>Como saber se o problema é ar?</summary><p>Falhas repetidas em vários instrumentos da mesma rede, condensado, filtros saturados e pressão instável são sinais fortes.</p></details>

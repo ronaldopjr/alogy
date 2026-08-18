@@ -1,5 +1,14 @@
 # Registro da recuperação do AdSense
 
+## 2026-08-18 — F4-EDITORIAL-04
+
+- Melhorada uma página `improve` P0 de baixo risco editorial: qualidade e ponto de orvalho do ar de instrumentos.
+- O conteúdo passou a separar requisito, classe de pureza, ponto de medição, pressão, estabilização, registro e regra de decisão, sem prescrever classe, setpoint, seleção de equipamento ou intervenção.
+- As edições e situações oficiais de ISO 8573-1:2010 e ISO 8573-3:1999 foram verificadas; a revisão em desenvolvimento da Parte 1 foi explicitada.
+- A relação com a calculadora de consumo foi delimitada: demanda de ar não comprova pureza nem ponto de orvalho.
+- H1, título, canonical, robots, AdSense e todos os blocos JavaScript foram preservados; nenhum PDF, desenho, fórmula, autoria, credencial ou dado de cliente foi usado ou alterado.
+- Próximo estado: `ready / F4-QUEUE-REFRESH`, para recomposição automática da próxima fila segura.
+
 ## 2026-08-18 — F4-EDITORIAL-03
 
 - Melhoradas duas páginas `improve` P0 dentro de escopo editorial limitado: comprimento de correia/polias e triagem 4–20 mA/HART.
