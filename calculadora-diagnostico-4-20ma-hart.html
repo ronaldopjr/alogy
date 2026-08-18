@@ -63,11 +63,16 @@
 <section class="tools-hero">
 <h1>Diagnóstico 4-20 mA e HART</h1>
 <p class="muted" data-alogy-content-meta><strong>Conteúdo técnico:</strong> ALOGY Engenharia · <strong>Atualizado em:</strong> 21/07/2026</p>
-<p>Verifique corrente de malha, valor de engenharia, status do sinal, carga total, resistor HART de 250 Ω, tensão mínima necessária e margem da fonte para apoio em manutenção e teste de loop.</p>
+<p>Faça uma triagem rápida da corrente observada, do valor de engenharia e da margem estimada de tensão. A página organiza a leitura inicial; ela não testa comunicação HART nem substitui o procedimento e a documentação do equipamento instalado.</p>
 </section>
 <section aria-label="Aviso de responsabilidade" class="calc-card">
 <h2><i class="fas fa-triangle-exclamation"></i> Uso orientativo</h2>
 <p>Esta ferramenta é apenas para estudo, apoio técnico e pré-análise. O resultado pode conter simplificações, aproximações ou erros de preenchimento e não substitui manual do fabricante, norma aplicável, medição em campo, teste com multímetro/calibrador/comunicador HART, procedimento interno, laudo, ART/RRT ou profissional habilitado. Na máxima extensão permitida pela legislação aplicável, a ALOGY não assume responsabilidade por decisões tomadas exclusivamente com base nesta estimativa orientativa, sem verificação das condições reais e sem validação técnica adequada. Nada neste aviso exclui direitos ou responsabilidades que não possam ser legalmente afastados.</p>
+</section>
+<section aria-label="Escopo da triagem rápida" class="calc-card">
+<h2><i class="fas fa-filter"></i> Triagem rápida, não projeto completo da malha</h2>
+<p>Use esta ferramenta para conferir se a corrente informada é coerente com uma faixa linear, visualizar o status configurável e estimar a margem de tensão com as entradas declaradas. Ela é útil para organizar a investigação inicial e registrar o que precisa ser confirmado.</p>
+<p>Para análise mais ampla de carga, cabo, alimentação e configuração da malha, consulte a <a href="calculadora-malha-4-20ma-hart-completa.html">calculadora completa de malha 4–20 mA/HART</a>. Nenhuma das duas páginas autoriza abrir circuito, alterar parâmetros ou decidir condição de operação em campo.</p>
 </section>
 <section class="calc-layout">
 <div class="calc-card">
@@ -118,7 +123,6 @@
 <details><summary>O status de falha é universal?</summary><p>Não. Os limites de falha e saturação podem variar conforme configuração do transmissor, sistema e padrão adotado. Use os alertas da ferramenta apenas como referência inicial.</p></details>
 </div>
 </section>
-<!-- ALOGY_REVISAO_TECNICA_FERRAMENTA -->
 <section class="calc-card" aria-label="Sequência de diagnóstico da malha 4-20 mA e HART">
   <h2><i class="fas fa-clipboard-check"></i> Sequência de diagnóstico da malha</h2>
   <p>Use o percentual e o valor de engenharia para confirmar coerência do sinal; depois avalie tensão disponível, carga total e condição para comunicação HART. Um valor correto em mA não elimina falhas de escala, aterramento, alimentação ou parametrização.</p>

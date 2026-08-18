@@ -8,6 +8,16 @@
 - Não alterar fórmulas, JavaScript, canonical, robots, sitemap, páginas `manual-review` ou conteúdo confidencial.
 - Lote aprovado pelos gates deve ser publicado em `main` por pull request limpa, sem força e sem arquivos inesperados.
 
+## F4-EDITORIAL-03 — clareza de escopo em ferramenta e artigo
+
+1. `blog-comprimento-correia-polias.html`
+   - Diferenciar medida geométrica, comprimento nominal/comercial e verificação de campo; retirar qualquer alegação de revisão técnica não comprovada.
+   - Preservar integralmente fórmulas, exemplos numéricos e JavaScript; só citar documentação pública verificável de fabricante, sem recomendar seleção final.
+
+2. `calculadora-diagnostico-4-20ma-hart.html`
+   - Diferenciar a função de triagem rápida da calculadora completa de malha 4–20 mA/HART e reduzir repetição editorial.
+   - Não alterar fórmulas, limiares, referências configuráveis, JavaScript nem orientar intervenção em campo.
+
 ## F4-EDITORIAL-01 — fundamentos e transformação digital industrial
 
 1. `blog-instrumentacao-industrial.html`

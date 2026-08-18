@@ -10,10 +10,10 @@ O GitHub é o estado persistente entre execuções. Use o SHA da branch no come�
 
 ## Regra de decisão
 
-1. Se `status` não for `ready`, não edite. Informe o motivo e encerre sem criar commit.
-2. Execute somente o lote exatamente indicado em `next_batch`. Não escolha páginas novas, não reclassifique o site e não aumente o lote.
-3. Edite apenas páginas com status `improve` presentes na fila F4 e nunca mais de cinco páginas em uma execução.
-4. Em cada página, acrescente valor editorial próprio: orientação de decisão, método ou contexto delimitado, premissas, limites de uso, links internos úteis e referências externas primárias quando fizer afirmações técnicas verificáveis.
+1. Se `status` for `ready` e `next_batch` começar com `F4-EDITORIAL-`, execute somente esse lote, com no máximo cinco páginas.
+2. Se `next_batch` for `F4-QUEUE-REFRESH`, aplique exclusivamente `F4-ROLLING-EDITORIAL-RULES.md`: recomponha uma fila de até cinco candidatas elegíveis, atualize fila e estado em um único commit de controle e encerre. A edição das páginas começa somente na próxima execução.
+3. Se `status` for `observing`, reavalie apenas a seleção permitida pelas regras rolantes; não faça auditoria integral, alteração vazia nem ampliação de escopo.
+4. Em cada página, acrescente valor editorial próprio: orientação de decisão, contexto delimitado, premissas, limites de uso, links internos úteis e referências externas primárias quando fizer afirmações técnicas verificáveis.
 5. Não copie texto entre páginas nem amplie alegações de serviço, resultados, experiência, autoria, credenciais ou conformidade. A ALOGY é importadora e revendedora, nunca fabricante.
 6. Não use os PDFs ou desenhos confidenciais como fonte, exemplo ou material publicável.
 7. Não edite páginas `manual-review`, itens de consolidação, `noindex`, redirects, páginas institucionais de confiança, fórmulas ou JavaScript técnico.
@@ -44,9 +44,10 @@ Após um commit aprovado por todos os gates, publique o lote em `main` somente p
 
 ## Transição de estado
 
-- Ao concluir e publicar um lote, avance somente para o próximo lote listado em `F4-EDITORIAL-QUEUE.md`.
-- Após o último lote da fila, mude para `waiting_human` e `F4-QUEUE-REFRESH`; não escolha páginas fora da fila.
-- Diante de falha, conflito, falta de fonte primária, alegação não comprovável ou risco técnico, registre o bloqueio e pare.
+- Ao concluir e publicar um lote, avance para o próximo lote listado em `F4-EDITORIAL-QUEUE.md`.
+- Após o último lote, defina `status: ready` e `next_batch: F4-QUEUE-REFRESH`; a execução seguinte recompõe a fila pelas regras rolantes, sem esperar aprovação humana.
+- Se as regras não encontrarem candidata elegível, registre `status: observing`, mantenha a tarefa recorrente ativa e reavalie somente essa seleção nas execuções futuras. Não crie commit vazio, não reclassifique o site e não promova exceções.
+- Diante de falha, conflito, falta de fonte primária, alegação não comprovável ou risco técnico, exclua somente a página afetada e siga com as demais candidatas; se o lote ficar vazio, entre em `observing`.
 - Nunca solicite revisão ao AdSense. Itens `manual-review` continuam bloqueados até autorização e validação específica.
 
 ## Relato ao final

@@ -1,5 +1,21 @@
 # Registro da recuperação do AdSense
 
+## 2026-08-18 — F4-EDITORIAL-03
+
+- Melhoradas duas páginas `improve` P0 dentro de escopo editorial limitado: comprimento de correia/polias e triagem 4–20 mA/HART.
+- O artigo de correias passou a distinguir estimativa geométrica de designação de catálogo e removeu alegação de autoria/revisão técnica não confirmada.
+- A ferramenta HART passou a delimitar a triagem rápida e a encaminhar para a calculadora completa; fórmulas, limiares e JavaScript foram preservados.
+- Fonte pública do fabricante Gates verificada; nenhum PDF ou desenho foi usado.
+- Próximo estado: `ready / F4-QUEUE-REFRESH`, para recomposição automática da fila segura.
+
+## 2026-08-18 — F4-ROLLING-QUEUE-RECOVERY
+
+- Restauradas regras persistentes para recomposição segura da fila editorial F4.
+- A automação deixa de entrar em `waiting_human` apenas porque a fila explícita terminou: ela passa a recompor lotes de até cinco páginas previamente classificadas, com filtros de risco e exclusões rígidas.
+- Definido `F4-EDITORIAL-03` com duas páginas de escopo editorial limitado: comprimento de correias/polias e triagem 4–20 mA/HART.
+- Publicação continua limitada a pull request limpa e merge sem força de lote validado; esta configuração não alterou nenhuma página pública.
+- PDFs, desenhos confidenciais, fórmulas, JavaScript técnico, itens `manual-review`, autoria e credenciais permanecem bloqueados.
+
 ## 2026-08-17 — F4-EDITORIAL-02
 
 - Melhoradas cinco páginas `improve` P0: ciclo de TAG em gêmeo digital, manutenção preditiva, calibração e os hubs de manutenção e processo.
