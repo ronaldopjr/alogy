@@ -5,17 +5,17 @@
   "work_branch": "agent/adsense-recovery",
   "base_branch": "main",
   "phase": "F4",
-  "status": "waiting_human",
+  "status": "ready",
   "last_completed_batch": "F4-EDITORIAL-02",
-  "next_batch": "F4-QUEUE-REFRESH",
-  "next_action": "Restore and validate adsense-recovery/F4-ROLLING-EDITORIAL-RULES.md before any queue recomposition. Do not select or edit pages outside the explicit F4 queue. After the rolling rules exist and authorize the action, replenish the queue only with pre-classified low-risk improve P0 pages or enter the observation cycle they define.",
+  "next_batch": "F4-EDITORIAL-03",
+  "next_action": "Execute and publish only F4-EDITORIAL-03. Thereafter, when the F4 queue is exhausted, follow F4-ROLLING-EDITORIAL-RULES.md to replenish it with a new pre-classified low-risk editorial batch; do not wait for human review merely because a batch ended.",
   "max_pages_per_edit_batch": 5,
   "automation_may_edit_content": true,
   "automation_may_commit_to_work_branch": true,
   "automation_may_merge": true,
   "automation_may_modify_main": true,
   "automation_may_request_adsense_review": false,
-  "requires_human_review_after": "F4-QUEUE-REFRESH",
+  "requires_human_review_after": null,
   "baseline": {
     "base_commit": "eab09572d950c7b0072f6183705ba4d779ae472d",
     "html_files": 390,
@@ -24,9 +24,9 @@
     "search_console_indexed_snapshot": 352,
     "adsense_status": "low_value_content"
   },
-  "updated_at": "2026-08-17T20:05:28-03:00",
-  "stop_reason": "F4-ROLLING-EDITORIAL-RULES.md is missing from agent/adsense-recovery, so safe rolling queue replenishment is not defined after the final explicit batch.",
-  "workflow_version": 3,
+  "updated_at": "2026-08-18T10:00:00-03:00",
+  "stop_reason": null,
+  "workflow_version": 4,
   "publication": {
     "enabled": true,
     "target_branch": "main",
@@ -40,7 +40,9 @@
     "allowed_status": "improve",
     "allowed_batches": [
       "F4-EDITORIAL-01",
-      "F4-EDITORIAL-02"
+      "F4-EDITORIAL-02",
+      "F4-EDITORIAL-03",
+      "F4 rolling batches authorized by F4-ROLLING-EDITORIAL-RULES.md"
     ],
     "forbidden_status": [
       "manual-review",
@@ -55,7 +57,8 @@
       "pdf_or_drawing_use",
       "authorship_or_credentials",
       "unvalidated_publication"
-    ]
+    ],
+    "rolling_replenishment_authorized": true
   },
   "run_protocol_version": 2,
   "auditor_schema_version": 2
