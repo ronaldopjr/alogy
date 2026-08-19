@@ -16,6 +16,19 @@ Quando `ADSENSE-STATE.json` indicar `F4-QUEUE-REFRESH` ou `observing`, consulte 
 
 Uma candidata só é elegível se for `index,follow`, estiver no sitemap, tiver classificação `improve` / `P0` / confiança alta, ainda não estiver concluída na F4 e puder receber valor editorial sem alterar fórmulas, JavaScript técnico, limites de cálculo, dados de cliente ou alegações institucionais.
 
+## Piscina de manutenção contínua
+
+Quando não houver candidata `improve` / P0 / alta que sobreviva às exclusões, a fila pode usar uma candidata `keep` / P1 / alta apenas para manutenção editorial segura, sem reclassificar a página.
+
+A candidata de manutenção precisa ser um hub ou diretório indexável no sitemap e cumprir todos os critérios abaixo:
+
+- ser `blog.html`, `ferramentas.html` ou outro hub editorial já aprovado que não tenha sido concluído em F3/F4;
+- permitir melhoria apenas de orientação de navegação, agrupamento, contexto de uso e links internos já existentes;
+- não exigir nova afirmação técnica, procedimento, recomendação, fonte técnica, seleção de equipamento, alteração de cartão, fórmula, JavaScript, JSON-LD, metadado ou dado de cliente;
+- manter íntegros os avisos de limite e não encaminhar o usuário a uma ação de campo ou decisão crítica.
+
+Essa piscina não autoriza reescrever conteúdo técnico nem repetir páginas já concluídas. Ela serve para manter progresso real em hubs seguros; se o benefício editorial não for concreto, a candidata é descartada.
+
 ## Exclusões absolutas
 
 Nunca escolher:
@@ -29,7 +42,7 @@ A ausência isolada de autoria ou de uma alegação de “revisão técnica” n
 
 ## Reposição da fila
 
-1. Aplique as exclusões antes de escolher qualquer página.
+1. Aplique as exclusões antes de escolher qualquer página. Quando não houver `improve` / P0 / alta elegível, aplique a piscina de manutenção contínua sem flexibilizar exclusões.
 2. Forme um lote de uma a cinco páginas; prefira temas e formatos diferentes para reduzir repetição.
 3. Para cada candidata, descreva no arquivo de fila: escopo editorial, fontes que precisarão ser verificadas, links internos pretendidos e mudanças proibidas.
 4. Atualize `F4-EDITORIAL-QUEUE.md` e `ADSENSE-STATE.json` no mesmo commit de controle, defina `status: ready` e indique o novo lote.

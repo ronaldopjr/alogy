@@ -8,6 +8,18 @@
 - Não alterar fórmulas, JavaScript, canonical, robots, sitemap, páginas `manual-review` ou conteúdo confidencial.
 - Lote aprovado pelos gates deve ser publicado em `main` por pull request limpa, sem força e sem arquivos inesperados.
 
+## F4-MAINTENANCE-01 — orientação dos diretórios centrais
+
+1. `blog.html`
+   - Escopo editorial: acrescentar uma orientação curta para que a pessoa escolha a categoria e o artigo conforme a pergunta que deseja esclarecer, deixando explícito que os artigos têm finalidade informativa e que decisões de campo ou de segurança não são tratadas pelo diretório.
+   - Fontes e links a verificar na edição: somente destinos locais já existentes; priorizar as rotas de instrumentação, calibração, analítica, processo e automação já presentes no site.
+   - Mudanças proibidas: cartões e textos técnicos dos artigos, busca, JavaScript, JSON-LD, AdSense, canonical, robots, sitemap, fórmulas, recomendações de campo, autoria, credencial ou dado de cliente.
+
+2. `ferramentas.html`
+   - Escopo editorial: organizar a escolha inicial entre diretórios por área e esclarecer que as ferramentas apoiam estudo e triagem, sem substituir dados de projeto, procedimento ou validação da aplicação.
+   - Fontes e links a verificar na edição: somente subdiretórios locais já existentes e seus destinos confirmados; não introduzir referência técnica externa nem novo critério de cálculo.
+   - Mudanças proibidas: cards, fórmulas, exemplos, JavaScript, busca, JSON-LD, AdSense, canonical, robots, sitemap, critérios técnicos, seleção de equipamento, autoria, credencial ou dado de cliente.
+
 ## F4-EDITORIAL-05 — estimativa de massa por nível
 
 1. `blog-massa-tanque-nivel.html`
