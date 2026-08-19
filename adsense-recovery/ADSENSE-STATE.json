@@ -6,7 +6,7 @@
   "base_branch": "main",
   "phase": "F4",
   "status": "ready",
-  "last_completed_batch": "F4-EDITORIAL-04",
+  "last_completed_batch": "F4-EDITORIAL-05",
   "next_batch": "F4-QUEUE-REFRESH",
   "next_action": "Recompose the next F4 editorial queue only under F4-ROLLING-EDITORIAL-RULES.md. Do not wait for human review and do not edit pages in the same run as queue recomposition.",
   "max_pages_per_edit_batch": 5,
@@ -24,7 +24,7 @@
     "search_console_indexed_snapshot": 352,
     "adsense_status": "low_value_content"
   },
-  "updated_at": "2026-08-18T17:00:49-03:00",
+  "updated_at": "2026-08-18T23:04:33-03:00",
   "stop_reason": null,
   "workflow_version": 4,
   "publication": {

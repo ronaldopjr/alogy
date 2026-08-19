@@ -8,6 +8,14 @@
 - Não alterar fórmulas, JavaScript, canonical, robots, sitemap, páginas `manual-review` ou conteúdo confidencial.
 - Lote aprovado pelos gates deve ser publicado em `main` por pull request limpa, sem força e sem arquivos inesperados.
 
+## F4-EDITORIAL-05 — estimativa de massa por nível
+
+1. `blog-massa-tanque-nivel.html`
+   - Escopo editorial: organizar a cadeia nível → geometria/tabela nível-volume → volume útil → densidade na condição declarada → estimativa de massa; acrescentar critérios para identificar a origem de cada dado e separar estimativa operacional de medição comercial, fiscal ou de segurança.
+   - Fontes a verificar na edição: Vocabulário Internacional de Metrologia do BIPM/JCGM para resultado, rastreabilidade e incerteza; publicação oficial da OIML aplicável a tanques fixos; orientação oficial de unidades SI para coerência entre volume, densidade e massa.
+   - Links internos pretendidos: preservar `calculadora-massa-tanque-nivel.html`, `calculadora-volume-cilindro-horizontal-nivel.html`, `calculadora-volume-tanque.html` e `calculadora-dp-nivel-tanque-fechado.html`, deixando claro o papel e o limite de cada ferramenta.
+   - Mudanças proibidas: fórmula, exemplo numérico existente, JavaScript, calculadora, tabela de arqueação, compensação fiscal/comercial, regra de conformidade, critério de segurança, seleção de instrumento, canonical, robots, sitemap, autoria, credencial ou dado de cliente.
+
 ## F4-EDITORIAL-04 — qualidade e umidade do ar de instrumentos
 
 1. `blog-ar-instrumentos-qualidade-ponto-orvalho.html`

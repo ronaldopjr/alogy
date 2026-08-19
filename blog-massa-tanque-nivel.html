@@ -40,6 +40,17 @@
 <p class="muted" data-alogy-content-meta=""><strong>Conteúdo técnico:</strong> ALOGY Engenharia · <strong>Atualizado em:</strong> 21/07/2026</p>
 <h2>A sequência correta é nível, volume e massa</h2>
 <p>O nível indica altura, mas a massa depende do volume correspondente e da densidade do produto. Em tanque vertical de seção constante, volume e nível são proporcionais. Em tanque horizontal, fundo abaulado ou geometria irregular, é necessário usar tabela de arqueação ou relação geométrica adequada.</p>
+<h2>Mapa da estimativa e origem dos dados</h2>
+<p>A estimativa fica auditável quando cada etapa aponta para sua própria fonte. O sinal de nível não contém sozinho a geometria do tanque, a densidade do produto nem a finalidade do resultado. Esses dados precisam ser reconciliados antes de interpretar a massa calculada.</p>
+<div class="table-responsive"><table>
+<thead><tr><th>Etapa</th><th>Origem que deve ser identificada</th><th>Limite a registrar</th></tr></thead>
+<tbody>
+<tr><td>Nível</td><td>Instrumento, escala configurada, referência de zero e instante da leitura.</td><td>Altura indicada não é volume até que a geometria ou a tabela aplicável seja definida.</td></tr>
+<tr><td>Volume</td><td>Dimensões úteis ou tabela nível-volume associada ao tanque correto e à revisão vigente.</td><td>Geometria simplificada não substitui uma tabela de calibração exigida para a finalidade real.</td></tr>
+<tr><td>Densidade</td><td>Fonte do valor, unidade, temperatura, composição e pressão quando relevante.</td><td>Densidade nominal e densidade representativa da condição medida podem produzir resultados diferentes.</td></tr>
+<tr><td>Massa estimada</td><td>Conjunto de entradas, horário, unidades e versão do método.</td><td>O número calculado não define sozinho incerteza, rastreabilidade ou conformidade.</td></tr>
+</tbody>
+</table></div>
 <h2>Dados necessários</h2>
 <ul>
 <li>geometria interna e dimensões úteis do tanque;</li>
@@ -62,8 +73,29 @@
 <p>Para um tanque vertical com área constante, 60% de nível corresponde aproximadamente a 60% do volume útil. Multiplica-se esse volume pela densidade na condição definida. Se o tanque tiver seção variável, primeiro converta o nível pela tabela nível-volume e somente depois calcule a massa.</p>
 <h2>Validação</h2>
 <p>Compare a estimativa com pesagem, medidor de vazão integrado, inventário anterior ou outro método independente. Para uso comercial, fiscal ou de segurança, aplique requisitos metrológicos e procedimentos específicos.</p>
+<h2>A finalidade define o nível de evidência</h2>
+<div class="table-responsive"><table>
+<thead><tr><th>Finalidade</th><th>Uso possível do resultado</th><th>O que esta página não resolve</th></tr></thead>
+<tbody>
+<tr><td>Acompanhamento operacional</td><td>Observar tendência e conferir coerência entre nível, volume e densidade declarada.</td><td>Não diagnostica automaticamente instrumento, geometria ou propriedade do produto.</td></tr>
+<tr><td>Balanço de processo</td><td>Comparar períodos usando a mesma base e documentar diferenças que precisam de investigação.</td><td>Não estabelece a incerteza adequada nem substitui reconciliação metrológica.</td></tr>
+<tr><td>Uso comercial, fiscal ou de segurança</td><td>Somente como triagem, se o procedimento aplicável permitir.</td><td>Não define tabela válida, compensação, tolerância, regra de decisão ou requisito legal.</td></tr>
+</tbody>
+</table></div>
+<h2>Registro mínimo para reproduzir a estimativa</h2>
+<ul>
+<li>identificação do tanque, produto e finalidade do cálculo;</li>
+<li>data e hora das leituras e condição operacional declarada;</li>
+<li>valor de nível, unidade, referência de zero e origem do sinal;</li>
+<li>fonte e revisão da geometria ou da tabela nível-volume;</li>
+<li>densidade, unidade, temperatura, composição e origem do valor;</li>
+<li>ferramenta ou método utilizado e versões dos dados de entrada;</li>
+<li>resultado apresentado como estimativa, com limitações e responsável pela avaliação.</li>
+</ul>
+<p>O <a href="https://jcgm.bipm.org/vim/en/2.9.html" target="_blank" rel="noopener noreferrer">Vocabulário Internacional de Metrologia — resultado de medição</a> ressalta que um resultado inclui o valor atribuído e outras informações relevantes. A entrada sobre <a href="https://jcgm.bipm.org/vim/en/2.26.html" target="_blank" rel="noopener noreferrer">incerteza de medição</a> mostra por que a indicação isolada não descreve toda a dispersão associada ao mensurando.</p>
+<p>A recomendação pública <a href="https://www.oiml.org/en/publications/recommendations/en/files/pdf_r/r071-e08.pdf" target="_blank" rel="noopener noreferrer">OIML R 71:2008</a> trata tanques fixos e destaca a tabela de calibração como componente da determinação de volume ou massa. Ela é uma referência internacional, não uma declaração automática de aplicabilidade legal no Brasil. Para escrita e conversão coerentes de unidades, consulte também o <a href="https://www.nist.gov/publications/guide-use-international-system-units-si" target="_blank" rel="noopener noreferrer">guia do NIST para o Sistema Internacional de Unidades</a>.</p>
 <h2>Ferramenta e conteúdos relacionados</h2>
-<p>Para aprofundar Massa em Tanque por Nível e Densidade: como estimar, use a ferramenta relacionada e confronte o resultado com os materiais complementares listados abaixo.</p>
+<p>Escolha a ferramenta pela etapa que precisa ser verificada: massa a partir de nível e densidade, volume por geometria, volume parcial de cilindro horizontal ou relação entre pressão diferencial e nível. Os resultados são estimativas independentes; combinar páginas não cria uma cadeia metrológica validada.</p>
 <div class="calc-actions">
 <a class="mini-btn dark" href="calculadora-massa-tanque-nivel.html"><i class="fas fa-calculator"></i> Abrir ferramenta</a>
 <a class="mini-btn" href="ferramentas.html"><i class="fas fa-toolbox"></i> Ver todas as ferramentas</a>
