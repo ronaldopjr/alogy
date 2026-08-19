@@ -1,5 +1,11 @@
 # Registro da recuperação do AdSense
 
+## 2026-08-19 — F4-MAINTENANCE-01
+
+- Melhorada a orientação editorial de `blog.html` e `ferramentas.html` com rotas de navegação e limites de uso, usando somente links locais já existentes.
+- Preservados cartões, conteúdo técnico, fórmulas, exemplos, JavaScript, JSON-LD, AdSense, canonical, robots, sitemap, autoria, credenciais e dados de cliente.
+- Nenhuma fonte técnica nova, PDF ou desenho confidencial foi utilizado; a ALOGY foi tratada somente como importadora e revendedora.
+
 ## 2026-08-18 — F4-EDITORIAL-05
 
 - Melhorada uma página `improve` P0 de escopo editorial limitado: estimativa de massa em tanque por nível e densidade.
