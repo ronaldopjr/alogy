@@ -1,5 +1,12 @@
 # Registro da recuperação do AdSense
 
+## 2026-08-19 — F5-FOCUS-PRUNING-01
+
+- Iniciada a concentração temática do site em automação industrial, instrumentação, calibração/metrologia e elétrica industrial.
+- Aplicada desativação reversível em cinco ferramentas de mecânica pura: robots alterado para `noindex,nofollow,noarchive`, URLs retiradas do sitemap complementar e inventário atualizado para `noindex-review`.
+- Arquivos, URLs, canonical, H1, conteúdo, fórmulas, exemplos e JavaScript foram preservados; nenhuma página foi apagada ou redirecionada.
+- Nenhum PDF, desenho confidencial, autoria, credencial ou dado de cliente foi utilizado.
+
 ## 2026-08-19 — F4-MAINTENANCE-01
 
 - Melhorada a orientação editorial de `blog.html` e `ferramentas.html` com rotas de navegação e limites de uso, usando somente links locais já existentes.

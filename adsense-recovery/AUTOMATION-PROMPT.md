@@ -18,6 +18,16 @@ O GitHub é o estado persistente entre execuções. Use o SHA da branch no come�
 6. Não use os PDFs ou desenhos confidenciais como fonte, exemplo ou material publicável.
 7. Não edite páginas `manual-review`, itens de consolidação, `noindex`, redirects, páginas institucionais de confiança, fórmulas ou JavaScript técnico.
 
+## F5 — foco temático e desativação reversível
+
+Quando `ADSENSE-STATE.json` indicar fase `F5`, leia e siga `F5-FOCUS-PRUNING-RULES.md`.
+
+1. Se `next_batch` começar com `F5-FOCUS-PRUNING-`, execute somente as páginas declaradas, com no máximo cinco URLs.
+2. Se `next_batch` for `F5-FOCUS-QUEUE-REFRESH`, selecione até cinco páginas indexáveis claramente fora do foco em automação, instrumentação, calibração/metrologia e elétrica industrial; atualize a fila e o estado em um commit de controle e encerre sem editar páginas nesse ciclo.
+3. A primeira etapa de desativação é sempre reversível: alterar apenas robots para `noindex,nofollow,noarchive`, retirar a URL do sitemap e atualizar o inventário. Preservar canonical, H1, conteúdo, fórmulas, exemplos, JavaScript e arquivos.
+4. Não remover arquivo, aplicar redirect, excluir card ou solicitar remoção no Search Console sem lote separado baseado em dados de tráfego e autorização específica.
+5. Nunca incluir páginas `manual-review`, conteúdo sensível, normas, segurança, autoria, credenciais, dados de cliente, PDFs ou desenhos confidenciais.
+
 ## Pré-flight obrigatório
 
 1. Releia o SHA de `agent/adsense-recovery` e registre-o como `run_head`.

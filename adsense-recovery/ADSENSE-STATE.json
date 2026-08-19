@@ -4,11 +4,11 @@
   "repository": "ronaldopjr/alogy",
   "work_branch": "agent/adsense-recovery",
   "base_branch": "main",
-  "phase": "F4",
-  "status": "observing",
-  "last_completed_batch": "F4-MAINTENANCE-01",
-  "next_batch": "F4-QUEUE-REFRESH",
-  "next_action": "Reevaluate only the rolling F4 selection. All approved hubs and directories in the continuous-maintenance pool are completed; do not repeat them. Resume only if the inventory changes or a new candidate fits the existing safety rules without technical, institutional, formula, JavaScript, authorship, credential, client-data, or confidential-material changes.",
+  "phase": "F5",
+  "status": "ready",
+  "last_completed_batch": "F5-FOCUS-PRUNING-01",
+  "next_batch": "F5-FOCUS-QUEUE-REFRESH",
+  "next_action": "Select the next batch of at most five clearly off-focus indexable pages under F5-FOCUS-PRUNING-RULES.md. Use reversible noindex plus sitemap removal only; do not delete files, redirect URLs, change formulas or JavaScript, or touch sensitive/manual-review content without specific authorization.",
   "max_pages_per_edit_batch": 5,
   "automation_may_edit_content": true,
   "automation_may_commit_to_work_branch": true,
@@ -24,8 +24,8 @@
     "search_console_indexed_snapshot": 352,
     "adsense_status": "low_value_content"
   },
-  "updated_at": "2026-08-19T14:01:33-03:00",
-  "stop_reason": "No safe candidate remains under the published rules: all 15 uncompleted improve/P0/high pages are excluded technical, safety, formula, field-test, valve, pump, pressure, OT, classified-area, or institutional topics, and all 9 approved maintenance hubs/directories are already completed.",
+  "updated_at": "2026-08-19T14:18:03-03:00",
+  "stop_reason": null,
   "workflow_version": 4,
   "publication": {
     "enabled": true,
@@ -62,5 +62,18 @@
     "rolling_replenishment_authorized": true
   },
   "run_protocol_version": 2,
-  "auditor_schema_version": 2
+  "auditor_schema_version": 2,
+  "focus_pruning": {
+    "enabled": true,
+    "primary_topics": [
+      "automacao industrial",
+      "instrumentacao",
+      "calibracao e metrologia",
+      "eletrica industrial"
+    ],
+    "method": "reversible-noindex-and-sitemap-removal",
+    "max_pages_per_batch": 5,
+    "permanent_deletion_requires_search_console_review": true,
+    "remove_files": false
+  }
 }
