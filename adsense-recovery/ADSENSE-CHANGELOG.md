@@ -1,5 +1,14 @@
 # Registro da recuperação do AdSense
 
+## 2026-08-18 — F4-EDITORIAL-05
+
+- Melhorada uma página `improve` P0 de escopo editorial limitado: estimativa de massa em tanque por nível e densidade.
+- O conteúdo passou a identificar a origem e os limites de nível, geometria/tabela, volume, densidade e resultado, separando acompanhamento operacional de usos comercial, fiscal ou de segurança.
+- O exemplo numérico existente, fórmulas implícitas, calculadoras e critérios de conformidade foram preservados.
+- Fontes primárias do BIPM/JCGM, OIML e NIST foram verificadas; a OIML R 71 foi tratada como referência internacional, sem presumir aplicabilidade legal no Brasil.
+- H1, título, canonical, robots, AdSense e todos os blocos JavaScript foram preservados; nenhum PDF confidencial, desenho, autoria, credencial ou dado de cliente foi usado ou alterado.
+- Próximo estado: `ready / F4-QUEUE-REFRESH`, para recomposição automática da próxima fila segura.
+
 ## 2026-08-18 — F4-EDITORIAL-04
 
 - Melhorada uma página `improve` P0 de baixo risco editorial: qualidade e ponto de orvalho do ar de instrumentos.
