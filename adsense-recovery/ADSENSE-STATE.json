@@ -5,10 +5,10 @@
   "work_branch": "agent/adsense-recovery",
   "base_branch": "main",
   "phase": "F4",
-  "status": "ready",
+  "status": "observing",
   "last_completed_batch": "F4-EDITORIAL-05",
   "next_batch": "F4-QUEUE-REFRESH",
-  "next_action": "Recompose the next F4 editorial queue only under F4-ROLLING-EDITORIAL-RULES.md. Do not wait for human review and do not edit pages in the same run as queue recomposition.",
+  "next_action": "Reevaluate only the rolling F4 candidate selection under F4-ROLLING-EDITORIAL-RULES.md. No remaining indexable improve/P0/high candidate is currently eligible without crossing technical, safety, institutional, formula, or authorship exclusions. Do not edit or publish unless the inventory changes or a newly eligible candidate appears.",
   "max_pages_per_edit_batch": 5,
   "automation_may_edit_content": true,
   "automation_may_commit_to_work_branch": true,
@@ -24,8 +24,8 @@
     "search_console_indexed_snapshot": 352,
     "adsense_status": "low_value_content"
   },
-  "updated_at": "2026-08-18T23:04:33-03:00",
-  "stop_reason": null,
+  "updated_at": "2026-08-19T02:04:40-03:00",
+  "stop_reason": "No remaining indexable improve/P0/high page is eligible under the rolling exclusions: all 15 uncompleted candidates require specific technical or safety validation, formula or calculator work, institutional facts, authorship or credentials, or belong to prohibited valve, pump, OT, pressure, classified-area, or field-test scopes.",
   "workflow_version": 4,
   "publication": {
     "enabled": true,
