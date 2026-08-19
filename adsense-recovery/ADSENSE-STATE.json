@@ -5,10 +5,10 @@
   "work_branch": "agent/adsense-recovery",
   "base_branch": "main",
   "phase": "F4",
-  "status": "ready",
+  "status": "observing",
   "last_completed_batch": "F4-MAINTENANCE-01",
   "next_batch": "F4-QUEUE-REFRESH",
-  "next_action": "Recompose the next F4 editorial queue only under F4-ROLLING-EDITORIAL-RULES.md. Prefer an eligible improve/P0/high candidate; if none survives, use only the safe continuous-maintenance pool. Do not edit pages in the same run as queue recomposition.",
+  "next_action": "Reevaluate only the rolling F4 selection. All approved hubs and directories in the continuous-maintenance pool are completed; do not repeat them. Resume only if the inventory changes or a new candidate fits the existing safety rules without technical, institutional, formula, JavaScript, authorship, credential, client-data, or confidential-material changes.",
   "max_pages_per_edit_batch": 5,
   "automation_may_edit_content": true,
   "automation_may_commit_to_work_branch": true,
@@ -24,8 +24,8 @@
     "search_console_indexed_snapshot": 352,
     "adsense_status": "low_value_content"
   },
-  "updated_at": "2026-08-19T11:05:16-03:00",
-  "stop_reason": null,
+  "updated_at": "2026-08-19T14:01:33-03:00",
+  "stop_reason": "No safe candidate remains under the published rules: all 15 uncompleted improve/P0/high pages are excluded technical, safety, formula, field-test, valve, pump, pressure, OT, classified-area, or institutional topics, and all 9 approved maintenance hubs/directories are already completed.",
   "workflow_version": 4,
   "publication": {
     "enabled": true,
