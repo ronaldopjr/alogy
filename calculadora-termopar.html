@@ -26,7 +26,7 @@
   <meta property="og:url" content="https://www.alogy.com.br/calculadora-termopar.html" />
   <meta property="og:image" content="https://www.alogy.com.br/favicon-512x512.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Calculadora Termopar Online","url":"https://www.alogy.com.br/calculadora-termopar.html","applicationCategory":"EngineeringApplication","operatingSystem":"Web","description":"Converta termopares industriais entre milivolts e temperatura, considerando tipo de termopar, compensação de junta fria e tabela rápida de referência.","publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"},"dateModified":"2026-07-21","author":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Calculadora Termopar Online","url":"https://www.alogy.com.br/calculadora-termopar.html","applicationCategory":"EngineeringApplication","operatingSystem":"Web","description":"Converta termopares industriais entre milivolts e temperatura, considerando tipo de termopar, compensação de junta fria e tabela rápida de referência.","publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"},"dateModified":"2026-09-08","author":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"}}</script>
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
@@ -97,11 +97,11 @@
     <section class="print-only print-neutral-header"><div class="print-title">Memória de conversão preliminar — termopar</div><p>Memória preliminar gerada automaticamente — uso exclusivamente orientativo.</p></section>
 
     <section class="tools-hero print-section"><h1>Calculadora Termopar Online</h1>
-<p class="muted" data-alogy-content-meta><strong>Conteúdo técnico:</strong> ALOGY Engenharia · <strong>Atualizado em:</strong> 29/07/2026</p><p>Converta milivolts em temperatura e temperatura em milivolts para termopares J, K, T, E, N, R, S e B. Inclui compensação de junta fria, faixa de trabalho, tabela rápida e apoio para teste de campo, calibração e manutenção.</p></section>
+<p class="muted" data-alogy-content-meta><strong>Conteúdo técnico:</strong> ALOGY Engenharia · <strong>Atualizado em:</strong> 08/09/2026</p><p>Converta milivolts em temperatura e temperatura em milivolts para termopares J, K, T, E, N, R, S e B. Inclui compensação de junta fria, faixa de trabalho, tabela rápida e apoio para teste de campo, calibração e manutenção.</p></section>
 
     <section class="calc-card" aria-label="Aviso de uso da ferramenta">
       <h2><i class="fas fa-triangle-exclamation"></i> Ferramenta para estudo e apoio técnico</h2>
-      <p>Esta calculadora é orientativa e usa interpolação aproximada em tabela de referência para apoio técnico, estudo e pré-análise. Não substitui tabela oficial do fabricante ou norma aplicável, certificado rastreado, calibração, medição em campo, análise de incerteza, laudo ou profissional habilitado. Na máxima extensão permitida pela legislação aplicável, a ALOGY não assume responsabilidade por decisões tomadas exclusivamente com base nesta estimativa orientativa, sem verificação das condições reais e sem validação técnica adequada. Nada neste aviso exclui direitos ou responsabilidades que não possam ser legalmente afastados.</p>
+      <p>Esta calculadora é orientativa e usa as funções de referência para termopares da NIST ITS-90 para apoio técnico, estudo e pré-análise. Não substitui tabela oficial aplicável ao conjunto instalado, certificado rastreado, calibração, medição em campo, análise de incerteza, laudo ou profissional habilitado. Na máxima extensão permitida pela legislação aplicável, a ALOGY não assume responsabilidade por decisões tomadas exclusivamente com base nesta estimativa orientativa, sem verificação das condições reais e sem validação técnica adequada. Nada neste aviso exclui direitos ou responsabilidades que não possam ser legalmente afastados.</p>
     </section>
 
     <section class="calc-layout print-section" id="calculatorSection">
@@ -145,7 +145,7 @@
     </section>
 
     <section class="calc-layout print-section">
-      <div class="calc-card"><h2><i class="fas fa-table"></i> Tabela rápida do tipo selecionado</h2><p class="small-muted">Valores aproximados por interpolação para consulta inicial. Para calibração, use tabela oficial, certificado e procedimento metrológico.</p><div class="calc-table-wrap"><table class="calc-table"><thead><tr><th>Temperatura</th><th>mV ref. 0 °C</th><th>mV com junta fria</th></tr></thead><tbody id="tbl"></tbody></table></div></div>
+      <div class="calc-card"><h2><i class="fas fa-table"></i> Tabela rápida do tipo selecionado</h2><p class="small-muted">Valores calculados pela função de referência NIST ITS-90 para consulta inicial. Para calibração, use referência oficial, certificado e procedimento metrológico.</p><div class="calc-table-wrap"><table class="calc-table"><thead><tr><th>Temperatura</th><th>mV ref. 0 °C</th><th>mV com junta fria</th></tr></thead><tbody id="tbl"></tbody></table></div></div>
       <div class="calc-card"><h2><i class="fas fa-circle-info"></i> Aplicação e cuidados</h2><p id="aplicacao"><strong>Tipo K:</strong> muito usado em aplicações industriais gerais pela ampla faixa de temperatura.</p><p><strong>Junta fria:</strong> se a junta de referência não está em 0 °C, o instrumento precisa compensar essa temperatura para indicar corretamente.</p><p><strong>Polaridade:</strong> inversão dos fios pode causar leitura negativa ou comportamento incorreto.</p><div class="calc-note">Cores de cabos podem variar conforme padrão IEC, ANSI ou fabricante. Confirme a identificação no cabo, borne e documentação da instalação.</div></div>
     </section>
 
@@ -215,7 +215,7 @@
     <li>Compare instrumento, transmissor e sistema de controle na mesma condição.</li>
     <li>Em calibração, estabilize a fonte térmica e registre a junta fria.</li>
   </ul>
-  <p><strong>Limite:</strong> a ferramenta usa aproximações de tabela e não avalia deriva metalúrgica, gradiente, imersão ou resposta dinâmica.</p>
+  <p><strong>Limite:</strong> a ferramenta calcula a força eletromotriz de referência, mas não avalia deriva metalúrgica, gradiente, imersão, resposta dinâmica nem incerteza do conjunto real.</p>
 </section>
 
   
@@ -223,8 +223,8 @@
 
 <section class="calc-card" aria-label="Referência normativa para termopares">
   <h2><i class="fas fa-book"></i> Referência normativa e limitações da conversão</h2>
-  <p>As funções e tabelas de força eletromotriz dos tipos J, K, T, E, N, R, S e B devem ser conferidas na <strong>IEC 60584-1</strong>. Classes de tolerância e requisitos de cabos de extensão ou compensação devem seguir a documentação aplicável.</p>
-  <p>Para calibração, considere junta de referência, homogeneidade dos fios, gradientes térmicos, imersão, deriva e estabilidade da fonte térmica. A interpolação desta página é orientativa.</p>
+  <p>O cálculo utiliza as funções de referência por trechos publicadas no <a href="https://www.nist.gov/publications/temperature-electromotive-force-reference-functions-and-tables-letter-designated" rel="noopener noreferrer" target="_blank"><strong>NIST Monograph 175</strong></a>, baseadas na ITS-90. As funções e tabelas dos tipos J, K, T, E, N, R, S e B também devem ser conferidas na <strong>IEC 60584-1</strong>. Classes de tolerância e requisitos de cabos de extensão ou compensação devem seguir a documentação aplicável.</p>
+  <p>Para calibração, considere junta de referência, homogeneidade dos fios, gradientes térmicos, imersão, deriva e estabilidade da fonte térmica. A função de referência desta página não representa, sozinha, a incerteza do conjunto real.</p>
 </section>
 
 <!-- ALOGY_LOTE_4_CONTEUDO_PRIORITARIO -->
@@ -239,7 +239,7 @@
     <li>Confira a temperatura do borne de referência e o funcionamento da compensação de junta fria.</li>
     <li>Avalie continuidade, isolamento e possíveis emendas com materiais incompatíveis.</li>
   </ul>
-  <p>A interpolação desta ferramenta serve para estudo e conferência preliminar. Para calibração ou decisão de conformidade, utilize tabelas oficiais, padrão rastreado, procedimento aprovado e avaliação da incerteza.</p>
+  <p>As funções de referência ITS-90 desta ferramenta servem para estudo e conferência preliminar. Para calibração ou decisão de conformidade, utilize a referência oficial aplicável, padrão rastreado, procedimento aprovado e avaliação da incerteza.</p>
   <p><strong>Conteúdos relacionados:</strong> veja a <a href="calculadora-calibracao-transmissor-temperatura.html">calibração de transmissores de temperatura</a>, a <a href="calculadora-termopoco-tempo-resposta.html">estimativa de resposta do termopoço</a> e o artigo sobre <a href="blog-calibracao-transmissor-temperatura.html">calibração de temperatura</a>.</p>
 </section>
 
@@ -249,17 +249,7 @@
 <script>
 (() => {
   'use strict';
-
-  const thermocoupleData={
- K:{range:[-200,1372],desc:'Tipo K: uso geral, ampla faixa, comum em fornos, máquinas, processos térmicos e manutenção industrial.',pts:[[-200,-5.891],[-100,-3.554],[0,0],[100,4.096],[200,8.138],[300,12.209],[400,16.397],[500,20.644],[600,24.905],[700,29.129],[800,33.277],[900,37.326],[1000,41.276],[1100,45.108],[1200,48.838],[1300,52.410],[1372,54.886]]},
- J:{range:[-210,1200],desc:'Tipo J: comum em aplicações industriais, indicado para faixas moderadas e ambientes compatíveis com ferro/constantan.',pts:[[-210,-8.095],[-100,-4.633],[0,0],[100,5.269],[200,10.779],[300,16.327],[400,21.848],[500,27.393],[600,33.102],[700,39.130],[800,45.498],[900,51.877],[1000,57.953],[1100,63.792],[1200,69.553]]},
- T:{range:[-200,400],desc:'Tipo T: muito usado em baixas temperaturas e aplicações que exigem boa estabilidade em faixa reduzida.',pts:[[-200,-5.603],[-100,-3.379],[0,0],[100,4.279],[200,9.288],[300,14.862],[400,20.872]]},
- E:{range:[-200,1000],desc:'Tipo E: alta sensibilidade em mV/°C, útil quando se deseja maior resposta elétrica por variação de temperatura.',pts:[[-200,-8.825],[-100,-5.237],[0,0],[100,6.319],[200,13.421],[300,21.033],[400,28.943],[500,37.005],[600,45.085],[700,53.110],[800,61.017],[900,68.787],[1000,76.373]]},
- N:{range:[-200,1300],desc:'Tipo N: opção para temperaturas elevadas, com boa estabilidade em aplicações industriais severas.',pts:[[-200,-3.990],[-100,-2.407],[0,0],[100,2.774],[200,5.913],[300,9.341],[400,12.974],[500,16.748],[600,20.613],[700,24.527],[800,28.455],[900,32.371],[1000,36.256],[1100,40.087],[1200,43.846],[1300,47.513]]},
- R:{range:[-50,1768],desc:'Tipo R: termopar nobre para altas temperaturas, comum em laboratório, fornos e processos especiais.',pts:[[-50,-0.226],[0,0],[100,0.647],[200,1.469],[300,2.401],[400,3.408],[500,4.471],[600,5.583],[700,6.743],[800,7.950],[900,9.205],[1000,10.506],[1100,11.850],[1200,13.228],[1300,14.624],[1400,16.040],[1500,17.471],[1600,18.915],[1700,20.356],[1768,21.103]]},
- S:{range:[-50,1768],desc:'Tipo S: termopar nobre para altas temperaturas, usado em padrões, fornos e medições especiais.',pts:[[-50,-0.236],[0,0],[100,0.646],[200,1.441],[300,2.323],[400,3.260],[500,4.234],[600,5.239],[700,6.275],[800,7.345],[900,8.448],[1000,9.585],[1100,10.757],[1200,11.947],[1300,13.159],[1400,14.392],[1500,15.643],[1600,16.911],[1700,18.186],[1768,18.694]]},
- B:{range:[0,1820],desc:'Tipo B: termopar nobre para temperaturas muito altas. Em baixas temperaturas a sensibilidade é pequena e a leitura deve ser avaliada com cuidado.',pts:[[0,0],[100,0.033],[200,0.178],[300,0.431],[400,0.787],[500,1.242],[600,1.792],[700,2.431],[800,3.154],[900,3.957],[1000,4.834],[1100,5.780],[1200,6.786],[1300,7.848],[1400,8.956],[1500,10.099],[1600,11.263],[1700,12.433],[1800,13.591],[1820,13.820]]}
-};
+  const thermocoupleData={"K":{"range":[-270.0,1372.0],"inverseRange":[-270.0,1372.0],"desc":"Tipo K: uso geral, ampla faixa, comum em fornos, máquinas, processos térmicos e manutenção industrial.","segments":[{"min":-270.0,"max":0.0,"coefficients":[-1.6322697486e-23,-1.9889266878e-20,-1.0451609365e-17,-3.1088872894e-15,-5.7410327428e-13,-6.7509059173e-11,-4.9904828777e-09,-3.2858906784e-07,2.3622373598e-05,0.039450128025,0.0],"gaussian":null},{"min":0.0,"max":1372.0,"coefficients":[-1.2104721275e-26,9.7151147152e-23,-3.2020720003e-19,5.6075059059e-16,-5.6072844889e-13,3.1840945719e-10,-9.9457592874e-08,1.8558770032e-05,0.038921204975,-0.017600413686],"gaussian":[0.1185976,-0.0001183432,126.9686]}]},"J":{"range":[-210.0,1200.0],"inverseRange":[-210.0,1200.0],"desc":"Tipo J: comum em aplicações industriais, indicado para faixas moderadas e ambientes compatíveis com ferro/constantan.","segments":[{"min":-210.0,"max":760.0,"coefficients":[1.5631725697e-23,-1.2538395336e-19,2.0948090697e-16,-1.7052958337e-13,1.3228195295e-10,-8.568106572e-08,3.047583693e-05,0.050381187815,0.0],"gaussian":null},{"min":760.0,"max":1200.0,"coefficients":[-3.0691369056e-13,1.5720819004e-09,-3.1847686701e-06,0.0031787103924,-1.4976127786,296.45625681],"gaussian":null}]},"T":{"range":[-270.0,400.0],"inverseRange":[-270.0,400.0],"desc":"Tipo T: muito usado em baixas temperaturas e aplicações que exigem boa estabilidade em faixa reduzida.","segments":[{"min":-270.0,"max":0.0,"coefficients":[7.9795153927e-31,1.3945027062e-27,1.079553927e-24,4.8768662286e-22,1.4251594779e-19,2.8213521925e-17,3.8493939883e-15,3.6071154205e-13,2.2651156593e-11,9.0138019559e-10,2.0032973554e-08,1.1844323105e-07,4.4194434347e-05,0.038748106364,0.0],"gaussian":null},{"min":0.0,"max":400.0,"coefficients":[-2.7512901673e-20,4.547913529e-17,-3.0815758772e-14,1.0996880928e-11,-2.1882256846e-09,2.0618243404e-07,3.329222788e-05,0.038748106364,0.0],"gaussian":null}]},"E":{"range":[-270.0,1000.0],"inverseRange":[-270.0,1000.0],"desc":"Tipo E: alta sensibilidade em mV/°C, útil quando se deseja maior resposta elétrica por variação de temperatura.","segments":[{"min":-270.0,"max":0.0,"coefficients":[-3.4657842013e-29,-5.5827328721e-26,-3.9673619516e-23,-1.6414776355e-20,-4.3979497391e-18,-8.0370123621e-16,-1.0287605534e-13,-9.3214058667e-12,-5.9452583057e-10,-2.5800160843e-08,-7.7998048686e-07,4.5410977124e-05,0.058665508708,0.0],"gaussian":null},{"min":0.0,"max":1000.0,"coefficients":[3.5960899481e-28,-1.4388041782e-24,2.1489217569e-21,-1.2536600497e-18,-1.9197495504e-16,6.502440327e-13,-3.3056896652e-10,2.8908407212e-08,4.5032275582e-05,0.05866550871,0.0],"gaussian":null}]},"N":{"range":[-270.0,1300.0],"inverseRange":[-270.0,1300.0],"desc":"Tipo N: opção para temperaturas elevadas, com boa estabilidade em aplicações industriais severas.","segments":[{"min":-270.0,"max":0.0,"coefficients":[-9.3419667835e-20,-7.6089300791e-17,-2.2653438003e-14,-2.6303357716e-12,-4.6412039759e-11,-9.3841111554e-08,1.0957484228e-05,0.026159105962,0.0],"gaussian":null},{"min":0.0,"max":1300.0,"coefficients":[-3.0682196151e-29,2.0849229339e-25,-6.0863245607e-22,9.9745338992e-19,-1.0063471519e-15,6.4311819339e-13,-2.5261169794e-10,4.3825627237e-08,1.571014188e-05,0.025929394601,0.0],"gaussian":null}]},"R":{"range":[-50.0,1768.1],"inverseRange":[-50.0,1768.1],"desc":"Tipo R: termopar nobre para altas temperaturas, comum em laboratório, fornos e processos especiais.","segments":[{"min":-50.0,"max":1064.18,"coefficients":[-2.81038625251e-27,1.57716482367e-23,-3.73105886191e-20,5.00777441034e-17,-4.62347666298e-14,3.56916001063e-11,-2.38855693017e-08,1.39166589782e-05,0.00528961729765,0.0],"gaussian":null},{"min":1064.18,"max":1664.5,"coefficients":[-2.93359668173e-16,2.05305291024e-12,-7.64085947576e-09,1.59564501865e-05,-0.00252061251332,2.95157925316],"gaussian":null},{"min":1664.5,"max":1768.1,"coefficients":[-9.34633971046e-15,-3.45895706453e-08,0.000171280280471,-0.268819888545,152.232118209],"gaussian":null}]},"S":{"range":[-50.0,1768.1],"inverseRange":[-50.0,1768.1],"desc":"Tipo S: termopar nobre para altas temperaturas, usado em padrões, fornos e medições especiais.","segments":[{"min":-50.0,"max":1064.18,"coefficients":[2.71443176145e-24,-1.25068871393e-20,2.55744251786e-17,-3.31465196389e-14,3.22028823036e-11,-2.32477968689e-08,1.2593428974e-05,0.00540313308631,0.0],"gaussian":null},{"min":1064.18,"max":1664.5,"coefficients":[1.29989605174e-14,-1.64856259209e-09,6.54805192818e-06,0.00334509311344,1.32900444085],"gaussian":null},{"min":1664.5,"max":1768.1,"coefficients":[-9.43223690612e-15,-3.30439046987e-08,0.000163693574641,-0.258430516752,146.628232636],"gaussian":null}]},"B":{"range":[0.0,1820.0],"inverseRange":[250,1820],"desc":"Tipo B: termopar nobre para temperaturas muito altas. Em baixas temperaturas a sensibilidade é pequena e a conversão inversa é ambígua.","segments":[{"min":0.0,"max":630.615,"coefficients":[6.2990347094e-19,-1.694452924e-15,1.5668291901e-12,-1.3257931636e-09,5.9040421171e-06,-0.00024650818346,0.0],"gaussian":null},{"min":630.615,"max":1820.0,"coefficients":[-9.3791330289e-25,9.8975640821e-21,-4.4515431033e-17,1.1109794013e-13,-1.6835344864e-10,1.5785280164e-07,-8.4885104785e-05,0.02857174747,-3.8938168621],"gaussian":null}]}};
   const getEl = (id) => document.getElementById(id);
   let lastResult = null;
 
@@ -326,41 +316,67 @@
     lastResult = null;
   }
 
-  function findSegmentByX(x, points) {
-    if (x < points[0][0] || x > points[points.length - 1][0]) return null;
-    if (x === points[points.length - 1][0]) return [points.length - 2, points.length - 1];
-    for (let i = 0; i < points.length - 1; i += 1) {
-      if (x >= points[i][0] && x <= points[i + 1][0]) return [i, i + 1];
-    }
-    return null;
+  function findReferenceSegment(temperature, info) {
+    if (!Number.isFinite(temperature) || temperature < info.range[0] || temperature > info.range[1]) return null;
+    return info.segments.find((segment, index) => {
+      const isLast = index === info.segments.length - 1;
+      return temperature >= segment.min && (temperature < segment.max || (isLast && temperature <= segment.max));
+    }) || null;
   }
 
-  function interpolateEmf(temperature, points) {
-    const segment = findSegmentByX(temperature, points);
+  function evaluatePolynomial(coefficients, x) {
+    let value = coefficients[0];
+    let derivative = 0;
+    for (let index = 1; index < coefficients.length; index += 1) {
+      derivative = derivative * x + value;
+      value = value * x + coefficients[index];
+    }
+    return {value, derivative};
+  }
+
+  function referenceEmfAtTemperature(temperature, info) {
+    const segment = findReferenceSegment(temperature, info);
     if (!segment) return null;
-    const [i1, i2] = segment;
-    const [t1, e1] = points[i1];
-    const [t2, e2] = points[i2];
-    const emf = e1 + (e2 - e1) * (temperature - t1) / (t2 - t1);
-    const sensitivity = (e2 - e1) / (t2 - t1) * 1000;
-    return {emf, sensitivity, t1, e1, t2, e2};
+    const evaluated = evaluatePolynomial(segment.coefficients, temperature);
+    let emf = evaluated.value;
+    let derivative = evaluated.derivative;
+    if (segment.gaussian) {
+      const [amplitude, factor, center] = segment.gaussian;
+      const delta = temperature - center;
+      const gaussian = amplitude * Math.exp(factor * delta * delta);
+      emf += gaussian;
+      derivative += 2 * factor * delta * gaussian;
+    }
+    return {emf, sensitivity: derivative * 1000, segmentMin: segment.min, segmentMax: segment.max};
   }
 
-  function inverseInterpolateTemperature(emf, points) {
-    const minEmf = Math.min(...points.map((p) => p[1]));
-    const maxEmf = Math.max(...points.map((p) => p[1]));
-    if (emf < minEmf || emf > maxEmf) return null;
-    for (let i = 0; i < points.length - 1; i += 1) {
-      const [t1, e1] = points[i];
-      const [t2, e2] = points[i + 1];
-      const inside = (emf >= e1 && emf <= e2) || (emf <= e1 && emf >= e2);
-      if (inside && e2 !== e1) {
-        const temperature = t1 + (t2 - t1) * (emf - e1) / (e2 - e1);
-        const sensitivity = (e2 - e1) / (t2 - t1) * 1000;
-        return {temperature, sensitivity, t1, e1, t2, e2};
-      }
+  function temperatureAtReferenceEmf(emf, info) {
+    const [minimumTemperature, maximumTemperature] = info.inverseRange;
+    const minimumData = referenceEmfAtTemperature(minimumTemperature, info);
+    const maximumData = referenceEmfAtTemperature(maximumTemperature, info);
+    if (!Number.isFinite(emf) || !minimumData || !maximumData || emf < minimumData.emf || emf > maximumData.emf) return null;
+    let low = minimumTemperature;
+    let high = maximumTemperature;
+    for (let index = 0; index < 100; index += 1) {
+      const middle = (low + high) / 2;
+      const middleData = referenceEmfAtTemperature(middle, info);
+      if (!middleData) return null;
+      if (middleData.emf < emf) low = middle;
+      else high = middle;
     }
-    return null;
+    const temperature = (low + high) / 2;
+    const data = referenceEmfAtTemperature(temperature, info);
+    return data ? {temperature, sensitivity: data.sensitivity, segmentMin: data.segmentMin, segmentMax: data.segmentMax} : null;
+  }
+
+  function referenceTemperatures(info) {
+    const values = [info.range[0]];
+    const firstHundred = Math.ceil(info.range[0] / 100) * 100;
+    for (let temperature = firstHundred; temperature <= Math.floor(info.range[1] / 100) * 100; temperature += 100) {
+      if (!values.includes(temperature)) values.push(temperature);
+    }
+    if (!values.includes(info.range[1])) values.push(info.range[1]);
+    return values;
   }
 
   function updateModeLabel() {
@@ -370,12 +386,15 @@
   }
 
   function renderReferenceTable(info, coldJunctionEmf, decimals) {
-    getEl('tbl').innerHTML = info.pts.map(([temperature, emf]) => `
+    getEl('tbl').innerHTML = referenceTemperatures(info).map((temperature) => {
+      const data = referenceEmfAtTemperature(temperature, info);
+      return `
       <tr>
         <td>${formatNumber(temperature, temperature % 1 ? 1 : 0)} °C</td>
-        <td>${formatNumber(emf, decimals)} mV</td>
-        <td>${formatNumber(emf - coldJunctionEmf, decimals)} mV</td>
-      </tr>`).join('');
+        <td>${formatNumber(data.emf, decimals)} mV</td>
+        <td>${formatNumber(data.emf - coldJunctionEmf, decimals)} mV</td>
+      </tr>`;
+    }).join('');
   }
 
   function calculate() {
@@ -394,8 +413,8 @@
       return showError(`A junta fria deve estar entre ${info.range[0]} °C e ${info.range[1]} °C para o tipo ${type} nesta tabela.`, ['jf']);
     }
 
-    const coldData = interpolateEmf(coldJunctionTemperature, info.pts);
-    if (!coldData) return showError('Não foi possível calcular a tensão equivalente da junta fria com a tabela disponível.', ['jf']);
+    const coldData = referenceEmfAtTemperature(coldJunctionTemperature, info);
+    if (!coldData) return showError('Não foi possível calcular a tensão equivalente da junta fria com a função de referência disponível.', ['jf']);
 
     let temperature;
     let emfReferenceZero;
@@ -407,17 +426,20 @@
       if (temperature < info.range[0] || temperature > info.range[1]) {
         return showError(`A temperatura deve estar entre ${info.range[0]} °C e ${info.range[1]} °C para o termopar tipo ${type}.`, ['valor']);
       }
-      conversion = interpolateEmf(temperature, info.pts);
+      conversion = referenceEmfAtTemperature(temperature, info);
       emfReferenceZero = conversion.emf;
       measuredEmf = emfReferenceZero - coldData.emf;
     } else {
       measuredEmf = inputValue;
       emfReferenceZero = measuredEmf + coldData.emf;
-      conversion = inverseInterpolateTemperature(emfReferenceZero, info.pts);
+      conversion = temperatureAtReferenceEmf(emfReferenceZero, info);
       if (!conversion) {
-        const minEmf = Math.min(...info.pts.map((p) => p[1]));
-        const maxEmf = Math.max(...info.pts.map((p) => p[1]));
-        return showError(`Com a compensação da junta fria, o sinal equivale a ${formatNumber(emfReferenceZero, decimals)} mV. A tabela reduzida do tipo ${type} cobre aproximadamente ${formatNumber(minEmf, decimals)} a ${formatNumber(maxEmf, decimals)} mV.`, ['valor']);
+        const minimumTemperature = info.inverseRange[0];
+        const maximumTemperature = info.inverseRange[1];
+        const minEmf = referenceEmfAtTemperature(minimumTemperature, info).emf;
+        const maxEmf = referenceEmfAtTemperature(maximumTemperature, info).emf;
+        const typeBNote = type === 'B' ? ' Para o tipo B, a conversão inversa foi limitada a partir de 250 °C devido à baixa sensibilidade e à ambiguidade da curva em temperaturas inferiores.' : '';
+        return showError(`Com a compensação da junta fria, o sinal equivale a ${formatNumber(emfReferenceZero, decimals)} mV. A função inversa do tipo ${type} aceita de ${formatNumber(minEmf, decimals)} a ${formatNumber(maxEmf, decimals)} mV (${formatNumber(minimumTemperature, 1)} a ${formatNumber(maximumTemperature, 1)} °C).${typeBNote}`, ['valor']);
       }
       temperature = conversion.temperature;
     }
@@ -427,20 +449,20 @@
     }
 
     const warnings = [];
-    if (type === 'B' && temperature < 300) warnings.push('O tipo B tem baixa sensibilidade em temperaturas baixas; confirme a aplicação e utilize tabela oficial.');
+    if (type === 'B' && temperature < 300) warnings.push('O tipo B tem baixa sensibilidade em temperaturas baixas; abaixo de 250 °C a conversão inversa não é oferecida por causa da ambiguidade da curva.');
     if (['R','S','B'].includes(type)) warnings.push('Para termopares nobres e altas temperaturas, confirme a curva e os limites do conjunto completo com documentação técnica.');
-    warnings.push('Resultado por interpolação linear em tabela reduzida: adequado para estudo e pré-análise, não para certificado de calibração.');
+    warnings.push('Resultado calculado pelas funções de referência NIST ITS-90. O cálculo continua sendo orientativo e não substitui certificado de calibração nem avaliação de incerteza.');
 
     getEl('outTemp').textContent = `${formatNumber(temperature, 2)} °C`;
     getEl('outMv0').textContent = `${formatNumber(emfReferenceZero, decimals)} mV`;
     getEl('outMvMed').textContent = `${formatNumber(measuredEmf, decimals)} mV`;
     getEl('outSensitivity').textContent = `${formatNumber(conversion.sensitivity, 2)} µV/°C`;
-    getEl('outStatus').textContent = 'Estimativa dentro da faixa tabelada';
+    getEl('outStatus').textContent = 'Resultado dentro da faixa da função ITS-90';
     const statusBox = getEl('statusBox');
     statusBox.classList.remove('status-neutral','status-bad');
     statusBox.classList.add('status-ok');
     getEl('pillTipo').textContent = `Tipo ${type}`;
-    getEl('pillFaixa').textContent = `Faixa tabelada: ${info.range[0]} a ${info.range[1]} °C`;
+    getEl('pillFaixa').textContent = `Faixa ITS-90: ${info.range[0]} a ${info.range[1]} °C`;
     getEl('pillJf').textContent = `Junta fria: ${formatNumber(coldJunctionTemperature, 2)} °C`;
     getEl('nota').textContent = warnings.join(' ');
     getEl('aplicacao').innerHTML = `<strong>${escapeHtml(info.desc.split(':')[0])}:</strong>${escapeHtml(info.desc.substring(info.desc.indexOf(':') + 1))}`;
@@ -461,9 +483,9 @@
       <p><strong>Junta fria:</strong> ${formatNumber(coldJunctionTemperature, 3)} °C → E ≈ ${formatNumber(coldData.emf, decimals)} mV.</p>
       <p><strong>Fórmula:</strong> <code>${escapeHtml(formulaLine)}</code></p>
       <p><strong>Substituição:</strong> <code>${escapeHtml(substitutionLine)}</code></p>
-      <p><strong>Interpolação usada:</strong> entre ${formatNumber(conversion.t1, 1)} °C / ${formatNumber(conversion.e1, decimals)} mV e ${formatNumber(conversion.t2, 1)} °C / ${formatNumber(conversion.e2, decimals)} mV.</p>
+      <p><strong>Função de referência:</strong> NIST ITS-90, trecho polinomial de ${formatNumber(conversion.segmentMin, 1)} °C a ${formatNumber(conversion.segmentMax, 1)} °C.</p>
       <p><strong>Resultado:</strong> temperatura ≈ ${formatNumber(temperature, 2)} °C; E ref. 0 °C ≈ ${formatNumber(emfReferenceZero, decimals)} mV; E esperada no instrumento ≈ ${formatNumber(measuredEmf, decimals)} mV.</p>
-      <p><strong>Limitação:</strong> interpolação linear em pontos reduzidos. Utilize referência ITS-90/tabela oficial e análise de incerteza em trabalhos metrológicos.</p>`;
+      <p><strong>Limitação:</strong> a função de referência representa o tipo ideal. Erros do sensor, cabos, conexões, instrumento, junta fria e instalação exigem avaliação própria em trabalhos metrológicos.</p>`;
 
     renderReferenceTable(info, coldData.emf, decimals);
     lastResult = {type, mode, decimals, inputValue, coldJunctionTemperature, coldJunctionEmf: coldData.emf, temperature, emfReferenceZero, measuredEmf, sensitivity: conversion.sensitivity, formulaLine, substitutionLine, warnings, range: info.range.slice(), tag: getEl('tag').value.trim(), note: getEl('reportNote').value.trim()};
@@ -536,7 +558,7 @@
       ['mV referência 0 °C', `${formatNumber(r.emfReferenceZero, r.decimals)} mV`],
       ['mV esperado no instrumento', `${formatNumber(r.measuredEmf, r.decimals)} mV`],
       ['Sensibilidade local aproximada', `${formatNumber(r.sensitivity, 2)} µV/°C`],
-      ['Faixa tabelada', `${r.range[0]} a ${r.range[1]} °C`]
+      ['Faixa da função ITS-90', `${r.range[0]} a ${r.range[1]} °C`]
     ];
     const bodyRows = rows.map(([label,value]) => `<tr><th>${escapeHtml(label)}</th><td>${escapeHtml(value)}</td></tr>`).join('');
     reportWindow.document.open();

@@ -27,7 +27,7 @@
 <meta content="https://www.alogy.com.br/calculadora-pt100.html" property="og:url"/>
 <meta content="https://www.alogy.com.br/favicon-512x512.png" property="og:image"/>
 <meta content="summary_large_image" name="twitter:card"/>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Calculadora PT100 Online","url":"https://www.alogy.com.br/calculadora-pt100.html","applicationCategory":"EngineeringApplication","operatingSystem":"Web","description":"Converta sensores RTD PT100, PT500 e PT1000 entre resistência e temperatura, considerando ligação 2, 3 ou 4 fios e resistência de cabo.","publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"},"dateModified":"2026-07-21","author":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Calculadora PT100 Online","url":"https://www.alogy.com.br/calculadora-pt100.html","applicationCategory":"EngineeringApplication","operatingSystem":"Web","description":"Converta sensores RTD PT100, PT500 e PT1000 entre resistência e temperatura, considerando ligação 2, 3 ou 4 fios e resistência de cabo.","publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"},"dateModified":"2026-09-08","author":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"}}</script>
 <script type="application/ld+json">
   {
     "@context":"https://schema.org",
@@ -106,10 +106,10 @@
 <a class="btn secondary" href="calculadora-temperatura-industrial.html"><i class="fas fa-temperature-half"></i> Temperatura industrial</a>
 </div>
 <section class="tools-hero"><h1>Calculadora PT100 Online</h1>
-<p class="muted" data-alogy-content-meta><strong>Conteúdo técnico:</strong> ALOGY Engenharia · <strong>Atualizado em:</strong> 21/07/2026</p><p>Converta resistência em temperatura e temperatura em resistência para sensores RTD PT100, PT500 e PT1000. Inclui compensação orientativa para ligação 2 fios, tabela rápida e apoio para calibração, manutenção e teste de campo.</p></section>
+<p class="muted" data-alogy-content-meta><strong>Conteúdo técnico:</strong> ALOGY Engenharia · <strong>Atualizado em:</strong> 08/09/2026</p><p>Converta resistência em temperatura e temperatura em resistência para sensores RTD PT100, PT500 e PT1000. Inclui compensação orientativa para ligação 2 fios, tabela rápida e apoio para calibração, manutenção e teste de campo.</p></section>
 <section aria-label="Aviso de uso da ferramenta" class="calc-card">
 <h2><i class="fas fa-triangle-exclamation"></i> Ferramenta para estudo e apoio técnico</h2>
-<p>Esta calculadora é orientativa e usa equações aproximadas para apoio técnico, estudo e pré-análise. Não substitui norma aplicável, procedimento de calibração, certificado rastreado, medição em campo, análise de incerteza, laudo ou profissional habilitado. Na máxima extensão permitida pela legislação aplicável, a ALOGY não assume responsabilidade por decisões tomadas exclusivamente com base nesta estimativa orientativa, sem verificação das condições reais e sem validação técnica adequada. Nada neste aviso exclui direitos ou responsabilidades que não possam ser legalmente afastados.</p>
+<p>Esta calculadora é orientativa e usa a equação de Callendar–Van Dusen com coeficientes da curva industrial de platina α nominal 0,00385 para apoio técnico, estudo e pré-análise. Não substitui norma aplicável, procedimento de calibração, certificado rastreado, medição em campo, análise de incerteza, laudo ou profissional habilitado. Na máxima extensão permitida pela legislação aplicável, a ALOGY não assume responsabilidade por decisões tomadas exclusivamente com base nesta estimativa orientativa, sem verificação das condições reais e sem validação técnica adequada. Nada neste aviso exclui direitos ou responsabilidades que não possam ser legalmente afastados.</p>
 </section>
 <section class="calc-layout">
 <div class="calc-card"><h2><i class="fas fa-temperature-half"></i> Dados do sensor RTD</h2><p>Escolha o tipo de sensor, o modo de cálculo e a ligação usada. Para ligação 2 fios, informe a resistência de cada condutor para compensação orientativa.</p>
@@ -145,11 +145,11 @@
 <div class="result-box"><span>Observação</span><strong id="outStatus">-</strong></div>
 </div>
 <div style="margin-top:14px"><span class="span-pill" id="pillR0">R0: -</span><span class="span-pill" id="pillLig">Ligação: -</span><span class="span-pill" id="pillFaixa">Faixa: -200 a 850 °C</span></div>
-<div class="calc-note" id="nota" style="margin-top:14px">A curva usada é a aproximação industrial de platina α 0,00385.</div>
+<div class="calc-note" id="nota" style="margin-top:14px">A curva usada é a equação industrial de platina α nominal 0,00385.</div>
 </div>
 </section>
 <section class="calc-layout">
-<div class="calc-card"><h2><i class="fas fa-table"></i> Tabela rápida do sensor selecionado</h2><p class="small-muted">Valores aproximados para consulta em campo. A tabela muda conforme PT100, PT500 ou PT1000.</p><div class="calc-table-wrap"><table class="calc-table responsive-data-table" id="quickTable"><thead><tr><th>Temperatura</th><th>Resistência</th><th>Observação</th></tr></thead><tbody id="tbl"></tbody></table></div></div>
+<div class="calc-card"><h2><i class="fas fa-table"></i> Tabela rápida do sensor selecionado</h2><p class="small-muted">Valores calculados pela equação para consulta em campo. A tabela muda conforme PT100, PT500 ou PT1000.</p><div class="calc-table-wrap"><table class="calc-table responsive-data-table" id="quickTable"><thead><tr><th>Temperatura</th><th>Resistência</th><th>Observação</th></tr></thead><tbody id="tbl"></tbody></table></div></div>
 <div class="calc-card"><h2><i class="fas fa-circle-info"></i> Ligação 2, 3 e 4 fios</h2><p><strong>2 fios:</strong> a resistência dos cabos soma com a resistência do sensor e pode gerar erro de leitura.</p><p><strong>3 fios:</strong> é muito usada em indústria porque compensa boa parte da resistência dos cabos quando os condutores são semelhantes.</p><p><strong>4 fios:</strong> é a melhor ligação para medição de resistência, pois reduz fortemente o efeito dos cabos.</p><div class="calc-note">Em calibração real, confirme a ligação no instrumento, classe do sensor, corrente de excitação, incerteza do padrão e procedimento aplicado.</div></div>
 </section>
 <section class="calc-card" id="memoryCard">
@@ -194,7 +194,7 @@
 <section class="calc-card" aria-label="Referência normativa para sensores RTD">
   <h2><i class="fas fa-book"></i> Referência normativa e uso correto</h2>
   <p>A relação resistência–temperatura e as classes de tolerância dos sensores de platina devem ser conferidas na <strong>IEC 60751</strong>. Para calibração, confirme também o tipo de ligação, corrente de excitação, autoaquecimento, resistência dos condutores, profundidade de imersão e estabilidade do banho ou bloco.</p>
-  <p>As curvas exibidas servem para cálculo e triagem. Certificados e decisões metrológicas dependem do procedimento, da rastreabilidade e da incerteza da montagem completa.</p>
+  <p>As curvas exibidas servem para cálculo e triagem. A faixa em que uma classe de tolerância é aplicável também depende da construção do sensor e deve ser confirmada na IEC 60751 e na documentação do fabricante. Certificados e decisões metrológicas dependem do procedimento, da rastreabilidade e da incerteza da montagem completa.</p>
 </section>
 </main>
 <section class="print-sheet" id="printSheet" aria-hidden="true">
