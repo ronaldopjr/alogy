@@ -254,12 +254,41 @@ function statusHtml(status){
   const cls = status==='Dentro do limite informado' ? 'status-ok' : (status==='Fora do limite informado' ? 'status-bad' : 'status-warn');
   return `<span class="status-pill ${cls}">${status}</span>`;
 }
+let resultadoAtual=false;
+function limparResultados(){
+  resultadoAtual=false;
+  document.getElementById('uExpOut').textContent='--';
+  document.getElementById('ucOut').textContent='uc: --';
+  document.getElementById('erroMaxOut').textContent='--';
+  document.getElementById('pontoCriticoOut').textContent='Ponto crítico: --';
+  document.getElementById('turTarOut').textContent='-- / --';
+  document.getElementById('avisos').className='notice';
+  document.getElementById('avisos').innerHTML='<strong>Alertas:</strong><p>Calcule para avaliar os dados informados.</p>';
+  document.getElementById('resultBody').innerHTML='';
+  document.getElementById('memorial').textContent='Calcule para gerar o memorial.';
+  document.querySelectorAll('#pointsBody .ptStatus').forEach(cell=>cell.textContent='--');
+}
+function invalidarResultado(titulo, detalhe){
+  limparResultados();
+  const box=document.getElementById('statusBox');
+  box.className='result-box bad';
+  box.innerHTML=`<span>Status geral</span><strong>${esc(titulo)}</strong><small>${esc(detalhe)}</small>`;
+}
+function marcarDadosAlterados(){
+  if(!resultadoAtual) return;
+  limparResultados();
+  const box=document.getElementById('statusBox');
+  box.className='result-box warn';
+  box.innerHTML='<span>Status geral</span><strong>Dados alterados</strong><small>Calcule novamente para atualizar os resultados.</small>';
+}
 function setPontosPadrao(){
+  marcarDadosAlterados();
   const body=document.getElementById('pointsBody'); body.innerHTML='';
   [0,25,50,75,100].forEach((p,i)=>adicionarPonto(p, null, i===0?'Zero':(i===4?'Span':'Ponto intermediário')));
   atualizarRefs();
 }
 function adicionarPonto(pct='', med=null, obs=''){
+  marcarDadosAlterados();
   const body=document.getElementById('pointsBody');
   const idx=body.children.length+1;
   const tr=document.createElement('tr');
@@ -269,6 +298,7 @@ function adicionarPonto(pct='', med=null, obs=''){
   atualizarRefs();
 }
 function removerPonto(){
+  marcarDadosAlterados();
   const body=document.getElementById('pointsBody');
   if(body.children.length>1){body.removeChild(body.lastElementChild); atualizarRefs();}
 }
@@ -284,17 +314,18 @@ function atualizarRefs(){
   });
 }
 function calcularIncerteza(){
+  limparResultados();
   atualizarRefs();
   const tag=val('tag')||'Instrumento'; const servico=val('servico')||'Serviço não informado'; const unidade=val('unidade')||'un';
   const lrv=num('lrv'), urv=num('urv'), span=urv-lrv;
-  const tolAbs=Math.abs(num('tolAbs')), tolSpan=Math.abs(num('tolSpan')), tolLeitura=Math.abs(num('tolLeitura')), tolMin=Math.abs(num('tolMin'));
-  const uPadrao=Math.abs(num('uPadrao')), kPadrao=Math.abs(num('kPadrao')), accPadrao=Math.abs(num('accPadrao'));
-  const resPadrao=Math.abs(num('resPadrao')), resUut=Math.abs(num('resUut')), repStd=Math.abs(num('repStd')), nRep=Math.max(1, Math.round(Math.abs(num('nRep'))));
-  const uAmb=Math.abs(num('uAmb')), kExp=Math.abs(num('kExp')); const criterio=val('criterio');
+  const tolAbs=num('tolAbs'), tolSpan=num('tolSpan'), tolLeitura=num('tolLeitura'), tolMin=num('tolMin');
+  const uPadrao=num('uPadrao'), kPadrao=num('kPadrao'), accPadrao=num('accPadrao');
+  const resPadrao=num('resPadrao'), resUut=num('resUut'), repStd=num('repStd'), nRep=num('nRep');
+  const uAmb=num('uAmb'), kExp=num('kExp'); const criterio=val('criterio');
   const campos=[lrv,urv,span,tolAbs,tolSpan,tolLeitura,tolMin,uPadrao,kPadrao,accPadrao,resPadrao,resUut,repStd,nRep,uAmb,kExp];
-  if(campos.some(x=>!Number.isFinite(x)) || span===0 || kPadrao<=0 || kExp<=0){
-    document.getElementById('statusBox').className='result-box bad';
-    document.getElementById('statusBox').innerHTML='<span>Status geral</span><strong>Dados inválidos</strong><small>Revise escala, k, tolerância e incerteza.</small>';
+  const naoNegativos=[tolAbs,tolSpan,tolLeitura,tolMin,uPadrao,accPadrao,resPadrao,resUut,repStd,uAmb];
+  if(campos.some(x=>!Number.isFinite(x)) || span===0 || kPadrao<=0 || kExp<=0 || naoNegativos.some(x=>x<0) || !Number.isInteger(nRep) || nRep<1){
+    invalidarResultado('Dados inválidos','Use escala válida, fatores k positivos, número inteiro de leituras e valores de tolerância e incerteza maiores ou iguais a zero.');
     return;
   }
   const uCert = uPadrao/kPadrao;
@@ -303,10 +334,14 @@ function calcularIncerteza(){
   const uRep = repStd/Math.sqrt(nRep);
   const uc = Math.sqrt(uCert*uCert + uResPadrao*uResPadrao + uResUut*uResUut + uRep*uRep + uAmb*uAmb);
   const U = kExp*uc;
-  const rows=[]; let piorErro=-1, pontoCrit='--', minTur=Infinity, minTar=Infinity, aprov=0, repro=0, ind=0, alertas=[];
+  const rows=[]; let pontosInvalidos=0, piorErro=-1, pontoCrit='--', minTur=Infinity, minTar=Infinity, aprov=0, repro=0, ind=0, alertas=[];
   document.querySelectorAll('#pointsBody tr').forEach((tr,idx)=>{
     const pct=numFrom(tr.querySelector('.ptPct').value); const med=numFrom(tr.querySelector('.ptMed').value); const obs=tr.querySelector('.ptObs').value||'';
-    if(!Number.isFinite(pct) || !Number.isFinite(med)) return;
+    if(!Number.isFinite(pct) || !Number.isFinite(med)){
+      pontosInvalidos++;
+      tr.querySelector('.ptStatus').innerHTML='<span class="status-pill status-bad">Dados inválidos</span>';
+      return;
+    }
     const ref=lrv + span*pct/100; const erro=med-ref; const erroAbs=Math.abs(erro);
     const tolCalc = tolAbs + Math.abs(span)*tolSpan/100 + Math.abs(ref)*tolLeitura/100;
     const tol = Math.max(tolCalc, tolMin);
@@ -325,9 +360,16 @@ function calcularIncerteza(){
     rows.push({pct,ref,med,erro,tol,U,tur,tar,status,obs});
     tr.querySelector('.ptStatus').innerHTML=statusHtml(status);
   });
+  if(pontosInvalidos>0){
+    invalidarResultado('Pontos incompletos',`${pontosInvalidos} ponto(s) precisam de porcentagem e valor medido válidos. Nenhum resultado parcial foi mantido.`);
+    document.querySelectorAll('#pointsBody tr').forEach(tr=>{
+      const pct=numFrom(tr.querySelector('.ptPct').value), med=numFrom(tr.querySelector('.ptMed').value);
+      if(!Number.isFinite(pct) || !Number.isFinite(med)) tr.querySelector('.ptStatus').innerHTML='<span class="status-pill status-bad">Dados inválidos</span>';
+    });
+    return;
+  }
   if(rows.length===0){
-    document.getElementById('statusBox').className='result-box bad';
-    document.getElementById('statusBox').innerHTML='<span>Status geral</span><strong>Sem pontos válidos</strong><small>Preencha porcentagem e valor medido.</small>';
+    invalidarResultado('Sem pontos válidos','Preencha porcentagem e valor medido.');
     return;
   }
   if(repro>0) alertas.push(`${repro} ponto(s) fora do limite pelo critério selecionado.`);
@@ -360,14 +402,17 @@ function calcularIncerteza(){
   mem.push(''); mem.push('Observações/alertas:'); alertas.forEach(a=>mem.push('- '+a));
   mem.push(''); mem.push('Aviso: memorial preliminar. Não substitui certificado de calibração, procedimento aprovado, rastreabilidade metrológica, regra de decisão formal ou validação profissional.');
   document.getElementById('memorial').textContent=mem.join('\n');
+  resultadoAtual=true;
 }
 function copiarMemorial(){
   const txt=document.getElementById('memorial').textContent;
-  if(!txt || txt.includes('Calcule para gerar')){alert('Calcule antes de copiar.'); return;}
+  if(!resultadoAtual || !txt || txt.includes('Calcule para gerar')){alert('Faça um cálculo válido antes de copiar.'); return;}
   navigator.clipboard.writeText(txt).then(()=>alert('Memorial copiado.')).catch(()=>alert('Não foi possível copiar automaticamente.'));
 }
 setPontosPadrao();
 ['lrv','urv','unidade'].forEach(id=>document.getElementById(id).addEventListener('input', atualizarRefs));
+document.querySelector('main').addEventListener('input', marcarDadosAlterados);
+document.querySelector('main').addEventListener('change', marcarDadosAlterados);
 </script>
 </body>
 </html>

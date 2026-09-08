@@ -15775,7 +15775,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const explicitBadPhrases = [
       'nao aprovado','não aprovado','nao conforme','não conforme','reprovado','reprovada',
-      'fora da tolerancia','fora da tolerância','fora do emp','acima do limite','acima do alvo',
+      'fora da tolerancia','fora da tolerância','fora do limite informado','fora do limite',
+      'fora do emp','acima do limite','acima do alvo','inadequado','inadequada',
       'nao atende','não atende','nao liberar','não liberar','dados invalidos','dados inválidos',
       'nao foi possivel','não foi possível'
     ];
