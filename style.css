@@ -325,6 +325,24 @@ nav.mobile.show{display:flex}
 .slide-guide .banner-actions .btn{background:linear-gradient(135deg,#f56e00,#ffb52e);color:#1a0e03;box-shadow:0 8px 24px rgba(255,121,0,.3)}
 .slide-guide .banner-actions .btn:hover{background:linear-gradient(135deg,#ff7b0a,#ffc34b)}
 
+/* Posicionamento por composição: preserva rostos e ações importantes das fotos. */
+@media (min-width:769px){
+  .slide-portrait .banner-content{
+    justify-content:flex-end;
+    align-items:center;
+  }
+  .slide-portrait .banner-card{
+    width:min(460px,48%);
+    margin:0;
+  }
+  .slide-copy-top .banner-content{
+    align-items:flex-start;
+  }
+  .slide-copy-top .banner-card{
+    margin-top:0;
+  }
+}
+
 .banner-nav{
   position:absolute;
   top:50%;
@@ -397,6 +415,7 @@ section{margin:18px auto;}
 }
 .section-title{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
 .section-title .bar{width:6px;height:28px;background:var(--accent);border-radius:999px}
+.home-company-intro .section-title h1{font-size:1.5rem}
 .section-title h3{font-size:1.6rem}
 .muted{color:var(--muted)}
 
@@ -1260,6 +1279,14 @@ nav.mobile a.active{
   .slide:nth-child(1) .slide-media img{object-position:70% 16%;}
   .slide:nth-child(2) .slide-media img{object-position:58% 18%;}
   .slide:nth-child(3) .slide-media img{object-position:64% 16%;}
+
+  .banner .slide.slide-portrait .slide-media img{
+    object-position:var(--pos-mobile,20% 0%);
+  }
+
+  .slide-copy-top .banner-content{
+    align-items:flex-start;
+  }
 }
 
 @media (max-width: 420px){

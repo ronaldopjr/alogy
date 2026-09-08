@@ -183,6 +183,7 @@ function initBanner(){
 
   banner.addEventListener('touchstart', (e) => {
     startX = e.touches[0].clientX;
+    endX = startX; // Um toque sem movimento não deve avançar o banner.
   }, {passive:true});
 
   banner.addEventListener('touchmove', (e) => {

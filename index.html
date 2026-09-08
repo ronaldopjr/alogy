@@ -19,7 +19,7 @@
 
   <!-- SEO básico -->
   <meta name="description" content="Serviços de elétrica industrial, instrumentação e automação, além de projetos elétricos e automação residencial em Americana e região."/>
-  <meta name="robots" content="index,follow" />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
   <link rel="canonical" href="https://www.alogy.com.br/" />
   <meta name="theme-color" content="#2C78B9" />
   <meta name="google-adsense-account" content="ca-pub-5586837114309500" />
@@ -70,16 +70,13 @@
   </script>
 
   <!-- ✅ seu CSS vai aqui -->
-  <link rel="stylesheet" href="style.css?v=20260908-guide-photo" />
+  <link rel="stylesheet" href="style.css?v=20260908-portrait-banner" />
 
   <!-- ✅ seu JS completo vai aqui -->
-  <script src="app.js" defer></script>
+  <script src="app.js?v=20260908-navigation" defer></script>
 </head>
 
 <body>
-  <h1 class="sr-only">
-    ALOGY Engenharia - Instrumentação, Automação, Elétrica Industrial e Serviços Residenciais
-  </h1>
   <header>
   <div class="container headbar">
    <a href="/" class="logo-wrapper" aria-label="Voltar para o início">
@@ -151,12 +148,11 @@
       <div class="slides">
 
         <!-- Slide 1 -->
-        <a class="slide active" href="#contato"
-           style="--pos-desktop: 50% 30%;"
+        <a class="slide slide-portrait active" href="#contato"
+           style="--pos-desktop: 50% 0%; --pos-mobile: 20% 0%;"
            aria-label="Solicitar orçamento de instrumentação industrial">
           <picture class="slide-media" aria-hidden="true">
-            <source media="(max-width: 768px)" srcset="banner1_mobile.webp">
-            <img src="banner1.webp" alt="Serviços de engenharia industrial e automação da ALOGY" width="1920" height="720" decoding="async">
+            <img src="capa-instrumentacao-ronaldo.webp" alt="Ronaldo Porfirio, engenheiro de instrumentação da ALOGY, diante de painéis de controle industrial" width="1536" height="1024" decoding="async" fetchpriority="high">
           </picture>
 
           <div class="banner-content">
@@ -171,7 +167,7 @@
         </a>
 
         <!-- Slide 2 -->
-        <a class="slide" href="industrial.html"
+        <a class="slide slide-copy-top" href="industrial.html"
            style="--pos-desktop: 50% 35%;"
            aria-label="Conhecer serviços de elétrica industrial">
           <picture class="slide-media" aria-hidden="true">
@@ -236,8 +232,8 @@
         </a>
 
         <!-- Slide 5 -->
-        <a class="slide slide-guide" href="/guia/"
-           style="--pos-desktop: 50% 8%; --pos-mobile: 30% 50%;"
+        <a class="slide slide-guide slide-portrait" href="/guia/"
+           style="--pos-desktop: 50% 0%; --pos-mobile: 20% 0%;"
            aria-label="Conhecer o Guia de Instrumentação Industrial">
           <picture class="slide-media" aria-hidden="true">
             <img src="capa-instrumentacao-ronaldo.webp" alt="Engenheiro de instrumentação da ALOGY diante de painéis de controle industrial" width="1536" height="1024" loading="lazy" decoding="async">
@@ -278,7 +274,7 @@
   <main class="container home-company-intro" aria-label="ALOGY Engenharia">
     <section class="section-card">
       <div class="section-title">
-        <div class="bar"></div><h2>Engenharia industrial em Americana e região</h2>
+        <div class="bar"></div><h1>Engenharia industrial em Americana e região</h1>
       </div>
       <p>
         A ALOGY atende indústrias com serviços de elétrica industrial, instrumentação e automação,
