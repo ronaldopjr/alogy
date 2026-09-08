@@ -321,6 +321,9 @@ nav.mobile.show{display:flex}
   margin-bottom: 12px;
 }
 .banner-actions{display:flex; gap:10px; flex-wrap:wrap;}
+.slide-guide .banner-card{background:rgba(3,10,16,.72);border-color:rgba(255,137,32,.52)}
+.slide-guide .banner-actions .btn{background:linear-gradient(135deg,#f56e00,#ffb52e);color:#1a0e03;box-shadow:0 8px 24px rgba(255,121,0,.3)}
+.slide-guide .banner-actions .btn:hover{background:linear-gradient(135deg,#ff7b0a,#ffc34b)}
 
 .banner-nav{
   position:absolute;
@@ -2216,4 +2219,3 @@ footer p{
     width:clamp(108px,34vw,140px)!important;
   }
 }
-
