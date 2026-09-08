@@ -54,6 +54,29 @@ function bindMobileMenuEscClose(){
    Desktop + Mobile
    (Atualiza com hashchange #contato)
 ========================= */
+function normalizeGuideLinks(){
+  document.querySelectorAll('a[href]').forEach((link) => {
+    const rawHref = link.getAttribute('href') || '';
+    if(!rawHref || rawHref.startsWith('#')) return;
+
+    let target;
+    try{
+      target = new URL(rawHref, window.location.href);
+    }catch(_error){
+      return;
+    }
+
+    if(target.origin !== window.location.origin) return;
+    const normalizedPath = target.pathname.replace(/\/+$/, '').toLowerCase();
+    if(normalizedPath !== '/cursos.html' && normalizedPath !== '/cursos' && normalizedPath !== '/guia') return;
+
+    link.setAttribute('href', `/guia/${target.search}${target.hash}`);
+    const label = link.textContent.trim().toLocaleLowerCase('pt-BR');
+    if(label === 'curso' || label === 'cursos') link.textContent = 'Guia';
+    if(label === 'curso de instrumentação') link.textContent = 'Guia de instrumentação';
+  });
+}
+
 function setActiveNav(){
   const path = window.location.pathname.split('/').pop() || 'index.html';
   const hash = window.location.hash || '';
@@ -69,7 +92,7 @@ function setActiveNav(){
     const href = a.getAttribute('href') || '';
     const [hrefPathRaw, hrefHashRaw] = href.split('#');
 
-    const hrefPath = (hrefPathRaw || '').split('/').pop();
+    const hrefPath = (hrefPathRaw || '').split('/').pop() || 'index.html';
     const hrefHash = hrefHashRaw ? `#${hrefHashRaw}` : '';
 
     // Home + #contato => marca somente Contato ativo
@@ -758,6 +781,9 @@ function enhanceToolFormsUsability(){
    INIT
 ========================= */
 document.addEventListener('DOMContentLoaded', () => {
+  // mantém a nomenclatura e a rota do Guia consistentes em páginas antigas
+  normalizeGuideLinks();
+
   // menu ativo
   setActiveNav();
 
