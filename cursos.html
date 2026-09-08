@@ -198,12 +198,16 @@
     .hero-points i,.microcopy i,.offer-list i{color:var(--green)}
     .actions{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-top:30px}
     .button{
-      display:inline-flex;justify-content:center;align-items:center;gap:10px;min-height:60px;padding:17px 28px;
+      position:relative;display:inline-flex;justify-content:center;align-items:center;gap:10px;min-height:60px;padding:17px 28px;
       border:1px solid rgba(255,255,255,.26);border-radius:18px;background:linear-gradient(135deg,var(--orange),var(--orange-light));
       box-shadow:0 18px 48px rgba(255,130,23,.27);color:#190f04;text-align:center;text-decoration:none;
       max-width:100%;overflow-wrap:anywhere;font-size:1rem;font-weight:900;letter-spacing:.035em;text-transform:uppercase;transition:transform .18s ease,filter .18s ease,box-shadow .18s ease
     }
     .button:hover{transform:translateY(-2px);filter:brightness(1.06);box-shadow:0 24px 58px rgba(255,130,23,.34)}
+    .button-buy{isolation:isolate;overflow:hidden}.button-buy i{transition:transform .18s ease}.button-buy:hover i{transform:translateX(3px)}
+    .button-attention{animation:cta-attention 3s ease-in-out infinite}
+    .button-attention::after{position:absolute;z-index:-1;top:-45%;bottom:-45%;left:-32%;width:20%;content:"";background:linear-gradient(90deg,transparent,rgba(255,255,255,.52),transparent);transform:skewX(-18deg);animation:cta-shine 3s ease-in-out infinite;pointer-events:none}
+    .button-attention:hover{animation-play-state:paused}
     .button-secondary{min-height:54px;padding:14px 18px;border-color:var(--line);background:rgba(255,255,255,.04);box-shadow:none;color:#f1f6f9;text-transform:none;letter-spacing:0}
     .button-secondary:hover{box-shadow:none;background:rgba(255,255,255,.08)}
     .microcopy{display:flex;flex-wrap:wrap;gap:12px 18px;margin-top:16px;color:var(--muted);font-size:.82rem}
@@ -275,8 +279,10 @@
     .offer-card{position:relative;overflow:hidden;padding:clamp(28px,5vw,48px);border:1px solid rgba(255,255,255,.18);border-radius:30px;background:radial-gradient(500px 280px at 0% 0%,rgba(255,255,255,.16),transparent 65%),linear-gradient(145deg,#e76000,#ff941f);box-shadow:0 28px 80px rgba(0,0,0,.34);color:#190e03}
     .offer-label{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border:1px solid rgba(25,14,3,.22);border-radius:999px;background:rgba(255,255,255,.2);font-size:.8rem;font-weight:900;letter-spacing:.07em;text-transform:uppercase}
     .offer-card h3{max-width:540px;margin-top:20px;color:#190e03;font-size:clamp(1.8rem,4vw,3.25rem);line-height:1.02;letter-spacing:-.035em}
+    .offer-value{display:flex;gap:9px;align-items:flex-start;margin-top:16px;padding:13px 15px;border:1px solid rgba(25,14,3,.16);border-radius:14px;background:rgba(255,255,255,.18);font-size:.88rem;font-weight:800;line-height:1.45}.offer-value i{margin-top:4px;color:#08783f}
     .offer-installments{display:block;margin-top:28px;font-size:1.05rem;font-weight:900}.offer-price{display:block;margin-top:2px;font-size:clamp(3rem,7vw,5.8rem);font-weight:900;line-height:.98;letter-spacing:-.055em}
-    .offer-cash{display:block;margin-top:8px;font-size:1rem;font-weight:800}.offer-card .button{width:100%;margin-top:28px;border-color:rgba(255,255,255,.22);background:#07131c;box-shadow:0 20px 48px rgba(54,23,1,.28);color:#fff}
+    .offer-cash{display:block;margin-top:8px;font-size:1rem;font-weight:800}.offer-card .button{width:100%;margin-top:28px;border:2px solid rgba(255,255,255,.42);background:#07131c;box-shadow:0 20px 48px rgba(54,23,1,.28);color:#fff}
+    .buy-confidence{display:flex;justify-content:center;align-items:center;gap:8px;margin-top:12px;color:rgba(25,14,3,.82);font-size:.78rem;font-weight:900;text-align:center}.buy-confidence i{color:#08783f}
     .offer-note{display:block;margin-top:14px;color:rgba(25,14,3,.76);font-size:.78rem;line-height:1.45}
     .payment-row{display:flex;flex-wrap:wrap;gap:9px;margin-top:16px}.payment-row span{display:inline-flex;align-items:center;gap:7px;padding:7px 10px;border:1px solid rgba(25,14,3,.18);border-radius:999px;background:rgba(255,255,255,.18);font-size:.78rem;font-weight:800}
 
@@ -294,6 +300,8 @@
     .sticky .button{min-height:48px;padding:12px 16px;border-radius:14px;font-size:.78rem}
 
     @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(8,120,63,.55)}70%{box-shadow:0 0 0 9px rgba(8,120,63,0)}100%{box-shadow:0 0 0 0 rgba(8,120,63,0)}}
+    @keyframes cta-attention{0%,58%,100%{box-shadow:0 18px 48px rgba(255,130,23,.27)}72%{box-shadow:0 20px 54px rgba(255,130,23,.46),0 0 0 8px rgba(255,194,71,.14)}82%{box-shadow:0 18px 48px rgba(255,130,23,.27),0 0 0 0 rgba(255,194,71,0)}}
+    @keyframes cta-shine{0%,52%{left:-32%;opacity:0}58%{opacity:1}78%{left:112%;opacity:1}79%,100%{left:112%;opacity:0}}
     @media(max-width:980px){
       .hero,.problem-grid,.offer-wrap{grid-template-columns:1fr}.hero{min-height:auto}.hero-copy{max-width:800px}
       .hero-visual{width:min(680px,100%);margin-inline:auto}.result-grid,.audience-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -315,17 +323,18 @@
       .value-panel{grid-template-columns:1fr;gap:20px}.value-price{padding:0 0 20px;border-right:0;border-bottom:1px solid var(--line)}
       .cta-band .button{width:100%;min-width:0}.module{padding:16px}.offer-card{border-radius:23px}.offer-price{font-size:clamp(3.5rem,18vw,5.2rem)}
       .faq summary{font-size:1rem}.footer{padding-bottom:36px}.sticky{display:grid}
+      .button-attention,.button-attention::after{animation:none}.sticky .button-attention{animation:cta-attention 3s ease-in-out infinite}.sticky .button-attention::after{animation:cta-shine 3s ease-in-out infinite}
     }
-    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.promo-dot{animation:none}.button{transition:none}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.promo-dot,.button-attention,.button-attention::after,.sticky .button-attention,.sticky .button-attention::after{animation:none}.button{transition:none}}
   </style>
 </head>
 
 <body id="top">
   <a class="promo" href="https://pay.hotmart.com/V93269953X?off=2c0ib3vj" data-checkout rel="nofollow sponsored" aria-label="Ver a oferta atual do guia">
     <span class="promo-inner">
-      <span class="promo-status"><span class="promo-dot" aria-hidden="true"></span> Oferta ativa agora</span>
+      <span class="promo-status"><span class="promo-dot" aria-hidden="true"></span> Condição promocional ativa</span>
       <span class="promo-copy"><strong>Guia completo por R$ 197 à vista</strong><span>ou 12x de R$ 20,37* no checkout</span></span>
-      <span class="promo-action">Garantir acesso <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+      <span class="promo-action">Ver oferta <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
     </span>
   </a>
 
@@ -355,8 +364,8 @@
           <li><i class="fas fa-check-circle" aria-hidden="true"></i> Acesso online</li>
         </ul>
         <div class="actions">
-          <a class="button" href="https://pay.hotmart.com/V93269953X?off=2c0ib3vj" data-checkout rel="nofollow sponsored">
-            <i class="fas fa-arrow-right" aria-hidden="true"></i> Quero acessar o guia
+          <a class="button button-buy button-attention" href="https://pay.hotmart.com/V93269953X?off=2c0ib3vj" data-checkout rel="nofollow sponsored">
+            <i class="fas fa-arrow-right" aria-hidden="true"></i> Quero o guia por R$ 197
           </a>
           <a class="button button-secondary" href="#conteudo"><i class="fas fa-list-check" aria-hidden="true"></i> Ver o conteúdo completo</a>
         </div>
@@ -436,8 +445,8 @@
           <h2>Construa uma base técnica que faça sentido no campo.</h2>
           <p>Comece pelos fundamentos e avance em uma ordem pensada para quem quer compreender, e não apenas decorar.</p>
         </div>
-        <a class="button" href="https://pay.hotmart.com/V93269953X?off=2c0ib3vj" data-checkout rel="nofollow sponsored">
-          <i class="fas fa-lock-open" aria-hidden="true"></i> Acessar por R$ 197
+        <a class="button button-buy" href="https://pay.hotmart.com/V93269953X?off=2c0ib3vj" data-checkout rel="nofollow sponsored">
+          <i class="fas fa-arrow-right" aria-hidden="true"></i> Quero o guia por R$ 197
         </a>
       </div>
     </section>
@@ -518,14 +527,16 @@
           </ul>
         </div>
         <aside class="offer-card" aria-label="Condição atual de acesso">
-          <span class="offer-label"><i class="fas fa-bolt" aria-hidden="true"></i> Oferta ativa agora</span>
+          <span class="offer-label"><i class="fas fa-bolt" aria-hidden="true"></i> Condição promocional disponível</span>
           <h3>Guia Completo de Instrumentação Industrial</h3>
+          <p class="offer-value"><i class="fas fa-circle-check" aria-hidden="true"></i><span>7 capítulos, aplicações práticas e uma sequência completa do básico à rotina de campo.</span></p>
           <span class="offer-installments">12 parcelas de</span>
           <strong class="offer-price">R$ 20,37*</strong>
           <span class="offer-cash">ou R$ 197 à vista</span>
-          <a class="button" href="https://pay.hotmart.com/V93269953X?off=2c0ib3vj" data-checkout rel="nofollow sponsored">
-            <i class="fas fa-lock-open" aria-hidden="true"></i> Comprar o guia agora
+          <a class="button button-buy button-attention" href="https://pay.hotmart.com/V93269953X?off=2c0ib3vj" data-checkout rel="nofollow sponsored">
+            <i class="fas fa-arrow-right" aria-hidden="true"></i> Quero acessar o guia
           </a>
+          <div class="buy-confidence"><i class="fas fa-lock" aria-hidden="true"></i> Você revisa tudo no checkout antes de pagar</div>
           <div class="payment-row" aria-label="Formas de pagamento disponíveis">
             <span><i class="fas fa-credit-card" aria-hidden="true"></i> Cartão</span>
             <span><i class="fab fa-pix" aria-hidden="true"></i> Pix</span>
@@ -558,8 +569,8 @@
         <h2 id="final-title">Comece a construir sua base em <span class="accent">instrumentação industrial.</span></h2>
         <p class="section-lead">Acesse o guia digital e avance dos fundamentos até a leitura integrada da rotina de campo e automação.</p>
         <div class="actions">
-          <a class="button" href="https://pay.hotmart.com/V93269953X?off=2c0ib3vj" data-checkout rel="nofollow sponsored">
-            <i class="fas fa-arrow-right" aria-hidden="true"></i> Quero acessar o guia
+          <a class="button button-buy" href="https://pay.hotmart.com/V93269953X?off=2c0ib3vj" data-checkout rel="nofollow sponsored">
+            <i class="fas fa-arrow-right" aria-hidden="true"></i> Quero o guia por R$ 197
           </a>
         </div>
         <div class="microcopy">
@@ -585,7 +596,7 @@
 
   <div class="sticky" aria-label="Atalho de compra">
     <div class="sticky-price"><small>Oferta ativa</small><strong>R$ 197 à vista</strong></div>
-    <a class="button" href="https://pay.hotmart.com/V93269953X?off=2c0ib3vj" data-checkout rel="nofollow sponsored">Comprar agora</a>
+    <a class="button button-buy button-attention" href="https://pay.hotmart.com/V93269953X?off=2c0ib3vj" data-checkout rel="nofollow sponsored">Quero o guia</a>
   </div>
 
   <script>
