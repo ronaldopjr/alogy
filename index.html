@@ -70,10 +70,10 @@
   </script>
 
   <!-- ✅ seu CSS vai aqui -->
-  <link rel="stylesheet" href="style.css?v=20260909-banner-images" />
+  <link rel="stylesheet" href="style.css?v=20260909-audit" />
 
   <!-- ✅ seu JS completo vai aqui -->
-  <script src="app.js?v=20260908-navigation" defer></script>
+  <script src="app.js?v=20260909-audit" defer></script>
 </head>
 
 <body>
@@ -263,11 +263,12 @@
       </button>
 
       <div class="banner-dots" aria-label="Indicadores do banner">
-        <span class="dot active" data-idx="0" aria-label="Ir para slide 1"></span>
-        <span class="dot" data-idx="1" aria-label="Ir para slide 2"></span>
-        <span class="dot" data-idx="2" aria-label="Ir para slide 3"></span>
-        <span class="dot" data-idx="3" aria-label="Ir para slide 4"></span>
-        <span class="dot" data-idx="4" aria-label="Ir para slide 5"></span>
+        <button type="button" class="dot active" data-idx="0" aria-label="Ir para slide 1" aria-pressed="true"></button>
+        <button type="button" class="dot" data-idx="1" aria-label="Ir para slide 2" aria-pressed="false"></button>
+        <button type="button" class="dot" data-idx="2" aria-label="Ir para slide 3" aria-pressed="false"></button>
+        <button type="button" class="dot" data-idx="3" aria-label="Ir para slide 4" aria-pressed="false"></button>
+        <button type="button" class="dot" data-idx="4" aria-label="Ir para slide 5" aria-pressed="false"></button>
+        <button type="button" class="banner-pause" aria-pressed="false">Pausar</button>
       </div>
     </div>
   </div>
@@ -358,20 +359,20 @@
         <div class="form-grid">
           <div class="field">
             <label for="c_nome">Nome</label>
-            <input id="c_nome" type="text" placeholder="Seu nome" required />
+            <input id="c_nome" type="text" autocomplete="name" placeholder="Seu nome" required />
           </div>
           <div class="field">
             <label for="c_fone">Telefone</label>
-            <input id="c_fone" type="tel" placeholder="(xx) xxxxx-xxxx" required />
+            <input id="c_fone" type="tel" autocomplete="tel-national" placeholder="(xx) xxxxx-xxxx" required />
           </div>
 
           <div class="field">
             <label for="c_email">E-mail</label>
-            <input id="c_email" type="email" placeholder="seuemail@exemplo.com" required />
+            <input id="c_email" type="email" autocomplete="email" placeholder="seuemail@exemplo.com" required />
           </div>
           <div class="field">
             <label for="c_cidade">Cidade / Local</label>
-            <input id="c_cidade" type="text" placeholder="Ex.: Americana/SP" required />
+            <input id="c_cidade" type="text" autocomplete="address-level2" placeholder="Ex.: Americana/SP" required />
           </div>
 
           <div class="field" style="grid-column:1/-1">

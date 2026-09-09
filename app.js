@@ -4,15 +4,29 @@
 function openMobileMenu(){
   const menu = document.querySelector('nav.mobile');
   if(menu) menu.classList.add('show');
+  syncMobileMenuState();
 }
 function closeMobileMenu(){
   const menu = document.querySelector('nav.mobile');
   if(menu) menu.classList.remove('show');
+  syncMobileMenuState();
 }
 function toggleMobileMenu(){
   const menu = document.querySelector('nav.mobile');
   if(!menu) return;
   menu.classList.toggle('show');
+  syncMobileMenuState();
+}
+
+function syncMobileMenuState(){
+  const menu = document.querySelector('nav.mobile');
+  const button = document.querySelector('.menu-toggle');
+  if(!menu || !button) return;
+  if(!menu.id) menu.id = 'alogy-mobile-menu';
+  const expanded = menu.classList.contains('show');
+  button.setAttribute('aria-controls', menu.id);
+  button.setAttribute('aria-expanded', String(expanded));
+  button.setAttribute('aria-label', expanded ? 'Fechar menu' : 'Abrir menu');
 }
 
 /* ✅ Fecha o menu ao clicar em qualquer link do menu mobile */
@@ -45,7 +59,12 @@ function bindMobileMenuClickOutside(){
 /* ✅ Fecha ao apertar ESC */
 function bindMobileMenuEscClose(){
   document.addEventListener('keydown', (e) => {
-    if(e.key === 'Escape') closeMobileMenu();
+    if(e.key === 'Escape'){
+      const menu = document.querySelector('nav.mobile');
+      const hadFocus = menu && menu.contains(document.activeElement);
+      closeMobileMenu();
+      if(hadFocus) document.querySelector('.menu-toggle')?.focus();
+    }
   });
 }
 
@@ -78,44 +97,55 @@ function normalizeGuideLinks(){
 }
 
 function setActiveNav(){
-  const path = window.location.pathname.split('/').pop() || 'index.html';
+  const normalizePath = path => path.replace(/\/index\.html$/, '/').replace(/\/$/, '') || '/';
+  const currentPath = normalizePath(window.location.pathname);
+  const path = currentPath.split('/').pop();
   const hash = window.location.hash || '';
   const links = document.querySelectorAll('nav.desktop a, nav.mobile a');
 
-  links.forEach(a => a.classList.remove('active'));
+  links.forEach(a => {
+    a.classList.remove('active');
+    a.removeAttribute('aria-current');
+  });
 
-  const currentIsIndex = (path === '' || path === 'index.html');
+  const currentIsIndex = currentPath === '/';
   const currentIsBlogPost = path.startsWith('blog-') && path.endsWith('.html');
   const currentIsToolPage = path === 'ferramentas.html' || path.startsWith('ferramentas-') || path.startsWith('calculadora-') || path.startsWith('conversor-') || path.startsWith('checklist-');
 
   links.forEach(a => {
-    const href = a.getAttribute('href') || '';
-    const [hrefPathRaw, hrefHashRaw] = href.split('#');
-
-    const hrefPath = (hrefPathRaw || '').split('/').pop() || 'index.html';
-    const hrefHash = hrefHashRaw ? `#${hrefHashRaw}` : '';
+    let target;
+    try{ target = new URL(a.getAttribute('href') || '', window.location.href); }
+    catch(_error){ return; }
+    if(target.origin !== window.location.origin) return;
+    const targetPath = normalizePath(target.pathname);
+    const hrefPath = targetPath.split('/').pop();
+    const hrefHash = target.hash;
+    const activate = () => {
+      a.classList.add('active');
+      a.setAttribute('aria-current', targetPath === currentPath && !hrefHash ? 'page' : 'location');
+    };
 
     // Home + #contato => marca somente Contato ativo
     if(currentIsIndex && hash === '#contato'){
-      if(hrefHash === '#contato') a.classList.add('active');
+      if(targetPath === '/' && hrefHash === '#contato') activate();
       return;
     }
 
     // Posts do blog => marca o menu Blog ativo
     if(currentIsBlogPost && hrefPath === 'blog.html'){
-      a.classList.add('active');
+      activate();
       return;
     }
 
     // Ferramentas e calculadoras => marca o menu Ferramentas ativo
     if(currentIsToolPage && hrefPath === 'ferramentas.html'){
-      a.classList.add('active');
+      activate();
       return;
     }
 
     // Páginas normais: industrial, residencial, cases, cursos, blog, sobre
-    if(hrefPath && hrefPath === path && hrefHash === ''){
-      a.classList.add('active');
+    if(targetPath === currentPath && hrefHash === ''){
+      activate();
     }
   });
 }
@@ -126,6 +156,7 @@ window.addEventListener('hashchange', setActiveNav);
 ========================= */
 let currentSlide = 0;
 let sliderTimer = null;
+let bannerPaused = false;
 
 function getSlides(){
   return Array.from(document.querySelectorAll('.slide'));
@@ -141,8 +172,17 @@ function showSlide(index){
 
   currentSlide = (index + slides.length) % slides.length;
 
-  slides.forEach((s, i) => s.classList.toggle('active', i === currentSlide));
-  dots.forEach((d, i) => d.classList.toggle('active', i === currentSlide));
+  slides.forEach((s, i) => {
+    const active = i === currentSlide;
+    s.classList.toggle('active', active);
+    s.inert = !active;
+    s.setAttribute('aria-hidden', String(!active));
+    s.setAttribute('tabindex', active ? '0' : '-1');
+  });
+  dots.forEach((d, i) => {
+    d.classList.toggle('active', i === currentSlide);
+    d.setAttribute('aria-pressed', String(i === currentSlide));
+  });
 }
 
 function nextSlide(){ showSlide(currentSlide + 1); }
@@ -150,6 +190,10 @@ function prevSlide(){ showSlide(currentSlide - 1); }
 
 function startAuto(){
   stopAuto();
+  const banner = document.querySelector('.banner');
+  if(!banner || bannerPaused || document.hidden ||
+     window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
+     banner.matches(':hover') || banner.contains(document.activeElement)) return;
   sliderTimer = setInterval(nextSlide, 6500);
 }
 function stopAuto(){
@@ -177,6 +221,21 @@ function initBanner(){
 
   banner.addEventListener('mouseenter', stopAuto);
   banner.addEventListener('mouseleave', startAuto);
+  banner.addEventListener('focusin', stopAuto);
+  banner.addEventListener('focusout', (e) => {
+    if(!banner.contains(e.relatedTarget)) setTimeout(startAuto, 0);
+  });
+  document.addEventListener('visibilitychange', () => {
+    if(document.hidden) stopAuto(); else startAuto();
+  });
+  window.matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change', startAuto);
+  const pauseButton = banner.querySelector('.banner-pause');
+  if(pauseButton) pauseButton.addEventListener('click', () => {
+    bannerPaused = !bannerPaused;
+    pauseButton.textContent = bannerPaused ? 'Retomar' : 'Pausar';
+    pauseButton.setAttribute('aria-pressed', String(bannerPaused));
+    startAuto();
+  });
 
   // Swipe no mobile
   let startX = 0, endX = 0;
@@ -241,11 +300,14 @@ function setButtonState(){
 
   const allFilled = !!(nome && email && fone && cidade && assunto && msg);
   const btn = $("btnEnviar");
-  if(btn) btn.disabled = !allFilled;
+  if(btn) btn.disabled = form.dataset.sending === 'true' || !allFilled;
 }
 
 async function enviarFormulario(e){
   e.preventDefault();
+  const form = $("formContato");
+  if(!form || form.dataset.sending === 'true') return;
+  if(!form.reportValidity()) return;
 
   const btn = $("btnEnviar");
   const success = $("formSuccess");
@@ -263,6 +325,7 @@ async function enviarFormulario(e){
   }
 
   const subject = `FORMULARIO - ${assunto}`;
+  form.dataset.sending = 'true';
 
   if(success) success.classList.remove("show");
 
@@ -293,7 +356,7 @@ async function enviarFormulario(e){
 
     const json = await res.json().catch(() => null);
 
-    if(!res.ok || (json && json.success === false)){
+    if(!res.ok || !json || (json.success !== true && json.success !== 'true')){
       throw new Error("Falha ao enviar.");
     }
 
@@ -323,6 +386,7 @@ async function enviarFormulario(e){
     setButtonState();
 
   }finally{
+    delete form.dataset.sending;
     if(btn){
       btn.innerHTML = `<i class="fas fa-paper-plane"></i> Enviar`;
       setButtonState();
@@ -792,6 +856,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initBanner();
 
   // menu mobile premium
+  syncMobileMenuState();
   bindMobileMenuAutoClose();
   bindMobileMenuClickOutside();
   bindMobileMenuEscClose();

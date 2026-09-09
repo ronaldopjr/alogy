@@ -405,6 +405,13 @@ nav.mobile.show{display:flex}
   transition: transform .15s ease, background .2s ease;
 }
 .dot.active{ background: rgba(255,255,255,.95); transform: scale(1.1); }
+.banner-dots{align-items:center;}
+.banner-dots .dot{padding:0;flex-shrink:0;}
+.banner-pause{
+  border:0;border-left:1px solid rgba(255,255,255,.4);
+  padding:0 4px 0 10px;min-height:24px;
+  background:transparent;color:#fff;font-size:.875rem;line-height:1.2;cursor:pointer;
+}
 
 section{margin:18px auto;}
 
