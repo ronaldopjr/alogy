@@ -26,14 +26,22 @@ Os desenhos indicam relações conceituais, não ligações de campo. Gráficos 
 
 ## O que ainda impede afirmar que a recuperação está concluída
 
-1. **Conteúdo editorial restante:** após este lote, 19 páginas ainda contêm a mesma frase genérica de interpretação (“o resultado indica tendência e ordem de grandeza”). A ocorrência é um sinal de revisão, não prova de infração em todas elas. É preciso avaliar utilidade específica, exemplos, limitações e referências, sem apenas aumentar palavras. O Google não forneceu uma lista exata dos problemas.
+1. **Conteúdo editorial restante:** após os dois lotes, 18 páginas ainda contêm a mesma frase genérica de interpretação (“o resultado indica tendência e ordem de grandeza”). A ocorrência é um sinal de revisão, não prova de infração em todas elas. É preciso avaliar utilidade específica, exemplos, limitações e referências, sem apenas aumentar palavras. O Google não forneceu uma lista exata dos problemas.
 2. **Convergência de ferramentas:** os dados mostram tráfego tanto em Cv quanto Cv/Kv. Conferir diferenças reais antes de decidir por consolidação; não remover ou redirecionar cegamente.
 3. **Poda anterior e tráfego:** alinhamento de eixos e frequência de defeitos de rolamento receberam cliques na captura, embora constem no lote anterior de noindex. Os períodos e a recência da indexação podem diferir. Não apagar essas URLs, nem retomar poda automática sem reavaliar os dados. Nenhuma mudança de indexação foi feita neste lote.
 4. **Validação editorial humana:** experiências de campo, autoria e referências devem ser reais. Não criar depoimentos, certificações ou casos para simular autoridade. Os exemplos novos são contas didáticas, não casos de clientes.
 
+## Segundo lote concluído
+
+| Página | Evidência do usuário em 28 dias | Correção e valor entregue |
+|---|---:|---|
+| Vazamento de ar comprimido | 3 cliques | Substituição da constante opaca por modelo de orifício compressível; regime crítico/subcrítico; Cd 0,61/0,97; temperatura; validação; custo; tabela e gráfico por diâmetro; exemplo e referência DOE. |
+| Tempo de residência em tanque | 3 cliques | V/Q nominal separado de cenário ilustrativo; retirada da falsa aparência de “fator de mistura” medido; diagrama de tanque, gráfico, exemplo, limites e referência EPA. |
+| Vazão normalizada de gases | 3 cliques, queda de 40% | Validação estrita de pressão absoluta, Kelvin, Z e densidade; comparação gráfica entre bases; exemplo conferível; FAQ duplicada removida; contexto de equações de estado do NIST. |
+
 ### Próxima prioridade delimitada
 
-Revisar perda de ar comprimido, tempo de residência em tanque e vazão normalizada de gases, que já aparecem no Search Console. Comparar Cv e Cv/Kv antes de alterar sua organização. Não expandir o número de páginas apenas para monetizar. Priorizar utilidade e resultados corretos; gráficos só quando ajudam a interpretar.
+Comparar Cv e Cv/Kv antes de alterar sua organização e revisar as páginas de ar comprimido que ainda usam explicação genérica. Não expandir o número de páginas apenas para monetizar. Priorizar utilidade e resultados corretos; gráficos só quando ajudam a interpretar.
 
 ### Pedido de revisão
 
@@ -41,7 +49,7 @@ Não marcar “corrigi os problemas” apenas porque houve este commit. Quando a
 
 ## Verificação realizada
 
-- Scripts reais de 30 calculadoras executados em DOM simulado, com 740 casos de entrada inválida rejeitados.
+- Scripts reais de 32 calculadoras executados em DOM simulado, com 788 casos de entrada inválida rejeitados.
 - Testes específicos das três integrações: exemplos numéricos, alteração de entradas e barras, slider 4–20 mA, faixa invertida, extrapolação, limpeza de gráficos, recuperação e escape de rótulos.
 - Regressões de navegação/carrossel e contato passaram; nenhum formulário foi enviado.
 - Auditoria estrutural de 392 HTMLs e `git diff --check`.
@@ -54,3 +62,6 @@ Não marcar “corrigi os problemas” apenas porque houve este commit. Quando a
 - Google, páginas prontas para AdSense: https://support.google.com/adsense/answer/7299563?hl=en-AU
 - DOE, ventiladores: https://www.energy.gov/sites/default/files/2014/05/f16/fan_sourcebook.pdf
 - Donaldson, perda de pressão: https://ecatalog.donaldson.com/view/478028566/26/
+- DOE, vazamentos de ar comprimido: https://www.energy.gov/sites/default/files/2014/05/f16/compressed_air3.pdf
+- EPA, tempo teórico de detenção: https://archive.epa.gov/enviro/html/icr/web/html/t50.html
+- NIST, relações P–V–T e equações de estado: https://www.nist.gov/publications/6-thermodynamic-properties-pure-gases-and-liquids
