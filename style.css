@@ -327,11 +327,13 @@ nav.mobile.show{display:flex}
 
 /* Posicionamento por composição: preserva rostos e ações importantes das fotos. */
 @media (min-width:769px){
-  .slide-portrait .banner-content{
+  .slide-portrait .banner-content,
+  .slide-copy-right .banner-content{
     justify-content:flex-end;
     align-items:center;
   }
-  .slide-portrait .banner-card{
+  .slide-portrait .banner-card,
+  .slide-copy-right .banner-card{
     width:min(460px,48%);
     margin:0;
   }
