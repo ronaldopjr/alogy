@@ -17,7 +17,7 @@
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
-<link href="style.css?v=20260722-layout-original-uppercase-mobilefix" rel="stylesheet"/>
+<link href="style.css?v=20260909-tools" rel="stylesheet"/>
 <script defer="" src="app.js"></script>
 <meta content="pt_BR" property="og:locale"/>
 <meta content="website" property="og:type"/>
@@ -95,8 +95,8 @@
 <a aria-label="Voltar para o início" class="logo-wrapper" href="/"><img alt="ALOGY Engenharia" decoding="async" height="308" src="logo-alogy.webp" width="878"/></a>
 <button aria-label="Abrir menu" class="menu-toggle" onclick="toggleMobileMenu()"><i class="fas fa-bars"></i></button>
 </div>
-<nav aria-label="Menu principal" class="desktop"><div class="container navlinks"><a href="/">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></div></nav>
-<nav aria-label="Menu mobile" class="mobile"><a href="/">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></nav>
+<nav aria-label="Menu principal" class="desktop"><div class="container navlinks"><a href="/">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="/guia/">Guia</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></div></nav>
+<nav aria-label="Menu mobile" class="mobile"><a href="/">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="/guia/">Guia</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></nav>
 </header>
 <div aria-label="Redes sociais" class="social-floating"><a aria-label="LinkedIn" class="linkedin" href="https://www.linkedin.com/company/alogyengenharia" rel="noopener noreferrer" target="_blank"><i class="fab fa-linkedin-in"></i></a><a aria-label="Instagram" class="instagram" href="https://www.instagram.com/alogyengenharia" rel="noopener noreferrer" target="_blank"><i class="fab fa-instagram"></i></a><a aria-label="Facebook" class="facebook" href="https://www.facebook.com/alogyengenharia" rel="noopener noreferrer" target="_blank"><i class="fab fa-facebook-f"></i></a><a aria-label="YouTube" class="youtube" href="https://www.youtube.com/@alogyengenharia" rel="noopener noreferrer" target="_blank"><i class="fab fa-youtube"></i></a><a aria-label="Hotmart" class="hotmart" href="https://hotmart.com/pt-br/club/alogyengenharia" rel="noopener noreferrer" target="_blank">H</a><a aria-label="TikTok" class="tiktok" href="https://www.tiktok.com/@alogyengenharia" rel="noopener noreferrer" target="_blank"><i class="fab fa-tiktok"></i></a></div>
 <div aria-label="Ações rápidas" class="fab-wrap"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1%21%20Vim%20pelas%20ferramentas%20de%20instrumenta%C3%A7%C3%A3o%20da%20ALOGY.%20Gostaria%20de%20atendimento." rel="noopener noreferrer" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
@@ -111,14 +111,14 @@
 <div class="tech-card">
 <h2>Dados de entrada</h2>
 <form class="field-grid" onsubmit="calcular();return false;">
-<div class="field"><label for="rhoFill">Densidade do fluido de enchimento</label><input id="rhoFill" step="1" type="number" value="930"/><small>kg/m³</small></div>
-<div class="field"><label for="dh">Diferença de altura entre selos</label><input id="dh" step="0.01" type="number" value="2.5"/><small>m. Positivo quando HP está abaixo do LP, conforme sua convenção.</small></div>
-<div class="field"><label for="span">Span do transmissor</label><input id="span" step="0.1" type="number" value="250"/><small>mbar</small></div>
-<div class="field"><label for="rhoProc">Densidade do processo</label><input id="rhoProc" step="1" type="number" value="1000"/><small>kg/m³. Usado para estimar nível equivalente.</small></div>
-<div class="field"><label for="cap">Comprimento total de capilar</label><input id="cap" step="0.1" type="number" value="6"/><small>m</small></div>
-<div class="field"><label for="dt">Variação de temperatura estimada</label><input id="dt" step="0.1" type="number" value="20"/><small>°C</small></div>
-<div class="field"><label for="coef">Coeficiente térmico preliminar</label><input id="coef" step="0.001" type="number" value="0.08"/><small>mbar por m de capilar por °C. Use dados do fabricante.</small></div>
-<div class="field"><label for="lim">Limite de erro aceitável</label><input id="lim" step="0.1" type="number" value="2"/><small>% do span</small></div>
+<div class="field"><label for="rhoFill">Densidade do fluido de enchimento</label><input id="rhoFill" step="any" type="number" value="930"/><small>kg/m³</small></div>
+<div class="field"><label for="dh">Diferença de altura entre selos</label><input id="dh" step="any" type="number" value="2.5"/><small>m. Positivo quando HP está abaixo do LP, conforme sua convenção.</small></div>
+<div class="field"><label for="span">Span do transmissor</label><input id="span" step="any" type="number" value="250"/><small>mbar</small></div>
+<div class="field"><label for="rhoProc">Densidade do processo</label><input id="rhoProc" step="any" type="number" value="1000"/><small>kg/m³. Usado para estimar nível equivalente.</small></div>
+<div class="field"><label for="cap">Comprimento total de capilar</label><input id="cap" step="any" type="number" value="6"/><small>m</small></div>
+<div class="field"><label for="dt">Variação de temperatura estimada</label><input id="dt" step="any" type="number" value="20"/><small>°C</small></div>
+<div class="field"><label for="coef">Coeficiente térmico preliminar</label><input id="coef" step="any" type="number" value="0.08"/><small>mbar por m de capilar por °C. Use dados do fabricante.</small></div>
+<div class="field"><label for="lim">Limite de erro aceitável</label><input id="lim" step="any" type="number" value="2"/><small>% do span</small></div>
 <div class="wide calc-actions"><button class="btn-mini" type="submit"><i class="fas fa-calculator"></i> Calcular</button></div>
 </form>
 </div>
@@ -141,8 +141,11 @@
 <!-- ALOGY_LOTE_8_CONTEUDO_ESPECIFICO -->
 <section class="calc-card" aria-label="Orientação técnica complementar"><h2><i class="fas fa-gauge-high"></i> Efeito do selo remoto na medição de nível</h2><p>Selos remotos transferem a pressão do processo ao transmissor por fluido de enchimento. A diferença de altura entre os selos e o transmissor cria uma coluna hidrostática que precisa ser considerada no zero e no span.</p><h3>Exemplo prático</h3><p>Quando o selo inferior fica abaixo do transmissor, a coluna do capilar pode produzir pressão positiva no lado de alta. Em tanque fechado com dois selos, as colunas dos dois capilares participam do diferencial estático.</p><h3>Como interpretar</h3><ul><li>Elevação de zero ocorre quando há pressão positiva permanente no lado de alta.</li><li>Supressão de zero ocorre quando a condição permanente desloca o sinal em sentido oposto.</li><li>Variação de temperatura pode alterar a densidade e o volume do fluido de enchimento.</li><li>Capilares com comprimentos diferentes podem aumentar erro térmico e tempo de resposta.</li></ul><h3>Erros comuns</h3><ul><li>Usar densidade do processo no lugar da densidade do fluido de enchimento.</li><li>Medir alturas a partir de referências diferentes.</li><li>Ignorar a posição final do transmissor.</li><li>Não considerar temperatura mínima e máxima de operação.</li></ul><h3>Limitações</h3><p>O cálculo é preliminar. A seleção final deve considerar pressão e temperatura de processo, material do diafragma, diâmetro do selo, viscosidade do fluido de enchimento, vácuo, resposta dinâmica e dados do fabricante.</p><p><strong>Conteúdos relacionados:</strong> <a href="calculadora-nivel-dp-tanque-pressurizado.html">nível DP em tanque pressurizado</a> e <a href="calculadora-calibracao-transmissor-nivel-dp.html">calibração de transmissor de nível DP</a>.</p></section>
 </main>
+<script src="tool-validation.js?v=20260909-tools"></script>
 <script>
-function n(id){return parseFloat(document.getElementById(id).value)||0} function fmt(x,d=2){return x.toLocaleString('pt-BR',{maximumFractionDigits:d,minimumFractionDigits:d})}
+ToolCalc.install({"calculate": "calcular", "fields": ["rhoFill", "dh", "span", "rhoProc", "cap", "dt", "coef", "lim"], "outputs": [], "status": "resultado", "tables": [], "copy": [], "auto": true, "bars": [], "check": v => v.rhoFill<=0 || v.rhoProc<=0 || v.span<=0 || v.cap<0 || v.lim<0 ? 'Informe densidades e span positivos, capilar e limite não negativos.' : ''});
+
+function n(id){return ToolCalc.number(id)} function fmt(x,d=2){return x.toLocaleString('pt-BR',{maximumFractionDigits:d,minimumFractionDigits:d})}
 function calcular(){const rf=n('rhoFill'), dh=n('dh'), span=n('span'), rp=n('rhoProc'), cap=n('cap'), dt=n('dt'), coef=n('coef'), lim=n('lim'); const zero=rf*9.80665*dh/100; const pct=span?zero/span*100:0; const drift=Math.abs(coef*cap*dt); const pctDrift=span?drift/span*100:0; const nivelEq=rp?zero/(rp*9.80665/100):0; const status=Math.abs(pctDrift)<=lim?'ok':(Math.abs(pctDrift)<=lim*2?'warn':'bad'); document.getElementById('resultado').innerHTML=`<div class="note ${status}"><strong>Deslocamento de zero:</strong><div class="result-main">${fmt(zero,2)} mbar</div><div>Equivale a <strong>${fmt(pct,1)}%</strong> do span e a aproximadamente <strong>${fmt(nivelEq,2)} m</strong> de líquido de processo.</div></div><div class="pill-row"><span class="pill">Drift térmico preliminar: ${fmt(drift,2)} mbar</span><span class="pill">${fmt(pctDrift,2)}% do span</span><span class="pill">Capilar: ${fmt(cap,1)} m</span></div><p class="result-sub">O coeficiente térmico depende do fluido de enchimento, diâmetro do capilar, selos, temperatura de processo e montagem. Use dados do fabricante para especificação final.</p>`}
 calcular();
 </script>

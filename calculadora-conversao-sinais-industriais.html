@@ -17,7 +17,7 @@
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-<link href="style.css?v=20260722-layout-original-uppercase-mobilefix" rel="stylesheet"/>
+<link href="style.css?v=20260909-tools" rel="stylesheet"/>
 <script defer="" src="app.js"></script>
 <meta content="pt_BR" property="og:locale"/>
 <meta content="website" property="og:type"/>
@@ -43,8 +43,8 @@
 <header>
 <div class="container headbar"><a aria-label="Voltar para o início" class="logo-wrapper" href="/"><img alt="ALOGY Engenharia" decoding="async" height="308" src="logo-alogy.webp" width="878"/></a>
 <button aria-label="Abrir menu" class="menu-toggle" onclick="toggleMobileMenu()"><i class="fas fa-bars"></i></button></div>
-<nav aria-label="Menu principal" class="desktop"><div class="container navlinks"><a href="/">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></div></nav>
-<nav aria-label="Menu mobile" class="mobile"><a href="/">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></nav>
+<nav aria-label="Menu principal" class="desktop"><div class="container navlinks"><a href="/">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="/guia/">Guia</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></div></nav>
+<nav aria-label="Menu mobile" class="mobile"><a href="/">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="/guia/">Guia</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></nav>
 </header>
 <div aria-label="Redes sociais" class="social-floating"><a aria-label="LinkedIn" class="linkedin" href="https://www.linkedin.com/company/alogyengenharia" rel="noopener noreferrer" target="_blank"><i class="fab fa-linkedin-in"></i></a><a aria-label="Instagram" class="instagram" href="https://www.instagram.com/alogyengenharia" rel="noopener noreferrer" target="_blank"><i class="fab fa-instagram"></i></a><a aria-label="Facebook" class="facebook" href="https://www.facebook.com/alogyengenharia" rel="noopener noreferrer" target="_blank"><i class="fab fa-facebook-f"></i></a><a aria-label="YouTube" class="youtube" href="https://www.youtube.com/@alogyengenharia" rel="noopener noreferrer" target="_blank"><i class="fab fa-youtube"></i></a><a aria-label="Hotmart" class="hotmart" href="https://hotmart.com/pt-br/club/alogyengenharia" rel="noopener noreferrer" target="_blank">H</a><a aria-label="TikTok" class="tiktok" href="https://www.tiktok.com/@alogyengenharia" rel="noopener noreferrer" target="_blank"><i class="fab fa-tiktok"></i></a></div>
 <div aria-label="Ações rápidas" class="fab-wrap"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1%21%20Vim%20pela%20ferramenta%20Calculadora%20de%20Convers%C3%A3o%20de%20Sinais%20Industriais%20da%20ALOGY.%20Gostaria%20de%20apoio%20t%C3%A9cnico." rel="noopener noreferrer" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
@@ -69,11 +69,11 @@
 <h2><i class="fas fa-arrows-rotate"></i> Entrada do sinal</h2>
 <div class="calc-grid">
 <div class="field"><label for="tipo">Tipo de sinal</label><select id="tipo"><option value="420">4-20 mA</option><option value="020">0-20 mA</option><option value="010v">0-10 V</option><option value="15v">1-5 V</option><option value="315">3-15 psi</option><option value="custom">Personalizado</option></select></div>
-<div class="field"><label for="valor">Valor medido do sinal</label><input id="valor" step="0.001" type="number" value="12"/></div>
-<div class="field"><label for="smin">Sinal mínimo</label><input id="smin" step="0.001" type="number" value="4"/></div>
-<div class="field"><label for="smax">Sinal máximo</label><input id="smax" step="0.001" type="number" value="20"/></div>
-<div class="field"><label for="lrv">LRV / valor mínimo de engenharia</label><input id="lrv" step="0.001" type="number" value="0"/></div>
-<div class="field"><label for="urv">URV / valor máximo de engenharia</label><input id="urv" step="0.001" type="number" value="100"/></div>
+<div class="field"><label for="valor">Valor medido do sinal</label><input id="valor" step="any" type="number" value="12"/></div>
+<div class="field"><label for="smin">Sinal mínimo</label><input id="smin" step="any" type="number" value="4"/></div>
+<div class="field"><label for="smax">Sinal máximo</label><input id="smax" step="any" type="number" value="20"/></div>
+<div class="field"><label for="lrv">LRV / valor mínimo de engenharia</label><input id="lrv" step="any" type="number" value="0"/></div>
+<div class="field"><label for="urv">URV / valor máximo de engenharia</label><input id="urv" step="any" type="number" value="100"/></div>
 <div class="field full"><label for="inverter"><input id="inverter" type="checkbox"/> Inverter ação do sinal para diagnóstico</label><small>Útil em casos de ação reversa, válvula fail-close/fail-open ou análise rápida.</small></div>
 </div>
 <button class="btn" onclick="calcSinais()"><i class="fas fa-calculator"></i> Calcular</button>
@@ -127,9 +127,12 @@ valor engenharia = LRV + (% / 100) × (URV - LRV)</div>
 <p>Use esta análise de Conversão de Sinais Industriais como apoio preliminar. Para projeto final, laudo, compra, mudança de segurança ou liberação de equipamento crítico, confirme premissas, condições de campo, documentação do fabricante e requisitos aplicáveis.</p>
 </section>
 </main>
+<script src="tool-validation.js?v=20260909-tools"></script>
 <script>
+ToolCalc.install({"calculate": "calcSinais", "fields": ["valor", "smin", "smax", "lrv", "urv"], "outputs": ["pct", "eng"], "status": "status", "tables": ["eqtab"], "copy": ["copyResumo"], "auto": true, "bars": [], "check": v => v.smax===v.smin || v.urv===v.lrv ? 'Os extremos das escalas precisam ser diferentes.' : ''});
+
 const tipos={"420":[4,20,"mA"],"020":[0,20,"mA"],"010v":[0,10,"V"],"15v":[1,5,"V"],"315":[3,15,"psi"]};
-function n(id){return parseFloat(document.getElementById(id).value)||0}
+function n(id){return ToolCalc.number(id)}
 function fmt(v,d=2){return isFinite(v)?v.toFixed(d).replace('.',','):'-'}
 document.getElementById('tipo').addEventListener('change',()=>{const t=document.getElementById('tipo').value;if(tipos[t]){document.getElementById('smin').value=tipos[t][0];document.getElementById('smax').value=tipos[t][1];document.getElementById('valor').value=(tipos[t][0]+tipos[t][1])/2;}calcSinais();});
 function calcSinais(){let v=n('valor'),smin=n('smin'),smax=n('smax'),lrv=n('lrv'),urv=n('urv');let pct=(v-smin)/(smax-smin)*100;if(document.getElementById('inverter').checked)pct=100-pct;let eng=lrv+pct/100*(urv-lrv);let st=pct<-2?'Abaixo da faixa':pct>102?'Acima da faixa':pct<0||pct>100?'Fora da faixa útil':'Normal';document.getElementById('pct').textContent=fmt(pct)+' %';document.getElementById('eng').textContent=fmt(eng);document.getElementById('status').textContent=st;let eq=[['4-20 mA',4+16*pct/100,'mA'],['0-20 mA',20*pct/100,'mA'],['0-10 V',10*pct/100,'V'],['1-5 V',1+4*pct/100,'V'],['3-15 psi',3+12*pct/100,'psi']];document.getElementById('eqtab').innerHTML=eq.map(r=>`<tr><td>${r[0]}</td><td>${fmt(r[1],3)} ${r[2]}</td></tr>`).join('');document.getElementById('nota').textContent='Use como conversão rápida. Para diagnóstico detalhado de HART, queda, carga de malha ou CLP, use as ferramentas específicas da ALOGY.'}

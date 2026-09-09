@@ -232,7 +232,10 @@ function initBanner(){
   const pauseButton = banner.querySelector('.banner-pause');
   if(pauseButton) pauseButton.addEventListener('click', () => {
     bannerPaused = !bannerPaused;
-    pauseButton.textContent = bannerPaused ? 'Retomar' : 'Pausar';
+    pauseButton.innerHTML = bannerPaused ? '<i class="fas fa-play" aria-hidden="true"></i>' : '<i class="fas fa-pause" aria-hidden="true"></i>';
+    const pauseLabel = bannerPaused ? 'Retomar rotação dos banners' : 'Pausar rotação dos banners';
+    pauseButton.setAttribute('aria-label', pauseLabel);
+    pauseButton.setAttribute('title', pauseLabel);
     pauseButton.setAttribute('aria-pressed', String(bannerPaused));
     startAuto();
   });

@@ -74,5 +74,7 @@ document.hidden=false;hovering=true;context.startAuto();assert.equal(timers,befo
 hovering=false;document.activeElement='focus';focusWithin=true;context.startAuto();assert.equal(timers,before);
 focusWithin=false;document.activeElement=null;
 pause.events.click();assert.equal(pause.attrs['aria-pressed'],'true');assert.equal(timers,before);
+assert.match(pause.innerHTML,/fa-play/);assert.match(pause.attrs['aria-label'],/Retomar/);
 pause.events.click();assert.equal(pause.attrs['aria-pressed'],'false');assert.ok(timers>before);
+assert.match(pause.innerHTML,/fa-pause/);assert.match(pause.attrs['aria-label'],/Pausar/);
 console.log('Navigation, mobile menu, carousel, tap/swipe and automatic-rotation safeguards: passed.');

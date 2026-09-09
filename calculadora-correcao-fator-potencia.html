@@ -17,7 +17,7 @@
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-<link href="style.css?v=20260722-layout-original-uppercase-mobilefix" rel="stylesheet"/>
+<link href="style.css?v=20260909-tools" rel="stylesheet"/>
 <script defer="" src="app.js"></script>
 <meta content="pt_BR" property="og:locale"/>
 <meta content="website" property="og:type"/>
@@ -55,8 +55,8 @@
 <header>
 <div class="container headbar"><a aria-label="Voltar para o início" class="logo-wrapper" href="/"><img alt="ALOGY Engenharia" decoding="async" height="308" src="logo-alogy.webp" width="878"/></a>
 <button aria-label="Abrir menu" class="menu-toggle" onclick="toggleMobileMenu()"><i class="fas fa-bars"></i></button></div>
-<nav aria-label="Menu principal" class="desktop"><div class="container navlinks"><a href="/">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></div></nav>
-<nav aria-label="Menu mobile" class="mobile"><a href="/">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></nav>
+<nav aria-label="Menu principal" class="desktop"><div class="container navlinks"><a href="/">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="/guia/">Guia</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></div></nav>
+<nav aria-label="Menu mobile" class="mobile"><a href="/">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="/guia/">Guia</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></nav>
 </header>
 <div aria-label="Redes sociais" class="social-floating"><a aria-label="LinkedIn" class="linkedin" href="https://www.linkedin.com/company/alogyengenharia" rel="noopener noreferrer" target="_blank"><i class="fab fa-linkedin-in"></i></a><a aria-label="Instagram" class="instagram" href="https://www.instagram.com/alogyengenharia" rel="noopener noreferrer" target="_blank"><i class="fab fa-instagram"></i></a><a aria-label="Facebook" class="facebook" href="https://www.facebook.com/alogyengenharia" rel="noopener noreferrer" target="_blank"><i class="fab fa-facebook-f"></i></a><a aria-label="YouTube" class="youtube" href="https://www.youtube.com/@alogyengenharia" rel="noopener noreferrer" target="_blank"><i class="fab fa-youtube"></i></a><a aria-label="Hotmart" class="hotmart" href="https://hotmart.com/pt-br/club/alogyengenharia" rel="noopener noreferrer" target="_blank">H</a><a aria-label="TikTok" class="tiktok" href="https://www.tiktok.com/@alogyengenharia" rel="noopener noreferrer" target="_blank"><i class="fab fa-tiktok"></i></a></div>
 <div aria-label="Ações rápidas" class="fab-wrap"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1!%20Vim%20pela%20calculadora%20de%20fator%20de%20pot%C3%AAncia%20da%20ALOGY.%20Gostaria%20de%20atendimento." rel="noopener noreferrer" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
@@ -85,7 +85,7 @@
 <div class="result-box"><span>Banco calculado</span><strong id="r_qc">-</strong></div>
 <div class="result-box"><span>Sugestão comercial</span><strong id="r_qcom">-</strong></div>
 <div class="result-box"><span>Corrente antes</span><strong id="r_iantes">-</strong></div>
-<div class="result-box"><span>Corrente depois</span><strong id="r_idepois">-</strong></div>
+<div class="result-box"><span>Corrente após o banco selecionado</span><strong id="r_idepois">-</strong></div>
 <div class="result-box"><span>kVA antes</span><strong id="r_santes">-</strong></div>
 <div class="result-box"><span>kVA depois</span><strong id="r_sdepois">-</strong></div>
 <div class="result-box"><span>Corrente do banco</span><strong id="r_icap">-</strong></div>
@@ -105,11 +105,14 @@
 <section class="calc-card" aria-label="Orientação técnica complementar"><h2><i class="fas fa-bolt"></i> Como interpretar a potência reativa a compensar</h2><p>A correção do fator de potência reduz a parcela reativa demandada da rede. O banco de capacitores deve ser dimensionado com base na carga real, no perfil de operação e na presença de harmônicas.</p><h3>Exemplo prático</h3><p>Uma instalação de 100 kW com fator de potência 0,75 demanda mais potência aparente do que a mesma carga operando em 0,95. A calculadora estima os kvar necessários para elevar o fator de potência ao valor desejado.</p><h3>Como interpretar</h3><ul><li>kvar calculado é a compensação teórica para a condição informada.</li><li>Cargas variáveis normalmente exigem banco automático em estágios.</li><li>Compensação excessiva pode resultar em fator de potência capacitivo.</li><li>Transformadores e motores em vazio podem alterar o perfil reativo.</li></ul><h3>Erros comuns</h3><ul><li>Dimensionar pelo valor de placa sem medir a demanda.</li><li>Ignorar variações por turno ou etapa do processo.</li><li>Instalar capacitores em rede com harmônicas sem avaliar ressonância.</li><li>Usar o mesmo estágio mínimo para cargas muito pequenas.</li></ul><h3>Limitações</h3><p>Em instalações com inversores, retificadores e THD elevado, pode ser necessário banco dessintonizado, filtros ou estudo específico. O projeto deve verificar tensão, corrente, proteção, manobra, ventilação e requisitos da concessionária.</p><p><strong>Conteúdos relacionados:</strong> <a href="calculadora-thd-distorcao-harmonica.html">THD e distorção harmônica</a> e <a href="calculadora-energia-consumo-industrial.html">consumo de energia industrial</a>.</p></section>
 </main>
 <footer><p>© Desde 2012 ALOGY Engenharia | www.alogy.com.br</p></footer>
+<script src="tool-validation.js?v=20260909-tools"></script>
 <script>
+ToolCalc.install({"calculate": "calcFP", "fields": ["fp_p", "fp_atual", "fp_desejado", "fp_tensao", "fp_freq"], "outputs": ["r_qc", "r_qcom", "r_iantes", "r_idepois", "r_santes", "r_sdepois", "r_icap", "r_cap", "r_reducao", "r_status"], "status": "r_nota", "tables": ["fp_tabela", "fp_estagios"], "copy": ["copiarFP"], "auto": false, "bars": [], "check": v => v.fp_p<=0 || v.fp_tensao<=0 || v.fp_freq<=0 || v.fp_atual<=0 || v.fp_atual>1 || v.fp_desejado<=0 || v.fp_desejado>1 ? 'Informe potência, tensão e frequência positivas e fatores de potência maiores que 0 e até 1.' : (document.getElementById('fp_sistema').value==='mono') !== (document.getElementById('fp_ligacao').value==='mono') ? 'A ligação do banco deve corresponder ao sistema monofásico ou trifásico selecionado.' : ''});
+
 const $=id=>document.getElementById(id);
 const comerciais=[2.5,5,7.5,10,12.5,15,20,25,30,40,50,60,75,100,125,150,175,200,250,300,400,500];
 function n(v,d=2){return Number.isFinite(v)?v.toLocaleString('pt-BR',{maximumFractionDigits:d,minimumFractionDigits:d}):'-'}
-function fpValid(x){return x>0&&x<1}
+function fpValid(x){return x>0&&x<=1}
 function qFromFp(p,fp){return p*Math.tan(Math.acos(fp))}
 function comercial(q,modo){if(!Number.isFinite(q)||q<=0)return 0;if(modo==='exato')return q;if(modo==='proximo')return comerciais.reduce((a,b)=>Math.abs(b-q)<Math.abs(a-q)?b:a,comerciais[0]);return comerciais.find(v=>v>=q)||q}
 function calcFP(){
@@ -117,7 +120,8 @@ function calcFP(){
   let nota=$('r_nota');
   if(!(p>0)||!fpValid(fpa)||!fpValid(fpd)||!(v>0)){nota.textContent='Confira potência, tensão e fatores de potência. O FP deve estar entre 0 e 1.';nota.className='calc-note status-bad';return;}
   const qAtual=qFromFp(p,fpa), qDesej=qFromFp(p,fpd), qc=Math.max(0,qAtual-qDesej), qcom=comercial(qc,modo);
-  const sAntes=p/fpa, sDepois=p/fpd;
+  const qRestante=qAtual-qcom;
+  const sAntes=p/fpa, sDepois=Math.hypot(p,qRestante);
   const iAntes=sist==='tri'?sAntes*1000/(Math.sqrt(3)*v):sAntes*1000/v;
   const iDepois=sist==='tri'?sDepois*1000/(Math.sqrt(3)*v):sDepois*1000/v;
   const icap=sist==='tri'?qcom*1000/(Math.sqrt(3)*v):qcom*1000/v;
@@ -132,13 +136,14 @@ function calcFP(){
   const red=(1-iDepois/iAntes)*100;
   $('r_reducao').textContent='Redução de corrente: '+n(red,1)+'%';
   if(qc<=0){$('r_status').textContent='Status: não precisa corrigir para esse alvo';$('r_status').className='pill status-good';nota.textContent='O fator de potência atual já é igual ou superior ao desejado.';nota.className='calc-note status-good';}
+  else if(qRestante<0){$('r_status').textContent='Status: banco excede o reativo indutivo';nota.textContent='A seleção produz fator de potência capacitivo neste ponto. Reveja o banco e os estágios.';nota.className='calc-note status-warn';}
   else if(fpd>0.98){$('r_status').textContent='Status: alvo muito alto';$('r_status').className='pill status-warn';nota.textContent='Alvos muito próximos de 1,00 exigem cuidado para evitar sobrecorreção, principalmente com carga variável.';nota.className='calc-note status-warn';}
   else {$('r_status').textContent='Status: pré-estimativa calculada';$('r_status').className='pill status-good';nota.textContent='Resultado auxiliar para pré-análise. Dimensionamento final depende de medição, harmônicas, proteção e projeto.';nota.className='calc-note status-good';}
   renderTabela(p,v,sist,fpa); renderEstagios(qcom);
 }
 function renderTabela(p,v,sist,fpa){
   const alvos=[0.90,0.92,0.95,0.97,0.98]; const tbody=$('fp_tabela'); tbody.innerHTML=''; const qAtual=qFromFp(p,fpa);
-  alvos.forEach(fp=>{const q=Math.max(0,qAtual-qFromFp(p,fp)); const s=p/fp; const i=sist==='tri'?s*1000/(Math.sqrt(3)*v):s*1000/v; tbody.insertAdjacentHTML('beforeend',`<tr><td>${fp.toFixed(2).replace('.',',')}</td><td>${n(q,2)} kVAr</td><td>${n(s,2)} kVA</td><td>${n(i,1)} A</td></tr>`);});
+  alvos.forEach(fp=>{const q=Math.max(0,qAtual-qFromFp(p,fp)); const s=p/Math.max(fp,fpa); const i=sist==='tri'?s*1000/(Math.sqrt(3)*v):s*1000/v; tbody.insertAdjacentHTML('beforeend',`<tr><td>${fp.toFixed(2).replace('.',',')}</td><td>${n(q,2)} kVAr</td><td>${n(s,2)} kVA</td><td>${n(i,1)} A</td></tr>`);});
 }
 function renderEstagios(q){
   const tbody=$('fp_estagios'); tbody.innerHTML=''; if(!(q>0)){tbody.innerHTML='<tr><td>-</td><td>Sem correção necessária</td><td>-</td><td>-</td></tr>';return;}
@@ -147,7 +152,7 @@ function renderEstagios(q){
   linhas.forEach(l=>tbody.insertAdjacentHTML('beforeend',`<tr><td>${l[0]}</td><td>${l[1]}</td><td>${l[2]}</td><td>${l[3]}</td></tr>`));
 }
 function exFP(p,a,d,v){$('fp_p').value=p;$('fp_atual').value=a;$('fp_desejado').value=d;$('fp_tensao').value=v;calcFP();}
-function copiarFP(){calcFP();const txt=`Correção de fator de potência - ALOGY\nBanco calculado: ${$('r_qc').textContent}\nSugestão comercial: ${$('r_qcom').textContent}\nCorrente antes: ${$('r_iantes').textContent}\nCorrente depois: ${$('r_idepois').textContent}\nObservação: uso orientativo, não substitui projeto, medição e profissional habilitado.`;navigator.clipboard&&navigator.clipboard.writeText(txt);}
+function copiarFP(){calcFP();const txt=`Correção de fator de potência - ALOGY\nBanco calculado: ${$('r_qc').textContent}\nSugestão comercial: ${$('r_qcom').textContent}\nCorrente antes: ${$('r_iantes').textContent}\nCorrente após o banco selecionado: ${$('r_idepois').textContent}\nObservação: uso orientativo, não substitui projeto, medição e profissional habilitado.`;navigator.clipboard&&navigator.clipboard.writeText(txt);}
 ['fp_p','fp_atual','fp_desejado','fp_tensao','fp_freq','fp_sistema','fp_ligacao','fp_meta'].forEach(id=>$(id).addEventListener('input',calcFP));
 calcFP();
 </script>

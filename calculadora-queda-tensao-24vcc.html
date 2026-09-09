@@ -17,7 +17,7 @@
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-<link href="style.css?v=20260722-layout-original-uppercase-mobilefix" rel="stylesheet"/>
+<link href="style.css?v=20260909-tools" rel="stylesheet"/>
 <script defer="" src="app.js"></script>
 <meta content="pt_BR" property="og:locale"/>
 <meta content="website" property="og:type"/>
@@ -51,8 +51,8 @@
 <a aria-label="Voltar para o início" class="logo-wrapper" href="/"><img alt="ALOGY Engenharia" decoding="async" height="308" src="logo-alogy.webp" width="878"/></a>
 <button aria-label="Abrir menu" class="menu-toggle" onclick="toggleMobileMenu()"><i class="fas fa-bars"></i></button>
 </div>
-<nav aria-label="Menu principal" class="desktop"><div class="container navlinks"><a href="/">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></div></nav>
-<nav aria-label="Menu mobile" class="mobile"><a href="/">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></nav>
+<nav aria-label="Menu principal" class="desktop"><div class="container navlinks"><a href="/">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="/guia/">Guia</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></div></nav>
+<nav aria-label="Menu mobile" class="mobile"><a href="/">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="/guia/">Guia</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></nav>
 </header>
 <div aria-label="Redes sociais" class="social-floating"><a aria-label="LinkedIn" class="linkedin" href="https://www.linkedin.com/company/alogyengenharia" rel="noopener noreferrer" target="_blank"><i class="fab fa-linkedin-in"></i></a><a aria-label="Instagram" class="instagram" href="https://www.instagram.com/alogyengenharia" rel="noopener noreferrer" target="_blank"><i class="fab fa-instagram"></i></a><a aria-label="Facebook" class="facebook" href="https://www.facebook.com/alogyengenharia" rel="noopener noreferrer" target="_blank"><i class="fab fa-facebook-f"></i></a><a aria-label="YouTube" class="youtube" href="https://www.youtube.com/@alogyengenharia" rel="noopener noreferrer" target="_blank"><i class="fab fa-youtube"></i></a><a aria-label="Hotmart" class="hotmart" href="https://hotmart.com/pt-br/club/alogyengenharia" rel="noopener noreferrer" target="_blank">H</a><a aria-label="TikTok" class="tiktok" href="https://www.tiktok.com/@alogyengenharia" rel="noopener noreferrer" target="_blank"><i class="fab fa-tiktok"></i></a></div>
 <div aria-label="Ações rápidas" class="fab-wrap"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1!%20Vim%20pela%20calculadora%20de%20queda%2024%20Vcc%20da%20ALOGY.%20Gostaria%20de%20atendimento." rel="noopener noreferrer" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
@@ -82,7 +82,7 @@
 <div class="field"><label for="entrada">Entrada da carga</label><select id="entrada"><option selected="" value="A">Corrente total em A</option><option value="mA">Corrente total em mA</option><option value="W">Potência total em W</option><option value="porCarga">Quantidade x corrente unitária</option></select></div>
 <div class="field"><label for="tipoCarga">Tipo de carga</label><select id="tipoCarga"><option selected="" value="instrumento">Instrumento / transmissor</option><option value="sensor">Sensor digital</option><option value="solenoide">Válvula solenoide</option><option value="clp">CLP / remota / I/O</option><option value="mista">Cargas mistas</option></select></div>
 <div class="field"><label for="corrente">Corrente total</label><input id="corrente" min="0" step="any" type="number" value="0.5"/><small>Use A, mA ou W conforme a opção acima.</small></div>
-<div class="field"><label for="quantidade">Quantidade de cargas</label><input id="quantidade" min="1" step="1" type="number" value="4"/><small>Usado na opção quantidade x corrente.</small></div>
+<div class="field"><label for="quantidade">Quantidade de cargas</label><input id="quantidade" min="1" step="any" type="number" value="4"/><small>Usado na opção quantidade x corrente.</small></div>
 <div class="field"><label for="correnteUnitaria">Corrente unitária por carga</label><input id="correnteUnitaria" min="0" step="any" type="number" value="100"/><small>Em mA por carga.</small></div>
 <div class="field"><label for="distancia">Distância fonte até a carga</label><input id="distancia" min="0" step="any" type="number" value="80"/><small>Informe só a ida. A volta é considerada.</small></div>
 <div class="field"><label for="secao">Seção do cabo</label><select id="secao"><option value="0.5">0,5 mm²</option><option value="0.75">0,75 mm²</option><option value="1">1,0 mm²</option><option selected="" value="1.5">1,5 mm²</option><option value="2.5">2,5 mm²</option><option value="4">4 mm²</option><option value="6">6 mm²</option><option value="10">10 mm²</option><option value="16">16 mm²</option></select></div>
@@ -187,13 +187,16 @@
 </section>
 </main>
 <footer><p>© Desde 2012 ALOGY Engenharia | www.alogy.com.br</p></footer>
+<script src="tool-validation.js?v=20260909-tools"></script>
 <script>
+ToolCalc.install({"calculate": "calcular", "fields": ["tensaoFonte", "tensaoMin", "corrente", "quantidade", "correnteUnitaria", "distancia", "secao", "material", "temperatura", "limitePct"], "outputs": ["quedaOut", "correnteOut", "resOut", "quedaVOut", "quedaPctOut", "cargaOut", "perdaOut", "lmaxOut", "imaxOut", "secSugOut", "obsOut"], "status": "status", "tables": ["tbodySecoes"], "copy": ["copiarResultado"], "auto": false, "bars": [], "check": v => v.tensaoFonte<=0 || v.tensaoMin<0 || v.tensaoMin>=v.tensaoFonte || v.corrente<0 || v.correnteUnitaria<0 || v.distancia<0 || v.secao<=0 || v.limitePct<0 || !Number.isInteger(v.quantidade) || v.quantidade<1 ? 'Use fonte acima da tensão mínima, seção positiva, cargas e distância não negativas e quantidade inteira positiva.' : ''});
+
     const $ = id => document.getElementById(id);
     const fmt = (v,d=2) => isFinite(v) ? v.toLocaleString('pt-BR',{minimumFractionDigits:d, maximumFractionDigits:d}) : '--';
     const fmtFlex = (v,d=2) => isFinite(v) ? v.toLocaleString('pt-BR',{maximumFractionDigits:d}) : '--';
     const secoes = [0.5,0.75,1,1.5,2.5,4,6,10,16];
 
-    function n(id){ return parseFloat(($(id).value || '').replace(',','.')) || 0; }
+    function n(id){return ToolCalc.number(id)}
     function tempFactor(rho20, temp){
       const alpha = rho20 < 0.02 ? 0.00393 : 0.00403;
       return rho20 * (1 + alpha * (temp - 20));
@@ -212,7 +215,7 @@
       const I = correnteA();
       const L = Math.max(n('distancia'),0);
       const sec = secaoAlt || Math.max(n('secao'),0.001);
-      const rho = tempFactor(parseFloat($('material').value)||0.0175, parseFloat($('temperatura').value)||20);
+      const rho = tempFactor(parseFloat($('material').value)||0.0175, ToolCalc.number('temperatura'));
       const R = (2 * L * rho) / sec;
       const queda = I * R;
       const pct = V > 0 ? queda / V * 100 : NaN;
