@@ -1,6 +1,8 @@
 # Bloqueios e decisões humanas
 
-Nenhum bloqueio ativo.
+## Atualização de 09/09/2026 — avaliação AdSense ainda pendente
+
+A captura recente confirma reprovação por conteúdo de baixo valor. O lote de três ferramentas com gráficos, exemplos e correções não encerra a revisão editorial do site. Há 19 páginas com uma mesma frase genérica de interpretação a avaliar. Consulte `ADSENSE-2026-09-09-TRAFFIC-TOOLS.md` para evidências, testes e prioridades. Não declarar o site pronto nem solicitar nova revisão automaticamente. Os dados de tráfego enviados também exigem reavaliar qualquer próxima poda de URLs.
 
 ## Decisões técnicas adiadas sem bloquear a auditoria
 

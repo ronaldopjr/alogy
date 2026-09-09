@@ -31,6 +31,7 @@
     }
     function clear(text) {
       valid = false;
+      if (config.onInvalid) config.onInvalid(text);
       for (const id of config.outputs || []) {
         const el = document.getElementById(id);
         if (el) el.textContent = '—';

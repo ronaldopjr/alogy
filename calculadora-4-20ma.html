@@ -75,7 +75,8 @@
 <meta name="author" content="ALOGY Engenharia">
   <!-- Google AdSense: carregado somente em páginas editoriais monetizáveis. A exibição e os formatos são controlados no painel do AdSense. -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5586837114309500" crossorigin="anonymous"></script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Início","item":"https://www.alogy.com.br/"},{"@type":"ListItem","position":2,"name":"Instrumentação industrial","item":"https://www.alogy.com.br/ferramentas-instrumentacao-industrial.html"},{"@type":"ListItem","position":3,"name":"Calculadora 4-20 mA","item":"https://www.alogy.com.br/calculadora-4-20ma.html"}]}</script></head>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Início","item":"https://www.alogy.com.br/"},{"@type":"ListItem","position":2,"name":"Instrumentação industrial","item":"https://www.alogy.com.br/ferramentas-instrumentacao-industrial.html"},{"@type":"ListItem","position":3,"name":"Calculadora 4-20 mA","item":"https://www.alogy.com.br/calculadora-4-20ma.html"}]}</script><link rel="stylesheet" href="tool-visuals.css?v=20260909"/>
+</head>
 <body class="tools-page alogy-stage3-forms">
   <header>
     <div class="container headbar">
@@ -135,7 +136,7 @@
     <div style="margin-bottom:14px;display:flex;gap:10px;flex-wrap:wrap" class="no-print"><a class="floating-back-tools no-print" href="ferramentas-instrumentacao-industrial.html"><i class="fas fa-arrow-left"></i> Voltar para Instrumentação</a><button class="btn print" type="button" onclick="window.print()"><i class="fas fa-print"></i> Imprimir</button></div>
     <section class="tools-hero">
       <h1>Calculadora 4-20 mA</h1>
-<p class="muted" data-alogy-content-meta><strong>Conteúdo técnico:</strong> ALOGY Engenharia · <strong>Atualizado em:</strong> 21/07/2026</p>
+<p class="muted" data-alogy-content-meta><strong>Conteúdo técnico:</strong> ALOGY Engenharia · <strong>Atualizado em:</strong> 09/09/2026</p>
       <p>Converta sinal 4-20 mA, percentual 0-100% e valor de engenharia conforme a faixa configurada no instrumento. A ferramenta também gera tabela de referência para teste de loop, calibração e consulta rápida em campo.</p>
     </section>
 
@@ -195,6 +196,13 @@
       </aside>
     </section>
 
+    <section class="calc-card tool-visual" aria-label="Gráfico interativo da escala 4–20 mA">
+      <h2>Veja o sinal percorrer a faixa</h2><p>O gráfico acompanha a entrada, a faixa e a unidade. Para explorar de 0 a 100%, use o controle abaixo; ele muda a entrada para o modo mA.</p>
+      <div id="signalChart"></div>
+      <label class="visual-slider-label" for="signalSweep">Explorar sinal entre 4 e 20 mA</label><input id="signalSweep" type="range" min="4" max="20" step="0.1" value="12" aria-valuetext="12 mA"/>
+      <ol class="technical-flow" aria-label="Caminho conceitual do sinal"><li>Transmissor: LRV / URV</li><li>Corrente: 4–20 mA</li><li>CLP: escala de engenharia</li></ol>
+      <p>Diagrama de conversão do sinal; não é um esquema de ligação elétrica. A tabela abaixo traz os valores para consulta e impressão.</p>
+    </section>
     <section class="calc-layout">
       <div class="calc-card">
         <h2>Tabela da faixa em 4-20 mA</h2>
@@ -284,7 +292,7 @@
 
 <section class="calc-card" aria-label="Base técnica e limites da calculadora 4-20 mA">
   <h2><i class="fas fa-book"></i> Base técnica, fórmulas e limites</h2>
-  <p>A conversão linear usa <strong>percentual = (mA − 4) ÷ 16 × 100</strong> e <strong>valor de engenharia = LRV + percentual × (URV − LRV)</strong>. Para converter no sentido inverso, aplica-se <strong>mA = 4 + 16 × (valor − LRV) ÷ (URV − LRV)</strong>.</p>
+  <p>A conversão linear usa <strong>percentual = (mA − 4) ÷ 16 × 100</strong> e <strong>valor de engenharia = LRV + (percentual / 100) × (URV − LRV)</strong>. Para converter no sentido inverso, aplica-se <strong>mA = 4 + 16 × (valor − LRV) ÷ (URV − LRV)</strong>.</p>
   <p><strong>Referências para conferência:</strong> IEC 60381-1 para sinais analógicos de corrente contínua; NAMUR NE 43 para faixas de informação de falha quando adotadas pelo equipamento; e os manuais do transmissor, cartão analógico e sistema de controle instalados.</p>
   <p><strong>Limite:</strong> a calculadora trata somente a relação matemática da escala. Ela não comprova alimentação, carga de malha, comunicação HART, isolação, ruído, linearidade, exatidão, incerteza ou condição do instrumento.</p>
 </section>
@@ -294,6 +302,7 @@
     <p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p>
   </footer>
 
+  <script src="tool-visuals.js?v=20260909"></script>
   <script>
     (function(){
       const $ = (id) => document.getElementById(id);
@@ -340,7 +349,8 @@
         setLabel();
         const {min, max, raw, u} = getInputs();
         const span = max - min;
-        if(!isFinite(min) || !isFinite(max) || !isFinite(raw) || span === 0){
+        if(!isFinite(min) || !isFinite(max) || !isFinite(raw) || !isFinite(span) || span === 0){
+          ToolVisuals.clear('signalChart');
           lastResultText = '';
           lastTableText = '';
           resMa.textContent = '-'; resPercent.textContent = '-'; resEng.textContent = '-';
@@ -365,6 +375,15 @@
           ma = 4 + (percent / 100) * 16;
         }
 
+        if(![ma,percent,eng].every(Number.isFinite)){
+          lastResultText=''; lastTableText=''; resMa.textContent='-'; resPercent.textContent='-'; resEng.textContent='-';
+          rangeTable.innerHTML=''; classicGrid.innerHTML=''; spanText.textContent='Span: -'; directionText.textContent='Faixa inválida';
+          note.className='calc-note status-bad'; note.textContent='Resultado fora do limite numérico. Confira a faixa e a entrada.';
+          ToolVisuals.clear('signalChart'); return;
+        }
+        ToolVisuals.line('signalChart',min,max,ma,u);
+        $('signalSweep').value=String(Math.max(4,Math.min(20,ma)));
+        $('signalSweep').setAttribute('aria-valuetext',formatNumber(Math.max(4,Math.min(20,ma)),2)+' mA');
         resMa.textContent = `${formatNumber(ma, 3)} mA`;
         resPercent.textContent = `${formatNumber(percent, 2)}%`;
         resEng.textContent = `${formatNumber(eng, 2)}${u ? ' ' + u : ''}`;
@@ -394,7 +413,7 @@
         const rows = mas.map(ma => {
           const p = ((ma - 4) / 16) * 100;
           const eng = min + (p / 100) * span;
-          return `<tr><td>${formatNumber(ma, 3)} mA</td><td>${formatNumber(p, 2)}%</td><td>${formatNumber(eng, 2)}${u ? ' ' + u : ''}</td></tr>`;
+          return `<tr><td>${formatNumber(ma, 3)} mA</td><td>${formatNumber(p, 2)}%</td><td>${formatNumber(eng, 2)}${u ? ' ' + ToolVisuals.esc(u) : ''}</td></tr>`;
         }).join('');
         rangeTable.innerHTML = rows;
         lastTableText = [`Tabela 4-20 mA - ALOGY Engenharia`, `Faixa: ${formatNumber(min,2)} a ${formatNumber(min+span,2)}${u ? ' ' + u : ''}`, ''].concat(mas.map(ma => {
@@ -407,7 +426,7 @@
         const points = [0,25,50,75,100];
         classicGrid.innerHTML = points.map(p => {
           const {ma, eng} = rowForPercent(p, min, span, u);
-          return `<div class="classic-point"><span>${p}%</span><strong>${formatNumber(ma,3)} mA</strong><span>${formatNumber(eng,2)}${u ? ' ' + u : ''}</span></div>`;
+          return `<div class="classic-point"><span>${p}%</span><strong>${formatNumber(ma,3)} mA</strong><span>${formatNumber(eng,2)}${u ? ' ' + ToolVisuals.esc(u) : ''}</span></div>`;
         }).join('');
       }
       function buildResultText(min, max, span, u, raw, ma, percent, eng, inRange){
@@ -442,10 +461,12 @@
         button.innerHTML = '<i class="fas fa-check"></i> Copiado';
         setTimeout(() => button.innerHTML = original, 1600);
       }
+      $('signalSweep').addEventListener('input',()=>{mode.value='ma';inputValue.value=$('signalSweep').value;calculate();});
       $('copyResult').addEventListener('click', () => copyText(lastResultText, $('copyResult')));
       $('copyTable').addEventListener('click', () => copyText(lastTableText, $('copyTable')));
       function printTableOnly(){
         calculate();
+        if(!lastTableText) return;
         const {min, max, u} = getInputs();
         const title = 'Tabela 4-20 mA - ALOGY Engenharia';
         const faixa = `Faixa configurada: ${formatNumber(min,2)} a ${formatNumber(max,2)}${u ? ' ' + u : ''}`;
@@ -454,7 +475,7 @@
         const tableRows = Array.from(rangeTable.querySelectorAll('tr')).map(tr => tr.innerHTML).join('');
         const classicRows = Array.from(classicGrid.querySelectorAll('.classic-point')).map(item => {
           const parts = Array.from(item.querySelectorAll('span,strong')).map(el => el.textContent);
-          return `<tr><td>${parts[0] || ''}</td><td>${parts[1] || ''}</td><td>${parts[2] || ''}</td></tr>`;
+          return `<tr><td>${ToolVisuals.esc(parts[0] || '')}</td><td>${ToolVisuals.esc(parts[1] || '')}</td><td>${ToolVisuals.esc(parts[2] || '')}</td></tr>`;
         }).join('');
 
         const html = `<!DOCTYPE html>
@@ -482,8 +503,8 @@
   <div class="head">
     <div>
       <h1>${title}</h1>
-      <div class="meta">${faixa}</div>
-      <div class="meta">Span: ${formatNumber(span,2)}${u ? ' ' + u : ''} • ${direction}</div>
+      <div class="meta">${ToolVisuals.esc(faixa)}</div>
+      <div class="meta">Span: ${formatNumber(span,2)}${u ? ' ' + ToolVisuals.esc(u) : ''} • ${direction}</div>
     </div>
     <div class="brand">ALOGY<br>Engenharia</div>
   </div>

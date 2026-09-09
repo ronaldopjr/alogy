@@ -55,6 +55,7 @@ function load(name) {
   sandbox.window=sandbox;
   sandbox.addEventListener=document.addEventListener;
   const context=vm.createContext(sandbox);
+  if(html.includes('src="tool-visuals.js'))vm.runInContext(fs.readFileSync(path.join(root,'tool-visuals.js'),'utf8'),context);
   if(html.includes('src="tool-validation.js'))vm.runInContext(fs.readFileSync(path.join(root,'tool-validation.js'),'utf8'),context);
   for(const m of html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/g)) {
     if(/\bsrc\s*=|ld\+json/.test(m[1]))continue;
@@ -70,6 +71,7 @@ function load(name) {
 }
 const guarded=['conversao-sinais-industriais','histerese-pressostato-termostato','selo-remoto-capilar-dp','pressao-hidrostatica-densidade','emissividade-termografia','termopoco-tempo-resposta','rotametro-correcao-vazao','calibracao-indicador-controlador','calibracao-termostato','calibracao-chave-nivel','calibracao-chave-fluxo','calibracao-pressostato','calibracao-balanca-industrial','calibracao-valvula-controle','intervalo-calibracao-deriva','bateria-ups-24vcc','modbus-polling','tempo-transmissao-serial-industrial','corrente-trifasica','correcao-fator-potencia','queda-de-tensao','queda-tensao-24vcc','fonte-24vcc-painel-automacao'];
 const toleranceTools=['calibracao-medidor-vazao-magnetico','calibracao-radar-ultrassonico-nivel','calibracao-medidor-vazao-coriolis','calibracao-totalizador-vazao','calibracao-medidor-vazao-ultrassonico'];
+guarded.push('perda-carga-filtro','potencia-exaustor-ventilador');
 let invalidCases=0;
 for(const name of guarded){
   const e=load(name);
@@ -137,4 +139,5 @@ e.set({fp_freq:0});e.run();assert.equal(e.text('r_cap'),'—');e.context.copiarF
 e=load('queda-de-tensao');e.set({qt_modo:'corrente',qt_valor:10,qt_tensao:100,qt_fp:1,qt_comp:100,qt_limite:4,qt_temp:20,qt_secao:1,qt_x:0,qt_paralelos:1,qt_sistema:'mono',qt_mat:'cu'});e.run();assert.equal(e.text('qt_vdrop'),'34,48 V');e.set({qt_tensao:0});e.run();assert.equal(e.text('qt_vdrop'),'—');
 e=load('queda-tensao-24vcc');e.set({tensaoFonte:24,tensaoMin:12,corrente:1,distancia:100,secao:1,temperatura:20,material:.0175,entrada:'A'});e.run();assert.equal(e.text('quedaOut'),'3,50 V');e.set({tensaoMin:25});e.run();assert.equal(e.text('quedaOut'),'—');
 e=load('fonte-24vcc-painel-automacao');assert.equal(e.context.nextStd([10,20,100],150),150,'never suggest an undersized last catalogue item');e.set({ma0:200000});e.run();assert.match(e.text('resultadoRapido'),/acima da tabela/);e.set({qtd0:-1});e.run();assert.equal(e.text('resultadoRapido'),'Dados inválidos');e.context.copiarMemorial();assert.equal(e.copies.length,0);
-console.log(`28 calculators: defaults, tolerance boundaries and numerical scenarios passed; ${invalidCases} invalid-input cases rejected.`);
+console.log(`30 calculators: defaults, tolerance boundaries and numerical scenarios passed; ${invalidCases} invalid-input cases rejected.`);
+module.exports = {load};
