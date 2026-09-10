@@ -69,6 +69,57 @@
     finite([pabs,fn,fs,qop,qn,qs,...(v.dens>0?[mass]:[])]);
     return {pabs,fn,fs,qop,qn,qs,mass};
   }
+  function airConsumption(v) {
+    const common=['qty','duty','extra','hoursDay','daysMonth','cost','compressor'];
+    finite(common.map(k=>v[k]));
+    if (!['double','single','knownNlMin','knownNm3h'].includes(v.mode) || v.qty < 1 || !Number.isInteger(v.qty) || v.duty < 0 || v.duty > 100 || v.extra < 0 || v.extra > 200 || v.hoursDay < 0 || v.hoursDay > 24 || v.daysMonth < 0 || v.daysMonth > 31 || v.cost < 0 || v.compressor < 0)
+      throw new Error('Confira quantidade inteira, uso de 0 a 100%, margem não negativa, até 24 h/dia, até 31 dias/mês, custo e capacidade não negativos.');
+    const use=v.duty/100, margin=1+v.extra/100;
+    let nlCycle=NaN, nlMin, note;
+    if (v.mode==='knownNlMin') {
+      finite([v.knownNl]); if (v.knownNl <= 0) throw new Error('Informe consumo conhecido maior que zero.');
+      nlMin=v.knownNl*v.qty*use*margin; note='Consumo conhecido em NL/min';
+    } else if (v.mode==='knownNm3h') {
+      finite([v.knownNm3h]); if (v.knownNm3h <= 0) throw new Error('Informe consumo conhecido maior que zero.');
+      nlMin=v.knownNm3h*1000/60*v.qty*use*margin; note='Consumo conhecido em Nm³/h';
+    } else {
+      finite([v.bore,v.rod,v.stroke,v.cycles,v.pressure]);
+      if (v.bore <= 0 || v.rod < 0 || v.rod >= v.bore || v.stroke <= 0 || v.cycles < 0 || v.pressure < 0)
+        throw new Error('Use diâmetro e curso positivos, haste menor que o pistão, ciclos e pressão não negativos.');
+      const bore=v.bore/1000, rod=v.rod/1000, stroke=v.stroke/1000;
+      const advance=Math.PI*bore*bore/4*stroke;
+      const retract=v.mode==='double'?Math.PI*(bore*bore-rod*rod)/4*stroke:0;
+      // Isothermal free-air approximation at the same reference temperature, Pn = 1.01325 bar(a).
+      nlCycle=(advance+retract)*1000*((v.pressure+1.01325)/1.01325)*margin;
+      nlMin=nlCycle*v.cycles*v.qty*use;
+      note=v.mode==='double'?'Cilindro de dupla ação':'Cilindro de simples ação';
+    }
+    const nm3h=nlMin*60/1000, cubicFeetMin=nm3h*35.3146667/60;
+    const day=nm3h*v.hoursDay, month=day*v.daysMonth, monthlyCost=month*v.cost;
+    const capacity=v.compressor>0?nm3h/v.compressor*100:NaN;
+    finite([nlMin,nm3h,cubicFeetMin,day,month,monthlyCost,...(v.compressor>0?[capacity]:[])]);
+    return {nlCycle,nlMin,nm3h,cubicFeetMin,day,month,monthlyCost,capacity,note};
+  }
+  function airCost(v) {
+    finite(['h','d','tariff','loss'].map(k=>v[k]));
+    if (!['flow','power'].includes(v.mode) || v.h < 0 || v.h > 24 || v.d < 0 || v.d > 31 || v.tariff < 0 || v.loss < 0 || v.loss > 100)
+      throw new Error('Use até 24 h/dia e 31 dias/mês, tarifa não negativa e perdas de 0 a 100%.');
+    if (v.mode==='flow') { finite([v.q,v.esp]); if (v.q <= 0 || v.esp <= 0) throw new Error('Informe vazão e consumo específico maiores que zero.'); }
+    else { finite([v.kw]); if (v.kw <= 0) throw new Error('Informe potência média medida maior que zero.'); }
+    const hours=v.h*v.d;
+    const energy=v.mode==='flow'?v.q*60*hours*v.esp:v.kw*hours;
+    const cost=energy*v.tariff, lossCost=cost*v.loss/100;
+    finite([hours,energy,cost,lossCost]);
+    return {hours,energy,cost,lossCost,annualCost:cost*12,annualLossCost:lossCost*12};
+  }
+  function compressorSpecific(v) {
+    finite(['power','flow','pressure','hours','days','tariff','target'].map(k=>v[k]));
+    if (v.power <= 0 || v.flow <= 0 || v.pressure < 0 || v.hours < 0 || v.hours > 24 || v.days < 0 || v.days > 31 || v.tariff < 0 || v.target <= 0)
+      throw new Error('Use potência, vazão e meta positivas; pressão e tarifa não negativas; até 24 h/dia e 31 dias/mês.');
+    const specific=v.power/v.flow, energy=v.power*v.hours*v.days, cost=energy*v.tariff;
+    finite([specific,energy,cost]);
+    return {specific,energy,cost,difference:(specific/v.target-1)*100,status:specific<=v.target?'Dentro da meta informada':'Acima da meta informada'};
+  }
   function clear(id, message = 'Preencha entradas válidas para visualizar o gráfico.') {
     const el = document.getElementById(id);
     if (el) el.innerHTML = '<p class="visual-empty">' + esc(message) + '</p>';
@@ -108,5 +159,14 @@
       '<text x="20" y="63">Entrada</text><text x="282" y="135">Saída</text><text x="125" y="207">Volume útil: '+esc(fmt(result.useful))+' m³</text></svg>'+
       '<p class="visual-summary">Tempo nominal: '+esc(fmt(result.nominal))+' h · Cenário informado: '+esc(fmt(result.scenario))+' h.</p>';
   }
-  root.ToolVisuals = {filter, fan, signal, leak, residence, gas, bars, line, tank, clear, fmt, esc};
+  function pneumatic(id, result, mode) {
+    const el=document.getElementById(id); if(!el)return;
+    const double=mode==='double';
+    el.innerHTML='<svg viewBox="0 0 520 210" role="img" aria-label="Esquema funcional de cilindro pneumático e consumo calculado">'+
+      '<path d="M35 105H120M400 105H490" stroke="#006bb1" stroke-width="7"/><rect x="120" y="45" width="280" height="120" rx="12" fill="#fff" stroke="#17384f" stroke-width="5"/>'+
+      '<path d="M270 48V162M270 105H455" stroke="#17384f" stroke-width="7"/><path d="M54 83L85 105 54 127M466 83L492 105 466 127" fill="none" stroke="#006bb1" stroke-width="6"/>'+
+      '<text x="135" y="82">Avanço</text><text x="298" y="82">'+(double?'Retorno':'Retorno por mola/carga')+'</text><text x="154" y="196">'+esc(fmt(result.nlMin))+' NL/min · '+esc(fmt(result.nm3h))+' Nm³/h</text></svg>'+
+      '<p class="visual-summary">O desenho acompanha o tipo selecionado. O cálculo geométrico considera '+(double?'as duas câmaras por ciclo':'apenas o curso alimentado')+'.</p>';
+  }
+  root.ToolVisuals = {filter, fan, signal, leak, residence, gas, airConsumption, airCost, compressorSpecific, bars, line, tank, pneumatic, clear, fmt, esc};
 })(typeof window === 'undefined' ? globalThis : window);

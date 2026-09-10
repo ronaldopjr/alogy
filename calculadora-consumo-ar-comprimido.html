@@ -5,7 +5,7 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Calculadora de Consumo de Ar Comprimido | ALOGY</title>
-<meta content="Calculadora de consumo de ar comprimido para cilindros pneumáticos, atuadores, ciclos por minuto e pressão de trabalho. Estime NL/min, Nm³/h, SCFM" name="description"/>
+<meta content="Calcule o consumo de ar comprimido de cilindros pneumáticos por diâmetro, curso, pressão e ciclos. Resultados em NL/min, Nm³/h e custo mensal." name="description"/>
 <meta content="index,follow" name="robots"/>
 <meta content="#004b80" name="theme-color"/>
 <link href="https://www.alogy.com.br/calculadora-consumo-ar-comprimido.html" rel="canonical"/>
@@ -17,13 +17,15 @@
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-<link href="style.css?v=20260722-layout-original-uppercase-mobilefix" rel="stylesheet"/>
+<link href="style.css?v=20260909" rel="stylesheet"/>
+<link href="tool-visuals.css?v=20260909" rel="stylesheet"/>
 <script defer="" src="app.js"></script>
+<script defer="" src="tool-visuals.js?v=20260909"></script>
 <meta content="pt_BR" property="og:locale"/>
 <meta content="website" property="og:type"/>
 <meta content="ALOGY Engenharia" property="og:site_name"/>
 <meta content="Calculadora de Consumo de Ar Comprimido | ALOGY Engenharia" property="og:title"/>
-<meta content="Estime consumo de ar comprimido em cilindros pneumáticos, atuadores e cargas industriais em NL/min, Nm³/h e SCFM." property="og:description"/>
+<meta content="Estime o consumo de cilindros pneumáticos por ciclo, minuto, hora e mês, com pressão absoluta, simultaneidade e margem informada." property="og:description"/>
 <meta content="https://www.alogy.com.br/calculadora-consumo-ar-comprimido.html" property="og:url"/>
 <meta content="https://www.alogy.com.br/favicon-512x512.png" property="og:image"/>
 <meta content="summary_large_image" name="twitter:card"/>
@@ -32,7 +34,7 @@
     .tool-hero h1{margin:0 0 8px;font-size:clamp(1.8rem,3vw,2.7rem);line-height:1.12;color:#fff}.tool-hero p{max-width:920px;margin:0;color:#e8f6ff;font-size:1.05rem}.breadcrumb{font-size:.92rem;margin-bottom:10px;color:#cdefff}.breadcrumb a{color:#fff;text-decoration:underline}.calc-layout{display:grid;grid-template-columns:1.05fr .95fr;gap:18px;align-items:start}.calc-card{background:#fff;border:1px solid #e6eef5;border-radius:16px;padding:20px;margin:18px 0;box-shadow:0 8px 24px rgba(0,45,80,.07)}.calc-card h2{margin-top:0;color:#004b80}.calc-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.field label{display:block;font-weight:700;color:#17344d;margin-bottom:6px}.field input,.field select{width:100%;padding:11px 12px;border:1px solid #cad8e4;border-radius:10px;font-size:1rem;background:#fff}.field small{display:block;color:#637789;margin-top:5px;line-height:1.35}.result-card{position:sticky;top:14px}.result-main{font-size:2.2rem;line-height:1;font-weight:800;color:#004b80;margin:8px 0}.muted{color:#647789}.result-list{display:grid;gap:8px}.result-list div{display:flex;justify-content:space-between;gap:12px;border-bottom:1px dashed #d8e4ee;padding:8px 0}.result-list span{color:#536b7d}.result-list strong{text-align:right;color:#17344d}.calc-actions{display:flex;flex-wrap:wrap;gap:8px}.mini-btn{border:1px solid #c8d8e5;background:#f6fbff;color:#004b80;border-radius:999px;padding:9px 13px;font-weight:700;cursor:pointer}.mini-btn.dark{background:#004b80;color:#fff;border-color:#004b80}.table-wrap{overflow-x:auto}.calc-table{width:100%;border-collapse:collapse}.calc-table th,.calc-table td{border:1px solid #dce8f2;padding:10px;text-align:left}.calc-table th{background:#f1f7fc;color:#004b80}.status-ok{color:#0a7a3d;font-weight:800}.status-warn{color:#b56b00;font-weight:800}.status-bad{color:#b00020;font-weight:800}.notice{border-left:5px solid #f0a500;background:#fff8e8}.nice-list{padding-left:20px}.nice-list li{margin:8px 0}.faq-list details{border:1px solid #e2ebf3;border-radius:12px;padding:12px;margin:10px 0;background:#fbfdff}.faq-list summary{cursor:pointer;font-weight:800;color:#17344d}.cta-card{background:linear-gradient(135deg,#f6fbff,#e9f6ff);border:1px solid #d7ebf8;border-radius:16px;padding:22px;text-align:center;margin:22px 0}.pill{display:inline-block;background:#eef7ff;border:1px solid #d2e8f7;color:#004b80;border-radius:999px;padding:6px 10px;font-weight:700;margin:3px 4px 3px 0;font-size:.9rem}@media(max-width:850px){.calc-layout{grid-template-columns:1fr}.calc-grid{grid-template-columns:1fr}.result-card{position:static}.result-main{font-size:1.8rem}}
     @media print{header,.social-floating,.fab-wrap,.no-print,.calc-actions{display:none!important}.calc-card,.tool-hero{box-shadow:none}.tool-hero{color:#111;background:#fff;border:1px solid #ddd}.tool-hero h1{color:#111}}
   </style>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Calculadora de Consumo de Ar Comprimido","url":"https://www.alogy.com.br/calculadora-consumo-ar-comprimido.html","applicationCategory":"EngineeringApplication","operatingSystem":"Web","description":"Calculadora orientativa para estimar consumo de ar comprimido em cilindros pneumáticos, atuadores e cargas industriais, com resultados em NL/min, Nm³/h, SCFM e custo aproximado.","provider":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"},"dateModified":"2026-07-21","author":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Calculadora de Consumo de Ar Comprimido","url":"https://www.alogy.com.br/calculadora-consumo-ar-comprimido.html","applicationCategory":"EngineeringApplication","operatingSystem":"Web","description":"Calcula o consumo de ar comprimido de cilindros pneumáticos por geometria, pressão, ciclos, simultaneidade e margem informada.","provider":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"},"dateModified":"2026-09-10","author":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"}}</script>
 <script type="application/ld+json">
   {
     "@context":"https://schema.org",
@@ -51,8 +53,8 @@
 <a aria-label="Voltar para o início" class="logo-wrapper" href="/"><img alt="ALOGY Engenharia" decoding="async" height="308" src="logo-alogy.webp" width="878"/></a>
 <button aria-label="Abrir menu" class="menu-toggle" onclick="toggleMobileMenu()"><i class="fas fa-bars"></i></button>
 </div>
-<nav aria-label="Menu principal" class="desktop"><div class="container navlinks"><a href="/">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></div></nav>
-<nav aria-label="Menu mobile" class="mobile"><a href="/">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></nav>
+<nav aria-label="Menu principal" class="desktop"><div class="container navlinks"><a href="/">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="/guia/">Guia</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></div></nav>
+<nav aria-label="Menu mobile" class="mobile"><a href="/">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="/guia/">Guia</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></nav>
 </header>
 <div aria-label="Redes sociais" class="social-floating"><a aria-label="LinkedIn" class="linkedin" href="https://www.linkedin.com/company/alogyengenharia" rel="noopener noreferrer" target="_blank"><i class="fab fa-linkedin-in"></i></a><a aria-label="Instagram" class="instagram" href="https://www.instagram.com/alogyengenharia" rel="noopener noreferrer" target="_blank"><i class="fab fa-instagram"></i></a><a aria-label="Facebook" class="facebook" href="https://www.facebook.com/alogyengenharia" rel="noopener noreferrer" target="_blank"><i class="fab fa-facebook-f"></i></a><a aria-label="YouTube" class="youtube" href="https://www.youtube.com/@alogyengenharia" rel="noopener noreferrer" target="_blank"><i class="fab fa-youtube"></i></a><a aria-label="Hotmart" class="hotmart" href="https://hotmart.com/pt-br/club/alogyengenharia" rel="noopener noreferrer" target="_blank">H</a><a aria-label="TikTok" class="tiktok" href="https://www.tiktok.com/@alogyengenharia" rel="noopener noreferrer" target="_blank"><i class="fab fa-tiktok"></i></a></div>
 <div aria-label="Ações rápidas" class="fab-wrap"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1!%20Vim%20pela%20calculadora%20de%20consumo%20de%20ar%20comprimido%20da%20ALOGY.%20Gostaria%20de%20atendimento." rel="noopener noreferrer" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
@@ -60,7 +62,7 @@
 <section class="tool-hero">
 <div class="breadcrumb"><a href="ferramentas.html">Ferramentas</a> / Pneumática e ar comprimido</div>
 <h1>Calculadora de Consumo de Ar Comprimido</h1>
-<p class="muted" data-alogy-content-meta><strong>Conteúdo técnico:</strong> ALOGY Engenharia · <strong>Atualizado em:</strong> 21/07/2026</p>
+<p class="muted" data-alogy-content-meta><strong>Conteúdo técnico:</strong> ALOGY Engenharia · <strong>Atualizado em:</strong> 10/09/2026</p>
 <p>Estime o consumo de ar em cilindros pneumáticos, atuadores e cargas industriais por ciclo, por minuto, por hora e por mês. Útil para pré-análise de automação pneumática, válvulas, máquinas e manutenção industrial.</p>
 </section>
 <section aria-label="Aviso de responsabilidade" class="calc-card notice">
@@ -123,7 +125,7 @@
 </div>
 <div class="field">
 <label for="duty">Fator de uso / simultaneidade (%)</label>
-<input id="duty" max="300" min="0" step="1" type="number" value="100"/>
+<input id="duty" max="100" min="0" step="1" type="number" value="100"/>
 <small>100% = todos operando conforme informado. Use menor se nem todos trabalham juntos.</small>
 </div>
 <div class="field cylinder-only known-nl known-nm3h">
@@ -166,29 +168,31 @@
 <div class="result-list" style="margin-top:12px">
 <div><span>Consumo por ciclo</span><strong id="cycleResult">-- NL/ciclo</strong></div>
 <div><span>Consumo por minuto</span><strong id="nlMinResult">-- NL/min</strong></div>
-<div><span>Equivalente em SCFM</span><strong id="scfmResult">-- SCFM</strong></div>
+<div><span>ft³/min na mesma base normal</span><strong id="scfmResult">-- ft³/min</strong></div>
 <div><span>Consumo diário</span><strong id="dayResult">-- Nm³/dia</strong></div>
 <div><span>Consumo mensal</span><strong id="monthResult">-- Nm³/mês</strong></div>
 <div><span>Custo mensal estimado</span><strong id="costResult">--</strong></div>
 <div><span>% da capacidade informada</span><strong id="capacityResult">--</strong></div>
 </div>
 <p class="muted" id="interpretation" style="margin-top:12px">O consumo real pode ser maior por vazamentos, sopros, regulagem incorreta, baixa eficiência, simultaneidade e variação de pressão.</p>
+<div class="tool-visual"><h3>Movimento e demanda calculada</h3><div id="pneumaticDiagram"></div></div>
+<div class="tool-visual"><h3>Demanda por período</h3><div id="airConsumptionChart"></div></div>
 </aside>
 </section>
 <section class="calc-card">
 <h2><i class="fas fa-table"></i> Tabela de sensibilidade</h2>
 <p class="muted">Comparação rápida variando os ciclos por minuto ou, no modo de consumo conhecido, a simultaneidade.</p>
-<div class="table-wrap"><table class="calc-table" id="sensitivityTable"><thead><tr><th>Cenário</th><th>NL/min</th><th>Nm³/h</th><th>Nm³/mês</th><th>Observação</th></tr></thead><tbody><tr><td colspan="5">Calcule para gerar a tabela.</td></tr></tbody></table></div>
+<div class="table-wrap"><table class="calc-table" id="sensitivityTable"><thead><tr><th>Cenário</th><th>NL/min</th><th>Nm³/h</th><th>Nm³/mês</th><th>Observação</th></tr></thead><tbody id="sensitivityRows"><tr><td colspan="5">Calcule para gerar a tabela.</td></tr></tbody></table></div>
 </section>
 <section class="calc-card">
 <h2>Como a ferramenta estima o consumo</h2>
 <ul class="nice-list">
 <li>Para cilindros, a ferramenta calcula o volume geométrico pelo diâmetro e curso.</li>
 <li>Em cilindro de dupla ação, considera o avanço e o retorno; no retorno, desconta a área ocupada pela haste.</li>
-<li>O volume é convertido para ar livre/normal usando a pressão absoluta aproximada.</li>
+<li>O volume é convertido para ar livre normal pela razão entre pressão absoluta de trabalho e 1,01325 bar(a), assumindo a mesma temperatura de referência.</li>
 <li>O resultado recebe quantidade de atuadores, ciclos por minuto, fator de uso e margem adicional.</li>
 </ul>
-<p><span class="pill">NL/min</span><span class="pill">Nm³/h</span><span class="pill">SCFM</span><span class="pill">Cilindro pneumático</span><span class="pill">Automação industrial</span></p>
+<p><span class="pill">NL/min</span><span class="pill">Nm³/h</span><span class="pill">Cilindro pneumático</span><span class="pill">Automação industrial</span></p>
 </section>
 <section class="calc-card">
 <h2>Aplicações comuns</h2>
@@ -211,40 +215,20 @@
 <a class="btn primary" href="https://wa.me/5519981442448?text=Ol%C3%A1!%20Vim%20pela%20calculadora%20de%20consumo%20de%20ar%20comprimido%20da%20ALOGY.%20Gostaria%20de%20atendimento." rel="noopener noreferrer" target="_blank"><i class="fab fa-whatsapp"></i> Falar com a ALOGY</a>
 </section>
 <!-- ALOGY_REVISAO_TECNICA_FERRAMENTA -->
-<section aria-label="Orientação técnica complementar" class="calc-card">
-<h2><i class="fas fa-clipboard-check"></i> Aplicação prática: Consumo de Ar Comprimido</h2>
-<p>Calculadora de consumo de ar comprimido para cilindros pneumáticos, atuadores, ciclos por minuto e pressão de trabalho. Estime NL/min, Nm³/h, SCFM, consumo mensal e custo aproximado de ar comprimido.</p>
-<h3>Quando aplicar</h3>
-<p>Use Consumo de Ar Comprimido para estimar e comparar condições de utilidades industriais, considerando consumo, perdas, capacidade disponível e margem operacional.</p>
-<h3>Entradas críticas para Consumo de Ar Comprimido</h3>
-<p>Confira a unidade, a condição real de operação e os campos principais desta análise: Tipo de cálculo, Quantidade de atuadores/cargas, Diâmetro do êmbolo / pistão (mm), Diâmetro da haste (mm), Curso do cilindro (mm), Ciclos por minuto. Registre as premissas usadas para que o cálculo possa ser repetido e revisado.</p>
-<ul>
-<li>Tipo de cálculo</li>
-<li>Quantidade de atuadores/cargas</li>
-<li>Diâmetro do êmbolo / pistão (mm)</li>
-<li>Diâmetro da haste (mm)</li>
-<li>Curso do cilindro (mm)</li>
-<li>Ciclos por minuto</li>
-</ul>
-<h3>Como interpretar o resultado</h3>
-<p>No cálculo de Consumo de Ar Comprimido, o resultado indica tendência e ordem de grandeza. A condição real pode variar com pressão, temperatura, vazamentos, perdas de carga, rendimento e estado mecânico.</p>
-<p>Analise em conjunto os resultados Cenário, NL/min, Nm³/h, Nm³/mês, Observação. Compare-os com limites operacionais, tolerâncias, histórico e documentação do equipamento, evitando decidir com base em um único indicador.</p>
-<h3>Checklist rápido de validação</h3>
-<ul>
-<li>Meça pressão, temperatura e vazão na condição mais próxima possível da operação real.</li>
-<li>Considere perdas em filtros, curvas, válvulas, mangueiras, dutos e trocadores.</li>
-<li>Compare o cálculo com placa do equipamento, curva do fabricante e histórico de consumo.</li>
-<li>Se o resultado ficar próximo do limite, adote margem de segurança e valide com engenharia.</li>
-</ul>
-<h3>Limites da estimativa</h3>
-<p>Use esta análise de Consumo de Ar Comprimido como apoio preliminar. Para projeto final, laudo, compra, mudança de segurança ou liberação de equipamento crítico, confirme premissas, condições de campo, documentação do fabricante e requisitos aplicáveis.</p>
+<section aria-label="Método e interpretação" class="calc-card">
+<h2><i class="fas fa-clipboard-check"></i> Premissas do cálculo pneumático</h2>
+<p>Para cilindros, a demanda por ciclo parte do volume de avanço e, em dupla ação, soma o volume de retorno descontando a haste. A conversão para litros normais usa uma aproximação isotérmica de gás ideal: <strong>volume geométrico × pressão absoluta de trabalho ÷ 1,01325 bar(a)</strong>.</p>
+<h3>O que a margem representa</h3><p>A margem informada é aplicada à demanda calculada para acomodar variações e pequenas perdas previstas. Ela não mede vazamentos da rede. Vazamentos, sopros contínuos e outros consumidores devem ser levantados separadamente.</p>
+<h3>NL/min, Nm³/h e SCFM não são sinônimos automáticos</h3><p>NL/min e Nm³/h só podem ser comparados diretamente quando adotam a mesma condição normal. A ferramenta apresenta também ft³/min como conversão geométrica na mesma base normal; não rotula esse valor como SCFM porque fabricantes podem adotar temperatura e pressão padrão diferentes.</p>
+<h3>Verificação antes de selecionar o compressor</h3><ul><li>Confirme no catálogo o consumo do atuador, amortecimento, volume de mangueiras e válvulas.</li><li>Some outras cargas e avalie simultaneidade e picos, não apenas a média mensal.</li><li>Meça a pressão mínima no ponto de uso e a queda na rede durante o pico.</li><li>Use a vazão FAD e a condição de referência declarada pelo fabricante do compressor.</li></ul>
+<h3>Referência técnica primária</h3><p><a href="https://www.energy.gov/sites/default/files/2014/05/f16/compressed_air_sourcebook.pdf" rel="noopener noreferrer" target="_blank">U.S. Department of Energy — Improving Compressed Air System Performance: A Sourcebook for Industry</a>. Para o consumo final do componente, prevalecem a ficha e a ferramenta de seleção do fabricante do cilindro.</p>
 </section>
 </main>
 <footer><p>© Desde 2012 ALOGY Engenharia | www.alogy.com.br</p></footer>
 <script>
     const $ = (id) => document.getElementById(id);
     const fmt = (v, d=2) => isFinite(v) ? Number(v).toLocaleString('pt-BR', {minimumFractionDigits:d, maximumFractionDigits:d}) : '--';
-    const get = (id) => parseFloat($(id).value || '0');
+    const get = (id) => { const raw=String($(id).value).trim().replace(',','.'); return raw==='' ? NaN : Number(raw); };
 
     function toggleMode(){
       const mode = $('mode').value;
@@ -256,65 +240,41 @@
     }
 
     function baseCalculation(cycleOverride=null, dutyOverride=null){
-      const mode = $('mode').value;
-      const qty = Math.max(get('qty'), 0);
-      const duty = (dutyOverride ?? get('duty')) / 100;
-      const extra = 1 + get('extra') / 100;
-      let nlMin = 0;
-      let nlCycle = 0;
-      let note = '';
-
-      if(mode === 'knownNlMin'){
-        nlMin = get('knownNl') * qty * duty * extra;
-        note = 'Consumo conhecido em NL/min';
-      } else if(mode === 'knownNm3h'){
-        nlMin = get('knownNm3h') * 1000 / 60 * qty * duty * extra;
-        note = 'Consumo conhecido em Nm³/h';
-      } else {
-        const bore = get('bore') / 1000;
-        const rod = Math.min(get('rod') / 1000, bore * 0.95);
-        const stroke = get('stroke') / 1000;
-        const pressureAbs = get('pressure') + 1.013;
-        const cycles = cycleOverride ?? get('cycles');
-        const areaAdvance = Math.PI * Math.pow(bore, 2) / 4;
-        const areaReturn = Math.max(Math.PI * (Math.pow(bore, 2) - Math.pow(rod, 2)) / 4, 0);
-        const volAdvanceM3 = areaAdvance * stroke;
-        const volReturnM3 = mode === 'double' ? areaReturn * stroke : 0;
-        const nlAdvance = volAdvanceM3 * (pressureAbs / 1.013) * 1000;
-        const nlReturn = volReturnM3 * (pressureAbs / 1.013) * 1000;
-        nlCycle = (nlAdvance + nlReturn) * extra;
-        nlMin = nlCycle * cycles * qty * duty;
-        note = mode === 'double' ? 'Cilindro dupla ação' : 'Cilindro simples ação';
-      }
-
-      const nm3h = nlMin * 60 / 1000;
-      const scfm = nm3h * 0.5886;
-      const day = nm3h * get('hoursDay');
-      const month = day * get('daysMonth');
-      const cost = month * get('cost');
-      const cap = get('compressor') > 0 ? (nm3h / get('compressor') * 100) : NaN;
-      return {nlCycle, nlMin, nm3h, scfm, day, month, cost, cap, note};
+      return ToolVisuals.airConsumption({
+        mode:$('mode').value, qty:get('qty'), bore:get('bore'), rod:get('rod'), stroke:get('stroke'),
+        cycles:cycleOverride ?? get('cycles'), knownNl:get('knownNl'), knownNm3h:get('knownNm3h'),
+        pressure:get('pressure'), duty:dutyOverride ?? get('duty'), extra:get('extra'),
+        hoursDay:get('hoursDay'), daysMonth:get('daysMonth'), cost:get('cost'), compressor:get('compressor')
+      });
     }
 
     function calculateAir(){
-      const r = baseCalculation();
+      let r;
+      try { r = baseCalculation(); }
+      catch(error) {
+        ['mainResult','cycleResult','nlMinResult','scfmResult','dayResult','monthResult','costResult','capacityResult'].forEach(id => $(id).textContent='—');
+        $('statusLine').textContent=error.message; $('statusLine').className='status-bad';
+        $('sensitivityRows').innerHTML='';
+        ToolVisuals.clear('pneumaticDiagram',error.message); ToolVisuals.clear('airConsumptionChart',error.message);
+        return false;
+      }
       $('mainResult').textContent = fmt(r.nm3h, 2) + ' Nm³/h';
-      $('cycleResult').textContent = r.nlCycle > 0 ? fmt(r.nlCycle, 2) + ' NL/ciclo' : 'Não aplicável';
+      $('cycleResult').textContent = Number.isFinite(r.nlCycle) ? fmt(r.nlCycle, 2) + ' NL/ciclo por atuador' : 'Não aplicável';
       $('nlMinResult').textContent = fmt(r.nlMin, 2) + ' NL/min';
-      $('scfmResult').textContent = fmt(r.scfm, 2) + ' SCFM';
+      $('scfmResult').textContent = fmt(r.cubicFeetMin, 2) + ' ft³/min';
       $('dayResult').textContent = fmt(r.day, 2) + ' Nm³/dia';
       $('monthResult').textContent = fmt(r.month, 2) + ' Nm³/mês';
-      $('costResult').textContent = 'R$ ' + fmt(r.cost, 2);
-      $('capacityResult').textContent = isFinite(r.cap) ? fmt(r.cap, 1) + '%' : 'Não informado';
+      $('costResult').textContent = 'R$ ' + fmt(r.monthlyCost, 2);
+      $('capacityResult').textContent = isFinite(r.capacity) ? fmt(r.capacity, 1) + '%' : 'Não informado';
 
       const status = $('statusLine');
       if(!isFinite(r.nm3h) || r.nm3h <= 0){
         status.textContent = 'Resultado zerado ou dados insuficientes.';
         status.className = 'status-warn';
-      } else if(isFinite(r.cap) && r.cap > 80){
+      } else if(isFinite(r.capacity) && r.capacity > 80){
         status.textContent = 'Atenção: consumo alto em relação à capacidade informada.';
         status.className = 'status-bad';
-      } else if(isFinite(r.cap) && r.cap > 50){
+      } else if(isFinite(r.capacity) && r.capacity > 50){
         status.textContent = 'Verificar simultaneidade, vazamentos e margem do compressor.';
         status.className = 'status-warn';
       } else {
@@ -323,7 +283,10 @@
       }
 
       $('interpretation').textContent = r.note + '. Confirme consumo real, vazamentos, pressão mínima, queda de pressão, reservatório, secador e picos de simultaneidade.';
+      ToolVisuals.pneumatic('pneumaticDiagram',r,$('mode').value);
+      ToolVisuals.bars('airConsumptionChart',[{label:'Por hora',value:r.nm3h},{label:'Média por hora no dia',value:r.day/24}],'Nm³/h','Demanda horária e média diária equivalente');
       buildTable();
+      return true;
     }
 
     function buildTable(){
@@ -337,12 +300,12 @@
           rows += `<tr><td>${fmt(c,1)} ciclos/min</td><td>${fmt(r.nlMin,2)}</td><td>${fmt(r.nm3h,2)}</td><td>${fmt(r.month,2)}</td><td>${c > baseCycles ? 'Maior frequência de ciclos' : c < baseCycles ? 'Menor frequência de ciclos' : 'Condição informada'}</td></tr>`;
         });
       } else {
-        [50,75,100,125,150].forEach(d => {
+        [25,50,75,100].forEach(d => {
           const r = baseCalculation(null, d);
           rows += `<tr><td>${d}% de uso</td><td>${fmt(r.nlMin,2)}</td><td>${fmt(r.nm3h,2)}</td><td>${fmt(r.month,2)}</td><td>${d === 100 ? 'Condição informada' : 'Variação de simultaneidade'}</td></tr>`;
         });
       }
-      $('sensitivityTable').querySelector('tbody').innerHTML = rows;
+      $('sensitivityRows').innerHTML = rows;
     }
 
     function setExample(type){
@@ -361,7 +324,7 @@
         'Consumo: ' + $('mainResult').textContent,
         'Por minuto: ' + $('nlMinResult').textContent,
         'Por ciclo: ' + $('cycleResult').textContent,
-        'SCFM: ' + $('scfmResult').textContent,
+        'ft³/min na mesma base normal: ' + $('scfmResult').textContent,
         'Consumo mensal: ' + $('monthResult').textContent,
         'Custo mensal estimado: ' + $('costResult').textContent,
         'Observação: cálculo orientativo, não substitui medição, projeto ou análise técnica.'
@@ -371,7 +334,7 @@
 
     document.querySelectorAll('#airForm input, #airForm select').forEach(el => el.addEventListener('input', calculateAir));
     $('mode').addEventListener('change', toggleMode);
-    toggleMode();
+    document.addEventListener('DOMContentLoaded',toggleMode);
   </script>
 
 <a aria-label="Voltar para Ferramentas" class="floating-back-tools no-print" href="ferramentas.html"><i class="fas fa-arrow-left"></i> Voltar para Ferramentas</a>
