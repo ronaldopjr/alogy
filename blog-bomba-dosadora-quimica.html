@@ -1,123 +1,101 @@
 <!DOCTYPE html>
-
 <html lang="pt-br">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Bomba Dosadora Química: Cálculo e Teste de Vazão | ALOGY</title>
-<meta content="Calcule a vazão de uma bomba dosadora a partir de ppm, vazão, concentração e densidade; confira instalação, calibração volumétrica e limites de campo." name="description"/>
-<meta content="index,follow" name="robots"/>
-<meta content="#2C78B9" name="theme-color"/>
-<link href="https://www.alogy.com.br/blog-bomba-dosadora-quimica.html" rel="canonical"/>
-<link href="/favicon-48x48.png" rel="icon" sizes="48x48" type="image/png"/>
-<link href="/favicon-192x192.png" rel="icon" sizes="192x192" type="image/png"/>
-<link href="/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
-<link href="/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180"/>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-<link href="style.css?v=20260722-layout-original-uppercase-mobilefix" rel="stylesheet"/>
-<script defer="" src="app.js"></script>
-<meta content="pt_BR" property="og:locale"/>
-<meta content="article" property="og:type"/>
-<meta content="ALOGY Engenharia" property="og:site_name"/>
-<meta content="Bomba Dosadora Química: Cálculo e Teste de Vazão" property="og:title"/>
-<meta content="Balanço de massa, calibração volumétrica e diagnóstico da instalação de dosagem." property="og:description"/>
-<meta content="https://www.alogy.com.br/blog-bomba-dosadora-quimica.html" property="og:url"/>
-<meta content="https://www.alogy.com.br/favicon-512x512.png" property="og:image"/>
-<meta content="summary_large_image" name="twitter:card"/>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Bomba dosadora química: cálculo, instalação e teste de vazão","description":"Calcule a vazão de uma bomba dosadora a partir de ppm, vazão, concentração e densidade; confira instalação, calibração volumétrica e limites de campo.","url":"https://www.alogy.com.br/blog-bomba-dosadora-quimica.html","mainEntityOfPage":"https://www.alogy.com.br/blog-bomba-dosadora-quimica.html","dateModified":"2026-07-21","inLanguage":"pt-BR","author":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"},"publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/","logo":{"@type":"ImageObject","url":"https://www.alogy.com.br/logo-alogy.webp"}},"image":"https://www.alogy.com.br/favicon-512x512.png"}</script>
-<style>
-    .mini-help{color:var(--muted);font-size:.92rem;line-height:1.55;margin-top:8px}
-    .calc-result.two{grid-template-columns:repeat(2,1fr)} .calc-result.four{grid-template-columns:repeat(4,1fr)} .result-box strong.small{font-size:1.05rem}
-    .pill-ok{color:#146c2e;font-weight:900} .pill-warn{color:#a65f00;font-weight:900} .pill-bad{color:#a10000;font-weight:900}
-    .subcat-nav{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}.subcat-nav a{background:#fff;border:1px solid rgba(0,75,128,.18);border-radius:999px;padding:9px 12px;text-decoration:none;font-weight:800;color:#0b3a62}
-    @media(max-width:900px){.calc-result.two,.calc-result.four{grid-template-columns:1fr}}
-    @media print{header,.social-floating,.fab-wrap,.cta-bar,footer,.calc-actions,.tools-hero .btn,.no-print{display:none!important}body{background:#fff}.container{max-width:100%;padding:0}.calc-card,.tools-hero{box-shadow:none;border:1px solid #ddd}.calc-layout{display:block}.calc-card{margin:12px 0}.calc-table th{background:#eee!important;color:#111!important}}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chemical Dosing e Bomba Dosadora | Dosing Pump Calibration e PLC | ALOGY</title>
+  <meta name="description" content="Chemical dosing industrial: cálculo de vazão, dosing pump calibration, stroke rate, 4-20 mA, PLC scaling, contrapressão e analyzer feedback." />
+  <meta name="robots" content="index,follow" />
+  <meta name="theme-color" content="#2C78B9" />
+  <link rel="canonical" href="https://www.alogy.com.br/blog-bomba-dosadora-quimica.html" />
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png" />
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css?v=20260911-article-semantic1" />
+  <script src="app.js" defer></script>
+
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="ALOGY Engenharia" />
+  <meta property="og:title" content="Chemical Dosing: Bomba Dosadora, PLC e Analyzer Feedback" />
+  <meta property="og:description" content="Do cálculo da dose ao teste volumétrico: como conferir comando, stroke rate, 4-20 mA, vazão real e resposta do analisador." />
+  <meta property="og:url" content="https://www.alogy.com.br/blog-bomba-dosadora-quimica.html" />
+  <meta property="og:image" content="https://www.alogy.com.br/capa-blog-bomba-dosadora-quimica.webp" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://www.alogy.com.br/capa-blog-bomba-dosadora-quimica.webp" />
+
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Chemical dosing e bomba dosadora: calibração, PLC e analyzer feedback","description":"Chemical dosing industrial: cálculo de vazão, dosing pump calibration, stroke rate, 4-20 mA, PLC scaling, contrapressão e analyzer feedback.","url":"https://www.alogy.com.br/blog-bomba-dosadora-quimica.html","mainEntityOfPage":"https://www.alogy.com.br/blog-bomba-dosadora-quimica.html","dateModified":"2026-09-11","inLanguage":"pt-BR","author":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"},"publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/","logo":{"@type":"ImageObject","url":"https://www.alogy.com.br/logo-alogy.webp"}},"image":"https://www.alogy.com.br/capa-blog-bomba-dosadora-quimica.webp"}</script>
+  <style>
+    .formula-box{background:#f8fafc;border:1px solid #dbe5ec;border-left:4px solid #006bb1;border-radius:12px;padding:14px;margin:16px 0}
+    .loop-strip{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:18px 0}.loop-strip div{background:#fff;border:1px solid rgba(0,107,177,.18);border-radius:13px;padding:13px;text-align:center;font-weight:800;color:#0b3a62}.loop-strip span{display:block;color:var(--muted);font-size:.86rem;font-weight:400;margin-top:5px}
+    @media(max-width:760px){.loop-strip{grid-template-columns:1fr 1fr}}
+    @media(max-width:460px){.loop-strip{grid-template-columns:1fr}}
+    @media print{header,.social-floating,.fab-wrap,.cta-bar,footer,.calc-actions,.no-print{display:none!important}}
   </style>
-<!-- Google AdSense: carregado somente em páginas editoriais monetizáveis. A exibição e os formatos são controlados no painel do AdSense. -->
-<script async="" crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5586837114309500"></script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5586837114309500" crossorigin="anonymous"></script>
 </head>
 <body>
-<header>
-<div class="container headbar"><a aria-label="Voltar para o início" class="logo-wrapper" href="/"><img alt="ALOGY Engenharia" decoding="async" height="308" src="logo-alogy.webp" width="878"/></a>
-<button aria-label="Abrir menu" class="menu-toggle" onclick="toggleMobileMenu()"><i class="fas fa-bars"></i></button></div>
-<nav aria-label="Menu principal" class="desktop"><div class="container navlinks"><a href="/">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></div></nav>
-<nav aria-label="Menu mobile" class="mobile"><a href="/">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></nav>
-</header>
-<div aria-label="Redes sociais" class="social-floating"><a aria-label="LinkedIn" class="linkedin" href="https://www.linkedin.com/company/alogyengenharia" rel="noopener noreferrer" target="_blank"><i class="fab fa-linkedin-in"></i></a><a aria-label="Instagram" class="instagram" href="https://www.instagram.com/alogyengenharia" rel="noopener noreferrer" target="_blank"><i class="fab fa-instagram"></i></a><a aria-label="Facebook" class="facebook" href="https://www.facebook.com/alogyengenharia" rel="noopener noreferrer" target="_blank"><i class="fab fa-facebook-f"></i></a><a aria-label="YouTube" class="youtube" href="https://www.youtube.com/@alogyengenharia" rel="noopener noreferrer" target="_blank"><i class="fab fa-youtube"></i></a><a aria-label="Hotmart" class="hotmart" href="https://hotmart.com/pt-br/club/alogyengenharia" rel="noopener noreferrer" target="_blank">H</a><a aria-label="TikTok" class="tiktok" href="https://www.tiktok.com/@alogyengenharia" rel="noopener noreferrer" target="_blank"><i class="fab fa-tiktok"></i></a></div>
-<div aria-label="Ações rápidas" class="fab-wrap"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1%21%20Vim%20pelas%20ferramentas%20da%20ALOGY.%20Gostaria%20de%20atendimento." rel="noopener noreferrer" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
-<main class="container" style="margin-top:18px">
-<article class="calc-card"><h1>Bomba dosadora química: cálculo, instalação e teste de vazão</h1>
-<p class="muted" data-alogy-content-meta=""><strong>Conteúdo técnico:</strong> ALOGY Engenharia · <strong>Atualizado em:</strong> 21/07/2026</p>
-<p>A vazão indicada no ajuste da bomba não garante a massa de produto entregue ao processo. A estimativa começa pelo balanço de massa; a aceitação em campo exige conferir concentração, densidade, contrapressão, condição da sucção e vazão realmente deslocada.</p>
-<h2>Balanço de massa em ppm e mg/L</h2>
-<p>Em soluções aquosas diluídas, 1 ppm costuma ser tratado como 1 mg/L, desde que essa aproximação seja adequada ao processo. Para uma vazão de processo <em>Q</em> em m³/h e dose-alvo <em>D</em> em mg/L, a massa ativa requerida é:</p>
-<p><strong>m<sub>ativo</sub> (kg/h) = Q (m³/h) × D (mg/L) / 1.000</strong></p>
-<p>Se o produto comercial tem fração mássica <em>w</em> e densidade <em>ρ</em> em kg/L:</p>
-<p><strong>q<sub>produto</sub> (L/h) = m<sub>ativo</sub> / (w × ρ)</strong></p>
-<p><strong>Exemplo:</strong> uma corrente de 50 m³/h requer 25 mg/L de ingrediente ativo. A demanda é 1,25 kg/h. Para uma solução com 12% em massa e densidade de 1,10 kg/L, a vazão teórica é 1,25 ÷ (0,12 × 1,10) = <strong>9,47 L/h</strong>. Se “12%” for expresso em volume, se a concentração variar com o lote ou se a densidade não corresponder à temperatura de operação, a conta precisa ser refeita com a ficha do produto.</p>
-<h2>Dados que devem ser levantados</h2>
-<ul>
-<li>vazões mínima, normal e máxima da corrente, na mesma base usada pela dose;</li>
-<li>dose ativa, concentração em massa ou volume, densidade, pureza e variação entre lotes;</li>
-<li>viscosidade, temperatura, pressão no ponto de injeção e compatibilidade dos materiais;</li>
-<li>altura e comprimento da sucção, diâmetros, válvulas, pulsação e possibilidade de sifonamento;</li>
-<li>faixa calibrada da bomba nas contrapressões de interesse, não apenas sua capacidade máxima de catálogo.</li>
-</ul>
-<h2>Por que a instalação muda a vazão real</h2>
-<p>Bombas dosadoras de deslocamento positivo dependem do enchimento completo da câmara e do fechamento correto das válvulas de retenção. Sucção longa ou restritiva, gás liberado pelo produto, válvula suja, alta viscosidade ou entrada de ar reduz o volume por golpe. Na descarga, pressão insuficiente pode permitir sifonamento; pressão excessiva pode reduzir capacidade, abrir proteção ou ultrapassar limites mecânicos.</p>
-<ul>
-<li>mantenha a sucção curta e compatível com a recomendação do fabricante;</li>
-<li>preveja escorva, drenagem e contenção sem improvisar abertura de linhas pressurizadas;</li>
-<li>use válvula de contrapressão ou antissifão somente quando exigida pela hidráulica e dimensionada para o conjunto;</li>
-<li>para produtos que liberam gás, avalie cabeçote e rotina próprios para desgaseificação;</li>
-<li>instale alívio ou proteção contra sobrepressão com retorno para local seguro quando aplicável.</li>
-</ul>
-<h2>Calibração volumétrica na condição real</h2>
-<p>Uma coluna de calibração na sucção permite medir quanto volume a bomba desloca em um intervalo conhecido. Com o processo em condição controlada, registre pressão de descarga, ajuste de curso/frequência, tempo e queda de volume. A vazão medida é:</p>
-<p><strong>q (L/h) = ΔV (mL) × 3,6 / t (s)</strong></p>
-<p>Se a coluna indicar consumo de 158 mL em 60 s, a vazão é <strong>9,48 L/h</strong>, praticamente o valor teórico do exemplo. Repita a medição, verifique dispersão e confirme que a linha não recebeu líquido por sifonamento durante o teste. Para produtos perigosos, o procedimento precisa prever isolamento, EPI, contenção e destino do produto conforme a análise de risco.</p>
-<h2>Erros que explicam dose insuficiente ou excessiva</h2>
-<ul>
-<li>usar percentual do produto sem saber se é massa/massa, massa/volume ou volume/volume;</li>
-<li>configurar pulsos por litro ou sinal 4–20 mA com escala diferente da usada no CLP;</li>
-<li>aceitar a posição do botão como vazão, sem curva ou teste volumétrico;</li>
-<li>ignorar gás no cabeçote, cristalização, retenções invertidas, mangueira deformada ou vazamento;</li>
-<li>compensar um sensor de processo sujo aumentando a dose, criando consumo e risco adicionais.</li>
-</ul>
-<h2>Teste do comando até o processo</h2>
-<ul>
-<li>force um comando conhecido e confirme a escala no CLP e na bomba;</li>
-<li>conte pulsos ou compare a frequência indicada com a efetivamente recebida;</li>
-<li>meça a vazão na contrapressão normal e em mais de um ponto da faixa de trabalho;</li>
-<li>confirme nível do tanque, concentração do lote e sentido das válvulas;</li>
-<li>compare massa ou volume consumido no turno com vazão de processo e dose calculada;</li>
-<li>observe a resposta do analisador somente depois do tempo de transporte, mistura e reação.</li>
-</ul>
-<p>Esse encadeamento separa erro de cálculo, erro de comando, falha hidráulica e resposta lenta do processo. A vazão teórica é uma referência; a vazão calibrada e a evidência analítica fecham a verificação.</p>
-<h2>Ferramenta e conteúdos relacionados</h2>
-<p>Para aprofundar Bomba dosadora química: cálculo, instalação e teste de vazão, use a ferramenta relacionada e confronte o resultado com os materiais complementares listados abaixo.</p>
-<div class="calc-actions">
-<a class="mini-btn dark" href="calculadora-bomba-dosadora-quimica.html"><i class="fas fa-calculator"></i> Abrir ferramenta relacionada</a>
-<a class="mini-btn" href="ferramentas.html"><i class="fas fa-toolbox"></i> Ver todas as ferramentas</a>
-</div>
-<ul class="mini-help" style="margin-top:12px">
-<li><a href="calculadora-dosagem-quimica-ppm.html">Calculadora de Dosagem Química em ppm</a> <span class="mini-help">(ferramenta)</span></li>
-<li><a href="calculadora-vazao-bomba-deslocamento-positivo.html">Vazão de Bomba de Deslocamento Positivo</a> <span class="mini-help">(ferramenta)</span></li>
-<li><a href="calculadora-ppm-mg-m3-gases.html">Calculadora ppm para mg/m³ em Gases</a> <span class="mini-help">(ferramenta)</span></li>
-<li><a href="calculadora-capabilidade-cp-cpk.html">Calculadora de Capabilidade Cp e Cpk</a> <span class="mini-help">(ferramenta)</span></li>
-<li><a href="blog-dosagem-quimica-ppm.html">Dosagem Química em ppm e mg/L</a> <span class="mini-help">(artigo)</span></li>
-<li><a href="blog-neutralizacao-ph-industrial.html">Neutralização de pH industrial</a> <span class="mini-help">(artigo)</span></li>
+  <header>
+    <div class="container headbar"><a href="/" class="logo-wrapper" aria-label="Voltar para o início"><img src="logo-alogy.webp" alt="ALOGY Engenharia" width="878" height="308" decoding="async" /></a><button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menu"><i class="fas fa-bars"></i></button></div>
+    <nav class="desktop" aria-label="Menu principal"><div class="container navlinks"><a href="/">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="/guia/">Guia</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></div></nav>
+    <nav class="mobile" aria-label="Menu mobile"><a href="/">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="/guia/">Guia</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></nav>
+  </header>
 
-<li><a href="https://www.grundfos.com/uk/learn/webinars/all-webinars/diaphragm-dosing-pumps-maintenance" rel="noopener noreferrer" target="_blank">Grundfos — manutenção de bombas dosadoras de diafragma</a></li>
-<li><a href="https://www.prominent.com/en/Products/Spare-Part-Details/accg-flushing-and-relief-valve-assemblies-low-pressure-pumps.html" rel="noopener noreferrer" target="_blank">ProMinent — lavagem, contrapressão e proteção contra sobrepressão</a></li>
-</ul>
-<h2>Aviso técnico</h2>
-<p>Este material é educativo e orientativo. Não dimensiona definitivamente bomba, tubulação, contenção, alívio ou sistema de dosagem. Produtos corrosivos, oxidantes, tóxicos ou reativos exigem ficha de segurança, compatibilidade de materiais, análise de risco, procedimentos e profissionais responsáveis. Nunca abra, escorve ou calibre uma linha sem confirmar isolamento, pressão e destino seguro do produto.</p></article>
-<section class="cta-bar"><h2>Precisa de apoio técnico?</h2><p>A ALOGY Engenharia apoia instrumentação, automação, processo e manutenção industrial.</p><a class="btn" href="/#contato"><i class="fas fa-envelope"></i> Falar com a ALOGY</a></section>
-</main>
-<footer><p>© Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
+  <div class="social-floating" aria-label="Redes sociais"><a href="https://www.linkedin.com/company/alogyengenharia" class="linkedin" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a><a href="https://www.instagram.com/alogyengenharia" class="instagram" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="https://www.facebook.com/alogyengenharia" class="facebook" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><a href="https://www.youtube.com/@alogyengenharia" class="youtube" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a><a href="https://www.tiktok.com/@alogyengenharia" class="tiktok" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fab fa-tiktok"></i></a></div>
+  <div class="fab-wrap" aria-label="Ações rápidas"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1!%20Li%20o%20artigo%20sobre%20chemical%20dosing%20da%20ALOGY." target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
+
+  <main class="container" style="margin-top:18px">
+    <a class="floating-back-blog no-print" href="blog.html"><i class="fas fa-arrow-left"></i> Voltar ao Blog</a>
+    <article class="blog-post">
+      <h1>Chemical dosing e bomba dosadora: cálculo, calibração e controle</h1>
+      <p class="muted" data-alogy-content-meta><strong>Conteúdo técnico:</strong> ALOGY Engenharia · <strong>Atualizado em:</strong> 11/09/2026</p>
+      <figure class="article-cover-figure"><img class="article-cover-image" src="capa-blog-bomba-dosadora-quimica.webp" alt="Bomba dosadora química integrada a PLC e analisador de processo" loading="eager" fetchpriority="high" decoding="async"/><figcaption>Uma malha de chemical dosing precisa fechar quatro evidências: comando do PLC, resposta da bomba, vazão real entregue e resposta do processo medida pelo analyzer.</figcaption></figure>
+
+      <p>A posição de stroke ou o percentual exibido pela bomba não garantem a massa de produto entregue ao processo. A estimativa começa no balanço de massa; a verificação em campo precisa incluir concentração, densidade, contrapressão, condição da sucção, comando elétrico e vazão realmente deslocada.</p>
+
+      <div class="loop-strip"><div>Analyzer<span>pH, ORP, Cl₂ ou outra variável</span></div><div>PLC / Controller<span>PID, intertravamentos e scaling</span></div><div>Dosing Pump<span>4-20 mA, pulsos ou stroke rate</span></div><div>Processo<span>mistura, transporte e resposta</span></div></div>
+
+      <h2>Balanço de massa em ppm e mg/L</h2>
+      <p>Em soluções aquosas diluídas, 1 ppm costuma ser aproximado como 1 mg/L quando essa equivalência é adequada à aplicação. Para vazão de processo <em>Q</em> em m³/h e dose-alvo <em>D</em> em mg/L:</p>
+      <div class="formula-box"><strong>m<sub>ativo</sub> (kg/h) = Q (m³/h) × D (mg/L) ÷ 1.000</strong><br/><strong>q<sub>produto</sub> (L/h) = m<sub>ativo</sub> ÷ (w × ρ)</strong></div>
+      <p>Exemplo: 50 m³/h × 25 mg/L exigem 1,25 kg/h de ativo. Para produto a 12% em massa e densidade 1,10 kg/L, a vazão teórica é aproximadamente <strong>9,47 L/h</strong>. Se “12%” estiver em outra base ou a densidade variar, use os dados reais do produto.</p>
+
+      <h2>Dosing pump calibration: meça a vazão real</h2>
+      <p>Uma coluna de calibração pode medir o volume deslocado em um intervalo conhecido, na condição segura prevista pelo procedimento. Registre pressão de descarga, stroke/frequency, tempo e variação de volume.</p>
+      <div class="formula-box"><strong>q (L/h) = ΔV (mL) × 3,6 ÷ t (s)</strong></div>
+      <p>Se a coluna indicar 158 mL em 60 s, a vazão é aproximadamente <strong>9,48 L/h</strong>. Repita pontos da faixa e registre a condição <em>as-found</em> antes de qualquer ajuste e <em>as-left</em> depois da intervenção.</p>
+
+      <h2>PLC scaling, 4-20 mA, pulsos e stroke rate</h2>
+      <p>A cadeia de comando também precisa ser testada. Uma bomba pode estar mecanicamente correta e receber uma escala errada do PLC. Confirme a relação entre a saída analógica ou frequência de pulsos e a referência usada pela bomba.</p>
+      <ul><li>force um comando conhecido dentro de condição segura;</li><li>compare o valor bruto e a unidade de engenharia no PLC;</li><li>confirme 4–20 mA, pulsos ou frequência efetivamente recebidos;</li><li>compare o stroke rate indicado com o comportamento real da bomba;</li><li>meça a vazão na contrapressão normal em mais de um ponto.</li></ul>
+
+      <h2>Por que a instalação muda a vazão</h2>
+      <p>Bombas dosadoras de deslocamento positivo dependem do enchimento da câmara e do funcionamento correto das retenções. Sucção longa ou restritiva, gás liberado, válvula suja, alta viscosidade ou entrada de ar podem reduzir o volume por golpe. Na descarga, sifonamento ou contrapressão inadequada também alteram a entrega.</p>
+      <p>Válvula de contrapressão, antissifão e proteção contra sobrepressão só devem ser aplicadas quando compatíveis com a hidráulica, o produto e a documentação do conjunto.</p>
+
+      <h2>Fechando a malha com analyzer feedback</h2>
+      <p>O analisador não deve ser usado para “corrigir” uma bomba sem antes considerar o atraso físico do processo. Depois de uma mudança no comando, a resposta pode depender do transporte da amostra, mistura, reação química e constante de tempo do sensor.</p>
+      <p>Se a dosagem aumenta e o analyzer não responde imediatamente, não conclua que a bomba falhou. Confirme primeiro vazão dosada e depois compare a tendência no tempo correto. Isso é especialmente importante em pH e ORP, onde ganho excessivo e dead time podem produzir oscilações.</p>
+
+      <h2>Diagnóstico do comando até o processo</h2>
+      <ol><li>Calcule a vazão teórica com a base correta de concentração e densidade.</li><li>Confirme scaling e comando no PLC/controller.</li><li>Verifique o sinal que chega à bomba: 4-20 mA, pulsos ou comunicação aplicável.</li><li>Meça a vazão real na contrapressão representativa.</li><li>Compare consumo do tanque/lote com a dosagem calculada.</li><li>Aguarde transporte, mistura e resposta antes de interpretar o analyzer.</li></ol>
+      <p>Essa sequência separa erro de cálculo, erro de automação, falha hidráulica e atraso analítico.</p>
+
+      <h2>Erros comuns</h2>
+      <ul><li>usar concentração sem saber se é massa/massa, massa/volume ou volume/volume;</li><li>configurar pulsos ou 4–20 mA com escala diferente entre PLC e bomba;</li><li>aceitar a posição do botão como vazão sem teste volumétrico;</li><li>ignorar gás, cristalização, válvulas de retenção ou sifonamento;</li><li>aumentar dose para compensar sensor sujo ou sample system atrasado.</li></ul>
+
+      <h2>Ferramentas e conteúdos relacionados</h2>
+      <div class="calc-actions"><a class="mini-btn dark" href="calculadora-bomba-dosadora-quimica.html"><i class="fas fa-calculator"></i> Chemical dosing / dosing pump</a><a class="mini-btn" href="calculadora-escalonamento-clp.html">PLC scaling</a><a class="mini-btn" href="blog-calibracao-analisadores-processo.html">Calibração de analyzers</a><a class="mini-btn" href="blog-tempo-amostragem-analisador.html">Sample system time delay</a><a class="mini-btn" href="ferramentas-analitica-industrial.html"><i class="fas fa-flask"></i> Analítica</a></div>
+
+      <h2>Aviso técnico</h2>
+      <p>Este material é educativo. Não dimensiona definitivamente bomba, tubulação, contenção, alívio ou sistema de dosagem. Produtos corrosivos, oxidantes, tóxicos ou reativos exigem ficha de segurança, compatibilidade de materiais, análise de risco e procedimento aprovado. Não abra ou calibre uma linha sem confirmar isolamento, pressão e destino seguro do produto.</p>
+    </article>
+  </main>
+  <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
 </body>
 </html>
