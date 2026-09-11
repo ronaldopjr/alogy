@@ -60,3 +60,38 @@ body.tools-page section:has(> h2 .fa-palette) .calc-layout > div:nth-child(2) tb
 body.tools-page section:has(> h2 .fa-palette) .calc-table td:nth-child(2)::before{background:var(--tc-pos)}
 body.tools-page section:has(> h2 .fa-palette) .calc-table td:nth-child(3)::before{background:var(--tc-neg)}
 body.tools-page section:has(> h2 .fa-palette) .calc-table td:nth-child(4)::before{background:var(--tc-jacket)}
+
+/* Termopares J/K/T/E/N/R/S/B: curva mV x temperatura muda com o tipo selecionado.
+   As imagens foram geradas a partir dos mesmos coeficientes NIST ITS-90 usados pela calculadora. */
+body.tools-page:has(#calculatorSection #tipo option[value="K"]:checked){--tc-curve:url("thermocouple-curve-k.svg");--tc-curve-note:"Curva de referência do termopar tipo K: mV × temperatura pela NIST ITS-90, com junta de referência em 0 °C."}
+body.tools-page:has(#calculatorSection #tipo option[value="J"]:checked){--tc-curve:url("thermocouple-curve-j.svg");--tc-curve-note:"Curva de referência do termopar tipo J: mV × temperatura pela NIST ITS-90, com junta de referência em 0 °C."}
+body.tools-page:has(#calculatorSection #tipo option[value="T"]:checked){--tc-curve:url("thermocouple-curve-t.svg");--tc-curve-note:"Curva de referência do termopar tipo T: mV × temperatura pela NIST ITS-90, com junta de referência em 0 °C."}
+body.tools-page:has(#calculatorSection #tipo option[value="E"]:checked){--tc-curve:url("thermocouple-curve-e.svg");--tc-curve-note:"Curva de referência do termopar tipo E: mV × temperatura pela NIST ITS-90, com junta de referência em 0 °C."}
+body.tools-page:has(#calculatorSection #tipo option[value="N"]:checked){--tc-curve:url("thermocouple-curve-n.svg");--tc-curve-note:"Curva de referência do termopar tipo N: mV × temperatura pela NIST ITS-90, com junta de referência em 0 °C."}
+body.tools-page:has(#calculatorSection #tipo option[value="R"]:checked){--tc-curve:url("thermocouple-curve-r.svg");--tc-curve-note:"Curva de referência do termopar tipo R: mV × temperatura pela NIST ITS-90, com junta de referência em 0 °C."}
+body.tools-page:has(#calculatorSection #tipo option[value="S"]:checked){--tc-curve:url("thermocouple-curve-s.svg");--tc-curve-note:"Curva de referência do termopar tipo S: mV × temperatura pela NIST ITS-90, com junta de referência em 0 °C."}
+body.tools-page:has(#calculatorSection #tipo option[value="B"]:checked){--tc-curve:url("thermocouple-curve-b.svg");--tc-curve-note:"Curva de referência do termopar tipo B: mV × temperatura pela NIST ITS-90, com junta de referência em 0 °C. Em baixa temperatura, a sensibilidade é pequena."}
+body.tools-page:has(#calculatorSection #tipo) #calculatorSection .calc-card:has(#outTemp) #nota::after{
+  content:var(--tc-curve-note);
+  display:block;
+  margin-top:12px;
+  padding-top:10px;
+  border-top:1px solid rgba(0,75,128,.14);
+  color:#334155;
+  font-size:.84rem;
+  line-height:1.45;
+}
+body.tools-page:has(#calculatorSection #tipo) #calculatorSection .calc-card:has(#outTemp)::after{
+  content:"";
+  display:block;
+  width:100%;
+  height:280px;
+  margin-top:14px;
+  border:1px solid #dbe5ec;
+  border-radius:14px;
+  background:#fff var(--tc-curve) center/contain no-repeat;
+  box-shadow:0 6px 18px rgba(0,0,0,.04);
+}
+@media(max-width:620px){
+  body.tools-page:has(#calculatorSection #tipo) #calculatorSection .calc-card:has(#outTemp)::after{height:230px}
+}
