@@ -2,9 +2,9 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Termopoço e tempo de resposta: por que a medição atrasa</title>
-  <meta name="description" content="Entenda como poço termométrico, fluido, velocidade e montagem influenciam o tempo de resposta de sensores de temperatura industriais."/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Termopoço e Tempo de Resposta | Thermowell, RTD e Thermocouple | ALOGY</title>
+  <meta name="description" content="Thermowell response time: entenda constante de tempo, t90, imersão, velocidade do processo, massa térmica, RTD/PT100, thermocouple e diagnóstico." />
   <meta name="robots" content="index,follow" />
   <meta name="theme-color" content="#2C78B9" />
   <link rel="canonical" href="https://www.alogy.com.br/blog-termopoco-tempo-resposta.html" />
@@ -12,109 +12,82 @@
   <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png" />
   <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <link rel="stylesheet" href="style.css?v=20260722-layout-original-uppercase-mobilefix" />
-  <script src="app.js" defer></script>
+  <link rel="stylesheet" href="style.css?v=20260911-article-semantic1" />
+  <script defer src="app.js"></script>
+
   <meta property="og:locale" content="pt_BR" />
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="ALOGY Engenharia" />
-  <meta property="og:title" content="Termopoço e tempo de resposta: por que a medição atrasa" />
-  <meta property="og:description" content="Entenda como poço termométrico, fluido, velocidade e montagem influenciam o tempo de resposta de sensores de temperatura industriais." />
+  <meta property="og:title" content="Termopoço e Tempo de Resposta: RTD, Thermocouple e Thermowell" />
+  <meta property="og:description" content="Como constante de tempo, imersão, processo e construção do thermowell afetam a resposta da medição de temperatura." />
   <meta property="og:url" content="https://www.alogy.com.br/blog-termopoco-tempo-resposta.html" />
-  <meta property="og:image" content="https://www.alogy.com.br/favicon-512x512.png" />
+  <meta property="og:image" content="https://www.alogy.com.br/capa-blog-termopoco-tempo-resposta.webp" />
   <meta name="twitter:card" content="summary_large_image" />
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Termopoço e tempo de resposta: por que a medição atrasa","description":"Entenda como poço termométrico, fluido, velocidade e montagem influenciam o tempo de resposta de sensores de temperatura industriais.","author":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"},"publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/","logo":{"@type":"ImageObject","url":"https://www.alogy.com.br/logo-alogy.webp"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://www.alogy.com.br/blog-termopoco-tempo-resposta.html"},"inLanguage":"pt-BR","dateModified":"2026-07-17","image":"https://www.alogy.com.br/favicon-512x512.png"}</script>
-  <style>.post-wrap{max-width:900px;margin:18px auto}.post-card{background:var(--card);border:1px solid rgba(0,0,0,.08);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}.post-content{padding:30px}.post-meta{color:var(--muted);font-size:.95rem;margin-bottom:12px}.post-content h1{font-size:2.05rem;line-height:1.15;margin-bottom:12px;color:var(--text)}.post-content p{color:var(--text);margin:0 0 16px;font-size:1.04rem;line-height:1.75}.post-highlight{background:rgba(0,107,177,.08);border:1px solid rgba(0,107,177,.18);border-radius:14px;padding:16px;margin:22px 0}@media(max-width:768px){.post-content{padding:22px}.post-content h1{font-size:1.65rem}}</style>
-  <!-- Google AdSense: carregado somente em páginas editoriais monetizáveis. A exibição e os formatos são controlados no painel do AdSense. -->
+  <meta name="twitter:image" content="https://www.alogy.com.br/capa-blog-termopoco-tempo-resposta.webp" />
+
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Termopoço e tempo de resposta: thermowell, RTD e thermocouple","description":"Thermowell response time: entenda constante de tempo, t90, imersão, velocidade do processo, massa térmica, RTD/PT100, thermocouple e diagnóstico.","dateModified":"2026-09-11","author":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"},"publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/","logo":{"@type":"ImageObject","url":"https://www.alogy.com.br/logo-alogy.webp"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://www.alogy.com.br/blog-termopoco-tempo-resposta.html"},"inLanguage":"pt-BR","image":"https://www.alogy.com.br/capa-blog-termopoco-tempo-resposta.webp"}</script>
+  <style>
+    .formula-box{background:#f8fafc;border:1px solid #dbe5ec;border-left:4px solid #006bb1;border-radius:12px;padding:14px;margin:16px 0}
+    .temp-chain{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:18px 0}.temp-chain div{border:1px solid rgba(0,107,177,.18);border-radius:13px;padding:13px;text-align:center;background:#fff;font-weight:800;color:#0b3a62}.temp-chain span{display:block;color:var(--muted);font-size:.84rem;font-weight:400;margin-top:5px}
+    .table-scroll{overflow:auto;border:1px solid rgba(0,0,0,.08);border-radius:14px;margin:14px 0}.table-scroll table{width:100%;border-collapse:collapse}.table-scroll th{background:#0b3a62;color:#fff;text-align:left;padding:10px}.table-scroll td{padding:10px;border-bottom:1px solid rgba(0,0,0,.07);vertical-align:top}
+    @media(max-width:760px){.temp-chain{grid-template-columns:1fr 1fr}}@media(max-width:460px){.temp-chain{grid-template-columns:1fr}}
+    @media print{header,.social-floating,.fab-wrap,footer,.calc-actions,.no-print{display:none!important}}
+  </style>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5586837114309500" crossorigin="anonymous"></script>
 </head>
 <body>
   <header>
-    <div class="container headbar"><a href="/" class="logo-wrapper" aria-label="Voltar para o início"><img src="logo-alogy.webp" alt="ALOGY Engenharia"  width="878"  height="308"  decoding="async" /></a>
-<button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menu"><i class="fas fa-bars"></i></button></div>
-    <nav class="desktop" aria-label="Menu principal"><div class="container navlinks"><a href="/">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></div></nav>
-    <nav class="mobile" aria-label="Menu mobile"><a href="/">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></nav>
+    <div class="container headbar"><a href="/" class="logo-wrapper" aria-label="Voltar para o início"><img src="logo-alogy.webp" alt="ALOGY Engenharia" width="878" height="308" decoding="async" /></a><button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menu"><i class="fas fa-bars"></i></button></div>
+    <nav class="desktop" aria-label="Menu principal"><div class="container navlinks"><a href="/">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="/guia/">Guia</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></div></nav>
+    <nav class="mobile" aria-label="Menu mobile"><a href="/">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="/guia/">Guia</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></nav>
   </header>
-  <div class="social-floating" aria-label="Redes sociais"><a href="https://www.linkedin.com/company/alogyengenharia" class="linkedin" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a><a href="https://www.instagram.com/alogyengenharia" class="instagram" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="https://www.facebook.com/alogyengenharia" class="facebook" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><a href="https://www.youtube.com/@alogyengenharia" class="youtube" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a><a href="https://hotmart.com/pt-br/club/alogyengenharia" class="hotmart" target="_blank" rel="noopener noreferrer" aria-label="Hotmart">H</a><a href="https://www.tiktok.com/@alogyengenharia" class="tiktok" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fab fa-tiktok"></i></a></div>
-  <div class="fab-wrap" aria-label="Ações rápidas"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1%21%20Vim%20pela%20artigo%20t%C3%A9cnico%20da%20ALOGY.%20Gostaria%20de%20atendimento." target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
+
+  <div class="social-floating" aria-label="Redes sociais"><a href="https://www.linkedin.com/company/alogyengenharia" class="linkedin" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a><a href="https://www.instagram.com/alogyengenharia" class="instagram" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="https://www.facebook.com/alogyengenharia" class="facebook" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><a href="https://www.youtube.com/@alogyengenharia" class="youtube" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a><a href="https://www.tiktok.com/@alogyengenharia" class="tiktok" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fab fa-tiktok"></i></a></div>
+  <div class="fab-wrap" aria-label="Ações rápidas"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1!%20Li%20o%20artigo%20sobre%20termopo%C3%A7o%20da%20ALOGY." target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
+
   <main class="container" style="margin-top:18px">
     <a class="floating-back-blog no-print" href="blog.html"><i class="fas fa-arrow-left"></i> Voltar ao Blog</a>
-    <article class="post-wrap post-card">
-      <div class="post-content">
-        <div class="post-meta">Artigo técnico • ALOGY Engenharia</div>
-        <h1>Termopoço e tempo de resposta: por que a medição atrasa</h1>
-        <p>Um sensor de temperatura pode estar calibrado e mesmo assim responder devagar. Em processos dinâmicos, o atraso do conjunto sensor, poço termométrico e montagem pode prejudicar controle, alarme e diagnóstico.</p>
-        <div class="tags" style="margin-bottom:16px"><span class="tag">Temperatura</span><span class="tag">Termopoço</span><span class="tag">RTD</span></div>
-        <div class="post-highlight"><strong>Ferramenta relacionada:</strong> use a <a href="calculadora-termopoco-tempo-resposta.html">Calculadora de Tempo de Resposta de Termopoço</a> para simular casos práticos.</div>
-      </div>
-    </article>
-    <section class="calc-card">
-      <p>O termopoço protege o sensor contra pressão, velocidade, corrosão e esforço mecânico, além de permitir sua retirada sem abrir o processo. Essa proteção cria um caminho térmico adicional: primeiro o fluido aquece ou resfria o termopoço, depois o calor atravessa a parede e o espaço interno até alcançar o RTD ou termopar.</p>
-      <p>Por isso, um transmissor pode estar calibrado e ainda assim mostrar uma variável atrasada. Calibração confirma a relação entre entrada e saída; não elimina atraso causado por montagem, geometria, depósito ou baixa troca térmica.</p>
+    <article class="blog-post">
+      <h1>Termopoço e tempo de resposta em medições de temperatura</h1>
+      <p class="muted" data-alogy-content-meta><strong>Conteúdo técnico:</strong> ALOGY Engenharia · <strong>Atualizado em:</strong> 11/09/2026</p>
+      <figure class="article-cover-figure"><img class="article-cover-image" src="capa-blog-termopoco-tempo-resposta.webp" alt="Termopoço com RTD ou termopar instalado em tubulação de processo" loading="eager" fetchpriority="high" decoding="async"/><figcaption>O thermowell protege o sensor do processo, mas também acrescenta massa térmica e resistência à transferência de calor, influenciando a resposta da medição.</figcaption></figure>
 
-      <h2>O que forma o tempo de resposta do ponto de medição</h2>
-      <ul>
-        <li><strong>Fluido e velocidade:</strong> líquidos em movimento normalmente transferem calor com mais facilidade que gases lentos. Mudança de vazão pode alterar a resposta sem que o instrumento tenha defeito.</li>
-        <li><strong>Geometria do termopoço:</strong> diâmetro, espessura de parede, perfil da haste e material determinam massa e resistência térmica.</li>
-        <li><strong>Contato interno:</strong> folga excessiva entre sensor e furo do termopoço acrescenta resistência térmica. Inserto com mola ajuda a manter a ponta encostada quando o conjunto foi projetado para isso.</li>
-        <li><strong>Comprimento de inserção:</strong> inserção insuficiente favorece condução de calor para bocal e parede da tubulação, além de medir uma região que pode não representar o escoamento.</li>
-        <li><strong>Incrustação e revestimento:</strong> depósito no lado do processo funciona como isolante e pode aumentar o atraso ao longo do tempo.</li>
-        <li><strong>Sensor e eletrônica:</strong> diâmetro do elemento, construção interna, filtro configurado no transmissor e amortecimento no CLP/DCS também entram no tempo observado.</li>
-      </ul>
+      <div class="temp-chain"><div>Processo<span>temperatura e velocidade</span></div><div>Thermowell<span>geometria + material</span></div><div>RTD / TC<span>sensor + contato</span></div><div>Transmitter<span>4-20 mA / HART</span></div></div>
 
-      <h2>Constante de tempo: como interpretar sem confundir</h2>
-      <p>Um modelo de primeira ordem representa a resposta por uma constante de tempo <strong>τ</strong>. Depois de um degrau estável, o valor indicado percorre aproximadamente 63,2% da variação em 1τ, 95% em 3τ e 99% em 5τ. É uma aproximação útil para comparar tendências; o conjunto real pode ter mais de uma constante e o processo raramente produz um degrau perfeito.</p>
-      <p><strong>Exemplo:</strong> se a temperatura real muda de 80 para 140 °C e o conjunto pode ser aproximado por primeira ordem com τ = 18 s, a indicação estará perto de 118 °C após 18 s e de 137 °C após 54 s. Isso não significa erro de calibração: durante a transição, a diferença decorre do atraso dinâmico.</p>
-      <div class="post-highlight"><strong>Atenção:</strong> não estime τ comparando o instrumento com uma tendência de processo cuja própria temperatura de referência também está mudando. Para avaliar resposta, registre uma referência independente, a taxa de aquisição e o instante da mudança.</div>
+      <p>Em uma malha de temperatura, a resposta observada não depende apenas do RTD/PT100 ou do thermocouple. O processo precisa transferir calor ao termopoço, o termopoço ao sensor e o sensor ao transmissor. Um conjunto robusto pode responder mais devagar que um sensor exposto, mesmo estando perfeitamente calibrado.</p>
 
-      <h2>Como separar atraso do sensor, do processo e do sistema</h2>
-      <ol>
-        <li>Compare a indicação com outro sensor instalado próximo e com construção conhecida, sem assumir que um deles é automaticamente a referência.</li>
-        <li>Confirme se a mudança realmente chega ao ponto de medição; mistura incompleta, estratificação e baixa vazão também criam atraso aparente.</li>
-        <li>Verifique filtro, damping e período de atualização no transmissor, CLP, rede e supervisório.</li>
-        <li>Consulte desenho e folha de dados para conferir inserção, diâmetros, material, folga e limites mecânicos.</li>
-        <li>Inspecione depósito, ponta do sensor sem contato, extensão incompatível ou alteração de montagem após manutenção.</li>
-      </ol>
+      <h2>Constante de tempo e t90</h2>
+      <p>Uma aproximação de primeira ordem descreve a fração da mudança atingida após um degrau de temperatura:</p>
+      <div class="formula-box"><strong>T(t) = T<sub>final</sub> + (T<sub>inicial</sub> − T<sub>final</sub>) × e<sup>−t/τ</sup></strong><br/>Para esse modelo, <strong>t90 ≈ −τ ln(0,1) ≈ 2,303 τ</strong>.</div>
+      <p>Se τ = 8 s, o modelo prevê aproximadamente 18,4 s para alcançar 90% da mudança. Essa conta é útil para interpretar tendência e comparar configurações, mas o conjunto real pode não se comportar como um sistema de primeira ordem perfeito.</p>
 
-      <h2>Sinais que ajudam no diagnóstico de campo</h2>
-      <ul>
-        <li><strong>Atraso aumentou gradualmente:</strong> suspeite de incrustação, mudança de fluido, redução de velocidade ou alteração de filtro.</li>
-        <li><strong>Atraso apareceu após troca do sensor:</strong> confira comprimento, diâmetro, contato da ponta e compatibilidade com o termopoço existente.</li>
-        <li><strong>Leitura fica entre processo e ambiente:</strong> investigue inserção curta, condução pelo bocal e baixa troca térmica.</li>
-        <li><strong>Transmissor responde bem ao simulador, mas mal no processo:</strong> a eletrônica pode estar correta; concentre a inspeção no sensor, termopoço e montagem.</li>
-        <li><strong>Valor chega correto, porém tarde:</strong> ajuste de zero ou span não resolve a causa dinâmica.</li>
-      </ul>
-    </section>
+      <h2>O que altera o response time real</h2>
+      <div class="table-scroll"><table><thead><tr><th>Fator</th><th>Efeito típico</th><th>O que conferir</th></tr></thead><tbody><tr><td>Massa e espessura do thermowell</td><td>Mais massa térmica tende a desacelerar a resposta.</td><td>Construção e material do conjunto.</td></tr><tr><td>Velocidade/densidade do fluido</td><td>Altera coeficiente de transferência de calor.</td><td>Condição real do processo.</td></tr><tr><td>Comprimento de imersão</td><td>Imersão insuficiente aumenta influência da parede/ambiente.</td><td>Geometria da linha e posição da ponta.</td></tr><tr><td>Contato sensor-poço</td><td>Folga ou montagem inadequada acrescenta resistência térmica.</td><td>Diâmetros, mola/carga e montagem.</td></tr><tr><td>Fouling/incrustação</td><td>Cria camada adicional e pode alongar a resposta.</td><td>Condição da superfície do poço.</td></tr><tr><td>Damping do transmissor</td><td>Acrescenta atraso eletrônico ao sinal final.</td><td>Configuração do transmissor/PLC.</td></tr></tbody></table></div>
 
-    <section class="calc-card">
-      <h2>Reduzir atraso exige verificar a resistência mecânica</h2>
-      <p>Ponta menor, parede mais fina e menor espaço interno podem acelerar a resposta, mas não devem ser improvisados. O termopoço também precisa suportar pressão, corrosão, velocidade, vibração induzida pelo escoamento e esforços de montagem. Uma mudança geométrica deve ser confirmada por especificação e cálculo aplicáveis ao serviço.</p>
-      <p>Antes de substituir o conjunto, compare alternativas como reposicionar o ponto, corrigir a inserção, remover depósito, usar sensor compatível de menor diâmetro ou escolher um projeto de resposta otimizada documentado pelo fabricante.</p>
+      <h2>RTD/PT100 versus Thermocouple</h2>
+      <p>RTDs e termopares possuem princípios e construções diferentes, mas ambos podem ficar limitados pelo termopoço quando a massa térmica e o caminho de transferência dominam a resposta. Por isso, trocar o sensor por outro “mais rápido” nem sempre reduz o atraso da malha na proporção esperada.</p>
+
+      <h2>Imersão e erro por condução</h2>
+      <p>Com pouca imersão, parte do calor pode ser conduzida pelo poço e pela conexão em direção à parede da tubulação ou ao ambiente. A indicação pode então se afastar da temperatura do fluido, especialmente quando existe grande diferença térmica entre processo e ambiente. Não existe uma única profundidade universal: geometria, fabricante, diâmetro, velocidade e requisitos mecânicos precisam ser avaliados.</p>
+
+      <h2>Robustez mecânica versus resposta térmica</h2>
+      <p>Reduzir diâmetro ou massa pode melhorar a resposta, mas termopoço também precisa suportar pressão, corrosão, vibração e forças induzidas pelo escoamento. A escolha não deve ser feita apenas pela velocidade térmica. Para aplicações críticas, a verificação mecânica do thermowell é uma etapa separada da análise de tempo de resposta.</p>
+
+      <h2>Como diagnosticar uma medição “lenta”</h2>
+      <ol><li>Confirme se a mudança de processo realmente chega ao ponto onde o sensor está instalado.</li><li>Compare leitura local, transmissor e PLC/DCS para separar atraso térmico de damping/filtro digital.</li><li>Revise configuração de damping e filtros antes de culpar o sensor.</li><li>Inspecione imersão, posição, contato interno e fouling quando possível e autorizado.</li><li>Compare o comportamento com uma referência adequada ou outro ponto de medição em condições conhecidas.</li><li>Se houver troca de construção do poço/sensor, compare o response time em condições equivalentes.</li></ol>
 
       <h2>Ferramentas e conteúdos relacionados</h2>
-      <div class="calc-actions">
-        <a class="mini-btn dark" href="calculadora-termopoco-tempo-resposta.html"><i class="fas fa-calculator"></i> Estimar tempo de resposta</a>
-        </div>
-      <ul class="mini-help" style="margin-top:12px">
-        <li><a href="blog-calibracao-transmissor-temperatura.html">Calibração de transmissor de temperatura</a> — separa teste da eletrônica, sensor e conjunto completo.</li>
-        <li><a href="blog-emissividade-termografia.html">Emissividade em termografia industrial</a> — explica erros em medição de temperatura sem contato.</li>
-        <li><a href="calculadora-tempo-resposta-malha-controle.html">Tempo de resposta da malha de controle</a> — ajuda a avaliar o efeito acumulado dos componentes.</li>
-      </ul>
-
-      <h2>Referências técnicas</h2>
-      <ul>
-        <li><a href="https://www.wika.com/media/Others/EN-US/wp007_thermowells_en_us.pdf" target="_blank" rel="noopener noreferrer">WIKA — <em>Thermowells: What to Know About Response Times in Electrical Temperature Measurements</em></a>. Documento técnico sobre proteção, massa térmica e fatores de resposta.</li>
-        <li><a href="https://www.emerson.com/is/content/emerson/en/measurement-instrumentation/technical/products/temperature/documents/doc-rosemount-00813-0200-4952.pdf" target="_blank" rel="noopener noreferrer">Emerson — <em>Rosemount 114C Thermowells, Product Data Sheet 00813-0200-4952</em></a>. Exemplo de documentação oficial para construção e aplicação de termopoços.</li>
-      </ul>
+      <div class="calc-actions"><a class="mini-btn dark" href="calculadora-termopoco-tempo-resposta.html"><i class="fas fa-calculator"></i> Tempo de resposta do termopoço</a><a class="mini-btn" href="calculadora-pt100.html">PT100 / RTD</a><a class="mini-btn" href="calculadora-termopar.html">Thermocouple</a><a class="mini-btn" href="calculadora-calibracao-transmissor-temperatura.html">Calibração do transmissor</a><a class="mini-btn" href="blog-emissividade-termografia.html">Infrared temperature</a></div>
+      <ul><li><a href="https://www.wika.com/media/Others/EN-US/wp007_thermowells_en_us.pdf" target="_blank" rel="noopener noreferrer">WIKA — Thermowells: What to Know About Response Times in Electrical Temperature Measurements</a>.</li><li><a href="https://www.emerson.com/is/content/emerson/en/measurement-instrumentation/technical/products/temperature/documents/doc-rosemount-00813-0200-4952.pdf" target="_blank" rel="noopener noreferrer">Emerson — Rosemount 114C Thermowells, Product Data Sheet</a>.</li></ul>
 
       <h2>Aviso técnico</h2>
-      <p>Este conteúdo é informativo e orientativo. A estimativa de resposta não substitui ensaio, cálculo mecânico, especificação do fabricante, procedimento da planta ou validação por profissional habilitado. Não altere termopoço, inserção ou ponto de processo sem avaliar pressão, temperatura, corrosão, vibração e segurança da instalação.</p>
-    </section>
-
+      <p>O modelo de primeira ordem é uma aproximação. Não substitui ensaio térmico, especificação do fabricante ou verificação mecânica do termopoço. Não altere geometria, inserção ou ponto de processo sem avaliar pressão, temperatura, corrosão, vibração, cargas do escoamento e requisitos aplicáveis.</p>
+    </article>
   </main>
-    <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
+  <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
 </body>
 </html>
