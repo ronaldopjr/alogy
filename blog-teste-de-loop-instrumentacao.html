@@ -3,434 +3,96 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
-  <title>Teste de Loop em Instrumentação: do Campo ao CLP | ALOGY</title>
-
-  <meta name="description" content="Entenda o que é teste de loop em instrumentação industrial, como validar o sinal do campo ao CLP, sinais 4-20 mA, cartões analógicos, supervisório e"/>
+  <title>Teste de Loop em Instrumentação | Campo ao PLC/CLP | ALOGY</title>
+  <meta name="description" content="Loop check em instrumentação: valide 4-20 mA, transmissor, cabos, bornes, cartão analógico, PLC/CLP, DCS, IHM e supervisório."/>
   <meta name="robots" content="index,follow" />
   <meta name="theme-color" content="#2C78B9" />
   <link rel="canonical" href="https://www.alogy.com.br/blog-teste-de-loop-instrumentacao.html" />
-
   <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
-<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png" />
-<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png" />
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-
-  <link rel="stylesheet" href="style.css?v=20260722-layout-original-uppercase-mobilefix" />
+  <link rel="stylesheet" href="style.css?v=20260911-article-semantic1" />
   <script src="app.js" defer></script>
-
   <meta property="og:locale" content="pt_BR" />
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="ALOGY Engenharia" />
-  <meta property="og:title" content="Teste de Loop em Instrumentação: do Campo ao CLP" />
-  <meta property="og:description" content="Como o teste de loop valida sensores, transmissores, cabos, bornes, cartões analógicos, CLP e supervisório." />
-  <meta property="og:image" content="https://www.alogy.com.br/img-teste-de-loop-instrumentacao.webp" />
+  <meta property="og:title" content="Teste de Loop em Instrumentação: do Campo ao PLC/CLP" />
+  <meta property="og:description" content="Como validar uma malha 4-20 mA ponta a ponta: transmissor, cabo, borne, AI, escala no PLC/DCS e indicação no supervisório." />
+  <meta property="og:image" content="https://www.alogy.com.br/capa-blog-teste-de-loop-instrumentacao.webp" />
   <meta property="og:url" content="https://www.alogy.com.br/blog-teste-de-loop-instrumentacao.html" />
-
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Teste de Loop em Instrumentação: do Campo ao CLP" />
-  <meta name="twitter:description" content="Entenda a importância do teste de loop para comissionamento, manutenção e confiabilidade da instrumentação industrial." />
-  <meta name="twitter:image" content="https://www.alogy.com.br/img-teste-de-loop-instrumentacao.webp" />
-
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"BlogPosting",
-    "headline":"Teste de Loop em Instrumentação: do Campo ao CLP",
-    "description":"Entenda o que é teste de loop em instrumentação industrial, como validar o sinal do campo ao CLP, sinais 4-20 mA, cartões analógicos, supervisório e comissionamento.",
-    "image":"https://www.alogy.com.br/img-teste-de-loop-instrumentacao.webp",
-    "datePublished":"2026-06-26",
-    "dateModified":"2026-06-26",
-    "author":{
-      "@type":"Organization",
-      "name":"ALOGY Engenharia",
-      "url":"https://www.alogy.com.br/"
-    },
-    "publisher":{
-      "@type":"Organization",
-      "name":"ALOGY Engenharia",
-      "url":"https://www.alogy.com.br/",
-      "logo":{
-        "@type":"ImageObject",
-        "url":"https://www.alogy.com.br/logo-alogy.webp"
-      }
-    },
-    "mainEntityOfPage":{
-      "@type":"WebPage",
-      "@id":"https://www.alogy.com.br/blog-teste-de-loop-instrumentacao.html"
-    },
-    "inLanguage":"pt-BR"
-  }
-  </script>
-
+  <meta name="twitter:title" content="Teste de Loop em Instrumentação: do Campo ao PLC/CLP" />
+  <meta name="twitter:description" content="Loop check para 4-20 mA, cartão analógico, escala e supervisório em instrumentação industrial." />
+  <meta name="twitter:image" content="https://www.alogy.com.br/capa-blog-teste-de-loop-instrumentacao.webp" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Teste de Loop em Instrumentação: do Campo ao PLC/CLP","description":"Loop check em instrumentação para validar 4-20 mA, transmissor, cabos, bornes, cartão analógico, PLC/CLP, DCS, IHM e supervisório.","image":"https://www.alogy.com.br/capa-blog-teste-de-loop-instrumentacao.webp","datePublished":"2026-06-26","dateModified":"2026-09-11","author":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"},"publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/","logo":{"@type":"ImageObject","url":"https://www.alogy.com.br/logo-alogy.webp"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://www.alogy.com.br/blog-teste-de-loop-instrumentacao.html"},"inLanguage":"pt-BR"}</script>
   <style>
-    .post-wrap{
-      max-width: 900px;
-      margin: 18px auto;
-    }
-
-    .post-card{
-      background: var(--card);
-      border: 1px solid rgba(0,0,0,.08);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      overflow: hidden;
-    }
-
-    .post-cover{
-      width: 100%;
-      height: auto;
-      display: block;
-      aspect-ratio: 16 / 9;
-      object-fit: cover;
-      background: #dbeafe;
-    }
-
-    .post-content{
-      padding: 30px;
-    }
-
-    .post-meta{
-      color: var(--muted);
-      font-size: .95rem;
-      margin-bottom: 12px;
-    }
-
-    .post-content h1{
-      font-size: 2.15rem;
-      line-height: 1.15;
-      margin-bottom: 12px;
-      color: var(--text);
-    }
-
-    .post-content h2{
-      font-size: 1.45rem;
-      line-height: 1.25;
-      margin: 26px 0 10px;
-      color: var(--text);
-    }
-
-    .post-content p{
-      color: var(--text);
-      margin: 0 0 16px;
-      font-size: 1.04rem;
-      line-height: 1.75;
-    }
-
-    .post-content ul{
-      margin: 0 0 18px 20px;
-    }
-
-    .post-content li{
-      margin: 8px 0;
-      line-height: 1.65;
-    }
-
-    .post-highlight{
-      background: rgba(0,107,177,.08);
-      border: 1px solid rgba(0,107,177,.18);
-      border-radius: 14px;
-      padding: 16px;
-      margin: 22px 0;
-    }
-
-    .post-highlight strong{
-      color: #0b3a62;
-    }
-
-    @media (max-width: 768px){
-      .post-content{
-        padding: 22px;
-      }
-
-      .post-content h1{
-        font-size: 1.65rem;
-      }
-
-      .post-content h2{
-        font-size: 1.25rem;
-      }
-    }
-  </style>
-  <!-- Google AdSense: carregado somente em páginas editoriais monetizáveis. A exibição e os formatos são controlados no painel do AdSense. -->
+    .post-wrap{max-width:900px;margin:18px auto}.post-card{background:var(--card);border:1px solid rgba(0,0,0,.08);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}.post-content{padding:30px}.post-meta{color:var(--muted);font-size:.95rem;margin-bottom:12px}.post-content h1{font-size:2.15rem;line-height:1.15;margin-bottom:12px;color:var(--text)}.post-content h2{font-size:1.45rem;line-height:1.25;margin:26px 0 10px;color:var(--text)}.post-content p{color:var(--text);margin:0 0 16px;font-size:1.04rem;line-height:1.75}.post-content ul,.post-content ol{margin:0 0 18px 20px}.post-content li{margin:8px 0;line-height:1.65}.post-highlight{background:rgba(0,107,177,.08);border:1px solid rgba(0,107,177,.18);border-radius:14px;padding:16px;margin:22px 0}.post-highlight strong{color:#0b3a62}@media(max-width:768px){.post-content{padding:22px}.post-content h1{font-size:1.65rem}.post-content h2{font-size:1.25rem}}</style>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5586837114309500" crossorigin="anonymous"></script>
 </head>
-
 <body>
   <header>
-    <div class="container headbar">
-      <a href="/" class="logo-wrapper" aria-label="Voltar para o início">
-        <img src="logo-alogy.webp" alt="ALOGY Engenharia"  width="878"  height="308"  decoding="async" />
-      </a>
-<button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menu">
-        <i class="fas fa-bars"></i>
-      </button>
-    </div>
-
-    <nav class="desktop" aria-label="Menu principal">
-      <div class="container navlinks">
-        <a href="/">Início</a>
-        <a href="industrial.html">Serviços Industriais</a>
-        <a href="residencial.html">Serviços Residenciais</a>
-        <a href="cases.html">Projetos</a>
-        <a href="cursos.html">Cursos</a>
-        <a href="blog.html">Blog</a>
-        <a href="ferramentas.html">Ferramentas</a>
-        <a href="sobre.html">Sobre</a>
-        <a href="/#contato">Contato</a>
-      </div>
-    </nav>
-
-    <nav class="mobile" aria-label="Menu mobile">
-      <a href="/">Início</a>
-      <a href="industrial.html">Serviços Industriais</a>
-      <a href="residencial.html">Serviços Residenciais</a>
-      <a href="cases.html">Projetos</a>
-      <a href="cursos.html">Cursos</a>
-      <a href="blog.html">Blog</a>
-      <a href="ferramentas.html">Ferramentas</a>
-      <a href="sobre.html">Sobre</a>
-      <a href="/#contato">Contato</a>
-    </nav>
+    <div class="container headbar"><a href="/" class="logo-wrapper" aria-label="Voltar para o início"><img src="logo-alogy.webp" alt="ALOGY Engenharia" width="878" height="308" decoding="async" /></a><button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menu"><i class="fas fa-bars"></i></button></div>
+    <nav class="desktop" aria-label="Menu principal"><div class="container navlinks"><a href="/">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="/guia/">Guia</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></div></nav>
+    <nav class="mobile" aria-label="Menu mobile"><a href="/">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="/guia/">Guia</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></nav>
   </header>
-
-  <div class="social-floating" aria-label="Redes sociais">
-    <a href="https://www.linkedin.com/company/alogyengenharia" class="linkedin" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-      <i class="fab fa-linkedin-in"></i>
-    </a>
-    <a href="https://www.instagram.com/alogyengenharia" class="instagram" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-      <i class="fab fa-instagram"></i>
-    </a>
-    <a href="https://www.facebook.com/alogyengenharia" class="facebook" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-      <i class="fab fa-facebook-f"></i>
-    </a>
-    <a href="https://www.youtube.com/@alogyengenharia" class="youtube" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
-      <i class="fab fa-youtube"></i>
-    </a>
-    <a href="https://hotmart.com/pt-br/club/alogyengenharia" class="hotmart" target="_blank" rel="noopener noreferrer" aria-label="Hotmart">H</a>
-    <a href="https://www.tiktok.com/@alogyengenharia" class="tiktok" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
-      <i class="fab fa-tiktok"></i>
-    </a>
-  </div>
-
-  <div class="fab-wrap" aria-label="Ações rápidas">
-    <a class="fab-btn mail" href="mailto:contato@alogy.com.br">
-      <i class="fas fa-envelope"></i> contato@alogy.com.br
-    </a>
-
-    <a class="fab-btn wa"
-       href="https://wa.me/5519981442448?text=Ol%C3%A1!%20Li%20o%20artigo%20sobre%20teste%20de%20loop%20no%20blog%20da%20ALOGY%20e%20gostaria%20de%20atendimento."
-       target="_blank" rel="noopener noreferrer">
-      <i class="fab fa-whatsapp"></i> WhatsApp
-    </a>
-  </div>
+  <div class="social-floating" aria-label="Redes sociais"><a href="https://www.linkedin.com/company/alogyengenharia" class="linkedin" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a><a href="https://www.instagram.com/alogyengenharia" class="instagram" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="https://www.facebook.com/alogyengenharia" class="facebook" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><a href="https://www.youtube.com/@alogyengenharia" class="youtube" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a><a href="https://www.tiktok.com/@alogyengenharia" class="tiktok" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fab fa-tiktok"></i></a></div>
+  <div class="fab-wrap" aria-label="Ações rápidas"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1!%20Li%20o%20artigo%20sobre%20teste%20de%20loop%20da%20ALOGY%20e%20gostaria%20de%20atendimento." target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
 
   <main class="container post-wrap">
-    <div style="margin-bottom:14px">
-  <a class="floating-back-blog no-print" href="blog.html">
-    <i class="fas fa-arrow-left"></i> Voltar para o Blog
-  </a>
-</div>
+    <div style="margin-bottom:14px"><a class="floating-back-blog no-print" href="blog.html"><i class="fas fa-arrow-left"></i> Voltar para o Blog</a></div>
+    <article class="post-card"><div class="post-content">
+      <div class="post-meta"><time datetime="2026-06-26">Publicado em 26/06/2026</time> • Instrumentação • Commissioning • PLC/CLP</div>
+      <div class="tags" style="margin-bottom:14px"><span class="tag">Loop Check</span><span class="tag">Instrumentação</span><span class="tag">PLC/CLP</span><span class="tag">4-20 mA</span></div>
+      <h1>Teste de Loop em Instrumentação: como garantir o sinal do campo ao PLC/CLP</h1>
+      <p class="muted" data-alogy-content-meta><strong>Conteúdo técnico:</strong> ALOGY Engenharia · <strong>Atualizado em:</strong> 11/09/2026</p>
+      <figure class="article-cover-figure"><img class="article-cover-image" src="capa-blog-teste-de-loop-instrumentacao.webp" alt="Teste de loop em instrumentação industrial entre transmissor, cabeamento e PLC CLP" loading="eager" fetchpriority="high" decoding="async"/><figcaption>Loop check valida a cadeia do instrumento de campo até o sistema de controle, não apenas um componente isolado.</figcaption></figure>
 
-    <article class="post-card">
-      <img
-        class="post-cover"
-        src="img-teste-de-loop-instrumentacao.webp"
-        alt="Teste de loop em instrumentação industrial com transmissor, calibrador, borne, CLP e supervisório"
-        width="1280"
-        height="720"
-        loading="eager"
-       decoding="async" />
+      <p>O teste de loop em instrumentação valida se o sinal gerado no campo chega corretamente ao sistema de controle. Em uma malha analógica, o sinal pode sair de um transmissor em 4-20 mA, passar por cabo, caixa de junção, bornes, barreiras e cartão analógico até ser convertido em unidade de engenharia no PLC/CLP ou DCS.</p>
+      <p>Quando esse caminho não é testado ponta a ponta, a planta pode operar com escala incorreta, borne trocado, canal errado, falha de alimentação ou indicação divergente no supervisório.</p>
 
-      <div class="post-content">
-        <div class="post-meta">
-          <time datetime="2026-06-26">Publicado em 26/06/2026</time> • Instrumentação Industrial • Comissionamento • CLP
-        </div>
+      <h2>O que é loop check?</h2>
+      <p>Loop check é o procedimento usado para verificar continuidade, configuração, sentido e coerência de uma malha de instrumentação. Ele confirma se o valor aplicado ou simulado no campo é representado corretamente no sistema de controle e, quando aplicável, nos alarmes e elementos finais.</p>
+      <div class="post-highlight"><strong>Resumo técnico:</strong> instrumento → cabeamento → borne/barreira → AI/AO → PLC/DCS → engenharia → HMI/SCADA.</div>
 
-        <div class="tags" style="margin-bottom:14px">
-          <span class="tag">Teste de Loop</span>
-          <span class="tag">Instrumentação</span>
-          <span class="tag">CLP</span>
-          <span class="tag">4-20 mA</span>
-        </div>
+      <h2>Por que é diferente de calibração?</h2>
+      <p>A calibração compara um instrumento com um padrão de referência e avalia erro. O teste de loop verifica a cadeia instalada. Um transmissor pode estar calibrado e ainda assim chegar errado ao supervisório por causa de range, escala, ligação ou configuração do cartão.</p>
 
-        <h1>Teste de Loop em Instrumentação: como garantir o sinal do campo ao CLP</h1>
+      <h2>Exemplo prático em 4-20 mA</h2>
+      <p>Considere um transmissor de pressão configurado de 0 a 10 bar. Em uma escala linear, 4 mA = 0 bar, 12 mA = 5 bar e 20 mA = 10 bar. Durante o teste, esses pontos podem ser simulados para confirmar a leitura no cartão, PLC/DCS e HMI.</p>
+      <p>Para um teste mais completo, use 0%, 25%, 50%, 75% e 100%: <strong>4, 8, 12, 16 e 20 mA</strong>. Se a malha usar função não linear, square root ou split range, os valores esperados devem seguir a configuração real.</p>
 
-        <p>
-          O teste de loop em instrumentação é uma etapa essencial para validar se o sinal gerado por um
-          instrumento de campo chega corretamente ao sistema de controle. Em uma malha analógica, por exemplo,
-          o sinal pode sair de um transmissor em 4-20 mA, passar por cabos, bornes, painéis, cartão analógico
-          e finalmente ser interpretado pelo CLP ou pelo sistema supervisório.
-        </p>
+      <h2>Sequência prática de teste</h2>
+      <ol><li>Confirme TAG, variável, LRV, URV, unidade e canal de I/O.</li><li>Coloque a malha em condição segura conforme procedimento e operação.</li><li>Defina se o teste será por simulação de corrente, aplicação da variável ou atuação do elemento de campo.</li><li>Aplique os pontos e registre valor no campo, raw do cartão e unidade de engenharia.</li><li>Confirme indicação em PLC/DCS, HMI/SCADA, alarmes e tendências quando fizer parte do escopo.</li><li>Se houver divergência, separe falha de instrumento, cabeamento, I/O, scaling e lógica.</li><li>Registre resultado, pendências e condição final da malha.</li></ol>
 
-        <p>
-          Quando esse caminho não é testado de forma adequada, a planta pode operar com leituras incorretas,
-          alarmes falsos, falhas de controle, desvios de processo e dificuldades de diagnóstico. Por isso,
-          o teste de loop é uma prática fundamental em comissionamento, manutenção e validação de sistemas
-          industriais.
-        </p>
+      <h2>Falhas comuns encontradas</h2>
+      <ul><li>LRV/URV diferentes entre transmissor e PLC.</li><li>AI configurada para faixa incompatível.</li><li>Escala invertida ou engenharia errada.</li><li>Bornes/canais trocados.</li><li>Queda de tensão ou alimentação insuficiente.</li><li>Barreira/isolador configurado incorretamente.</li><li>Alarme ou intertravamento usando TAG/canal incorreto.</li><li>HMI mostrando unidade ou range diferente do controlador.</li></ul>
 
-        <h2>O que é teste de loop?</h2>
+      <h2>Quando realizar?</h2>
+      <p>Loop checks são especialmente importantes em commissioning, FAT/SAT de integração, partidas, ampliações, troca de instrumentos, substituição de cartões, alterações de lógica ou intervenções em cabos, bornes e painéis.</p>
 
-        <p>
-          Teste de loop é o procedimento usado para verificar a continuidade, a configuração e a coerência
-          de uma malha de instrumentação. Ele confirma se o sinal enviado pelo instrumento corresponde ao
-          valor recebido pelo CLP, IHM ou supervisório.
-        </p>
+      <h2>Documentação do teste</h2>
+      <p>O registro deve identificar TAG, variável, range, sinal aplicado, raw/entrada, valor de engenharia, indicação na HMI/SCADA, status e observações. Em projetos maiores, um checklist por malha ajuda a controlar pendências e retestes.</p>
 
-        <p>
-          Em uma malha típica, o teste pode envolver o transmissor de campo, cabos, caixas de junção, bornes,
-          barreiras, fontes de alimentação, cartões de entrada analógica, escala no CLP, indicação na IHM
-          e registro no supervisório.
-        </p>
+      <h2>Ferramentas relacionadas</h2>
+      <div class="cta-actions"><a class="btn" href="calculadora-4-20ma.html"><i class="fas fa-wave-square"></i> Calculadora 4-20 mA</a><a class="btn secondary" href="calculadora-escala-clp.html"><i class="fas fa-microchip"></i> Escala PLC/CLP</a><a class="btn secondary" href="calculadora-malha-4-20ma-hart-completa.html"><i class="fas fa-network-wired"></i> Malha 4-20/HART</a><a class="btn secondary" href="checklist-teste-de-loop.html"><i class="fas fa-list-check"></i> Checklist de Loop</a></div>
 
-        <div class="post-highlight">
-          <strong>Resumo técnico:</strong> o teste de loop comprova que o sinal percorre corretamente todo
-          o caminho entre o campo e o sistema de controle.
-        </div>
+      <h2>Como a ALOGY pode apoiar</h2>
+      <p>A ALOGY atua com instrumentação industrial, automação, testes de malha, documentação técnica e apoio em commissioning. O objetivo é reduzir incerteza entre campo e sistema de controle e entregar evidência clara do que foi testado.</p>
 
-        <h2>Por que o teste de loop é importante?</h2>
+      <h2>Aviso técnico</h2>
+      <p>Este conteúdo é informativo. Testes que possam atuar equipamentos, alarmes, intertravamentos ou processo devem seguir liberação operacional, análise de risco e procedimentos aplicáveis da instalação.</p>
 
-        <p>
-          Uma medição industrial só é confiável quando todo o caminho do sinal está correto. Mesmo que o
-          transmissor esteja calibrado, ainda podem existir erros de ligação, escala invertida, borne errado,
-          endereço incorreto no CLP, range diferente no supervisório ou falha de alimentação.
-        </p>
+      <div class="cta-actions" style="margin-top:18px"><a class="btn" href="industrial.html"><i class="fas fa-industry"></i> Ver serviços industriais</a><a class="btn secondary" href="/guia/"><i class="fas fa-book-open"></i> Conhecer o Guia</a><a class="btn secondary" href="/#contato"><i class="fas fa-paper-plane"></i> Solicitar contato</a><a class="btn secondary" href="blog.html"><i class="fas fa-arrow-left"></i> Voltar ao blog</a></div>
+    </div></article>
 
-        <p>
-          O teste de loop ajuda a identificar esses problemas antes que eles causem impactos no processo.
-          Ele reduz retrabalho, melhora a segurança da partida e aumenta a confiabilidade dos dados industriais.
-        </p>
-
-        <ul>
-          <li>Confirma se o instrumento está ligado no ponto correto.</li>
-          <li>Valida o sinal recebido pelo CLP ou sistema de controle.</li>
-          <li>Ajuda a identificar inversão de escala, falha de cabo ou borne incorreto.</li>
-          <li>Reduz falhas durante comissionamento e partida de sistemas.</li>
-          <li>Melhora a confiabilidade da operação e da manutenção.</li>
-        </ul>
-
-        <h2>Exemplo prático de uma malha 4-20 mA</h2>
-
-        <p>
-          Imagine um transmissor de pressão configurado para medir de 0 a 10 bar. Em uma escala 4-20 mA,
-          o valor de 0 bar corresponde a 4 mA, enquanto o valor de 10 bar corresponde a 20 mA.
-        </p>
-
-        <p>
-          Durante o teste de loop, é possível simular ou aplicar sinais intermediários, como 4 mA, 12 mA
-          e 20 mA, verificando se o CLP e o supervisório indicam corretamente 0 bar, 5 bar e 10 bar.
-          Se a indicação estiver errada, o problema pode estar na escala, na ligação, no cartão analógico
-          ou na configuração do sistema.
-        </p>
-
-        <h2>Diferença entre calibração e teste de loop</h2>
-
-        <p>
-          A calibração verifica o erro do instrumento em relação a um padrão de referência. Já o teste de
-          loop valida o caminho completo do sinal dentro do sistema de automação.
-        </p>
-
-        <p>
-          Ou seja, um transmissor pode estar calibrado corretamente, mas ainda assim o valor chegar errado
-          ao supervisório por causa de um range mal configurado, borne trocado ou parâmetro incorreto no CLP.
-          Por isso, calibração e teste de loop se complementam.
-        </p>
-
-        <h2>Quando realizar teste de loop?</h2>
-
-        <p>
-          O teste de loop deve ser realizado principalmente em comissionamentos, partidas de sistemas,
-          ampliações, troca de instrumentos, alterações em painéis, substituição de cartões analógicos,
-          revisão de CLP e após intervenções em cabos ou bornes.
-        </p>
-
-        <p>
-          Também é uma prática recomendada em paradas programadas, quando a equipe aproveita a janela de
-          manutenção para validar malhas críticas e reduzir riscos na retomada da produção.
-        </p>
-
-        <h2>Documentação do teste</h2>
-
-        <p>
-          Além de executar o teste, é importante registrar os resultados. Um relatório de teste de loop pode
-          conter tag do instrumento, variável medida, range, sinal aplicado, valor indicado no CLP, valor
-          indicado na IHM ou supervisório, status do teste e observações técnicas.
-        </p>
-
-        <p>
-          Essa documentação facilita auditorias, manutenção futura, rastreabilidade e análise de problemas.
-          Em plantas industriais, uma boa documentação técnica reduz tempo de diagnóstico e aumenta a
-          confiabilidade do sistema.
-        </p>
-
-        <h2>Como a ALOGY Engenharia pode apoiar?</h2>
-
-        <p>
-          A ALOGY Engenharia atua com instrumentação industrial, automação, testes de malha, documentação
-          técnica, apoio em comissionamento e integração com sistemas de controle. Esse trabalho contribui
-          para que os sinais de campo sejam confiáveis e estejam corretamente representados no CLP, IHM
-          e supervisório.
-        </p>
-
-        <p>
-          Uma malha testada e documentada oferece mais segurança para operação, manutenção e futuras melhorias
-          no sistema de automação.
-        </p>
-
-        <div class="post-highlight">
-          <strong>Precisa validar sinais de campo, CLP ou supervisório?</strong><br>
-          O teste de loop ajuda a garantir que a informação do processo esteja correta antes de decisões operacionais.
-        </div>
-
-        <div class="cta-actions" style="margin-top:18px">
-          <a class="btn" href="industrial.html">
-            <i class="fas fa-industry"></i> Ver serviços industriais
-          </a>
-
-          <a class="btn secondary" href="/#contato">
-            <i class="fas fa-paper-plane"></i> Solicitar contato
-          </a>
-
-          <a class="btn secondary" href="blog.html">
-            <i class="fas fa-arrow-left"></i> Voltar ao blog
-          </a>
-        </div>
-      </div>
-    </article>
-
-    <section class="cta-bar" aria-label="Chamada para atendimento">
-      <div>
-        <strong>Precisa de testes de loop, comissionamento ou revisão de instrumentação?</strong><br/>
-        <span class="muted">Entre em contato para avaliação técnica e definição do próximo passo.</span>
-      </div>
-
-      <div class="cta-actions">
-        <a class="btn" href="/#contato">
-          <i class="fas fa-paper-plane"></i> Falar com a ALOGY
-        </a>
-      </div>
-    </section>
-
+    <section class="cta-bar" aria-label="Chamada para atendimento"><div><strong>Precisa de loop check, commissioning ou revisão de instrumentação?</strong><br/><span class="muted">Entre em contato para avaliação técnica e definição do próximo passo.</span></div><div class="cta-actions"><a class="btn" href="/#contato"><i class="fas fa-paper-plane"></i> Falar com a ALOGY</a></div></section>
   </main>
 
-  <footer>
-    <p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p>
-  </footer>
-
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      if (window.location.pathname.includes("blog-")) {
-        document.querySelectorAll('nav.desktop a[href="blog.html"], nav.mobile a[href="blog.html"]').forEach((link) => {
-          link.classList.add("active");
-        });
-      }
-    });
-  </script>
+  <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
 </body>
 </html>
