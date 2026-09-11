@@ -1,0 +1,72 @@
+/* ALOGY - capas dos artigos dentro do proprio artigo - 2026-09-11
+   A capa aparece logo apos a linha de autoria/atualizacao, abaixo do H1.
+   O mapeamento reutiliza as mesmas capas exibidas no hub blog.html. */
+
+html:has(head link[rel="canonical"][href*="/blog-"]) [data-alogy-content-meta]::after{
+  content:var(--alogy-article-cover-content, none);
+  display:block;
+  width:min(100%,760px);
+  aspect-ratio:16 / 9;
+  max-height:360px;
+  margin:16px auto 22px;
+  border:1px solid rgba(11,58,98,.12);
+  border-radius:16px;
+  background-color:#eaf2f7;
+  background-image:var(--alogy-article-cover);
+  background-repeat:no-repeat;
+  background-position:center;
+  background-size:cover;
+  box-shadow:0 8px 22px rgba(2,32,55,.08);
+}
+@media(max-width:700px){
+  html:has(head link[rel="canonical"][href*="/blog-"]) [data-alogy-content-meta]::after{
+    width:100%;
+    max-height:240px;
+    margin:13px auto 18px;
+    border-radius:12px;
+  }
+}
+
+html:has(head link[rel="canonical"][href$="/blog-dimensionamento-tubo-pneumatico-instrumentacao.html"]){--alogy-article-cover-content:"";--alogy-article-cover:url("capa-blog-dimensionamento-tubo-pneumatico-instrumentacao.webp")}
+html:has(head link[rel="canonical"][href$="/blog-conexoes-pneumaticas-instrumentacao.html"]){--alogy-article-cover-content:"";--alogy-article-cover:url("capa-blog-conexoes-pneumaticas-instrumentacao.webp")}
+html:has(head link[rel="canonical"][href$="/blog-solenoide-atuador-pneumatico-cv.html"]){--alogy-article-cover-content:"";--alogy-article-cover:url("capa-blog-solenoide-atuador-pneumatico-cv.webp")}
+html:has(head link[rel="canonical"][href$="/blog-ar-instrumentos-qualidade-ponto-orvalho.html"]){--alogy-article-cover-content:"";--alogy-article-cover:url("capa-blog-ar-instrumentos-qualidade-ponto-orvalho.webp")}
+html:has(head link[rel="canonical"][href$="/blog-linha-impulso-transmissor-dp.html"]){--alogy-article-cover-content:"";--alogy-article-cover:url("capa-blog-linha-impulso-transmissor-dp.webp")}
+html:has(head link[rel="canonical"][href$="/blog-selo-remoto-capilar-nivel.html"]){--alogy-article-cover-content:"";--alogy-article-cover:url("capa-blog-selo-remoto-capilar-nivel.webp")}
+html:has(head link[rel="canonical"][href$="/blog-comunicacao-hart-falhas-cabo-resistencia.html"]){--alogy-article-cover-content:"";--alogy-article-cover:url("capa-blog-comunicacao-hart-falhas-cabo-resistencia.webp")}
+html:has(head link[rel="canonical"][href$="/blog-ot-cybersecurity-instrumentacao.html"]){--alogy-article-cover-content:"";--alogy-article-cover:url("capa-blog-ot-cybersecurity-instrumentacao.webp")}
+html:has(head link[rel="canonical"][href$="/blog-gemeo-digital-tags-instrumentacao.html"]){--alogy-article-cover-content:"";--alogy-article-cover:url("capa-blog-gemeo-digital-tags-instrumentacao.webp")}
+html:has(head link[rel="canonical"][href$="/blog-comissionamento-hart.html"]){--alogy-article-cover-content:"";--alogy-article-cover:url("capa-blog-comissionamento-hart.webp")}
+html:has(head link[rel="canonical"][href$="/blog-emissividade-termografia.html"]){--alogy-article-cover-content:"";--alogy-article-cover:url("capa-blog-emissividade-termografia.webp")}
+html:has(head link[rel="canonical"][href$="/blog-fat-sat-instrumentacao.html"]){--alogy-article-cover-content:"";--alogy-article-cover:url("capa-blog-fat-sat-instrumentacao.webp")}
+html:has(head link[rel="canonical"][href$="/blog-inspecao-instrumentos-area-classificada.html"]){--alogy-article-cover-content:"";--alogy-article-cover:url("capa-blog-inspecao-instrumentos-area-classificada.webp")}
+html:has(head link[rel="canonical"][href$="/blog-calibracao-analisadores-processo.html"]){--alogy-article-cover-content:"";--alogy-article-cover:url("capa-blog-calibracao-analisadores-processo.webp")}
+html:has(head link[rel="canonical"][href$="/blog-calibracao-cartao-analogico-clp.html"]){--alogy-article-cover-content:"";--alogy-article-cover:url("capa-blog-calibracao-cartao-analogico-clp.webp")}
+html:has(head link[rel="canonical"][href$="/blog-calibracao-conversor-ip-pi.html"]){--alogy-article-cover-content:"";--alogy-article-cover:url("capa-blog-calibracao-conversor-ip-pi.webp")}
+html:has(head link[rel="canonical"][href$="/blog-calibracao-instrumentos-industriais.html"]){--alogy-article-cover-content:"";--alogy-article-cover:url("capa-blog-calibracao-instrumentos-industriais.webp")}
+html:has(head link[rel="canonical"][href$="/blog-calibracao-manometro.html"]){--alogy-article-cover-content:"";--alogy-article-cover:url("capa-blog-calibracao-manometro.webp")}
+html:has(head link[rel="canonical"][href$="/blog-calibracao-totalizador-vazao.html"]){--alogy-article-cover-content:"";--alogy-article-cover:url("capa-blog-calibracao-totalizador-vazao.webp")}
+html:has(head link[rel="canonical"][href$="/blog-calibracao-transmissor-dp-vazao.html"]){--alogy-article-cover-content:"";--alogy-article-cover:url("capa-blog-calibracao-transmissor-dp-vazao.webp")}
+html:has(head link[rel="canonical"][href$="/blog-calibracao-transmissor-nivel-dp.html"]){--alogy-article-cover-content:"";--alogy-article-cover:url("capa-blog-calibracao-transmissor-nivel-dp.webp")}
+html:has(head link[rel="canonical"][href$="/blog-calibracao-transmissor-pressao.html"]){--alogy-article-cover-content:"";--alogy-article-cover:url("capa-blog-calibracao-transmissor-pressao.webp")}
+html:has(head link[rel="canonical"][href$="/blog-calibracao-transmissor-temperatura.html"]){--alogy-article-cover-content:"";--alogy-article-cover:url("capa-blog-calibracao-transmissor-temperatura.webp")}
+html:has(head link[rel="canonical"][href$="/blog-calibracao-valvula-controle.html"]){--alogy-article-cover-content:"";--alogy-article-cover:url("capa-blog-calibracao-valvula-controle.webp")}
+html:has(head link[rel="canonical"][href$="/blog-calibracao-phmetro.html"]){--alogy-article-cover-content:"";--alogy-article-cover:url("capa-blog-calibracao-phmetro.webp")}
+html:has(head link[rel="canonical"][href$="/blog-histerese-pressostato-termostato.html"]){--alogy-article-cover-content:"";--alogy-article-cover:url("capa-blog-histerese-pressostato-termostato.webp")}
+html:has(head link[rel="canonical"][href$="/blog-condutividade-tds.html"]){--alogy-article-cover-content:"";--alogy-article-cover:url("capa-blog-condutividade-tds.webp")}
+html:has(head link[rel="canonical"][href$="/blog-orp-mv-controle.html"]){--alogy-article-cover-content:"";--alogy-article-cover:url("capa-blog-orp-mv-controle.webp")}
+html:has(head link[rel="canonical"][href$="/blog-cavitacao-valvula-controle.html"]){--alogy-article-cover-content:"";--alogy-article-cover:url("capa-blog-cavitacao-valvula-controle.webp")}
+html:has(head link[rel="canonical"][href$="/blog-cv-gases-valvula-controle.html"]){--alogy-article-cover-content:"";--alogy-article-cover:url("capa-blog-cv-gases-valvula-controle.webp")}
+html:has(head link[rel="canonical"][href$="/blog-k-factor-vazao-pulsos.html"]){--alogy-article-cover-content:"";--alogy-article-cover:url("capa-blog-k-factor-vazao-pulsos.webp")}
+html:has(head link[rel="canonical"][href$="/blog-dp-nivel-tanque-fechado.html"]){--alogy-article-cover-content:"";--alogy-article-cover:url("capa-blog-dp-nivel-tanque-fechado.webp")}
+html:has(head link[rel="canonical"][href$="/blog-potencia-bomba.html"]){--alogy-article-cover-content:"";--alogy-article-cover:url("capa-blog-potencia-bomba.webp")}
+html:has(head link[rel="canonical"][href$="/blog-split-range-4-20ma.html"]){--alogy-article-cover-content:"";--alogy-article-cover:url("capa-blog-split-range-4-20ma.webp")}
+html:has(head link[rel="canonical"][href$="/blog-termopoco-tempo-resposta.html"]){--alogy-article-cover-content:"";--alogy-article-cover:url("capa-blog-termopoco-tempo-resposta.webp")}
+html:has(head link[rel="canonical"][href$="/blog-teste-de-loop-instrumentacao.html"]){--alogy-article-cover-content:"";--alogy-article-cover:url("capa-blog-teste-de-loop-instrumentacao.webp")}
+html:has(head link[rel="canonical"][href$="/blog-gemeo-digital-instrumentacao.html"]){--alogy-article-cover-content:"";--alogy-article-cover:url("capa-blog-gemeo-digital-instrumentacao.webp")}
+html:has(head link[rel="canonical"][href$="/blog-industria-5-0.html"]){--alogy-article-cover-content:"";--alogy-article-cover:url("capa-blog-industria-5-0.webp")}
+html:has(head link[rel="canonical"][href$="/blog-instrumentacao-industrial.html"]){--alogy-article-cover-content:"";--alogy-article-cover:url("capa-blog-instrumentacao-industrial.webp")}
+html:has(head link[rel="canonical"][href$="/blog-lopa-simplificada.html"]){--alogy-article-cover-content:"";--alogy-article-cover:url("capa-blog-lopa-simplificada.webp")}
+html:has(head link[rel="canonical"][href$="/blog-nova-nr10-2026.html"]){--alogy-article-cover-content:"";--alogy-article-cover:url("capa-blog-nova-nr10-2026.webp")}
+html:has(head link[rel="canonical"][href$="/blog-resistor-shunt-4-20ma.html"]){--alogy-article-cover-content:"";--alogy-article-cover:url("capa-blog-comunicacao-hart-falhas-cabo-resistencia.webp")}
+html:has(head link[rel="canonical"][href$="/blog-sil-pfd-didatico.html"]){--alogy-article-cover-content:"";--alogy-article-cover:url("capa-blog-sil-pfd-didatico.webp")}
