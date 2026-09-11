@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Resistor Shunt 4–20 mA: 250 Ω, 1–5 V e HART | ALOGY</title>
-  <meta name="description" content="Veja como usar resistor shunt em sinais 4-20 mA, converter corrente em tensão, estimar potência e avaliar carga de malha HART."/>
+  <title>Resistor Shunt 4-20 mA | 250 Ω, 1-5 V e HART | ALOGY</title>
+  <meta name="description" content="Resistor shunt 4-20 mA: converta 4-20 mA em 1-5 V com 250 Ω, calcule potência, voltage drop e carga de malha HART."/>
   <meta name="robots" content="index,follow" />
   <meta name="theme-color" content="#2C78B9" />
   <link rel="canonical" href="https://www.alogy.com.br/blog-resistor-shunt-4-20ma.html" />
@@ -16,104 +16,71 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <link rel="stylesheet" href="style.css?v=20260722-layout-original-uppercase-mobilefix" />
+  <link rel="stylesheet" href="style.css?v=20260911-article-semantic1" />
   <script src="app.js" defer></script>
   <meta property="og:locale" content="pt_BR" />
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="ALOGY Engenharia" />
-  <meta property="og:title" content="Resistor shunt 4-20 mA: 250 Ω, 1-5 V e HART" />
-  <meta property="og:description" content="Veja como usar resistor shunt em sinais 4-20 mA, converter corrente em tensão, estimar potência e avaliar carga de malha HART." />
+  <meta property="og:title" content="Resistor Shunt 4-20 mA: 250 Ω, 1-5 V e HART" />
+  <meta property="og:description" content="Entenda V = I × R, dissipação, voltage budget e o papel do resistor de 250 Ω em malhas 4-20 mA/HART." />
   <meta property="og:url" content="https://www.alogy.com.br/blog-resistor-shunt-4-20ma.html" />
-  <meta property="og:image" content="https://www.alogy.com.br/favicon-512x512.png" />
+  <meta property="og:image" content="https://www.alogy.com.br/capa-blog-comunicacao-hart-falhas-cabo-resistencia.webp" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:image" content="https://www.alogy.com.br/favicon-512x512.png" />
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Resistor shunt 4–20 mA: 250 Ω, 1–5 V e HART","description":"Veja como usar resistor shunt em sinais 4-20 mA, converter corrente em tensão, estimar potência e avaliar carga de malha HART.","dateModified":"2026-07-21","author":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"},"publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/","logo":{"@type":"ImageObject","url":"https://www.alogy.com.br/logo-alogy.webp"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://www.alogy.com.br/blog-resistor-shunt-4-20ma.html"},"inLanguage":"pt-BR","image":"https://www.alogy.com.br/favicon-512x512.png"}</script>
-  <style>.post-wrap{max-width:900px;margin:18px auto}.post-card{background:var(--card);border:1px solid rgba(0,0,0,.08);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}.post-content{padding:30px}.post-meta{color:var(--muted);font-size:.95rem;margin-bottom:12px}.post-content h1{font-size:2.05rem;line-height:1.15;margin-bottom:12px;color:var(--text)}.post-content p{color:var(--text);margin:0 0 16px;font-size:1.04rem;line-height:1.75}.post-highlight{background:rgba(0,107,177,.08);border:1px solid rgba(0,107,177,.18);border-radius:14px;padding:16px;margin:22px 0}@media(max-width:768px){.post-content{padding:22px}.post-content h1{font-size:1.65rem}}</style>
-  <!-- Google AdSense: carregado somente em páginas editoriais monetizáveis. A exibição e os formatos são controlados no painel do AdSense. -->
+  <meta name="twitter:image" content="https://www.alogy.com.br/capa-blog-comunicacao-hart-falhas-cabo-resistencia.webp" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Resistor Shunt 4-20 mA: 250 Ω, 1-5 V e HART","description":"Resistor shunt em instrumentação: conversão 4-20 mA para 1-5 V, potência, voltage drop e carga de malha HART.","dateModified":"2026-09-11","author":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"},"publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/","logo":{"@type":"ImageObject","url":"https://www.alogy.com.br/logo-alogy.webp"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://www.alogy.com.br/blog-resistor-shunt-4-20ma.html"},"inLanguage":"pt-BR","image":"https://www.alogy.com.br/capa-blog-comunicacao-hart-falhas-cabo-resistencia.webp"}</script>
+  <style>.post-wrap{max-width:900px;margin:18px auto}.post-card{background:var(--card);border:1px solid rgba(0,0,0,.08);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}.post-content{padding:30px}.post-meta{color:var(--muted);font-size:.95rem;margin-bottom:12px}.post-content h1{font-size:2.05rem;line-height:1.15;margin-bottom:12px;color:var(--text)}.post-content h2{font-size:1.4rem;margin:26px 0 10px}.post-content p,.post-content li{font-size:1.04rem;line-height:1.75}.post-highlight{background:rgba(0,107,177,.08);border:1px solid rgba(0,107,177,.18);border-radius:14px;padding:16px;margin:22px 0}@media(max-width:768px){.post-content{padding:22px}.post-content h1{font-size:1.65rem}}</style>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5586837114309500" crossorigin="anonymous"></script>
 </head>
 <body>
   <header>
-    <div class="container headbar"><a href="/" class="logo-wrapper" aria-label="Voltar para o início"><img src="logo-alogy.webp" alt="ALOGY Engenharia"  width="878"  height="308"  decoding="async" /></a>
-<button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menu"><i class="fas fa-bars"></i></button></div>
-    <nav class="desktop" aria-label="Menu principal"><div class="container navlinks"><a href="/">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></div></nav>
-    <nav class="mobile" aria-label="Menu mobile"><a href="/">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></nav>
+    <div class="container headbar"><a href="/" class="logo-wrapper" aria-label="Voltar para o início"><img src="logo-alogy.webp" alt="ALOGY Engenharia" width="878" height="308" decoding="async" /></a><button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menu"><i class="fas fa-bars"></i></button></div>
+    <nav class="desktop" aria-label="Menu principal"><div class="container navlinks"><a href="/">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="/guia/">Guia</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></div></nav>
+    <nav class="mobile" aria-label="Menu mobile"><a href="/">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="/guia/">Guia</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></nav>
   </header>
-  <div class="social-floating" aria-label="Redes sociais"><a href="https://www.linkedin.com/company/alogyengenharia" class="linkedin" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a><a href="https://www.instagram.com/alogyengenharia" class="instagram" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="https://www.facebook.com/alogyengenharia" class="facebook" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><a href="https://www.youtube.com/@alogyengenharia" class="youtube" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a><a href="https://hotmart.com/pt-br/club/alogyengenharia" class="hotmart" target="_blank" rel="noopener noreferrer" aria-label="Hotmart">H</a><a href="https://www.tiktok.com/@alogyengenharia" class="tiktok" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fab fa-tiktok"></i></a></div>
-  <div class="fab-wrap" aria-label="Ações rápidas"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1%21%20Vim%20pela%20artigo%20t%C3%A9cnico%20da%20ALOGY.%20Gostaria%20de%20atendimento." target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
+  <div class="social-floating" aria-label="Redes sociais"><a href="https://www.linkedin.com/company/alogyengenharia" class="linkedin" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a><a href="https://www.instagram.com/alogyengenharia" class="instagram" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="https://www.facebook.com/alogyengenharia" class="facebook" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><a href="https://www.youtube.com/@alogyengenharia" class="youtube" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a><a href="https://www.tiktok.com/@alogyengenharia" class="tiktok" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fab fa-tiktok"></i></a></div>
+  <div class="fab-wrap" aria-label="Ações rápidas"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1!%20Li%20o%20artigo%20sobre%20resistor%20shunt%204-20%20mA%20da%20ALOGY." target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
   <main class="container" style="margin-top:18px">
     <a class="floating-back-blog no-print" href="blog.html"><i class="fas fa-arrow-left"></i> Voltar ao Blog</a>
-    <article class="post-wrap post-card">
-      <div class="post-content">
-        <div class="post-meta">Artigo técnico • ALOGY Engenharia</div>
-        <h1>Resistor shunt 4-20 mA: 250 Ω, 1-5 V e HART</h1>
-<p class="muted" data-alogy-content-meta><strong>Conteúdo técnico:</strong> ALOGY Engenharia · <strong>Atualizado em:</strong> 21/07/2026</p>
-        <p>O resistor shunt é muito usado em instrumentação para transformar corrente em tensão. O caso clássico é o resistor de 250 Ω, que converte 4-20 mA em 1-5 V.</p>
-        <div class="tags" style="margin-bottom:16px"><span class="tag">4-20 mA</span><span class="tag">HART</span><span class="tag">Shunt</span></div>
-        <div class="post-highlight"><strong>Ferramenta relacionada:</strong> use a <a href="calculadora-resistor-shunt-sinal-instrumentacao.html">Calculadora Resistor Shunt 4-20 mA</a> para simular casos práticos.</div>
-      </div>
-    </article>
-    <section class="calc-card"><p>Veja como usar resistor shunt em sinais 4-20 mA, converter corrente em tensão, estimar potência e avaliar carga de malha HART.</p>
-<p>Um resistor de 250 Ω converte 4–20 mA em 1–5 V pela lei de Ohm: <strong>V = I × R</strong>. A mesma resistência também pode fornecer a carga mínima exigida por alguns equipamentos para comunicação HART, mas ela não deve ser adicionada automaticamente sem conferir a carga já presente na entrada e o manual do instrumento.</p>
+    <article class="post-wrap post-card"><div class="post-content">
+      <div class="post-meta">Instrumentação • 4-20 mA • HART</div>
+      <h1>Resistor shunt 4-20 mA: 250 Ω, 1-5 V e HART</h1>
+      <p class="muted" data-alogy-content-meta><strong>Conteúdo técnico:</strong> ALOGY Engenharia · <strong>Atualizado em:</strong> 11/09/2026</p>
+      <figure class="article-cover-figure"><img class="article-cover-image" src="capa-blog-comunicacao-hart-falhas-cabo-resistencia.webp" alt="Malha 4-20 mA HART usada para explicar resistor shunt e carga de loop" loading="eager" fetchpriority="high" decoding="async"/><figcaption>O resistor shunt transforma corrente em tensão, mas também passa a fazer parte do voltage budget da malha.</figcaption></figure>
 
-<h2>O que acontece na malha</h2>
-<p>Com 4 mA, a queda no resistor é 0,004 × 250 = <strong>1 V</strong>. Com 20 mA, é 0,020 × 250 = <strong>5 V</strong>. Essa queda consome parte da tensão disponível para o transmissor, cabos, barreiras e demais cargas da malha.</p>
-<p>Na corrente máxima, a dissipação calculada é <strong>P = I² × R = 0,1 W</strong>. A potência nominal do componente deve ter margem compatível com temperatura, tolerância e montagem; o cálculo não substitui o critério do projeto.</p>
+      <p>O resistor shunt é usado em instrumentação para transformar corrente em tensão. O caso clássico é <strong>250 Ω</strong>, que converte 4-20 mA em <strong>1-5 V</strong> pela lei de Ohm.</p>
+      <div class="post-highlight"><strong>V = I × R</strong><br/>4 mA × 250 Ω = 1 V · 12 mA × 250 Ω = 3 V · 20 mA × 250 Ω = 5 V.</div>
 
-<h2>Antes de instalar um resistor</h2>
-<ul>
-  <li>Verifique se a entrada analógica já possui resistência interna ou opção HART.</li>
-  <li>Consulte a tensão mínima de operação do transmissor e a carga máxima permitida.</li>
-  <li>Some a resistência de cabos, barreiras, isoladores, indicador e entrada do CLP/DCS.</li>
-  <li>Confirme onde o comunicador HART será conectado e qual carga deve existir entre esse ponto e a fonte.</li>
-  <li>Use componente com tolerância, potência, classe térmica e montagem adequadas ao painel.</li>
-</ul>
+      <h2>O que acontece na malha</h2>
+      <p>A queda de tensão no resistor consome parte da tensão disponível para transmissor, cabo, barreira, isolador e outros elementos. Na corrente máxima, um shunt de 250 Ω produz 5 V de queda.</p>
+      <p>A dissipação idealizada em 20 mA é <strong>P = I² × R = 0,1 W</strong>. A potência nominal do componente deve ter margem adequada para temperatura, tolerância e montagem.</p>
 
-<h2>Exemplo de orçamento de tensão</h2>
-<p>Em uma malha idealizada de 24 Vcc, um transmissor que requer pelo menos 12 V e um shunt que derruba 5 V a 20 mA deixam <strong>7 V</strong> para cabos e demais cargas. Se barreiras e isoladores consumirem mais que isso, a corrente pode saturar antes de 20 mA.</p>
-<p>A verificação correta deve usar a tensão real da fonte sob carga, a corrente de pior caso e os limites documentados de cada dispositivo.</p>
+      <h2>250 Ω e HART</h2>
+      <p>Algumas malhas HART precisam de impedância suficiente para a comunicação digital. Porém, isso não significa que toda instalação precise de um resistor externo de 250 Ω. O cartão, barreira ou isolador pode já fornecer a carga necessária.</p>
+      <p>Antes de acrescentar resistência, confira a documentação do transmissor e do host e meça a carga efetiva. Resistência excessiva reduz a tensão disponível no instrumento.</p>
 
-<h2>Erros comuns de campo</h2>
-<ul>
-  <li>Adicionar 250 Ω em série com uma entrada que já fornece a carga necessária.</li>
-  <li>Ligar o resistor em paralelo com a fonte ou em posição que não produza a queda esperada.</li>
-  <li>Ignorar a queda de tensão e diagnosticar como defeito um transmissor sem alimentação suficiente.</li>
-  <li>Usar resistor com potência ou tolerância inadequada.</li>
-  <li>Confundir a conversão 1–5 V com uma saída ativa 0–10 V.</li>
-</ul>
+      <h2>Antes de instalar um resistor</h2>
+      <ul><li>Verifique se a entrada analógica já possui resistência interna ou suporte HART.</li><li>Consulte tensão mínima do transmissor e carga máxima admissível.</li><li>Some cabo, barreiras, isoladores, indicador e entrada do PLC/DCS.</li><li>Confirme onde o comunicador HART será conectado.</li><li>Use componente com tolerância e potência adequadas ao painel.</li></ul>
 
-<h2>Diagnóstico rápido</h2>
-<ul>
-  <li>Meça a tensão da fonte e nos terminais do transmissor com a malha em operação.</li>
-  <li>Meça a queda no resistor e compare com a corrente: 1 V em 4 mA, 3 V em 12 mA e 5 V em 20 mA para 250 Ω.</li>
-  <li>Confirme continuidade, polaridade e aterramento conforme o diagrama da malha.</li>
-  <li>Para HART, verifique carga total e ponto de conexão conforme os manuais do transmissor e do host.</li>
-</ul>
+      <h2>Exemplo de voltage budget</h2>
+      <p>Em uma malha idealizada de 24 Vcc, um transmissor que requer pelo menos 12 V e um shunt que derruba 5 V a 20 mA deixam <strong>7 V</strong> para cabos e demais cargas. Se barreiras e isoladores consumirem mais que isso, a malha pode não alcançar a corrente necessária.</p>
+      <p>A verificação correta usa a tensão real da fonte sob carga, a corrente de pior caso e os limites documentados de cada dispositivo.</p>
 
-<h2>Ferramenta e conteúdos relacionados</h2>
-<p>Para aprofundar Resistor shunt 4-20 mA: 250 Ω, 1-5 V e HART, use a ferramenta relacionada e confronte o resultado com os materiais complementares listados abaixo.</p>
-<div class="calc-actions">
-  <a class="mini-btn dark" href="calculadora-resistor-shunt-sinal-instrumentacao.html"><i class="fas fa-calculator"></i> Calculadora Resistor Shunt 4-20 mA</a>
-  <a class="mini-btn" href="ferramentas.html"><i class="fas fa-toolbox"></i> Ver todas as ferramentas</a>
-</div>
-<ul class="mini-help" style="margin-top:12px">
-  <li><a href="calculadora-diagnostico-4-20ma-hart.html">Diagnóstico 4-20 mA e HART</a> <span class="mini-help">(ferramenta)</span></li>
-  <li><a href="calculadora-carga-malha-4-20ma.html">Calculadora de Carga de Malha 4-20 mA</a> <span class="mini-help">(ferramenta)</span></li>
-  <li><a href="calculadora-comprimento-cabo-hart.html">Comprimento Máximo de Cabo HART</a> <span class="mini-help">(ferramenta)</span></li>
-  <li><a href="checklist-comissionamento-hart.html">Checklist de Comissionamento HART</a> <span class="mini-help">(ferramenta)</span></li>
-  <li><a href="blog-comissionamento-hart.html">Comissionamento HART: checklist de campo</a> <span class="mini-help">(artigo)</span></li>
-  <li><a href="blog-calibracao-cartao-analogico-clp.html">Calibração de Cartão Analógico CLP/DCS</a> <span class="mini-help">(artigo)</span></li>
-</ul>
+      <h2>Erros comuns de campo</h2>
+      <ul><li>Adicionar 250 Ω em série quando a entrada já fornece a carga necessária.</li><li>Ignorar a queda de tensão e diagnosticar como defeito um transmissor subalimentado.</li><li>Usar resistor com potência ou tolerância inadequada.</li><li>Confundir 1-5 V obtidos pelo shunt com uma saída ativa 0-10 V.</li><li>Conectar o comunicador em ponto que não enxerga a impedância adequada.</li></ul>
 
-<h2>Referências técnicas</h2>
-<ul>
-  <li><a href="https://www.emerson.com/is/content/emerson/en/measurement-instrumentation/technical/products/flow-magnetic/documents/doc-rosemount-8732em-00809-0100-4444.pdf" target="_blank" rel="noopener noreferrer">Emerson — Rosemount 8732EM: carga mínima para comunicação HART</a>.</li>
-  <li><a href="https://www.fieldcommgroup.org/technologies/hart/hart-technology-explained" target="_blank" rel="noopener noreferrer">FieldComm Group — visão geral da tecnologia HART</a>.</li>
-</ul>
+      <h2>Diagnóstico rápido</h2>
+      <ul><li>Meça a tensão da fonte e diretamente nos terminais do transmissor.</li><li>Meça a queda no resistor e compare com a corrente da malha.</li><li>Confirme continuidade, polaridade e aterramento conforme o diagrama.</li><li>Para HART, confira carga total e ponto de conexão.</li></ul>
 
-<h2>Aviso técnico</h2>
-<p>Este artigo sobre Resistor shunt 4-20 mA: 250 Ω, 1-5 V e HART é educativo e apoia pré-dimensionamento e conferência técnica. Em aplicações críticas, compra final ou alteração permanente da instalação, valide o cenário com documentação do fabricante, condições reais de campo, requisitos aplicáveis e profissional habilitado.</p></section>
+      <h2>Ferramentas relacionadas</h2>
+      <div class="calc-actions"><a class="mini-btn dark" href="calculadora-resistor-shunt-sinal-instrumentacao.html"><i class="fas fa-calculator"></i> Resistor Shunt 4-20 mA</a><a class="mini-btn" href="calculadora-carga-malha-4-20ma.html">Carga da malha</a><a class="mini-btn" href="calculadora-diagnostico-4-20ma-hart.html">Diagnóstico 4-20/HART</a><a class="mini-btn" href="calculadora-comprimento-cabo-hart.html">Cabo HART</a><a class="mini-btn" href="ferramentas-instrumentacao-industrial.html"><i class="fas fa-toolbox"></i> Central de Instrumentação</a></div>
+
+      <h2>Referências técnicas</h2>
+      <ul><li><a href="https://www.fieldcommgroup.org/technologies/hart/hart-technology-explained" target="_blank" rel="noopener noreferrer">FieldComm Group — visão geral da tecnologia HART</a>.</li></ul>
+
+      <h2>Aviso técnico</h2>
+      <p>Este conteúdo é educativo e orientativo. Em alteração permanente da instalação, confirme a carga admissível, tensão mínima e requisitos de cada dispositivo com a documentação vigente e o responsável técnico.</p>
+    </div></article>
   </main>
-    <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
+  <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
 </body>
 </html>
