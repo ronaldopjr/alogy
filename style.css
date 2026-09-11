@@ -97,3 +97,66 @@
 @media(max-width:620px){
   .tools-page .tool-group .tools-grid{grid-template-columns:1fr!important}
 }
+
+/* Termopares: referencia visual de cores dos CONDUTORES IEC 60584-3 e ANSI MC96.1.
+   Os quatro circulos no seletor sao, da esquerda para a direita: IEC +, IEC -, ANSI +, ANSI -. */
+body.tools-page:has(#calculatorSection #tipo) #calculatorSection .field:has(> #tipo){
+  --tc-iec-pos:#00843d;
+  --tc-ansi-pos:#f4c300;
+  --tc-note:"IEC: + verde / - branco · ANSI: + amarelo / - vermelho";
+}
+body.tools-page:has(#calculatorSection #tipo) #calculatorSection .field:has(> #tipo) label[for="tipo"]::after{
+  content:" · cores IEC / ANSI";
+  color:#64748b;
+  font-size:.78rem;
+  font-weight:600;
+}
+body.tools-page:has(#calculatorSection #tipo) #calculatorSection #tipo{
+  background-color:#fff;
+  background-image:
+    radial-gradient(circle,var(--tc-iec-pos) 0 50%,#334155 53% 64%,transparent 67%),
+    radial-gradient(circle,#fff 0 50%,#94a3b8 53% 64%,transparent 67%),
+    radial-gradient(circle,var(--tc-ansi-pos) 0 50%,#334155 53% 64%,transparent 67%),
+    radial-gradient(circle,#d22630 0 50%,#334155 53% 64%,transparent 67%);
+  background-repeat:no-repeat;
+  background-size:14px 14px,14px 14px,14px 14px,14px 14px;
+  background-position:10px center,26px center,48px center,64px center;
+  padding-left:86px!important;
+}
+body.tools-page:has(#calculatorSection #tipo) #calculatorSection .field:has(> #tipo)::after{
+  content:var(--tc-note);
+  display:block;
+  margin-top:7px;
+  padding:7px 9px;
+  border:1px solid #dbe5ec;
+  border-radius:9px;
+  background:#f8fafc;
+  color:#334155;
+  font-size:.8rem;
+  line-height:1.4;
+}
+body.tools-page:has(#calculatorSection #tipo) #calculatorSection .field:has(#tipo option[value="K"]:checked){
+  --tc-iec-pos:#00843d;--tc-ansi-pos:#f4c300;--tc-note:"IEC: + verde / - branco · ANSI: + amarelo / - vermelho";
+}
+body.tools-page:has(#calculatorSection #tipo) #calculatorSection .field:has(#tipo option[value="J"]:checked){
+  --tc-iec-pos:#111827;--tc-ansi-pos:#ffffff;--tc-note:"IEC: + preto / - branco · ANSI: + branco / - vermelho";
+}
+body.tools-page:has(#calculatorSection #tipo) #calculatorSection .field:has(#tipo option[value="T"]:checked){
+  --tc-iec-pos:#8b5a2b;--tc-ansi-pos:#2563eb;--tc-note:"IEC: + marrom / - branco · ANSI: + azul / - vermelho";
+}
+body.tools-page:has(#calculatorSection #tipo) #calculatorSection .field:has(#tipo option[value="E"]:checked){
+  --tc-iec-pos:#7e3f98;--tc-ansi-pos:#7e3f98;--tc-note:"IEC: + violeta / - branco · ANSI: + violeta / - vermelho";
+}
+body.tools-page:has(#calculatorSection #tipo) #calculatorSection .field:has(#tipo option[value="N"]:checked){
+  --tc-iec-pos:#ec4899;--tc-ansi-pos:#f97316;--tc-note:"IEC: + rosa / - branco · ANSI: + laranja / - vermelho";
+}
+body.tools-page:has(#calculatorSection #tipo) #calculatorSection .field:has(#tipo option[value="R"]:checked),
+body.tools-page:has(#calculatorSection #tipo) #calculatorSection .field:has(#tipo option[value="S"]:checked){
+  --tc-iec-pos:#f28c28;--tc-ansi-pos:#111827;--tc-note:"IEC: + laranja / - branco · ANSI: + preto / - vermelho";
+}
+body.tools-page:has(#calculatorSection #tipo) #calculatorSection .field:has(#tipo option[value="B"]:checked){
+  --tc-iec-pos:#80868b;--tc-ansi-pos:#80868b;--tc-note:"IEC: + cinza / - branco · ANSI: + cinza / - vermelho";
+}
+@media(max-width:620px){
+  body.tools-page:has(#calculatorSection #tipo) #calculatorSection #tipo{padding-left:82px!important}
+}
