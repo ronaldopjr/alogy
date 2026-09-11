@@ -1,418 +1,53 @@
 <!DOCTYPE html>
-
-<html lang="pt-br">
-<head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<html lang="pt-br"><head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>Calculadora de Cv/Kv de Válvula de Controle | ALOGY</title>
-<meta content="Calcule Cv/Kv de válvula de controle para líquido, gás ou vapor, com abertura, cavitação, flashing, choked flow e memorial técnico." name="description"/>
-<meta content="index,follow" name="robots"/>
-<meta content="#004b80" name="theme-color"/>
-<link href="https://www.alogy.com.br/calculadora-cv-kv-valvula-controle.html" rel="canonical"/>
-<link href="/favicon-48x48.png" rel="icon" sizes="48x48" type="image/png"/>
-<link href="/favicon-192x192.png" rel="icon" sizes="192x192" type="image/png"/>
-<link href="/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
-<link href="/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180"/>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
-<link href="style.css?v=20260722-layout-original-uppercase-mobilefix" rel="stylesheet"/>
-<script defer="" src="app.js"></script>
-<meta content="pt_BR" property="og:locale"/>
-<meta content="website" property="og:type"/>
-<meta content="ALOGY Engenharia" property="og:site_name"/>
-<meta content="Calculadora de Cv/Kv de Válvula de Controle" property="og:title"/>
-<meta content="Calcule Cv/Kv de válvula de controle para líquido, gás ou vapor, com abertura, cavitação, flashing e memorial técnico." property="og:description"/>
-<meta content="https://www.alogy.com.br/calculadora-cv-kv-valvula-controle.html" property="og:url"/>
-<meta content="https://www.alogy.com.br/favicon-512x512.png" property="og:image"/>
-<meta content="summary_large_image" name="twitter:card"/>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Calculadora de Cv/Kv de Válvula de Controle","url":"https://www.alogy.com.br/calculadora-cv-kv-valvula-controle.html","applicationCategory":"EngineeringApplication","operatingSystem":"Web","description":"Ferramenta para cálculo preliminar de Cv e Kv de válvula de controle para líquidos, gases e vapor, com análise de abertura, cavitação, flashing, choked flow e memorial técnico.","publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"},"inLanguage":"pt-BR"}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Cv e Kv são a mesma coisa?","acceptedAnswer":{"@type":"Answer","text":"Não. Cv é o coeficiente usado em unidades imperiais, enquanto Kv representa a vazão de água em m³/h com queda de pressão de 1 bar. A conversão aproximada usada na ferramenta é Cv = Kv / 0,865."}},{"@type":"Question","name":"O resultado substitui o dimensionamento do fabricante?","acceptedAnswer":{"@type":"Answer","text":"Não. A ferramenta fornece pré-dimensionamento. A seleção final deve considerar curva do fabricante, norma aplicável, ruído, velocidade, flashing, cavitação, classe de pressão, materiais e requisitos de segurança do processo."}},{"@type":"Question","name":"Por que a ferramenta mostra abertura estimada?","acceptedAnswer":{"@type":"Answer","text":"Porque uma válvula muito grande pode trabalhar quase fechada e controlar mal, enquanto uma válvula pequena pode saturar na vazão máxima. A abertura estimada ajuda a avaliar se a seleção preliminar está razoável."}},{"@type":"Question","name":"A ferramenta serve para vapor?","acceptedAnswer":{"@type":"Answer","text":"Serve apenas para estimativa preliminar em modo gás/vapor. Para vapor saturado ou superaquecido, use dados termodinâmicos, equações normativas e software ou catálogo do fabricante."}}]}</script>
+<meta name="description" content="Calcule Cv e Kv de válvula de controle para líquido, gás ou vapor, estime abertura e visualize a característica da válvula."/>
+<meta name="robots" content="index,follow"/><meta name="theme-color" content="#004b80"/>
+<link rel="canonical" href="https://www.alogy.com.br/calculadora-cv-kv-valvula-controle.html"/>
+<link rel="icon" href="/favicon.ico"/><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/><link rel="stylesheet" href="style.css?v=20260722-layout-original-uppercase-mobilefix"/><script defer src="app.js"></script>
+<meta name="author" content="ALOGY Engenharia"/><meta property="og:locale" content="pt_BR"/><meta property="og:type" content="website"/><meta property="og:site_name" content="ALOGY Engenharia"/><meta property="og:title" content="Calculadora de Cv/Kv de Válvula de Controle"/><meta property="og:description" content="Pré-dimensione Cv/Kv, visualize abertura e característica de válvulas de controle."/><meta property="og:url" content="https://www.alogy.com.br/calculadora-cv-kv-valvula-controle.html"/><meta property="og:image" content="https://www.alogy.com.br/favicon-512x512.png"/><meta name="twitter:card" content="summary_large_image"/>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Calculadora de Cv/Kv de Válvula de Controle","url":"https://www.alogy.com.br/calculadora-cv-kv-valvula-controle.html","applicationCategory":"EngineeringApplication","operatingSystem":"Web","description":"Ferramenta para pré-dimensionamento de Cv e Kv de válvulas de controle.","dateModified":"2026-09-11","publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Início","item":"https://www.alogy.com.br/"},{"@type":"ListItem","position":2,"name":"Instrumentação","item":"https://www.alogy.com.br/ferramentas.html#instrumentacao"},{"@type":"ListItem","position":3,"name":"Cv/Kv de Válvula de Controle","item":"https://www.alogy.com.br/calculadora-cv-kv-valvula-controle.html"}]}</script>
 <style>
-    .tech-page{background:linear-gradient(180deg,rgba(0,75,128,.04),rgba(255,255,255,0) 260px)}
-    .tech-wrap{max-width:1120px;margin:18px auto 34px}
-    .tech-back{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:900;color:#0b3a62;background:#fff;border:1px solid rgba(0,107,177,.18);border-radius:999px;padding:10px 14px;box-shadow:0 6px 18px rgba(0,0,0,.04);margin-bottom:14px}
-    .tech-hero{background:linear-gradient(135deg,#0b3a62,#006bb1);color:#fff;border-radius:22px;padding:30px;box-shadow:0 18px 42px rgba(0,75,128,.22);overflow:hidden;position:relative}
-    .tech-hero:after{content:"";position:absolute;right:-80px;top:-80px;width:240px;height:240px;border-radius:50%;background:rgba(255,255,255,.13)}
-    .tech-hero h1{font-size:2.25rem;line-height:1.12;margin:0 0 12px;max-width:880px;color:#fff}
-    .tech-hero p{font-size:1.08rem;line-height:1.65;margin:0;max-width:920px;color:rgba(255,255,255,.92)}
-    .hero-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
-    .hero-tags span,.hero-tags a{display:inline-flex;align-items:center;gap:7px;border:1px solid rgba(255,255,255,.26);background:rgba(255,255,255,.12);color:#fff;text-decoration:none;border-radius:999px;padding:8px 10px;font-size:.88rem;font-weight:900}
-    .calc-grid{display:grid;grid-template-columns:minmax(0,1fr) 390px;gap:18px;margin-top:18px}
-    .tech-card{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:20px;box-shadow:0 12px 30px rgba(0,0,0,.06);padding:24px;margin-top:18px}
-    .tech-card h2{font-size:1.45rem;line-height:1.25;margin:0 0 12px;color:#0b3a62}
-    .tech-card h3{font-size:1.12rem;line-height:1.3;margin:20px 0 8px;color:#0b3a62}
-    .tech-card p,.tech-card li{font-size:1rem;line-height:1.72;color:#253243}
-    .tech-card ul,.tech-card ol{margin:0 0 16px 20px}
-    .field-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-    .field{display:flex;flex-direction:column;gap:6px}
-    .field label{font-weight:900;color:#0b3a62;font-size:.92rem}
-    .field input,.field select,.field textarea{border:1px solid rgba(0,0,0,.14);border-radius:12px;padding:12px;background:#fff;font:inherit;width:100%;box-sizing:border-box}
-    .field small{color:#6b7280;line-height:1.4}
-    .wide{grid-column:1/-1}
-    .calc-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
-    .btn-mini{display:inline-flex;align-items:center;gap:8px;border:none;border-radius:999px;padding:11px 14px;font-weight:900;cursor:pointer;text-decoration:none;background:#0b3a62;color:#fff;font:inherit}
-    .btn-mini.secondary{background:rgba(0,107,177,.09);color:#0b3a62;border:1px solid rgba(0,107,177,.18)}
-    .result-box{border-radius:18px;background:linear-gradient(180deg,rgba(0,107,177,.10),rgba(0,107,177,.04));border:1px solid rgba(0,107,177,.18);padding:18px}
-    .result-main{font-size:1.85rem;font-weight:900;color:#0b3a62;line-height:1.1;margin:10px 0}
-    .result-sub{color:#475569;line-height:1.6}
-    .pill-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
-    .pill{display:inline-flex;align-items:center;gap:7px;border-radius:999px;background:#fff;border:1px solid rgba(0,107,177,.18);padding:8px 10px;font-size:.88rem;font-weight:900;color:#0b3a62}
-    .note{background:#fff7ed;border:1px solid #fed7aa;color:#7c2d12;border-radius:16px;padding:14px;line-height:1.6}
-    .ok{background:#ecfdf5;border-color:#bbf7d0;color:#166534}
-    .warn{background:#fffbeb;border-color:#fde68a;color:#92400e}
-    .bad{background:#fef2f2;border-color:#fecaca;color:#991b1b}
-    .info{background:#eff6ff;border-color:#bfdbfe;color:#1e3a8a}
-    .table-wrap{overflow:auto;border-radius:16px;border:1px solid rgba(0,0,0,.08);margin-top:12px}
-    table.tech-table{width:100%;border-collapse:collapse;background:#fff;font-size:.94rem}
-    .tech-table th{background:#0b3a62;color:#fff;text-align:left;padding:11px;white-space:nowrap}
-    .tech-table td{padding:10px;border-bottom:1px solid rgba(0,0,0,.07);vertical-align:top}
-    .tech-table tr:last-child td{border-bottom:none}
-    .split{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-    .mini-meter{height:12px;background:#e5e7eb;border-radius:999px;overflow:hidden;margin:6px 0}
-    .mini-meter span{display:block;height:100%;background:linear-gradient(90deg,#0b3a62,#006bb1);border-radius:999px;width:0%}
-    .diagram{background:#f8fafc;border:1px solid rgba(0,0,0,.08);border-radius:16px;padding:12px;margin-top:14px}
-    pre.copybox{white-space:pre-wrap;background:#0f172a;color:#e5e7eb;border-radius:16px;padding:16px;overflow:auto;line-height:1.55}
-    .faq details{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:14px;padding:14px;margin-top:10px}
-    .faq summary{cursor:pointer;font-weight:900;color:#0b3a62}
-    .faq p{margin:10px 0 0;color:#475569}
-    code.inline{background:rgba(0,107,177,.08);padding:2px 6px;border-radius:8px;color:#0b3a62;font-weight:800}
-    @media(max-width:900px){.calc-grid,.split{grid-template-columns:1fr}.field-grid{grid-template-columns:1fr}.tech-hero{padding:24px}.tech-hero h1{font-size:1.65rem}}
-    @media print{header,.social-floating,.fab-wrap,footer,.tech-back,.calc-actions,.no-print{display:none!important}body{background:#fff}.tech-card,.tech-hero{box-shadow:none;border:1px solid #ddd}.calc-grid,.split{display:block}}
-  </style>
-<meta name="author" content="ALOGY Engenharia">
-</head>
-<body class="tech-page alogy-stage3-forms">
-<header>
-<div class="container headbar">
-<a aria-label="Voltar para o início" class="logo-wrapper" href="/"><img alt="ALOGY Engenharia" decoding="async" height="308" src="logo-alogy.webp" width="878"/></a>
-<button aria-label="Abrir menu" class="menu-toggle" onclick="toggleMobileMenu()"><i class="fas fa-bars"></i></button>
-</div>
-<nav aria-label="Menu principal" class="desktop"><div class="container navlinks"><a href="/">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></div></nav>
-<nav aria-label="Menu mobile" class="mobile"><a href="/">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></nav>
-</header>
-<div aria-label="Redes sociais" class="social-floating"><a aria-label="LinkedIn" class="linkedin" href="https://www.linkedin.com/company/alogyengenharia" rel="noopener noreferrer" target="_blank"><i class="fab fa-linkedin-in"></i></a><a aria-label="Instagram" class="instagram" href="https://www.instagram.com/alogyengenharia" rel="noopener noreferrer" target="_blank"><i class="fab fa-instagram"></i></a><a aria-label="Facebook" class="facebook" href="https://www.facebook.com/alogyengenharia" rel="noopener noreferrer" target="_blank"><i class="fab fa-facebook-f"></i></a><a aria-label="YouTube" class="youtube" href="https://www.youtube.com/@alogyengenharia" rel="noopener noreferrer" target="_blank"><i class="fab fa-youtube"></i></a><a aria-label="Hotmart" class="hotmart" href="https://hotmart.com/pt-br/club/alogyengenharia" rel="noopener noreferrer" target="_blank">H</a><a aria-label="TikTok" class="tiktok" href="https://www.tiktok.com/@alogyengenharia" rel="noopener noreferrer" target="_blank"><i class="fab fa-tiktok"></i></a></div>
-<div aria-label="Ações rápidas" class="fab-wrap"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1%21%20Vim%20pela%20calculadora%20de%20Cv%20e%20Kv%20da%20ALOGY.%20Gostaria%20de%20apoio%20em%20v%C3%A1lvula%20de%20controle." rel="noopener noreferrer" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
-<main class="container tech-wrap"><div aria-label="Ações da ferramenta" class="tool-page-actions no-print"><button class="btn print" onclick="window.print()" type="button"><i class="fas fa-print"></i> Imprimir</button></div>
-
-<section class="tech-hero">
-<h1>Calculadora de Cv/Kv de Válvula de Controle</h1>
-<p class="muted" data-alogy-content-meta><strong>Conteúdo técnico:</strong> ALOGY Engenharia · <strong>Atualizado em:</strong> 21/07/2026</p>
-<p>Pré-dimensione válvulas de controle para líquidos, gases e vapor. A ferramenta calcula Cv, Kv, vazões mínima/normal/máxima, abertura estimada, margem de seleção, risco de cavitação, flashing, escoamento crítico e gera um memorial técnico para copiar ou imprimir.</p>
-<div class="hero-tags"><span><i class="fas fa-gauge-high"></i> Cv e Kv</span><span><i class="fas fa-water"></i> Líquidos</span><span><i class="fas fa-wind"></i> Gases e vapor</span><span><i class="fas fa-triangle-exclamation"></i> Cavitação/flashing</span><span><i class="fas fa-file-lines"></i> Memorial técnico</span></div>
-</section>
-<section class="tech-card">
-<h2>Aviso de segurança e uso correto</h2>
-<p class="note"><strong>Atenção:</strong> esta calculadora é uma ferramenta de pré-dimensionamento. Ela não substitui software do fabricante, cálculo normativo completo, análise de ruído, velocidade, flashing, cavitação, erosão, vibração, materiais, classe de pressão, requisitos sanitários, requisitos de segurança ou validação profissional. Para válvulas críticas, serviços com vapor, gás combustível, fluidos tóxicos, inflamáveis, corrosivos, sistemas de segurança ou parada de planta, use esta página apenas como apoio preliminar.</p>
-</section>
-<section class="calc-grid">
-<div class="tech-card">
-<h2>Dados de entrada</h2>
-<form class="field-grid" onsubmit="calcularValvula();return false;">
-<div class="field"><label for="tag">Tag da válvula</label><input id="tag" type="text" value="FV-101"/><small>Opcional para o memorial.</small></div>
-<div class="field"><label for="servico">Serviço / linha</label><input id="servico" type="text" value="Controle de vazão de água de processo"/><small>Ex.: vapor, água gelada, ar comprimido, solvente.</small></div>
-<div class="field"><label for="tipoFluido">Tipo de fluido</label><select id="tipoFluido" onchange="atualizarModo()"><option value="liquido">Líquido incompressível</option><option value="gas">Gás ou vapor - estimativa preliminar</option></select><small>Gás/vapor usa equação simplificada para triagem.</small></div>
-<div class="field"><label for="caracteristica">Característica da válvula</label><select id="caracteristica"><option value="equal">Igual porcentagem</option><option value="linear">Linear</option></select><small>Usada para estimar abertura/travel.</small></div>
-<div class="field"><label for="p1g">Pressão entrada P1</label><input id="p1g" step="0.01" type="number" value="6.0"/><small>bar(g)</small></div>
-<div class="field"><label for="p2g">Pressão saída P2</label><input id="p2g" step="0.01" type="number" value="4.0"/><small>bar(g)</small></div>
-<div class="field"><label for="tempC">Temperatura</label><input id="tempC" step="0.1" type="number" value="25"/><small>°C. Usada principalmente para gás/vapor.</small></div>
-<div class="field"><label for="pipeMm">Diâmetro interno da linha</label><input id="pipeMm" step="0.1" type="number" value="50"/><small>mm. Usado para velocidade do fluido.</small></div>
-<div class="field liquid-only"><label for="rho">Densidade do líquido</label><input id="rho" step="0.1" type="number" value="998"/><small>kg/m³ na condição de operação.</small></div>
-<div class="field liquid-only"><label for="pvap">Pressão de vapor Pv</label><input id="pvap" step="0.001" type="number" value="0.032"/><small>bar(a). Água a 25 °C ≈ 0,032 bar(a).</small></div>
-<div class="field liquid-only"><label for="pc">Pressão crítica Pc</label><input id="pc" step="0.01" type="number" value="220.6"/><small>bar(a). Água ≈ 220,6 bar(a).</small></div>
-<div class="field liquid-only"><label for="fl">Fator FL preliminar</label><input id="fl" step="0.01" type="number" value="0.90"/><small>Globo ≈ 0,9; borboleta/rotativa pode ser menor.</small></div>
-<div class="field gas-only"><label for="gasUnit">Unidade da vazão</label><select id="gasUnit"><option value="nm3h">Nm³/h</option><option value="kgh">kg/h</option></select><small>Para vapor, kg/h costuma ser mais comum.</small></div>
-<div class="field gas-only"><label for="gg">Gravidade específica do gás</label><input id="gg" step="0.001" type="number" value="1.000"/><small>Ar = 1,0. Vapor d'água ≈ 0,622.</small></div>
-<div class="field gas-only"><label for="mw">Massa molar</label><input id="mw" step="0.001" type="number" value="28.97"/><small>kg/kmol. Ar = 28,97; vapor = 18,015.</small></div>
-<div class="field gas-only"><label for="z">Fator Z</label><input id="z" step="0.01" type="number" value="1.00"/><small>Compressibilidade. Use 1,0 para triagem.</small></div>
-<div class="field"><label for="qMin">Vazão mínima</label><input id="qMin" step="0.01" type="number" value="5"/><small id="unitMin">m³/h</small></div>
-<div class="field"><label for="qNor">Vazão normal</label><input id="qNor" step="0.01" type="number" value="15"/><small id="unitNor">m³/h</small></div>
-<div class="field"><label for="qMax">Vazão máxima</label><input id="qMax" step="0.01" type="number" value="25"/><small id="unitMax">m³/h</small></div>
-<div class="field"><label for="margem">Margem para seleção</label><input id="margem" step="1" type="number" value="20"/><small>% acima do Cv máximo calculado.</small></div>
-<div class="field"><label for="rangeabilidade">Rangeabilidade</label><input id="rangeabilidade" step="1" type="number" value="50"/><small>Usada na abertura estimada. Ex.: 30, 50, 100.</small></div>
-<div class="field"><label for="cvManual">CV comercial manual</label><input id="cvManual" step="0.001" type="number" value="0"/><small>Opcional. Se 0, a ferramenta escolhe um valor comercial acima do máximo.</small></div>
-<div class="wide calc-actions"><button class="btn-mini" type="submit"><i class="fas fa-calculator"></i> Calcular Cv/Kv</button><button class="btn-mini secondary" onclick="copiarMemorial()" type="button"><i class="fas fa-copy"></i> Copiar memorial</button></div>
-</form>
-</div>
-<aside class="tech-card result-box">
-<h2>Resultado rápido</h2>
-<div class="result-sub" id="resultadoRapido">Preencha os dados e clique em calcular.</div>
-</aside>
-</section>
-<section class="tech-card" id="resultadoDetalhado">
-<h2>Resultado detalhado</h2>
-<p class="result-sub">Os resultados aparecerão aqui após o cálculo.</p>
-</section>
-<section class="tech-card">
-<h2>Como interpretar o Cv e o Kv</h2>
-<p>O <strong>Kv</strong> é o coeficiente de vazão usado em unidades métricas: representa aproximadamente a vazão de água em m³/h através da válvula com queda de pressão de 1 bar. O <strong>Cv</strong> é o coeficiente equivalente usado em unidades imperiais. Nesta ferramenta é usada a relação aproximada <code class="inline">Kv = 0,865 × Cv</code> e <code class="inline">Cv = Kv / 0,865</code>.</p>
-<p>Na prática, o Cv calculado não deve ser usado isoladamente. Uma válvula muito grande pode operar quase fechada na vazão normal e gerar controle instável. Uma válvula muito pequena pode ficar saturada na vazão máxima. Por isso a ferramenta também estima abertura mínima, normal e máxima, além de sugerir alertas de sobredimensionamento ou subdimensionamento.</p>
-<div aria-label="Diagrama simplificado de válvula de controle" class="diagram">
-<svg aria-label="Diagrama de pressão P1, válvula e pressão P2" height="auto" role="img" viewbox="0 0 900 220" width="100%">
-<defs><marker id="arrow" markerheight="6" markerwidth="6" orient="auto-start-reverse" refx="8" refy="5" viewbox="0 0 10 10"><path d="M 0 0 L 10 5 L 0 10 z" fill="#0b3a62"></path></marker></defs>
-<rect fill="#dbeafe" height="36" rx="18" stroke="#0b3a62" width="300" x="40" y="92"></rect>
-<rect fill="#dbeafe" height="36" rx="18" stroke="#0b3a62" width="300" x="560" y="92"></rect>
-<line marker-end="url(#arrow)" stroke="#0b3a62" stroke-width="6" x1="340" x2="560" y1="110" y2="110"></line>
-<polygon fill="#006bb1" opacity="0.92" points="395,55 505,110 395,165"></polygon>
-<polygon fill="#0b3a62" opacity="0.92" points="505,55 395,110 505,165"></polygon>
-<circle cx="450" cy="110" fill="#fff" r="15" stroke="#0b3a62" stroke-width="4"></circle>
-<text fill="#0b3a62" font-size="26" font-weight="700" x="70" y="80">P1</text>
-<text fill="#0b3a62" font-size="26" font-weight="700" x="725" y="80">P2</text>
-<text fill="#0b3a62" font-size="22" font-weight="700" x="377" y="195">válvula de controle</text>
-<text fill="#334155" font-size="18" x="52" y="153">pressão de entrada</text>
-<text fill="#334155" font-size="18" x="650" y="153">pressão de saída</text>
-<text fill="#334155" font-size="18" x="392" y="35">ΔP = P1 - P2</text>
-</svg>
-</div>
-</section>
-<section class="tech-card">
-<h2>Critérios usados pela ferramenta</h2>
-<div class="split">
-<div>
-<h3>Para líquidos</h3>
-<ul>
-<li>Calcula <strong>Kv</strong> por vazão, densidade relativa e queda de pressão.</li>
-<li>Calcula <strong>Cv</strong> pela conversão métrica/imperial.</li>
-<li>Estima velocidade na linha pelo diâmetro informado.</li>
-<li>Avalia flashing quando a pressão de saída fica abaixo da pressão de vapor.</li>
-<li>Avalia cavitação/choked flow preliminar usando FL, pressão de vapor e pressão crítica.</li>
-</ul>
-</div>
-<div>
-<h3>Para gás ou vapor</h3>
-<ul>
-<li>Usa equação simplificada de capacidade de válvula para gases em unidades imperiais.</li>
-<li>Converte Nm³/h para SCFH ou kg/h para Nm³/h por massa molar.</li>
-<li>Classifica escoamento crítico quando a razão P2/P1 fica próxima da região crítica.</li>
-<li>Serve para triagem. Para vapor, ruído, alta ΔP e condição crítica, use catálogo/software do fabricante.</li>
-</ul>
-</div>
-</div>
-</section>
-<section class="tech-card">
-<h2>Checklist rápido de seleção de válvula de controle</h2>
-<div class="table-wrap"><table class="tech-table"><thead><tr><th>Item</th><th>Verificação recomendada</th></tr></thead><tbody>
-<tr><td>Fluido</td><td>Estado físico, densidade, viscosidade, corrosividade, partículas, tendência a incrustação, toxicidade e inflamabilidade.</td></tr>
-<tr><td>Condições de processo</td><td>P1, P2, temperatura, vazão mínima, normal e máxima, pressão de vapor e condição de partida/parada.</td></tr>
-<tr><td>Tipo de válvula</td><td>Globo, esfera segmentada, borboleta, diafragma, gaiola, angular, sanitária ou outra, conforme aplicação.</td></tr>
-<tr><td>Controle</td><td>Característica linear, igual porcentagem ou quick opening, rangeabilidade, abertura normal e autoridade da válvula.</td></tr>
-<tr><td>Riscos hidráulicos</td><td>Cavitação, flashing, ruído, erosão, vibração, golpe de aríete e velocidade na linha.</td></tr>
-<tr><td>Materiais e classe</td><td>Corpo, internos, sede, vedações, classe de pressão, conexões, temperatura e compatibilidade química.</td></tr>
-<tr><td>Atuação</td><td>Atuador pneumático/elétrico, falha segura, posicionador, booster, solenóide, filtro regulador e ar de instrumentos.</td></tr>
-<tr><td>Documentação</td><td>Folha de dados, curva do fabricante, certificados, teste de bancada, teste de malha e critérios de aceitação.</td></tr>
-</tbody></table></div>
-</section>
-<section class="tech-card">
-<h2>Memorial técnico gerado</h2>
-<p>Após calcular, copie este bloco para usar em estudo preliminar, e-mail técnico ou levantamento de campo.</p>
-<pre class="copybox" id="memorial">Calcule para gerar o memorial.</pre>
-</section>
-<section class="tech-card faq">
-<h2>Perguntas frequentes</h2>
-<details><summary>O Cv calculado é o Cv final da válvula?</summary><p>Não. O valor calculado é preliminar. A seleção final depende da curva do fabricante, tipo construtivo, característica inerente, ruído, velocidade, materiais, pressão/temperatura, cavitação, flashing e requisitos do processo.</p></details>
-<details><summary>Qual abertura é ideal para uma válvula de controle?</summary><p>Como regra prática, é desejável que a condição normal fique em uma região controlável, muitas vezes entre 40% e 80% de abertura. Porém isso depende da característica da válvula, rangeabilidade, dinâmica do processo e filosofia de controle.</p></details>
-<details><summary>Por que cavitação e flashing são importantes?</summary><p>Porque podem causar ruído, vibração, erosão, dano nos internos da válvula, instabilidade de controle e falha prematura. Quando houver alerta, a solução pode exigir válvula especial, multiestágio, mudança de ΔP, material adequado ou outra arquitetura.</p></details>
-<details><summary>Posso usar para vapor?</summary><p>Sim, apenas como estimativa preliminar em modo gás/vapor. Para vapor saturado ou superaquecido, valide com dados termodinâmicos, norma aplicável e software/catálogo do fabricante.</p></details>
-<details><summary>A ferramenta escolhe o tipo da válvula?</summary><p>Não. Ela sugere alertas de aplicação, mas não substitui a seleção do tipo construtivo. A escolha entre globo, esfera segmentada, borboleta, diafragma, angular ou gaiola depende do processo, ΔP, controle, ruído, fluido e manutenção.</p></details>
-</section>
-<section class="tech-card no-print">
-<h2>Conteúdos e ferramentas relacionados</h2>
-<p>Continue o dimensionamento com ferramentas relacionadas da ALOGY.</p>
-<div class="calc-actions">
-<a class="btn-mini secondary" href="calculadora-solenoide-atuador-pneumatico.html"><i class="fas fa-link"></i> Solenóide para atuador</a>
-<a class="btn-mini secondary" href="calculadora-consumo-ar-instrumentos.html"><i class="fas fa-link"></i> Consumo de ar</a>
-<a class="btn-mini secondary" href="calculadora-linha-impulso-transmissor-dp.html"><i class="fas fa-link"></i> Linha de impulso DP</a>
-<a class="btn-mini secondary" href="ferramentas-instrumentacao-industrial.html"><i class="fas fa-link"></i> Ferramentas de instrumentação</a>
-</div>
-</section>
-</main>
+.tech-wrap{max-width:1120px;margin:18px auto 36px}.tech-hero{background:linear-gradient(135deg,#0b3a62,#006bb1);color:#fff;border-radius:22px;padding:28px;box-shadow:0 15px 36px rgba(0,75,128,.18)}.tech-hero h1{color:#fff;margin:0 0 10px}.tech-hero p{color:rgba(255,255,255,.92);line-height:1.6}.tech-card{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:20px;padding:22px;margin-top:18px;box-shadow:0 10px 28px rgba(0,0,0,.06)}.tech-card h2,.tech-card h3{color:#0b3a62}.calc-grid{display:grid;grid-template-columns:minmax(0,1fr) 390px;gap:18px}.field-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.field{display:flex;flex-direction:column;gap:6px}.field label{font-weight:900;color:#0b3a62}.field input,.field select{width:100%;box-sizing:border-box;border:1px solid rgba(0,0,0,.14);border-radius:12px;padding:12px;background:#fff;font:inherit}.field small{color:#64748b;line-height:1.4}.wide{grid-column:1/-1}.calc-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}.btn-mini{border:0;border-radius:999px;padding:11px 14px;font:inherit;font-weight:900;background:#0b3a62;color:#fff;cursor:pointer}.btn-mini.secondary{background:#edf6fc;color:#0b3a62;border:1px solid rgba(0,107,177,.2)}.result-main{font-size:1.75rem;font-weight:900;margin:8px 0}.note{border-radius:14px;padding:13px;line-height:1.55}.ok{background:#ecfdf5;border:1px solid #bbf7d0;color:#166534}.warn{background:#fffbeb;border:1px solid #fde68a;color:#92400e}.bad{background:#fef2f2;border:1px solid #fecaca;color:#991b1b}.info{background:#eff6ff;border:1px solid #bfdbfe;color:#1e3a8a}.pill-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.pill{border:1px solid rgba(0,107,177,.18);border-radius:999px;padding:8px 10px;font-weight:800;color:#0b3a62;background:#fff}.table-wrap{overflow:auto;border:1px solid rgba(0,0,0,.08);border-radius:14px;margin-top:12px}.tech-table{border-collapse:collapse;width:100%;font-size:.93rem}.tech-table th{background:#0b3a62;color:#fff;padding:10px;text-align:left;white-space:nowrap}.tech-table td{padding:10px;border-bottom:1px solid rgba(0,0,0,.07)}.mini-meter{height:10px;background:#e5e7eb;border-radius:999px;overflow:hidden;margin-top:5px}.mini-meter span{display:block;height:100%;background:#0b6bb1}.visual-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.visual-box{border:1px solid rgba(0,107,177,.16);border-radius:18px;background:#f8fbfe;padding:14px}.visual-box svg{display:block;width:100%;height:auto}.visual-legend{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}.visual-legend span{font-size:.86rem;background:#fff;border:1px solid rgba(0,0,0,.08);padding:6px 9px;border-radius:999px}.split{display:grid;grid-template-columns:1fr 1fr;gap:18px}.copybox{white-space:pre-wrap;background:#0f172a;color:#e5e7eb;border-radius:16px;padding:16px;overflow:auto;line-height:1.55}.faq details{border:1px solid rgba(0,0,0,.08);border-radius:14px;padding:13px;margin-top:10px}.faq summary{font-weight:900;color:#0b3a62;cursor:pointer}@media(max-width:900px){.calc-grid,.field-grid,.visual-grid,.split{grid-template-columns:1fr}.tech-hero{padding:22px}}@media print{header,.social-floating,.fab-wrap,.no-print,footer{display:none!important}.tech-card,.tech-hero{box-shadow:none;border:1px solid #ddd}}
+</style></head>
+<body class="tools-page alogy-stage3-forms">
+<header><div class="container headbar"><a class="logo-wrapper" href="/" aria-label="Voltar para o início"><img src="logo-alogy.webp" alt="ALOGY Engenharia" width="878" height="308"/></a><button class="menu-toggle" aria-label="Abrir menu" onclick="toggleMobileMenu()"><i class="fas fa-bars"></i></button></div><nav class="desktop" aria-label="Menu principal"><div class="container navlinks"><a href="/">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="/guia/">Guia</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></div></nav><nav class="mobile" aria-label="Menu mobile"><a href="/">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="/guia/">Guia</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></nav></header>
+<div class="social-floating" aria-label="Redes sociais"><a class="linkedin" href="https://www.linkedin.com/company/alogyengenharia" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a><a class="instagram" href="https://www.instagram.com/alogyengenharia" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a><a class="facebook" href="https://www.facebook.com/alogyengenharia" aria-label="Facebook" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a><a class="youtube" href="https://www.youtube.com/@alogyengenharia" aria-label="YouTube" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i></a><a class="tiktok" href="https://www.tiktok.com/@alogyengenharia" aria-label="TikTok" target="_blank" rel="noopener noreferrer"><i class="fab fa-tiktok"></i></a></div>
+<main class="container tech-wrap"><div class="tool-page-actions no-print"><button class="btn print" onclick="window.print()"><i class="fas fa-print"></i> Imprimir</button></div>
+<section class="tech-hero"><h1>Calculadora de Cv/Kv de Válvula de Controle</h1><p class="muted" data-alogy-content-meta><strong>Conteúdo técnico:</strong> ALOGY Engenharia · <strong>Atualizado em:</strong> 11/09/2026</p><p>Pré-dimensione Cv/Kv e veja como a seleção afeta a abertura mínima, normal e máxima. O gráfico mostra a característica linear ou igual porcentagem e destaca o ponto normal de operação.</p></section>
+<section class="tech-card"><h2><i class="fas fa-triangle-exclamation"></i> Uso técnico</h2><p class="note warn"><strong>Pré-dimensionamento:</strong> a seleção final deve ser confirmada com dados reais, curva do fabricante, ruído, velocidade, cavitação, flashing, materiais, classe de pressão, atuador e requisitos do processo.</p></section>
+<div class="calc-grid"><section class="tech-card"><h2>Dados de entrada</h2><div class="field-grid">
+<div class="field"><label for="tag">Tag</label><input id="tag" value="FV-101"/></div><div class="field"><label for="servico">Serviço</label><input id="servico" value="Controle de vazão de água"/></div>
+<div class="field"><label for="tipoFluido">Tipo de fluido</label><select id="tipoFluido"><option value="liquido">Líquido incompressível</option><option value="gas">Gás ou vapor - triagem</option></select></div><div class="field"><label for="caracteristica">Característica</label><select id="caracteristica"><option value="equal">Igual porcentagem</option><option value="linear">Linear</option></select></div>
+<div class="field"><label for="p1g">P1 entrada (bar g)</label><input id="p1g" type="number" step="0.01" value="6"/></div><div class="field"><label for="p2g">P2 saída (bar g)</label><input id="p2g" type="number" step="0.01" value="4"/></div>
+<div class="field"><label for="tempC">Temperatura (°C)</label><input id="tempC" type="number" step="0.1" value="25"/></div><div class="field"><label for="pipeMm">Diâmetro interno da linha (mm)</label><input id="pipeMm" type="number" step="0.1" value="50"/></div>
+<div class="field liquid-only"><label for="rho">Densidade do líquido (kg/m³)</label><input id="rho" type="number" step="0.1" value="998"/></div><div class="field liquid-only"><label for="pvap">Pressão de vapor Pv (bar a)</label><input id="pvap" type="number" step="0.001" value="0.032"/></div><div class="field liquid-only"><label for="pc">Pressão crítica Pc (bar a)</label><input id="pc" type="number" step="0.01" value="220.6"/></div><div class="field liquid-only"><label for="fl">FL preliminar</label><input id="fl" type="number" step="0.01" value="0.90"/></div>
+<div class="field gas-only"><label for="gasUnit">Unidade da vazão</label><select id="gasUnit"><option value="nm3h">Nm³/h</option><option value="kgh">kg/h</option></select></div><div class="field gas-only"><label for="gg">Gravidade específica</label><input id="gg" type="number" step="0.001" value="1"/></div><div class="field gas-only"><label for="mw">Massa molar (kg/kmol)</label><input id="mw" type="number" step="0.001" value="28.97"/></div><div class="field gas-only"><label for="z">Fator Z</label><input id="z" type="number" step="0.01" value="1"/></div>
+<div class="field"><label for="qMin">Vazão mínima</label><input id="qMin" type="number" step="0.01" value="5"/><small id="unitMin">m³/h</small></div><div class="field"><label for="qNor">Vazão normal</label><input id="qNor" type="number" step="0.01" value="15"/><small id="unitNor">m³/h</small></div><div class="field"><label for="qMax">Vazão máxima</label><input id="qMax" type="number" step="0.01" value="25"/><small id="unitMax">m³/h</small></div>
+<div class="field"><label for="margem">Margem de seleção (%)</label><input id="margem" type="number" step="1" value="20"/></div><div class="field"><label for="rangeabilidade">Rangeabilidade</label><input id="rangeabilidade" type="number" step="1" value="50"/></div><div class="field"><label for="cvManual">Cv comercial manual</label><input id="cvManual" type="number" step="0.001" value="0"/><small>0 = seleção automática do próximo Cv comercial.</small></div>
+</div><div class="calc-actions"><button id="calcBtn" class="btn-mini"><i class="fas fa-calculator"></i> Calcular Cv/Kv</button><button id="copyBtn" class="btn-mini secondary"><i class="fas fa-copy"></i> Copiar memorial</button></div></section><aside class="tech-card"><h2>Resultado rápido</h2><div id="resultadoRapido" aria-live="polite"></div></aside></div>
+<section class="tech-card"><h2><i class="fas fa-chart-line"></i> Leitura visual da válvula</h2><div class="visual-grid">
+<div class="visual-box"><h3>Pressões e abertura normal</h3><svg viewBox="0 0 620 270" role="img" aria-labelledby="valveTitle valveDesc"><title id="valveTitle">Esquema da válvula de controle</title><desc id="valveDesc">Linha com pressão de entrada P1, válvula, pressão de saída P2 e posição normal calculada.</desc><defs><marker id="vArrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#0b3a62"/></marker></defs><line x1="45" y1="145" x2="230" y2="145" stroke="#0b3a62" stroke-width="24" stroke-linecap="round"/><line x1="390" y1="145" x2="575" y2="145" stroke="#0b3a62" stroke-width="24" stroke-linecap="round"/><line x1="100" y1="145" x2="185" y2="145" stroke="#fff" stroke-width="4" marker-end="url(#vArrow)"/><polygon points="230,95 310,145 230,195" fill="#006bb1"/><polygon points="390,95 310,145 390,195" fill="#0b3a62"/><circle cx="310" cy="145" r="13" fill="#fff" stroke="#0b3a62" stroke-width="3"/><line id="stem" x1="310" y1="40" x2="310" y2="128" stroke="#0b3a62" stroke-width="7"/><rect id="actuator" x="260" y="22" width="100" height="48" rx="20" fill="#dbeafe" stroke="#0b3a62" stroke-width="3"/><text x="310" y="53" text-anchor="middle" font-size="14" font-weight="700">ATUADOR</text><text id="p1Label" x="55" y="105" font-size="17" font-weight="700">P1 = -</text><text id="p2Label" x="465" y="105" font-size="17" font-weight="700">P2 = -</text><text id="dpLabel" x="310" y="235" text-anchor="middle" font-size="16" font-weight="700">ΔP = -</text><text id="openLabel" x="310" y="88" text-anchor="middle" font-size="15">Abertura normal: -</text></svg><div class="visual-legend"><span>P1: montante</span><span>P2: jusante</span><span>Abertura: estimativa preliminar</span></div></div>
+<div class="visual-box"><h3>Característica da válvula</h3><svg viewBox="0 0 620 270" role="img" aria-labelledby="charTitle charDesc"><title id="charTitle">Curva de abertura e capacidade relativa</title><desc id="charDesc">Curva linear ou igual porcentagem conforme a característica selecionada, com marcador na condição normal.</desc><line x1="65" y1="225" x2="575" y2="225" stroke="#64748b" stroke-width="2"/><line x1="65" y1="225" x2="65" y2="35" stroke="#64748b" stroke-width="2"/><path id="charPath" d="" fill="none" stroke="#006bb1" stroke-width="5"/><line id="charGX" x1="65" y1="225" x2="65" y2="225" stroke="#0b3a62" stroke-dasharray="5 5"/><line id="charGY" x1="65" y1="225" x2="65" y2="225" stroke="#0b3a62" stroke-dasharray="5 5"/><circle id="charPoint" cx="65" cy="225" r="8" fill="#062138" stroke="#fff" stroke-width="3"/><text x="320" y="262" text-anchor="middle" font-size="14">Abertura (%)</text><text x="18" y="135" text-anchor="middle" font-size="14" transform="rotate(-90 18 135)">Cv relativo (%)</text><text id="charLabel" x="335" y="58" font-size="15" font-weight="700">Ponto normal</text></svg><p class="note info" id="charNote">A curva mostra a capacidade relativa assumida para estimar a abertura.</p></div>
+</div></section>
+<section class="tech-card" id="resultadoDetalhado"><h2>Resultado detalhado</h2><p>Calcule para gerar a análise.</p></section>
+<section class="tech-card"><h2>Memorial técnico preliminar</h2><pre class="copybox" id="memorial">Calcule para gerar o memorial.</pre></section>
+<section class="tech-card split"><div><h2>Como interpretar</h2><ul><li><strong>Cv/Kv requerido:</strong> capacidade necessária em cada condição.</li><li><strong>Cv selecionado:</strong> inclui margem e define a abertura estimada.</li><li><strong>Abertura normal:</strong> muito baixa pode indicar sobredimensionamento; muito alta pode reduzir margem para aumento de carga.</li><li><strong>Característica:</strong> linear e igual porcentagem distribuem capacidade de forma diferente ao longo do curso.</li></ul></div><div><h2>Checklist de campo</h2><ul><li>Confirmar P1, P2 e vazões mínima, normal e máxima.</li><li>Confirmar fluido, densidade/estado, temperatura e pressão de vapor.</li><li>Verificar característica, rangeabilidade e curva real do fabricante.</li><li>Avaliar cavitação, flashing, ruído, velocidade e materiais.</li><li>Confirmar atuador, posicionador, falha segura e ar de instrumentos.</li></ul></div></section>
+<section class="tech-card faq"><h2>Perguntas frequentes</h2><details open><summary>Cv e Kv são iguais?</summary><p>Não. A conversão aproximada usada aqui é Kv = 0,865 × Cv.</p></details><details><summary>Qual abertura é ideal?</summary><p>Não há um único valor universal. A condição normal deve ficar em região controlável, com margem para reduzir e aumentar vazão; a curva real do fabricante é decisiva.</p></details><details><summary>O resultado substitui o fabricante?</summary><p>Não. Esta é uma triagem para instrumentação e engenharia. A seleção final deve ser validada com dados e software/catálogo do fabricante.</p></details></section>
+</main><footer><p>© Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
 <script>
-(function(){
-  const gasFields = () => Array.from(document.querySelectorAll('.gas-only'));
-  const liquidFields = () => Array.from(document.querySelectorAll('.liquid-only'));
-  window.atualizarModo = function(){
-    const gas = document.getElementById('tipoFluido').value === 'gas';
-    gasFields().forEach(el => el.style.display = gas ? '' : 'none');
-    liquidFields().forEach(el => el.style.display = gas ? 'none' : '');
-    const unit = gas ? (document.getElementById('gasUnit').value === 'kgh' ? 'kg/h' : 'Nm³/h') : 'm³/h';
-    ['unitMin','unitNor','unitMax'].forEach(id => document.getElementById(id).textContent = unit);
-  };
-  document.getElementById('gasUnit').addEventListener('change', atualizarModo);
-})();
-
-function parseBR(value){
-  const raw=String(value ?? '').trim();
-  if(!raw) return NaN;
-  const norm=raw.includes(',') ? raw.replace(/\./g,'').replace(',','.') : raw;
-  const v=Number(norm);
-  return Number.isFinite(v) ? v : NaN;
-}
-function n(id){ const v=parseBR(document.getElementById(id).value); return Number.isFinite(v) ? v : 0; }
-function s(id){ return (document.getElementById(id).value || '').trim(); }
-function fmt(x,d=2){ if(!isFinite(x)) return '-'; return x.toLocaleString('pt-BR',{minimumFractionDigits:d,maximumFractionDigits:d}); }
-function clamp(x,a,b){ return Math.max(a, Math.min(b,x)); }
-function nextCommercialCv(cv){
-  const list=[0.05,0.08,0.1,0.16,0.25,0.4,0.63,1,1.6,2.5,4,6.3,10,16,25,40,63,100,160,250,400,630,1000,1600,2500];
-  return list.find(v => v >= cv) || cv;
-}
-function abertura(cvReq, cvSel, caracteristica, rangeabilidade){
-  if(cvSel<=0 || cvReq<=0) return 0;
-  const frac = clamp(cvReq/cvSel, 0, 1);
-  if(caracteristica === 'linear') return frac*100;
-  const R = Math.max(rangeabilidade, 2);
-  return Math.log(1 + (R - 1) * frac) / Math.log(R) * 100;
-}
-function classAbertura(minA,norA,maxA){
-  const avisos=[];
-  let cls='ok';
-  if(norA < 25){ avisos.push('Abertura normal muito baixa: possível válvula sobredimensionada ou controle ruim em baixa vazão.'); cls='warn'; }
-  if(norA > 85){ avisos.push('Abertura normal muito alta: válvula pode ficar sem autoridade para aumento de carga.'); cls='warn'; }
-  if(maxA > 92){ avisos.push('Abertura máxima muito próxima do limite: risco de saturação na vazão máxima.'); cls='bad'; }
-  if(minA < 8){ avisos.push('Abertura mínima muito baixa: atenção a instabilidade, histerese, rangeabilidade e controle próximo da sede.'); if(cls==='ok') cls='warn'; }
-  if(!avisos.length) avisos.push('Faixa preliminar de abertura aparentemente adequada para estudo inicial.');
-  return {cls, avisos};
-}
-function calcLiquid(q, dP, sg){
-  const kv = q * Math.sqrt(sg / dP);
-  return {kv, cv: kv/0.865};
-}
-function gasToNm3h(q, unit, mw){
-  if(unit === 'kgh') return q * 22.414 / Math.max(mw,0.001);
-  return q;
-}
-function calcGasCv(qInput, unit, mw, gg, p1aBar, p2aBar, tempC, z){
-  const qNm3h = gasToNm3h(qInput, unit, mw);
-  const qScfh = qNm3h * 37.326;
-  const p1 = p1aBar * 14.5038;
-  const p2 = p2aBar * 14.5038;
-  const tR = (tempC + 273.15) * 9/5;
-  const ratio = p2aBar / p1aBar;
-  const choked = ratio <= 0.53;
-  const denom = choked ? (816 * p1 / Math.sqrt(Math.max(gg*z*tR,0.001))) : (1360 * Math.sqrt(Math.max((p1*p1 - p2*p2)/(Math.max(gg*z*tR,0.001)),0.000001)));
-  const cv = qScfh / denom;
-  return {cv, kv: cv*0.865, qNm3h, choked};
-}
-function velocidadeLiquido(qM3h, pipeMm){
-  const area = Math.PI * Math.pow(pipeMm/1000,2) / 4;
-  return (qM3h/3600)/Math.max(area,1e-9);
-}
-function velocidadeGas(qNm3h, pAbsBar, tempC, pipeMm){
-  const area = Math.PI * Math.pow(pipeMm/1000,2) / 4;
-  const qActual = qNm3h * (1.01325/Math.max(pAbsBar,0.001)) * ((tempC+273.15)/273.15);
-  return (qActual/3600)/Math.max(area,1e-9);
-}
-function statusVelocidade(v, gas){
-  if(!isFinite(v)) return {txt:'Não calculada', cls:'warn'};
-  if(gas){
-    if(v > 60) return {txt:'Alta para triagem: avaliar ruído, erosão e limites da tubulação.', cls:'bad'};
-    if(v > 35) return {txt:'Atenção: velocidade elevada para gás/vapor.', cls:'warn'};
-    return {txt:'Velocidade preliminar dentro de faixa usual de triagem.', cls:'ok'};
-  }
-  if(v > 6) return {txt:'Alta para líquido: avaliar erosão, ruído e perda de carga.', cls:'bad'};
-  if(v > 3) return {txt:'Atenção: velocidade moderada/alta para líquido.', cls:'warn'};
-  return {txt:'Velocidade preliminar dentro de faixa usual de triagem.', cls:'ok'};
-}
-function calcularValvula(){
-  const tipo = document.getElementById('tipoFluido').value;
-  const gas = tipo === 'gas';
-  const p1g=n('p1g'), p2g=n('p2g'), tempC=n('tempC'), pipeMm=n('pipeMm');
-  const p1a=p1g+1.01325, p2a=p2g+1.01325, dP=p1a-p2a;
-  const qs=[{nome:'Mínima', val:n('qMin')},{nome:'Normal', val:n('qNor')},{nome:'Máxima', val:n('qMax')}];
-  const margem=n('margem')/100, rangeabilidade=Math.max(n('rangeabilidade'),2), car=document.getElementById('caracteristica').value;
-  const erros=[];
-  if(p1a<=0 || p2a<=0) erros.push('As pressões absolutas calculadas precisam ser positivas. Confira P1 e P2 em bar(g).');
-  if(dP<=0) erros.push('P1 deve ser maior que P2 para existir queda de pressão na válvula.');
-  if(pipeMm<=0) erros.push('O diâmetro interno da linha deve ser maior que zero.');
-  if(qs.some(q=>q.val<=0)) erros.push('As vazões mínima, normal e máxima devem ser maiores que zero.');
-  if(!(qs[0].val <= qs[1].val && qs[1].val <= qs[2].val)) erros.push('Use vazões em ordem crescente: mínima ≤ normal ≤ máxima.');
-  if(!gas && n('rho')<=0) erros.push('A densidade do líquido deve ser maior que zero.');
-  if(gas && n('gg')<=0) erros.push('A gravidade específica do gás deve ser maior que zero.');
-  if(gas && n('z')<=0) erros.push('O fator Z do gás deve ser maior que zero.');
-  if(gas && tempC<=-273.15) erros.push('A temperatura do gás deve ser maior que -273,15 °C.');
-  if(gas && document.getElementById('gasUnit').value==='kgh' && n('mw')<=0) erros.push('Para kg/h, informe massa molar maior que zero.');
-  if(erros.length){
-    const html = `<div class="note bad"><strong>Não foi possível calcular.</strong><ul>${erros.map(e=>`<li>${e}</li>`).join('')}</ul></div>`;
-    document.getElementById('resultadoRapido').innerHTML = html;
-    document.getElementById('resultadoDetalhado').innerHTML = '<h2>Resultado detalhado</h2>'+html;
-    document.getElementById('memorial').textContent = 'Corrija os dados de entrada para gerar o memorial.';
-    return;
-  }
-  const resultados=[];
-  let alertas=[];
-  let extra='';
-  if(!gas){
-    const rho=n('rho'), sg=rho/999.016, pv=n('pvap'), pc=n('pc'), fl=clamp(n('fl'),0.35,1.0);
-    const ff=clamp(0.96 - 0.28*Math.sqrt(Math.max(pv,0)/Math.max(pc,0.001)),0.5,1.0);
-    const dpChoked=fl*fl*(p1a - ff*pv);
-    const sigma=(p1a-pv)/dP;
-    qs.forEach(q=>{
-      const r=calcLiquid(q.val,dP,sg);
-      const vel=velocidadeLiquido(q.val,pipeMm);
-      resultados.push({...q, ...r, qBase:q.val, vel});
-    });
-    if(p2a <= pv){ alertas.push({cls:'bad', txt:'Pressão de saída abaixo ou próxima da pressão de vapor: condição de flashing provável. Avaliar válvula e materiais para escoamento bifásico/erosão.'}); }
-    else if(dP >= dpChoked){ alertas.push({cls:'bad', txt:'Queda de pressão acima do limite preliminar de choking/cavitação. Pode exigir válvula anticavitação, multiestágio ou revisão de processo.'}); }
-    else if(dP >= 0.75*dpChoked){ alertas.push({cls:'warn', txt:'Queda de pressão próxima do limite preliminar de cavitação. Confirmar com FL real e dados do fabricante.'}); }
-    else if(sigma < 2){ alertas.push({cls:'warn', txt:'Índice de cavitação baixo para triagem. Avaliar ruído, vibração e danos nos internos.'}); }
-    else { alertas.push({cls:'ok', txt:'Não houve alerta preliminar forte de cavitação/flashing pelos dados informados.'}); }
-    extra = `FF=${fmt(ff,3)}, ΔP crítico preliminar=${fmt(dpChoked,2)} bar, índice σ=${fmt(sigma,2)}.`;
-  } else {
-    const unit=document.getElementById('gasUnit').value, mw=n('mw'), gg=n('gg'), z=Math.max(n('z'),0.1);
-    qs.forEach(q=>{
-      const r=calcGasCv(q.val,unit,mw,gg,p1a,p2a,tempC,z);
-      const vel=velocidadeGas(r.qNm3h,p1a,tempC,pipeMm);
-      resultados.push({...q, ...r, qBase:r.qNm3h, vel});
-    });
-    const ratio=p2a/p1a;
-    if(ratio <= 0.53) alertas.push({cls:'warn', txt:'Razão P2/P1 indica escoamento crítico/choked em gás ou vapor. Aumento de ΔP pode não aumentar a vazão na mesma proporção.'});
-    else alertas.push({cls:'ok', txt:'Escoamento compressível preliminar em região não crítica pela razão P2/P1 informada.'});
-    extra = `Razão P2/P1=${fmt(ratio,3)}, método simplificado para gás/vapor, vazão base em Nm³/h.`;
-  }
-  const cvMax=resultados[2].cv;
-  const manual=n('cvManual');
-  const cvSelecionado = manual>0 ? manual : nextCommercialCv(cvMax*(1+margem));
-  const kvSelecionado = cvSelecionado*0.865;
-  resultados.forEach(r=>{ r.abertura=abertura(r.cv,cvSelecionado,car,rangeabilidade); });
-  const clsAb=classAbertura(resultados[0].abertura,resultados[1].abertura,resultados[2].abertura);
-  const velMax=statusVelocidade(resultados[2].vel,gas);
-  const overall = [clsAb.cls, ...alertas.map(a=>a.cls), velMax.cls].includes('bad') ? 'bad' : ([clsAb.cls, ...alertas.map(a=>a.cls), velMax.cls].includes('warn') ? 'warn' : 'ok');
-  const resumoTxt = overall==='ok' ? 'Pré-seleção aparentemente adequada' : (overall==='warn' ? 'Pré-seleção com pontos de atenção' : 'Pré-seleção crítica ou no limite');
-  document.getElementById('resultadoRapido').innerHTML = `
-    <div class="note ${overall}"><strong>${resumoTxt}</strong><div class="result-main">Cv ${fmt(cvSelecionado,2)}</div><div>Kv equivalente: <strong>${fmt(kvSelecionado,2)}</strong>. Cv máximo calculado: <strong>${fmt(cvMax,2)}</strong>.</div></div>
-    <div class="pill-row"><span class="pill">ΔP: ${fmt(dP,2)} bar</span><span class="pill">Abertura normal: ${fmt(resultados[1].abertura,1)}%</span><span class="pill">Vel. máx.: ${fmt(resultados[2].vel,2)} m/s</span></div>
-    <p class="result-sub">${alertas.map(a=>a.txt).join(' ')}</p>`;
-  const linhas = resultados.map(r=>`<tr><td>${r.nome}</td><td>${fmt(r.val,2)} ${gas ? document.getElementById('gasUnit').value : 'm³/h'}</td><td>${fmt(r.cv,3)}</td><td>${fmt(r.kv,3)}</td><td>${fmt(r.abertura,1)}%<div class="mini-meter"><span style="width:${clamp(r.abertura,0,100)}%"></span></div></td><td>${fmt(r.vel,2)} m/s</td></tr>`).join('');
-  const alertsHtml = [...alertas, ...clsAb.avisos.map(txt=>({cls:clsAb.cls,txt})), {cls:velMax.cls,txt:velMax.txt}].map(a=>`<p class="note ${a.cls}">${a.txt}</p>`).join('');
-  document.getElementById('resultadoDetalhado').innerHTML = `
-    <h2>Resultado detalhado</h2>
-    <div class="table-wrap"><table class="tech-table"><thead><tr><th>Condição</th><th>Vazão informada</th><th>Cv requerido</th><th>Kv requerido</th><th>Abertura estimada</th><th>Velocidade</th></tr></thead><tbody>${linhas}</tbody></table></div>
-    <h3>Seleção preliminar</h3>
-    <div class="pill-row"><span class="pill">Cv selecionado: ${fmt(cvSelecionado,2)}</span><span class="pill">Kv selecionado: ${fmt(kvSelecionado,2)}</span><span class="pill">Característica: ${car==='equal'?'igual porcentagem':'linear'}</span><span class="pill">Rangeabilidade: ${fmt(rangeabilidade,0)}:1</span></div>
-    <h3>Alertas técnicos</h3>${alertsHtml}
-    <h3>Observações de cálculo</h3><p class="result-sub">${extra}</p>`;
-  const memorial = gerarMemorial({gas,p1g,p2g,p1a,p2a,dP,tempC,pipeMm,cvSelecionado,kvSelecionado,resultados,alertas,clsAb,velMax,extra});
-  document.getElementById('memorial').textContent = memorial;
-}
-function gerarMemorial(ctx){
-  const tag=s('tag')||'não informado';
-  const serv=s('servico')||'não informado';
-  const tipo=document.getElementById('tipoFluido').selectedOptions[0].textContent;
-  const car=document.getElementById('caracteristica').selectedOptions[0].textContent;
-  const unidade=ctx.gas ? document.getElementById('gasUnit').value : 'm³/h';
-  const rows=ctx.resultados.map(r=>`- ${r.nome}: vazão ${fmt(r.val,2)} ${unidade}; Cv ${fmt(r.cv,3)}; Kv ${fmt(r.kv,3)}; abertura ${fmt(r.abertura,1)}%; velocidade ${fmt(r.vel,2)} m/s`).join('\n');
-  const alertas=[...ctx.alertas.map(a=>a.txt), ...ctx.clsAb.avisos, ctx.velMax.txt].join('\n- ');
-  return `MEMORIAL PRELIMINAR - DIMENSIONAMENTO DE VÁLVULA DE CONTROLE\n\nTag: ${tag}\nServiço: ${serv}\nTipo de fluido: ${tipo}\nCaracterística considerada: ${car}\n\nCondições de processo:\n- P1: ${fmt(ctx.p1g,2)} bar(g) / ${fmt(ctx.p1a,2)} bar(a)\n- P2: ${fmt(ctx.p2g,2)} bar(g) / ${fmt(ctx.p2a,2)} bar(a)\n- ΔP: ${fmt(ctx.dP,2)} bar\n- Temperatura: ${fmt(ctx.tempC,1)} °C\n- Diâmetro interno da linha: ${fmt(ctx.pipeMm,1)} mm\n\nResultados por condição:\n${rows}\n\nSeleção preliminar:\n- Cv selecionado/sugerido: ${fmt(ctx.cvSelecionado,2)}\n- Kv equivalente: ${fmt(ctx.kvSelecionado,2)}\n\nAlertas e observações:\n- ${alertas}\n- ${ctx.extra}\n\nObservação importante: este memorial é preliminar. A seleção final deve ser validada com catálogo/software do fabricante, dados reais de processo, análise de cavitação/flashing/ruído, materiais, classe de pressão, requisitos de segurança, atuação, posicionador e normas aplicáveis.`;
-}
-function copiarMemorial(){
-  const txt=document.getElementById('memorial').textContent;
-  navigator.clipboard.writeText(txt).then(()=>alert('Memorial copiado.')).catch(()=>alert('Não foi possível copiar automaticamente. Selecione o texto manualmente.'));
-}
-atualizarModo();
-calcularValvula();
-</script>
-<footer><p>© Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
-
-<a aria-label="Voltar para Ferramentas" class="floating-back-tools no-print" href="ferramentas.html"><i class="fas fa-arrow-left"></i> Voltar para Ferramentas</a>
-</body>
-</html>
+const $=id=>document.getElementById(id),n=id=>Number($(id).value),fmt=(x,d=2)=>Number.isFinite(x)?x.toLocaleString('pt-BR',{minimumFractionDigits:d,maximumFractionDigits:d}):'-',clamp=(x,a,b)=>Math.max(a,Math.min(b,x));
+function updateMode(){const gas=$('tipoFluido').value==='gas';document.querySelectorAll('.gas-only').forEach(e=>e.style.display=gas?'flex':'none');document.querySelectorAll('.liquid-only').forEach(e=>e.style.display=gas?'none':'flex');const u=gas?($('gasUnit').value==='kgh'?'kg/h':'Nm³/h'):'m³/h';['unitMin','unitNor','unitMax'].forEach(id=>$(id).textContent=u)}
+function nextCv(cv){const list=[.05,.08,.1,.16,.25,.4,.63,1,1.6,2.5,4,6.3,10,16,25,40,63,100,160,250,400,630,1000,1600,2500];return list.find(v=>v>=cv)||cv}
+function opening(cvReq,cvSel,car,R){if(!(cvReq>0&&cvSel>0))return 0;const f=clamp(cvReq/cvSel,0,1);return car==='linear'?f*100:Math.log(1+(Math.max(R,2)-1)*f)/Math.log(Math.max(R,2))*100}
+function calcLiquid(q,dp,sg){const kv=q*Math.sqrt(sg/dp);return{kv,cv:kv/.865}}
+function gasNm(q,unit,mw){return unit==='kgh'?q*22.414/Math.max(mw,.001):q}
+function calcGas(q,unit,mw,gg,p1a,p2a,tC,z){const qNm=gasNm(q,unit,mw),qScfh=qNm*37.326,p1=p1a*14.5038,p2=p2a*14.5038,tR=(tC+273.15)*9/5,ratio=p2a/p1a,choked=ratio<=.53,den=choked?816*p1/Math.sqrt(Math.max(gg*z*tR,.001)):1360*Math.sqrt(Math.max((p1*p1-p2*p2)/Math.max(gg*z*tR,.001),.000001));const cv=qScfh/den;return{cv,kv:cv*.865,qNm,choked}}
+function velocity(qM3h,pAbs,tC,Dmm,gas){const A=Math.PI*(Dmm/1000)**2/4;if(!gas)return(qM3h/3600)/A;const actual=qM3h*(1.01325/Math.max(pAbs,.001))*((tC+273.15)/273.15);return(actual/3600)/A}
+function drawCurve(car,R,open,cvFrac){const pts=[];for(let a=0;a<=100;a+=2){let f;if(car==='linear')f=a/100;else f=(Math.pow(R,a/100)-1)/(R-1);const x=65+5.10*a,y=225-1.90*100*f;pts.push((a===0?'M':'L')+x.toFixed(1)+' '+y.toFixed(1))}$('charPath').setAttribute('d',pts.join(' '));const x=65+5.10*clamp(open,0,100),y=225-1.90*100*clamp(cvFrac,0,1);$('charPoint').setAttribute('cx',x);$('charPoint').setAttribute('cy',y);$('charGX').setAttribute('x1',x);$('charGX').setAttribute('x2',x);$('charGX').setAttribute('y1',y);$('charGX').setAttribute('y2',225);$('charGY').setAttribute('x1',65);$('charGY').setAttribute('x2',x);$('charGY').setAttribute('y1',y);$('charGY').setAttribute('y2',y);$('charLabel').textContent=`Normal: ${fmt(open,1)}% aberto · ${fmt(cvFrac*100,1)}% do Cv`;$('charNote').textContent=car==='linear'?'Característica linear: a capacidade relativa cresce aproximadamente na mesma proporção do curso.':'Igual porcentagem: a capacidade cresce lentamente no início e mais rapidamente nas maiores aberturas.'}
+function drawValve(p1,p2,dp,open){$('p1Label').textContent=`P1 = ${fmt(p1,2)} bar(g)`;$('p2Label').textContent=`P2 = ${fmt(p2,2)} bar(g)`;$('dpLabel').textContent=`ΔP = ${fmt(dp,2)} bar`;$('openLabel').textContent=`Abertura normal: ${fmt(open,1)}%`;const stemEnd=128-clamp(open,0,100)*.45;$('stem').setAttribute('y2',stemEnd)}
+function calculate(){updateMode();const gas=$('tipoFluido').value==='gas',p1g=n('p1g'),p2g=n('p2g'),p1a=p1g+1.01325,p2a=p2g+1.01325,dp=p1a-p2a,t=n('tempC'),D=n('pipeMm'),qs=[['Mínima',n('qMin')],['Normal',n('qNor')],['Máxima',n('qMax')]],margin=n('margem')/100,R=Math.max(n('rangeabilidade'),2),car=$('caracteristica').value;const errs=[];if(!(p1a>0&&p2a>0&&dp>0))errs.push('P1 deve ser maior que P2 e as pressões absolutas precisam ser positivas.');if(!(D>0))errs.push('Diâmetro interno deve ser positivo.');if(!(qs[0][1]>0&&qs[1][1]>=qs[0][1]&&qs[2][1]>=qs[1][1]))errs.push('Use vazões mínima ≤ normal ≤ máxima, todas positivas.');if(!gas&&!(n('rho')>0))errs.push('Densidade do líquido deve ser positiva.');if(gas&&!(n('gg')>0&&n('z')>0))errs.push('Para gás/vapor, gravidade específica e Z devem ser positivos.');if(errs.length){$('resultadoRapido').innerHTML=`<div class="note bad"><strong>Revise os dados:</strong><ul>${errs.map(e=>`<li>${e}</li>`).join('')}</ul></div>`;$('resultadoDetalhado').innerHTML='<h2>Resultado detalhado</h2><p>Corrija os dados para gerar a análise.</p>';$('memorial').textContent='Corrija os dados para gerar o memorial.';return}let rows=[],alerts=[];if(!gas){const sg=n('rho')/999.016,pv=n('pvap'),pc=n('pc'),fl=clamp(n('fl'),.35,1),ff=clamp(.96-.28*Math.sqrt(Math.max(pv,0)/Math.max(pc,.001)),.5,1),dpCrit=fl*fl*(p1a-ff*pv);rows=qs.map(([name,q])=>{const r=calcLiquid(q,dp,sg);return{name,q,...r,qNm:q,v:velocity(q,p1a,t,D,false)}});if(p2a<=pv)alerts.push(['bad','Pressão de saída abaixo da pressão de vapor: flashing provável.']);else if(dp>=dpCrit)alerts.push(['bad','ΔP acima do limite preliminar de choking/cavitação.']);else if(dp>=.75*dpCrit)alerts.push(['warn','ΔP próximo do limite preliminar de cavitação.']);else alerts.push(['ok','Sem alerta preliminar forte de cavitação pelos dados informados.'])}else{const unit=$('gasUnit').value,mw=n('mw'),gg=n('gg'),z=n('z');rows=qs.map(([name,q])=>{const r=calcGas(q,unit,mw,gg,p1a,p2a,t,z);return{name,q,...r,v:velocity(r.qNm,p1a,t,D,true)}});alerts.push([p2a/p1a<=.53?'warn':'ok',p2a/p1a<=.53?'Razão P2/P1 indica região crítica/choked; valide pelo fabricante.':'Razão P2/P1 sem alerta preliminar de choking.'])}const cvMax=rows[2].cv,manual=n('cvManual'),cvSel=manual>0?manual:nextCv(cvMax*(1+margin)),kvSel=cvSel*.865;rows.forEach(r=>r.open=opening(r.cv,cvSel,car,R));const normal=rows[1],min=rows[0],max=rows[2];let openClass='ok',openMsg='Faixa de abertura preliminarmente utilizável.';if(normal.open<25){openClass='warn';openMsg='Abertura normal baixa: possível sobredimensionamento.'}if(normal.open>85){openClass='warn';openMsg='Abertura normal alta: pouca margem para aumento de carga.'}if(max.open>92){openClass='bad';openMsg='Abertura máxima próxima do limite: risco de saturação.'}const overall=[openClass,...alerts.map(a=>a[0])].includes('bad')?'bad':[openClass,...alerts.map(a=>a[0])].includes('warn')?'warn':'ok';$('resultadoRapido').innerHTML=`<div class="note ${overall}"><strong>${overall==='ok'?'Pré-seleção coerente':'Pré-seleção com atenção'}</strong><div class="result-main">Cv ${fmt(cvSel,2)}</div><div>Kv equivalente: <strong>${fmt(kvSel,2)}</strong> · Cv máximo requerido: <strong>${fmt(cvMax,2)}</strong></div></div><div class="pill-row"><span class="pill">ΔP ${fmt(dp,2)} bar</span><span class="pill">Abertura normal ${fmt(normal.open,1)}%</span><span class="pill">Abertura máx. ${fmt(max.open,1)}%</span></div>`;const unit=gas?($('gasUnit').value==='kgh'?'kg/h':'Nm³/h'):'m³/h',trs=rows.map(r=>`<tr><td>${r.name}</td><td>${fmt(r.q,2)} ${unit}</td><td>${fmt(r.cv,3)}</td><td>${fmt(r.kv,3)}</td><td>${fmt(r.open,1)}%<div class="mini-meter"><span style="width:${clamp(r.open,0,100)}%"></span></div></td><td>${fmt(r.v,2)} m/s</td></tr>`).join('');$('resultadoDetalhado').innerHTML=`<h2>Resultado detalhado</h2><div class="table-wrap"><table class="tech-table"><thead><tr><th>Condição</th><th>Vazão</th><th>Cv requerido</th><th>Kv requerido</th><th>Abertura estimada</th><th>Velocidade</th></tr></thead><tbody>${trs}</tbody></table></div><h3>Seleção preliminar</h3><div class="pill-row"><span class="pill">Cv selecionado ${fmt(cvSel,2)}</span><span class="pill">Kv ${fmt(kvSel,2)}</span><span class="pill">${car==='linear'?'Linear':'Igual porcentagem'}</span><span class="pill">R ${fmt(R,0)}:1</span></div><p class="note ${openClass}">${openMsg}</p>${alerts.map(a=>`<p class="note ${a[0]}">${a[1]}</p>`).join('')}`;drawValve(p1g,p2g,dp,normal.open);drawCurve(car,R,normal.open,normal.cv/cvSel);$('memorial').textContent=`MEMORIAL PRELIMINAR - VÁLVULA DE CONTROLE\nTag: ${$('tag').value}\nServiço: ${$('servico').value}\nP1/P2: ${fmt(p1g,2)} / ${fmt(p2g,2)} bar(g)\nΔP: ${fmt(dp,2)} bar\nCv selecionado: ${fmt(cvSel,2)}\nKv equivalente: ${fmt(kvSel,2)}\nAbertura mínima/normal/máxima: ${fmt(min.open,1)} / ${fmt(normal.open,1)} / ${fmt(max.open,1)} %\nCaracterística: ${car==='linear'?'linear':'igual porcentagem'}\n\nResultado orientativo. Confirmar curva real, cavitação/flashing, ruído, materiais, classe de pressão, atuador e documentação do fabricante.`}
+$('calcBtn').addEventListener('click',calculate);$('copyBtn').addEventListener('click',async()=>{calculate();try{await navigator.clipboard.writeText($('memorial').textContent)}catch(e){}});document.querySelectorAll('input,select').forEach(el=>el.addEventListener('input',calculate));document.querySelectorAll('select').forEach(el=>el.addEventListener('change',calculate));document.addEventListener('DOMContentLoaded',calculate);
+</script><a class="floating-back-tools no-print" href="ferramentas.html" aria-label="Voltar para Ferramentas"><i class="fas fa-arrow-left"></i> Voltar para Ferramentas</a></body></html>
