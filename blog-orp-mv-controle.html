@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ORP em mV: Controle e Interpretação Industrial | ALOGY Engenharia</title>
-  <meta name="description" content="Entenda como medir, verificar e diagnosticar ORP em mV e usar tendências com segurança no controle de processos industriais." />
+  <title>ORP em mV | ORP Sensor, Redox e Controle de Dosagem | ALOGY</title>
+  <meta name="description" content="ORP sensor em processo industrial: entenda mV, redox, verificação, as-found/as-left, diagnóstico, tempo de resposta e controle de dosagem." />
   <meta name="robots" content="index,follow" />
   <meta name="theme-color" content="#2C78B9" />
   <link rel="canonical" href="https://www.alogy.com.br/blog-orp-mv-controle.html" />
@@ -12,112 +12,84 @@
   <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png" />
   <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <link rel="stylesheet" href="style.css?v=20260722-layout-original-uppercase-mobilefix" />
+  <link rel="stylesheet" href="style.css?v=20260911-article-semantic1" />
   <script src="app.js" defer></script>
+
   <meta property="og:locale" content="pt_BR" />
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="ALOGY Engenharia" />
-  <meta property="og:title" content="ORP em mV: Controle e Interpretação Industrial" />
-  <meta property="og:description" content="Entenda como usar ORP em mV para controle de oxidação, dosagem química e monitoramento de processo." />
+  <meta property="og:title" content="ORP em mV: Sensor, Redox, Diagnóstico e Controle" />
+  <meta property="og:description" content="Como interpretar ORP sem tratar mV como concentração e como separar sensor, transmissor, amostragem e processo no diagnóstico." />
   <meta property="og:url" content="https://www.alogy.com.br/blog-orp-mv-controle.html" />
-  <meta property="og:image" content="https://www.alogy.com.br/favicon-512x512.png" />
+  <meta property="og:image" content="https://www.alogy.com.br/capa-blog-orp-mv-controle.webp" />
   <meta name="twitter:card" content="summary_large_image" />
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"ORP em mV: verificação, diagnóstico e controle industrial","description":"Entenda como o sensor mede ORP, como separar verificação do sensor, transmissor e processo e como interpretar tendências sem convertê-las diretamente em concentração.","url":"https://www.alogy.com.br/blog-orp-mv-controle.html","mainEntityOfPage":"https://www.alogy.com.br/blog-orp-mv-controle.html","dateModified":"2026-07-18","inLanguage":"pt-BR","author":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"},"publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/","logo":{"@type":"ImageObject","url":"https://www.alogy.com.br/logo-alogy.webp"}},"image":"https://www.alogy.com.br/favicon-512x512.png"}</script>
+  <meta name="twitter:image" content="https://www.alogy.com.br/capa-blog-orp-mv-controle.webp" />
+
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"ORP em mV: sensor, redox, diagnóstico e controle de dosagem","description":"ORP sensor em processo industrial: entenda mV, redox, verificação, as-found/as-left, diagnóstico, tempo de resposta e controle de dosagem.","url":"https://www.alogy.com.br/blog-orp-mv-controle.html","mainEntityOfPage":"https://www.alogy.com.br/blog-orp-mv-controle.html","dateModified":"2026-09-11","inLanguage":"pt-BR","author":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"},"publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/","logo":{"@type":"ImageObject","url":"https://www.alogy.com.br/logo-alogy.webp"}},"image":"https://www.alogy.com.br/capa-blog-orp-mv-controle.webp"}</script>
   <style>
     .mini-help{color:var(--muted);font-size:.92rem;line-height:1.55;margin-top:8px}
-    .faq details{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:14px;padding:14px;margin-top:10px;box-shadow:0 6px 16px rgba(0,0,0,.04)}
-    .faq summary{cursor:pointer;font-weight:900;color:#0b3a62}.faq p{margin:10px 0 0;color:var(--muted)}
-    .calc-result.two{grid-template-columns:repeat(2,1fr)} .calc-result.four{grid-template-columns:repeat(4,1fr)} .result-box strong.small{font-size:1.05rem}
-    .pill-ok{color:#146c2e;font-weight:900} .pill-warn{color:#a65f00;font-weight:900} .pill-bad{color:#a10000;font-weight:900}
-    @media(max-width:900px){.calc-result.two,.calc-result.four{grid-template-columns:1fr}}
-    @media print{header,.social-floating,.fab-wrap,.cta-bar,footer,.calc-actions,.tools-hero .btn,.no-print{display:none!important}body{background:#fff}.container{max-width:100%;padding:0}.calc-card,.tools-hero{box-shadow:none;border:1px solid #ddd}.calc-layout{display:block}.calc-card{margin:12px 0}.calc-table th{background:#eee!important;color:#111!important}}
+    .signal-box{background:#f8fafc;border:1px solid #dbe5ec;border-left:4px solid #006bb1;border-radius:12px;padding:14px;margin:16px 0}
+    @media print{header,.social-floating,.fab-wrap,.cta-bar,footer,.calc-actions,.no-print{display:none!important}}
   </style>
-  <!-- Google AdSense: carregado somente em páginas editoriais monetizáveis. A exibição e os formatos são controlados no painel do AdSense. -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5586837114309500" crossorigin="anonymous"></script>
 </head>
 <body>
   <header>
-    <div class="container headbar"><a href="/" class="logo-wrapper" aria-label="Voltar para o início"><img src="logo-alogy.webp" alt="ALOGY Engenharia"  width="878"  height="308"  decoding="async" /></a>
-<button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menu"><i class="fas fa-bars"></i></button></div>
-    <nav class="desktop" aria-label="Menu principal"><div class="container navlinks"><a href="/">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></div></nav>
-    <nav class="mobile" aria-label="Menu mobile"><a href="/">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></nav>
+    <div class="container headbar"><a href="/" class="logo-wrapper" aria-label="Voltar para o início"><img src="logo-alogy.webp" alt="ALOGY Engenharia" width="878" height="308" decoding="async" /></a><button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menu"><i class="fas fa-bars"></i></button></div>
+    <nav class="desktop" aria-label="Menu principal"><div class="container navlinks"><a href="/">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="/guia/">Guia</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></div></nav>
+    <nav class="mobile" aria-label="Menu mobile"><a href="/">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="/guia/">Guia</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></nav>
   </header>
-  <div class="social-floating" aria-label="Redes sociais"><a href="https://www.linkedin.com/company/alogyengenharia" class="linkedin" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a><a href="https://www.instagram.com/alogyengenharia" class="instagram" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="https://www.facebook.com/alogyengenharia" class="facebook" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><a href="https://www.youtube.com/@alogyengenharia" class="youtube" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a><a href="https://hotmart.com/pt-br/club/alogyengenharia" class="hotmart" target="_blank" rel="noopener noreferrer" aria-label="Hotmart">H</a><a href="https://www.tiktok.com/@alogyengenharia" class="tiktok" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fab fa-tiktok"></i></a></div>
-  <div class="fab-wrap" aria-label="Ações rápidas"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1%21%20Vim%20pelas%20ferramentas%20da%20ALOGY.%20Gostaria%20de%20atendimento." target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
+
+  <div class="social-floating" aria-label="Redes sociais"><a href="https://www.linkedin.com/company/alogyengenharia" class="linkedin" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a><a href="https://www.instagram.com/alogyengenharia" class="instagram" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="https://www.facebook.com/alogyengenharia" class="facebook" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><a href="https://www.youtube.com/@alogyengenharia" class="youtube" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a><a href="https://www.tiktok.com/@alogyengenharia" class="tiktok" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fab fa-tiktok"></i></a></div>
+  <div class="fab-wrap" aria-label="Ações rápidas"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1!%20Li%20o%20artigo%20sobre%20ORP%20da%20ALOGY." target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
+
   <main class="container" style="margin-top:18px">
-    <div style="margin-bottom:14px;display:flex;gap:10px;flex-wrap:wrap"><a class="floating-back-tools" href="blog.html"><i class="fas fa-arrow-left"></i> Voltar para o Blog</a><a class="floating-back-tools" href="calculadora-orp-mv-percentual.html"><i class="fas fa-calculator"></i> Abrir ferramenta</a></div>
-    <article class="calc-card"><h1>ORP em mV: verificação, diagnóstico e controle industrial</h1>
-<p>ORP é o potencial elétrico resultante do equilíbrio entre espécies oxidantes e redutoras. A leitura em milivolts descreve esse estado eletroquímico, mas não equivale diretamente a uma concentração específica.</p>
+    <div class="no-print" style="margin-bottom:14px;display:flex;gap:10px;flex-wrap:wrap"><a class="floating-back-tools" href="blog.html"><i class="fas fa-arrow-left"></i> Voltar para o Blog</a><a class="floating-back-tools" href="calculadora-orp-mv-percentual.html"><i class="fas fa-calculator"></i> Abrir ferramenta</a></div>
+    <article class="blog-post">
+      <h1>ORP em mV: verificação, diagnóstico e controle industrial</h1>
+      <p class="muted" data-alogy-content-meta><strong>Conteúdo técnico:</strong> ALOGY Engenharia · <strong>Atualizado em:</strong> 11/09/2026</p>
+      <figure class="article-cover-figure"><img class="article-cover-image" src="capa-blog-orp-mv-controle.webp" alt="Sensor de ORP e transmissor usados para medição redox em processo industrial" loading="eager" fetchpriority="high" decoding="async"/><figcaption>ORP é uma medição eletroquímica em mV; interpretar a tendência exige separar sensor, transmissor, amostragem e química do processo.</figcaption></figure>
 
-<h2>O que a leitura realmente informa</h2>
-<p>Valores mais positivos geralmente indicam ambiente mais oxidante e valores mais negativos, ambiente mais redutor. A relação com cloro, sulfito ou outro reagente depende de pH, temperatura, composição, mistura, tempo de contato e química do processo. Por isso, converter mV para uma porcentagem genérica serve apenas como visualização de faixa, não como análise química.</p>
+      <p>ORP é o potencial elétrico resultante do equilíbrio entre espécies oxidantes e redutoras. A leitura em milivolts descreve esse estado eletroquímico, mas <strong>não equivale diretamente a uma concentração específica</strong>.</p>
+      <div class="signal-box"><strong>ORP / redox:</strong> valores mais positivos geralmente indicam ambiente mais oxidante e valores mais negativos, ambiente mais redutor. A relação com um reagente específico depende das condições do processo.</div>
 
-<h2>Como o sensor produz o sinal em mV</h2>
-<p>O sensor compara o potencial de um eletrodo metálico, normalmente platina ou ouro, com o potencial estável de um eletrodo de referência. O transmissor mede essa diferença de potencial com alta impedância. Assim, sujeira no metal, obstrução da junção, alteração do eletrólito de referência, umidade em conectores ou caminho elétrico indevido podem deslocar ou tornar instável a leitura, mesmo sem mudança real no processo.</p>
-<p>O material do eletrodo, o sistema de referência, a faixa de temperatura e a compatibilidade química devem seguir o manual do sensor. A documentação da série PH4/OR4 da Yokogawa, por exemplo, separa claramente o elemento de medição em platina do sistema de referência com eletrólito de KCl e junção cerâmica. Esse exemplo explica o princípio; não torna a construção universal para todos os sensores.</p>
+      <h2>O que a leitura realmente informa</h2>
+      <p>A relação com cloro, sulfito ou outro reagente depende de pH, temperatura, composição, mistura, tempo de contato e química do processo. Converter mV para uma porcentagem genérica serve apenas como visualização de faixa, não como análise química.</p>
 
-<h2>Verificação com solução de referência</h2>
-<ol>
-  <li>registre a leitura encontrada e a temperatura;</li>
-  <li>limpe o elemento metálico e a junção conforme o manual;</li>
-  <li>use solução ORP de valor conhecido, dentro da validade e sem contaminação;</li>
-  <li>aguarde estabilidade e compare com o valor de referência aplicável à temperatura;</li>
-  <li>registre condição <em>as-left</em> e qualquer intervenção.</li>
-</ol>
-<p>Exemplo: para uma solução de referência indicada como 220 mV, uma leitura estabilizada de 212 mV apresenta desvio de −8 mV. A aceitação desse desvio deve vir do fabricante e do procedimento da instalação, não de um limite genérico.</p>
+      <h2>Como o sensor produz o sinal em mV</h2>
+      <p>O sensor compara o potencial de um eletrodo metálico, normalmente platina ou ouro, com o potencial estável de um eletrodo de referência. O transmissor mede essa diferença com alta impedância.</p>
+      <p>Sujeira no metal, obstrução da junção, alteração do eletrólito de referência, umidade em conectores ou caminho elétrico indevido podem deslocar ou tornar instável a leitura, mesmo sem mudança real no processo.</p>
 
-<h2>Separe sensor, transmissor e processo</h2>
-<p>Uma verificação completa responde a três perguntas diferentes:</p>
-<ol>
-  <li><strong>Sensor:</strong> estabiliza no valor esperado da solução de referência, na temperatura aplicável?</li>
-  <li><strong>Transmissor:</strong> entrada, cabos, aterramento e indicação respondem corretamente ao método elétrico previsto pelo fabricante?</li>
-  <li><strong>Processo:</strong> a instalação detecta uma mudança real após o tempo de transporte, mistura e resposta do sensor?</li>
-</ol>
-<p>Se o sensor passa na solução de referência, mas o valor instalado continua incoerente, repetir a limpeza não resolve necessariamente. É preciso investigar amostragem, localização, fluxo, aterramento, interferência e a própria química do processo.</p>
+      <h2>Verificação com solução de referência</h2>
+      <ol><li>Registre leitura, temperatura e diagnósticos <em>as-found</em>.</li><li>Limpe o elemento metálico e a junção conforme o manual.</li><li>Use solução ORP de valor conhecido, dentro da validade e sem contaminação.</li><li>Aguarde estabilidade e compare com o valor de referência aplicável à temperatura.</li><li>Registre a condição <em>as-left</em> e qualquer intervenção.</li></ol>
+      <p>Exemplo: para uma solução indicada como 220 mV, uma leitura estabilizada de 212 mV apresenta desvio de −8 mV. A aceitação deve vir do fabricante e do procedimento da instalação, não de um limite genérico.</p>
 
-<h2>Quando a leitura parece errada</h2>
-<ul>
-  <li>incrustação ou passivação do elemento de platina ou ouro;</li>
-  <li>junção de referência obstruída ou eletrólito comprometido;</li>
-  <li>bolhas, vazão inadequada, amostra não representativa ou mistura insuficiente;</li>
-  <li>cabos, conectores, aterramento ou entrada do transmissor com problemas;</li>
-  <li>comparação com laboratório sem considerar tempo, local e condição da amostra.</li>
-</ul>
+      <h2>Separe sensor, transmissor e processo</h2>
+      <ol><li><strong>Sensor:</strong> estabiliza no valor esperado da solução de referência?</li><li><strong>Transmissor:</strong> entrada, cabos, aterramento e indicação respondem corretamente?</li><li><strong>Processo:</strong> a instalação detecta uma mudança real depois do tempo de transporte, mistura e resposta do sensor?</li></ol>
+      <p>Se o sensor passa na referência, mas o valor instalado continua incoerente, investigue amostragem, localização, fluxo, aterramento, interferência e a própria química do processo.</p>
 
-<h2>Uso em controle de dosagem</h2>
-<p>O setpoint de ORP precisa ser estabelecido a partir do objetivo do processo e de dados validados. Antes de fechar a malha, confirme sentido de ação, atraso de transporte, capacidade da bomba, limites de dosagem, mistura e intertravamentos. Um valor copiado de outra instalação pode não representar a mesma química.</p>
-<p>Exemplo de interpretação: em condição estável, uma etapa de dosagem eleva a tendência de 360 para 430 mV após quatro minutos. O dado útil é a variação de +70 mV, o sentido e o tempo de resposta observados sob condições registradas. Esse resultado, sozinho, não informa concentração nem comprova que 430 mV seja um setpoint adequado.</p>
-<p>Em malha fechada, atraso elevado e ganho agressivo podem provocar oscilações entre excesso e falta de reagente. Banda morta, limites de saída e alarmes devem ser definidos com base em ensaio controlado, risco do processo e procedimento aprovado.</p>
+      <h2>Quando a leitura parece errada</h2>
+      <ul><li>incrustação ou passivação do elemento de platina/ouro;</li><li>junção de referência obstruída ou eletrólito comprometido;</li><li>bolhas, vazão inadequada, amostra não representativa ou mistura insuficiente;</li><li>cabos, conectores, aterramento ou entrada do transmissor com problemas;</li><li>comparação com laboratório sem considerar tempo, local e condição da amostra.</li></ul>
 
-<h2>Diagnóstico por comportamento</h2>
-<ul>
-  <li><strong>Resposta lenta:</strong> verifique passivação do metal, renovação da amostra, mistura e tempo de transporte.</li>
-  <li><strong>Leitura ruidosa:</strong> inspecione aterramento, umidade, conectores, blindagem, vazão irregular e bolhas.</li>
-  <li><strong>Valor quase fixo:</strong> confirme contato com a amostra, integridade da referência e se o transmissor está retendo ou filtrando excessivamente o sinal.</li>
-  <li><strong>Referência correta e processo divergente:</strong> investigue representatividade da amostra, pH, temperatura, interferentes e ponto de instalação.</li>
-</ul>
+      <h2>ORP em controle de dosagem</h2>
+      <p>O setpoint de ORP precisa ser estabelecido a partir do objetivo do processo e de dados validados. Antes de fechar a malha, confirme sentido de ação, atraso de transporte, capacidade da bomba, limites de dosagem, mistura e intertravamentos.</p>
+      <p>Em uma condição estável, por exemplo, uma etapa de dosagem que eleva a tendência de 360 para 430 mV após quatro minutos fornece três informações úteis: <strong>ΔORP = +70 mV, sentido da resposta e tempo observado</strong>. Isso sozinho não informa concentração nem comprova que 430 mV seja o setpoint adequado.</p>
+      <p>Em malha fechada, atraso elevado e ganho agressivo podem provocar oscilações entre excesso e falta de reagente. Banda morta, limites de saída e alarmes devem ser definidos com base em ensaio controlado e risco do processo.</p>
 
-<h2>Ferramentas e referências</h2>
-<div class="calc-actions">
-  <a class="mini-btn dark" href="calculadora-orp-mv-percentual.html"><i class="fas fa-calculator"></i> Visualizar faixa de ORP</a>
-  <a class="mini-btn" href="checklist-calibracao-analisadores-processo.html"><i class="fas fa-list-check"></i> Checklist de analisadores</a>
-</div>
-<ul class="mini-help" style="margin-top:12px">
-  <li><a href="ferramentas-analitica-industrial.html">Ferramentas de analítica industrial</a></li>
-  <li><a href="blog-calibracao-analisadores-processo.html">Calibração de analisadores de processo</a></li>
-  <li><a href="blog-tempo-amostragem-analisador.html">Tempo de amostragem em analisadores</a></li>
-  <li><a href="https://www.yokogawa.com/solutions/products-and-services/measurement/analyzers/liquid-analyzers/ph-sensors/ph-and-orp-sensors-ph4or4-sensor-series/" target="_blank" rel="noopener noreferrer">Yokogawa — construção e faixas de sensores pH/ORP PH4/OR4</a></li>
-  <li><a href="https://www.endress.com/en/field-instruments-overview/liquid-analysis-product-overview/ORP-sensors-transmitters" target="_blank" rel="noopener noreferrer">Endress+Hauser — sensores e transmissores de ORP</a></li>
-  <li><a href="https://portal.endress.com/wa001/dla/5001029/1633/000/00/BA01572CA2_0115.pdf" target="_blank" rel="noopener noreferrer">Endress+Hauser — manual de sensores pH/ORP</a></li>
-</ul>
+      <h2>Diagnóstico por comportamento</h2>
+      <ul><li><strong>Resposta lenta:</strong> passivação, renovação da amostra, mistura ou tempo de transporte.</li><li><strong>Leitura ruidosa:</strong> aterramento, umidade, conectores, blindagem, vazão irregular ou bolhas.</li><li><strong>Valor quase fixo:</strong> contato com a amostra, referência ou filtragem/damping excessivo.</li><li><strong>Referência correta e processo divergente:</strong> representatividade da amostra, pH, temperatura, interferentes e ponto de instalação.</li></ul>
 
-<h2>Aviso de uso</h2>
-<p>Este material é informativo e orientativo. Não use a leitura ou a conversão de ORP isoladamente para definir concentração, dosagem, segurança, qualidade ou setpoint. Considere análise do processo, manual, procedimento, riscos, intertravamentos e validação por profissional habilitado.</p></article>
-    <section class="cta-bar"><h2>Precisa de apoio técnico?</h2><p>A ALOGY Engenharia apoia projetos, manutenção, instrumentação, automação e melhoria de processos industriais.</p><a class="btn" href="/#contato"><i class="fas fa-envelope"></i> Falar com a ALOGY</a></section>
+      <h2>Ferramentas e referências</h2>
+      <div class="calc-actions"><a class="mini-btn dark" href="calculadora-orp-mv-percentual.html"><i class="fas fa-calculator"></i> Faixa de ORP</a><a class="mini-btn" href="checklist-calibracao-analisadores-processo.html">Checklist de analisadores</a><a class="mini-btn" href="calculadora-bomba-dosadora-quimica.html">Chemical dosing</a><a class="mini-btn" href="ferramentas-analitica-industrial.html"><i class="fas fa-flask"></i> Analítica</a></div>
+      <ul class="mini-help" style="margin-top:12px"><li><a href="blog-calibracao-analisadores-processo.html">Calibração de analisadores de processo</a></li><li><a href="blog-tempo-amostragem-analisador.html">Tempo de amostragem em analisadores</a></li><li><a href="https://www.yokogawa.com/solutions/products-and-services/measurement/analyzers/liquid-analyzers/ph-sensors/ph-and-orp-sensors-ph4or4-sensor-series/" target="_blank" rel="noopener noreferrer">Yokogawa — sensores pH/ORP PH4/OR4</a></li><li><a href="https://www.endress.com/en/field-instruments-overview/liquid-analysis-product-overview/ORP-sensors-transmitters" target="_blank" rel="noopener noreferrer">Endress+Hauser — ORP sensors and transmitters</a></li></ul>
+
+      <h2>Aviso de uso</h2>
+      <p>Não use ORP isoladamente para definir concentração, dosagem, segurança, qualidade ou setpoint. Considere análise do processo, procedimento, intertravamentos, documentação do fabricante e validação técnica.</p>
+    </article>
   </main>
   <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
 </body>
