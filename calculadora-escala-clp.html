@@ -1,331 +1,99 @@
 <!DOCTYPE html>
-
 <html lang="pt-br">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Calculadora de Escala de CLP e Instrumento | ALOGY Engenharia</title>
-<meta content="Calculadora de escala de CLP e instrumento para converter valor bruto em engenharia e engenharia em raw. Suporta 0-27648, 0-32767, 0-4095, 4-20 mA, 0-10 V" name="description"/>
-<meta content="index,follow" name="robots"/>
-<meta content="#062138" name="theme-color"/>
-<link href="https://www.alogy.com.br/calculadora-escala-clp.html" rel="canonical"/>
-<link href="/favicon-48x48.png" rel="icon" sizes="48x48" type="image/png"/>
-<link href="/favicon-192x192.png" rel="icon" sizes="192x192" type="image/png"/>
-<link href="/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
-<link href="/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180"/>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<meta name="description" content="Converta raw do CLP, percentual, sinal 4-20 mA e valor de engenharia com gráfico dinâmico de escala analógica."/>
+<meta name="robots" content="index,follow"/>
+<meta name="theme-color" content="#062138"/>
+<link rel="canonical" href="https://www.alogy.com.br/calculadora-escala-clp.html"/>
+<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png"/>
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png"/>
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
 <link href="style.css?v=20260722-layout-original-uppercase-mobilefix" rel="stylesheet"/>
-<script defer="" src="app.js"></script>
-<meta content="pt_BR" property="og:locale"/>
-<meta content="website" property="og:type"/>
-<meta content="ALOGY Engenharia" property="og:site_name"/>
-<meta content="Calculadora de Escala de CLP e Instrumento" property="og:title"/>
-<meta content="Converta valor bruto de CLP para engenharia e engenharia para raw usando escalas 0-27648, 0-32767, 0-4095, 4-20 mA e 0-10 V." property="og:description"/>
-<meta content="https://www.alogy.com.br/calculadora-escala-clp.html" property="og:url"/>
-<meta content="https://www.alogy.com.br/favicon-512x512.png" property="og:image"/>
-<meta content="summary_large_image" name="twitter:card"/>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Calculadora de Escala de CLP e Instrumento","url":"https://www.alogy.com.br/calculadora-escala-clp.html","applicationCategory":"EngineeringApplication","operatingSystem":"Web","description":"Calculadora para converter valor bruto de CLP em valor de engenharia e valor de engenharia em raw, com escalas típicas de automação industrial.","publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"},"dateModified":"2026-07-21","author":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"}}</script>
-<script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"FAQPage",
-    "mainEntity":[
-      {"@type":"Question","name":"O que é valor bruto ou raw no CLP?","acceptedAnswer":{"@type":"Answer","text":"Valor bruto, também chamado de raw, é o número interno lido pelo cartão analógico do CLP antes de ser convertido para uma unidade de engenharia, como bar, graus Celsius, metros, porcentagem ou vazão."}},
-      {"@type":"Question","name":"Como converter raw para engenharia?","acceptedAnswer":{"@type":"Answer","text":"A conversão linear usa o percentual entre o raw mínimo e o raw máximo. Depois esse percentual é aplicado entre o LRV e o URV da variável de processo."}},
-      {"@type":"Question","name":"Quando usar raw de 0 a 27648?","acceptedAnswer":{"@type":"Answer","text":"Somente quando essa for a faixa válida informada pela configuração e pela documentação do módulo analógico. Em uma leitura 4-20 mA tratada sobre referência 0-20 mA, 4 mA corresponde aproximadamente a 5530 e 20 mA a 27648."}},
-      {"@type":"Question","name":"A calculadora serve para 4-20 mA e 0-10 V?","acceptedAnswer":{"@type":"Answer","text":"Sim. A ferramenta permite selecionar sinais comuns, como 4-20 mA, 0-20 mA, 0-10 V, 1-5 V e 3-15 psi, para ajudar na conferência do percentual e da escala."}},
-      {"@type":"Question","name":"A ferramenta substitui programação, teste de loop ou comissionamento?","acceptedAnswer":{"@type":"Answer","text":"Não. A ferramenta é apenas para estudo, apoio técnico e pré-análise. A escala real deve ser conferida no módulo, no transmissor, no CLP, no supervisório, no procedimento de teste de loop e por profissional habilitado."}}
-    ]
-  }
-  </script>
+<script defer src="app.js"></script>
+<meta name="author" content="ALOGY Engenharia"/>
+<meta property="og:locale" content="pt_BR"/>
+<meta property="og:type" content="website"/>
+<meta property="og:site_name" content="ALOGY Engenharia"/>
+<meta property="og:title" content="Calculadora de Escala de CLP e Instrumento"/>
+<meta property="og:description" content="Converta raw, sinal físico e valor de engenharia e visualize o ponto atual da escala."/>
+<meta property="og:url" content="https://www.alogy.com.br/calculadora-escala-clp.html"/>
+<meta property="og:image" content="https://www.alogy.com.br/favicon-512x512.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Calculadora de Escala de CLP e Instrumento","url":"https://www.alogy.com.br/calculadora-escala-clp.html","applicationCategory":"EngineeringApplication","operatingSystem":"Web","description":"Calculadora para converter raw do CLP, percentual, sinal físico e valor de engenharia, com gráfico dinâmico da escala.","publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"},"dateModified":"2026-09-11","author":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Início","item":"https://www.alogy.com.br/"},{"@type":"ListItem","position":2,"name":"Automação","item":"https://www.alogy.com.br/ferramentas.html#automacao"},{"@type":"ListItem","position":3,"name":"Escala de CLP","item":"https://www.alogy.com.br/calculadora-escala-clp.html"}]}</script>
 <style>
-    .mini-btn{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(0,107,177,.25);background:rgba(0,107,177,.08);color:#0b3a62;border-radius:12px;padding:10px 12px;font-weight:900;cursor:pointer;text-decoration:none;font:inherit}
-    .mini-btn:hover{background:rgba(0,107,177,.12)}.mini-btn.dark{background:#0b3a62;color:#fff;border-color:#0b3a62}
-    .small-muted{color:var(--muted);font-size:.92rem;line-height:1.55}.calc-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
-    .status-ok{border-color:rgba(34,197,94,.35)!important;background:rgba(34,197,94,.10)!important;color:#166534!important}
-    .status-warn{border-color:rgba(245,158,11,.40)!important;background:rgba(245,158,11,.12)!important;color:#92400e!important}
-    .status-bad{border-color:rgba(239,68,68,.35)!important;background:rgba(239,68,68,.10)!important;color:#991b1b!important}
-    .scale-pill{display:inline-flex;align-items:center;gap:8px;border-radius:999px;background:rgba(0,107,177,.08);border:1px solid rgba(0,107,177,.18);color:#0b3a62;font-weight:900;padding:8px 11px;font-size:.9rem;margin:4px 4px 0 0}
-    .formula-box{background:#f7fbff;border:1px solid rgba(0,107,177,.14);border-radius:14px;padding:13px;margin-top:12px;color:#14324a;line-height:1.6}
-    .faq details{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:14px;padding:14px;margin-top:10px;box-shadow:0 6px 16px rgba(0,0,0,.04)}.faq summary{cursor:pointer;font-weight:900;color:#0b3a62}.faq p{margin:10px 0 0;color:var(--muted)}
-    .preset-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:12px}.preset-grid .mini-btn{justify-content:center;text-align:center}
-    @media(max-width:900px){.calc-actions .mini-btn,.preset-grid .mini-btn{width:100%;justify-content:center}.preset-grid{grid-template-columns:1fr}}
-    @media print{header,.social-floating,.fab-wrap,.cta-bar,footer,.calc-actions,.tools-hero .btn,.no-print{display:none!important}body{background:#fff}.container{max-width:100%;padding:0}.calc-card,.tools-hero{box-shadow:none;border:1px solid #ddd}.calc-layout{display:block}.calc-card{margin:12px 0}.calc-table th{background:#eee!important;color:#111!important}}
-  </style>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Início","item":"https://www.alogy.com.br/"},{"@type":"ListItem","position":2,"name":"Automação e CLP","item":"https://www.alogy.com.br/ferramentas-automacao-clp.html"},{"@type":"ListItem","position":3,"name":"Escala de CLP","item":"https://www.alogy.com.br/calculadora-escala-clp.html"}]}</script></head>
+.mini-btn{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(0,107,177,.25);background:rgba(0,107,177,.08);color:#0b3a62;border-radius:12px;padding:10px 12px;font-weight:900;cursor:pointer;text-decoration:none;font:inherit}.mini-btn:hover{background:rgba(0,107,177,.12)}.mini-btn.dark{background:#0b3a62;color:#fff;border-color:#0b3a62}
+.small-muted{color:var(--muted);font-size:.92rem;line-height:1.55}.calc-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}.status-ok{border-color:rgba(34,197,94,.35)!important;background:rgba(34,197,94,.10)!important;color:#166534!important}.status-warn{border-color:rgba(245,158,11,.40)!important;background:rgba(245,158,11,.12)!important;color:#92400e!important}.status-bad{border-color:rgba(239,68,68,.35)!important;background:rgba(239,68,68,.10)!important;color:#991b1b!important}
+.scale-pill{display:inline-flex;align-items:center;gap:8px;border-radius:999px;background:rgba(0,107,177,.08);border:1px solid rgba(0,107,177,.18);color:#0b3a62;font-weight:900;padding:8px 11px;font-size:.9rem;margin:4px 4px 0 0}.formula-box{background:#f7fbff;border:1px solid rgba(0,107,177,.14);border-radius:14px;padding:13px;margin-top:12px;color:#14324a;line-height:1.6}
+.scale-visual{margin-top:18px;border:1px solid rgba(0,107,177,.16);border-radius:18px;padding:16px;background:linear-gradient(180deg,#fbfdff,#f4f9fd)}.scale-visual h3{margin:0 0 4px;color:#0b3a62}.scale-visual svg{display:block;width:100%;height:auto;max-height:330px}.scale-legend{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}.scale-legend span{font-size:.88rem;color:var(--muted)}
+.signal-flow{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;align-items:stretch;margin-top:14px}.flow-step{position:relative;padding:12px 9px;border:1px solid rgba(0,107,177,.15);border-radius:14px;background:#fff;text-align:center;font-size:.88rem;line-height:1.35}.flow-step i{display:block;font-size:1.25rem;color:#0b6bb1;margin-bottom:6px}.flow-step:not(:last-child)::after{content:'→';position:absolute;right:-10px;top:50%;transform:translateY(-50%);z-index:2;font-weight:900;color:#0b6bb1;background:#f7fbff;padding:1px}
+.faq details{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:14px;padding:14px;margin-top:10px;box-shadow:0 6px 16px rgba(0,0,0,.04)}.faq summary{cursor:pointer;font-weight:900;color:#0b3a62}.faq p{margin:10px 0 0;color:var(--muted)}
+@media(max-width:900px){.calc-actions .mini-btn{width:100%;justify-content:center}.signal-flow{grid-template-columns:1fr}.flow-step:not(:last-child)::after{content:'↓';right:auto;left:50%;top:auto;bottom:-13px;transform:translateX(-50%);padding:0 4px}.scale-visual{padding:12px}}
+@media print{header,.social-floating,.fab-wrap,.cta-bar,footer,.calc-actions,.tools-hero .btn,.no-print{display:none!important}body{background:#fff}.container{max-width:100%;padding:0}.calc-card,.tools-hero{box-shadow:none;border:1px solid #ddd}.calc-layout{display:block}.calc-card{margin:12px 0}}
+</style>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5586837114309500" crossorigin="anonymous"></script>
+</head>
 <body class="tools-page alogy-stage3-forms">
 <header>
-<div class="container headbar"><a aria-label="Voltar para o início" class="logo-wrapper" href="/"><img alt="ALOGY Engenharia" decoding="async" height="308" src="logo-alogy.webp" width="878"/></a>
-<button aria-label="Abrir menu" class="menu-toggle" onclick="toggleMobileMenu()"><i class="fas fa-bars"></i></button></div>
-<nav aria-label="Menu principal" class="desktop"><div class="container navlinks"><a href="/">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></div></nav>
-<nav aria-label="Menu mobile" class="mobile"><a href="/">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></nav>
+<div class="container headbar"><a aria-label="Voltar para o início" class="logo-wrapper" href="/"><img alt="ALOGY Engenharia" decoding="async" height="308" src="logo-alogy.webp" width="878"/></a><button aria-label="Abrir menu" class="menu-toggle" onclick="toggleMobileMenu()"><i class="fas fa-bars"></i></button></div>
+<nav aria-label="Menu principal" class="desktop"><div class="container navlinks"><a href="/">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="/guia/">Guia</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></div></nav>
+<nav aria-label="Menu mobile" class="mobile"><a href="/">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="/guia/">Guia</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></nav>
 </header>
-<div aria-label="Redes sociais" class="social-floating"><a aria-label="LinkedIn" class="linkedin" href="https://www.linkedin.com/company/alogyengenharia" rel="noopener noreferrer" target="_blank"><i class="fab fa-linkedin-in"></i></a><a aria-label="Instagram" class="instagram" href="https://www.instagram.com/alogyengenharia" rel="noopener noreferrer" target="_blank"><i class="fab fa-instagram"></i></a><a aria-label="Facebook" class="facebook" href="https://www.facebook.com/alogyengenharia" rel="noopener noreferrer" target="_blank"><i class="fab fa-facebook-f"></i></a><a aria-label="YouTube" class="youtube" href="https://www.youtube.com/@alogyengenharia" rel="noopener noreferrer" target="_blank"><i class="fab fa-youtube"></i></a><a aria-label="Hotmart" class="hotmart" href="https://hotmart.com/pt-br/club/alogyengenharia" rel="noopener noreferrer" target="_blank">H</a><a aria-label="TikTok" class="tiktok" href="https://www.tiktok.com/@alogyengenharia" rel="noopener noreferrer" target="_blank"><i class="fab fa-tiktok"></i></a></div>
-<div aria-label="Ações rápidas" class="fab-wrap"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1!%20Vim%20pela%20calculadora%20de%20escala%20de%20CLP%20da%20ALOGY.%20Gostaria%20de%20atendimento." rel="noopener noreferrer" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
-<main class="container" style="margin-top:18px"><div aria-label="Ações da ferramenta" class="tool-page-actions no-print"><button class="btn print" onclick="window.print()" type="button"><i class="fas fa-print"></i> Imprimir</button></div>
-<div class="no-print" style="margin-bottom:14px;display:flex;gap:10px;flex-wrap:wrap">
-
-
-<a class="btn secondary" href="calculadora-4-20ma.html"><i class="fas fa-wave-square"></i> 4-20 mA</a>
-<a class="btn secondary" href="calculadora-modbus.html"><i class="fas fa-network-wired"></i> Modbus</a>
-</div>
-<section class="tools-hero"><h1>Calculadora de Escala de CLP e Instrumento</h1>
-<p class="muted" data-alogy-content-meta><strong>Conteúdo técnico:</strong> ALOGY Engenharia · <strong>Atualizado em:</strong> 21/07/2026</p><p>Converta valor bruto de CLP para valor de engenharia e valor de engenharia para raw. Útil para cartão analógico, CLP, SDCD, IHM, supervisório, teste de loop, 4-20 mA, 0-10 V e escalas como 0-27648, 0-32767 e 0-4095.</p></section>
-<section aria-label="Aviso de uso da ferramenta" class="calc-card">
-<h2><i class="fas fa-triangle-exclamation"></i> Ferramenta para estudo e apoio técnico</h2>
-<p>Esta calculadora é orientativa e usa relação linear simplificada para apoio técnico, estudo e pré-análise. Não substitui manual do módulo analógico, folha de dados do transmissor, bloco de escala do CLP, parametrização real, teste de loop, comissionamento, validação em campo, procedimento interno, laudo ou profissional habilitado. Na máxima extensão permitida pela legislação aplicável, a ALOGY não assume responsabilidade por decisões tomadas exclusivamente com base nesta estimativa orientativa, sem verificação das condições reais e sem validação técnica adequada. Nada neste aviso exclui direitos ou responsabilidades que não possam ser legalmente afastados.</p>
-</section>
+<div aria-label="Redes sociais" class="social-floating"><a aria-label="LinkedIn" class="linkedin" href="https://www.linkedin.com/company/alogyengenharia" rel="noopener noreferrer" target="_blank"><i class="fab fa-linkedin-in"></i></a><a aria-label="Instagram" class="instagram" href="https://www.instagram.com/alogyengenharia" rel="noopener noreferrer" target="_blank"><i class="fab fa-instagram"></i></a><a aria-label="Facebook" class="facebook" href="https://www.facebook.com/alogyengenharia" rel="noopener noreferrer" target="_blank"><i class="fab fa-facebook-f"></i></a><a aria-label="YouTube" class="youtube" href="https://www.youtube.com/@alogyengenharia" rel="noopener noreferrer" target="_blank"><i class="fab fa-youtube"></i></a><a aria-label="TikTok" class="tiktok" href="https://www.tiktok.com/@alogyengenharia" rel="noopener noreferrer" target="_blank"><i class="fab fa-tiktok"></i></a></div>
+<div aria-label="Ações rápidas" class="fab-wrap"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1%21%20Vim%20pela%20calculadora%20de%20escala%20de%20CLP%20da%20ALOGY.%20Gostaria%20de%20atendimento." rel="noopener noreferrer" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
+<main class="container" style="margin-top:18px">
+<div aria-label="Ações da ferramenta" class="tool-page-actions no-print"><button class="btn print" onclick="window.print()" type="button"><i class="fas fa-print"></i> Imprimir</button></div>
+<div class="no-print" style="margin-bottom:14px;display:flex;gap:10px;flex-wrap:wrap"><a class="btn secondary" href="calculadora-4-20ma.html"><i class="fas fa-wave-square"></i> 4-20 mA</a><a class="btn secondary" href="calculadora-modbus.html"><i class="fas fa-network-wired"></i> Modbus</a></div>
+<section class="tools-hero"><h1>Calculadora de Escala de CLP e Instrumento</h1><p class="muted" data-alogy-content-meta><strong>Conteúdo técnico:</strong> ALOGY Engenharia · <strong>Atualizado em:</strong> 11/09/2026</p><p>Converta valor bruto do CLP, percentual, sinal físico e valor de engenharia. O gráfico mostra visualmente onde o ponto atual está na escala configurada.</p></section>
+<section aria-label="Aviso de uso da ferramenta" class="calc-card"><h2><i class="fas fa-triangle-exclamation"></i> Uso orientativo</h2><p>A relação usada é linear. Confirme a faixa real do cartão analógico, do transmissor e do bloco de escala do CLP ou SDCD. A ferramenta apoia diagnóstico e teste; não substitui manual, comissionamento ou validação em campo.</p></section>
 <section class="calc-layout">
-<div class="calc-card"><h2><i class="fas fa-microchip"></i> Dados de entrada</h2>
-<div class="calc-grid">
+<div class="calc-card"><h2><i class="fas fa-microchip"></i> Dados de entrada</h2><div class="calc-grid">
 <div class="field"><label for="modo">Calcular a partir de</label><select id="modo"><option value="raw">Valor bruto / raw do CLP</option><option value="eng">Valor de engenharia</option><option value="pct">Percentual da faixa</option><option value="signal">Sinal físico</option></select></div>
-<div class="field"><label for="valor" id="valorLabel">Valor bruto / raw</label><input id="valor" inputmode="decimal" autocomplete="off" spellcheck="false" type="text" value="13824"/></div>
-<div class="field"><label for="rawMin">Raw mínimo</label><input id="rawMin" inputmode="decimal" autocomplete="off" spellcheck="false" type="text" value="0"/></div>
-<div class="field"><label for="rawMax">Raw máximo</label><input id="rawMax" inputmode="decimal" autocomplete="off" spellcheck="false" type="text" value="27648"/></div>
-<div class="field"><label for="engMin">Engenharia em 0% / LRV</label><input id="engMin" inputmode="decimal" autocomplete="off" spellcheck="false" type="text" value="0"/></div>
-<div class="field"><label for="engMax">Engenharia em 100% / URV</label><input id="engMax" inputmode="decimal" autocomplete="off" spellcheck="false" type="text" value="10"/></div>
+<div class="field"><label for="valor" id="valorLabel">Valor bruto / raw</label><input id="valor" inputmode="decimal" type="text" value="13824"/></div>
+<div class="field"><label for="rawMin">Raw mínimo</label><input id="rawMin" inputmode="decimal" type="text" value="0"/></div>
+<div class="field"><label for="rawMax">Raw máximo</label><input id="rawMax" inputmode="decimal" type="text" value="27648"/></div>
+<div class="field"><label for="engMin">Engenharia em 0% / LRV</label><input id="engMin" inputmode="decimal" type="text" value="0"/></div>
+<div class="field"><label for="engMax">Engenharia em 100% / URV</label><input id="engMax" inputmode="decimal" type="text" value="10"/></div>
 <div class="field"><label for="unid">Unidade de engenharia</label><input id="unid" type="text" value="bar"/></div>
 <div class="field"><label for="sinal">Sinal físico de referência</label><select id="sinal"><option value="4-20">4-20 mA</option><option value="0-20">0-20 mA</option><option value="0-10">0-10 V</option><option value="1-5">1-5 V</option><option value="3-15">3-15 psi</option><option value="none">Não mostrar</option></select></div>
-<div class="field"><label for="casas">Casas decimais</label><select id="casas"><option selected="" value="2">2 casas</option><option value="1">1 casa</option><option value="3">3 casas</option></select></div>
-</div>
-<p class="input-hint">Aceita decimal com vírgula ou ponto. O raw máximo deve ser maior que o raw mínimo; a escala de engenharia pode ser reversa.</p>
-<div class="calc-actions"><button class="mini-btn dark" onclick="copiarResultado()" type="button"><i class="fas fa-copy"></i> Copiar resultado</button><button class="mini-btn" onclick="preset('raw27648')" type="button">Raw 0-27648</button><button class="mini-btn" onclick="preset('raw420em020')" type="button">4-20 mA em raw 0-20</button><button class="mini-btn" onclick="preset('raw32767')" type="button">Raw 0-32767</button><button class="mini-btn" onclick="preset('bits12')" type="button">12 bits 0-4095</button><button class="mini-btn" onclick="preset('nivel')" type="button">Nível 0-5 m</button><button class="mini-btn" onclick="preset('reverso')" type="button">Range reverso</button><span class="report-status" id="calcStatus" aria-live="polite"></span></div>
-<div class="validation-summary" id="validationSummary" role="alert" aria-live="assertive" tabindex="-1"></div>
-</div>
-<div class="calc-card"><h2><i class="fas fa-square-poll-vertical"></i> Resultado</h2>
-<div class="calc-result" style="grid-template-columns:1fr 1fr" aria-live="polite">
-<div class="result-box"><span>Percentual da escala</span><strong id="outPct">-</strong></div>
-<div class="result-box"><span>Valor de engenharia</span><strong id="outEng">-</strong></div>
-<div class="result-box"><span>Valor bruto / raw</span><strong id="outRaw">-</strong></div>
-<div class="result-box"><span>Sinal físico estimado</span><strong id="outSignal">-</strong></div>
-<div class="result-box"><span>Span de engenharia</span><strong id="outSpan">-</strong></div>
-<div class="result-box"><span>Status</span><strong id="outStatus">-</strong></div>
-</div>
-<div style="margin-top:14px"><span class="scale-pill" id="pillRaw">Raw: -</span><span class="scale-pill" id="pillEng">Engenharia: -</span><span class="scale-pill" id="pillSignal">Sinal: -</span></div>
-<div class="formula-box" id="formula">Fórmula: % = (Raw - Raw mínimo) / (Raw máximo - Raw mínimo) × 100</div>
-</div>
+<div class="field"><label for="casas">Casas decimais</label><select id="casas"><option value="1">1 casa</option><option selected value="2">2 casas</option><option value="3">3 casas</option></select></div>
+</div><p class="input-hint">Aceita vírgula ou ponto. O raw máximo deve ser maior que o raw mínimo; a escala de engenharia pode ser reversa.</p><div class="calc-actions"><button class="mini-btn dark" onclick="copiarResultado()" type="button"><i class="fas fa-copy"></i> Copiar resultado</button><button class="mini-btn" onclick="preset('raw27648')" type="button">Raw 0-27648</button><button class="mini-btn" onclick="preset('raw420em020')" type="button">4-20 mA em raw 0-20</button><button class="mini-btn" onclick="preset('raw32767')" type="button">Raw 0-32767</button><button class="mini-btn" onclick="preset('nivel')" type="button">Nível 0-5 m</button><button class="mini-btn" onclick="preset('reverso')" type="button">Range reverso</button><span class="report-status" id="calcStatus" aria-live="polite"></span></div><div class="validation-summary" id="validationSummary" role="alert" aria-live="assertive" tabindex="-1"></div></div>
+<div class="calc-card"><h2><i class="fas fa-square-poll-vertical"></i> Resultado</h2><div class="calc-result" style="grid-template-columns:1fr 1fr" aria-live="polite"><div class="result-box"><span>Percentual da escala</span><strong id="outPct">-</strong></div><div class="result-box"><span>Valor de engenharia</span><strong id="outEng">-</strong></div><div class="result-box"><span>Valor bruto / raw</span><strong id="outRaw">-</strong></div><div class="result-box"><span>Sinal físico estimado</span><strong id="outSignal">-</strong></div><div class="result-box"><span>Span de engenharia</span><strong id="outSpan">-</strong></div><div class="result-box"><span>Status</span><strong id="outStatus">-</strong></div></div><div style="margin-top:14px"><span class="scale-pill" id="pillRaw">Raw: -</span><span class="scale-pill" id="pillEng">Engenharia: -</span><span class="scale-pill" id="pillSignal">Sinal: -</span></div><div class="formula-box" id="formula">Fórmula: % = (Raw - Raw mínimo) / (Raw máximo - Raw mínimo) × 100</div></div>
 </section>
-<section class="calc-layout">
-<div class="calc-card"><h2><i class="fas fa-table"></i> Tabela rápida da escala</h2><p class="small-muted">Use a tabela para conferir pontos de teste em bancada, teste de loop, cartão analógico, CLP, SDCD, IHM ou supervisório.</p><div class="calc-table-wrap"><table class="calc-table"><thead><tr><th>Ponto</th><th>%</th><th>Raw</th><th>Sinal</th><th>Engenharia</th></tr></thead><tbody id="tbl"></tbody></table></div></div>
-<div class="calc-card"><h2><i class="fas fa-circle-info"></i> Como usar em campo</h2><p><strong>Raw mínimo e máximo:</strong> são os limites configurados para a conversão. Exemplos comuns são 0 a 27648, 0 a 32767 ou 0 a 4095, mas o par correto deve vir da configuração e do manual do módulo.</p><p><strong>LRV e URV:</strong> são os valores de engenharia correspondentes ao início e fim da faixa, por exemplo 0 a 10 bar ou -50 a 150 °C.</p><p><strong>Sinal físico:</strong> ajuda a conferir se o percentual bate com 4-20 mA, 0-10 V ou 3-15 psi.</p><div class="calc-note"><strong>Atenção:</strong> alguns cartões analógicos já entregam o raw compensado para a faixa 4-20 mA, enquanto outros usam referência 0-20 mA. Por isso, confirme sempre a configuração do módulo e do bloco de escala.</div></div>
-</section>
-<section class="calc-card"><h2><i class="fas fa-screwdriver-wrench"></i> Escalas comuns em automação</h2><div class="calc-table-wrap"><table class="calc-table"><thead><tr><th>Escala</th><th>Uso comum</th><th>Observação técnica</th></tr></thead><tbody><tr><td>0 a 27648</td><td>Exemplo de faixa inteira usada por módulos analógicos</td><td>Confirmar se a faixa representa 0-20 mA, 4-20 mA, 0-10 V ou escala já tratada pelo módulo.</td></tr><tr><td>5530 a 27648</td><td>4-20 mA quando o módulo usa referência 0-20 mA</td><td>4 mA fica próximo de 20% de 27648, ou seja, aproximadamente 5530.</td></tr><tr><td>0 a 32767</td><td>Escala inteira positiva comum em automação</td><td>Pode variar conforme fabricante, cartão e configuração.</td></tr><tr><td>0 a 4095</td><td>Conversor A/D de 12 bits</td><td>Usado em controladores, placas e sistemas embarcados.</td></tr><tr><td>0 a 100%</td><td>Escala normalizada</td><td>Útil para supervisório, IHM, relatórios e comparação entre instrumentos.</td></tr></tbody></table></div></section>
-<section class="calc-card faq"><h2><i class="fas fa-circle-question"></i> Perguntas frequentes</h2>
-<details open=""><summary>Por que a escala do CLP fica errada mesmo com 12 mA correto?</summary><p>Porque 12 mA pode estar correto na malha, mas o bloco de escala do CLP pode estar com raw mínimo, raw máximo, LRV ou URV incorreto. O erro também pode estar na parametrização do módulo, do transmissor ou do supervisório.</p></details>
-<details><summary>0 a 27648 sempre significa 4-20 mA?</summary><p>Não. Depende da configuração do cartão analógico. Em alguns casos 0 a 27648 representa a faixa útil configurada. Em outros, pode representar 0-20 mA, fazendo 4 mA ficar aproximadamente em 5530.</p></details>
-<details><summary>Como conferir se o supervisório está escalado certo?</summary><p>Injete ou simule pontos conhecidos, como 4, 8, 12, 16 e 20 mA, confira o raw no CLP e compare o valor exibido na IHM ou supervisório com a tabela da escala.</p></details>
-<details><summary>A ferramenta aceita range reverso?</summary><p>Sim. Basta informar engenharia em 0% maior que engenharia em 100%, por exemplo 100% para 0%. A ferramenta calcula o valor correspondente, mas a aplicação real deve ser confirmada no sistema.</p></details>
-<details><summary>Esta calculadora substitui teste de loop?</summary><p>Não. Ela apoia a conferência, mas teste de loop exige procedimento, simulação ou medição real, verificação de borne, cabo, cartão, CLP, IHM, alarmes, intertravamentos e registro técnico.</p></details>
-</section>
-<section class="cta-bar"><h3>Precisa revisar escalas de CLP, SDCD, IHM ou transmissores?</h3><p>A ALOGY Engenharia pode apoiar em automação, instrumentação, teste de loop, comissionamento e documentação técnica.</p><a class="btn" href="https://wa.me/5519981442448?text=Ol%C3%A1!%20Vim%20pela%20calculadora%20de%20escala%20de%20CLP%20da%20ALOGY.%20Gostaria%20de%20apoio%20t%C3%A9cnico." rel="noopener noreferrer" target="_blank"><i class="fab fa-whatsapp"></i> Falar com a ALOGY</a></section>
-<!-- ALOGY_REVISAO_TECNICA_FERRAMENTA -->
-<section aria-label="Orientação técnica complementar" class="calc-card">
-<h2><i class="fas fa-clipboard-check"></i> Aplicação prática: Escala de CLP e Instrumento</h2>
-<p>Calculadora de escala de CLP e instrumento para converter valor bruto em engenharia e engenharia em raw. Suporta 0-27648, 0-32767, 0-4095, 4-20 mA, 0-10 V e range reverso.</p>
-<h3>Quando aplicar</h3>
-<p>Use Escala de CLP e Instrumento em partida, manutenção e diagnóstico quando for necessário conferir escala, carga, resolução, tempo de resposta, parametrização ou comunicação.</p>
-<h3>Entradas críticas para Escala de CLP e Instrumento</h3>
-<p>Confira a unidade, a condição real de operação e os campos principais desta análise: Calcular a partir de, Valor bruto / raw, Raw mínimo, Raw máximo, Engenharia em 0% / LRV, Engenharia em 100% / URV. Registre as premissas usadas para que o cálculo possa ser repetido e revisado.</p>
-<ul>
-<li>Calcular a partir de</li>
-<li>Valor bruto / raw</li>
-<li>Raw mínimo</li>
-<li>Raw máximo</li>
-<li>Engenharia em 0% / LRV</li>
-<li>Engenharia em 100% / URV</li>
-</ul>
-<h3>Como interpretar o resultado</h3>
-<p>Em Escala de CLP e Instrumento, o resultado ajuda a separar erro de configuração, limitação de hardware, queda na malha, ruído ou problema de instrumento. Confira o sinal físico e a escala configurada no CLP, supervisório ou controlador.</p>
-<p>Analise em conjunto os resultados Percentual da escala, Valor de engenharia, Valor bruto / raw, Sinal físico estimado, Span de engenharia, Status. Compare-os com limites operacionais, tolerâncias, histórico e documentação do equipamento, evitando decidir com base em um único indicador.</p>
-<h3>Checklist rápido de validação</h3>
-<ul>
-<li>Confirme se a escala do campo é igual à escala configurada no CLP ou supervisório.</li>
-<li>Verifique alimentação, aterramento funcional, blindagem e carga total da malha.</li>
-<li>Em redes, confira endereço, baud rate, paridade, terminação e polaridade.</li>
-<li>Registre o valor físico e o valor visto no sistema para facilitar diagnóstico.</li>
-</ul>
-<h3>Limites da estimativa</h3>
-<p>Use esta análise de Escala de CLP e Instrumento como apoio preliminar. Para projeto final, laudo, compra, mudança de segurança ou liberação de equipamento crítico, confirme premissas, condições de campo, documentação do fabricante e requisitos aplicáveis.</p>
-</section>
-<section class="card lote15-conteudo"><h2>Exemplo de escala analógica em CLP</h2><p>Para um transmissor de 0 a 16 bar associado a uma entrada bruta de 0 a 27648, o valor bruto 13824 corresponde a 50% da escala, ou aproximadamente 8 bar.</p><h3>Como interpretar o resultado</h3><p>Verifique se a faixa configurada no transmissor, no cartão analógico e no bloco de engenharia do programa é a mesma. Uma divergência entre esses três pontos é uma causa comum de indicação incorreta mesmo quando o sinal elétrico está normal.</p><h3>Cuidados e limitações</h3><ul><li>Confirme se o cartão usa 0-20 mA, 4-20 mA, 0-10 V ou outra faixa.</li><li>Considere limites de diagnóstico e valores de overflow do fabricante.</li><li>A resolução efetiva depende do módulo e do número de bits úteis.</li></ul><p>Consulte também a <a href="calculadora-resolucao-clp-analogico.html">resolução de cartão analógico</a> e a <a href="calculadora-calibracao-cartao-analogico-clp.html">calibração de cartão analógico</a>.</p></section>
+<section class="calc-card" aria-label="Gráfico da escala"><h2><i class="fas fa-chart-line"></i> Mapa visual da escala</h2><p>O ponto acompanha o resultado atual. A linha representa a relação linear entre o valor bruto do cartão e o valor de engenharia.</p><div class="scale-visual"><svg id="scaleGraph" viewBox="0 0 620 300" role="img" aria-labelledby="graphTitle graphDesc"><title id="graphTitle">Gráfico da escala analógica do CLP</title><desc id="graphDesc">Linha entre raw mínimo e máximo e valor de engenharia mínimo e máximo, com marcador do ponto calculado.</desc><line x1="70" y1="245" x2="570" y2="245" stroke="currentColor" stroke-opacity=".28" stroke-width="2"/><line x1="70" y1="245" x2="70" y2="35" stroke="currentColor" stroke-opacity=".28" stroke-width="2"/><line x1="70" y1="230" x2="570" y2="50" stroke="#0b6bb1" stroke-width="5" stroke-linecap="round"/><circle id="graphMarker" cx="320" cy="140" r="9" fill="#062138" stroke="white" stroke-width="3"/><line id="graphGuideX" x1="320" y1="140" x2="320" y2="245" stroke="#062138" stroke-opacity=".35" stroke-dasharray="5 5"/><line id="graphGuideY" x1="70" y1="140" x2="320" y2="140" stroke="#062138" stroke-opacity=".35" stroke-dasharray="5 5"/><text x="70" y="270" font-size="14" text-anchor="middle" id="graphRawMin">0</text><text x="570" y="270" font-size="14" text-anchor="middle" id="graphRawMax">27648</text><text x="52" y="235" font-size="14" text-anchor="end" id="graphEngMin">0 bar</text><text x="52" y="55" font-size="14" text-anchor="end" id="graphEngMax">10 bar</text><text x="320" y="294" font-size="14" text-anchor="middle">Valor bruto / raw</text><text x="16" y="145" font-size="14" text-anchor="middle" transform="rotate(-90 16 145)">Valor de engenharia</text><rect id="graphLabelBg" x="338" y="105" width="180" height="48" rx="10" fill="white" stroke="#0b6bb1" stroke-opacity=".25"/><text id="graphPointLabel" x="350" y="126" font-size="14" font-weight="700">50,00% · 8,00 bar</text><text id="graphSignalLabel" x="350" y="145" font-size="12">12,000 mA · raw 13824</text></svg><div class="scale-legend"><span><strong>Eixo X:</strong> raw do cartão</span><span><strong>Eixo Y:</strong> unidade de engenharia</span><span><strong>Ponto:</strong> valor calculado</span></div></div>
+<div class="signal-flow" aria-label="Fluxo do sinal de instrumentação até a tela"><div class="flow-step"><i class="fas fa-gauge-high"></i><strong>Instrumento</strong><br/>mede a variável</div><div class="flow-step"><i class="fas fa-wave-square"></i><strong>Sinal</strong><br/>4-20 mA / V</div><div class="flow-step"><i class="fas fa-microchip"></i><strong>Cartão AI</strong><br/>converte para raw</div><div class="flow-step"><i class="fas fa-code"></i><strong>Bloco de escala</strong><br/>normaliza o valor</div><div class="flow-step"><i class="fas fa-display"></i><strong>Engenharia</strong><br/>bar, °C, m, %...</div></div></section>
+<section class="calc-layout"><div class="calc-card"><h2><i class="fas fa-table"></i> Tabela rápida da escala</h2><p class="small-muted">Pontos de 0, 25, 50, 75 e 100% para bancada, teste de loop, CLP, SDCD, IHM ou supervisório.</p><div class="calc-table-wrap"><table class="calc-table"><thead><tr><th>Ponto</th><th>%</th><th>Raw</th><th>Sinal</th><th>Engenharia</th></tr></thead><tbody id="tbl"></tbody></table></div></div><div class="calc-card"><h2><i class="fas fa-circle-info"></i> Como interpretar</h2><p><strong>Raw:</strong> número interno lido pelo módulo analógico.</p><p><strong>LRV/URV:</strong> início e fim da faixa de engenharia.</p><p><strong>Sinal físico:</strong> referência elétrica ou pneumática usada para comparar o percentual.</p><div class="calc-note"><strong>Atenção:</strong> 0-27648 não significa automaticamente 4-20 mA. Em alguns módulos a faixa inteira representa 0-20 mA; nesse caso 4 mA fica próximo de 5530. Confirme o manual e a parametrização real.</div></div></section>
+<section class="calc-card"><h2><i class="fas fa-screwdriver-wrench"></i> Exemplo prático</h2><p>Em um transmissor de 0 a 16 bar ligado a uma entrada de 0 a 27648, raw 13824 corresponde a 50% da escala, portanto 8 bar. Se houver 12 mA em campo, mas a IHM mostrar outro valor, compare três pontos: faixa do transmissor, parametrização do cartão e bloco de escala no programa.</p><p>Consulte também <a href="calculadora-resolucao-clp-analogico.html">resolução de cartão analógico</a>, <a href="calculadora-calibracao-cartao-analogico-clp.html">calibração de cartão analógico</a> e <a href="calculadora-4-20ma.html">calculadora 4-20 mA</a>.</p></section>
+<section class="calc-card faq"><h2><i class="fas fa-circle-question"></i> Perguntas frequentes</h2><details open><summary>Por que 12 mA pode estar correto e a indicação no CLP errada?</summary><p>Porque o sinal físico pode estar normal, mas raw mínimo, raw máximo, LRV, URV ou o bloco de escala podem estar configurados incorretamente.</p></details><details><summary>Como conferir o supervisório?</summary><p>Simule pontos conhecidos, como 4, 8, 12, 16 e 20 mA, confira o raw no CLP e compare a indicação na IHM ou supervisório com a tabela da ferramenta.</p></details><details><summary>A ferramenta aceita range reverso?</summary><p>Sim. Informe o valor de engenharia de 0% maior que o de 100%. O gráfico também acompanha a escala reversa.</p></details><details><summary>Substitui teste de loop?</summary><p>Não. Teste de loop exige simulação ou medição real, conferência de borne, cabo, cartão, programa, IHM, alarmes e registro técnico.</p></details></section>
+<section class="cta-bar"><h3>Precisa revisar escalas de CLP, SDCD, IHM ou transmissores?</h3><p>A ALOGY Engenharia pode apoiar em automação, instrumentação, teste de loop e comissionamento.</p><a class="btn" href="https://wa.me/5519981442448?text=Ol%C3%A1%21%20Vim%20pela%20calculadora%20de%20escala%20de%20CLP%20da%20ALOGY.%20Gostaria%20de%20apoio%20t%C3%A9cnico." rel="noopener noreferrer" target="_blank"><i class="fab fa-whatsapp"></i> Falar com a ALOGY</a></section>
 </main>
-<footer><p>© Desde 2012 ALOGY Engenharia | www.alogy.com.br</p></footer>
+<footer><p>© Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
 <script>
-const $ = (id) => document.getElementById(id);
-const numericIds = ['valor','rawMin','rawMax','engMin','engMax'];
-let lastResult = null;
-
-function fmt(number, digits) {
-  if (!Number.isFinite(number)) return '-';
-  return Number(number).toLocaleString('pt-BR', {minimumFractionDigits:digits, maximumFractionDigits:digits});
-}
-function parsePtNumber(value) {
-  let raw = String(value ?? '').trim().replace(/\s+/g, '');
-  if (!raw || !/^[+-]?[\d.,]+$/.test(raw)) return NaN;
-  const commas = (raw.match(/,/g) || []).length;
-  const dots = (raw.match(/\./g) || []).length;
-  if (commas && dots) {
-    const decimal = raw.lastIndexOf(',') > raw.lastIndexOf('.') ? ',' : '.';
-    const thousands = decimal === ',' ? '.' : ',';
-    raw = raw.split(thousands).join('');
-    if ((raw.match(new RegExp('\\' + decimal, 'g')) || []).length !== 1) return NaN;
-    raw = raw.replace(decimal, '.');
-  } else if (commas) {
-    if (commas !== 1) return NaN;
-    raw = raw.replace(',', '.');
-  } else if (dots > 1) return NaN;
-  const number = Number(raw);
-  return Number.isFinite(number) ? number : NaN;
-}
-function rawVal(id) { return parsePtNumber($(id).value); }
-function escapeHtml(value) {
-  return String(value ?? '').replace(/[&<>'"]/g, (character) => ({
-    '&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'
-  })[character]);
-}
-function signalLimits(type) {
-  return {'4-20':[4,20,'mA'],'0-20':[0,20,'mA'],'0-10':[0,10,'V'],'1-5':[1,5,'V'],'3-15':[3,15,'psi']}[type] || null;
-}
-function signalFromPct(percent) {
-  const limits = signalLimits($('sinal').value);
-  if (!Number.isFinite(percent) || !limits) return '-';
-  return `${fmt(limits[0] + (percent / 100) * (limits[1] - limits[0]), 3)} ${limits[2]}`;
-}
-function pctFromSignal(value) {
-  const limits = signalLimits($('sinal').value);
-  return limits ? ((value - limits[0]) / (limits[1] - limits[0])) * 100 : NaN;
-}
-function showErrors(errors) {
-  numericIds.forEach((id) => $(id).removeAttribute('aria-invalid'));
-  const summary = $('validationSummary');
-  if (!errors.length) {
-    summary.classList.remove('show');
-    summary.innerHTML = '';
-    return;
-  }
-  errors.forEach((error) => { if (error.id) $(error.id)?.setAttribute('aria-invalid','true'); });
-  summary.innerHTML = '<strong>Revise os dados informados:</strong><ul>' +
-    errors.map((error) => `<li>${escapeHtml(error.message)}</li>`).join('') + '</ul>';
-  summary.classList.add('show');
-}
-function clearResults() {
-  ['outPct','outEng','outRaw','outSignal','outSpan'].forEach((id) => $(id).textContent='-');
-  $('outStatus').textContent='Verificar dados';
-  $('outStatus').parentElement.className='result-box status-bad';
-  $('formula').textContent='Fórmula indisponível até a correção dos campos.';
-  $('tbl').innerHTML='';
-  lastResult=null;
-}
-function calc(options={}) {
-  const mode=$('modo').value;
-  $('valorLabel').textContent = mode==='raw' ? 'Valor bruto / raw' : mode==='eng' ? 'Valor de engenharia' : mode==='pct' ? 'Percentual da escala (%)' : `Valor do sinal físico (${$('sinal').options[$('sinal').selectedIndex].text})`;
-  const value=rawVal('valor'), rawMin=rawVal('rawMin'), rawMax=rawVal('rawMax');
-  const engMin=rawVal('engMin'), engMax=rawVal('engMax');
-  const unit=$('unid').value.trim(), digits=Number($('casas').value);
-  const errors=[];
-  [
-    ['valor',value,$('valorLabel').textContent],['rawMin',rawMin,'Raw mínimo'],
-    ['rawMax',rawMax,'Raw máximo'],['engMin',engMin,'LRV'],['engMax',engMax,'URV']
-  ].forEach(([id,number,label]) => { if (!Number.isFinite(number)) errors.push({id,message:`${label} deve ser um número válido.`}); });
-  if (errors.length===0 && rawMax <= rawMin) errors.push({id:'rawMax',message:'O raw máximo deve ser maior que o raw mínimo.'});
-  if (errors.length===0 && Math.abs(engMax-engMin) < 1e-12) errors.push({id:'engMax',message:'LRV e URV não podem ser iguais.'});
-  if (mode==='signal' && !signalLimits($('sinal').value)) errors.push({id:null,message:'Selecione um sinal físico para calcular a partir dele.'});
-  showErrors(errors);
-  if (errors.length) {
-    clearResults();
-    if (options.focusError) ($(errors[0].id) || $('validationSummary')).focus();
-    return false;
-  }
-
-  const rawSpan=rawMax-rawMin, engSpan=engMax-engMin;
-  let percent, raw, engineering;
-  if (mode==='raw') { raw=value; percent=(raw-rawMin)/rawSpan*100; engineering=engMin+(percent/100)*engSpan; }
-  else if (mode==='eng') { engineering=value; percent=(engineering-engMin)/engSpan*100; raw=rawMin+(percent/100)*rawSpan; }
-  else if (mode==='pct') { percent=value; raw=rawMin+(percent/100)*rawSpan; engineering=engMin+(percent/100)*engSpan; }
-  else { percent=pctFromSignal(value); raw=rawMin+(percent/100)*rawSpan; engineering=engMin+(percent/100)*engSpan; }
-
-  let status='Dentro da escala', css='status-ok';
-  if (percent < 0) { status='Abaixo da escala'; css='status-warn'; }
-  else if (percent > 100) { status='Acima da escala'; css='status-warn'; }
-
-  $('outPct').textContent=`${fmt(percent,digits)} %`;
-  $('outEng').textContent=`${fmt(engineering,digits)} ${unit}`.trim();
-  $('outRaw').textContent=fmt(raw,digits);
-  $('outSignal').textContent=signalFromPct(percent);
-  $('outSpan').textContent=`${fmt(engSpan,digits)} ${unit}`.trim();
-  $('outStatus').textContent=status;
-  $('outStatus').parentElement.className='result-box '+css;
-  $('pillRaw').textContent=`Raw: ${fmt(rawMin,0)} a ${fmt(rawMax,0)}`;
-  $('pillEng').textContent=`Engenharia: ${fmt(engMin,digits)} a ${fmt(engMax,digits)} ${unit}`.trim();
-  $('pillSignal').textContent=`Sinal: ${$('sinal').value==='none' ? 'não exibido' : $('sinal').options[$('sinal').selectedIndex].text}`;
-  $('formula').textContent=`Normalização: p = (x - x mín.) / (x máx. - x mín.); escala: saída = saída mín. + p × (saída máx. - saída mín.). Neste caso, p = ${fmt(percent/100,4)}.`;
-
-  montarTabela(rawMin,rawMax,engMin,engSpan,unit,digits);
-  lastResult={percent,engineering,raw,status,unit};
-  $('calcStatus').textContent='Resultado atualizado';
-  return true;
-}
-function montarTabela(rawMin,rawMax,engMin,engSpan,unit,digits) {
-  $('tbl').innerHTML=[0,25,50,75,100].map((percent) => {
-    const raw=rawMin+(percent/100)*(rawMax-rawMin);
-    const engineering=engMin+(percent/100)*engSpan;
-    return `<tr><td>${percent===0?'LRV / início':percent===100?'URV / fim':'Ponto '+percent+'%'}</td><td>${fmt(percent,2)}%</td><td>${fmt(raw,digits)}</td><td>${signalFromPct(percent)}</td><td>${fmt(engineering,digits)} ${escapeHtml(unit)}</td></tr>`;
-  }).join('');
-}
-function preset(type) {
-  const presets={
-    raw27648:['raw','13824','0','27648','0','10','bar','4-20'],
-    raw420em020:['raw','16589','5530','27648','0','100','%','4-20'],
-    raw32767:['raw','16384','0','32767','0','250','°C','4-20'],
-    bits12:['raw','2048','0','4095','0','1000','kg','0-10'],
-    nivel:['eng','2.5','0','27648','0','5','m','4-20'],
-    reverso:['raw','13824','0','27648','100','0','%','4-20']
-  };
-  const values=presets[type];
-  if (!values) return;
-  ['modo','valor','rawMin','rawMax','engMin','engMax','unid','sinal'].forEach((id,index) => { $(id).value=values[index]; });
-  calc();
-  window.scrollTo({top:0,behavior:'smooth'});
-}
-async function copiarResultado() {
-  if (!lastResult && !calc({focusError:true})) return;
-  const text=[
-    'Resultado - Calculadora de Escala de CLP e Instrumento ALOGY',
-    `Raw mínimo/máximo: ${$('rawMin').value} / ${$('rawMax').value}`,
-    `Engenharia LRV/URV: ${$('engMin').value} / ${$('engMax').value} ${$('unid').value}`,
-    `Percentual: ${$('outPct').textContent}`,
-    `Valor de engenharia: ${$('outEng').textContent}`,
-    `Raw calculado: ${$('outRaw').textContent}`,
-    `Sinal físico estimado: ${$('outSignal').textContent}`,
-    `Status: ${$('outStatus').textContent}`,
-    'Observação: resultado orientativo; confirme a configuração e a documentação do módulo.'
-  ].join('\n');
-  try {
-    if (navigator.clipboard && window.isSecureContext) await navigator.clipboard.writeText(text);
-    else {
-      const area=document.createElement('textarea');
-      area.value=text; area.style.position='fixed'; area.style.opacity='0';
-      document.body.appendChild(area); area.select();
-      if (!document.execCommand('copy')) throw new Error('Falha ao copiar');
-      area.remove();
-    }
-    $('calcStatus').textContent='Resultado copiado';
-  } catch (error) {
-    $('calcStatus').textContent='Não foi possível copiar automaticamente';
-  }
-}
-numericIds.forEach((id) => $(id).addEventListener('input',calc));
-['modo','sinal','casas'].forEach((id) => {
-  $(id).addEventListener('input',calc);
-  $(id).addEventListener('change',calc);
-});
-$('unid').addEventListener('input',calc);
-calc();
+const $=id=>document.getElementById(id);const numericIds=['valor','rawMin','rawMax','engMin','engMax'];let lastResult=null;
+function fmt(n,d=2){return Number.isFinite(n)?Number(n).toLocaleString('pt-BR',{minimumFractionDigits:d,maximumFractionDigits:d}):'-'}
+function parsePt(v){let s=String(v??'').trim().replace(/\s+/g,'');if(!s||!/^[+-]?[\d.,]+$/.test(s))return NaN;const c=(s.match(/,/g)||[]).length,d=(s.match(/\./g)||[]).length;if(c&&d){const dec=s.lastIndexOf(',')>s.lastIndexOf('.')?',':'.',th=dec===','?'.':',';s=s.split(th).join('');if((s.match(new RegExp('\\'+dec,'g'))||[]).length!==1)return NaN;s=s.replace(dec,'.')}else if(c){if(c!==1)return NaN;s=s.replace(',','.')}else if(d>1)return NaN;const n=Number(s);return Number.isFinite(n)?n:NaN}
+function val(id){return parsePt($(id).value)}
+function signalLimits(t){return {'4-20':[4,20,'mA'],'0-20':[0,20,'mA'],'0-10':[0,10,'V'],'1-5':[1,5,'V'],'3-15':[3,15,'psi']}[t]||null}
+function signalValue(p){const l=signalLimits($('sinal').value);return l?l[0]+p/100*(l[1]-l[0]):NaN}
+function signalText(p){const l=signalLimits($('sinal').value);return l?`${fmt(signalValue(p),3)} ${l[2]}`:'-'}
+function pctFromSignal(v){const l=signalLimits($('sinal').value);return l?(v-l[0])/(l[1]-l[0])*100:NaN}
+function clearResults(){['outPct','outEng','outRaw','outSignal','outSpan'].forEach(id=>$(id).textContent='-');$('outStatus').textContent='Verificar dados';$('tbl').innerHTML='';lastResult=null}
+function showError(msg){const box=$('validationSummary');if(!msg){box.classList.remove('show');box.innerHTML='';return}box.innerHTML='<strong>Revise os dados:</strong> '+msg;box.classList.add('show')}
+function updateGraph(percent,raw,engineering,unit,digits,rawMin,rawMax,engMin,engMax){const p=Math.max(0,Math.min(100,percent));const x=70+5*p;const y=230-1.8*p;const marker=$('graphMarker');marker.setAttribute('cx',x);marker.setAttribute('cy',y);$('graphGuideX').setAttribute('x1',x);$('graphGuideX').setAttribute('x2',x);$('graphGuideX').setAttribute('y1',y);$('graphGuideY').setAttribute('x2',x);$('graphGuideY').setAttribute('y1',y);$('graphGuideY').setAttribute('y2',y);$('graphRawMin').textContent=fmt(rawMin,0);$('graphRawMax').textContent=fmt(rawMax,0);$('graphEngMin').textContent=`${fmt(engMin,digits)} ${unit}`.trim();$('graphEngMax').textContent=`${fmt(engMax,digits)} ${unit}`.trim();let lx=x+18;if(lx>390)lx=x-195;let ly=y-35;if(ly<38)ly=y+18;$('graphLabelBg').setAttribute('x',lx);$('graphLabelBg').setAttribute('y',ly);$('graphPointLabel').setAttribute('x',lx+12);$('graphPointLabel').setAttribute('y',ly+21);$('graphSignalLabel').setAttribute('x',lx+12);$('graphSignalLabel').setAttribute('y',ly+40);$('graphPointLabel').textContent=`${fmt(percent,digits)}% · ${fmt(engineering,digits)} ${unit}`.trim();$('graphSignalLabel').textContent=`${signalText(percent)} · raw ${fmt(raw,digits)}`}
+function makeTable(rawMin,rawMax,engMin,engSpan,unit,digits){$('tbl').innerHTML=[0,25,50,75,100].map(p=>{const r=rawMin+p/100*(rawMax-rawMin),e=engMin+p/100*engSpan;return `<tr><td>${p===0?'LRV / início':p===100?'URV / fim':'Ponto '+p+'%'}</td><td>${fmt(p,2)}%</td><td>${fmt(r,digits)}</td><td>${signalText(p)}</td><td>${fmt(e,digits)} ${unit}</td></tr>`}).join('')}
+function calc(){const mode=$('modo').value;$('valorLabel').textContent=mode==='raw'?'Valor bruto / raw':mode==='eng'?'Valor de engenharia':mode==='pct'?'Percentual da escala (%)':`Valor do sinal físico (${$('sinal').options[$('sinal').selectedIndex].text})`;const value=val('valor'),rawMin=val('rawMin'),rawMax=val('rawMax'),engMin=val('engMin'),engMax=val('engMax'),unit=$('unid').value.trim(),digits=Number($('casas').value);if(![value,rawMin,rawMax,engMin,engMax].every(Number.isFinite)){showError('Preencha todos os campos numéricos com valores válidos.');clearResults();return false}if(rawMax<=rawMin){showError('O raw máximo deve ser maior que o raw mínimo.');clearResults();return false}if(Math.abs(engMax-engMin)<1e-12){showError('LRV e URV não podem ser iguais.');clearResults();return false}if(mode==='signal'&&!signalLimits($('sinal').value)){showError('Selecione um sinal físico válido.');clearResults();return false}showError('');const rawSpan=rawMax-rawMin,engSpan=engMax-engMin;let percent,raw,engineering;if(mode==='raw'){raw=value;percent=(raw-rawMin)/rawSpan*100;engineering=engMin+percent/100*engSpan}else if(mode==='eng'){engineering=value;percent=(engineering-engMin)/engSpan*100;raw=rawMin+percent/100*rawSpan}else if(mode==='pct'){percent=value;raw=rawMin+percent/100*rawSpan;engineering=engMin+percent/100*engSpan}else{percent=pctFromSignal(value);raw=rawMin+percent/100*rawSpan;engineering=engMin+percent/100*engSpan}let status='Dentro da escala',css='status-ok';if(percent<0){status='Abaixo da escala';css='status-warn'}else if(percent>100){status='Acima da escala';css='status-warn'}$('outPct').textContent=`${fmt(percent,digits)} %`;$('outEng').textContent=`${fmt(engineering,digits)} ${unit}`.trim();$('outRaw').textContent=fmt(raw,digits);$('outSignal').textContent=signalText(percent);$('outSpan').textContent=`${fmt(engSpan,digits)} ${unit}`.trim();$('outStatus').textContent=status;$('outStatus').parentElement.className='result-box '+css;$('pillRaw').textContent=`Raw: ${fmt(rawMin,0)} a ${fmt(rawMax,0)}`;$('pillEng').textContent=`Engenharia: ${fmt(engMin,digits)} a ${fmt(engMax,digits)} ${unit}`.trim();$('pillSignal').textContent=`Sinal: ${$('sinal').value==='none'?'não exibido':$('sinal').options[$('sinal').selectedIndex].text}`;$('formula').textContent=`Normalização: p = (x - x mín.) / (x máx. - x mín.). Neste ponto, p = ${fmt(percent/100,4)}.`;makeTable(rawMin,rawMax,engMin,engSpan,unit,digits);updateGraph(percent,raw,engineering,unit,digits,rawMin,rawMax,engMin,engMax);lastResult={percent,raw,engineering,status,unit};$('calcStatus').textContent='Resultado atualizado';return true}
+function preset(type){const p={raw27648:['raw','13824','0','27648','0','10','bar','4-20'],raw420em020:['raw','16589','5530','27648','0','100','%','4-20'],raw32767:['raw','16384','0','32767','0','250','°C','4-20'],nivel:['eng','2,5','0','27648','0','5','m','4-20'],reverso:['raw','13824','0','27648','100','0','%','4-20']}[type];if(!p)return;['modo','valor','rawMin','rawMax','engMin','engMax','unid','sinal'].forEach((id,i)=>$(id).value=p[i]);calc()}
+async function copiarResultado(){if(!lastResult&&!calc())return;const text=['Resultado - Escala de CLP ALOGY',`Raw: ${$('outRaw').textContent}`,`Percentual: ${$('outPct').textContent}`,`Engenharia: ${$('outEng').textContent}`,`Sinal: ${$('outSignal').textContent}`,`Status: ${$('outStatus').textContent}`].join('\n');try{await navigator.clipboard.writeText(text);$('calcStatus').textContent='Resultado copiado'}catch(e){$('calcStatus').textContent='Não foi possível copiar automaticamente'}}
+numericIds.forEach(id=>$(id).addEventListener('input',calc));['modo','sinal','casas'].forEach(id=>{$(id).addEventListener('input',calc);$(id).addEventListener('change',calc)});$('unid').addEventListener('input',calc);calc();
 </script>
-
 <a aria-label="Voltar para Ferramentas" class="floating-back-tools no-print" href="ferramentas.html"><i class="fas fa-arrow-left"></i> Voltar para Ferramentas</a>
 </body>
 </html>
