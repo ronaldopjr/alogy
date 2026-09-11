@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-
 <html lang="pt-br">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Calculadora PID Online | Sintonia de Controle Industrial</title>
-<meta content="Calcule parâmetros iniciais de sintonia PID, PI e P para malhas de controle industrial usando modelo de processo, tempo morto e constante de tempo." name="description"/>
+<meta content="Calcule parâmetros iniciais de sintonia PID, PI e P para malhas de controle industrial usando ganho do processo, tempo morto e constante de tempo." name="description"/>
 <meta content="index,follow" name="robots"/>
 <meta content="#004b80" name="theme-color"/>
 <link href="https://www.alogy.com.br/calculadora-sintonia-pid.html" rel="canonical"/>
@@ -14,462 +13,68 @@
 <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
 <link href="/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180"/>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<link crossorigin href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
 <link href="style.css?v=20260722-layout-original-uppercase-mobilefix" rel="stylesheet"/>
-<script defer="" src="app.js"></script>
+<script defer src="app.js"></script>
 <meta content="pt_BR" property="og:locale"/>
 <meta content="website" property="og:type"/>
 <meta content="ALOGY Engenharia" property="og:site_name"/>
 <meta content="Calculadora PID Online | Sintonia de Controle Industrial" property="og:title"/>
-<meta content="Calcule parâmetros iniciais de sintonia P, PI e PID para malhas de controle industrial." property="og:description"/>
+<meta content="Estime parâmetros iniciais P, PI e PID e visualize o modelo de reação do processo." property="og:description"/>
 <meta content="https://www.alogy.com.br/calculadora-sintonia-pid.html" property="og:url"/>
 <meta content="https://www.alogy.com.br/favicon-512x512.png" property="og:image"/>
 <meta content="summary_large_image" name="twitter:card"/>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Calculadora PID Online | Sintonia de Controle Industrial","url":"https://www.alogy.com.br/calculadora-sintonia-pid.html","applicationCategory":"EngineeringApplication","operatingSystem":"Web","description":"Calculadora online para estimar parâmetros iniciais de sintonia P, PI e PID em malhas de controle industrial usando ganho do processo, tempo morto e constante de tempo.","publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"},"dateModified":"2026-07-21","author":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"}}</script>
-<script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"FAQPage",
-    "mainEntity":[
-      {"@type":"Question","name":"Essa calculadora ajusta o PID automaticamente no CLP?","acceptedAnswer":{"@type":"Answer","text":"Não. Ela calcula valores iniciais de referência para estudo e pré-sintonia. A aplicação final deve ser testada e validada na malha real por profissional habilitado."}},
-      {"@type":"Question","name":"O que significam Kp, Ti e Td?","acceptedAnswer":{"@type":"Answer","text":"Kp é o ganho proporcional do controlador, Ti é o tempo integral e Td é o tempo derivativo. Alguns controladores usam Ki e Kd em vez de Ti e Td, então é necessário conferir a forma usada no CLP ou controlador."}},
-      {"@type":"Question","name":"Posso usar a mesma sintonia para temperatura, pressão, nível e vazão?","acceptedAnswer":{"@type":"Answer","text":"Não necessariamente. Cada processo tem dinâmica própria. Temperatura costuma ser mais lenta, vazão costuma ser mais rápida, nível pode ser integrador e pressão depende muito da instalação."}},
-      {"@type":"Question","name":"Qual método é mais seguro para começar?","acceptedAnswer":{"@type":"Answer","text":"Para ajuste inicial conservador, normalmente é melhor começar com sintonia mais lenta e estável, como IMC/Lambda conservador, e depois ajustar em campo conforme a resposta real da malha."}}
-    ]
-  }
-  </script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Calculadora PID Online | Sintonia de Controle Industrial","url":"https://www.alogy.com.br/calculadora-sintonia-pid.html","applicationCategory":"EngineeringApplication","operatingSystem":"Web","description":"Calculadora para estimar parâmetros iniciais P, PI e PID usando ganho do processo, tempo morto e constante de tempo.","publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"},"dateModified":"2026-09-11"}</script>
 <style>
-    .pid-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
-    .mini-btn{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(0,107,177,.25);background:rgba(0,107,177,.08);color:#0b3a62;border-radius:12px;padding:10px 12px;font-weight:900;cursor:pointer;text-decoration:none;font:inherit}
-    .mini-btn:hover{background:rgba(0,107,177,.12)}
-    .mini-btn.dark{background:#0b3a62;color:#fff;border-color:#0b3a62}
-    .tool-select{width:100%;border:1px solid rgba(0,0,0,.12);border-radius:12px;padding:12px;background:#fff;font:inherit}
-    .pid-pill-line{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
-    .pid-pill{display:inline-flex;align-items:center;gap:8px;border-radius:999px;background:rgba(0,107,177,.08);border:1px solid rgba(0,107,177,.18);color:#0b3a62;font-weight:900;padding:8px 11px;font-size:.9rem}
-    .pid-status-ok{border-color:rgba(34,197,94,.35)!important;background:rgba(34,197,94,.10)!important;color:#166534!important}
-    .pid-status-warn{border-color:rgba(245,158,11,.35)!important;background:rgba(245,158,11,.10)!important;color:#92400e!important}
-    .pid-status-bad{border-color:rgba(239,68,68,.35)!important;background:rgba(239,68,68,.10)!important;color:#991b1b!important}
-    .pid-help-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
-    .pid-help-card{background:rgba(0,107,177,.06);border:1px solid rgba(0,107,177,.16);border-radius:14px;padding:13px}
-    .pid-help-card strong{display:block;color:#0b3a62;margin-bottom:5px}.pid-help-card span{display:block;color:var(--muted);font-size:.92rem;line-height:1.45}
-    .small-muted{color:var(--muted);font-size:.92rem;line-height:1.55}
-    .faq details{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:14px;padding:14px;margin-top:10px;box-shadow:0 6px 16px rgba(0,0,0,.04)}
-    .faq summary{cursor:pointer;font-weight:900;color:#0b3a62}.faq p{margin:10px 0 0;color:var(--muted)}
-    @media(max-width:900px){.pid-help-grid{grid-template-columns:1fr}.pid-actions .mini-btn{width:100%;justify-content:center}}
-    @media print{header,.social-floating,.fab-wrap,.cta-bar,footer,.pid-actions,.tools-hero .btn,.no-print{display:none!important}body{background:#fff}.container{max-width:100%;padding:0}.calc-card,.tools-hero{box-shadow:none;border:1px solid #ddd}.calc-layout{display:block}.calc-card{margin:12px 0}.calc-table th{background:#eee!important;color:#111!important}}
-  </style>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Início","item":"https://www.alogy.com.br/"},{"@type":"ListItem","position":2,"name":"Automação e CLP","item":"https://www.alogy.com.br/ferramentas-automacao-clp.html"},{"@type":"ListItem","position":3,"name":"Sintonia PID","item":"https://www.alogy.com.br/calculadora-sintonia-pid.html"}]}</script></head>
+.pid-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}.mini-btn{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(0,107,177,.25);background:rgba(0,107,177,.08);color:#0b3a62;border-radius:12px;padding:10px 12px;font-weight:900;cursor:pointer;text-decoration:none;font:inherit}.mini-btn:hover{background:rgba(0,107,177,.12)}.mini-btn.dark{background:#0b3a62;color:#fff;border-color:#0b3a62}.tool-select{width:100%;border:1px solid rgba(0,0,0,.12);border-radius:12px;padding:12px;background:#fff;font:inherit}.pid-pill-line{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.pid-pill{display:inline-flex;align-items:center;gap:8px;border-radius:999px;background:rgba(0,107,177,.08);border:1px solid rgba(0,107,177,.18);color:#0b3a62;font-weight:900;padding:8px 11px;font-size:.9rem}.pid-status-ok{border-color:rgba(34,197,94,.35)!important;background:rgba(34,197,94,.10)!important;color:#166534!important}.pid-status-warn{border-color:rgba(245,158,11,.35)!important;background:rgba(245,158,11,.10)!important;color:#92400e!important}.pid-status-bad{border-color:rgba(239,68,68,.35)!important;background:rgba(239,68,68,.10)!important;color:#991b1b!important}.pid-help-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}.pid-help-card{background:rgba(0,107,177,.06);border:1px solid rgba(0,107,177,.16);border-radius:14px;padding:13px}.pid-help-card strong{display:block;color:#0b3a62;margin-bottom:5px}.pid-help-card span{display:block;color:var(--muted);font-size:.92rem;line-height:1.45}.small-muted{color:var(--muted);font-size:.92rem;line-height:1.55}.faq details{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:14px;padding:14px;margin-top:10px;box-shadow:0 6px 16px rgba(0,0,0,.04)}.faq summary{cursor:pointer;font-weight:900;color:#0b3a62}.faq p{margin:10px 0 0;color:var(--muted)}
+.pid-visual{border:1px solid rgba(0,107,177,.16);border-radius:18px;background:#f8fbfe;padding:14px}.pid-visual svg{display:block;width:100%;height:auto}.loop-flow{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:16px}.loop-step{text-align:center;border:1px solid rgba(0,107,177,.16);border-radius:14px;padding:12px;background:#fff;font-size:.9rem;line-height:1.4}.loop-step i{display:block;font-size:1.25rem;color:#0b3a62;margin-bottom:6px}.reaction-legend{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.reaction-legend span{background:#fff;border:1px solid rgba(0,0,0,.1);border-radius:999px;padding:7px 10px;font-size:.86rem}
+@media(max-width:900px){.pid-help-grid,.loop-flow{grid-template-columns:1fr}.pid-actions .mini-btn{width:100%;justify-content:center}}
+@media print{header,.social-floating,.fab-wrap,footer,.pid-actions,.no-print{display:none!important}body{background:#fff}.container{max-width:100%;padding:0}.calc-card,.tools-hero{box-shadow:none;border:1px solid #ddd}}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Início","item":"https://www.alogy.com.br/"},{"@type":"ListItem","position":2,"name":"Automação","item":"https://www.alogy.com.br/ferramentas.html#automacao"},{"@type":"ListItem","position":3,"name":"Sintonia PID","item":"https://www.alogy.com.br/calculadora-sintonia-pid.html"}]}</script>
+</head>
 <body class="tools-page alogy-stage3-forms">
 <header>
-<div class="container headbar">
-<a aria-label="Voltar para o início" class="logo-wrapper" href="/">
-<img alt="ALOGY Engenharia" decoding="async" height="308" src="logo-alogy.webp" width="878"/>
-</a>
-<button aria-label="Abrir menu" class="menu-toggle" onclick="toggleMobileMenu()">
-<i class="fas fa-bars"></i>
-</button>
-</div>
-<nav aria-label="Menu principal" class="desktop">
-<div class="container navlinks">
-<a href="/">Início</a>
-<a href="industrial.html">Serviços Industriais</a>
-<a href="residencial.html">Serviços Residenciais</a>
-<a href="cases.html">Projetos</a>
-<a href="cursos.html">Cursos</a>
-<a href="blog.html">Blog</a>
-<a href="ferramentas.html">Ferramentas</a>
-<a href="sobre.html">Sobre</a>
-<a href="/#contato">Contato</a>
-</div>
-</nav>
-<nav aria-label="Menu mobile" class="mobile">
-<a href="/">Início</a>
-<a href="industrial.html">Serviços Industriais</a>
-<a href="residencial.html">Serviços Residenciais</a>
-<a href="cases.html">Projetos</a>
-<a href="cursos.html">Cursos</a>
-<a href="blog.html">Blog</a>
-<a href="ferramentas.html">Ferramentas</a>
-<a href="sobre.html">Sobre</a>
-<a href="/#contato">Contato</a>
-</nav>
+<div class="container headbar"><a aria-label="Voltar para o início" class="logo-wrapper" href="/"><img alt="ALOGY Engenharia" decoding="async" height="308" src="logo-alogy.webp" width="878"/></a><button aria-label="Abrir menu" class="menu-toggle" onclick="toggleMobileMenu()"><i class="fas fa-bars"></i></button></div>
+<nav aria-label="Menu principal" class="desktop"><div class="container navlinks"><a href="/">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="/guia/">Guia</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></div></nav>
+<nav aria-label="Menu mobile" class="mobile"><a href="/">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="/guia/">Guia</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></nav>
 </header>
-<div aria-label="Redes sociais" class="social-floating">
-<a aria-label="LinkedIn" class="linkedin" href="https://www.linkedin.com/company/alogyengenharia" rel="noopener noreferrer" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-<a aria-label="Instagram" class="instagram" href="https://www.instagram.com/alogyengenharia" rel="noopener noreferrer" target="_blank"><i class="fab fa-instagram"></i></a>
-<a aria-label="Facebook" class="facebook" href="https://www.facebook.com/alogyengenharia" rel="noopener noreferrer" target="_blank"><i class="fab fa-facebook-f"></i></a>
-<a aria-label="YouTube" class="youtube" href="https://www.youtube.com/@alogyengenharia" rel="noopener noreferrer" target="_blank"><i class="fab fa-youtube"></i></a>
-<a aria-label="Hotmart" class="hotmart" href="https://hotmart.com/pt-br/club/alogyengenharia" rel="noopener noreferrer" target="_blank">H</a>
-<a aria-label="TikTok" class="tiktok" href="https://www.tiktok.com/@alogyengenharia" rel="noopener noreferrer" target="_blank"><i class="fab fa-tiktok"></i></a>
-</div>
-<div aria-label="Ações rápidas" class="fab-wrap">
-<a class="fab-btn mail" href="mailto:contato@alogy.com.br">
-<i class="fas fa-envelope"></i> contato@alogy.com.br
-    </a>
-<a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1!%20Vim%20pela%20calculadora%20PID%20da%20ALOGY.%20Gostaria%20de%20atendimento%20em%20automa%C3%A7%C3%A3o%20industrial." rel="noopener noreferrer" target="_blank">
-<i class="fab fa-whatsapp"></i> WhatsApp
-    </a>
-</div>
-<main class="container" style="margin-top:18px"><div aria-label="Ações da ferramenta" class="tool-page-actions no-print"><button class="btn print" onclick="window.print()" type="button"><i class="fas fa-print"></i> Imprimir</button></div>
-<div class="no-print" style="margin-bottom:14px;display:flex;gap:10px;flex-wrap:wrap">
-
-
-<a class="btn secondary" href="cursos.html"><i class="fas fa-graduation-cap"></i> Curso de instrumentação</a>
-</div>
-<section class="tools-hero">
-<h1>Calculadora PID Online</h1>
-<p class="muted" data-alogy-content-meta><strong>Conteúdo técnico:</strong> ALOGY Engenharia · <strong>Atualizado em:</strong> 21/07/2026</p>
-<p>Calcule valores iniciais de sintonia P, PI e PID para malhas de controle industrial. A ferramenta usa modelo simplificado de processo com ganho, tempo morto e constante de tempo para apoiar estudos, manutenção e comissionamento.</p>
-</section>
-<section aria-label="Aviso de responsabilidade" class="calc-card">
-<h2><i class="fas fa-triangle-exclamation"></i> Uso orientativo e responsabilidade técnica</h2>
-<p>Esta ferramenta é apenas para estudo, apoio técnico e pré-análise. Os resultados podem conter simplificações, aproximações ou erros de preenchimento e não substituem normas aplicáveis, catálogos de fabricantes, procedimentos internos, medições em campo, projetos, laudos ou análise de profissional habilitado. Na máxima extensão permitida pela legislação aplicável, a ALOGY não assume responsabilidade por decisões tomadas exclusivamente com base nesta estimativa orientativa, sem verificação das condições reais e sem validação técnica adequada. Nada neste aviso exclui direitos ou responsabilidades que não possam ser legalmente afastados.</p>
-</section>
+<div aria-label="Redes sociais" class="social-floating"><a aria-label="LinkedIn" class="linkedin" href="https://www.linkedin.com/company/alogyengenharia" rel="noopener noreferrer" target="_blank"><i class="fab fa-linkedin-in"></i></a><a aria-label="Instagram" class="instagram" href="https://www.instagram.com/alogyengenharia" rel="noopener noreferrer" target="_blank"><i class="fab fa-instagram"></i></a><a aria-label="Facebook" class="facebook" href="https://www.facebook.com/alogyengenharia" rel="noopener noreferrer" target="_blank"><i class="fab fa-facebook-f"></i></a><a aria-label="YouTube" class="youtube" href="https://www.youtube.com/@alogyengenharia" rel="noopener noreferrer" target="_blank"><i class="fab fa-youtube"></i></a><a aria-label="TikTok" class="tiktok" href="https://www.tiktok.com/@alogyengenharia" rel="noopener noreferrer" target="_blank"><i class="fab fa-tiktok"></i></a></div>
+<div aria-label="Ações rápidas" class="fab-wrap"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1%21%20Vim%20pela%20calculadora%20PID%20da%20ALOGY." rel="noopener noreferrer" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
+<main class="container" style="margin-top:18px">
+<div aria-label="Ações da ferramenta" class="tool-page-actions no-print"><button class="btn print" onclick="window.print()" type="button"><i class="fas fa-print"></i> Imprimir</button></div>
+<section class="tools-hero"><h1>Calculadora PID Online</h1><p class="muted"><strong>Conteúdo técnico:</strong> ALOGY Engenharia · <strong>Atualizado em:</strong> 11/09/2026</p><p>Estime valores iniciais P, PI e PID a partir de um modelo simplificado de primeira ordem com tempo morto. A curva mostra visualmente o tempo morto θ e a constante de tempo τ informados.</p></section>
+<section aria-label="Aviso de responsabilidade" class="calc-card"><h2><i class="fas fa-triangle-exclamation"></i> Uso orientativo</h2><p>Os parâmetros são pontos iniciais para estudo e comissionamento. Não aplique valores diretamente em processos críticos sem autorização, análise de risco, limites de saída, acompanhamento da resposta real e validação técnica.</p></section>
 <section class="calc-layout">
-<div class="calc-card">
-<h2><i class="fas fa-sliders"></i> Dados da malha</h2>
-<p>Informe o comportamento aproximado do processo. Para uma primeira avaliação, use valores obtidos por teste em degrau ou por histórico da malha.</p>
-<div class="calc-grid">
-<div class="field">
-<label for="pid_metodo">Método de sintonia</label>
-<select class="tool-select" id="pid_metodo">
-<option selected="" value="imc">IMC / Lambda - mais conservador</option>
-<option value="zn">Ziegler-Nichols - reação do processo</option>
-</select>
-</div>
-<div class="field">
-<label for="pid_tipo">Tipo de controlador</label>
-<select class="tool-select" id="pid_tipo">
-<option value="p">P</option>
-<option selected="" value="pi">PI</option>
-<option value="pid">PID</option>
-</select>
-</div>
-<div class="field">
-<label for="pid_k">Ganho do processo (K)</label>
-<input id="pid_k" inputmode="decimal" step="any" type="number" value="1.5"/>
-</div>
-<div class="field">
-<label for="pid_theta">Tempo morto θ (s)</label>
-<input id="pid_theta" inputmode="decimal" step="any" type="number" value="12"/>
-</div>
-<div class="field">
-<label for="pid_tau">Constante de tempo τ (s)</label>
-<input id="pid_tau" inputmode="decimal" step="any" type="number" value="60"/>
-</div>
-<div class="field">
-<label for="pid_lambda_tipo">Resposta desejada</label>
-<select class="tool-select" id="pid_lambda_tipo">
-<option selected="" value="conservadora">Conservadora</option>
-<option value="normal">Normal</option>
-<option value="rapida">Rápida</option>
-<option value="manual">Lambda manual</option>
-</select>
-</div>
-<div class="field full" id="lambdaManualWrap" style="display:none">
-<label for="pid_lambda">Lambda λ manual (s)</label>
-<input id="pid_lambda" inputmode="decimal" step="any" type="number" value="72"/>
-</div>
-<div class="field full">
-<label for="pid_acao">Ação do controlador</label>
-<select class="tool-select" id="pid_acao">
-<option selected="" value="reversa">Reversa - saída sobe para corrigir PV baixa</option>
-<option value="direta">Direta - saída sobe para corrigir PV alta</option>
-</select>
-</div>
-</div>
-<div class="calc-note" id="pid_nota">Use como ponto de partida. A sintonia final depende da resposta real do processo, limites de segurança, atuação da válvula/inversor e filosofia de controle.</div>
-<div class="pid-actions">
-<button class="mini-btn dark" onclick="copiarPID()" type="button"><i class="fas fa-copy"></i> Copiar resultado</button>
-<button class="mini-btn" onclick="exPID('temperatura')" type="button"><i class="fas fa-temperature-half"></i> Exemplo temperatura</button>
-<button class="mini-btn" onclick="exPID('vazao')" type="button"><i class="fas fa-water"></i> Exemplo vazão</button>
-<button class="mini-btn" onclick="exPID('nivel')" type="button"><i class="fas fa-gauge-high"></i> Exemplo nível</button>
-</div>
-</div>
-<div class="calc-card">
-<h2><i class="fas fa-square-poll-vertical"></i> Resultado da sintonia</h2>
-<div class="calc-result" style="grid-template-columns:1fr 1fr">
-<div class="result-box"><span>Kc / Kp do controlador</span><strong id="pid_kc">-</strong></div>
-<div class="result-box"><span>Ti - tempo integral</span><strong id="pid_ti">-</strong></div>
-<div class="result-box"><span>Td - tempo derivativo</span><strong id="pid_td">-</strong></div>
-<div class="result-box"><span>Lambda usado</span><strong id="pid_lambda_out">-</strong></div>
-</div>
-<div class="calc-result" style="grid-template-columns:1fr 1fr;margin-top:10px">
-<div class="result-box"><span>Ki aproximado</span><strong id="pid_ki">-</strong></div>
-<div class="result-box"><span>Kd aproximado</span><strong id="pid_kd">-</strong></div>
-</div>
-<div class="pid-pill-line">
-<span class="pid-pill" id="pid_metodo_out"><i class="fas fa-gears"></i> Método: -</span>
-<span class="pid-pill" id="pid_tipo_out"><i class="fas fa-sliders"></i> Controle: -</span>
-<span class="pid-pill" id="pid_status"><i class="fas fa-circle-info"></i> Status: -</span>
-</div>
-<div class="calc-note warn" id="pid_alerta" style="display:none"></div>
-</div>
+<div class="calc-card"><h2><i class="fas fa-sliders"></i> Dados da malha</h2><div class="calc-grid">
+<div class="field"><label for="pid_metodo">Método</label><select class="tool-select" id="pid_metodo"><option selected value="imc">IMC / Lambda</option><option value="zn">Ziegler-Nichols — reação do processo</option></select></div>
+<div class="field"><label for="pid_tipo">Controlador</label><select class="tool-select" id="pid_tipo"><option value="p">P</option><option selected value="pi">PI</option><option value="pid">PID</option></select></div>
+<div class="field"><label for="pid_k">Ganho do processo K</label><input id="pid_k" inputmode="decimal" step="any" type="number" value="1.5"/></div>
+<div class="field"><label for="pid_theta">Tempo morto θ (s)</label><input id="pid_theta" inputmode="decimal" step="any" type="number" value="12"/></div>
+<div class="field"><label for="pid_tau">Constante de tempo τ (s)</label><input id="pid_tau" inputmode="decimal" step="any" type="number" value="60"/></div>
+<div class="field"><label for="pid_lambda_tipo">Resposta desejada</label><select class="tool-select" id="pid_lambda_tipo"><option selected value="conservadora">Conservadora</option><option value="normal">Normal</option><option value="rapida">Rápida</option><option value="manual">Lambda manual</option></select></div>
+<div class="field full" id="lambdaManualWrap" style="display:none"><label for="pid_lambda">Lambda λ manual (s)</label><input id="pid_lambda" inputmode="decimal" step="any" type="number" value="90"/></div>
+</div><div class="calc-note" id="pid_nota">Use valores obtidos por teste em degrau ou histórico confiável da malha.</div><div class="pid-actions"><button class="mini-btn dark" onclick="copiarPID()" type="button"><i class="fas fa-copy"></i> Copiar resultado</button><button class="mini-btn" onclick="exPID('temperatura')" type="button">Exemplo temperatura</button><button class="mini-btn" onclick="exPID('vazao')" type="button">Exemplo vazão</button><button class="mini-btn" onclick="exPID('nivel')" type="button">Exemplo nível</button></div></div>
+<div class="calc-card"><h2><i class="fas fa-square-poll-vertical"></i> Resultado da sintonia</h2><div class="calc-result" style="grid-template-columns:1fr 1fr"><div class="result-box"><span>Kc / Kp</span><strong id="pid_kc">-</strong></div><div class="result-box"><span>Ti</span><strong id="pid_ti">-</strong></div><div class="result-box"><span>Td</span><strong id="pid_td">-</strong></div><div class="result-box"><span>Lambda usado</span><strong id="pid_lambda_out">-</strong></div><div class="result-box"><span>Ki aproximado</span><strong id="pid_ki">-</strong></div><div class="result-box"><span>Kd aproximado</span><strong id="pid_kd">-</strong></div></div><div class="pid-pill-line"><span class="pid-pill" id="pid_metodo_out"><i class="fas fa-gears"></i> Método: -</span><span class="pid-pill" id="pid_tipo_out"><i class="fas fa-sliders"></i> Controle: -</span><span class="pid-pill" id="pid_status"><i class="fas fa-circle-info"></i> Status: -</span></div><div class="calc-note warn" id="pid_alerta" style="display:none"></div></div>
 </section>
-<section class="calc-layout">
-<div class="calc-card">
-<h2><i class="fas fa-list-check"></i> Interpretação prática</h2>
-<div class="pid-help-grid">
-<div class="pid-help-card"><strong>Aumentar P / Kp</strong><span>Deixa a malha mais rápida, mas pode causar oscilação se exagerar.</span></div>
-<div class="pid-help-card"><strong>Aumentar I</strong><span>Remove erro permanente, mas pode deixar a malha instável se o integral ficar agressivo.</span></div>
-<div class="pid-help-card"><strong>Aumentar D</strong><span>Ajuda a amortecer variações, mas pode amplificar ruído em medição instável.</span></div>
-</div>
-<div class="calc-note">Em muitos CLPs, o controlador usa Kp, Ti e Td. Em outros, usa Kp, Ki e Kd. Antes de aplicar, confira o formato do bloco PID do fabricante.</div>
-</div>
-<div class="calc-card">
-<h2><i class="fas fa-table"></i> Tabela de referência</h2>
-<div class="calc-table-wrap">
-<table class="calc-table">
-<thead>
-<tr><th>Sintoma da malha</th><th>Possível causa</th><th>Ajuste inicial</th></tr>
-</thead>
-<tbody>
-<tr><td>Muito lenta</td><td>Kp baixo ou integral fraco</td><td>Aumentar Kp aos poucos</td></tr>
-<tr><td>Oscilando</td><td>Kp alto ou integral agressivo</td><td>Reduzir Kp ou aumentar Ti</td></tr>
-<tr><td>Erro permanente</td><td>Sem ação integral</td><td>Usar PI/PID ou reduzir Ti com cuidado</td></tr>
-<tr><td>Muito ruído na saída</td><td>Derivativo sensível ao ruído</td><td>Reduzir Td ou filtrar medição</td></tr>
-</tbody>
-</table>
-</div>
-</div>
-</section>
-<section class="calc-card">
-<h2><i class="fas fa-triangle-exclamation"></i> Aviso técnico importante</h2>
-<p>Esta ferramenta é educativa e auxilia na estimativa inicial de sintonia. Não aplique valores diretamente em processos críticos sem procedimento, autorização, análise de risco, acompanhamento da resposta da malha e validação por profissional habilitado.</p>
-<p class="small-muted">Malhas de pressão, caldeiras, queimadores, segurança de processo, vapor, reatores, fornos, sistemas com risco de dano ao equipamento ou risco às pessoas exigem validação técnica específica.</p>
-</section>
-<section class="calc-card faq">
-<h2><i class="fas fa-circle-question"></i> Perguntas frequentes</h2>
-<details>
-<summary>Essa calculadora ajusta o PID automaticamente no CLP?</summary>
-<p>Não. Ela calcula valores iniciais de referência para estudo e pré-sintonia. A aplicação final deve ser testada e validada na malha real por profissional habilitado.</p>
-</details>
-<details>
-<summary>O que significam Kp, Ti e Td?</summary>
-<p>Kp é o ganho proporcional do controlador, Ti é o tempo integral e Td é o tempo derivativo. Alguns controladores usam Ki e Kd em vez de Ti e Td, então é necessário conferir a forma usada no CLP ou controlador.</p>
-</details>
-<details>
-<summary>Posso usar a mesma sintonia para temperatura, pressão, nível e vazão?</summary>
-<p>Não necessariamente. Cada processo tem dinâmica própria. Temperatura costuma ser mais lenta, vazão costuma ser mais rápida, nível pode ser integrador e pressão depende muito da instalação.</p>
-</details>
-<details>
-<summary>Qual método é mais seguro para começar?</summary>
-<p>Para ajuste inicial conservador, normalmente é melhor começar com sintonia mais lenta e estável, como IMC/Lambda conservador, e depois ajustar em campo conforme a resposta real da malha.</p>
-</details>
-</section>
-<!-- ALOGY_REVISAO_TECNICA_FERRAMENTA -->
-<section aria-label="Orientação técnica complementar" class="calc-card">
-<h2><i class="fas fa-clipboard-check"></i> Aplicação prática: PID Online</h2>
-<p>Calcule parâmetros iniciais de sintonia PID, PI e P para malhas de controle industrial usando modelo de processo, tempo morto e constante de tempo.</p>
-<h3>Quando aplicar</h3>
-<p>Use PID Online em partida, manutenção e diagnóstico quando for necessário conferir escala, carga, resolução, tempo de resposta, parametrização ou comunicação.</p>
-<h3>Entradas críticas para PID Online</h3>
-<p>Confira a unidade, a condição real de operação e os campos principais desta análise: Método de sintonia, Tipo de controlador, Ganho do processo (K), Tempo morto θ (s), Constante de tempo τ (s), Resposta desejada. Registre as premissas usadas para que o cálculo possa ser repetido e revisado.</p>
-<ul>
-<li>Método de sintonia</li>
-<li>Tipo de controlador</li>
-<li>Ganho do processo (K)</li>
-<li>Tempo morto θ (s)</li>
-<li>Constante de tempo τ (s)</li>
-<li>Resposta desejada</li>
-</ul>
-<h3>Como interpretar o resultado</h3>
-<p>Em PID Online, o resultado ajuda a separar erro de configuração, limitação de hardware, queda na malha, ruído ou problema de instrumento. Confira o sinal físico e a escala configurada no CLP, supervisório ou controlador.</p>
-<p>Analise em conjunto os resultados Kc / Kp do controlador, Ti - tempo integral, Td - tempo derivativo, Lambda usado, Ki aproximado, Kd aproximado. Compare-os com limites operacionais, tolerâncias, histórico e documentação do equipamento, evitando decidir com base em um único indicador.</p>
-<h3>Checklist rápido de validação</h3>
-<ul>
-<li>Confirme se a escala do campo é igual à escala configurada no CLP ou supervisório.</li>
-<li>Verifique alimentação, aterramento funcional, blindagem e carga total da malha.</li>
-<li>Em redes, confira endereço, baud rate, paridade, terminação e polaridade.</li>
-<li>Registre o valor físico e o valor visto no sistema para facilitar diagnóstico.</li>
-</ul>
-<h3>Limites da estimativa</h3>
-<p>Use esta análise de PID Online como apoio preliminar. Para projeto final, laudo, compra, mudança de segurança ou liberação de equipamento crítico, confirme premissas, condições de campo, documentação do fabricante e requisitos aplicáveis.</p>
-</section>
-<section class="card lote15-conteudo"><h2>Aplicação segura dos parâmetros de sintonia PID</h2><p>Os parâmetros calculados devem ser tratados como ponto inicial. Antes de aplicar em processo real, confirme sentido de ação, escala da variável, tempo de amostragem e limites da saída.</p><h3>Como interpretar o resultado</h3><p>Ganho elevado tende a acelerar a resposta, mas aumenta o risco de oscilação. A ação integral elimina erro permanente, enquanto a derivativa pode reduzir tendência de ultrapassagem, porém é sensível a ruído.</p><h3>Cuidados e limitações</h3><ul><li>Teste inicialmente em condição controlada e com limites de saída.</li><li>Evite derivativa excessiva em sinais ruidosos.</li><li>Processos com atraso dominante, não linearidade ou interação entre malhas exigem avaliação adicional.</li></ul><p>Use também a <a href="calculadora-tempo-resposta-malha-controle.html">análise de tempo de resposta</a> e a <a href="calculadora-tempo-atuacao-valvula.html">estimativa de atuação de válvula</a>.</p></section>
+<section class="calc-card" aria-label="Curva de reação do processo"><h2><i class="fas fa-chart-line"></i> Curva de reação do processo</h2><p>O gráfico não prevê a resposta fechada do PID. Ele representa o <strong>modelo de processo usado no cálculo</strong>: atraso inicial θ e crescimento de primeira ordem definido por τ.</p><div class="pid-visual"><svg viewBox="0 0 720 330" role="img" aria-labelledby="reactionTitle reactionDesc"><title id="reactionTitle">Curva de reação do processo para sintonia PID</title><desc id="reactionDesc">Curva de primeira ordem com tempo morto, marcadores do tempo morto e de uma constante de tempo.</desc><line x1="70" y1="265" x2="665" y2="265" stroke="#123b59" stroke-opacity=".25" stroke-width="2"/><line x1="70" y1="265" x2="70" y2="40" stroke="#123b59" stroke-opacity=".25" stroke-width="2"/><line x1="70" y1="65" x2="665" y2="65" stroke="#123b59" stroke-opacity=".15" stroke-dasharray="5 5"/><path id="reactionPath" d="" fill="none" stroke="#0b6bb1" stroke-width="5" stroke-linecap="round"/><line id="thetaLine" x1="170" y1="55" x2="170" y2="265" stroke="#92400e" stroke-width="2" stroke-dasharray="6 5"/><line id="tauLine" x1="400" y1="55" x2="400" y2="265" stroke="#166534" stroke-width="2" stroke-dasharray="6 5"/><circle id="tauPoint" cx="400" cy="138" r="7" fill="#166534"/><text id="thetaText" x="170" y="292" text-anchor="middle" font-size="13" font-weight="700">θ = 12 s</text><text id="tauText" x="400" y="312" text-anchor="middle" font-size="13" font-weight="700">θ + τ = 72 s</text><text x="54" y="270" text-anchor="end" font-size="13">0%</text><text x="54" y="143" text-anchor="end" font-size="13">63%</text><text x="54" y="70" text-anchor="end" font-size="13">100%</text><text x="365" y="325" text-anchor="middle" font-size="14">Tempo após o degrau</text><text x="17" y="155" text-anchor="middle" font-size="14" transform="rotate(-90 17 155)">Resposta normalizada</text></svg><div class="reaction-legend"><span><strong>θ:</strong> período sem resposta perceptível</span><span><strong>τ:</strong> tempo para atingir ~63% após θ</span><span><strong>K:</strong> ganho entre entrada e saída do processo</span></div></div>
+<div class="loop-flow" aria-label="Fluxo simplificado de uma malha PID"><div class="loop-step"><i class="fas fa-bullseye"></i><strong>SP</strong><br/>setpoint</div><div class="loop-step"><i class="fas fa-sliders"></i><strong>PID</strong><br/>calcula saída</div><div class="loop-step"><i class="fas fa-gears"></i><strong>Elemento final</strong><br/>válvula / inversor</div><div class="loop-step"><i class="fas fa-industry"></i><strong>Processo</strong><br/>responde ao comando</div><div class="loop-step"><i class="fas fa-gauge-high"></i><strong>PV</strong><br/>medição retorna</div></div></section>
+<section class="calc-layout"><div class="calc-card"><h2><i class="fas fa-list-check"></i> Interpretação prática</h2><div class="pid-help-grid"><div class="pid-help-card"><strong>Aumentar Kp</strong><span>Tende a acelerar a resposta, mas pode elevar oscilação e sensibilidade.</span></div><div class="pid-help-card"><strong>Integral mais agressivo</strong><span>Reduz erro permanente mais rápido, mas pode piorar oscilação e windup.</span></div><div class="pid-help-card"><strong>Adicionar derivativa</strong><span>Pode amortecer tendência, porém é sensível a ruído de medição.</span></div></div><div class="calc-note">Confirme se o controlador usa Kp–Ti–Td, Kp–Ki–Kd e qual forma matemática o fabricante implementa.</div></div><div class="calc-card"><h2><i class="fas fa-table"></i> Sintomas comuns</h2><div class="calc-table-wrap"><table class="calc-table"><thead><tr><th>Sintoma</th><th>Possível causa</th><th>Ação inicial</th></tr></thead><tbody><tr><td>Muito lenta</td><td>Kp baixo ou integral fraco</td><td>Revisar modelo e aumentar agressividade gradualmente</td></tr><tr><td>Oscilando</td><td>Kp alto ou integral agressivo</td><td>Reduzir Kp ou aumentar Ti</td></tr><tr><td>Erro permanente</td><td>Sem integral ou saturação</td><td>Revisar integral e limites de saída</td></tr><tr><td>Saída ruidosa</td><td>Derivativa sensível ao ruído</td><td>Reduzir Td e revisar filtragem</td></tr></tbody></table></div></div></section>
+<section class="calc-card faq"><h2><i class="fas fa-circle-question"></i> Perguntas frequentes</h2><details open><summary>A calculadora ajusta o PID automaticamente no CLP?</summary><p>Não. Ela fornece valores iniciais. A aplicação deve ser validada na malha real.</p></details><details><summary>Por que temperatura e vazão usam sintonias diferentes?</summary><p>Porque o ganho, o tempo morto e a constante de tempo do processo são diferentes. A sintonia depende da dinâmica observada, não apenas da variável medida.</p></details><details><summary>O que o gráfico representa?</summary><p>Uma resposta de primeira ordem com tempo morto normalizada. Ele ajuda a visualizar θ e τ, mas não é uma simulação completa da planta nem da resposta fechada do controlador.</p></details></section>
+<section class="calc-card"><h2><i class="fas fa-route"></i> Verificações relacionadas</h2><p>Use também <a href="calculadora-tempo-resposta-malha-controle.html">tempo de resposta da malha</a> e <a href="calculadora-tempo-atuacao-valvula.html">tempo de atuação da válvula</a> para entender limitações físicas antes de tornar a sintonia mais agressiva.</p></section>
 </main>
-<footer>
-<p>© Desde 2012 ALOGY Engenharia | www.alogy.com.br</p>
-</footer>
+<footer><p>© Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
 <script>
-    function parsePtNumber(value){
-      const s = String(value ?? '').trim().replace(/\s/g,'');
-      if(!s) return NaN;
-      const normalized = s.includes(',') ? s.replace(/\./g,'').replace(',', '.') : s;
-      const v = Number(normalized);
-      return Number.isFinite(v) ? v : NaN;
-    }
-    function pidNumber(id){
-      const el = document.getElementById(id);
-      return el ? parsePtNumber(el.value) : NaN;
-    }
-    function pidFmt(v, dec=3){
-      if(!Number.isFinite(v)) return '-';
-      const abs = Math.abs(v);
-      const digits = abs >= 100 ? 2 : dec;
-      return v.toLocaleString('pt-BR', {maximumFractionDigits:digits});
-    }
-    function pidSeconds(v){
-      if(!Number.isFinite(v)) return '-';
-      if(v >= 60) return pidFmt(v/60, 2) + ' min';
-      return pidFmt(v, 2) + ' s';
-    }
-    function lambdaPorPerfil(tau, theta, perfil){
-      if(perfil === 'rapida') return Math.max(theta, 0.5 * tau);
-      if(perfil === 'normal') return Math.max(2 * theta, tau);
-      return Math.max(3 * theta, 1.5 * tau);
-    }
-    function calcularPID(){
-      const metodo = document.getElementById('pid_metodo').value;
-      const tipo = document.getElementById('pid_tipo').value;
-      const perfil = document.getElementById('pid_lambda_tipo').value;
-      const wrap = document.getElementById('lambdaManualWrap');
-      if(wrap) wrap.style.display = perfil === 'manual' ? 'block' : 'none';
-
-      const kRaw = pidNumber('pid_k');
-      const theta = pidNumber('pid_theta');
-      const tau = pidNumber('pid_tau');
-      let lambda = perfil === 'manual' ? pidNumber('pid_lambda') : lambdaPorPerfil(tau, theta, perfil);
-      const k = Math.abs(kRaw);
-
-      const alerta = document.getElementById('pid_alerta');
-      const nota = document.getElementById('pid_nota');
-      const status = document.getElementById('pid_status');
-
-      let msgs = [];
-      let erro = false;
-      if(!Number.isFinite(k) || k <= 0){erro = true; msgs.push('Informe ganho do processo maior que zero.');}
-      if(!Number.isFinite(theta) || theta <= 0){erro = true; msgs.push('Informe tempo morto maior que zero.');}
-      if(!Number.isFinite(tau) || tau <= 0){erro = true; msgs.push('Informe constante de tempo maior que zero.');}
-      if(!Number.isFinite(lambda) || lambda <= 0){erro = true; msgs.push('Informe lambda maior que zero.');}
-
-      if(erro){
-        ['pid_kc','pid_ti','pid_td','pid_lambda_out','pid_ki','pid_kd'].forEach(id => document.getElementById(id).textContent = '-');
-        if(alerta){alerta.style.display='block'; alerta.textContent = msgs.join(' ');}
-        status.className = 'pid-pill pid-status-bad';
-        status.innerHTML = '<i class="fas fa-triangle-exclamation"></i> Status: revisar dados';
-        return;
-      }
-
-      let kc = 0, ti = 0, td = 0;
-      if(metodo === 'zn'){
-        if(tipo === 'p'){
-          kc = tau / (k * theta);
-          ti = 0;
-          td = 0;
-        }else if(tipo === 'pi'){
-          kc = 0.9 * tau / (k * theta);
-          ti = 3.33 * theta;
-          td = 0;
-        }else{
-          kc = 1.2 * tau / (k * theta);
-          ti = 2 * theta;
-          td = 0.5 * theta;
-        }
-      }else{
-        if(tipo === 'p'){
-          kc = tau / (k * (lambda + theta));
-          ti = 0;
-          td = 0;
-        }else if(tipo === 'pi'){
-          kc = tau / (k * (lambda + theta));
-          ti = tau;
-          td = 0;
-        }else{
-          kc = (tau + 0.5 * theta) / (k * (lambda + 0.5 * theta));
-          ti = tau + 0.5 * theta;
-          td = (tau * theta) / ((2 * tau) + theta);
-        }
-      }
-
-      const ki = ti > 0 ? kc / ti : 0;
-      const kd = td > 0 ? kc * td : 0;
-      document.getElementById('pid_kc').textContent = pidFmt(kc, 4);
-      document.getElementById('pid_ti').textContent = ti > 0 ? pidSeconds(ti) : 'Não usa';
-      document.getElementById('pid_td').textContent = td > 0 ? pidSeconds(td) : 'Não usa';
-      document.getElementById('pid_lambda_out').textContent = metodo === 'imc' ? pidSeconds(lambda) : 'Não usa';
-      document.getElementById('pid_ki').textContent = ki > 0 ? pidFmt(ki, 5) + ' 1/s' : 'Não usa';
-      document.getElementById('pid_kd').textContent = kd > 0 ? pidFmt(kd, 4) : 'Não usa';
-      document.getElementById('pid_metodo_out').innerHTML = '<i class="fas fa-gears"></i> Método: ' + (metodo === 'imc' ? 'IMC/Lambda' : 'Ziegler-Nichols');
-      document.getElementById('pid_tipo_out').innerHTML = '<i class="fas fa-sliders"></i> Controle: ' + tipo.toUpperCase();
-
-      const ratio = theta / tau;
-      let statusText = 'dados coerentes';
-      let statusClass = 'pid-pill pid-status-ok';
-      let alertMsgs = [];
-      if(ratio > 1){
-        statusText = 'tempo morto alto';
-        statusClass = 'pid-pill pid-status-warn';
-        alertMsgs.push('O tempo morto está alto em relação à constante de tempo. Comece com sintonia conservadora e evite ajuste agressivo.');
-      }
-      if(metodo === 'zn'){
-        alertMsgs.push('Ziegler-Nichols pode gerar resposta mais agressiva e oscilatória. Use com cautela em processo real.');
-      }
-      if(kRaw < 0){
-        alertMsgs.push('O ganho informado é negativo. A ferramenta usou o valor absoluto para cálculo; confirme ação direta/reversa no controlador.');
-      }
-      status.className = statusClass;
-      status.innerHTML = '<i class="fas fa-circle-info"></i> Status: ' + statusText;
-      if(alertMsgs.length){
-        alerta.style.display = 'block';
-        alerta.textContent = alertMsgs.join(' ');
-      }else{
-        alerta.style.display = 'none';
-      }
-      nota.textContent = 'Resultado gerado como ponto de partida. Confira se o CLP/controlador usa Kp-Ti-Td, Kp-Ki-Kd, forma ideal, paralela ou dependente.';
-    }
-    function exPID(tipo){
-      if(tipo === 'temperatura'){
-        document.getElementById('pid_metodo').value = 'imc';
-        document.getElementById('pid_tipo').value = 'pi';
-        document.getElementById('pid_k').value = '1.2';
-        document.getElementById('pid_theta').value = '30';
-        document.getElementById('pid_tau').value = '180';
-        document.getElementById('pid_lambda_tipo').value = 'conservadora';
-      }else if(tipo === 'vazao'){
-        document.getElementById('pid_metodo').value = 'imc';
-        document.getElementById('pid_tipo').value = 'pi';
-        document.getElementById('pid_k').value = '2.5';
-        document.getElementById('pid_theta').value = '2';
-        document.getElementById('pid_tau').value = '12';
-        document.getElementById('pid_lambda_tipo').value = 'normal';
-      }else{
-        document.getElementById('pid_metodo').value = 'imc';
-        document.getElementById('pid_tipo').value = 'pi';
-        document.getElementById('pid_k').value = '0.8';
-        document.getElementById('pid_theta').value = '20';
-        document.getElementById('pid_tau').value = '90';
-        document.getElementById('pid_lambda_tipo').value = 'conservadora';
-      }
-      calcularPID();
-    }
-    function copiarPID(){
-      calcularPID();
-      const txt = [
-        'Calculadora PID - ALOGY Engenharia',
-        'Kc/Kp: ' + document.getElementById('pid_kc').textContent,
-        'Ti: ' + document.getElementById('pid_ti').textContent,
-        'Td: ' + document.getElementById('pid_td').textContent,
-        'Ki aproximado: ' + document.getElementById('pid_ki').textContent,
-        'Kd aproximado: ' + document.getElementById('pid_kd').textContent,
-        'Observação: valores iniciais para estudo e validação técnica em campo.'
-      ].join('\n');
-      navigator.clipboard?.writeText(txt);
-      const nota = document.getElementById('pid_nota');
-      if(nota) nota.textContent = 'Resultado copiado. Confira o formato usado pelo seu controlador antes de aplicar em campo.';
-    }
-    document.addEventListener('DOMContentLoaded', () => {
-      ['pid_metodo','pid_tipo','pid_k','pid_theta','pid_tau','pid_lambda_tipo','pid_lambda','pid_acao'].forEach(id => {
-        const el = document.getElementById(id);
-        if(el) el.addEventListener('input', calcularPID);
-        if(el) el.addEventListener('change', calcularPID);
-      });
-      calcularPID();
-    });
-  </script>
-
+function parsePtNumber(value){const s=String(value??'').trim().replace(/\s/g,'');if(!s)return NaN;const normalized=s.includes(',')?s.replace(/\./g,'').replace(',','.') : s;const v=Number(normalized);return Number.isFinite(v)?v:NaN}
+function pidNumber(id){const el=document.getElementById(id);return el?parsePtNumber(el.value):NaN}function pidFmt(v,dec=3){if(!Number.isFinite(v))return '-';return v.toLocaleString('pt-BR',{maximumFractionDigits:dec})}function pidSeconds(v){if(!Number.isFinite(v))return '-';return v>=60?pidFmt(v/60,2)+' min':pidFmt(v,2)+' s'}function lambdaPorPerfil(tau,theta,perfil){if(perfil==='rapida')return Math.max(theta,.5*tau);if(perfil==='normal')return Math.max(2*theta,tau);return Math.max(3*theta,1.5*tau)}
+function desenharReacao(theta,tau){const total=Math.max(theta+4*tau,tau*4,1),left=70,right=665,bottom=265,top=65,w=right-left,h=bottom-top;const pts=[];for(let i=0;i<=90;i++){const t=total*i/90;const y=t<=theta?0:1-Math.exp(-(t-theta)/tau);const x=left+w*t/total,sy=bottom-h*y;pts.push((i?'L':'M')+x.toFixed(1)+' '+sy.toFixed(1))}document.getElementById('reactionPath').setAttribute('d',pts.join(' '));const thetaX=left+w*theta/total,tauX=left+w*(theta+tau)/total,tauY=bottom-h*(1-Math.exp(-1));['thetaLine'].forEach(id=>{document.getElementById(id).setAttribute('x1',thetaX);document.getElementById(id).setAttribute('x2',thetaX)});['tauLine'].forEach(id=>{document.getElementById(id).setAttribute('x1',tauX);document.getElementById(id).setAttribute('x2',tauX)});document.getElementById('tauPoint').setAttribute('cx',tauX);document.getElementById('tauPoint').setAttribute('cy',tauY);document.getElementById('thetaText').setAttribute('x',thetaX);document.getElementById('thetaText').textContent=`θ = ${pidFmt(theta,1)} s`;document.getElementById('tauText').setAttribute('x',tauX);document.getElementById('tauText').textContent=`θ + τ = ${pidFmt(theta+tau,1)} s`}
+function calcularPID(){const metodo=document.getElementById('pid_metodo').value,tipo=document.getElementById('pid_tipo').value,perfil=document.getElementById('pid_lambda_tipo').value,wrap=document.getElementById('lambdaManualWrap');wrap.style.display=perfil==='manual'?'block':'none';const kRaw=pidNumber('pid_k'),theta=pidNumber('pid_theta'),tau=pidNumber('pid_tau');let lambda=perfil==='manual'?pidNumber('pid_lambda'):lambdaPorPerfil(tau,theta,perfil);const k=Math.abs(kRaw),alerta=document.getElementById('pid_alerta'),status=document.getElementById('pid_status');if(!Number.isFinite(k)||k<=0||!Number.isFinite(theta)||theta<=0||!Number.isFinite(tau)||tau<=0||!Number.isFinite(lambda)||lambda<=0){['pid_kc','pid_ti','pid_td','pid_lambda_out','pid_ki','pid_kd'].forEach(id=>document.getElementById(id).textContent='-');alerta.style.display='block';alerta.textContent='Informe K, θ, τ e lambda com valores positivos.';status.className='pid-pill pid-status-bad';status.innerHTML='<i class="fas fa-triangle-exclamation"></i> Status: revisar dados';return}desenharReacao(theta,tau);let kc=0,ti=0,td=0;if(metodo==='zn'){if(tipo==='p'){kc=tau/(k*theta)}else if(tipo==='pi'){kc=.9*tau/(k*theta);ti=3.33*theta}else{kc=1.2*tau/(k*theta);ti=2*theta;td=.5*theta}}else{if(tipo==='p'){kc=tau/(k*(lambda+theta))}else if(tipo==='pi'){kc=tau/(k*(lambda+theta));ti=tau}else{kc=(tau+.5*theta)/(k*(lambda+.5*theta));ti=tau+.5*theta;td=(tau*theta)/(2*tau+theta)}}const ki=ti>0?kc/ti:0,kd=td>0?kc*td:0;document.getElementById('pid_kc').textContent=pidFmt(kc,4);document.getElementById('pid_ti').textContent=ti>0?pidSeconds(ti):'Não usa';document.getElementById('pid_td').textContent=td>0?pidSeconds(td):'Não usa';document.getElementById('pid_lambda_out').textContent=metodo==='imc'?pidSeconds(lambda):'Não usa';document.getElementById('pid_ki').textContent=ki>0?pidFmt(ki,5)+' 1/s':'Não usa';document.getElementById('pid_kd').textContent=kd>0?pidFmt(kd,4):'Não usa';document.getElementById('pid_metodo_out').innerHTML='<i class="fas fa-gears"></i> Método: '+(metodo==='imc'?'IMC/Lambda':'Ziegler-Nichols');document.getElementById('pid_tipo_out').innerHTML='<i class="fas fa-sliders"></i> Controle: '+tipo.toUpperCase();const ratio=theta/tau;let s='dados coerentes',cl='pid-pill pid-status-ok',msgs=[];if(ratio>1){s='tempo morto alto';cl='pid-pill pid-status-warn';msgs.push('O tempo morto é alto em relação à constante de tempo; comece de forma conservadora.')}if(metodo==='zn')msgs.push('Ziegler-Nichols tende a ser mais agressivo; valide com cautela.');if(kRaw<0)msgs.push('K foi informado negativo; o módulo do ganho foi usado no cálculo. Confirme a ação do controlador.');status.className=cl;status.innerHTML='<i class="fas fa-circle-info"></i> Status: '+s;alerta.style.display=msgs.length?'block':'none';alerta.textContent=msgs.join(' ');document.getElementById('pid_nota').textContent='Resultado calculado como ponto de partida. Confira a forma PID implementada pelo fabricante.'}
+function exPID(tipo){if(tipo==='temperatura'){document.getElementById('pid_k').value='1.2';document.getElementById('pid_theta').value='30';document.getElementById('pid_tau').value='180';document.getElementById('pid_lambda_tipo').value='conservadora'}else if(tipo==='vazao'){document.getElementById('pid_k').value='2.5';document.getElementById('pid_theta').value='2';document.getElementById('pid_tau').value='12';document.getElementById('pid_lambda_tipo').value='normal'}else{document.getElementById('pid_k').value='0.8';document.getElementById('pid_theta').value='20';document.getElementById('pid_tau').value='90';document.getElementById('pid_lambda_tipo').value='conservadora'}document.getElementById('pid_metodo').value='imc';document.getElementById('pid_tipo').value='pi';calcularPID()}
+async function copiarPID(){calcularPID();const txt=['Calculadora PID - ALOGY Engenharia','Kc/Kp: '+document.getElementById('pid_kc').textContent,'Ti: '+document.getElementById('pid_ti').textContent,'Td: '+document.getElementById('pid_td').textContent,'Ki aproximado: '+document.getElementById('pid_ki').textContent,'Kd aproximado: '+document.getElementById('pid_kd').textContent].join('\n');try{await navigator.clipboard.writeText(txt);document.getElementById('pid_nota').textContent='Resultado copiado. Confira o formato usado pelo controlador antes de aplicar.'}catch(e){document.getElementById('pid_nota').textContent='Não foi possível copiar automaticamente.'}}
+document.addEventListener('DOMContentLoaded',()=>{['pid_metodo','pid_tipo','pid_k','pid_theta','pid_tau','pid_lambda_tipo','pid_lambda'].forEach(id=>{const el=document.getElementById(id);if(el){el.addEventListener('input',calcularPID);el.addEventListener('change',calcularPID)}});calcularPID()});
+</script>
 <a aria-label="Voltar para Ferramentas" class="floating-back-tools no-print" href="ferramentas.html"><i class="fas fa-arrow-left"></i> Voltar para Ferramentas</a>
 </body>
 </html>
