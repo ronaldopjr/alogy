@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Calibração de Transmissor de Temperatura RTD e Termopar | ALOGY</title>
-  <meta name="description" content="Veja como calcular erro e sinal esperado em transmissores de temperatura 4-20 mA com RTD, termopar ou simulador." />
+  <title>Calibração de Transmissor de Temperatura | RTD e Termopar | ALOGY</title>
+  <meta name="description" content="Temperature transmitter calibration com RTD/PT100, termopar, dry block, simulador, 4-20 mA, as-found/as-left e erro por ponto." />
   <meta name="robots" content="index,follow" />
   <meta name="theme-color" content="#2C78B9" />
   <link rel="canonical" href="https://www.alogy.com.br/blog-calibracao-transmissor-temperatura.html" />
@@ -16,113 +16,76 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <link rel="stylesheet" href="style.css?v=20260722-layout-original-uppercase-mobilefix" />
+  <link rel="stylesheet" href="style.css?v=20260911-article-semantic1" />
   <script src="app.js" defer></script>
   <meta property="og:locale" content="pt_BR" />
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="ALOGY Engenharia" />
-  <meta property="og:title" content="Calibração de Transmissor de Temperatura RTD e Termopar" />
-  <meta property="og:description" content="Veja como calcular erro e sinal esperado em transmissores de temperatura 4-20 mA com RTD, termopar ou simulador." />
+  <meta property="og:title" content="Calibração de Transmissor de Temperatura: RTD/PT100 e Termopar" />
+  <meta property="og:description" content="Roteiro de calibração de temperatura com RTD/PT100, termopar, simulador, dry block, 4-20 mA e as-found/as-left." />
   <meta property="og:url" content="https://www.alogy.com.br/blog-calibracao-transmissor-temperatura.html" />
-  <meta property="og:image" content="https://www.alogy.com.br/favicon-512x512.png" />
+  <meta property="og:image" content="https://www.alogy.com.br/capa-blog-calibracao-transmissor-temperatura.webp" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:image" content="https://www.alogy.com.br/favicon-512x512.png" />
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Calibração de Transmissor de Temperatura RTD e Termopar","description":"Veja como calcular erro e sinal esperado em transmissores de temperatura 4-20 mA com RTD, termopar ou simulador.","dateModified":"2026-07-21","author":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"},"publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/","logo":{"@type":"ImageObject","url":"https://www.alogy.com.br/logo-alogy.webp"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://www.alogy.com.br/blog-calibracao-transmissor-temperatura.html"},"inLanguage":"pt-BR","image":"https://www.alogy.com.br/favicon-512x512.png"}</script>
+  <meta name="twitter:image" content="https://www.alogy.com.br/capa-blog-calibracao-transmissor-temperatura.webp" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Calibração de Transmissor de Temperatura: RTD/PT100 e Termopar","description":"Roteiro de temperature transmitter calibration com RTD/PT100, termopar, simulador, dry block, 4-20 mA e as-found/as-left.","dateModified":"2026-09-11","author":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"},"publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/","logo":{"@type":"ImageObject","url":"https://www.alogy.com.br/logo-alogy.webp"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://www.alogy.com.br/blog-calibracao-transmissor-temperatura.html"},"inLanguage":"pt-BR","image":"https://www.alogy.com.br/capa-blog-calibracao-transmissor-temperatura.webp"}</script>
   <style>
-    .mini-help{color:var(--muted);font-size:.92rem;line-height:1.55;margin-top:8px}
-    .faq details{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:14px;padding:14px;margin-top:10px;box-shadow:0 6px 16px rgba(0,0,0,.04)}
-    .faq summary{cursor:pointer;font-weight:900;color:#0b3a62}.faq p{margin:10px 0 0;color:var(--muted)}
-    .calc-result.two{grid-template-columns:repeat(2,1fr)} .calc-result.three{grid-template-columns:repeat(3,1fr)} .calc-result.four{grid-template-columns:repeat(4,1fr)} .result-box strong.small{font-size:1.05rem}
-    .pill-ok{color:#146c2e;font-weight:900}.pill-warn{color:#a65f00;font-weight:900}.pill-bad{color:#a10000;font-weight:900}.pill-info{color:#0b3a62;font-weight:900}
-    .subcat-nav{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}.subcat-nav a{background:#fff;border:1px solid rgba(0,75,128,.18);border-radius:999px;padding:9px 12px;text-decoration:none;font-weight:800;color:#0b3a62}
-    @media(max-width:900px){.calc-result.two,.calc-result.three,.calc-result.four{grid-template-columns:1fr}}
-    @media print{header,.social-floating,.fab-wrap,.cta-bar,footer,.calc-actions,.tools-hero .btn,.no-print{display:none!important}body{background:#fff}.container{max-width:100%;padding:0}.calc-card,.tools-hero{box-shadow:none;border:1px solid #ddd}.calc-layout{display:block}.calc-card{margin:12px 0}.calc-table th{background:#eee!important;color:#111!important}}
+    .mini-help{color:var(--muted);font-size:.92rem;line-height:1.55;margin-top:8px}.subcat-nav{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}.subcat-nav a{background:#fff;border:1px solid rgba(0,75,128,.18);border-radius:999px;padding:9px 12px;text-decoration:none;font-weight:800;color:#0b3a62}@media print{header,.social-floating,.fab-wrap,.cta-bar,footer,.calc-actions,.no-print{display:none!important}body{background:#fff}.container{max-width:100%;padding:0}}
   </style>
-  <!-- Google AdSense: carregado somente em páginas editoriais monetizáveis. A exibição e os formatos são controlados no painel do AdSense. -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5586837114309500" crossorigin="anonymous"></script>
 </head>
 <body>
   <header>
-    <div class="container headbar"><a href="/" class="logo-wrapper" aria-label="Voltar para o início"><img src="logo-alogy.webp" alt="ALOGY Engenharia"  width="878"  height="308"  decoding="async" /></a>
-<button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menu"><i class="fas fa-bars"></i></button></div>
-    <nav class="desktop" aria-label="Menu principal"><div class="container navlinks"><a href="/">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></div></nav>
-    <nav class="mobile" aria-label="Menu mobile"><a href="/">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></nav>
+    <div class="container headbar"><a href="/" class="logo-wrapper" aria-label="Voltar para o início"><img src="logo-alogy.webp" alt="ALOGY Engenharia" width="878" height="308" decoding="async" /></a><button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menu"><i class="fas fa-bars"></i></button></div>
+    <nav class="desktop" aria-label="Menu principal"><div class="container navlinks"><a href="/">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="/guia/">Guia</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></div></nav>
+    <nav class="mobile" aria-label="Menu mobile"><a href="/">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="/guia/">Guia</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></nav>
   </header>
-  <div class="social-floating" aria-label="Redes sociais"><a href="https://www.linkedin.com/company/alogyengenharia" class="linkedin" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a><a href="https://www.instagram.com/alogyengenharia" class="instagram" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="https://www.facebook.com/alogyengenharia" class="facebook" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><a href="https://www.youtube.com/@alogyengenharia" class="youtube" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a><a href="https://hotmart.com/pt-br/club/alogyengenharia" class="hotmart" target="_blank" rel="noopener noreferrer" aria-label="Hotmart">H</a><a href="https://www.tiktok.com/@alogyengenharia" class="tiktok" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fab fa-tiktok"></i></a></div>
-  <div class="fab-wrap" aria-label="Ações rápidas"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1%21%20Vim%20pelas%20ferramentas%20da%20ALOGY.%20Gostaria%20de%20atendimento." target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
+  <div class="social-floating" aria-label="Redes sociais"><a href="https://www.linkedin.com/company/alogyengenharia" class="linkedin" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a><a href="https://www.instagram.com/alogyengenharia" class="instagram" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="https://www.facebook.com/alogyengenharia" class="facebook" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><a href="https://www.youtube.com/@alogyengenharia" class="youtube" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a><a href="https://www.tiktok.com/@alogyengenharia" class="tiktok" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fab fa-tiktok"></i></a></div>
+  <div class="fab-wrap" aria-label="Ações rápidas"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1!%20Li%20o%20artigo%20sobre%20calibra%C3%A7%C3%A3o%20de%20temperatura%20da%20ALOGY." target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
   <main class="container" style="margin-top:22px">
-    <article class="blog-post"><h1>Calibração de Transmissor de Temperatura</h1>
-<p class="muted" data-alogy-content-meta><strong>Conteúdo técnico:</strong> ALOGY Engenharia · <strong>Atualizado em:</strong> 21/07/2026</p>
-<p>Veja como calcular erro e sinal esperado em transmissores de temperatura 4-20 mA com RTD, termopar ou simulador.</p>
-<p>Antes do teste, defina o que será calibrado: somente a eletrônica do transmissor, o sensor separado ou o conjunto sensor + transmissor. Simular um RTD ou termopar nos bornes verifica a conversão elétrica, mas não avalia o sensor instalado, o poço termométrico nem a influência da montagem.</p>
+    <article class="blog-post">
+      <h1>Calibração de Transmissor de Temperatura</h1>
+      <p class="muted" data-alogy-content-meta><strong>Conteúdo técnico:</strong> ALOGY Engenharia · <strong>Atualizado em:</strong> 11/09/2026</p>
+      <figure class="article-cover-figure"><img class="article-cover-image" src="capa-blog-calibracao-transmissor-temperatura.webp" alt="Calibração de transmissor de temperatura com RTD PT100 e termopar" loading="eager" fetchpriority="high" decoding="async"/><figcaption>O método muda conforme a pergunta: simular o sensor verifica a eletrônica; dry block ou banho pode avaliar sensor e transmissor como conjunto.</figcaption></figure>
 
-<h2>RTD, termopar e entrada configurada</h2>
-<p>Em uma entrada RTD, o transmissor interpreta resistência. Tipo de elemento, ligação a 2, 3 ou 4 fios e resistência dos cabos afetam o resultado. Em uma entrada de termopar, o transmissor interpreta uma tensão muito pequena; tipo de termopar, polaridade, material dos cabos de extensão e compensação da junta fria precisam estar coerentes.</p>
-<p>Selecionar Pt100 quando o instrumento está configurado para outro tipo de RTD, ou simular termopar sem tratar corretamente a junta fria, produz um erro de método que pode ser confundido com defeito do transmissor.</p>
+      <p>Calibrar um transmissor de temperatura exige definir primeiro o que está sendo verificado: somente a eletrônica, o sensor separado ou o conjunto sensor + transmissor. Simular um RTD ou termopar nos bornes verifica a conversão elétrica, mas não avalia o sensor instalado, o termopoço nem a influência da montagem.</p>
 
-<h2>Dados necessários antes da calibração</h2>
-<ul>
-  <li><strong>Sensor configurado:</strong> tipo de RTD ou termopar e padrão/curva correspondente.</li>
-  <li><strong>Ligação:</strong> número de fios, polaridade, bornes e compensação de junta fria.</li>
-  <li><strong>Faixa:</strong> LRV e URV em °C ou unidade configurada.</li>
-  <li><strong>Saída:</strong> 4–20 mA linear, protocolo digital e escala no sistema de controle.</li>
-  <li><strong>Padrão:</strong> simulador ou fonte térmica com faixa, rastreabilidade e incerteza adequadas.</li>
-</ul>
+      <h2>RTD/PT100, termopar e entrada configurada</h2>
+      <p>Em uma entrada RTD, o transmissor interpreta resistência. Tipo de elemento, ligação a 2, 3 ou 4 fios e resistência dos cabos afetam o resultado. Em uma entrada de termopar, o transmissor interpreta uma tensão em milivolts; tipo J/K/T/E/N/R/S/B, polaridade, material dos cabos de extensão e cold junction compensation precisam estar coerentes.</p>
+      <p>Selecionar PT100 quando o instrumento está configurado para outro RTD, ou simular termopar sem tratar corretamente a junta fria, produz erro de método que pode ser confundido com defeito do transmissor.</p>
 
-<h2>Simulação elétrica ou calibração com temperatura real?</h2>
-<p>Na simulação elétrica, o calibrador reproduz o sinal de um RTD ou termopar e permite comparar a saída do transmissor. É um teste rápido da eletrônica e da configuração. Na calibração com bloco seco ou banho, sensor e transmissor podem ser avaliados como sistema, comparando a temperatura de referência com a indicação e a corrente.</p>
-<p>Os dois métodos respondem perguntas diferentes. Se a eletrônica passa na simulação, mas o conjunto apresenta erro em temperatura real, investigue sensor, cabos, poço, imersão, contato térmico, gradiente e tempo de estabilização.</p>
+      <h2>As-found e as-left</h2>
+      <p>Antes de qualquer ajuste, registre a condição <strong>as-found</strong>. Se houver correção prevista no procedimento, repita os pontos e registre a condição <strong>as-left</strong>. Isso separa a deriva encontrada do desempenho depois do ajuste.</p>
 
-<h2>Saída esperada em 4–20 mA</h2>
-<p>Para um transmissor linear, a corrente esperada é 4 mA + 16 mA × fração da faixa. Em uma configuração de −50 a 150 °C, o ponto de 50 °C está em 50% do span e corresponde a 12 mA. A diferença entre temperatura equivalente medida e referência pode ser expressa em °C; a aceitação deve seguir o critério e a regra de decisão definidos no procedimento.</p>
+      <h2>Dados necessários antes da calibração</h2>
+      <ul><li><strong>Sensor:</strong> RTD/PT100/PT500/PT1000 ou tipo de termopar e curva correspondente.</li><li><strong>Ligação:</strong> número de fios, polaridade, bornes e compensação de junta fria.</li><li><strong>Faixa:</strong> LRV e URV em °C, °F ou unidade configurada.</li><li><strong>Saída:</strong> 4–20 mA, protocolo digital e escala no PLC/DCS.</li><li><strong>Padrão:</strong> simulador, dry block ou banho com faixa, rastreabilidade e incerteza adequadas.</li></ul>
 
-<h2>Erros comuns de campo</h2>
-<ul>
-  <li>Simular o tipo errado de sensor ou usar curva diferente da configurada.</li>
-  <li>Inverter a polaridade do termopar ou empregar cabo de extensão incompatível.</li>
-  <li>Ignorar resistência dos fios em RTD de 2 fios ou ligação incorreta em 3/4 fios.</li>
-  <li>Registrar o ponto antes da estabilização térmica.</li>
-  <li>Ajustar o transmissor sem registrar a condição encontrada.</li>
-  <li>Declarar o conjunto aprovado quando apenas a eletrônica foi simulada.</li>
-</ul>
+      <h2>Simulação elétrica ou temperatura real?</h2>
+      <p>Na simulação elétrica, o calibrador reproduz o sinal de um RTD ou termopar e permite comparar a saída do transmissor. É um teste rápido da eletrônica e da configuração. Na calibração com bloco seco ou banho, sensor e transmissor podem ser avaliados como sistema, comparando a temperatura de referência com a indicação e a corrente.</p>
+      <p>Se a eletrônica passa na simulação, mas o conjunto apresenta erro em temperatura real, investigue sensor, cabos, termopoço, imersão, contato térmico, gradiente e tempo de estabilização.</p>
 
-<h2>Exemplo prático de aplicação</h2>
-<p>Considere o transmissor de −50 a 150 °C. O calibrador simula 50 °C e a saída medida é 12,16 mA. A corrente está 0,16 mA acima do esperado. Na escala configurada, isso corresponde a +2 °C. O valor deve ser comparado ao erro máximo permitido e à incerteza do método antes de qualquer conclusão.</p>
-<p>Se o mesmo transmissor for testado com seu sensor em um bloco seco, uma diferença adicional pode vir do próprio sensor, da profundidade de imersão ou do tempo de estabilização. Por isso, o relatório deve identificar claramente o método utilizado.</p>
+      <h2>Saída esperada em 4–20 mA</h2>
+      <p>Para um transmissor linear, a corrente esperada é <strong>4 mA + 16 mA × fração da faixa</strong>. Em uma configuração de −50 a 150 °C, o ponto de 50 °C está em 50% do span e corresponde a 12 mA.</p>
+      <div class="calc-card"><strong>0% = 4 mA · 25% = 8 mA · 50% = 12 mA · 75% = 16 mA · 100% = 20 mA</strong></div>
 
-<h2>Checklist rápido antes de decidir</h2>
-<ul>
-  <li>Tipo de sensor, ligação e faixa foram conferidos antes do teste?</li>
-  <li>A compensação de junta fria está coerente com o método?</li>
-  <li>Os pontos de subida e descida foram registrados?</li>
-  <li>A estabilização foi confirmada antes da leitura?</li>
-  <li>O registro diferencia eletrônica, sensor e conjunto completo?</li>
-</ul>
+      <h2>Erros comuns de campo</h2>
+      <ul><li>Simular o tipo errado de sensor ou usar curva diferente da configurada.</li><li>Inverter polaridade de termopar ou empregar cabo de extensão incompatível.</li><li>Ignorar resistência de fios em RTD de 2 fios ou ligação incorreta em 3/4 fios.</li><li>Registrar o ponto antes da estabilização térmica.</li><li>Ajustar o transmissor sem registrar o as-found.</li><li>Declarar o conjunto aprovado quando apenas a eletrônica foi simulada.</li></ul>
 
-<h2>Ferramenta e conteúdos relacionados</h2>
-<p>Para aprofundar Calibração de Transmissor de Temperatura, use a ferramenta relacionada e confronte o resultado com os materiais complementares listados abaixo.</p>
-<div class="calc-actions">
-  <a class="mini-btn dark" href="calculadora-calibracao-transmissor-temperatura.html"><i class="fas fa-calculator"></i> Abrir ferramenta relacionada</a>
-  <a class="mini-btn" href="ferramentas.html"><i class="fas fa-toolbox"></i> Ver todas as ferramentas</a>
-</div>
-<ul class="mini-help" style="margin-top:12px">
-  <li><a href="calculadora-calibracao-transmissor-dp-vazao.html">Calculadora de Calibração de Transmissor DP de Vazão</a> <span class="mini-help">(ferramenta)</span></li>
-  <li><a href="calculadora-calibracao-transmissor-nivel-dp.html">Calculadora de Calibração de Transmissor de Nível DP</a> <span class="mini-help">(ferramenta)</span></li>
-  <li><a href="calculadora-calibracao-transmissor-pressao.html">Calculadora de Calibração de Transmissor de Pressão</a> <span class="mini-help">(ferramenta)</span></li>
-  <li><a href="calculadora-calibracao-transmissor-orp.html">Calculadora de Calibração de Transmissor ORP</a> <span class="mini-help">(ferramenta)</span></li>
-  <li><a href="blog-calibracao-transmissor-pressao.html">Calibração de Transmissor de Pressão</a> <span class="mini-help">(artigo)</span></li>
-  <li><a href="blog-calibracao-cartao-analogico-clp.html">Calibração de Cartão Analógico CLP/DCS</a> <span class="mini-help">(artigo)</span></li>
-</ul>
+      <h2>Exemplo prático</h2>
+      <p>Considere um transmissor de −50 a 150 °C. O calibrador simula 50 °C e a saída medida é 12,16 mA. A corrente está 0,16 mA acima do esperado. Na escala configurada, isso corresponde a +2 °C. O valor deve ser comparado ao erro máximo permitido e à incerteza do método antes de qualquer conclusão.</p>
 
-<h2>Referências para aprofundamento</h2>
-<ul>
-  <li><a href="https://www.fluke.com/en/product/calibration-tools/temperature-calibrators/fluke-724" target="_blank" rel="noopener noreferrer">Fluke 724 — simulação de RTD/termopar e medição simultânea de 4–20 mA</a>.</li>
-  <li><a href="https://www.fluke.com/en-id/product/calibration-tools/temperature-calibrators/fluke-calibration-9144" target="_blank" rel="noopener noreferrer">Fluke Calibration 9144 — calibração do sensor e transmissor como sistema</a>.</li>
-</ul>
+      <h2>Checklist rápido</h2>
+      <ul><li>Tipo de sensor, ligação e faixa foram conferidos?</li><li>A compensação de junta fria está coerente com o método?</li><li>Os pontos de subida e descida foram registrados?</li><li>A estabilização foi confirmada antes da leitura?</li><li>O relatório diferencia eletrônica, sensor e conjunto completo?</li><li>As-found e as-left foram registrados?</li></ul>
 
-<h2>Aviso técnico</h2>
-<p>Este artigo sobre Calibração de Transmissor de Temperatura é educativo e apoia pré-dimensionamento e conferência técnica. Em aplicações críticas, compra final ou alteração permanente da instalação, valide o cenário com documentação do fabricante, condições reais de campo, requisitos aplicáveis e profissional habilitado.</p></article>
-    <section class="cta-bar"><h2>Precisa de apoio técnico?</h2><p>A ALOGY Engenharia apoia projetos, manutenção, instrumentação, automação e melhoria de processos industriais.</p><a class="btn" href="/#contato"><i class="fas fa-envelope"></i> Falar com a ALOGY</a></section>
+      <h2>Ferramentas relacionadas</h2>
+      <div class="calc-actions"><a class="mini-btn dark" href="calculadora-calibracao-transmissor-temperatura.html"><i class="fas fa-calculator"></i> Calibração de Temperatura</a><a class="mini-btn" href="calculadora-temperatura-industrial.html"><i class="fas fa-temperature-half"></i> Central de Temperatura</a><a class="mini-btn" href="calculadora-pt100.html">PT100 / RTD</a><a class="mini-btn" href="calculadora-termopar.html">Termopar</a><a class="mini-btn" href="ferramentas-calibracao-instrumentacao.html"><i class="fas fa-toolbox"></i> Central de Calibração</a></div>
+
+      <h2>Referências para aprofundamento</h2>
+      <ul><li><a href="https://www.fluke.com/en/product/calibration-tools/temperature-calibrators/fluke-724" target="_blank" rel="noopener noreferrer">Fluke 724 — simulação de RTD/termopar e medição de 4–20 mA</a>.</li><li><a href="https://www.fluke.com/en-id/product/calibration-tools/temperature-calibrators/fluke-calibration-9144" target="_blank" rel="noopener noreferrer">Fluke Calibration 9144 — calibração com fonte de temperatura</a>.</li></ul>
+
+      <h2>Aviso técnico</h2>
+      <p>Este conteúdo é educativo e serve para apoio técnico. Em aplicações críticas ou emissão de certificados, valide o método com procedimento, documentação do fabricante, padrões rastreáveis, incerteza e profissional responsável.</p>
+    </article>
+    <section class="cta-bar"><h2>Precisa de apoio técnico?</h2><p>A ALOGY atua com instrumentação, calibração e automação industrial.</p><a class="btn" href="/#contato"><i class="fas fa-envelope"></i> Falar com a ALOGY</a></section>
   </main>
   <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
 </body>
