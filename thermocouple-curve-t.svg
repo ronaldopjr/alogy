@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 280">
+<rect width="760" height="280" rx="16" fill="#fff"/>
+<text x="28" y="28" font-family="Arial,sans-serif" font-size="16" font-weight="700" fill="#0b3a62">Termopar tipo T — NIST ITS-90</text>
+<text x="28" y="48" font-family="Arial,sans-serif" font-size="11" fill="#64748b">mV de referência × temperatura · junta de referência em 0 °C</text>
+<line x1="72" y1="236" x2="734" y2="236" stroke="#94a3b8"/>
+<line x1="72" y1="58" x2="72" y2="236" stroke="#94a3b8"/>
+<line x1="72.0" y1="58" x2="72.0" y2="236" stroke="#e2e8f0" stroke-dasharray="3 4"/>
+<text x="72.0" y="261" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#64748b">-270</text>
+<line x1="403.0" y1="58" x2="403.0" y2="236" stroke="#e2e8f0" stroke-dasharray="3 4"/>
+<text x="403.0" y="261" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#64748b">65.0</text>
+<line x1="734.0" y1="58" x2="734.0" y2="236" stroke="#e2e8f0" stroke-dasharray="3 4"/>
+<text x="734.0" y="261" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#64748b">400</text>
+<line x1="72" y1="236.0" x2="734" y2="236.0" stroke="#e2e8f0" stroke-dasharray="3 4"/>
+<text x="63" y="239.0" text-anchor="end" font-family="Arial,sans-serif" font-size="10" fill="#64748b">-8.43</text>
+<line x1="72" y1="147.0" x2="734" y2="147.0" stroke="#e2e8f0" stroke-dasharray="3 4"/>
+<text x="63" y="150.0" text-anchor="end" font-family="Arial,sans-serif" font-size="10" fill="#64748b">7.31</text>
+<line x1="72" y1="58.0" x2="734" y2="58.0" stroke="#e2e8f0" stroke-dasharray="3 4"/>
+<text x="63" y="61.0" text-anchor="end" font-family="Arial,sans-serif" font-size="10" fill="#64748b">23.0</text>
+<circle cx="338.8" cy="188.3" r="4.3" fill="#0f766e"/>
+<text x="346.8" y="180.3" font-family="Arial,sans-serif" font-size="10" fill="#0f766e">0 °C ≈ 0.00 mV</text>
+<path d="M72.0,223.7 L83.0,223.6 L94.1,223.2 L105.1,222.7 L116.1,222.0 L127.2,221.2 L138.2,220.3 L149.2,219.3 L160.3,218.2 L171.3,216.9 L182.3,215.7 L193.4,214.3 L204.4,212.8 L215.4,211.2 L226.5,209.6 L237.5,207.8 L248.5,206.0 L259.6,204.1 L270.6,202.2 L281.6,200.1 L292.7,198.0 L303.7,195.8 L314.7,193.5 L325.8,191.2 L336.8,188.8 L347.8,186.3 L358.9,183.8 L369.9,181.2 L380.9,178.6 L392.0,175.9 L403.0,173.1 L414.0,170.3 L425.1,167.4 L436.1,164.5 L447.1,161.6 L458.2,158.5 L469.2,155.5 L480.2,152.3 L491.3,149.2 L502.3,146.0 L513.3,142.7 L524.4,139.4 L535.4,136.1 L546.4,132.7 L557.5,129.3 L568.5,125.9 L579.5,122.4 L590.6,118.9 L601.6,115.3 L612.6,111.7 L623.7,108.1 L634.7,104.4 L645.7,100.8 L656.8,97.0 L667.8,93.3 L678.8,89.5 L689.9,85.7 L700.9,81.9 L711.9,78.0 L723.0,74.2 L734.0,70.3" fill="none" stroke="#006bb1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="403" y="276" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#64748b">Temperatura (°C)</text>
+<text x="16" y="147" transform="rotate(-90 16 147)" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#64748b">mV ref. 0 °C</text>
+</svg>
