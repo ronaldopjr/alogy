@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://www.alogy.com.br/calculadora-alcalinidade-acidez-neutralizacao.html</loc></url>
   <url><loc>https://www.alogy.com.br/calculadora-aterramento.html</loc></url>
   <url><loc>https://www.alogy.com.br/calculadora-atuador-pneumatico.html</loc></url>
   <url><loc>https://www.alogy.com.br/calculadora-autonomia-cilindro-gas.html</loc></url>
-  <url><loc>https://www.alogy.com.br/calculadora-bocal-lavagem-cip.html</loc></url>
   <url><loc>https://www.alogy.com.br/calculadora-burden-transformador-corrente.html</loc></url>
   <url><loc>https://www.alogy.com.br/calculadora-cabo-instrumentacao-24vcc.html</loc></url>
   <url><loc>https://www.alogy.com.br/calculadora-cabo-profibus-rs485.html</loc></url>
@@ -55,8 +53,6 @@
   <url><loc>https://www.alogy.com.br/calculadora-dilatacao-termica.html</loc></url>
   <url><loc>https://www.alogy.com.br/calculadora-disjuntor-protecao.html</loc></url>
   <url><loc>https://www.alogy.com.br/calculadora-dn-nps-schedule.html</loc></url>
-  <url><loc>https://www.alogy.com.br/calculadora-dosagem-cloro-livre.html</loc></url>
-  <url><loc>https://www.alogy.com.br/calculadora-dosagem-quimica-ppm.html</loc></url>
   <url><loc>https://www.alogy.com.br/calculadora-dp-nivel-tanque-fechado.html</loc></url>
   <url><loc>https://www.alogy.com.br/calculadora-economia-inversor-bomba-ventilador.html</loc></url>
   <url><loc>https://www.alogy.com.br/calculadora-eficiencia-filtro-beta.html</loc></url>
@@ -75,10 +71,8 @@
   <url><loc>https://www.alogy.com.br/calculadora-k-factor-vazao-pulsos.html</loc></url>
   <url><loc>https://www.alogy.com.br/calculadora-leis-afinidade-bombas-ventiladores.html</loc></url>
   <url><loc>https://www.alogy.com.br/calculadora-linha-impulso-transmissor-dp.html</loc></url>
-  <url><loc>https://www.alogy.com.br/calculadora-lsi-langelier-agua.html</loc></url>
   <url><loc>https://www.alogy.com.br/calculadora-malha-4-20ma-hart-completa.html</loc></url>
   <url><loc>https://www.alogy.com.br/calculadora-massa-tanque-nivel.html</loc></url>
-  <url><loc>https://www.alogy.com.br/calculadora-mistura-diluicao-solucoes.html</loc></url>
   <url><loc>https://www.alogy.com.br/calculadora-modbus.html</loc></url>
   <url><loc>https://www.alogy.com.br/calculadora-nivel-caldeira-transmissor-dp.html</loc></url>
   <url><loc>https://www.alogy.com.br/calculadora-nivel-dp-tanque-pressurizado.html</loc></url>
@@ -93,14 +87,10 @@
   <url><loc>https://www.alogy.com.br/calculadora-ppm-mg-m3-gases.html</loc></url>
   <url><loc>https://www.alogy.com.br/calculadora-pressao-hidrostatica-densidade.html</loc></url>
   <url><loc>https://www.alogy.com.br/calculadora-pt100.html</loc></url>
-  <url><loc>https://www.alogy.com.br/calculadora-purga-caldeira-tds.html</loc></url>
-  <url><loc>https://www.alogy.com.br/calculadora-purga-torre-resfriamento.html</loc></url>
-  <url><loc>https://www.alogy.com.br/calculadora-purgador-vapor-condensado.html</loc></url>
   <url><loc>https://www.alogy.com.br/calculadora-queda-de-tensao.html</loc></url>
   <url><loc>https://www.alogy.com.br/calculadora-queda-tensao-24vcc.html</loc></url>
   <url><loc>https://www.alogy.com.br/calculadora-queda-tensao-partida-motor.html</loc></url>
   <url><loc>https://www.alogy.com.br/calculadora-raiz-quadrada-4-20ma.html</loc></url>
-  <url><loc>https://www.alogy.com.br/calculadora-recuperacao-condensado-energia.html</loc></url>
   <url><loc>https://www.alogy.com.br/calculadora-reservatorio-ar-comprimido.html</loc></url>
   <url><loc>https://www.alogy.com.br/calculadora-resistor-shunt-sinal-instrumentacao.html</loc></url>
   <url><loc>https://www.alogy.com.br/calculadora-resolucao-clp-analogico.html</loc></url>
