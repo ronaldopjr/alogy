@@ -1,0 +1,62 @@
+/* ALOGY VISUAIS TECNICOS - 2026-09-11 */
+
+/* PT100/PT500/PT1000: curva normalizada derivada do mesmo modelo Callendar-Van Dusen da calculadora. */
+body.tools-page:has(#tipo option[value="100"]) .calc-card:has(#outTemp) #nota::after{
+  content:"Gráfico abaixo: curva RTD normalizada R/R0 × temperatura. Como PT100, PT500 e PT1000 usam a mesma forma de curva no modelo de platina α nominal 0,00385, o eixo R/R0 permanece válido para os três sensores.";
+  display:block;
+  margin-top:12px;
+  padding-top:10px;
+  border-top:1px solid rgba(0,75,128,.14);
+  color:#334155;
+  font-size:.84rem;
+  line-height:1.45;
+}
+body.tools-page:has(#tipo option[value="100"]) .calc-card:has(#outTemp)::after{
+  content:"";
+  display:block;
+  width:100%;
+  height:270px;
+  margin-top:14px;
+  border:1px solid #dbe5ec;
+  border-radius:14px;
+  background:#fff url("rtd-curve-normalized.svg") center/contain no-repeat;
+  box-shadow:0 6px 18px rgba(0,0,0,.04);
+}
+@media(max-width:620px){
+  body.tools-page:has(#tipo option[value="100"]) .calc-card:has(#outTemp)::after{height:230px}
+}
+
+/* Tabela inferior de cores de termopares: swatches visuais IEC e ANSI. */
+body.tools-page section:has(> h2 .fa-palette) .calc-table td:nth-child(2)::before,
+body.tools-page section:has(> h2 .fa-palette) .calc-table td:nth-child(3)::before,
+body.tools-page section:has(> h2 .fa-palette) .calc-table td:nth-child(4)::before{
+  content:"";
+  display:inline-block;
+  width:16px;
+  height:16px;
+  border-radius:50%;
+  border:1px solid #64748b;
+  vertical-align:-3px;
+  margin-right:7px;
+}
+body.tools-page section:has(> h2 .fa-palette) .calc-layout > div:first-child tbody tr:nth-child(1){--tc-pos:#111827;--tc-neg:#fff;--tc-jacket:#111827}
+body.tools-page section:has(> h2 .fa-palette) .calc-layout > div:first-child tbody tr:nth-child(2){--tc-pos:#00843d;--tc-neg:#fff;--tc-jacket:#00843d}
+body.tools-page section:has(> h2 .fa-palette) .calc-layout > div:first-child tbody tr:nth-child(3){--tc-pos:#8b5a2b;--tc-neg:#fff;--tc-jacket:#8b5a2b}
+body.tools-page section:has(> h2 .fa-palette) .calc-layout > div:first-child tbody tr:nth-child(4){--tc-pos:#7e3f98;--tc-neg:#fff;--tc-jacket:#7e3f98}
+body.tools-page section:has(> h2 .fa-palette) .calc-layout > div:first-child tbody tr:nth-child(5){--tc-pos:#ec4899;--tc-neg:#fff;--tc-jacket:#ec4899}
+body.tools-page section:has(> h2 .fa-palette) .calc-layout > div:first-child tbody tr:nth-child(6){--tc-pos:#f28c28;--tc-neg:#fff;--tc-jacket:#f28c28}
+body.tools-page section:has(> h2 .fa-palette) .calc-layout > div:first-child tbody tr:nth-child(7){--tc-pos:#f28c28;--tc-neg:#fff;--tc-jacket:#f28c28}
+body.tools-page section:has(> h2 .fa-palette) .calc-layout > div:first-child tbody tr:nth-child(8){--tc-pos:#80868b;--tc-neg:#fff;--tc-jacket:#80868b}
+
+body.tools-page section:has(> h2 .fa-palette) .calc-layout > div:nth-child(2) tbody tr:nth-child(1){--tc-pos:#fff;--tc-neg:#d22630;--tc-jacket:#111827}
+body.tools-page section:has(> h2 .fa-palette) .calc-layout > div:nth-child(2) tbody tr:nth-child(2){--tc-pos:#f4c300;--tc-neg:#d22630;--tc-jacket:#f4c300}
+body.tools-page section:has(> h2 .fa-palette) .calc-layout > div:nth-child(2) tbody tr:nth-child(3){--tc-pos:#2563eb;--tc-neg:#d22630;--tc-jacket:#2563eb}
+body.tools-page section:has(> h2 .fa-palette) .calc-layout > div:nth-child(2) tbody tr:nth-child(4){--tc-pos:#7e3f98;--tc-neg:#d22630;--tc-jacket:#7e3f98}
+body.tools-page section:has(> h2 .fa-palette) .calc-layout > div:nth-child(2) tbody tr:nth-child(5){--tc-pos:#f97316;--tc-neg:#d22630;--tc-jacket:#f97316}
+body.tools-page section:has(> h2 .fa-palette) .calc-layout > div:nth-child(2) tbody tr:nth-child(6){--tc-pos:#111827;--tc-neg:#d22630;--tc-jacket:#168438}
+body.tools-page section:has(> h2 .fa-palette) .calc-layout > div:nth-child(2) tbody tr:nth-child(7){--tc-pos:#111827;--tc-neg:#d22630;--tc-jacket:#168438}
+body.tools-page section:has(> h2 .fa-palette) .calc-layout > div:nth-child(2) tbody tr:nth-child(8){--tc-pos:#80868b;--tc-neg:#d22630;--tc-jacket:#80868b}
+
+body.tools-page section:has(> h2 .fa-palette) .calc-table td:nth-child(2)::before{background:var(--tc-pos)}
+body.tools-page section:has(> h2 .fa-palette) .calc-table td:nth-child(3)::before{background:var(--tc-neg)}
+body.tools-page section:has(> h2 .fa-palette) .calc-table td:nth-child(4)::before{background:var(--tc-jacket)}
