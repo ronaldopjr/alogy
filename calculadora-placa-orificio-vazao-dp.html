@@ -1,406 +1,80 @@
 <!DOCTYPE html>
-
 <html lang="pt-br">
 <head>
 <meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>Calculadora de Placa de Orifício e Vazão DP | ALOGY</title>
-<meta content="Calcule vazão, ΔP, beta, orifício, range do transmissor DP, 4-20 mA e memorial técnico para placa de orifício industrial." name="description"/>
-<meta content="index,follow" name="robots"/>
-<meta content="#004b80" name="theme-color"/>
-<link href="https://www.alogy.com.br/calculadora-placa-orificio-vazao-dp.html" rel="canonical"/>
-<link href="/favicon-48x48.png" rel="icon" sizes="48x48" type="image/png"/>
-<link href="/favicon-192x192.png" rel="icon" sizes="192x192" type="image/png"/>
-<link href="/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
-<link href="/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180"/>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
-<link href="style.css?v=20260722-layout-original-uppercase-mobilefix" rel="stylesheet"/>
-<script defer="" src="app.js"></script>
-<meta content="pt_BR" property="og:locale"/>
-<meta content="website" property="og:type"/>
-<meta content="ALOGY Engenharia" property="og:site_name"/>
-<meta content="Calculadora de Placa de Orifício e Vazão DP" property="og:title"/>
-<meta content="Dimensione placa de orifício, vazão por pressão diferencial e faixa do transmissor DP com tabela 4-20 mA." property="og:description"/>
-<meta content="https://www.alogy.com.br/calculadora-placa-orificio-vazao-dp.html" property="og:url"/>
-<meta content="https://www.alogy.com.br/favicon-512x512.png" property="og:image"/>
-<meta content="summary_large_image" name="twitter:card"/>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Calculadora de Placa de Orifício e Vazão DP","url":"https://www.alogy.com.br/calculadora-placa-orificio-vazao-dp.html","applicationCategory":"EngineeringApplication","operatingSystem":"Web","description":"Ferramenta para pré-dimensionamento de placa de orifício e medição de vazão por pressão diferencial, com cálculo de beta, diâmetro de orifício, ΔP, vazão, Reynolds, range de transmissor DP, tabela 4-20 mA e memorial técnico.","publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"},"inLanguage":"pt-BR"}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Esta calculadora substitui um cálculo ISO 5167 completo?","acceptedAnswer":{"@type":"Answer","text":"Não. A ferramenta fornece pré-dimensionamento didático usando a equação geral de placa de orifício. A seleção final deve ser validada com norma aplicável, propriedades reais do fluido, tipo de tomada, acabamento da placa, trecho reto, incerteza e requisitos do processo."}},{"@type":"Question","name":"Por que o transmissor DP normalmente é configurado de 0 até o ΔP máximo?","acceptedAnswer":{"@type":"Answer","text":"Em medição de vazão por DP, a pressão diferencial cresce aproximadamente com o quadrado da vazão. Por isso o transmissor mede 0 até o ΔP correspondente à vazão máxima, e a extração de raiz pode ser feita no transmissor ou no CLP/DCS para linearizar a indicação de vazão."}},{"@type":"Question","name":"O que é beta ratio em placa de orifício?","acceptedAnswer":{"@type":"Answer","text":"Beta é a razão entre o diâmetro do orifício e o diâmetro interno da tubulação. Valores muito baixos ou muito altos podem aumentar incerteza, perda permanente, sensibilidade a montagem e limitações de aplicação."}},{"@type":"Question","name":"A ferramenta serve para gás e vapor?","acceptedAnswer":{"@type":"Answer","text":"Serve apenas como estimativa preliminar para gás ou vapor usando fator de expansão simplificado. Para gases, vapor saturado, vapor superaquecido ou escoamento próximo ao crítico, use propriedades termodinâmicas e cálculo normativo completo."}}]}</script>
+<meta name="description" content="Calcule vazão, ΔP, beta, diâmetro do orifício, range do transmissor DP e escala 4-20 mA para placa de orifício."/>
+<meta name="robots" content="index,follow"/>
+<meta name="theme-color" content="#004b80"/>
+<link rel="canonical" href="https://www.alogy.com.br/calculadora-placa-orificio-vazao-dp.html"/>
+<link rel="icon" href="/favicon.ico"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+<link rel="stylesheet" href="style.css?v=20260722-layout-original-uppercase-mobilefix"/>
+<script defer src="app.js"></script>
+<meta name="author" content="ALOGY Engenharia"/>
+<meta property="og:locale" content="pt_BR"/><meta property="og:type" content="website"/><meta property="og:site_name" content="ALOGY Engenharia"/>
+<meta property="og:title" content="Calculadora de Placa de Orifício e Vazão DP"/>
+<meta property="og:description" content="Pré-dimensione placa de orifício, visualize beta e a relação entre vazão e pressão diferencial."/>
+<meta property="og:url" content="https://www.alogy.com.br/calculadora-placa-orificio-vazao-dp.html"/>
+<meta property="og:image" content="https://www.alogy.com.br/favicon-512x512.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Calculadora de Placa de Orifício e Vazão DP","url":"https://www.alogy.com.br/calculadora-placa-orificio-vazao-dp.html","applicationCategory":"EngineeringApplication","operatingSystem":"Web","description":"Ferramenta para pré-dimensionamento de placa de orifício e medição de vazão por pressão diferencial.","dateModified":"2026-09-11","publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Início","item":"https://www.alogy.com.br/"},{"@type":"ListItem","position":2,"name":"Instrumentação","item":"https://www.alogy.com.br/ferramentas.html#instrumentacao"},{"@type":"ListItem","position":3,"name":"Placa de Orifício e Vazão DP","item":"https://www.alogy.com.br/calculadora-placa-orificio-vazao-dp.html"}]}</script>
 <style>
-    .tech-page{background:linear-gradient(180deg,rgba(0,75,128,.04),rgba(255,255,255,0) 260px)}
-    .tech-wrap{max-width:1120px;margin:18px auto 34px}
-    .tech-back{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:900;color:#0b3a62;background:#fff;border:1px solid rgba(0,107,177,.18);border-radius:999px;padding:10px 14px;box-shadow:0 6px 18px rgba(0,0,0,.04);margin-bottom:14px}
-    .tech-hero{background:linear-gradient(135deg,#0b3a62,#006bb1);color:#fff;border-radius:22px;padding:30px;box-shadow:0 18px 42px rgba(0,75,128,.22);overflow:hidden;position:relative}
-    .tech-hero:after{content:"";position:absolute;right:-80px;top:-80px;width:240px;height:240px;border-radius:50%;background:rgba(255,255,255,.13)}
-    .tech-hero h1{font-size:2.25rem;line-height:1.12;margin:0 0 12px;max-width:900px;color:#fff}
-    .tech-hero p{font-size:1.08rem;line-height:1.65;margin:0;max-width:940px;color:rgba(255,255,255,.92)}
-    .hero-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
-    .hero-tags span,.hero-tags a{display:inline-flex;align-items:center;gap:7px;border:1px solid rgba(255,255,255,.26);background:rgba(255,255,255,.12);color:#fff;text-decoration:none;border-radius:999px;padding:8px 10px;font-size:.88rem;font-weight:900}
-    .calc-grid{display:grid;grid-template-columns:minmax(0,1fr) 390px;gap:18px;margin-top:18px}
-    .tech-card{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:20px;box-shadow:0 12px 30px rgba(0,0,0,.06);padding:24px;margin-top:18px}
-    .tech-card h2{font-size:1.45rem;line-height:1.25;margin:0 0 12px;color:#0b3a62}
-    .tech-card h3{font-size:1.12rem;line-height:1.3;margin:20px 0 8px;color:#0b3a62}
-    .tech-card p,.tech-card li{font-size:1rem;line-height:1.72;color:#253243}
-    .tech-card ul,.tech-card ol{margin:0 0 16px 20px}
-    .field-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-    .field{display:flex;flex-direction:column;gap:6px}
-    .field label{font-weight:900;color:#0b3a62;font-size:.92rem}
-    .field input,.field select,.field textarea{border:1px solid rgba(0,0,0,.14);border-radius:12px;padding:12px;background:#fff;font:inherit;width:100%;box-sizing:border-box}
-    .field small{color:#6b7280;line-height:1.4}
-    .wide{grid-column:1/-1}
-    .calc-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
-    .btn-mini{display:inline-flex;align-items:center;gap:8px;border:none;border-radius:999px;padding:11px 14px;font-weight:900;cursor:pointer;text-decoration:none;background:#0b3a62;color:#fff;font:inherit}
-    .btn-mini.secondary{background:rgba(0,107,177,.09);color:#0b3a62;border:1px solid rgba(0,107,177,.18)}
-    .result-box{border-radius:18px;background:linear-gradient(180deg,rgba(0,107,177,.10),rgba(0,107,177,.04));border:1px solid rgba(0,107,177,.18);padding:18px}
-    .result-main{font-size:1.85rem;font-weight:900;color:#0b3a62;line-height:1.1;margin:10px 0}
-    .result-sub{color:#475569;line-height:1.6}
-    .pill-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
-    .pill{display:inline-flex;align-items:center;gap:7px;border-radius:999px;background:#fff;border:1px solid rgba(0,107,177,.18);padding:8px 10px;font-size:.88rem;font-weight:900;color:#0b3a62}
-    .note{background:#fff7ed;border:1px solid #fed7aa;color:#7c2d12;border-radius:16px;padding:14px;line-height:1.6}
-    .ok{background:#ecfdf5;border-color:#bbf7d0;color:#166534}
-    .warn{background:#fffbeb;border-color:#fde68a;color:#92400e}
-    .bad{background:#fef2f2;border-color:#fecaca;color:#991b1b}
-    .info{background:#eff6ff;border-color:#bfdbfe;color:#1e3a8a}
-    .table-wrap{overflow:auto;border-radius:16px;border:1px solid rgba(0,0,0,.08);margin-top:12px}
-    table.tech-table{width:100%;border-collapse:collapse;background:#fff;font-size:.94rem}
-    .tech-table th{background:#0b3a62;color:#fff;text-align:left;padding:11px;white-space:nowrap}
-    .tech-table td{padding:10px;border-bottom:1px solid rgba(0,0,0,.07);vertical-align:top}
-    .tech-table tr:last-child td{border-bottom:none}
-    .split{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-    .mini-meter{height:12px;background:#e5e7eb;border-radius:999px;overflow:hidden;margin:6px 0}
-    .mini-meter span{display:block;height:100%;background:linear-gradient(90deg,#0b3a62,#006bb1);border-radius:999px;width:0%}
-    .diagram{background:#f8fafc;border:1px solid rgba(0,0,0,.08);border-radius:16px;padding:12px;margin-top:14px}
-    pre.copybox{white-space:pre-wrap;background:#0f172a;color:#e5e7eb;border-radius:16px;padding:16px;overflow:auto;line-height:1.55}
-    .faq details{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:14px;padding:14px;margin-top:10px}
-    .faq summary{cursor:pointer;font-weight:900;color:#0b3a62}
-    .faq p{margin:10px 0 0;color:#475569}
-    code.inline{background:rgba(0,107,177,.08);padding:2px 6px;border-radius:8px;color:#0b3a62;font-weight:800}
-    @media(max-width:900px){.calc-grid,.split{grid-template-columns:1fr}.field-grid{grid-template-columns:1fr}.tech-hero{padding:24px}.tech-hero h1{font-size:1.65rem}}
-    @media print{header,.social-floating,.fab-wrap,footer,.tech-back,.calc-actions,.no-print{display:none!important}body{background:#fff}.tech-card,.tech-hero{box-shadow:none;border:1px solid #ddd}.calc-grid,.split{display:block}}
-  </style>
-<meta name="author" content="ALOGY Engenharia">
+.tech-wrap{max-width:1120px;margin:18px auto 36px}.tech-hero{background:linear-gradient(135deg,#0b3a62,#006bb1);color:#fff;border-radius:22px;padding:28px;box-shadow:0 15px 36px rgba(0,75,128,.18)}.tech-hero h1{color:#fff;margin:0 0 10px}.tech-hero p{color:rgba(255,255,255,.92);line-height:1.6}.tech-card{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:20px;padding:22px;margin-top:18px;box-shadow:0 10px 28px rgba(0,0,0,.06)}.tech-card h2,.tech-card h3{color:#0b3a62}.calc-grid{display:grid;grid-template-columns:minmax(0,1fr) 390px;gap:18px}.field-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.field{display:flex;flex-direction:column;gap:6px}.field label{font-weight:900;color:#0b3a62}.field input,.field select{width:100%;box-sizing:border-box;border:1px solid rgba(0,0,0,.14);border-radius:12px;padding:12px;background:#fff;font:inherit}.field small{color:#64748b;line-height:1.4}.wide{grid-column:1/-1}.calc-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}.btn-mini{border:0;border-radius:999px;padding:11px 14px;font:inherit;font-weight:900;background:#0b3a62;color:#fff;cursor:pointer}.btn-mini.secondary{background:#edf6fc;color:#0b3a62;border:1px solid rgba(0,107,177,.2)}.note{border-radius:14px;padding:13px;line-height:1.55}.ok{background:#ecfdf5;border:1px solid #bbf7d0;color:#166534}.warn{background:#fffbeb;border:1px solid #fde68a;color:#92400e}.bad{background:#fef2f2;border:1px solid #fecaca;color:#991b1b}.info{background:#eff6ff;border:1px solid #bfdbfe;color:#1e3a8a}.result-main{font-size:1.75rem;font-weight:900;margin:8px 0}.pill-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.pill{border:1px solid rgba(0,107,177,.18);border-radius:999px;padding:8px 10px;font-weight:800;color:#0b3a62;background:#fff}.table-wrap{overflow:auto;border:1px solid rgba(0,0,0,.08);border-radius:14px;margin-top:12px}.tech-table{border-collapse:collapse;width:100%;font-size:.93rem}.tech-table th{background:#0b3a62;color:#fff;padding:10px;text-align:left;white-space:nowrap}.tech-table td{padding:10px;border-bottom:1px solid rgba(0,0,0,.07)}.visual-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.visual-box{border:1px solid rgba(0,107,177,.16);border-radius:18px;background:#f8fbfe;padding:14px}.visual-box svg{display:block;width:100%;height:auto}.visual-legend{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}.visual-legend span{font-size:.86rem;background:#fff;border:1px solid rgba(0,0,0,.08);padding:6px 9px;border-radius:999px}.copybox{white-space:pre-wrap;background:#0f172a;color:#e5e7eb;border-radius:16px;padding:16px;overflow:auto;line-height:1.55}.faq details{border:1px solid rgba(0,0,0,.08);border-radius:14px;padding:13px;margin-top:10px}.faq summary{font-weight:900;color:#0b3a62;cursor:pointer}.split{display:grid;grid-template-columns:1fr 1fr;gap:18px}@media(max-width:900px){.calc-grid,.visual-grid,.split,.field-grid{grid-template-columns:1fr}.tech-hero{padding:22px}}@media print{header,.social-floating,.fab-wrap,.no-print,footer{display:none!important}.tech-card,.tech-hero{box-shadow:none;border:1px solid #ddd}}
+</style>
 </head>
-<body class="tech-page alogy-stage3-forms">
-<header>
-<div class="container headbar">
-<a aria-label="Voltar para o início" class="logo-wrapper" href="/"><img alt="ALOGY Engenharia" decoding="async" height="308" src="logo-alogy.webp" width="878"/></a>
-<button aria-label="Abrir menu" class="menu-toggle" onclick="toggleMobileMenu()"><i class="fas fa-bars"></i></button>
-</div>
-<nav aria-label="Menu principal" class="desktop"><div class="container navlinks"><a href="/">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></div></nav>
-<nav aria-label="Menu mobile" class="mobile"><a href="/">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></nav>
-</header>
-<div aria-label="Redes sociais" class="social-floating"><a aria-label="LinkedIn" class="linkedin" href="https://www.linkedin.com/company/alogyengenharia" rel="noopener noreferrer" target="_blank"><i class="fab fa-linkedin-in"></i></a><a aria-label="Instagram" class="instagram" href="https://www.instagram.com/alogyengenharia" rel="noopener noreferrer" target="_blank"><i class="fab fa-instagram"></i></a><a aria-label="Facebook" class="facebook" href="https://www.facebook.com/alogyengenharia" rel="noopener noreferrer" target="_blank"><i class="fab fa-facebook-f"></i></a><a aria-label="YouTube" class="youtube" href="https://www.youtube.com/@alogyengenharia" rel="noopener noreferrer" target="_blank"><i class="fab fa-youtube"></i></a><a aria-label="Hotmart" class="hotmart" href="https://hotmart.com/pt-br/club/alogyengenharia" rel="noopener noreferrer" target="_blank">H</a><a aria-label="TikTok" class="tiktok" href="https://www.tiktok.com/@alogyengenharia" rel="noopener noreferrer" target="_blank"><i class="fab fa-tiktok"></i></a></div>
-<div aria-label="Ações rápidas" class="fab-wrap"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1%21%20Vim%20pela%20calculadora%20de%20placa%20de%20orif%C3%ADcio%20da%20ALOGY.%20Gostaria%20de%20apoio%20em%20medi%C3%A7%C3%A3o%20de%20vaz%C3%A3o%20por%20DP." rel="noopener noreferrer" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
-<main class="container tech-wrap"><div aria-label="Ações da ferramenta" class="tool-page-actions no-print"><button class="btn print" onclick="window.print()" type="button"><i class="fas fa-print"></i> Imprimir</button></div>
-
-<section class="tech-hero">
-<h1>Calculadora de Placa de Orifício e Vazão por DP</h1>
-<p class="muted" data-alogy-content-meta><strong>Conteúdo técnico:</strong> ALOGY Engenharia · <strong>Atualizado em:</strong> 21/07/2026</p>
-<p>Ferramenta avançada para pré-dimensionar placa de orifício, verificar placa existente ou converter pressão diferencial em vazão. Ela estima beta, diâmetro do orifício, ΔP, Reynolds, velocidade, perda permanente, range do transmissor DP, tabela 4-20 mA com raiz quadrada e memorial técnico.</p>
-<div class="hero-tags"><span><i class="fas fa-circle-dot"></i> Placa de orifício</span><span><i class="fas fa-gauge-high"></i> Transmissor DP</span><span><i class="fas fa-square-root-variable"></i> Extração de raiz</span><span><i class="fas fa-file-lines"></i> Memorial técnico</span></div>
-</section>
-<section class="tech-card">
-<h2><i class="fas fa-triangle-exclamation"></i> Aviso técnico importante</h2>
-<p class="note bad"><strong>Use como pré-dimensionamento.</strong> Medição de vazão por placa de orifício depende de norma aplicável, tipo de tomada, acabamento da placa, diâmetros retos, rugosidade, perfil de escoamento, propriedades do fluido, fator de expansão, compressibilidade, incerteza, instalação das linhas de impulso e requisitos de processo. Esta ferramenta não substitui cálculo normativo completo, folha de dados aprovada, software de fabricante ou validação profissional.</p>
-</section>
+<body class="tools-page alogy-stage3-forms">
+<header><div class="container headbar"><a class="logo-wrapper" href="/" aria-label="Voltar para o início"><img src="logo-alogy.webp" alt="ALOGY Engenharia" width="878" height="308"/></a><button class="menu-toggle" aria-label="Abrir menu" onclick="toggleMobileMenu()"><i class="fas fa-bars"></i></button></div><nav class="desktop" aria-label="Menu principal"><div class="container navlinks"><a href="/">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="/guia/">Guia</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></div></nav><nav class="mobile" aria-label="Menu mobile"><a href="/">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="/guia/">Guia</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></nav></header>
+<div class="social-floating" aria-label="Redes sociais"><a class="linkedin" href="https://www.linkedin.com/company/alogyengenharia" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a><a class="instagram" href="https://www.instagram.com/alogyengenharia" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a><a class="facebook" href="https://www.facebook.com/alogyengenharia" aria-label="Facebook" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a><a class="youtube" href="https://www.youtube.com/@alogyengenharia" aria-label="YouTube" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i></a><a class="tiktok" href="https://www.tiktok.com/@alogyengenharia" aria-label="TikTok" target="_blank" rel="noopener noreferrer"><i class="fab fa-tiktok"></i></a></div>
+<main class="container tech-wrap">
+<div class="tool-page-actions no-print"><button class="btn print" onclick="window.print()"><i class="fas fa-print"></i> Imprimir</button></div>
+<section class="tech-hero"><h1>Calculadora de Placa de Orifício e Vazão por DP</h1><p class="muted" data-alogy-content-meta><strong>Conteúdo técnico:</strong> ALOGY Engenharia · <strong>Atualizado em:</strong> 11/09/2026</p><p>Pré-dimensione o orifício, verifique uma placa existente ou converta pressão diferencial em vazão. O desenho e a curva abaixo acompanham o cálculo para mostrar beta, ΔP e a relação quadrática entre vazão e diferencial.</p></section>
+<section class="tech-card"><h2><i class="fas fa-triangle-exclamation"></i> Uso técnico</h2><p class="note warn"><strong>Pré-dimensionamento:</strong> confirme a seleção final pela norma aplicável, diâmetro interno real, tipo de tomada, trechos retos, propriedades do fluido, coeficiente de descarga, incerteza e documentação do fabricante.</p></section>
 <div class="calc-grid">
-<section class="tech-card">
-<h2>Dados de entrada</h2>
-<div class="field-grid">
-<div class="field"><label for="modo">Modo de cálculo</label><select id="modo" onchange="atualizarModo(); calcularOrificio();"><option value="dimensionar">Dimensionar orifício por Qmáx e ΔPmáx</option><option value="verificar">Verificar placa existente</option><option value="converter">Converter ΔP medido em vazão</option></select><small>Escolha se deseja encontrar o furo, verificar uma placa ou calcular vazão pelo DP.</small></div>
-<div class="field"><label for="fluidoTipo">Tipo de fluido</label><select id="fluidoTipo" onchange="atualizarFluido(); calcularOrificio();"><option value="liquido">Líquido</option><option value="gas">Gás / vapor preliminar</option></select><small>Gás/vapor usa fator de expansão simplificado.</small></div>
-<div class="field"><label for="tag">Tag do elemento/transmissor</label><input id="tag" value="FE/FT-101"/></div>
-<div class="field"><label for="servico">Serviço</label><input id="servico" value="Vazão de água de processo"/></div>
-<div class="field"><label for="tapType">Tipo de tomada</label><select id="tapType"><option>Flange taps</option><option>Corner taps</option><option>D e D/2</option><option>Tomada em câmara anular</option><option>Outro / confirmar projeto</option></select><small>Campo informativo para memorial.</small></div>
-<div class="field"><label for="sqrtLocal">Extração de raiz</label><select id="sqrtLocal"><option>No transmissor DP</option><option>No CLP/DCS</option><option>Somente indicação linear de DP</option></select><small>Define como a vazão será linearizada.</small></div>
+<section class="tech-card"><h2>Dados de entrada</h2><div class="field-grid">
+<div class="field"><label for="modo">Modo</label><select id="modo"><option value="dimensionar">Dimensionar d por Qmáx e ΔPmáx</option><option value="verificar">Verificar placa existente</option><option value="converter">Converter ΔP medido em vazão</option></select></div>
+<div class="field"><label for="fluidoTipo">Fluido</label><select id="fluidoTipo"><option value="liquido">Líquido</option><option value="gas">Gás / vapor preliminar</option></select></div>
+<div class="field"><label for="tag">Tag</label><input id="tag" value="FE/FT-101"/></div><div class="field"><label for="servico">Serviço</label><input id="servico" value="Vazão de água"/></div>
+<div class="field"><label for="pipeD">Diâmetro interno D (mm)</label><input id="pipeD" type="number" step="0.1" value="100"/></div>
+<div class="field" id="orificeBox"><label for="orificeD">Diâmetro do orifício d (mm)</label><input id="orificeD" type="number" step="0.1" value="55"/><small>No modo dimensionar, o valor é calculado.</small></div>
+<div class="field"><label for="rho">Densidade ρ (kg/m³)</label><input id="rho" type="number" step="0.1" value="998"/></div>
+<div class="field"><label for="visc">Viscosidade (cP)</label><input id="visc" type="number" step="0.01" value="1"/></div>
+<div class="field gas-field"><label for="p1abs">P1 absoluta (bar abs)</label><input id="p1abs" type="number" step="0.01" value="6"/></div>
+<div class="field gas-field"><label for="kappa">k</label><input id="kappa" type="number" step="0.01" value="1.30"/></div>
+<div class="field"><label for="cd">Coeficiente Cd</label><input id="cd" type="number" step="0.001" value="0.610"/><small>Use valor normativo/fabricante quando disponível.</small></div>
+<div class="field"><label for="qMin">Vazão mínima (m³/h)</label><input id="qMin" type="number" step="0.01" value="20"/></div>
+<div class="field"><label for="qNor">Vazão normal (m³/h)</label><input id="qNor" type="number" step="0.01" value="60"/></div>
+<div class="field"><label for="qMax">Vazão máxima (m³/h)</label><input id="qMax" type="number" step="0.01" value="100"/></div>
+<div class="field"><label for="dpMax">ΔP máximo / URV (mbar)</label><input id="dpMax" type="number" step="0.1" value="250"/></div>
+<div class="field" id="dpReadBox"><label for="dpRead">ΔP medido (mbar)</label><input id="dpRead" type="number" step="0.1" value="90"/></div>
+<div class="field"><label for="sqrtLocal">Extração de raiz</label><select id="sqrtLocal"><option>No transmissor DP</option><option>No CLP/DCS</option><option>Somente indicação linear de DP</option></select></div>
+</div><div class="calc-actions"><button class="btn-mini" id="calcBtn"><i class="fas fa-calculator"></i> Calcular</button><button class="btn-mini secondary" id="copyBtn"><i class="fas fa-copy"></i> Copiar memorial</button></div></section>
+<aside class="tech-card"><h2>Resultado rápido</h2><div id="resultadoRapido" aria-live="polite"></div></aside>
 </div>
-<h3>Geometria e propriedades</h3>
-<div class="field-grid">
-<div class="field"><label for="pipeD">Diâmetro interno da tubulação D (mm)</label><input id="pipeD" oninput="calcularOrificio()" step="0.1" type="number" value="100"/></div>
-<div class="field" id="orificeBox"><label for="orificeD">Diâmetro do orifício d (mm)</label><input id="orificeD" oninput="calcularOrificio()" step="0.1" type="number" value="55"/><small>No modo dimensionamento, pode ser preenchido apenas para comparação.</small></div>
-<div class="field"><label for="rho">Densidade operacional ρ (kg/m³)</label><input id="rho" oninput="calcularOrificio()" step="0.1" type="number" value="998"/></div>
-<div class="field"><label for="visc">Viscosidade dinâmica (cP)</label><input id="visc" oninput="calcularOrificio()" step="0.01" type="number" value="1.0"/></div>
-<div class="field gas-field"><label for="p1abs">Pressão absoluta a montante P1 (bar abs)</label><input id="p1abs" oninput="calcularOrificio()" step="0.01" type="number" value="6.0"/></div>
-<div class="field gas-field"><label for="kappa">Expoente isentrópico k</label><input id="kappa" oninput="calcularOrificio()" step="0.01" type="number" value="1.30"/></div>
-<div class="field"><label for="cd">Coeficiente de descarga Cd</label><input id="cd" oninput="calcularOrificio()" step="0.001" type="number" value="0.610"/><small>Use valor do cálculo normativo/fabricante quando disponível.</small></div>
-<div class="field"><label for="tempC">Temperatura operacional (°C)</label><input id="tempC" oninput="calcularOrificio()" step="0.1" type="number" value="25"/></div>
-</div>
-<h3>Vazões e diferencial de pressão</h3>
-<div class="field-grid">
-<div class="field"><label for="qMin">Vazão mínima (m³/h)</label><input id="qMin" oninput="calcularOrificio()" step="0.01" type="number" value="20"/></div>
-<div class="field"><label for="qNor">Vazão normal (m³/h)</label><input id="qNor" oninput="calcularOrificio()" step="0.01" type="number" value="60"/></div>
-<div class="field"><label for="qMax">Vazão máxima / URV de vazão (m³/h)</label><input id="qMax" oninput="calcularOrificio()" step="0.01" type="number" value="100"/></div>
-<div class="field"><label for="dpMax">ΔP máximo desejado / range DP (mbar)</label><input id="dpMax" oninput="calcularOrificio()" step="0.1" type="number" value="250"/><small>Normalmente é o URV do transmissor DP.</small></div>
-<div class="field" id="dpReadBox"><label for="dpRead">ΔP medido em campo (mbar)</label><input id="dpRead" oninput="calcularOrificio()" step="0.1" type="number" value="90"/><small>Usado no modo converter ΔP em vazão.</small></div>
-<div class="field"><label for="rawMax">Raw máximo do CLP</label><input id="rawMax" oninput="calcularOrificio()" step="1" type="number" value="27648"/></div>
-</div>
-<div class="calc-actions"><button class="btn-mini" onclick="calcularOrificio()"><i class="fas fa-calculator"></i> Calcular</button><button class="btn-mini secondary" onclick="copiarMemorial()"><i class="fas fa-copy"></i> Copiar memorial</button></div>
-</section>
-<aside aria-live="polite" class="tech-card result-box">
-<h2>Resultado rápido</h2>
-<div id="resultadoRapido"></div>
-<div aria-label="Diagrama simplificado de placa de orifício" class="diagram">
-<svg aria-label="Esquema simplificado de placa de orifício em linha com transmissor DP" height="auto" role="img" viewbox="0 0 380 180" width="100%">
-<defs><lineargradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#0b3a62"></stop><stop offset="1" stop-color="#006bb1"></stop></lineargradient></defs>
-<rect fill="#dbeafe" height="52" rx="18" stroke="#0b3a62" stroke-width="2" width="340" x="20" y="58"></rect>
-<rect fill="url(#g)" height="100" rx="5" width="24" x="178" y="35"></rect>
-<circle cx="190" cy="85" fill="#fff" r="20" stroke="#0b3a62" stroke-width="3"></circle>
-<path d="M60 84h88" marker-end="url(#arrow)" stroke="#0b3a62" stroke-width="5"></path>
-<text fill="#0b3a62" font-size="13" font-weight="700" x="42" y="45">P1</text>
-<text fill="#0b3a62" font-size="13" font-weight="700" x="310" y="45">P2</text>
-<line stroke="#0b3a62" stroke-width="3" x1="150" x2="150" y1="60" y2="145"></line>
-<line stroke="#0b3a62" stroke-width="3" x1="230" x2="230" y1="60" y2="145"></line>
-<rect fill="#fff" height="30" rx="10" stroke="#0b3a62" stroke-width="2" width="110" x="135" y="142"></rect>
-<text fill="#0b3a62" font-size="13" font-weight="700" x="154" y="162">Transmissor DP</text>
-<text fill="#0b3a62" font-size="12" font-weight="700" x="178" y="28">placa</text>
-<defs><marker id="arrow" markerheight="10" markerwidth="10" orient="auto" refx="8" refy="3"><path d="M0,0 L0,6 L9,3 z" fill="#0b3a62"></path></marker></defs>
-</svg>
-</div>
-</aside>
-</div>
+<section class="tech-card"><h2><i class="fas fa-chart-line"></i> Leitura visual da medição</h2><div class="visual-grid">
+<div class="visual-box"><h3>Placa e transmissor DP</h3><svg viewBox="0 0 620 270" role="img" aria-labelledby="diagTitle diagDesc"><title id="diagTitle">Esquema da placa de orifício</title><desc id="diagDesc">Tubulação com placa de orifício, tomadas de alta e baixa e transmissor de pressão diferencial.</desc><defs><marker id="arr" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#0b3a62"/></marker></defs><rect x="40" y="90" width="540" height="76" rx="32" fill="#dbeafe" stroke="#0b3a62" stroke-width="3"/><line x1="105" y1="128" x2="210" y2="128" stroke="#0b3a62" stroke-width="6" marker-end="url(#arr)"/><rect x="300" y="65" width="18" height="126" rx="4" fill="#0b3a62"/><circle id="orificeHole" cx="309" cy="128" r="27" fill="#fff" stroke="#006bb1" stroke-width="3"/><line x1="240" y1="90" x2="240" y2="220" stroke="#0b3a62" stroke-width="3"/><line x1="380" y1="90" x2="380" y2="220" stroke="#0b3a62" stroke-width="3"/><rect x="245" y="215" width="130" height="38" rx="12" fill="#fff" stroke="#0b3a62" stroke-width="2"/><text x="310" y="240" text-anchor="middle" font-size="15" font-weight="700">Transmissor DP</text><text x="240" y="78" text-anchor="middle" font-size="14" font-weight="700">HP / P1</text><text x="380" y="78" text-anchor="middle" font-size="14" font-weight="700">LP / P2</text><text id="diagD" x="75" y="205" font-size="15" font-weight="700">D = -</text><text id="diagd" x="300" y="45" font-size="15" font-weight="700">d = -</text><text id="diagBeta" x="455" y="205" font-size="15" font-weight="700">β = -</text><text id="diagDp" x="455" y="230" font-size="14">ΔP = -</text></svg><div class="visual-legend"><span>HP: montante</span><span>LP: jusante</span><span>β = d/D</span></div></div>
+<div class="visual-box"><h3>Curva vazão × ΔP</h3><svg viewBox="0 0 620 270" role="img" aria-labelledby="curveTitle curveDesc"><title id="curveTitle">Curva de vazão e pressão diferencial</title><desc id="curveDesc">Mostra que a pressão diferencial cresce aproximadamente com o quadrado da vazão.</desc><line x1="65" y1="225" x2="575" y2="225" stroke="#64748b" stroke-width="2"/><line x1="65" y1="225" x2="65" y2="35" stroke="#64748b" stroke-width="2"/><path d="M65 225 C190 220 320 180 430 115 C500 75 545 43 575 35" fill="none" stroke="#006bb1" stroke-width="5"/><line id="curveGX" x1="65" y1="225" x2="65" y2="225" stroke="#0b3a62" stroke-dasharray="5 5"/><line id="curveGY" x1="65" y1="225" x2="65" y2="225" stroke="#0b3a62" stroke-dasharray="5 5"/><circle id="curvePoint" cx="65" cy="225" r="8" fill="#062138" stroke="#fff" stroke-width="3"/><text x="320" y="262" text-anchor="middle" font-size="14">Vazão (% de Qmáx)</text><text x="18" y="135" text-anchor="middle" font-size="14" transform="rotate(-90 18 135)">ΔP (% do URV)</text><text id="curveLabel" x="360" y="70" font-size="15" font-weight="700">Q = - · ΔP = -</text></svg><p class="note info"><strong>Relação:</strong> para uma placa fixa, aproximadamente Q ∝ √ΔP. Assim, 50% da vazão corresponde a cerca de 25% do ΔP.</p></div>
+</div></section>
 <section class="tech-card" id="resultadoDetalhado"><h2>Resultado detalhado</h2><p>Preencha os dados para gerar a análise.</p></section>
-<section class="tech-card">
-<h2>Memorial técnico preliminar</h2>
-<p>Use este texto como rascunho para discussão técnica, revisão de projeto, orçamento ou abertura de chamado. A validação final deve ser feita com os dados reais do processo.</p>
-<pre class="copybox" id="memorial">Calcule para gerar o memorial.</pre>
-</section>
-<section class="tech-card split">
-<div>
-<h2>Como interpretar o resultado</h2>
-<p>A placa de orifício gera uma restrição na tubulação. A pressão a montante é maior que a pressão a jusante, e a diferença <strong>ΔP</strong> aumenta aproximadamente com o quadrado da vazão. Por isso, em muitos sistemas, o transmissor DP mede uma escala linear de pressão diferencial e a indicação de vazão usa extração de raiz.</p>
-<ul>
-<li><strong>Beta ratio:</strong> relação d/D. Beta muito baixo aumenta perda permanente; beta muito alto reduz sensibilidade e pode piorar incerteza.</li>
-<li><strong>URV do transmissor DP:</strong> deve corresponder ao ΔP na vazão máxima de projeto.</li>
-<li><strong>Reynolds:</strong> ajuda a avaliar se a aplicação está em regime adequado para medição por orifício.</li>
-<li><strong>Perda permanente:</strong> parte da queda de pressão não é recuperada após a placa.</li>
-</ul>
-</div>
-<div>
-<h2>Checklist de campo e projeto</h2>
-<ul>
-<li>Confirmar diâmetro interno real da linha, schedule e material.</li>
-<li>Validar densidade, viscosidade, temperatura e pressão na condição de operação.</li>
-<li>Definir tipo de tomada: flange, corner, D e D/2 ou projeto específico.</li>
-<li>Verificar trechos retos antes/depois da placa e perturbações próximas.</li>
-<li>Confirmar posição das tomadas, linhas de impulso, condensado, purga e manifold.</li>
-<li>Definir onde será feita a extração de raiz: transmissor ou CLP/DCS.</li>
-<li>Conferir LRV, URV, unidade de engenharia, 4-20 mA, raw e alarmes.</li>
-<li>Registrar placa, furo, espessura, tag, sentido de fluxo e documentação.</li>
-</ul>
-</div>
-</section>
-<section class="tech-card">
-<h2>Links relacionados</h2>
-<div class="pill-row"><a class="pill" href="calculadora-linha-impulso-transmissor-dp.html"><i class="fas fa-diagram-project"></i> Linha de impulso DP</a><a class="pill" href="calculadora-vazao-pressao-diferencial.html"><i class="fas fa-gauge-high"></i> Vazão por DP</a><a class="pill" href="calculadora-raiz-quadrada-4-20ma.html"><i class="fas fa-square-root-variable"></i> Raiz quadrada 4-20 mA</a><a class="pill" href="calculadora-placa-orificio-restricao.html"><i class="fas fa-circle-dot"></i> Orifício / restrição simples</a><a class="pill" href="calculadora-cv-kv-valvula-controle.html"><i class="fas fa-sliders"></i> Cv/Kv de válvula</a></div>
-</section>
-<section class="tech-card faq">
-<h2>Perguntas frequentes</h2>
-<details open=""><summary>Qual a diferença entre vazão linearizada e DP linear?</summary><p>O transmissor DP mede pressão diferencial de forma linear. Como a vazão é proporcional à raiz quadrada do DP, a indicação de vazão só fica linear se houver extração de raiz no transmissor ou no CLP/DCS.</p></details>
-<details><summary>Posso configurar o transmissor de 0 a 100 m³/h diretamente?</summary><p>Depende do transmissor e da arquitetura. Muitos transmissores podem transmitir uma variável já linearizada em vazão. Em outros casos, o transmissor envia DP de 0 a URV, e o CLP/DCS aplica a raiz e escala para m³/h.</p></details>
-<details><summary>O beta ideal é sempre 0,5?</summary><p>Não. Beta depende de vazão, diâmetro, ΔP desejado, perda admissível, Reynolds, incerteza e instalação. Como triagem, valores entre 0,2 e 0,7 costumam ser mais razoáveis, mas a validação deve seguir o critério de projeto.</p></details>
-<details><summary>Por que gás e vapor precisam de mais cuidado?</summary><p>Porque são compressíveis. A densidade muda com pressão e temperatura, pode haver fator de expansão, escoamento crítico, variação de propriedades e necessidade de compensação. Para vapor, use propriedades termodinâmicas reais.</p></details>
-</section>
+<section class="tech-card"><h2>Memorial técnico preliminar</h2><pre class="copybox" id="memorial">Calcule para gerar o memorial.</pre></section>
+<section class="tech-card split"><div><h2>Como interpretar</h2><ul><li><strong>Beta:</strong> razão entre o furo e o diâmetro interno da linha.</li><li><strong>URV DP:</strong> diferencial associado à vazão máxima de projeto.</li><li><strong>Raiz quadrada:</strong> lineariza a indicação de vazão a partir do DP.</li><li><strong>Reynolds:</strong> ajuda a avaliar a condição do escoamento para aplicação do elemento primário.</li></ul></div><div><h2>Checklist de campo</h2><ul><li>Confirmar D interno real, schedule e condição da linha.</li><li>Confirmar direção de fluxo e orientação da placa.</li><li>Verificar tomadas, manifold, linhas de impulso e lado HP/LP.</li><li>Confirmar faixa do transmissor e local da extração de raiz.</li><li>Verificar trechos retos e perturbações próximas.</li></ul></div></section>
+<section class="tech-card faq"><h2>Perguntas frequentes</h2><details open><summary>Por que 50% da vazão não gera 50% do DP?</summary><p>Porque, para a aproximação usada, ΔP varia com o quadrado da vazão. Em 50% de vazão, o diferencial fica próximo de 25% do valor máximo.</p></details><details><summary>O cálculo substitui ISO 5167?</summary><p>Não. É um pré-dimensionamento. A seleção final deve usar o método normativo aplicável e dados reais do elemento, fluido e instalação.</p></details><details><summary>Onde aplicar a raiz quadrada?</summary><p>Pode ser no transmissor ou no CLP/DCS, conforme a arquitetura da malha. Evite aplicar a extração duas vezes.</p></details></section>
 </main>
-<script>
-function parseBR(value){
-  const raw=String(value ?? '').trim();
-  if(!raw) return NaN;
-  const norm=raw.includes(',') ? raw.replace(/\./g,'').replace(',','.') : raw;
-  const v=Number(norm);
-  return Number.isFinite(v) ? v : NaN;
-}
-function n(id){ const v=parseBR(document.getElementById(id)?.value || ''); return Number.isFinite(v)?v:0; }
-function s(id){ return String(document.getElementById(id)?.value || '').trim(); }
-function fmt(x,d=2){ return isFinite(x)?Number(x).toLocaleString('pt-BR',{minimumFractionDigits:d,maximumFractionDigits:d}):'-'; }
-function clamp(x,a,b){ return Math.max(a,Math.min(b,x)); }
-function atualizarFluido(){
-  const gas = document.getElementById('fluidoTipo').value === 'gas';
-  document.querySelectorAll('.gas-field').forEach(el=>{ el.style.display = gas ? 'flex' : 'none'; });
-  calcularOrificio();
-}
-function atualizarModo(){
-  const modo = document.getElementById('modo').value;
-  const dpReadBox=document.getElementById('dpReadBox');
-  const orificeBox=document.getElementById('orificeBox');
-  if(dpReadBox) dpReadBox.style.display = modo === 'converter' ? 'flex' : 'none';
-  if(orificeBox) orificeBox.querySelector('small').textContent = modo === 'dimensionar' ? 'No modo dimensionamento, pode ser preenchido apenas para comparação.' : 'Obrigatório para verificar ou converter.';
-}
-function epsilon(beta, dpPa){
-  const gas = document.getElementById('fluidoTipo').value === 'gas';
-  if(!gas) return 1;
-  const p1Pa = Math.max(n('p1abs')*100000, 1000);
-  const k = Math.max(n('kappa'), 1.01);
-  const y = 1 - (0.351 + 0.256*Math.pow(beta,4) + 0.93*Math.pow(beta,8)) * (dpPa/(k*p1Pa));
-  return clamp(y, 0.70, 1.00);
-}
-function geom(pipeMm, orificeMm){
-  const D=pipeMm/1000, d=orificeMm/1000, beta=d/Math.max(D,1e-9);
-  const ao=Math.PI*d*d/4, ap=Math.PI*D*D/4;
-  return {D,d,beta,ao,ap};
-}
-function qFromDp(dpMbar, pipeMm, orificeMm){
-  const g=geom(pipeMm,orificeMm), cd=n('cd'), rho=n('rho');
-  const dpPa=dpMbar*100;
-  if(g.beta<=0 || g.beta>=1 || cd<=0 || rho<=0 || dpPa<0) return NaN;
-  const eps=epsilon(g.beta, dpPa);
-  const q=cd*eps*g.ao/Math.sqrt(Math.max(1-Math.pow(g.beta,4),1e-9))*Math.sqrt(2*dpPa/rho);
-  return q*3600;
-}
-function dpFromQ(qM3h, pipeMm, orificeMm){
-  const g=geom(pipeMm,orificeMm), cd=n('cd'), rho=n('rho');
-  const q=qM3h/3600;
-  if(g.beta<=0 || g.beta>=1 || cd<=0 || rho<=0 || q<0) return NaN;
-  let dp = (rho/2)*Math.pow(q*Math.sqrt(Math.max(1-Math.pow(g.beta,4),1e-9))/(cd*g.ao),2);
-  for(let i=0;i<8;i++){
-    const eps=epsilon(g.beta, dp);
-    dp = (rho/2)*Math.pow(q*Math.sqrt(Math.max(1-Math.pow(g.beta,4),1e-9))/(cd*eps*g.ao),2);
-  }
-  return dp/100;
-}
-function solveOrifice(pipeMm, qMax, dpMax){
-  const D=pipeMm;
-  let lo=0.10*D, hi=0.78*D;
-  const qLo=qFromDp(dpMax,pipeMm,lo), qHi=qFromDp(dpMax,pipeMm,hi);
-  if(!isFinite(qLo)||!isFinite(qHi)||qMax<qLo||qMax>qHi) return {ok:false,lo,hi,qLo,qHi,d:NaN};
-  for(let i=0;i<70;i++){
-    const mid=(lo+hi)/2, q=qFromDp(dpMax,pipeMm,mid);
-    if(q<qMax) lo=mid; else hi=mid;
-  }
-  return {ok:true,d:(lo+hi)/2};
-}
-function reynolds(qM3h, pipeMm){
-  const rho=n('rho'), mu=Math.max(n('visc')*0.001,1e-9), D=pipeMm/1000;
-  const a=Math.PI*D*D/4;
-  const v=(qM3h/3600)/Math.max(a,1e-9);
-  return {re:rho*v*D/mu, v};
-}
-function rawFromMa(ma){ return (ma-4)/16*n('rawMax'); }
-function statusBeta(beta){
-  if(beta<0.10 || beta>0.78) return {cls:'bad',txt:'Beta fora de faixa preliminar aceitável. Revise diâmetro de linha, furo ou ΔP de projeto.'};
-  if(beta<0.20 || beta>0.70) return {cls:'warn',txt:'Beta em faixa de atenção. Pode haver maior incerteza, perda permanente ou sensibilidade à instalação.'};
-  return {cls:'ok',txt:'Beta em faixa preliminar usual para triagem.'};
-}
-function statusRe(re){
-  if(re<4000) return {cls:'bad',txt:'Reynolds baixo: regime laminar/transição. Placa de orifício pode não ser adequada sem avaliação específica.'};
-  if(re<10000) return {cls:'warn',txt:'Reynolds moderado. Verifique limites normativos e influência no coeficiente de descarga.'};
-  return {cls:'ok',txt:'Reynolds alto, preliminarmente compatível com escoamento turbulento.'};
-}
-function statusVel(v, gas){
-  if(gas){
-    if(v>60) return {cls:'bad',txt:'Velocidade alta para gás/vapor. Avaliar ruído, erosão, perda de carga e linhas.'};
-    if(v>35) return {cls:'warn',txt:'Velocidade moderada/alta para gás/vapor.'};
-    return {cls:'ok',txt:'Velocidade preliminar sem alerta forte.'};
-  }
-  if(v>6) return {cls:'bad',txt:'Velocidade alta para líquido. Avaliar erosão, ruído e perda de carga.'};
-  if(v>3) return {cls:'warn',txt:'Velocidade moderada/alta para líquido.'};
-  return {cls:'ok',txt:'Velocidade preliminar sem alerta forte.'};
-}
-function calcRows(qs, pipeD, d, dpRange){
-  return qs.map(row=>{
-    const dp=dpFromQ(row.q,pipeD,d);
-    const rr=reynolds(row.q,pipeD);
-    const pctFlow = dpRange>0 ? Math.sqrt(Math.max(dp,0)/dpRange) : 0;
-    const maDp = 4 + 16*(dp/Math.max(dpRange,1e-9));
-    const maFlow = 4 + 16*clamp(pctFlow,0,1.5);
-    return {...row, dp, re:rr.re, vel:rr.v, maDp, maFlow, rawDp:rawFromMa(maDp), rawFlow:rawFromMa(maFlow)};
-  });
-}
-function calcularOrificio(){
-  const modo=document.getElementById('modo').value;
-  const gas=document.getElementById('fluidoTipo').value==='gas';
-  const pipeD=n('pipeD'), cd=n('cd'), rho=n('rho'), qMin=n('qMin'), qNor=n('qNor'), qMax=n('qMax'), dpMax=n('dpMax');
-  let d=n('orificeD');
-  const erros=[];
-  if(pipeD<=0) erros.push('Informe diâmetro interno da tubulação maior que zero.');
-  if(rho<=0) erros.push('Informe densidade operacional maior que zero.');
-  if(cd<=0 || cd>1) erros.push('Coeficiente Cd deve estar entre 0 e 1.');
-  if(n('visc')<=0) erros.push('Informe viscosidade maior que zero.');
-  if(!(qMin>0 && qNor>0 && qMax>0)) erros.push('Vazões mínima, normal e máxima devem ser maiores que zero.');
-  if(!(qMin<=qNor && qNor<=qMax)) erros.push('Use vazões em ordem: mínima ≤ normal ≤ máxima.');
-  if(dpMax<=0) erros.push('Informe ΔP máximo/range DP maior que zero.');
-  if(gas && n('p1abs')<=0) erros.push('Para gás/vapor, informe pressão absoluta a montante maior que zero.');
-  if(gas && n('kappa')<=1) erros.push('Para gás/vapor, informe kappa maior que 1 para o fator de expansão.');
-  if(gas && dpMax*100 >= n('p1abs')*100000) erros.push('Para gás/vapor, o ΔP máximo não deve ser maior ou igual à pressão absoluta de entrada.');
-  if(modo!=='dimensionar' && d<=0) erros.push('Informe o diâmetro do orifício para verificar placa existente ou converter DP.');
-  if(erros.length){
-    const html=`<div class="note bad"><strong>Não foi possível calcular.</strong><ul>${erros.map(e=>`<li>${e}</li>`).join('')}</ul></div>`;
-    document.getElementById('resultadoRapido').innerHTML=html;
-    document.getElementById('resultadoDetalhado').innerHTML='<h2>Resultado detalhado</h2>'+html;
-    document.getElementById('memorial').textContent='Corrija os dados de entrada para gerar o memorial.';
-    return;
-  }
-  let dimensionamento='';
-  if(modo==='dimensionar'){
-    const sol=solveOrifice(pipeD,qMax,dpMax);
-    if(!sol.ok){
-      const html=`<div class="note bad"><strong>Não foi possível dimensionar o orifício.</strong><p>Com D=${fmt(pipeD,1)} mm e ΔP=${fmt(dpMax,1)} mbar, a vazão máxima informada está fora da faixa estimada para beta entre 0,10 e 0,78. Revise D, ΔP ou vazão máxima.</p></div>`;
-      document.getElementById('resultadoRapido').innerHTML=html;
-      document.getElementById('resultadoDetalhado').innerHTML='<h2>Resultado detalhado</h2>'+html;
-      document.getElementById('memorial').textContent='Revise dados para gerar o memorial.';
-      return;
-    }
-    d=sol.d;
-    document.getElementById('orificeD').value = fmt(d,2).replace('.','').replace(',','.');
-    dimensionamento='Orifício calculado pelo modo dimensionamento para que Qmáx corresponda ao ΔP máximo informado.';
-  } else {
-    dimensionamento='Placa existente/verificação com diâmetro de orifício informado pelo usuário.';
-  }
-  const g=geom(pipeD,d), beta=g.beta;
-  const rows=calcRows([{nome:'Mínima',q:qMin},{nome:'Normal',q:qNor},{nome:'Máxima',q:qMax}],pipeD,d,dpMax);
-  const convQ = qFromDp(n('dpRead'),pipeD,d);
-  const convRe = reynolds(convQ,pipeD);
-  const epsMax = epsilon(beta, dpMax*100);
-  const lossFrac = clamp(1 - beta*beta,0.25,0.95);
-  const lossMbar = dpMax*lossFrac;
-  const betaSt=statusBeta(beta), reSt=statusRe(rows[2].re), velSt=statusVel(rows[2].vel, gas);
-  const gasWarn = gas && (dpMax*100)/(Math.max(n('p1abs')*100000,1)) > 0.25 ? {cls:'warn',txt:'ΔP/P1 elevado para gás/vapor. O fator de expansão simplificado pode não representar bem a condição real.'} : {cls:'ok',txt:'Relação ΔP/P1 preliminar sem alerta forte.'};
-  const all=[betaSt,reSt,velSt,gasWarn];
-  const overall = all.some(a=>a.cls==='bad') ? 'bad' : (all.some(a=>a.cls==='warn') ? 'warn' : 'ok');
-  const resumo = overall==='ok' ? 'Pré-dimensionamento aparentemente adequado' : (overall==='warn' ? 'Pré-dimensionamento com pontos de atenção' : 'Pré-dimensionamento crítico ou fora de faixa');
-  const qConvHtml = modo==='converter' ? `<div class="note info"><strong>Conversão de ΔP medido:</strong> ${fmt(n('dpRead'),2)} mbar corresponde a aproximadamente <strong>${fmt(convQ,2)} m³/h</strong>, velocidade ${fmt(convRe.v,2)} m/s e Reynolds ${fmt(convRe.re,0)}.</div>` : '';
-  document.getElementById('resultadoRapido').innerHTML = `
-    <div class="note ${overall}"><strong>${resumo}</strong><div class="result-main">d = ${fmt(d,2)} mm</div><div>Beta: <strong>${fmt(beta,3)}</strong> | ΔP URV: <strong>${fmt(dpMax,1)} mbar</strong></div></div>
-    <div class="pill-row"><span class="pill">Qmáx ${fmt(qMax,2)} m³/h</span><span class="pill">Re máx ${fmt(rows[2].re,0)}</span><span class="pill">Perda permanente ~${fmt(lossMbar,1)} mbar</span></div>${qConvHtml}`;
-  const tbody = rows.map(r=>`<tr><td>${r.nome}</td><td>${fmt(r.q,2)} m³/h</td><td>${fmt(r.dp,2)} mbar</td><td>${fmt(r.dp/10,3)} kPa</td><td>${fmt(r.maDp,3)} mA<br><small>linear DP</small></td><td>${fmt(r.maFlow,3)} mA<br><small>vazão linearizada</small></td><td>${fmt(r.re,0)}</td><td>${fmt(r.vel,2)} m/s</td></tr>`).join('');
-  const curveRows = [0,25,50,75,100].map(p=>{
-    const f=p/100, dp=dpMax*f*f, maDp=4+16*(dp/dpMax), maFlow=4+16*f;
-    return `<tr><td>${p}%</td><td>${fmt(qMax*f,2)} m³/h</td><td>${fmt(dp,2)} mbar</td><td>${fmt(maDp,3)} mA</td><td>${fmt(maFlow,3)} mA</td><td>${fmt(rawFromMa(maFlow),0)}</td></tr>`;
-  }).join('');
-  const alertHtml = all.map(a=>`<p class="note ${a.cls}">${a.txt}</p>`).join('');
-  document.getElementById('resultadoDetalhado').innerHTML = `
-    <h2>Resultado detalhado</h2>
-    <div class="pill-row"><span class="pill">Orifício d: ${fmt(d,2)} mm</span><span class="pill">Tubulação D: ${fmt(pipeD,2)} mm</span><span class="pill">Beta: ${fmt(beta,3)}</span><span class="pill">Cd: ${fmt(cd,3)}</span><span class="pill">ε máx.: ${fmt(epsMax,3)}</span></div>
-    <h3>Condições mínima, normal e máxima</h3>
-    <div class="table-wrap"><table class="tech-table"><thead><tr><th>Condição</th><th>Vazão</th><th>ΔP</th><th>ΔP</th><th>4-20 mA sem raiz</th><th>4-20 mA com raiz</th><th>Reynolds</th><th>Velocidade</th></tr></thead><tbody>${tbody}</tbody></table></div>
-    <h3>Range recomendado do transmissor DP</h3>
-    <p class="result-sub">Configuração preliminar: <strong>LRV = 0 mbar</strong> e <strong>URV = ${fmt(dpMax,2)} mbar</strong> (${fmt(dpMax/10,3)} kPa / ${fmt(dpMax*10.1972,1)} mmH₂O). A vazão máxima associada é <strong>${fmt(qMax,2)} m³/h</strong>. Extração de raiz: <strong>${s('sqrtLocal')}</strong>.</p>
-    <h3>Tabela de escala 4-20 mA</h3>
-    <div class="table-wrap"><table class="tech-table"><thead><tr><th>% vazão</th><th>Vazão</th><th>ΔP</th><th>mA se sinal for DP</th><th>mA se sinal for vazão</th><th>Raw vazão</th></tr></thead><tbody>${curveRows}</tbody></table></div>
-    <h3>Perda permanente e alertas</h3>
-    <p class="result-sub">Perda permanente estimada: <strong>${fmt(lossMbar,1)} mbar</strong>, usando aproximação ${fmt(lossFrac*100,1)}% do ΔP máximo. Esta é apenas uma triagem.</p>${alertHtml}
-    <h3>Observação de modo</h3><p class="result-sub">${dimensionamento}</p>`;
-  document.getElementById('memorial').textContent = gerarMemorial({modo,gas,pipeD,d,beta,rows,dpMax,epsMax,lossMbar,lossFrac,alerts:all,convQ,dimensionamento});
-}
-function gerarMemorial(ctx){
-  const tipo = document.getElementById('fluidoTipo').selectedOptions[0].textContent;
-  const linhas = ctx.rows.map(r=>`- ${r.nome}: Q=${fmt(r.q,2)} m³/h; ΔP=${fmt(r.dp,2)} mbar; mA com raiz=${fmt(r.maFlow,3)}; Re=${fmt(r.re,0)}; velocidade=${fmt(r.vel,2)} m/s`).join('\n');
-  const alertas = ctx.alerts.map(a=>`- ${a.txt}`).join('\n');
-  const conv = ctx.modo==='converter' ? `\nConversão de DP medido:\n- ΔP medido: ${fmt(n('dpRead'),2)} mbar\n- Vazão estimada: ${fmt(ctx.convQ,2)} m³/h\n` : '';
-  return `MEMORIAL PRELIMINAR - PLACA DE ORIFÍCIO E VAZÃO POR DP\n\nTag: ${s('tag')||'não informado'}\nServiço: ${s('servico')||'não informado'}\nTipo de fluido: ${tipo}\nTipo de tomada: ${s('tapType')}\nExtração de raiz: ${s('sqrtLocal')}\n\nGeometria e propriedades:\n- Diâmetro interno da tubulação D: ${fmt(ctx.pipeD,2)} mm\n- Diâmetro do orifício d: ${fmt(ctx.d,2)} mm\n- Beta d/D: ${fmt(ctx.beta,4)}\n- Coeficiente de descarga Cd: ${fmt(n('cd'),3)}\n- Fator de expansão ε no ΔP máximo: ${fmt(ctx.epsMax,3)}\n- Densidade operacional: ${fmt(n('rho'),2)} kg/m³\n- Viscosidade: ${fmt(n('visc'),3)} cP\n- Temperatura: ${fmt(n('tempC'),1)} °C\n\nRange preliminar do transmissor DP:\n- LRV: 0,00 mbar\n- URV: ${fmt(ctx.dpMax,2)} mbar (${fmt(ctx.dpMax/10,3)} kPa / ${fmt(ctx.dpMax*10.1972,1)} mmH2O)\n- Vazão máxima associada: ${fmt(n('qMax'),2)} m³/h\n\nResultados por condição:\n${linhas}${conv}\nPerda permanente estimada:\n- Aproximadamente ${fmt(ctx.lossMbar,2)} mbar (${fmt(ctx.lossFrac*100,1)}% do ΔP máximo)\n\nAlertas e observações:\n${alertas}\n- ${ctx.dimensionamento}\n\nObservação importante: este memorial é preliminar. A seleção final deve considerar norma aplicável, tipo de tomada, trechos retos, acabamento da placa, incerteza, propriedades reais do fluido, linhas de impulso, compensação de pressão/temperatura quando aplicável e validação técnica do projeto.`;
-}
-function copiarMemorial(){
-  const txt=document.getElementById('memorial').textContent;
-  navigator.clipboard.writeText(txt).then(()=>alert('Memorial copiado.')).catch(()=>alert('Não foi possível copiar automaticamente. Selecione o texto manualmente.'));
-}
-atualizarModo();
-atualizarFluido();
-calcularOrificio();
-</script>
 <footer><p>© Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
-
-<a aria-label="Voltar para Ferramentas" class="floating-back-tools no-print" href="ferramentas.html"><i class="fas fa-arrow-left"></i> Voltar para Ferramentas</a>
-</body>
-</html>
+<script>
+const $=id=>document.getElementById(id);const num=id=>Number($(id).value);const fmt=(v,d=2)=>Number.isFinite(v)?v.toLocaleString('pt-BR',{minimumFractionDigits:d,maximumFractionDigits:d}):'-';const clamp=(x,a,b)=>Math.max(a,Math.min(b,x));
+function gasFields(){document.querySelectorAll('.gas-field').forEach(el=>el.style.display=$('fluidoTipo').value==='gas'?'flex':'none')}
+function epsilon(beta,dpPa){if($('fluidoTipo').value!=='gas')return 1;const p1=Math.max(num('p1abs')*100000,1000),k=Math.max(num('kappa'),1.01);return clamp(1-(0.351+0.256*beta**4+0.93*beta**8)*(dpPa/(k*p1)),.70,1)}
+function geom(Dmm,dmm){const D=Dmm/1000,d=dmm/1000,beta=d/D,ao=Math.PI*d*d/4;return{D,d,beta,ao}}
+function qFromDp(dpMbar,Dmm,dmm){const g=geom(Dmm,dmm),cd=num('cd'),rho=num('rho'),dp=dpMbar*100;if(!(g.beta>0&&g.beta<1&&cd>0&&rho>0&&dp>=0))return NaN;return cd*epsilon(g.beta,dp)*g.ao/Math.sqrt(1-g.beta**4)*Math.sqrt(2*dp/rho)*3600}
+function dpFromQ(q,Dmm,dmm){const g=geom(Dmm,dmm),cd=num('cd'),rho=num('rho'),qm=q/3600;if(!(g.beta>0&&g.beta<1&&cd>0&&rho>0&&qm>=0))return NaN;let dp=(rho/2)*(qm*Math.sqrt(1-g.beta**4)/(cd*g.ao))**2;for(let i=0;i<8;i++){dp=(rho/2)*(qm*Math.sqrt(1-g.beta**4)/(cd*epsilon(g.beta,dp)*g.ao))**2}return dp/100}
+function solveD(D,qMax,dpMax){let lo=.10*D,hi=.78*D;const qlo=qFromDp(dpMax,D,lo),qhi=qFromDp(dpMax,D,hi);if(!Number.isFinite(qlo)||!Number.isFinite(qhi)||qMax<qlo||qMax>qhi)return NaN;for(let i=0;i<70;i++){const m=(lo+hi)/2;if(qFromDp(dpMax,D,m)<qMax)lo=m;else hi=m}return(lo+hi)/2}
+function reynolds(q,Dmm){const rho=num('rho'),mu=Math.max(num('visc')*.001,1e-9),D=Dmm/1000,A=Math.PI*D*D/4,v=(q/3600)/A;return{re:rho*v*D/mu,v}}
+function visual(D,d,beta,dpMax,qNor,qMax,dpNor){$('diagD').textContent=`D = ${fmt(D,1)} mm`;$('diagd').textContent=`d = ${fmt(d,1)} mm`;$('diagBeta').textContent=`β = ${fmt(beta,3)}`;$('diagDp').textContent=`ΔP URV = ${fmt(dpMax,1)} mbar`;const r=clamp(10+35*(d/D),13,38);$('orificeHole').setAttribute('r',r);const qp=clamp(qNor/qMax*100,0,100),dpp=clamp(dpNor/dpMax*100,0,100),x=65+5.10*qp,y=225-1.90*dpp;$('curvePoint').setAttribute('cx',x);$('curvePoint').setAttribute('cy',y);$('curveGX').setAttribute('x1',x);$('curveGX').setAttribute('x2',x);$('curveGX').setAttribute('y1',y);$('curveGX').setAttribute('y2',225);$('curveGY').setAttribute('x1',65);$('curveGY').setAttribute('x2',x);$('curveGY').setAttribute('y1',y);$('curveGY').setAttribute('y2',y);$('curveLabel').textContent=`Q normal ${fmt(qp,1)}% · ΔP ${fmt(dpp,1)}%`}
+function calc(){gasFields();$('dpReadBox').style.display=$('modo').value==='converter'?'flex':'none';const D=num('pipeD'),rho=num('rho'),visc=num('visc'),qMin=num('qMin'),qNor=num('qNor'),qMax=num('qMax'),dpMax=num('dpMax'),cd=num('cd');let d=num('orificeD');const errs=[];if(!(D>0))errs.push('D deve ser maior que zero.');if(!(rho>0))errs.push('Densidade deve ser maior que zero.');if(!(visc>0))errs.push('Viscosidade deve ser maior que zero.');if(!(cd>0&&cd<=1))errs.push('Cd deve estar entre 0 e 1.');if(!(qMin>0&&qNor>=qMin&&qMax>=qNor))errs.push('Use vazões mínima ≤ normal ≤ máxima, todas positivas.');if(!(dpMax>0))errs.push('ΔP máximo deve ser positivo.');if($('fluidoTipo').value==='gas'&&!(num('p1abs')>0&&num('kappa')>1))errs.push('Para gás/vapor, informe P1 absoluta positiva e k maior que 1.');if($('modo').value==='dimensionar'&&!errs.length){d=solveD(D,qMax,dpMax);if(!Number.isFinite(d))errs.push('Não foi possível obter d para beta entre 0,10 e 0,78. Revise D, Qmáx ou ΔPmáx.');else $('orificeD').value=d.toFixed(2)}if($('modo').value!=='dimensionar'&&!(d>0))errs.push('Informe o diâmetro do orifício.');if(errs.length){$('resultadoRapido').innerHTML=`<div class="note bad"><strong>Revise os dados:</strong><ul>${errs.map(e=>`<li>${e}</li>`).join('')}</ul></div>`;$('resultadoDetalhado').innerHTML='<h2>Resultado detalhado</h2><p>Corrija os dados para gerar a análise.</p>';$('memorial').textContent='Corrija os dados para gerar o memorial.';return}const beta=d/D,rows=[['Mínima',qMin],['Normal',qNor],['Máxima',qMax]].map(([nome,q])=>{const dp=dpFromQ(q,D,d),r=reynolds(q,D);return{nome,q,dp,re:r.re,v:r.v}}),dpNor=rows[1].dp;const betaClass=beta<.1||beta>.78?'bad':beta<.2||beta>.7?'warn':'ok',reClass=rows[2].re<4000?'bad':rows[2].re<10000?'warn':'ok';const overall=[betaClass,reClass].includes('bad')?'bad':[betaClass,reClass].includes('warn')?'warn':'ok';$('resultadoRapido').innerHTML=`<div class="note ${overall}"><strong>${overall==='ok'?'Pré-dimensionamento coerente':'Pré-dimensionamento com atenção'}</strong><div class="result-main">d = ${fmt(d,2)} mm</div><div>β = <strong>${fmt(beta,3)}</strong> · ΔP normal = <strong>${fmt(dpNor,2)} mbar</strong></div></div><div class="pill-row"><span class="pill">Qmáx ${fmt(qMax,1)} m³/h</span><span class="pill">Re máx ${fmt(rows[2].re,0)}</span><span class="pill">URV DP ${fmt(dpMax,1)} mbar</span></div>`;const trs=rows.map(r=>{const pct=Math.sqrt(Math.max(r.dp,0)/dpMax),maDp=4+16*(r.dp/dpMax),maFlow=4+16*pct;return`<tr><td>${r.nome}</td><td>${fmt(r.q,2)} m³/h</td><td>${fmt(r.dp,2)} mbar</td><td>${fmt(maDp,3)} mA</td><td>${fmt(maFlow,3)} mA</td><td>${fmt(r.re,0)}</td><td>${fmt(r.v,2)} m/s</td></tr>`}).join('');$('resultadoDetalhado').innerHTML=`<h2>Resultado detalhado</h2><div class="table-wrap"><table class="tech-table"><thead><tr><th>Condição</th><th>Vazão</th><th>ΔP</th><th>4-20 mA linear DP</th><th>4-20 mA com raiz</th><th>Re</th><th>Velocidade</th></tr></thead><tbody>${trs}</tbody></table></div><h3>Faixa do transmissor</h3><p>Configuração preliminar: <strong>LRV 0 mbar</strong> e <strong>URV ${fmt(dpMax,2)} mbar</strong>. Extração de raiz: <strong>${$('sqrtLocal').value}</strong>.</p><p class="note ${betaClass}">${betaClass==='ok'?'Beta em faixa preliminar usual para triagem.':'Beta próximo ou fora da faixa preliminar usual; valide pelo método normativo.'}</p><p class="note ${reClass}">${reClass==='ok'?'Reynolds máximo em regime turbulento para triagem.':'Reynolds merece verificação específica antes da seleção final.'}</p>`;if($('modo').value==='converter'){const q=qFromDp(num('dpRead'),D,d);$('resultadoRapido').insertAdjacentHTML('beforeend',`<p class="note info">ΔP medido de ${fmt(num('dpRead'),2)} mbar corresponde a aproximadamente <strong>${fmt(q,2)} m³/h</strong>.</p>`)}visual(D,d,beta,dpMax,qNor,qMax,dpNor);$('memorial').textContent=`MEMORIAL PRELIMINAR - PLACA DE ORIFÍCIO / VAZÃO DP\nTag: ${$('tag').value}\nServiço: ${$('servico').value}\nD interno: ${fmt(D,2)} mm\nd orifício: ${fmt(d,2)} mm\nBeta: ${fmt(beta,3)}\nQ mínima/normal/máxima: ${fmt(qMin,2)} / ${fmt(qNor,2)} / ${fmt(qMax,2)} m³/h\nURV DP: ${fmt(dpMax,2)} mbar\nDP normal calculado: ${fmt(dpNor,2)} mbar\nExtração de raiz: ${$('sqrtLocal').value}\n\nResultado orientativo. Confirmar cálculo normativo, propriedades, instalação e documentação do fabricante.`}
+$('calcBtn').addEventListener('click',calc);$('copyBtn').addEventListener('click',async()=>{calc();try{await navigator.clipboard.writeText($('memorial').textContent)}catch(e){}});document.querySelectorAll('input,select').forEach(el=>el.addEventListener('input',calc));document.querySelectorAll('select').forEach(el=>el.addEventListener('change',calc));document.addEventListener('DOMContentLoaded',calc);
+</script>
+<a class="floating-back-tools no-print" href="ferramentas.html" aria-label="Voltar para Ferramentas"><i class="fas fa-arrow-left"></i> Voltar para Ferramentas</a>
+</body></html>
