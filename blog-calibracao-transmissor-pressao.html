@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Calibração de Transmissor de Pressão | ALOGY</title>
-  <meta name="description" content="Entenda como conferir pontos de calibração de transmissor de pressão, calcular erro, mA esperado e tolerância por span." />
+  <title>Calibração de Transmissor de Pressão | 4-20 mA | ALOGY</title>
+  <meta name="description" content="Pressure transmitter calibration: confira 0/25/50/75/100%, 4-20 mA, erro, span, as-found/as-left, LRV/URV e tolerância." />
   <meta name="robots" content="index,follow" />
   <meta name="theme-color" content="#2C78B9" />
   <link rel="canonical" href="https://www.alogy.com.br/blog-calibracao-transmissor-pressao.html" />
@@ -16,108 +16,75 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <link rel="stylesheet" href="style.css?v=20260722-layout-original-uppercase-mobilefix" />
+  <link rel="stylesheet" href="style.css?v=20260911-article-semantic1" />
   <script src="app.js" defer></script>
   <meta property="og:locale" content="pt_BR" />
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="ALOGY Engenharia" />
-  <meta property="og:title" content="Calibração de Transmissor de Pressão: erro, span e 4-20 mA" />
-  <meta property="og:description" content="Entenda como conferir pontos de calibração de transmissor de pressão, calcular erro, mA esperado e tolerância por span." />
+  <meta property="og:title" content="Calibração de Transmissor de Pressão: 4-20 mA, erro e span" />
+  <meta property="og:description" content="Roteiro de calibração com LRV/URV, pontos de teste, as-found/as-left, corrente esperada, erro e tolerância por span." />
   <meta property="og:url" content="https://www.alogy.com.br/blog-calibracao-transmissor-pressao.html" />
-  <meta property="og:image" content="https://www.alogy.com.br/favicon-512x512.png" />
+  <meta property="og:image" content="https://www.alogy.com.br/capa-blog-calibracao-transmissor-pressao.webp" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:image" content="https://www.alogy.com.br/favicon-512x512.png" />
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Calibração de Transmissor de Pressão: erro, span e 4-20 mA","description":"Entenda como conferir pontos de calibração de transmissor de pressão, calcular erro, mA esperado e tolerância por span.","dateModified":"2026-07-21","author":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"},"publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/","logo":{"@type":"ImageObject","url":"https://www.alogy.com.br/logo-alogy.webp"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://www.alogy.com.br/blog-calibracao-transmissor-pressao.html"},"inLanguage":"pt-BR","image":"https://www.alogy.com.br/favicon-512x512.png"}</script>
+  <meta name="twitter:image" content="https://www.alogy.com.br/capa-blog-calibracao-transmissor-pressao.webp" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Calibração de Transmissor de Pressão: 4-20 mA, erro e span","description":"Roteiro para pressure transmitter calibration com LRV/URV, pontos 0/25/50/75/100%, as-found/as-left, erro e tolerância.","dateModified":"2026-09-11","author":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"},"publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/","logo":{"@type":"ImageObject","url":"https://www.alogy.com.br/logo-alogy.webp"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://www.alogy.com.br/blog-calibracao-transmissor-pressao.html"},"inLanguage":"pt-BR","image":"https://www.alogy.com.br/capa-blog-calibracao-transmissor-pressao.webp"}</script>
   <style>
-    .mini-help{color:var(--muted);font-size:.92rem;line-height:1.55;margin-top:8px}
-    .faq details{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:14px;padding:14px;margin-top:10px;box-shadow:0 6px 16px rgba(0,0,0,.04)}
-    .faq summary{cursor:pointer;font-weight:900;color:#0b3a62}.faq p{margin:10px 0 0;color:var(--muted)}
-    .calc-result.two{grid-template-columns:repeat(2,1fr)} .calc-result.three{grid-template-columns:repeat(3,1fr)} .calc-result.four{grid-template-columns:repeat(4,1fr)} .result-box strong.small{font-size:1.05rem}
-    .pill-ok{color:#146c2e;font-weight:900}.pill-warn{color:#a65f00;font-weight:900}.pill-bad{color:#a10000;font-weight:900}.pill-info{color:#0b3a62;font-weight:900}
-    .subcat-nav{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}.subcat-nav a{background:#fff;border:1px solid rgba(0,75,128,.18);border-radius:999px;padding:9px 12px;text-decoration:none;font-weight:800;color:#0b3a62}
-    @media(max-width:900px){.calc-result.two,.calc-result.three,.calc-result.four{grid-template-columns:1fr}}
-    @media print{header,.social-floating,.fab-wrap,.cta-bar,footer,.calc-actions,.tools-hero .btn,.no-print{display:none!important}body{background:#fff}.container{max-width:100%;padding:0}.calc-card,.tools-hero{box-shadow:none;border:1px solid #ddd}.calc-layout{display:block}.calc-card{margin:12px 0}.calc-table th{background:#eee!important;color:#111!important}}
+    .mini-help{color:var(--muted);font-size:.92rem;line-height:1.55;margin-top:8px}.faq details{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:14px;padding:14px;margin-top:10px;box-shadow:0 6px 16px rgba(0,0,0,.04)}.faq summary{cursor:pointer;font-weight:900;color:#0b3a62}.faq p{margin:10px 0 0;color:var(--muted)}.subcat-nav{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}.subcat-nav a{background:#fff;border:1px solid rgba(0,75,128,.18);border-radius:999px;padding:9px 12px;text-decoration:none;font-weight:800;color:#0b3a62}@media print{header,.social-floating,.fab-wrap,.cta-bar,footer,.calc-actions,.no-print{display:none!important}body{background:#fff}.container{max-width:100%;padding:0}}
   </style>
-  <!-- Google AdSense: carregado somente em páginas editoriais monetizáveis. A exibição e os formatos são controlados no painel do AdSense. -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5586837114309500" crossorigin="anonymous"></script>
 </head>
 <body>
   <header>
-    <div class="container headbar"><a href="/" class="logo-wrapper" aria-label="Voltar para o início"><img src="logo-alogy.webp" alt="ALOGY Engenharia"  width="878"  height="308"  decoding="async" /></a>
-<button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menu"><i class="fas fa-bars"></i></button></div>
-    <nav class="desktop" aria-label="Menu principal"><div class="container navlinks"><a href="/">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></div></nav>
-    <nav class="mobile" aria-label="Menu mobile"><a href="/">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></nav>
+    <div class="container headbar"><a href="/" class="logo-wrapper" aria-label="Voltar para o início"><img src="logo-alogy.webp" alt="ALOGY Engenharia" width="878" height="308" decoding="async" /></a><button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menu"><i class="fas fa-bars"></i></button></div>
+    <nav class="desktop" aria-label="Menu principal"><div class="container navlinks"><a href="/">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="/guia/">Guia</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></div></nav>
+    <nav class="mobile" aria-label="Menu mobile"><a href="/">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="/guia/">Guia</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></nav>
   </header>
-  <div class="social-floating" aria-label="Redes sociais"><a href="https://www.linkedin.com/company/alogyengenharia" class="linkedin" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a><a href="https://www.instagram.com/alogyengenharia" class="instagram" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="https://www.facebook.com/alogyengenharia" class="facebook" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><a href="https://www.youtube.com/@alogyengenharia" class="youtube" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a><a href="https://hotmart.com/pt-br/club/alogyengenharia" class="hotmart" target="_blank" rel="noopener noreferrer" aria-label="Hotmart">H</a><a href="https://www.tiktok.com/@alogyengenharia" class="tiktok" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fab fa-tiktok"></i></a></div>
-  <div class="fab-wrap" aria-label="Ações rápidas"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1%21%20Vim%20pelas%20ferramentas%20da%20ALOGY.%20Gostaria%20de%20atendimento." target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
+  <div class="social-floating" aria-label="Redes sociais"><a href="https://www.linkedin.com/company/alogyengenharia" class="linkedin" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a><a href="https://www.instagram.com/alogyengenharia" class="instagram" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="https://www.facebook.com/alogyengenharia" class="facebook" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><a href="https://www.youtube.com/@alogyengenharia" class="youtube" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a><a href="https://www.tiktok.com/@alogyengenharia" class="tiktok" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fab fa-tiktok"></i></a></div>
+  <div class="fab-wrap" aria-label="Ações rápidas"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1!%20Li%20o%20artigo%20sobre%20calibra%C3%A7%C3%A3o%20de%20transmissor%20de%20press%C3%A3o%20da%20ALOGY." target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
   <main class="container" style="margin-top:22px">
-    <article class="blog-post"><h1>Calibração de Transmissor de Pressão</h1>
-<p class="muted" data-alogy-content-meta><strong>Conteúdo técnico:</strong> ALOGY Engenharia · <strong>Atualizado em:</strong> 21/07/2026</p>
-<p>Calibrar um transmissor de pressão significa comparar a pressão aplicada por um padrão adequado com a saída indicada pelo instrumento — normalmente 4–20 mA — em pontos definidos da faixa. A verificação deve separar o erro do padrão, o erro do transmissor e eventuais problemas da malha.</p>
-<h2>O que está sendo verificado</h2>
-<p>O teste mais simples verifica apenas o conjunto sensor eletrônico/saída do transmissor. Um teste de malha inclui ainda alimentação, cabeamento, cartão analógico, escala no CLP ou DCS e indicação no supervisório. Registrar qual fronteira foi testada evita declarar que toda a malha foi aprovada quando somente o transmissor foi conferido.</p>
-<p>Antes de iniciar, identifique se a pressão é manométrica, absoluta ou diferencial. Zero absoluto, pressão atmosférica e equalização de um transmissor DP não são condições equivalentes. Confirme também LRV, URV, unidade configurada, amortecimento, extração de raiz quadrada e sentido da faixa.</p>
+    <article class="blog-post">
+      <h1>Calibração de Transmissor de Pressão</h1>
+      <p class="muted" data-alogy-content-meta><strong>Conteúdo técnico:</strong> ALOGY Engenharia · <strong>Atualizado em:</strong> 11/09/2026</p>
+      <figure class="article-cover-figure"><img class="article-cover-image" src="capa-blog-calibracao-transmissor-pressao.webp" alt="Calibração de transmissor de pressão industrial com sinal 4-20 mA" loading="eager" fetchpriority="high" decoding="async"/><figcaption>Pressure transmitter calibration: pressão aplicada, saída esperada, condição as-found e condição as-left.</figcaption></figure>
 
-<h2>Dados e condições antes de aplicar pressão</h2>
-<ul>
-  <li><strong>Identificação:</strong> TAG, fabricante, modelo, número de série e serviço.</li>
-  <li><strong>Configuração:</strong> LRV, URV, unidade, saída linear e alimentação da malha.</li>
-  <li><strong>Padrão:</strong> faixa compatível, certificado vigente e incerteza adequada ao critério adotado.</li>
-  <li><strong>Conexão:</strong> mangueiras, adaptadores e manifold compatíveis, estanques e limpos.</li>
-  <li><strong>Segurança:</strong> processo isolado, despressurizado conforme procedimento e sem risco de atuar intertravamentos indevidamente.</li>
-</ul>
+      <p>Calibrar um transmissor de pressão significa comparar a pressão aplicada por um padrão adequado com a saída indicada pelo instrumento — normalmente 4–20 mA — em pontos definidos da faixa. A verificação deve separar o erro do padrão, o erro do transmissor e eventuais problemas da malha.</p>
 
-<h2>Sequência de pontos e cálculo da saída esperada</h2>
-<p>Um roteiro comum usa 0%, 25%, 50%, 75% e 100% da faixa em subida e depois em descida, desde que o procedimento aplicável defina esses pontos. Para saída linear 4–20 mA, a corrente esperada é <strong>4 mA + 16 mA × fração da faixa</strong>. Assim, 50% corresponde a 12 mA.</p>
-<p>O erro de indicação é a diferença entre o valor medido e o valor de referência no mesmo ponto. Quando o critério é expresso em percentual do span, use o módulo de URV − LRV no denominador. Não confunda percentual da leitura com percentual do span.</p>
+      <h2>O que está sendo verificado</h2>
+      <p>O teste mais simples verifica o conjunto sensor eletrônico/saída do transmissor. Um loop calibration completo pode incluir alimentação, cabeamento, cartão analógico, escala no PLC/CLP ou DCS e indicação no supervisório. Registrar a fronteira do teste evita declarar que toda a malha foi aprovada quando apenas o transmissor foi conferido.</p>
+      <p>Antes de iniciar, identifique se a pressão é manométrica, absoluta ou diferencial. Confirme também LRV, URV, unidade configurada, damping e função de transferência. Em transmissores DP usados para vazão, verifique onde a extração de raiz quadrada está sendo executada.</p>
 
-<h2>Erros comuns de campo</h2>
-<ul>
-  <li>Não eliminar vazamentos ou bolhas no conjunto de teste.</li>
-  <li>Aplicar sobrepressão durante a aproximação do ponto.</li>
-  <li>Zerar o instrumento sem conferir posição de montagem e condição de equalização.</li>
-  <li>Ajustar zero e span antes de registrar a condição encontrada.</li>
-  <li>Avaliar somente a corrente e ignorar a leitura digital/HART ou a escala no sistema de controle.</li>
-  <li>Usar um padrão cuja faixa ou incerteza não sustenta o critério de aceitação.</li>
-</ul>
+      <h2>As-found e as-left</h2>
+      <p>Registre a condição <strong>as-found</strong> antes de qualquer ajuste. Se o procedimento permitir correção, documente o que foi alterado e repita os pontos para registrar a condição <strong>as-left</strong>. Essa separação é importante para histórico de deriva e avaliação de desempenho.</p>
 
-<h2>Exemplo prático de aplicação</h2>
-<p>Considere um transmissor configurado de 0 a 10 bar. Ao aplicar 5 bar, a saída linear esperada é 12 mA. Se a corrente medida for 12,08 mA, a diferença de saída é +0,08 mA. Convertida para a faixa de engenharia, essa diferença equivale a +0,05 bar, ou +0,5% do span.</p>
-<p>Esse valor só pode ser classificado como conforme ou não conforme quando comparado ao erro máximo permitido e à regra de decisão definidos no procedimento. O cálculo isolado não substitui a avaliação de incerteza, estabilidade, repetibilidade nem condição encontrada/condição deixada.</p>
+      <h2>Dados e condições antes de aplicar pressão</h2>
+      <ul><li><strong>Identificação:</strong> TAG, fabricante, modelo, número de série e serviço.</li><li><strong>Configuração:</strong> LRV, URV, unidade, saída linear e alimentação da malha.</li><li><strong>Padrão:</strong> faixa compatível, certificado vigente e incerteza adequada ao critério adotado.</li><li><strong>Conexão:</strong> mangueiras, adaptadores e manifold compatíveis, estanques e limpos.</li><li><strong>Segurança:</strong> processo isolado e despressurizado conforme procedimento, sem atuação indevida de intertravamentos.</li></ul>
 
-<h2>Checklist rápido antes de decidir</h2>
-<ul>
-  <li>Os pontos de subida e descida foram registrados antes de qualquer ajuste?</li>
-  <li>A unidade e a faixa configuradas coincidem com a folha de dados e o sistema de controle?</li>
-  <li>O zero foi verificado na condição física correta para o tipo de transmissor?</li>
-  <li>O resultado informa separadamente pressão aplicada, corrente esperada e corrente medida?</li>
-  <li>A condição final foi documentada e a malha devolvida ao processo conforme procedimento?</li>
-</ul>
+      <h2>Pontos 0%, 25%, 50%, 75% e 100%</h2>
+      <p>Um roteiro comum usa 0%, 25%, 50%, 75% e 100% do span em subida e depois em descida, desde que o procedimento aplicável defina esses pontos. Para saída linear 4–20 mA, a corrente esperada é:</p>
+      <div class="calc-card"><strong>mA esperado = 4 + 16 × fração do span</strong><p class="mini-help">0% = 4 mA · 25% = 8 mA · 50% = 12 mA · 75% = 16 mA · 100% = 20 mA.</p></div>
+      <p>Quando o critério é expresso em percentual do span, use o módulo de URV − LRV no denominador. Não confunda percentual da leitura com percentual do span.</p>
 
-<h2>Ferramenta e conteúdos relacionados</h2>
-<p>Para aprofundar Calibração de Transmissor de Pressão, use a ferramenta relacionada e confronte o resultado com os materiais complementares listados abaixo.</p>
-<div class="calc-actions">
-  <a class="mini-btn dark" href="calculadora-calibracao-transmissor-pressao.html"><i class="fas fa-calculator"></i> Abrir ferramenta relacionada</a>
-  <a class="mini-btn" href="ferramentas.html"><i class="fas fa-toolbox"></i> Ver todas as ferramentas</a>
-</div>
-<ul class="mini-help" style="margin-top:12px">
-  <li><a href="calculadora-calibracao-transmissor-dp-vazao.html">Calculadora de Calibração de Transmissor DP de Vazão</a> <span class="mini-help">(ferramenta)</span></li>
-  <li><a href="calculadora-calibracao-transmissor-nivel-dp.html">Calculadora de Calibração de Transmissor de Nível DP</a> <span class="mini-help">(ferramenta)</span></li>
-  <li><a href="calculadora-calibracao-transmissor-orp.html">Calculadora de Calibração de Transmissor ORP</a> <span class="mini-help">(ferramenta)</span></li>
-  <li><a href="calculadora-calibracao-transmissor-temperatura.html">Calculadora de Calibração de Transmissor de Temperatura</a> <span class="mini-help">(ferramenta)</span></li>
-  <li><a href="blog-calibracao-conversor-ip-pi.html">Calibração de Conversor I/P e P/I: 4-20 mA e 3-15 psi</a> <span class="mini-help">(artigo)</span></li>
-  <li><a href="blog-calibracao-transmissor-nivel-dp.html">Calibração de Transmissor de Nível DP: pontos e mA</a> <span class="mini-help">(artigo)</span></li>
-</ul>
+      <h2>Erros comuns de campo</h2>
+      <ul><li>Não eliminar vazamentos ou bolhas no conjunto de teste.</li><li>Aplicar sobrepressão durante a aproximação do ponto.</li><li>Zerar o instrumento sem conferir posição de montagem e condição física adequada.</li><li>Ajustar zero e span antes de registrar o as-found.</li><li>Avaliar somente a corrente e ignorar a leitura digital/HART ou a escala no sistema de controle.</li><li>Usar padrão cuja faixa ou incerteza não sustenta o critério de aceitação.</li></ul>
 
-<h2>Referências para aprofundamento</h2>
-<ul>
-  <li><a href="https://www.fluke.com/en/product/calibration-tools/pressure-calibrators/fluke-721" target="_blank" rel="noopener noreferrer">Fluke 721 — medição de pressão, 4–20 mA e alimentação de malha</a>.</li>
-  <li><a href="https://www.bipm.org/en/doi/10.59161/jcgm200-2012" target="_blank" rel="noopener noreferrer">BIPM/JCGM — Vocabulário Internacional de Metrologia (VIM)</a>.</li>
-</ul>
+      <h2>Exemplo prático</h2>
+      <p>Considere um transmissor configurado de 0 a 10 bar. Ao aplicar 5 bar, a saída linear esperada é 12 mA. Se a corrente medida for 12,08 mA, a diferença de saída é +0,08 mA. Convertida para a faixa de engenharia, essa diferença equivale a +0,05 bar, ou +0,5% do span.</p>
+      <p>Esse valor só pode ser classificado como conforme ou não conforme quando comparado ao erro máximo permitido e à regra de decisão definidos no procedimento. O cálculo isolado não substitui a avaliação de incerteza, estabilidade e repetibilidade.</p>
 
-<h2>Aviso técnico</h2>
-<p>Este artigo sobre Calibração de Transmissor de Pressão é educativo e apoia pré-dimensionamento e conferência técnica. Em aplicações críticas, compra final ou alteração permanente da instalação, valide o cenário com documentação do fabricante, condições reais de campo, requisitos aplicáveis e profissional habilitado.</p></article>
-    <section class="cta-bar"><h2>Precisa de apoio técnico?</h2><p>A ALOGY Engenharia apoia projetos, manutenção, instrumentação, automação e melhoria de processos industriais.</p><a class="btn" href="/#contato"><i class="fas fa-envelope"></i> Falar com a ALOGY</a></section>
+      <h2>Checklist rápido antes de decidir</h2>
+      <ul><li>Os pontos de subida e descida foram registrados antes de qualquer ajuste?</li><li>A unidade, LRV e URV coincidem com a folha de dados e o sistema de controle?</li><li>O zero foi verificado na condição física correta?</li><li>Pressão aplicada, corrente esperada e corrente medida estão registradas separadamente?</li><li>As-found e as-left estão documentados?</li></ul>
+
+      <h2>Ferramentas relacionadas</h2>
+      <div class="calc-actions"><a class="mini-btn dark" href="calculadora-calibracao-transmissor-pressao.html"><i class="fas fa-calculator"></i> Calibração de Pressão</a><a class="mini-btn" href="calculadora-4-20ma.html"><i class="fas fa-wave-square"></i> 4-20 mA</a><a class="mini-btn" href="calculadora-incerteza-calibracao-tur-tar.html"><i class="fas fa-scale-balanced"></i> Incerteza / TUR / TAR</a><a class="mini-btn" href="ferramentas-calibracao-instrumentacao.html"><i class="fas fa-toolbox"></i> Central de Calibração</a></div>
+      <ul class="mini-help" style="margin-top:12px"><li><a href="calculadora-calibracao-transmissor-dp-vazao.html">Calibração de transmissor DP de vazão</a></li><li><a href="calculadora-calibracao-transmissor-nivel-dp.html">Calibração de transmissor de nível DP</a></li><li><a href="calculadora-calibracao-transmissor-temperatura.html">Calibração de transmissor de temperatura</a></li><li><a href="blog-calibracao-conversor-ip-pi.html">Calibração de conversor I/P e P/I</a></li></ul>
+
+      <h2>Referências para aprofundamento</h2>
+      <ul><li><a href="https://www.fluke.com/en/product/calibration-tools/pressure-calibrators/fluke-721" target="_blank" rel="noopener noreferrer">Fluke 721 — medição de pressão, 4–20 mA e alimentação de malha</a>.</li><li><a href="https://www.bipm.org/en/doi/10.59161/jcgm200-2012" target="_blank" rel="noopener noreferrer">BIPM/JCGM — Vocabulário Internacional de Metrologia (VIM)</a>.</li></ul>
+
+      <h2>Aviso técnico</h2>
+      <p>Este conteúdo é educativo e serve para apoio técnico. Em aplicações críticas, alterações permanentes ou emissão de certificados, valide o método com procedimento, documentação do fabricante, padrões rastreáveis, incerteza e profissional responsável.</p>
+    </article>
+    <section class="cta-bar"><h2>Precisa de apoio técnico?</h2><p>A ALOGY atua com instrumentação, calibração, automação e serviços industriais.</p><a class="btn" href="/#contato"><i class="fas fa-envelope"></i> Falar com a ALOGY</a></section>
   </main>
   <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
 </body>
