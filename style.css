@@ -1,22 +1,53 @@
 @import url("style-base.css");
 
 /* ALOGY UX GLOBAL - ferramentas primeiro, apoio tecnico depois - 2026-09-11 */
-.tools-page main.container:has(> .alogy-safety-layer){
-  display:grid;
-  grid-template-columns:minmax(0,1fr);
+.tools-page main.container{
+  display:flex;
+  flex-direction:column;
 }
-.tools-page main.container:has(> .alogy-safety-layer) > .alogy-safety-layer{
-  order:999;
+
+/* Mantem a area operacional antes dos avisos/complementos longos. */
+.tools-page main.container > .alogy-safety-layer{
+  order:900;
   margin-top:32px;
+  margin-bottom:18px;
+}
+.tools-page main.container > .alogy-critical-guidance{
+  order:910;
+  margin-top:0;
   margin-bottom:22px;
 }
+
+/* Se o aviso estatico antigo ainda existir ou o JS demorar a substitui-lo,
+   ele tambem fica depois da ferramenta. */
+.tools-page main.container > [aria-label="Aviso de uso"],
+.tools-page main.container > [aria-label="Aviso de uso da ferramenta"]{
+  order:890;
+}
+
+/* Avisos especificos continuam disponiveis, mas nao bloqueiam o inicio do uso. */
+.tools-page main.container > .alogy-contextual-warning{
+  order:880;
+}
+
+/* Metadados tecnicos com contraste garantido em fundo claro ou escuro. */
 .tools-page [data-alogy-content-meta]{
-  color:#334155!important;
+  color:#1f2937!important;
+  background:#f8fafc!important;
+  border:1px solid #d7e2ec;
+  border-left:4px solid #006bb1;
+  border-radius:8px;
   opacity:1!important;
+  display:inline-block;
+  width:auto;
+  max-width:100%;
+  padding:6px 10px;
+  margin-top:8px;
+  margin-bottom:10px;
   font-size:.95rem;
   line-height:1.45;
 }
 .tools-page [data-alogy-content-meta] strong{
-  color:#0b3a62!important;
-  font-weight:800;
+  color:#004b80!important;
+  font-weight:900;
 }
