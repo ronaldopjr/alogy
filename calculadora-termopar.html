@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Calculadora Termopar Online | mV x Temperatura</title>
-  <meta name="description" content="Calculadora de termopar online para converter temperatura em mV e mV em temperatura nos tipos J, K, T, E, N, R, S e B, com compensação de junta fria"/>
+  <title>Calculadora Termopar | NIST ITS-90, mV x °C e Cores IEC/ANSI</title>
+  <meta name="description" content="Converta termopares J, K, T, E, N, R, S e B entre temperatura e mV com NIST ITS-90, compensação de junta fria, curva dinâmica e cores IEC 60584-3 e ANSI."/>
   <meta name="robots" content="index,follow" />
   <meta name="theme-color" content="#2C78B9" />
   <link rel="canonical" href="https://www.alogy.com.br/calculadora-termopar.html" />
@@ -16,29 +16,19 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <link rel="stylesheet" href="style.css?v=20260722-layout-original-uppercase-mobilefix" />
+  <link rel="stylesheet" href="style.css?v=20260911-termopar-colors-chart" />
   <script src="app.js" defer></script>
   <meta property="og:locale" content="pt_BR" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="ALOGY Engenharia" />
-  <meta property="og:title" content="Calculadora Termopar Online | mV x Temperatura" />
-  <meta property="og:description" content="Converta termopares J, K, T, E, N, R, S e B entre mV e temperatura, com compensação de junta fria, tabela rápida e cores comuns de cabos IEC/ANSI para campo." />
+  <meta property="og:title" content="Calculadora Termopar | mV x °C, NIST ITS-90 e Cores IEC/ANSI" />
+  <meta property="og:description" content="Converta termopares J, K, T, E, N, R, S e B entre mV e temperatura, visualize a curva NIST e identifique cores IEC 60584-3 e ANSI." />
   <meta property="og:url" content="https://www.alogy.com.br/calculadora-termopar.html" />
   <meta property="og:image" content="https://www.alogy.com.br/favicon-512x512.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Calculadora Termopar Online","url":"https://www.alogy.com.br/calculadora-termopar.html","applicationCategory":"EngineeringApplication","operatingSystem":"Web","description":"Converta termopares industriais entre milivolts e temperatura, considerando tipo de termopar, compensação de junta fria e tabela rápida de referência.","publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"},"dateModified":"2026-09-08","author":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"}}</script>
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"FAQPage",
-    "mainEntity":[
-      {"@type":"Question","name":"O que é um termopar?","acceptedAnswer":{"@type":"Answer","text":"Termopar é um sensor formado por dois metais diferentes. A diferença de temperatura entre a junta quente e a junta fria gera uma pequena tensão em milivolts."}},
-      {"@type":"Question","name":"Por que existe compensação de junta fria?","acceptedAnswer":{"@type":"Answer","text":"As tabelas de termopar normalmente consideram a junta de referência em 0 °C. Quando a junta fria está em outra temperatura, é necessário compensar esse valor para estimar corretamente a temperatura da junta quente."}},
-      {"@type":"Question","name":"Qual termopar é mais comum na indústria?","acceptedAnswer":{"@type":"Answer","text":"O tipo K é um dos mais usados por cobrir uma ampla faixa de temperatura. Também são comuns os tipos J e T, dependendo da aplicação, ambiente e faixa de trabalho."}},
-      {"@type":"Question","name":"Essa calculadora substitui tabela oficial ou calibração?","acceptedAnswer":{"@type":"Answer","text":"Não. A ferramenta é apenas para estudo, apoio técnico e pré-análise. Decisões finais dependem de tabela técnica aplicável, certificado, procedimento, medição em campo e profissional habilitado."}}
-    ]
-  }
-  </script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Calculadora Termopar Online","url":"https://www.alogy.com.br/calculadora-termopar.html","applicationCategory":"EngineeringApplication","operatingSystem":"Web","description":"Converte termopares industriais J, K, T, E, N, R, S e B entre milivolts e temperatura usando funções de referência NIST ITS-90, com compensação de junta fria, curva mV por temperatura e referência visual de cores IEC/ANSI.","publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"},"dateModified":"2026-09-11","author":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"O que é um termopar?","acceptedAnswer":{"@type":"Answer","text":"Termopar é um sensor formado por dois metais diferentes. A diferença de temperatura entre a junta quente e a junta fria gera uma pequena tensão em milivolts."}},{"@type":"Question","name":"Por que existe compensação de junta fria?","acceptedAnswer":{"@type":"Answer","text":"As tabelas de termopar normalmente consideram a junta de referência em 0 °C. Quando a junta fria está em outra temperatura, é necessário compensar esse valor para estimar corretamente a temperatura da junta quente."}},{"@type":"Question","name":"As cores IEC e ANSI são iguais?","acceptedAnswer":{"@type":"Answer","text":"Não. A identificação dos condutores e da capa muda entre os padrões. No IEC 60584-3 o negativo é branco; no ANSI/ASTM o negativo é vermelho. A documentação do cabo e da instalação deve ser conferida."}},{"@type":"Question","name":"Essa calculadora substitui tabela oficial ou calibração?","acceptedAnswer":{"@type":"Answer","text":"Não. A ferramenta é apenas para estudo, apoio técnico e pré-análise. Decisões finais dependem de referência aplicável, certificado, procedimento, medição em campo e profissional habilitado."}}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Início","item":"https://www.alogy.com.br/"},{"@type":"ListItem","position":2,"name":"Ferramentas","item":"https://www.alogy.com.br/ferramentas.html"},{"@type":"ListItem","position":3,"name":"Calculadora Termopar Online","item":"https://www.alogy.com.br/calculadora-termopar.html"}]}</script>
   <style>
     .mini-btn{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(0,107,177,.25);background:rgba(0,107,177,.08);color:#0b3a62;border-radius:12px;padding:10px 12px;font-weight:900;cursor:pointer;text-decoration:none;font:inherit}
     .mini-btn:hover{background:rgba(0,107,177,.12)}.mini-btn.dark{background:#0b3a62;color:#fff;border-color:#0b3a62}
@@ -47,539 +37,98 @@
     .status-bad{border-color:rgba(239,68,68,.35)!important;background:rgba(239,68,68,.10)!important;color:#991b1b!important}
     .span-pill{display:inline-flex;align-items:center;gap:8px;border-radius:999px;background:rgba(0,107,177,.08);border:1px solid rgba(0,107,177,.18);color:#0b3a62;font-weight:900;padding:8px 11px;font-size:.9rem;margin:4px 4px 0 0}
     .faq details{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:14px;padding:14px;margin-top:10px;box-shadow:0 6px 16px rgba(0,0,0,.04)}.faq summary{cursor:pointer;font-weight:900;color:#0b3a62}.faq p{margin:10px 0 0;color:var(--muted)}
-    @media(max-width:900px){.calc-actions .mini-btn{width:100%;justify-content:center}}
-    @media print{header,.social-floating,.fab-wrap,.cta-bar,footer,.calc-actions,.tools-hero .btn,.no-print{display:none!important}body{background:#fff}.container{max-width:100%;padding:0}.calc-card,.tools-hero{box-shadow:none;border:1px solid #ddd}.calc-layout{display:block}.calc-card{margin:12px 0}.calc-table th{background:#eee!important;color:#111!important}}
-
     .form-message{display:none;margin-top:14px;border:1px solid rgba(239,68,68,.35);background:rgba(239,68,68,.09);color:#991b1b;border-radius:12px;padding:12px 14px;font-weight:700;line-height:1.5}
     .form-message.show{display:block}.field-error{outline:2px solid rgba(239,68,68,.45)!important;border-color:#dc2626!important}
     .memory-box{background:#f8fafc;border:1px solid rgba(11,58,98,.16);border-radius:14px;padding:16px;line-height:1.65}
     .memory-box h3{margin:0 0 10px;color:#0b3a62}.memory-box p{margin:7px 0}.memory-box code{white-space:normal;overflow-wrap:anywhere;color:#111;background:#fff;border:1px solid #e5e7eb;border-radius:8px;padding:3px 7px}
     .print-only{display:none}.result-box.status-neutral{border-color:rgba(100,116,139,.3)!important;background:rgba(100,116,139,.08)!important;color:#334155!important}
     textarea.report-note{min-height:92px;resize:vertical}
+    .wire-swatch{display:inline-block;width:20px;height:20px;border-radius:5px;border:1px solid rgba(15,23,42,.35);box-shadow:inset 0 0 0 1px rgba(255,255,255,.15);flex:0 0 20px}
+    .color-chip{display:inline-flex;align-items:center;gap:7px;white-space:nowrap;font-weight:700}
+    .sw-black{background:#111827}.sw-white{background:#fff}.sw-green{background:#198754}.sw-brown{background:#8b5e3c}.sw-violet{background:#7c3aed}.sw-pink{background:#ec4899}.sw-orange{background:#f59e0b}.sw-gray{background:#9ca3af}.sw-yellow{background:#facc15}.sw-red{background:#dc2626}.sw-blue{background:#2563eb}
+    .selected-color-guide{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:14px 0}
+    .color-standard-card{border:1px solid #d8e5ed;border-radius:14px;padding:14px;background:#fbfdff}
+    .color-standard-card h3{margin:0 0 10px;color:#0b3a62}.color-row{display:flex;gap:10px;flex-wrap:wrap;margin:8px 0}.color-item{display:flex;align-items:center;gap:7px;border:1px solid #e1e8ee;border-radius:10px;background:#fff;padding:8px 10px}.color-item small{display:block;color:#64748b;font-weight:400}
+    .tc-chart-wrap{overflow-x:auto;border:1px solid #d8e5ed;border-radius:14px;background:#fff;padding:8px}.tc-chart{display:block;width:100%;min-width:620px;height:auto;color:#006bb1}.tc-chart .grid{stroke:#dbe7ee;stroke-width:1}.tc-chart .axis{stroke:#536b7a;stroke-width:1.4}.tc-chart .zero-axis{stroke:#94a3b8;stroke-width:1.5;stroke-dasharray:4 4}.tc-chart .curve{fill:none;stroke:currentColor;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}.tc-chart .marker-line{stroke:#7a4d00;stroke-width:1.5;stroke-dasharray:5 5}.tc-chart .marker{fill:#fff;stroke:#7a4d00;stroke-width:4}.tc-chart text{font-family:Roboto,Arial,sans-serif;fill:#334b59;font-size:13px}.tc-chart .axis-title{font-size:14px;font-weight:700;fill:#0b3a62}.tc-chart .marker-label{font-weight:700;fill:#7a4d00}
+    @media(max-width:900px){.calc-actions .mini-btn{width:100%;justify-content:center}.selected-color-guide{grid-template-columns:1fr}}
     @media(max-width:640px){.calc-layout>*{min-width:0}.calc-card{min-width:0;max-width:100%}.calc-result[style]{grid-template-columns:1fr!important}.calc-table{min-width:620px}.calc-table-wrap{width:100%;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}}
-    @media print{
-      @page{size:A4;margin:14mm}
-      .print-only{display:block!important}
-      main>section:not(.print-section){display:none!important}
-      .print-neutral-header{border-bottom:2px solid #111;padding-bottom:10px;margin-bottom:14px}
-      .print-neutral-header .print-title{font-size:20pt;font-weight:700;margin:0 0 4px;color:#111}.print-neutral-header p{margin:0;color:#333}
-      .print-section{break-inside:avoid}.memory-box{background:#fff;border-color:#bbb}
-      input,select,textarea{border:1px solid #aaa!important;background:#fff!important;color:#111!important}
-      .calc-card h2,.tools-hero h1{color:#111!important}.span-pill{background:#fff!important;color:#111!important;border-color:#aaa!important}
-    }
-
+    @media print{header,.social-floating,.fab-wrap,.cta-bar,footer,.calc-actions,.tools-hero .btn,.no-print{display:none!important}@page{size:A4;margin:14mm}.print-only{display:block!important}main>section:not(.print-section){display:none!important}.print-neutral-header{border-bottom:2px solid #111;padding-bottom:10px;margin-bottom:14px}.print-neutral-header .print-title{font-size:20pt;font-weight:700;margin:0 0 4px;color:#111}.print-neutral-header p{margin:0;color:#333}.print-section{break-inside:avoid}.memory-box{background:#fff;border-color:#bbb}input,select,textarea{border:1px solid #aaa!important;background:#fff!important;color:#111!important}.calc-card h2,.tools-hero h1{color:#111!important}.span-pill{background:#fff!important;color:#111!important;border-color:#aaa!important}}
   </style>
-<meta name="author" content="ALOGY Engenharia">
-  <!-- Google AdSense: carregado somente em páginas editoriais monetizáveis. A exibição e os formatos são controlados no painel do AdSense. -->
+  <meta name="author" content="ALOGY Engenharia">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5586837114309500" crossorigin="anonymous"></script>
-
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Início","item":"https://www.alogy.com.br/"},{"@type":"ListItem","position":2,"name":"Ferramentas","item":"https://www.alogy.com.br/ferramentas.html"},{"@type":"ListItem","position":3,"name":"Calculadora Termopar Online","item":"https://www.alogy.com.br/calculadora-termopar.html"}]}</script>
 </head>
 <body class="tools-page alogy-stage3-forms">
   <header>
-    <div class="container headbar"><a href="/" class="logo-wrapper" aria-label="Voltar para o início"><img src="logo-alogy.webp" alt="ALOGY Engenharia"  width="878"  height="308"  decoding="async" /></a>
-<button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menu"><i class="fas fa-bars"></i></button></div>
-    <nav class="desktop" aria-label="Menu principal"><div class="container navlinks"><a href="/">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></div></nav>
-    <nav class="mobile" aria-label="Menu mobile"><a href="/">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></nav>
+    <div class="container headbar"><a href="/" class="logo-wrapper" aria-label="Voltar para o início"><img src="logo-alogy.webp" alt="ALOGY Engenharia" width="878" height="308" decoding="async" /></a><button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menu"><i class="fas fa-bars"></i></button></div>
+    <nav class="desktop" aria-label="Menu principal"><div class="container navlinks"><a href="/">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="/guia/">Guia</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></div></nav>
+    <nav class="mobile" aria-label="Menu mobile"><a href="/">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="/guia/">Guia</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></nav>
   </header>
-  <div class="social-floating" aria-label="Redes sociais"><a href="https://www.linkedin.com/company/alogyengenharia" class="linkedin" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a><a href="https://www.instagram.com/alogyengenharia" class="instagram" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="https://www.facebook.com/alogyengenharia" class="facebook" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><a href="https://www.youtube.com/@alogyengenharia" class="youtube" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a><a href="https://hotmart.com/pt-br/club/alogyengenharia" class="hotmart" target="_blank" rel="noopener noreferrer" aria-label="Hotmart">H</a><a href="https://www.tiktok.com/@alogyengenharia" class="tiktok" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fab fa-tiktok"></i></a></div>
+  <div class="social-floating" aria-label="Redes sociais"><a href="https://www.linkedin.com/company/alogyengenharia" class="linkedin" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a><a href="https://www.instagram.com/alogyengenharia" class="instagram" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="https://www.facebook.com/alogyengenharia" class="facebook" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><a href="https://www.youtube.com/@alogyengenharia" class="youtube" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a><a href="https://www.tiktok.com/@alogyengenharia" class="tiktok" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fab fa-tiktok"></i></a></div>
   <div class="fab-wrap" aria-label="Ações rápidas"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1!%20Vim%20pela%20calculadora%20de%20termopar%20da%20ALOGY.%20Gostaria%20de%20atendimento." target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
-
   <main class="container" style="margin-top:18px">
-    <div style="margin-bottom:14px;display:flex;gap:10px;flex-wrap:wrap" class="no-print">
-      <a class="floating-back-tools no-print" href="ferramentas.html"><i class="fas fa-arrow-left"></i> Voltar para Ferramentas</a>
-      <button class="btn print" id="btnPrint" type="button"><i class="fas fa-print"></i> Imprimir</button>
-      <button class="btn secondary" id="btnReport" type="button"><i class="fas fa-file-pdf"></i> Gerar memória preliminar</button>
-      <a class="btn secondary" href="calculadora-temperatura-industrial.html"><i class="fas fa-temperature-half"></i> Temperatura industrial</a>
-      <a class="btn secondary" href="calculadora-pt100.html"><i class="fas fa-thermometer-half"></i> PT100</a>
-    </div>
-
+    <div style="margin-bottom:14px;display:flex;gap:10px;flex-wrap:wrap" class="no-print"><a class="floating-back-tools no-print" href="ferramentas.html"><i class="fas fa-arrow-left"></i> Voltar para Ferramentas</a><button class="btn print" id="btnPrint" type="button"><i class="fas fa-print"></i> Imprimir</button><button class="btn secondary" id="btnReport" type="button"><i class="fas fa-file-pdf"></i> Gerar memória preliminar</button><a class="btn secondary" href="calculadora-temperatura-industrial.html"><i class="fas fa-temperature-half"></i> Temperatura industrial</a><a class="btn secondary" href="calculadora-pt100.html"><i class="fas fa-thermometer-half"></i> PT100</a></div>
     <section class="print-only print-neutral-header"><div class="print-title">Memória de conversão preliminar — termopar</div><p>Memória preliminar gerada automaticamente — uso exclusivamente orientativo.</p></section>
-
-    <section class="tools-hero print-section"><h1>Calculadora Termopar Online</h1>
-<p class="muted" data-alogy-content-meta><strong>Conteúdo técnico:</strong> ALOGY Engenharia · <strong>Atualizado em:</strong> 08/09/2026</p><p>Converta milivolts em temperatura e temperatura em milivolts para termopares J, K, T, E, N, R, S e B. Inclui compensação de junta fria, faixa de trabalho, tabela rápida e apoio para teste de campo, calibração e manutenção.</p></section>
-
-    <section class="calc-card" aria-label="Aviso de uso da ferramenta">
-      <h2><i class="fas fa-triangle-exclamation"></i> Ferramenta para estudo e apoio técnico</h2>
-      <p>Esta calculadora é orientativa e usa as funções de referência para termopares da NIST ITS-90 para apoio técnico, estudo e pré-análise. Não substitui tabela oficial aplicável ao conjunto instalado, certificado rastreado, calibração, medição em campo, análise de incerteza, laudo ou profissional habilitado. Na máxima extensão permitida pela legislação aplicável, a ALOGY não assume responsabilidade por decisões tomadas exclusivamente com base nesta estimativa orientativa, sem verificação das condições reais e sem validação técnica adequada. Nada neste aviso exclui direitos ou responsabilidades que não possam ser legalmente afastados.</p>
-    </section>
-
+    <section class="tools-hero print-section"><h1>Calculadora Termopar — mV × Temperatura</h1><p class="muted" data-alogy-content-meta><strong>Conteúdo técnico:</strong> ALOGY Engenharia · <strong>Atualizado em:</strong> 11/09/2026</p><p>Converta milivolts em temperatura e temperatura em milivolts para termopares J, K, T, E, N, R, S e B. Inclui compensação de junta fria, curva NIST ITS-90, tabela rápida e identificação visual de condutores nos padrões IEC 60584-3 e ANSI.</p></section>
+    <section class="calc-card" aria-label="Aviso de uso da ferramenta"><h2><i class="fas fa-triangle-exclamation"></i> Ferramenta para estudo e apoio técnico</h2><p>Esta calculadora é orientativa e usa as funções de referência para termopares da NIST ITS-90 para apoio técnico, estudo e pré-análise. Não substitui tabela oficial aplicável ao conjunto instalado, certificado rastreado, calibração, medição em campo, análise de incerteza, laudo ou profissional habilitado.</p></section>
     <section class="calc-layout print-section" id="calculatorSection">
       <div class="calc-card"><h2><i class="fas fa-fire-flame-simple"></i> Dados do termopar</h2><p>Escolha o tipo e informe a temperatura ou o sinal medido. A compensação considera <strong>E medida = E quente − E junta fria</strong>.</p>
-        <div class="calc-grid">
-          <div class="field"><label for="tipo">Tipo de termopar</label><select id="tipo"><option value="K" selected>Tipo K - uso geral</option><option value="J">Tipo J - ferro/constantan</option><option value="T">Tipo T - baixa temperatura</option><option value="E">Tipo E - alta sensibilidade</option><option value="N">Tipo N - alta temperatura</option><option value="R">Tipo R - platina/ródio</option><option value="S">Tipo S - platina/ródio</option><option value="B">Tipo B - alta temperatura</option></select></div>
-          <div class="field"><label for="modo">Calcular a partir de</label><select id="modo"><option value="temp">Temperatura para mV</option><option value="mv">mV para temperatura</option></select></div>
-          <div class="field"><label for="valor" id="valorLabel">Temperatura da junta quente (°C)</label><input id="valor" type="text" inputmode="decimal" autocomplete="off" value="300" aria-describedby="formMessage"></div>
-          <div class="field"><label for="jf">Temperatura da junta fria / ambiente (°C)</label><input id="jf" type="text" inputmode="decimal" autocomplete="off" value="25" aria-describedby="formMessage"></div>
-          <div class="field"><label for="casas">Casas decimais</label><select id="casas"><option value="3" selected>3 casas</option><option value="2">2 casas</option><option value="4">4 casas</option></select></div>
-          <div class="field"><label for="tag">Identificação ou TAG (opcional)</label><input id="tag" type="text" autocomplete="off" maxlength="80" placeholder="Ex.: TE-101"></div>
-          <div class="field" style="grid-column:1/-1"><label for="reportNote">Observação para o relatório (opcional)</label><textarea id="reportNote" class="report-note" maxlength="500" placeholder="Ex.: Verificação preliminar durante teste de malha."></textarea></div>
-        </div>
+        <div class="calc-grid"><div class="field"><label for="tipo">Tipo de termopar</label><select id="tipo"><option value="K" selected>Tipo K - uso geral</option><option value="J">Tipo J - ferro/constantan</option><option value="T">Tipo T - baixa temperatura</option><option value="E">Tipo E - alta sensibilidade</option><option value="N">Tipo N - alta temperatura</option><option value="R">Tipo R - platina/ródio</option><option value="S">Tipo S - platina/ródio</option><option value="B">Tipo B - alta temperatura</option></select></div><div class="field"><label for="modo">Calcular a partir de</label><select id="modo"><option value="temp">Temperatura para mV</option><option value="mv">mV para temperatura</option></select></div><div class="field"><label for="valor" id="valorLabel">Temperatura da junta quente (°C)</label><input id="valor" type="text" inputmode="decimal" autocomplete="off" value="300" aria-describedby="formMessage"></div><div class="field"><label for="jf">Temperatura da junta fria / ambiente (°C)</label><input id="jf" type="text" inputmode="decimal" autocomplete="off" value="25" aria-describedby="formMessage"></div><div class="field"><label for="casas">Casas decimais</label><select id="casas"><option value="3" selected>3 casas</option><option value="2">2 casas</option><option value="4">4 casas</option></select></div><div class="field"><label for="tag">Identificação ou TAG (opcional)</label><input id="tag" type="text" autocomplete="off" maxlength="80" placeholder="Ex.: TE-101"></div><div class="field" style="grid-column:1/-1"><label for="reportNote">Observação para o relatório (opcional)</label><textarea id="reportNote" class="report-note" maxlength="500" placeholder="Ex.: Verificação preliminar durante teste de malha."></textarea></div></div>
         <div id="formMessage" class="form-message" role="alert" aria-live="assertive"></div>
-        <div class="calc-actions no-print">
-          <button class="mini-btn dark" id="btnCalculate" type="button"><i class="fas fa-calculator"></i> Calcular</button>
-          <button class="mini-btn" id="btnClear" type="button"><i class="fas fa-eraser"></i> Limpar</button>
-          <button class="mini-btn" id="btnCopy" type="button"><i class="fas fa-copy"></i> Copiar resultado</button>
-          <button class="mini-btn example-btn" type="button" data-type="K" data-mode="temp" data-value="300" data-cj="25">Exemplo K 300 °C</button>
-          <button class="mini-btn example-btn" type="button" data-type="J" data-mode="mv" data-value="15" data-cj="25">J 15 mV</button>
-          <button class="mini-btn example-btn" type="button" data-type="T" data-mode="temp" data-value="-50" data-cj="20">T -50 °C</button>
-        </div>
+        <div class="calc-actions no-print"><button class="mini-btn dark" id="btnCalculate" type="button"><i class="fas fa-calculator"></i> Calcular</button><button class="mini-btn" id="btnClear" type="button"><i class="fas fa-eraser"></i> Limpar</button><button class="mini-btn" id="btnCopy" type="button"><i class="fas fa-copy"></i> Copiar resultado</button><button class="mini-btn example-btn" type="button" data-type="K" data-mode="temp" data-value="300" data-cj="25">Exemplo K 300 °C</button><button class="mini-btn example-btn" type="button" data-type="J" data-mode="mv" data-value="15" data-cj="25">J 15 mV</button><button class="mini-btn example-btn" type="button" data-type="T" data-mode="temp" data-value="-50" data-cj="20">T -50 °C</button></div>
       </div>
-
-      <div class="calc-card"><h2><i class="fas fa-square-poll-vertical"></i> Resultado</h2>
-        <div class="calc-result" style="grid-template-columns:1fr 1fr">
-          <div class="result-box"><span>Temperatura estimada</span><strong id="outTemp">-</strong></div>
-          <div class="result-box"><span>mV referência 0 °C</span><strong id="outMv0">-</strong></div>
-          <div class="result-box"><span>mV esperado no instrumento</span><strong id="outMvMed">-</strong></div>
-          <div class="result-box"><span>Sensibilidade local aproximada</span><strong id="outSensitivity">-</strong></div>
-          <div class="result-box status-neutral" id="statusBox" style="grid-column:1/-1"><span>Status</span><strong id="outStatus">Aguardando cálculo</strong></div>
-        </div>
-        <div style="margin-top:14px"><span class="span-pill" id="pillTipo">Tipo: -</span><span class="span-pill" id="pillFaixa">Faixa: -</span><span class="span-pill" id="pillJf">Junta fria: -</span></div>
-        <div class="calc-note" id="nota" style="margin-top:14px">Informe os dados e selecione Calcular.</div>
-      </div>
+      <div class="calc-card"><h2><i class="fas fa-square-poll-vertical"></i> Resultado</h2><div class="calc-result" style="grid-template-columns:1fr 1fr"><div class="result-box"><span>Temperatura estimada</span><strong id="outTemp">-</strong></div><div class="result-box"><span>mV referência 0 °C</span><strong id="outMv0">-</strong></div><div class="result-box"><span>mV esperado no instrumento</span><strong id="outMvMed">-</strong></div><div class="result-box"><span>Sensibilidade local aproximada</span><strong id="outSensitivity">-</strong></div><div class="result-box status-neutral" id="statusBox" style="grid-column:1/-1"><span>Status</span><strong id="outStatus">Aguardando cálculo</strong></div></div><div style="margin-top:14px"><span class="span-pill" id="pillTipo">Tipo: -</span><span class="span-pill" id="pillFaixa">Faixa: -</span><span class="span-pill" id="pillJf">Junta fria: -</span></div><div class="calc-note" id="nota" style="margin-top:14px">Informe os dados e selecione Calcular.</div></div>
     </section>
-
-    <section class="calc-card print-section" id="memorySection">
-      <h2><i class="fas fa-square-root-variable"></i> Memória de cálculo</h2>
-      <div class="memory-box" id="memoryBox"><p>A memória será apresentada após um cálculo válido.</p></div>
+    <section class="calc-card" aria-label="Curva de referência do termopar"><h2><i class="fas fa-chart-line"></i> Curva mV × temperatura — NIST ITS-90</h2><p class="small-muted">A curva abaixo é gerada com a <strong>mesma função de referência por trechos</strong> usada no cálculo. O marcador indica o ponto atual em relação à referência de 0 °C. A compensação de junta fria desloca o sinal efetivamente visto pelo instrumento, mas não altera a curva de referência do tipo.</p><div class="tc-chart-wrap"><svg class="tc-chart" id="tcChart" viewBox="0 0 760 360" role="img" aria-label="Curva de força eletromotriz por temperatura do termopar selecionado"></svg></div><div class="calc-note" id="tcChartNote" style="margin-top:12px">Calcule um ponto para destacar sua posição na curva.</div></section>
+    <section class="calc-card print-section" id="memorySection"><h2><i class="fas fa-square-root-variable"></i> Memória de cálculo</h2><div class="memory-box" id="memoryBox"><p>A memória será apresentada após um cálculo válido.</p></div></section>
+    <section class="calc-layout print-section"><div class="calc-card"><h2><i class="fas fa-table"></i> Tabela rápida do tipo selecionado</h2><p class="small-muted">Valores calculados pela função de referência NIST ITS-90 para consulta inicial. Para calibração, use referência oficial, certificado e procedimento metrológico.</p><div class="calc-table-wrap"><table class="calc-table"><thead><tr><th>Temperatura</th><th>mV ref. 0 °C</th><th>mV com junta fria</th></tr></thead><tbody id="tbl"></tbody></table></div></div><div class="calc-card"><h2><i class="fas fa-circle-info"></i> Aplicação e cuidados</h2><p id="aplicacao"><strong>Tipo K:</strong> muito usado em aplicações industriais gerais pela ampla faixa de temperatura.</p><p><strong>Junta fria:</strong> se a junta de referência não está em 0 °C, o instrumento precisa compensar essa temperatura para indicar corretamente.</p><p><strong>Polaridade:</strong> inversão dos fios pode causar leitura negativa ou comportamento incorreto.</p><div class="calc-note">Não confie somente na cor. Confirme tipo, polaridade, marcação do cabo, borne e documentação da instalação.</div></div></section>
+    <section class="calc-card" aria-label="Cores IEC e ANSI dos cabos de termopar">
+      <h2><i class="fas fa-palette"></i> Cores dos termopares — IEC 60584-3 × ANSI</h2>
+      <p>As cores mudam conforme o padrão. No <strong>IEC 60584-3</strong>, o condutor negativo é branco; no <strong>ANSI/ASTM</strong>, o condutor negativo é vermelho. Os quadrados abaixo são uma ajuda visual e vêm sempre acompanhados do nome da cor para não depender apenas da percepção de cor.</p>
+      <div class="selected-color-guide" id="selectedColorGuide" aria-live="polite"></div>
+      <div class="calc-layout" style="align-items:start;margin-top:14px"><div><h3 style="color:#0b3a62;margin:0 0 10px">IEC 60584-3</h3><div class="calc-table-wrap"><table class="calc-table"><thead><tr><th>Tipo</th><th>Positivo +</th><th>Negativo −</th><th>Capa</th></tr></thead><tbody id="iecColorTable"></tbody></table></div></div><div><h3 style="color:#0b3a62;margin:0 0 10px">ANSI/ASTM — cabo de extensão</h3><div class="calc-table-wrap"><table class="calc-table"><thead><tr><th>Tipo</th><th>Positivo +</th><th>Negativo −</th><th>Capa de extensão</th></tr></thead><tbody id="ansiColorTable"></tbody></table></div></div></div>
+      <div class="calc-note" style="margin-top:14px"><strong>Importante:</strong> a capa ANSI mostrada na tabela é a identificação típica do <strong>cabo de extensão</strong>. Em cabo termopar-grade duplex de metais-base, a capa externa pode ser marrom. Para qualquer ligação real, confirme a impressão no cabo, o tipo do material, a polaridade e a documentação do fabricante/projeto. A cor do quadrado é uma aproximação visual de tela, não uma especificação colorimétrica.</div>
+      <p class="small-muted" style="margin-top:12px">Referência de conferência: <a href="https://tsapps.nist.gov/publication/get_pdf.cfm?pub_id=830698" target="_blank" rel="noopener noreferrer">NIST — Thermocouple Color Codes</a>, IEC 60584-3 e convenções ANSI/ASTM/ISA.</p>
     </section>
-
-    <section class="calc-layout print-section">
-      <div class="calc-card"><h2><i class="fas fa-table"></i> Tabela rápida do tipo selecionado</h2><p class="small-muted">Valores calculados pela função de referência NIST ITS-90 para consulta inicial. Para calibração, use referência oficial, certificado e procedimento metrológico.</p><div class="calc-table-wrap"><table class="calc-table"><thead><tr><th>Temperatura</th><th>mV ref. 0 °C</th><th>mV com junta fria</th></tr></thead><tbody id="tbl"></tbody></table></div></div>
-      <div class="calc-card"><h2><i class="fas fa-circle-info"></i> Aplicação e cuidados</h2><p id="aplicacao"><strong>Tipo K:</strong> muito usado em aplicações industriais gerais pela ampla faixa de temperatura.</p><p><strong>Junta fria:</strong> se a junta de referência não está em 0 °C, o instrumento precisa compensar essa temperatura para indicar corretamente.</p><p><strong>Polaridade:</strong> inversão dos fios pode causar leitura negativa ou comportamento incorreto.</p><div class="calc-note">Cores de cabos podem variar conforme padrão IEC, ANSI ou fabricante. Confirme a identificação no cabo, borne e documentação da instalação.</div></div>
-    </section>
-
-
-
-    <section class="calc-card">
-      <h2><i class="fas fa-palette"></i> Tabela de cores comuns dos cabos de termopar</h2>
-      <p class="small-muted">As cores abaixo são uma referência prática de campo para os padrões mais encontrados. Elas podem variar por norma adotada, cabo de compensação/extensão, lote, fabricante e documentação do projeto. Sempre confirme a identificação gravada no cabo, no borne, no transmissor e no desenho da instalação.</p>
-      <div class="calc-layout" style="align-items:start;margin-top:14px">
-        <div>
-          <h3 style="color:#0b3a62;margin:0 0 10px">Padrão IEC mais comum</h3>
-          <div class="calc-table-wrap"><table class="calc-table"><thead><tr><th>Tipo</th><th>Condutor positivo +</th><th>Condutor negativo -</th><th>Capa/identificação comum</th></tr></thead><tbody>
-            <tr><td>J</td><td>Preto</td><td>Branco</td><td>Preto</td></tr>
-            <tr><td>K</td><td>Verde</td><td>Branco</td><td>Verde</td></tr>
-            <tr><td>T</td><td>Marrom</td><td>Branco</td><td>Marrom</td></tr>
-            <tr><td>E</td><td>Violeta / roxo</td><td>Branco</td><td>Violeta / roxo</td></tr>
-            <tr><td>N</td><td>Rosa</td><td>Branco</td><td>Rosa</td></tr>
-            <tr><td>R</td><td>Laranja</td><td>Branco</td><td>Laranja</td></tr>
-            <tr><td>S</td><td>Laranja</td><td>Branco</td><td>Laranja</td></tr>
-            <tr><td>B</td><td>Cinza</td><td>Branco</td><td>Cinza</td></tr>
-          </tbody></table></div>
-        </div>
-        <div>
-          <h3 style="color:#0b3a62;margin:0 0 10px">Padrão ANSI mais comum</h3>
-          <div class="calc-table-wrap"><table class="calc-table"><thead><tr><th>Tipo</th><th>Condutor positivo +</th><th>Condutor negativo -</th><th>Capa/identificação comum</th></tr></thead><tbody>
-            <tr><td>J</td><td>Branco</td><td>Vermelho</td><td>Preto</td></tr>
-            <tr><td>K</td><td>Amarelo</td><td>Vermelho</td><td>Amarelo</td></tr>
-            <tr><td>T</td><td>Azul</td><td>Vermelho</td><td>Azul</td></tr>
-            <tr><td>E</td><td>Roxo / violeta</td><td>Vermelho</td><td>Roxo / violeta</td></tr>
-            <tr><td>N</td><td>Laranja</td><td>Vermelho</td><td>Laranja</td></tr>
-            <tr><td>R</td><td>Preto</td><td>Vermelho</td><td>Verde</td></tr>
-            <tr><td>S</td><td>Preto</td><td>Vermelho</td><td>Verde</td></tr>
-            <tr><td>B</td><td>Cinza</td><td>Vermelho</td><td>Cinza</td></tr>
-          </tbody></table></div>
-        </div>
-      </div>
-      <div class="calc-note" style="margin-top:14px"><strong>Importante:</strong> não use somente cor para liberar ligação em campo. Em termopar, inversão de polaridade, cabo de compensação errado, emenda com material inadequado ou borne comum podem gerar erro de leitura. Confirme sempre o tipo do termopar, polaridade, continuidade, documentação e faixa do transmissor.</div>
-    </section>
-
-    <section class="calc-card faq"><h2><i class="fas fa-circle-question"></i> Perguntas frequentes</h2>
-      <details open><summary>O que o termopar mede?</summary><p>Ele gera uma tensão em milivolts relacionada à diferença de temperatura entre a junta quente e a junta fria. O instrumento converte esse mV em temperatura.</p></details>
-      <details><summary>12 mV em um tipo K significa a mesma temperatura em um tipo J?</summary><p>Não. Cada tipo de termopar tem curva própria. O mesmo valor em mV pode representar temperaturas diferentes conforme o tipo selecionado.</p></details>
-      <details><summary>O que acontece se a junta fria estiver errada?</summary><p>A indicação de temperatura pode ficar deslocada. Por isso, transmissores e indicadores costumam ter compensação de junta fria interna ou externa.</p></details>
-      <details><summary>Essa ferramenta serve para certificado?</summary><p>Não. Ela é apenas apoio técnico. Certificados de calibração exigem padrão rastreado, procedimento, cálculo de incerteza, condições ambientais e responsável técnico.</p></details>
-    </section>
-
+    <section class="calc-card faq"><h2><i class="fas fa-circle-question"></i> Perguntas frequentes</h2><details open><summary>O que o termopar mede?</summary><p>Ele gera uma tensão em milivolts relacionada à diferença de temperatura entre a junta quente e a junta fria. O instrumento converte esse mV em temperatura.</p></details><details><summary>As cores IEC e ANSI são iguais?</summary><p>Não. Por exemplo, um tipo K usa verde/branco no IEC e amarelo/vermelho no ANSI. Confirme sempre qual padrão o cabo segue.</p></details><details><summary>12 mV em um tipo K significa a mesma temperatura em um tipo J?</summary><p>Não. Cada tipo de termopar tem curva própria. O mesmo valor em mV pode representar temperaturas diferentes conforme o tipo selecionado.</p></details><details><summary>Essa ferramenta serve para certificado?</summary><p>Não. Ela é apenas apoio técnico. Certificados de calibração exigem padrão rastreado, procedimento, cálculo de incerteza, condições ambientais e responsável técnico.</p></details></section>
     <section class="cta-bar"><h3>Precisa avaliar termopares, transmissores de temperatura ou malhas de instrumentação?</h3><p>A ALOGY Engenharia pode apoiar em instrumentação, automação, calibração, teste de loop e documentação técnica.</p><a class="btn" href="https://wa.me/5519981442448?text=Ol%C3%A1!%20Vim%20pela%20calculadora%20de%20termopar%20da%20ALOGY.%20Gostaria%20de%20apoio%20t%C3%A9cnico." target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> Falar com a ALOGY</a></section>
-  
-    <!-- ALOGY_REVISAO_TECNICA_FERRAMENTA -->
-<section class="calc-card" aria-label="Aplicação e conferência de termopares">
-  <h2><i class="fas fa-clipboard-check"></i> Aplicação e conferência do termopar</h2>
-  <p>A tensão do termopar depende da diferença entre a junta de medição e a junta de referência. Por isso, compare o valor calculado com a compensação de junta fria realmente usada pelo instrumento.</p>
-  <h3>Dados críticos</h3>
-  <ul>
-    <li>tipo correto do termopar e polaridade dos condutores;</li>
-    <li>temperatura da junta de referência;</li>
-    <li>material do cabo de extensão ou compensação;</li>
-    <li>faixa e método de linearização do instrumento;</li>
-    <li>homogeneidade do sensor e condição das emendas.</li>
-  </ul>
-  <h3>Como interpretar o mV esperado</h3>
-  <p>O valor relativo a 0 °C serve como referência de tabela. O valor esperado no instrumento inclui a compensação da junta fria informada. Diferença de polaridade geralmente produz indicação no sentido oposto; cabo inadequado pode criar novas junções e erros dependentes da temperatura ambiente.</p>
-  <h3>Conferência de campo</h3>
-  <ul>
-    <li>Verifique continuidade e isolação sem aplicar tensão indevida ao circuito.</li>
-    <li>Confirme que conectores, bornes e cabos correspondem ao tipo do termopar.</li>
-    <li>Compare instrumento, transmissor e sistema de controle na mesma condição.</li>
-    <li>Em calibração, estabilize a fonte térmica e registre a junta fria.</li>
-  </ul>
-  <p><strong>Limite:</strong> a ferramenta calcula a força eletromotriz de referência, mas não avalia deriva metalúrgica, gradiente, imersão, resposta dinâmica nem incerteza do conjunto real.</p>
-</section>
-
-  
-<!-- ALOGY_STAGE3_CURATION -->
-
-<section class="calc-card" aria-label="Referência normativa para termopares">
-  <h2><i class="fas fa-book"></i> Referência normativa e limitações da conversão</h2>
-  <p>O cálculo utiliza as funções de referência por trechos publicadas no <a href="https://www.nist.gov/publications/temperature-electromotive-force-reference-functions-and-tables-letter-designated" rel="noopener noreferrer" target="_blank"><strong>NIST Monograph 175</strong></a>, baseadas na ITS-90. As funções e tabelas dos tipos J, K, T, E, N, R, S e B também devem ser conferidas na <strong>IEC 60584-1</strong>. Classes de tolerância e requisitos de cabos de extensão ou compensação devem seguir a documentação aplicável.</p>
-  <p>Para calibração, considere junta de referência, homogeneidade dos fios, gradientes térmicos, imersão, deriva e estabilidade da fonte térmica. A função de referência desta página não representa, sozinha, a incerteza do conjunto real.</p>
-</section>
-
-<!-- ALOGY_LOTE_4_CONTEUDO_PRIORITARIO -->
-<section class="calc-card" aria-label="Diagnóstico de leituras incorretas em termopares">
-  <h2><i class="fas fa-stethoscope"></i> Diagnóstico de leitura incorreta em termopar</h2>
-  <p>Quando a temperatura indicada não corresponde ao processo, compare primeiro o sinal em milivolts com uma tabela de referência do mesmo tipo de termopar. Uma leitura negativa inesperada pode indicar inversão de polaridade; um erro quase constante pode estar relacionado à compensação da junta fria; uma indicação instável pode resultar de mau contato, interferência elétrica, aterramento inadequado ou cabo danificado.</p>
-  <h3>Roteiro de verificação</h3>
-  <ul>
-    <li>Confirme se sensor, cabo de extensão e instrumento estão configurados para o mesmo tipo J, K, T, E, N, R, S ou B.</li>
-    <li>Verifique polaridade e padrão de cores aplicável, sem confiar apenas na aparência do isolamento.</li>
-    <li>Meça o sinal diretamente nos bornes e compare com a temperatura conhecida da junta de medição.</li>
-    <li>Confira a temperatura do borne de referência e o funcionamento da compensação de junta fria.</li>
-    <li>Avalie continuidade, isolamento e possíveis emendas com materiais incompatíveis.</li>
-  </ul>
-  <p>As funções de referência ITS-90 desta ferramenta servem para estudo e conferência preliminar. Para calibração ou decisão de conformidade, utilize a referência oficial aplicável, padrão rastreado, procedimento aprovado e avaliação da incerteza.</p>
-  <p><strong>Conteúdos relacionados:</strong> veja a <a href="calculadora-calibracao-transmissor-temperatura.html">calibração de transmissores de temperatura</a>, a <a href="calculadora-termopoco-tempo-resposta.html">estimativa de resposta do termopoço</a> e o artigo sobre <a href="blog-calibracao-transmissor-temperatura.html">calibração de temperatura</a>.</p>
-</section>
-
-</main>
+    <section class="calc-card" aria-label="Aplicação e conferência de termopares"><h2><i class="fas fa-clipboard-check"></i> Aplicação e conferência do termopar</h2><p>A tensão do termopar depende da diferença entre a junta de medição e a junta de referência. Por isso, compare o valor calculado com a compensação de junta fria realmente usada pelo instrumento.</p><h3>Dados críticos</h3><ul><li>tipo correto do termopar e polaridade dos condutores;</li><li>temperatura da junta de referência;</li><li>material do cabo de extensão ou compensação;</li><li>faixa e método de linearização do instrumento;</li><li>homogeneidade do sensor e condição das emendas.</li></ul><h3>Conferência de campo</h3><ul><li>Verifique continuidade e isolação sem aplicar tensão indevida ao circuito.</li><li>Confirme que conectores, bornes e cabos correspondem ao tipo do termopar.</li><li>Compare instrumento, transmissor e sistema de controle na mesma condição.</li><li>Em calibração, estabilize a fonte térmica e registre a junta fria.</li></ul><p><strong>Limite:</strong> a ferramenta calcula a força eletromotriz de referência, mas não avalia deriva metalúrgica, gradiente, imersão, resposta dinâmica nem incerteza do conjunto real.</p></section>
+    <section class="calc-card" aria-label="Referência normativa para termopares"><h2><i class="fas fa-book"></i> Referência normativa e limitações da conversão</h2><p>O cálculo utiliza as funções de referência por trechos publicadas no <a href="https://www.nist.gov/publications/temperature-electromotive-force-reference-functions-and-tables-letter-designated" rel="noopener noreferrer" target="_blank"><strong>NIST Monograph 175</strong></a>, baseadas na ITS-90. As funções e tabelas dos tipos J, K, T, E, N, R, S e B também devem ser conferidas na <strong>IEC 60584-1</strong>; identificação de cabos deve seguir o padrão aplicável, como a <strong>IEC 60584-3</strong>.</p><p>Para calibração, considere junta de referência, homogeneidade dos fios, gradientes térmicos, imersão, deriva e estabilidade da fonte térmica. A função de referência desta página não representa, sozinha, a incerteza do conjunto real.</p></section>
+    <section class="calc-card" aria-label="Diagnóstico de leituras incorretas em termopares"><h2><i class="fas fa-stethoscope"></i> Diagnóstico de leitura incorreta em termopar</h2><p>Quando a temperatura indicada não corresponde ao processo, compare primeiro o sinal em milivolts com uma referência do mesmo tipo. Uma leitura negativa inesperada pode indicar inversão de polaridade; um erro quase constante pode estar relacionado à compensação da junta fria; uma indicação instável pode resultar de mau contato, interferência elétrica, aterramento inadequado ou cabo danificado.</p><h3>Roteiro de verificação</h3><ul><li>Confirme se sensor, cabo de extensão e instrumento estão configurados para o mesmo tipo J, K, T, E, N, R, S ou B.</li><li>Verifique polaridade e padrão de cores aplicável, sem confiar apenas na aparência do isolamento.</li><li>Meça o sinal diretamente nos bornes e compare com a temperatura conhecida da junta de medição.</li><li>Confira a temperatura do borne de referência e o funcionamento da compensação de junta fria.</li><li>Avalie continuidade, isolamento e possíveis emendas com materiais incompatíveis.</li></ul><p><strong>Conteúdos relacionados:</strong> veja a <a href="calculadora-calibracao-transmissor-temperatura.html">calibração de transmissores de temperatura</a>, a <a href="calculadora-termopoco-tempo-resposta.html">estimativa de resposta do termopoço</a> e o artigo sobre <a href="blog-calibracao-transmissor-temperatura.html">calibração de temperatura</a>.</p></section>
+  </main>
   <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p></footer>
-
 <script>
 (() => {
   'use strict';
   const thermocoupleData={"K":{"range":[-270.0,1372.0],"inverseRange":[-270.0,1372.0],"desc":"Tipo K: uso geral, ampla faixa, comum em fornos, máquinas, processos térmicos e manutenção industrial.","segments":[{"min":-270.0,"max":0.0,"coefficients":[-1.6322697486e-23,-1.9889266878e-20,-1.0451609365e-17,-3.1088872894e-15,-5.7410327428e-13,-6.7509059173e-11,-4.9904828777e-09,-3.2858906784e-07,2.3622373598e-05,0.039450128025,0.0],"gaussian":null},{"min":0.0,"max":1372.0,"coefficients":[-1.2104721275e-26,9.7151147152e-23,-3.2020720003e-19,5.6075059059e-16,-5.6072844889e-13,3.1840945719e-10,-9.9457592874e-08,1.8558770032e-05,0.038921204975,-0.017600413686],"gaussian":[0.1185976,-0.0001183432,126.9686]}]},"J":{"range":[-210.0,1200.0],"inverseRange":[-210.0,1200.0],"desc":"Tipo J: comum em aplicações industriais, indicado para faixas moderadas e ambientes compatíveis com ferro/constantan.","segments":[{"min":-210.0,"max":760.0,"coefficients":[1.5631725697e-23,-1.2538395336e-19,2.0948090697e-16,-1.7052958337e-13,1.3228195295e-10,-8.568106572e-08,3.047583693e-05,0.050381187815,0.0],"gaussian":null},{"min":760.0,"max":1200.0,"coefficients":[-3.0691369056e-13,1.5720819004e-09,-3.1847686701e-06,0.0031787103924,-1.4976127786,296.45625681],"gaussian":null}]},"T":{"range":[-270.0,400.0],"inverseRange":[-270.0,400.0],"desc":"Tipo T: muito usado em baixas temperaturas e aplicações que exigem boa estabilidade em faixa reduzida.","segments":[{"min":-270.0,"max":0.0,"coefficients":[7.9795153927e-31,1.3945027062e-27,1.079553927e-24,4.8768662286e-22,1.4251594779e-19,2.8213521925e-17,3.8493939883e-15,3.6071154205e-13,2.2651156593e-11,9.0138019559e-10,2.0032973554e-08,1.1844323105e-07,4.4194434347e-05,0.038748106364,0.0],"gaussian":null},{"min":0.0,"max":400.0,"coefficients":[-2.7512901673e-20,4.547913529e-17,-3.0815758772e-14,1.0996880928e-11,-2.1882256846e-09,2.0618243404e-07,3.329222788e-05,0.038748106364,0.0],"gaussian":null}]},"E":{"range":[-270.0,1000.0],"inverseRange":[-270.0,1000.0],"desc":"Tipo E: alta sensibilidade em mV/°C, útil quando se deseja maior resposta elétrica por variação de temperatura.","segments":[{"min":-270.0,"max":0.0,"coefficients":[-3.4657842013e-29,-5.5827328721e-26,-3.9673619516e-23,-1.6414776355e-20,-4.3979497391e-18,-8.0370123621e-16,-1.0287605534e-13,-9.3214058667e-12,-5.9452583057e-10,-2.5800160843e-08,-7.7998048686e-07,4.5410977124e-05,0.058665508708,0.0],"gaussian":null},{"min":0.0,"max":1000.0,"coefficients":[3.5960899481e-28,-1.4388041782e-24,2.1489217569e-21,-1.2536600497e-18,-1.9197495504e-16,6.502440327e-13,-3.3056896652e-10,2.8908407212e-08,4.5032275582e-05,0.05866550871,0.0],"gaussian":null}]},"N":{"range":[-270.0,1300.0],"inverseRange":[-270.0,1300.0],"desc":"Tipo N: opção para temperaturas elevadas, com boa estabilidade em aplicações industriais severas.","segments":[{"min":-270.0,"max":0.0,"coefficients":[-9.3419667835e-20,-7.6089300791e-17,-2.2653438003e-14,-2.6303357716e-12,-4.6412039759e-11,-9.3841111554e-08,1.0957484228e-05,0.026159105962,0.0],"gaussian":null},{"min":0.0,"max":1300.0,"coefficients":[-3.0682196151e-29,2.0849229339e-25,-6.0863245607e-22,9.9745338992e-19,-1.0063471519e-15,6.4311819339e-13,-2.5261169794e-10,4.3825627237e-08,1.571014188e-05,0.025929394601,0.0],"gaussian":null}]},"R":{"range":[-50.0,1768.1],"inverseRange":[-50.0,1768.1],"desc":"Tipo R: termopar nobre para altas temperaturas, comum em laboratório, fornos e processos especiais.","segments":[{"min":-50.0,"max":1064.18,"coefficients":[-2.81038625251e-27,1.57716482367e-23,-3.73105886191e-20,5.00777441034e-17,-4.62347666298e-14,3.56916001063e-11,-2.38855693017e-08,1.39166589782e-05,0.00528961729765,0.0],"gaussian":null},{"min":1064.18,"max":1664.5,"coefficients":[-2.93359668173e-16,2.05305291024e-12,-7.64085947576e-09,1.59564501865e-05,-0.00252061251332,2.95157925316],"gaussian":null},{"min":1664.5,"max":1768.1,"coefficients":[-9.34633971046e-15,-3.45895706453e-08,0.000171280280471,-0.268819888545,152.232118209],"gaussian":null}]},"S":{"range":[-50.0,1768.1],"inverseRange":[-50.0,1768.1],"desc":"Tipo S: termopar nobre para altas temperaturas, usado em padrões, fornos e medições especiais.","segments":[{"min":-50.0,"max":1064.18,"coefficients":[2.71443176145e-24,-1.25068871393e-20,2.55744251786e-17,-3.31465196389e-14,3.22028823036e-11,-2.32477968689e-08,1.2593428974e-05,0.00540313308631,0.0],"gaussian":null},{"min":1064.18,"max":1664.5,"coefficients":[1.29989605174e-14,-1.64856259209e-09,6.54805192818e-06,0.00334509311344,1.32900444085],"gaussian":null},{"min":1664.5,"max":1768.1,"coefficients":[-9.43223690612e-15,-3.30439046987e-08,0.000163693574641,-0.258430516752,146.628232636],"gaussian":null}]},"B":{"range":[0.0,1820.0],"inverseRange":[250,1820],"desc":"Tipo B: termopar nobre para temperaturas muito altas. Em baixas temperaturas a sensibilidade é pequena e a conversão inversa é ambígua.","segments":[{"min":0.0,"max":630.615,"coefficients":[6.2990347094e-19,-1.694452924e-15,1.5668291901e-12,-1.3257931636e-09,5.9040421171e-06,-0.00024650818346,0.0],"gaussian":null},{"min":630.615,"max":1820.0,"coefficients":[-9.3791330289e-25,9.8975640821e-21,-4.4515431033e-17,1.1109794013e-13,-1.6835344864e-10,1.5785280164e-07,-8.4885104785e-05,0.02857174747,-3.8938168621],"gaussian":null}]}};
-  const getEl = (id) => document.getElementById(id);
-  let lastResult = null;
-
-  function parseLocaleNumber(value) {
-    if (typeof value === 'number') return Number.isFinite(value) ? value : NaN;
-    let raw = String(value ?? '').trim().replace(/\s+/g, '');
-    if (!raw) return NaN;
-    const comma = raw.lastIndexOf(',');
-    const dot = raw.lastIndexOf('.');
-    if (comma >= 0 && dot >= 0) {
-      const decimalMark = comma > dot ? ',' : '.';
-      const thousandsMark = decimalMark === ',' ? '.' : ',';
-      raw = raw.split(thousandsMark).join('');
-      if (decimalMark === ',') raw = raw.replace(',', '.');
-    } else if (comma >= 0) {
-      raw = raw.replace(',', '.');
-    }
-    return Number(raw);
-  }
-
-  function formatNumber(value, decimals) {
-    if (!Number.isFinite(value)) return '-';
-    return value.toLocaleString('pt-BR', {minimumFractionDigits: decimals, maximumFractionDigits: decimals});
-  }
-
-  function escapeHtml(value) {
-    return String(value ?? '').replace(/[&<>"']/g, (char) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[char]));
-  }
-
-  function setFieldError(element, hasError) {
-    element.classList.toggle('field-error', Boolean(hasError));
-    element.setAttribute('aria-invalid', hasError ? 'true' : 'false');
-  }
-
-  function showError(message, fieldIds = []) {
-    const box = getEl('formMessage');
-    box.textContent = message;
-    box.classList.add('show');
-    ['valor','jf'].forEach((id) => setFieldError(getEl(id), fieldIds.includes(id)));
-    clearResults(message);
-    const first = fieldIds.length ? getEl(fieldIds[0]) : null;
-    if (first) first.focus();
-  }
-
-  function clearError() {
-    const box = getEl('formMessage');
-    box.textContent = '';
-    box.classList.remove('show');
-    ['valor','jf'].forEach((id) => setFieldError(getEl(id), false));
-  }
-
-  function clearResults(statusText = 'Aguardando cálculo') {
-    ['outTemp','outMv0','outMvMed','outSensitivity'].forEach((id) => getEl(id).textContent = '-');
-    getEl('outStatus').textContent = statusText;
-    const statusBox = getEl('statusBox');
-    statusBox.classList.remove('status-ok','status-bad');
-    statusBox.classList.add('status-neutral');
-    getEl('pillTipo').textContent = 'Tipo: -';
-    getEl('pillFaixa').textContent = 'Faixa: -';
-    getEl('pillJf').textContent = 'Junta fria: -';
-    getEl('nota').textContent = 'Revise os dados informados.';
-    getEl('memoryBox').innerHTML = '<p>A memória será apresentada após um cálculo válido.</p>';
-    getEl('tbl').innerHTML = '';
-    lastResult = null;
-  }
-
-  function findReferenceSegment(temperature, info) {
-    if (!Number.isFinite(temperature) || temperature < info.range[0] || temperature > info.range[1]) return null;
-    return info.segments.find((segment, index) => {
-      const isLast = index === info.segments.length - 1;
-      return temperature >= segment.min && (temperature < segment.max || (isLast && temperature <= segment.max));
-    }) || null;
-  }
-
-  function evaluatePolynomial(coefficients, x) {
-    let value = coefficients[0];
-    let derivative = 0;
-    for (let index = 1; index < coefficients.length; index += 1) {
-      derivative = derivative * x + value;
-      value = value * x + coefficients[index];
-    }
-    return {value, derivative};
-  }
-
-  function referenceEmfAtTemperature(temperature, info) {
-    const segment = findReferenceSegment(temperature, info);
-    if (!segment) return null;
-    const evaluated = evaluatePolynomial(segment.coefficients, temperature);
-    let emf = evaluated.value;
-    let derivative = evaluated.derivative;
-    if (segment.gaussian) {
-      const [amplitude, factor, center] = segment.gaussian;
-      const delta = temperature - center;
-      const gaussian = amplitude * Math.exp(factor * delta * delta);
-      emf += gaussian;
-      derivative += 2 * factor * delta * gaussian;
-    }
-    return {emf, sensitivity: derivative * 1000, segmentMin: segment.min, segmentMax: segment.max};
-  }
-
-  function temperatureAtReferenceEmf(emf, info) {
-    const [minimumTemperature, maximumTemperature] = info.inverseRange;
-    const minimumData = referenceEmfAtTemperature(minimumTemperature, info);
-    const maximumData = referenceEmfAtTemperature(maximumTemperature, info);
-    if (!Number.isFinite(emf) || !minimumData || !maximumData || emf < minimumData.emf || emf > maximumData.emf) return null;
-    let low = minimumTemperature;
-    let high = maximumTemperature;
-    for (let index = 0; index < 100; index += 1) {
-      const middle = (low + high) / 2;
-      const middleData = referenceEmfAtTemperature(middle, info);
-      if (!middleData) return null;
-      if (middleData.emf < emf) low = middle;
-      else high = middle;
-    }
-    const temperature = (low + high) / 2;
-    const data = referenceEmfAtTemperature(temperature, info);
-    return data ? {temperature, sensitivity: data.sensitivity, segmentMin: data.segmentMin, segmentMax: data.segmentMax} : null;
-  }
-
-  function referenceTemperatures(info) {
-    const values = [info.range[0]];
-    const firstHundred = Math.ceil(info.range[0] / 100) * 100;
-    for (let temperature = firstHundred; temperature <= Math.floor(info.range[1] / 100) * 100; temperature += 100) {
-      if (!values.includes(temperature)) values.push(temperature);
-    }
-    if (!values.includes(info.range[1])) values.push(info.range[1]);
-    return values;
-  }
-
-  function updateModeLabel() {
-    const mode = getEl('modo').value;
-    getEl('valorLabel').textContent = mode === 'temp' ? 'Temperatura da junta quente (°C)' : 'mV medido pelo instrumento';
-    getEl('valor').placeholder = mode === 'temp' ? 'Ex.: 300 ou 300,5' : 'Ex.: 12,209 ou 12.209';
-  }
-
-  function renderReferenceTable(info, coldJunctionEmf, decimals) {
-    getEl('tbl').innerHTML = referenceTemperatures(info).map((temperature) => {
-      const data = referenceEmfAtTemperature(temperature, info);
-      return `
-      <tr>
-        <td>${formatNumber(temperature, temperature % 1 ? 1 : 0)} °C</td>
-        <td>${formatNumber(data.emf, decimals)} mV</td>
-        <td>${formatNumber(data.emf - coldJunctionEmf, decimals)} mV</td>
-      </tr>`;
-    }).join('');
-  }
-
-  function calculate() {
-    clearError();
-    updateModeLabel();
-    const type = getEl('tipo').value;
-    const mode = getEl('modo').value;
-    const decimals = Number(getEl('casas').value);
-    const inputValue = parseLocaleNumber(getEl('valor').value);
-    const coldJunctionTemperature = parseLocaleNumber(getEl('jf').value);
-    const info = thermocoupleData[type];
-
-    if (!Number.isFinite(inputValue)) return showError('Informe um valor numérico válido no campo principal. São aceitos ponto ou vírgula decimal.', ['valor']);
-    if (!Number.isFinite(coldJunctionTemperature)) return showError('Informe uma temperatura válida para a junta fria.', ['jf']);
-    if (coldJunctionTemperature < info.range[0] || coldJunctionTemperature > info.range[1]) {
-      return showError(`A junta fria deve estar entre ${info.range[0]} °C e ${info.range[1]} °C para o tipo ${type} nesta tabela.`, ['jf']);
-    }
-
-    const coldData = referenceEmfAtTemperature(coldJunctionTemperature, info);
-    if (!coldData) return showError('Não foi possível calcular a tensão equivalente da junta fria com a função de referência disponível.', ['jf']);
-
-    let temperature;
-    let emfReferenceZero;
-    let measuredEmf;
-    let conversion;
-
-    if (mode === 'temp') {
-      temperature = inputValue;
-      if (temperature < info.range[0] || temperature > info.range[1]) {
-        return showError(`A temperatura deve estar entre ${info.range[0]} °C e ${info.range[1]} °C para o termopar tipo ${type}.`, ['valor']);
-      }
-      conversion = referenceEmfAtTemperature(temperature, info);
-      emfReferenceZero = conversion.emf;
-      measuredEmf = emfReferenceZero - coldData.emf;
-    } else {
-      measuredEmf = inputValue;
-      emfReferenceZero = measuredEmf + coldData.emf;
-      conversion = temperatureAtReferenceEmf(emfReferenceZero, info);
-      if (!conversion) {
-        const minimumTemperature = info.inverseRange[0];
-        const maximumTemperature = info.inverseRange[1];
-        const minEmf = referenceEmfAtTemperature(minimumTemperature, info).emf;
-        const maxEmf = referenceEmfAtTemperature(maximumTemperature, info).emf;
-        const typeBNote = type === 'B' ? ' Para o tipo B, a conversão inversa foi limitada a partir de 250 °C devido à baixa sensibilidade e à ambiguidade da curva em temperaturas inferiores.' : '';
-        return showError(`Com a compensação da junta fria, o sinal equivale a ${formatNumber(emfReferenceZero, decimals)} mV. A função inversa do tipo ${type} aceita de ${formatNumber(minEmf, decimals)} a ${formatNumber(maxEmf, decimals)} mV (${formatNumber(minimumTemperature, 1)} a ${formatNumber(maximumTemperature, 1)} °C).${typeBNote}`, ['valor']);
-      }
-      temperature = conversion.temperature;
-    }
-
-    if (![temperature, emfReferenceZero, measuredEmf, conversion.sensitivity].every(Number.isFinite)) {
-      return showError('O cálculo produziu um resultado não finito. Revise os dados informados.', ['valor','jf']);
-    }
-
-    const warnings = [];
-    if (type === 'B' && temperature < 300) warnings.push('O tipo B tem baixa sensibilidade em temperaturas baixas; abaixo de 250 °C a conversão inversa não é oferecida por causa da ambiguidade da curva.');
-    if (['R','S','B'].includes(type)) warnings.push('Para termopares nobres e altas temperaturas, confirme a curva e os limites do conjunto completo com documentação técnica.');
-    warnings.push('Resultado calculado pelas funções de referência NIST ITS-90. O cálculo continua sendo orientativo e não substitui certificado de calibração nem avaliação de incerteza.');
-
-    getEl('outTemp').textContent = `${formatNumber(temperature, 2)} °C`;
-    getEl('outMv0').textContent = `${formatNumber(emfReferenceZero, decimals)} mV`;
-    getEl('outMvMed').textContent = `${formatNumber(measuredEmf, decimals)} mV`;
-    getEl('outSensitivity').textContent = `${formatNumber(conversion.sensitivity, 2)} µV/°C`;
-    getEl('outStatus').textContent = 'Resultado dentro da faixa da função ITS-90';
-    const statusBox = getEl('statusBox');
-    statusBox.classList.remove('status-neutral','status-bad');
-    statusBox.classList.add('status-ok');
-    getEl('pillTipo').textContent = `Tipo ${type}`;
-    getEl('pillFaixa').textContent = `Faixa ITS-90: ${info.range[0]} a ${info.range[1]} °C`;
-    getEl('pillJf').textContent = `Junta fria: ${formatNumber(coldJunctionTemperature, 2)} °C`;
-    getEl('nota').textContent = warnings.join(' ');
-    getEl('aplicacao').innerHTML = `<strong>${escapeHtml(info.desc.split(':')[0])}:</strong>${escapeHtml(info.desc.substring(info.desc.indexOf(':') + 1))}`;
-
-    const inputDescription = mode === 'temp'
-      ? `Temperatura informada = ${formatNumber(inputValue, 3)} °C`
-      : `Sinal medido informado = ${formatNumber(inputValue, decimals)} mV`;
-    const formulaLine = mode === 'temp'
-      ? 'E medida = E(T quente) − E(T junta fria)'
-      : 'E referência 0 °C = E medida + E(T junta fria)';
-    const substitutionLine = mode === 'temp'
-      ? `E medida = ${formatNumber(emfReferenceZero, decimals)} − ${formatNumber(coldData.emf, decimals)} = ${formatNumber(measuredEmf, decimals)} mV`
-      : `E referência 0 °C = ${formatNumber(measuredEmf, decimals)} + ${formatNumber(coldData.emf, decimals)} = ${formatNumber(emfReferenceZero, decimals)} mV`;
-
-    getEl('memoryBox').innerHTML = `
-      <h3>Conversão do termopar tipo ${escapeHtml(type)}</h3>
-      <p><strong>Entrada:</strong> ${escapeHtml(inputDescription)}.</p>
-      <p><strong>Junta fria:</strong> ${formatNumber(coldJunctionTemperature, 3)} °C → E ≈ ${formatNumber(coldData.emf, decimals)} mV.</p>
-      <p><strong>Fórmula:</strong> <code>${escapeHtml(formulaLine)}</code></p>
-      <p><strong>Substituição:</strong> <code>${escapeHtml(substitutionLine)}</code></p>
-      <p><strong>Função de referência:</strong> NIST ITS-90, trecho polinomial de ${formatNumber(conversion.segmentMin, 1)} °C a ${formatNumber(conversion.segmentMax, 1)} °C.</p>
-      <p><strong>Resultado:</strong> temperatura ≈ ${formatNumber(temperature, 2)} °C; E ref. 0 °C ≈ ${formatNumber(emfReferenceZero, decimals)} mV; E esperada no instrumento ≈ ${formatNumber(measuredEmf, decimals)} mV.</p>
-      <p><strong>Limitação:</strong> a função de referência representa o tipo ideal. Erros do sensor, cabos, conexões, instrumento, junta fria e instalação exigem avaliação própria em trabalhos metrológicos.</p>`;
-
-    renderReferenceTable(info, coldData.emf, decimals);
-    lastResult = {type, mode, decimals, inputValue, coldJunctionTemperature, coldJunctionEmf: coldData.emf, temperature, emfReferenceZero, measuredEmf, sensitivity: conversion.sensitivity, formulaLine, substitutionLine, warnings, range: info.range.slice(), tag: getEl('tag').value.trim(), note: getEl('reportNote').value.trim()};
-  }
-
-  function applyExample(button) {
-    getEl('tipo').value = button.dataset.type;
-    getEl('modo').value = button.dataset.mode;
-    getEl('valor').value = button.dataset.value;
-    getEl('jf').value = button.dataset.cj;
-    updateModeLabel();
-    calculate();
-  }
-
-  function resetForm() {
-    getEl('tipo').value = 'K';
-    getEl('modo').value = 'temp';
-    getEl('valor').value = '300';
-    getEl('jf').value = '25';
-    getEl('casas').value = '3';
-    getEl('tag').value = '';
-    getEl('reportNote').value = '';
-    clearError();
-    updateModeLabel();
-    calculate();
-  }
-
-  function copyResult() {
-    if (!lastResult) { showError('Realize um cálculo válido antes de copiar o resultado.'); return; }
-    const r = lastResult;
-    const text = [
-      'Conversão de termopar',
-      r.tag ? `Identificação: ${r.tag}` : '',
-      `Tipo: ${r.type}`,
-      `Temperatura estimada: ${formatNumber(r.temperature, 2)} °C`,
-      `mV referência 0 °C: ${formatNumber(r.emfReferenceZero, r.decimals)} mV`,
-      `mV esperado no instrumento: ${formatNumber(r.measuredEmf, r.decimals)} mV`,
-      `Junta fria: ${formatNumber(r.coldJunctionTemperature, 2)} °C`,
-      `Sensibilidade local: ${formatNumber(r.sensitivity, 2)} µV/°C`,
-      r.note ? `Observação: ${r.note}` : ''
-    ].filter(Boolean).join('\n');
-    if (navigator.clipboard && window.isSecureContext) {
-      navigator.clipboard.writeText(text).then(() => alert('Resultado copiado.')).catch(() => window.prompt('Copie o resultado:', text));
-    } else {
-      window.prompt('Copie o resultado:', text);
-    }
-  }
-
-  function printCalculation() {
-    if (!lastResult) { showError('Realize um cálculo válido antes de imprimir.'); return; }
-    const originalTitle = document.title;
-    document.title = 'Memória de conversão preliminar — termopar';
-    window.addEventListener('afterprint', () => { document.title = originalTitle; }, {once:true});
-    window.print();
-  }
-
-  function generateReport() {
-    if (!lastResult) { showError('Realize um cálculo válido antes de gerar a memória preliminar.'); return; }
-    const r = lastResult;
-    const date = new Date().toLocaleString('pt-BR');
-    const reportWindow = window.open('', '_blank');
-    if (!reportWindow) { showError('O navegador bloqueou a janela do relatório. Permita pop-ups para esta página e tente novamente.'); return; }
-    reportWindow.opener = null;
-    const rows = [
-      ['Data e hora', date], ['Identificação/TAG', r.tag || 'Não informada'], ['Tipo de termopar', `Tipo ${r.type}`],
-      ['Modo de cálculo', r.mode === 'temp' ? 'Temperatura para mV' : 'mV para temperatura'],
-      ['Temperatura da junta fria', `${formatNumber(r.coldJunctionTemperature, 3)} °C`],
-      ['E da junta fria', `${formatNumber(r.coldJunctionEmf, r.decimals)} mV`],
-      ['Temperatura estimada', `${formatNumber(r.temperature, 2)} °C`],
-      ['mV referência 0 °C', `${formatNumber(r.emfReferenceZero, r.decimals)} mV`],
-      ['mV esperado no instrumento', `${formatNumber(r.measuredEmf, r.decimals)} mV`],
-      ['Sensibilidade local aproximada', `${formatNumber(r.sensitivity, 2)} µV/°C`],
-      ['Faixa da função ITS-90', `${r.range[0]} a ${r.range[1]} °C`]
-    ];
-    const bodyRows = rows.map(([label,value]) => `<tr><th>${escapeHtml(label)}</th><td>${escapeHtml(value)}</td></tr>`).join('');
-    reportWindow.document.open();
-    reportWindow.document.write(`<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Memória de conversão preliminar — termopar</title><style>body{font-family:Arial,sans-serif;color:#111;margin:0;background:#fff}main{max-width:820px;margin:0 auto;padding:28px}h1{font-size:24px;margin:0 0 6px}.sub{color:#444;margin:0 0 24px}table{width:100%;border-collapse:collapse;margin:16px 0 24px}th,td{border:1px solid #aaa;padding:9px;text-align:left;vertical-align:top}th{width:38%;background:#eee}section{margin:22px 0;break-inside:avoid}code{white-space:normal}.warning{border:1px solid #999;padding:12px;background:#f7f7f7}.actions{margin-bottom:18px}button{padding:10px 14px;font-weight:bold}.doc-warning{border:2px solid #555;background:#f1f3f5;padding:12px;margin:0 0 18px;font-size:12px;line-height:1.45}@media print{.actions{display:none}main{padding:0}@page{size:A4;margin:14mm}}</style></head><body><main><div class="doc-warning"><strong>SIMULAÇÃO ORIENTATIVA — NÃO É LAUDO, PROJETO, CERTIFICADO, PARECER TÉCNICO OU ART.</strong><br>Confira entradas, unidades, premissas, normas e condições reais antes de aplicar.</div><div class="actions"><button onclick="window.print()">Imprimir ou salvar em PDF</button></div><h1>Memória de conversão preliminar — termopar</h1><p class="sub">Memória preliminar gerada automaticamente — uso exclusivamente orientativo.</p><table>${bodyRows}</table><section><h2>Memória de cálculo</h2><p><strong>Fórmula:</strong> ${escapeHtml(r.formulaLine)}</p><p><strong>Substituição:</strong> ${escapeHtml(r.substitutionLine)}</p></section><section><h2>Interpretação e limitações</h2><div class="warning">${r.warnings.map((w) => `<p>${escapeHtml(w)}</p>`).join('')}</div></section>${r.note ? `<section><h2>Observação</h2><p>${escapeHtml(r.note)}</p></section>` : ''}<section><p><strong>Aviso:</strong> resultado orientativo. Não substitui tabela oficial, certificado rastreado, procedimento de calibração, análise de incerteza ou validação por profissional habilitado.</p></section></main></body></html>`);
-    reportWindow.document.close();
-    reportWindow.focus();
-  }
-
-  getEl('btnCalculate').addEventListener('click', calculate);
-  getEl('btnClear').addEventListener('click', resetForm);
-  getEl('btnCopy').addEventListener('click', copyResult);
-  getEl('btnPrint').addEventListener('click', printCalculation);
-  getEl('btnReport').addEventListener('click', generateReport);
-  getEl('modo').addEventListener('change', updateModeLabel);
-  getEl('tipo').addEventListener('change', () => { clearError(); calculate(); });
-  getEl('casas').addEventListener('change', calculate);
-  document.querySelectorAll('.example-btn').forEach((button) => button.addEventListener('click', () => applyExample(button)));
-  ['valor','jf'].forEach((id) => getEl(id).addEventListener('keydown', (event) => { if (event.key === 'Enter') calculate(); }));
-
-  updateModeLabel();
-  calculate();
+  const COLOR_CODES={K:{iec:['Verde','Branco','Verde'],ansi:['Amarelo','Vermelho','Amarelo']},J:{iec:['Preto','Branco','Preto'],ansi:['Branco','Vermelho','Preto']},T:{iec:['Marrom','Branco','Marrom'],ansi:['Azul','Vermelho','Azul']},E:{iec:['Violeta','Branco','Violeta'],ansi:['Violeta','Vermelho','Violeta']},N:{iec:['Rosa','Branco','Rosa'],ansi:['Laranja','Vermelho','Laranja']},R:{iec:['Laranja','Branco','Laranja'],ansi:['Preto','Vermelho','Verde']},S:{iec:['Laranja','Branco','Laranja'],ansi:['Preto','Vermelho','Verde']},B:{iec:['Cinza','Branco','Cinza'],ansi:['Cinza','Vermelho','Cinza']}};
+  const COLOR_CLASS={'Preto':'sw-black','Branco':'sw-white','Verde':'sw-green','Marrom':'sw-brown','Violeta':'sw-violet','Rosa':'sw-pink','Laranja':'sw-orange','Cinza':'sw-gray','Amarelo':'sw-yellow','Vermelho':'sw-red','Azul':'sw-blue'};
+  const getEl=(id)=>document.getElementById(id); let lastResult=null;
+  function parseLocaleNumber(value){if(typeof value==='number')return Number.isFinite(value)?value:NaN;let raw=String(value??'').trim().replace(/\s+/g,'');if(!raw)return NaN;const comma=raw.lastIndexOf(','),dot=raw.lastIndexOf('.');if(comma>=0&&dot>=0){const decimalMark=comma>dot?',':'.',thousandsMark=decimalMark===','?'.':',';raw=raw.split(thousandsMark).join('');if(decimalMark===',')raw=raw.replace(',','.');}else if(comma>=0)raw=raw.replace(',','.');return Number(raw);}
+  function formatNumber(value,decimals){return Number.isFinite(value)?value.toLocaleString('pt-BR',{minimumFractionDigits:decimals,maximumFractionDigits:decimals}):'-';}
+  function escapeHtml(value){return String(value??'').replace(/[&<>"']/g,(char)=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[char]));}
+  function setFieldError(element,hasError){element.classList.toggle('field-error',Boolean(hasError));element.setAttribute('aria-invalid',hasError?'true':'false');}
+  function showError(message,fieldIds=[]){const box=getEl('formMessage');box.textContent=message;box.classList.add('show');['valor','jf'].forEach((id)=>setFieldError(getEl(id),fieldIds.includes(id)));clearResults(message);const first=fieldIds.length?getEl(fieldIds[0]):null;if(first)first.focus();}
+  function clearError(){const box=getEl('formMessage');box.textContent='';box.classList.remove('show');['valor','jf'].forEach((id)=>setFieldError(getEl(id),false));}
+  function clearResults(statusText='Aguardando cálculo'){['outTemp','outMv0','outMvMed','outSensitivity'].forEach((id)=>getEl(id).textContent='-');getEl('outStatus').textContent=statusText;const statusBox=getEl('statusBox');statusBox.classList.remove('status-ok','status-bad');statusBox.classList.add('status-neutral');getEl('pillTipo').textContent='Tipo: -';getEl('pillFaixa').textContent='Faixa: -';getEl('pillJf').textContent='Junta fria: -';getEl('nota').textContent='Revise os dados informados.';getEl('memoryBox').innerHTML='<p>A memória será apresentada após um cálculo válido.</p>';getEl('tbl').innerHTML='';getEl('tcChart').innerHTML='<text x="380" y="180" text-anchor="middle">Calcule um ponto para gerar a curva.</text>';getEl('tcChartNote').textContent='Calcule um ponto para destacar sua posição na curva.';lastResult=null;}
+  function findReferenceSegment(temperature,info){if(!Number.isFinite(temperature)||temperature<info.range[0]||temperature>info.range[1])return null;return info.segments.find((segment,index)=>{const isLast=index===info.segments.length-1;return temperature>=segment.min&&(temperature<segment.max||(isLast&&temperature<=segment.max));})||null;}
+  function evaluatePolynomial(coefficients,x){let value=coefficients[0],derivative=0;for(let index=1;index<coefficients.length;index+=1){derivative=derivative*x+value;value=value*x+coefficients[index];}return{value,derivative};}
+  function referenceEmfAtTemperature(temperature,info){const segment=findReferenceSegment(temperature,info);if(!segment)return null;const evaluated=evaluatePolynomial(segment.coefficients,temperature);let emf=evaluated.value,derivative=evaluated.derivative;if(segment.gaussian){const[amplitude,factor,center]=segment.gaussian,delta=temperature-center,gaussian=amplitude*Math.exp(factor*delta*delta);emf+=gaussian;derivative+=2*factor*delta*gaussian;}return{emf,sensitivity:derivative*1000,segmentMin:segment.min,segmentMax:segment.max};}
+  function temperatureAtReferenceEmf(emf,info){const[minimumTemperature,maximumTemperature]=info.inverseRange,minimumData=referenceEmfAtTemperature(minimumTemperature,info),maximumData=referenceEmfAtTemperature(maximumTemperature,info);if(!Number.isFinite(emf)||!minimumData||!maximumData||emf<minimumData.emf||emf>maximumData.emf)return null;let low=minimumTemperature,high=maximumTemperature;for(let index=0;index<100;index+=1){const middle=(low+high)/2,middleData=referenceEmfAtTemperature(middle,info);if(!middleData)return null;if(middleData.emf<emf)low=middle;else high=middle;}const temperature=(low+high)/2,data=referenceEmfAtTemperature(temperature,info);return data?{temperature,sensitivity:data.sensitivity,segmentMin:data.segmentMin,segmentMax:data.segmentMax}:null;}
+  function referenceTemperatures(info){const values=[info.range[0]],firstHundred=Math.ceil(info.range[0]/100)*100;for(let temperature=firstHundred;temperature<=Math.floor(info.range[1]/100)*100;temperature+=100){if(!values.includes(temperature))values.push(temperature);}if(!values.includes(info.range[1]))values.push(info.range[1]);return values;}
+  function colorChip(name){return '<span class="color-chip"><span class="wire-swatch '+COLOR_CLASS[name]+'" aria-hidden="true"></span>'+escapeHtml(name)+'</span>';}
+  function renderColorTables(){const order=['J','K','T','E','N','R','S','B'];getEl('iecColorTable').innerHTML=order.map((type)=>'<tr><td><strong>'+type+'</strong></td>'+COLOR_CODES[type].iec.map((name)=>'<td>'+colorChip(name)+'</td>').join('')+'</tr>').join('');getEl('ansiColorTable').innerHTML=order.map((type)=>'<tr><td><strong>'+type+'</strong></td>'+COLOR_CODES[type].ansi.map((name)=>'<td>'+colorChip(name)+'</td>').join('')+'</tr>').join('');}
+  function renderSelectedColorGuide(type){const codes=COLOR_CODES[type];const card=(label,values,jacketLabel)=>'<div class="color-standard-card"><h3>'+label+' — Tipo '+type+'</h3><div class="color-row"><div class="color-item">'+colorChip(values[0])+'<small>positivo +</small></div><div class="color-item">'+colorChip(values[1])+'<small>negativo −</small></div><div class="color-item">'+colorChip(values[2])+'<small>'+jacketLabel+'</small></div></div></div>';getEl('selectedColorGuide').innerHTML=card('IEC 60584-3',codes.iec,'capa')+card('ANSI/ASTM',codes.ansi,'capa de extensão');}
+  function updateModeLabel(){const mode=getEl('modo').value;getEl('valorLabel').textContent=mode==='temp'?'Temperatura da junta quente (°C)':'mV medido pelo instrumento';getEl('valor').placeholder=mode==='temp'?'Ex.: 300 ou 300,5':'Ex.: 12,209 ou 12.209';}
+  function renderReferenceTable(info,coldJunctionEmf,decimals){getEl('tbl').innerHTML=referenceTemperatures(info).map((temperature)=>{const data=referenceEmfAtTemperature(temperature,info);return '<tr><td>'+formatNumber(temperature,temperature%1?1:0)+' °C</td><td>'+formatNumber(data.emf,decimals)+' mV</td><td>'+formatNumber(data.emf-coldJunctionEmf,decimals)+' mV</td></tr>';}).join('');}
+  function drawThermocoupleChart(info,type,temperature,emfReferenceZero){const svg=getEl('tcChart'),width=760,height=360,pad={left:72,right:24,top:24,bottom:58},plotWidth=width-pad.left-pad.right,plotHeight=height-pad.top-pad.bottom,minT=info.range[0],maxT=info.range[1];const sample=[];let minE=Infinity,maxE=-Infinity;for(let i=0;i<=180;i+=1){const t=minT+(maxT-minT)*(i/180),d=referenceEmfAtTemperature(t,info);if(d){sample.push([t,d.emf]);minE=Math.min(minE,d.emf);maxE=Math.max(maxE,d.emf);}}const margin=Math.max((maxE-minE)*.05,.2),yMin=minE-margin,yMax=maxE+margin,x=(t)=>pad.left+((t-minT)/(maxT-minT))*plotWidth,y=(e)=>pad.top+plotHeight-((e-yMin)/(yMax-yMin))*plotHeight;let html='';for(let i=0;i<=5;i+=1){const t=minT+(maxT-minT)*(i/5),px=x(t);html+='<line class="grid" x1="'+px.toFixed(2)+'" y1="'+pad.top+'" x2="'+px.toFixed(2)+'" y2="'+(pad.top+plotHeight)+'"></line><text x="'+px.toFixed(2)+'" y="'+(height-30)+'" text-anchor="middle">'+formatNumber(t,0)+'°</text>';}for(let i=0;i<=5;i+=1){const e=yMin+(yMax-yMin)*(i/5),py=y(e);html+='<line class="grid" x1="'+pad.left+'" y1="'+py.toFixed(2)+'" x2="'+(pad.left+plotWidth)+'" y2="'+py.toFixed(2)+'"></line><text x="'+(pad.left-10)+'" y="'+(py+4).toFixed(2)+'" text-anchor="end">'+formatNumber(e,1)+'</text>';}html+='<line class="axis" x1="'+pad.left+'" y1="'+(pad.top+plotHeight)+'" x2="'+(pad.left+plotWidth)+'" y2="'+(pad.top+plotHeight)+'"></line><line class="axis" x1="'+pad.left+'" y1="'+pad.top+'" x2="'+pad.left+'" y2="'+(pad.top+plotHeight)+'"></line>';if(yMin<=0&&yMax>=0){const zy=y(0);html+='<line class="zero-axis" x1="'+pad.left+'" y1="'+zy.toFixed(2)+'" x2="'+(pad.left+plotWidth)+'" y2="'+zy.toFixed(2)+'"></line>';}html+='<polyline class="curve" points="'+sample.map(([t,e])=>x(t).toFixed(2)+','+y(e).toFixed(2)).join(' ')+'"></polyline>';const mx=x(temperature),my=y(emfReferenceZero);html+='<line class="marker-line" x1="'+mx.toFixed(2)+'" y1="'+my.toFixed(2)+'" x2="'+mx.toFixed(2)+'" y2="'+(pad.top+plotHeight)+'"></line><circle class="marker" cx="'+mx.toFixed(2)+'" cy="'+my.toFixed(2)+'" r="6"></circle><text class="marker-label" x="'+Math.min(mx+12,width-185).toFixed(2)+'" y="'+Math.max(my-12,20).toFixed(2)+'">'+formatNumber(temperature,1)+' °C · '+formatNumber(emfReferenceZero,3)+' mV</text><text class="axis-title" x="'+(pad.left+plotWidth/2)+'" y="350" text-anchor="middle">Temperatura (°C)</text><text class="axis-title" transform="translate(18 '+(pad.top+plotHeight/2)+') rotate(-90)" text-anchor="middle">EMF ref. 0 °C (mV)</text>';svg.innerHTML=html;svg.setAttribute('aria-label','Curva NIST ITS-90 do termopar tipo '+type+', com ponto em '+formatNumber(temperature,1)+' graus Celsius e '+formatNumber(emfReferenceZero,3)+' milivolts.');getEl('tcChartNote').textContent='Tipo '+type+': ponto atual '+formatNumber(temperature,2)+' °C → '+formatNumber(emfReferenceZero,3)+' mV em referência de 0 °C.';}
+  function calculate(){clearError();updateModeLabel();const type=getEl('tipo').value,mode=getEl('modo').value,decimals=Number(getEl('casas').value),inputValue=parseLocaleNumber(getEl('valor').value),coldJunctionTemperature=parseLocaleNumber(getEl('jf').value),info=thermocoupleData[type];renderSelectedColorGuide(type);if(!Number.isFinite(inputValue))return showError('Informe um valor numérico válido no campo principal. São aceitos ponto ou vírgula decimal.',['valor']);if(!Number.isFinite(coldJunctionTemperature))return showError('Informe uma temperatura válida para a junta fria.',['jf']);if(coldJunctionTemperature<info.range[0]||coldJunctionTemperature>info.range[1])return showError('A junta fria deve estar entre '+info.range[0]+' °C e '+info.range[1]+' °C para o tipo '+type+' nesta tabela.',['jf']);const coldData=referenceEmfAtTemperature(coldJunctionTemperature,info);if(!coldData)return showError('Não foi possível calcular a tensão equivalente da junta fria com a função de referência disponível.',['jf']);let temperature,emfReferenceZero,measuredEmf,conversion;if(mode==='temp'){temperature=inputValue;if(temperature<info.range[0]||temperature>info.range[1])return showError('A temperatura deve estar entre '+info.range[0]+' °C e '+info.range[1]+' °C para o termopar tipo '+type+'.',['valor']);conversion=referenceEmfAtTemperature(temperature,info);emfReferenceZero=conversion.emf;measuredEmf=emfReferenceZero-coldData.emf;}else{measuredEmf=inputValue;emfReferenceZero=measuredEmf+coldData.emf;conversion=temperatureAtReferenceEmf(emfReferenceZero,info);if(!conversion){const minimumTemperature=info.inverseRange[0],maximumTemperature=info.inverseRange[1],minEmf=referenceEmfAtTemperature(minimumTemperature,info).emf,maxEmf=referenceEmfAtTemperature(maximumTemperature,info).emf,typeBNote=type==='B'?' Para o tipo B, a conversão inversa foi limitada a partir de 250 °C devido à baixa sensibilidade e à ambiguidade da curva em temperaturas inferiores.':'';return showError('Com a compensação da junta fria, o sinal equivale a '+formatNumber(emfReferenceZero,decimals)+' mV. A função inversa do tipo '+type+' aceita de '+formatNumber(minEmf,decimals)+' a '+formatNumber(maxEmf,decimals)+' mV ('+formatNumber(minimumTemperature,1)+' a '+formatNumber(maximumTemperature,1)+' °C).'+typeBNote,['valor']);}temperature=conversion.temperature;}if(![temperature,emfReferenceZero,measuredEmf,conversion.sensitivity].every(Number.isFinite))return showError('O cálculo produziu um resultado não finito. Revise os dados informados.',['valor','jf']);const warnings=[];if(type==='B'&&temperature<300)warnings.push('O tipo B tem baixa sensibilidade em temperaturas baixas; abaixo de 250 °C a conversão inversa não é oferecida por causa da ambiguidade da curva.');if(['R','S','B'].includes(type))warnings.push('Para termopares nobres e altas temperaturas, confirme a curva e os limites do conjunto completo com documentação técnica.');warnings.push('Resultado calculado pelas funções de referência NIST ITS-90. O cálculo continua sendo orientativo e não substitui certificado de calibração nem avaliação de incerteza.');getEl('outTemp').textContent=formatNumber(temperature,2)+' °C';getEl('outMv0').textContent=formatNumber(emfReferenceZero,decimals)+' mV';getEl('outMvMed').textContent=formatNumber(measuredEmf,decimals)+' mV';getEl('outSensitivity').textContent=formatNumber(conversion.sensitivity,2)+' µV/°C';getEl('outStatus').textContent='Resultado dentro da faixa da função ITS-90';const statusBox=getEl('statusBox');statusBox.classList.remove('status-neutral','status-bad');statusBox.classList.add('status-ok');getEl('pillTipo').textContent='Tipo '+type;getEl('pillFaixa').textContent='Faixa ITS-90: '+info.range[0]+' a '+info.range[1]+' °C';getEl('pillJf').textContent='Junta fria: '+formatNumber(coldJunctionTemperature,2)+' °C';getEl('nota').textContent=warnings.join(' ');getEl('aplicacao').innerHTML='<strong>'+escapeHtml(info.desc.split(':')[0])+':</strong>'+escapeHtml(info.desc.substring(info.desc.indexOf(':')+1));const inputDescription=mode==='temp'?'Temperatura informada = '+formatNumber(inputValue,3)+' °C':'Sinal medido informado = '+formatNumber(inputValue,decimals)+' mV',formulaLine=mode==='temp'?'E medida = E(T quente) − E(T junta fria)':'E referência 0 °C = E medida + E(T junta fria)',substitutionLine=mode==='temp'?'E medida = '+formatNumber(emfReferenceZero,decimals)+' − '+formatNumber(coldData.emf,decimals)+' = '+formatNumber(measuredEmf,decimals)+' mV':'E referência 0 °C = '+formatNumber(measuredEmf,decimals)+' + '+formatNumber(coldData.emf,decimals)+' = '+formatNumber(emfReferenceZero,decimals)+' mV';getEl('memoryBox').innerHTML='<h3>Conversão do termopar tipo '+escapeHtml(type)+'</h3><p><strong>Entrada:</strong> '+escapeHtml(inputDescription)+'.</p><p><strong>Junta fria:</strong> '+formatNumber(coldJunctionTemperature,3)+' °C → E ≈ '+formatNumber(coldData.emf,decimals)+' mV.</p><p><strong>Fórmula:</strong> <code>'+escapeHtml(formulaLine)+'</code></p><p><strong>Substituição:</strong> <code>'+escapeHtml(substitutionLine)+'</code></p><p><strong>Função de referência:</strong> NIST ITS-90, trecho polinomial de '+formatNumber(conversion.segmentMin,1)+' °C a '+formatNumber(conversion.segmentMax,1)+' °C.</p><p><strong>Resultado:</strong> temperatura ≈ '+formatNumber(temperature,2)+' °C; E ref. 0 °C ≈ '+formatNumber(emfReferenceZero,decimals)+' mV; E esperada no instrumento ≈ '+formatNumber(measuredEmf,decimals)+' mV.</p><p><strong>Limitação:</strong> a função de referência representa o tipo ideal. Erros do sensor, cabos, conexões, instrumento, junta fria e instalação exigem avaliação própria em trabalhos metrológicos.</p>';renderReferenceTable(info,coldData.emf,decimals);drawThermocoupleChart(info,type,temperature,emfReferenceZero);lastResult={type,mode,decimals,inputValue,coldJunctionTemperature,coldJunctionEmf:coldData.emf,temperature,emfReferenceZero,measuredEmf,sensitivity:conversion.sensitivity,formulaLine,substitutionLine,warnings,range:info.range.slice(),tag:getEl('tag').value.trim(),note:getEl('reportNote').value.trim()};}
+  function applyExample(button){getEl('tipo').value=button.dataset.type;getEl('modo').value=button.dataset.mode;getEl('valor').value=button.dataset.value;getEl('jf').value=button.dataset.cj;updateModeLabel();calculate();}
+  function resetForm(){getEl('tipo').value='K';getEl('modo').value='temp';getEl('valor').value='300';getEl('jf').value='25';getEl('casas').value='3';getEl('tag').value='';getEl('reportNote').value='';clearError();updateModeLabel();calculate();}
+  function copyResult(){if(!lastResult){showError('Realize um cálculo válido antes de copiar o resultado.');return;}const r=lastResult,text=['Conversão de termopar',r.tag?'Identificação: '+r.tag:'','Tipo: '+r.type,'Temperatura estimada: '+formatNumber(r.temperature,2)+' °C','mV referência 0 °C: '+formatNumber(r.emfReferenceZero,r.decimals)+' mV','mV esperado no instrumento: '+formatNumber(r.measuredEmf,r.decimals)+' mV','Junta fria: '+formatNumber(r.coldJunctionTemperature,2)+' °C','Sensibilidade local: '+formatNumber(r.sensitivity,2)+' µV/°C',r.note?'Observação: '+r.note:''].filter(Boolean).join('\n');if(navigator.clipboard&&window.isSecureContext)navigator.clipboard.writeText(text).then(()=>alert('Resultado copiado.')).catch(()=>window.prompt('Copie o resultado:',text));else window.prompt('Copie o resultado:',text);}
+  function printCalculation(){if(!lastResult){showError('Realize um cálculo válido antes de imprimir.');return;}const originalTitle=document.title;document.title='Memória de conversão preliminar — termopar';window.addEventListener('afterprint',()=>{document.title=originalTitle;},{once:true});window.print();}
+  function generateReport(){if(!lastResult){showError('Realize um cálculo válido antes de gerar a memória preliminar.');return;}const r=lastResult,date=new Date().toLocaleString('pt-BR'),reportWindow=window.open('','_blank');if(!reportWindow){showError('O navegador bloqueou a janela do relatório. Permita pop-ups para esta página e tente novamente.');return;}reportWindow.opener=null;const rows=[['Data e hora',date],['Identificação/TAG',r.tag||'Não informada'],['Tipo de termopar','Tipo '+r.type],['Modo de cálculo',r.mode==='temp'?'Temperatura para mV':'mV para temperatura'],['Temperatura da junta fria',formatNumber(r.coldJunctionTemperature,3)+' °C'],['E da junta fria',formatNumber(r.coldJunctionEmf,r.decimals)+' mV'],['Temperatura estimada',formatNumber(r.temperature,2)+' °C'],['mV referência 0 °C',formatNumber(r.emfReferenceZero,r.decimals)+' mV'],['mV esperado no instrumento',formatNumber(r.measuredEmf,r.decimals)+' mV'],['Sensibilidade local aproximada',formatNumber(r.sensitivity,2)+' µV/°C'],['Faixa da função ITS-90',r.range[0]+' a '+r.range[1]+' °C']],bodyRows=rows.map(([label,value])=>'<tr><th>'+escapeHtml(label)+'</th><td>'+escapeHtml(value)+'</td></tr>').join('');reportWindow.document.open();reportWindow.document.write('<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Memória de conversão preliminar — termopar</title><style>body{font-family:Arial,sans-serif;color:#111;margin:0;background:#fff}main{max-width:820px;margin:0 auto;padding:28px}h1{font-size:24px;margin:0 0 6px}.sub{color:#444;margin:0 0 24px}table{width:100%;border-collapse:collapse;margin:16px 0 24px}th,td{border:1px solid #aaa;padding:9px;text-align:left;vertical-align:top}th{width:38%;background:#eee}section{margin:22px 0;break-inside:avoid}.warning{border:1px solid #999;padding:12px;background:#f7f7f7}.actions{margin-bottom:18px}button{padding:10px 14px;font-weight:bold}@media print{.actions{display:none}main{padding:0}@page{size:A4;margin:14mm}}</style></head><body><main><div class="actions"><button onclick="window.print()">Imprimir ou salvar em PDF</button></div><h1>Memória de conversão preliminar — termopar</h1><p class="sub">Simulação orientativa — não é certificado ou laudo.</p><table>'+bodyRows+'</table><section><h2>Memória de cálculo</h2><p><strong>Fórmula:</strong> '+escapeHtml(r.formulaLine)+'</p><p><strong>Substituição:</strong> '+escapeHtml(r.substitutionLine)+'</p></section><section><h2>Interpretação e limitações</h2><div class="warning">'+r.warnings.map((w)=>'<p>'+escapeHtml(w)+'</p>').join('')+'</div></section>'+(r.note?'<section><h2>Observação</h2><p>'+escapeHtml(r.note)+'</p></section>':'')+'</main></body></html>');reportWindow.document.close();reportWindow.focus();}
+  getEl('btnCalculate').addEventListener('click',calculate);getEl('btnClear').addEventListener('click',resetForm);getEl('btnCopy').addEventListener('click',copyResult);getEl('btnPrint').addEventListener('click',printCalculation);getEl('btnReport').addEventListener('click',generateReport);getEl('modo').addEventListener('change',updateModeLabel);getEl('tipo').addEventListener('change',()=>{clearError();renderSelectedColorGuide(getEl('tipo').value);calculate();});getEl('casas').addEventListener('change',calculate);document.querySelectorAll('.example-btn').forEach((button)=>button.addEventListener('click',()=>applyExample(button)));['valor','jf'].forEach((id)=>getEl(id).addEventListener('keydown',(event)=>{if(event.key==='Enter')calculate();}));
+  renderColorTables();renderSelectedColorGuide('K');updateModeLabel();calculate();
 })();
 </script>
 </body>
