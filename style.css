@@ -160,3 +160,34 @@ body.tools-page:has(#calculatorSection #tipo) #calculatorSection .field:has(#tip
 @media(max-width:620px){
   body.tools-page:has(#calculatorSection #tipo) #calculatorSection #tipo{padding-left:82px!important}
 }
+
+/* PT100/PT500/PT1000: curva normalizada derivada do mesmo modelo Callendar-Van Dusen da calculadora.
+   Eixo vertical R/R0 evita induzir valores absolutos errados ao trocar entre PT100, PT500 e PT1000. */
+body.tools-page:has(#tipo option[value="100"]) .calc-card:has(#outTemp) #nota::after{
+  content:"Gráfico abaixo: curva RTD normalizada R/R0 × temperatura. Como PT100, PT500 e PT1000 usam a mesma forma de curva no modelo de platina α nominal 0,00385, o eixo R/R0 permanece válido para os três sensores.";
+  display:block;
+  margin-top:12px;
+  padding-top:10px;
+  border-top:1px solid rgba(0,75,128,.14);
+  color:#334155;
+  font-size:.84rem;
+  line-height:1.45;
+}
+body.tools-page:has(#tipo option[value="100"]) .calc-card:has(#outTemp)::after{
+  content:"";
+  display:block;
+  width:100%;
+  height:270px;
+  margin-top:14px;
+  border:1px solid #dbe5ec;
+  border-radius:14px;
+  background-color:#fff;
+  background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22760%22%20height%3D%22270%22%20viewBox%3D%220%200%20760%20270%22%3E%0A%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%22760%22%20height%3D%22270%22%20rx%3D%2216%22%20fill%3D%22%23ffffff%22%2F%3E%0A%3Ctext%20x%3D%2228%22%20y%3D%2226%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2216%22%20font-weight%3D%22700%22%20fill%3D%22%230b3a62%22%3ECurva%20RTD%20normalizada%20%E2%80%94%20Callendar%E2%80%93Van%20Dusen%3C%2Ftext%3E%0A%3Ctext%20x%3D%2228%22%20y%3D%2246%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2211%22%20fill%3D%22%2364748b%22%3ER%2FR0%20%C3%97%20temperatura%20%C2%B7%20%CE%B1%20nominal%200%2C00385%20%C2%B7%20PT100%20%2F%20PT500%20%2F%20PT1000%3C%2Ftext%3E%0A%3Cline%20x1%3D%2255%22%20y1%3D%22220%22%20x2%3D%22715%22%20y2%3D%22220%22%20stroke%3D%22%2394a3b8%22%20stroke-width%3D%221.2%22%2F%3E%0A%3Cline%20x1%3D%2255%22%20y1%3D%2240%22%20x2%3D%2255%22%20y2%3D%22220%22%20stroke%3D%22%2394a3b8%22%20stroke-width%3D%221.2%22%2F%3E%0A%3Cline%20x1%3D%22178.8%22%20y1%3D%2240%22%20x2%3D%22178.8%22%20y2%3D%22220%22%20stroke%3D%22%23dbe5ec%22%20stroke-dasharray%3D%224%204%22%2F%3E%0A%3Cline%20x1%3D%2255%22%20y1%3D%22176.1%22%20x2%3D%22715%22%20y2%3D%22176.1%22%20stroke%3D%22%23dbe5ec%22%20stroke-dasharray%3D%224%204%22%2F%3E%0A%3Cpath%20d%3D%22M%2055.0%2C211.9%20L%2070.5%2C207.2%20L%2086.0%2C202.6%20L%20101.4%2C198.0%20L%20116.9%2C193.5%20L%20132.4%2C189.1%20L%20147.9%2C184.7%20L%20163.3%2C180.4%20L%20178.8%2C176.1%20L%20194.3%2C171.8%20L%20209.8%2C167.6%20L%20225.2%2C163.4%20L%20240.7%2C159.2%20L%20256.2%2C155.0%20L%20271.7%2C150.9%20L%20287.1%2C146.8%20L%20302.6%2C142.8%20L%20318.1%2C138.8%20L%20333.6%2C134.8%20L%20349.0%2C130.8%20L%20364.5%2C126.9%20L%20380.0%2C123.0%20L%20395.5%2C119.1%20L%20411.0%2C115.3%20L%20426.4%2C111.5%20L%20441.9%2C107.8%20L%20457.4%2C104.0%20L%20472.9%2C100.3%20L%20488.3%2C96.6%20L%20503.8%2C93.0%20L%20519.3%2C89.4%20L%20534.8%2C85.8%20L%20550.2%2C82.3%20L%20565.7%2C78.8%20L%20581.2%2C75.3%20L%20596.7%2C71.8%20L%20612.1%2C68.4%20L%20627.6%2C65.0%20L%20643.1%2C61.7%20L%20658.6%2C58.3%20L%20674.0%2C55.1%20L%20689.5%2C51.8%20L%20705.0%2C48.6%22%20fill%3D%22none%22%20stroke%3D%22%23006bb1%22%20stroke-width%3D%223%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%0A%3Ccircle%20cx%3D%22178.8%22%20cy%3D%22176.1%22%20r%3D%225%22%20fill%3D%22%23006bb1%22%2F%3E%0A%3Ccircle%20cx%3D%22240.7%22%20cy%3D%22159.2%22%20r%3D%224%22%20fill%3D%22%230f766e%22%2F%3E%0A%3Ctext%20x%3D%22186.8%22%20y%3D%22168.1%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2211%22%20fill%3D%22%230b3a62%22%3E0%20%C2%B0C%20%3D%201%2C000%20R0%3C%2Ftext%3E%0A%3Ctext%20x%3D%22248.7%22%20y%3D%22152.2%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2211%22%20fill%3D%22%230f766e%22%3E100%20%C2%B0C%20%E2%89%88%201%2C385%20R0%3C%2Ftext%3E%0A%3Ctext%20x%3D%2248%22%20y%3D%22238%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2210%22%20fill%3D%22%2364748b%22%3E%E2%88%92200%3C%2Ftext%3E%0A%3Ctext%20x%3D%22170.8%22%20y%3D%22238%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2210%22%20fill%3D%22%2364748b%22%3E0%3C%2Ftext%3E%0A%3Ctext%20x%3D%22414.4%22%20y%3D%22238%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2210%22%20fill%3D%22%2364748b%22%3E400%3C%2Ftext%3E%0A%3Ctext%20x%3D%22700%22%20y%3D%22238%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2210%22%20fill%3D%22%2364748b%22%3E850%20%C2%B0C%3C%2Ftext%3E%0A%3Ctext%20x%3D%2213%22%20y%3D%2248%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2210%22%20fill%3D%22%2364748b%22%3E4%2C1%3C%2Ftext%3E%0A%3Ctext%20x%3D%2220%22%20y%3D%22180.1%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2210%22%20fill%3D%22%2364748b%22%3E1%2C0%3C%2Ftext%3E%0A%3Ctext%20x%3D%22340%22%20y%3D%22259%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2210%22%20fill%3D%22%2364748b%22%3ETemperatura%20%28%C2%B0C%29%3C%2Ftext%3E%0A%3C%2Fsvg%3E");
+  background-repeat:no-repeat;
+  background-position:center;
+  background-size:contain;
+  box-shadow:0 6px 18px rgba(0,0,0,.04);
+}
+@media(max-width:620px){
+  body.tools-page:has(#tipo option[value="100"]) .calc-card:has(#outTemp)::after{height:230px}
+}
