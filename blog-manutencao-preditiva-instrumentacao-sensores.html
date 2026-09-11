@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Manutenção Preditiva e Instrumentação | ALOGY</title>
-  <meta name="description" content="Veja como sensores e instrumentos confiáveis são a base da manutenção preditiva e da análise de dados industriais." />
+  <title>Condition Monitoring com Sensores Industriais | Dados, Baseline e Diagnóstico | ALOGY</title>
+  <meta name="description" content="Condition monitoring industrial: sensores, baseline, qualidade de dados, pressão, temperatura, corrente e como separar falha do ativo de erro de medição." />
   <meta name="robots" content="index,follow" />
   <meta name="theme-color" content="#2C78B9" />
   <link rel="canonical" href="https://www.alogy.com.br/blog-manutencao-preditiva-instrumentacao-sensores.html" />
@@ -16,147 +16,56 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <link rel="stylesheet" href="style.css?v=20260722-layout-original-uppercase-mobilefix" />
+  <link rel="stylesheet" href="style.css?v=20260911-article-semantic1" />
   <script src="app.js" defer></script>
   <meta property="og:locale" content="pt_BR" />
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="ALOGY Engenharia" />
-  <meta property="og:title" content="Manutenção Preditiva e Instrumentação" />
-  <meta property="og:description" content="Veja como sensores e instrumentos confiáveis são a base da manutenção preditiva e da análise de dados industriais." />
+  <meta property="og:title" content="Condition Monitoring com Sensores Industriais" />
+  <meta property="og:description" content="Do sensor ao baseline: como distinguir degradação real do ativo de falha, deriva ou contexto incorreto da medição." />
   <meta property="og:url" content="https://www.alogy.com.br/blog-manutencao-preditiva-instrumentacao-sensores.html" />
-  <meta property="og:image" content="https://www.alogy.com.br/favicon-512x512.png" />
+  <meta property="og:image" content="https://www.alogy.com.br/capa-blog-manutencao-preditiva-instrumentacao-sensores.webp" />
   <meta name="twitter:card" content="summary_large_image" />
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Manutenção preditiva começa na instrumentação: sensores, dados e confiabilidade","description":"Veja como sensores e instrumentos confiáveis são a base da manutenção preditiva e da análise de dados industriais.","datePublished":"2026-06-29","dateModified":"2026-06-29","author":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"},"publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/","logo":{"@type":"ImageObject","url":"https://www.alogy.com.br/logo-alogy.webp"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://www.alogy.com.br/blog-manutencao-preditiva-instrumentacao-sensores.html"},"inLanguage":"pt-BR","image":"https://www.alogy.com.br/favicon-512x512.png"}</script>
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Preciso de IA para manutenção preditiva?","acceptedAnswer":{"@type":"Answer","text":"Não no começo. Tendências, limites, análise de vibração e dados confiáveis já geram valor."}},{"@type":"Question","name":"Qual sensor é mais importante?","acceptedAnswer":{"@type":"Answer","text":"Depende do modo de falha do ativo. Vibração, temperatura, pressão diferencial e corrente são muito comuns."}},{"@type":"Question","name":"Calibração importa na preditiva?","acceptedAnswer":{"@type":"Answer","text":"Sim. Medição incorreta gera tendência incorreta."}},{"@type":"Question","name":"Dados de CLP servem?","acceptedAnswer":{"@type":"Answer","text":"Servem, desde que estejam bem identificados, com escala correta e contexto operacional."}}]}</script>
-  <style>
-    .tech-page{background:linear-gradient(180deg,rgba(0,75,128,.04),rgba(255,255,255,0) 260px)}
-    .tech-wrap{max-width:1120px;margin:18px auto 34px}
-    .tech-back{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:900;color:#0b3a62;background:#fff;border:1px solid rgba(0,107,177,.18);border-radius:999px;padding:10px 14px;box-shadow:0 6px 18px rgba(0,0,0,.04);margin-bottom:14px}
-    .tech-hero{background:linear-gradient(135deg,#0b3a62,#006bb1);color:#fff;border-radius:22px;padding:30px;box-shadow:0 18px 42px rgba(0,75,128,.22);overflow:hidden;position:relative}
-    .tech-hero:after{content:"";position:absolute;right:-80px;top:-80px;width:240px;height:240px;border-radius:50%;background:rgba(255,255,255,.13)}
-    .tech-hero h1{font-size:2.25rem;line-height:1.12;margin:0 0 12px;max-width:850px;color:#fff}
-    .tech-hero p{font-size:1.08rem;line-height:1.65;margin:0;max-width:850px;color:rgba(255,255,255,.92)}
-    .hero-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
-    .hero-tags span,.hero-tags a{display:inline-flex;align-items:center;gap:7px;border:1px solid rgba(255,255,255,.26);background:rgba(255,255,255,.12);color:#fff;text-decoration:none;border-radius:999px;padding:8px 10px;font-size:.88rem;font-weight:900}
-    .calc-grid{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:18px;margin-top:18px}
-    .tech-card{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:20px;box-shadow:0 12px 30px rgba(0,0,0,.06);padding:24px;margin-top:18px}
-    .tech-card h2{font-size:1.45rem;line-height:1.25;margin:0 0 12px;color:#0b3a62}
-    .tech-card h3{font-size:1.12rem;line-height:1.3;margin:20px 0 8px;color:#0b3a62}
-    .tech-card p,.tech-card li{font-size:1rem;line-height:1.72;color:#253243}
-    .tech-card ul,.tech-card ol{margin:0 0 16px 20px}
-    .field-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-    .field{display:flex;flex-direction:column;gap:6px}
-    .field label{font-weight:900;color:#0b3a62;font-size:.92rem}
-    .field input,.field select,.field textarea{border:1px solid rgba(0,0,0,.14);border-radius:12px;padding:12px;background:#fff;font:inherit;width:100%;box-sizing:border-box}
-    .field small{color:#6b7280;line-height:1.4}
-    .wide{grid-column:1/-1}
-    .calc-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
-    .btn-mini{display:inline-flex;align-items:center;gap:8px;border:none;border-radius:999px;padding:11px 14px;font-weight:900;cursor:pointer;text-decoration:none;background:#0b3a62;color:#fff;font:inherit}
-    .btn-mini.secondary{background:rgba(0,107,177,.09);color:#0b3a62;border:1px solid rgba(0,107,177,.18)}
-    .result-box{border-radius:18px;background:linear-gradient(180deg,rgba(0,107,177,.10),rgba(0,107,177,.04));border:1px solid rgba(0,107,177,.18);padding:18px}
-    .result-box h2{margin-top:0;color:#0b3a62}
-    .result-main{font-size:1.9rem;font-weight:900;color:#0b3a62;line-height:1.1;margin:10px 0}
-    .result-sub{color:#475569;line-height:1.6}
-    .pill-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
-    .pill{display:inline-flex;align-items:center;gap:7px;border-radius:999px;background:#fff;border:1px solid rgba(0,107,177,.18);padding:8px 10px;font-size:.88rem;font-weight:900;color:#0b3a62}
-    .note{background:#fff7ed;border:1px solid #fed7aa;color:#7c2d12;border-radius:16px;padding:14px;line-height:1.6}
-    .ok{background:#ecfdf5;border-color:#bbf7d0;color:#166534}
-    .warn{background:#fffbeb;border-color:#fde68a;color:#92400e}
-    .bad{background:#fef2f2;border-color:#fecaca;color:#991b1b}
-    .table-wrap{overflow:auto;border-radius:16px;border:1px solid rgba(0,0,0,.08);margin-top:12px}
-    table.tech-table{width:100%;border-collapse:collapse;background:#fff;font-size:.94rem}
-    .tech-table th{background:#0b3a62;color:#fff;text-align:left;padding:11px;white-space:nowrap}
-    .tech-table td{padding:10px;border-bottom:1px solid rgba(0,0,0,.07);vertical-align:top}
-    .tech-table tr:last-child td{border-bottom:none}
-    .post-wrap{max-width:930px;margin:18px auto}
-    .post-card{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:22px;box-shadow:0 14px 34px rgba(0,0,0,.07);overflow:hidden}
-    .post-content{padding:32px}
-    .post-meta{color:#64748b;font-size:.95rem;margin-bottom:12px;font-weight:800}
-    .post-content h1{font-size:2.1rem;line-height:1.14;margin:0 0 14px;color:#0b3a62}
-    .post-content h2{font-size:1.45rem;line-height:1.25;margin:28px 0 10px;color:#0b3a62}
-    .post-content h3{font-size:1.12rem;line-height:1.3;margin:20px 0 8px;color:#0b3a62}
-    .post-content p,.post-content li{font-size:1.04rem;line-height:1.78;color:#243244}
-    .post-content ul,.post-content ol{margin:0 0 18px 22px}
-    .post-highlight{background:rgba(0,107,177,.08);border:1px solid rgba(0,107,177,.18);border-radius:16px;padding:16px;margin:24px 0}
-    .post-highlight strong{color:#0b3a62}
-    .faq details{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:14px;padding:14px;margin-top:10px}
-    .faq summary{cursor:pointer;font-weight:900;color:#0b3a62}
-    .faq p{margin:10px 0 0;color:#475569}
-    code.inline{background:rgba(0,107,177,.08);padding:2px 6px;border-radius:8px;color:#0b3a62;font-weight:800}
-    pre.copybox{white-space:pre-wrap;background:#0f172a;color:#e5e7eb;border-radius:16px;padding:16px;overflow:auto}
-    @media(max-width:900px){.calc-grid{grid-template-columns:1fr}.field-grid{grid-template-columns:1fr}.tech-hero{padding:24px}.tech-hero h1,.post-content h1{font-size:1.65rem}.post-content{padding:22px}}
-    @media print{header,.social-floating,.fab-wrap,footer,.tech-back,.calc-actions,.no-print{display:none!important}body{background:#fff}.tech-card,.tech-hero,.post-card{box-shadow:none;border:1px solid #ddd}.calc-grid{display:block}}
-  </style>
-  <!-- Google AdSense: carregado somente em páginas editoriais monetizáveis. A exibição e os formatos são controlados no painel do AdSense. -->
+  <meta name="twitter:image" content="https://www.alogy.com.br/capa-blog-manutencao-preditiva-instrumentacao-sensores.webp" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Condition monitoring com sensores industriais: dados, baseline e diagnóstico","description":"Condition monitoring industrial: sensores, baseline, qualidade de dados, pressão, temperatura, corrente e como separar falha do ativo de erro de medição.","datePublished":"2026-06-29","dateModified":"2026-09-11","author":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"},"publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/","logo":{"@type":"ImageObject","url":"https://www.alogy.com.br/logo-alogy.webp"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://www.alogy.com.br/blog-manutencao-preditiva-instrumentacao-sensores.html"},"inLanguage":"pt-BR","image":"https://www.alogy.com.br/capa-blog-manutencao-preditiva-instrumentacao-sensores.webp"}</script>
+  <style>.chain{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:18px 0}.chain div{border:1px solid rgba(0,107,177,.18);border-radius:13px;padding:13px;text-align:center;background:#fff;font-weight:800;color:#0b3a62}.chain span{display:block;color:var(--muted);font-size:.84rem;font-weight:400;margin-top:5px}.table-scroll{overflow:auto;border:1px solid rgba(0,0,0,.08);border-radius:14px;margin:14px 0}.table-scroll table{width:100%;border-collapse:collapse}.table-scroll th{background:#0b3a62;color:#fff;text-align:left;padding:10px}.table-scroll td{padding:10px;border-bottom:1px solid rgba(0,0,0,.07);vertical-align:top}@media(max-width:760px){.chain{grid-template-columns:1fr 1fr}}@media(max-width:460px){.chain{grid-template-columns:1fr}}@media print{header,.social-floating,.fab-wrap,footer,.calc-actions,.no-print{display:none!important}}</style>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5586837114309500" crossorigin="anonymous"></script>
 </head>
-<body class="tech-page">
+<body>
   <header>
-    <div class="container headbar">
-      <a href="/" class="logo-wrapper" aria-label="Voltar para o início"><img src="logo-alogy.webp" alt="ALOGY Engenharia" width="878" height="308" decoding="async" /></a>
-      <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menu"><i class="fas fa-bars"></i></button>
-    </div>
-    <nav class="desktop" aria-label="Menu principal"><div class="container navlinks"><a href="/">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></div></nav>
-    <nav class="mobile" aria-label="Menu mobile"><a href="/">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></nav>
+    <div class="container headbar"><a href="/" class="logo-wrapper" aria-label="Voltar para o início"><img src="logo-alogy.webp" alt="ALOGY Engenharia" width="878" height="308" decoding="async" /></a><button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menu"><i class="fas fa-bars"></i></button></div>
+    <nav class="desktop" aria-label="Menu principal"><div class="container navlinks"><a href="/">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="/guia/">Guia</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></div></nav>
+    <nav class="mobile" aria-label="Menu mobile"><a href="/">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="/guia/">Guia</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></nav>
   </header>
-  <div class="social-floating" aria-label="Redes sociais"><a href="https://www.linkedin.com/company/alogyengenharia" class="linkedin" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a><a href="https://www.instagram.com/alogyengenharia" class="instagram" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="https://www.facebook.com/alogyengenharia" class="facebook" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><a href="https://www.youtube.com/@alogyengenharia" class="youtube" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a><a href="https://hotmart.com/pt-br/club/alogyengenharia" class="hotmart" target="_blank" rel="noopener noreferrer" aria-label="Hotmart">H</a><a href="https://www.tiktok.com/@alogyengenharia" class="tiktok" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fab fa-tiktok"></i></a></div>
-  <div class="fab-wrap" aria-label="Ações rápidas"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1%21%20Vim%20pelas%20ferramentas%20de%20instrumenta%C3%A7%C3%A3o%20da%20ALOGY.%20Gostaria%20de%20atendimento." target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
-  <main class="container post-wrap">
-    <a class="tech-back no-print" href="blog.html"><i class="fas fa-arrow-left"></i> Voltar para o Blog</a>
-    <article class="post-card">
-      <div class="post-content">
-        <div class="post-meta">Manutenção industrial • Atualizado em 2026-06-29</div>
-        <h1>Manutenção preditiva começa na instrumentação: sensores, dados e confiabilidade</h1>
-        <p>Manutenção preditiva usa sinais de condição para decidir quando investigar um ativo. O ponto de partida não é o algoritmo: é um modo de falha definido, uma variável capaz de mudar antes da perda funcional e um método para separar mudança de carga, ruído de medição e degradação.</p>
-
-        <h2>Do modo de falha à variável</h2>
-        <div class="table-wrap">
-          <table>
-            <thead><tr><th>Pergunta</th><th>Registro necessário</th><th>Limite</th></tr></thead>
-            <tbody>
-              <tr><td>O que pode degradar?</td><td>Componente, modo de falha e efeito observável.</td><td>Uma variável genérica não diagnostica qualquer falha.</td></tr>
-              <tr><td>Qual sinal pode antecipar?</td><td>Relação física esperada, posição e direção de mudança.</td><td>Correlação sem mecanismo pode desaparecer.</td></tr>
-              <tr><td>Em quais condições comparar?</td><td>Carga, rotação, receita, temperatura ambiente e modo operacional.</td><td>Condições diferentes criam falsos desvios.</td></tr>
-              <tr><td>Quanto tempo existe para agir?</td><td>Horizonte entre alerta, confirmação e intervenção.</td><td>Alerta tardio não sustenta planejamento.</td></tr>
-              <tr><td>Como confirmar?</td><td>Segunda evidência, inspeção e responsável.</td><td>Alerta isolado não é diagnóstico.</td></tr>
-            </tbody>
-          </table>
-        </div>
-
-        <h2>Baseline: referência antes do limite</h2>
-        <p>O baseline descreve o comportamento conhecido em condições comparáveis. Registre período, carga, rotação, configuração do sensor, frequência de coleta, intervenções e critérios para excluir dados inválidos. Se o processo muda, preserve a versão anterior e crie uma nova referência; não reescreva o histórico silenciosamente.</p>
-        <ul>
-          <li><strong>Nível:</strong> valor típico ou faixa por condição operacional.</li>
-          <li><strong>Tendência:</strong> velocidade e persistência da mudança, não apenas um ponto alto.</li>
-          <li><strong>Qualidade:</strong> lacunas, saturação, congelamento, ruído e alteração de escala.</li>
-          <li><strong>Contexto:</strong> partida, parada, carga, produto e manutenção recente.</li>
-        </ul>
-
-        <h2>Exemplo fictício: bomba centrífuga</h2>
-        <p>Uma bomba fictícia é acompanhada por vibração, temperatura de mancal, corrente e pressão de sucção. A vibração aumenta, mas a rotação e a carga também mudaram. O primeiro passo é normalizar a comparação pelas condições operacionais e verificar sensor, fixação e histórico. Se a elevação persiste e outra evidência converge, a equipe abre uma investigação. O conjunto reduz hipóteses; não confirma sozinho desalinhamento, rolamento ou cavitação.</p>
-
-        <h2>Indicadores que mostram se o alerta ajuda</h2>
-        <ul>
-          <li>alertas confirmados e descartados, com a justificativa;</li>
-          <li>falhas ou degradações relevantes sem alerta prévio;</li>
-          <li>antecedência útil entre alerta, confirmação e ação;</li>
-          <li>desempenho separado por ativo e condição operacional;</li>
-          <li>tempo em que o sensor ou a cadeia de dados esteve indisponível.</li>
-        </ul>
-        <p>Esses indicadores devem ser interpretados com o custo de falso alarme e de falha não detectada. Uma média global pode esconder desempenho ruim no ativo mais crítico.</p>
-
-        <h2>Alerta, diagnóstico e decisão</h2>
-        <p>O alerta informa que uma regra encontrou desvio. O diagnóstico reúne evidências para explicar uma causa provável. A decisão de manutenção acrescenta consequência, janela de intervenção, recursos e autoridade. Automatizar a primeira etapa não autoriza automatizar as demais.</p>
-        <p>Use a página de <a href="blog-criticidade-instrumentos.html">criticidade de instrumentos</a> para priorizar consequências, o <a href="checklist-inspecao-bomba-centrifuga.html">checklist de bomba centrífuga</a> para organizar evidências de campo e o hub de <a href="ferramentas-manutencao-industrial.html">ferramentas de manutenção</a> para planejamento e condição.</p>
-
-        <h2>Fonte institucional consultada</h2>
-        <p>O projeto <a href="https://www.nist.gov/programs-projects/monitoring-diagnostics-and-prognostics-manufacturing-operations" rel="noopener noreferrer">Monitoring, Diagnostics and Prognostics for Manufacturing Operations, do NIST</a>, enfatiza confiança na infraestrutura de dados e nos métodos de monitoramento, além de verificação e validação das tecnologias de diagnóstico e prognóstico.</p>
-
-        <section class="faq">
-          <h2>Perguntas frequentes</h2>
-          <details><summary>Preciso de IA para manutenção preditiva?</summary><p>Não no começo. Tendências, limites, análise de vibração e dados confiáveis já geram valor.</p></details><details><summary>Qual sensor é mais importante?</summary><p>Depende do modo de falha do ativo. Vibração, temperatura, pressão diferencial e corrente são muito comuns.</p></details><details><summary>Calibração importa na preditiva?</summary><p>Sim. Medição incorreta gera tendência incorreta.</p></details><details><summary>Dados de CLP servem?</summary><p>Servem, desde que estejam bem identificados, com escala correta e contexto operacional.</p></details>
-        </section>
-      </div>
+  <div class="social-floating" aria-label="Redes sociais"><a href="https://www.linkedin.com/company/alogyengenharia" class="linkedin" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a><a href="https://www.instagram.com/alogyengenharia" class="instagram" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="https://www.facebook.com/alogyengenharia" class="facebook" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><a href="https://www.youtube.com/@alogyengenharia" class="youtube" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a><a href="https://www.tiktok.com/@alogyengenharia" class="tiktok" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fab fa-tiktok"></i></a></div>
+  <div class="fab-wrap" aria-label="Ações rápidas"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1!%20Li%20o%20artigo%20sobre%20condition%20monitoring%20da%20ALOGY." target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
+  <main class="container" style="margin-top:18px">
+    <a class="floating-back-blog no-print" href="blog.html"><i class="fas fa-arrow-left"></i> Voltar ao Blog</a>
+    <article class="blog-post">
+      <h1>Condition Monitoring: sensores, baseline e confiabilidade dos dados</h1>
+      <p class="muted" data-alogy-content-meta><strong>Conteúdo técnico:</strong> ALOGY Engenharia · <strong>Atualizado em:</strong> 11/09/2026</p>
+      <figure class="article-cover-figure"><img class="article-cover-image" src="capa-blog-manutencao-preditiva-instrumentacao-sensores.webp" alt="Sensores e dados industriais usados em condition monitoring" loading="eager" fetchpriority="high" decoding="async"/><figcaption>Condition monitoring só é confiável quando a mudança do sinal pode ser separada de deriva, falha de sensor, mudança de escala e condição operacional.</figcaption></figure>
+      <div class="chain"><div>Sensor<span>variável física</span></div><div>Signal / PLC<span>escala e qualidade</span></div><div>Baseline<span>condição comparável</span></div><div>Diagnosis<span>evidência + confirmação</span></div></div>
+      <p>Monitoramento de condição usa tendências para decidir quando investigar uma mudança. O primeiro passo não é o algoritmo: é definir qual variável deve mudar, em qual condição de operação e como confirmar que o desvio não veio da própria cadeia de medição.</p>
+      <h2>Do modo de degradação à variável medida</h2>
+      <div class="table-scroll"><table><thead><tr><th>Pergunta</th><th>O que registrar</th><th>Risco se ignorado</th></tr></thead><tbody><tr><td>O que pode mudar?</td><td>Componente, efeito esperado e variável física.</td><td>Monitorar sinal sem relação física clara.</td></tr><tr><td>Qual sensor observa isso?</td><td>Tipo, faixa, instalação e resolução.</td><td>Confundir limitação do sensor com estabilidade.</td></tr><tr><td>Em quais condições comparar?</td><td>Carga, rotação, produto, temperatura e modo.</td><td>Criar falso alarme por mudança operacional.</td></tr><tr><td>Como confirmar?</td><td>Segunda variável, inspeção ou teste.</td><td>Transformar correlação em diagnóstico.</td></tr></tbody></table></div>
+      <h2>Baseline antes do limite</h2>
+      <p>O baseline descreve comportamento conhecido em condições comparáveis. Registre carga, rotação, configuração do sensor, frequência de coleta, intervenções e critérios para dados inválidos. Se o processo mudar, preserve a referência anterior em vez de reescrever o histórico silenciosamente.</p>
+      <h2>Qualidade do sinal também é condição monitorada</h2>
+      <ul><li>gap ou amostra ausente;</li><li>valor congelado;</li><li>saturação em LRV/URV;</li><li>ruído acima do comportamento conhecido;</li><li>mudança de escala, unidade ou range;</li><li>calibração/ajuste recente sem marcação no historian.</li></ul>
+      <p>Uma tendência que desaparece após recalibração pode ter sido deriva de medição, não degradação do ativo. Por isso, eventos <em>as-found/as-left</em> ajudam a interpretar séries históricas.</p>
+      <h2>Pressão, temperatura e corrente como exemplos</h2>
+      <p>Uma elevação persistente de temperatura pode ser relevante, mas precisa ser comparada com ambiente e carga. Pressão diferencial em filtro pode acompanhar restrição, desde que tomadas e linhas estejam confiáveis. Corrente do motor pode indicar aumento de carga, mas tensão, VFD e condição operacional também precisam entrar na análise.</p>
+      <h2>Alerta não é diagnóstico</h2>
+      <p>O alerta informa que uma regra encontrou desvio. Diagnóstico exige evidências convergentes e contexto. A decisão de manutenção acrescenta consequência, janela, recursos e autoridade. Automatizar o alerta não autoriza automaticamente a intervenção.</p>
+      <h2>Roteiro prático</h2>
+      <ol><li>Defina a variável e a hipótese física.</li><li>Valide sensor, range, instalação e escala no PLC/SCADA.</li><li>Crie baseline em condições comparáveis.</li><li>Registre mudanças de configuração e calibração.</li><li>Use tendência e persistência, não apenas um pico.</li><li>Confirme com segunda evidência antes de fechar causa.</li></ol>
+      <h2>Conteúdos relacionados</h2>
+      <div class="calc-actions"><a class="mini-btn dark" href="blog-criticidade-instrumentos.html">Criticidade de instrumentos</a><a class="mini-btn" href="blog-ia-na-industria.html">Industrial AI Data Quality</a><a class="mini-btn" href="blog-teste-de-loop-instrumentacao.html">Loop check</a><a class="mini-btn" href="ferramentas-instrumentacao-industrial.html">Instrumentação</a></div>
+      <h2>Referência</h2>
+      <p>O projeto <a href="https://www.nist.gov/programs-projects/monitoring-diagnostics-and-prognostics-manufacturing-operations" target="_blank" rel="noopener noreferrer">Monitoring, Diagnostics and Prognostics for Manufacturing Operations, do NIST</a> destaca confiança na infraestrutura de dados e verificação/validação dos métodos de diagnóstico e prognóstico.</p>
+      <h2>Aviso técnico</h2>
+      <p>Este conteúdo é educativo. Tendência ou alerta isolado não comprova causa de falha. Confirme instrumentação, condição operacional e evidências adicionais antes de qualquer decisão de intervenção.</p>
     </article>
   </main>
   <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
