@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Calibração e Diagnóstico de Analisadores de Processo | ALOGY</title>
-  <meta name="description" content="Calibração e diagnóstico de analisadores online: as-found, padrões, amostragem, sensor, reagentes, saída e comparação de resultados." />
+  <title>Calibração de Analisadores de Processo | Online Analyzer Calibration | ALOGY</title>
+  <meta name="description" content="Online analyzer calibration: as-found/as-left, amostragem, pH, ORP, condutividade, cloro, reagentes, 4-20 mA e diagnóstico por subsistema." />
   <meta name="robots" content="index,follow" />
   <meta name="theme-color" content="#2C78B9" />
   <link rel="canonical" href="https://www.alogy.com.br/blog-calibracao-analisadores-processo.html" />
@@ -12,163 +12,87 @@
   <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png" />
   <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <link rel="stylesheet" href="style.css?v=20260722-layout-original-uppercase-mobilefix" />
+  <link rel="stylesheet" href="style.css?v=20260911-article-semantic1" />
   <script src="app.js" defer></script>
+
   <meta property="og:locale" content="pt_BR" />
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="ALOGY Engenharia" />
   <meta property="og:title" content="Calibração e Diagnóstico de Analisadores de Processo" />
-  <meta property="og:description" content="Como separar falhas de amostragem, sensor, reagentes, transmissor e saída em analisadores online." />
+  <meta property="og:description" content="Como separar amostragem, sensor, reagentes, transmissor e saída 4-20 mA em analisadores online." />
   <meta property="og:url" content="https://www.alogy.com.br/blog-calibracao-analisadores-processo.html" />
-  <meta property="og:image" content="https://www.alogy.com.br/favicon-512x512.png" />
+  <meta property="og:image" content="https://www.alogy.com.br/capa-blog-calibracao-analisadores-processo.webp" />
   <meta name="twitter:card" content="summary_large_image" />
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Calibração e diagnóstico de analisadores de processo","description":"Calibração e diagnóstico de analisadores online: as-found, padrões, amostragem, sensor, reagentes, saída e comparação de resultados.","dateModified":"2026-07-18","author":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"},"publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/","logo":{"@type":"ImageObject","url":"https://www.alogy.com.br/logo-alogy.webp"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://www.alogy.com.br/blog-calibracao-analisadores-processo.html"},"inLanguage":"pt-BR","image":"https://www.alogy.com.br/favicon-512x512.png"}</script>
+  <meta name="twitter:image" content="https://www.alogy.com.br/capa-blog-calibracao-analisadores-processo.webp" />
+
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Calibração e diagnóstico de analisadores de processo","description":"Online analyzer calibration: as-found/as-left, amostragem, pH, ORP, condutividade, cloro, reagentes, 4-20 mA e diagnóstico por subsistema.","dateModified":"2026-09-11","author":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"},"publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/","logo":{"@type":"ImageObject","url":"https://www.alogy.com.br/logo-alogy.webp"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://www.alogy.com.br/blog-calibracao-analisadores-processo.html"},"inLanguage":"pt-BR","image":"https://www.alogy.com.br/capa-blog-calibracao-analisadores-processo.webp"}</script>
   <style>
     .mini-help{color:var(--muted);font-size:.92rem;line-height:1.55;margin-top:8px}
-    .calc-result.two{grid-template-columns:repeat(2,1fr)} .calc-result.four{grid-template-columns:repeat(4,1fr)} .result-box strong.small{font-size:1.05rem}
-    .pill-ok{color:#146c2e;font-weight:900} .pill-warn{color:#a65f00;font-weight:900} .pill-bad{color:#a10000;font-weight:900}
-    .subcat-nav{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}.subcat-nav a{background:#fff;border:1px solid rgba(0,75,128,.18);border-radius:999px;padding:9px 12px;text-decoration:none;font-weight:800;color:#0b3a62}
-    @media(max-width:900px){.calc-result.two,.calc-result.four{grid-template-columns:1fr}}
-    @media print{header,.social-floating,.fab-wrap,.cta-bar,footer,.calc-actions,.tools-hero .btn,.no-print{display:none!important}body{background:#fff}.container{max-width:100%;padding:0}.calc-card,.tools-hero{box-shadow:none;border:1px solid #ddd}.calc-layout{display:block}.calc-card{margin:12px 0}.calc-table th{background:#eee!important;color:#111!important}}
+    .table-scroll{overflow:auto;border-radius:14px;border:1px solid rgba(0,0,0,.08);margin:14px 0}.table-scroll table{width:100%;border-collapse:collapse;background:#fff}.table-scroll th{background:#0b3a62;color:#fff;text-align:left;padding:10px;white-space:nowrap}.table-scroll td{padding:10px;border-bottom:1px solid rgba(0,0,0,.07);vertical-align:top}.table-scroll tr:last-child td{border-bottom:none}
+    @media print{header,.social-floating,.fab-wrap,.cta-bar,footer,.calc-actions,.no-print{display:none!important}}
   </style>
-  <!-- Google AdSense: carregado somente em páginas editoriais monetizáveis. A exibição e os formatos são controlados no painel do AdSense. -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5586837114309500" crossorigin="anonymous"></script>
 </head>
 <body>
   <header>
-    <div class="container headbar"><a href="/" class="logo-wrapper" aria-label="Voltar para o início"><img src="logo-alogy.webp" alt="ALOGY Engenharia"  width="878"  height="308"  decoding="async" /></a>
-<button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menu"><i class="fas fa-bars"></i></button></div>
-    <nav class="desktop" aria-label="Menu principal"><div class="container navlinks"><a href="/">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></div></nav>
-    <nav class="mobile" aria-label="Menu mobile"><a href="/">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></nav>
+    <div class="container headbar"><a href="/" class="logo-wrapper" aria-label="Voltar para o início"><img src="logo-alogy.webp" alt="ALOGY Engenharia" width="878" height="308" decoding="async" /></a><button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menu"><i class="fas fa-bars"></i></button></div>
+    <nav class="desktop" aria-label="Menu principal"><div class="container navlinks"><a href="/">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="/guia/">Guia</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></div></nav>
+    <nav class="mobile" aria-label="Menu mobile"><a href="/">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="/guia/">Guia</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></nav>
   </header>
-  <div class="social-floating" aria-label="Redes sociais"><a href="https://www.linkedin.com/company/alogyengenharia" class="linkedin" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a><a href="https://www.instagram.com/alogyengenharia" class="instagram" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="https://www.facebook.com/alogyengenharia" class="facebook" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><a href="https://www.youtube.com/@alogyengenharia" class="youtube" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a><a href="https://hotmart.com/pt-br/club/alogyengenharia" class="hotmart" target="_blank" rel="noopener noreferrer" aria-label="Hotmart">H</a><a href="https://www.tiktok.com/@alogyengenharia" class="tiktok" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fab fa-tiktok"></i></a></div>
-  <div class="fab-wrap" aria-label="Ações rápidas"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1%21%20Vim%20pelas%20ferramentas%20da%20ALOGY.%20Gostaria%20de%20atendimento." target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
-<main class="container" style="margin-top:18px">
-  <article class="calc-card"><h1>Calibração e diagnóstico de analisadores de processo</h1>
-<p>Analisadores de pH, ORP, condutividade, cloro e outras variáveis analíticas não devem ser avaliados apenas pela saída 4–20 mA. A cadeia de medição pode incluir tomada de amostra, condicionamento, sensor, referência, compensação de temperatura, reagentes, transmissor e conversão para o CLP. Uma indicação coerente no painel não prova que a amostra chegou representativa nem que o elemento analítico respondeu corretamente.</p>
 
-<h2>Verificação, calibração e ajuste são etapas diferentes</h2>
-<ul>
-  <li><strong>Verificação:</strong> compara a indicação com uma solução ou referência conhecida, sem alterar parâmetros.</li>
-  <li><strong>Calibração:</strong> determina e registra a relação entre referência e indicação.</li>
-  <li><strong>Ajuste:</strong> modifica slope, zero, fator de célula ou outro parâmetro permitido para reduzir o desvio.</li>
-  <li><strong>Manutenção:</strong> trata contaminação, junção obstruída, eletrólito, membrana, cabo, amostra e instalação.</li>
-</ul>
-<p>Registrar o valor <em>as found</em> antes de limpar ou ajustar ajuda a separar deriva real do sensor de problemas de sujeira ou amostragem.</p>
+  <div class="social-floating" aria-label="Redes sociais"><a href="https://www.linkedin.com/company/alogyengenharia" class="linkedin" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a><a href="https://www.instagram.com/alogyengenharia" class="instagram" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="https://www.facebook.com/alogyengenharia" class="facebook" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><a href="https://www.youtube.com/@alogyengenharia" class="youtube" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a><a href="https://www.tiktok.com/@alogyengenharia" class="tiktok" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fab fa-tiktok"></i></a></div>
+  <div class="fab-wrap" aria-label="Ações rápidas"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1!%20Li%20o%20artigo%20sobre%20calibra%C3%A7%C3%A3o%20de%20analisadores%20da%20ALOGY." target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
 
-<h2>Defina qual parte da cadeia será verificada</h2>
-<p>Antes de iniciar, escreva o limite da intervenção. Há pelo menos quatro verificações diferentes:</p>
-<ol>
-  <li><strong>elemento analítico:</strong> sensor em solução ou padrão conhecido;</li>
-  <li><strong>transmissor:</strong> conversão do sinal do sensor, compensações e diagnósticos;</li>
-  <li><strong>saída e supervisão:</strong> 4–20 mA ou comunicação digital até CLP, DCS ou supervisório;</li>
-  <li><strong>sistema instalado:</strong> tomada, linha, filtros, válvulas, vazão, pressão, temperatura e descarte.</li>
-</ol>
-<p>Uma calibração de bancada pode demonstrar a resposta do sensor e ainda deixar sem teste o atraso, a contaminação ou a mudança de fase produzida pelo sistema de amostragem.</p>
+  <main class="container" style="margin-top:18px">
+    <a class="floating-back-blog no-print" href="blog.html"><i class="fas fa-arrow-left"></i> Voltar ao Blog</a>
+    <article class="blog-post">
+      <h1>Calibração e diagnóstico de analisadores de processo</h1>
+      <p class="muted" data-alogy-content-meta><strong>Conteúdo técnico:</strong> ALOGY Engenharia · <strong>Atualizado em:</strong> 11/09/2026</p>
+      <figure class="article-cover-figure"><img class="article-cover-image" src="capa-blog-calibracao-analisadores-processo.webp" alt="Analisador de processo e sistema de amostragem usados em calibração industrial" loading="eager" fetchpriority="high" decoding="async"/><figcaption>Em online analyzers, a leitura final depende da amostragem, do princípio analítico, do transmissor e da transmissão ao sistema de controle.</figcaption></figure>
 
-<h2>O que preparar antes de retirar o sensor</h2>
-<ul>
-  <li>TAG, variável, faixa, unidade, temperatura e critério definido pelo procedimento.</li>
-  <li>Padrões adequados à faixa de uso, dentro da validade e identificados por lote.</li>
-  <li>Condição do porta-sensor, fluxo, pressão, bolhas, aterramento e linha de amostra.</li>
-  <li>Tempo de estabilização e compensação de temperatura previstos no manual.</li>
-  <li>Forma segura de isolar, despressurizar, lavar e devolver o ponto ao processo.</li>
-</ul>
+      <p>Analisadores de pH, ORP, condutividade, cloro e outras variáveis analíticas não devem ser avaliados apenas pela saída 4–20 mA. A cadeia de medição pode incluir tomada de amostra, condicionamento, sensor, referência, compensação de temperatura, reagentes, transmissor e conversão para o PLC/CLP ou DCS.</p>
 
-<h2>Sequência prática de bancada ou campo</h2>
-<ol>
-  <li>Registre indicação, temperatura, diagnóstico, vazão de amostra e saída antes da intervenção.</li>
-  <li>Remova depósitos usando o método compatível com o sensor e o contaminante.</li>
-  <li>Enxágue sem retornar líquido usado ao frasco e aguarde o critério de estabilidade definido.</li>
-  <li>Faça a verificação nos pontos previstos; ajuste somente se o procedimento permitir.</li>
-  <li>Confirme o resultado com padrão independente ou nova porção da solução.</li>
-  <li>Verifique separadamente a saída para o sistema de controle, quando fizer parte do escopo.</li>
-  <li>Registre valores finais, padrão, lote, validade, temperatura, tempo de resposta e observações da instalação.</li>
-</ol>
+      <h2>Verificação, calibração, ajuste e manutenção</h2>
+      <ul><li><strong>Verificação:</strong> compara a indicação com solução ou referência conhecida, sem alterar parâmetros.</li><li><strong>Calibração:</strong> determina e registra a relação entre referência e indicação.</li><li><strong>Ajuste:</strong> modifica slope, zero, cell constant ou outro parâmetro permitido para reduzir o desvio.</li><li><strong>Manutenção do analisador:</strong> trata contaminação, junção, eletrólito, membrana, reagente, cabo, amostra e instalação.</li></ul>
+      <p>Registrar <em>as-found</em> antes de limpar ou ajustar ajuda a separar deriva real do sensor de sujeira ou problema de amostragem.</p>
 
-<h2>O procedimento muda conforme a variável</h2>
-<div class="table-scroll"><table><thead><tr><th>Variável</th><th>O que observar</th><th>Erro comum</th></tr></thead><tbody>
-  <tr><td>pH</td><td>Buffers que envolvam a faixa de trabalho, temperatura, slope, zero e estabilidade da junção.</td><td>Ajustar um sensor sujo ou contaminar os buffers reutilizando a mesma porção.</td></tr>
-  <tr><td>ORP</td><td>Solução de referência, temperatura, estado do eletrodo e tempo para estabilização.</td><td>Tratar a verificação em um ponto como calibração de dois pontos de pH.</td></tr>
-  <tr><td>Condutividade</td><td>Padrão compatível com a faixa, constante de célula, temperatura e compensação configurada.</td><td>Comparar valores compensados com referência sem confirmar a mesma temperatura-base.</td></tr>
-  <tr><td>Cloro amperométrico</td><td>Fluxo, pressão, pH quando aplicável, membrana, eletrólito e comparação com método de referência.</td><td>Usar uma amostra manual que não corresponde ao mesmo instante e condição da amostra online.</td></tr>
-  <tr><td>Analisador com reagente</td><td>Branco, padrão, reagentes, bomba dosadora, ciclo, fotômetro e descarte.</td><td>Ajustar a leitura sem confirmar volumes dosados, validade do reagente e limpeza óptica.</td></tr>
-</tbody></table></div>
-<p>Os parâmetros disponíveis e a ordem correta dependem do princípio de medição e do manual do equipamento. Nem todo instrumento permite ou necessita ajuste pelo usuário.</p>
+      <h2>Defina qual parte da cadeia será verificada</h2>
+      <ol><li><strong>Elemento analítico:</strong> sensor em solução ou padrão conhecido.</li><li><strong>Transmissor/analyzer:</strong> conversão do sinal, compensações e diagnósticos.</li><li><strong>Saída e supervisão:</strong> 4–20 mA ou comunicação digital até PLC/DCS/supervisório.</li><li><strong>Sistema de amostragem:</strong> tomada, linha, filtros, válvulas, vazão, pressão, temperatura e descarte.</li></ol>
+      <p>Uma calibração de bancada pode demonstrar a resposta do sensor e ainda deixar sem teste atraso, contaminação ou mudança de fase gerada na sample line.</p>
 
-<h2>Manutenção: amperométrico não é colorimétrico</h2>
-<p>Os dois princípios podem medir cloro online, mas exigem verificações físicas diferentes. A intervenção deve seguir o manual e o procedimento aplicáveis ao equipamento instalado; não existe intervalo universal de troca, limpeza ou ajuste.</p>
-<div class="table-scroll"><table><thead><tr><th>Sistema</th><th>Antes de ajustar</th><th>Evidência a registrar</th></tr></thead><tbody>
-  <tr><td>Amperométrico</td><td>Confirme vazão e pressão da célula, ausência de bolhas, condição e montagem da membrana, eletrólito, temperatura e pH quando o princípio exigir.</td><td>Condição encontrada, item substituído, tempo de estabilização e comparação sincronizada com o método de referência.</td></tr>
-  <tr><td>Colorimétrico com DPD</td><td>Confira validade e lote dos reagentes, escorva e dosagem, mangueiras, ciclo, branco, limpeza da célula e janela óptica, além do descarte livre.</td><td>Reagentes instalados, volumes ou ciclo verificados, branco, padrão, limpeza e resultado após um ciclo completo estável.</td></tr>
-  <tr><td>Comum aos dois</td><td>Separe amostragem, medição local e transmissão ao CLP. Um ajuste analítico não corrige vazão inadequada, atraso, bolhas, reagente degradado ou escala 4–20 mA incorreta.</td><td>Valores <em>as-found</em>, após manutenção e <em>as-left</em>, com horário, ponto de coleta e diagnósticos ativos.</td></tr>
-</tbody></table></div>
-<p>Depois de trocar membrana, eletrólito, reagente ou tubulação, aguarde a estabilização e os ciclos previstos pelo fabricante antes de concluir a verificação. Ajustar imediatamente pode esconder uma falha de preparo ou registrar como deriva aquilo que ainda é apenas acomodação do sistema.</p>
+      <h2>Antes de retirar o sensor</h2>
+      <ul><li>TAG, variável, range, unidade, temperatura e critério do procedimento.</li><li>Padrões adequados à faixa, dentro da validade e identificados por lote.</li><li>Condição do porta-sensor, fluxo, pressão, bolhas, aterramento e sample system.</li><li>Tempo de estabilização e compensação de temperatura previstos no manual.</li><li>Forma segura de isolar, despressurizar, lavar e devolver o ponto ao processo.</li></ul>
 
-<h2>Exemplo: sujeira ou deriva?</h2>
-<p>Um sensor em buffer nominal pH 7,00 indica 7,12 antes da limpeza. Depois da limpeza e estabilização, passa a indicar 7,03 sem ajuste. O primeiro desvio era +0,12 pH; após a limpeza, +0,03 pH. O critério de aceitação deve vir do procedimento, do fabricante e da necessidade do processo — não de um limite genérico da página.</p>
+      <h2>Sequência prática</h2>
+      <ol><li>Registre indicação, temperatura, diagnóstico, vazão de amostra e saída as-found.</li><li>Remova depósitos usando método compatível com sensor e contaminante.</li><li>Enxágue sem retornar líquido usado ao frasco e aguarde estabilidade.</li><li>Faça a verificação nos pontos previstos; ajuste somente se o procedimento permitir.</li><li>Confirme o resultado com padrão independente ou nova porção da solução.</li><li>Verifique separadamente a saída para o sistema de controle, quando fizer parte do escopo.</li><li>Registre resultado as-left, padrão, lote, validade, temperatura, tempo de resposta e observações.</li></ol>
 
-<h2>Como interpretar as-found, após limpeza e as-left</h2>
-<ul>
-  <li><strong>Melhora após limpeza, sem ajuste:</strong> indica influência importante de incrustação, óleo, biofilme ou obstrução.</li>
-  <li><strong>Permanece deslocado, mas estável:</strong> pode exigir ajuste permitido, revisão do padrão ou investigação de offset.</li>
-  <li><strong>Não estabiliza:</strong> investigue referência, membrana, eletrólito, bolhas, aterramento, temperatura e vida útil.</li>
-  <li><strong>Sensor responde, processo não:</strong> procure atraso, vazão, contaminação cruzada, condensação, perda de reagente ou falha no ponto de coleta.</li>
-</ul>
-<p>O histórico dessas três condições é mais útil para manutenção do que guardar apenas o valor final aprovado, pois mostra se a frequência de limpeza, o material do sensor ou o sistema de amostragem precisam ser revistos.</p>
+      <h2>O procedimento muda conforme a variável</h2>
+      <div class="table-scroll"><table><thead><tr><th>Variável</th><th>O que observar</th><th>Erro comum</th></tr></thead><tbody><tr><td>pH</td><td>Buffers, temperatura, slope, zero e estabilidade da junção.</td><td>Ajustar sensor sujo ou contaminar buffers.</td></tr><tr><td>ORP</td><td>Solução de referência, temperatura, eletrodo e estabilização.</td><td>Tratar mV como concentração ou usar limite genérico.</td></tr><tr><td>Condutividade</td><td>Padrão, cell constant, temperatura e compensação.</td><td>Comparar valores com temperatura-base diferente.</td></tr><tr><td>Cloro amperométrico</td><td>Fluxo, pressão, membrana, eletrólito, pH/temperatura quando aplicável.</td><td>Comparar amostras de instantes diferentes.</td></tr><tr><td>Colorimétrico/reagente</td><td>Branco, padrão, reagentes, bomba, ciclo, fotômetro e descarte.</td><td>Ajustar sem confirmar dosagem, validade e limpeza óptica.</td></tr></tbody></table></div>
 
-<h2>Problemas que a calibração não corrige sozinha</h2>
-<ul>
-  <li>fluxo insuficiente, bolhas ou atraso na linha de amostra;</li>
-  <li>padrão vencido, contaminado ou usado na temperatura errada;</li>
-  <li>sensor incompatível com composição, temperatura ou pressão;</li>
-  <li>aterramento deficiente, umidade em conectores ou ruído elétrico;</li>
-  <li>diferença entre a amostra de bancada e a condição real do processo.</li>
-</ul>
+      <h2>Amperométrico não é colorimétrico</h2>
+      <div class="table-scroll"><table><thead><tr><th>Sistema</th><th>Antes de ajustar</th><th>Evidência</th></tr></thead><tbody><tr><td>Amperométrico</td><td>Vazão/pressão da célula, bolhas, membrana, eletrólito, temperatura e pH quando o princípio exigir.</td><td>Condição encontrada, item substituído, estabilização e comparação sincronizada.</td></tr><tr><td>Colorimétrico com DPD</td><td>Validade/lote de reagentes, escorva, dosagem, mangueiras, ciclo, branco, célula e óptica.</td><td>Reagentes, volumes/ciclo, branco, padrão, limpeza e resultado após ciclo estável.</td></tr><tr><td>Comum</td><td>Separe amostragem, medição local e transmissão ao PLC.</td><td>As-found, após manutenção e as-left com horário e diagnósticos.</td></tr></tbody></table></div>
 
-<h2>Diagnóstico por subsistema</h2>
-<div class="table-scroll"><table><thead><tr><th>Sintoma</th><th>Verificação inicial</th><th>Como separar a causa</th></tr></thead><tbody>
-  <tr><td>Leitura online diferente da bancada</td><td>Ponto, horário, espécie química, método, pH, temperatura e atraso da amostra.</td><td>Compare resultados sincronizados. Depois aplique padrão diretamente no analisador para separar medição de amostragem.</td></tr>
-  <tr><td>Resposta lenta</td><td>Vazão, pressão, filtros, volume morto, membrana, ciclo e amortecimento digital.</td><td>Um degrau na entrada do analisador testa equipamento; o mesmo degrau no início da linha inclui transporte e condicionamento.</td></tr>
-  <tr><td>Ruído ou picos</td><td>Bolhas, vazão pulsante, aterramento, umidade, reagentes e estabilidade térmica.</td><td>Observe o valor local e a saída simultaneamente. Ruído apenas no CLP aponta para transmissão ou escala, não para química.</td></tr>
-  <tr><td>Deriva de zero ou branco</td><td>Contaminação, óptica, eletrólito, referência, reagente, água de branco e temperatura.</td><td>Registre antes e depois da limpeza; ajuste somente após confirmar padrão e condição física.</td></tr>
-  <tr><td>Valor local correto e supervisório errado</td><td>Faixa 4–20 mA, unidade, escala do cartão, damping e comunicação digital.</td><td>Simule ou force pontos conhecidos da saída sem alterar a calibração analítica.</td></tr>
-</tbody></table></div>
+      <h2>Como interpretar as-found, após limpeza e as-left</h2>
+      <ul><li><strong>Melhora após limpeza, sem ajuste:</strong> forte influência de incrustação, óleo, biofilme ou obstrução.</li><li><strong>Permanece deslocado, mas estável:</strong> pode exigir ajuste permitido ou investigação de offset/referência.</li><li><strong>Não estabiliza:</strong> investigue referência, membrana, eletrólito, bolhas, aterramento, temperatura e vida útil.</li><li><strong>Sensor responde, processo não:</strong> procure atraso, vazão, contaminação cruzada, reagente degradado ou falha no ponto de coleta.</li></ul>
 
-<h2>Exemplo: diferença causada pelo tempo, não pela calibração</h2>
-<p>Um analisador de cloro indica 0,62 mg/L, enquanto uma amostra manual coletada no processo resulta em 0,48 mg/L. Se a linha online possui 4 minutos de atraso e o residual está caindo, os números podem representar instantes diferentes. Antes de ajustar o analisador, registre a tendência: uma amostra retirada na tomada às 10:00 corresponde à indicação que chega à célula por volta das 10:04. Só depois verifique método, sensor, reagentes e saída.</p>
-<p>Esse raciocínio evita usar o ajuste para compensar uma diferença criada pelo ponto de coleta, pelo transporte ou pelo tempo de análise. O valor aceitável e a frequência de verificação continuam sendo definidos pelo procedimento da instalação.</p>
+      <h2>Diagnóstico por subsistema</h2>
+      <div class="table-scroll"><table><thead><tr><th>Sintoma</th><th>Verificação inicial</th><th>Separação da causa</th></tr></thead><tbody><tr><td>Online diferente da bancada</td><td>Ponto, horário, espécie química, método, pH, temperatura e delay.</td><td>Compare resultados sincronizados e depois aplique padrão diretamente no analisador.</td></tr><tr><td>Resposta lenta</td><td>Vazão, pressão, filtros, volume morto, membrana, ciclo e damping.</td><td>Degrau no analisador testa equipamento; no início da linha inclui transporte.</td></tr><tr><td>Ruído/picos</td><td>Bolhas, vazão pulsante, aterramento, umidade, reagentes e estabilidade térmica.</td><td>Observe valor local e saída simultaneamente.</td></tr><tr><td>Local correto e supervisório errado</td><td>Range 4–20 mA, unidade, escala do cartão e comunicação.</td><td>Simule pontos conhecidos da saída sem alterar a calibração analítica.</td></tr></tbody></table></div>
 
-<h2>Checklist e referências</h2>
-<p>Use o checklist para organizar evidências e não esquecer a condição encontrada, a limpeza e a verificação final.</p>
-<div class="calc-actions">
-  <a class="mini-btn dark" href="checklist-calibracao-analisadores-processo.html"><i class="fas fa-list-check"></i> Checklist de analisadores</a>
-  <a class="mini-btn" href="ferramentas-analitica-industrial.html"><i class="fas fa-flask"></i> Ferramentas analíticas</a>
-</div>
-<ul class="mini-help" style="margin-top:12px">
-  <li><a href="calculadora-calibracao-transmissor-orp.html">Calculadora de Calibração de Transmissor ORP</a> <span class="mini-help">(ferramenta)</span></li>
-  <li><a href="calculadora-calibracao-phmetro.html">Calculadora de Calibração de pHmetro</a> <span class="mini-help">(ferramenta)</span></li>
-  <li><a href="blog-calibracao-phmetro.html">Calibração de pHmetro: slope, offset e buffer</a> <span class="mini-help">(artigo)</span></li>
-  <li><a href="blog-orp-mv-controle.html">ORP em mV: controle e interpretação</a> <span class="mini-help">(artigo)</span></li>
-  <li><a href="blog-tempo-amostragem-analisador.html">Tempo de amostragem para analisadores online</a> <span class="mini-help">(artigo)</span></li>
-  <li><a href="blog-dosagem-cloro-livre.html">Dosagem e medição de cloro livre</a> <span class="mini-help">(artigo)</span></li>
-</ul>
-<ul>
-  <li><a href="https://www.us.endress.com/en/endress-hauser-group/Case-studies-application-notes/ph-sensors-calibrate-clean-check" target="_blank" rel="noopener noreferrer">Endress+Hauser — quando limpar, verificar ou calibrar sensores de pH</a></li>
-  <li><a href="https://ca.hach.com/chlorine-analyzers/cl10sc-amperometric-chlorine-analyzer/family-downloads?productCategoryId=22219119458" target="_blank" rel="noopener noreferrer">Hach — manual CLF10sc/CLT10sc DOC023.97.80087, edição 5, setembro de 2020</a></li>
-  <li><a href="https://my.hach.com/cl17sc-colorimetric-chlorine-analyzer-with-standpipe-installation-kit-and-reagents-for-free-chlorine/product-downloads?id=59428587356" target="_blank" rel="noopener noreferrer">Hach — manual CL17sc DOC343.97.80614, edição 10, maio de 2026</a></li>
-  <li><a href="https://www.swagelok.com/en/blog/understanding-measuring-time-delay-analytical-instrumentation-system" target="_blank" rel="noopener noreferrer">Swagelok — atraso acumulado em sistemas de amostragem analítica</a></li>
-  <li><a href="https://www.bipm.org/en/doi/10.59161/jcgm200-2012" target="_blank" rel="noopener noreferrer">BIPM — Vocabulário Internacional de Metrologia</a></li>
-</ul>
+      <h2>Exemplo: diferença causada pelo tempo</h2>
+      <p>Um analisador de cloro indica 0,62 mg/L enquanto uma amostra manual resulta em 0,48 mg/L. Se a linha online possui quatro minutos de atraso e o residual está caindo, os números podem representar instantes diferentes. Antes de ajustar, alinhe horário da tomada de amostra com o valor que efetivamente chega à célula.</p>
 
-<h2>Aviso técnico</h2>
-<p>Conteúdo informativo e orientativo. Não substitui procedimento aprovado, análise química, rastreabilidade dos padrões, manual do fabricante, avaliação de incerteza, liberação de processo, laudo, ART ou validação por profissional habilitado. Não retire sensores de linhas pressurizadas ou meios perigosos sem isolamento e condição segura definidos.</p></article>
-  <section class="cta-bar"><h2>Precisa de apoio técnico?</h2><p>A ALOGY Engenharia apoia instrumentação, automação, processo e manutenção industrial.</p><a class="btn" href="/#contato"><i class="fas fa-envelope"></i> Falar com a ALOGY</a></section>
-</main>
+      <h2>Ferramentas e referências</h2>
+      <div class="calc-actions"><a class="mini-btn dark" href="checklist-calibracao-analisadores-processo.html"><i class="fas fa-list-check"></i> Checklist de analisadores</a><a class="mini-btn" href="calculadora-calibracao-phmetro.html">Calibração pH</a><a class="mini-btn" href="calculadora-calibracao-transmissor-orp.html">Calibração ORP</a><a class="mini-btn" href="ferramentas-analitica-industrial.html"><i class="fas fa-flask"></i> Analítica</a></div>
+      <ul class="mini-help" style="margin-top:12px"><li><a href="blog-calibracao-phmetro.html">Calibração de pHmetro</a></li><li><a href="blog-orp-mv-controle.html">ORP em mV</a></li><li><a href="blog-condutividade-tds.html">Condutividade e TDS</a></li><li><a href="blog-tempo-amostragem-analisador.html">Tempo de amostragem</a></li><li><a href="https://www.swagelok.com/en/blog/understanding-measuring-time-delay-analytical-instrumentation-system" target="_blank" rel="noopener noreferrer">Swagelok — time delay em analytical instrumentation systems</a></li><li><a href="https://www.bipm.org/en/doi/10.59161/jcgm200-2012" target="_blank" rel="noopener noreferrer">BIPM — Vocabulário Internacional de Metrologia</a></li></ul>
+
+      <h2>Aviso técnico</h2>
+      <p>Conteúdo informativo. Não substitui procedimento aprovado, análise química, rastreabilidade dos padrões, manual do fabricante, avaliação de incerteza ou liberação de processo. Não retire sensores de linhas pressurizadas ou meios perigosos sem isolamento e condição segura definidos.</p>
+    </article>
+  </main>
   <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
 </body>
 </html>
