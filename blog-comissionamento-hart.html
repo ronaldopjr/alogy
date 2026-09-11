@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Comissionamento HART: checklist de campo | ALOGY Engenharia</title>
-  <meta name="description" content="Checklist técnico para comissionamento HART em malhas 4-20 mA com resistor, comunicador, TAG, range, damping e diagnóstico." />
+  <title>Comissionamento HART | Checklist 4-20 mA e Diagnóstico | ALOGY</title>
+  <meta name="description" content="HART commissioning checklist: confira TAG, LRV/URV, damping, 4-20 mA, loop load, comunicador, diagnóstico, PLC/DCS e condição final." />
   <meta name="robots" content="index,follow" />
   <meta name="theme-color" content="#2C78B9" />
   <link rel="canonical" href="https://www.alogy.com.br/blog-comissionamento-hart.html" />
@@ -15,85 +15,59 @@
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <link rel="stylesheet" href="style.css?v=20260722-layout-original-uppercase-mobilefix" />
+  <link rel="stylesheet" href="style.css?v=20260911-article-semantic1" />
   <script src="app.js" defer></script>
-  <meta property="og:locale" content="pt_BR" /><meta property="og:type" content="article" /><meta property="og:site_name" content="ALOGY Engenharia" /><meta property="og:title" content="Comissionamento HART: checklist de campo" /><meta property="og:description" content="Checklist técnico para comissionamento HART em malhas 4-20 mA com resistor, comunicador, TAG, range, damping e diagnóstico." /><meta property="og:url" content="https://www.alogy.com.br/blog-comissionamento-hart.html" /><meta property="og:image" content="https://www.alogy.com.br/blog-capa-comissionamento-hart.webp" />
+  <meta property="og:locale" content="pt_BR" /><meta property="og:type" content="article" /><meta property="og:site_name" content="ALOGY Engenharia" /><meta property="og:title" content="Comissionamento HART: checklist 4-20 mA de campo" /><meta property="og:description" content="Confira TAG, range, damping, corrente, loop load, comunicação e leitura no PLC/DCS durante o commissioning HART." /><meta property="og:url" content="https://www.alogy.com.br/blog-comissionamento-hart.html" /><meta property="og:image" content="https://www.alogy.com.br/capa-blog-comissionamento-hart.webp" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:image" content="https://www.alogy.com.br/blog-capa-comissionamento-hart.webp" />
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Comissionamento HART: checklist de campo","description":"Checklist técnico para comissionamento HART em malhas 4-20 mA com resistor, comunicador, TAG, range, damping e diagnóstico.","image":"https://www.alogy.com.br/blog-capa-comissionamento-hart.webp","datePublished":"2026-06-29","dateModified":"2026-07-17","author":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"},"publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/","logo":{"@type":"ImageObject","url":"https://www.alogy.com.br/logo-alogy.webp"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://www.alogy.com.br/blog-comissionamento-hart.html"},"inLanguage":"pt-BR"}</script>
-  <style>.post-wrap{max-width:900px;margin:18px auto}.post-card{background:var(--card);border:1px solid rgba(0,0,0,.08);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}.post-content{padding:30px}.post-meta{color:var(--muted);font-size:.95rem;margin-bottom:12px}.post-content h1{font-size:2.15rem;line-height:1.15;margin-bottom:12px;color:var(--text)}.post-content h2{font-size:1.45rem;line-height:1.25;margin:26px 0 10px;color:var(--text)}.post-content p{color:var(--text);margin:0 0 16px;font-size:1.04rem;line-height:1.75}.post-content ul{margin:0 0 18px 20px}.post-content li{margin:8px 0;line-height:1.65}.post-highlight{background:rgba(0,107,177,.08);border:1px solid rgba(0,107,177,.18);border-radius:14px;padding:16px;margin:22px 0}.post-highlight strong{color:#0b3a62}@media(max-width:768px){.post-content{padding:22px}.post-content h1{font-size:1.65rem}.post-content h2{font-size:1.25rem}}</style>
-  <!-- Google AdSense: carregado somente em páginas editoriais monetizáveis. A exibição e os formatos são controlados no painel do AdSense. -->
+  <meta name="twitter:image" content="https://www.alogy.com.br/capa-blog-comissionamento-hart.webp" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Comissionamento HART: checklist 4-20 mA de campo","description":"HART commissioning checklist para TAG, LRV/URV, damping, 4-20 mA, loop load, comunicador, diagnóstico e PLC/DCS.","image":"https://www.alogy.com.br/capa-blog-comissionamento-hart.webp","datePublished":"2026-06-29","dateModified":"2026-09-11","author":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"},"publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/","logo":{"@type":"ImageObject","url":"https://www.alogy.com.br/logo-alogy.webp"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://www.alogy.com.br/blog-comissionamento-hart.html"},"inLanguage":"pt-BR"}</script>
+  <style>.post-wrap{max-width:900px;margin:18px auto}.post-card{background:var(--card);border:1px solid rgba(0,0,0,.08);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}.post-content{padding:30px}.post-meta{color:var(--muted);font-size:.95rem;margin-bottom:12px}.post-content h1{font-size:2.15rem;line-height:1.15;margin-bottom:12px;color:var(--text)}.post-content h2{font-size:1.45rem;line-height:1.25;margin:26px 0 10px;color:var(--text)}.post-content p,.post-content li{font-size:1.04rem;line-height:1.75}.post-content ul,.post-content ol{margin:0 0 18px 20px}.post-highlight{background:rgba(0,107,177,.08);border:1px solid rgba(0,107,177,.18);border-radius:14px;padding:16px;margin:22px 0}.post-highlight strong{color:#0b3a62}@media(max-width:768px){.post-content{padding:22px}.post-content h1{font-size:1.65rem}}</style>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5586837114309500" crossorigin="anonymous"></script>
 </head>
 <body>
   <header>
-    <div class="container headbar"><a href="/" class="logo-wrapper" aria-label="Voltar para o início"><img src="logo-alogy.webp" alt="ALOGY Engenharia"  width="878"  height="308"  decoding="async" /></a>
-<button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menu"><i class="fas fa-bars"></i></button></div>
-    <nav class="desktop" aria-label="Menu principal"><div class="container navlinks"><a href="/">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></div></nav>
-    <nav class="mobile" aria-label="Menu mobile"><a href="/">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></nav>
+    <div class="container headbar"><a href="/" class="logo-wrapper" aria-label="Voltar para o início"><img src="logo-alogy.webp" alt="ALOGY Engenharia" width="878" height="308" decoding="async" /></a><button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menu"><i class="fas fa-bars"></i></button></div>
+    <nav class="desktop" aria-label="Menu principal"><div class="container navlinks"><a href="/">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="/guia/">Guia</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></div></nav>
+    <nav class="mobile" aria-label="Menu mobile"><a href="/">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="/guia/">Guia</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></nav>
   </header>
-  <div class="social-floating" aria-label="Redes sociais"><a href="https://www.linkedin.com/company/alogyengenharia" class="linkedin" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a><a href="https://www.instagram.com/alogyengenharia" class="instagram" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="https://www.facebook.com/alogyengenharia" class="facebook" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><a href="https://www.youtube.com/@alogyengenharia" class="youtube" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a><a href="https://hotmart.com/pt-br/club/alogyengenharia" class="hotmart" target="_blank" rel="noopener noreferrer" aria-label="Hotmart">H</a><a href="https://www.tiktok.com/@alogyengenharia" class="tiktok" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fab fa-tiktok"></i></a></div>
-  <div class="fab-wrap" aria-label="Ações rápidas"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1%21%20Vim%20pelo%20blog%20da%20ALOGY.%20Gostaria%20de%20atendimento." target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
+  <div class="social-floating" aria-label="Redes sociais"><a href="https://www.linkedin.com/company/alogyengenharia" class="linkedin" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a><a href="https://www.instagram.com/alogyengenharia" class="instagram" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="https://www.facebook.com/alogyengenharia" class="facebook" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><a href="https://www.youtube.com/@alogyengenharia" class="youtube" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a><a href="https://www.tiktok.com/@alogyengenharia" class="tiktok" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fab fa-tiktok"></i></a></div>
+  <div class="fab-wrap" aria-label="Ações rápidas"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1!%20Li%20o%20artigo%20sobre%20comissionamento%20HART%20da%20ALOGY." target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
   <main class="container post-wrap">
-    <article class="post-card"><div class="post-content"><div class="post-meta">Artigo técnico • ALOGY Engenharia</div><h1>Comissionamento HART: checklist de campo</h1>
-<figure class="post-cover-photo"><img src="blog-capa-comissionamento-hart.webp" alt="Medição elétrica em painel de controle durante verificação de campo" width="960" height="540" decoding="async" fetchpriority="high" /><figcaption>Imagem contextual de verificação elétrica; não retrata equipe, cliente ou instalação da ALOGY.</figcaption></figure>
-<p>Uma malha HART combina a variável primária no sinal analógico de 4–20 mA com comunicação digital bidirecional no mesmo par de fios. Por isso, comissionar não é apenas “conseguir comunicar”: é confirmar que identificação, faixa, corrente, variável de processo e diagnóstico contam a mesma história.</p>
+    <article class="post-card"><div class="post-content">
+      <div class="post-meta">Instrumentação • HART • Commissioning</div>
+      <h1>Comissionamento HART: checklist de campo</h1>
+      <p class="muted" data-alogy-content-meta><strong>Conteúdo técnico:</strong> ALOGY Engenharia · <strong>Atualizado em:</strong> 11/09/2026</p>
+      <figure class="article-cover-figure"><img class="article-cover-image" src="capa-blog-comissionamento-hart.webp" alt="Comissionamento HART em malha industrial 4-20 mA" loading="eager" fetchpriority="high" decoding="async"/><figcaption>HART commissioning deve comprovar coerência entre configuração, corrente, comunicação e leitura no sistema de controle.</figcaption></figure>
 
-<h2>O que o HART acrescenta à malha 4–20 mA?</h2>
-<p>O sinal analógico continua representando a variável primária. Sobre ele, uma comunicação digital por FSK transporta TAG, faixa configurada, unidade, damping, status e outras variáveis do dispositivo. Essa separação é útil no diagnóstico: um problema pode estar no sensor, na conversão para corrente, na fiação, no cartão ou na escala do sistema de controle.</p>
-<div class="post-highlight"><strong>Atenção:</strong> a resistência necessária para comunicação depende do conjunto fonte, instrumento, barreiras, cartão e comunicador. O valor de 250 Ω é comum em bancadas e entradas, mas não deve ser imposto sem conferir o diagrama e os manuais dos equipamentos.</div>
+      <p>Uma malha HART combina a variável primária no sinal analógico 4-20 mA com comunicação digital bidirecional no mesmo par de fios. Por isso, comissionar não é apenas conseguir comunicar: é confirmar que identificação, range, corrente, variável de processo e diagnóstico contam a mesma história.</p>
 
-<h2>Checklist antes de gravar parâmetros</h2>
-<ul>
-  <li><strong>Identificação:</strong> compare TAG, serviço e endereço/polling com folha de dados e lista de instrumentos.</li>
-  <li><strong>Faixa:</strong> confira LRV, URV, unidade e função de transferência. Uma escala errada pode produzir corrente coerente para o instrumento e valor incorreto no DCS.</li>
-  <li><strong>Damping:</strong> confirme o valor aprovado; damping excessivo mascara resposta, enquanto valor muito baixo pode expor pulsação ou ruído.</li>
-  <li><strong>Estado do dispositivo:</strong> registre alarmes, diagnósticos, proteção contra escrita e revisão do equipamento antes e depois da intervenção.</li>
-  <li><strong>Malha:</strong> confira polaridade, alimentação disponível, continuidade, blindagem/aterramento conforme projeto e compatibilidade HART dos elementos em série.</li>
-</ul>
+      <h2>O que o HART acrescenta à malha 4-20 mA?</h2>
+      <p>O sinal analógico continua representando a variável primária. Sobre ele, a comunicação digital transporta TAG, faixa configurada, unidade, damping, status e outras informações. Essa separação é útil no diagnóstico: um problema pode estar no sensor, na conversão para corrente, na fiação, no cartão ou no scaling do sistema.</p>
+      <div class="post-highlight"><strong>Atenção:</strong> a impedância necessária depende do conjunto fonte, instrumento, barreiras, cartão e comunicador. O valor de 250 Ω é comum, mas não deve ser imposto sem conferir diagrama e documentação.</div>
 
-<h2>Teste funcional em quatro comparações</h2>
-<ol>
-  <li>Leia a variável primária e a corrente informadas digitalmente pelo instrumento.</li>
-  <li>Meça a corrente real com método compatível com o procedimento da malha.</li>
-  <li>Compare a corrente com o valor recebido pelo cartão CLP/DCS.</li>
-  <li>Compare a unidade de engenharia do sistema com LRV, URV e função configurados no transmissor.</li>
-</ol>
-<p>Essa sequência localiza a discrepância. A variável HART pode estar correta e a corrente errada; a corrente pode estar correta e a escala no sistema incorreta; ou ambos podem divergir do padrão aplicado.</p>
+      <h2>Checklist antes de gravar parâmetros</h2>
+      <ul><li><strong>Identificação:</strong> compare TAG, serviço e endereço/polling com a documentação.</li><li><strong>Range:</strong> confira LRV, URV, unidade e função de transferência.</li><li><strong>Damping:</strong> confirme o valor previsto para a aplicação.</li><li><strong>Diagnóstico:</strong> registre alarmes, status e proteção contra escrita antes da intervenção.</li><li><strong>Malha:</strong> confira polaridade, tensão disponível, continuidade, blindagem e compatibilidade HART dos elementos em série.</li></ul>
 
-<h2>Exemplo: 0–10 bar em 12 mA</h2>
-<p>Em uma escala linear de 0 a 10 bar, 12 mA correspondem a 50% do span, portanto o valor esperado é 5 bar. Se o transmissor informa 5,2 bar via HART e a corrente medida permanece em 12 mA, verifique faixa, simulação, trim de sensor e trim de saída. Se a variável HART e a corrente correspondem a 5 bar, mas o DCS mostra 5,2 bar, a investigação deve avançar para o cartão, a conversão do valor bruto e a escala de engenharia.</p>
-<p><strong>Sensor trim</strong> e <strong>output trim</strong> não são sinônimos: o primeiro ajusta a relação entre sensor e variável medida; o segundo ajusta a saída analógica. Aplique apenas o ajuste previsto no procedimento e pelo fabricante.</p>
+      <h2>Teste funcional em quatro comparações</h2>
+      <ol><li>Leia a variável primária e a corrente informadas digitalmente pelo instrumento.</li><li>Meça a corrente real conforme o método previsto para a malha.</li><li>Compare a corrente com o valor recebido pelo cartão PLC/DCS.</li><li>Compare a unidade de engenharia no sistema com LRV, URV e função configurados.</li></ol>
+      <p>Essa sequência localiza a discrepância. A variável HART pode estar correta e a corrente errada; a corrente pode estar correta e a escala no sistema incorreta; ou ambos podem divergir do padrão aplicado.</p>
 
-<h2>Critério de encerramento</h2>
-<ul>
-  <li>TAG, faixa, unidade e damping conferidos contra a documentação vigente.</li>
-  <li>Comunicação estável no ponto de conexão previsto.</li>
-  <li>Corrente indicada, corrente medida, raw do cartão e valor de engenharia coerentes.</li>
-  <li>Alarmes e diagnósticos avaliados, não apenas apagados.</li>
-  <li>Parâmetros finais registrados para comparação futura.</li>
-</ul>
+      <h2>Exemplo: 0-10 bar em 12 mA</h2>
+      <p>Em uma escala linear de 0 a 10 bar, 12 mA correspondem a 50% do span e, portanto, a 5 bar. Se o transmissor informa 5,2 bar via HART e a corrente permanece em 12 mA, investigue configuração, simulação, sensor trim e output trim. Se HART e corrente correspondem a 5 bar, mas o DCS mostra 5,2 bar, avance para cartão, raw counts e engineering scaling.</p>
+      <p><strong>Sensor trim</strong> e <strong>output trim</strong> não são sinônimos: um atua na relação de medição; o outro na saída analógica. Aplique apenas o ajuste previsto pelo procedimento e fabricante.</p>
 
-<h2>Referência técnica</h2>
-<p>A <a href="https://www.fieldcommgroup.org/technologies/hart/hart-technology-explained" target="_blank" rel="noopener noreferrer">FieldComm Group</a> descreve os dois canais simultâneos do HART — analógico 4–20 mA e digital FSK — e os dados adicionais disponíveis para diagnóstico.</p>
+      <h2>Critério de encerramento</h2>
+      <ul><li>TAG, LRV/URV, unidade e damping conferidos.</li><li>Comunicação estável no ponto previsto.</li><li>Corrente indicada, corrente medida, raw do cartão e valor de engenharia coerentes.</li><li>Alarmes e diagnósticos avaliados, não apenas apagados.</li><li>Configuração final registrada para comparação futura.</li></ul>
 
-<h2>Ferramenta e conteúdos relacionados</h2>
-<p>Use o checklist e o diagnóstico como apoio à preparação e ao registro da verificação.</p>
-<div class="calc-actions">
-  <a class="mini-btn dark" href="checklist-comissionamento-hart.html"><i class="fas fa-calculator"></i> Abrir ferramenta</a>
-  <a class="mini-btn" href="ferramentas-instrumentacao-industrial.html"><i class="fas fa-toolbox"></i> Central de Instrumentação</a>
-</div>
-<ul class="mini-help" style="margin-top:12px">
-  <li><a href="checklist-montagem-instrumentos-campo.html">Checklist de Montagem de Instrumentos em Campo</a> <span class="mini-help">(ferramenta)</span></li>
-  <li><a href="calculadora-diagnostico-4-20ma-hart.html">Diagnóstico 4-20 mA e HART</a> <span class="mini-help">(ferramenta)</span></li>
-  <li><a href="calculadora-resistor-shunt-sinal-instrumentacao.html">Calculadora Resistor Shunt 4-20 mA</a> <span class="mini-help">(ferramenta)</span></li>
-  <li><a href="checklist-comissionamento-industrial.html">Checklist de Comissionamento Industrial</a> <span class="mini-help">(ferramenta)</span></li>
-  <li><a href="blog-resistor-shunt-4-20ma.html">Resistor shunt 4-20 mA: 250 Ω, 1-5 V e HART</a> <span class="mini-help">(artigo)</span></li>
-  <li><a href="blog-fat-sat-instrumentacao.html">FAT e SAT em instrumentação e automação industrial</a> <span class="mini-help">(artigo)</span></li>
-</ul>
+      <h2>Ferramentas relacionadas</h2>
+      <div class="calc-actions"><a class="mini-btn dark" href="checklist-comissionamento-hart.html"><i class="fas fa-list-check"></i> Checklist HART</a><a class="mini-btn" href="calculadora-diagnostico-4-20ma-hart.html">Diagnóstico 4-20/HART</a><a class="mini-btn" href="calculadora-carga-malha-4-20ma.html">Loop load</a><a class="mini-btn" href="calculadora-resistor-shunt-sinal-instrumentacao.html">Resistor shunt</a><a class="mini-btn" href="ferramentas-instrumentacao-industrial.html"><i class="fas fa-toolbox"></i> Central de Instrumentação</a></div>
 
-<h2>Aviso técnico</h2>
-<p>Este material é informativo e orientativo. Não substitui procedimento de comissionamento, projeto da malha, análise de segurança, manual do instrumento, documentação do sistema, validação em campo ou atuação de profissional habilitado. Mudanças permanentes de configuração devem seguir o controle de alterações aplicável.</p></div></article>
+      <h2>Referência técnica</h2>
+      <p>A <a href="https://www.fieldcommgroup.org/technologies/hart/hart-technology-explained" target="_blank" rel="noopener noreferrer">FieldComm Group</a> descreve os canais analógico 4-20 mA e digital HART e os dados adicionais disponíveis para configuração e diagnóstico.</p>
+
+      <h2>Aviso técnico</h2>
+      <p>Este material é informativo. Não substitui procedimento de commissioning, projeto da malha, análise de segurança, manual do instrumento ou controle formal de alterações. Mudanças permanentes de configuração devem seguir a governança da instalação.</p>
+    </div></article>
   </main>
   <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
 </body>
