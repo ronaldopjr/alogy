@@ -2,436 +2,92 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
-  <title>IA na Indústria: Manutenção, Qualidade e Produção | ALOGY</title>
-
-  <meta name="description" content="Entenda como a IA na indústria usa dados industriais, sensores, instrumentação, CLP e supervisórios para melhorar manutenção, qualidade, produção e tomada"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Industrial AI Data Quality | Sensores, PLC, SCADA e Historian | ALOGY</title>
+  <meta name="description" content="Industrial AI começa na qualidade dos dados: sensores, calibração, 4-20 mA, PLC/CLP, SCADA, historian, validação e limites de atuação." />
   <meta name="robots" content="index,follow" />
   <meta name="theme-color" content="#2C78B9" />
   <link rel="canonical" href="https://www.alogy.com.br/blog-ia-na-industria.html" />
-
   <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
-<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png" />
-<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png" />
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-
-  <link rel="stylesheet" href="style.css?v=20260722-layout-original-uppercase-mobilefix" />
+  <link rel="stylesheet" href="style.css?v=20260911-article-semantic1" />
   <script src="app.js" defer></script>
 
   <meta property="og:locale" content="pt_BR" />
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="ALOGY Engenharia" />
-  <meta property="og:title" content="IA na Indústria: como melhorar manutenção, qualidade e produção" />
-  <meta property="og:description" content="Veja como a inteligência artificial industrial depende de dados confiáveis, instrumentação, automação e supervisórios bem estruturados." />
-  <meta property="og:image" content="https://www.alogy.com.br/favicon-512x512.png" />
+  <meta property="og:title" content="Industrial AI Data Quality: Sensores, PLC, SCADA e Historian" />
+  <meta property="og:description" content="Por que modelos de IA industrial dependem de medição confiável, contexto operacional, qualidade do sinal e validação antes da atuação." />
   <meta property="og:url" content="https://www.alogy.com.br/blog-ia-na-industria.html" />
-
+  <meta property="og:image" content="https://www.alogy.com.br/capa-blog-ia-na-industria.webp" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="IA na Indústria: Manutenção, Qualidade e Produção" />
-  <meta name="twitter:description" content="Como a IA usa dados industriais para apoiar manutenção preditiva, qualidade, produção e decisões técnicas." />
-  <meta name="twitter:image" content="https://www.alogy.com.br/favicon-512x512.png" />
+  <meta name="twitter:image" content="https://www.alogy.com.br/capa-blog-ia-na-industria.webp" />
 
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"IA na Indústria: como a inteligência artificial melhora manutenção, qualidade e produção","description":"Entenda como a IA na indústria usa dados industriais, sensores, instrumentação, CLP e supervisórios para melhorar manutenção, qualidade, produção e tomada de decisão.","datePublished":"2026-06-26","dateModified":"2026-06-26","author":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"},"publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/","logo":{"@type":"ImageObject","url":"https://www.alogy.com.br/logo-alogy.webp"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://www.alogy.com.br/blog-ia-na-industria.html"},"inLanguage":"pt-BR","image":"https://www.alogy.com.br/favicon-512x512.png"}</script>
-
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Industrial AI data quality: sensores, PLC, SCADA e historian","description":"Industrial AI começa na qualidade dos dados: sensores, calibração, 4-20 mA, PLC/CLP, SCADA, historian, validação e limites de atuação.","datePublished":"2026-06-26","dateModified":"2026-09-11","author":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"},"publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/","logo":{"@type":"ImageObject","url":"https://www.alogy.com.br/logo-alogy.webp"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://www.alogy.com.br/blog-ia-na-industria.html"},"inLanguage":"pt-BR","image":"https://www.alogy.com.br/capa-blog-ia-na-industria.webp"}</script>
   <style>
-    .post-wrap{
-      max-width: 900px;
-      margin: 18px auto;
-    }
-
-    .post-card{
-      background: var(--card);
-      border: 1px solid rgba(0,0,0,.08);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      overflow: hidden;
-    }
-
-    .post-cover{
-      width: 100%;
-      height: auto;
-      display: block;
-      aspect-ratio: 16 / 9;
-      object-fit: cover;
-      background: #dbeafe;
-    }
-
-    .post-content{
-      padding: 30px;
-    }
-
-    .post-meta{
-      color: var(--muted);
-      font-size: .95rem;
-      margin-bottom: 12px;
-    }
-
-    .post-content h1{
-      font-size: 2.15rem;
-      line-height: 1.15;
-      margin-bottom: 12px;
-      color: var(--text);
-    }
-
-    .post-content h2{
-      font-size: 1.45rem;
-      line-height: 1.25;
-      margin: 26px 0 10px;
-      color: var(--text);
-    }
-
-    .post-content p{
-      color: var(--text);
-      margin: 0 0 16px;
-      font-size: 1.04rem;
-      line-height: 1.75;
-    }
-
-    .post-content ul{
-      margin: 0 0 18px 20px;
-    }
-
-    .post-content li{
-      margin: 8px 0;
-      line-height: 1.65;
-    }
-
-    .post-highlight{
-      background: rgba(0,107,177,.08);
-      border: 1px solid rgba(0,107,177,.18);
-      border-radius: 14px;
-      padding: 16px;
-      margin: 22px 0;
-    }
-
-    .post-highlight strong{
-      color: #0b3a62;
-    }
-
-    @media (max-width: 768px){
-      .post-content{
-        padding: 22px;
-      }
-
-      .post-content h1{
-        font-size: 1.65rem;
-      }
-
-      .post-content h2{
-        font-size: 1.25rem;
-      }
-    }
+    .data-chain{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:9px;margin:18px 0}.data-chain div{background:#fff;border:1px solid rgba(0,107,177,.18);border-radius:13px;padding:13px;text-align:center;font-weight:800;color:#0b3a62}.data-chain span{display:block;color:var(--muted);font-size:.82rem;font-weight:400;margin-top:5px}
+    .table-scroll{overflow:auto;border:1px solid rgba(0,0,0,.08);border-radius:14px;margin:14px 0}.table-scroll table{width:100%;border-collapse:collapse;background:#fff}.table-scroll th{background:#0b3a62;color:#fff;text-align:left;padding:10px;white-space:nowrap}.table-scroll td{padding:10px;border-bottom:1px solid rgba(0,0,0,.07);vertical-align:top}
+    @media(max-width:850px){.data-chain{grid-template-columns:1fr 1fr}}@media(max-width:460px){.data-chain{grid-template-columns:1fr}}
+    @media print{header,.social-floating,.fab-wrap,.cta-bar,footer,.calc-actions,.no-print{display:none!important}}
   </style>
-  <!-- Google AdSense: carregado somente em páginas editoriais monetizáveis. A exibição e os formatos são controlados no painel do AdSense. -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5586837114309500" crossorigin="anonymous"></script>
 </head>
-
 <body>
   <header>
-    <div class="container headbar">
-      <a href="/" class="logo-wrapper" aria-label="Voltar para o início">
-        <img src="logo-alogy.webp" alt="ALOGY Engenharia"  width="878"  height="308"  decoding="async" />
-      </a>
-<button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menu">
-        <i class="fas fa-bars"></i>
-      </button>
-    </div>
-
-    <nav class="desktop" aria-label="Menu principal">
-      <div class="container navlinks">
-        <a href="/">Início</a>
-        <a href="industrial.html">Serviços Industriais</a>
-        <a href="residencial.html">Serviços Residenciais</a>
-        <a href="cases.html">Projetos</a>
-        <a href="cursos.html">Cursos</a>
-        <a href="blog.html">Blog</a>
-        <a href="ferramentas.html">Ferramentas</a>
-        <a href="sobre.html">Sobre</a>
-        <a href="/#contato">Contato</a>
-      </div>
-    </nav>
-
-    <nav class="mobile" aria-label="Menu mobile">
-      <a href="/">Início</a>
-      <a href="industrial.html">Serviços Industriais</a>
-      <a href="residencial.html">Serviços Residenciais</a>
-      <a href="cases.html">Projetos</a>
-      <a href="cursos.html">Cursos</a>
-      <a href="blog.html">Blog</a>
-      <a href="ferramentas.html">Ferramentas</a>
-      <a href="sobre.html">Sobre</a>
-      <a href="/#contato">Contato</a>
-    </nav>
+    <div class="container headbar"><a href="/" class="logo-wrapper" aria-label="Voltar para o início"><img src="logo-alogy.webp" alt="ALOGY Engenharia" width="878" height="308" decoding="async" /></a><button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menu"><i class="fas fa-bars"></i></button></div>
+    <nav class="desktop" aria-label="Menu principal"><div class="container navlinks"><a href="/">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="/guia/">Guia</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></div></nav>
+    <nav class="mobile" aria-label="Menu mobile"><a href="/">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="/guia/">Guia</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></nav>
   </header>
 
-  <div class="social-floating" aria-label="Redes sociais">
-    <a href="https://www.linkedin.com/company/alogyengenharia" class="linkedin" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-      <i class="fab fa-linkedin-in"></i>
-    </a>
-    <a href="https://www.instagram.com/alogyengenharia" class="instagram" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-      <i class="fab fa-instagram"></i>
-    </a>
-    <a href="https://www.facebook.com/alogyengenharia" class="facebook" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-      <i class="fab fa-facebook-f"></i>
-    </a>
-    <a href="https://www.youtube.com/@alogyengenharia" class="youtube" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
-      <i class="fab fa-youtube"></i>
-    </a>
-    <a href="https://hotmart.com/pt-br/club/alogyengenharia" class="hotmart" target="_blank" rel="noopener noreferrer" aria-label="Hotmart">H</a>
-    <a href="https://www.tiktok.com/@alogyengenharia" class="tiktok" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
-      <i class="fab fa-tiktok"></i>
-    </a>
-  </div>
+  <div class="social-floating" aria-label="Redes sociais"><a href="https://www.linkedin.com/company/alogyengenharia" class="linkedin" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a><a href="https://www.instagram.com/alogyengenharia" class="instagram" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="https://www.facebook.com/alogyengenharia" class="facebook" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><a href="https://www.youtube.com/@alogyengenharia" class="youtube" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a><a href="https://www.tiktok.com/@alogyengenharia" class="tiktok" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fab fa-tiktok"></i></a></div>
+  <div class="fab-wrap" aria-label="Ações rápidas"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1!%20Li%20o%20artigo%20sobre%20Industrial%20AI%20da%20ALOGY." target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
 
-  <div class="fab-wrap" aria-label="Ações rápidas">
-    <a class="fab-btn mail" href="mailto:contato@alogy.com.br">
-      <i class="fas fa-envelope"></i> contato@alogy.com.br
-    </a>
+  <main class="container" style="margin-top:18px">
+    <a class="floating-back-blog no-print" href="blog.html"><i class="fas fa-arrow-left"></i> Voltar ao Blog</a>
+    <article class="blog-post">
+      <h1>IA industrial começa na qualidade dos dados de campo</h1>
+      <p class="muted" data-alogy-content-meta><strong>Conteúdo técnico:</strong> ALOGY Engenharia · <strong>Atualizado em:</strong> 11/09/2026</p>
+      <figure class="article-cover-figure"><img class="article-cover-image" src="capa-blog-ia-na-industria.webp" alt="Dados de instrumentação, PLC e supervisório usados como base para análise de IA industrial" loading="eager" fetchpriority="high" decoding="async"/><figcaption>Antes do modelo, existe uma cadeia de medição. Erro de sensor, escala ou contexto pode se transformar em uma conclusão aparentemente inteligente, mas tecnicamente errada.</figcaption></figure>
 
-    <a class="fab-btn wa"
-       href="https://wa.me/5519981442448?text=Ol%C3%A1!%20Li%20o%20artigo%20sobre%20IA%20na%20ind%C3%BAstria%20no%20blog%20da%20ALOGY%20e%20gostaria%20de%20atendimento."
-       target="_blank" rel="noopener noreferrer">
-      <i class="fab fa-whatsapp"></i> WhatsApp
-    </a>
-  </div>
+      <p>Industrial AI pode ajudar a detectar padrões, desvios e tendências, mas não corrige automaticamente dados ruins. Se o transmissor mede errado, o range do PLC está incompatível ou o historian perde contexto operacional, o modelo aprende e responde a uma base comprometida.</p>
+      <div class="data-chain"><div>Sensor<span>variável física</span></div><div>Transmissor<span>4-20 mA / HART</span></div><div>PLC / SCADA<span>scale + status</span></div><div>Historian<span>tempo + contexto</span></div><div>Modelo<span>alerta / decisão</span></div></div>
 
-  <main class="container post-wrap">
-    <div style="margin-bottom:14px">
-  <a class="floating-back-blog no-print" href="blog.html">
-    <i class="fas fa-arrow-left"></i> Voltar para o Blog
-  </a>
-</div>
+      <h2>Garbage in, garbage out começa na instrumentação</h2>
+      <p>Qualidade de dados industrial não é apenas remover valores nulos em software. Ela começa na seleção, instalação, calibração e diagnóstico da medição. Uma deriva lenta pode parecer tendência de processo; um sensor saturado pode parecer regime estável; uma escala invertida pode gerar correlação falsa.</p>
 
-    <article class="post-card">
-      <div class="post-content">
-        <div class="post-meta">
-          <time datetime="2026-06-26">Publicado em 26/06/2026</time> • IA Industrial • Automação • Dados Industriais
-        </div>
+      <h2>O que registrar além do valor</h2>
+      <ul><li>TAG, unidade, LRV/URV e range do canal;</li><li>qualidade/status do sinal e diagnósticos do instrumento;</li><li>data de calibração, ajuste, troca e manutenção;</li><li>modo de operação, produto, receita, lote e condição de partida/parada quando relevantes;</li><li>timestamp consistente entre PLC, SCADA e historian;</li><li>alterações de lógica, firmware ou configuração que mudem a distribuição dos dados.</li></ul>
 
-        <div class="tags" style="margin-bottom:14px">
-          <span class="tag">IA na Indústria</span>
-          <span class="tag">Manutenção Preditiva</span>
-          <span class="tag">Dados Industriais</span>
-          <span class="tag">Automação Industrial</span>
-        </div>
+      <h2>Exemplo: uma deriva que o modelo pode interpretar errado</h2>
+      <p>Se um transmissor de pressão deriva +0,3 bar ao longo de meses e a informação de calibração não entra no histórico, um algoritmo pode aprender que valores mais altos são “normais”. Depois da calibração, o modelo pode sinalizar anomalia justamente porque a medição voltou ao valor correto.</p>
+      <p>Por isso, eventos de manutenção e <em>as-found/as-left</em> são dados de contexto, não apenas documentos de metrologia.</p>
 
-        <h1>IA na indústria: como a inteligência artificial melhora manutenção, qualidade e produção</h1>
+      <h2>Validação antes de automatizar a decisão</h2>
+      <div class="table-scroll"><table><thead><tr><th>Decisão</th><th>Métrica técnica</th><th>Erro que precisa aparecer</th><th>Fallback</th></tr></thead><tbody><tr><td>Priorizar inspeção</td><td>Precisão/cobertura do alerta no horizonte definido.</td><td>Falso alarme e falha não detectada.</td><td>Manter rotina existente até validação suficiente.</td></tr><tr><td>Detectar desvio de qualidade</td><td>Desempenho por produto/lote/condição.</td><td>Associação espúria e mudança de receita.</td><td>Confirmação por processo/laboratório.</td></tr><tr><td>Recomendar ajuste</td><td>Resultado dentro do domínio validado.</td><td>Ação fora do envelope conhecido.</td><td>Recomendação sem atuação automática.</td></tr></tbody></table></div>
 
-        <p>
-          A inteligência artificial está ganhando espaço na indústria porque ajuda a transformar dados
-          operacionais em decisões mais rápidas, seguras e assertivas. Em vez de depender apenas de análises
-          manuais ou da percepção do operador, a IA pode apoiar a equipe técnica na identificação de padrões,
-          desvios, tendências e possíveis falhas em equipamentos e processos.
-        </p>
+      <h2>Separe treino de teste e respeite o tempo</h2>
+      <p>Dados industriais são temporais. Misturar informação futura no conjunto usado para avaliar previsões pode fazer o modelo parecer melhor do que será em operação. Separe períodos de desenvolvimento e avaliação de forma compatível com o problema e compare com uma linha de base simples.</p>
 
-        <p>
-          Porém, existe um ponto essencial: a IA industrial não funciona bem sem dados confiáveis. Para que
-          algoritmos, dashboards e análises avancem, a planta precisa ter uma boa base de instrumentação,
-          automação, coleta de sinais, supervisório, histórico de processo e documentação técnica organizada.
-        </p>
+      <h2>Supervisão humana precisa de autoridade definida</h2>
+      <p>Não basta escrever “human in the loop”. Defina quem recebe o alerta, qual evidência acompanha a recomendação, quando pode rejeitá-la, como escalar uma dúvida e qual estado seguro/fallback existe. Funções de proteção e intertravamentos não devem ser substituídos por um modelo apenas porque ele apresenta boa acurácia média.</p>
 
-        <h2>O que é IA na indústria?</h2>
+      <h2>Checklist antes de iniciar um caso de Industrial AI</h2>
+      <ol><li>Defina uma decisão específica e quem vai usá-la.</li><li>Mapeie as TAGs e verifique qualidade metrológica e de comunicação.</li><li>Revise escalas 4-20 mA, unidades, gaps e timestamps.</li><li>Inclua eventos de manutenção/calibração no contexto.</li><li>Crie uma linha de base simples para comparação.</li><li>Avalie erros por equipamento e condição, não apenas pela média.</li><li>Defina fallback, supervisão e critério de retirada do modelo.</li></ol>
 
-        <p>
-          IA na indústria é o uso de recursos computacionais para analisar dados de processo, detectar padrões,
-          apoiar diagnósticos e orientar decisões técnicas. Ela pode ser aplicada em manutenção, qualidade,
-          produção, consumo de energia, segurança operacional e melhoria contínua.
-        </p>
+      <h2>Conteúdos relacionados e referência</h2>
+      <div class="calc-actions"><a class="mini-btn dark" href="blog-teste-de-loop-instrumentacao.html">Loop check</a><a class="mini-btn" href="blog-calibracao-instrumentos-industriais.html">Calibração</a><a class="mini-btn" href="blog-criticidade-instrumentos.html">Criticidade</a><a class="mini-btn" href="ferramentas-automacao-clp.html"><i class="fas fa-microchip"></i> Automação</a></div>
+      <p>O <a href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noopener noreferrer">NIST AI Risk Management Framework</a> organiza gestão de riscos em funções como governar, mapear, medir e gerenciar, incluindo validade, confiabilidade, segurança e acompanhamento do sistema.</p>
 
-        <p>
-          Na prática, a IA pode analisar variáveis como temperatura, pressão, vazão, nível, corrente elétrica,
-          vibração, tempo de ciclo, alarmes, paradas, produtividade e qualidade do produto. A partir desses dados,
-          o sistema pode indicar situações fora do comportamento esperado e ajudar a equipe a agir antes que o
-          problema cause impacto maior.
-        </p>
-
-        <div class="post-highlight">
-          <strong>Resumo técnico:</strong> IA industrial não é apenas software. Ela depende de sensores,
-          instrumentos, CLP, supervisório, rede industrial, histórico de dados e conhecimento técnico de processo.
-        </div>
-
-        <h2>Manutenção preditiva com IA</h2>
-
-        <p>
-          Uma das aplicações mais conhecidas da IA na indústria é a manutenção preditiva. Nesse modelo,
-          os dados dos equipamentos são acompanhados continuamente para identificar sinais de desgaste,
-          aquecimento, instabilidade, consumo anormal ou comportamento fora do padrão.
-        </p>
-
-        <p>
-          Em vez de esperar uma falha acontecer, a equipe pode atuar com mais antecedência. Isso ajuda a reduzir
-          paradas inesperadas, organizar melhor as intervenções, melhorar a disponibilidade dos ativos e aumentar
-          a confiabilidade da operação.
-        </p>
-
-        <ul>
-          <li>Identificação de tendência de falha em motores, bombas, ventiladores e redutores.</li>
-          <li>Análise de variação de corrente, temperatura, pressão, vibração ou consumo.</li>
-          <li>Priorização de manutenção com base em risco operacional.</li>
-          <li>Redução de paradas corretivas e perdas de produção.</li>
-        </ul>
-
-        <h2>IA aplicada à qualidade e produção</h2>
-
-        <p>
-          A IA também pode apoiar o controle de qualidade e o desempenho produtivo. Quando os dados de processo
-          são bem coletados, é possível relacionar desvios de qualidade com variações de temperatura, pressão,
-          tempo de processo, vazão, dosagem, mistura, umidade, velocidade ou outras variáveis críticas.
-        </p>
-
-        <p>
-          Isso permite que a indústria entenda melhor as causas de refugos, retrabalhos, perdas e instabilidades.
-          Em muitos casos, pequenas variações de processo geram grande impacto no produto final. A IA ajuda a
-          encontrar esses padrões e orientar ajustes mais precisos.
-        </p>
-
-        <h2>A instrumentação industrial é a base da IA</h2>
-
-        <p>
-          Nenhuma análise inteligente é confiável se a medição estiver errada. Por isso, a instrumentação industrial
-          é uma base fundamental para qualquer projeto de IA, Indústria 4.0, Indústria 5.0 ou gêmeo digital.
-        </p>
-
-        <p>
-          Sensores e transmissores de pressão, temperatura, vazão, nível, peso, posição, corrente e outras variáveis
-          precisam estar bem especificados, instalados, calibrados e integrados ao sistema de automação. Se o sinal
-          chega errado ao CLP ou ao supervisório, a análise também será comprometida.
-        </p>
-
-        <div class="post-highlight">
-          <strong>Dado ruim gera decisão ruim:</strong> antes de falar em IA, a indústria precisa garantir qualidade
-          de medição, calibração, testes de loop, documentação de sinais e confiabilidade da automação.
-        </div>
-
-        <h2>O papel do CLP, supervisório e histórico de dados</h2>
-
-        <p>
-          O CLP é responsável por receber sinais de campo, executar lógicas de controle e comandar equipamentos.
-          O supervisório SCADA organiza a visualização das informações, alarmes, tendências, comandos e dados de
-          operação. Quando bem estruturados, esses sistemas formam uma base importante para análises mais avançadas.
-        </p>
-
-        <p>
-          Para usar IA de forma consistente, é importante definir quais variáveis serão coletadas, com qual frequência,
-          onde serão armazenadas, como serão validadas e como serão interpretadas pela equipe técnica. A tecnologia
-          precisa estar conectada ao conhecimento do processo.
-        </p>
-
-        <h2>Como começar um projeto de IA industrial?</h2>
-
-        <p>
-          Um erro comum é começar pela ferramenta antes de organizar a base técnica. O caminho mais seguro é começar
-          pelo processo, entender os problemas reais da planta e depois definir quais dados precisam ser monitorados.
-        </p>
-
-        <ul>
-          <li>Mapear equipamentos críticos e variáveis importantes.</li>
-          <li>Verificar sensores, instrumentos e qualidade dos sinais.</li>
-          <li>Revisar calibração, testes de loop e documentação técnica.</li>
-          <li>Organizar dados no supervisório, historiador ou sistema de análise.</li>
-          <li>Definir indicadores de manutenção, qualidade, produção e energia.</li>
-          <li>Aplicar análises e IA em problemas reais, com validação da equipe técnica.</li>
-        </ul>
-
-        <h2>Do problema à métrica: um roteiro verificável</h2>
-        <div class="table-wrap">
-          <table>
-            <thead><tr><th>Decisão</th><th>Métrica útil</th><th>Erro que deve ser medido</th><th>Alternativa segura</th></tr></thead>
-            <tbody>
-              <tr><td>Priorizar inspeção</td><td>Precisão e cobertura dos alertas no horizonte definido.</td><td>Alarme falso e falha não sinalizada.</td><td>Manter a rotina existente até validação suficiente.</td></tr>
-              <tr><td>Investigar desvio de qualidade</td><td>Desempenho por produto, lote e condição operacional.</td><td>Associação espúria ou mudança de receita.</td><td>Confirmação por ensaio e equipe de processo.</td></tr>
-              <tr><td>Ajustar produção</td><td>Resultado dentro de limites previamente aprovados.</td><td>Ação fora do domínio de treinamento.</td><td>Recomendação sem atuação automática.</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <p>A métrica deve refletir o custo dos dois tipos de erro e o tempo disponível para agir. Uma acurácia agregada pode esconder falhas justamente na condição rara que motivou o projeto.</p>
-
-        <h2>Validação de dados e modelo</h2>
-        <ol>
-          <li>Defina a pergunta, o usuário da resposta e o limite de autoridade antes de escolher o algoritmo.</li>
-          <li>Registre origem, unidade, frequência, lacunas, intervenções e mudanças de configuração dos dados.</li>
-          <li>Separe períodos de desenvolvimento e avaliação de modo compatível com o tempo, evitando usar informação futura para prever o passado.</li>
-          <li>Compare o modelo com uma linha de base simples e com o processo atual.</li>
-          <li>Avalie por equipamento, produto e condição operacional relevante, não apenas pela média.</li>
-          <li>Monitore mudança de dados, desempenho e consequências depois da implantação; defina retirada e retorno ao método anterior.</li>
-        </ol>
-
-        <h2>Supervisão humana precisa de uma ação definida</h2>
-        <p>“Ter uma pessoa no processo” não basta. O projeto deve dizer quem recebe o alerta, qual evidência é mostrada, quando a pessoa pode rejeitar a recomendação, como escalar uma dúvida e como registrar a decisão. Para funções críticas, a IA não deve substituir proteções, procedimentos ou validações exigidas.</p>
-        <p>Use a página de <a href="blog-criticidade-instrumentos.html">criticidade de instrumentos</a> para separar consequência e prioridade, e o guia de <a href="blog-gemeo-digital-instrumentacao.html">gêmeo digital</a> para organizar proveniência e sincronização dos dados.</p>
-
-        <h2>Fonte institucional consultada</h2>
-        <p>O <a href="https://www.nist.gov/itl/ai-risk-management-framework" rel="noopener noreferrer">AI Risk Management Framework do NIST</a> organiza a gestão voluntária de riscos nas funções governar, mapear, medir e gerenciar, com atenção a validade, confiabilidade, segurança, transparência e acompanhamento ao longo do ciclo de vida.</p>
-
-        <h2>IA não substitui pessoas: potencializa decisões</h2>
-
-        <p>
-          A IA não elimina a importância do operador, instrumentista, técnico de automação, eletricista, engenheiro
-          ou equipe de manutenção. Pelo contrário: ela fornece informações para que esses profissionais tomem decisões
-          melhores e mais rápidas.
-        </p>
-
-        <p>
-          A experiência de campo continua sendo essencial para interpretar alarmes, validar dados, entender o comportamento
-          dos equipamentos e definir ações práticas. A inteligência artificial deve ser vista como uma ferramenta de apoio
-          técnico, não como substituição do conhecimento humano.
-        </p>
-
-        <h2>Onde produtos de instrumentação entram — e onde não entram</h2>
-        <p>A ALOGY atua como importadora e revendedora, não como fabricante. Instrumentos e interfaces do portfólio podem fazer parte da coleta de dados, mas não validam por si só um modelo de IA. A aplicação precisa de critérios próprios de dados, avaliação, supervisão e retorno seguro.</p>
-        <div class="post-highlight">
-          <strong>Próximo passo:</strong> escolha uma decisão delimitada, uma métrica e uma alternativa segura antes de ampliar o uso da IA.
-        </div>
-
-        <div class="cta-actions" style="margin-top:18px">
-          <a class="btn" href="industrial.html">
-            <i class="fas fa-industry"></i> Ver serviços industriais
-          </a>
-
-          <a class="btn secondary" href="/#contato">
-            <i class="fas fa-paper-plane"></i> Solicitar contato
-          </a>
-
-          <a class="btn secondary" href="blog.html">
-            <i class="fas fa-arrow-left"></i> Voltar ao blog
-          </a>
-        </div>
-      </div>
+      <h2>Aviso técnico</h2>
+      <p>Este artigo trata IA como camada de apoio sobre automação e dados industriais. Não autoriza substituir SIS, intertravamentos, procedimentos ou validações exigidas. A aplicação deve ter limites de autoridade e retorno seguro definidos.</p>
     </article>
-
-    <section class="cta-bar" aria-label="Chamada para atendimento">
-      <div>
-        <strong>Quer usar dados industriais para melhorar manutenção, qualidade ou produção?</strong><br/>
-        <span class="muted">Entre em contato para avaliação técnica e definição do próximo passo.</span>
-      </div>
-
-      <div class="cta-actions">
-        <a class="btn" href="/#contato">
-          <i class="fas fa-paper-plane"></i> Falar com a ALOGY
-        </a>
-      </div>
-    </section>
-
   </main>
-
-  <footer>
-    <p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p>
-  </footer>
-
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      if (window.location.pathname.includes("blog-")) {
-        document.querySelectorAll('nav.desktop a[href="blog.html"], nav.mobile a[href="blog.html"]').forEach((link) => {
-          link.classList.add("active");
-        });
-      }
-    });
-  </script>
+  <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
 </body>
 </html>
