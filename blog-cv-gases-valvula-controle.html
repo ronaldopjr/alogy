@@ -1,100 +1,110 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cv para Gases em Válvula de Controle | ALOGY Engenharia</title>
-  <meta name="description" content="Entenda os cuidados no pré-dimensionamento de válvulas para gases." />
-  <meta name="robots" content="index,follow" />
-  <meta name="theme-color" content="#2C78B9" />
-  <link rel="canonical" href="https://www.alogy.com.br/blog-cv-gases-valvula-controle.html" />
-  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
-  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png" />
-  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <link rel="stylesheet" href="style.css?v=20260722-layout-original-uppercase-mobilefix" />
-  <script src="app.js" defer></script>
-  <meta property="og:locale" content="pt_BR" />
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="ALOGY Engenharia" />
-  <meta property="og:title" content="Cv para Gases em Válvula de Controle" />
-  <meta property="og:description" content="Entenda os cuidados no pré-dimensionamento de válvulas para gases." />
-  <meta property="og:url" content="https://www.alogy.com.br/blog-cv-gases-valvula-controle.html" />
-  <meta property="og:image" content="https://www.alogy.com.br/favicon-512x512.png" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","name":"Cv para Gases em Válvula de Controle","url":"https://www.alogy.com.br/blog-cv-gases-valvula-controle.html","applicationCategory":"EngineeringApplication","operatingSystem":"Web","description":"Entenda os cuidados no pré-dimensionamento de válvulas para gases.","publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/","logo":{"@type":"ImageObject","url":"https://www.alogy.com.br/logo-alogy.webp"}},"dateModified":"2026-07-21","author":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"},"headline":"Cv para Gases em Válvula de Controle","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.alogy.com.br/blog-cv-gases-valvula-controle.html"},"image":"https://www.alogy.com.br/favicon-512x512.png"}</script>
-  <style>
-    .mini-help{color:var(--muted);font-size:.92rem;line-height:1.55;margin-top:8px}
-    .calc-result.two{grid-template-columns:repeat(2,1fr)} .calc-result.four{grid-template-columns:repeat(4,1fr)} .result-box strong.small{font-size:1.05rem}
-    .pill-ok{color:#146c2e;font-weight:900} .pill-warn{color:#a65f00;font-weight:900} .pill-bad{color:#a10000;font-weight:900}
-    .subcat-nav{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}.subcat-nav a{background:#fff;border:1px solid rgba(0,75,128,.18);border-radius:999px;padding:9px 12px;text-decoration:none;font-weight:800;color:#0b3a62}
-    @media(max-width:900px){.calc-result.two,.calc-result.four{grid-template-columns:1fr}}
-    @media print{header,.social-floating,.fab-wrap,.cta-bar,footer,.calc-actions,.tools-hero .btn,.no-print{display:none!important}body{background:#fff}.container{max-width:100%;padding:0}.calc-card,.tools-hero{box-shadow:none;border:1px solid #ddd}.calc-layout{display:block}.calc-card{margin:12px 0}.calc-table th{background:#eee!important;color:#111!important}}
-  </style>
-  <!-- Google AdSense: carregado somente em páginas editoriais monetizáveis. A exibição e os formatos são controlados no painel do AdSense. -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5586837114309500" crossorigin="anonymous"></script>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Cv/Kv para Gases em Válvula de Controle | Gas Sizing | ALOGY</title>
+<meta name="description" content="Entenda Cv/Kv para gases em control valves: P1/P2 absolutos, T1, gas specific gravity, Z, expansion factor, xT, choked flow e validação de sizing."/>
+<meta name="robots" content="index,follow"/>
+<meta name="theme-color" content="#004b80"/>
+<meta name="author" content="ALOGY Engenharia"/>
+<link rel="canonical" href="https://www.alogy.com.br/blog-cv-gases-valvula-controle.html"/>
+<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png"/>
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png"/>
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+<link rel="stylesheet" href="style.css?v=20260911-valves1"/>
+<script defer src="app.js"></script>
+<meta property="og:locale" content="pt_BR"/>
+<meta property="og:type" content="article"/>
+<meta property="og:site_name" content="ALOGY Engenharia"/>
+<meta property="og:title" content="Cv/Kv para Gases em Válvula de Controle | Gas Sizing"/>
+<meta property="og:description" content="Como interpretar gas sizing, choked flow, P1/P2, T1, Z, xT e capacidade de válvulas de controle."/>
+<meta property="og:url" content="https://www.alogy.com.br/blog-cv-gases-valvula-controle.html"/>
+<meta property="og:image" content="https://www.alogy.com.br/capa-blog-cv-gases-valvula-controle.webp"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://www.alogy.com.br/capa-blog-cv-gases-valvula-controle.webp"/>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Cv/Kv para Gases em Válvula de Controle: Gas Sizing e Choked Flow","description":"Entenda Cv/Kv para gases em control valves: P1/P2 absolutos, T1, gas specific gravity, Z, expansion factor, xT, choked flow e validação de sizing.","dateModified":"2026-09-11","author":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"},"publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/","logo":{"@type":"ImageObject","url":"https://www.alogy.com.br/logo-alogy.webp"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://www.alogy.com.br/blog-cv-gases-valvula-controle.html"},"inLanguage":"pt-BR","image":"https://www.alogy.com.br/capa-blog-cv-gases-valvula-controle.webp"}</script>
+<style>
+.article-wrap{max-width:930px;margin:18px auto 34px}.article-card{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:20px;box-shadow:0 12px 30px rgba(0,0,0,.06);padding:28px}.article-card h1{margin-top:0;color:#0b3a62}.article-card h2{margin-top:28px;color:#0b3a62}.article-card p,.article-card li{line-height:1.72}.article-cover{margin:16px 0 22px}.article-cover img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;border-radius:16px}.gas-loop{margin:20px 0;padding:16px;border:1px solid rgba(0,75,128,.14);border-radius:16px;background:#f8fbfd}.gas-loop svg{display:block;width:100%;height:auto}.param-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.param-box{border:1px solid rgba(0,75,128,.14);border-radius:14px;padding:14px;background:#fff}.param-box h3{margin:0 0 8px;color:#0b3a62}.article-note{background:#eef7fc;border-left:4px solid #006bb1;padding:14px 16px;border-radius:10px;margin:18px 0}.mini-help{color:var(--muted);font-size:.94rem;line-height:1.6}@media(max-width:700px){.article-card{padding:20px}.param-grid{grid-template-columns:1fr}.article-cover img{border-radius:12px}}
+</style>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5586837114309500" crossorigin="anonymous"></script>
 </head>
 <body>
-  <header>
-    <div class="container headbar"><a href="/" class="logo-wrapper" aria-label="Voltar para o início"><img src="logo-alogy.webp" alt="ALOGY Engenharia"  width="878"  height="308"  decoding="async" /></a>
-<button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menu"><i class="fas fa-bars"></i></button></div>
-    <nav class="desktop" aria-label="Menu principal"><div class="container navlinks"><a href="/">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></div></nav>
-    <nav class="mobile" aria-label="Menu mobile"><a href="/">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></nav>
-  </header>
-  <div class="social-floating" aria-label="Redes sociais"><a href="https://www.linkedin.com/company/alogyengenharia" class="linkedin" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a><a href="https://www.instagram.com/alogyengenharia" class="instagram" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="https://www.facebook.com/alogyengenharia" class="facebook" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><a href="https://www.youtube.com/@alogyengenharia" class="youtube" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a><a href="https://hotmart.com/pt-br/club/alogyengenharia" class="hotmart" target="_blank" rel="noopener noreferrer" aria-label="Hotmart">H</a><a href="https://www.tiktok.com/@alogyengenharia" class="tiktok" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fab fa-tiktok"></i></a></div>
-  <div class="fab-wrap" aria-label="Ações rápidas"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1%21%20Vim%20pelas%20ferramentas%20da%20ALOGY.%20Gostaria%20de%20atendimento." target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
-<main class="container" style="margin-top:18px">
-  <article class="calc-card"><h1>Cv para Gases em Válvula de Controle</h1>
-<p>Entenda os cuidados no pré-dimensionamento de válvulas para gases.</p>
-<p data-alogy-content-meta class="muted"><strong>Conteúdo técnico:</strong> ALOGY Engenharia · <strong>Atualizado em:</strong> 21/07/2026</p>
-<h2>Por que gases exigem outro cuidado</h2>
-<p>Gases são compressíveis: densidade, pressão absoluta e temperatura variam ao longo da válvula. A relação entre vazão e queda de pressão deixa de ser semelhante à de líquidos quando a velocidade e a expansão aumentam. Por isso, o pré-dimensionamento precisa identificar possibilidade de fluxo crítico.</p>
-<h2>Dados mínimos para a seleção</h2>
-<ul>
-  <li>vazão normal, mínima e máxima na base correta;</li>
-  <li>pressões absoluta de entrada e saída;</li>
-  <li>temperatura de entrada;</li>
-  <li>massa molar, densidade relativa ou fator de compressibilidade;</li>
-  <li>relação de calores específicos quando exigida pelo método;</li>
-  <li>característica, rangeabilidade e posição normal da válvula.</li>
-</ul>
-<h2>Fluxo crítico e ruído</h2>
-<p>Quando a redução adicional da pressão de saída deixa de aumentar proporcionalmente a vazão, o escoamento atingiu condição crítica. Isso afeta o Cv requerido, velocidade, ruído e esforços internos. A seleção deve considerar limites acústicos, vibração, erosão e capacidade do corpo e internos.</p>
-<h2>Margem não significa superdimensionamento excessivo</h2>
-<p>Escolher Cv muito acima do necessário pode concentrar a operação em pequena abertura, reduzir resolução e aumentar sensibilidade a atrito. A válvula deve atender a vazão máxima com margem justificada e ainda controlar adequadamente a condição normal e mínima.</p>
-<h2>Verificações após o cálculo</h2>
-<ul>
-  <li>confirmar unidades e condições de referência da vazão;</li>
-  <li>avaliar velocidade nas conexões e na saída;</li>
-  <li>verificar classe de pressão, materiais e temperatura;</li>
-  <li>avaliar atuador, posição de falha e pressão de fechamento;</li>
-  <li>submeter dados completos ao fabricante para seleção final.</li>
-</ul>
-<h2>Referências</h2>
-<p>Use folha de dados completa, método de dimensionamento adotado e a edição vigente da série IEC 60534 ou norma corporativa correspondente. Uma calculadora simplificada não substitui análise de ruído e seleção dos internos.</p>
-<h2>Ferramenta e conteúdos relacionados</h2>
-<p>Para aprofundar Cv para Gases em Válvula de Controle, use a ferramenta relacionada e confronte o resultado com os materiais complementares listados abaixo.</p>
-<div class="calc-actions">
-  <a class="mini-btn dark" href="calculadora-cv-gases-valvula-controle.html"><i class="fas fa-calculator"></i> Abrir ferramenta relacionada</a>
-  <a class="mini-btn" href="ferramentas.html"><i class="fas fa-toolbox"></i> Ver todas as ferramentas</a>
+<header>
+<div class="container headbar"><a href="/" class="logo-wrapper" aria-label="Voltar para o início"><img src="logo-alogy.webp" alt="ALOGY Engenharia" width="878" height="308" decoding="async"/></a><button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menu"><i class="fas fa-bars"></i></button></div>
+<nav class="desktop" aria-label="Menu principal"><div class="container navlinks"><a href="/">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="/guia/">Guia</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></div></nav>
+<nav class="mobile" aria-label="Menu mobile"><a href="/">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="/guia/">Guia</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></nav>
+</header>
+<div class="social-floating" aria-label="Redes sociais"><a class="linkedin" href="https://www.linkedin.com/company/alogyengenharia" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a><a class="instagram" href="https://www.instagram.com/alogyengenharia" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a class="facebook" href="https://www.facebook.com/alogyengenharia" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><a class="youtube" href="https://www.youtube.com/@alogyengenharia" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a><a class="tiktok" href="https://www.tiktok.com/@alogyengenharia" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fab fa-tiktok"></i></a></div>
+<div class="fab-wrap" aria-label="Ações rápidas"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1%21%20Li%20o%20artigo%20sobre%20Cv%20de%20gases%20da%20ALOGY." target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
+<main class="container article-wrap">
+<a class="floating-back-blog no-print" href="blog.html"><i class="fas fa-arrow-left"></i> Voltar ao Blog</a>
+<article class="article-card">
+<h1>Cv/Kv para gases em válvula de controle: gas sizing e choked flow</h1>
+<p class="muted" data-alogy-content-meta><strong>Conteúdo técnico:</strong> ALOGY Engenharia · <strong>Atualizado em:</strong> 11/09/2026</p>
+<figure class="article-cover"><img src="capa-blog-cv-gases-valvula-controle.webp" alt="Cv e gas sizing em válvula de controle" width="1200" height="675" loading="eager" decoding="async"/><figcaption class="mini-help">Pré-dimensionamento de control valve para gás exige condições absolutas e propriedades do fluido.</figcaption></figure>
+<p>Para líquidos, uma estimativa de <strong>Cv/Kv</strong> pode ser relativamente direta. Para gases e vapores, o escoamento é <strong>compressível</strong>: pressão, densidade, temperatura e velocidade mudam ao atravessar a válvula. Por isso, <strong>gas sizing</strong> precisa considerar muito mais do que apenas vazão e ΔP.</p>
+<div class="article-note"><strong>Regra prática:</strong> se uma ferramenta simplificada não pede os parâmetros necessários ao método de sizing do fabricante, use o resultado apenas como ordem de grandeza. Para seleção final, valide com software/dados do fabricante e método aplicável.</div>
+
+<h2>O que entra em um sizing de gás</h2>
+<div class="param-grid">
+<div class="param-box"><h3>P1 e P2 absolutos</h3><p>A relação de pressão é central para avaliar expansão e possibilidade de <strong>choked flow</strong>. Não misture bar(g) com bar(a).</p></div>
+<div class="param-box"><h3>T1</h3><p>A temperatura de entrada afeta densidade e volume específico. Use a condição real prevista para cada caso operacional.</p></div>
+<div class="param-box"><h3>Gas specific gravity / MW</h3><p>A composição ou massa molar do gás influencia a capacidade requerida. Misturas podem exigir propriedades na condição de processo.</p></div>
+<div class="param-box"><h3>Z · compressibility factor</h3><p>Quando aplicável, corrige o desvio do comportamento ideal. Não assuma Z = 1 sem justificar a faixa de pressão e composição.</p></div>
+<div class="param-box"><h3>Expansion factor Y</h3><p>Representa a mudança de densidade do gás conforme ele se expande ao atravessar a restrição.</p></div>
+<div class="param-box"><h3>xT / pressure drop ratio factor</h3><p>É um parâmetro da válvula/trim usado nos critérios de fluxo crítico. Deve vir de dados do fabricante para a configuração selecionada.</p></div>
 </div>
-<ul class="mini-help" style="margin-top:12px">
-  <li><a href="calculadora-calibracao-valvula-controle.html">Calculadora de Calibração de Válvula de Controle</a> <span class="mini-help">(ferramenta)</span></li>
-  <li><a href="calculadora-cv-valvula-controle.html">Calculadora de Cv para Válvulas de Controle</a> <span class="mini-help">(ferramenta)</span></li>
-  <li><a href="calculadora-consumo-valvula-solenoide-bobina.html">Calculadora de Consumo de Válvula Solenoide e Bobina</a> <span class="mini-help">(ferramenta)</span></li>
-  <li><a href="calculadora-indice-cavitacao-valvula.html">Calculadora de Cavitação em Válvula de Controle</a> <span class="mini-help">(ferramenta)</span></li>
-  <li><a href="blog-calibracao-valvula-controle.html">Calibração de Válvula de Controle 4-20 mA</a> <span class="mini-help">(artigo)</span></li>
-  <li><a href="blog-cavitacao-valvula-controle.html">Cavitação em Válvula de Controle</a> <span class="mini-help">(artigo)</span></li>
+
+<h2>Visual: o que a válvula precisa “enxergar”</h2>
+<div class="gas-loop" role="img" aria-label="Diagrama de dados necessários para gas sizing de válvula de controle">
+<svg viewBox="0 0 920 330" xmlns="http://www.w3.org/2000/svg">
+<rect x="35" y="95" width="230" height="140" rx="18" fill="#eef7fc" stroke="#006bb1" stroke-width="3"/><text x="80" y="135" font-size="26" fill="#0b3a62">Upstream</text><text x="65" y="175" font-size="21" fill="#243244">P1 abs · T1</text><text x="65" y="207" font-size="21" fill="#243244">Q / mass flow · Z · MW</text>
+<line x1="265" y1="165" x2="380" y2="165" stroke="#0b3a62" stroke-width="8"/><polygon points="380,150 415,165 380,180" fill="#0b3a62"/>
+<path d="M430 105 L500 165 L430 225 Z" fill="#006bb1"/><path d="M570 105 L500 165 L570 225 Z" fill="#006bb1"/><text x="437" y="272" font-size="22" fill="#0b3a62">Control Valve</text><text x="430" y="300" font-size="18" fill="#526273">Cv/Kv · xT · trim</text>
+<line x1="570" y1="165" x2="680" y2="165" stroke="#0b3a62" stroke-width="8"/><polygon points="680,150 715,165 680,180" fill="#0b3a62"/>
+<rect x="715" y="95" width="170" height="140" rx="18" fill="#eef7fc" stroke="#006bb1" stroke-width="3"/><text x="755" y="145" font-size="26" fill="#0b3a62">Downstream</text><text x="770" y="190" font-size="22" fill="#243244">P2 abs</text>
+</svg>
+</div>
+
+<h2>Choked flow não significa “válvula bloqueada”</h2>
+<p>Em <strong>choked flow</strong>, chega um ponto em que reduzir mais P2 não aumenta a vazão na mesma proporção esperada. A condição depende da relação de pressões, propriedades do gás e características da válvula. Isso afeta capacidade, ruído, velocidade e a escolha do trim.</p>
+<p>Uma válvula pode atender o Cv requerido e ainda ser inadequada por ruído, velocidade, rangeability, pressão de fechamento, estabilidade ou operação excessivamente próxima do assento.</p>
+
+<h2>Por que superdimensionar também é problema</h2>
+<p>Escolher um Cv muito acima do necessário pode concentrar a operação em pouca abertura, reduzir resolução efetiva, aumentar sensibilidade a atrito/stiction e piorar a qualidade do controle. O objetivo não é “usar a maior válvula possível”, e sim atender <strong>minimum, normal e maximum flow</strong> dentro de uma faixa de abertura coerente.</p>
+
+<h2>Checklist antes de fechar a seleção</h2>
+<ul>
+<li>confirmar se a vazão é normalizada, standard, actual volumetric ou mass flow;</li>
+<li>converter P1/P2 para valores absolutos consistentes;</li>
+<li>usar T1 e composição reais, não valores genéricos;</li>
+<li>avaliar choked flow, aerodynamic noise e velocidades;</li>
+<li>confirmar Cv/Kv disponível por abertura e característica da válvula;</li>
+<li>verificar actuator sizing, shutoff pressure, fail position e supply pressure;</li>
+<li>avaliar rangeability e abertura prevista em mínimo/normal/máximo;</li>
+<li>validar o conjunto com fabricante e edição aplicável da série IEC 60534.</li>
 </ul>
 
+<h2>Ferramentas e artigos relacionados</h2>
+<div class="calc-actions">
+<a class="mini-btn dark" href="calculadora-cv-gases-valvula-controle.html"><i class="fas fa-calculator"></i> Calcular Cv para gases</a>
+<a class="mini-btn" href="calculadora-cv-valvula-controle.html"><i class="fas fa-water"></i> Cv/Kv para líquidos</a>
+<a class="mini-btn" href="calculadora-calibracao-valvula-controle.html"><i class="fas fa-screwdriver-wrench"></i> Calibração de válvula</a>
+</div>
+<p class="mini-help">Leia também: <a href="blog-cavitacao-valvula-controle.html">cavitação e flashing</a> e <a href="blog-calibracao-valvula-controle.html">calibração de válvula de controle 4–20 mA</a>.</p>
+
+<h2>Referência técnica</h2>
+<ul><li><a href="https://www.emerson.com/en/final-control/catalog/products-and-software/valves/control-valves/control-valve-handbook" target="_blank" rel="noopener noreferrer">Emerson/Fisher — Control Valve Handbook</a>, incluindo sizing de gases/vapores, choked flow, atuadores e seleção.</li></ul>
 <h2>Aviso técnico</h2>
-<p>Este artigo sobre Cv para Gases em Válvula de Controle é educativo e apoia pré-dimensionamento e conferência técnica. Em aplicações críticas, compra final ou alteração permanente da instalação, valide o cenário com documentação do fabricante, condições reais de campo, requisitos aplicáveis e profissional habilitado.</p></article>
-  <section class="cta-bar"><h2>Precisa de apoio técnico?</h2><p>A ALOGY Engenharia apoia instrumentação, automação, processo e manutenção industrial.</p><a class="btn" href="/#contato"><i class="fas fa-envelope"></i> Falar com a ALOGY</a></section>
+<p>Este conteúdo é educativo e apoia pré-dimensionamento e conferência. Gas sizing final deve considerar o método aplicável, dados reais da válvula, propriedades do gás, ruído, velocidade, rangeability, atuador e condições extremas de processo.</p>
+</article>
 </main>
-  <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
+<footer><p>© Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
 </body>
 </html>
