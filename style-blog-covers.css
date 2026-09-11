@@ -2,6 +2,31 @@
    A capa aparece logo apos a linha de autoria/atualizacao, abaixo do H1.
    O mapeamento reutiliza as mesmas capas exibidas no hub blog.html. */
 
+.article-cover-figure{
+  width:min(100%,760px);
+  margin:16px auto 22px;
+}
+.article-cover-image{
+  display:block;
+  width:100%;
+  height:auto;
+  max-height:360px;
+  aspect-ratio:16 / 9;
+  object-fit:cover;
+  border:1px solid rgba(11,58,98,.12);
+  border-radius:16px;
+  background:#eaf2f7;
+  box-shadow:0 8px 22px rgba(2,32,55,.08);
+}
+.article-cover-figure figcaption{
+  margin-top:7px;
+  color:#64748b;
+  font-size:.82rem;
+  line-height:1.4;
+  text-align:center;
+}
+article:has(.article-cover-image) [data-alogy-content-meta]::after{display:none!important}
+
 html:has(head link[rel="canonical"][href*="/blog-"]) [data-alogy-content-meta]::after{
   content:var(--alogy-article-cover-content, none);
   display:block;
@@ -19,6 +44,8 @@ html:has(head link[rel="canonical"][href*="/blog-"]) [data-alogy-content-meta]::
   box-shadow:0 8px 22px rgba(2,32,55,.08);
 }
 @media(max-width:700px){
+  .article-cover-figure{width:100%;margin:13px auto 18px}
+  .article-cover-image{max-height:240px;border-radius:12px}
   html:has(head link[rel="canonical"][href*="/blog-"]) [data-alogy-content-meta]::after{
     width:100%;
     max-height:240px;
