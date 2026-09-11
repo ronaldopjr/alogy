@@ -1,197 +1,28 @@
 <!DOCTYPE html>
-
 <html lang="pt-br">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Calculadora de Disjuntor e Proteção Elétrica | ALOGY Engenharia</title>
-<meta content="Calcule disjuntor recomendado para circuitos monofásicos, bifásicos e trifásicos por corrente, kW, kVA, CV ou HP. Ferramenta auxiliar com critério Ib ≤ In ≤ Iz." name="description"/>
-<meta content="index,follow" name="robots"/>
-<meta content="#004b80" name="theme-color"/>
-<link href="https://www.alogy.com.br/calculadora-disjuntor-protecao.html" rel="canonical"/>
-<link href="/favicon-48x48.png" rel="icon" sizes="48x48" type="image/png"/>
-<link href="/favicon-192x192.png" rel="icon" sizes="192x192" type="image/png"/>
-<link href="/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
-<link href="/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180"/>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-<link href="style.css?v=20260722-layout-original-uppercase-mobilefix" rel="stylesheet"/>
-<script defer="" src="app.js"></script>
-<meta content="pt_BR" property="og:locale"/>
-<meta content="website" property="og:type"/>
-<meta content="ALOGY Engenharia" property="og:site_name"/>
-<meta content="Calculadora de Disjuntor e Proteção Elétrica" property="og:title"/>
-<meta content="Pré-selecione disjuntor por corrente, potência, sistema elétrico e capacidade do cabo, com tabela comparativa de correntes nominais." property="og:description"/>
-<meta content="https://www.alogy.com.br/calculadora-disjuntor-protecao.html" property="og:url"/>
-<meta content="https://www.alogy.com.br/favicon-512x512.png" property="og:image"/>
-<meta content="summary_large_image" name="twitter:card"/>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Calculadora de Disjuntor e Proteção Elétrica","url":"https://www.alogy.com.br/calculadora-disjuntor-protecao.html","applicationCategory":"EngineeringApplication","operatingSystem":"Web","description":"Ferramenta auxiliar para pré-selecionar disjuntor por corrente, potência, tensão, fator de potência, rendimento e capacidade do cabo.","publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"},"dateModified":"2026-07-21","author":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"}}</script>
-<script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"FAQPage",
-    "mainEntity":[
-      {"@type":"Question","name":"Como escolher o disjuntor pelo cabo?","acceptedAnswer":{"@type":"Answer","text":"Como critério auxiliar, a corrente nominal do disjuntor deve ficar acima da corrente de projeto e não deve ultrapassar a capacidade corrigida do cabo. Esse critério é normalmente representado como Ib menor ou igual a In, e In menor ou igual a Iz corrigida."}},
-      {"@type":"Question","name":"A ferramenta substitui projeto elétrico?","acceptedAnswer":{"@type":"Answer","text":"Não. A ferramenta é apenas auxiliar para estudo e pré-análise. A seleção final deve considerar norma aplicável, curto-circuito, curva de disparo, seletividade, método de instalação, cabo, temperatura, agrupamento, partida de motores e profissional habilitado."}},
-      {"@type":"Question","name":"Qual curva de disjuntor usar?","acceptedAnswer":{"@type":"Answer","text":"A curva depende da carga e da corrente de partida. Cargas resistivas costumam usar curvas menos tolerantes a pico, enquanto motores e transformadores podem exigir curvas com maior tolerância a corrente de partida. A escolha final deve ser validada tecnicamente."}}
-    ]
-  }
-  </script>
-<style>
-    .mini-btn{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(0,107,177,.25);background:rgba(0,107,177,.08);color:#0b3a62;border-radius:12px;padding:10px 12px;font-weight:900;cursor:pointer;text-decoration:none;font:inherit}
-    .mini-btn:hover{background:rgba(0,107,177,.12)}.mini-btn.dark{background:#0b3a62;color:#fff;border-color:#0b3a62}.small-muted{color:var(--muted);font-size:.92rem;line-height:1.55}.pill-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.pill{display:inline-flex;align-items:center;gap:8px;border-radius:999px;background:rgba(0,107,177,.08);border:1px solid rgba(0,107,177,.18);color:#0b3a62;font-weight:900;padding:8px 11px;font-size:.9rem}.status-ok{border-color:rgba(34,197,94,.35)!important;background:rgba(34,197,94,.10)!important;color:#166534!important}.status-warn{border-color:rgba(245,158,11,.38)!important;background:rgba(245,158,11,.12)!important;color:#92400e!important}.status-bad{border-color:rgba(239,68,68,.35)!important;background:rgba(239,68,68,.10)!important;color:#991b1b!important}.notice-box{border:1px solid rgba(245,158,11,.35);background:rgba(245,158,11,.10);border-radius:14px;padding:14px;margin-top:14px;color:#7c2d12}.notice-box strong{color:#7c2d12}.faq details{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:14px;padding:14px;margin-top:10px;box-shadow:0 6px 16px rgba(0,0,0,.04)}.faq summary{cursor:pointer;font-weight:900;color:#0b3a62}.faq p{margin:10px 0 0;color:var(--muted)}
-    @media(max-width:900px){.calc-actions .mini-btn{width:100%;justify-content:center}}
-  </style>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Calculadora de Disjuntor | Ib, In, Iz e Capacidade de Interrupção</title>
+<meta name="description" content="Verifique pré-seleção de disjuntor por Ib ≤ In ≤ Iz e compare capacidade de interrupção com a corrente de curto-circuito presumida. Para cargas mono e trifásicas."/>
+<meta name="robots" content="index,follow"/><meta name="theme-color" content="#004b80"/><link rel="canonical" href="https://www.alogy.com.br/calculadora-disjuntor-protecao.html"/>
+<link rel="icon" href="/favicon-48x48.png" sizes="48x48" type="image/png"/><link rel="icon" href="/favicon-192x192.png" sizes="192x192" type="image/png"/><link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/><link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180"/><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"/><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/><link rel="stylesheet" href="style.css?v=20260911-breaker-check"/><script defer src="app.js"></script>
+<meta property="og:locale" content="pt_BR"/><meta property="og:type" content="website"/><meta property="og:site_name" content="ALOGY Engenharia"/><meta property="og:title" content="Calculadora de Disjuntor | Ib, In, Iz e Icc"/><meta property="og:description" content="Compare corrente de projeto, disjuntor candidato, capacidade corrigida do cabo e curto-circuito presumido."/><meta property="og:url" content="https://www.alogy.com.br/calculadora-disjuntor-protecao.html"/><meta property="og:image" content="https://www.alogy.com.br/favicon-512x512.png"/><meta name="twitter:card" content="summary_large_image"/><meta name="author" content="ALOGY Engenharia"/>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Calculadora de Disjuntor e Proteção","url":"https://www.alogy.com.br/calculadora-disjuntor-protecao.html","applicationCategory":"EngineeringApplication","operatingSystem":"Web","description":"Ferramenta de pré-verificação de Ib, In, Iz e capacidade de interrupção do disjuntor em relação à corrente de curto-circuito presumida.","publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"},"dateModified":"2026-09-11"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Início","item":"https://www.alogy.com.br/"},{"@type":"ListItem","position":2,"name":"Elétrica","item":"https://www.alogy.com.br/ferramentas-eletrica-industrial.html"},{"@type":"ListItem","position":3,"name":"Disjuntor e Proteção","item":"https://www.alogy.com.br/calculadora-disjuntor-protecao.html"}]}</script>
+<style>.mini-btn{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(0,107,177,.25);background:rgba(0,107,177,.08);color:#0b3a62;border-radius:12px;padding:10px 12px;font-weight:900;cursor:pointer;text-decoration:none;font:inherit}.mini-btn.dark{background:#0b3a62;color:#fff}.calc-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}.small-muted{color:var(--muted);font-size:.92rem;line-height:1.55}.result-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.status-ok{color:#146c2e!important}.status-warn{color:#9a5b00!important}.status-bad{color:#a10000!important}.form-message{display:none;border-left:5px solid #b42318;background:#fff5f5;color:#7a271a;padding:12px 14px;border-radius:9px;margin-top:12px}.form-message.show{display:block}.protection-line,.diagram{overflow-x:auto;border:1px solid #d8e5ed;border-radius:14px;background:#fff;padding:9px}.protection-line svg,.diagram svg{display:block;width:100%;min-width:650px;height:auto}.faq details{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:14px;padding:14px;margin-top:10px}.faq summary{cursor:pointer;font-weight:900;color:#0b3a62}.formula-box{background:#f5f9fc;border:1px solid #d7e5ed;border-radius:12px;padding:13px;line-height:1.6}@media(max-width:900px){.result-grid{grid-template-columns:1fr}.calc-actions .mini-btn{width:100%;justify-content:center}}@media print{header,.social-floating,.fab-wrap,.calc-actions,.no-print,footer{display:none!important}}</style>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5586837114309500" crossorigin="anonymous"></script>
 </head>
-<body class="tools-page alogy-stage3-forms">
-<header>
-<div class="container headbar"><a aria-label="Voltar para o início" class="logo-wrapper" href="/"><img alt="ALOGY Engenharia" decoding="async" height="308" src="logo-alogy.webp" width="878"/></a>
-<button aria-label="Abrir menu" class="menu-toggle" onclick="toggleMobileMenu()"><i class="fas fa-bars"></i></button></div>
-<nav aria-label="Menu principal" class="desktop"><div class="container navlinks"><a href="/">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></div></nav>
-<nav aria-label="Menu mobile" class="mobile"><a href="/">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></nav>
-</header>
-<div aria-label="Redes sociais" class="social-floating"><a aria-label="LinkedIn" class="linkedin" href="https://www.linkedin.com/company/alogyengenharia" rel="noopener noreferrer" target="_blank"><i class="fab fa-linkedin-in"></i></a><a aria-label="Instagram" class="instagram" href="https://www.instagram.com/alogyengenharia" rel="noopener noreferrer" target="_blank"><i class="fab fa-instagram"></i></a><a aria-label="Facebook" class="facebook" href="https://www.facebook.com/alogyengenharia" rel="noopener noreferrer" target="_blank"><i class="fab fa-facebook-f"></i></a><a aria-label="YouTube" class="youtube" href="https://www.youtube.com/@alogyengenharia" rel="noopener noreferrer" target="_blank"><i class="fab fa-youtube"></i></a><a aria-label="Hotmart" class="hotmart" href="https://hotmart.com/pt-br/club/alogyengenharia" rel="noopener noreferrer" target="_blank">H</a><a aria-label="TikTok" class="tiktok" href="https://www.tiktok.com/@alogyengenharia" rel="noopener noreferrer" target="_blank"><i class="fab fa-tiktok"></i></a></div>
-<div aria-label="Ações rápidas" class="fab-wrap"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1!%20Vim%20pela%20calculadora%20de%20disjuntor%20da%20ALOGY.%20Gostaria%20de%20atendimento." rel="noopener noreferrer" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
-<main class="container" style="margin-top:18px"><div aria-label="Ações da ferramenta" class="tool-page-actions no-print"><button class="btn print" onclick="window.print()" type="button"><i class="fas fa-print"></i> Imprimir</button></div>
-<div class="no-print" style="margin-bottom:14px;display:flex;gap:10px;flex-wrap:wrap"><a class="btn secondary" href="calculadora-dimensionamento-cabos.html"><i class="fas fa-plug-circle-bolt"></i> Dimensionamento de cabos</a></div>
-<section class="tools-hero">
-<h1>Calculadora de Disjuntor e Proteção Elétrica</h1>
-<p class="muted" data-alogy-content-meta><strong>Conteúdo técnico:</strong> ALOGY Engenharia · <strong>Atualizado em:</strong> 21/07/2026</p>
-<p>Ferramenta auxiliar para pré-selecionar disjuntor por corrente, potência, tensão, fator de potência, rendimento e capacidade corrigida do cabo. Use para estudo, conferência inicial e comparação rápida em circuitos monofásicos, bifásicos e trifásicos.</p>
-</section>
-<section aria-label="Aviso de responsabilidade" class="calc-card">
-<h2><i class="fas fa-triangle-exclamation"></i> Uso orientativo</h2>
-<p>Esta ferramenta é apenas para estudo, apoio técnico e pré-análise. O resultado pode conter simplificações e não substitui normas aplicáveis, catálogo do fabricante, cálculo de curto-circuito, seletividade, coordenação de proteção, análise de partida de motores, projeto elétrico, laudo, ART/RRT ou profissional habilitado. Na máxima extensão permitida pela legislação aplicável, a ALOGY não assume responsabilidade por decisões tomadas exclusivamente com base nesta estimativa orientativa, sem verificação das condições reais e sem validação técnica adequada. Nada neste aviso exclui direitos ou responsabilidades que não possam ser legalmente afastados.</p>
-</section>
-<section class="calc-layout">
-<div class="calc-card">
-<h2><i class="fas fa-bolt"></i> Dados do circuito</h2>
-<p>Informe a carga ou a corrente de projeto. O cálculo estima Ib e escolhe a menor corrente nominal de disjuntor acima da carga, respeitando a capacidade do cabo quando informada.</p>
-<div class="calc-grid">
-<div class="field"><label for="dj_modo">Entrada de carga</label><select id="dj_modo"><option value="corrente">Corrente do circuito (A)</option><option value="kw">Potência ativa (kW)</option><option value="kva">Potência aparente (kVA)</option><option value="cv">Motor em CV</option><option value="hp">Motor em HP</option></select></div>
-<div class="field"><label for="dj_valor" id="dj_label">Corrente (A)</label><input id="dj_valor" inputmode="decimal" step="any" type="number" value="32"/></div>
-<div class="field"><label for="dj_sistema">Sistema</label><select id="dj_sistema"><option value="mono">Monofásico / bifásico</option><option selected="" value="tri">Trifásico</option></select></div>
-<div class="field"><label for="dj_tensao">Tensão (V)</label><input id="dj_tensao" inputmode="decimal" step="any" type="number" value="380"/></div>
-<div class="field"><label for="dj_fp">Fator de potência</label><input id="dj_fp" inputmode="decimal" step="any" type="number" value="0.92"/></div>
-<div class="field"><label for="dj_rend">Rendimento do motor (0,90 ou 90%)</label><input id="dj_rend" inputmode="decimal" step="any" type="number" value="0.90"/></div>
-<div class="field"><label for="dj_iz">Capacidade corrigida do cabo Iz (A)</label><input id="dj_iz" inputmode="decimal" step="any" type="number" value="50"/></div>
-<div class="field"><label for="dj_tipo">Tipo de carga</label><select id="dj_tipo"><option value="geral">Carga geral / tomada</option><option value="resistiva">Carga resistiva</option><option selected="" value="motor">Motor</option><option value="trafo">Transformador</option></select></div>
-</div>
-<div class="pill-row"><button class="mini-btn dark" onclick="copiarDJ()" type="button"><i class="fas fa-copy"></i> Copiar resultado</button><button class="mini-btn" onclick="exDJ('corrente',80,'tri',380,.92,.90,100,'motor')" type="button">Exemplo 80 A</button><button class="mini-btn" onclick="exDJ('kw',15,'tri',380,.86,.90,40,'motor')" type="button">Motor 15 kW</button><button class="mini-btn" onclick="exDJ('kva',25,'tri',220,.90,.90,80,'geral')" type="button">25 kVA</button></div>
-</div>
-<div class="calc-card">
-<h2><i class="fas fa-shield-halved"></i> Resultado</h2>
-<div class="calc-result" style="grid-template-columns:1fr 1fr">
-<div class="result-box"><span>Corrente de projeto Ib</span><strong id="dj_ib">-</strong></div>
-<div class="result-box"><span>Disjuntor recomendado</span><strong id="dj_in">-</strong></div>
-<div class="result-box"><span>Critério Ib ≤ In ≤ Iz</span><strong id="dj_status">-</strong></div>
-<div class="result-box"><span>Curva sugerida</span><strong id="dj_curva">-</strong></div>
-</div>
-<div class="notice-box" id="dj_aviso"><strong>Atenção:</strong> resultado auxiliar para pré-seleção.</div>
-<div class="pill-row"><span class="pill" id="dj_kw">kW: -</span><span class="pill" id="dj_kva">kVA: -</span><span class="pill" id="dj_polos">Polos: -</span></div>
-</div>
-</section>
-<section class="calc-card">
-<h2><i class="fas fa-table"></i> Tabela comparativa de disjuntores</h2>
-<p class="small-muted">A tabela mostra disjuntores padronizados e indica se cada corrente nominal ficaria abaixo da carga, dentro do critério auxiliar ou acima da capacidade corrigida do cabo informada.</p>
-<div class="calc-table-wrap"><table class="calc-table"><thead><tr><th>Disjuntor In</th><th>Comparação com Ib</th><th>Comparação com Iz do cabo</th><th>Status auxiliar</th></tr></thead><tbody id="dj_tabela"></tbody></table></div>
-</section>
-<section class="calc-layout">
-<div class="calc-card">
-<h2><i class="fas fa-circle-info"></i> Como interpretar</h2>
-<p>Como pré-seleção, o disjuntor deve suportar a corrente normal da carga e, ao mesmo tempo, proteger o cabo contra sobrecarga. Por isso a ferramenta usa como referência auxiliar:</p>
-<div class="pill-row"><span class="pill">Ib ≤ In ≤ Iz corrigida</span><span class="pill">Ib = corrente da carga</span><span class="pill">In = disjuntor</span><span class="pill">Iz = cabo corrigido</span></div>
-<p style="margin-top:12px">Para motores, transformadores e cargas com corrente de partida elevada, a curva do disjuntor e a proteção específica podem mudar. Em muitos casos industriais, a proteção do motor envolve disjuntor-motor, fusíveis, contator, relé térmico/eletrônico e coordenação com curto-circuito.</p>
-</div>
-<div class="calc-card faq">
-<h2><i class="fas fa-question-circle"></i> Perguntas frequentes</h2>
-<details><summary>Essa ferramenta escolhe o disjuntor final?</summary><p>Não. Ela faz uma pré-seleção auxiliar. A decisão final depende do projeto, curto-circuito, curva de atuação, seletividade, cabo, método de instalação e responsável técnico.</p></details>
-<details><summary>Por que informar a capacidade do cabo?</summary><p>Porque o disjuntor precisa proteger o cabo. Se o disjuntor for maior que a capacidade corrigida do cabo, pode haver risco de sobrecarga no condutor.</p></details>
-<details><summary>Motor sempre usa curva D?</summary><p>Não. A curva depende da corrente de partida, tipo de motor, método de partida e proteção adotada. A ferramenta apenas sugere uma curva provável para estudo.</p></details>
-</div>
-</section>
-<!-- ALOGY_REVISAO_TECNICA_FERRAMENTA -->
-<section aria-label="Orientação técnica complementar" class="calc-card">
-<h2><i class="fas fa-clipboard-check"></i> Aplicação prática: Disjuntor e Proteção Elétrica</h2>
-<p>Calcule disjuntor recomendado para circuitos monofásicos, bifásicos e trifásicos por corrente, kW, kVA, CV ou HP. Ferramenta auxiliar com critério Ib ≤ In ≤ Iz.</p>
-<h3>Quando aplicar</h3>
-<p>Use para verificação preliminar de circuitos industriais, painéis, motores, alimentação 24 Vcc, proteção, qualidade de energia e segurança elétrica antes de especificar componentes ou liberar manutenção.</p>
-<h3>Entradas críticas para Disjuntor e Proteção Elétrica</h3>
-<p>Confira a unidade, a condição real de operação e os campos principais desta análise: Entrada de carga, Corrente (A), Sistema, Tensão (V), Fator de potência, Rendimento do motor (apenas CV/HP). Registre as premissas usadas para que o cálculo possa ser repetido e revisado.</p>
-<ul>
-<li>Entrada de carga</li>
-<li>Corrente (A)</li>
-<li>Sistema</li>
-<li>Tensão (V)</li>
-<li>Fator de potência</li>
-<li>Rendimento do motor (apenas CV/HP)</li>
-</ul>
-<h3>Como interpretar o resultado</h3>
-<p>O resultado deve ser avaliado junto com corrente nominal, temperatura ambiente, método de instalação, capacidade de curto-circuito, proteção existente e normas aplicáveis. Um número isolado não substitui dimensionamento elétrico completo.</p>
-<p>Analise em conjunto os resultados Corrente de projeto Ib, Disjuntor recomendado, Critério Ib ≤ In ≤ Iz, Curva sugerida. Compare-os com limites operacionais, tolerâncias, histórico e documentação do equipamento, evitando decidir com base em um único indicador.</p>
-<h3>Checklist rápido de validação</h3>
-<ul>
-<li>Confirme tensão real, corrente de carga e regime de operação.</li>
-<li>Verifique se cabos, bornes, disjuntores e fontes suportam a corrente calculada.</li>
-<li>Considere temperatura, agrupamento, distância, queda de tensão e partida de motores.</li>
-<li>Bloqueie e sinalize a energia antes de qualquer intervenção em campo.</li>
-</ul>
-<h3>Limites da estimativa</h3>
-<p>Use esta análise de Disjuntor e Proteção Elétrica como apoio preliminar. Para projeto final, laudo, compra, mudança de segurança ou liberação de equipamento crítico, confirme premissas, condições de campo, documentação do fabricante e requisitos aplicáveis.</p>
-</section>
-</main>
-<footer><p>© Desde 2012 ALOGY Engenharia | www.alogy.com.br</p></footer>
-<script>
-const djStd=[2,4,6,10,16,20,25,32,40,50,63,70,80,100,125,150,160,175,200,225,250,300,315,350,400,500,630,800];
-function n(id){return document.getElementById(id)}
-function fmt(v,d=2){return isFinite(v)?Number(v).toLocaleString('pt-BR',{maximumFractionDigits:d,minimumFractionDigits:d}):'-'}
-function normalizaRendimento(v){v=parseFloat(v); if(!isFinite(v)||v<=0)return 1; if(v>1.5)v=v/100; return Math.max(0.01,Math.min(1,v));}
-function getCurve(tipo){if(tipo==='resistiva')return 'B ou C'; if(tipo==='motor')return 'C ou D'; if(tipo==='trafo')return 'D'; return 'C'}
-function calcIb(){
-  const modo=n('dj_modo').value, val=parseFloat(n('dj_valor').value)||0, sis=n('dj_sistema').value;
-  const V=parseFloat(n('dj_tensao').value)||0, fp=parseFloat(n('dj_fp').value)||1, rend=normalizaRendimento(n('dj_rend').value);
-  let ib=0,kW=0,kVA=0;
-  if(modo==='corrente'){ib=val; kVA=(sis==='tri'?Math.sqrt(3)*V*ib:V*ib)/1000; kW=kVA*fp;}
-  if(modo==='kva'){kVA=val; ib=(sis==='tri'? kVA*1000/(Math.sqrt(3)*V): kVA*1000/V); kW=kVA*fp;}
-  if(modo==='kw'){kW=val; kVA=kW/Math.max(fp,.0001); ib=(sis==='tri'? kVA*1000/(Math.sqrt(3)*V): kVA*1000/V);}
-  if(modo==='cv'){kW=(val*0.7355)/Math.max(rend,.0001); kVA=kW/Math.max(fp,.0001); ib=(sis==='tri'? kVA*1000/(Math.sqrt(3)*V): kVA*1000/V);}
-  if(modo==='hp'){kW=(val*0.7457)/Math.max(rend,.0001); kVA=kW/Math.max(fp,.0001); ib=(sis==='tri'? kVA*1000/(Math.sqrt(3)*V): kVA*1000/V);}
-  return {ib,kW,kVA};
-}
-function calcDJ(){
-  const modo=n('dj_modo').value;
-  n('dj_label').textContent = modo==='corrente'?'Corrente (A)':modo==='kw'?'Potência ativa (kW)':modo==='kva'?'Potência aparente (kVA)':modo==='cv'?'Potência do motor (CV)':'Potência do motor (HP)';
-  n('dj_rend').disabled = !(modo==='cv'||modo==='hp');
-  const {ib,kW,kVA}=calcIb(); const iz=parseFloat(n('dj_iz').value)||0; const tipo=n('dj_tipo').value;
-  let rec=djStd.find(d=>d>=ib && (!iz || d<=iz));
-  let status='Verificar'; let cls='status-warn';
-  if(rec){status='OK';cls='status-ok'} else if(iz && ib>iz){status='Cabo insuficiente';cls='status-bad'} else {status='Sem In na lista';cls='status-warn'}
-  n('dj_ib').textContent=fmt(ib)+' A'; n('dj_in').textContent=rec?rec+' A':'Verificar'; n('dj_status').textContent=status; n('dj_status').parentElement.className='result-box '+cls; n('dj_curva').textContent=getCurve(tipo);
-  n('dj_kw').textContent='kW: '+fmt(kW,2); n('dj_kva').textContent='kVA: '+fmt(kVA,2); n('dj_polos').textContent=n('dj_sistema').value==='tri'?'Polos: 3P':'Polos: 1P/2P conforme circuito';
-  let aviso='Resultado auxiliar: valide curto-circuito, curva, seletividade, cabo, instalação e norma aplicável.';
-  if(iz && ib>iz) aviso='A corrente de projeto está acima da capacidade corrigida do cabo informada. Revise a seção do cabo, método de instalação ou carga.';
-  else if(rec && iz && rec>iz) aviso='O disjuntor ficaria acima da capacidade do cabo. Revise a seção ou use outra proteção.';
-  else if(tipo==='motor') aviso='Para motor, valide partida, curva, disjuntor-motor, relé térmico/eletrônico, curto-circuito e coordenação de proteção.';
-  n('dj_aviso').innerHTML='<strong>Atenção:</strong> '+aviso;
-  const tbody=n('dj_tabela'); tbody.innerHTML='';
-  djStd.forEach(d=>{
-    let st='', c='';
-    if(d<ib){st='Abaixo da carga'; c='status-bad'} else if(iz && d>iz){st='Acima do cabo'; c='status-warn'} else {st='Dentro do critério'; c='status-ok'}
-    const tr=document.createElement('tr'); tr.innerHTML=`<td><strong>${d} A</strong></td><td>${d>=ib?'≥ Ib':'< Ib'}</td><td>${iz? (d<=iz?'≤ Iz':' > Iz'):'Iz não informado'}</td><td><span class="pill ${c}">${st}</span></td>`; tbody.appendChild(tr);
-  });
-  if(window.enhanceResponsiveToolTables) window.enhanceResponsiveToolTables();
-}
-function copiarDJ(){
-  const texto=`Calculadora de Disjuntor ALOGY\nIb: ${n('dj_ib').textContent}\nDisjuntor recomendado: ${n('dj_in').textContent}\nCritério: ${n('dj_status').textContent}\nCurva sugerida: ${n('dj_curva').textContent}\nObservação: ferramenta apenas orientativa.`;
-  navigator.clipboard?.writeText(texto);
-}
-function exDJ(modo,val,sis,V,fp,rend,iz,tipo){n('dj_modo').value=modo;n('dj_valor').value=val;n('dj_sistema').value=sis;n('dj_tensao').value=V;n('dj_fp').value=fp;n('dj_rend').value=rend;n('dj_iz').value=iz;n('dj_tipo').value=tipo;calcDJ()}
-['dj_modo','dj_valor','dj_sistema','dj_tensao','dj_fp','dj_rend','dj_iz','dj_tipo'].forEach(id=>n(id).addEventListener('input',calcDJ));
-calcDJ();
-</script>
-
-<a aria-label="Voltar para Ferramentas" class="floating-back-tools no-print" href="ferramentas.html"><i class="fas fa-arrow-left"></i> Voltar para Ferramentas</a>
-</body>
-</html>
+<body class="tools-page alogy-stage3-forms"><header><div class="container headbar"><a href="/" class="logo-wrapper" aria-label="Voltar para o início"><img src="logo-alogy.webp" alt="ALOGY Engenharia" width="878" height="308" decoding="async"/></a><button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menu"><i class="fas fa-bars"></i></button></div><nav class="desktop" aria-label="Menu principal"><div class="container navlinks"><a href="/">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="/guia/">Guia</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></div></nav><nav class="mobile" aria-label="Menu mobile"><a href="/">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="/guia/">Guia</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></nav></header>
+<div class="social-floating" aria-label="Redes sociais"><a class="linkedin" href="https://www.linkedin.com/company/alogyengenharia" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a><a class="instagram" href="https://www.instagram.com/alogyengenharia" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a class="facebook" href="https://www.facebook.com/alogyengenharia" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><a class="youtube" href="https://www.youtube.com/@alogyengenharia" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a><a class="tiktok" href="https://www.tiktok.com/@alogyengenharia" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fab fa-tiktok"></i></a></div><div class="fab-wrap" aria-label="Ações rápidas"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1%21%20Vim%20pela%20calculadora%20de%20disjuntor%20da%20ALOGY." target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
+<main class="container" style="margin-top:18px"><div class="no-print" style="margin-bottom:14px;display:flex;gap:10px;flex-wrap:wrap"><a class="floating-back-tools" href="ferramentas.html"><i class="fas fa-arrow-left"></i> Voltar para Ferramentas</a><a class="btn secondary" href="calculadora-dimensionamento-cabos.html"><i class="fas fa-bolt"></i> Bitola / Dimensionamento</a><a class="btn secondary" href="calculadora-curto-circuito-transformador.html"><i class="fas fa-burst"></i> Curto-circuito</a></div>
+<section class="tools-hero"><h1>Calculadora de Disjuntor e Proteção Elétrica</h1><p class="muted" data-alogy-content-meta><strong>Conteúdo técnico:</strong> ALOGY Engenharia · <strong>Atualizado em:</strong> 11/09/2026</p><p>Calcule a corrente de projeto <strong>Ib</strong> e verifique um disjuntor candidato pela relação <strong>Ib ≤ In ≤ Iz</strong>. Quando você informar a corrente de curto-circuito presumida no ponto, a página também compara esse valor com a capacidade de interrupção declarada do dispositivo.</p></section>
+<section class="calc-card"><h2><i class="fas fa-triangle-exclamation"></i> Não existe “curva automática” para qualquer disjuntor</h2><p>Curvas B/C/D são usadas em determinados disjuntores modulares. Disjuntores industriais de caixa moldada/aberta podem usar unidades de disparo e ajustes diferentes. Para motores e transformadores, valide partida/inrush, coordenação, seletividade e proteção específica do equipamento em vez de escolher a curva apenas pelo nome da carga.</p><p>A capacidade de interrupção informada precisa ser verificada na <strong>tensão de utilização</strong> e segundo o produto/norma aplicável. A ferramenta não avalia cascading/back-up, seletividade nem energia passante.</p></section>
+<section class="calc-layout"><div class="calc-card"><h2><i class="fas fa-bolt"></i> Carga e corrente Ib</h2><div class="calc-grid"><div class="field"><label for="mode">Entrada de carga</label><select id="mode"><option value="amp">Corrente de projeto (A)</option><option value="kw">Potência ativa elétrica (kW)</option><option value="kva">Potência aparente (kVA)</option><option value="cv">Motor em CV</option><option value="hp">Motor em HP</option></select></div><div class="field"><label id="valueLabel" for="value">Corrente de projeto (A)</label><input id="value" type="text" inputmode="decimal" value="32"></div><div class="field"><label for="system">Sistema</label><select id="system"><option value="mono">Monofásico / linha-linha</option><option value="tri" selected>Trifásico</option></select></div><div class="field"><label for="voltage">Tensão (V)</label><input id="voltage" type="text" inputmode="decimal" value="380"></div><div class="field"><label for="pf">Fator de potência</label><input id="pf" type="text" inputmode="decimal" value="0,92"></div><div class="field"><label for="eff">Rendimento do motor (%)</label><input id="eff" type="text" inputmode="decimal" value="90"></div></div></div><div class="calc-card"><h2><i class="fas fa-shield-halved"></i> Cabo e disjuntor candidato</h2><div class="calc-grid"><div class="field"><label for="iz">Iz corrigida do cabo (A)</label><input id="iz" type="text" inputmode="decimal" value="50"></div><div class="field"><label for="in">Corrente nominal/ajuste candidato In (A)</label><input id="in" type="text" inputmode="decimal" value="40"></div><div class="field"><label for="breakCap">Capacidade de interrupção declarada (kA)</label><input id="breakCap" type="text" inputmode="decimal" value="10"></div><div class="field"><label for="isc">Curto-circuito presumido no ponto Isc (kA)</label><input id="isc" type="text" inputmode="decimal" value="6"></div><div class="field"><label for="device">Tipo de dispositivo</label><select id="device"><option value="modular">Disjuntor modular</option><option value="industrial">Caixa moldada / industrial</option><option value="motor">Disjuntor-motor / proteção de motor</option></select></div></div><div id="formMessage" class="form-message" role="alert"></div><div class="calc-actions no-print"><button class="mini-btn dark" id="btnCalculate"><i class="fas fa-calculator"></i> Verificar</button><button class="mini-btn" id="btnExample"><i class="fas fa-rotate-left"></i> Exemplo</button><button class="mini-btn" id="btnCopy"><i class="fas fa-copy"></i> Copiar</button></div></div></section>
+<section class="calc-card"><h2><i class="fas fa-square-poll-vertical"></i> Resultado</h2><div class="calc-result result-grid"><div class="result-box"><span>Corrente de projeto Ib</span><strong id="outIb">-</strong></div><div class="result-box"><span>Disjuntor candidato In</span><strong id="outIn">-</strong></div><div class="result-box"><span>Capacidade corrigida do cabo Iz</span><strong id="outIz">-</strong></div><div class="result-box"><span>Critério Ib ≤ In ≤ Iz</span><strong id="outOverload">-</strong></div><div class="result-box"><span>Capacidade de interrupção</span><strong id="outBreak">-</strong></div><div class="result-box"><span>Margem da capacidade de interrupção</span><strong id="outBreakMargin">-</strong></div></div><div class="calc-note" id="status" style="margin-top:12px">Informe os dados.</div></section>
+<section class="calc-card"><h2><i class="fas fa-chart-simple"></i> Relação Ib, In e Iz</h2><div class="protection-line"><svg id="protectionSvg" viewBox="0 0 760 260" role="img" aria-label="Comparação entre Ib, In e Iz"></svg></div><div class="formula-box" style="margin-top:12px"><strong>Critérios verificados nesta página:</strong><br>1) carga/cabo: Ib ≤ In ≤ Iz;<br>2) curto-circuito: capacidade de interrupção informada ≥ Isc presumida.<br><span class="small-muted">Outros requisitos de proteção precisam ser verificados separadamente.</span></div></section>
+<section class="calc-card"><h2><i class="fas fa-diagram-project"></i> Cadeia que precisa ser coerente</h2><div class="diagram"><svg viewBox="0 0 850 205" role="img" aria-label="Fonte, disjuntor, cabo e carga"><rect x="25" y="65" width="145" height="70" rx="12" fill="#f6f9fb" stroke="#6b8798"/><text x="97" y="95" text-anchor="middle" font-weight="700">Fonte</text><text x="97" y="118" text-anchor="middle">Isc presumido</text><line x1="170" y1="100" x2="260" y2="100" stroke="#527083" stroke-width="3"/><rect x="270" y="55" width="170" height="90" rx="12" fill="#f6f9fb" stroke="#6b8798"/><text x="355" y="88" text-anchor="middle" font-weight="700">Disjuntor</text><text x="355" y="113" text-anchor="middle">In · capacidade</text><line x1="440" y1="100" x2="530" y2="100" stroke="#527083" stroke-width="3"/><rect x="540" y="65" width="130" height="70" rx="12" fill="#f6f9fb" stroke="#6b8798"/><text x="605" y="95" text-anchor="middle" font-weight="700">Cabo</text><text x="605" y="118" text-anchor="middle">Iz</text><line x1="670" y1="100" x2="730" y2="100" stroke="#527083" stroke-width="3"/><rect x="740" y="65" width="85" height="70" rx="12" fill="#f6f9fb" stroke="#6b8798"/><text x="782" y="95" text-anchor="middle" font-weight="700">Carga</text><text x="782" y="118" text-anchor="middle">Ib</text></svg></div></section>
+<section class="calc-card faq"><h2><i class="fas fa-circle-question"></i> Perguntas frequentes</h2><details open><summary>De onde vem Iz?</summary><p>Iz é a capacidade de condução de corrente do cabo já corrigida para o método e condições relevantes. Você pode obtê-la na calculadora completa de bitola/dimensionamento e conferir com a documentação aplicável.</p></details><details><summary>Capacidade de interrupção é a mesma coisa que corrente nominal?</summary><p>Não. In está relacionado à corrente nominal/ajuste de proteção. A capacidade de interrupção é a capacidade declarada do dispositivo para interromper corrente de curto-circuito nas condições especificadas.</p></details><details><summary>Esta ferramenta escolhe curva B, C ou D?</summary><p>Não. A escolha depende do tipo e norma do dispositivo, característica da carga, corrente de partida/inrush e coordenação. Para disjuntores industriais, B/C/D pode nem ser a nomenclatura aplicável.</p></details></section>
+<section class="cta-bar"><div><strong>Proteção depende do cabo e do curto-circuito</strong><br><span class="muted">Use primeiro a bitola para obter Iz corrigida e o estudo de curto-circuito para obter Isc no ponto.</span></div><div class="cta-actions"><a class="btn" href="calculadora-dimensionamento-cabos.html">Bitola / Iz</a><a class="btn secondary" href="calculadora-curto-circuito-transformador.html">Curto-circuito</a></div></section>
+</main><footer><p>© Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
+<script>(()=>{'use strict';const $=id=>document.getElementById(id);let last=null;function num(v){let s=String(v??'').trim().replace(/\s/g,'');if(!s)return NaN;if(s.includes(',')&&s.includes('.')){const dec=s.lastIndexOf(',')>s.lastIndexOf('.')?',':'.';s=s.split(dec===','?'.':',').join('').replace(dec,'.')}else if(s.includes(','))s=s.replace(',','.');const n=Number(s);return Number.isFinite(n)?n:NaN}function f(v,d=2){return Number.isFinite(v)?v.toLocaleString('pt-BR',{minimumFractionDigits:d,maximumFractionDigits:d}):'—'}function calcIb(){const mode=$('mode').value,value=num($('value').value),V=num($('voltage').value),pf=num($('pf').value),eta=num($('eff').value)/100,root=$('system').value==='tri'?Math.sqrt(3):1;let ib=value;if(mode==='kw')ib=value*1000/(root*V*pf);else if(mode==='kva')ib=value*1000/(root*V);else if(mode==='cv')ib=value*735.49875/eta/(root*V*pf);else if(mode==='hp')ib=value*745.699872/eta/(root*V*pf);return ib}function labels(){$('valueLabel').textContent={amp:'Corrente de projeto (A)',kw:'Potência ativa elétrica (kW)',kva:'Potência aparente (kVA)',cv:'Potência mecânica (CV)',hp:'Potência mecânica (HP)'}[$('mode').value]}function calc(){labels();$('formMessage').classList.remove('show');const value=num($('value').value),V=num($('voltage').value),pf=num($('pf').value),eff=num($('eff').value),iz=num($('iz').value),In=num($('in').value),bc=num($('breakCap').value),isc=num($('isc').value);if(!(value>=0&&V>0&&pf>0&&pf<=1&&eff>0&&eff<=100&&iz>0&&In>0&&bc>0&&isc>=0)){$('formMessage').textContent='Revise os dados: tensão, FP, rendimento, Iz, In e capacidade de interrupção devem ser válidos; Isc pode ser zero ou positiva.';$('formMessage').classList.add('show');last=null;return}const ib=calcIb(),over=ib<=In&&In<=iz,breakOk=bc>=isc,margin=bc-isc;$('outIb').textContent=f(ib)+' A';$('outIn').textContent=f(In)+' A';$('outIz').textContent=f(iz)+' A';$('outOverload').textContent=over?'Atende':'Não atende';$('outOverload').className=over?'status-ok':'status-bad';$('outBreak').textContent=breakOk?'Atende ao valor informado':'Insuficiente';$('outBreak').className=breakOk?'status-ok':'status-bad';$('outBreakMargin').textContent=f(margin)+' kA';let notes=[];if(ib>In)notes.push('In está abaixo de Ib: o dispositivo pode não conduzir a carga prevista sem atuação/sobrecarga conforme sua característica.');if(In>iz)notes.push('In está acima de Iz: o cabo informado não fica protegido pelo critério simples Ib ≤ In ≤ Iz.');if(!breakOk)notes.push('A capacidade de interrupção informada é menor que o Isc presumido.');if(over&&breakOk)notes.push('Os dois critérios básicos informados atendem, mas ainda faltam curva/unidade de disparo, coordenação, seletividade e demais verificações do projeto.');if($('device').value==='motor')notes.push('Para motor, valide proteção de sobrecarga, partida, curto-circuito e coordenação com contator/relé conforme a arquitetura adotada.');$('status').textContent=notes.join(' ');$('status').className='calc-note '+(over&&breakOk?'status-ok':'status-bad');last={ib,In,iz,bc,isc,margin,over,breakOk};draw()}function draw(){if(!last)return;const svg=$('protectionSvg'),max=Math.max(last.ib,last.In,last.iz)*1.25||1,x=v=>90+570*v/max;svg.innerHTML=`<line x1="90" y1="125" x2="660" y2="125" stroke="#536b7a" stroke-width="4"/><line x1="${x(last.ib)}" y1="80" x2="${x(last.ib)}" y2="165" stroke="#006bb1" stroke-width="4"/><circle cx="${x(last.ib)}" cy="125" r="8" fill="#fff" stroke="#006bb1" stroke-width="4"/><text x="${x(last.ib)}" y="65" text-anchor="middle">Ib ${f(last.ib)} A</text><line x1="${x(last.In)}" y1="80" x2="${x(last.In)}" y2="165" stroke="#7a4d00" stroke-width="4"/><circle cx="${x(last.In)}" cy="125" r="8" fill="#fff" stroke="#7a4d00" stroke-width="4"/><text x="${x(last.In)}" y="190" text-anchor="middle">In ${f(last.In)} A</text><line x1="${x(last.iz)}" y1="80" x2="${x(last.iz)}" y2="165" stroke="#146c2e" stroke-width="4"/><circle cx="${x(last.iz)}" cy="125" r="8" fill="#fff" stroke="#146c2e" stroke-width="4"/><text x="${x(last.iz)}" y="65" text-anchor="middle">Iz ${f(last.iz)} A</text><text x="375" y="235" text-anchor="middle" font-size="15" fill="#334b59">Objetivo básico: Ib ≤ In ≤ Iz</text>`}function example(){$('mode').value='amp';$('value').value='32';$('system').value='tri';$('voltage').value='380';$('pf').value='0,92';$('eff').value='90';$('iz').value='50';$('in').value='40';$('breakCap').value='10';$('isc').value='6';$('device').value='modular';calc()}async function copy(){if(!last)calc();if(!last)return;const t=`Ib: ${f(last.ib)} A\nIn candidato: ${f(last.In)} A\nIz corrigida: ${f(last.iz)} A\nIb ≤ In ≤ Iz: ${last.over?'atende':'não atende'}\nCapacidade de interrupção: ${f(last.bc)} kA\nIsc presumido: ${f(last.isc)} kA\nCapacidade ≥ Isc: ${last.breakOk?'atende':'não atende'}`;try{await navigator.clipboard.writeText(t)}catch(e){window.prompt('Copie:',t)}}['mode','value','system','voltage','pf','eff','iz','in','breakCap','isc','device'].forEach(id=>{$(id).addEventListener('input',calc);$(id).addEventListener('change',calc)});$('btnCalculate').addEventListener('click',calc);$('btnExample').addEventListener('click',example);$('btnCopy').addEventListener('click',copy);calc()})();</script>
+<a aria-label="Voltar para Ferramentas" class="floating-back-tools no-print" href="ferramentas.html"><i class="fas fa-arrow-left"></i> Voltar para Ferramentas</a></body></html>
