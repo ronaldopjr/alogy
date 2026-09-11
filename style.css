@@ -51,3 +51,49 @@
   color:#004b80!important;
   font-weight:900;
 }
+
+/* Acoes rapidas: devem permanecer visiveis nas paginas publicas em tela. */
+@media screen{
+  .fab-wrap{
+    position:fixed!important;
+    right:16px!important;
+    bottom:12px!important;
+    z-index:2500!important;
+    display:flex!important;
+    visibility:visible!important;
+    opacity:1!important;
+    pointer-events:auto!important;
+  }
+  .fab-wrap .fab-btn{
+    visibility:visible!important;
+    opacity:1!important;
+  }
+}
+@media screen and (max-width:560px){
+  .fab-wrap{right:12px!important;bottom:12px!important}
+}
+
+/* Central de ferramentas: cards com largura e altura visual consistentes. */
+.tools-page .tool-group .tools-grid{
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  grid-auto-rows:1fr;
+  align-items:stretch!important;
+}
+.tools-page .tool-group .tool-card{
+  width:100%;
+  height:100%!important;
+  display:flex!important;
+  flex-direction:column!important;
+}
+.tools-page .tool-group .tool-card > p{
+  flex:1 1 auto;
+}
+.tools-page .tool-group .tool-card .tool-meta{
+  margin-top:auto!important;
+}
+@media(max-width:900px){
+  .tools-page .tool-group .tools-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+}
+@media(max-width:620px){
+  .tools-page .tool-group .tools-grid{grid-template-columns:1fr!important}
+}
