@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Calibração de pHmetro: Slope, Offset e Buffer | ALOGY Engenharia</title>
-  <meta name="description" content="Procedimento de calibração de pHmetro industrial com buffers, temperatura, slope, zero, estabilidade, verificação e diagnóstico de campo." />
+  <title>Calibração de pHmetro | pH Sensor Calibration, Slope, Offset e Buffer | ALOGY</title>
+  <meta name="description" content="pH sensor calibration industrial: buffers, temperatura, slope, offset, Nernst, as-found/as-left, verificação e diagnóstico de campo." />
   <meta name="robots" content="index,follow" />
   <meta name="theme-color" content="#2C78B9" />
   <link rel="canonical" href="https://www.alogy.com.br/blog-calibracao-phmetro.html" />
@@ -12,111 +12,86 @@
   <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png" />
   <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <link rel="stylesheet" href="style.css?v=20260722-layout-original-uppercase-mobilefix" />
+  <link rel="stylesheet" href="style.css?v=20260911-article-semantic1" />
   <script src="app.js" defer></script>
+
   <meta property="og:locale" content="pt_BR" />
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="ALOGY Engenharia" />
-  <meta property="og:title" content="Calibração de pHmetro: Slope, Offset e Buffer" />
-  <meta property="og:description" content="Procedimento de calibração de pHmetro industrial com buffers, temperatura, slope, zero, estabilidade, verificação e diagnóstico de campo." />
+  <meta property="og:title" content="Calibração de pHmetro: Slope, Offset, Buffer e Temperatura" />
+  <meta property="og:description" content="Como verificar e calibrar sensores de pH sem confundir sujeira, temperatura, referência e ajuste eletrônico." />
   <meta property="og:url" content="https://www.alogy.com.br/blog-calibracao-phmetro.html" />
-  <meta property="og:image" content="https://www.alogy.com.br/favicon-512x512.png" />
+  <meta property="og:image" content="https://www.alogy.com.br/capa-blog-calibracao-phmetro.webp" />
   <meta name="twitter:card" content="summary_large_image" />
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Calibração de pHmetro: slope, offset e buffers","description":"Procedimento de calibração de pHmetro industrial com buffers, temperatura, slope, zero, estabilidade, verificação e diagnóstico de campo.","url":"https://www.alogy.com.br/blog-calibracao-phmetro.html","mainEntityOfPage":"https://www.alogy.com.br/blog-calibracao-phmetro.html","dateModified":"2026-07-18","inLanguage":"pt-BR","author":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"},"publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/","logo":{"@type":"ImageObject","url":"https://www.alogy.com.br/logo-alogy.webp"}},"image":"https://www.alogy.com.br/favicon-512x512.png"}</script>
+  <meta name="twitter:image" content="https://www.alogy.com.br/capa-blog-calibracao-phmetro.webp" />
+
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Calibração de pHmetro: slope, offset, buffer e temperatura","description":"pH sensor calibration industrial com buffers, temperatura, slope, offset, Nernst, as-found/as-left, verificação e diagnóstico de campo.","url":"https://www.alogy.com.br/blog-calibracao-phmetro.html","mainEntityOfPage":"https://www.alogy.com.br/blog-calibracao-phmetro.html","dateModified":"2026-09-11","inLanguage":"pt-BR","author":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"},"publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/","logo":{"@type":"ImageObject","url":"https://www.alogy.com.br/logo-alogy.webp"}},"image":"https://www.alogy.com.br/capa-blog-calibracao-phmetro.webp"}</script>
   <style>
     .mini-help{color:var(--muted);font-size:.92rem;line-height:1.55;margin-top:8px}
-    .faq details{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:14px;padding:14px;margin-top:10px;box-shadow:0 6px 16px rgba(0,0,0,.04)}
-    .faq summary{cursor:pointer;font-weight:900;color:#0b3a62}.faq p{margin:10px 0 0;color:var(--muted)}
-    .calc-result.two{grid-template-columns:repeat(2,1fr)} .calc-result.four{grid-template-columns:repeat(4,1fr)} .result-box strong.small{font-size:1.05rem}
-    .pill-ok{color:#146c2e;font-weight:900} .pill-warn{color:#a65f00;font-weight:900} .pill-bad{color:#a10000;font-weight:900}
-    @media(max-width:900px){.calc-result.two,.calc-result.four{grid-template-columns:1fr}}
-    @media print{header,.social-floating,.fab-wrap,.cta-bar,footer,.calc-actions,.tools-hero .btn,.no-print{display:none!important}body{background:#fff}.container{max-width:100%;padding:0}.calc-card,.tools-hero{box-shadow:none;border:1px solid #ddd}.calc-layout{display:block}.calc-card{margin:12px 0}.calc-table th{background:#eee!important;color:#111!important}}
+    .formula-box{background:#f8fafc;border:1px solid #dbe5ec;border-left:4px solid #006bb1;border-radius:12px;padding:14px;margin:16px 0}
+    @media print{header,.social-floating,.fab-wrap,.cta-bar,footer,.calc-actions,.no-print{display:none!important}}
   </style>
-  <!-- Google AdSense: carregado somente em páginas editoriais monetizáveis. A exibição e os formatos são controlados no painel do AdSense. -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5586837114309500" crossorigin="anonymous"></script>
 </head>
 <body>
   <header>
-    <div class="container headbar"><a href="/" class="logo-wrapper" aria-label="Voltar para o início"><img src="logo-alogy.webp" alt="ALOGY Engenharia"  width="878"  height="308"  decoding="async" /></a>
-<button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menu"><i class="fas fa-bars"></i></button></div>
-    <nav class="desktop" aria-label="Menu principal"><div class="container navlinks"><a href="/">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></div></nav>
-    <nav class="mobile" aria-label="Menu mobile"><a href="/">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></nav>
+    <div class="container headbar"><a href="/" class="logo-wrapper" aria-label="Voltar para o início"><img src="logo-alogy.webp" alt="ALOGY Engenharia" width="878" height="308" decoding="async" /></a><button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menu"><i class="fas fa-bars"></i></button></div>
+    <nav class="desktop" aria-label="Menu principal"><div class="container navlinks"><a href="/">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="/guia/">Guia</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></div></nav>
+    <nav class="mobile" aria-label="Menu mobile"><a href="/">Início</a><a href="industrial.html">Serviços Industriais</a><a href="residencial.html">Serviços Residenciais</a><a href="cases.html">Projetos</a><a href="/guia/">Guia</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></nav>
   </header>
-  <div class="social-floating" aria-label="Redes sociais"><a href="https://www.linkedin.com/company/alogyengenharia" class="linkedin" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a><a href="https://www.instagram.com/alogyengenharia" class="instagram" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="https://www.facebook.com/alogyengenharia" class="facebook" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><a href="https://www.youtube.com/@alogyengenharia" class="youtube" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a><a href="https://hotmart.com/pt-br/club/alogyengenharia" class="hotmart" target="_blank" rel="noopener noreferrer" aria-label="Hotmart">H</a><a href="https://www.tiktok.com/@alogyengenharia" class="tiktok" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fab fa-tiktok"></i></a></div>
-  <div class="fab-wrap" aria-label="Ações rápidas"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1%21%20Vim%20pelas%20ferramentas%20da%20ALOGY.%20Gostaria%20de%20atendimento." target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
+
+  <div class="social-floating" aria-label="Redes sociais"><a href="https://www.linkedin.com/company/alogyengenharia" class="linkedin" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a><a href="https://www.instagram.com/alogyengenharia" class="instagram" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="https://www.facebook.com/alogyengenharia" class="facebook" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><a href="https://www.youtube.com/@alogyengenharia" class="youtube" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a><a href="https://www.tiktok.com/@alogyengenharia" class="tiktok" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fab fa-tiktok"></i></a></div>
+  <div class="fab-wrap" aria-label="Ações rápidas"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1!%20Li%20o%20artigo%20sobre%20calibra%C3%A7%C3%A3o%20de%20pH%20da%20ALOGY." target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
+
   <main class="container" style="margin-top:18px">
-    <div style="margin-bottom:14px;display:flex;gap:10px;flex-wrap:wrap"><a class="floating-back-tools" href="blog.html"><i class="fas fa-arrow-left"></i> Voltar para o Blog</a><a class="floating-back-tools" href="calculadora-calibracao-phmetro.html"><i class="fas fa-calculator"></i> Abrir ferramenta</a></div>
-    <article class="calc-card"><h1>Calibração de pHmetro: slope, offset e buffers</h1>
-<p>Uma calibração útil de pH começa antes do ajuste: é preciso saber se o desvio pertence ao sensor, à referência, ao transmissor, à temperatura, aos buffers ou à própria amostra. Sem essa separação, o ajuste pode apenas esconder revestimento, contaminação ou instalação inadequada.</p>
+    <div class="no-print" style="margin-bottom:14px;display:flex;gap:10px;flex-wrap:wrap"><a class="floating-back-tools" href="blog.html"><i class="fas fa-arrow-left"></i> Voltar para o Blog</a><a class="floating-back-tools" href="calculadora-calibracao-phmetro.html"><i class="fas fa-calculator"></i> Abrir ferramenta</a></div>
+    <article class="blog-post">
+      <h1>Calibração de pHmetro: slope, offset e buffers</h1>
+      <p class="muted" data-alogy-content-meta><strong>Conteúdo técnico:</strong> ALOGY Engenharia · <strong>Atualizado em:</strong> 11/09/2026</p>
+      <figure class="article-cover-figure"><img class="article-cover-image" src="capa-blog-calibracao-phmetro.webp" alt="Calibração de sensor e transmissor de pH com soluções buffer" loading="eager" fetchpriority="high" decoding="async"/><figcaption>Uma calibração de pH útil separa condição do eletrodo, solução buffer, temperatura, transmissor e instalação antes do ajuste.</figcaption></figure>
 
-<h2>Limpeza, verificação, calibração e ajuste não são a mesma coisa</h2>
-<p>Depósitos sobre o vidro sensível ou a junção de referência podem produzir resposta lenta, instabilidade e desvio. Por isso, a sequência mais informativa é registrar a leitura <em>as-found</em>, limpar conforme o manual, repetir a verificação e somente então decidir se o ajuste é necessário. Ajustar um sensor sujo pode mascarar a causa do erro.</p>
+      <p>Uma calibração útil de pH começa antes do ajuste: é preciso saber se o desvio pertence ao sensor, à referência, ao transmissor, à temperatura, aos buffers ou à própria amostra. Sem essa separação, o ajuste pode apenas esconder revestimento, contaminação ou instalação inadequada.</p>
 
-<h2>Como escolher e usar os buffers</h2>
-<ul>
-  <li>Use soluções rastreáveis, dentro da validade e sem contaminação; não devolva solução usada ao frasco.</li>
-  <li>Escolha dois pontos que envolvam a faixa normal do processo sempre que o procedimento e o transmissor permitirem. Um terceiro buffer independente pode verificar a calibração.</li>
-  <li>Enxágue sem esfregar o bulbo, remova apenas o excesso de líquido e aguarde estabilidade em cada ponto.</li>
-  <li>Informe ou meça corretamente a temperatura. O valor certificado do buffer e a sensibilidade do eletrodo variam com ela.</li>
-</ul>
-<p>Buffers alcalinos exigem atenção especial ao tempo de exposição ao ar, pois podem absorver dióxido de carbono. Use recipientes limpos e porções pequenas, mantenha-os fechados até o uso e siga o prazo do fabricante após abertura. Não calibre diretamente no frasco de armazenamento.</p>
+      <h2>As-found, limpeza, calibração e ajuste</h2>
+      <p>Depósitos sobre o vidro sensível ou a junção de referência podem produzir resposta lenta, instabilidade e desvio. A sequência mais informativa é registrar a leitura <em>as-found</em>, limpar conforme o manual, repetir a verificação e somente então decidir se o ajuste é necessário. Ajustar um sensor sujo pode mascarar a causa do erro.</p>
 
-<h2>Calibração de um ponto, dois pontos e verificação</h2>
-<p>A calibração de <strong>um ponto</strong>, normalmente próxima de pH 7, corrige principalmente o zero ou potencial de assimetria. Ela não mede adequadamente a sensibilidade do eletrodo. A calibração de <strong>dois pontos</strong> determina zero e slope; os buffers precisam ter valores diferentes e devem cobrir a região de interesse.</p>
-<p>Depois do ajuste, faça uma <strong>verificação</strong> sem recalibrar. Retornar ao primeiro buffer testa repetibilidade; usar um terceiro buffer dentro da faixa avalia a resposta em um ponto que não participou do ajuste. Registre o erro observado e compare-o com o critério definido para a malha, não com uma tolerância genérica da internet.</p>
+      <h2>Como escolher e usar os buffers</h2>
+      <ul><li>Use soluções rastreáveis, dentro da validade e sem contaminação; não devolva solução usada ao frasco.</li><li>Escolha dois pontos que envolvam a faixa normal do processo sempre que o procedimento e o transmissor permitirem.</li><li>Um terceiro buffer independente pode ser usado para verificar a calibração.</li><li>Enxágue sem esfregar o bulbo, remova apenas o excesso de líquido e aguarde estabilidade em cada ponto.</li><li>Informe ou meça corretamente a temperatura: o valor certificado do buffer e a sensibilidade do eletrodo variam com ela.</li></ul>
+      <p>Buffers alcalinos exigem atenção ao tempo de exposição ao ar, pois podem absorver dióxido de carbono. Use recipientes limpos e porções pequenas e não calibre diretamente no frasco de armazenamento.</p>
 
-<h2>O que slope e offset mostram</h2>
-<p>Em um eletrodo ideal, a sensibilidade de Nernst é aproximadamente <strong>59,16 mV por unidade de pH a 25 °C</strong>. O transmissor pode exibir o sinal com sinal positivo ou negativo conforme sua convenção; para avaliar a magnitude do slope, compare o módulo da variação em mV com a variação de pH.</p>
-<p>O <strong>offset</strong> representa o deslocamento próximo ao ponto neutro. Um slope reduzido pode indicar envelhecimento, revestimento ou problema de referência; offset elevado pode estar associado a contaminação, junção obstruída, buffer inadequado ou entrada elétrica. Nenhum desses diagnósticos deve ser fechado por um único número.</p>
+      <h2>Um ponto, dois pontos e verificação</h2>
+      <p>A calibração de <strong>um ponto</strong>, normalmente próxima de pH 7, corrige principalmente o zero ou potencial de assimetria. A calibração de <strong>dois pontos</strong> determina zero e slope; os buffers precisam ter valores diferentes e cobrir a região de interesse.</p>
+      <p>Depois do ajuste, faça uma <strong>verificação</strong> sem recalibrar. Retornar ao primeiro buffer testa repetibilidade; usar um terceiro buffer dentro da faixa avalia a resposta em um ponto que não participou do ajuste.</p>
 
-<h2>Temperatura do eletrodo, do buffer e do processo</h2>
-<p>A compensação automática de temperatura tem duas funções possíveis: ajustar a resposta teórica de Nernst e selecionar o valor do buffer na temperatura medida. Confirme no manual quais funções o transmissor executa e qual tabela está ativa. Sensor de pH, elemento de temperatura e buffer precisam estar em equilíbrio antes de armazenar o ponto.</p>
-<p>Essa compensação não corrige universalmente a química do processo. Uma amostra retirada quente pode mudar de pH ao esfriar por equilíbrio químico, absorção de gases ou perda de voláteis. Por isso, diferença entre leitura em linha e amostra de bancada não prova, sozinha, erro do instrumento.</p>
+      <h2>Slope, offset e equação de Nernst</h2>
+      <p>Em um eletrodo ideal, a sensibilidade de Nernst é aproximadamente <strong>59,16 mV por unidade de pH a 25 °C</strong>. O transmissor pode exibir o sinal com convenção positiva ou negativa; para avaliar a magnitude do slope, compare o módulo da variação em mV com a variação de pH.</p>
+      <div class="formula-box"><strong>Slope ≈ ΔmV ÷ ΔpH</strong><br/>O valor teórico depende da temperatura; por isso a comparação precisa ser feita na condição correta.</div>
+      <p>O <strong>offset</strong> representa o deslocamento próximo ao ponto neutro. Slope reduzido pode indicar envelhecimento, revestimento ou problema de referência; offset elevado pode estar associado a contaminação, junção obstruída, buffer inadequado ou entrada elétrica. Nenhum diagnóstico deve ser fechado por um único número.</p>
 
-<h2>Exemplo numérico</h2>
-<p>Entre buffers pH 7 e pH 4, uma variação medida de 174,81 mV resulta em 58,27 mV/pH. Comparada ao valor teórico de 59,16 mV/pH a 25 °C, a resposta é aproximadamente 98,5%. A aceitação não é universal: deve seguir o manual do conjunto sensor/transmissor e o procedimento da instalação.</p>
+      <h2>Temperatura do eletrodo, do buffer e do processo</h2>
+      <p>A compensação automática pode ajustar a resposta teórica de Nernst e também selecionar o valor do buffer na temperatura medida, conforme o transmissor. Sensor de pH, elemento de temperatura e buffer precisam estar em equilíbrio antes de armazenar o ponto.</p>
+      <p>Essa compensação não corrige universalmente a química do processo. Uma amostra retirada quente pode mudar de pH ao esfriar por equilíbrio químico, absorção de gases ou perda de voláteis.</p>
 
-<h2>Registro mínimo recomendado</h2>
-<ul>
-  <li>identificação do sensor, transmissor e ponto de medição;</li>
-  <li>lote, validade, valores e temperatura dos buffers;</li>
-  <li>leituras antes da limpeza, depois da limpeza e após eventual ajuste;</li>
-  <li>slope, offset, tempo de estabilização e mensagens de diagnóstico;</li>
-  <li>condição da junção, cabos, conectores, aterramento e sistema de amostragem.</li>
-</ul>
+      <h2>Exemplo numérico</h2>
+      <p>Entre buffers pH 7 e pH 4, uma variação medida de 174,81 mV resulta em 58,27 mV/pH. Comparada ao valor teórico de 59,16 mV/pH a 25 °C, a resposta é aproximadamente 98,5%. A aceitação deve seguir o manual do conjunto sensor/transmissor e o procedimento da instalação.</p>
 
-<h2>Sequência prática de campo</h2>
-<ol>
-  <li>Coloque a malha em condição segura e registre pH, temperatura, mV e diagnósticos <em>as-found</em>.</li>
-  <li>Inspecione montagem, cabo, conector, umidade, nível de eletrólito quando aplicável e condição da junção.</li>
-  <li>Enxágue e meça os buffers sem ajustar; isso preserva a evidência do estado encontrado.</li>
-  <li>Limpe conforme o contaminante e o manual, condicione o eletrodo se necessário e repita a verificação.</li>
-  <li>Ajuste somente se o procedimento exigir e o conjunto estiver estável.</li>
-  <li>Verifique novamente, documente slope, zero e erros e restaure a malha com intertravamentos e modo de controle confirmados.</li>
-</ol>
-<p>Se o slope melhora após a limpeza, a causa provável estava na interface com o processo. Se o zero deriva enquanto o slope permanece estável, investigue referência e junção. Se ambos os valores parecem adequados, mas a leitura em linha oscila, priorize cabos, aterramento, bolhas, vazão na câmara e representatividade da amostra.</p>
+      <h2>Registro mínimo recomendado</h2>
+      <ul><li>identificação do sensor, transmissor e ponto de medição;</li><li>lote, validade, valores e temperatura dos buffers;</li><li>leituras antes da limpeza, depois da limpeza e após eventual ajuste;</li><li>slope, offset, tempo de estabilização e mensagens de diagnóstico;</li><li>condição da junção, cabos, conectores, aterramento e sistema de amostragem;</li><li>resultado final <em>as-left</em> e intervenção executada.</li></ul>
 
-<h2>Ferramentas e referências</h2>
-<div class="calc-actions">
-  <a class="mini-btn dark" href="calculadora-calibracao-phmetro.html"><i class="fas fa-calculator"></i> Simular calibração de pH</a>
-  <a class="mini-btn" href="ferramentas-analitica-industrial.html"><i class="fas fa-flask"></i> Ferramentas de analítica</a>
-</div>
-<ul class="mini-help" style="margin-top:12px">
-  <li><a href="calculadora-slope-sonda-ph.html">Calculadora de slope de sonda de pH</a></li>
-  <li><a href="blog-slope-sonda-ph.html">Como interpretar mV/pH, slope e temperatura</a></li>
-  <li><a href="blog-calibracao-analisadores-processo.html">Calibração de analisadores de processo</a></li>
-  <li><a href="https://documents.thermofisher.com/TFS-Assets/LSG/brochures/pH-Measurement-Handbook-S-PHREFBK-E.pdf" target="_blank" rel="noopener noreferrer">Thermo Fisher Scientific — <em>pH Measurement Handbook</em>, código S-PHREFBK-E</a></li>
-  <li><a href="https://www.us.endress.com/en/endress-hauser-group/Case-studies-application-notes/ph-sensors-calibrate-clean-check" target="_blank" rel="noopener noreferrer">Endress+Hauser — limpeza, verificação e calibração de pH</a></li>
-  <li><a href="https://www.yokogawa.com/us/library/documents-downloads/technical-information/performing-a-calibration-on-the-ph202/" target="_blank" rel="noopener noreferrer">Yokogawa — <em>Performing a Calibration on the PH202</em></a></li>
-</ul>
+      <h2>Sequência prática de campo</h2>
+      <ol><li>Coloque a malha em condição segura e registre pH, temperatura, mV e diagnósticos as-found.</li><li>Inspecione montagem, cabo, conector, umidade e condição da junção.</li><li>Enxágue e meça os buffers sem ajustar.</li><li>Limpe conforme o contaminante e o manual e repita a verificação.</li><li>Ajuste somente se o procedimento exigir e o conjunto estiver estável.</li><li>Verifique novamente, documente slope, zero, erros e as-left e restaure a malha.</li></ol>
 
-<h2>Aviso de uso</h2>
-<p>Este conteúdo é informativo e orientativo. Ele não define sozinho critérios de aceitação nem substitui procedimento aprovado, manual do fabricante, avaliação da amostra e da instalação, rastreabilidade metrológica ou validação por profissional habilitado.</p></article>
-    <section class="cta-bar"><h2>Precisa de apoio técnico?</h2><p>A ALOGY Engenharia apoia projetos, manutenção, instrumentação, automação e melhoria de processos industriais.</p><a class="btn" href="/#contato"><i class="fas fa-envelope"></i> Falar com a ALOGY</a></section>
+      <h2>Ferramentas e referências</h2>
+      <div class="calc-actions"><a class="mini-btn dark" href="calculadora-calibracao-phmetro.html"><i class="fas fa-calculator"></i> Calibração de pH</a><a class="mini-btn" href="calculadora-slope-sonda-ph.html">Slope de sonda pH</a><a class="mini-btn" href="ferramentas-analitica-industrial.html"><i class="fas fa-flask"></i> Analítica</a><a class="mini-btn" href="blog-calibracao-analisadores-processo.html">Calibração de analisadores</a></div>
+      <ul class="mini-help" style="margin-top:12px"><li><a href="https://documents.thermofisher.com/TFS-Assets/LSG/brochures/pH-Measurement-Handbook-S-PHREFBK-E.pdf" target="_blank" rel="noopener noreferrer">Thermo Fisher Scientific — pH Measurement Handbook</a></li><li><a href="https://www.us.endress.com/en/endress-hauser-group/Case-studies-application-notes/ph-sensors-calibrate-clean-check" target="_blank" rel="noopener noreferrer">Endress+Hauser — limpeza, verificação e calibração de pH</a></li><li><a href="https://www.yokogawa.com/us/library/documents-downloads/technical-information/performing-a-calibration-on-the-ph202/" target="_blank" rel="noopener noreferrer">Yokogawa — Performing a Calibration on the PH202</a></li></ul>
+
+      <h2>Aviso de uso</h2>
+      <p>Este conteúdo é informativo e não define sozinho critérios de aceitação. Use procedimento aprovado, manual do fabricante, soluções de referência adequadas, rastreabilidade metrológica e avaliação da instalação.</p>
+    </article>
   </main>
   <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
 </body>
