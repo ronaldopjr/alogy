@@ -1,65 +1,68 @@
 # ALOGY — fila operacional atual
 
-> Versão 2026-09-14.7. Esta é a única fila executável. Filas F4/F5 anteriores são históricas.
+> Versão 2026-09-14.9. Esta é a única fila executável. Filas F4/F5 anteriores são históricas.
 
 ## E02 — busca de ferramentas
 
-**Estado:** PUBLICADO — FALTA CONFERIR NO DOMÍNIO.
+**Estado:** CONCLUÍDO.
 
-**Alteração:** `style.css` dá prioridade ao estado `display:none` aplicado pelo filtro da central, sem alterar o JavaScript, a grade, os tamanhos ou a identidade dos cartões.
+A correção original do filtro permanece no commit `eec58b20b6de6d8de827cf1f9f623b2987827bb2`. No gate final foi reproduzido um segundo problema: em 390 px a central tinha `scrollWidth=545` por causa da faixa horizontal dentro de `.tool-page-intro`.
 
-**Validação local:**
-- “PT100” → 1 cartão realmente visível e contador lógico 1;
-- termo inexistente → 0 cartões e mensagem vazia;
+A correção responsiva foi publicada no commit `cb653d8c001a10849392835922d5e7e8d89fa60e`, limitando somente `.tool-page-intro` e `.tool-category-jump` à largura disponível.
+
+**Aceite no artefato exato do GitHub Pages, em 1200 e 390 px:**
+- `PT100` → 1 cartão visível;
+- termo inexistente → 0 cartões + mensagem vazia;
 - limpar → 30 cartões;
-- “valvula” encontra os dois cartões com “Válvula” sem exigir acento;
-- cenários repetidos em 1200 px e 390 px;
-- CSS original preservado, com adição localizada e sem erro de análise.
+- `valvula` → 2 cartões com “Válvula”;
+- mobile 390 px → `scrollWidth=390` após a correção;
+- desktop sem overflow horizontal.
 
-Relatório: `E02-TOOLS-SEARCH-FIX.md`. Commit de site: `eec58b20b6de6d8de827cf1f9f623b2987827bb2`.
-
-**Conferência pendente:** em navegador real no domínio, repetir PT100, termo inexistente, limpeza e busca sem acento.
+Workflow Pages `34878751310`: concluído com sucesso para `cb653d8c...`.
 
 ## E03 — oferta comercial verdadeira
 
-**Estado:** PUBLICADO — FALTA CONFERIR NO DOMÍNIO.
+**Estado:** CONCLUÍDO no escopo inicial; C01 continua como dependência comercial separada.
 
-### E03-COMMERCIAL-TRUTH-01 — `industrial.html`
+Publicações:
+- `e945d6e5e7259e456bde56339084a2b37ff4951a` — `industrial.html`;
+- `9a4c33175da73b3a53fe7912bca33da5bdcdd8b8` — home, Sobre e CTA 4–20 mA.
 
-- promessa direta de “calibração em campo” removida;
-- oferta posicionada em avaliação, inspeção, manutenção, configuração e conferência funcional sob escopo;
-- diferença entre manutenção/conferência funcional e certificado de calibração, acreditação ou rastreabilidade explicitada;
-- definição prévia de equipamento, modelo, quantidade, falha, local, recursos, testes e documentação exigida;
-- oferta de apoio em NR10/NR12 qualificada, sem alegação de conformidade automática.
+**Gate do artefato publicado:**
+- home, Industrial, Sobre e calculadora 4–20 mA renderizadas em 1200 e 390 px sem overflow horizontal;
+- promessa direta antiga de calibração em campo não aparece nas páginas verificadas;
+- calculadora 4–20 mA preservou 6 bar em 0–10 bar → 13,600 mA / 60,00%; LRV=URV limpa resultado; 12 bar → 23,200 mA / 120,00% como extrapolação;
+- Hotmart social removido das páginas comerciais alteradas.
 
-Commit de site: `e945d6e5e7259e456bde56339084a2b37ff4951a`.
-Relatório: `E03-COMMERCIAL-TRUTH-01-REPORT.md`.
-
-### E03-COMMERCIAL-TRUTH-02 — home, Sobre e CTA 4-20 mA
-
-- home reposicionada para avaliação e manutenção de instrumentação, válvulas, atuadores e posicionadores;
-- promessa de calibração removida do banner e dos metadados comerciais;
-- página Sobre passou a explicar escopo, limites e avaliação prévia;
-- CTA da calculadora 4-20 mA alterado sem tocar em fórmula ou JavaScript técnico;
-- links sociais diretos da Hotmart removidos da home e da página Sobre, preservando o menu “Guia”.
-
-Commit de site: `9a4c33175da73b3a53fe7912bca33da5bdcdd8b8`.
-Relatório: `E03-COMMERCIAL-TRUTH-02-REPORT.md`.
-
-**Conferência pendente:**
-- `https://www.alogy.com.br/`: título, banner 1, CTA, formulário, imagens e responsividade;
-- `https://www.alogy.com.br/industrial.html`: título, seções, links, imagens e responsividade;
-- `https://www.alogy.com.br/sobre.html`: metadados visíveis, conteúdo, endereço, CTA e responsividade;
-- `https://www.alogy.com.br/calculadora-4-20ma.html`: cálculo intacto e novo CTA;
-- repetir também os quatro cenários de busca de E02.
-
-As buscas exatas por frases antigas retornaram zero resultados, mas o GitHub marcou a pesquisa como incompleta. O inventário integral de E04 continua obrigatório.
+A oferta continua deliberadamente limitada a avaliação, inspeção, manutenção, configuração e conferência funcional sob escopo. Não anunciar calibração rastreável, acreditação, bancada, equipe ou parceiros não confirmados.
 
 ## E04 — inventário e higiene técnica
 
-Recalcular inventário de todos os HTMLs, anúncios, canonicals, sitemaps, CTAs comerciais e decisões por URL. Organizar duplicidades de sitemap e links legados `/cursos`/“Cursos” sem nova poda em massa.
+**Estado:** EM EXECUÇÃO.
 
-**Estado:** PRÓXIMA ETAPA após a conferência de E02/E03; tarefas de leitura e inventário podem avançar sem alterar páginas.
+Inventário estrutural recalculado no artefato publicado:
+- 344 HTMLs totais;
+- 270 páginas públicas candidatas;
+- 73 HTMLs de relatórios/controles internos;
+- 1 HTML de verificação Google;
+- 222 páginas públicas indexáveis pela configuração atual;
+- 48 páginas públicas com `noindex`;
+- 222 URLs únicas nos quatro sitemaps filhos, todas com arquivo público correspondente;
+- 6 URLs duplicadas entre sitemap prioritário e complementar;
+- 88 páginas indexáveis com carregador direto do AdSense e 0 páginas `noindex` com esse carregador;
+- 149 páginas públicas ainda com `cursos.html` ou rótulo `Cursos`;
+- 139 páginas públicas ainda contendo link Hotmart;
+- 10 páginas públicas com contagem de H1 diferente de 1.
+
+O `ADSENSE-INVENTORY.csv` existente não pode continuar como fonte de verdade sem regeneração: possui 390 linhas, 122 caminhos já inexistentes e não contém 76 HTMLs atuais.
+
+### Próxima ação exata
+
+1. Regenerar `adsense-recovery/ADSENSE-INVENTORY.csv` com as 270 páginas públicas atuais, separando página pública, relatório/controle e verificação.
+2. Preservar decisões editoriais anteriores somente quando a URL ainda existe; novas páginas entram como `unclassified`/`a_classificar` até revisão.
+3. Deduplicar as seis URLs de sitemap sem excluir as páginas.
+4. Tratar `Cursos`/`cursos.html`, Hotmart e H1 em lotes pequenos e validados; não fazer substituição massiva cega.
+5. Não iniciar nova poda em massa.
 
 ## E08-W1 — avisos compartilhados
 
