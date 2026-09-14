@@ -1,0 +1,77 @@
+name: E05 valve pilot inventory
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/e05-valve-pilot-inventory.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: e05-valve-pilot-inventory
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Validate article and update inventory
+        run: python3 adsense-recovery/e05_valve_inventory.py
+
+      - name: Validate exact scope
+        shell: python
+        run: |
+          from pathlib import Path
+          import csv
+          import subprocess
+
+          tracked = set(subprocess.check_output(['git', 'diff', '--name-only'], text=True).splitlines())
+          untracked = set(subprocess.check_output(['git', 'ls-files', '--others', '--exclude-standard'], text=True).splitlines())
+          expected_tracked = {'adsense-recovery/ADSENSE-INVENTORY.csv'}
+          expected_untracked = {'adsense-recovery/E05-PILOT-VALVE-CONTROL-01.md'}
+          if tracked != expected_tracked or untracked != expected_untracked:
+              raise SystemExit(
+                  f'Diff fora do escopo: tracked={sorted(tracked)}, untracked={sorted(untracked)}'
+              )
+
+          with Path('adsense-recovery/ADSENSE-INVENTORY.csv').open(encoding='utf-8-sig', newline='') as stream:
+              rows = list(csv.DictReader(stream))
+          row = next(r for r in rows if r['path'] == 'blog-calibracao-valvula-controle.html')
+          expected = {
+              'robots': 'index,follow',
+              'adsense': 'true',
+              'in_sitemap': 'true',
+              'h1_count': '1',
+              'status': 'keep',
+              'priority': 'P1',
+              'confidence': 'high',
+              'audit_evidence': 'E05-PILOT-VALVE-CONTROL-01.md',
+          }
+          for key, value in expected.items():
+              if row.get(key) != value:
+                  raise SystemExit(f'Inventário inválido em {key}: {row.get(key)!r}')
+          if int(row['main_visible_words']) < 1300:
+              raise SystemExit('Conteúdo principal abaixo do aceite')
+          subprocess.run(['git', 'diff', '--check'], check=True)
+          if not Path('adsense-recovery/E05-PILOT-VALVE-CONTROL-01.md').exists():
+              raise SystemExit('Relatório ausente')
+          print('Escopo e inventário validados.')
+
+      - name: Commit atomically and remove temporary files
+        run: |
+          set -e
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git rm adsense-recovery/e05_valve_inventory.py
+          git rm .github/workflows/e05-valve-pilot-inventory.yml
+          git add -A
+          git commit -m 'AdSense E05: registra piloto editorial de valvula'
+          git pull --rebase origin main
+          git push origin HEAD:main
