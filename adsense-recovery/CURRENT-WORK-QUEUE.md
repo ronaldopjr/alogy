@@ -1,6 +1,6 @@
 # ALOGY — fila operacional atual
 
-> Versão 2026-09-14.5. Esta é a única fila executável. Filas F4/F5 anteriores são históricas.
+> Versão 2026-09-14.6. Esta é a única fila executável. Filas F4/F5 anteriores são históricas.
 
 ## E02 — busca de ferramentas
 
@@ -22,18 +22,21 @@ Relatório: `E02-TOOLS-SEARCH-FIX.md`. Commit de site: `eec58b20b6de6d8de827cf1f
 
 ## E03 — oferta comercial verdadeira
 
-**Estado:** EM EXECUÇÃO — lote 01 validado e preparado para publicação.
+**Estado:** EM EXECUÇÃO — lote 01 publicado; falta conferir no domínio e revisar os demais pontos do escopo inicial.
 
 ### E03-COMMERCIAL-TRUTH-01 — `industrial.html`
 
-- retirar a promessa direta de “calibração em campo” sem recursos metrológicos confirmados;
-- posicionar a oferta em avaliação, inspeção, manutenção, configuração e conferência funcional sob escopo;
-- deixar explícito que inspeção/manutenção não é certificado de calibração, acreditação ou comprovação de rastreabilidade;
-- exigir definição prévia de equipamento, modelo, quantidade, falha, local, recursos, testes e documentação;
-- qualificar também a oferta de apoio em NR10/NR12, sem alegar conformidade automática;
-- retirar o ícone social da Hotmart desta página, preservando o link global do Guia no menu.
+- promessa direta de “calibração em campo” removida;
+- oferta posicionada em avaliação, inspeção, manutenção, configuração e conferência funcional sob escopo;
+- diferença entre manutenção/conferência funcional e certificado de calibração, acreditação ou rastreabilidade explicitada;
+- definição prévia de equipamento, modelo, quantidade, falha, local, recursos, testes e documentação exigida;
+- oferta de apoio em NR10/NR12 qualificada, sem alegação de conformidade automática;
+- ícone social da Hotmart retirado desta página, preservando o link global do Guia no menu.
 
+Commit de site: `e945d6e5e7259e456bde56339084a2b37ff4951a`.
 Relatório: `E03-COMMERCIAL-TRUTH-01-REPORT.md`.
+
+**Conferência pendente:** abrir `https://www.alogy.com.br/industrial.html`, confirmar título, conteúdo, navegação, imagens e layout em desktop/celular. O código publicado em `main` foi conferido; a resposta interativa do domínio não foi validada neste ambiente.
 
 ### Próximo lote E03
 

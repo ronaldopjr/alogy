@@ -1,6 +1,6 @@
 # Recuperação do Google AdSense — ALOGY
 
-> **Controle operacional atual — versão 2026-09-14.5.** Este arquivo substitui as instruções antigas de F4/F5 como fonte de execução. O histórico permanece no Git, mas nenhuma fila antiga deve ser retomada sem conferir `ADSENSE-STATE.json` e `CURRENT-WORK-QUEUE.md`.
+> **Controle operacional atual — versão 2026-09-14.6.** Este arquivo substitui as instruções antigas de F4/F5 como fonte de execução. O histórico permanece no Git, mas nenhuma fila antiga deve ser retomada sem conferir `ADSENSE-STATE.json` e `CURRENT-WORK-QUEUE.md`.
 
 ## Objetivos
 
@@ -27,7 +27,7 @@ Arquivos F4/F5 e relatórios anteriores são históricos. Uma orientação antig
 - E00: revisão e plano consolidado — concluído.
 - E01: controles reconciliados — concluído no commit `734559b163b01b3e1bd95d07380cbfd33b241332`.
 - E02: correção publicada no commit `eec58b20b6de6d8de827cf1f9f623b2987827bb2` e validada localmente; falta conferir a busca interativa no domínio.
-- E03: iniciado com um lote conservador em `industrial.html`, retirando promessa direta de calibração em campo e delimitando manutenção/conferência funcional sob escopo.
+- E03: primeiro lote publicado no commit `e945d6e5e7259e456bde56339084a2b37ff4951a`, corrigindo `industrial.html` para retirar promessa direta de calibração em campo e delimitar manutenção/conferência funcional sob escopo.
 - Próxima ação: conferir `industrial.html` no domínio e continuar E03 em home, Sobre e CTAs comerciais; manter a conferência interativa de E02 explicitamente pendente.
 - Parecer interno: o site ainda não está pronto para solicitar nova análise ao AdSense.
 - A poda temática F5 não é mais a próxima ação. Não excluir, desindexar ou remover páginas em massa.

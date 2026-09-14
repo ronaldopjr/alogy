@@ -8,6 +8,7 @@ Corrigir a página comercial `industrial.html` para que a ALOGY não anuncie cal
 
 - Branch: `main`.
 - SHA de início: `332517f28b77d4c57e7cf456b9f81d1e3e995dfa`.
+- Commit de publicação: `e945d6e5e7259e456bde56339084a2b37ff4951a`.
 - Fato confirmado pelo proprietário: a ALOGY ainda não possui padrão calibrado confirmado para sustentar emissão própria de laudo de calibração.
 - Dependências não confirmadas: funções e faixas da bancada, modelos/portes atendidos, meios de teste, local de recebimento, profissionais disponíveis e parceiros.
 
@@ -26,7 +27,7 @@ A versão anterior de `industrial.html` anunciava “calibração em campo” co
 - A oferta de NR10/NR12 foi qualificada como apoio em adequações com escopo e responsabilidades definidos, sem alegação automática de conformidade.
 - O ícone social da Hotmart foi retirado desta página; o link global “Guia” no menu foi preservado.
 
-## Validação local
+## Validação local e no repositório
 
 - HTML analisado sem erro estrutural detectado pelo parser usado na execução.
 - Um H1.
@@ -36,6 +37,8 @@ A versão anterior de `industrial.html` anunciava “calibração em campo” co
 - Nenhuma alegação de acreditação ou rastreabilidade da ALOGY.
 - Nenhum link social da Hotmart.
 - Nenhuma fórmula, JavaScript técnico, sitemap, robots ou URL alterados.
+- Diff do commit limitado a `industrial.html`, estado, fila, plano, bloqueios e este relatório.
+- O blob `beadb745d57a31b6067fcc2102d3ab0db4592ae7` foi confirmado em `main` para `industrial.html`.
 
 ## Limites e pendências
 
@@ -47,4 +50,4 @@ A versão anterior de `industrial.html` anunciava “calibração em campo” co
 
 ## Resultado
 
-Lote validado e seguro para publicação. A página fica comercialmente utilizável sem exceder a capacidade comprovada, mas E03 permanece em execução até revisar os demais pontos do escopo inicial.
+Lote publicado em `main` e validado no código. A página fica comercialmente utilizável sem exceder a capacidade comprovada, mas permanece `PUBLICADO — FALTA CONFERIR` até a verificação do domínio. E03 continua em execução para os demais pontos do escopo inicial.
