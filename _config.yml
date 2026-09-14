@@ -1,0 +1,9 @@
+exclude:
+  - adsense-recovery
+  - "AUDITORIA-*.md"
+  - "RELATORIO-*.md"
+  - "ALTERACOES-*.json"
+  - "VALIDACAO-*.json"
+  - "CLASSIFICACAO-*.csv"
+  - "README.md"
+  - tests
