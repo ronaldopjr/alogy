@@ -1,0 +1,72 @@
+name: One-time run E04 Guide batch
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/one-time-run-e04-guide-batch.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: one-time-run-e04-guide-batch
+  cancel-in-progress: false
+
+jobs:
+  migrate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Run prepared migration
+        run: python adsense-recovery/e04_guide_batch.py
+
+      - name: Validate bounded diff
+        shell: python
+        run: |
+          from pathlib import Path
+          import subprocess
+
+          expected = {
+              'calculadora-erro-calibracao.html',
+              'checklist-comissionamento-hart.html',
+              'blog-vazao-normalizada-gases.html',
+              'calculadora-massa-tanque-nivel.html',
+              'blog-ar-instrumentos-qualidade-ponto-orvalho.html',
+              'adsense-recovery/ADSENSE-INVENTORY.csv',
+              'adsense-recovery/E04-GUIDE-NAVIGATION-01.md',
+          }
+          changed = set(subprocess.check_output(['git', 'diff', '--name-only'], text=True).splitlines())
+          if changed != expected:
+              raise SystemExit(f'Diff fora do escopo. Esperado={sorted(expected)} Atual={sorted(changed)}')
+
+          for rel in sorted(expected):
+              if not rel.endswith('.html'):
+                  continue
+              text = Path(rel).read_text(encoding='utf-8')
+              lower = text.lower()
+              if 'cursos.html' in lower or '>cursos<' in lower:
+                  raise SystemExit(f'Referência legada permaneceu em {rel}')
+              if 'hotmart.com' in lower or 'class="hotmart"' in lower or "class='hotmart'" in lower:
+                  raise SystemExit(f'Atalho social Hotmart permaneceu em {rel}')
+              if '/guia/' not in text or '>Guia<' not in text:
+                  raise SystemExit(f'Navegação Guia não confirmada em {rel}')
+
+          subprocess.run(['git', 'diff', '--check'], check=True)
+          print(f'Escopo validado: {len(changed)} arquivos, incluindo 5 páginas técnicas.')
+
+      - name: Commit migration and remove temporary files
+        shell: bash
+        run: |
+          set -e
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm adsense-recovery/e04_guide_batch.py
+          git rm .github/workflows/one-time-run-e04-guide-batch.yml
+          git add -A
+          git commit -m "AdSense E04: migra primeiro lote de navegacao para Guia"
+          git push origin HEAD:main
