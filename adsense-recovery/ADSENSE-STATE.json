@@ -1,16 +1,16 @@
 {
   "schema_version": 3,
   "project": "ALOGY AdSense Recovery",
-  "plan_version": "2026-09-14.11",
+  "plan_version": "2026-09-14.12",
   "repository": "ronaldopjr/alogy",
   "base_branch": "main",
   "work_branch": "main",
-  "base_sha_verified": "1b632bbd46e1c15334e6cdfdfba074589e526945",
+  "base_sha_verified": "17fabef38aca84332a6a35e11cde6cdc3e4ed9b7",
   "verified_at": "2026-09-14",
   "last_completed_stage": "E03",
   "stage_in_progress": "E04",
   "next_stage": "E04",
-  "next_action": "Limpar Cursos/cursos.html no HTML-fonte em lotes pequenos, sem alterar conteudo tecnico; depois selecionar o piloto editorial E05 pelo inventario regenerado.",
+  "next_action": "Continuar a higiene do AdSense: migrar Cursos/cursos.html para Guia em lotes pequenos, classificar links Hotmart por contexto e depois selecionar o piloto editorial E05 pelo inventario regenerado.",
   "status": "in_progress",
   "max_pages_per_edit_batch": 5,
   "preferred_editorial_batch": 3,
@@ -24,9 +24,12 @@
     "enabled": true,
     "target_branch": "main",
     "method": "validated-atomic-commit",
-    "batch_id": "E04-INVENTORY-HYGIENE-02",
+    "batch_id": "E04-SERVICES-NAVIGATION-01",
+    "site_change_commit": "2a047390f543d3a7a0469a3677f17c14fa0dcfeb",
+    "temporary_workflow_cleanup_commit": "17fabef38aca84332a6a35e11cde6cdc3e4ed9b7",
     "source_verified_on_main": true,
     "pages_deployment_success": true,
+    "pages_workflow_run": 34885469337,
     "live_environment_url": "https://www.alogy.com.br/",
     "require_clean_validated_diff": true,
     "require_domain_check": true,
@@ -40,12 +43,13 @@
       "source_html_total": 271,
       "editorial_or_route_html": 270,
       "google_verification_html": 1,
-      "public_indexable": 222,
-      "public_noindex": 48,
+      "public_indexable": 221,
+      "public_noindex": 49,
+      "sitemap_unique_urls": 221,
       "indexable_missing_from_sitemap": 0,
       "noindex_present_in_sitemap": 0,
       "indexable_content_missing_canonical": 0,
-      "intentional_canonical_aliases": 6,
+      "intentional_canonical_aliases": 7,
       "indexable_h1_anomalies": 0,
       "duplicate_sitemap_urls_after": 0,
       "jekyll_generated_internal_html_after": 0,
@@ -56,7 +60,25 @@
       "hotmart_link_pages": 139,
       "inventory_regenerated_locally": true,
       "canonical_inventory_repository_update_pending": true,
-      "reports": ["E04-INVENTORY-HYGIENE-01.md", "E04-INVENTORY-HYGIENE-02.md"]
+      "services_navigation": {
+        "status": "passed",
+        "public_label": "Servicos",
+        "public_destination": "industrial.html",
+        "separate_residential_navigation_present": false,
+        "legacy_route": "residencial.html",
+        "legacy_route_robots": "noindex,follow",
+        "legacy_route_canonical": "https://www.alogy.com.br/industrial.html",
+        "legacy_route_in_sitemap": false,
+        "home_replacement": "Instrumentista sob demanda",
+        "files_changed": 257,
+        "navigation_replacements": 1017,
+        "technical_formulas_or_javascript_changed": false
+      },
+      "reports": [
+        "E04-INVENTORY-HYGIENE-01.md",
+        "E04-INVENTORY-HYGIENE-02.md",
+        "E04-SERVICES-NAVIGATION-01.md"
+      ]
     },
     "shared_warning_follow_up": "E08-W1"
   },
@@ -64,14 +86,16 @@
     "initial_scope_status": "completed",
     "published_pages": ["industrial.html", "index.html", "sobre.html", "calculadora-4-20ma.html"],
     "confirmed_owner_fact": "A ALOGY ainda nao possui padrao calibrado confirmado para sustentar emissao propria de laudo de calibracao.",
-    "safe_positioning": "Avaliacao, inspecao, manutencao, configuracao e conferencia funcional sob escopo; calibracao, ensaio ou documentacao especifica somente quando recursos e parceiros forem confirmados na proposta."
+    "safe_positioning": "Avaliacao, inspecao, manutencao, configuracao e conferencia funcional sob escopo; calibracao, ensaio ou documentacao especifica somente quando recursos e parceiros forem confirmados na proposta.",
+    "navigation_rule": "Usar uma unica entrada publica Servicos apontando para industrial.html. Nao restaurar separacao entre servicos industriais e residenciais."
   },
   "constraints": {
     "mass_pruning_allowed": false,
     "mass_noindex_allowed": false,
     "invent_capabilities_or_credentials": false,
     "change_formula_without_validation": false,
-    "change_technical_javascript_without_reproduced_issue": false
+    "change_technical_javascript_without_reproduced_issue": false,
+    "restore_separate_residential_positioning": false
   },
   "owner_dependencies": [
     "Captura atual do AdSense com motivo, data e disponibilidade de nova analise",
