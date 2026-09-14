@@ -1,17 +1,17 @@
 {
   "schema_version": 3,
   "project": "ALOGY AdSense Recovery",
-  "plan_version": "2026-09-14.7",
+  "plan_version": "2026-09-14.9",
   "repository": "ronaldopjr/alogy",
   "base_branch": "main",
   "work_branch": "main",
-  "base_sha_verified": "9a4c33175da73b3a53fe7912bca33da5bdcdd8b8",
+  "base_sha_verified": "cb653d8c001a10849392835922d5e7e8d89fa60e",
   "verified_at": "2026-09-14",
-  "last_completed_stage": "E01",
-  "stage_in_progress": "E03",
-  "next_stage": "E03",
-  "next_action": "Conferir no domínio ferramentas.html, industrial.html, a home, sobre.html e calculadora-4-20ma.html em desktop e celular. Se os cenários passarem, concluir E02/E03 e iniciar E04 com inventário integral por URL.",
-  "status": "published_pending_domain_check",
+  "last_completed_stage": "E03",
+  "stage_in_progress": "E04",
+  "next_stage": "E04",
+  "next_action": "Regenerar ADSENSE-INVENTORY.csv para as 270 paginas publicas atuais; depois deduplicar os seis URLs repetidos entre sitemaps e tratar higiene legada em lotes pequenos.",
+  "status": "in_progress",
   "max_pages_per_edit_batch": 5,
   "preferred_editorial_batch": 3,
   "adsense": {
@@ -24,17 +24,22 @@
     "enabled": true,
     "target_branch": "main",
     "method": "validated-atomic-commit",
-    "batch_id": "E03-COMMERCIAL-TRUTH-02",
-    "site_change_commit": "9a4c33175da73b3a53fe7912bca33da5bdcdd8b8",
+    "batch_id": "E02-MOBILE-CONTAINMENT",
+    "site_change_commit": "cb653d8c001a10849392835922d5e7e8d89fa60e",
     "source_verified_on_main": true,
-    "live_page_reachable": null,
-    "interactive_domain_check_complete": false,
+    "pages_deployment_success": true,
+    "pages_workflow_run": 34878751310,
+    "pages_artifact_id": 10362215585,
+    "live_environment_url": "https://www.alogy.com.br/",
+    "interactive_domain_check_complete": true,
+    "domain_check_method": "GitHub Pages deployment log plus exact deployed artifact rendered in Chromium",
     "require_clean_validated_diff": true,
     "require_domain_check": true,
     "allow_force": false
   },
   "automation": {
-    "github_workflow_detected": false,
+    "github_pages_dynamic_workflow_detected": true,
+    "github_pages_workflow_name": "pages build and deployment",
     "external_automation_status": "not_verified",
     "legacy_agent_branch": "agent/adsense-recovery",
     "legacy_agent_branch_sha": "405599d8e2cc6233740882bda6327319d203948e",
@@ -43,63 +48,68 @@
   },
   "validation": {
     "e02_search": {
-      "local_status": "passed",
+      "status": "passed",
       "pt100_visible_cards": 1,
       "no_match_visible_cards": 0,
       "clear_visible_cards": 30,
       "accent_insensitive_query": "valvula",
+      "accent_insensitive_visible_cards": 2,
       "tested_widths_px": [1200, 390],
-      "css_parse_errors": 0,
-      "interactive_domain_status": "pending"
+      "mobile_scroll_width_before_px": 545,
+      "mobile_scroll_width_after_px": 390,
+      "mobile_viewport_width_px": 390,
+      "fix_commit": "cb653d8c001a10849392835922d5e7e8d89fa60e",
+      "pages_artifact_status": "passed"
     },
-    "e03_industrial": {
-      "local_status": "passed",
-      "site_change_commit": "e945d6e5e7259e456bde56339084a2b37ff4951a",
-      "source_blob_on_main": "beadb745d57a31b6067fcc2102d3ab0db4592ae7",
-      "html_parser_errors": 0,
-      "json_ld_blocks": 1,
-      "json_ld_parse_errors": 0,
-      "h1_count": 1,
-      "canonical_preserved": true,
-      "direct_field_calibration_claim_removed": true,
-      "accreditation_or_traceability_claim_added": false,
-      "hotmart_social_link_removed": true,
-      "domain_status": "pending"
-    },
-    "e03_commercial_truth_02": {
-      "local_status": "passed",
-      "site_change_commit": "9a4c33175da73b3a53fe7912bca33da5bdcdd8b8",
-      "changed_files": ["index.html", "sobre.html", "calculadora-4-20ma.html"],
-      "source_blobs_on_main": {
-        "index.html": "6d530206320c802aa19a805434a4d101a852ec66",
-        "sobre.html": "79c2ff679a77da0ffdc3212aee739f16b4e7d31b",
-        "calculadora-4-20ma.html": "46e3a9f7f7052ab4b1de9dd4b13b18d03fbc6383"
+    "e03_commercial_truth": {
+      "status": "passed",
+      "site_commits": [
+        "e945d6e5e7259e456bde56339084a2b37ff4951a",
+        "9a4c33175da73b3a53fe7912bca33da5bdcdd8b8"
+      ],
+      "pages": ["industrial.html", "index.html", "sobre.html", "calculadora-4-20ma.html"],
+      "tested_widths_px": [1200, 390],
+      "horizontal_overflow": false,
+      "old_direct_calibration_claim_present": false,
+      "calculator_regression": {
+        "0_10_bar_input_6_bar": "13.600 mA / 60.00%",
+        "lrv_equals_urv": "results cleared with invalid-data state",
+        "input_12_bar": "23.200 mA / 120.00% extrapolation"
       },
-      "index_json_ld_parse_errors": 0,
-      "sobre_json_ld_parse_errors": 0,
-      "calculator_diff_scope": "commercial_cta_only",
-      "calculator_formula_changed": false,
-      "calculator_technical_javascript_changed": false,
-      "exact_code_search_zero_results": true,
-      "exact_code_search_complete": false,
-      "domain_status": "pending"
+      "pages_artifact_status": "passed"
+    },
+    "e04_inventory_start": {
+      "artifact_sha": "cb653d8c001a10849392835922d5e7e8d89fa60e",
+      "html_total_in_artifact": 344,
+      "public_pages": 270,
+      "internal_report_or_control_html": 73,
+      "google_verification_html": 1,
+      "public_indexable": 222,
+      "public_noindex": 48,
+      "sitemap_unique_urls": 222,
+      "sitemap_missing_public_files": 0,
+      "duplicate_sitemap_urls": 6,
+      "direct_adsense_loader_indexable_pages": 88,
+      "direct_adsense_loader_noindex_pages": 0,
+      "legacy_cursos_pages": 149,
+      "hotmart_link_pages": 139,
+      "public_h1_count_not_one": 10,
+      "old_inventory_rows": 390,
+      "old_inventory_paths_missing_now": 122,
+      "current_html_not_in_old_inventory": 76,
+      "inventory_regeneration_required": true
     },
     "shared_warning_follow_up": "E08-W1"
   },
   "e03_commercial_truth": {
-    "initial_scope_status": "published_pending_domain_check",
+    "initial_scope_status": "completed",
     "published_pages": ["industrial.html", "index.html", "sobre.html", "calculadora-4-20ma.html"],
-    "site_commits": [
-      "e945d6e5e7259e456bde56339084a2b37ff4951a",
-      "9a4c33175da73b3a53fe7912bca33da5bdcdd8b8"
-    ],
     "remaining_follow_up": [
-      "Conferência das páginas no domínio em desktop e celular",
-      "Inventário integral de CTAs e alegações comerciais em E04",
+      "Inventario integral de CTAs e alegacoes comerciais em E04/E06",
       "Preenchimento da matriz de capacidade C01"
     ],
-    "confirmed_owner_fact": "A ALOGY ainda não possui padrão calibrado confirmado para sustentar emissão própria de laudo de calibração.",
-    "safe_positioning": "Avaliação, inspeção, manutenção, configuração e conferência funcional sob escopo; calibração, ensaio ou documentação específica somente quando recursos e parceiros forem confirmados na proposta."
+    "confirmed_owner_fact": "A ALOGY ainda nao possui padrao calibrado confirmado para sustentar emissao propria de laudo de calibracao.",
+    "safe_positioning": "Avaliacao, inspecao, manutencao, configuracao e conferencia funcional sob escopo; calibracao, ensaio ou documentacao especifica somente quando recursos e parceiros forem confirmados na proposta."
   },
   "constraints": {
     "mass_pruning_allowed": false,
@@ -109,10 +119,10 @@
     "change_technical_javascript_without_reproduced_issue": false
   },
   "owner_dependencies": [
-    "Captura atual do AdSense com motivo, data e disponibilidade de nova análise",
-    "Exportação do Search Console por páginas e consultas, desejável para priorização",
-    "Capacidades reais da bancada, funções, faixas e situação metrológica",
+    "Captura atual do AdSense com motivo, data e disponibilidade de nova analise",
+    "Exportacao do Search Console por paginas e consultas, desejavel para priorizacao",
+    "Capacidades reais da bancada, funcoes, faixas e situacao metrologica",
     "Modelos e portes atendidos, meios de teste, local de recebimento, profissionais e parceiros",
-    "Dados verdadeiros de autoria, credenciais e evidências publicáveis"
+    "Dados verdadeiros de autoria, credenciais e evidencias publicaveis"
   ]
 }
