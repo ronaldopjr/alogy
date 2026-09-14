@@ -61,25 +61,14 @@ Estado estrutural confirmado:
 - 0 indexáveis fora do sitemap;
 - 0 páginas `noindex` no sitemap;
 - 0 indexáveis sem canonical;
+- 0 anomalias reais de H1 entre indexáveis;
 - 0 duplicidades entre sitemaps;
 - 88 páginas com carregador direto do AdSense;
 - 268 decisões editoriais anteriores preservadas.
 
 Commit do inventário canônico: `da2f61932a21c00741f418870601aafcb42deba6`.
 
-**Pendência corrigida no controle:** a leitura direta do artefato Pages atual identificou **9 páginas indexáveis com dois elementos `<h1>`**, geralmente por versões de impressão. O campo H1 do CSV precisa ser recalculado globalmente, e as páginas devem ser corrigidas em lotes de até cinco sem alterar fórmulas ou JavaScript:
-
-- `calculadora-atuador-pneumatico.html`;
-- `calculadora-dimensionamento-cabos.html`;
-- `calculadora-erro-calibracao.html`;
-- `calculadora-erro-total-malha-instrumentacao.html`;
-- `calculadora-pt100.html`;
-- `calculadora-resistor-shunt-sinal-instrumentacao.html`;
-- `calculadora-split-range-4-20ma.html`;
-- `calculadora-termopar.html`;
-- `calculadora-volume-tanque-vertical-horizontal.html`.
-
-Não declarar novamente “zero H1 anômalo” até concluir essa correção e atualizar o inventário.
+**Validação semântica dos H1:** uma contagem bruta do texto-fonte sinalizou nove páginas com duas sequências `<h1>`. A inspeção com parser HTML e o artefato exato do Pages confirmou que cada uma possui somente um H1 no documento principal. As sequências extras estão dentro de strings JavaScript que criam documentos independentes de impressão; elas não entram no DOM da página indexável. Portanto, não existe lote de correção de H1 pendente e nenhum relatório ou JavaScript deve ser alterado por esse falso positivo.
 
 ### E04-GUIDE-NAVIGATION-01
 
@@ -151,7 +140,7 @@ Revisar `blog-calibracao-valvula-controle.html` com:
 5. referências primárias BIPM/JCGM, Emerson e exemplos registrados pela FieldComm Group;
 6. CTA comercial verdadeiro para avaliação, manutenção, configuração e conferência funcional sob escopo.
 
-A correção dos H1 duplicados pode avançar em lote técnico paralelo, sem bloquear a primeira página E05. Depois da publicação e validação da página de válvula, revisar a página-pilar em lote separado.
+Depois da publicação e validação da página de válvula, revisar a página-pilar em lote separado.
 
 ## E08-W1 — avisos compartilhados
 
