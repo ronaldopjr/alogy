@@ -1,0 +1,59 @@
+name: E04 guide navigation batch
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/e04-guide-batch.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: e04-guide-navigation
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Apply validated batch
+        run: python3 adsense-recovery/e04_guide_batch.py
+
+      - name: Validate targeted scope
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          targets = [
+              'calculadora-erro-calibracao.html',
+              'checklist-comissionamento-hart.html',
+              'blog-vazao-normalizada-gases.html',
+              'calculadora-massa-tanque-nivel.html',
+              'blog-ar-instrumentos-qualidade-ponto-orvalho.html',
+          ]
+          for name in targets:
+              text = Path(name).read_text(encoding='utf-8')
+              assert 'cursos.html' not in text, name
+              assert '>Cursos<' not in text, name
+              assert 'hotmart.com' not in text.lower(), name
+              assert 'class="hotmart"' not in text.lower(), name
+              assert text.count('href="/guia/">Guia</a>') >= 2, name
+          assert Path('adsense-recovery/ADSENSE-INVENTORY.csv').stat().st_size > 100000
+          assert Path('adsense-recovery/E04-GUIDE-NAVIGATION-01.md').exists()
+          PY
+
+      - name: Commit atomically
+        run: |
+          rm -f .github/workflows/e04-guide-batch.yml
+          rm -f adsense-recovery/e04_guide_batch.py
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'AdSense E04: migra primeiro lote de Cursos para Guia'
+          git pull --rebase origin main
+          git push origin main
