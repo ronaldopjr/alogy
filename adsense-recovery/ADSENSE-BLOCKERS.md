@@ -4,20 +4,29 @@
 
 A reprovação por “conteúdo de baixo valor” foi informada pelo proprietário, mas o painel autenticado não foi acessado nesta etapa. O site ainda não está pronto para solicitar nova análise e nenhuma submissão deve ocorrer automaticamente.
 
-## Não bloqueia E02
+## Pendências que não bloqueiam correções conservadoras
 
 - Falta de acesso autenticado ao AdSense, Search Console ou Analytics.
-- Falta de confirmação da bancada e da autoria.
+- Falta de confirmação completa da bancada, modelos atendidos e autoria.
+- Falta da conferência interativa de E02 no domínio no ambiente atual.
 - A branch histórica `agent/adsense-recovery` estar desatualizada.
 
-A correção da busca de ferramentas pode avançar de forma independente.
+Essas pendências não impedem retirar promessas não sustentadas e publicar uma oferta geral de avaliação sob consulta. Elas impedem acrescentar capacidades, prazos, rastreabilidade, acreditação, equipe ou documentação específica não confirmados.
 
-## Dependências do proprietário
+## Dependências do proprietário para completar E03/C01
+
+- Equipamentos de bancada e funções reais de medir, gerar ou simular.
+- Faixas, acessórios, condição e documentos metrológicos dos equipamentos.
+- Tipos, fabricantes, modelos e portes de válvulas, atuadores, posicionadores e instrumentos atendidos.
+- Alimentação pneumática/elétrica, interfaces, suportes e meios de teste disponíveis.
+- Local e condições para recebimento de instrumentos.
+- Profissionais disponíveis, experiência publicável e eventuais parceiros de calibração ou ensaio.
+- Prazo e região de atendimento que podem ser assumidos comercialmente.
+
+## Outras dependências do projeto
 
 - Captura atual do AdSense com domínio, motivo, data e disponibilidade de nova análise.
 - Exportação do Search Console dos últimos 90 dias por páginas e consultas, desejável para priorização.
-- Equipamentos de bancada, funções de medir/gerar/simular, faixas, acessórios e documentos metrológicos.
-- Tipos/modelos/portes atendidos, meios de teste, local de recebimento, profissionais disponíveis e parceiros.
 - Nome público, formação, experiência, credenciais e evidências que podem ser publicadas.
 - Permissão para usar fotos, projetos, clientes ou resultados específicos.
 

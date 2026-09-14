@@ -1,6 +1,6 @@
 # Recuperação do Google AdSense — ALOGY
 
-> **Controle operacional atual — versão 2026-09-14.4.** Este arquivo substitui as instruções antigas de F4/F5 como fonte de execução. O histórico permanece no Git, mas nenhuma fila antiga deve ser retomada sem conferir `ADSENSE-STATE.json` e `CURRENT-WORK-QUEUE.md`.
+> **Controle operacional atual — versão 2026-09-14.5.** Este arquivo substitui as instruções antigas de F4/F5 como fonte de execução. O histórico permanece no Git, mas nenhuma fila antiga deve ser retomada sem conferir `ADSENSE-STATE.json` e `CURRENT-WORK-QUEUE.md`.
 
 ## Objetivos
 
@@ -27,13 +27,14 @@ Arquivos F4/F5 e relatórios anteriores são históricos. Uma orientação antig
 - E00: revisão e plano consolidado — concluído.
 - E01: controles reconciliados — concluído no commit `734559b163b01b3e1bd95d07380cbfd33b241332`.
 - E02: correção publicada no commit `eec58b20b6de6d8de827cf1f9f623b2987827bb2` e validada localmente; falta conferir a busca interativa no domínio.
-- Próxima ação: conferir E02 no domínio em navegador real; passando os quatro cenários, marcar E02 como concluída e iniciar E03.
+- E03: iniciado com um lote conservador em `industrial.html`, retirando promessa direta de calibração em campo e delimitando manutenção/conferência funcional sob escopo.
+- Próxima ação: conferir `industrial.html` no domínio e continuar E03 em home, Sobre e CTAs comerciais; manter a conferência interativa de E02 explicitamente pendente.
 - Parecer interno: o site ainda não está pronto para solicitar nova análise ao AdSense.
 - A poda temática F5 não é mais a próxima ação. Não excluir, desindexar ou remover páginas em massa.
 
 ## Ordem operacional
 
-`E02 (conferência no domínio) → E03 → E04 → E05 → E06 → E07 → E08 → E09 → E10 → E11 → E12`
+`E02 (conferência no domínio, pendente em paralelo) → E03 → E04 → E05 → E06 → E07 → E08 → E09 → E10 → E11 → E12`
 
 As etapas comerciais C01–C03 podem avançar em paralelo somente com fatos confirmados pelo proprietário.
 
@@ -53,6 +54,7 @@ As etapas comerciais C01–C03 podem avançar em paralelo somente com fatos conf
 - Preservar o foco em Instrumentação, Calibração, Automação e Elétrica.
 - Não retomar exclusões ou `noindex` em massa como estratégia de AdSense.
 - Conteúdo educativo sobre calibração pode permanecer; a oferta comercial não pode anunciar capacidade rastreável não comprovada.
+- Enquanto C01 estiver incompleta, usar avaliação sob consulta e registrar limites; não preencher lacunas com presunções.
 - Não alterar fórmulas, critérios de segurança ou JavaScript técnico sem reprodução do problema e validação proporcional ao risco.
 - Não fabricar autoria, depoimentos, cases, fotos de campo, experiência, registros profissionais, vínculos com fabricantes ou resultados.
 - Não solicitar revisão ao AdSense automaticamente.
