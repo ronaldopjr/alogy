@@ -1,10 +1,10 @@
 # ALOGY — fila operacional atual
 
-> Versão 2026-09-14.3. Esta é a única fila executável. Filas F4/F5 anteriores são históricas.
+> Versão 2026-09-14.4. Esta é a única fila executável. Filas F4/F5 anteriores são históricas.
 
 ## E02 — busca de ferramentas
 
-**Estado:** CONCLUÍDO.
+**Estado:** PUBLICADO — FALTA CONFERIR NO DOMÍNIO.
 
 **Alteração:** `style.css` passou a dar prioridade ao estado `display:none` aplicado pelo filtro da central, sem alterar o JavaScript, a grade, os tamanhos ou a identidade dos cartões.
 
@@ -16,7 +16,9 @@
 - cenários repetidos em 1200 px e 390 px;
 - CSS original preservado, com adição localizada e sem erro de análise.
 
-Relatório: `E02-TOOLS-SEARCH-FIX.md`.
+Relatório: `E02-TOOLS-SEARCH-FIX.md`. Commit de site: `eec58b20b6de6d8de827cf1f9f623b2987827bb2`.
+
+**Conferência pendente:** em navegador real no domínio, repetir PT100, termo inexistente, limpeza e busca sem acento. O leitor web usado nesta execução confirmou a página publicada, mas não executa a interação JavaScript.
 
 ## E03 — oferta comercial verdadeira
 
@@ -26,7 +28,7 @@ Relatório: `E02-TOOLS-SEARCH-FIX.md`.
 
 **Dependências:** registrar em C01 equipamentos de bancada, funções de medir/gerar/simular, faixas, documentação, modelos/portes atendidos, meios de teste, local de recebimento, profissionais e parceiros. Dado ausente não pode ser inventado.
 
-**Estado:** PRÓXIMO.
+**Estado:** PENDENTE APÓS A CONFERÊNCIA FINAL DE E02.
 
 ## E04 — inventário e higiene técnica
 

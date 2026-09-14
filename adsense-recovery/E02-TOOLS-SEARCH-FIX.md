@@ -3,7 +3,8 @@
 **Data:** 14/09/2026  
 **Repositório:** `ronaldopjr/alogy`  
 **SHA de base:** `734559b163b01b3e1bd95d07380cbfd33b241332`  
-**Arquivos de site alterados:** `style.css`
+**Arquivos de site alterados:** `style.css`  
+**Commit de publicação:** `eec58b20b6de6d8de827cf1f9f623b2987827bb2`
 
 ## Problema reproduzido
 
@@ -37,6 +38,12 @@ Também foram confirmados:
 
 A busca de código desta etapa não retornou ocorrência atual de `inferSeverity` ou `installDynamicReadout`. Como isso não substitui um teste comportamental do `app.js`, a verificação foi registrada como `E08-W1`. Nenhuma alteração foi feita no script compartilhado sem defeito reproduzido.
 
+## Publicação e limite da conferência
+
+A correção está em `main` e o domínio responde com a central atual. O ambiente de leitura web disponível nesta execução não executa a busca JavaScript, portanto o comportamento interativo no domínio ainda não foi marcado como conferido. Isso não invalida os testes locais; apenas mantém a distinção entre código publicado e teste de produção.
+
+**Estado de E02:** `PUBLICADO — FALTA CONFERIR`.
+
 ## Próxima ação
 
-Executar E03: revisar as promessas comerciais de calibração e registrar as capacidades reais sem inventar bancada, equipe, credenciais ou rastreabilidade.
+Abrir a central no domínio em navegador real e repetir os quatro cenários. Se passarem, marcar E02 como concluída e executar E03: revisar as promessas comerciais de calibração e registrar as capacidades reais sem inventar bancada, equipe, credenciais ou rastreabilidade.

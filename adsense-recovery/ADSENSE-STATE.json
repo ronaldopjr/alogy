@@ -1,17 +1,17 @@
 {
   "schema_version": 3,
   "project": "ALOGY AdSense Recovery",
-  "plan_version": "2026-09-14.3",
+  "plan_version": "2026-09-14.4",
   "repository": "ronaldopjr/alogy",
   "base_branch": "main",
   "work_branch": "main",
-  "base_sha_verified": "734559b163b01b3e1bd95d07380cbfd33b241332",
+  "base_sha_verified": "eec58b20b6de6d8de827cf1f9f623b2987827bb2",
   "verified_at": "2026-09-14",
-  "last_completed_stage": "E02",
-  "stage_in_progress": null,
-  "next_stage": "E03",
-  "next_action": "Revisar industrial.html, index.html, sobre.html e CTAs compartilhados; retirar ou qualificar promessas de calibração em campo ou rastreável não sustentadas e registrar as capacidades ainda não confirmadas em C01.",
-  "status": "ready",
+  "last_completed_stage": "E01",
+  "stage_in_progress": "E02",
+  "next_stage": "E02",
+  "next_action": "Abrir https://www.alogy.com.br/ferramentas.html em navegador real e conferir PT100, termo inexistente, limpeza e busca sem acento. Se todos passarem, marcar E02 como concluída e iniciar E03.",
+  "status": "published_pending_domain_check",
   "max_pages_per_edit_batch": 5,
   "preferred_editorial_batch": 3,
   "adsense": {
@@ -24,6 +24,10 @@
     "enabled": true,
     "target_branch": "main",
     "method": "validated-atomic-commit",
+    "site_change_commit": "eec58b20b6de6d8de827cf1f9f623b2987827bb2",
+    "source_verified_on_main": true,
+    "live_page_reachable": true,
+    "interactive_domain_check_complete": false,
     "require_clean_validated_diff": true,
     "require_domain_check": true,
     "allow_force": false
@@ -38,12 +42,14 @@
   },
   "validation": {
     "e02_search": {
+      "local_status": "passed",
       "pt100_visible_cards": 1,
       "no_match_visible_cards": 0,
       "clear_visible_cards": 30,
       "accent_insensitive_query": "valvula",
       "tested_widths_px": [1200, 390],
-      "css_parse_errors": 0
+      "css_parse_errors": 0,
+      "interactive_domain_status": "pending"
     },
     "shared_warning_follow_up": "E08-W1"
   },
