@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Calibração de Válvula de Controle 4-20 mA | ALOGY</title>
-  <meta name="description" content="Control valve calibration: confira 4-20 mA, stroke, positioner, direct/reverse action, as-found/as-left, histerese e tolerância." />
+  <title>Teste e Calibração de Válvula de Controle 4-20 mA | ALOGY</title>
+  <meta name="description" content="Veja como testar válvula de controle, atuador e posicionador: 4-20 mA, subida e descida, as-found/as-left, histerese, stiction e diagnóstico." />
   <meta name="robots" content="index,follow" />
   <meta name="theme-color" content="#2C78B9" />
   <link rel="canonical" href="https://www.alogy.com.br/blog-calibracao-valvula-controle.html" />
@@ -14,21 +14,24 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <link rel="stylesheet" href="style.css?v=20260911-article-semantic1" />
   <script src="app.js" defer></script>
   <meta property="og:locale" content="pt_BR" />
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="ALOGY Engenharia" />
-  <meta property="og:title" content="Calibração de Válvula de Controle 4-20 mA" />
-  <meta property="og:description" content="Pontos de calibração, stroke, positioner, ação direta/reversa, as-found/as-left, histerese e tolerância." />
+  <meta property="og:title" content="Teste e Calibração de Válvula de Controle 4-20 mA" />
+  <meta property="og:description" content="Método de campo para avaliar comando, posicionador, atuador, curso, feedback, subida e descida sem confundir ajuste com diagnóstico." />
   <meta property="og:url" content="https://www.alogy.com.br/blog-calibracao-valvula-controle.html" />
   <meta property="og:image" content="https://www.alogy.com.br/capa-blog-calibracao-valvula-controle.webp" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="https://www.alogy.com.br/capa-blog-calibracao-valvula-controle.webp" />
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Calibração de Válvula de Controle 4-20 mA","description":"Control valve calibration com 4-20 mA, stroke, positioner, ação direta/reversa, as-found/as-left, histerese e tolerância.","datePublished":"2026-06-29","dateModified":"2026-09-11","image":"https://www.alogy.com.br/capa-blog-calibracao-valvula-controle.webp","author":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"},"publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/","logo":{"@type":"ImageObject","url":"https://www.alogy.com.br/logo-alogy.webp"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://www.alogy.com.br/blog-calibracao-valvula-controle.html"},"inLanguage":"pt-BR"}</script>
-  <style>.post-wrap{max-width:900px;margin:18px auto}.post-card{background:var(--card);border:1px solid rgba(0,0,0,.08);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}.post-content{padding:30px}.post-meta{color:var(--muted);font-size:.95rem;margin-bottom:12px}.post-content h1{font-size:2.15rem;line-height:1.15;margin-bottom:12px;color:var(--text)}.post-content h2{font-size:1.45rem;line-height:1.25;margin:26px 0 10px;color:var(--text)}.post-content p{color:var(--text);margin:0 0 16px;font-size:1.04rem;line-height:1.75}.post-content ul{margin:0 0 18px 20px}.post-content li{margin:8px 0;line-height:1.65}.post-highlight{background:rgba(0,107,177,.08);border:1px solid rgba(0,107,177,.18);border-radius:14px;padding:16px;margin:22px 0}.post-highlight strong{color:#0b3a62}@media(max-width:768px){.post-content{padding:22px}.post-content h1{font-size:1.65rem}.post-content h2{font-size:1.25rem}}</style>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Teste e calibração de válvula de controle: 4-20 mA, posicionador e diagnóstico","description":"Método de campo para avaliar comando, posicionador, atuador, curso, feedback, subida e descida sem confundir ajuste com diagnóstico.","datePublished":"2026-06-29","dateModified":"2026-09-14","image":"https://www.alogy.com.br/capa-blog-calibracao-valvula-controle.webp","author":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"},"publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/","logo":{"@type":"ImageObject","url":"https://www.alogy.com.br/logo-alogy.webp"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://www.alogy.com.br/blog-calibracao-valvula-controle.html"},"inLanguage":"pt-BR"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Calibrar o posicionador é o mesmo que calibrar a válvula?","acceptedAnswer":{"@type":"Answer","text":"Não necessariamente. O posicionador é uma parte da cadeia. A avaliação do conjunto também pode envolver comando 4-20 mA, pressão pneumática, atuador, haste ou eixo, feedback de posição, acessórios e condições mecânicas."}},{"@type":"Question","name":"12 mA deve sempre corresponder a 50% de abertura?","acceptedAnswer":{"@type":"Answer","text":"Em uma escala linear de 4 a 20 mA configurada de 0 a 100%, 12 mA representa 50% do comando. Isso não garante 50% de vazão, pois a relação depende da característica da válvula, instalação, processo e configuração."}},{"@type":"Question","name":"Cinco pontos são suficientes para aceitar uma válvula?","acceptedAnswer":{"@type":"Answer","text":"Cinco pontos em subida e descida são úteis para triagem e registro, mas não formam um critério universal de aceitação. Quantidade de pontos, tolerância e regra de decisão dependem do procedimento, criticidade, fabricante e aplicação."}},{"@type":"Question","name":"Quando o posicionador deve ser ajustado?","acceptedAnswer":{"@type":"Answer","text":"Somente depois de registrar a condição encontrada e verificar se o desvio realmente vem do posicionador. Ar de instrumentos, vazamentos, feedback, atrito, folgas, atuador, montagem e forças do processo também podem causar resposta incorreta."}}]}</script>
+  <style>
+    .post-wrap{max-width:960px;margin:18px auto}.post-card{background:var(--card);border:1px solid rgba(0,0,0,.08);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}.post-content{padding:30px}.post-meta{color:var(--muted);font-size:.95rem;margin-bottom:12px}.post-content h1{font-size:2.15rem;line-height:1.15;margin-bottom:12px;color:var(--text)}.post-content h2{font-size:1.45rem;line-height:1.25;margin:30px 0 10px;color:var(--text)}.post-content h3{font-size:1.12rem;line-height:1.35;margin:22px 0 8px;color:#0b3a62}.post-content p{color:var(--text);margin:0 0 16px;font-size:1.04rem;line-height:1.75}.post-content ul,.post-content ol{margin:0 0 18px 22px}.post-content li{margin:8px 0;line-height:1.65}.post-highlight{background:rgba(0,107,177,.08);border:1px solid rgba(0,107,177,.18);border-radius:14px;padding:16px;margin:22px 0}.post-highlight strong{color:#0b3a62}.post-warning{background:#fff7ed;border:1px solid #fed7aa;color:#7c2d12;border-radius:14px;padding:16px;margin:22px 0;line-height:1.65}.post-success{background:#ecfdf5;border:1px solid #bbf7d0;color:#166534;border-radius:14px;padding:16px;margin:22px 0;line-height:1.65}.table-wrap{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid rgba(0,0,0,.09);border-radius:14px;margin:14px 0 22px}.article-table{width:100%;min-width:720px;border-collapse:collapse;background:#fff}.article-table th{background:#0b3a62;color:#fff;text-align:left;padding:12px;vertical-align:top}.article-table td{padding:12px;border-bottom:1px solid rgba(0,0,0,.08);vertical-align:top;line-height:1.55}.article-table tr:last-child td{border-bottom:0}.article-table code{white-space:nowrap}.formula-box{background:#f8fafc;border:1px solid rgba(0,75,128,.16);border-radius:14px;padding:15px;margin:16px 0 22px;line-height:1.7}.formula-box code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;color:#0f172a}.diagnostic-steps{counter-reset:step;list-style:none;margin-left:0!important;padding:0}.diagnostic-steps li{counter-increment:step;position:relative;padding:14px 14px 14px 54px;border:1px solid rgba(0,107,177,.16);border-radius:14px;background:rgba(0,107,177,.04);margin:10px 0}.diagnostic-steps li:before{content:counter(step);position:absolute;left:14px;top:13px;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:#0b3a62;color:#fff;font-weight:700}.reference-list a{overflow-wrap:anywhere}.faq details{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:14px;padding:14px;margin-top:10px;box-shadow:0 6px 16px rgba(0,0,0,.04)}.faq summary{cursor:pointer;font-weight:700;color:#0b3a62}.faq p{margin:10px 0 0;color:var(--text)}.service-cta{background:linear-gradient(135deg,#0b3a62,#006bb1);color:#fff;border-radius:18px;padding:22px;margin:28px 0}.service-cta h2{color:#fff;margin:0 0 10px}.service-cta p{color:rgba(255,255,255,.94)}.service-cta .calc-actions{margin-top:14px}.service-cta .mini-btn{background:#fff;color:#0b3a62;border-color:#fff}.service-cta .mini-btn.secondary{background:transparent;color:#fff;border-color:rgba(255,255,255,.65)}@media(max-width:768px){.post-content{padding:22px}.post-content h1{font-size:1.65rem}.post-content h2{font-size:1.25rem}.service-cta{padding:18px}.article-table{min-width:680px}}
+  </style>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5586837114309500" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -38,40 +41,156 @@
     <nav class="mobile" aria-label="Menu mobile"><a href="/">Início</a><a href="industrial.html">Serviços</a><a href="cases.html">Projetos</a><a href="/guia/">Guia</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></nav>
   </header>
   <div class="social-floating" aria-label="Redes sociais"><a href="https://www.linkedin.com/company/alogyengenharia" class="linkedin" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a><a href="https://www.instagram.com/alogyengenharia" class="instagram" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="https://www.facebook.com/alogyengenharia" class="facebook" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><a href="https://www.youtube.com/@alogyengenharia" class="youtube" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a><a href="https://www.tiktok.com/@alogyengenharia" class="tiktok" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fab fa-tiktok"></i></a></div>
-  <div class="fab-wrap" aria-label="Ações rápidas"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1!%20Li%20o%20artigo%20sobre%20calibra%C3%A7%C3%A3o%20de%20v%C3%A1lvula%20de%20controle%20da%20ALOGY." target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
+  <div class="fab-wrap" aria-label="Ações rápidas"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1!%20Li%20o%20artigo%20sobre%20v%C3%A1lvulas%2C%20atuadores%20e%20posicionadores%20da%20ALOGY.%20Gostaria%20de%20avaliar%20um%20servi%C3%A7o." target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
+
   <main class="container post-wrap">
     <a class="floating-back-blog no-print" href="blog.html"><i class="fas fa-arrow-left"></i> Voltar ao Blog</a>
     <article class="post-card"><div class="post-content">
-      <div class="post-meta">Instrumentação • Calibração • Control Valve</div>
-      <h1>Calibração de válvula de controle 4-20 mA: o que conferir em campo</h1>
-      <p class="muted" data-alogy-content-meta><strong>Conteúdo técnico:</strong> ALOGY Engenharia · <strong>Atualizado em:</strong> 11/09/2026</p>
-      <figure class="article-cover-figure"><img class="article-cover-image" src="capa-blog-calibracao-valvula-controle.webp" alt="Calibração de válvula de controle industrial com atuador e posicionador" loading="eager" fetchpriority="high" decoding="async"/><figcaption>Control valve calibration: sinal de comando, positioner, stroke e posição real devem ser avaliados como uma cadeia.</figcaption></figure>
+      <div class="post-meta">Instrumentação • Válvulas de controle • Manutenção e diagnóstico</div>
+      <h1>Teste e calibração de válvula de controle: 4-20 mA, posicionador e diagnóstico</h1>
+      <p class="muted" data-alogy-content-meta><strong>Conteúdo técnico:</strong> ALOGY Engenharia · <strong>Revisado em:</strong> 14/09/2026</p>
+      <figure class="article-cover-figure"><img class="article-cover-image" src="capa-blog-calibracao-valvula-controle.webp" alt="Válvula de controle industrial com atuador pneumático e posicionador durante avaliação técnica" loading="eager" fetchpriority="high" decoding="async"/><figcaption>O resultado deve ser avaliado como uma cadeia: comando, posicionador, ar de instrumentos, atuador, elemento mecânico e feedback.</figcaption></figure>
 
-      <p>A válvula de controle é o elemento final que transforma a decisão do controlador em ação no processo. Por isso, não basta conferir apenas se existe sinal 4-20 mA. É preciso verificar se a válvula realmente se move para a posição esperada, no sentido correto e dentro da tolerância definida.</p>
-      <p>Uma calibração simples costuma testar os pontos 0%, 25%, 50%, 75% e 100%. Em uma malha linear, esses pontos equivalem a 4, 8, 12, 16 e 20 mA. O técnico aplica o sinal, observa a posição real da haste ou feedback e registra o desvio.</p>
-      <div class="post-highlight"><strong>Exemplo rápido:</strong> com ação direta, 12 mA normalmente representa 50% de comando. Se a válvula indicar 54%, o desvio é +4 pontos percentuais.</div>
+      <p>Uma válvula de controle não deve ser avaliada apenas pela presença do sinal de 4-20 mA. O controlador pode enviar o comando correto e, ainda assim, a posição real ficar diferente por causa do posicionador, alimentação pneumática, vazamentos, ajuste do atuador, atrito na haste, folgas, montagem do feedback ou forças do próprio processo.</p>
+      <p>Por isso, antes de “calibrar a válvula”, é importante declarar <strong>qual parte da cadeia está sendo testada</strong>, quais grandezas serão registradas e qual documento define os critérios. Na prática de manutenção, a palavra calibração é usada de forma ampla; um registro tecnicamente mais claro separa verificação funcional, calibração de um instrumento, ajuste do posicionador e manutenção mecânica.</p>
 
-      <h2>As-found e as-left</h2>
-      <p>Registre a condição <strong>as-found</strong> antes de qualquer ajuste do positioner, zero ou span. Se houver intervenção prevista, execute o procedimento e repita o teste para documentar a condição <strong>as-left</strong>. Isso preserva o histórico real de desempenho da válvula.</p>
+      <div class="post-warning"><strong>Segurança primeiro:</strong> não movimente uma válvula conectada ao processo sem liberação da operação, condição segura definida, análise dos intertravamentos e confirmação do efeito sobre produção, energia acumulada e pessoas. Válvulas de segurança, bloqueio de emergência e aplicações instrumentadas de segurança exigem procedimento específico.</div>
 
-      <h2>O que verificar antes do teste</h2>
-      <p>Antes de atuar na válvula, confirme liberação operacional, posição segura, alimentação pneumática, bloqueios, bypass, intertravamentos e orientação da operação.</p>
-      <ul><li>TAG da válvula e da malha.</li><li>Faixa de sinal, normalmente 4-20 mA.</li><li>Ação direta ou reversa.</li><li>Fail open, fail close ou outra condição definida no projeto.</li><li>Pressão e qualidade do ar de instrumentos.</li><li>Escala do feedback de posição, quando existir.</li><li>Configuração do positioner e limites de stroke.</li></ul>
+      <h2>O que exatamente está sendo verificado?</h2>
+      <p>A mesma indicação de “50%” pode aparecer em pontos diferentes da cadeia e não significa necessariamente a mesma coisa. O comando do sistema, a posição medida pelo posicionador e a vazão real do processo são informações relacionadas, mas distintas.</p>
+      <div class="table-wrap"><table class="article-table">
+        <thead><tr><th>Parte da cadeia</th><th>O que observar</th><th>Limite da conclusão</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Comando do controlador</strong></td><td>Corrente aplicada, percentual e escala configurada.</td><td>Confirma o comando elétrico; não prova que a válvula se moveu.</td></tr>
+          <tr><td><strong>Conversor I/P ou posicionador</strong></td><td>Sinal recebido, pressão de saída, modo de ação, zero, span e diagnóstico disponível no modelo.</td><td>Um ajuste correto do posicionador não elimina defeitos mecânicos ou pneumáticos.</td></tr>
+          <tr><td><strong>Atuador</strong></td><td>Pressão, curso, sentido, mola, diafragma ou pistão, vazamentos e condição de falha.</td><td>O curso pode estar correto sem garantir a característica de vazão instalada.</td></tr>
+          <tr><td><strong>Haste, eixo e internos</strong></td><td>Movimento, atrito, folga, agarramento, batentes e acoplamentos.</td><td>A inspeção externa não confirma o estado de sede, obturador ou internos.</td></tr>
+          <tr><td><strong>Feedback de posição</strong></td><td>Percentual, corrente retransmitida ou variável digital e sua correspondência com o curso real.</td><td>O feedback pode estar desajustado mesmo quando a válvula se move.</td></tr>
+          <tr><td><strong>Processo</strong></td><td>Pressão diferencial, temperatura, fluido, sentido de fluxo e estabilidade.</td><td>Um teste sem carga pode não reproduzir as forças presentes em operação.</td></tr>
+        </tbody>
+      </table></div>
 
-      <h2>Subida, descida e histerese</h2>
-      <p>Testar somente na subida pode esconder problemas. Aplique os pontos em subida e depois em descida. Diferenças na mesma posição de comando podem indicar histerese, atrito, folga mecânica, stiction, agarramento ou comportamento do positioner.</p>
+      <h2>Verificação, ajuste e manutenção não são a mesma etapa</h2>
+      <p>O Vocabulário Internacional de Metrologia diferencia calibração de ajuste. Em uma avaliação de válvula, essa distinção ajuda a evitar que o técnico altere parâmetros antes de conhecer a condição encontrada.</p>
+      <ul>
+        <li><strong>Verificação funcional:</strong> confirma se a cadeia responde, percorre o curso esperado, segue o sentido correto e respeita intertravamentos e limites previstos.</li>
+        <li><strong>Calibração:</strong> estabelece uma relação documentada entre valores de referência e indicações, nas condições declaradas e com as incertezas aplicáveis ao que está sendo medido.</li>
+        <li><strong>Ajuste:</strong> altera parâmetros ou componentes para obter indicações ou respostas prescritas; depois do ajuste, uma nova verificação deve registrar a condição final.</li>
+        <li><strong>Manutenção:</strong> corrige causas como vazamento, filtro obstruído, diafragma danificado, gaxeta excessivamente apertada, folga, montagem incorreta ou desgaste.</li>
+      </ul>
+      <div class="post-highlight"><strong>Regra prática:</strong> registre a condição <em>as-found</em> antes de ajustar. Se houver intervenção autorizada, documente o que mudou e repita o teste para registrar a condição <em>as-left</em>.</div>
 
-      <h2>Sinal 3-15 psi e posicionador</h2>
-      <p>Em sistemas com conversor I/P ou posicionador pneumático, o sinal elétrico pode ser convertido para 3-15 psi. Mesmo assim, o que importa para o processo é a cadeia completa: <strong>4-20 mA → I/P/positioner → atuador → haste → posição real</strong>.</p>
+      <h2>Preparação antes de aplicar o sinal</h2>
+      <p>O plano de teste deve começar pela identificação do equipamento e pela confirmação das condições de segurança. O mínimo recomendável é registrar:</p>
+      <ul>
+        <li>TAG, fabricante, modelo e número de série quando disponível;</li>
+        <li>tipo de válvula, atuador e posicionador, incluindo acessórios relevantes;</li>
+        <li>faixa de entrada, ação direta ou reversa e característica configurada;</li>
+        <li>condição de falha definida no projeto: abrir, fechar, permanecer ou outra estratégia;</li>
+        <li>pressão de suprimento e requisito de qualidade do ar informado pelo fabricante;</li>
+        <li>fonte do valor de referência para curso ou ângulo e método de leitura da posição real;</li>
+        <li>condição do processo: bancada, parada, bypass, linha isolada ou teste autorizado em operação;</li>
+        <li>tolerância, quantidade de pontos e regra de decisão definidas pelo procedimento aplicável.</li>
+      </ul>
 
-      <h2>Tolerância de aceitação</h2>
-      <p>A tolerância não deve ser escolhida aleatoriamente. Ela depende do processo, criticidade, especificação do projeto, documentação técnica e procedimento interno. Um desvio pequeno em uma malha pouco sensível pode ter efeito diferente do mesmo desvio em uma malha crítica.</p>
+      <h2>Método de cinco pontos em subida e descida</h2>
+      <p>Para uma triagem linear de 4-20 mA configurada de 0% a 100%, os pontos 4, 8, 12, 16 e 20 mA correspondem nominalmente a 0%, 25%, 50%, 75% e 100% do comando. Esses pontos são úteis para visualizar tendência, mas não constituem um critério universal de aceitação.</p>
+      <ol>
+        <li>Estabilize a condição inicial e registre o ponto de 0%.</li>
+        <li>Aplique os pontos em subida, aguardando a estabilização definida no procedimento.</li>
+        <li>Após o ponto máximo, repita os mesmos pontos em descida.</li>
+        <li>Registre o valor aplicado, a posição observada, o feedback e as pressões disponíveis.</li>
+        <li>Repita pontos suspeitos sem alterar o ajuste para avaliar repetibilidade.</li>
+      </ol>
 
-      <h2>Ferramentas relacionadas</h2>
-      <div class="calc-actions"><a class="mini-btn dark" href="calculadora-calibracao-valvula-controle.html"><i class="fas fa-calculator"></i> Calibração de válvula</a><a class="mini-btn" href="calculadora-cv-kv-valvula-controle.html"><i class="fas fa-water"></i> Cv / Kv</a><a class="mini-btn" href="calculadora-split-range-4-20ma.html"><i class="fas fa-code-branch"></i> Split range</a><a class="mini-btn" href="calculadora-atuador-pneumatico.html"><i class="fas fa-wind"></i> Atuador pneumático</a><a class="mini-btn" href="ferramentas-calibracao-instrumentacao.html"><i class="fas fa-toolbox"></i> Central de Calibração</a></div>
+      <div class="table-wrap"><table class="article-table">
+        <thead><tr><th>Comando</th><th>Sinal nominal</th><th>Curso alvo</th><th>Curso na subida</th><th>Curso na descida</th><th>Feedback / pressão</th><th>Observação</th></tr></thead>
+        <tbody>
+          <tr><td>0%</td><td>4 mA</td><td>Conforme configuração</td><td>Registrar</td><td>Registrar</td><td>Registrar</td><td>Batente, fechamento e estabilidade</td></tr>
+          <tr><td>25%</td><td>8 mA</td><td>Conforme configuração</td><td>Registrar</td><td>Registrar</td><td>Registrar</td><td>Resposta contínua ou salto</td></tr>
+          <tr><td>50%</td><td>12 mA</td><td>Conforme configuração</td><td>Registrar</td><td>Registrar</td><td>Registrar</td><td>Desvio e diferença direcional</td></tr>
+          <tr><td>75%</td><td>16 mA</td><td>Conforme configuração</td><td>Registrar</td><td>Registrar</td><td>Registrar</td><td>Ruído, oscilação ou lentidão</td></tr>
+          <tr><td>100%</td><td>20 mA</td><td>Conforme configuração</td><td>Registrar</td><td>Registrar</td><td>Registrar</td><td>Batente, curso e estabilidade</td></tr>
+        </tbody>
+      </table></div>
+
+      <h2>Como calcular o desvio sem inventar uma tolerância</h2>
+      <p>Quando o curso alvo e a posição observada estão na mesma escala percentual, o desvio pode ser expresso em pontos percentuais:</p>
+      <div class="formula-box"><code>Desvio = posição observada − posição alvo</code><br><code>Diferença direcional = posição na subida − posição na descida</code></div>
+      <p><strong>Exemplo fictício:</strong> para um alvo de 50%, a posição observada foi 53,1% na subida e 51,8% na descida. Os desvios são +3,1 e +1,8 pontos percentuais; a diferença entre as direções é 1,3 ponto percentual. Esses números descrevem o comportamento, mas não permitem concluir “aprovado” ou “reprovado” sem tolerância, incerteza e regra de decisão definidas para aquela aplicação.</p>
+      <p>Também é importante não converter automaticamente curso em vazão. A relação entre posição e vazão depende da característica inerente, característica instalada, pressão diferencial, fluido e condições do processo.</p>
+
+      <h2>Banda morta, histerese, repetibilidade e stiction</h2>
+      <p>Esses termos ajudam a organizar o diagnóstico, mas não devem ser tratados como sinônimos:</p>
+      <div class="table-wrap"><table class="article-table">
+        <thead><tr><th>Comportamento</th><th>Como aparece no teste</th><th>Hipóteses a investigar</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Banda morta</strong></td><td>O comando muda dentro de uma faixa e a posição praticamente não responde.</td><td>Folgas, atrito, acoplamento, resolução do posicionador ou configuração.</td></tr>
+          <tr><td><strong>Histerese</strong></td><td>O mesmo comando produz posições diferentes conforme a aproximação ocorre pela subida ou descida.</td><td>Atrito, folga, deformação, mecanismo de feedback e conjunto atuador-válvula.</td></tr>
+          <tr><td><strong>Repetibilidade</strong></td><td>Repetições nas mesmas condições e direção não retornam a posições próximas.</td><td>Instabilidade de pressão, montagem, desgaste, processo variável ou sinal ruidoso.</td></tr>
+          <tr><td><strong>Stiction</strong></td><td>A haste permanece presa enquanto o comando varia e depois se move de forma abrupta.</td><td>Atrito estático, gaxeta, guia, corrosão, sujeira ou forças do processo.</td></tr>
+          <tr><td><strong>Oscilação</strong></td><td>A posição não estabiliza ou fica caçando ao redor do alvo.</td><td>Ganho do posicionador, dimensionamento, ar, atrito, malha de controle ou interação com o processo.</td></tr>
+        </tbody>
+      </table></div>
+      <p>Um único ensaio em vazio não separa todas essas causas. O padrão observado deve ser combinado com pressão de suprimento, pressão de saída, diagnóstico do posicionador quando disponível, inspeção mecânica e histórico da malha.</p>
+
+      <h2>Sequência de diagnóstico antes de ajustar o posicionador</h2>
+      <ol class="diagnostic-steps">
+        <li><strong>Confirme o comando.</strong> Meça ou simule o sinal de forma segura e confira escala, sentido de ação, split range e limites configurados.</li>
+        <li><strong>Confirme o ar de instrumentos.</strong> Verifique pressão, estabilidade, regulador, filtro, restrições, água, óleo e vazamentos conforme os requisitos do fabricante.</li>
+        <li><strong>Observe entrada e saída do posicionador.</strong> Compare comando, variável de posição, pressão de saída e alertas disponíveis. Recursos digitais variam por fabricante e modelo.</li>
+        <li><strong>Confira feedback e montagem.</strong> Procure braço, came, ímã, linkage ou sensor fora de posição, curso configurado incorretamente e acoplamento com folga.</li>
+        <li><strong>Avalie o atuador.</strong> Inspecione diafragma, pistão, mola, vedação, tubulação, volume booster e resposta nas duas direções.</li>
+        <li><strong>Avalie a mecânica da válvula.</strong> Observe haste, eixo, gaxeta, guias, batentes e sinais de agarramento. A inspeção interna depende de desmontagem e procedimento próprio.</li>
+        <li><strong>Considere as forças do processo.</strong> Pressão diferencial, sentido de fluxo, temperatura e depósito no corpo podem mudar a resposta em relação à bancada.</li>
+        <li><strong>Ajuste somente com causa e autorização.</strong> Preserve o as-found, registre parâmetros alterados e repita o ensaio completo para obter o as-left.</li>
+      </ol>
+
+      <h2>O que registrar no relatório técnico</h2>
+      <p>Um registro útil permite que outra pessoa entenda o que foi testado, em quais condições e com qual resultado. Inclua:</p>
+      <ul>
+        <li>identificação completa do conjunto e configuração relevante;</li>
+        <li>instrumentos de referência utilizados, condição e identificação documental aplicável;</li>
+        <li>pressão de suprimento, condição do processo e método de leitura da posição;</li>
+        <li>pontos em subida e descida, repetições, tempos de estabilização e observações;</li>
+        <li>dados as-found, intervenção executada, parâmetros alterados e dados as-left;</li>
+        <li>tolerância e regra de decisão, quando realmente definidas pelo escopo;</li>
+        <li>limitações: teste sem carga, ausência de inspeção interna, feedback não independente ou outra restrição;</li>
+        <li>recomendação de manutenção, investigação adicional ou retorno ao processo, sem extrapolar a evidência obtida.</li>
+      </ul>
+      <div class="post-success"><strong>Boa prática de diagnóstico:</strong> uma válvula que não alcança a posição esperada não deve ser automaticamente “corrigida no zero e span”. O desvio pode estar fora do posicionador. Ajustar antes de localizar a causa pode esconder o defeito e eliminar o histórico as-found.</div>
+
+      <h2>Quando avaliar em campo e quando levar para bancada</h2>
+      <p>O teste em campo é adequado para confirmar a cadeia instalada, a lógica, o sentido de ação, o feedback e o comportamento sob as condições permitidas pela planta. A bancada facilita inspeção controlada, teste pneumático, configuração e manutenção de componentes removidos.</p>
+      <p>A decisão depende do porte, tipo, risco, necessidade de desmontagem, recursos de teste, disponibilidade de peças, condição de limpeza e logística. Equipamentos contaminados, pressurizados ou expostos a produtos perigosos exigem descontaminação, documentação e critérios de recebimento definidos antes do envio.</p>
+
+      <section class="service-cta" aria-label="Serviços de válvulas, atuadores e posicionadores">
+        <h2>Avaliação de válvulas, atuadores e posicionadores</h2>
+        <p>A ALOGY estrutura escopos para avaliação, inspeção, diagnóstico, manutenção, configuração e conferência funcional em campo ou por recebimento do equipamento, conforme modelo, porte, condição, segurança, recursos de teste e logística confirmados na proposta.</p>
+        <p>Calibração formal, ensaio específico, rastreabilidade ou documentação metrológica somente são incluídos quando os recursos e parceiros necessários estiverem confirmados no escopo. Não há promessa automática de certificado próprio.</p>
+        <div class="calc-actions"><a class="mini-btn" href="industrial.html"><i class="fas fa-screwdriver-wrench"></i> Ver serviços</a><a class="mini-btn secondary" href="https://wa.me/5519981442448?text=Ol%C3%A1!%20Gostaria%20de%20avaliar%20uma%20v%C3%A1lvula%2C%20atuador%20ou%20posicionador.%20Posso%20enviar%20TAG%2C%20modelo%2C%20fotos%20e%20descri%C3%A7%C3%A3o%20da%20falha." target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> Enviar dados do equipamento</a></div>
+      </section>
+
+      <h2>Ferramentas e conteúdos relacionados</h2>
+      <div class="calc-actions"><a class="mini-btn dark" href="calculadora-calibracao-valvula-controle.html"><i class="fas fa-calculator"></i> Registro de calibração de válvula</a><a class="mini-btn" href="calculadora-diagnostico-4-20ma-hart.html"><i class="fas fa-stethoscope"></i> Diagnóstico 4-20 mA e HART</a><a class="mini-btn" href="calculadora-cv-kv-valvula-controle.html"><i class="fas fa-water"></i> Cv / Kv</a><a class="mini-btn" href="calculadora-split-range-4-20ma.html"><i class="fas fa-code-branch"></i> Split range</a><a class="mini-btn" href="calculadora-atuador-pneumatico.html"><i class="fas fa-wind"></i> Atuador pneumático</a><a class="mini-btn" href="blog-cavitacao-valvula-controle.html"><i class="fas fa-burst"></i> Cavitação e flashing</a></div>
+
+      <h2>Perguntas frequentes</h2>
+      <section class="faq" aria-label="Perguntas frequentes sobre teste de válvula de controle">
+        <details><summary>Calibrar o posicionador é o mesmo que calibrar a válvula?</summary><p>Não necessariamente. O posicionador é uma parte da cadeia. A avaliação do conjunto também pode envolver comando 4-20 mA, pressão pneumática, atuador, haste ou eixo, feedback de posição, acessórios e condições mecânicas.</p></details>
+        <details><summary>12 mA deve sempre corresponder a 50% de abertura?</summary><p>Em uma escala linear de 4 a 20 mA configurada de 0% a 100%, 12 mA representa 50% do comando. Isso não garante 50% de vazão, pois a relação depende da característica da válvula, instalação, processo e configuração.</p></details>
+        <details><summary>Cinco pontos são suficientes para aceitar uma válvula?</summary><p>Cinco pontos em subida e descida são úteis para triagem e registro, mas não formam um critério universal de aceitação. Quantidade de pontos, tolerância e regra de decisão dependem do procedimento, criticidade, fabricante e aplicação.</p></details>
+        <details><summary>Quando o posicionador deve ser ajustado?</summary><p>Somente depois de registrar a condição encontrada e verificar se o desvio realmente vem do posicionador. Ar de instrumentos, vazamentos, feedback, atrito, folgas, atuador, montagem e forças do processo também podem causar resposta incorreta.</p></details>
+      </section>
+
+      <h2>Referências técnicas</h2>
+      <ul class="reference-list">
+        <li><a href="https://www.bipm.org/en/doi/10.59161/jcgm200-2012" target="_blank" rel="noopener noreferrer">BIPM / JCGM 200:2012 — International Vocabulary of Metrology (VIM), 3ª edição</a>. Referência para os conceitos de calibração e ajuste.</li>
+        <li><a href="https://www.emerson.com/pt/final-control/catalog/products-and-software/valves/control-valves/control-valve-handbook" target="_blank" rel="noopener noreferrer">Emerson — Control Valve Handbook, 6ª edição</a>. Referência sobre válvulas de controle, atuadores, acessórios, instalação, manutenção e diagnóstico.</li>
+        <li><a href="https://www.fieldcommgroup.org/old-registered-products/c199070e-1fb2-e811-8153-e0071b66aea1" target="_blank" rel="noopener noreferrer">FieldComm Group — exemplo de posicionador eletropneumático HART registrado</a>. Usado apenas para demonstrar que recursos de diagnóstico e inicialização dependem do modelo; não representa capacidade universal de todo posicionador.</li>
+      </ul>
 
       <h2>Aviso técnico</h2>
-      <p>Este artigo e as ferramentas relacionadas são recursos informativos. Não substituem análise de risco, liberação operacional, bloqueio, procedimento de calibração, manual do fabricante, teste de segurança ou validação por profissional habilitado. Não movimente uma válvula conectada ao processo sem autorização e condição segura definida pela operação.</p>
+      <p>Este artigo e as ferramentas relacionadas são recursos informativos. Não substituem análise de risco, liberação operacional, bloqueio, procedimento aprovado, manual específico do fabricante, ensaio metrológico contratado ou validação por profissional habilitado. Nunca force movimento, desmonte ou pressurize um conjunto sem conhecer a energia, o fluido, a condição de descontaminação e as medidas de segurança aplicáveis.</p>
     </div></article>
   </main>
   <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
