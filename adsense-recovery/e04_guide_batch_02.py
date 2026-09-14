@@ -77,6 +77,11 @@ def migrate_page(path: str) -> tuple[int, int]:
     )
     text, hotmart_count = hotmart_pattern.subn('', text)
 
+    had_final_newline = text.endswith('\n')
+    text = '\n'.join(line.rstrip() for line in text.splitlines())
+    if had_final_newline:
+        text += '\n'
+
     if guide_count != 2:
         raise RuntimeError(f'{path}: esperados 2 links Cursos; encontrados {guide_count}')
     if hotmart_count != 1:
