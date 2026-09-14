@@ -1,0 +1,185 @@
+name: E05 finalize valve control pilot
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/e05-finalize-valve-pilot.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: e05-finalize-valve-control-pilot
+  cancel-in-progress: false
+
+jobs:
+  finalize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Regenerate canonical inventory
+        run: python3 adsense-recovery/audit_adsense.py
+
+      - name: Classify revised page and write report
+        shell: python
+        run: |
+          from pathlib import Path
+          import csv
+
+          inventory = Path('adsense-recovery/ADSENSE-INVENTORY.csv')
+          report = Path('adsense-recovery/E05-VALVE-CONTROL-PILOT-01.md')
+          target_path = 'blog-calibracao-valvula-controle.html'
+
+          with inventory.open(encoding='utf-8', newline='') as stream:
+              reader = csv.DictReader(stream)
+              rows = list(reader)
+              fields = list(reader.fieldnames or [])
+
+          target = next(row for row in rows if row['path'] == target_path)
+          target.update({
+              'status': 'keep',
+              'priority': 'P1',
+              'confidence': 'high',
+              'evidence': (
+                  'Primeira página do piloto E05 revisada em profundidade: delimita comando, posicionador, '
+                  'atuador, haste/eixo, feedback e processo; diferencia verificação, calibração, ajuste e '
+                  'manutenção; apresenta matriz de subida e descida, exemplo numérico sem tolerância universal, '
+                  'diagnóstico estruturado, registros as-found/as-left, segurança, CTA comercial condicionado '
+                  'ao escopo e referências primárias BIPM/JCGM, Emerson e FieldComm Group.'
+              ),
+              'next_action': (
+                  'Manter indexada e monitorar desempenho; preservar fontes, limites de segurança e posicionamento '
+                  'comercial verdadeiro, validar periodicamente os links e adicionar autoria ou revisão técnica '
+                  'pessoal somente quando credenciais e evidências publicáveis forem confirmadas.'
+              ),
+          })
+
+          with inventory.open('w', encoding='utf-8', newline='') as stream:
+              writer = csv.DictWriter(stream, fieldnames=fields, lineterminator='\n')
+              writer.writeheader()
+              writer.writerows(rows)
+
+          content_rows = [row for row in rows if not row['path'].startswith('google')]
+          indexable = [row for row in content_rows if 'noindex' not in row['robots'].lower()]
+          noindex = [row for row in content_rows if 'noindex' in row['robots'].lower()]
+          sitemap_rows = [row for row in content_rows if row['in_sitemap'] == 'true']
+          h1_anomalies = [row['path'] for row in indexable if row['h1_count'] != '1']
+
+          report.write_text(
+              '# E05 — Piloto editorial 01: válvula de controle\n\n'
+              'Data: 2026-09-14\n\n'
+              '## Página revisada\n\n'
+              f'- `{target_path}`\n'
+              '- Commit do conteúdo: `59dffe7f590d15d3e9d2e341375b0e7e979c9e0c`.\n\n'
+              '## Problema de partida\n\n'
+              'A versão anterior tinha 509 palavras visíveis no inventário, não possuía referências técnicas '
+              'externas primárias e não separava completamente comando, posicionador, atuador, curso, feedback, '
+              'banda morta, histerese, repetibilidade e stiction.\n\n'
+              '## O que foi acrescentado\n\n'
+              '- fronteira clara entre comando, I/P ou posicionador, atuador, mecânica, feedback e processo;\n'
+              '- distinção entre verificação funcional, calibração, ajuste e manutenção;\n'
+              '- preparação segura, matriz de cinco pontos em subida e descida e campos de registro;\n'
+              '- exemplo numérico que descreve desvios sem inventar tolerância ou aprovação;\n'
+              '- diferenciação entre banda morta, histerese, repetibilidade, stiction e oscilação;\n'
+              '- sequência de diagnóstico antes de qualquer ajuste do posicionador;\n'
+              '- orientação de documentação as-found/as-left e limitações do teste;\n'
+              '- critérios prudentes para atendimento em campo ou recebimento do equipamento;\n'
+              '- CTA verdadeiro para avaliação, inspeção, diagnóstico, manutenção, configuração e conferência '
+              'funcional sob proposta, sem promessa automática de certificado próprio;\n'
+              '- FAQ visível e estruturado e referências oficiais BIPM/JCGM, Emerson e FieldComm Group.\n\n'
+              '## Validação da página\n\n'
+              f'- palavras visíveis totais no auditor: **{target["visible_words"]}**;\n'
+              f'- palavras visíveis no conteúdo principal: **{target["main_visible_words"]}**;\n'
+              f'- H1: **{target["h1_count"]}**; H2: **{target["h2_count"]}**; H3: **{target["h3_count"]}**;\n'
+              f'- AdSense direto: **{target["adsense"]}**; sitemap: **{target["in_sitemap"]}**;\n'
+              f'- canonical: `{target["canonical"]}`;\n'
+              '- JSON-LD de BlogPosting e FAQ validado antes da publicação;\n'
+              '- nenhuma fórmula ou lógica JavaScript técnica compartilhada foi alterada.\n\n'
+              '## Inventário estrutural após a revisão\n\n'
+              f'- HTMLs-fonte: **{len(rows)}**;\n'
+              f'- páginas/rotas editoriais: **{len(content_rows)}**;\n'
+              f'- indexáveis: **{len(indexable)}**;\n'
+              f'- `noindex`: **{len(noindex)}**;\n'
+              f'- URLs em sitemap: **{len(sitemap_rows)}**;\n'
+              f'- anomalias reais de H1 entre indexáveis: **{len(h1_anomalies)}**.\n\n'
+              '## Decisão editorial\n\n'
+              'A página passa de `improve/P0` para `keep/P1/high`. O próximo lote do piloto é a revisão separada '
+              'de `blog-calibracao-instrumentos-industriais.html`. A nova análise do AdSense continua bloqueada '
+              'até a conclusão das etapas de prontidão.\n',
+              encoding='utf-8',
+          )
+
+      - name: Validate bounded result
+        shell: python
+        run: |
+          from pathlib import Path
+          import csv
+          import json
+          import re
+          import subprocess
+
+          target_path = 'blog-calibracao-valvula-controle.html'
+          inventory_path = Path('adsense-recovery/ADSENSE-INVENTORY.csv')
+          page = Path(target_path).read_text(encoding='utf-8')
+
+          with inventory_path.open(encoding='utf-8', newline='') as stream:
+              rows = list(csv.DictReader(stream))
+          target = next(row for row in rows if row['path'] == target_path)
+          content_rows = [row for row in rows if not row['path'].startswith('google')]
+          indexable = [row for row in content_rows if 'noindex' not in row['robots'].lower()]
+          noindex = [row for row in content_rows if 'noindex' in row['robots'].lower()]
+
+          assert len(rows) == 271, len(rows)
+          assert len(content_rows) == 270, len(content_rows)
+          assert len(indexable) == 221, len(indexable)
+          assert len(noindex) == 49, len(noindex)
+          assert sum(row['in_sitemap'] == 'true' for row in content_rows) == 221
+          assert not [row['path'] for row in indexable if row['h1_count'] != '1']
+          assert target['status'] == 'keep'
+          assert target['priority'] == 'P1'
+          assert target['confidence'] == 'high'
+          assert target['adsense'] == 'true'
+          assert target['in_sitemap'] == 'true'
+          assert target['h1_count'] == '1'
+          assert int(target['h2_count']) >= 12
+          assert int(target['main_visible_words']) >= 1800
+          assert not target['audit_evidence']
+          assert 'cursos.html' not in page.lower()
+          assert '>cursos<' not in page.lower()
+          assert 'hotmart.com' not in page.lower()
+          assert page.count('href="/guia/"') == 2
+          assert 'JCGM200-2012' in page or 'jcgm200-2012' in page
+          assert 'control-valve-handbook' in page
+          assert 'fieldcommgroup.org' in page
+          assert page.count('<h1') == 1
+
+          json_blocks = re.findall(r'<script[^>]*type="application/ld\+json"[^>]*>(.*?)</script>', page, re.I | re.S)
+          assert len(json_blocks) == 2
+          for block in json_blocks:
+              json.loads(block)
+
+          expected_tracked = {'adsense-recovery/ADSENSE-INVENTORY.csv'}
+          expected_untracked = {'adsense-recovery/E05-VALVE-CONTROL-PILOT-01.md'}
+          changed_tracked = set(subprocess.check_output(['git', 'diff', '--name-only'], text=True).splitlines())
+          changed_untracked = set(subprocess.check_output(['git', 'ls-files', '--others', '--exclude-standard'], text=True).splitlines())
+          assert changed_tracked == expected_tracked, (changed_tracked, expected_tracked)
+          assert changed_untracked == expected_untracked, (changed_untracked, expected_untracked)
+          subprocess.run(['git', 'diff', '--check'], check=True)
+          print('E05 valve-control pilot inventory and report validated.')
+
+      - name: Commit inventory and report atomically
+        shell: bash
+        run: |
+          set -e
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git rm .github/workflows/e05-finalize-valve-pilot.yml
+          git add adsense-recovery/ADSENSE-INVENTORY.csv adsense-recovery/E05-VALVE-CONTROL-PILOT-01.md
+          git commit -m 'AdSense E05: fecha primeiro piloto editorial de valvula'
+          git pull --rebase origin main
+          git push origin HEAD:main
