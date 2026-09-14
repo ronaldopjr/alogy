@@ -2,381 +2,227 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
-  <title>Calibração de Instrumentos Industriais | ALOGY</title>
-
-  <meta name="description" content="Entenda a importância da calibração de instrumentos industriais, erro de medição, tolerância, rastreabilidade e confiabilidade dos dados de processo."/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calibração de Instrumentos Industriais: Método e Incerteza | ALOGY</title>
+  <meta name="description" content="Entenda calibração, verificação, ajuste, erro, incerteza, tolerância, regra de decisão, rastreabilidade e registros as-found/as-left." />
   <meta name="robots" content="index,follow" />
   <meta name="theme-color" content="#2C78B9" />
   <link rel="canonical" href="https://www.alogy.com.br/blog-calibracao-instrumentos-industriais.html" />
-
   <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
-<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png" />
-<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png" />
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-
-  <link rel="stylesheet" href="style.css?v=20260722-layout-original-uppercase-mobilefix" />
+  <link rel="stylesheet" href="style.css?v=20260911-article-semantic1" />
   <script src="app.js" defer></script>
-
   <meta property="og:locale" content="pt_BR" />
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="ALOGY Engenharia" />
-  <meta property="og:title" content="Calibração de Instrumentos Industriais: Erro, Tolerância e Confiabilidade" />
-  <meta property="og:description" content="Calibração, erro de medição, tolerância e rastreabilidade: entenda por que dados confiáveis começam nos instrumentos de campo." />
-  <meta property="og:image" content="https://www.alogy.com.br/favicon-512x512.png" />
+  <meta property="og:title" content="Calibração de Instrumentos Industriais: Método, Erro e Incerteza" />
+  <meta property="og:description" content="Guia para separar calibração, verificação, ajuste e teste de loop, interpretar erro e incerteza e registrar as-found/as-left." />
   <meta property="og:url" content="https://www.alogy.com.br/blog-calibracao-instrumentos-industriais.html" />
-
+  <meta property="og:image" content="https://www.alogy.com.br/capa-blog-calibracao-instrumentos-industriais.webp" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Calibração de Instrumentos Industriais: Erro, Tolerância e Confiabilidade" />
-  <meta name="twitter:description" content="Entenda como a calibração melhora a confiabilidade da medição e dos dados industriais." />
-  <meta name="twitter:image" content="https://www.alogy.com.br/favicon-512x512.png" />
-
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Calibração de Instrumentos Industriais: Erro, Tolerância e Confiabilidade","description":"Entenda a importância da calibração de instrumentos industriais, erro de medição, tolerância, rastreabilidade e confiabilidade dos dados de processo.","datePublished":"2026-06-26","dateModified":"2026-06-26","author":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"},"publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/","logo":{"@type":"ImageObject","url":"https://www.alogy.com.br/logo-alogy.webp"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://www.alogy.com.br/blog-calibracao-instrumentos-industriais.html"},"inLanguage":"pt-BR","image":"https://www.alogy.com.br/favicon-512x512.png"}</script>
-
+  <meta name="twitter:image" content="https://www.alogy.com.br/capa-blog-calibracao-instrumentos-industriais.webp" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Calibração de Instrumentos Industriais: Método, Erro e Incerteza","description":"Guia para separar calibração, verificação, ajuste e teste de loop, interpretar erro e incerteza e registrar as-found/as-left.","datePublished":"2026-06-26","dateModified":"2026-09-14","image":"https://www.alogy.com.br/capa-blog-calibracao-instrumentos-industriais.webp","author":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"},"publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/","logo":{"@type":"ImageObject","url":"https://www.alogy.com.br/logo-alogy.webp"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://www.alogy.com.br/blog-calibracao-instrumentos-industriais.html"},"inLanguage":"pt-BR"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Calibração e ajuste são a mesma coisa?","acceptedAnswer":{"@type":"Answer","text":"Não. A calibração estabelece uma relação entre valores de referência e indicações, com as incertezas aplicáveis. O ajuste altera o sistema de medição para obter uma resposta prescrita. A condição encontrada deve ser registrada antes do ajuste e a condição final deve ser avaliada novamente."}},{"@type":"Question","name":"Um certificado torna o instrumento rastreável?","acceptedAnswer":{"@type":"Answer","text":"A rastreabilidade metrológica é propriedade de um resultado de medição. Ela exige uma cadeia documentada e ininterrupta de calibrações, cada uma contribuindo para a incerteza. Ter um certificado isolado não garante automaticamente a rastreabilidade de resultados obtidos depois pelo usuário."}},{"@type":"Question","name":"Erro menor que a tolerância significa aprovação automática?","acceptedAnswer":{"@type":"Answer","text":"Não necessariamente. A conclusão depende da tolerância aplicável, da incerteza associada ao resultado e da regra de decisão definida antes da avaliação. Não existe uma regra universal para todas as aplicações."}},{"@type":"Question","name":"Calibração em campo substitui o teste de loop?","acceptedAnswer":{"@type":"Answer","text":"Não. A calibração avalia a relação metrológica do instrumento ou sistema definido no escopo. O teste de loop verifica a cadeia instalada, incluindo sinal, cabeamento, cartão, escala e indicação no sistema. Os procedimentos são complementares."}}]}</script>
   <style>
-    .post-wrap{ max-width: 900px; margin: 18px auto; }
-    .post-card{
-      background: var(--card);
-      border: 1px solid rgba(0,0,0,.08);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      overflow: hidden;
-    }
-    .post-cover{
-      width: 100%; height: auto; display: block;
-      aspect-ratio: 16 / 9; object-fit: cover; background: #dbeafe;
-    }
-    .post-content{ padding: 30px; }
-    .post-meta{ color: var(--muted); font-size: .95rem; margin-bottom: 12px; }
-    .post-content h1{ font-size: 2.15rem; line-height: 1.15; margin-bottom: 12px; color: var(--text); }
-    .post-content h2{ font-size: 1.45rem; line-height: 1.25; margin: 26px 0 10px; color: var(--text); }
-    .post-content p{ color: var(--text); margin: 0 0 16px; font-size: 1.04rem; line-height: 1.75; }
-    .post-content ul{ margin: 0 0 18px 20px; }
-    .post-content li{ margin: 8px 0; line-height: 1.65; }
-    .post-highlight{
-      background: rgba(0,107,177,.08);
-      border: 1px solid rgba(0,107,177,.18);
-      border-radius: 14px;
-      padding: 16px;
-      margin: 22px 0;
-    }
-    .post-highlight strong{ color: #0b3a62; }
-    @media (max-width: 768px){
-      .post-content{ padding: 22px; }
-      .post-content h1{ font-size: 1.65rem; }
-      .post-content h2{ font-size: 1.25rem; }
-    }
+    .post-wrap{max-width:960px;margin:18px auto}.post-card{background:var(--card);border:1px solid rgba(0,0,0,.08);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}.post-content{padding:30px}.post-meta{color:var(--muted);font-size:.95rem;margin-bottom:12px}.post-content h1{font-size:2.15rem;line-height:1.15;margin-bottom:12px;color:var(--text)}.post-content h2{font-size:1.45rem;line-height:1.25;margin:30px 0 10px;color:var(--text)}.post-content h3{font-size:1.12rem;line-height:1.35;margin:22px 0 8px;color:#0b3a62}.post-content p{color:var(--text);margin:0 0 16px;font-size:1.04rem;line-height:1.75}.post-content ul,.post-content ol{margin:0 0 18px 22px}.post-content li{margin:8px 0;line-height:1.65}.post-highlight{background:rgba(0,107,177,.08);border:1px solid rgba(0,107,177,.18);border-radius:14px;padding:16px;margin:22px 0}.post-highlight strong{color:#0b3a62}.post-warning{background:#fff7ed;border:1px solid #fed7aa;color:#7c2d12;border-radius:14px;padding:16px;margin:22px 0;line-height:1.65}.post-success{background:#ecfdf5;border:1px solid #bbf7d0;color:#166534;border-radius:14px;padding:16px;margin:22px 0;line-height:1.65}.table-wrap{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid rgba(0,0,0,.09);border-radius:14px;margin:14px 0 22px}.article-table{width:100%;min-width:760px;border-collapse:collapse;background:#fff}.article-table th{background:#0b3a62;color:#fff;text-align:left;padding:12px;vertical-align:top}.article-table td{padding:12px;border-bottom:1px solid rgba(0,0,0,.08);vertical-align:top;line-height:1.55}.article-table tr:last-child td{border-bottom:0}.formula-box{background:#f8fafc;border:1px solid rgba(0,75,128,.16);border-radius:14px;padding:15px;margin:16px 0 22px;line-height:1.7}.formula-box code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;color:#0f172a}.process-steps{counter-reset:step;list-style:none;margin-left:0!important;padding:0}.process-steps li{counter-increment:step;position:relative;padding:14px 14px 14px 54px;border:1px solid rgba(0,107,177,.16);border-radius:14px;background:rgba(0,107,177,.04);margin:10px 0}.process-steps li:before{content:counter(step);position:absolute;left:14px;top:13px;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:#0b3a62;color:#fff;font-weight:700}.reference-list a{overflow-wrap:anywhere}.faq details{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:14px;padding:14px;margin-top:10px;box-shadow:0 6px 16px rgba(0,0,0,.04)}.faq summary{cursor:pointer;font-weight:700;color:#0b3a62}.faq p{margin:10px 0 0;color:var(--text)}.service-cta{background:linear-gradient(135deg,#0b3a62,#006bb1);color:#fff;border-radius:18px;padding:22px;margin:28px 0}.service-cta h2{color:#fff;margin:0 0 10px}.service-cta p{color:rgba(255,255,255,.94)}.service-cta .calc-actions{margin-top:14px}.service-cta .mini-btn{background:#fff;color:#0b3a62;border-color:#fff}.service-cta .mini-btn.secondary{background:transparent;color:#fff;border-color:rgba(255,255,255,.65)}@media(max-width:768px){.post-content{padding:22px}.post-content h1{font-size:1.65rem}.post-content h2{font-size:1.25rem}.service-cta{padding:18px}.article-table{min-width:700px}}
   </style>
-  <!-- Google AdSense: carregado somente em páginas editoriais monetizáveis. A exibição e os formatos são controlados no painel do AdSense. -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5586837114309500" crossorigin="anonymous"></script>
 </head>
-
 <body>
   <header>
-    <div class="container headbar">
-      <a href="/" class="logo-wrapper" aria-label="Voltar para o início">
-        <img src="logo-alogy.webp" alt="ALOGY Engenharia"  width="878"  height="308"  decoding="async" />
-      </a>
-<button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menu">
-        <i class="fas fa-bars"></i>
-      </button>
-    </div>
-
-    <nav class="desktop" aria-label="Menu principal">
-      <div class="container navlinks">
-        <a href="/">Início</a>
-        <a href="industrial.html">Serviços</a>
-
-        <a href="cases.html">Projetos</a>
-        <a href="/guia/">Guia</a>
-        <a href="blog.html">Blog</a>
-        <a href="ferramentas.html">Ferramentas</a>
-        <a href="sobre.html">Sobre</a>
-        <a href="/#contato">Contato</a>
-      </div>
-    </nav>
-
-    <nav class="mobile" aria-label="Menu mobile">
-      <a href="/">Início</a>
-      <a href="industrial.html">Serviços</a>
-
-      <a href="cases.html">Projetos</a>
-      <a href="/guia/">Guia</a>
-      <a href="blog.html">Blog</a>
-      <a href="ferramentas.html">Ferramentas</a>
-      <a href="sobre.html">Sobre</a>
-      <a href="/#contato">Contato</a>
-    </nav>
+    <div class="container headbar"><a href="/" class="logo-wrapper" aria-label="Voltar para o início"><img src="logo-alogy.webp" alt="ALOGY Engenharia" width="878" height="308" decoding="async" /></a><button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menu"><i class="fas fa-bars"></i></button></div>
+    <nav class="desktop" aria-label="Menu principal"><div class="container navlinks"><a href="/">Início</a><a href="industrial.html">Serviços</a><a href="cases.html">Projetos</a><a href="/guia/">Guia</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></div></nav>
+    <nav class="mobile" aria-label="Menu mobile"><a href="/">Início</a><a href="industrial.html">Serviços</a><a href="cases.html">Projetos</a><a href="/guia/">Guia</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></nav>
   </header>
-
-  <div class="social-floating" aria-label="Redes sociais">
-    <a href="https://www.linkedin.com/company/alogyengenharia" class="linkedin" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-    <a href="https://www.instagram.com/alogyengenharia" class="instagram" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-    <a href="https://www.facebook.com/alogyengenharia" class="facebook" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-    <a href="https://www.youtube.com/@alogyengenharia" class="youtube" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-
-    <a href="https://www.tiktok.com/@alogyengenharia" class="tiktok" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
-  </div>
-
-  <div class="fab-wrap" aria-label="Ações rápidas">
-    <a class="fab-btn mail" href="mailto:contato@alogy.com.br">
-      <i class="fas fa-envelope"></i> contato@alogy.com.br
-    </a>
-
-    <a class="fab-btn wa"
-       href="https://wa.me/5519981442448?text=Ol%C3%A1!%20Li%20o%20artigo%20sobre%20calibra%C3%A7%C3%A3o%20de%20instrumentos%20industriais%20no%20blog%20da%20ALOGY%20e%20gostaria%20de%20atendimento."
-       target="_blank" rel="noopener noreferrer">
-      <i class="fab fa-whatsapp"></i> WhatsApp
-    </a>
-  </div>
+  <div class="social-floating" aria-label="Redes sociais"><a href="https://www.linkedin.com/company/alogyengenharia" class="linkedin" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a><a href="https://www.instagram.com/alogyengenharia" class="instagram" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="https://www.facebook.com/alogyengenharia" class="facebook" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><a href="https://www.youtube.com/@alogyengenharia" class="youtube" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a><a href="https://www.tiktok.com/@alogyengenharia" class="tiktok" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fab fa-tiktok"></i></a></div>
+  <div class="fab-wrap" aria-label="Ações rápidas"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1!%20Li%20o%20guia%20de%20calibra%C3%A7%C3%A3o%20de%20instrumentos%20da%20ALOGY.%20Gostaria%20de%20avaliar%20um%20escopo%20t%C3%A9cnico." target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
 
   <main class="container post-wrap">
-    <div style="margin-bottom:14px">
-  <a class="floating-back-blog no-print" href="blog.html">
-    <i class="fas fa-arrow-left"></i> Voltar para o Blog
-  </a>
-</div>
+    <a class="floating-back-blog no-print" href="blog.html"><i class="fas fa-arrow-left"></i> Voltar ao Blog</a>
+    <article class="post-card"><div class="post-content">
+      <div class="post-meta">Calibração • Metrologia • Instrumentação industrial • Confiabilidade</div>
+      <h1>Calibração de instrumentos industriais: método, erro e incerteza</h1>
+      <p class="muted" data-alogy-content-meta><strong>Conteúdo técnico:</strong> ALOGY Engenharia · <strong>Revisado em:</strong> 14/09/2026</p>
+      <figure class="article-cover-figure"><img class="article-cover-image" src="capa-blog-calibracao-instrumentos-industriais.webp" alt="Instrumentos industriais e padrões de referência organizados para uma comparação metrológica" loading="eager" fetchpriority="high" decoding="async"/><figcaption>Uma calibração útil começa com escopo, mensurando, condições, referência, pontos e regra de decisão claramente definidos.</figcaption></figure>
 
-    <article class="post-card">
-      <div class="post-content">
-        <div class="post-meta">
-          <time datetime="2026-06-26">Publicado em 26/06/2026</time> • Calibração • Instrumentação Industrial • Confiabilidade
-        </div>
+      <p>Calibração não é apenas “ver se o instrumento está certo”. Ela estabelece, sob condições especificadas, uma relação documentada entre valores fornecidos por referências e as indicações do sistema de medição, considerando as incertezas aplicáveis. Essa relação pode então ser usada para obter um resultado de medição a partir da indicação.</p>
+      <p>Na indústria, a utilidade desse resultado depende de outra pergunta: <strong>a medição é adequada para a decisão do processo?</strong> Pressão, temperatura, vazão, nível, massa, pH e outras variáveis podem alimentar controle, alarmes, balanços, qualidade, segurança ou apenas indicação local. O mesmo erro pode ser irrelevante em uma função e crítico em outra.</p>
 
-        <div class="tags" style="margin-bottom:14px">
-          <span class="tag">Calibração</span>
-          <span class="tag">Erro de Medição</span>
-          <span class="tag">Tolerância</span>
-          <span class="tag">Rastreabilidade</span>
-        </div>
+      <div class="post-warning"><strong>Limite deste guia:</strong> não existe tolerância, periodicidade, quantidade de pontos ou regra de decisão universal. Esses elementos devem vir da necessidade de medição, criticidade, especificação, procedimento aprovado, contrato e requisitos aplicáveis. Trabalhos em campo também exigem liberação, isolamento e segurança definidos pela planta.</div>
 
-        <h1>Calibração de instrumentos industriais: erro, tolerância e confiabilidade</h1>
+      <h2>Calibração, verificação, ajuste e teste funcional</h2>
+      <p>Usar os termos corretamente evita relatórios ambíguos e intervenções prematuras. A fronteira deve ser declarada antes do trabalho.</p>
+      <div class="table-wrap"><table class="article-table">
+        <thead><tr><th>Atividade</th><th>Pergunta respondida</th><th>Registro esperado</th><th>O que não prova sozinha</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Calibração</strong></td><td>Qual relação existe entre valores de referência e indicações, nas condições declaradas?</td><td>Valores, condições, referências, resultados, incertezas e identificação do sistema avaliado.</td><td>Não declara conformidade automaticamente e não implica ajuste.</td></tr>
+          <tr><td><strong>Verificação</strong></td><td>O item atende a requisitos especificados para aquela checagem?</td><td>Critério, método, evidência e conclusão conforme regra definida.</td><td>Não substitui uma calibração quando é necessário conhecer a relação metrológica.</td></tr>
+          <tr><td><strong>Ajuste</strong></td><td>Que intervenção modificou a indicação ou resposta?</td><td>Condição encontrada, parâmetros alterados e nova avaliação.</td><td>Não apaga a necessidade de registrar o estado anterior.</td></tr>
+          <tr><td><strong>Teste funcional</strong></td><td>O sistema responde, sinaliza, controla ou intertrava como previsto?</td><td>Condição, estímulo, resposta, lógica e limitações do teste.</td><td>Não demonstra, por si só, desempenho metrológico em toda a faixa.</td></tr>
+          <tr><td><strong>Teste de loop</strong></td><td>O sinal percorre corretamente campo, cabeamento, cartão, escala e sistema?</td><td>Pontos simulados, valores em cada etapa e desvios encontrados.</td><td>Não substitui a calibração do sensor ou transmissor.</td></tr>
+        </tbody>
+      </table></div>
+      <div class="post-highlight"><strong>Princípio de evidência:</strong> preserve a condição <em>as-found</em> antes de qualquer ajuste. Se houver intervenção autorizada, repita os pontos e registre separadamente a condição <em>as-left</em>.</div>
 
-        <p>
-          A calibração de instrumentos industriais é uma prática essencial para garantir que as medições
-          usadas no processo estejam corretas, confiáveis e dentro dos limites aceitáveis. Em uma planta
-          industrial, decisões de controle, segurança, qualidade e manutenção dependem diretamente da
-          confiança nos instrumentos de campo.
-        </p>
+      <h2>Defina a fronteira do sistema de medição</h2>
+      <p>Um resultado só é interpretável quando está claro o que foi incluído. “Calibrar a temperatura” pode significar testar apenas um transmissor por simulação elétrica, comparar o sensor em uma fonte térmica, avaliar sensor e transmissor juntos ou verificar toda a cadeia até o sistema de controle.</p>
+      <ul>
+        <li><strong>Sensor:</strong> elemento que responde à grandeza, como RTD, termopar, célula de carga ou eletrodo.</li>
+        <li><strong>Transmissor:</strong> eletrônica que converte a variável em sinal padronizado ou comunicação digital.</li>
+        <li><strong>Indicador ou controlador:</strong> equipamento que recebe, exibe e eventualmente atua sobre o processo.</li>
+        <li><strong>Malha instalada:</strong> inclui alimentação, barreiras, cabeamento, cartão, escala e software.</li>
+        <li><strong>Conjunto mecânico ou de processo:</strong> pode incluir linhas de impulso, selos remotos, termopoços, tomadas, condicionamento de amostra ou montagem.</li>
+      </ul>
+      <p>Quanto maior a fronteira, mais efeitos de instalação e integração podem aparecer. Por outro lado, uma calibração restrita à eletrônica não permite concluir sobre sensor, montagem ou processo. O relatório deve declarar essa limitação.</p>
 
-        <p>
-          Quando um instrumento mede errado, todo o processo pode ser afetado. Uma leitura incorreta de
-          pressão, temperatura, vazão ou nível pode gerar ajustes inadequados no CLP, alarmes falsos,
-          perda de qualidade, consumo excessivo de energia, desperdício de matéria-prima e até riscos
-          operacionais.
-        </p>
+      <h2>Erro, correção, incerteza, tolerância e regra de decisão</h2>
+      <p>Esses conceitos têm funções diferentes e não devem ser combinados como se fossem um único número.</p>
+      <div class="table-wrap"><table class="article-table">
+        <thead><tr><th>Conceito</th><th>Uso prático</th><th>Cuidado de interpretação</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Erro observado</strong></td><td>Diferença entre a indicação e o valor de referência para um ponto e condição.</td><td>É um resultado daquela comparação; não representa automaticamente todas as condições de uso.</td></tr>
+          <tr><td><strong>Correção</strong></td><td>Valor que pode ser aplicado para compensar um efeito sistemático conhecido.</td><td>Normalmente tem sinal oposto ao erro e também possui incerteza.</td></tr>
+          <tr><td><strong>Incerteza de medição</strong></td><td>Caracteriza a dispersão dos valores atribuídos ao mensurando com base nas informações disponíveis.</td><td>Não é sinônimo de erro, tolerância ou “dúvida do técnico”.</td></tr>
+          <tr><td><strong>Tolerância</strong></td><td>Limite especificado para uma função, produto, processo ou requisito.</td><td>Não deve ser inventada pelo relatório quando o requisito não foi definido.</td></tr>
+          <tr><td><strong>Regra de decisão</strong></td><td>Explica como resultado e incerteza serão usados em uma declaração de conformidade.</td><td>Deve ser acordada ou definida antes da conclusão, inclusive quanto ao risco de decisão.</td></tr>
+        </tbody>
+      </table></div>
+      <div class="formula-box"><code>Erro observado = indicação − valor de referência</code><br><code>Correção = − erro estimado</code></div>
+      <p>A fórmula ajuda a descrever o ponto, mas não resolve a conformidade. Uma comparação “erro menor que tolerância” pode ignorar a incerteza e o risco de decisão. Documentos como JCGM 106 e ILAC G8 tratam justamente do papel da incerteza e das regras de decisão nas declarações de conformidade.</p>
 
-        <h2>O que é calibração de instrumentos?</h2>
+      <h2>Rastreabilidade é propriedade do resultado</h2>
+      <p>Rastreabilidade metrológica relaciona um resultado a uma referência por uma cadeia documentada e ininterrupta de calibrações, cada uma contribuindo para a incerteza. Portanto, o termo deve se referir ao <strong>resultado de medição</strong>, não a uma empresa, laboratório ou instrumento isolado.</p>
+      <p>Também não basta possuir um padrão com certificado. É necessário controlar o processo de medição, o estado dos padrões, as condições, o método, as contribuições de incerteza e a cadeia utilizada. Mesmo uma rastreabilidade bem sustentada não garante adequação ao uso: a incerteza precisa ser compatível com a necessidade da medição.</p>
+      <div class="post-success"><strong>Formulação prudente:</strong> descreva qual resultado possui rastreabilidade declarada, a qual referência ele se relaciona e por qual documentação. Evite frases genéricas como “instrumento rastreável” sem esclarecer o resultado e a cadeia.</div>
 
-        <p>
-          Calibrar um instrumento significa comparar sua indicação com uma referência conhecida e confiável.
-          Essa comparação permite identificar o erro de medição e avaliar se o instrumento está adequado
-          para o uso no processo.
-        </p>
+      <h2>Bancada, campo e teste de loop: quando usar cada abordagem</h2>
+      <div class="table-wrap"><table class="article-table">
+        <thead><tr><th>Abordagem</th><th>Vantagem</th><th>Limitação</th><th>Exemplo de uso</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Bancada</strong></td><td>Maior controle de condições, conexões e sequência do ensaio.</td><td>Pode não reproduzir montagem, processo, cabeamento ou forças instaladas.</td><td>Transmissor removido, manômetro, indicador, conversor I/P.</td></tr>
+          <tr><td><strong>Campo</strong></td><td>Permite avaliar o item em sua instalação e identificar efeitos locais.</td><td>Condições ambientais, acesso, processo e segurança podem limitar o ensaio.</td><td>Comparação de transmissor instalado, analisador e sensor acessível.</td></tr>
+          <tr><td><strong>Teste de loop</strong></td><td>Confere a cadeia de sinal e a escala até CLP, IHM ou supervisório.</td><td>Uma simulação no campo pode não avaliar o sensor real.</td><td>Comissionamento, manutenção após cabeamento ou troca de cartão.</td></tr>
+          <tr><td><strong>Teste funcional</strong></td><td>Confirma resposta operacional, alarme, lógica ou atuação.</td><td>Não caracteriza necessariamente erro e incerteza em toda a faixa.</td><td>Intertravamento, alarme, comando de válvula ou sequência.</td></tr>
+        </tbody>
+      </table></div>
+      <p>Em muitos casos, a melhor estratégia combina abordagens: calibração do instrumento ou conjunto definido, teste de loop para a cadeia e teste funcional para a resposta da automação.</p>
 
-        <p>
-          Em termos simples: a calibração mostra se aquilo que o instrumento indica realmente corresponde
-          ao valor que está sendo aplicado ou medido. Isso vale para transmissores, sensores, manômetros,
-          termômetros, indicadores, balanças, medidores de vazão e diversos outros instrumentos industriais.
-        </p>
+      <h2>Como planejar uma calibração útil</h2>
+      <ol class="process-steps">
+        <li><strong>Defina a decisão.</strong> Identifique o que depende da medição: controle, qualidade, segurança, balanço, manutenção ou indicação.</li>
+        <li><strong>Defina o mensurando e a fronteira.</strong> Declare grandeza, faixa, unidade, condições e componentes incluídos.</li>
+        <li><strong>Escolha os pontos.</strong> Distribua pontos para revelar comportamento relevante, incluindo subida, descida ou repetição quando aplicável.</li>
+        <li><strong>Selecione a referência.</strong> Confirme faixa, resolução, incerteza, estabilidade, condição documental e adequação ao método.</li>
+        <li><strong>Defina o critério antes do ensaio.</strong> Registre tolerância, regra de decisão e tratamento da incerteza quando houver declaração de conformidade.</li>
+        <li><strong>Controle as condições.</strong> Registre ambiente, alimentação, pressão, montagem, estabilização e outras influências relevantes.</li>
+        <li><strong>Preserve os dados.</strong> Mantenha leituras brutas, as-found, intervenção, as-left, cálculos e limitações.</li>
+        <li><strong>Analise tendência e histórico.</strong> Use resultados anteriores para investigar deriva e ajustar o programa, sem periodicidade automática.</li>
+      </ol>
 
-        <div class="post-highlight">
-          <strong>Resumo técnico:</strong> calibração é a comparação entre a indicação do instrumento e um padrão
-          de referência, permitindo conhecer o erro e avaliar se a medição atende à tolerância do processo.
-        </div>
+      <h2>Exemplo fictício: transmissor de pressão de 0 a 10 bar</h2>
+      <p>Considere um transmissor fictício configurado de 0 a 10 bar. O exemplo abaixo mostra somente como organizar os dados; não representa tolerância ou capacidade real de um modelo. A referência, a incerteza e a regra de decisão precisam constar no procedimento ou contrato.</p>
+      <div class="table-wrap"><table class="article-table">
+        <thead><tr><th>Referência</th><th>Indicação as-found</th><th>Erro as-found</th><th>Indicação as-left</th><th>Erro as-left</th><th>Observação</th></tr></thead>
+        <tbody>
+          <tr><td>0,00 bar</td><td>0,04 bar</td><td>+0,04 bar</td><td>0,00 bar</td><td>0,00 bar</td><td>Ponto inferior</td></tr>
+          <tr><td>2,50 bar</td><td>2,56 bar</td><td>+0,06 bar</td><td>2,50 bar</td><td>0,00 bar</td><td>25% da faixa</td></tr>
+          <tr><td>5,00 bar</td><td>5,09 bar</td><td>+0,09 bar</td><td>5,01 bar</td><td>+0,01 bar</td><td>50% da faixa</td></tr>
+          <tr><td>7,50 bar</td><td>7,61 bar</td><td>+0,11 bar</td><td>7,50 bar</td><td>0,00 bar</td><td>75% da faixa</td></tr>
+          <tr><td>10,00 bar</td><td>10,12 bar</td><td>+0,12 bar</td><td>10,01 bar</td><td>+0,01 bar</td><td>Ponto superior</td></tr>
+        </tbody>
+      </table></div>
+      <p>O maior erro observado na condição encontrada é +0,12 bar. Isso descreve o resultado, mas ainda não autoriza uma conclusão de conformidade. Seriam necessários, no mínimo, a tolerância aplicável, a incerteza associada e a regra de decisão. Se o ajuste foi autorizado, a tabela mantém a evidência as-found e mostra os resultados as-left sem apagar o histórico.</p>
+      <p>Uma avaliação completa também pode incluir descida e repetição para observar histerese e repetibilidade. A quantidade de pontos deve responder ao risco e ao comportamento esperado, não a um número fixo usado em qualquer situação.</p>
 
-        <h2>Erro de medição: por que ele importa?</h2>
+      <h2>De onde vem a incerteza?</h2>
+      <p>Um orçamento formal depende do modelo de medição e do método. Em uma calibração industrial, contribuições possíveis incluem:</p>
+      <ul>
+        <li>incerteza declarada e deriva da referência;</li>
+        <li>resolução da referência e do item avaliado;</li>
+        <li>repetibilidade e histerese observadas;</li>
+        <li>temperatura, pressão atmosférica, umidade, vibração ou alimentação;</li>
+        <li>montagem, alinhamento, coluna hidrostática, conexão e vazamentos;</li>
+        <li>estabilidade da fonte ou do processo;</li>
+        <li>conversão de unidade, interpolação, linearização e arredondamento;</li>
+        <li>efeitos não incluídos quando a fronteira do ensaio é parcial.</li>
+      </ul>
+      <p>Listar contribuições não substitui uma avaliação de incerteza. É preciso justificar modelo, distribuições, correlações, dados, coeficientes de sensibilidade e forma de combinação conforme o método aplicável.</p>
 
-        <p>
-          Todo instrumento pode apresentar erro. O erro é a diferença entre o valor indicado pelo instrumento
-          e o valor de referência. Em muitos casos, pequenos desvios são aceitáveis. O problema ocorre quando
-          o erro ultrapassa o limite necessário para o processo.
-        </p>
+      <h2>Conformidade e regra de decisão</h2>
+      <p>Quando o relatório precisa afirmar “conforme” ou “não conforme”, a regra de decisão define como a incerteza é considerada. Uma regra simples pode aceitar pelo limite da especificação; outra pode usar uma faixa de guarda para controlar o risco de aceitação ou rejeição incorreta.</p>
+      <p>Não existe escolha universal. A regra deve ser comunicada e acordada quando não estiver implícita na especificação ou norma aplicável. Se o escopo não autoriza uma declaração de conformidade, o relatório pode apresentar resultados, erros e incertezas sem converter automaticamente os números em aprovação.</p>
 
-        <p>
-          Por exemplo, se um transmissor de pressão está indicando um valor maior do que o real, o sistema de
-          controle pode reduzir indevidamente uma atuação. Se indica menor do que o real, pode levar o processo
-          para uma condição insegura ou fora da faixa ideal.
-        </p>
+      <h2>Como definir o intervalo de calibração</h2>
+      <p>Periodicidade não deve ser escolhida apenas por hábito. O intervalo pode considerar criticidade, estabilidade histórica, deriva, severidade de uso, ambiente, frequência de manutenção, recomendações do fabricante, consequências de uma medição inadequada e requisitos regulatórios ou contratuais.</p>
+      <p>Resultados sucessivos permitem revisar o intervalo. Um instrumento estável pode justificar reavaliação do programa; um item com deriva, impacto elevado ou intervenções frequentes pode exigir maior controle. O ILAC G24 apresenta métodos para determinação e revisão de intervalos sem impor um único prazo.</p>
 
-        <h2>Tolerância do processo</h2>
+      <h2>O que um registro técnico deve conter</h2>
+      <ul>
+        <li>identificação do item, TAG, fabricante, modelo, série, faixa e unidade;</li>
+        <li>mensurando, fronteira, método, procedimento e condições do trabalho;</li>
+        <li>padrões e referências utilizados, com identificação e situação documental;</li>
+        <li>pontos, sequência, estabilização, leituras brutas e cálculos;</li>
+        <li>resultados as-found e as-left claramente separados;</li>
+        <li>incerteza e rastreabilidade declaradas para os resultados abrangidos;</li>
+        <li>tolerância, regra de decisão e declaração de conformidade, quando aplicáveis;</li>
+        <li>ajustes, reparos, peças, configurações e limitações observadas;</li>
+        <li>data, local, condições e identificação dos responsáveis pelo registro e aprovação.</li>
+      </ul>
 
-        <p>
-          A tolerância define o erro máximo aceitável para uma aplicação. Esse valor não deve ser definido de
-          forma aleatória. Ele depende do impacto da medição no processo, da segurança, da qualidade do produto,
-          da criticidade do equipamento e dos requisitos técnicos envolvidos.
-        </p>
+      <h2>Erros comuns em programas de calibração</h2>
+      <div class="table-wrap"><table class="article-table">
+        <thead><tr><th>Erro de gestão ou execução</th><th>Consequência</th><th>Abordagem melhor</th></tr></thead>
+        <tbody>
+          <tr><td>Calibrar e ajustar sem registrar as-found</td><td>Perde-se evidência sobre impacto anterior no processo.</td><td>Registrar antes da intervenção e investigar produtos ou lotes afetados quando necessário.</td></tr>
+          <tr><td>Usar tolerância genérica</td><td>O critério pode ser insuficiente ou excessivo para a função.</td><td>Relacionar o limite à necessidade de medição e à decisão do processo.</td></tr>
+          <tr><td>Confundir certificado com rastreabilidade automática</td><td>A cadeia e o processo de medição do usuário ficam sem sustentação.</td><td>Documentar resultado, cadeia, incerteza, método e controle dos padrões.</td></tr>
+          <tr><td>Ignorar a fronteira do teste</td><td>Conclui-se sobre sensor ou processo quando apenas a eletrônica foi simulada.</td><td>Declarar componentes incluídos e limitações.</td></tr>
+          <tr><td>Fixar periodicidade sem histórico</td><td>Recursos são desperdiçados ou riscos permanecem sem controle.</td><td>Revisar intervalos com criticidade, deriva e desempenho observado.</td></tr>
+          <tr><td>Emitir conformidade sem regra definida</td><td>O risco da decisão fica implícito ou inconsistente.</td><td>Definir regra, tolerância e tratamento da incerteza antes da conclusão.</td></tr>
+        </tbody>
+      </table></div>
 
-        <p>
-          Uma medição usada apenas como indicação local pode ter uma tolerância diferente de uma medição usada
-          em controle automático, intertravamento, dosagem, qualidade ou segurança operacional. Por isso, a
-          calibração precisa considerar a função real do instrumento dentro da planta.
-        </p>
+      <h2>Conteúdos por tipo de instrumento</h2>
+      <p>Use a página-pilar como ponto de partida e avance para o método específico da variável ou equipamento:</p>
+      <div class="calc-actions"><a class="mini-btn" href="blog-calibracao-transmissor-pressao.html"><i class="fas fa-gauge-high"></i> Transmissor de pressão</a><a class="mini-btn" href="blog-calibracao-transmissor-temperatura.html"><i class="fas fa-temperature-half"></i> Temperatura</a><a class="mini-btn" href="blog-calibracao-transmissor-dp-vazao.html"><i class="fas fa-water"></i> Vazão por DP</a><a class="mini-btn" href="blog-calibracao-transmissor-nivel-dp.html"><i class="fas fa-ruler-vertical"></i> Nível por DP</a><a class="mini-btn" href="blog-calibracao-valvula-controle.html"><i class="fas fa-sliders"></i> Válvula de controle</a><a class="mini-btn" href="blog-calibracao-analisadores-processo.html"><i class="fas fa-flask"></i> Analisadores</a><a class="mini-btn" href="blog-calibracao-manometro.html"><i class="fas fa-gauge"></i> Manômetro</a><a class="mini-btn" href="blog-teste-de-loop-instrumentacao.html"><i class="fas fa-link"></i> Teste de loop</a></div>
 
-        <h2>Rastreabilidade e confiabilidade</h2>
+      <h2>Ferramentas de apoio</h2>
+      <div class="calc-actions"><a class="mini-btn dark" href="calculadora-erro-calibracao.html"><i class="fas fa-calculator"></i> Erro de calibração</a><a class="mini-btn" href="calculadora-incerteza-calibracao-tur-tar.html"><i class="fas fa-chart-line"></i> Incerteza, TUR e TAR</a><a class="mini-btn" href="calculadora-intervalo-calibracao-deriva.html"><i class="fas fa-calendar-days"></i> Intervalo por deriva</a><a class="mini-btn" href="calculadora-4-20ma.html"><i class="fas fa-wave-square"></i> Sinal 4-20 mA</a><a class="mini-btn" href="checklist-manutencao-preventiva-instrumentos.html"><i class="fas fa-list-check"></i> Checklist preventivo</a></div>
 
-        <p>
-          A rastreabilidade é importante porque conecta a medição do instrumento a padrões reconhecidos por uma
-          cadeia de comparação. Isso aumenta a confiança no resultado e permite comprovar tecnicamente que o
-          instrumento foi avaliado com referência adequada.
-        </p>
+      <section class="service-cta" aria-label="Serviços de instrumentação e conferência funcional">
+        <h2>Avaliação, manutenção e conferência funcional de instrumentos</h2>
+        <p>A ALOGY estrutura escopos para avaliação, inspeção, diagnóstico, manutenção, configuração, teste de loop e conferência funcional de instrumentos e malhas, em campo ou por recebimento do equipamento, conforme variável, faixa, modelo, condição, segurança, recursos e logística confirmados na proposta.</p>
+        <p>Calibração formal, ensaio específico, rastreabilidade ou documentação metrológica somente são incluídos quando padrões, métodos, recursos e parceiros necessários estiverem confirmados no escopo. Não há promessa automática de certificado próprio.</p>
+        <div class="calc-actions"><a class="mini-btn" href="industrial.html"><i class="fas fa-screwdriver-wrench"></i> Ver serviços</a><a class="mini-btn secondary" href="https://wa.me/5519981442448?text=Ol%C3%A1!%20Gostaria%20de%20avaliar%20um%20instrumento%20ou%20malha.%20Posso%20enviar%20TAG%2C%20vari%C3%A1vel%2C%20faixa%2C%20modelo%2C%20fotos%20e%20descri%C3%A7%C3%A3o%20da%20necessidade." target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> Enviar dados do instrumento</a></div>
+      </section>
 
-        <p>
-          Em ambientes industriais, a rastreabilidade também ajuda em auditorias, sistemas de qualidade,
-          investigação de desvios, comissionamento e validação de processos críticos.
-        </p>
+      <h2>Perguntas frequentes</h2>
+      <section class="faq" aria-label="Perguntas frequentes sobre calibração industrial">
+        <details><summary>Calibração e ajuste são a mesma coisa?</summary><p>Não. A calibração estabelece uma relação entre valores de referência e indicações, com as incertezas aplicáveis. O ajuste altera o sistema de medição para obter uma resposta prescrita. A condição encontrada deve ser registrada antes do ajuste e a condição final deve ser avaliada novamente.</p></details>
+        <details><summary>Um certificado torna o instrumento rastreável?</summary><p>A rastreabilidade metrológica é propriedade de um resultado de medição. Ela exige uma cadeia documentada e ininterrupta de calibrações, cada uma contribuindo para a incerteza. Ter um certificado isolado não garante automaticamente a rastreabilidade de resultados obtidos depois pelo usuário.</p></details>
+        <details><summary>Erro menor que a tolerância significa aprovação automática?</summary><p>Não necessariamente. A conclusão depende da tolerância aplicável, da incerteza associada ao resultado e da regra de decisão definida antes da avaliação. Não existe uma regra universal para todas as aplicações.</p></details>
+        <details><summary>Calibração em campo substitui o teste de loop?</summary><p>Não. A calibração avalia a relação metrológica do instrumento ou sistema definido no escopo. O teste de loop verifica a cadeia instalada, incluindo sinal, cabeamento, cartão, escala e indicação no sistema. Os procedimentos são complementares.</p></details>
+      </section>
 
-        <h2>Quais instrumentos precisam de calibração?</h2>
+      <h2>Referências técnicas</h2>
+      <ul class="reference-list">
+        <li><a href="https://www.bipm.org/en/doi/10.59161/jcgm200-2012" target="_blank" rel="noopener noreferrer">BIPM / JCGM 200:2012 — International Vocabulary of Metrology (VIM), 3ª edição</a>. Base terminológica para calibração, verificação, ajuste, erro, correção, incerteza e rastreabilidade.</li>
+        <li><a href="https://www.bipm.org/en/doi/10.59161/jcgm100-2008e" target="_blank" rel="noopener noreferrer">BIPM / JCGM 100:2008 — Guide to the Expression of Uncertainty in Measurement (GUM)</a>. Regras gerais para avaliação e expressão da incerteza.</li>
+        <li><a href="https://www.bipm.org/en/doi/10.59161/jcgm106-2012" target="_blank" rel="noopener noreferrer">BIPM / JCGM 106:2012 — The role of measurement uncertainty in conformity assessment</a>. Relação entre incerteza e avaliação de conformidade.</li>
+        <li><a href="https://ilac.org/publications-and-resources/ilac-guidance-series/" target="_blank" rel="noopener noreferrer">ILAC — Guidance Documents</a>. Inclui ILAC G8:09/2019 sobre regras de decisão e declarações de conformidade e ILAC G24:2022 sobre intervalos de recalibração.</li>
+        <li><a href="https://www.nist.gov/calibrations/traceability" target="_blank" rel="noopener noreferrer">NIST — Policy on Metrological Traceability</a>. Esclarece cadeia documentada, incerteza, responsabilidade pela declaração e adequação ao uso.</li>
+      </ul>
 
-        <p>
-          Diversos instrumentos podem exigir calibração periódica, principalmente aqueles que influenciam
-          diretamente o controle, a segurança ou a qualidade do processo. Alguns exemplos são:
-        </p>
-
-        <ul>
-          <li>Transmissores de pressão.</li>
-          <li>Transmissores de temperatura.</li>
-          <li>Medidores e transmissores de vazão.</li>
-          <li>Instrumentos de nível.</li>
-          <li>Indicadores e controladores de processo.</li>
-          <li>Balanças e sistemas de pesagem.</li>
-          <li>Manômetros, termômetros e instrumentos locais.</li>
-        </ul>
-
-        <h2>Calibração em bancada e calibração em campo</h2>
-
-        <p>
-          A calibração pode ser realizada em bancada ou em campo. Em bancada, o instrumento normalmente é
-          removido do processo e testado em um ambiente controlado. Em campo, a verificação é feita no local
-          de instalação, considerando as condições reais da planta.
-        </p>
-
-        <p>
-          Cada abordagem tem vantagens. A calibração em bancada pode oferecer maior controle do ensaio. Já a
-          calibração em campo ajuda a identificar problemas de instalação, cabeamento, configuração, escala,
-          alimentação elétrica e integração com o sistema de automação.
-        </p>
-
-        <h2>Calibração e teste de loop não são a mesma coisa</h2>
-
-        <p>
-          A calibração avalia a exatidão da medição do instrumento. O teste de loop verifica o caminho do sinal,
-          desde o instrumento de campo até o CLP, IHM ou supervisório. Os dois procedimentos são complementares,
-          mas não substituem um ao outro.
-        </p>
-
-        <p>
-          Um instrumento pode estar calibrado, mas o sinal pode estar errado no sistema por problema de escala,
-          range, ligação, cartão analógico, parametrização ou conversão no CLP. Por isso, calibração e teste de
-          loop devem ser tratados de forma integrada em comissionamentos e manutenções críticas.
-        </p>
-
-        <h2>Como a calibração impacta a automação industrial?</h2>
-
-        <p>
-          Um sistema de automação depende da qualidade dos dados que recebe. Se os instrumentos estão fora de
-          calibração, o CLP pode executar uma lógica correta com base em uma informação errada. Isso compromete
-          controle, alarmes, tendências, relatórios e decisões operacionais.
-        </p>
-
-        <p>
-          Por isso, a calibração não deve ser vista apenas como exigência documental. Ela é uma etapa prática
-          para aumentar confiabilidade operacional, reduzir falhas e melhorar a qualidade dos dados industriais.
-        </p>
-
-        <h2>Guia de decisão: verificação, calibração e ajuste</h2>
-        <div class="table-wrap">
-          <table>
-            <thead><tr><th>Atividade</th><th>Pergunta respondida</th><th>Registro esperado</th></tr></thead>
-            <tbody>
-              <tr><td>Verificação</td><td>O desempenho observado atende ao critério definido para esta checagem?</td><td>Condição, pontos, referência, resultado e decisão.</td></tr>
-              <tr><td>Calibração</td><td>Qual é a relação entre as indicações e os valores fornecidos pela referência?</td><td>Resultados, condições, referência, incerteza e rastreabilidade declarada.</td></tr>
-              <tr><td>Ajuste</td><td>Que intervenção foi feita para modificar a indicação?</td><td>Condição encontrada, parâmetros alterados e nova avaliação.</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <p>Calibração e ajuste não são sinônimos. Para preservar a evidência, registre a condição encontrada (<em>as found</em>) antes de qualquer ajuste e a condição final (<em>as left</em>) depois da intervenção. Um resultado de calibração também não declara conformidade sozinho: o critério, a incerteza e a regra de decisão precisam estar definidos.</p>
-
-        <h2>Erro, incerteza e tolerância cumprem papéis diferentes</h2>
-        <ul>
-          <li><strong>Erro observado:</strong> diferença obtida na comparação para um ponto e condição.</li>
-          <li><strong>Incerteza:</strong> quantifica a dispersão atribuída ao resultado e acompanha a declaração de medição.</li>
-          <li><strong>Tolerância:</strong> limite definido pela necessidade de uso, especificação ou requisito aplicável.</li>
-          <li><strong>Regra de decisão:</strong> explica como resultado e incerteza serão usados para concluir.</li>
-        </ul>
-        <p>Não reduza a decisão à comparação “erro menor que tolerância” sem saber como a incerteza foi considerada. Este artigo não estabelece critérios de conformidade nem intervalos universais.</p>
-
-        <h2>Exemplo fictício de registro</h2>
-        <p>Um transmissor de pressão fictício é comparado em pontos distribuídos pela faixa. O registro identifica TAG, instrumento, range, unidade, referência, condições, sequência crescente e decrescente, indicações antes do ajuste, incerteza informada e observações. Se houver ajuste, os pontos são repetidos e registrados separadamente. A decisão de uso só é tomada depois de aplicar o critério aprovado para aquela função.</p>
-
-        <h2>Qual atividade escolher?</h2>
-        <ol>
-          <li>Defina a decisão que depende da medição e o risco de uma indicação inadequada.</li>
-          <li>Determine o mensurando, a faixa e as condições de uso.</li>
-          <li>Escolha pontos e referência capazes de responder à necessidade de medição.</li>
-          <li>Decida antes do ensaio como incerteza e resultados serão avaliados.</li>
-          <li>Preserve dados brutos, condição encontrada, intervenção, condição final e aprovação.</li>
-        </ol>
-        <p>Para organizar a prioridade, consulte <a href="blog-criticidade-instrumentos.html">criticidade de instrumentos</a>. Para a cadeia de sinal, use o guia de <a href="blog-instrumentacao-industrial.html">instrumentação industrial</a>.</p>
-
-        <h2>Fonte institucional consultada</h2>
-        <p>A <a href="https://www.nist.gov/calibrations/traceability" rel="noopener noreferrer">política de rastreabilidade metrológica do NIST</a> relaciona o resultado a uma cadeia documentada de calibrações, cada uma contribuindo para a incerteza, e esclarece que rastreabilidade sozinha não garante adequação ao uso.</p>
-
-        <h2>Como consultar o portfólio com requisitos claros</h2>
-        <p>A ALOGY atua como importadora e revendedora, não como fabricante. Ao avaliar um instrumento do portfólio, informe variável, faixa, condições de processo, conexão, sinal e documentação necessária. A seleção final e os requisitos de calibração devem ser confirmados com a documentação do fabricante e com os responsáveis pela aplicação.</p>
-        <div class="post-highlight">
-          <strong>Próximo passo:</strong> defina necessidade de medição, evidência e regra de decisão antes de escolher o instrumento ou o ensaio.
-        </div>
-
-        <div class="cta-actions" style="margin-top:18px">
-          <a class="btn" href="industrial.html">
-            <i class="fas fa-industry"></i> Ver serviços industriais
-          </a>
-
-          <a class="btn secondary" href="/#contato">
-            <i class="fas fa-paper-plane"></i> Solicitar contato
-          </a>
-
-          <a class="btn secondary" href="blog.html">
-            <i class="fas fa-arrow-left"></i> Voltar ao blog
-          </a>
-        </div>
-      </div>
-    </article>
-
-    <section class="cta-bar" aria-label="Chamada para atendimento">
-      <div>
-        <strong>Precisa de apoio em calibração, instrumentação ou teste de malha?</strong><br/>
-        <span class="muted">Entre em contato para avaliação técnica e definição do próximo passo.</span>
-      </div>
-
-      <div class="cta-actions">
-        <a class="btn" href="/#contato">
-          <i class="fas fa-paper-plane"></i> Falar com a ALOGY
-        </a>
-      </div>
-    </section>
-
+      <h2>Aviso técnico</h2>
+      <p>Este conteúdo e as ferramentas relacionadas são recursos informativos. Não substituem procedimento aprovado, contrato, análise de risco, requisitos de acreditação, avaliação formal de incerteza, regra de decisão acordada, manual do fabricante ou responsabilidade técnica. Nunca intervenha em instrumento conectado a processo sem liberação, isolamento e condições seguras.</p>
+    </div></article>
   </main>
-
-  <footer>
-    <p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p>
-  </footer>
-
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      if (window.location.pathname.includes("blog-")) {
-        document.querySelectorAll('nav.desktop a[href="blog.html"], nav.mobile a[href="blog.html"]').forEach((link) => {
-          link.classList.add("active");
-        });
-      }
-    });
-  </script>
+  <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
 </body>
 </html>
