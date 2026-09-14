@@ -1,0 +1,220 @@
+name: One-time services navigation migration
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/one-time-services-navigation.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: one-time-services-navigation
+  cancel-in-progress: false
+
+jobs:
+  migrate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Consolidate services navigation
+        shell: python
+        run: |
+          from pathlib import Path
+          import json
+          import re
+
+          root = Path('.')
+          changed = []
+          nav_replacements = 0
+
+          redirect = '''<!doctype html>
+          <html lang="pt-BR">
+          <head>
+            <meta charset="utf-8" />
+            <meta name="viewport" content="width=device-width,initial-scale=1" />
+            <title>Serviços | ALOGY Engenharia</title>
+            <meta name="description" content="Os serviços da ALOGY estão reunidos em uma única página de instrumentação, automação e elétrica." />
+            <meta name="robots" content="noindex,follow" />
+            <link rel="canonical" href="https://www.alogy.com.br/industrial.html" />
+            <meta http-equiv="refresh" content="0;url=/industrial.html" />
+            <script>
+              (() => {
+                const destination = `/industrial.html${window.location.search}${window.location.hash}`;
+                window.location.replace(destination);
+              })();
+            </script>
+            <style>
+              body{margin:0;background:#f3f7fa;color:#15324a;font:16px/1.6 Arial,sans-serif}
+              main{max-width:720px;margin:12vh auto;padding:32px;text-align:center}
+              a{color:#006bb1;font-weight:700}
+            </style>
+          </head>
+          <body>
+            <main>
+              <h1>Os serviços da ALOGY estão em uma única página</h1>
+              <p>Você será direcionado automaticamente. Se isso não acontecer, <a href="/industrial.html">acesse a página de Serviços</a>.</p>
+            </main>
+          </body>
+          </html>
+          '''
+          redirect = '\n'.join(line[10:] if line.startswith('          ') else line for line in redirect.splitlines()) + '\n'
+
+          pair = re.compile(
+              r'<a\s+href=["\'](?P<prefix>(?:\.\./|/)?)(?:industrial\.html)["\']>\s*Serviços Industriais\s*</a>\s*'
+              r'<a\s+href=["\'](?P=prefix)(?:residencial\.html)["\']>\s*Serviços Residenciais\s*</a>',
+              re.I,
+          )
+          industrial_single = re.compile(
+              r'<a\s+href=(["\'])((?:\.\./|/)?industrial\.html)\1>\s*Serviços Industriais\s*</a>',
+              re.I,
+          )
+          residential_single = re.compile(
+              r'<a\s+href=(["\'])((?:\.\./|/)?residencial\.html)\1>\s*Serviços Residenciais\s*</a>',
+              re.I,
+          )
+
+          skip_prefixes = ('adsense-recovery/', '.github/')
+          skip_names = {'google00ce371ffda114a1.html'}
+
+          for path in sorted(root.rglob('*.html')):
+              rel = path.as_posix()
+              if rel.startswith(skip_prefixes) or path.name in skip_names:
+                  continue
+              old = path.read_text(encoding='utf-8')
+              if path.name == 'residencial.html' and path.parent == root:
+                  new = redirect
+              else:
+                  new, n_pair = pair.subn(lambda m: f'<a href="{m.group("prefix")}industrial.html">Serviços</a>', old)
+                  new, n_ind = industrial_single.subn(lambda m: f'<a href="{m.group(2)}">Serviços</a>', new)
+                  new, n_res = residential_single.subn('', new)
+                  nav_replacements += n_pair + n_ind + n_res
+
+                  if path.name == 'index.html' and path.parent == root:
+                      old_slide = '''        <a class="slide" href="residencial.html"
+                     style="--pos-desktop: 50% 35%;"
+                     aria-label="Conhecer serviços residenciais">
+                    <picture class="slide-media" aria-hidden="true">
+                      <source media="(max-width: 768px)" srcset="banner2_mobile.webp">
+                      <img src="banner2.webp" alt="Quadro elétrico e automação residencial" width="1920" height="720" decoding="async">
+                    </picture>
+
+                    <div class="banner-content">
+                      <div class="banner-card">
+                        <div class="banner-title">Serviços Residenciais</div>
+                        <div class="banner-desc">
+                          Projetos elétricos, adequações, padrão de entrada e automação para casas, apartamentos e edifícios.
+                        </div>
+                        <div class="banner-actions">
+                          <span class="btn"><i class="fas fa-house-signal"></i> Conhecer serviços</span>
+                        </div>
+                      </div>
+                    </div>
+                  </a>'''
+                      new_slide = '''        <a class="slide" href="industrial.html"
+                     style="--pos-desktop: 50% 35%;"
+                     aria-label="Conhecer apoio de instrumentista sob demanda">
+                    <picture class="slide-media" aria-hidden="true">
+                      <img src="instrumentacao.webp" alt="Profissional atuando em instrumentação industrial" width="1200" height="800" decoding="async">
+                    </picture>
+
+                    <div class="banner-content">
+                      <div class="banner-card">
+                        <div class="banner-title">Instrumentista sob demanda</div>
+                        <div class="banner-desc">
+                          Apoio técnico para manutenção, instalação, diagnóstico, documentação e paradas industriais, com disponibilidade e escopo sob consulta.
+                        </div>
+                        <div class="banner-actions">
+                          <span class="btn"><i class="fas fa-user-gear"></i> Conhecer serviços</span>
+                        </div>
+                      </div>
+                    </div>
+                  </a>'''
+                      if old_slide not in new:
+                          raise SystemExit('Bloco antigo da home não foi localizado; migração interrompida.')
+                      new = new.replace(old_slide, new_slide, 1)
+                      new = new.replace(
+                          'equipamento, falha, local, recursos e documentação necessária. Os serviços residenciais seguem em página própria.',
+                          'equipamento, falha, local, recursos e documentação necessária.',
+                          1,
+                      )
+                      new = new.replace(
+                          '''      <div class="form-actions">
+                    <a class="btn" href="industrial.html"><i class="fas fa-industry"></i> Serviços industriais</a>
+                    <a class="btn secondary" href="residencial.html"><i class="fas fa-house-signal"></i> Serviços residenciais</a>
+                  </div>''',
+                          '''      <div class="form-actions">
+                    <a class="btn" href="industrial.html"><i class="fas fa-screwdriver-wrench"></i> Conhecer serviços</a>
+                  </div>''',
+                          1,
+                      )
+                      new = new.replace(
+                          'placeholder="Instrumentação, válvula, atuador, automação, elétrica ou serviço residencial..."',
+                          'placeholder="Instrumentação, válvula, atuador, automação, elétrica ou manutenção..."',
+                          1,
+                      )
+
+              if new != old:
+                  path.write_text(new, encoding='utf-8')
+                  changed.append(rel)
+
+          sitemap = root / 'sitemap-institucional.xml'
+          sitemap_old = sitemap.read_text(encoding='utf-8')
+          sitemap_new, removed = re.subn(
+              r'\s*<url>\s*<loc>https://www\.alogy\.com\.br/residencial\.html</loc>\s*</url>',
+              '',
+              sitemap_old,
+              count=1,
+          )
+          if removed != 1:
+              raise SystemExit('URL legada não foi localizada no sitemap institucional.')
+          sitemap.write_text(sitemap_new, encoding='utf-8')
+          changed.append('sitemap-institucional.xml')
+
+          public_html = [p for p in root.rglob('*.html') if not p.as_posix().startswith(skip_prefixes) and p.name not in skip_names]
+          residual = []
+          for path in public_html:
+              text = path.read_text(encoding='utf-8').lower()
+              if 'serviços residenciais' in text or 'href="residencial.html"' in text or "href='residencial.html'" in text:
+                  residual.append(path.as_posix())
+          if residual:
+              raise SystemExit('Referências residuais encontradas: ' + ', '.join(residual[:20]))
+
+          if len(changed) < 200:
+              raise SystemExit(f'Poucos arquivos alterados ({len(changed)}); revisão manual necessária.')
+
+          report = root / 'adsense-recovery' / 'E04-SERVICES-NAVIGATION-01.md'
+          report.write_text(
+              '# E04 — Consolidação da navegação de Serviços\n\n'
+              'Data: 2026-09-14\n\n'
+              '- Navegação pública consolidada em uma única entrada **Serviços**, apontando para `industrial.html`.\n'
+              '- A entrada e o rótulo **Serviços Residenciais** foram retirados das páginas públicas.\n'
+              '- `residencial.html` passou a ser uma rota legada `noindex,follow`, com canonical e redirecionamento para `industrial.html`.\n'
+              '- A URL legada foi retirada do sitemap institucional.\n'
+              '- O quarto banner da home foi reposicionado para **Instrumentista sob demanda**, com disponibilidade e escopo sob consulta.\n'
+              '- Conteúdo técnico, fórmulas e JavaScript das ferramentas não foram alterados.\n\n'
+              f'- Arquivos modificados pelo lote: **{len(changed)}**.\n'
+              f'- Substituições de navegação registradas: **{nav_replacements}**.\n',
+              encoding='utf-8',
+          )
+
+          print(json.dumps({'changed_files': len(changed), 'nav_replacements': nav_replacements}, ensure_ascii=False))
+
+      - name: Commit migration
+        shell: bash
+        run: |
+          set -e
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+          git commit -m "AdSense E04: consolida navegacao em Servicos"
+          git push origin HEAD:main
