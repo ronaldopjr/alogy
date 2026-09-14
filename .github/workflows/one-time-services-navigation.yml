@@ -71,8 +71,8 @@ jobs:
               re.I,
           )
           residential_link = re.compile(
-              r'<a\b[^>]*\bhref=(["\'])((?:\.\./|/)?residencial\.html)\1[^>]*>\s*Serviços Residenciais\s*</a>',
-              re.I,
+              r'<a\b[^>]*\bhref=(["\'])((?:\.\./|/)?residencial\.html)\1[^>]*>.*?</a>',
+              re.I | re.S,
           )
 
           home_slide = re.compile(
