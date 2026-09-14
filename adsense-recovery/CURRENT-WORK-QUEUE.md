@@ -1,6 +1,6 @@
 # ALOGY — fila operacional atual
 
-> Versão 2026-09-14.12. Esta é a única fila executável. Filas F4/F5 anteriores são históricas.
+> Versão 2026-09-14.13. Esta é a única fila executável. Filas F4/F5 anteriores são históricas.
 
 ## Regra permanente de navegação comercial
 
@@ -54,25 +54,58 @@ Workflow Pages `34879430518`: sucesso. O artefato validado ficou sem relatórios
 
 Commit de site: `2a047390f543d3a7a0469a3677f17c14fa0dcfeb`.
 Workflow Pages: `34885469337`, concluído com sucesso.
-Workflow temporário removido no commit `17fabef38aca84332a6a35e11cde6cdc3e4ed9b7`.
 Relatório: `E04-SERVICES-NAVIGATION-01.md`.
 
-Após a consolidação, o inventário estrutural passa a considerar:
-- 270 páginas/rotas editoriais, além do arquivo de verificação Google;
+### Lote E04-INVENTORY-REGENERATION
+
+**Estado:** CONCLUÍDO.
+
+O inventário antigo de 390 linhas deixou de ser a fonte operacional. `adsense-recovery/ADSENSE-INVENTORY.csv` foi reconstruído diretamente dos HTMLs e sitemaps atuais, preservando as decisões editoriais das URLs que ainda existem.
+
+Resultado validado:
+- 271 HTMLs-fonte;
+- 270 páginas/rotas editoriais e 1 arquivo de verificação Google;
 - 221 páginas indexáveis;
 - 49 rotas `noindex`;
-- 221 URLs únicas nos sitemaps;
-- nenhuma URL `noindex` no sitemap;
-- nenhuma duplicidade entre os sitemaps.
+- 221 URLs em sitemap;
+- 0 indexáveis fora do sitemap;
+- 0 páginas `noindex` no sitemap;
+- 0 indexáveis sem canonical;
+- 0 anomalias de H1 entre indexáveis;
+- 0 duplicidades entre sitemaps;
+- 88 páginas com carregador direto do AdSense;
+- 268 linhas atuais conservaram decisão editorial anterior.
+
+Commit: `da2f61932a21c00741f418870601aafcb42deba6`.
+Relatório: `E04-INVENTORY-REGENERATION.md`.
+
+### Lote E04-GUIDE-NAVIGATION-01
+
+**Estado:** CONCLUÍDO E PUBLICADO.
+
+Primeiro lote localizado de `Cursos/cursos.html` para `Guia` e `/guia/`:
+- `calculadora-erro-calibracao.html`;
+- `checklist-comissionamento-hart.html`;
+- `blog-vazao-normalizada-gases.html`;
+- `calculadora-massa-tanque-nivel.html`;
+- `blog-ar-instrumentos-qualidade-ponto-orvalho.html`.
+
+Em cada página:
+- os dois links de menu foram migrados para `/guia/` com rótulo `Guia`;
+- o atalho social genérico da Hotmart foi removido;
+- conteúdo técnico, fórmulas e JavaScript permaneceram inalterados.
+
+Commit: `181a6ba8336eea2d7f4b9436786b7984e618cf9f`.
+Relatório: `E04-GUIDE-NAVIGATION-01.md`.
+O inventário permaneceu consistente: 221 indexáveis, 49 `noindex`, 221 URLs em sitemap e zero H1 anômalo entre indexáveis.
 
 ### Próximo lote E04
 
-1. Substituir o inventário canônico do repositório pela versão regenerada e ajustar a linha da rota legada de Serviços.
-2. Corrigir `Cursos/cursos.html` para `Guia` e `/guia/` em lotes pequenos e validados.
-3. Preservar `cursos.html` somente como redirect legado `noindex`.
-4. Classificar os links Hotmart por contexto antes de qualquer remoção; não remover em massa.
-5. Selecionar o piloto editorial E05 pelo inventário atualizado.
-6. Não fazer nova poda em massa e não solicitar revisão ao AdSense nesta etapa.
+1. Continuar `Cursos/cursos.html` → `Guia` e `/guia/` em outro lote pequeno e validado.
+2. Preservar `cursos.html` somente como redirect legado `noindex`.
+3. Classificar os links Hotmart restantes por contexto; retirar o ícone social genérico, mas preservar chamadas contextuais legítimas da página do Guia.
+4. Selecionar pelo inventário as duas páginas do piloto editorial E05, priorizando páginas `improve` P0 ligadas a instrumentação.
+5. Não fazer nova poda em massa e não solicitar revisão ao AdSense nesta etapa.
 
 ## E08-W1 — avisos compartilhados
 
