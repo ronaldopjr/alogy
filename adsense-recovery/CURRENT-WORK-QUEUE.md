@@ -29,70 +29,67 @@ Commits de site: `e945d6e5e7259e456bde56339084a2b37ff4951a` e `9a4c33175da73b3a5
 
 ## E04 — inventário e higiene técnica
 
-**Estado:** CONCLUÍDO PARA AVANÇO AO E05. A higiene remanescente continua apenas em lotes pequenos e oportunos.
+**Estado:** CONCLUÍDO O SUFICIENTE PARA AVANÇAR AO E05. A higiene remanescente continua rastreada e não deve desaparecer do plano.
 
 ### E04-INVENTORY-HYGIENE-01
 
-O artefato anterior tinha 344 HTMLs porque o Jekyll convertia 73 relatórios/controles Markdown internos em HTML público. Esses documentos não eram páginas editoriais da ALOGY.
-
-- `_config.yml` passou a excluir controles, auditorias, relatórios internos, README e testes da publicação. Commit: `ddf9969a2c4f524a0a30b9b73f3f1ac2974ce967`.
-- Seis duplicidades entre sitemaps foram removidas sem excluir páginas do conjunto publicado. Commit: `9f3d7422cb44249bc34abc62002184859d2be13d`.
-- Workflow Pages `34879430518`: sucesso.
+- `_config.yml` exclui controles, auditorias, relatórios internos, README e testes da publicação. Commit: `ddf9969a2c4f524a0a30b9b73f3f1ac2974ce967`.
+- Seis duplicidades entre sitemaps foram removidas sem excluir páginas. Commit: `9f3d7422cb44249bc34abc62002184859d2be13d`.
+- O artefato público passou de 344 para 271 HTMLs. Workflow Pages `34879430518`: sucesso.
 
 ### E04-SERVICES-NAVIGATION-01
 
 **Estado:** CONCLUÍDO E PUBLICADO.
 
-- 257 arquivos atualizados e 1.017 ocorrências de navegação consolidadas.
-- Todas as páginas públicas passaram a mostrar apenas **Serviços**, apontando para `industrial.html`.
-- `residencial.html` passou a rota legada `noindex,follow`, canonical e redirecionamento para `industrial.html`.
-- O quarto banner da home passou a apresentar **Instrumentista sob demanda**, com disponibilidade e escopo sob consulta.
+- 257 arquivos e 1.017 ocorrências de navegação consolidados.
+- Todas as páginas públicas mostram apenas **Serviços**, apontando para `industrial.html`.
+- `residencial.html` é redirect legado `noindex,follow`, canonical para `industrial.html` e fora do sitemap.
+- O quarto banner da home apresenta **Instrumentista sob demanda**.
 - Nenhuma fórmula ou lógica JavaScript técnica foi alterada.
 
-Commit: `2a047390f543d3a7a0469a3677f17c14fa0dcfeb`.
-Workflow Pages: `34885469337`, sucesso.
-Relatório: `E04-SERVICES-NAVIGATION-01.md`.
+Commit: `2a047390f543d3a7a0469a3677f17c14fa0dcfeb`. Pages: `34885469337`.
 
 ### E04-INVENTORY-REGENERATION
 
-**Estado:** CONCLUÍDO.
-
-O inventário canônico foi reconstruído diretamente dos HTMLs e sitemaps atuais, preservando decisões editoriais das URLs existentes.
-
-Resultado validado:
+Estado estrutural confirmado:
 
 - 271 HTMLs-fonte;
-- 270 páginas/rotas editoriais e 1 arquivo de verificação Google;
+- 270 páginas/rotas editoriais e 1 verificação Google;
 - 221 páginas indexáveis;
 - 49 rotas `noindex`;
 - 221 URLs em sitemap;
 - 0 indexáveis fora do sitemap;
 - 0 páginas `noindex` no sitemap;
 - 0 indexáveis sem canonical;
-- 0 anomalias de H1 entre indexáveis;
 - 0 duplicidades entre sitemaps;
 - 88 páginas com carregador direto do AdSense;
-- 268 linhas conservaram decisão editorial anterior.
+- 268 decisões editoriais anteriores preservadas.
 
-Commit: `da2f61932a21c00741f418870601aafcb42deba6`.
-Relatório: `E04-INVENTORY-REGENERATION.md`.
+Commit do inventário canônico: `da2f61932a21c00741f418870601aafcb42deba6`.
+
+**Pendência corrigida no controle:** a leitura direta do artefato Pages atual identificou **9 páginas indexáveis com dois elementos `<h1>`**, geralmente por versões de impressão. O campo H1 do CSV precisa ser recalculado globalmente, e as páginas devem ser corrigidas em lotes de até cinco sem alterar fórmulas ou JavaScript:
+
+- `calculadora-atuador-pneumatico.html`;
+- `calculadora-dimensionamento-cabos.html`;
+- `calculadora-erro-calibracao.html`;
+- `calculadora-erro-total-malha-instrumentacao.html`;
+- `calculadora-pt100.html`;
+- `calculadora-resistor-shunt-sinal-instrumentacao.html`;
+- `calculadora-split-range-4-20ma.html`;
+- `calculadora-termopar.html`;
+- `calculadora-volume-tanque-vertical-horizontal.html`.
+
+Não declarar novamente “zero H1 anômalo” até concluir essa correção e atualizar o inventário.
 
 ### E04-GUIDE-NAVIGATION-01
 
 **Estado:** CONCLUÍDO E PUBLICADO.
 
-Páginas:
+Páginas: `calculadora-erro-calibracao.html`, `checklist-comissionamento-hart.html`, `blog-vazao-normalizada-gases.html`, `calculadora-massa-tanque-nivel.html` e `blog-ar-instrumentos-qualidade-ponto-orvalho.html`.
 
-- `calculadora-erro-calibracao.html`;
-- `checklist-comissionamento-hart.html`;
-- `blog-vazao-normalizada-gases.html`;
-- `calculadora-massa-tanque-nivel.html`;
-- `blog-ar-instrumentos-qualidade-ponto-orvalho.html`.
+Foram migrados 10 links para `/guia/` e removidos 5 atalhos sociais genéricos da Hotmart. Conteúdo técnico, fórmulas e JavaScript permaneceram inalterados.
 
-Foram migrados 10 links de menu para `/guia/` e removidos 5 atalhos sociais genéricos da Hotmart. Conteúdo técnico, fórmulas e JavaScript permaneceram inalterados.
-
-Commit: `181a6ba8336eea2d7f4b9436786b7984e618cf9f`.
-Relatório: `E04-GUIDE-NAVIGATION-01.md`.
+Commit: `181a6ba8336eea2d7f4b9436786b7984e618cf9f`. Validação: `34886365500`.
 
 ### E04-GUIDE-NAVIGATION-02
 
@@ -106,18 +103,19 @@ Páginas:
 - `calculadora-diagnostico-4-20ma-hart.html`;
 - `checklist-teste-de-loop.html`.
 
-Foram migrados mais 10 links de menu e removidos 5 atalhos sociais genéricos da Hotmart. Nenhuma fórmula ou lógica JavaScript técnica foi alterada.
+Foram migrados mais 10 links e removidos 5 atalhos sociais genéricos da Hotmart. Nenhuma fórmula ou lógica JavaScript técnica foi alterada.
 
 Após o lote:
 
 - restam 137 páginas-fonte com referência legada a Cursos;
 - 102 delas são indexáveis;
-- restam 128 páginas contendo Hotmart, ainda a classificar por contexto;
+- restam 128 páginas contendo Hotmart, a classificar por contexto;
 - permanecem 221 indexáveis, 49 `noindex`, 221 URLs em sitemap e 88 carregadores diretos do AdSense.
 
-Commit do lote: `cd9fd790999f1a0d1622d2700903c503069465ab`.
-Limpeza do workflow temporário: `f5ab4a5b94e881bd4221eee780c78569e27e22d0`.
-Workflow Pages `34887751809`: sucesso.
+Commit do conteúdo: `cd9fd790999f1a0d1622d2700903c503069465ab`.
+Árvore publicada/limpeza do workflow: `f5ab4a5b94e881bd4221eee780c78569e27e22d0`.
+Validação atômica: `34887643566`.
+GitHub Pages: `34887751809`, sucesso; artefato `10365801050`.
 Relatório: `E04-GUIDE-NAVIGATION-02.md`.
 
 ## E05 — piloto editorial
@@ -153,7 +151,7 @@ Revisar `blog-calibracao-valvula-controle.html` com:
 5. referências primárias BIPM/JCGM, Emerson e exemplos registrados pela FieldComm Group;
 6. CTA comercial verdadeiro para avaliação, manutenção, configuração e conferência funcional sob escopo.
 
-Depois da publicação e validação, revisar a página-pilar em lote separado.
+A correção dos H1 duplicados pode avançar em lote técnico paralelo, sem bloquear a primeira página E05. Depois da publicação e validação da página de válvula, revisar a página-pilar em lote separado.
 
 ## E08-W1 — avisos compartilhados
 
