@@ -1,65 +1,43 @@
-# Prompt da execução recorrente
+# Prompt de continuidade operacional — ALOGY
 
-Continue a recuperação editorial do AdSense do site ALOGY no repositório `ronaldopjr/alogy`, exclusivamente na branch `agent/adsense-recovery`.
+Continue a recuperação do AdSense no repositório `ronaldopjr/alogy`, branch `main`.
 
-## Fonte de verdade e leitura mínima
+## Leitura mínima obrigatória
 
-Antes de agir, leia `ADSENSE-STATE.json`, `F4-EDITORIAL-QUEUE.md`, este prompt e somente as linhas do inventário, o trecho do changelog e as páginas indicadas em `next_batch`. Não releia o inventário, changelog ou plano completos sem necessidade.
+1. `ADSENSE-STATE.json`.
+2. `CURRENT-WORK-QUEUE.md`.
+3. Este prompt.
+4. Somente os arquivos da etapa/lote indicado.
+5. O Markdown de continuidade mais recente fornecido pelo proprietário, quando disponível na sessão.
 
-O GitHub é o estado persistente entre execuções. Use o SHA da branch no começo da execução como `run_head`; não use informação lembrada de execuções anteriores.
+Não execute filas F4/F5 antigas. Não retome poda, exclusão ou `noindex` em massa.
 
-## Regra de decisão
+## Protocolo
 
-1. Se `status` for `ready` e `next_batch` começar com `F4-EDITORIAL-` ou `F4-MAINTENANCE-`, execute somente esse lote, com no máximo cinco páginas.
-2. Se `next_batch` for `F4-QUEUE-REFRESH`, aplique exclusivamente `F4-ROLLING-EDITORIAL-RULES.md`: recomponha uma fila de até cinco candidatas elegíveis, atualize fila e estado em um único commit de controle e encerre. A edição das páginas começa somente na próxima execução.
-3. Se `status` for `observing`, reavalie apenas a seleção permitida pelas regras rolantes; não faça auditoria integral, alteração vazia nem ampliação de escopo.
-4. Em cada página, acrescente valor editorial próprio: orientação de decisão, contexto delimitado, premissas, limites de uso, links internos úteis e referências externas primárias quando fizer afirmações técnicas verificáveis. Em lotes `F4-MAINTENANCE-`, limite-se a orientação editorial e navegação, sem acrescentar afirmação técnica, prescrição, fonte técnica nova ou alteração de cartões, fórmulas, JavaScript e dados estruturados.
-5. Não copie texto entre páginas nem amplie alegações de serviço, resultados, experiência, autoria, credenciais ou conformidade. A ALOGY é importadora e revendedora, nunca fabricante.
-6. Não use os PDFs ou desenhos confidenciais como fonte, exemplo ou material publicável.
-7. Não edite páginas `manual-review`, itens de consolidação, `noindex`, redirects, páginas institucionais de confiança, fórmulas ou JavaScript técnico.
+1. Leia novamente o SHA de `main` e registre-o como base do lote.
+2. Confirme que a próxima etapa do estado coincide com a primeira etapa pendente da fila.
+3. Edite no máximo cinco páginas; prefira três em lote editorial.
+4. Reproduza o problema antes de alterar comportamento compartilhado.
+5. Preserve identidade visual, URLs úteis, fórmulas validadas e trabalho concorrente.
+6. Não invente dados de capacidade, equipe, autoria, credenciais, casos, certificações ou resultados.
+7. Valide cenários úteis e regressões pertinentes; não aceite teste que apenas repete o código.
+8. Releia o SHA antes de publicar. Se mudou, pare e reconcilie o diff.
+9. Publique lote seguro em `main` somente com commit atômico, avanço normal e sem `force`.
+10. Confira as URLs alteradas no domínio e registre se a publicação ainda não estiver visível.
+11. Atualize `ADSENSE-STATE.json`, `CURRENT-WORK-QUEUE.md`, um relatório `E*-*.md` e o Markdown de continuidade fornecido na sessão.
 
-## F5 — foco temático e desativação reversível
+## Regras de AdSense e conteúdo
 
-Quando `ADSENSE-STATE.json` indicar fase `F5`, leia e siga `F5-FOCUS-PRUNING-RULES.md`.
+- Não solicitar nova análise automaticamente.
+- Não declarar aprovação, indexação ou status da conta com base em flags locais.
+- Não monetizar páginas vazias, de erro, legais, em construção ou sem valor editorial adequado.
+- Conteúdo técnico precisa resolver uma pergunta real, explicitar limites e usar fonte primária quando a afirmação depender dela.
+- Conteúdo sobre calibração não autoriza anunciar calibração rastreável como serviço atual.
 
-1. Se `next_batch` começar com `F5-FOCUS-PRUNING-`, execute somente as páginas declaradas, com no máximo cinco URLs.
-2. Se `next_batch` for `F5-FOCUS-QUEUE-REFRESH`, selecione até cinco páginas indexáveis claramente fora do foco em automação, instrumentação, calibração/metrologia e elétrica industrial; atualize a fila e o estado em um commit de controle e encerre sem editar páginas nesse ciclo.
-3. A primeira etapa de desativação é sempre reversível: alterar apenas robots para `noindex,nofollow,noarchive`, retirar a URL do sitemap e atualizar o inventário. Preservar canonical, H1, conteúdo, fórmulas, exemplos, JavaScript e arquivos.
-4. Não remover arquivo, aplicar redirect, excluir card ou solicitar remoção no Search Console sem lote separado baseado em dados de tráfego e autorização específica.
-5. Nunca incluir páginas `manual-review`, conteúdo sensível, normas, segurança, autoria, credenciais, dados de cliente, PDFs ou desenhos confidenciais.
+## Publicação
 
-## Pré-flight obrigatório
+Existe autorização do proprietário para lotes seguros e validados em `main`. Não há workflow de GitHub detectado na árvore verificada; este arquivo é uma instrução de retomada, não uma rotina ativa. Uma automação externa continua não verificada.
 
-1. Releia o SHA de `agent/adsense-recovery` e registre-o como `run_head`.
-2. Confirme que as páginas do lote existem, são indexáveis e continuam `improve` no inventário.
-3. Leia integralmente apenas as páginas do lote e suas páginas diretamente vinculadas quando forem necessárias para evitar links quebrados ou repetição.
-4. Se houver mudança concorrente na branch, no `main` ou no lote, pare sem mesclar e sem repetir automaticamente.
+## Relato final
 
-## Edição e validação
-
-1. Faça as alterações editoriais do lote, preservando título, URL, canonical, robots, estrutura de uma única H1, AdSense, fórmulas e JavaScript.
-2. Verifique que nenhum link ou recurso local introduzido está quebrado; não introduza fonte ou norma que não tenha sido verificada.
-3. Rode os gates: JSON legível, inventário preservado, HTML coerente, uma H1 por página, canonical/robots inalterados, nenhum JavaScript ou fórmula alterado e diff limitado ao lote declarado e aos arquivos de controle.
-4. Atualize estado, changelog e relatório do lote no mesmo conjunto de mudanças.
-5. Crie no máximo um commit atômico, com árvore baseada em `run_head` e avanço normal da referência (`force=false`). Releia o SHA antes de mover a branch; se ele mudou, pare sem mesclar nem repetir.
-
-## Publicação automática de lote seguro
-
-Após um commit aprovado por todos os gates, publique o lote em `main` somente por pull request de `agent/adsense-recovery` para `main`.
-
-- Confirme que o diff da pull request contém somente as páginas do lote, estado, changelog, relatório e arquivos de fila explicitamente previstos.
-- Faça merge automático apenas se a pull request estiver limpa, sem conflito e com o mesmo SHA de cabeça validado.
-- Nunca use `force`, nunca faça merge se houver arquivo inesperado, e pare se o repositório exigir revisão ou se o merge falhar.
-- Relate a URL e o commit da publicação. Um lote só é considerado concluído quando a branch e `main` refletem a mudança.
-
-## Transição de estado
-
-- Ao concluir e publicar um lote, avance para o próximo lote listado em `F4-EDITORIAL-QUEUE.md`.
-- Após o último lote, defina `status: ready` e `next_batch: F4-QUEUE-REFRESH`; a execução seguinte recompõe a fila pelas regras rolantes, sem esperar aprovação humana.
-- Se não restar candidata `improve` P0 elegível, aplique a piscina de manutenção segura definida nas regras rolantes. Só registre `status: observing` se também não houver candidata de manutenção segura; mantenha a tarefa recorrente ativa e reavalie somente essa seleção nas execuções futuras. Não crie commit vazio, não reclassifique o site e não promova exceções.
-- Diante de falha, conflito, falta de fonte primária, alegação não comprovável ou risco técnico, exclua somente a página afetada e siga com as demais candidatas; se o lote ficar vazio, entre em `observing`.
-- Nunca solicite revisão ao AdSense. Itens `manual-review` continuam bloqueados até autorização e validação específica.
-
-## Relato ao final
-
-Informe lote, páginas alteradas, verificações, fontes consultadas, riscos, próximo estado e URL de publicação quando houver. Não informe uma página como concluída se o commit, a pull request ou o merge falhar.
+Informe: etapa/lote, SHA de base, arquivos, alterações, testes, commit, estado da publicação, limitações e próxima ação exata. Nunca marque como concluído o que não foi publicado e conferido quando a etapa exige site em produção.

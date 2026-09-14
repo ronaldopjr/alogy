@@ -1,106 +1,67 @@
 # Recuperação do Google AdSense — ALOGY
 
-## Objetivo
+> **Controle operacional atual — versão 2026-09-14.2.** Este arquivo substitui as instruções antigas de F4/F5 como fonte de execução. O histórico permanece no Git, mas nenhuma fila antiga deve ser retomada sem conferir `ADSENSE-STATE.json` e `CURRENT-WORK-QUEUE.md`.
 
-Corrigir de forma rastreável e reversível os sinais técnicos e editoriais que podem sustentar a classificação "conteúdo de baixo valor" no domínio `alogy.com.br`.
+## Objetivos
 
-Este projeto não promete aprovação do AdSense. A decisão pertence ao Google. O objetivo é elevar o site a um padrão técnico, editorial e de confiança compatível com as políticas publicadas.
+1. Corrigir defeitos de funcionamento e confiança que prejudiquem o leitor.
+2. Fortalecer utilidade, autoria, evidências e clareza editorial das páginas monetizáveis.
+3. Manter a oferta comercial compatível com a capacidade real da ALOGY.
+4. Preparar o site para uma nova análise do AdSense sem prometer aprovação.
 
 ## Fonte de verdade
 
 - Repositório: `ronaldopjr/alogy`
-- Branch de trabalho: `agent/adsense-recovery`
-- Branch publicada: `main` — proibido alterar automaticamente
-- Estado: `adsense-recovery/ADSENSE-STATE.json`
-- Inventário: `adsense-recovery/ADSENSE-INVENTORY.csv`
-- Registro: `adsense-recovery/ADSENSE-CHANGELOG.md`
-- Bloqueios: `adsense-recovery/ADSENSE-BLOCKERS.md`
+- Branch publicada e operacional: `main`
+- Estado atual: `adsense-recovery/ADSENSE-STATE.json`
+- Fila executável: `adsense-recovery/CURRENT-WORK-QUEUE.md`
+- Bloqueios e dependências: `adsense-recovery/ADSENSE-BLOCKERS.md`
+- Relatórios por lote: `adsense-recovery/E*-*.md`
+- Plano de continuidade externo: o Markdown mais recente fornecido pelo proprietário; quando estiver disponível na sessão, deve ser atualizado no encerramento do lote e devolvido ao proprietário.
 
-## Baseline confirmado
+Arquivos F4/F5 e relatórios anteriores são históricos. Uma orientação antiga não prevalece sobre o estado e a fila atuais.
 
-- 390 páginas HTML no repositório.
-- 299 páginas declaradas indexáveis na auditoria interna mais recente.
-- 90 páginas `noindex` na auditoria interna.
-- 352 páginas apareciam indexadas no Search Console nas capturas de agosto de 2026.
-- Propriedade do AdSense verificada.
-- `ads.txt`, `robots.txt`, canonicals e sitemaps presentes.
-- Reprovação vigente: `Conteúdo de baixo valor`.
+## Estado reconciliado em 14/09/2026
 
-## Princípios obrigatórios
+- SHA de `main` usado como base: `11c4014484abae91dfb4aff037b33a77f9eeb0cd`.
+- E00: revisão e plano consolidado — concluído.
+- E01: controles reconciliados — concluído.
+- Próxima etapa: E02 — corrigir e validar a busca de `ferramentas.html`.
+- Parecer interno: o site ainda não está pronto para solicitar nova análise ao AdSense.
+- A poda temática F5 não é mais a próxima ação. Não excluir, desindexar ou remover páginas em massa.
 
-1. Trabalhar em lotes pequenos, verificáveis e reversíveis.
-2. Nunca alterar `main`, fazer merge ou pedir revisão ao AdSense automaticamente.
-3. Nunca inventar autoria, experiência, credenciais, fontes, normas, cálculos ou resultados.
-4. A ALOGY é importadora e revendedora dos produtos; não deve ser apresentada como fabricante.
-5. Não publicar conteúdo, desenhos, tags, valores, layouts ou identificação extraídos dos PDFs fornecidos.
-6. Tratar fórmulas, segurança elétrica, processo e engenharia como conteúdo de alto impacto: exigir revisão humana quando houver mudança substancial.
-7. Não alterar datas apenas para aparentar atualização.
-8. Não aplicar `noindex`, 301, 404/410 ou exclusão em massa sem inventário, justificativa e validação.
-9. Não monetizar páginas legais, vazias, redirecionadas, `noindex` ou em revisão.
-10. Interromper diante de conflito externo, validação falha ou decisão subjetiva sem evidência suficiente.
+## Ordem operacional
 
-## Fases
+`E02 → E03 → E04 → E05 → E06 → E07 → E08 → E09 → E10 → E11 → E12`
 
-### F0 — Controle e baseline
+As etapas comerciais C01–C03 podem avançar em paralelo somente com fatos confirmados pelo proprietário.
 
-- Criar branch, arquivos de estado, inventário, prompt e validador.
-- Produzir inventário completo das 390 páginas sem alterar conteúdo.
-- Comparar HTML, robots, canonical, AdSense e presença nos sitemaps.
+## Ciclo obrigatório de cada lote
 
-### F1 — Higiene técnica
+1. Reabrir `main`, registrar o SHA e conferir mudança concorrente.
+2. Ler o estado, a fila atual e somente os arquivos do lote.
+3. Limitar o lote a cinco páginas; preferir três quando houver revisão editorial.
+4. Executar sem inventar dados, equipe, credenciais, capacidade, casos ou certificações.
+5. Validar o comportamento útil, metadados e regressões pertinentes.
+6. Publicar somente lote seguro e validado, sem `force` e preservando trabalho concorrente.
+7. Conferir as URLs alteradas no domínio; distinguir editado, commitado e publicado.
+8. Atualizar estado, fila, relatório do lote e o Markdown de continuidade fornecido na sessão.
 
-- Propor tratamento para `/index.html`, verificações antigas e redirects HTML.
-- Remover inconsistências entre `noindex`, AdSense e sitemap.
-- Preservar URLs e tráfego; toda exclusão exige justificativa.
+## Regras que permanecem
 
-### F2 — Classificação editorial
+- Preservar o foco em Instrumentação, Calibração, Automação e Elétrica.
+- Não retomar exclusões ou `noindex` em massa como estratégia de AdSense.
+- Conteúdo educativo sobre calibração pode permanecer; a oferta comercial não pode anunciar capacidade rastreável não comprovada.
+- Não alterar fórmulas, critérios de segurança ou JavaScript técnico sem reprodução do problema e validação proporcional ao risco.
+- Não fabricar autoria, depoimentos, cases, fotos de campo, experiência, registros profissionais, vínculos com fabricantes ou resultados.
+- Não solicitar revisão ao AdSense automaticamente.
 
-- Classificar cada página: `keep`, `improve`, `merge`, `noindex-review`, `redirect`, `remove-candidate` ou `manual-review`.
-- Registrar confiança, evidências, sobreposição e prioridade.
+## Publicação
 
-### F3 — Piloto supervisionado
+O proprietário já autorizou a publicação de lotes seguros e validados em `main`. A execução deve usar commit atômico e avanço normal da referência, sem força. Antes de publicar, reler o SHA de `main`; se ele mudou, interromper e reconciliar o diff.
 
-- Melhorar de 3 a 5 páginas prioritárias.
-- Validar linguagem, método, exemplos, fontes, autoria e experiência.
-- Não avançar sem revisão humana do piloto.
-
-### F4 — Núcleo de alto valor
-
-- Trabalhar em 20 a 30 páginas prioritárias em lotes pequenos.
-- Incluir valor original, método, premissas, limitações, exemplos e referências confiáveis.
-- Operar por lotes de no máximo cinco páginas: validar, registrar e publicar automaticamente apenas o lote seguro por pull request para `main`.
-- Usar fila explícita; cada execução só pode editar o lote indicado no estado e deve parar em conflito, falta de fonte, arquivo inesperado no diff ou risco técnico.
-
-### F5 — Consolidação
-
-- Unificar sobreposições somente com evidência suficiente.
-- Criar redirecionamentos em proposta; implementação depende de confirmação da hospedagem.
-
-### F6 — Confiança e transparência
-
-- Melhorar autoria, revisão técnica, Sobre e metodologia editorial usando somente dados confirmados pelo usuário.
-
-### F7 — Auditoria final
-
-- Executar validações completas.
-- Gerar relatório e checklist para revisão humana.
-- Não solicitar revisão ao Google automaticamente.
-
-## Gates de segurança
-
-Cada lote precisa passar por:
-
-- JSON e CSV legíveis;
-- HTML, H1, canonical e robots coerentes;
-- nenhum AdSense em `noindex` ou redirecionamento;
-- sitemap sem URL `noindex` conhecida;
-- nenhum link/recurso local quebrado introduzido;
-- nenhuma alteração não planejada em fórmula ou JavaScript;
-- diff limitado ao lote declarado;
-- changelog e estado atualizados no mesmo commit.
-
-Se qualquer gate falhar, não avançar `ADSENSE-STATE.json`.
+Não foi encontrado workflow em `.github/workflows` na árvore verificada. A branch `agent/adsense-recovery` permanece como histórico de agosto de 2026 e não é a branch operacional atual. Isso não comprova a inexistência de uma automação externa. Este arquivo não cria uma rotina recorrente.
 
 ## Critério de conclusão
 
-O trabalho termina com auditoria final aprovada e relatório para decisão do usuário. Merge em `main` e solicitação de revisão do AdSense são ações humanas separadas.
+O projeto só fica pronto para nova análise quando E10 não encontrar problema material conhecido de conteúdo, funcionamento, promessas, publicidade ou política e a conta permitir a ação. A aprovação continua sendo decisão do Google.

@@ -1,20 +1,39 @@
-# Bloqueios e decisões humanas
+# Bloqueios, dependências e decisões humanas
 
-## Atualização de 10/09/2026 — avaliação AdSense ainda pendente
+## Estado do AdSense
 
-A captura recente confirma reprovação por conteúdo de baixo valor. Os três lotes de ferramentas com gráficos, exemplos e correções não encerram a revisão editorial do site. Há 14 páginas com uma mesma frase genérica de interpretação a avaliar. Consulte `ADSENSE-2026-09-09-TRAFFIC-TOOLS.md` para evidências, testes e prioridades. Não declarar o site pronto nem solicitar nova revisão automaticamente. Os dados de tráfego enviados também exigem reavaliar qualquer próxima poda de URLs.
+A reprovação por “conteúdo de baixo valor” foi informada pelo proprietário, mas o painel autenticado não foi acessado nesta etapa. O site ainda não está pronto para solicitar nova análise e nenhuma submissão deve ocorrer automaticamente.
 
-## Decisões técnicas adiadas sem bloquear a auditoria
+## Não bloqueia E02
 
-- O site está hospedado por GitHub Pages em modo legado, a partir de `main` e da raiz do repositório. Redirecionamentos HTTP 301 por caminho não podem ser configurados nessa camada estática.
-- Manter `google00ce371ffda114a1.html` até o usuário confirmar que existe outro método permanente de verificação do Search Console. O arquivo não está no sitemap nem possui AdSense.
-- Manter os redirects HTML de `calculadora-incerteza-calibracao.html` e `calculadora-lrv-urv-span.html`. Migrar para 301 somente se for adicionada uma camada de CDN/proxy ou outra hospedagem com regras de resposta HTTP.
-- Manter `/index.html` com canonical para `/`. No GitHub Pages, o mesmo `index.html` serve a raiz; transformar o arquivo em redirect também redirecionaria a própria home.
+- Falta de acesso autenticado ao AdSense, Search Console ou Analytics.
+- Falta de confirmação da bancada e da autoria.
+- A branch histórica `agent/adsense-recovery` estar desatualizada.
 
-## Decisões que serão necessárias antes da publicação
+A correção da busca de ferramentas pode avançar de forma independente.
 
-- Confirmar nome, formação, experiência e credenciais que podem ser exibidos como autoria ou revisão técnica.
-- Confirmar quais casos e experiências podem ser publicados de forma anonimizada.
-- Se houver futura migração de hospedagem ou uso de CDN/proxy, confirmar o mecanismo disponível para redirecionamentos HTTP 301/404/410.
-- A publicação automática só pode incluir lotes `improve` presentes na fila F4, aprovados pelos gates e sem conflito; qualquer outro tipo de página continua bloqueado.
-- O pedido de revisão ao AdSense continua exigindo autorização separada.
+## Dependências do proprietário
+
+- Captura atual do AdSense com domínio, motivo, data e disponibilidade de nova análise.
+- Exportação do Search Console dos últimos 90 dias por páginas e consultas, desejável para priorização.
+- Equipamentos de bancada, funções de medir/gerar/simular, faixas, acessórios e documentos metrológicos.
+- Tipos/modelos/portes atendidos, meios de teste, local de recebimento, profissionais disponíveis e parceiros.
+- Nome público, formação, experiência, credenciais e evidências que podem ser publicadas.
+- Permissão para usar fotos, projetos, clientes ou resultados específicos.
+
+## Decisões que exigem cuidado específico
+
+- Mudança substancial de fórmula, limiar, norma, segurança ou JavaScript técnico.
+- Alegação de calibração rastreável, acreditação, registro profissional, equipe, prazo garantido ou cobertura 24 h.
+- Consolidação, redirecionamento, exclusão definitiva ou nova desindexação de URLs.
+- Solicitação de nova análise ao AdSense.
+
+## Decisões técnicas preservadas
+
+- O site usa GitHub Pages a partir de `main`; não foi encontrado workflow em `.github/workflows` na árvore verificada.
+- A ausência de workflow no repositório não comprova a inexistência de automação externa.
+- Manter `google00ce371ffda114a1.html` até confirmação de outro método permanente de verificação do Search Console.
+- Manter os redirects HTML históricos quando não houver camada capaz de emitir 301 por caminho.
+- Manter `/index.html` com canonical para `/`; o mesmo arquivo atende a home no GitHub Pages.
+- Não usar `force` nem sobrescrever alteração concorrente.
+- Lotes seguros e validados podem ser publicados em `main` dentro da autorização registrada.

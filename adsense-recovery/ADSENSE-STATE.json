@@ -1,79 +1,52 @@
 {
-  "schema_version": 2,
+  "schema_version": 3,
   "project": "ALOGY AdSense Recovery",
+  "plan_version": "2026-09-14.2",
   "repository": "ronaldopjr/alogy",
-  "work_branch": "agent/adsense-recovery",
   "base_branch": "main",
-  "phase": "F5",
+  "work_branch": "main",
+  "base_sha_verified": "11c4014484abae91dfb4aff037b33a77f9eeb0cd",
+  "verified_at": "2026-09-14",
+  "last_completed_stage": "E01",
+  "stage_in_progress": null,
+  "next_stage": "E02",
+  "next_action": "Corrigir a busca de ferramentas em ferramentas.html, validando a lista realmente visível para PT100, busca vazia, limpeza e termos sem acento; publicar e conferir o domínio.",
   "status": "ready",
-  "last_completed_batch": "F5-FOCUS-PRUNING-01",
-  "next_batch": "F5-FOCUS-QUEUE-REFRESH",
-  "next_action": "Select the next batch of at most five clearly off-focus indexable pages under F5-FOCUS-PRUNING-RULES.md. Use reversible noindex plus sitemap removal only; do not delete files, redirect URLs, change formulas or JavaScript, or touch sensitive/manual-review content without specific authorization.",
   "max_pages_per_edit_batch": 5,
-  "automation_may_edit_content": true,
-  "automation_may_commit_to_work_branch": true,
-  "automation_may_merge": true,
-  "automation_may_modify_main": true,
-  "automation_may_request_adsense_review": false,
-  "requires_human_review_after": null,
-  "baseline": {
-    "base_commit": "eab09572d950c7b0072f6183705ba4d779ae472d",
-    "html_files": 390,
-    "internally_reported_indexable_pages": 299,
-    "internally_reported_noindex_pages": 90,
-    "search_console_indexed_snapshot": 352,
-    "adsense_status": "low_value_content"
+  "preferred_editorial_batch": 3,
+  "adsense": {
+    "reported_status": "low_value_content",
+    "account_checked_in_this_stage": false,
+    "ready_to_request_review": false,
+    "auto_request_review": false
   },
-  "updated_at": "2026-08-19T14:18:03-03:00",
-  "stop_reason": null,
-  "workflow_version": 4,
   "publication": {
     "enabled": true,
     "target_branch": "main",
-    "method": "pull-request-merge",
-    "max_pages_per_release": 5,
+    "method": "validated-atomic-commit",
     "require_clean_validated_diff": true,
-    "allow_force": false,
-    "auto_request_adsense_review": false
+    "require_domain_check": true,
+    "allow_force": false
   },
-  "editorial_scope": {
-    "allowed_status": "improve",
-    "allowed_batches": [
-      "F4-EDITORIAL-01",
-      "F4-EDITORIAL-02",
-      "F4-EDITORIAL-03",
-      "F4 rolling batches authorized by F4-ROLLING-EDITORIAL-RULES.md",
-      "F4 maintenance batches authorized by F4-ROLLING-EDITORIAL-RULES.md"
-    ],
-    "forbidden_status": [
-      "manual-review",
-      "merge",
-      "noindex-review",
-      "redirect",
-      "remove-candidate"
-    ],
-    "forbidden_changes": [
-      "formula",
-      "technical_javascript",
-      "pdf_or_drawing_use",
-      "authorship_or_credentials",
-      "unvalidated_publication"
-    ],
-    "rolling_replenishment_authorized": true
+  "automation": {
+    "github_workflow_detected": false,
+    "external_automation_status": "not_verified",
+    "legacy_agent_branch": "agent/adsense-recovery",
+    "legacy_agent_branch_sha": "405599d8e2cc6233740882bda6327319d203948e",
+    "legacy_agent_branch_last_update": "2026-08-19",
+    "legacy_f5_pruning_enabled": false
   },
-  "run_protocol_version": 2,
-  "auditor_schema_version": 2,
-  "focus_pruning": {
-    "enabled": true,
-    "primary_topics": [
-      "automacao industrial",
-      "instrumentacao",
-      "calibracao e metrologia",
-      "eletrica industrial"
-    ],
-    "method": "reversible-noindex-and-sitemap-removal",
-    "max_pages_per_batch": 5,
-    "permanent_deletion_requires_search_console_review": true,
-    "remove_files": false
-  }
+  "constraints": {
+    "mass_pruning_allowed": false,
+    "mass_noindex_allowed": false,
+    "invent_capabilities_or_credentials": false,
+    "change_formula_without_validation": false,
+    "change_technical_javascript_without_reproduced_issue": false
+  },
+  "owner_dependencies": [
+    "Captura atual do AdSense com motivo, data e disponibilidade de nova análise",
+    "Exportação do Search Console por páginas e consultas, desejável para priorização",
+    "Capacidades reais da bancada, funções, faixas e situação metrológica",
+    "Dados verdadeiros de autoria, credenciais e evidências publicáveis"
+  ]
 }
