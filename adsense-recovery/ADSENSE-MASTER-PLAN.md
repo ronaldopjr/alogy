@@ -1,6 +1,6 @@
 # Recuperação do Google AdSense — ALOGY
 
-> **Controle operacional atual — versão 2026-09-14.6.** Este arquivo substitui as instruções antigas de F4/F5 como fonte de execução. O histórico permanece no Git, mas nenhuma fila antiga deve ser retomada sem conferir `ADSENSE-STATE.json` e `CURRENT-WORK-QUEUE.md`.
+> **Controle operacional atual — versão 2026-09-14.7.** Este arquivo substitui as instruções antigas de F4/F5 como fonte de execução. O histórico permanece no Git, mas nenhuma fila antiga deve ser retomada sem conferir `ADSENSE-STATE.json` e `CURRENT-WORK-QUEUE.md`.
 
 ## Objetivos
 
@@ -27,14 +27,17 @@ Arquivos F4/F5 e relatórios anteriores são históricos. Uma orientação antig
 - E00: revisão e plano consolidado — concluído.
 - E01: controles reconciliados — concluído no commit `734559b163b01b3e1bd95d07380cbfd33b241332`.
 - E02: correção publicada no commit `eec58b20b6de6d8de827cf1f9f623b2987827bb2` e validada localmente; falta conferir a busca interativa no domínio.
-- E03: primeiro lote publicado no commit `e945d6e5e7259e456bde56339084a2b37ff4951a`, corrigindo `industrial.html` para retirar promessa direta de calibração em campo e delimitar manutenção/conferência funcional sob escopo.
-- Próxima ação: conferir `industrial.html` no domínio e continuar E03 em home, Sobre e CTAs comerciais; manter a conferência interativa de E02 explicitamente pendente.
+- E03: escopo inicial publicado em dois lotes:
+  - `e945d6e5e7259e456bde56339084a2b37ff4951a` — `industrial.html`;
+  - `9a4c33175da73b3a53fe7912bca33da5bdcdd8b8` — home, Sobre e CTA da calculadora 4-20 mA.
+- E03 permanece `PUBLICADO — FALTA CONFERIR` até a verificação do domínio em desktop e celular.
+- Próxima ação: conferir E02/E03 no domínio; passando os cenários, iniciar E04 com inventário integral por URL, anúncios, sitemaps e CTAs.
 - Parecer interno: o site ainda não está pronto para solicitar nova análise ao AdSense.
 - A poda temática F5 não é mais a próxima ação. Não excluir, desindexar ou remover páginas em massa.
 
 ## Ordem operacional
 
-`E02 (conferência no domínio, pendente em paralelo) → E03 → E04 → E05 → E06 → E07 → E08 → E09 → E10 → E11 → E12`
+`E02/E03 (conferência no domínio) → E04 → E05 → E06 → E07 → E08 → E09 → E10 → E11 → E12`
 
 As etapas comerciais C01–C03 podem avançar em paralelo somente com fatos confirmados pelo proprietário.
 

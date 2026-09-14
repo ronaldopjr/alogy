@@ -1,16 +1,16 @@
 {
   "schema_version": 3,
   "project": "ALOGY AdSense Recovery",
-  "plan_version": "2026-09-14.6",
+  "plan_version": "2026-09-14.7",
   "repository": "ronaldopjr/alogy",
   "base_branch": "main",
   "work_branch": "main",
-  "base_sha_verified": "e945d6e5e7259e456bde56339084a2b37ff4951a",
+  "base_sha_verified": "9a4c33175da73b3a53fe7912bca33da5bdcdd8b8",
   "verified_at": "2026-09-14",
   "last_completed_stage": "E01",
   "stage_in_progress": "E03",
   "next_stage": "E03",
-  "next_action": "Conferir industrial.html no domínio e continuar o E03 em index.html, sobre.html e no CTA da calculadora 4-20 mA, mantendo a conferência interativa de E02 explicitamente pendente.",
+  "next_action": "Conferir no domínio ferramentas.html, industrial.html, a home, sobre.html e calculadora-4-20ma.html em desktop e celular. Se os cenários passarem, concluir E02/E03 e iniciar E04 com inventário integral por URL.",
   "status": "published_pending_domain_check",
   "max_pages_per_edit_batch": 5,
   "preferred_editorial_batch": 3,
@@ -24,8 +24,8 @@
     "enabled": true,
     "target_branch": "main",
     "method": "validated-atomic-commit",
-    "batch_id": "E03-COMMERCIAL-TRUTH-01",
-    "site_change_commit": "e945d6e5e7259e456bde56339084a2b37ff4951a",
+    "batch_id": "E03-COMMERCIAL-TRUTH-02",
+    "site_change_commit": "9a4c33175da73b3a53fe7912bca33da5bdcdd8b8",
     "source_verified_on_main": true,
     "live_page_reachable": null,
     "interactive_domain_check_complete": false,
@@ -54,6 +54,8 @@
     },
     "e03_industrial": {
       "local_status": "passed",
+      "site_change_commit": "e945d6e5e7259e456bde56339084a2b37ff4951a",
+      "source_blob_on_main": "beadb745d57a31b6067fcc2102d3ab0db4592ae7",
       "html_parser_errors": 0,
       "json_ld_blocks": 1,
       "json_ld_parse_errors": 0,
@@ -62,15 +64,40 @@
       "direct_field_calibration_claim_removed": true,
       "accreditation_or_traceability_claim_added": false,
       "hotmart_social_link_removed": true,
-      "source_blob_on_main": "beadb745d57a31b6067fcc2102d3ab0db4592ae7",
+      "domain_status": "pending"
+    },
+    "e03_commercial_truth_02": {
+      "local_status": "passed",
+      "site_change_commit": "9a4c33175da73b3a53fe7912bca33da5bdcdd8b8",
+      "changed_files": ["index.html", "sobre.html", "calculadora-4-20ma.html"],
+      "source_blobs_on_main": {
+        "index.html": "6d530206320c802aa19a805434a4d101a852ec66",
+        "sobre.html": "79c2ff679a77da0ffdc3212aee739f16b4e7d31b",
+        "calculadora-4-20ma.html": "46e3a9f7f7052ab4b1de9dd4b13b18d03fbc6383"
+      },
+      "index_json_ld_parse_errors": 0,
+      "sobre_json_ld_parse_errors": 0,
+      "calculator_diff_scope": "commercial_cta_only",
+      "calculator_formula_changed": false,
+      "calculator_technical_javascript_changed": false,
+      "exact_code_search_zero_results": true,
+      "exact_code_search_complete": false,
       "domain_status": "pending"
     },
     "shared_warning_follow_up": "E08-W1"
   },
   "e03_commercial_truth": {
-    "batch": "E03-COMMERCIAL-TRUTH-01",
-    "published_pages": ["industrial.html"],
-    "remaining_initial_scope": ["index.html", "sobre.html", "calculadora-4-20ma.html", "shared commercial CTAs"],
+    "initial_scope_status": "published_pending_domain_check",
+    "published_pages": ["industrial.html", "index.html", "sobre.html", "calculadora-4-20ma.html"],
+    "site_commits": [
+      "e945d6e5e7259e456bde56339084a2b37ff4951a",
+      "9a4c33175da73b3a53fe7912bca33da5bdcdd8b8"
+    ],
+    "remaining_follow_up": [
+      "Conferência das páginas no domínio em desktop e celular",
+      "Inventário integral de CTAs e alegações comerciais em E04",
+      "Preenchimento da matriz de capacidade C01"
+    ],
     "confirmed_owner_fact": "A ALOGY ainda não possui padrão calibrado confirmado para sustentar emissão própria de laudo de calibração.",
     "safe_positioning": "Avaliação, inspeção, manutenção, configuração e conferência funcional sob escopo; calibração, ensaio ou documentação específica somente quando recursos e parceiros forem confirmados na proposta."
   },
