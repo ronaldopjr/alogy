@@ -38,13 +38,15 @@ jobs:
               'calculadora-diagnostico-4-20ma-hart.html',
               'checklist-teste-de-loop.html',
           }
-          expected = targets | {
-              'adsense-recovery/ADSENSE-INVENTORY.csv',
-              'adsense-recovery/E04-GUIDE-NAVIGATION-02.md',
-          }
-          changed = set(subprocess.check_output(['git', 'diff', '--name-only'], text=True).splitlines())
-          if changed != expected:
-              raise SystemExit(f'Diff fora do escopo. Esperado={sorted(expected)} Atual={sorted(changed)}')
+          expected_tracked = targets | {'adsense-recovery/ADSENSE-INVENTORY.csv'}
+          expected_untracked = {'adsense-recovery/E04-GUIDE-NAVIGATION-02.md'}
+          changed_tracked = set(subprocess.check_output(['git', 'diff', '--name-only'], text=True).splitlines())
+          changed_untracked = set(subprocess.check_output(['git', 'ls-files', '--others', '--exclude-standard'], text=True).splitlines())
+          if changed_tracked != expected_tracked or changed_untracked != expected_untracked:
+              raise SystemExit(
+                  f'Diff fora do escopo. Tracked esperado={sorted(expected_tracked)} atual={sorted(changed_tracked)}; '
+                  f'untracked esperado={sorted(expected_untracked)} atual={sorted(changed_untracked)}'
+              )
 
           for rel in sorted(targets):
               text = Path(rel).read_text(encoding='utf-8')
@@ -59,7 +61,7 @@ jobs:
           subprocess.run(['git', 'diff', '--check'], check=True)
           assert Path('adsense-recovery/ADSENSE-INVENTORY.csv').stat().st_size > 100000
           assert Path('adsense-recovery/E04-GUIDE-NAVIGATION-02.md').exists()
-          print(f'Escopo validado: {len(changed)} arquivos; 5 páginas técnicas.')
+          print('Escopo validado: 6 arquivos rastreados + 1 relatório novo; 5 páginas técnicas.')
 
       - name: Commit atomically and remove temporary files
         run: |
