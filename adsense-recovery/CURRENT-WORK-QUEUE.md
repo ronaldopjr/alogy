@@ -1,6 +1,6 @@
 # ALOGY — fila operacional atual
 
-> Versão 2026-09-14.13. Esta é a única fila executável. Filas F4/F5 anteriores são históricas.
+> Versão 2026-09-14.14. Esta é a única fila executável. Filas F4/F5 anteriores são históricas.
 
 ## Regra permanente de navegação comercial
 
@@ -23,46 +23,44 @@ Commits principais: `eec58b20b6de6d8de827cf1f9f623b2987827bb2` e `cb653d8c001a10
 
 **Estado:** CONCLUÍDO NO ESCOPO INICIAL.
 
-Home, página de Serviços, Sobre e CTA 4–20 mA foram publicados e validados sem promessa comercial de calibração/rastreabilidade não comprovada. Permanecem para E04/E06 o inventário integral de alegações/CTAs e a matriz de capacidade C01.
+Home, página de Serviços, Sobre e CTA 4–20 mA foram publicados e validados sem promessa comercial de calibração/rastreabilidade não comprovada. Permanecem para E06 a matriz de capacidade C01 e a confirmação de evidências publicáveis.
 
 Commits de site: `e945d6e5e7259e456bde56339084a2b37ff4951a` e `9a4c33175da73b3a53fe7912bca33da5bdcdd8b8`.
 
 ## E04 — inventário e higiene técnica
 
-**Estado:** EM EXECUÇÃO.
+**Estado:** CONCLUÍDO PARA AVANÇO AO E05. A higiene remanescente continua apenas em lotes pequenos e oportunos.
 
-### Lote estrutural E04-INVENTORY-HYGIENE-01
+### E04-INVENTORY-HYGIENE-01
 
 O artefato anterior tinha 344 HTMLs porque o Jekyll convertia 73 relatórios/controles Markdown internos em HTML público. Esses documentos não eram páginas editoriais da ALOGY.
 
-Foi criado `_config.yml` para retirar da publicação `adsense-recovery`, relatórios/auditorias/validações internos, README e testes. Commit: `ddf9969a2c4f524a0a30b9b73f3f1ac2974ce967`.
+- `_config.yml` passou a excluir controles, auditorias, relatórios internos, README e testes da publicação. Commit: `ddf9969a2c4f524a0a30b9b73f3f1ac2974ce967`.
+- Seis duplicidades entre sitemaps foram removidas sem excluir páginas do conjunto publicado. Commit: `9f3d7422cb44249bc34abc62002184859d2be13d`.
+- Workflow Pages `34879430518`: sucesso.
 
-As seis URLs duplicadas entre sitemaps foram removidas apenas do sitemap complementar. Nenhuma página foi excluída do conjunto de sitemaps. Commit: `9f3d7422cb44249bc34abc62002184859d2be13d`.
-
-Workflow Pages `34879430518`: sucesso. O artefato validado ficou sem relatórios internos publicados e sem duplicidades de sitemap.
-
-### Lote E04-SERVICES-NAVIGATION-01
+### E04-SERVICES-NAVIGATION-01
 
 **Estado:** CONCLUÍDO E PUBLICADO.
 
-- 257 arquivos foram atualizados e 1.017 ocorrências de navegação foram consolidadas.
+- 257 arquivos atualizados e 1.017 ocorrências de navegação consolidadas.
 - Todas as páginas públicas passaram a mostrar apenas **Serviços**, apontando para `industrial.html`.
-- A antiga rota `residencial.html` passou a `noindex,follow`, canonical e redirecionamento para `industrial.html`.
-- A URL legada foi retirada do sitemap institucional.
+- `residencial.html` passou a rota legada `noindex,follow`, canonical e redirecionamento para `industrial.html`.
 - O quarto banner da home passou a apresentar **Instrumentista sob demanda**, com disponibilidade e escopo sob consulta.
 - Nenhuma fórmula ou lógica JavaScript técnica foi alterada.
 
-Commit de site: `2a047390f543d3a7a0469a3677f17c14fa0dcfeb`.
-Workflow Pages: `34885469337`, concluído com sucesso.
+Commit: `2a047390f543d3a7a0469a3677f17c14fa0dcfeb`.
+Workflow Pages: `34885469337`, sucesso.
 Relatório: `E04-SERVICES-NAVIGATION-01.md`.
 
-### Lote E04-INVENTORY-REGENERATION
+### E04-INVENTORY-REGENERATION
 
 **Estado:** CONCLUÍDO.
 
-O inventário antigo de 390 linhas deixou de ser a fonte operacional. `adsense-recovery/ADSENSE-INVENTORY.csv` foi reconstruído diretamente dos HTMLs e sitemaps atuais, preservando as decisões editoriais das URLs que ainda existem.
+O inventário canônico foi reconstruído diretamente dos HTMLs e sitemaps atuais, preservando decisões editoriais das URLs existentes.
 
 Resultado validado:
+
 - 271 HTMLs-fonte;
 - 270 páginas/rotas editoriais e 1 arquivo de verificação Google;
 - 221 páginas indexáveis;
@@ -74,45 +72,95 @@ Resultado validado:
 - 0 anomalias de H1 entre indexáveis;
 - 0 duplicidades entre sitemaps;
 - 88 páginas com carregador direto do AdSense;
-- 268 linhas atuais conservaram decisão editorial anterior.
+- 268 linhas conservaram decisão editorial anterior.
 
 Commit: `da2f61932a21c00741f418870601aafcb42deba6`.
 Relatório: `E04-INVENTORY-REGENERATION.md`.
 
-### Lote E04-GUIDE-NAVIGATION-01
+### E04-GUIDE-NAVIGATION-01
 
 **Estado:** CONCLUÍDO E PUBLICADO.
 
-Primeiro lote localizado de `Cursos/cursos.html` para `Guia` e `/guia/`:
+Páginas:
+
 - `calculadora-erro-calibracao.html`;
 - `checklist-comissionamento-hart.html`;
 - `blog-vazao-normalizada-gases.html`;
 - `calculadora-massa-tanque-nivel.html`;
 - `blog-ar-instrumentos-qualidade-ponto-orvalho.html`.
 
-Em cada página:
-- os dois links de menu foram migrados para `/guia/` com rótulo `Guia`;
-- o atalho social genérico da Hotmart foi removido;
-- conteúdo técnico, fórmulas e JavaScript permaneceram inalterados.
+Foram migrados 10 links de menu para `/guia/` e removidos 5 atalhos sociais genéricos da Hotmart. Conteúdo técnico, fórmulas e JavaScript permaneceram inalterados.
 
 Commit: `181a6ba8336eea2d7f4b9436786b7984e618cf9f`.
 Relatório: `E04-GUIDE-NAVIGATION-01.md`.
-O inventário permaneceu consistente: 221 indexáveis, 49 `noindex`, 221 URLs em sitemap e zero H1 anômalo entre indexáveis.
 
-### Próximo lote E04
+### E04-GUIDE-NAVIGATION-02
 
-1. Continuar `Cursos/cursos.html` → `Guia` e `/guia/` em outro lote pequeno e validado.
-2. Preservar `cursos.html` somente como redirect legado `noindex`.
-3. Classificar os links Hotmart restantes por contexto; retirar o ícone social genérico, mas preservar chamadas contextuais legítimas da página do Guia.
-4. Selecionar pelo inventário as duas páginas do piloto editorial E05, priorizando páginas `improve` P0 ligadas a instrumentação.
-5. Não fazer nova poda em massa e não solicitar revisão ao AdSense nesta etapa.
+**Estado:** CONCLUÍDO, VALIDADO E PUBLICADO.
+
+Páginas:
+
+- `blog-calibracao-instrumentos-industriais.html`;
+- `blog-erro-total-malha-instrumentacao.html`;
+- `blog-fat-sat-instrumentacao.html`;
+- `calculadora-diagnostico-4-20ma-hart.html`;
+- `checklist-teste-de-loop.html`.
+
+Foram migrados mais 10 links de menu e removidos 5 atalhos sociais genéricos da Hotmart. Nenhuma fórmula ou lógica JavaScript técnica foi alterada.
+
+Após o lote:
+
+- restam 137 páginas-fonte com referência legada a Cursos;
+- 102 delas são indexáveis;
+- restam 128 páginas contendo Hotmart, ainda a classificar por contexto;
+- permanecem 221 indexáveis, 49 `noindex`, 221 URLs em sitemap e 88 carregadores diretos do AdSense.
+
+Commit do lote: `cd9fd790999f1a0d1622d2700903c503069465ab`.
+Limpeza do workflow temporário: `f5ab4a5b94e881bd4221eee780c78569e27e22d0`.
+Workflow Pages `34887751809`: sucesso.
+Relatório: `E04-GUIDE-NAVIGATION-02.md`.
+
+## E05 — piloto editorial
+
+**Estado:** EM EXECUÇÃO.
+
+### Páginas selecionadas
+
+1. `blog-calibracao-valvula-controle.html` — primeira revisão; página específica ligada a válvulas, atuadores e posicionadores.
+2. `blog-calibracao-instrumentos-industriais.html` — segunda revisão; página-pilar de calibração e confiabilidade.
+
+Relatório de seleção: `E05-PILOT-SELECTION.md`.
+
+### Regras do piloto
+
+- Revisar uma página por vez.
+- Usar fontes oficiais e identificáveis.
+- Preservar fórmulas, JavaScript técnico e travas de segurança.
+- Não inventar equipe, experiência, bancada, padrão calibrado, rastreabilidade, acreditação ou emissão própria de certificado.
+- Não estabelecer tolerância, periodicidade ou critério universal.
+- Atualizar o inventário canônico depois de cada página.
+- Validar HTML, canonical, H1, links, sitemap, responsividade e implantação publicada antes de avançar.
+- Não solicitar nova análise ao AdSense durante o piloto.
+
+### Próxima ação executável
+
+Revisar `blog-calibracao-valvula-controle.html` com:
+
+1. fronteira clara entre comando, posicionador, atuador, haste/eixo e feedback;
+2. matriz de registro em subida e descida;
+3. diferenciação prudente entre banda morta, histerese, `stiction` e repetibilidade;
+4. sequência de diagnóstico sem ajuste prematuro;
+5. referências primárias BIPM/JCGM, Emerson e exemplos registrados pela FieldComm Group;
+6. CTA comercial verdadeiro para avaliação, manutenção, configuração e conferência funcional sob escopo.
+
+Depois da publicação e validação, revisar a página-pilar em lote separado.
 
 ## E08-W1 — avisos compartilhados
 
 Reproduzir em amostra representativa qualquer classificação genérica de avisos antes de alterar `app.js`. Não mexer no script compartilhado sem defeito reproduzido.
 
-**Estado:** PENDENTE, sem bloqueio para E04.
+**Estado:** PENDENTE, sem bloqueio para E05.
 
-## E05–E12
+## E06–E12
 
-Seguir a ordem do plano atual: piloto editorial, revisão do acervo, autoria/transparência, celular/desempenho, conta/anúncios/privacidade, prontidão, solicitação autorizada e acompanhamento da resposta.
+Seguir a ordem do plano atual: revisão do acervo, autoria/transparência, celular/desempenho, conta/anúncios/privacidade, prontidão, solicitação autorizada e acompanhamento da resposta.
