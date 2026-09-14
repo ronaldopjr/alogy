@@ -1,5 +1,6 @@
 name: E04 Guide navigation batch 02
 
+# Retry after normalizing pre-existing trailing whitespace in the bounded targets.
 on:
   push:
     branches: [main]
