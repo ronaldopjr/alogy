@@ -5,12 +5,12 @@
   "repository": "ronaldopjr/alogy",
   "base_branch": "main",
   "work_branch": "main",
-  "base_sha_verified": "f5ab4a5b94e881bd4221eee780c78569e27e22d0",
+  "base_sha_verified": "3053fe77d01e6911e3527231ae67419bbaa0c76b",
   "verified_at": "2026-09-14",
-  "last_completed_stage": "E03",
-  "stage_in_progress": "E04",
-  "next_stage": "E04",
-  "next_action": "Corrigir a contagem H1 do inventario e tratar as nove paginas indexaveis com dois H1 em lotes seguros; em paralelo selecionar as duas paginas do piloto editorial E05 e continuar Cursos/Hotmart apenas quando util.",
+  "last_completed_stage": "E04",
+  "stage_in_progress": "E05",
+  "next_stage": "E05",
+  "next_action": "Revisar e publicar blog-calibracao-valvula-controle.html como primeira pagina do piloto editorial; depois validar o artefato publicado e revisar blog-calibracao-instrumentos-industriais.html em lote separado.",
   "status": "in_progress",
   "max_pages_per_edit_batch": 5,
   "preferred_editorial_batch": 3,
@@ -29,14 +29,15 @@
     "batch_content_commit": "cd9fd790999f1a0d1622d2700903c503069465ab",
     "services_navigation_commit": "2a047390f543d3a7a0469a3677f17c14fa0dcfeb",
     "canonical_inventory_commit": "da2f61932a21c00741f418870601aafcb42deba6",
-    "previous_controls_checkpoint_commit": "5b344034ce2d6cbab8f91a87d665fb5f7c72b51a",
     "source_verified_on_main": true,
     "custom_validation_workflow_run": 34887643566,
     "pages_deployment_success": true,
     "services_pages_workflow_run": 34885469337,
     "latest_pages_workflow_run": 34887751809,
     "latest_pages_artifact_id": 10365801050,
+    "latest_pages_artifact_digest": "sha256:4d71d5c2a9e78f646ce3b849e6222dcc6e4c7e25919b2ab7658fb003e9aa5ebd",
     "live_environment_url": "https://www.alogy.com.br/",
+    "artifact_validation_complete": true,
     "require_clean_validated_diff": true,
     "require_domain_check": true,
     "allow_force": false
@@ -45,7 +46,7 @@
     "e02_search": {"status":"passed"},
     "e03_commercial_truth": {"status":"passed"},
     "e04_inventory": {
-      "status": "in_progress",
+      "status": "completed_for_e05",
       "source_html_total": 271,
       "editorial_or_route_html": 270,
       "google_verification_html": 1,
@@ -56,19 +57,25 @@
       "noindex_present_in_sitemap": 0,
       "indexable_content_missing_canonical": 0,
       "intentional_canonical_aliases": 7,
-      "indexable_h1_anomalies": 9,
-      "indexable_h1_anomaly_paths": [
-        "calculadora-atuador-pneumatico.html",
-        "calculadora-dimensionamento-cabos.html",
-        "calculadora-erro-calibracao.html",
-        "calculadora-erro-total-malha-instrumentacao.html",
-        "calculadora-pt100.html",
-        "calculadora-resistor-shunt-sinal-instrumentacao.html",
-        "calculadora-split-range-4-20ma.html",
-        "calculadora-termopar.html",
-        "calculadora-volume-tanque-vertical-horizontal.html"
-      ],
-      "inventory_h1_count_correction_pending": true,
+      "indexable_h1_anomalies": 0,
+      "inventory_h1_count_correction_pending": false,
+      "h1_semantic_validation": {
+        "status": "passed",
+        "method": "HTML parser and exact deployed artifact",
+        "pages_checked": [
+          "calculadora-atuador-pneumatico.html",
+          "calculadora-dimensionamento-cabos.html",
+          "calculadora-erro-calibracao.html",
+          "calculadora-erro-total-malha-instrumentacao.html",
+          "calculadora-pt100.html",
+          "calculadora-resistor-shunt-sinal-instrumentacao.html",
+          "calculadora-split-range-4-20ma.html",
+          "calculadora-termopar.html",
+          "calculadora-volume-tanque-vertical-horizontal.html"
+        ],
+        "result": "Cada pagina possui um unico H1 no documento principal. As ocorrencias adicionais detectadas por contagem bruta estao dentro de strings JavaScript que geram documentos independentes de impressao e nao fazem parte do DOM da pagina.",
+        "page_change_required": false
+      },
       "duplicate_sitemap_urls_after": 0,
       "jekyll_generated_internal_html_after": 0,
       "direct_adsense_loader_pages": 88,
@@ -127,6 +134,7 @@
         ],
         "guide_links_migrated": 10,
         "generic_hotmart_shortcuts_removed": 5,
+        "exact_artifact_validation": "passed",
         "technical_formulas_or_javascript_changed": false
       },
       "reports": [
@@ -137,6 +145,15 @@
         "E04-GUIDE-NAVIGATION-01.md",
         "E04-GUIDE-NAVIGATION-02.md"
       ]
+    },
+    "e05_pilot_selection": {
+      "status": "selected",
+      "report": "E05-PILOT-SELECTION.md",
+      "pages_in_order": [
+        "blog-calibracao-valvula-controle.html",
+        "blog-calibracao-instrumentos-industriais.html"
+      ],
+      "selection_basis": "Paginas indexaveis, canonicas, presentes no sitemap, monetizadas e classificadas como improve/P0/high, diretamente ligadas ao foco de instrumentacao e servicos da ALOGY."
     },
     "shared_warning_follow_up": "E08-W1"
   },
