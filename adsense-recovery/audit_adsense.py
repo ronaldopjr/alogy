@@ -23,6 +23,10 @@ CONTENT_RE = re.compile(r'content=["\']([^"\']*)["\']', re.I)
 HREF_RE = re.compile(r'href=["\']([^"\']*)["\']', re.I)
 TITLE_RE = re.compile(r'<title\b[^>]*>(.*?)</title>', re.I | re.S)
 MAIN_RE = re.compile(r'<main\b[^>]*>(.*?)</main>', re.I | re.S)
+NON_RENDERED_BLOCK_RE = re.compile(
+    r'<(script|style|noscript|template)\b[^>]*>.*?</\1>',
+    re.I | re.S,
+)
 
 EDITORIAL_FIELDS = ('status', 'priority', 'confidence', 'evidence', 'next_action')
 FIELDNAMES = (
@@ -37,20 +41,25 @@ def attribute(tag: str, regex: re.Pattern[str]) -> str:
     return unescape(match.group(1)).strip() if match else ''
 
 
+def without_non_rendered_blocks(html: str) -> str:
+    """Remove blocks that do not create elements in the initial document.
+
+    This prevents HTML strings embedded in JavaScript report templates from
+    being counted as headings or visible page copy.
+    """
+    return NON_RENDERED_BLOCK_RE.sub(' ', html)
+
+
 def visible_text(html: str) -> str:
-    html = re.sub(r'<(script|style|noscript)\b[^>]*>.*?</\1>', ' ', html, flags=re.I | re.S)
+    html = without_non_rendered_blocks(html)
     html = re.sub(r'<!--.*?-->', ' ', html, flags=re.S)
     html = re.sub(r'<[^>]+>', ' ', html)
     return re.sub(r'\s+', ' ', unescape(html)).strip()
 
 
 def rendered_markup(html: str) -> str:
-    """Return markup that can contribute elements to the initial document.
-
-    HTML strings embedded in scripts (for example printable report templates)
-    must not be counted as headings in the initial page.
-    """
-    html = re.sub(r'<(script|style|noscript)\b[^>]*>.*?</\1>', ' ', html, flags=re.I | re.S)
+    """Return markup that can contribute elements to the initial document."""
+    html = without_non_rendered_blocks(html)
     return re.sub(r'<!--.*?-->', ' ', html, flags=re.S)
 
 
@@ -64,8 +73,12 @@ def sitemap_paths(root: Path) -> set[str]:
     for sitemap in root.glob('sitemap*.xml'):
         text = sitemap.read_text(encoding='utf-8', errors='replace')
         for loc in re.findall(r'<loc>\s*(.*?)\s*</loc>', text, flags=re.I | re.S):
-            path = urlparse(unescape(loc)).path.lstrip('/')
-            result.add(path or 'index.html')
+            route = urlparse(unescape(loc)).path.lstrip('/')
+            if not route:
+                route = 'index.html'
+            elif route.endswith('/'):
+                route += 'index.html'
+            result.add(route)
     return result
 
 
@@ -108,7 +121,7 @@ def main() -> int:
         canonical = attribute(canonical_tag, HREF_RE)
         noindex = 'noindex' in robots.lower()
         adsense = 'ca-pub-5586837114309500' in html
-        in_sitemap = rel in sitemap or (rel == 'index.html' and 'index.html' in sitemap)
+        in_sitemap = rel in sitemap
 
         audit_evidence: list[str] = []
         if noindex and adsense:
