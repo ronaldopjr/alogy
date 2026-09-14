@@ -1,6 +1,6 @@
 # ALOGY — fila operacional atual
 
-> Versão 2026-09-14.14. Esta é a única fila executável. Filas F4/F5 anteriores são históricas.
+> Versão 2026-09-14.15. Esta é a única fila executável. Filas F4/F5 anteriores são históricas.
 
 ## Regra permanente de navegação comercial
 
@@ -9,7 +9,7 @@ A navegação pública usa **uma única entrada `Serviços`**, apontando para `i
 - Não restaurar os rótulos separados `Serviços Industriais` e `Serviços Residenciais`.
 - Não usar a antiga frente residencial como posicionamento público da ALOGY.
 - `residencial.html` é apenas rota legada `noindex,follow`, com canonical e redirecionamento para `industrial.html`; permanece fora do sitemap.
-- Termos técnicos como instrumentação industrial, automação industrial e elétrica industrial continuam naturais no conteúdo e no SEO. A simplificação vale para a aba pública e para o posicionamento comercial consolidado.
+- Termos técnicos como instrumentação industrial, automação industrial e elétrica industrial continuam naturais no conteúdo e no SEO.
 
 ## E02 — busca de ferramentas
 
@@ -66,9 +66,9 @@ Estado estrutural confirmado:
 - 88 páginas com carregador direto do AdSense;
 - 268 decisões editoriais anteriores preservadas.
 
-Commit do inventário canônico: `da2f61932a21c00741f418870601aafcb42deba6`.
+Commit inicial do inventário canônico: `da2f61932a21c00741f418870601aafcb42deba6`.
 
-**Validação semântica dos H1:** uma contagem bruta do texto-fonte sinalizou nove páginas com duas sequências `<h1>`. A inspeção com parser HTML e o artefato exato do Pages confirmou que cada uma possui somente um H1 no documento principal. As sequências extras estão dentro de strings JavaScript que criam documentos independentes de impressão; elas não entram no DOM da página indexável. Portanto, não existe lote de correção de H1 pendente e nenhum relatório ou JavaScript deve ser alterado por esse falso positivo.
+**Validação semântica dos H1:** nove ocorrências adicionais detectadas por contagem bruta estavam dentro de strings JavaScript que geram documentos independentes de impressão. O parser HTML e o artefato do Pages confirmaram somente um H1 no documento principal de cada página. Nenhuma calculadora ou rotina de impressão foi alterada por esse falso positivo.
 
 ### E04-GUIDE-NAVIGATION-01
 
@@ -78,7 +78,7 @@ Páginas: `calculadora-erro-calibracao.html`, `checklist-comissionamento-hart.ht
 
 Foram migrados 10 links para `/guia/` e removidos 5 atalhos sociais genéricos da Hotmart. Conteúdo técnico, fórmulas e JavaScript permaneceram inalterados.
 
-Commit: `181a6ba8336eea2d7f4b9436786b7984e618cf9f`. Validação: `34886365500`.
+Commit: `181a6ba8336eea2d7f4b9436786b7984e618cf9f`.
 
 ### E04-GUIDE-NAVIGATION-02
 
@@ -102,23 +102,71 @@ Após o lote:
 - permanecem 221 indexáveis, 49 `noindex`, 221 URLs em sitemap e 88 carregadores diretos do AdSense.
 
 Commit do conteúdo: `cd9fd790999f1a0d1622d2700903c503069465ab`.
-Árvore publicada/limpeza do workflow: `f5ab4a5b94e881bd4221eee780c78569e27e22d0`.
+Limpeza do workflow: `f5ab4a5b94e881bd4221eee780c78569e27e22d0`.
 Validação atômica: `34887643566`.
 GitHub Pages: `34887751809`, sucesso; artefato `10365801050`.
 Relatório: `E04-GUIDE-NAVIGATION-02.md`.
 
 ## E05 — piloto editorial
 
-**Estado:** EM EXECUÇÃO.
+**Estado:** EM EXECUÇÃO — PRIMEIRA PÁGINA CONCLUÍDA E PUBLICADA.
 
-### Páginas selecionadas
+### Seleção do piloto
 
-1. `blog-calibracao-valvula-controle.html` — primeira revisão; página específica ligada a válvulas, atuadores e posicionadores.
-2. `blog-calibracao-instrumentos-industriais.html` — segunda revisão; página-pilar de calibração e confiabilidade.
+1. `blog-calibracao-valvula-controle.html` — **CONCLUÍDA**.
+2. `blog-calibracao-instrumentos-industriais.html` — **PRÓXIMA PÁGINA**.
 
 Relatório de seleção: `E05-PILOT-SELECTION.md`.
 
-### Regras do piloto
+### E05-VALVE-CONTROL-PILOT-01
+
+**Estado:** CONCLUÍDO, VALIDADO E PUBLICADO.
+
+A página `blog-calibracao-valvula-controle.html` foi ampliada de 509 para **2.046 palavras visíveis**, sendo **1.999 palavras no conteúdo principal**.
+
+Foram incorporados:
+
+- fronteira entre comando, I/P ou posicionador, atuador, haste/eixo, feedback e processo;
+- distinção entre verificação funcional, calibração, ajuste e manutenção;
+- preparação segura e matriz de cinco pontos em subida e descida;
+- exemplo numérico sem inventar tolerância ou aprovação universal;
+- diferenciação entre banda morta, histerese, repetibilidade, `stiction` e oscilação;
+- sequência de diagnóstico antes de ajustar o posicionador;
+- registro `as-found`/`as-left` e limitações do teste;
+- critérios prudentes para campo ou recebimento do equipamento;
+- CTA comercial verdadeiro para avaliação, inspeção, diagnóstico, manutenção, configuração e conferência funcional sob proposta;
+- aviso explícito de que certificado próprio, rastreabilidade ou ensaio formal dependem dos recursos e parceiros confirmados no escopo;
+- FAQ visível e estruturado;
+- referências oficiais BIPM/JCGM, Emerson e FieldComm Group.
+
+Validação:
+
+- 1 H1 e 14 H2;
+- JSON-LD `BlogPosting` e `FAQPage` válidos;
+- canonical correto;
+- AdSense direto preservado;
+- URL mantida no sitemap;
+- nenhuma referência a `cursos.html` ou Hotmart;
+- nenhuma fórmula ou lógica JavaScript técnica compartilhada alterada;
+- decisão editorial alterada de `improve/P0/high` para `keep/P1/high`.
+
+Commits:
+
+- conteúdo: `59dffe7f590d15d3e9d2e341375b0e7e979c9e0c`;
+- auditor com normalização de `/guia/`: `18f17dddda3b3d0249caf46202fff9e07acb169a`;
+- inventário e relatório: `5c5c3acc32857ea15526f2396271f83de4ef2217`.
+
+Workflows:
+
+- validação e fechamento: `34889135920`, sucesso;
+- GitHub Pages: `34889153902`, sucesso;
+- artefato exato: `10366246367`, digest `sha256:1606ebd5665fa5ed1df60b2c307c1191a7bb2ad8e6a3a0c88af40ac822f3979d`.
+
+O artefato implantado foi extraído e inspecionado. Título, conteúdo novo, CTA, referências, canonical, AdSense, H1/H2 e os dois JSON-LD foram confirmados. O navegador externo retornou apenas `cache miss` para a URL recém-publicada; não houve falha do repositório, do build ou da implantação.
+
+Relatório: `E05-VALVE-CONTROL-PILOT-01.md`.
+
+### Regras permanentes do piloto
 
 - Revisar uma página por vez.
 - Usar fontes oficiais e identificáveis.
@@ -126,21 +174,21 @@ Relatório de seleção: `E05-PILOT-SELECTION.md`.
 - Não inventar equipe, experiência, bancada, padrão calibrado, rastreabilidade, acreditação ou emissão própria de certificado.
 - Não estabelecer tolerância, periodicidade ou critério universal.
 - Atualizar o inventário canônico depois de cada página.
-- Validar HTML, canonical, H1, links, sitemap, responsividade e implantação publicada antes de avançar.
+- Validar HTML, canonical, H1, links, sitemap, responsividade e artefato publicado antes de avançar.
 - Não solicitar nova análise ao AdSense durante o piloto.
 
 ### Próxima ação executável
 
-Revisar `blog-calibracao-valvula-controle.html` com:
+Revisar `blog-calibracao-instrumentos-industriais.html` em lote separado, com:
 
-1. fronteira clara entre comando, posicionador, atuador, haste/eixo e feedback;
-2. matriz de registro em subida e descida;
-3. diferenciação prudente entre banda morta, histerese, `stiction` e repetibilidade;
-4. sequência de diagnóstico sem ajuste prematuro;
-5. referências primárias BIPM/JCGM, Emerson e exemplos registrados pela FieldComm Group;
-6. CTA comercial verdadeiro para avaliação, manutenção, configuração e conferência funcional sob escopo.
+1. conceitos de calibração, verificação e ajuste alinhados ao VIM;
+2. relação clara entre erro observado, incerteza, tolerância e regra de decisão;
+3. exemplo fictício completo com condição `as-found`, possível ajuste e condição `as-left`;
+4. separação entre calibração em bancada, verificação em campo e teste de loop;
+5. arquitetura de links para pressão, temperatura, vazão, nível, válvulas e analisadores;
+6. fontes primárias e CTA comercial verdadeiro, sem promessa de certificado ou rastreabilidade não confirmada.
 
-Depois da publicação e validação da página de válvula, revisar a página-pilar em lote separado.
+Depois da publicação e validação da página-pilar, consolidar o resultado do piloto E05 e definir o próximo lote editorial pelo inventário.
 
 ## E08-W1 — avisos compartilhados
 
