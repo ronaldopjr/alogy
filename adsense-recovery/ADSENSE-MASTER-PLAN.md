@@ -1,6 +1,6 @@
 # Recuperação do Google AdSense — ALOGY
 
-> **Controle operacional atual — versão 2026-09-14.2.** Este arquivo substitui as instruções antigas de F4/F5 como fonte de execução. O histórico permanece no Git, mas nenhuma fila antiga deve ser retomada sem conferir `ADSENSE-STATE.json` e `CURRENT-WORK-QUEUE.md`.
+> **Controle operacional atual — versão 2026-09-14.3.** Este arquivo substitui as instruções antigas de F4/F5 como fonte de execução. O histórico permanece no Git, mas nenhuma fila antiga deve ser retomada sem conferir `ADSENSE-STATE.json` e `CURRENT-WORK-QUEUE.md`.
 
 ## Objetivos
 
@@ -23,16 +23,17 @@ Arquivos F4/F5 e relatórios anteriores são históricos. Uma orientação antig
 
 ## Estado reconciliado em 14/09/2026
 
-- SHA de `main` usado como base: `11c4014484abae91dfb4aff037b33a77f9eeb0cd`.
+- SHA inicial de `main`: `11c4014484abae91dfb4aff037b33a77f9eeb0cd`.
 - E00: revisão e plano consolidado — concluído.
-- E01: controles reconciliados — concluído.
-- Próxima etapa: E02 — corrigir e validar a busca de `ferramentas.html`.
+- E01: controles reconciliados — concluído no commit `734559b163b01b3e1bd95d07380cbfd33b241332`.
+- E02: busca de ferramentas corrigida e validada — concluído; consultar `E02-TOOLS-SEARCH-FIX.md`.
+- Próxima etapa: E03 — ajustar promessas comerciais e coletar capacidades reais.
 - Parecer interno: o site ainda não está pronto para solicitar nova análise ao AdSense.
 - A poda temática F5 não é mais a próxima ação. Não excluir, desindexar ou remover páginas em massa.
 
 ## Ordem operacional
 
-`E02 → E03 → E04 → E05 → E06 → E07 → E08 → E09 → E10 → E11 → E12`
+`E03 → E04 → E05 → E06 → E07 → E08 → E09 → E10 → E11 → E12`
 
 As etapas comerciais C01–C03 podem avançar em paralelo somente com fatos confirmados pelo proprietário.
 

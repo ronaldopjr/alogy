@@ -1,36 +1,44 @@
 # ALOGY — fila operacional atual
 
-> Versão 2026-09-14.2. Esta é a única fila executável. Filas F4/F5 anteriores são históricas.
+> Versão 2026-09-14.3. Esta é a única fila executável. Filas F4/F5 anteriores são históricas.
 
 ## E02 — busca de ferramentas
 
-**Arquivos iniciais:** `ferramentas.html`; consultar `style.css` para o conflito de prioridade visual.
+**Estado:** CONCLUÍDO.
 
-**Problema reproduzido:** o contador informa um resultado para “PT100”, mas a regra global `.tool-card { display:flex!important; }` impede que o estado aplicado pelo filtro esconda os demais cartões.
+**Alteração:** `style.css` passou a dar prioridade ao estado `display:none` aplicado pelo filtro da central, sem alterar o JavaScript, a grade, os tamanhos ou a identidade dos cartões.
 
-**Implementação:** aplicar um estado de ocultação que prevaleça sobre o layout, sem alterar a grade, os tamanhos ou a identidade dos cartões.
-
-**Aceite:**
-- “PT100” → 1 cartão realmente visível e contador 1;
+**Validação:**
+- “PT100” → 1 cartão realmente visível e contador lógico 1;
 - termo inexistente → 0 cartões e mensagem vazia;
-- limpar → 30 cartões, ou a contagem atual confirmada;
-- busca sem acento encontra texto com acento;
-- grupos sem resultados ficam ocultos;
-- desktop e celular mantêm a grade e a navegação.
+- limpar → 30 cartões;
+- “valvula” encontra os dois cartões com “Válvula” sem exigir acento;
+- cenários repetidos em 1200 px e 390 px;
+- CSS original preservado, com adição localizada e sem erro de análise.
 
-**Estado:** PRÓXIMO.
+Relatório: `E02-TOOLS-SEARCH-FIX.md`.
 
 ## E03 — oferta comercial verdadeira
 
-Revisar `industrial.html`, home, `sobre.html`, CTAs e dados estruturados. Retirar ou qualificar oferta de calibração em campo/rastreável não sustentada. Registrar capacidades ainda não confirmadas em C01.
+**Arquivos iniciais:** `industrial.html`, `index.html`, `sobre.html`, CTAs de ferramentas e dados estruturados diretamente afetados.
 
-**Estado:** PENDENTE APÓS E02.
+**Objetivo:** retirar ou qualificar oferta de calibração em campo/rastreável não sustentada; usar revisão, manutenção e conferência funcional somente no alcance confirmado.
+
+**Dependências:** registrar em C01 equipamentos de bancada, funções de medir/gerar/simular, faixas, documentação, modelos/portes atendidos, meios de teste, local de recebimento, profissionais e parceiros. Dado ausente não pode ser inventado.
+
+**Estado:** PRÓXIMO.
 
 ## E04 — inventário e higiene técnica
 
 Recalcular inventário de todos os HTMLs, anúncios, canonicals, sitemaps e decisões por URL. Organizar duplicidades de sitemap e links legados `/cursos`/“Cursos” sem nova poda em massa.
 
 **Estado:** PENDENTE.
+
+## E08-W1 — avisos compartilhados
+
+Reproduzir em amostra representativa qualquer classificação genérica de avisos antes de alterar `app.js`. A busca de código desta etapa não localizou `inferSeverity`/`installDynamicReadout`, mas isso não substitui teste comportamental. Manter como verificação rastreada em E08; não mexer no script compartilhado sem defeito reproduzido.
+
+**Estado:** PENDENTE, sem bloqueio para E03.
 
 ## E05–E12
 

@@ -1,16 +1,16 @@
 {
   "schema_version": 3,
   "project": "ALOGY AdSense Recovery",
-  "plan_version": "2026-09-14.2",
+  "plan_version": "2026-09-14.3",
   "repository": "ronaldopjr/alogy",
   "base_branch": "main",
   "work_branch": "main",
-  "base_sha_verified": "11c4014484abae91dfb4aff037b33a77f9eeb0cd",
+  "base_sha_verified": "734559b163b01b3e1bd95d07380cbfd33b241332",
   "verified_at": "2026-09-14",
-  "last_completed_stage": "E01",
+  "last_completed_stage": "E02",
   "stage_in_progress": null,
-  "next_stage": "E02",
-  "next_action": "Corrigir a busca de ferramentas em ferramentas.html, validando a lista realmente visível para PT100, busca vazia, limpeza e termos sem acento; publicar e conferir o domínio.",
+  "next_stage": "E03",
+  "next_action": "Revisar industrial.html, index.html, sobre.html e CTAs compartilhados; retirar ou qualificar promessas de calibração em campo ou rastreável não sustentadas e registrar as capacidades ainda não confirmadas em C01.",
   "status": "ready",
   "max_pages_per_edit_batch": 5,
   "preferred_editorial_batch": 3,
@@ -35,6 +35,17 @@
     "legacy_agent_branch_sha": "405599d8e2cc6233740882bda6327319d203948e",
     "legacy_agent_branch_last_update": "2026-08-19",
     "legacy_f5_pruning_enabled": false
+  },
+  "validation": {
+    "e02_search": {
+      "pt100_visible_cards": 1,
+      "no_match_visible_cards": 0,
+      "clear_visible_cards": 30,
+      "accent_insensitive_query": "valvula",
+      "tested_widths_px": [1200, 390],
+      "css_parse_errors": 0
+    },
+    "shared_warning_follow_up": "E08-W1"
   },
   "constraints": {
     "mass_pruning_allowed": false,
