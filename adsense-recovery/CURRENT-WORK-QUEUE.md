@@ -1,6 +1,6 @@
 # ALOGY — fila operacional atual
 
-> Versão 2026-09-15.28. Esta é a única fila executável. Filas anteriores são históricas.
+> Versão 2026-09-15.29. Esta é a única fila executável. Filas anteriores são históricas.
 
 ## Regras permanentes
 
@@ -38,7 +38,7 @@
 
 ## E06 — revisão do acervo monetizado
 
-**Estado:** EM EXECUÇÃO — DOZE PÁGINAS REVISADAS, PUBLICADAS E VALIDADAS.
+**Estado:** EM EXECUÇÃO — TREZE PÁGINAS REVISADAS, PUBLICADAS E VALIDADAS.
 
 | # | Página | Decisão | Commit de conteúdo |
 |---|---|---|---|
@@ -54,6 +54,7 @@
 | 10 | `blog-selo-remoto-capilar-nivel.html` | `keep/P1/high` | `50b9e645ef4d6c5a9f8b2a6684bd547e850c1248` |
 | 11 | `blog-potencia-bomba.html` | `keep/P1/high` | `af6f84bbac905b6888c63cf0d7c94da4e0023a5b` |
 | 12 | `blog-gemeo-digital-tags-instrumentacao.html` | `keep/P1/high` | `2e091506da18f788757d1a424fd194228cb763b8` |
+| 13 | `blog-teste-de-loop-instrumentacao.html` | `keep/P1/high` | `3f4f57c65535bd1e8fb243a6cd70de6282a4111c` |
 
 ### Página 08 — massa em tanque por nível
 
@@ -157,9 +158,30 @@
 - nenhuma fórmula de ferramenta ou JavaScript técnico compartilhado alterado;
 - fontes primárias verificadas: OPC Foundation, W3C PROV, IDTA AAS e NIST.
 
+### Página 13 — teste de loop em instrumentação
+
+- relatório: `E06-LOOP-CHECK-ACERVO-13.md`;
+- delta: `E06-INVENTORY-DELTA-13.csv`;
+- relatório + delta: commit `79edb1626168d1b8c9bfce0069a115bfae542ee7`;
+- conteúdo e sitemap: commit `3f4f57c65535bd1e8fb243a6cd70de6282a4111c`;
+- Pages: run `35027858568`, build/deploy com sucesso;
+- artefato: `10420108341`;
+- digest: `sha256:18b63a2c976d662a0bf0ac5b305289c1ec0b76f274a874fc2bbfaf8bde7b0676`;
+- domínio: HTTP 200, 27.611 bytes;
+- SHA-256 do HTML servido: `330112dc656194b1933493d9362958baaf7cdf983bbe688c9d2556c56afd0ec6`;
+- Git blob do domínio: `668df2b0317d4abd89b0183c35394bdd1f8b6acf`, igual ao blob do conteúdo versionado;
+- 1.891 palavras visíveis / 1.838 no artigo;
+- 1 H1 / 16 H2 / 3 H3;
+- `BlogPosting` + `FAQPage`;
+- canonical, sitemap e AdSense preservados;
+- menu global Guia preservado; CTA do Guia removido do corpo; sem Hotmart ou Cursos;
+- tabela didática 4–20 mA conferida independentemente;
+- nenhuma calculadora, fórmula ou JavaScript técnico compartilhado alterado;
+- fontes primárias verificadas: IEC 62382:2024, NR-10 atualizada em 2026, JCGM VIM e NAMUR NE 43.
+
 ### Pendência explícita do inventário
 
-O `ADSENSE-INVENTORY.csv` canônico ainda não incorpora as decisões E06. Os arquivos `E06-INVENTORY-DELTA-01.csv` até `E06-INVENTORY-DELTA-12.csv` são a fonte incremental de verdade até existir mecanismo seguro de consolidação integral/patch.
+O `ADSENSE-INVENTORY.csv` canônico ainda não incorpora as decisões E06. Os arquivos `E06-INVENTORY-DELTA-01.csv` até `E06-INVENTORY-DELTA-13.csv` são a fonte incremental de verdade até existir mecanismo seguro de consolidação integral/patch.
 
 Não substituir o CSV grande de forma parcial nem marcar a fusão como concluída sem validar o arquivo inteiro.
 
