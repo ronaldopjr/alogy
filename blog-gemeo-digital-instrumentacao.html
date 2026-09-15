@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Digital Twin Industrial | Instrumentação, PLC, SCADA e Historian | ALOGY</title>
-  <meta name="description" content="Digital twin industrial: arquitetura de dados desde sensores e 4-20 mA/HART até PLC/SCADA, historian, contexto, validação e modelo." />
+  <meta name="description" content="Entenda como estruturar um digital twin industrial desde a medição de campo até PLC/DCS, SCADA, historian, contexto, sincronização e validação do modelo." />
   <meta name="robots" content="index,follow" />
   <meta name="theme-color" content="#2C78B9" />
   <link rel="canonical" href="https://www.alogy.com.br/blog-gemeo-digital-instrumentacao.html" />
@@ -21,14 +21,14 @@
   <meta property="og:locale" content="pt_BR" />
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="ALOGY Engenharia" />
-  <meta property="og:title" content="Digital Twin Industrial: da Instrumentação ao Historian" />
-  <meta property="og:description" content="Como a cadeia sensor → PLC/SCADA → historian → modelo define a confiabilidade de um gêmeo digital industrial." />
+  <meta property="og:title" content="Digital Twin Industrial: da Instrumentação à Validação do Modelo" />
+  <meta property="og:description" content="Como conectar medição de campo, automação, historian, contexto e validação para que o digital twin represente o processo com rastreabilidade." />
   <meta property="og:url" content="https://www.alogy.com.br/blog-gemeo-digital-instrumentacao.html" />
   <meta property="og:image" content="https://www.alogy.com.br/capa-blog-gemeo-digital-instrumentacao.webp" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="https://www.alogy.com.br/capa-blog-gemeo-digital-instrumentacao.webp" />
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Digital twin industrial: instrumentação, PLC, SCADA e historian","description":"Digital twin industrial: arquitetura de dados desde sensores e 4-20 mA/HART até PLC/SCADA, historian, contexto, validação e modelo.","datePublished":"2026-06-26","dateModified":"2026-09-11","author":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"},"publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/","logo":{"@type":"ImageObject","url":"https://www.alogy.com.br/logo-alogy.webp"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://www.alogy.com.br/blog-gemeo-digital-instrumentacao.html"},"inLanguage":"pt-BR","image":"https://www.alogy.com.br/capa-blog-gemeo-digital-instrumentacao.webp"}</script>
-  <style>.data-chain{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:9px;margin:18px 0}.data-chain div{border:1px solid rgba(0,107,177,.18);border-radius:13px;padding:13px;text-align:center;background:#fff;font-weight:800;color:#0b3a62}.data-chain span{display:block;color:var(--muted);font-size:.82rem;font-weight:400;margin-top:5px}.table-scroll{overflow:auto;border:1px solid rgba(0,0,0,.08);border-radius:14px;margin:14px 0}.table-scroll table{width:100%;border-collapse:collapse}.table-scroll th{background:#0b3a62;color:#fff;text-align:left;padding:10px}.table-scroll td{padding:10px;border-bottom:1px solid rgba(0,0,0,.07);vertical-align:top}@media(max-width:850px){.data-chain{grid-template-columns:1fr 1fr}}@media(max-width:460px){.data-chain{grid-template-columns:1fr}}@media print{header,.social-floating,.fab-wrap,footer,.calc-actions,.no-print{display:none!important}}</style>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Digital twin industrial: da instrumentação à validação do modelo","description":"Entenda como estruturar um digital twin industrial desde a medição de campo até PLC/DCS, SCADA, historian, contexto, sincronização e validação do modelo.","datePublished":"2026-06-26","dateModified":"2026-09-15","author":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/sobre.html"},"publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/","logo":{"@type":"ImageObject","url":"https://www.alogy.com.br/logo-alogy.webp"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://www.alogy.com.br/blog-gemeo-digital-instrumentacao.html"},"inLanguage":"pt-BR","image":"https://www.alogy.com.br/capa-blog-gemeo-digital-instrumentacao.webp"}</script>
+  <style>.data-chain{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:9px;margin:18px 0}.data-chain div{border:1px solid rgba(0,107,177,.18);border-radius:13px;padding:13px;text-align:center;background:#fff;font-weight:800;color:#0b3a62}.data-chain span{display:block;color:var(--muted);font-size:.82rem;font-weight:400;margin-top:5px}.table-scroll{overflow:auto;border:1px solid rgba(0,0,0,.08);border-radius:14px;margin:14px 0}.table-scroll table{width:100%;border-collapse:collapse}.table-scroll th{background:#0b3a62;color:#fff;text-align:left;padding:10px}.table-scroll td{padding:10px;border-bottom:1px solid rgba(0,0,0,.07);vertical-align:top}.example-box{border-left:4px solid #2c78b9;background:#f6f9fc;padding:16px 18px;border-radius:10px;margin:18px 0}.example-box p:last-child{margin-bottom:0}.check-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:16px 0}.check-grid div{border:1px solid rgba(0,0,0,.08);border-radius:12px;padding:14px;background:#fff}.check-grid strong{display:block;color:#0b3a62;margin-bottom:5px}@media(max-width:850px){.data-chain{grid-template-columns:1fr 1fr}.check-grid{grid-template-columns:1fr}}@media(max-width:460px){.data-chain{grid-template-columns:1fr}}@media print{header,.social-floating,.fab-wrap,footer,.calc-actions,.no-print{display:none!important}}</style>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5586837114309500" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -42,31 +42,106 @@
   <main class="container" style="margin-top:18px">
     <a class="floating-back-blog no-print" href="blog.html"><i class="fas fa-arrow-left"></i> Voltar ao Blog</a>
     <article class="blog-post">
-      <h1>Digital Twin industrial: a instrumentação é a origem do modelo</h1>
-      <p class="muted" data-alogy-content-meta><strong>Conteúdo técnico:</strong> ALOGY Engenharia · <strong>Atualizado em:</strong> 11/09/2026</p>
-      <figure class="article-cover-figure"><img class="article-cover-image" src="capa-blog-gemeo-digital-instrumentacao.webp" alt="Arquitetura de dados de instrumentação usada em digital twin industrial" loading="eager" fetchpriority="high" decoding="async"/><figcaption>Um digital twin útil depende da rastreabilidade entre fenômeno físico, instrumento, automação, histórico e modelo.</figcaption></figure>
-      <div class="data-chain"><div>Sensor<span>pressão, flow, level, temp.</span></div><div>Transmitter<span>4-20 mA / HART</span></div><div>PLC / SCADA<span>scale + status</span></div><div>Historian<span>tempo + contexto</span></div><div>Digital Twin<span>modelo + decisão</span></div></div>
-      <p>Um gêmeo digital representa o comportamento de um ativo ou processo com dados reais e modelos. A parte “digital” só ganha valor quando existe correspondência verificável com o mundo físico. Instrumentação mal instalada, faixa errada, timestamp incoerente ou valor congelado pode produzir uma representação convincente e incorreta.</p>
-      <h2>O que precisa existir antes do modelo</h2>
-      <ul><li>TAG e variável física claramente identificadas;</li><li>sensor/transmissor adequados e verificáveis;</li><li>range, unidade e escala coerentes do campo ao PLC/SCADA;</li><li>qualidade/status do dado disponível;</li><li>timestamp e frequência de aquisição conhecidos;</li><li>contexto de modo operacional, produto, partida/parada e manutenção;</li><li>histórico de mudanças de configuração.</li></ul>
-      <h2>Calibração não é detalhe de software</h2>
-      <p>Se um transmissor deriva e o evento não é registrado, o digital twin pode aprender a deriva como comportamento normal. Depois do ajuste, o modelo pode interpretar a medição correta como anomalia. Por isso, <em>as-found/as-left</em>, troca de instrumento e mudança de range são eventos de dados relevantes.</p>
-      <h2>PLC, SCADA e historian precisam contar a mesma história</h2>
-      <p>O transmissor pode estar configurado em bar, o PLC em kPa e o historian armazenar outro nome de TAG. Isso é aceitável apenas quando a transformação é explícita e rastreável. Escalas ocultas e aliases sem governança enfraquecem diagnóstico e reuso dos dados.</p>
-      <h2>Cadeia mínima de validação</h2>
-      <div class="table-scroll"><table><thead><tr><th>Camada</th><th>Evidência</th><th>Falha a tornar visível</th></tr></thead><tbody><tr><td>Campo</td><td>TAG, range, unidade, instalação e condição da medição.</td><td>Drift, saturação, falha ou medição inválida.</td></tr><tr><td>Aquisição</td><td>Escala, timestamp, qualidade, frequência e conversões.</td><td>Gap, atraso, duplicidade ou escala incorreta.</td></tr><tr><td>Contexto</td><td>Modo operacional, lote, estado e eventos.</td><td>Comparação entre condições não equivalentes.</td></tr><tr><td>Modelo</td><td>Versão, domínio validado, premissas e limites.</td><td>Uso fora do envelope conhecido.</td></tr><tr><td>Decisão</td><td>Usuário, autoridade, confirmação e fallback.</td><td>Ação automática além do que foi validado.</td></tr></tbody></table></div>
-      <h2>Gêmeo digital não é sinônimo de IA</h2>
-      <p>Um digital twin pode usar balanços, equações físicas, regras, simulação, estatística e eventualmente modelos de IA. O artigo de <a href="blog-ia-na-industria.html">Industrial AI Data Quality</a> aprofunda validação de modelos; aqui o foco é a arquitetura que conecta o ativo físico à representação digital.</p>
-      <h2>Como começar por uma malha real</h2>
-      <ol><li>Escolha uma variável e uma decisão concreta.</li><li>Valide o instrumento e faça loop check ponta a ponta.</li><li>Reconcilie unidade, range e TAG entre sistemas.</li><li>Marque falha, manutenção, calibração e condição operacional.</li><li>Compare o modelo com evidência independente antes de ampliar o escopo.</li></ol>
-      <h2>TAG governance e proveniência</h2>
-      <p>Para o detalhe de identidade, aliases, transformação, versão e ciclo de vida das TAGs, use o artigo específico de <a href="blog-gemeo-digital-tags-instrumentacao.html">TAG governance para Digital Twin</a>.</p>
+      <h1>Digital Twin industrial: da medição de campo à validação do modelo</h1>
+      <p class="muted" data-alogy-content-meta><strong>Conteúdo técnico:</strong> ALOGY Engenharia · <strong>Atualizado em:</strong> 15/09/2026</p>
+      <figure class="article-cover-figure"><img class="article-cover-image" src="capa-blog-gemeo-digital-instrumentacao.webp" alt="Arquitetura de dados de instrumentação usada em digital twin industrial" loading="eager" fetchpriority="high" decoding="async"/><figcaption>Um digital twin confiável precisa manter a ligação entre fenômeno físico, medição, automação, histórico, contexto e modelo.</figcaption></figure>
+
+      <p>Um <em>digital twin</em> industrial não é apenas uma tela 3D, um dashboard ou uma cópia de TAGs do supervisório. Para representar um ativo ou processo de forma útil, modelo digital precisa receber dados com identidade, unidade, tempo, qualidade e contexto conhecidos e depois ser verificado contra o sistema físico. O NIST trata justamente interoperabilidade, confiabilidade, verificação, validação e quantificação de incerteza como desafios centrais para digital twins de manufatura.</p>
+
+      <div class="data-chain" aria-label="Cadeia de dados de um digital twin industrial"><div>Campo<span>sensor + fenômeno físico</span></div><div>Transmissão<span>4–20 mA, HART ou rede</span></div><div>Automação<span>PLC/DCS + escala + status</span></div><div>Histórico<span>tempo + qualidade + contexto</span></div><div>Digital Twin<span>modelo + comparação + decisão</span></div></div>
+
+      <h2>O que diferencia um digital twin de um simples dashboard?</h2>
+      <p>Um dashboard pode mostrar valores em tempo real sem representar formalmente o comportamento do ativo. Um historian pode armazenar séries temporais sem conhecer todas as relações físicas entre os sinais. Um modelo 3D pode representar geometria sem estar sincronizado com a operação. O digital twin combina uma representação definida para um caso de uso com dados do sistema físico e um processo de sincronização, comparação e validação.</p>
+      <p>Por isso, a primeira pergunta não deve ser “qual software usar?”, mas “qual decisão o twin precisa apoiar e quais evidências mostram que o estado digital corresponde ao estado físico dentro do escopo pretendido?”. Essa fronteira evita transformar qualquer integração de dados em “gêmeo digital” apenas por marketing.</p>
+
+      <h2>Arquitetura mínima: cinco camadas que precisam contar a mesma história</h2>
+      <div class="table-scroll"><table><thead><tr><th>Camada</th><th>O que registrar</th><th>Falha que precisa aparecer</th></tr></thead><tbody>
+        <tr><td>Fenômeno e instrumento</td><td>Variavel, TAG, faixa, unidade, ponto físico, condição de instalação e identidade do instrumento.</td><td>Sensor inadequado, deriva, saturação, manutenção ou substituição não registrada.</td></tr>
+        <tr><td>Aquisição</td><td>Sinal bruto, transformação para engenharia, canal, qualidade/status e regra de escala.</td><td>Faixa divergente, sinal forçado, perda de comunicação ou conversão incorreta.</td></tr>
+        <tr><td>Tempo e histórico</td><td>Timestamp, frequência de atualização, atraso, fonte do relógio e política para lacunas.</td><td>Valor congelado, atraso, dados fora de ordem, amostragem insuficiente ou gap.</td></tr>
+        <tr><td>Contexto</td><td>Modo operacional, lote/receita, partida/parada, intervenção, versão de configuração e relações com outros ativos.</td><td>Comparação entre condições que não são equivalentes.</td></tr>
+        <tr><td>Modelo e uso</td><td>Versão, entradas, saídas, premissas, envelope validado, critério de comparação e responsável pela decisço.</td><td>Modelo usado fora do domínio testado ou resultado tratado como verdade sem evidência independente.</td></tr>
+      </tbody></table></div>
+
+      <h2>Exemplo reproduzível: nível 0–5 m chegando ao twin</h2>
+      <div class="example-box">
+        <p>Considere um transmissor de nível configurado para <strong>0 a 5,00 m = 4 a 20 mA</strong>. O PLC lê <strong>10,40 mA</strong>. Em uma escala linear:</p>
+        <p><strong>Percentual = (10,40 − 4) / 16 × 100 = 40,0%</strong></p>
+        <p><strong>Nível = 0 + 0,40 × 5,00 = 2,00 m</strong></p>
+      </div>
+      <p>O cálculo é simples. O valor só se torna informação confiável para o twin se a cadeia tambím souber qual transmissor gerou esse sinal, qual range estava ativo, qual unidade o PLC usa, quando a amostra foi obtida e qual era seu status. Se o instrumento for reconfigurado para 0–8 m e apenas o transmissor mudar, a mesma corrente passa a representar outro nível. Um historian que continue aplicando 0–5 m pode produzir uma tendência tecnicamente consistente e fisicamente errada.</p>
+      <p>Esse é um ponto importante: a qualidade do twin não depende apenas do algoritmo. Mudança de range, substituição de instrumento, ajuste, falha de canal, manutenção, bypass de software e alteração de escala são eventos que precisam entrar no histórico ou na governança de configuração.</p>
+
+      <h2>Sincronização: valor correto com tempo errado ainda pode induzir erro</h2>
+      <p>Ao cruzar pressço, vazão, posição de válvula e velocidade de equipamento, segundos ou minutos de diferença podem alterar a interpretação de causa e efeito. O twin precisa distinguir pelo menos o instante da medição, o instante em que odado chegou ao sistema e a frequência com que cada variável é atualizada quando isso for relevante ao caso de uso.</p>
+      <p>Também é necessário decidir o que acontece com valores ausentes ou congelados. Preencher automaticamente uma lacuna pode ser aceitável para visualização, mas não deve ser confundido com uma medição real quando o modelo usa o ponto para diagnóstico ou validação.</p>
+
+      <h2>Qualidade do dado não é um único “bom/ruim”</h2>
+      <p>Uma variavável pode estar dentro da faixa elétrica e ainda ser inadequada ao modelo. Exemplos: medição válida durante manutenção, instrumento em simulação, valor calculado a partir de uma entrada ruim, amostra muito antiga ou conversço de unidade feita com metadado incorreto. A qualidade deve ser interpretada junto com origem, timestamp, estado operacional e transformação aplicada.</p>
+      <p>O artigo específico de <a href="blog-gemeo-digital-tags-instrumentacao.html">governança de TAGs industriais</a> aprofunda identidade, aliases, unidade, range, proveniência e mudança de faixa. Aqui o foco é o que acontece depois: como essas informações percorrem a arquitetura e sustentam a comparação entre o físico e o digital.</p>
+
+      <h2>Verificação e validação: duas perguntas diferentes</h2>
+      <p><strong>Verificação</strong>, neste contexto de engenharia do modelo, pergunta se a implementação representa corretamente as regras e relações que foram especificadas. <strong>Validação</strong> pergunta se essa representação é adequada para o uso pretendido quando comparada com evidências do sistema real. Não basta o software executar sem erro; é preciso definir quais dados independentes serão usados para comparar o resultado e quais limites são aceitáveis para aqele uso.</p>
+      <p>O NIST destaca VVUQ — verificação, validação e quantificação de incerteza — como parte da construção de digital twins confiáveis. Isso também reforça uma regra prática: um twin usado para diagnóstico de tendência não precisa necessariamente do mesmo rigor, resolução ou envelope de um modelo destinado a apoiar uma decisço operacional crítica. O caso de uso determina o nível de evidência necessário.</p>
+
+      <h2>Um roteiro de validação por camadas</h2>
+      <ol>
+        <li><strong>Confirme a fonte:</strong> identifique a variável física, instrumento, canal e caminho até o sistema de aquisição.</li>
+        <li><strong>Confira a transformação:</strong> compare sinal bruto, faixa, unidade e valor em engenharia em pontos conhecidos.</li>
+        <li><strong>Confira o tempo:</strong> observe timestamp, atraso e frequência de atualização durante mudanças reais de processo.</li>
+        <li><strong>Reconcilie o contexto:</strong> relacione manutenção, partida, parada, alteração de receita ou configuração ao período analisado.</li>
+        <li><strong>Teste o modelo:</strong> compare a saída do twin com dados que não foram usados apenas para ajustar o próprio modelo.</li>
+        <li><strong>Registre a versão:</strong> guarde versão do modelo, parâmetros, dados de referência e condição operacional usados no teste.</li>
+        <li><strong>Defina limites:</strong> registre onde o resultado é válido e quando o sistema deve exigir revisão humana ou outra evidência.</li>
+      </ol>
+
+      <h2>Asset Administration Shell e interoperabilidade</h2>
+      <p>A Industrial Digital Twin Association (IDTA) publica as especificações da <em>Asset Administration Shell</em> (AAS), cobrindo metamodelo, APIs, especificações de dados, unidades, segurança e formato de pacote. A proposta é fornecer uma estrutura padronizada para representar informações de ativos digitais e favorecer interoperabilidade. Isso não elimina a necessidade de validar os dados de processo: padronizar como a informação é representada não garante que o sensor esteja correto ou que a transformação aplicada ao sinal seja válida.</p>
+      <p>Da mesma forma, uma arquitetura baseada em OPC UA pode ajudar a expor informação estruturada e contextualizada entre sistemas, mas o protocolo por si só não resolve identidade, qualidade metrológica, sincronização ou validação do modelo. A arquitetura precisa ligar sem ambiguidade o dado ao ativo e ao caso de uso.</p>
+
+      <h2>O que registrar para tornar um teste repetível</h2>
+      <div class="check-grid">
+        <div><strong>Identidade</strong>TAG, ativo, ponto físico, fonte e versão de configuração.</div>
+        <div><strong>Transformação</strong>Range, unidade, escala, fórmula ou regra de conversão e onde ela é executada.</div>
+        <div><strong>Tempo</strong>Timestamp, frequência de atualização, atraso observado e período do teste.</div>
+        <div><strong>Qualidade</strong>Status do sinal, condição operacional, manutenção, simulação e lacunas.</div>
+        <div><strong>Modelo</strong>Versão, parâmetros, entradas, saídas, premissas e domínio de aplicação.</div>
+        <div><strong>Comparação</strong>Dado de referência, critério utilizado, diferença observada e conclusão limitada ao teste.</div>
+      </div>
+
+      <h2>Erros comuns que enfraquecem o twin</h2>
+      <ul>
+        <li>usar o mesmo nome de TAG em sistemas diferentes sem confirmar que representa a mesma variável;</li>
+        <li>misturar bar e kPa, °C e K ou percentuais de ranges diferentes sem transformação documentada;</li>
+        <li>treinar ou ajustar um modelo com períodos de instrumento defeituoso sem marcar esses eventos;</li>
+        <li>considerar “valor dentro da faixa” como prova de que a medição é correta;</li>
+        <li>comparar dados com timestamps incompatíveis e concluir causalidade;</li>
+        <li>alterar range ou lógica no PLC e não versionar a mudança usada pelo twin;</li>
+        <li>validar o modelo apenas com os mesmos dados usados para ajustá-lo;</li>
+        <li>automatizar uma ação fora do envelope que foi efetivamente testado.</li>
+      </ul>
+
+      <h2>Digital twin, IA e manutenção preditiva não são sinônimos</h2>
+      <p>Um digital twin pode usar equações físicas, regras, simulação, estatística ou modelos de IA. Também pode existir sem IA. Da mesma forma, um projeto de manutenção preditiva pode usar séries temporais e modelos estatísticos sem constituir um twin completo. Separar os conceitos ajuda a definir requisitos verificáveis e evita prometer uma arquitetura maior do que o problema necessita.</p>
+      <p>Para qualidade e validação de dados antes de modelos de IA, consulte <a href="blog-ia-na-industria.html">Industrial AI e qualidade de dados</a>. Para ligar condição medida a diagnóstico sem confundir falha do ativo com falha do sensor, consulte <a href="blog-manutencao-preditiva-instrumentacao-sensores.html">condition monitoring com sensores industriais</a>.</p>
+
+      <h2>Quando começar pequeno é tecnicamente melhor</h2>
+      <p>Um piloto útil pode começar com uma única variável e uma pergunta concreta, por exemplo: “o valor que chega ao historian mantém escala, tempo e contexto suficientes para comparar o processo antes e depois de uma mudança operacional?”. Depois de provar a cadeia, o escopo pode crescer para outras TAGs, relações entre equipamentos e modelos mais complexos.</p>
+      <p>Esse caminho é mais verificável do que conectar centenas de pontos primeiro e tentar descobrir depois quais transformações, versões e estados operacionais explicam as divergências.</p>
+
+      <h2>Referências primárias</h2>
+      <ul>
+        <li><a href="https://www.nist.gov/programs-projects/digital-twins-advanced-manufacturing" target="_blank" rel="noopener noreferrer">NIST — Digital Twins for Advanced Manufacturing</a>: requisitos, interoperabilidade, confiabilidade e VVUQ para digital twins de manufatura.</li>
+        <li><a href="https://www.nist.gov/digital-twins" target="_blank" rel="noopener noreferrer">NIST — Digital twins</a>: implementação, validação, modelos e integração de sistemas ao longo do ciclo de vida.</li>
+        <li><a href="https://industrialdigitaltwin.org/en/content-hub/aasspecifications" target="_blank" rel="noopener noreferrer">IDTA — Asset Administration Shell Specifications</a>: metamodelo, APIs, especificação de dados, unidades, segurança e formato AASX.</li>
+        <li><a href="https://www.nist.gov/publications/framework-digital-twin-manufacturing" target="_blank" rel="noopener noreferrer">NIST — Framework for a Digital Twin in Manufacturing</a>: escopo, requisitos e necessidade de um framework contextual e reutilizável.</li>
+      </ul>
+
       <h2>Conteúdos relacionados</h2>
-      <div class="calc-actions"><a class="mini-btn dark" href="blog-gemeo-digital-tags-instrumentacao.html">TAG governance</a><a class="mini-btn" href="blog-ia-na-industria.html">Industrial AI</a><a class="mini-btn" href="blog-teste-de-loop-instrumentacao.html">Loop check</a><a class="mini-btn" href="ferramentas-automacao-clp.html">Automação</a></div>
-      <h2>Referência</h2>
-      <p>O projeto <a href="https://www.nist.gov/programs-projects/digital-twins-advanced-manufacturing" target="_blank" rel="noopener noreferrer">Digital Twins for Advanced Manufacturing, do NIST</a>, aborda integração pelo ciclo de vida, dados, validação, incerteza e rastreabilidade.</p>
+      <div class="calc-actions"><a class="mini-btn dark" href="blog-gemeo-digital-tags-instrumentacao.html">Governança de TAGs</a><a class="mini-btn" href="blog-teste-de-loop-instrumentacao.html">Loop check</a><a class="mini-btn" href="blog-manutencao-preditiva-instrumentacao-sensores.html">Condition monitoring</a><a class="mini-btn" href="ferramentas-automacao-clp.html">Automação</a></div>
+
       <h2>Aviso técnico</h2>
-      <p>Este conteúdo é conceitual e de engenharia. Um digital twin não substitui SIS, intertravamentos, testes de campo, procedimentos ou validações exigidas pela aplicação.</p>
+      <p>Este conteúdo é educativo e descreve uma arquitetura de validação. Um digital twin não substitui instrumentos de proteção, SIS, intertravamentos, procedimentos de operação, testes de campo, requisitos do fabricante nem análises de segurança aplicáveis. Qualquer uso para decisão automática deve ser validado para o caso de uso e para o envelope real em que será empregado.</p>
     </article>
   </main>
   <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
