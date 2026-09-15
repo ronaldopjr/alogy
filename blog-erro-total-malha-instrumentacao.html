@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Erro Total de Malha de Instrumentação: como calcular | ALOGY</title>
-  <meta name="description" content="Entenda como estimar erro total de malha de instrumentação somando sensor, transmissor, CLP, indicador, referência e tolerância do processo." />
+  <title>Erro Total de Malha: RSS, Pior Caso e Incerteza | ALOGY</title>
+  <meta name="description" content="Aprenda a estimar erro total de uma malha de instrumentação, comparar RSS e pior caso, tratar correlação e separar erro, especificação e incerteza." />
   <meta name="robots" content="index,follow" />
   <meta name="theme-color" content="#2C78B9" />
   <link rel="canonical" href="https://www.alogy.com.br/blog-erro-total-malha-instrumentacao.html" />
@@ -16,81 +16,159 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <link rel="stylesheet" href="style.css?v=20260722-layout-original-uppercase-mobilefix" />
+  <link rel="stylesheet" href="style.css?v=20260914-e06-loop-error" />
   <script src="app.js" defer></script>
   <meta property="og:locale" content="pt_BR" />
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="ALOGY Engenharia" />
-  <meta property="og:title" content="Erro Total de Malha de Instrumentação: como calcular" />
-  <meta property="og:description" content="Veja como estimar o erro acumulado de uma malha, considerando sensor, transmissor, cartão analógico, indicador e referência." />
+  <meta property="og:title" content="Erro total de malha: RSS, pior caso e incerteza" />
+  <meta property="og:description" content="Método prático para normalizar contribuições de uma malha, comparar RSS e pior caso e não confundir estimativa de engenharia com incerteza formal." />
   <meta property="og:url" content="https://www.alogy.com.br/blog-erro-total-malha-instrumentacao.html" />
   <meta property="og:image" content="https://www.alogy.com.br/favicon-512x512.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Erro Total de Malha de Instrumentação: como calcular","description":"Entenda como estimar erro total de malha de instrumentação somando sensor, transmissor, CLP, indicador, referência e tolerância do processo.","datePublished":"2026-06-29","dateModified":"2026-06-29","author":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"},"publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/","logo":{"@type":"ImageObject","url":"https://www.alogy.com.br/logo-alogy.webp"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://www.alogy.com.br/blog-erro-total-malha-instrumentacao.html"},"inLanguage":"pt-BR","image":"https://www.alogy.com.br/favicon-512x512.png"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Erro total de malha: RSS, pior caso e incerteza","description":"Método prático para estimar contribuições de erro em uma malha de instrumentação sem confundir limites de especificação com incerteza de medição.","datePublished":"2026-06-29","dateModified":"2026-09-14","author":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"},"publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/","logo":{"@type":"ImageObject","url":"https://www.alogy.com.br/logo-alogy.webp"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://www.alogy.com.br/blog-erro-total-malha-instrumentacao.html"},"inLanguage":"pt-BR","image":"https://www.alogy.com.br/favicon-512x512.png"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Posso somar diretamente as precisões dos datasheets?","acceptedAnswer":{"@type":"Answer","text":"Somente como triagem de engenharia quando as contribuições estiverem na mesma base, representarem limites comparáveis e as condições de cada especificação forem respeitadas. Isso não equivale automaticamente a uma avaliação formal de incerteza."}},{"@type":"Question","name":"O RSS do erro total é igual à incerteza combinada?","acceptedAnswer":{"@type":"Answer","text":"Não necessariamente. O RSS simples pode ser uma estimativa de engenharia. Na avaliação formal de incerteza, as entradas devem ser tratadas como incertezas padrão dentro de um modelo de medição, com coeficientes de sensibilidade e covariâncias quando aplicável."}},{"@type":"Question","name":"Qual erro total de malha é aceitável?","acceptedAnswer":{"@type":"Answer","text":"Não existe percentual universal. O limite depende do requisito do processo, da função da medição, da especificação aplicável e da regra de decisão definida para a declaração de conformidade."}},{"@type":"Question","name":"Esta estimativa pode validar uma função SIS ou SIL?","acceptedAnswer":{"@type":"Answer","text":"Não. Funções instrumentadas de segurança exigem análise, requisitos, procedimentos e validações próprios. Esta página trata apenas de triagem de desempenho de uma cadeia de medição."}}]}</script>
   <style>
-    .post-wrap{max-width:900px;margin:18px auto}.post-card{background:var(--card);border:1px solid rgba(0,0,0,.08);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}.post-content{padding:30px}.post-meta{color:var(--muted);font-size:.95rem;margin-bottom:12px}.post-content h1{font-size:2.15rem;line-height:1.15;margin-bottom:12px;color:var(--text)}.post-content h2{font-size:1.45rem;line-height:1.25;margin:26px 0 10px;color:var(--text)}.post-content p{color:var(--text);margin:0 0 16px;font-size:1.04rem;line-height:1.75}.post-content ul{margin:0 0 18px 20px}.post-content li{margin:8px 0;line-height:1.65}.post-highlight{background:rgba(0,107,177,.08);border:1px solid rgba(0,107,177,.18);border-radius:14px;padding:16px;margin:22px 0}.post-highlight strong{color:#0b3a62}.formula-box{margin:16px 0}@media(max-width:768px){.post-content{padding:22px}.post-content h1{font-size:1.65rem}.post-content h2{font-size:1.25rem}}
+    .post-wrap{max-width:930px;margin:18px auto}.post-card{background:var(--card);border:1px solid rgba(0,0,0,.08);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}.post-content{padding:30px}.post-meta{color:var(--muted);font-size:.95rem;margin-bottom:12px}.post-content h1{font-size:2.15rem;line-height:1.15;margin-bottom:12px;color:var(--text)}.post-content h2{font-size:1.45rem;line-height:1.25;margin:28px 0 10px;color:var(--text)}.post-content h3{font-size:1.15rem;line-height:1.3;margin:22px 0 8px;color:var(--text)}.post-content p,.post-content li{font-size:1.04rem;line-height:1.75}.post-content ul,.post-content ol{margin:0 0 18px 20px}.post-highlight{background:rgba(0,107,177,.08);border:1px solid rgba(0,107,177,.18);border-radius:14px;padding:16px;margin:22px 0}.post-highlight strong{color:#0b3a62}.formula-box{margin:16px 0;padding:14px 16px;border-radius:12px;background:#f7fafc;border:1px solid rgba(0,0,0,.09);font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;overflow-x:auto}.table-wrap{overflow-x:auto;margin:16px 0 22px}.post-table{width:100%;border-collapse:collapse;min-width:680px}.post-table th,.post-table td{border:1px solid rgba(0,0,0,.12);padding:10px 12px;text-align:left;vertical-align:top}.post-table th{background:rgba(0,107,177,.08)}.small-note{font-size:.94rem;color:var(--muted)}@media(max-width:768px){.post-content{padding:22px}.post-content h1{font-size:1.65rem}.post-content h2{font-size:1.25rem}}
   </style>
   <!-- Google AdSense: carregado somente em páginas editoriais monetizáveis. A exibição e os formatos são controlados no painel do AdSense. -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5586837114309500" crossorigin="anonymous"></script>
 </head>
 <body>
   <header>
-    <div class="container headbar"><a href="/" class="logo-wrapper" aria-label="Voltar para o início"><img src="logo-alogy.webp" alt="ALOGY Engenharia"  width="878"  height="308"  decoding="async" /></a>
-<button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menu"><i class="fas fa-bars"></i></button></div>
-    <nav class="desktop" aria-label="Menu principal"><div class="container navlinks"><a href="/">Início</a><a href="industrial.html">Serviços</a><a href="cases.html">Projetos</a><a href="/guia/">Guia</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></div></nav>
-    <nav class="mobile" aria-label="Menu mobile"><a href="/">Início</a><a href="industrial.html">Serviços</a><a href="cases.html">Projetos</a><a href="/guia/">Guia</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></nav>
+    <div class="container headbar"><a href="/" class="logo-wrapper" aria-label="Voltar para o início"><img src="logo-alogy.webp" alt="ALOGY Engenharia" width="878" height="308" decoding="async" /></a><button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menu"><i class="fas fa-bars"></i></button></div>
+    <nav class="desktop" aria-label="Menu principal"><div class="container navlinks"><a href="/">Início</a><a href="industrial.html">Serviços</a><a href="cases.html">Projetos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></div></nav>
+    <nav class="mobile" aria-label="Menu mobile"><a href="/">Início</a><a href="industrial.html">Serviços</a><a href="cases.html">Projetos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></nav>
   </header>
   <div class="social-floating" aria-label="Redes sociais"><a href="https://www.linkedin.com/company/alogyengenharia" class="linkedin" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a><a href="https://www.instagram.com/alogyengenharia" class="instagram" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="https://www.facebook.com/alogyengenharia" class="facebook" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><a href="https://www.youtube.com/@alogyengenharia" class="youtube" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a><a href="https://www.tiktok.com/@alogyengenharia" class="tiktok" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fab fa-tiktok"></i></a></div>
-  <div class="fab-wrap" aria-label="Ações rápidas"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1!%20Vim%20pelo%20blog%20sobre%20erro%20total%20de%20malha%20da%20ALOGY.%20Gostaria%20de%20atendimento." target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
+  <div class="fab-wrap" aria-label="Ações rápidas"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1!%20Li%20o%20artigo%20sobre%20erro%20total%20de%20malha%20da%20ALOGY." target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
 
   <main class="container post-wrap">
     <article class="post-card">
       <div class="post-content">
-        <div class="post-meta">Instrumentação Industrial • Calibração • Malhas de medição</div>
-        <h1>Erro Total de Malha de Instrumentação: como calcular sem confundir tolerância e incerteza</h1>
-        <p>Em uma malha industrial, o valor visto no CLP ou supervisório raramente depende de um único equipamento. Sensor, transmissor, cabo, fonte, cartão analógico, conversão, indicador e referência de calibração podem contribuir para o erro final.</p>
-        <p>Por isso, avaliar apenas a classe do transmissor pode ser insuficiente. Uma malha aparentemente “boa” pode ficar fora da tolerância do processo quando todas as contribuições são consideradas.</p>
+        <div class="post-meta">Instrumentação Industrial • Metrologia • Malhas de medição</div>
+        <h1>Erro total de malha: como combinar contribuições sem confundir erro e incerteza</h1>
+        <p class="muted" data-alogy-content-meta><strong>Conteúdo técnico:</strong> ALOGY Engenharia · <strong>Atualizado em:</strong> 14/09/2026</p>
 
-        <div class="post-highlight"><strong>Ferramenta relacionada:</strong> use a <a href="calculadora-erro-total-malha-instrumentacao.html">Calculadora de Erro Total de Malha</a> para estimar erro RSS, soma conservadora e comparar com a tolerância do processo.</div>
+        <p>Quando o valor de processo chega ao CLP, DCS ou supervisório, ele pode ter atravessado sensor, transmissor, isolador, barreira, cabeamento, entrada analógica e conversões de escala. A pergunta prática é: <strong>quanto a cadeia inteira pode se afastar do valor que se deseja representar?</strong></p>
+        <p>Responder bem exige separar três coisas que costumam ser misturadas em campo: o erro observado em uma comparação, o limite de desempenho declarado para cada componente e a incerteza associada ao resultado de medição. A estimativa de erro total é útil para engenharia e manutenção, mas não deve ser apresentada como uma avaliação formal de incerteza sem o tratamento metrológico adequado.</p>
 
-        <h2>O que entra no erro total?</h2>
-        <p>Depende da arquitetura da medição, mas normalmente entram contribuições como:</p>
-        <ul>
-          <li>sensor ou elemento primário;</li>
-          <li>transmissor ou condicionador de sinal;</li>
-          <li>conversor I/P, isolador, barreira ou repetidor, quando aplicável;</li>
-          <li>cartão analógico do CLP ou remota;</li>
-          <li>indicador local, IHM ou supervisório;</li>
-          <li>referência usada na calibração;</li>
-          <li>efeitos de ambiente, cabeamento, resolução e configuração.</li>
-        </ul>
+        <div class="post-highlight"><strong>Ferramenta relacionada:</strong> a <a href="calculadora-erro-total-malha-instrumentacao.html">Calculadora de Erro Total de Malha</a> faz uma triagem por soma conservadora e RSS. Use o resultado como estimativa de engenharia e registre as premissas usadas.</div>
 
-        <h2>RSS x soma conservadora</h2>
-        <p>Existem duas formas comuns de estimar o erro acumulado de forma simples. A soma conservadora considera que todos os erros atuam no mesmo sentido. É o pior caso matemático.</p>
+        <h2>1. Comece definindo a fronteira da malha</h2>
+        <p>Antes de somar números, defina qual é a entrada e qual é a saída da análise. Em uma malha de temperatura, por exemplo, a fronteira pode ir do elemento sensor até o valor em unidade de engenharia no DCS. Em outro teste, talvez o objetivo seja avaliar apenas transmissor e cartão analógico. Misturar fronteiras diferentes produz um número que parece preciso, mas não responde a uma pergunta técnica clara.</p>
+        <p>Desenhe a cadeia em ordem: <strong>grandeza física → sensor → transmissor → condicionamento/barreira → entrada analógica → scaling → indicação</strong>. Para cada bloco, registre a especificação efetivamente aplicável à faixa, temperatura ambiente, alimentação, resolução e configuração usadas.</p>
+
+        <h2>2. Erro, especificação e incerteza não são sinônimos</h2>
+        <p>O VIM, publicado pelo JCGM/BIPM, distingue <strong>erro de medição</strong> de <strong>incerteza de medição</strong>. O erro compara um valor medido com um valor de referência; a incerteza caracteriza a dispersão dos valores que podem ser atribuídos ao mensurando. Uma especificação de fabricante, por sua vez, normalmente estabelece um limite ou desempenho sob condições definidas — ela não vira automaticamente uma incerteza padrão.</p>
+        <p>Na prática, isso significa que “±0,10%” pode representar coisas diferentes conforme a fonte: exatidão de datasheet, erro máximo permissível, repetibilidade, contribuição ambiental ou resultado de calibração. Antes de combinar, identifique <strong>o que cada número realmente representa</strong>.</p>
+
+        <h2>3. Coloque todas as contribuições na mesma base</h2>
+        <p>Não combine diretamente °C, mA e porcentagem de span. Converta cada contribuição para uma base comum na saída escolhida. Para uma malha de 0 a 200 °C, uma contribuição de ±0,25% do span equivale a ±0,50 °C. Se outra especificação estiver em porcentagem da leitura ou combinar termo fixo e termo proporcional, a conversão precisa respeitar exatamente essa definição.</p>
+        <div class="formula-box">contribuição em unidade de engenharia = (% do span / 100) × span</div>
+        <p>Também confirme se todas as contribuições valem para o mesmo ponto operacional. Alguns equipamentos têm especificações dependentes de rangeabilidade, temperatura, resistência de linha, alimentação ou tempo desde o ajuste.</p>
+
+        <h2>4. Soma conservadora: o pior caso simples</h2>
+        <p>A soma conservadora considera que todos os limites podem atuar no mesmo sentido. Ela é simples e útil como triagem de pior caso quando as entradas são limites comparáveis expressos na mesma unidade.</p>
         <div class="formula-box">erro conservador = |e1| + |e2| + |e3| + ...</div>
-        <p>Já o método RSS, raiz da soma dos quadrados, costuma ser usado quando as contribuições são independentes e não necessariamente atuam todas na mesma direção.</p>
-        <div class="formula-box">erro RSS = raiz(e1² + e2² + e3² + ...)</div>
+        <p>Esse método tende a produzir valor maior que o RSS. Ele não prova que todos os erros ocorrerão simultaneamente no mesmo sentido; apenas responde a uma pergunta conservadora: <em>qual seria a soma dos limites se nenhum cancelamento fosse admitido?</em></p>
 
-        <h2>Exemplo prático</h2>
-        <p>Imagine uma malha de temperatura de 0 a 200 °C. Se o sensor contribui com ±0,25% do span, o transmissor com ±0,10%, o cartão analógico com ±0,15% e o indicador com ±0,10%, cada valor precisa ser convertido para °C antes da combinação.</p>
-        <p>Em 0 a 200 °C, 0,25% do span equivale a 0,5 °C. A partir daí, é possível comparar o erro total com a tolerância do processo, por exemplo ±2 °C.</p>
+        <h2>5. RSS: quando a raiz da soma dos quadrados faz sentido</h2>
+        <p>A triagem RSS é calculada por:</p>
+        <div class="formula-box">erro RSS = √(e1² + e2² + e3² + ...)</div>
+        <p>Ela é frequentemente usada em engenharia quando as contribuições são tratadas como independentes ou não correlacionadas. Porém, o GUM é mais rigoroso: a combinação formal de incertezas usa um <strong>modelo de medição</strong>, coeficientes de sensibilidade e covariâncias quando as entradas são correlacionadas. Portanto, colocar limites de datasheet diretamente em um RSS não transforma a conta em “incerteza combinada”.</p>
 
-        <h2>Erro total não é a mesma coisa que incerteza</h2>
-        <p>Erro total de malha, como usado em campo, normalmente é uma estimativa simplificada com base em especificações e limites. Incerteza de medição exige tratamento metrológico formal, com componentes, distribuição, divisor, fator de abrangência, rastreabilidade e critério definido.</p>
-        <p>Mesmo assim, a estimativa de erro total é muito útil para pré-avaliação, seleção de instrumentos, revisão de tolerâncias e planejamento de calibração.</p>
+        <h2>6. Correlação: o ponto que o RSS simples pode esconder</h2>
+        <p>Duas contribuições podem compartilhar a mesma causa. Um mesmo padrão de referência usado para ajustar dois estágios, uma mesma condição ambiental, uma mesma conversão numérica ou um mesmo erro de escala podem introduzir correlação. Nesses casos, assumir independência pode subestimar ou distorcer o resultado.</p>
+        <p>A forma geral da propagação de incerteza inclui termos de covariância. Em notação resumida:</p>
+        <div class="formula-box">u²c(y) = Σ[ci × u(xi)]² + 2ΣΣ[ci × cj × u(xi,xj)]</div>
+        <p class="small-note">Aqui, <em>ci</em> representa coeficiente de sensibilidade, <em>u(xi)</em> a incerteza padrão da entrada e <em>u(xi,xj)</em> a covariância. Essa expressão pertence ao tratamento formal de incerteza, não ao simples somatório de limites de especificação.</p>
 
-        <h2>Quando usar essa análise?</h2>
+        <h2>7. Exemplo completo: malha de temperatura de 0 a 200 °C</h2>
+        <p>Considere um exemplo didático em que quatro blocos têm limites já convertíveis para porcentagem do span. A finalidade é mostrar a mecânica da triagem, não definir tolerâncias universais.</p>
+        <div class="table-wrap"><table class="post-table">
+          <thead><tr><th>Bloco</th><th>Limite usado no exemplo</th><th>Equivalente em 200 °C</th></tr></thead>
+          <tbody>
+            <tr><td>Sensor</td><td>±0,25% do span</td><td>±0,50 °C</td></tr>
+            <tr><td>Transmissor</td><td>±0,10% do span</td><td>±0,20 °C</td></tr>
+            <tr><td>Entrada analógica</td><td>±0,15% do span</td><td>±0,30 °C</td></tr>
+            <tr><td>Indicação/scaling</td><td>±0,10% do span</td><td>±0,20 °C</td></tr>
+          </tbody>
+        </table></div>
+        <p>A soma conservadora é:</p>
+        <div class="formula-box">0,50 + 0,20 + 0,30 + 0,20 = 1,20 °C</div>
+        <p>O RSS de triagem é:</p>
+        <div class="formula-box">√(0,50² + 0,20² + 0,30² + 0,20²) = √0,42 ≈ 0,65 °C</div>
+        <p>Se o requisito de processo usado apenas para triagem fosse ±2,0 °C, os dois números mostrariam folga matemática. Mesmo assim, <strong>não declare conformidade apenas por essa comparação</strong>: ainda é necessário confirmar a natureza das entradas, as condições das especificações, a incerteza de medição quando aplicável e a regra de decisão adotada.</p>
+
+        <h2>8. Por que não usar cancelamento de erros sem evidência</h2>
+        <p>Se um transmissor apresenta +0,20 °C e o cartão -0,20 °C em um ensaio específico, o valor final pode parecer perfeito. Isso não significa que a malha possui erro zero em toda a faixa. Os erros podem mudar com o ponto, temperatura, histerese, deriva e condições de operação.</p>
+        <p>Use sinais positivos e negativos quando estiver analisando <strong>erros observados em pontos definidos</strong>. Para limites de especificação usados em projeto, não conte com cancelamento fortuito sem modelo e evidência que sustentem essa relação.</p>
+
+        <h2>9. A referência de calibração entra de outra forma</h2>
+        <p>Um certificado pode informar correção, erro, incerteza expandida, fator de abrangência e condições de calibração. Esses elementos não devem ser tratados como se fossem simplesmente mais um “±% de precisão” do equipamento. Para uma avaliação formal, converta e combine os componentes conforme o modelo de medição e a forma de expressão informada.</p>
+        <p>Isso também evita dupla contagem: usar simultaneamente o erro corrigido e um limite genérico que já cobre o mesmo efeito pode inflar artificialmente a estimativa.</p>
+
+        <h2>10. Tolerância de processo e regra de decisão</h2>
+        <p>Tolerância é um requisito de aceitação; incerteza descreve a qualidade do resultado de medição. Quando é necessário declarar “conforme” ou “não conforme”, a ILAC G8 orienta o uso de <strong>regra de decisão</strong>, isto é, uma regra definida para considerar a incerteza na declaração de conformidade.</p>
+        <p>Por isso, não existe regra universal como “erro total deve ser menor que um terço da tolerância”. Relações como TUR/TAR podem ser usadas em políticas específicas, mas devem estar documentadas e adequadas ao risco da decisão.</p>
+
+        <h2>11. Roteiro de campo para revisar uma malha</h2>
+        <ol>
+          <li><strong>Defina o mensurando e a fronteira:</strong> de onde até onde a análise será feita.</li>
+          <li><strong>Liste os blocos:</strong> sensor, transmissor, condicionamento, cartão, escala e indicação.</li>
+          <li><strong>Identifique a natureza de cada número:</strong> erro medido, limite de especificação ou incerteza.</li>
+          <li><strong>Normalize unidades e base:</strong> %span, %leitura, mA e unidade de engenharia não podem ser misturados sem conversão.</li>
+          <li><strong>Cheque condições:</strong> temperatura, range, alimentação, resolução e demais termos do fabricante.</li>
+          <li><strong>Procure correlação:</strong> padrões, ambiente, algoritmos ou causas compartilhadas.</li>
+          <li><strong>Calcule a triagem:</strong> pior caso e RSS quando a hipótese for defensável.</li>
+          <li><strong>Compare com o requisito:</strong> sem transformar automaticamente margem matemática em declaração de conformidade.</li>
+          <li><strong>Registre evidências:</strong> versões de datasheet, pontos ensaiados, as-found/as-left e responsáveis.</li>
+        </ol>
+
+        <h2>12. Diagnóstico: quando a conta não explica o erro observado</h2>
+        <div class="table-wrap"><table class="post-table">
+          <thead><tr><th>Sintoma</th><th>Hipótese a verificar</th><th>Evidência útil</th></tr></thead>
+          <tbody>
+            <tr><td>Erro cresce em toda a faixa</td><td>Span, escala ou ganho incorreto</td><td>Valores em 0/25/50/75/100%, configuração e raw do cartão</td></tr>
+            <tr><td>Desvio quase constante</td><td>Offset, zero ou correção não aplicada</td><td>As-found, zero aplicado e configuração</td></tr>
+            <tr><td>Subida e descida diferem</td><td>Histerese, atrito ou comportamento do sensor</td><td>Ciclo crescente e decrescente repetido</td></tr>
+            <tr><td>Valor oscila</td><td>Ruído, aterramento, processo instável ou filtragem</td><td>Corrente, tensão, tendência e diagnóstico do instrumento</td></tr>
+            <tr><td>Campo correto, DCS incorreto</td><td>Cartão, raw counts ou scaling</td><td>mA medido, raw e unidade de engenharia no sistema</td></tr>
+          </tbody>
+        </table></div>
+
+        <h2>13. Ferramentas e conteúdos relacionados</h2>
+        <p>Use a estimativa de erro total junto com o contexto da malha, não isoladamente.</p>
+        <div class="calc-actions">
+          <a class="mini-btn dark" href="calculadora-erro-total-malha-instrumentacao.html"><i class="fas fa-calculator"></i> Erro total de malha</a>
+          <a class="mini-btn" href="calculadora-incerteza-calibracao.html">Incerteza de calibração</a>
+          <a class="mini-btn" href="blog-calibracao-instrumentos-industriais.html">Calibração de instrumentos</a>
+          <a class="mini-btn" href="blog-teste-de-loop-instrumentacao.html">Teste de loop</a>
+          <a class="mini-btn" href="ferramentas-instrumentacao-industrial.html">Central de Instrumentação</a>
+        </div>
+
+        <h2>14. Referências técnicas</h2>
         <ul>
-          <li>Antes de definir se um instrumento atende a uma tolerância de processo.</li>
-          <li>Ao escolher classe de sensor, transmissor ou cartão analógico.</li>
-          <li>Na revisão de malhas críticas de qualidade, segurança ou produção.</li>
-          <li>Ao comparar erro de campo com erro de bancada.</li>
-          <li>Na preparação de procedimentos de calibração e teste de loop.</li>
+          <li><a href="https://www.bipm.org/en/doi/10.59161/jcgm200-2012" target="_blank" rel="noopener noreferrer">JCGM 200:2012 — VIM</a>: vocabulário para conceitos como erro e incerteza de medição.</li>
+          <li><a href="https://www.bipm.org/en/doi/10.59161/jcgm100-2008e" target="_blank" rel="noopener noreferrer">JCGM 100:2008 — GUM</a>: regras gerais para avaliação e expressão da incerteza, incluindo propagação e correlação.</li>
+          <li><a href="https://www.bipm.org/en/committees/jc/jcgm/publications" target="_blank" rel="noopener noreferrer">Publicações atuais do JCGM/BIPM</a>: inclui a família GUM e documentos complementares.</li>
+          <li><a href="https://ilac.org/publications-and-resources/ilac-guidance-series/" target="_blank" rel="noopener noreferrer">ILAC G8:09/2019</a>: orientação sobre regras de decisão e declarações de conformidade.</li>
+          <li><a href="https://www.nist.gov/pml/nist-technical-note-1297/nist-tn-1297-5-combined-standard-uncertainty" target="_blank" rel="noopener noreferrer">NIST TN 1297</a>: explicação prática da combinação de incertezas padrão e covariâncias.</li>
         </ul>
 
-        <div class="post-highlight"><strong>Resumo:</strong> quanto mais crítica a medição, menos recomendável é olhar apenas para um equipamento isolado. A malha completa precisa ser considerada.</div>
+        <h2>15. Perguntas frequentes</h2>
+        <h3>Posso somar diretamente as precisões dos datasheets?</h3>
+        <p>Como triagem, somente depois de converter tudo para a mesma base e confirmar que os limites são comparáveis e válidos nas condições analisadas. Para incerteza formal, cada entrada precisa ser modelada adequadamente.</p>
+        <h3>O RSS do erro total é igual à incerteza combinada?</h3>
+        <p>Não necessariamente. A incerteza combinada exige entradas como incertezas padrão, modelo de medição, coeficientes de sensibilidade e covariâncias quando aplicável.</p>
+        <h3>Qual erro total é aceitável?</h3>
+        <p>Não há percentual universal. O critério vem do requisito do processo, especificação aplicável e regra de decisão aprovada.</p>
+        <h3>Posso usar esta conta para SIS ou SIL?</h3>
+        <p>Não. Funções instrumentadas de segurança exigem processo próprio de análise e validação. Esta página serve para avaliação de desempenho de uma cadeia de medição.</p>
 
-        <p><a class="btn" href="calculadora-erro-total-malha-instrumentacao.html"><i class="fas fa-calculator"></i> Abrir calculadora de erro total</a></p>
+        <h2>Aviso técnico e escopo comercial</h2>
+        <p>Este conteúdo é educativo e não substitui procedimento da planta, análise metrológica formal, manual do fabricante ou requisitos de segurança funcional. A ALOGY pode atuar em avaliação, inspeção, manutenção, configuração e conferência funcional de instrumentos e malhas conforme escopo acordado. Emissão de certificado de calibração, rastreabilidade ou documentação metrológica específica depende de recursos e condições confirmados na proposta.</p>
       </div>
     </article>
   </main>
