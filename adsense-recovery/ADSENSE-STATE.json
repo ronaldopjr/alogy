@@ -1,16 +1,16 @@
 {
   "schema_version": 3,
   "project": "ALOGY AdSense Recovery",
-  "plan_version": "2026-09-14.22",
+  "plan_version": "2026-09-14.23",
   "repository": "ronaldopjr/alogy",
   "base_branch": "main",
   "work_branch": "main",
-  "base_sha_verified": "1b945ccbcca694966a7fc25206f2048d96bdcf13",
+  "base_sha_verified": "04b673746dc4c225bfc89fa987c891a407a962c9",
   "verified_at": "2026-09-14",
   "last_completed_stage": "E05",
   "stage_in_progress": "E06",
   "next_stage": "E06",
-  "next_action": "Selecionar a proxima pagina improve/P0/high do acervo monetizado, priorizando instrumentacao industrial e baixo risco editorial. Manter E06-INVENTORY-DELTA-01.csv a E06-INVENTORY-DELTA-06.csv como fonte incremental ate consolidacao segura no inventario canonico. Nao editar manual-review/P0 automaticamente e nao solicitar nova analise do AdSense ainda.",
+  "next_action": "Selecionar a proxima pagina improve/P0/high do acervo monetizado, priorizando instrumentacao industrial e baixo risco editorial. Tratar E06-INVENTORY-DELTA-01.csv a E06-INVENTORY-DELTA-07.csv como fonte incremental ate consolidacao segura no inventario canonico. Nao editar manual-review/P0 automaticamente e nao solicitar nova analise do AdSense.",
   "status": "in_progress",
   "preferred_editorial_batch": 1,
   "adsense": {
@@ -23,21 +23,21 @@
     "enabled": true,
     "target_branch": "main",
     "method": "validated-atomic-commit",
-    "batch_id": "E06-FAT-SAT-ACERVO-06",
-    "latest_site_change_commit": "c9dc10756d8f5f42ef0388131caccbdee1e4f68c",
-    "latest_inventory_report_commit": "1b945ccbcca694966a7fc25206f2048d96bdcf13",
+    "batch_id": "E06-CONDITION-MONITORING-ACERVO-07",
+    "latest_site_change_commit": "3a9c7bb57ec195437bf93eba36fbd8dca3b2af7d",
+    "latest_report_commit": "92f02b8b4e4d5af686d32f3b7df82f1d0ff57eb3",
+    "latest_inventory_delta_commit": "04b673746dc4c225bfc89fa987c891a407a962c9",
     "services_navigation_commit": "2a047390f543d3a7a0469a3677f17c14fa0dcfeb",
     "canonical_inventory_initial_commit": "da2f61932a21c00741f418870601aafcb42deba6",
     "source_verified_on_main": true,
     "pages_deployment_success": true,
-    "latest_pages_workflow_run": 34922216499,
-    "latest_pages_artifact_id": 10378157849,
-    "latest_pages_artifact_digest": "sha256:54da63bfd243cadd82eea74d9927c619f578f3dfa1d7cb78e19d8148108f6952",
+    "latest_pages_workflow_run": 34923087323,
+    "latest_pages_artifact_id": 10378693305,
+    "latest_pages_artifact_digest": "sha256:1ba2d81af4cb448572fb693dec76e886e3aea176ceeb8b49bd6cf8e8cdf85d96",
     "live_environment_url": "https://www.alogy.com.br/",
     "artifact_validation_complete": true,
-    "artifact_validation_method": "Exact github-pages artifact extracted and structurally inspected; blog-fat-sat-instrumentacao.html matched the validated candidate byte-for-byte.",
+    "artifact_validation_method": "Exact github-pages artifact extracted and structurally inspected; blog-manutencao-preditiva-instrumentacao-sensores.html matched the locally validated candidate byte-for-byte.",
     "require_clean_validated_diff": true,
-    "require_domain_check": true,
     "allow_force": false
   },
   "validation": {
@@ -60,17 +60,7 @@
       "legacy_cursos_source_pages": 137,
       "legacy_cursos_indexable_source_pages": 102,
       "hotmart_link_pages": 128,
-      "services_navigation": {
-        "status": "passed",
-        "public_label": "Servicos",
-        "public_destination": "industrial.html",
-        "separate_residential_navigation_present": false,
-        "legacy_route": "residencial.html",
-        "legacy_route_robots": "noindex,follow",
-        "legacy_route_canonical": "https://www.alogy.com.br/industrial.html",
-        "legacy_route_in_sitemap": false
-      },
-      "guide_navigation_rule": "Do not add Guia links to blog/tool pages; remove legacy Guia/Cursos links only when each page enters a safe batch."
+      "canonical_inventory_initial_commit": "da2f61932a21c00741f418870601aafcb42deba6"
     },
     "e05_pilot": {
       "status": "passed_completed",
@@ -81,62 +71,33 @@
       "adsense_review_request_allowed": false
     },
     "e06_acervo": {
-      "status": "pages_01_to_06_passed_published_next_selection_pending",
+      "status": "pages_01_to_07_passed_published_next_selection_pending",
       "canonical_inventory_deltas_pending_merge": [
         "E06-INVENTORY-DELTA-01.csv",
         "E06-INVENTORY-DELTA-02.csv",
         "E06-INVENTORY-DELTA-03.csv",
         "E06-INVENTORY-DELTA-04.csv",
         "E06-INVENTORY-DELTA-05.csv",
-        "E06-INVENTORY-DELTA-06.csv"
+        "E06-INVENTORY-DELTA-06.csv",
+        "E06-INVENTORY-DELTA-07.csv"
       ],
       "pages": [
-        {"path":"blog-ar-instrumentos-qualidade-ponto-orvalho.html","status":"passed_published","content_commit":"4c4a51b7fd881a5252995dd00603ee04053daeb8","report":"E06-AIR-INSTRUMENT-ACERVO-01.md","inventory_delta":"E06-INVENTORY-DELTA-01.csv","editorial_decision_after":"keep/P1/high"},
-        {"path":"blog-solenoide-atuador-pneumatico-cv.html","status":"passed_published","content_commit":"3baa03d6832062d7d0fe24ec4ecae37cf96f0b59","report":"E06-SOLENOID-ACTUATOR-ACERVO-02.md","inventory_delta":"E06-INVENTORY-DELTA-02.csv","editorial_decision_after":"keep/P1/high"},
-        {"path":"blog-instrumentacao-industrial.html","status":"passed_published","content_commit":"794c5bd65cd80ce34b30f0ef83c1b422c5584ab5","report":"E06-INSTRUMENTATION-HUB-ACERVO-03.md","inventory_delta":"E06-INVENTORY-DELTA-03.csv","editorial_decision_after":"keep/P1/high"},
-        {"path":"blog-criticidade-instrumentos.html","status":"passed_published","content_commit":"95ea333e471f7e3d2518363794ca0215585ef6d8","report":"E06-CRITICALITY-INSTRUMENTS-ACERVO-04.md","inventory_delta":"E06-INVENTORY-DELTA-04.csv","editorial_decision_after":"keep/P1/high"},
-        {"path":"blog-erro-total-malha-instrumentacao.html","status":"passed_published","content_commit":"41421244f4e6cce1e11d81fff25d4c79aaf93f2e","report":"E06-LOOP-ERROR-ACERVO-05.md","inventory_delta":"E06-INVENTORY-DELTA-05.csv","editorial_decision_after":"keep/P1/high"},
-        {
-          "path": "blog-fat-sat-instrumentacao.html",
-          "status": "passed_published",
-          "content_commit": "c9dc10756d8f5f42ef0388131caccbdee1e4f68c",
-          "content_blob": "c25795af2571fdbcc859dde7cc47ed8e243d14cd",
-          "report": "E06-FAT-SAT-ACERVO-06.md",
-          "report_commit": "cfcdea1252e4596e177f5968d708c8bbc05fd697",
-          "inventory_delta": "E06-INVENTORY-DELTA-06.csv",
-          "inventory_delta_commit": "1b945ccbcca694966a7fc25206f2048d96bdcf13",
-          "pages_workflow_run": 34922216499,
-          "pages_artifact_id": 10378157849,
-          "pages_artifact_digest": "sha256:54da63bfd243cadd82eea74d9927c619f578f3dfa1d7cb78e19d8148108f6952",
-          "artifact_html_bytes": 24822,
-          "artifact_html_sha256": "cb6f8413f7136a4794527823adbca917bebb5edd5d428e3456fa824894b900c2",
-          "artifact_visible_words_observed": 1942,
-          "artifact_main_words_observed": 1854,
-          "h1_count": 1,
-          "h2_count": 19,
-          "json_ld_types": ["BlogPosting", "FAQPage"],
-          "canonical_valid": true,
-          "adsense_loader_present": true,
-          "in_sitemap": true,
-          "sitemap_occurrences": 1,
-          "legacy_cursos_present": false,
-          "hotmart_link_present": false,
-          "guide_link_present": false,
-          "separate_service_labels_present": false,
-          "artifact_matches_validated_candidate": true,
-          "technical_formulas_or_shared_javascript_changed": false,
-          "safety_scope": "Generic FAT/SAT planning only; SIS validation remains governed by SRS and applicable IEC 61511 lifecycle requirements.",
-          "editorial_decision_before": "improve/P0/high",
-          "editorial_decision_after": "keep/P1/high"
-        }
+        {"n":1,"path":"blog-ar-instrumentos-qualidade-ponto-orvalho.html","status":"passed_published","content_commit":"4c4a51b7fd881a5252995dd00603ee04053daeb8","decision_after":"keep/P1/high"},
+        {"n":2,"path":"blog-solenoide-atuador-pneumatico-cv.html","status":"passed_published","content_commit":"3baa03d6832062d7d0fe24ec4ecae37cf96f0b59","decision_after":"keep/P1/high"},
+        {"n":3,"path":"blog-instrumentacao-industrial.html","status":"passed_published","content_commit":"794c5bd65cd80ce34b30f0ef83c1b422c5584ab5","decision_after":"keep/P1/high"},
+        {"n":4,"path":"blog-criticidade-instrumentos.html","status":"passed_published","content_commit":"95ea333e471f7e3d2518363794ca0215585ef6d8","decision_after":"keep/P1/high"},
+        {"n":5,"path":"blog-erro-total-malha-instrumentacao.html","status":"passed_published","content_commit":"41421244f4e6cce1e11d81fff25d4c79aaf93f2e","decision_after":"keep/P1/high"},
+        {"n":6,"path":"blog-fat-sat-instrumentacao.html","status":"passed_published","content_commit":"c9dc10756d8f5f42ef0388131caccbdee1e4f68c","decision_after":"keep/P1/high"},
+        {"n":7,"path":"blog-manutencao-preditiva-instrumentacao-sensores.html","status":"passed_published","content_commit":"3a9c7bb57ec195437bf93eba36fbd8dca3b2af7d","report":"E06-CONDITION-MONITORING-ACERVO-07.md","report_commit":"92f02b8b4e4d5af686d32f3b7df82f1d0ff57eb3","inventory_delta":"E06-INVENTORY-DELTA-07.csv","inventory_delta_commit":"04b673746dc4c225bfc89fa987c891a407a962c9","pages_workflow_run":34923087323,"pages_artifact_id":10378693305,"artifact_digest":"sha256:1ba2d81af4cb448572fb693dec76e886e3aea176ceeb8b49bd6cf8e8cdf85d96","artifact_html_bytes":25697,"artifact_html_sha256":"21e41b2dcd1dccbef43014a18d43a551ba04f346a661ff4bcd290b8c9badf3f1","artifact_visible_words_observed":1907,"artifact_main_words_observed":1860,"h1_count":1,"h2_count":15,"h3_count":0,"json_ld_types":["BlogPosting","FAQPage"],"canonical_valid":true,"adsense_loader_present":true,"sitemap_occurrences":1,"guide_link_present":false,"hotmart_link_present":false,"separate_service_labels_present":false,"artifact_matches_validated_candidate":true,"technical_formulas_or_shared_javascript_changed":false,"decision_before":"improve/P0/high","decision_after":"keep/P1/high"}
       ],
+      "next_candidate": {"path": null,"status":"selection_pending_after_page_07"},
       "manual_review_pages_must_remain_unchanged": true,
       "mass_pruning_allowed": false,
       "adsense_review_request_allowed": false
     },
     "shared_warning_follow_up": "E08-W1"
   },
-  "e03_commercial_truth": {
+  "commercial_truth": {
     "confirmed_owner_fact": "A ALOGY ainda nao possui padrao calibrado confirmado para sustentar emissao propria de laudo de calibracao.",
     "safe_positioning": "Avaliacao, inspecao, manutencao, configuracao e conferencia funcional sob escopo; calibracao, ensaio ou documentacao especifica somente quando recursos e parceiros forem confirmados na proposta.",
     "navigation_rule": "Usar uma unica entrada publica Servicos apontando para industrial.html. Nao restaurar separacao entre servicos industriais e residenciais."
@@ -149,12 +110,14 @@
     "change_technical_javascript_without_reproduced_issue": false,
     "restore_separate_residential_positioning": false,
     "define_universal_tolerance_or_interval": false,
-    "link_guide_from_blog_or_tools": false
+    "link_guide_from_blog_or_tools": false,
+    "automatic_adsense_review_request": false
   },
   "owner_dependencies": [
     "Captura atual do AdSense com motivo, data e disponibilidade de nova analise",
     "Exportacao do Search Console por paginas e consultas, desejavel para priorizacao",
     "Capacidades reais da bancada, funcoes, faixas e situacao metrologica",
+    "Modelos e portes atendidos, meios de teste, local de recebimento, profissionais e parceiros",
     "Dados verdadeiros de autoria, credenciais e evidencias publicaveis"
   ]
 }
