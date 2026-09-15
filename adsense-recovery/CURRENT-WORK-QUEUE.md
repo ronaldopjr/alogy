@@ -1,6 +1,6 @@
 # ALOGY — fila operacional atual
 
-> Versão 2026-09-15.24. Esta é a única fila executável. Filas anteriores são históricas.
+> Versão 2026-09-15.25. Esta é a única fila executável. Filas anteriores são históricas.
 
 ## Regras permanentes
 
@@ -12,8 +12,8 @@
 
 ### Guia x blog/ferramentas
 
-- Artigos do blog e páginas de ferramentas não devem promover nem linkar diretamente o Guia.
-- Não inserir `/guia/`, botão Guia, Cursos ou Hotmart nesses lotes.
+- Artigos do blog e páginas de ferramentas não devem promover nem linkar diretamente o Guia no corpo editorial.
+- O link global **Guia** pode permanecer no menu; não inserir `/guia/`, botão promocional, Cursos ou Hotmart no corpo desses lotes.
 - Links legados são removidos apenas quando a página entra em lote seguro.
 
 ### Verdade comercial e segurança
@@ -38,7 +38,7 @@
 
 ## E06 — revisão do acervo monetizado
 
-**Estado:** EM EXECUÇÃO — OITO PÁGINAS REVISADAS, PUBLICADAS E VALIDADAS.
+**Estado:** EM EXECUÇÃO — NOVE PÁGINAS REVISADAS, PUBLICADAS E VALIDADAS.
 
 | # | Página | Decisão | Commit de conteúdo |
 |---|---|---|---|
@@ -50,6 +50,7 @@
 | 06 | `blog-fat-sat-instrumentacao.html` | `keep/P1/high` | `c9dc10756d8f5f42ef0388131caccbdee1e4f68c` |
 | 07 | `blog-manutencao-preditiva-instrumentacao-sensores.html` | `keep/P1/high` | `3a9c7bb57ec195437bf93eba36fbd8dca3b2af7d` |
 | 08 | `blog-massa-tanque-nivel.html` | `keep/P1/high` | `76e0832196a69242387dc35bef6c4051e08f02c0` |
+| 09 | `blog-pressao-hidrostatica-densidade.html` | `keep/P1/high` | `e2bbc0c359b99b8e890a732da33c90d704151fc9` |
 
 ### Página 08 — massa em tanque por nível
 
@@ -70,9 +71,29 @@
 - nenhuma fórmula, calculadora ou JavaScript técnico compartilhado alterado;
 - fontes primárias verificadas: ISO 7507-1:2003, ISO 7507-2:2022, Emerson Rosemount TankMaster e JCGM VIM3.
 
+### Página 09 — pressão hidrostática, densidade e nível
+
+- relatório: `E06-HYDROSTATIC-PRESSURE-DENSITY-ACERVO-09.md`;
+- delta: `E06-INVENTORY-DELTA-09.csv`;
+- relatório + delta: commit `fd32b44d6bdaae2a73e64372560ccccd6f018605`;
+- conteúdo: commit `e2bbc0c359b99b8e890a732da33c90d704151fc9`;
+- Pages: run `34984984363`, build/deploy com sucesso;
+- artefato: `10403491616`;
+- digest: `sha256:a64dc5963f5e2374fdce6a7d14c376d08af0f6b42f430b3ffd1285f8147dadfa`;
+- domínio: HTTP 200, 25.075 bytes;
+- SHA-256 do HTML servido: `c49a8658f490a6be865957e89a06f707cd6e00cd4c85ee5dcaa3bb349bbf5ccd`;
+- Git blob do domínio: `ef5624a989e9e6476742b13894a0015c7aa60cc2`, igual ao blob do conteúdo versionado;
+- 1.868 palavras visíveis / 1.851 no artigo;
+- 1 H1 / 17 H2 / 4 H3;
+- `BlogPosting` + `FAQPage`;
+- canonical e AdSense preservados;
+- menu global Guia preservado, sem CTA do Guia no corpo; sem Hotmart ou Cursos;
+- nenhuma fórmula de calculadora ou JavaScript técnico compartilhado alterado;
+- fontes primárias verificadas: Endress+Hauser 2026, Emerson DP Level, Emerson Density Measurement e BIPM SI Brochure 2026.
+
 ### Pendência explícita do inventário
 
-O `ADSENSE-INVENTORY.csv` canônico ainda não incorpora as decisões E06. Os arquivos `E06-INVENTORY-DELTA-01.csv` até `E06-INVENTORY-DELTA-08.csv` são a fonte incremental de verdade até existir mecanismo seguro de consolidação integral/patch.
+O `ADSENSE-INVENTORY.csv` canônico ainda não incorpora as decisões E06. Os arquivos `E06-INVENTORY-DELTA-01.csv` até `E06-INVENTORY-DELTA-09.csv` são a fonte incremental de verdade até existir mecanismo seguro de consolidação integral/patch.
 
 Não substituir o CSV grande de forma parcial nem marcar a fusão como concluída sem validar o arquivo inteiro.
 
