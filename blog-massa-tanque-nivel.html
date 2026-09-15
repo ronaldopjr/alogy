@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Massa em Tanque por Nível | Tank Inventory, Level e Density | ALOGY</title>
-  <meta name="description" content="Tank inventory por nível: converta level measurement em volume e massa usando geometria, tabela de arqueação, densidade, zero/span e validação." />
+  <title>Massa em Tanque por Nível: Volume, Densidade e Inventário | ALOGY</title>
+  <meta name="description" content="Entenda como estimar massa em tanque a partir do nível, tabela nível-volume e densidade, com exemplo calculado, diagnóstico de discrepâncias e limites para uso fiscal." />
   <meta name="robots" content="index,follow" />
   <meta name="theme-color" content="#2C78B9" />
   <link rel="canonical" href="https://www.alogy.com.br/blog-massa-tanque-nivel.html" />
@@ -18,75 +18,114 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <link rel="stylesheet" href="style.css?v=20260911-article-semantic1" />
   <script src="app.js" defer></script>
-
   <meta property="og:locale" content="pt_BR" />
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="ALOGY Engenharia" />
-  <meta property="og:title" content="Massa em Tanque por Nível: Tank Inventory, Volume e Densidade" />
-  <meta property="og:description" content="Como transformar a indicação de nível em estimativa de volume e massa sem confundir sensor, geometria do tanque e densidade do produto." />
+  <meta property="og:title" content="Massa em Tanque por Nível: Volume, Densidade e Inventário" />
+  <meta property="og:description" content="Do level transmitter à massa estimada: nível, tabela de capacidade, densidade, condição operacional, exemplo e diagnóstico." />
   <meta property="og:url" content="https://www.alogy.com.br/blog-massa-tanque-nivel.html" />
   <meta property="og:image" content="https://www.alogy.com.br/capa-blog-massa-tanque-nivel.webp" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="https://www.alogy.com.br/capa-blog-massa-tanque-nivel.webp" />
-
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Massa em tanque por nível: tank inventory, volume e densidade","description":"Tank inventory por nível: converta level measurement em volume e massa usando geometria, tabela de arqueação, densidade, zero/span e validação.","datePublished":"2026-06-29","dateModified":"2026-09-11","author":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"},"publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/","logo":{"@type":"ImageObject","url":"https://www.alogy.com.br/logo-alogy.webp"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://www.alogy.com.br/blog-massa-tanque-nivel.html"},"inLanguage":"pt-BR","image":"https://www.alogy.com.br/capa-blog-massa-tanque-nivel.webp"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Massa em tanque por nível: volume, densidade e inventário","description":"Entenda como estimar massa em tanque a partir do nível, tabela nível-volume e densidade, com exemplo calculado, diagnóstico de discrepâncias e limites para uso fiscal.","datePublished":"2026-06-29","dateModified":"2026-09-15","author":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"},"publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/","logo":{"@type":"ImageObject","url":"https://www.alogy.com.br/logo-alogy.webp"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://www.alogy.com.br/blog-massa-tanque-nivel.html"},"inLanguage":"pt-BR","image":"https://www.alogy.com.br/capa-blog-massa-tanque-nivel.webp"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Nível de 60% significa 60% do volume do tanque?","acceptedAnswer":{"@type":"Answer","text":"Somente quando a relação entre altura e volume for efetivamente linear na faixa considerada. Em tanques horizontais, fundos conformados e geometrias irregulares, a conversão deve usar a geometria ou a tabela de capacidade correspondente."}},{"@type":"Question","name":"Posso calcular massa multiplicando volume por densidade?","acceptedAnswer":{"@type":"Answer","text":"Para uma estimativa coerente, sim, desde que volume e densidade estejam expressos em unidades compatíveis e representem a mesma condição definida. A qualidade do resultado depende das medições e conversões que alimentam esse cálculo."}},{"@type":"Question","name":"Densidade nominal do produto serve para qualquer inventário?","acceptedAnswer":{"@type":"Answer","text":"Não. Temperatura, composição, concentração e pressão podem alterar a densidade. Uma densidade nominal pode servir para estimativa operacional, mas aplicações fiscais, comerciais ou metrológicas exigem o método e as referências aplicáveis ao caso."}},{"@type":"Question","name":"Uma diferença entre inventário calculado e vazão acumulada prova erro do transmissor de nível?","acceptedAnswer":{"@type":"Answer","text":"Não. A diferença pode vir do nível, da tabela de capacidade, da densidade, do medidor de vazão, de volumes não contabilizados, de transferências ou da sincronização temporal. O diagnóstico deve separar cada etapa antes de ajustar o instrumento."}}]}</script>
   <style>
-    .table-scroll{overflow:auto;border:1px solid rgba(0,0,0,.08);border-radius:14px;margin:14px 0}.table-scroll table{width:100%;border-collapse:collapse;background:#fff}.table-scroll th{background:#0b3a62;color:#fff;text-align:left;padding:10px;white-space:nowrap}.table-scroll td{padding:10px;border-bottom:1px solid rgba(0,0,0,.07);vertical-align:top}
-    .chain{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:18px 0}.chain div{border:1px solid rgba(0,107,177,.18);border-radius:13px;padding:14px;text-align:center;background:#fff;font-weight:800;color:#0b3a62}.chain span{display:block;color:var(--muted);font-size:.86rem;font-weight:400;margin-top:5px}
-    @media(max-width:650px){.chain{grid-template-columns:1fr}}
-    @media print{header,.social-floating,.fab-wrap,.cta-bar,footer,.calc-actions,.no-print{display:none!important}}
+    .chain{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:18px 0}.chain div{border:1px solid rgba(0,107,177,.18);border-radius:13px;padding:13px;text-align:center;background:#fff;font-weight:800;color:#0b3a62}.chain span{display:block;color:var(--muted);font-size:.84rem;font-weight:400;margin-top:5px}.table-scroll{overflow:auto;border:1px solid rgba(0,0,0,.08);border-radius:14px;margin:14px 0}.table-scroll table{width:100%;border-collapse:collapse;background:#fff}.table-scroll th{background:#0b3a62;color:#fff;text-align:left;padding:10px;white-space:nowrap}.table-scroll td{padding:10px;border-bottom:1px solid rgba(0,0,0,.07);vertical-align:top}.example-box{border:1px solid rgba(0,107,177,.2);border-radius:14px;padding:16px;margin:16px 0;background:rgba(44,120,185,.05)}.note-box{border-left:4px solid #0b3a62;padding:12px 14px;margin:16px 0;background:rgba(11,58,98,.05)}@media(max-width:760px){.chain{grid-template-columns:1fr 1fr}}@media(max-width:460px){.chain{grid-template-columns:1fr}}@media print{header,.social-floating,.fab-wrap,footer,.calc-actions,.no-print{display:none!important}}
   </style>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5586837114309500" crossorigin="anonymous"></script>
 </head>
 <body>
   <header>
     <div class="container headbar"><a href="/" class="logo-wrapper" aria-label="Voltar para o início"><img src="logo-alogy.webp" alt="ALOGY Engenharia" width="878" height="308" decoding="async" /></a><button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menu"><i class="fas fa-bars"></i></button></div>
-    <nav class="desktop" aria-label="Menu principal"><div class="container navlinks"><a href="/">Início</a><a href="industrial.html">Serviços</a><a href="cases.html">Projetos</a><a href="/guia/">Guia</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></div></nav>
-    <nav class="mobile" aria-label="Menu mobile"><a href="/">Início</a><a href="industrial.html">Serviços</a><a href="cases.html">Projetos</a><a href="/guia/">Guia</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></nav>
+    <nav class="desktop" aria-label="Menu principal"><div class="container navlinks"><a href="/">Início</a><a href="industrial.html">Serviços</a><a href="cases.html">Projetos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></div></nav>
+    <nav class="mobile" aria-label="Menu mobile"><a href="/">Início</a><a href="industrial.html">Serviços</a><a href="cases.html">Projetos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></nav>
   </header>
-
   <div class="social-floating" aria-label="Redes sociais"><a href="https://www.linkedin.com/company/alogyengenharia" class="linkedin" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a><a href="https://www.instagram.com/alogyengenharia" class="instagram" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="https://www.facebook.com/alogyengenharia" class="facebook" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><a href="https://www.youtube.com/@alogyengenharia" class="youtube" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a><a href="https://www.tiktok.com/@alogyengenharia" class="tiktok" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fab fa-tiktok"></i></a></div>
-  <div class="fab-wrap" aria-label="Ações rápidas"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1!%20Li%20o%20artigo%20sobre%20tank%20inventory%20da%20ALOGY." target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
-
+  <div class="fab-wrap" aria-label="Ações rápidas"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1!%20Li%20o%20artigo%20sobre%20invent%C3%A1rio%20de%20tanques%20da%20ALOGY." target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
   <main class="container" style="margin-top:18px">
     <a class="floating-back-blog no-print" href="blog.html"><i class="fas fa-arrow-left"></i> Voltar ao Blog</a>
     <article class="blog-post">
-      <h1>Massa em tanque por nível e densidade: como interpretar a medição</h1>
-      <p class="muted" data-alogy-content-meta><strong>Conteúdo técnico:</strong> ALOGY Engenharia · <strong>Atualizado em:</strong> 11/09/2026</p>
-      <figure class="article-cover-figure"><img class="article-cover-image" src="capa-blog-massa-tanque-nivel.webp" alt="Medição de nível em tanque usada para estimar volume e massa do produto" loading="eager" fetchpriority="high" decoding="async"/><figcaption>Tank inventory por nível exige três etapas independentes: medição de nível, conversão nível-volume e densidade representativa.</figcaption></figure>
+      <h1>Massa em tanque por nível: do sinal do instrumento ao inventário estimado</h1>
+      <p class="muted" data-alogy-content-meta><strong>Conteúdo técnico:</strong> ALOGY Engenharia · <strong>Atualizado em:</strong> 15/09/2026</p>
+      <figure class="article-cover-figure"><img class="article-cover-image" src="capa-blog-massa-tanque-nivel.webp" alt="Medição de nível em tanque usada para estimar volume e massa do produto" loading="eager" fetchpriority="high" decoding="async"/><figcaption>O inventário calculado depende de uma cadeia: nível confiável, conversão nível-volume correta, densidade representativa e contexto de operação.</figcaption></figure>
 
-      <div class="chain"><div>Level Measurement<span>sensor, zero, span e referência</span></div><div>Tank Strapping<span>geometria ou tabela nível-volume</span></div><div>Density<span>produto e condição operacional</span></div></div>
+      <p>Um transmissor de nível não mede massa. Ele fornece uma variável que, depois de interpretada na referência correta, pode alimentar uma conversão para volume. Só então a densidade entra para produzir uma estimativa de massa. Quando essa cadeia é tratada como uma única conta, fica difícil descobrir por que o inventário não fecha.</p>
 
-      <p>O nível informa altura, não massa. Para estimar inventário é preciso converter a indicação em volume e depois aplicar uma densidade representativa. Cada etapa possui sua própria fonte de erro e precisa ser rastreável à condição usada.</p>
+      <div class="chain"><div>Nível<span>sensor, zero, span e referência</span></div><div>Volume<span>geometria ou tabela de capacidade</span></div><div>Densidade<span>produto e condição definida</span></div><div>Massa<span>resultado + finalidade de uso</span></div></div>
 
-      <h2>1. Level measurement: confirme o que o instrumento mede</h2>
-      <p>Verifique TAG, tecnologia, referência de zero, LRV/URV, unidade e posição física. Em radar/ultrassônico, espaço vazio pode ser a grandeza primária; em DP, densidade e elevação entram na relação; em boia/deslocador, a interface e a densidade também podem influenciar.</p>
-      <p>Espuma, interface, vapor, incrustação ou mudança de produto podem alterar a leitura sem qualquer mudança real de volume.</p>
+      <h2>1. Separe medição, conversão e cálculo</h2>
+      <p>O primeiro passo é documentar qual grandeza cada etapa realmente entrega. Um radar pode medir distância até a superfície e converter internamente para nível. Um transmissor DP responde à diferença de pressão, que depende da coluna líquida e da densidade. Um sistema de tank gauging pode combinar nível, temperatura, pressão e tabelas de capacidade para gerar parâmetros de inventário. Essas arquiteturas não são equivalentes, mesmo quando a tela final mostra “toneladas”.</p>
+      <p>Separar as etapas evita um erro comum: ajustar o transmissor de nível para compensar um problema que está na tabela nível-volume ou na densidade utilizada pelo sistema.</p>
 
-      <h2>2. Nível não vira volume pela mesma regra em todos os tanques</h2>
-      <p>Em tanque vertical de seção constante, a relação pode ser aproximadamente linear. Em tanque horizontal, fundo abaulado, teto especial ou geometria irregular, use a tabela nível-volume/arqueação correspondente ao tanque e à revisão correta.</p>
-      <div class="table-scroll"><table><thead><tr><th>Etapa</th><th>Dado necessário</th><th>Erro comum</th></tr></thead><tbody><tr><td>Nível</td><td>Valor, unidade, zero/span e instante.</td><td>Tratar altura indicada como volume.</td></tr><tr><td>Volume</td><td>Geometria ou tank strapping table válida.</td><td>Usar relação linear em geometria não linear.</td></tr><tr><td>Densidade</td><td>Valor, unidade, temperatura e composição.</td><td>Usar densidade nominal fora da condição real.</td></tr><tr><td>Massa</td><td>Volume × densidade na mesma base.</td><td>Misturar kg/L, kg/m³, L e m³.</td></tr></tbody></table></div>
+      <h2>2. Confirme o que significa zero, nível e referência física</h2>
+      <p>Antes de calcular qualquer inventário, registre TAG, tecnologia, unidade, LRV/URV, ponto de zero, altura de referência e origem do sinal. Em tanques com radar, o ponto de referência mecânico pode não coincidir com o fundo útil. Em DP, elevação ou supressão de zero, pernas de referência e densidade influenciam a relação entre pressão e nível.</p>
+      <p>Também é importante distinguir altura de produto, espaço vazio (<em>ullage</em>) e percentual configurado. Dois sistemas podem exibir 60% e estar usando referências físicas diferentes.</p>
 
-      <h2>3. Densidade pode variar</h2>
-      <p>Temperatura, composição, concentração, pressão e gás incorporado podem alterar a densidade. Para acompanhamento operacional, uma densidade nominal pode ser suficiente como estimativa; para balanço rigoroso, transferência ou uso fiscal, o método aplicável precisa definir compensação e rastreabilidade.</p>
+      <h2>3. Nível e volume não têm relação universal</h2>
+      <p>Em um tanque vertical simples, de seção aproximadamente constante e dentro da faixa geométrica realmente cilíndrica, a relação entre altura e volume pode ser próxima de linear. Isso não autoriza aplicar a mesma regra a um tanque horizontal, a fundos abaulados, cones, internos, deformações ou zonas fora da seção constante.</p>
+      <p>Para inventário baseado em tabela de capacidade, o dado crítico é a combinação <strong>nível + tabela correta + revisão correta</strong>. A série ISO 7507 trata métodos de calibração de determinados tanques cilíndricos verticais para produtos de petróleo e elaboração de tabelas de capacidade. Ela é uma referência de escopo específico, não uma regra universal para qualquer tanque industrial.</p>
 
-      <h2>Exemplo simples</h2>
-      <p>Se um tanque vertical de área constante está a 60% do nível útil, o volume pode ser aproximadamente 60% do volume útil — desde que a geometria realmente seja linear nessa faixa. Depois, multiplique o volume pela densidade correspondente à condição definida.</p>
-      <p>Se o tanque for horizontal ou tiver seção variável, 60% de altura <strong>não</strong> significa necessariamente 60% de volume.</p>
+      <h2>4. Densidade precisa representar a condição definida</h2>
+      <p>A relação básica usada na estimativa é massa = volume × densidade. O problema prático não está nessa multiplicação, mas em saber qual volume e qual densidade estão sendo combinados. Temperatura, composição, concentração, pressão e gás incorporado podem alterar a densidade do produto.</p>
+      <p>Uma densidade nominal de ficha técnica pode servir para acompanhamento operacional quando isso é explicitamente aceitável. Para aplicações que exigem maior rigor, o método deve definir como a densidade é obtida, em qual condição ela vale e se existe correção para uma condição de referência.</p>
 
-      <h2>Use a discrepância como diagnóstico</h2>
-      <p>Quando o inventário calculado não fecha com consumo, transferência ou medidor de vazão integrado, não ajuste automaticamente o transmissor. Separe hipóteses:</p>
-      <ul><li>erro/deriva do level transmitter;</li><li>tabela de arqueação ou referência de zero incorreta;</li><li>densidade diferente da assumida;</li><li>volume morto/internos não considerados;</li><li>espuma/interface alterando a indicação;</li><li>erro no balanço de entrada/saída.</li></ul>
+      <h2>5. Exemplo reproduzível: do nível à massa</h2>
+      <div class="example-box">
+        <p><strong>Exemplo educativo:</strong> a tabela de capacidade de um tanque informa que o nível observado de 2,70 m corresponde a 18,4 m³. Para a condição definida, a densidade utilizada é 845 kg/m³.</p>
+        <p><strong>Massa estimada:</strong> 18,4 m³ × 845 kg/m³ = 15.548 kg, ou aproximadamente 15,55 t.</p>
+      </div>
+      <p>Esse resultado só é tão confiável quanto as três entradas: nível, correspondência nível-volume e densidade. Se o nível estiver correto, mas a tabela for de outra revisão do tanque, a conta fecha matematicamente e ainda assim representa o inventário errado.</p>
+      <div class="table-scroll"><table><thead><tr><th>Etapa</th><th>Entrada</th><th>Saída</th><th>O que precisa acompanhar o valor</th></tr></thead><tbody><tr><td>Medição</td><td>Sinal do instrumento</td><td>Nível ou distância</td><td>TAG, unidade, zero/span, instante e status</td></tr><tr><td>Conversão</td><td>Nível</td><td>Volume</td><td>Tabela/geometria e revisão</td></tr><tr><td>Propriedade</td><td>Produto</td><td>Densidade</td><td>Temperatura, composição e origem</td></tr><tr><td>Cálculo</td><td>Volume + densidade</td><td>Massa estimada</td><td>Finalidade e condição de referência</td></tr></tbody></table></div>
 
-      <h2>Registro mínimo</h2>
-      <ul><li>tanque, produto, data/hora e condição operacional;</li><li>nível, unidade, tecnologia e origem do sinal;</li><li>fonte/revisão da tabela nível-volume;</li><li>densidade, temperatura, composição e origem do valor;</li><li>resultado declarado como estimativa e finalidade de uso.</li></ul>
+      <h2>6. O resultado precisa carregar contexto, não apenas um número</h2>
+      <p>O VIM/JCGM trata resultado de medição como valores atribuídos ao mensurando acompanhados das informações relevantes disponíveis. Para um inventário operacional, isso reforça uma prática simples: não registrar somente “15,55 t”. Registre também como o valor foi obtido, qual tabela foi usada, qual densidade foi aplicada e em qual instante os dados foram coletados.</p>
+      <p>Isso não transforma uma estimativa operacional em resultado metrológico formal. Apenas torna o raciocínio auditável e reduz ambiguidades quando o valor for comparado dias ou meses depois.</p>
 
-      <h2>Ferramentas e referências</h2>
-      <div class="calc-actions"><a class="mini-btn dark" href="calculadora-massa-tanque-nivel.html"><i class="fas fa-calculator"></i> Massa por nível e densidade</a><a class="mini-btn" href="calculadora-dp-nivel-tanque-fechado.html">DP level</a><a class="mini-btn" href="calculadora-calibracao-transmissor-nivel-dp.html">Calibração de nível DP</a><a class="mini-btn" href="ferramentas-processo-vazao-nivel.html"><i class="fas fa-gauge-high"></i> Vazão, nível e pressão</a></div>
-      <p>Para usos metrológicos mais rigorosos, consulte o <a href="https://jcgm.bipm.org/vim/en/2.9.html" target="_blank" rel="noopener noreferrer">VIM/JCGM sobre resultado de medição</a> e, quando aplicável à finalidade, referências sobre calibração/tabelas de tanques.</p>
+      <h2>7. Densidade observada, densidade de referência e temperatura não são sinônimos</h2>
+      <p>Sistemas dedicados de tank gauging podem calcular diferentes parâmetros de inventário. A documentação atual da Emerson para TankMaster, por exemplo, separa volume observado, volumes corrigidos, densidade observada e densidade de referência e usa temperatura, pressão e outros parâmetros conforme a configuração. Isso mostra por que uma tela de inventário precisa ser interpretada pela definição da variável, não apenas pelo nome curto exibido.</p>
+      <p>Ao integrar dados em PLC, DCS, SCADA ou historian, mantenha a unidade e o significado original do parâmetro. Renomear “observed density” simplesmente para “density” pode apagar a condição associada ao valor.</p>
 
-      <h2>Aviso técnico</h2>
-      <p>Esta estimativa não substitui tabela de arqueação válida, medição fiscal/comercial, análise de incerteza ou requisito legal. Confirme o método exigido para a finalidade real do inventário.</p>
+      <h2>8. Inventário operacional não é automaticamente medição fiscal ou comercial</h2>
+      <div class="note-box"><strong>Limite de uso:</strong> este artigo trata estimativa e diagnóstico da cadeia de instrumentação. Transferência de custódia, inventário fiscal, conformidade legal e balanço metrológico podem exigir normas, instrumentos, tabelas, correções, incerteza e aprovações específicas.</div>
+      <p>A existência de nível, volume e densidade no sistema não comprova que a medição esteja habilitada para uma finalidade regulada. O método aplicável depende do produto, do tanque, do país, do contrato e da finalidade do resultado.</p>
+
+      <h2>9. Quando o inventário não fecha, não ajuste o transmissor primeiro</h2>
+      <p>Uma diferença entre massa calculada, transferência e totalização de vazão é uma evidência de discrepância, não a prova de uma causa. Organize as hipóteses por etapa:</p>
+      <ul><li><strong>nível:</strong> deriva, eco falso, espuma, interface, incrustação, obstrução ou referência de zero;</li><li><strong>volume:</strong> tabela incorreta, revisão antiga, interpolação, geometria diferente ou internos não representados;</li><li><strong>densidade:</strong> valor nominal inadequado, temperatura diferente, composição variável ou unidade errada;</li><li><strong>balanço:</strong> entradas e saídas não sincronizadas, linhas cheias, recirculação, drenos, vazamentos ou transferências não registradas;</li><li><strong>integração:</strong> escala, unidade, timestamp, arredondamento, tag errada ou valor congelado no PLC/SCADA.</li></ul>
+      <p>A sequência mais eficiente é confirmar primeiro os dados e suas referências; só depois partir para ajuste ou manutenção de campo.</p>
+
+      <h2>10. Use uma segunda evidência para localizar a discrepância</h2>
+      <p>Dependendo do processo, a tendência do inventário pode ser comparada com totalização de vazão, consumo conhecido, pesagem, nível redundante ou medição manual autorizada. O objetivo não é declarar uma dessas fontes como verdade absoluta, mas observar se duas cadeias independentes se movem de forma coerente.</p>
+      <p>Se o nível fica estável enquanto o totalizador registra retirada contínua, a investigação começa pela cadeia de nível. Se nível e volume variam coerentemente, mas a massa dá saltos quando muda o valor de densidade no sistema, a prioridade muda.</p>
+
+      <h2>11. Registro mínimo para uma análise reproduzível</h2>
+      <div class="table-scroll"><table><thead><tr><th>Grupo</th><th>Campos recomendados</th></tr></thead><tbody><tr><td>Tanque</td><td>TAG, produto, condição operacional e data/hora</td></tr><tr><td>Nível</td><td>valor, unidade, tecnologia, LRV/URV, zero e origem do sinal</td></tr><tr><td>Volume</td><td>valor calculado, tabela/geometria, revisão e método de interpolação se aplicável</td></tr><tr><td>Densidade</td><td>valor, unidade, temperatura/condição, origem e horário</td></tr><tr><td>Resultado</td><td>massa estimada, finalidade, observações e comparação independente</td></tr><tr><td>Mudanças</td><td>ajuste, configuração, manutenção, troca de produto ou revisão da tabela</td></tr></tbody></table></div>
+      <p>Quando uma configuração muda, preserve a referência anterior. Reprocessar silenciosamente o histórico com uma tabela ou densidade nova pode criar uma falsa impressão de estabilidade.</p>
+
+      <h2>12. Relação com manutenção e instrumentação</h2>
+      <p>Esse tipo de análise é útil porque transforma uma divergência de inventário em perguntas verificáveis. O problema pode estar no instrumento, na instalação, na configuração, na tabela do tanque, na integração ou simplesmente na condição do produto. Separar essas camadas evita troca de equipamento por tentativa e ajuda a direcionar a inspeção.</p>
+      <p>A ALOGY pode apoiar, conforme escopo confirmado, em avaliação, inspeção, manutenção, configuração e conferência funcional de instrumentação e sinais associados. Quando houver necessidade de calibração, ensaio, tabela de capacidade, rastreabilidade ou documentação metrológica específica, os recursos, métodos e parceiros necessários devem ser confirmados na proposta antes de assumir esse fornecimento.</p>
+
+      <h2>13. Ferramentas relacionadas</h2>
+      <div class="calc-actions"><a class="mini-btn dark" href="calculadora-massa-tanque-nivel.html"><i class="fas fa-calculator"></i> Massa por nível e densidade</a><a class="mini-btn" href="calculadora-volume-tanque-vertical-horizontal.html">Volume de tanque</a><a class="mini-btn" href="calculadora-dp-nivel-tanque-fechado.html">Nível por DP</a><a class="mini-btn" href="calculadora-calibracao-transmissor-nivel-dp.html">Conferência de transmissor DP</a></div>
+      <p>As ferramentas são apoio preliminar. Preserve as fórmulas e critérios do equipamento real, confirme as unidades e use a documentação do projeto ou fabricante quando houver divergência.</p>
+
+      <h2>14. Fontes e referências técnicas</h2>
+      <ul>
+        <li><a href="https://www.iso.org/standard/37004.html" target="_blank" rel="noopener noreferrer">ISO 7507-1:2003 — Calibration of vertical cylindrical tanks — Part 1: Strapping method</a>. A ISO informa que a edição 2 permanece publicada e foi confirmada em 2022.</li>
+        <li><a href="https://www.iso.org/standard/81047.html" target="_blank" rel="noopener noreferrer">ISO 7507-2:2022 — Optical-reference-line method or electro-optical distance-ranging method</a>, para o escopo específico de tanques cilíndricos verticais coberto pela norma.</li>
+        <li><a href="https://www.emerson.com/en/measurement-instrumentation/catalog/engineered-systems-and-solutions/tank-gauging/tank-master-inventory-software" target="_blank" rel="noopener noreferrer">Emerson Rosemount TankMaster — Inventory Management Software</a>, documentação oficial sobre parâmetros de inventário, volume, densidade e massa.</li>
+        <li><a href="https://jcgm.bipm.org/vim/en/2.9.html" target="_blank" rel="noopener noreferrer">JCGM VIM 3, item 2.9 — measurement result</a>, para o conceito de resultado acompanhado de informação relevante.</li>
+      </ul>
+
+      <h2>15. Perguntas frequentes</h2>
+      <h3>Nível de 60% significa 60% do volume?</h3><p>Não necessariamente. Isso só vale quando a relação entre altura e volume é linear na faixa considerada. Em geometrias não lineares, use a tabela ou o modelo correspondente.</p>
+      <h3>Posso usar densidade nominal?</h3><p>Para estimativa operacional, pode ser aceitável se a finalidade e a limitação forem explícitas. Para usos de maior rigor, use a densidade e a condição definidas pelo método aplicável.</p>
+      <h3>Diferença de inventário significa transmissor descalibrado?</h3><p>Não. A causa pode estar em nível, tabela de capacidade, densidade, balanço, totalização ou integração. Ajustar o transmissor sem separar essas hipóteses pode esconder o problema real.</p>
+      <h3>Este método serve para transferência de custódia?</h3><p>Este artigo não valida aplicação fiscal ou comercial. Essas finalidades podem exigir requisitos legais, metrológicos e normativos específicos.</p>
+
+      <h2>16. Limites deste conteúdo</h2>
+      <p>Este material é educativo e voltado a diagnóstico e entendimento da cadeia de instrumentação. Ele não substitui tabela de capacidade válida, projeto do tanque, procedimento metrológico, análise de incerteza, requisito legal, aprovação de transferência de custódia ou documentação específica da instalação.</p>
     </article>
   </main>
   <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
