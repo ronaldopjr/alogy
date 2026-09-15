@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Selo Remoto e Capilar em Nível DP | Remote Seal e Diaphragm Seal | ALOGY</title>
-  <meta name="description" content="Remote seal e capilar em nível DP: entenda zero shift, temperatura, fluido de enchimento, resposta, LRV/URV e boas práticas de instalação." />
+  <title>Selo Remoto e Capilar em Nível DP | Cálculo e Diagnóstico | ALOGY</title>
+  <meta name="description" content="Entenda selo remoto e capilar em nível DP: balanço hidrostático, LRV/URV, exemplo calculado, efeito térmico, resposta, instalação e diagnóstico." />
   <meta name="robots" content="index,follow" />
   <meta name="theme-color" content="#2C78B9" />
   <link rel="canonical" href="https://www.alogy.com.br/blog-selo-remoto-capilar-nivel.html" />
@@ -22,23 +22,29 @@
   <meta property="og:locale" content="pt_BR" />
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="ALOGY Engenharia" />
-  <meta property="og:title" content="Selo Remoto e Capilar em Nível DP: zero, temperatura e resposta" />
-  <meta property="og:description" content="Como remote seals, capilares, fluido de enchimento e diferença de elevação afetam transmissores DP de nível." />
+  <meta property="og:title" content="Selo remoto e capilar em nível DP: cálculo e diagnóstico" />
+  <meta property="og:description" content="Como selos, capilares, fluido de enchimento, elevação e temperatura entram no range de um transmissor DP." />
   <meta property="og:url" content="https://www.alogy.com.br/blog-selo-remoto-capilar-nivel.html" />
   <meta property="og:image" content="https://www.alogy.com.br/capa-blog-selo-remoto-capilar-nivel.webp" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="https://www.alogy.com.br/capa-blog-selo-remoto-capilar-nivel.webp" />
 
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Selo remoto e capilar em transmissor de nível: zero, temperatura e resposta","description":"Remote seal e capilar em nível DP: entenda zero shift, temperatura, fluido de enchimento, resposta, LRV/URV e boas práticas de instalação.","datePublished":"2026-06-29","dateModified":"2026-09-11","author":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"},"publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/","logo":{"@type":"ImageObject","url":"https://www.alogy.com.br/logo-alogy.webp"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://www.alogy.com.br/blog-selo-remoto-capilar-nivel.html"},"inLanguage":"pt-BR","image":"https://www.alogy.com.br/capa-blog-selo-remoto-capilar-nivel.webp"}</script>
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Quando usar selo remoto?","acceptedAnswer":{"@type":"Answer","text":"Quando o fluido não deve chegar ao transmissor por corrosão, viscosidade, temperatura, requisitos sanitários, incrustação ou cristalização."}},{"@type":"Question","name":"Capilar longo atrasa resposta?","acceptedAnswer":{"@type":"Answer","text":"Pode atrasar, especialmente com fluido de enchimento mais viscoso ou em baixa temperatura. A resposta depende do conjunto especificado pelo fabricante."}},{"@type":"Question","name":"Preciso compensar zero?","acceptedAnswer":{"@type":"Answer","text":"O range deve considerar a coluna do fluido de enchimento e a diferença de elevação entre selos e transmissor. Isso pode produzir supressão ou elevação de zero prevista no projeto."}},{"@type":"Question","name":"Posso cortar capilar?","acceptedAnswer":{"@type":"Answer","text":"Não. O capilar faz parte do sistema selado e não deve ser cortado, aberto ou alterado em campo fora do procedimento do fabricante."}}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Selo remoto e capilar em transmissor de nível DP: cálculo, instalação e diagnóstico","description":"Entenda selo remoto e capilar em nível DP: balanço hidrostático, LRV/URV, exemplo calculado, efeito térmico, resposta, instalação e diagnóstico.","datePublished":"2026-06-29","dateModified":"2026-09-15","author":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/sobre.html"},"publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/","logo":{"@type":"ImageObject","url":"https://www.alogy.com.br/logo-alogy.webp"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://www.alogy.com.br/blog-selo-remoto-capilar-nivel.html"},"inLanguage":"pt-BR","image":"https://www.alogy.com.br/capa-blog-selo-remoto-capilar-nivel.webp"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Quando um selo remoto é útil?","acceptedAnswer":{"@type":"Answer","text":"Ele pode isolar o instrumento de fluidos corrosivos, viscosos, quentes, incrustantes, cristalizantes ou de aplicações com requisitos higiênicos. A seleção depende das condições de processo e da documentação do fabricante."}},{"@type":"Question","name":"Capilar longo aumenta o tempo de resposta?","acceptedAnswer":{"@type":"Answer","text":"Pode aumentar. Comprimento e seção do capilar, volume do instrumento, viscosidade do fluido de enchimento e temperatura influenciam a resposta do conjunto."}},{"@type":"Question","name":"Por que o LRV pode ser negativo em nível DP com dois selos?","acceptedAnswer":{"@type":"Answer","text":"A coluna do fluido de enchimento entre as alturas dos selos pode produzir uma contribuição hidrostática maior que a pressão do líquido do tanque no ponto de nível mínimo. O sinal decorre da convenção HP menos LP e da geometria."}},{"@type":"Question","name":"É correto cortar ou completar o capilar em campo?","acceptedAnswer":{"@type":"Answer","text":"Não. O capilar integra um sistema selado e preenchido pelo fabricante. Não deve ser cortado, aberto ou alterado fora do procedimento e dos recursos autorizados pelo fabricante."}}]}</script>
   <style>
     .compare-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:18px 0}
     .compare-card{border:1px solid rgba(0,107,177,.16);border-radius:14px;padding:15px;background:#f8fbfd}
     .compare-card strong{display:block;color:#0b3a62;margin-bottom:6px}
+    .equation{overflow-x:auto;border-left:4px solid #2c78b9;background:#f4f8fb;padding:12px 14px;margin:14px 0;font-family:ui-monospace,SFMono-Regular,Consolas,monospace}
+    .data-table{width:100%;border-collapse:collapse;margin:16px 0}
+    .data-table th,.data-table td{border:1px solid #cbd9e3;padding:10px;text-align:left;vertical-align:top}
+    .data-table th{background:#edf5fa;color:#0b3a62}
+    .diagram{max-width:720px;margin:18px auto}
+    .diagram svg{width:100%;height:auto;background:#f8fbfd;border:1px solid #cbd9e3;border-radius:14px}
     .faq details{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:14px;padding:14px;margin-top:10px}
     .faq summary{cursor:pointer;font-weight:900;color:#0b3a62}
     .faq p{margin:10px 0 0}
-    @media(max-width:700px){.compare-grid{grid-template-columns:1fr}}
+    @media(max-width:700px){.compare-grid{grid-template-columns:1fr}.data-table{font-size:.92rem}.data-table th,.data-table td{padding:8px}}
     @media print{header,.social-floating,.fab-wrap,.cta-bar,footer,.calc-actions,.no-print{display:none!important}}
   </style>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5586837114309500" crossorigin="anonymous"></script>
@@ -56,49 +62,116 @@
   <main class="container" style="margin-top:18px">
     <a class="floating-back-blog no-print" href="blog.html"><i class="fas fa-arrow-left"></i> Voltar ao Blog</a>
     <article class="blog-post">
-      <h1>Selo remoto e capilar em transmissor de nível: quando usar e como evitar erro</h1>
-      <p class="muted" data-alogy-content-meta><strong>Conteúdo técnico:</strong> ALOGY Engenharia · <strong>Atualizado em:</strong> 11/09/2026</p>
-      <figure class="article-cover-figure"><img class="article-cover-image" src="capa-blog-selo-remoto-capilar-nivel.webp" alt="Transmissor de pressão diferencial com selo remoto e capilar aplicado à medição de nível" loading="eager" fetchpriority="high" decoding="async"/><figcaption>O remote seal isola o transmissor do processo, mas o capilar e o fluido de enchimento passam a fazer parte da resposta e do balanceamento hidrostático da medição.</figcaption></figure>
+      <h1>Selo remoto e capilar em transmissor de nível DP: cálculo, instalação e diagnóstico</h1>
+      <p class="muted" data-alogy-content-meta><strong>Conteúdo técnico:</strong> ALOGY Engenharia · <strong>Atualizado em:</strong> 15/09/2026 · <a href="sobre.html">Escopo editorial e responsável pelo site</a></p>
+      <figure class="article-cover-figure"><img class="article-cover-image" src="capa-blog-selo-remoto-capilar-nivel.webp" alt="Transmissor de pressão diferencial com selo remoto e capilar aplicado à medição de nível" loading="eager" fetchpriority="high" decoding="async"/><figcaption>O selo remoto isola o transmissor do processo, mas o capilar e o fluido de enchimento passam a integrar o balanço hidrostático e a resposta dinâmica.</figcaption></figure>
 
-      <p>O <strong>selo remoto (remote seal ou diaphragm seal)</strong> permite medir pressão ou nível sem levar o fluido de processo até o elemento sensor do transmissor. É muito usado quando o produto é corrosivo, viscoso, sanitário, quente, incrustante ou sujeito a cristalização.</p>
+      <p>O <strong>selo remoto</strong>, também chamado <em>remote seal</em> ou <em>diaphragm seal</em>, separa o sensor do fluido de processo por meio de um diafragma e de um sistema preenchido. Pode ser uma solução quando o produto é corrosivo, viscoso, quente, incrustante, cristalizante ou quando a conexão deve atender requisitos específicos de processo. Em nível por pressão diferencial (DP), porém, não basta escolher o material do diafragma: a coluna do fluido de enchimento, as alturas, a temperatura e a resposta do conjunto entram no resultado.</p>
+      <p>Este guia mostra como organizar o cálculo de LRV e URV, resolver um exemplo de tanque fechado e distinguir erro de configuração, efeito térmico e dano mecânico. Os números são didáticos; o dimensionamento final depende do modelo, fluido de enchimento, construção, pressão absoluta, temperatura e limites publicados pelo fabricante.</p>
 
-      <h2>Como funciona o conjunto</h2>
-      <p>O diafragma do selo transmite a pressão do processo para um fluido de enchimento dentro do capilar. Esse fluido leva a pressão até o sensor do transmissor. Em nível por DP, o instrumento compara as pressões vistas pelos lados HP e LP.</p>
-      <div class="compare-grid"><div class="compare-card"><strong>Vantagem do remote seal</strong>O fluido de processo não precisa percorrer uma linha de impulso até o transmissor.</div><div class="compare-card"><strong>Nova variável introduzida</strong>Capilar, fluido de enchimento, elevação e temperatura passam a influenciar zero e resposta.</div></div>
+      <h2>Como a pressão chega ao transmissor</h2>
+      <p>A pressão do processo desloca o diafragma do selo. Esse movimento é transmitido pelo fluido de enchimento, através do capilar, até o elemento sensor. O conjunto funciona como um sistema fechado: diafragma, volume interno, capilar e instrumento são especificados e preenchidos em conjunto.</p>
+      <div class="compare-grid"><div class="compare-card"><strong>O que o selo resolve</strong>Evita que o fluido de processo percorra uma linha de impulso até o instrumento e permite escolher uma interface molhada adequada à aplicação.</div><div class="compare-card"><strong>O que o selo acrescenta</strong>Coluna do fluido de enchimento, expansão térmica, viscosidade, volume, rigidez do diafragma e tempo de resposta passam a importar.</div></div>
 
-      <h2>Zero shift, LRV e URV</h2>
-      <p>A coluna do fluido de enchimento no capilar produz pressão hidrostática. Se os selos estiverem em alturas diferentes, ou se o transmissor estiver em outra elevação, essa contribuição entra no balanço de pressão e pode gerar <strong>elevação ou supressão de zero</strong>.</p>
-      <p>Por isso, LRV e URV precisam representar a instalação real. Aplicar “zero físico” sem considerar a geometria do conjunto pode apagar uma compensação prevista no projeto e criar erro em operação.</p>
+      <figure class="diagram">
+        <svg viewBox="0 0 720 390" role="img" aria-labelledby="diag-title diag-desc">
+          <title id="diag-title">Tanque fechado com dois selos remotos e transmissor DP</title>
+          <desc id="diag-desc">O selo inferior liga-se ao lado de alta pressão e o selo superior ao lado de baixa pressão. Dois capilares descem até o transmissor.</desc>
+          <rect x="190" y="45" width="300" height="250" rx="22" fill="#dcecf6" stroke="#0b3a62" stroke-width="4"/>
+          <rect x="195" y="165" width="290" height="125" fill="#8ec5df"/>
+          <text x="340" y="230" text-anchor="middle" font-size="20" fill="#0b3a62">líquido do processo</text>
+          <circle cx="190" cy="270" r="15" fill="#f4a261" stroke="#7a3e00" stroke-width="3"/>
+          <circle cx="490" cy="85" r="15" fill="#f4a261" stroke="#7a3e00" stroke-width="3"/>
+          <text x="118" y="277" font-size="17" fill="#0b3a62">selo HP</text>
+          <text x="510" y="91" font-size="17" fill="#0b3a62">selo LP</text>
+          <path d="M175 270 C100 270 105 345 255 345" fill="none" stroke="#2c78b9" stroke-width="5"/>
+          <path d="M505 85 C625 85 630 345 465 345" fill="none" stroke="#2c78b9" stroke-width="5"/>
+          <rect x="255" y="320" width="210" height="55" rx="12" fill="#fff" stroke="#0b3a62" stroke-width="4"/>
+          <text x="360" y="353" text-anchor="middle" font-size="18" fill="#0b3a62">transmissor DP</text>
+          <line x1="540" y1="85" x2="540" y2="270" stroke="#657b8a" stroke-width="2" stroke-dasharray="8 6"/>
+          <text x="553" y="184" font-size="18" fill="#34495e">H</text>
+          <text x="18" y="35" font-size="16" fill="#34495e">Esquema conceitual — não representa dimensões nem orientação obrigatória.</text>
+        </svg>
+        <figcaption>Em um tanque fechado, o lado HP recebe a pressão inferior e o lado LP a pressão superior. A diferença de altura entre os selos cria uma coluna permanente de fluido de enchimento.</figcaption>
+      </figure>
 
-      <h2>Temperatura e thermal effect</h2>
-      <p>Temperatura é um dos pontos mais sensíveis em sistemas com capilar. O fluido de enchimento se expande e muda de propriedades com a temperatura; capilares expostos a condições térmicas diferentes podem produzir drift e deslocamento de zero.</p>
-      <p>Em processo quente ou ambiente muito frio, o tipo de fluido de enchimento, o comprimento e o diâmetro do capilar, o tamanho do diafragma e a montagem precisam ser selecionados com base na documentação do fabricante.</p>
+      <h2>Balanço hidrostático: onde entram LRV e URV</h2>
+      <p>Adote a convenção <strong>DP = HP − LP</strong>. Para dois selos em um tanque fechado, com o selo LP acima do selo HP por uma distância vertical <em>H</em>, uma forma simplificada do balanço é:</p>
+      <div class="equation" aria-label="Equação da pressão diferencial">DP = ρ<sub>p</sub> · g · h − ρ<sub>f</sub> · g · H</div>
+      <p>Nessa expressão, <em>ρ<sub>p</sub></em> é a densidade do líquido de processo, <em>h</em> é o nível acima do selo inferior, <em>ρ<sub>f</sub></em> é a densidade do fluido de enchimento, <em>g</em> é a aceleração da gravidade e <em>H</em> é a distância vertical entre os selos. A pressão do espaço de vapor aparece nos dois lados e se cancela no modelo ideal.</p>
+      <p>Com tanque vazio no ponto definido como 0%, <em>h = 0</em>. Portanto, <strong>LRV = −ρ<sub>f</sub>gH</strong>. No nível máximo, <em>h = h<sub>máx</sub></em>, então <strong>URV = ρ<sub>p</sub>gh<sub>máx</sub> − ρ<sub>f</sub>gH</strong>. O span é URV − LRV e, neste modelo, equivale a <em>ρ<sub>p</sub>gh<sub>máx</sub></em>. Um LRV ou URV negativo não significa, por si só, ligação invertida: pode ser a consequência correta da perna preenchida do lado LP.</p>
+      <p>O modelo pressupõe densidades uniformes, tomadas desobstruídas, pressão de vapor comum aos dois pontos, lados HP/LP corretamente ligados e ausência de efeitos térmicos adicionais. Se houver interface entre dois líquidos, geometria diferente, selo único, transmissor com portas em alturas distintas ou compensação especial, o balanço deve ser refeito para a instalação real.</p>
 
-      <h2>Tempo de resposta</h2>
-      <p>Capilar mais longo pode aumentar o tempo de resposta, especialmente com fluido de enchimento mais viscoso e em baixa temperatura. O comportamento também depende do volume interno, rigidez do diafragma e configuração do conjunto.</p>
-      <p>Em uma malha de controle rápida, esse atraso precisa ser considerado antes da compra; em uma medição de inventário ou nível lento, a mesma resposta pode ser perfeitamente aceitável.</p>
+      <h2>Exemplo resolvido: tanque fechado com dois selos</h2>
+      <p>Considere uma faixa de nível de 0 a 3,00 m, densidade de processo de 900 kg/m³, densidade nominal do fluido de enchimento de 960 kg/m³ e <em>g = 9,80665 m/s²</em>. Use pascal como unidade intermediária; 1 kPa corresponde a 1.000 Pa.</p>
+      <table class="data-table">
+        <thead><tr><th>Grandeza</th><th>Valor didático</th><th>Observação</th></tr></thead>
+        <tbody><tr><td>H e h<sub>máx</sub></td><td>3,00 m</td><td>Distância vertical entre os selos e faixa útil deste exemplo.</td></tr><tr><td>ρ<sub>p</sub></td><td>900 kg/m³</td><td>Densidade assumida constante para o cálculo.</td></tr><tr><td>ρ<sub>f</sub></td><td>960 kg/m³</td><td>Valor nominal apenas para demonstrar a coluna do capilar.</td></tr></tbody>
+      </table>
+      <div class="equation">LRV = −960 × 9,80665 × 3,00 = −28.243 Pa = −28,243 kPa</div>
+      <div class="equation">Span = 900 × 9,80665 × 3,00 = 26.478 Pa = 26,478 kPa</div>
+      <div class="equation">URV = LRV + Span = −28,243 + 26,478 = −1,765 kPa</div>
+      <p>Para <em>h = 1,80 m</em>, correspondente a 60% da altura:</p>
+      <div class="equation">DP = (900 × 9,80665 × 1,80) − 28.243 = −12.357 Pa = −12,357 kPa</div>
+      <div class="equation">% = (DP − LRV) ÷ Span × 100 = 60,0%</div>
+      <p>O resultado é internamente coerente mesmo com toda a faixa de DP abaixo de zero. Na prática, confirme a convenção do instrumento, as alturas entre centros dos diafragmas, a densidade de projeto em temperatura aplicável e se o transmissor suporta a faixa e a pressão estática. Arredondamentos explicam diferenças de poucos pascals.</p>
 
-      <h2>Boas práticas de instalação</h2>
-      <ul><li>Usar comprimentos de capilar equivalentes em sistemas diferenciais quando a solução de projeto assim exigir.</li><li>Evitar que apenas um capilar receba sol direto ou fonte térmica diferente do outro.</li><li>Selecionar fluido de enchimento compatível com temperatura, pressão, vácuo e aplicação.</li><li>Confirmar material e revestimento do diafragma conforme compatibilidade química.</li><li>Registrar as alturas reais dos selos e do transmissor para conferir LRV/URV.</li><li>Respeitar raio mínimo de curvatura e método de fixação do capilar.</li><li>Não cortar, abrir ou tentar completar o fluido de enchimento em campo.</li></ul>
+      <h2>Temperatura: dois mecanismos de erro</h2>
+      <p>A temperatura pode alterar o volume e a densidade do fluido de enchimento. A variação de volume pode deslocar os diafragmas e produzir pressão adicional; a variação de densidade muda a contribuição hidrostática da coluna do capilar. Ambos podem aparecer como deslocamento de zero. A documentação da Yokogawa descreve esses dois mecanismos, enquanto o manual da Emerson diferencia o efeito do selo e o efeito da coluna.</p>
+      <p>Um sistema balanceado costuma usar selos iguais e comprimentos de capilar iguais, expostos de modo semelhante, para que parte dos efeitos se cancele. Isso não elimina automaticamente a mudança de densidade da coluna entre as alturas dos selos. Há também arranjos assimétricos calculados pelo fabricante para contrabalançar efeitos; por isso, “igualar” capilares em campo sem conferir o projeto não é uma correção válida.</p>
+      <p>Sol em apenas um capilar, isolamento térmico desigual, proximidade de vapor ou processo quente e mudanças amplas de temperatura ambiente merecem registro. Não se deve converter uma observação de campo em correção fixa sem comparar condições, dados do fabricante e repetibilidade.</p>
 
-      <h2>Diagnóstico antes de ajustar o transmissor</h2>
-      <ol><li>Compare o range configurado com a geometria real da instalação.</li><li>Inspecione capilares quanto a dano, esmagamento, dobra excessiva ou diferença forte de exposição térmica.</li><li>Verifique condição dos diafragmas e conexão ao processo conforme procedimento seguro.</li><li>Compare erro com temperatura ambiente/processo para identificar possível efeito térmico.</li><li>Somente depois avalie trim ou recalibração do transmissor.</li></ol>
+      <h2>Tempo de resposta e escolha do fluido de enchimento</h2>
+      <p>Segundo a documentação técnica da WIKA, o tempo de resposta depende, entre outros fatores, do volume de controle do instrumento, do comprimento e da seção do capilar e da viscosidade do fluido de enchimento. Capilar mais longo e fluido mais viscoso tendem a tornar a resposta mais lenta; a temperatura também altera a viscosidade.</p>
+      <p>O fluido de enchimento deve ser avaliado para temperatura de processo e ambiente, pressão absoluta ou vácuo, compatibilidade requerida e limites do conjunto. Um fluido adequado a alta temperatura pode ficar viscoso demais em ambiente frio. Em vácuo, pressão e temperatura afetam a margem contra vaporização do preenchimento. Não há uma combinação universal: use os dados do modelo e a análise do fabricante.</p>
+
+      <h2>Checklist de especificação e instalação</h2>
+      <ul>
+        <li>Defina pressão mínima, máxima e estática, inclusive vácuo e partidas.</li>
+        <li>Registre temperaturas de processo e ambiente nos extremos, não apenas o valor normal.</li>
+        <li>Confirme densidade e sua variação na faixa operacional.</li>
+        <li>Informe as distâncias verticais e o comprimento necessário de cada capilar.</li>
+        <li>Selecione material, revestimento, conexão e diâmetro do diafragma conforme compatibilidade e desempenho.</li>
+        <li>Confira fluido de enchimento, limites térmicos, tempo de resposta e erro total fornecidos para o conjunto.</li>
+        <li>Planeje suportação sem esmagar o capilar e respeite o raio mínimo de curvatura do fabricante.</li>
+        <li>Evite exposição térmica desigual; mantenha o arranjo previsto no projeto.</li>
+        <li>Registre identificação, lado HP/LP, alturas e range calculado antes do comissionamento.</li>
+      </ul>
+
+      <h2>Diagnóstico: não comece pelo trim</h2>
+      <ol>
+        <li><strong>Confirme o sintoma.</strong> Compare indicação local, sistema de controle, corrente/sinal e nível de referência disponível, anotando temperatura e condição de processo.</li>
+        <li><strong>Revise o balanço.</strong> Verifique unidades, sinal, LRV, URV, densidades, alturas entre centros dos selos e conexão HP/LP.</li>
+        <li><strong>Inspecione sem violar o conjunto.</strong> Procure dobra acentuada, esmagamento, corrosão, vazamento, dano no diafragma, fixação inadequada e aquecimento desigual.</li>
+        <li><strong>Separe zero de span.</strong> Um desvio aproximadamente constante sugere investigar offset; variação proporcional, não linearidade ou lentidão pedem outras hipóteses.</li>
+        <li><strong>Correlacione com temperatura.</strong> Se o erro acompanha ciclos térmicos, compare o arranjo e os dados do sistema com a documentação do fabricante.</li>
+        <li><strong>Só então avalie ajuste.</strong> Um trim pode mascarar erro de range, montagem ou dano. Execute qualquer intervenção conforme procedimento, isolamento e condição segura da planta.</li>
+      </ol>
+      <p>Sinais como vazamento do preenchimento, diafragma deformado, resposta que não se repete ou capilar danificado exigem avaliação do conjunto. Não corte, abra, emende nem tente completar o fluido em campo fora de processo autorizado pelo fabricante.</p>
 
       <h2>Ferramentas e conteúdos relacionados</h2>
-      <div class="calc-actions"><a class="mini-btn dark" href="calculadora-selo-remoto-capilar-dp.html"><i class="fas fa-calculator"></i> Calculadora selo remoto / capilar</a><a class="mini-btn" href="calculadora-dp-nivel-tanque-fechado.html">DP nível tanque fechado</a><a class="mini-btn" href="blog-linha-impulso-transmissor-dp.html">Impulse line DP</a><a class="mini-btn" href="blog-calibracao-transmissor-nivel-dp.html">Calibração nível DP</a><a class="mini-btn" href="ferramentas-processo-vazao-nivel.html"><i class="fas fa-toolbox"></i> Flow / Nível / Pressão</a></div>
+      <div class="calc-actions"><a class="mini-btn dark" href="calculadora-selo-remoto-capilar-dp.html"><i class="fas fa-calculator"></i> Calculadora selo remoto / capilar</a><a class="mini-btn" href="calculadora-dp-nivel-tanque-fechado.html">DP nível tanque fechado</a><a class="mini-btn" href="blog-linha-impulso-transmissor-dp.html">Linha de impulso DP</a><a class="mini-btn" href="blog-calibracao-transmissor-nivel-dp.html">Transmissor de nível DP</a><a class="mini-btn" href="blog-pressao-hidrostatica-densidade.html">Pressão, densidade e nível</a></div>
 
-      <h2>Referência técnica</h2>
-      <p>Consulte a documentação do fabricante do sistema de selo remoto para limites de temperatura, vácuo, fluido de enchimento, montagem, tempo de resposta e efeito térmico. Os parâmetros variam entre modelos e configurações.</p>
+      <h2>Referências primárias consultadas</h2>
+      <ul>
+        <li><a href="https://www.emerson.com/is/content/emerson/en/measurement-instrumentation/technical/products/dp-level/documents/doc-rosemount-dp-00809-0100-4002.pdf" target="_blank" rel="noopener noreferrer">Emerson — Rosemount Differential Pressure Level Transmitters and Diaphragm Seal Systems</a>: balanço, sistemas balanceados, efeito térmico, seleção e instalação.</li>
+        <li><a href="https://web-material3.yokogawa.com/2/35808/files/FG-P-20240315.pdf" target="_blank" rel="noopener noreferrer">Yokogawa — Field Instruments Field Guide</a>: efeitos de volume e densidade do fluido de enchimento sobre o zero.</li>
+        <li><a href="https://www.wika.com/media/Technical-information/English/ds_in0006_en_co.pdf" target="_blank" rel="noopener noreferrer">WIKA — Diaphragm seals and diaphragm seal systems</a>: construção, fluido de enchimento, temperatura e fatores de tempo de resposta.</li>
+        <li><a href="https://www.bipm.org/en/publications/si-brochure/" target="_blank" rel="noopener noreferrer">BIPM — SI Brochure</a>: unidades do Sistema Internacional usadas nos exemplos.</li>
+      </ul>
+
+      <h2>Como a ALOGY pode apoiar</h2>
+      <p>A ALOGY pode apoiar, conforme escopo confirmado, em avaliação, inspeção, manutenção, configuração e conferência funcional de instrumentação, válvulas, atuadores e posicionadores, com instrumentista sob demanda em Americana e na Região Metropolitana de Campinas. Calibração, ensaio, rastreabilidade ou documentação específica dependem da confirmação prévia de recursos, métodos e eventuais parceiros na proposta.</p>
 
       <h2>Aviso técnico</h2>
-      <p>Este conteúdo é informativo. Seleção e alteração de diaphragm seals exigem compatibilidade de materiais, condições reais de processo, pressão/temperatura, documentação do fabricante e procedimento aplicável. O conjunto selado não deve ser aberto ou modificado em campo fora das instruções do fabricante.</p>
+      <p>Este conteúdo é informativo e não substitui engenharia de aplicação, manual do modelo, análise de risco ou procedimento da instalação. Seleção e intervenção em selos exigem condições reais de processo, compatibilidade de materiais, limites de pressão e temperatura, isolamento adequado e autorização aplicável.</p>
 
       <section class="faq">
         <h2>Perguntas frequentes</h2>
-        <details><summary>Quando usar selo remoto?</summary><p>Quando o fluido não deve chegar ao transmissor por corrosão, viscosidade, temperatura, requisitos sanitários, incrustação ou cristalização.</p></details>
-        <details><summary>Capilar longo atrasa resposta?</summary><p>Pode atrasar, especialmente em baixa temperatura ou com fluido de enchimento mais viscoso. Consulte os dados do conjunto.</p></details>
-        <details><summary>Preciso compensar o zero?</summary><p>O range deve considerar a coluna do fluido de enchimento e a diferença de elevação entre os selos e o transmissor.</p></details>
-        <details><summary>Posso cortar o capilar?</summary><p>Não. O capilar faz parte do sistema selado e não deve ser cortado, aberto ou alterado em campo fora do procedimento do fabricante.</p></details>
+        <details><summary>Quando um selo remoto é útil?</summary><p>Ele pode isolar o instrumento de fluidos corrosivos, viscosos, quentes, incrustantes, cristalizantes ou de aplicações com requisitos higiênicos. A seleção depende das condições e da documentação do fabricante.</p></details>
+        <details><summary>Capilar longo aumenta o tempo de resposta?</summary><p>Pode aumentar. Comprimento e seção do capilar, volume do instrumento, viscosidade do fluido de enchimento e temperatura influenciam a resposta.</p></details>
+        <details><summary>Por que o LRV pode ser negativo?</summary><p>A coluna do fluido de enchimento entre as alturas dos selos pode superar a pressão do líquido no ponto mínimo. O sinal decorre de HP menos LP e da geometria, não necessariamente de ligação incorreta.</p></details>
+        <details><summary>Posso cortar ou completar o capilar em campo?</summary><p>Não. O capilar integra um sistema selado e preenchido pelo fabricante. Não deve ser cortado, aberto ou alterado fora do procedimento e dos recursos autorizados pelo fabricante.</p></details>
       </section>
     </article>
   </main>
