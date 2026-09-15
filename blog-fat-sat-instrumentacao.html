@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FAT e SAT em instrumentação e automação industrial | ALOGY</title>
-  <meta name="description" content="Veja como estruturar testes de aceitação em fábrica e em campo para reduzir retrabalho no comissionamento." />
+  <title>FAT e SAT em Instrumentação: Plano, Evidências e Pendências | ALOGY</title>
+  <meta name="description" content="Entenda como estruturar FAT e SAT em instrumentação e automação com matriz de testes, critérios de aceite, evidências, punch list, reteste e limites para SIS." />
   <meta name="robots" content="index,follow" />
   <meta name="theme-color" content="#2C78B9" />
   <link rel="canonical" href="https://www.alogy.com.br/blog-fat-sat-instrumentacao.html" />
@@ -19,89 +19,164 @@
   <link rel="stylesheet" href="style.css?v=20260722-layout-original-uppercase-mobilefix" />
   <script src="app.js" defer></script>
   <meta property="og:locale" content="pt_BR" />
-  <meta property="og:type" content="website" />
+  <meta property="og:type" content="article" />
   <meta property="og:site_name" content="ALOGY Engenharia" />
-  <meta property="og:title" content="FAT e SAT em instrumentação e automação industrial" />
-  <meta property="og:description" content="Veja como estruturar testes de aceitação em fábrica e em campo para reduzir retrabalho no comissionamento." />
+  <meta property="og:title" content="FAT e SAT em Instrumentação: Plano, Evidências e Pendências" />
+  <meta property="og:description" content="Método prático para estruturar FAT e SAT com requisitos, critérios de aceite, evidências, punch list e reteste." />
   <meta property="og:url" content="https://www.alogy.com.br/blog-fat-sat-instrumentacao.html" />
   <meta property="og:image" content="https://www.alogy.com.br/favicon-512x512.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","name":"FAT e SAT em instrumentação e automação industrial","url":"https://www.alogy.com.br/blog-fat-sat-instrumentacao.html","description":"Veja como estruturar testes de aceitação em fábrica e em campo para reduzir retrabalho no comissionamento.","publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/","logo":{"@type":"ImageObject","url":"https://www.alogy.com.br/logo-alogy.webp"}},"dateModified":"2026-07-21","author":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"},"headline":"FAT e SAT em instrumentação e automação industrial","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.alogy.com.br/blog-fat-sat-instrumentacao.html"},"image":"https://www.alogy.com.br/favicon-512x512.png"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"FAT e SAT em Instrumentação: Plano, Evidências e Pendências","description":"Entenda como estruturar FAT e SAT em instrumentação e automação com matriz de testes, critérios de aceite, evidências, punch list, reteste e limites para SIS.","datePublished":"2026-07-21","dateModified":"2026-09-14","author":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"},"publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/","logo":{"@type":"ImageObject","url":"https://www.alogy.com.br/logo-alogy.webp"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://www.alogy.com.br/blog-fat-sat-instrumentacao.html"},"inLanguage":"pt-BR","image":"https://www.alogy.com.br/favicon-512x512.png"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"FAT e SAT são o mesmo teste?","acceptedAnswer":{"@type":"Answer","text":"Não. O FAT é realizado antes da instalação definitiva para demonstrar, em ambiente controlado, que o sistema atende aos requisitos aplicáveis. O SAT é realizado no local instalado e confirma o comportamento com a infraestrutura real de campo, conforme o plano de teste do projeto."}},{"@type":"Question","name":"Um FAT aprovado elimina a necessidade de SAT?","acceptedAnswer":{"@type":"Answer","text":"Não. Cabos, aterramento, alimentação, utilidades, redes, instrumentos de campo, sentido de atuação e integrações reais podem introduzir condições que não existem no ambiente de fábrica."}},{"@type":"Question","name":"FAT ou SAT genérico substitui a validação de SIS?","acceptedAnswer":{"@type":"Answer","text":"Não. Sistemas instrumentados de segurança precisam seguir o ciclo de vida, a SRS, os procedimentos e os critérios de validação aplicáveis. Um checklist genérico de FAT ou SAT não substitui a validação funcional de um SIS."}}]}</script>
   <style>
     .mini-help{color:var(--muted);font-size:.92rem;line-height:1.55;margin-top:8px}
     .faq details{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:14px;padding:14px;margin-top:10px;box-shadow:0 6px 16px rgba(0,0,0,.04)}
     .faq summary{cursor:pointer;font-weight:900;color:#0b3a62}.faq p{margin:10px 0 0;color:var(--muted)}
-    .calc-result.two{grid-template-columns:repeat(2,1fr)} .calc-result.three{grid-template-columns:repeat(3,1fr)} .calc-result.four{grid-template-columns:repeat(4,1fr)}
-    .result-box strong.small{font-size:1.05rem}.pill-ok{color:#146c2e;font-weight:900}.pill-warn{color:#a65f00;font-weight:900}.pill-bad{color:#a10000;font-weight:900}.pill-info{color:#0b3a62;font-weight:900}
-    .textarea-lines{min-height:130px;font-family:monospace;white-space:pre}
-    @media(max-width:900px){.calc-result.two,.calc-result.three,.calc-result.four{grid-template-columns:1fr}}
-    @media print{header,.social-floating,.fab-wrap,.cta-bar,footer,.calc-actions,.tools-hero .btn,.no-print{display:none!important}body{background:#fff}.container{max-width:100%;padding:0}.calc-card,.tools-hero{box-shadow:none;border:1px solid #ddd}.calc-layout{display:block}.calc-card{margin:12px 0}.calc-table th{background:#eee!important;color:#111!important}}
+    .test-table{width:100%;border-collapse:collapse;margin:18px 0;font-size:.96rem}.test-table th,.test-table td{border:1px solid rgba(0,0,0,.12);padding:10px;vertical-align:top;text-align:left}.test-table th{background:rgba(0,107,177,.08);color:#0b3a62}.test-table td{background:#fff}
+    .post-highlight{background:rgba(0,107,177,.08);border:1px solid rgba(0,107,177,.18);border-radius:14px;padding:16px;margin:20px 0}
+    @media(max-width:760px){.test-table{display:block;overflow-x:auto;white-space:nowrap}}
+    @media print{header,.social-floating,.fab-wrap,.cta-bar,footer,.calc-actions,.tools-hero .btn,.no-print{display:none!important}body{background:#fff}.container{max-width:100%;padding:0}.calc-card{box-shadow:none;border:1px solid #ddd}}
   </style>
   <!-- Google AdSense: carregado somente em páginas editoriais monetizáveis. A exibição e os formatos são controlados no painel do AdSense. -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5586837114309500" crossorigin="anonymous"></script>
 </head>
 <body>
   <header>
-    <div class="container headbar"><a href="/" class="logo-wrapper" aria-label="Voltar para o início"><img src="logo-alogy.webp" alt="ALOGY Engenharia"  width="878"  height="308"  decoding="async" /></a>
-<button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menu"><i class="fas fa-bars"></i></button></div>
-    <nav class="desktop" aria-label="Menu principal"><div class="container navlinks"><a href="/">Início</a><a href="industrial.html">Serviços</a><a href="cases.html">Projetos</a><a href="/guia/">Guia</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></div></nav>
-    <nav class="mobile" aria-label="Menu mobile"><a href="/">Início</a><a href="industrial.html">Serviços</a><a href="cases.html">Projetos</a><a href="/guia/">Guia</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></nav>
+    <div class="container headbar"><a href="/" class="logo-wrapper" aria-label="Voltar para o início"><img src="logo-alogy.webp" alt="ALOGY Engenharia" width="878" height="308" decoding="async" /></a>
+    <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menu"><i class="fas fa-bars"></i></button></div>
+    <nav class="desktop" aria-label="Menu principal"><div class="container navlinks"><a href="/">Início</a><a href="industrial.html">Serviços</a><a href="cases.html">Projetos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></div></nav>
+    <nav class="mobile" aria-label="Menu mobile"><a href="/">Início</a><a href="industrial.html">Serviços</a><a href="cases.html">Projetos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></nav>
   </header>
   <div class="social-floating" aria-label="Redes sociais"><a href="https://www.linkedin.com/company/alogyengenharia" class="linkedin" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a><a href="https://www.instagram.com/alogyengenharia" class="instagram" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="https://www.facebook.com/alogyengenharia" class="facebook" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><a href="https://www.youtube.com/@alogyengenharia" class="youtube" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a><a href="https://www.tiktok.com/@alogyengenharia" class="tiktok" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fab fa-tiktok"></i></a></div>
-  <div class="fab-wrap" aria-label="Ações rápidas"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1%21%20Vim%20pelas%20ferramentas%20da%20ALOGY.%20Gostaria%20de%20atendimento." target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
-  <main class="container" style="margin-top:18px">
-    <div style="margin-bottom:14px;display:flex;gap:10px;flex-wrap:wrap"><a class="floating-back-tools" href="blog.html"><i class="fas fa-arrow-left"></i> Voltar ao Blog</a><a class="floating-back-tools" href="checklist-fat-sat-instrumentacao.html"><i class="fas fa-calculator"></i> Abrir ferramenta</a></div>
-    <article class="calc-card"><h1>FAT e SAT em instrumentação e automação industrial</h1>
-<p>Veja como estruturar testes de aceitação em fábrica e em campo para reduzir retrabalho no comissionamento.</p>
-<p data-alogy-content-meta class="muted"><strong>Conteúdo técnico:</strong> ALOGY Engenharia · <strong>Atualizado em:</strong> 21/07/2026</p>
-<h2>FAT e SAT não são o mesmo teste</h2>
-<p>O FAT é executado antes do envio ou da instalação definitiva, normalmente em fábrica, oficina de integração ou bancada. Ele verifica documentação, montagem, alimentação, lógica, telas, comunicação e respostas simuladas em ambiente controlado. O SAT ocorre no local de instalação e confirma se o sistema funciona com cabos, instrumentos, utilidades, redes e condições reais da planta.</p>
-<p>Um FAT bem feito reduz retrabalho, mas não elimina o SAT. Vários problemas só aparecem depois da instalação: polaridade invertida, queda de tensão, aterramento, identificação de cabos, sentido de válvulas, escala divergente, atraso de processo e interferência entre sistemas.</p>
-<h2>Como preparar uma matriz de testes</h2>
-<ul>
-  <li><strong>Objeto:</strong> painel, skid, transmissor, válvula, CLP, IHM, rede ou sistema supervisório.</li>
-  <li><strong>Requisito:</strong> documento que define o comportamento esperado.</li>
-  <li><strong>Método:</strong> inspeção, simulação, injeção de sinal, acionamento ou teste funcional.</li>
-  <li><strong>Critério de aceitação:</strong> resultado objetivo, faixa, tolerância ou estado esperado.</li>
-  <li><strong>Evidência:</strong> valor medido, captura de tela, foto, relatório ou registro de tendência.</li>
-  <li><strong>Responsáveis:</strong> quem executa, acompanha, aceita e trata pendências.</li>
-</ul>
-<h2>Pontos mínimos para instrumentação</h2>
-<p>Para cada TAG, confira identificação, folha de dados, faixa, unidade, alimentação, ligação, configuração, sentido de ação, alarmes e documentação. Em malhas analógicas, simule pontos de 0%, 25%, 50%, 75% e 100% quando o procedimento permitir. Em válvulas, verifique comando, posição, feedback, fim de curso e posição de falha. Em redes, registre endereço, versão, diagnóstico e comunicação com perda e retorno de energia.</p>
-<h2>Como controlar pendências</h2>
-<p>Uma pendência deve ter descrição verificável, responsável, prioridade, prazo e evidência de reteste. Não misture item não testado com item reprovado. Alterações aceitas durante FAT ou SAT precisam retornar para desenhos, listas de I/O, lógica, telas, manuais e cópias de segurança; caso contrário, o sistema entregue fica diferente da documentação.</p>
-<h2>Falhas frequentes</h2>
-<ul>
-  <li>testar somente a lógica interna sem verificar o caminho completo do sinal;</li>
-  <li>aceitar telas e alarmes sem conferir unidade, faixa e prioridade;</li>
-  <li>não testar perda de alimentação, comunicação ou ar de instrumento;</li>
-  <li>encerrar o teste com desvios sem responsável e prazo;</li>
-  <li>alterar software durante o teste sem controle de versão.</li>
-</ul>
-<h2>Referências para o plano de teste</h2>
-<p>Use especificação funcional, matriz causa e efeito, lista de I/O, diagramas de malha, folhas de dados, manuais dos fabricantes e procedimentos internos. Para sistemas de segurança ou áreas classificadas, aplique também os requisitos específicos e a edição vigente das normas adotadas pela organização.</p>
-<h2>Ferramenta e conteúdos relacionados</h2>
-<p>Para aprofundar FAT e SAT em instrumentação e automação industrial, use a ferramenta relacionada e confronte o resultado com os materiais complementares listados abaixo.</p>
-<div class="calc-actions">
-  <a class="mini-btn dark" href="checklist-fat-sat-instrumentacao.html"><i class="fas fa-calculator"></i> Abrir ferramenta</a>
-  <a class="mini-btn" href="ferramentas.html"><i class="fas fa-toolbox"></i> Ver todas as ferramentas</a>
-</div>
-<ul class="mini-help" style="margin-top:12px">
-  <li><a href="checklist-comissionamento-industrial.html">Checklist de Comissionamento Industrial</a> <span class="mini-help">(ferramenta)</span></li>
-  <li><a href="calculadora-erro-total-malha-instrumentacao.html">Calculadora de Erro Total de Malha</a> <span class="mini-help">(ferramenta)</span></li>
-  <li><a href="calculadora-tubo-pneumatico-instrumentacao.html">Calculadora de Tubo Pneumático</a> <span class="mini-help">(ferramenta)</span></li>
-  <li><a href="calculadora-bateria-ups-24vcc.html">Calculadora de Bateria UPS 24 Vcc para CLP e Instrumentos</a> <span class="mini-help">(ferramenta)</span></li>
-  <li><a href="blog-conexoes-pneumaticas-instrumentacao.html">Conexões Pneumáticas em Instrumentação</a> <span class="mini-help">(artigo)</span></li>
-  <li><a href="blog-instrumentacao-industrial.html">Instrumentação Industrial na Automação</a> <span class="mini-help">(artigo)</span></li>
-</ul>
+  <div class="fab-wrap" aria-label="Ações rápidas"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1%21%20Vim%20pelo%20artigo%20de%20FAT%20e%20SAT%20da%20ALOGY.%20Gostaria%20de%20atendimento." target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
 
-<h2>Aviso técnico</h2>
-<p>Este artigo sobre FAT e SAT em instrumentação e automação industrial é educativo e apoia pré-dimensionamento e conferência técnica. Em aplicações críticas, compra final ou alteração permanente da instalação, valide o cenário com documentação do fabricante, condições reais de campo, requisitos aplicáveis e profissional habilitado.</p></article>
+  <main class="container" style="margin-top:18px">
+    <div style="margin-bottom:14px;display:flex;gap:10px;flex-wrap:wrap"><a class="floating-back-tools" href="blog.html"><i class="fas fa-arrow-left"></i> Voltar ao Blog</a><a class="floating-back-tools" href="checklist-fat-sat-instrumentacao.html"><i class="fas fa-clipboard-check"></i> Abrir checklist</a></div>
+    <article class="calc-card">
+      <h1>FAT e SAT em instrumentação: como estruturar o teste, a evidência e o aceite</h1>
+      <p>FAT e SAT só geram valor quando o teste parte de um requisito verificável, possui critério de aceite definido, registra evidência e deixa claro o que foi aprovado, reprovado, não testado ou alterado. Um checklist genérico ajuda a organizar o trabalho, mas não substitui a especificação do projeto.</p>
+      <p data-alogy-content-meta class="muted"><strong>Conteúdo técnico:</strong> ALOGY Engenharia · <strong>Atualizado em:</strong> 14/09/2026</p>
+
+      <div class="post-highlight"><strong>Em uma frase:</strong> FAT demonstra, antes da instalação definitiva, o atendimento aos requisitos que podem ser testados em ambiente controlado; SAT confirma no local instalado o que depende da infraestrutura, dispositivos e integrações reais do projeto.</div>
+
+      <h2>FAT, FIT, SAT e SIT: o que muda na edição atual da IEC 62381</h2>
+      <p>A referência internacional específica para esse tema é a <strong>IEC 62381:2024</strong>, terceira edição, publicada em 30 de julho de 2024. Ela trata de factory acceptance test (FAT), factory integration test (FIT), site acceptance test (SAT) e site integration test (SIT) para sistemas de automação na indústria de processo. A edição de 2024 incorporou tecnologias atuais, adicionou o FIT opcional e reorganizou os anexos em checklists de atividades que podem apoiar planos específicos de projeto.</p>
+      <p>Isso reforça uma ideia importante: não existe uma sequência única que sirva para qualquer planta. O plano precisa ser adaptado ao escopo contratado, à arquitetura, aos documentos de projeto e às responsabilidades acordadas entre proprietário, comprador, integrador e fornecedor.</p>
+
+      <h2>O que o FAT consegue provar — e o que ele não consegue</h2>
+      <p>No FAT, o ambiente é controlado. É possível inspecionar painéis, conferir versões, energização, hardware, lógica, telas, alarmes, permissivos, sequências, comunicação e respostas a sinais simulados. Quando o escopo inclui instrumentos ou skids montados, também é possível conferir configuração, identificação e determinadas funções locais.</p>
+      <p>Por outro lado, um FAT não consegue reproduzir completamente queda de tensão no cabo instalado, aterramento real, roteamento, interferência eletromagnética, qualidade do ar de instrumentos, montagem mecânica de sensores, sentido físico de válvulas, cabeamento de campo ou comportamento do processo. Esses pontos justificam o SAT e, quando aplicável, testes de integração no local.</p>
+
+      <h2>O que deve entrar no SAT</h2>
+      <p>O SAT deve atacar justamente as interfaces que só existem depois da instalação. Entre os itens mais comuns estão alimentação real, continuidade e polaridade, endereçamento, comunicação com equipamentos instalados, leitura de instrumentos, escalas no CLP/DCS, comandos de válvulas, retornos de posição, alarmes, intertravamentos aprovados para teste, sincronismo entre sistemas e recuperação após falha de alimentação ou comunicação quando isso estiver previsto no procedimento.</p>
+      <p>O objetivo não é repetir mecanicamente todo o FAT. É confirmar que o sistema entregue e instalado continua atendendo aos requisitos aplicáveis no ambiente real e que as alterações feitas entre fábrica e campo foram incorporadas aos documentos e versões corretas.</p>
+
+      <h2>A matriz de teste começa pelo requisito</h2>
+      <p>Um teste reproduzível deve responder seis perguntas: <strong>o que</strong> está sendo verificado, <strong>qual documento</strong> exige aquele comportamento, <strong>qual condição inicial</strong> é necessária, <strong>como</strong> o teste será executado, <strong>qual resultado</strong> será aceito e <strong>qual evidência</strong> ficará registrada.</p>
+      <p>Evite critérios vagos como “funcionou”, “normal” ou “OK”. Um bom critério aponta para um requisito objetivo: faixa de engenharia, estado lógico, texto esperado, tempo definido pelo projeto, versão aprovada, endereço de rede, sentido de ação ou resposta estabelecida na especificação.</p>
+
+      <h2>Modelo de matriz de FAT/SAT</h2>
+      <table class="test-table">
+        <thead><tr><th>Campo</th><th>Exemplo</th><th>Por que registrar</th></tr></thead>
+        <tbody>
+          <tr><td>ID do teste</td><td>FAT-AI-017</td><td>Permite rastrear execução, reteste e evidência.</td></tr>
+          <tr><td>Objeto</td><td>FT-101 / canal AI-07</td><td>Define exatamente qual TAG ou função foi testado.</td></tr>
+          <tr><td>Requisito</td><td>Lista de I/O rev. C + folha de dados</td><td>Evita inventar critério durante o teste.</td></tr>
+          <tr><td>Pré-condição</td><td>Canal energizado e escala carregada</td><td>Reduz resultados inválidos por preparação incompleta.</td></tr>
+          <tr><td>Método</td><td>Aplicar sinais definidos no procedimento</td><td>Torna o teste repetível.</td></tr>
+          <tr><td>Esperado</td><td>Valor e unidade conforme escala aprovada</td><td>Separa expectativa de opinião.</td></tr>
+          <tr><td>Obtido</td><td>Registrar leitura observada</td><td>Cria evidência objetiva.</td></tr>
+          <tr><td>Status</td><td>Aprovado / reprovado / não testado</td><td>Evita misturar pendência com reprovação.</td></tr>
+        </tbody>
+      </table>
+
+      <h2>Exemplo didático: malha 4–20 mA sem inventar tolerância</h2>
+      <p>Considere um transmissor fictício FT-101 configurado de 0 a 100 m³/h. No FAT, o transmissor de campo pode nem estar disponível; então o procedimento pode prever a simulação do canal analógico para conferir a escala do sistema. Em 4 mA, espera-se o ponto de escala associado a 0%; em 12 mA, 50%; e em 20 mA, 100%, desde que essa seja realmente a configuração aprovada do projeto.</p>
+      <p>O artigo não atribui uma tolerância universal a essas leituras. O critério de aceite precisa vir da documentação aplicável: especificação do projeto, datasheet, precisão do módulo, estratégia de teste ou requisito contratual. O valor observado deve ser registrado junto com a condição do teste e a referência usada.</p>
+
+      <h2>Teste de válvula: comando, posição e feedback são coisas diferentes</h2>
+      <p>Em uma válvula automatizada, não basta observar que a animação da tela mudou. O plano pode precisar separar comando lógico, saída física, solenóide, alimentação pneumática, deslocamento do atuador, posição do elemento final e feedback retornado ao sistema. Cada elo pode falhar independentemente.</p>
+      <p>Quando a posição de falha fizer parte de uma função de segurança ou proteção, não use um procedimento genérico como substituto da validação definida para aquela função. A condição segura para executar qualquer teste deve ser aprovada no projeto e na planta.</p>
+
+      <h2>Alarmes e intertravamentos: teste cada requisito, não só a tela</h2>
+      <p>Alarmes precisam ser confrontados com a fonte do requisito: setpoint aprovado, prioridade, mensagem, atraso, condição de retorno e destino da indicação. Em intertravamentos, a matriz causa e efeito ou a especificação funcional deve definir quais combinações podem ser testadas e qual resposta é esperada.</p>
+      <p>Uma captura de tela isolada pode demonstrar a indicação, mas não necessariamente prova a cadeia completa. Quando o objetivo for testar ponta a ponta, a evidência deve permitir reconstruir o estímulo aplicado, os estados intermediários relevantes e a resposta final observada.</p>
+
+      <h2>Redes e integração: diferencie “comunica” de “está validado”</h2>
+      <p>Uma rede pode responder a ping ou mostrar um equipamento online e ainda assim ter TAGs incorretos, escala divergente, timestamp inadequado, qualidade de dado ruim ou mapeamento inconsistente. O teste de integração deve cobrir os pontos que constam no escopo do projeto, como endereço, identidade do dispositivo, variáveis trocadas, qualidade do dado, comportamento após perda e retorno de comunicação e coerência entre origem e destino.</p>
+      <p>A IEC 62381:2024 diferencia atividades de aceitação e integração justamente para permitir que o plano seja montado conforme a arquitetura real.</p>
+
+      <h2>Controle de versão faz parte do teste</h2>
+      <p>Uma alteração feita durante o FAT ou SAT pode resolver um defeito e ao mesmo tempo criar outro se não for controlada. Registre versão de programa, firmware quando relevante, backup, desenho, lista de I/O, HMI, matriz causa e efeito e demais documentos que mudaram.</p>
+      <p>Ao final, a versão aprovada precisa ser identificável. “Corrigido durante o FAT” não é uma evidência suficiente se ninguém consegue determinar em qual revisão a correção entrou e se o reteste foi realizado.</p>
+
+      <h2>Punch list: reprovado, não testado e pendente não são sinônimos</h2>
+      <p>Uma punch list útil diferencia pelo menos três situações. <strong>Reprovado</strong> significa que o requisito foi testado e o resultado não atendeu ao critério. <strong>Não testado</strong> significa que o teste não foi executado ou ficou bloqueado por pré-condição. <strong>Pendente</strong> pode registrar documentação, correção ou ação necessária para encerramento.</p>
+      <p>Cada item deve ter descrição objetiva, origem, responsável, prioridade acordada, condição de fechamento e evidência de reteste quando houver alteração funcional.</p>
+
+      <h2>Como fechar um desvio sem perder rastreabilidade</h2>
+      <ol>
+        <li>Registre o resultado observado e o requisito não atendido.</li>
+        <li>Classifique o desvio conforme o processo do projeto.</li>
+        <li>Identifique a correção e os documentos ou versões afetados.</li>
+        <li>Defina quais testes precisam ser repetidos por causa da alteração.</li>
+        <li>Execute o reteste sob condições conhecidas.</li>
+        <li>Anexe evidência e identificação da versão final.</li>
+        <li>Obtenha o aceite das partes responsáveis conforme o contrato ou procedimento.</li>
+      </ol>
+
+      <h2>O que não deve ser decidido durante o teste</h2>
+      <p>O momento do FAT/SAT não é o lugar ideal para inventar setpoints, tolerâncias, prioridades de alarme, filosofia de falha ou critérios de segurança. Se a especificação não define um requisito necessário para aceitar o item, isso deve ser tratado como lacuna de engenharia ou de documentação, não resolvido com um valor arbitrário apenas para concluir o teste.</p>
+
+      <h2>FAT/SAT de SIS exige outra camada de rigor</h2>
+      <p>Para sistemas instrumentados de segurança, o ciclo de vida e a validação funcional são tratados pela série IEC 61511. A versão consolidada da IEC 61511-1:2016 + AMD1:2017 continua sendo a referência publicada da Parte 1 e cobre requisitos de especificação, projeto, instalação, operação e manutenção de SIS.</p>
+      <p>Um SAT pode fazer parte do processo, mas não deve ser apresentado como equivalente à validação completa do SIS. A própria documentação de serviços SIS da Emerson observa que a validação de segurança vai além do que muitas organizações chamam de SAT e precisa verificar as SIFs contra a SRS, incluindo a cadeia completa aplicável. Por isso, esta página não fornece critérios de SIL, PFD, proof test ou aceitação de SIF.</p>
+
+      <h2>Checklist prático antes de iniciar</h2>
+      <ul>
+        <li>escopo de teste aprovado e interfaces definidas;</li>
+        <li>documentos e revisões identificados;</li>
+        <li>lista de TAGs, I/O e funções dentro do escopo;</li>
+        <li>pré-condições e recursos de teste disponíveis;</li>
+        <li>critérios de aceite definidos antes da execução;</li>
+        <li>modelo de evidência e punch list acordado;</li>
+        <li>responsáveis por executar, testemunhar, aprovar e corrigir;</li>
+        <li>controle de versão e backup prontos;</li>
+        <li>condições seguras e permissões de trabalho aplicáveis;</li>
+        <li>plano de reteste para alterações funcionais.</li>
+      </ul>
+
+      <h2>Quando usar a ferramenta da ALOGY</h2>
+      <p>O checklist de FAT/SAT da ALOGY pode ajudar a organizar a preparação e o registro, mas deve ser confrontado com a especificação do seu projeto. Use-o como estrutura inicial para não esquecer documentação, TAGs, I/O, lógica, telas, redes, pendências e reteste; depois substitua critérios genéricos pelos requisitos reais do sistema.</p>
+      <div class="calc-actions">
+        <a class="mini-btn dark" href="checklist-fat-sat-instrumentacao.html"><i class="fas fa-clipboard-check"></i> Abrir checklist FAT/SAT</a>
+        <a class="mini-btn" href="checklist-comissionamento-industrial.html"><i class="fas fa-list-check"></i> Checklist de comissionamento</a>
+        <a class="mini-btn" href="blog-teste-de-loop-instrumentacao.html"><i class="fas fa-wave-square"></i> Teste de loop</a>
+      </div>
+
+      <h2>Referências técnicas</h2>
+      <ul>
+        <li><a href="https://webstore.iec.ch/en/publication/67572" target="_blank" rel="noopener noreferrer">IEC 62381:2024 — Automation systems in the process industry — FAT, FIT, SAT e SIT</a>.</li>
+        <li><a href="https://webstore.iec.ch/en/publication/61289" target="_blank" rel="noopener noreferrer">IEC 61511-1:2016 + AMD1:2017 — versão consolidada para SIS</a>.</li>
+        <li><a href="https://www.emerson.com/pt/measurement-instrumentation/services-for-measurement-instrumentation/lifecycle-services-for-measurement-instrumentation/startup-and-commissioning-service" target="_blank" rel="noopener noreferrer">Emerson — Startup and Commissioning Service for Measurement Instrumentation</a>.</li>
+      </ul>
+
+      <h2>Perguntas frequentes</h2>
+      <div class="faq">
+        <details><summary>FAT aprovado elimina o SAT?</summary><p>Não. O SAT verifica condições que dependem da instalação real, como cabeamento, alimentação, dispositivos, utilidades, redes e integrações de campo.</p></details>
+        <details><summary>Posso usar sempre os mesmos pontos de 0%, 25%, 50%, 75% e 100%?</summary><p>Esses pontos são comuns em alguns procedimentos de malha, mas não são uma regra universal de FAT/SAT. O método e os pontos devem vir do plano de teste e dos requisitos aplicáveis ao item.</p></details>
+        <details><summary>Uma captura de tela basta como evidência?</summary><p>Depende do requisito. Para uma mensagem de HMI, pode ajudar. Para demonstrar uma cadeia ponta a ponta, normalmente é necessário registrar também o estímulo, a condição do teste e a resposta observada em outros pontos relevantes.</p></details>
+        <details><summary>FAT/SAT genérico valida SIS?</summary><p>Não. SIS exige o processo de ciclo de vida e validação aplicável à SRS e às SIFs. Este artigo não fornece critérios para aceitação de funções instrumentadas de segurança.</p></details>
+      </div>
+
+      <h2>Aviso técnico</h2>
+      <p>Este conteúdo é educativo e organiza boas práticas de preparação e evidência. Critérios de aceite, segurança, funcionalidade, desempenho e conformidade devem vir da documentação contratual, especificações, normas aplicáveis e responsáveis técnicos do projeto. A ALOGY pode atuar em avaliação, inspeção, manutenção, configuração e conferência funcional conforme escopo confirmado; qualquer documentação metrológica, ensaio formal ou validação específica depende dos recursos e responsabilidades definidos na proposta.</p>
+    </article>
     <section class="cta-bar" aria-label="Chamada para contato">
-      <div><strong>Precisa de apoio técnico em engenharia, manutenção ou instrumentação?</strong><br><span class="muted">Use as ferramentas como apoio e fale com a ALOGY para análise técnica aplicada ao seu processo.</span></div>
-      <div class="cta-actions"><a class="btn" href="/#contato"><i class="fas fa-paper-plane"></i> Solicitar contato</a></div>
+      <div><strong>Precisa revisar instrumentos, válvulas, atuadores ou malhas antes de uma parada, FAT, SAT ou comissionamento?</strong><br><span class="muted">A ALOGY avalia o escopo e informa o que pode ser inspecionado, configurado, mantido ou conferido funcionalmente com os recursos disponíveis.</span></div>
+      <div class="cta-actions"><a class="btn" href="/#contato"><i class="fas fa-paper-plane"></i> Solicitar avaliação</a></div>
     </section>
   </main>
-  <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p></footer>
+  <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
 </body>
 </html>
