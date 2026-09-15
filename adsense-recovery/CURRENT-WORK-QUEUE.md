@@ -1,6 +1,6 @@
 # ALOGY — fila operacional atual
 
-> Versão 2026-09-15.26. Esta é a única fila executável. Filas anteriores são históricas.
+> Versão 2026-09-15.27. Esta é a única fila executável. Filas anteriores são históricas.
 
 ## Regras permanentes
 
@@ -38,7 +38,7 @@
 
 ## E06 — revisão do acervo monetizado
 
-**Estado:** EM EXECUÇÃO — DEZ PÁGINAS REVISADAS, PUBLICADAS E VALIDADAS.
+**Estado:** EM EXECUÇÃO — ONZE PÁGINAS REVISADAS, PUBLICADAS E VALIDADAS.
 
 | # | Página | Decisão | Commit de conteúdo |
 |---|---|---|---|
@@ -50,7 +50,7 @@
 | 06 | `blog-fat-sat-instrumentacao.html` | `keep/P1/high` | `c9dc10756d8f5f42ef0388131caccbdee1e4f68c` |
 | 07 | `blog-manutencao-preditiva-instrumentacao-sensores.html` | `keep/P1/high` | `3a9c7bb57ec195437bf93eba36fbd8dca3b2af7d` |
 | 08 | `blog-massa-tanque-nivel.html` | `keep/P1/high` | `76e0832196a69242387dc35bef6c4051e08f02c0` |
-| 09 | `blog-pressao-hidrostatica-densidade.html` | `keep/P1/high` | `e2bbc0c359b99b8e890a732da33c90d704151fc9` |\n| 10 | `blog-selo-remoto-capilar-nivel.html` | `keep/P1/high` | `50b9e645ef4d6c5a9f8b2a6684bd547e850c1248` |
+| 09 | `blog-pressao-hidrostatica-densidade.html` | `keep/P1/high` | `e2bbc0c359b99b8e890a732da33c90d704151fc9` |\n| 10 | `blog-selo-remoto-capilar-nivel.html` | `keep/P1/high` | `50b9e645ef4d6c5a9f8b2a6684bd547e850c1248` |\n| 11 | `blog-potencia-bomba.html` | `keep/P1/high` | `af6f84bbac905b6888c63cf0d7c94da4e0023a5b` |
 
 ### Página 08 — massa em tanque por nível
 
@@ -112,9 +112,30 @@
 - nenhuma fórmula de calculadora ou JavaScript técnico compartilhado alterado;
 - fontes primárias verificadas: Emerson, Yokogawa, WIKA e BIPM.
 
+### Página 11 — potência de motor de bomba
+
+- relatório: `E06-PUMP-MOTOR-POWER-ACERVO-11.md`;
+- delta: `E06-INVENTORY-DELTA-11.csv`;
+- relatório + delta: commit `87754d133ee2670e1abf637979c7216bea5c87ab`;
+- conteúdo: commit `af6f84bbac905b6888c63cf0d7c94da4e0023a5b`;
+- Pages: run `34997876058`, build/deploy com sucesso;
+- artefato: `10408442738`;
+- digest: `sha256:fe9b6225f2edae8c17ef94b652165103ffd4fec32ea3b784ab8e635117e9dc20`;
+- domínio: HTTP 200, 22.720 bytes;
+- SHA-256 do HTML servido: `ddebae0d07448095da74be153a64471248538c446418fb2059d14cc042f32080`;
+- Git blob do domínio: `13cf57b6de1683968a550fedd553058a0c1f2b32`, igual ao blob do conteúdo versionado;
+- 1.630 palavras visíveis / 1.577 no artigo;
+- 1 H1 / 13 H2 / 0 H3;
+- `BlogPosting` + `FAQPage`;
+- canonical, sitemap e AdSense preservados;
+- menu global Guia preservado, sem CTA do Guia no corpo; sem Hotmart ou Cursos;
+- cálculos de potência/corrente e leis de afinidade conferidos independentemente;
+- nenhuma calculadora, fórmula ou JavaScript técnico compartilhado alterado;
+- fontes primárias verificadas: DOE, Hydraulic Institute, WEG e ABB.
+
 ### Pendência explícita do inventário
 
-O `ADSENSE-INVENTORY.csv` canônico ainda não incorpora as decisões E06. Os arquivos `E06-INVENTORY-DELTA-01.csv` até `E06-INVENTORY-DELTA-10.csv` são a fonte incremental de verdade até existir mecanismo seguro de consolidação integral/patch.
+O `ADSENSE-INVENTORY.csv` canônico ainda não incorpora as decisões E06. Os arquivos `E06-INVENTORY-DELTA-01.csv` até `E06-INVENTORY-DELTA-11.csv` são a fonte incremental de verdade até existir mecanismo seguro de consolidação integral/patch.
 
 Não substituir o CSV grande de forma parcial nem marcar a fusão como concluída sem validar o arquivo inteiro.
 

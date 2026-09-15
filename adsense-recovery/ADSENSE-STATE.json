@@ -1,16 +1,16 @@
 {
   "schema_version": 3,
   "project": "ALOGY AdSense Recovery",
-  "plan_version": "2026-09-15.26",
+  "plan_version": "2026-09-15.27",
   "repository": "ronaldopjr/alogy",
   "base_branch": "main",
   "work_branch": "main",
-  "base_sha_verified": "984241c40f34edf0528cb1bfbe5a0ebd58c84bd8",
+  "base_sha_verified": "87754d133ee2670e1abf637979c7216bea5c87ab",
   "verified_at": "2026-09-15",
   "last_completed_stage": "E05",
   "stage_in_progress": "E06",
   "next_stage": "E06",
-  "next_action": "Selecionar a proxima pagina improve/P0/high do acervo monetizado, priorizando instrumentacao industrial e baixo risco editorial. Tratar E06-INVENTORY-DELTA-01.csv a E06-INVENTORY-DELTA-10.csv como fonte incremental ate consolidacao segura no inventario canonico. Nao editar manual-review/P0 automaticamente e nao solicitar nova analise do AdSense.",
+  "next_action": "Selecionar a proxima pagina improve/P0/high do acervo monetizado, priorizando instrumentacao, automacao ou eletrica industrial e baixo risco editorial. Tratar E06-INVENTORY-DELTA-01.csv a E06-INVENTORY-DELTA-11.csv como fonte incremental ate consolidacao segura no inventario canonico. Nao editar manual-review/P0 automaticamente e nao solicitar nova analise do AdSense.",
   "status": "in_progress",
   "preferred_editorial_batch": 1,
   "adsense": {
@@ -23,19 +23,19 @@
     "enabled": true,
     "target_branch": "main",
     "method": "validated-atomic-commit",
-    "batch_id": "E06-REMOTE-SEAL-CAPILLARY-ACERVO-10",
-    "latest_site_change_commit": "50b9e645ef4d6c5a9f8b2a6684bd547e850c1248",
-    "latest_report_and_delta_commit": "984241c40f34edf0528cb1bfbe5a0ebd58c84bd8",
+    "batch_id": "E06-PUMP-MOTOR-POWER-ACERVO-11",
+    "latest_site_change_commit": "af6f84bbac905b6888c63cf0d7c94da4e0023a5b",
+    "latest_report_and_delta_commit": "87754d133ee2670e1abf637979c7216bea5c87ab",
     "services_navigation_commit": "2a047390f543d3a7a0469a3677f17c14fa0dcfeb",
     "canonical_inventory_initial_commit": "da2f61932a21c00741f418870601aafcb42deba6",
     "source_verified_on_main": true,
     "pages_deployment_success": true,
-    "latest_pages_workflow_run": 34991433678,
-    "latest_pages_artifact_id": 10405678002,
-    "latest_pages_artifact_digest": "sha256:a5adbb627328ee3e36c15364996d5534181762dab4aa104edc1be674e9e3dd2c",
+    "latest_pages_workflow_run": 34997876058,
+    "latest_pages_artifact_id": 10408442738,
+    "latest_pages_artifact_digest": "sha256:fe9b6225f2edae8c17ef94b652165103ffd4fec32ea3b784ab8e635117e9dc20",
     "live_environment_url": "https://www.alogy.com.br/",
     "artifact_validation_complete": true,
-    "artifact_validation_method": "GitHub Pages build and deploy completed successfully; live domain returned HTTP 200 and blog-selo-remoto-capilar-nivel.html Git blob SHA-1 matched the content commit blob exactly.",
+    "artifact_validation_method": "GitHub Pages build and deploy completed successfully; live domain returned HTTP 200 and blog-potencia-bomba.html Git blob SHA-1 matched the content commit blob exactly.",
     "require_clean_validated_diff": true,
     "allow_force": false
   },
@@ -74,7 +74,7 @@
       "adsense_review_request_allowed": false
     },
     "e06_acervo": {
-      "status": "pages_01_to_10_passed_published_next_selection_pending",
+      "status": "pages_01_to_11_passed_published_next_selection_pending",
       "canonical_inventory_deltas_pending_merge": [
         "E06-INVENTORY-DELTA-01.csv",
         "E06-INVENTORY-DELTA-02.csv",
@@ -85,7 +85,8 @@
         "E06-INVENTORY-DELTA-07.csv",
         "E06-INVENTORY-DELTA-08.csv",
         "E06-INVENTORY-DELTA-09.csv",
-        "E06-INVENTORY-DELTA-10.csv"
+        "E06-INVENTORY-DELTA-10.csv",
+        "E06-INVENTORY-DELTA-11.csv"
       ],
       "pages": [
         {
@@ -240,11 +241,46 @@
           "technical_formulas_or_shared_javascript_changed": false,
           "decision_before": "improve/P0/high",
           "decision_after": "keep/P1/high"
+        },
+        {
+          "n": 11,
+          "path": "blog-potencia-bomba.html",
+          "status": "passed_published",
+          "content_commit": "af6f84bbac905b6888c63cf0d7c94da4e0023a5b",
+          "content_blob": "13cf57b6de1683968a550fedd553058a0c1f2b32",
+          "report": "E06-PUMP-MOTOR-POWER-ACERVO-11.md",
+          "report_and_delta_commit": "87754d133ee2670e1abf637979c7216bea5c87ab",
+          "inventory_delta": "E06-INVENTORY-DELTA-11.csv",
+          "pages_workflow_run": 34997876058,
+          "pages_artifact_id": 10408442738,
+          "artifact_digest": "sha256:fe9b6225f2edae8c17ef94b652165103ffd4fec32ea3b784ab8e635117e9dc20",
+          "live_html_bytes": 22720,
+          "live_html_sha256": "ddebae0d07448095da74be153a64471248538c446418fb2059d14cc042f32080",
+          "live_visible_words_observed": 1630,
+          "live_main_words_observed": 1577,
+          "h1_count": 1,
+          "h2_count": 13,
+          "h3_count": 0,
+          "json_ld_types": [
+            "BlogPosting",
+            "FAQPage"
+          ],
+          "canonical_valid": true,
+          "adsense_loader_present": true,
+          "sitemap_occurrences_expected": 1,
+          "global_guide_navigation_preserved": true,
+          "promotional_guide_link_in_article": false,
+          "hotmart_link_present": false,
+          "separate_service_labels_present": false,
+          "live_matches_validated_candidate": true,
+          "technical_formulas_or_shared_javascript_changed": false,
+          "decision_before": "improve/P0/high",
+          "decision_after": "keep/P1/high"
         }
       ],
       "next_candidate": {
         "path": null,
-        "status": "selection_pending_after_page_10"
+        "status": "selection_pending_after_page_11"
       },
       "manual_review_pages_must_remain_unchanged": true,
       "mass_pruning_allowed": false,
