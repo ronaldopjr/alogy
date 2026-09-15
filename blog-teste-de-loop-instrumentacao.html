@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Teste de Loop em Instrumentação | Campo ao PLC/CLP | ALOGY</title>
-  <meta name="description" content="Loop check em instrumentação: valide 4-20 mA, transmissor, cabos, bornes, cartão analógico, PLC/CLP, DCS, IHM e supervisório."/>
+  <title>Teste de Loop em Instrumentação | Método, Registro e Segurança | ALOGY</title>
+  <meta name="description" content="Como planejar e registrar teste de loop 4-20 mA do campo ao PLC/DCS: pré-condições, pontos, escala, alarmes, saídas, evidências e restauração."/>
   <meta name="robots" content="index,follow" />
   <meta name="theme-color" content="#2C78B9" />
   <link rel="canonical" href="https://www.alogy.com.br/blog-teste-de-loop-instrumentacao.html" />
@@ -21,17 +21,19 @@
   <meta property="og:locale" content="pt_BR" />
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="ALOGY Engenharia" />
-  <meta property="og:title" content="Teste de Loop em Instrumentação: do Campo ao PLC/CLP" />
-  <meta property="og:description" content="Como validar uma malha 4-20 mA ponta a ponta: transmissor, cabo, borne, AI, escala no PLC/DCS e indicação no supervisório." />
+  <meta property="og:title" content="Teste de Loop em Instrumentação: método, registro e segurança" />
+  <meta property="og:description" content="Roteiro técnico para verificar uma malha do campo ao sistema de controle sem confundir loop check com calibração." />
   <meta property="og:image" content="https://www.alogy.com.br/capa-blog-teste-de-loop-instrumentacao.webp" />
   <meta property="og:url" content="https://www.alogy.com.br/blog-teste-de-loop-instrumentacao.html" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Teste de Loop em Instrumentação: do Campo ao PLC/CLP" />
-  <meta name="twitter:description" content="Loop check para 4-20 mA, cartão analógico, escala e supervisório em instrumentação industrial." />
+  <meta name="twitter:title" content="Teste de Loop em Instrumentação: método e registro" />
+  <meta name="twitter:description" content="Pré-condições, pontos 4-20 mA, escala, alarmes, saídas, evidências e restauração da malha." />
   <meta name="twitter:image" content="https://www.alogy.com.br/capa-blog-teste-de-loop-instrumentacao.webp" />
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Teste de Loop em Instrumentação: do Campo ao PLC/CLP","description":"Loop check em instrumentação para validar 4-20 mA, transmissor, cabos, bornes, cartão analógico, PLC/CLP, DCS, IHM e supervisório.","image":"https://www.alogy.com.br/capa-blog-teste-de-loop-instrumentacao.webp","datePublished":"2026-06-26","dateModified":"2026-09-11","author":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"},"publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/","logo":{"@type":"ImageObject","url":"https://www.alogy.com.br/logo-alogy.webp"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://www.alogy.com.br/blog-teste-de-loop-instrumentacao.html"},"inLanguage":"pt-BR"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Teste de Loop em Instrumentação: método, registro e segurança","description":"Como planejar e registrar teste de loop 4-20 mA do campo ao PLC/DCS: pré-condições, pontos, escala, alarmes, saídas, evidências e restauração.","image":"https://www.alogy.com.br/capa-blog-teste-de-loop-instrumentacao.webp","datePublished":"2026-06-26","dateModified":"2026-09-15","author":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/sobre.html"},"publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/","logo":{"@type":"ImageObject","url":"https://www.alogy.com.br/logo-alogy.webp"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://www.alogy.com.br/blog-teste-de-loop-instrumentacao.html"},"inLanguage":"pt-BR"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Teste de loop e calibração são a mesma atividade?","acceptedAnswer":{"@type":"Answer","text":"Não. O teste de loop verifica a cadeia instalada e a representação do sinal. Calibração estabelece, sob condições especificadas, uma relação entre indicações e valores fornecidos por padrões, com as incertezas pertinentes."}},{"@type":"Question","name":"Quantos pontos devem ser usados em um loop check?","acceptedAnswer":{"@type":"Answer","text":"Não existe quantidade universal. Os pontos e a sequência devem seguir o plano aprovado, a função da malha, o risco e os requisitos do projeto."}},{"@type":"Question","name":"Pode testar um alarme ou intertravamento com a planta operando?","acceptedAnswer":{"@type":"Answer","text":"Somente quando houver autorização, análise de risco, coordenação com a operação e procedimento específico. Uma simulação pode provocar ações reais e não deve ser tratada como teste de indicação comum."}},{"@type":"Question","name":"O que deve constar no registro?","acceptedAnswer":{"@type":"Answer","text":"Identificação da malha, documentos e versões, responsáveis, pré-condições, ponto aplicado, valores observados em cada camada, critério, resultado, desvios, condição final e liberação."}}]}</script>
   <style>
-    .post-wrap{max-width:900px;margin:18px auto}.post-card{background:var(--card);border:1px solid rgba(0,0,0,.08);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}.post-content{padding:30px}.post-meta{color:var(--muted);font-size:.95rem;margin-bottom:12px}.post-content h1{font-size:2.15rem;line-height:1.15;margin-bottom:12px;color:var(--text)}.post-content h2{font-size:1.45rem;line-height:1.25;margin:26px 0 10px;color:var(--text)}.post-content p{color:var(--text);margin:0 0 16px;font-size:1.04rem;line-height:1.75}.post-content ul,.post-content ol{margin:0 0 18px 20px}.post-content li{margin:8px 0;line-height:1.65}.post-highlight{background:rgba(0,107,177,.08);border:1px solid rgba(0,107,177,.18);border-radius:14px;padding:16px;margin:22px 0}.post-highlight strong{color:#0b3a62}@media(max-width:768px){.post-content{padding:22px}.post-content h1{font-size:1.65rem}.post-content h2{font-size:1.25rem}}</style>
+    .post-wrap{max-width:940px;margin:18px auto}.post-card{background:var(--card);border:1px solid rgba(0,0,0,.08);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}.post-content{padding:30px}.post-meta{color:var(--muted);font-size:.95rem;margin-bottom:12px}.post-content h1{font-size:2.15rem;line-height:1.15;margin-bottom:12px;color:var(--text)}.post-content h2{font-size:1.45rem;line-height:1.25;margin:28px 0 10px;color:var(--text)}.post-content h3{font-size:1.12rem;line-height:1.3;margin:20px 0 8px;color:#0b3a62}.post-content p{color:var(--text);margin:0 0 16px;font-size:1.04rem;line-height:1.75}.post-content ul,.post-content ol{margin:0 0 18px 20px}.post-content li{margin:8px 0;line-height:1.65}.post-highlight{background:rgba(0,107,177,.08);border:1px solid rgba(0,107,177,.18);border-radius:14px;padding:16px;margin:22px 0}.post-highlight strong{color:#0b3a62}.danger-note{background:#fff6e8;border-left:5px solid #cc7a00;border-radius:10px;padding:16px;margin:20px 0}.table-scroll{overflow:auto;border:1px solid rgba(0,0,0,.08);border-radius:14px;margin:16px 0}.table-scroll table{width:100%;min-width:720px;border-collapse:collapse}.table-scroll th{background:#0b3a62;color:#fff;text-align:left;padding:10px}.table-scroll td{padding:10px;border-bottom:1px solid rgba(0,0,0,.07);vertical-align:top}.loop-chain{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;margin:18px 0}.loop-chain div{border:1px solid rgba(0,107,177,.2);border-radius:12px;padding:11px;text-align:center;background:#fff;color:#0b3a62;font-weight:700}.loop-chain span{display:block;color:var(--muted);font-size:.8rem;font-weight:400;margin-top:4px}.formula-box{background:#f3f8fc;border-left:5px solid #2c78b9;border-radius:10px;padding:16px;margin:16px 0}.restore-list{border:1px solid rgba(0,0,0,.08);border-radius:14px;padding:16px 18px;background:#fff}@media(max-width:850px){.loop-chain{grid-template-columns:1fr 1fr 1fr}}@media(max-width:600px){.post-content{padding:21px}.post-content h1{font-size:1.65rem}.post-content h2{font-size:1.25rem}.loop-chain{grid-template-columns:1fr 1fr}}@media print{header,.social-floating,.fab-wrap,footer,.cta-actions,.no-print{display:none!important}}
+  </style>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5586837114309500" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -41,56 +43,138 @@
     <nav class="mobile" aria-label="Menu mobile"><a href="/">Início</a><a href="industrial.html">Serviços</a><a href="cases.html">Projetos</a><a href="/guia/">Guia</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></nav>
   </header>
   <div class="social-floating" aria-label="Redes sociais"><a href="https://www.linkedin.com/company/alogyengenharia" class="linkedin" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a><a href="https://www.instagram.com/alogyengenharia" class="instagram" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="https://www.facebook.com/alogyengenharia" class="facebook" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><a href="https://www.youtube.com/@alogyengenharia" class="youtube" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a><a href="https://www.tiktok.com/@alogyengenharia" class="tiktok" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fab fa-tiktok"></i></a></div>
-  <div class="fab-wrap" aria-label="Ações rápidas"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1!%20Li%20o%20artigo%20sobre%20teste%20de%20loop%20da%20ALOGY%20e%20gostaria%20de%20atendimento." target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
+  <div class="fab-wrap" aria-label="Ações rápidas"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1!%20Li%20o%20artigo%20sobre%20teste%20de%20loop%20da%20ALOGY." target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
 
   <main class="container post-wrap">
     <div style="margin-bottom:14px"><a class="floating-back-blog no-print" href="blog.html"><i class="fas fa-arrow-left"></i> Voltar para o Blog</a></div>
     <article class="post-card"><div class="post-content">
-      <div class="post-meta"><time datetime="2026-06-26">Publicado em 26/06/2026</time> • Instrumentação • Commissioning • PLC/CLP</div>
-      <div class="tags" style="margin-bottom:14px"><span class="tag">Loop Check</span><span class="tag">Instrumentação</span><span class="tag">PLC/CLP</span><span class="tag">4-20 mA</span></div>
-      <h1>Teste de Loop em Instrumentação: como garantir o sinal do campo ao PLC/CLP</h1>
-      <p class="muted" data-alogy-content-meta><strong>Conteúdo técnico:</strong> ALOGY Engenharia · <strong>Atualizado em:</strong> 11/09/2026</p>
-      <figure class="article-cover-figure"><img class="article-cover-image" src="capa-blog-teste-de-loop-instrumentacao.webp" alt="Teste de loop em instrumentação industrial entre transmissor, cabeamento e PLC CLP" loading="eager" fetchpriority="high" decoding="async"/><figcaption>Loop check valida a cadeia do instrumento de campo até o sistema de controle, não apenas um componente isolado.</figcaption></figure>
+      <div class="post-meta"><time datetime="2026-06-26">Publicado em 26/06/2026</time> · Instrumentação · Comissionamento · PLC/CLP</div>
+      <h1>Teste de Loop em Instrumentação: método, registro e segurança</h1>
+      <p class="muted" data-alogy-content-meta><strong>Conteúdo técnico:</strong> <a href="sobre.html">ALOGY Engenharia</a> · <strong>Atualizado em:</strong> 15/09/2026</p>
+      <figure class="article-cover-figure"><img class="article-cover-image" src="capa-blog-teste-de-loop-instrumentacao.webp" alt="Teste de loop entre transmissor, cabeamento, cartão analógico, PLC e supervisório" loading="eager" fetchpriority="high" decoding="async"/><figcaption>O loop check verifica a cadeia instalada e a representação do sinal, com escopo, responsabilidades e resultados registrados.</figcaption></figure>
 
-      <p>O teste de loop em instrumentação valida se o sinal gerado no campo chega corretamente ao sistema de controle. Em uma malha analógica, o sinal pode sair de um transmissor em 4-20 mA, passar por cabo, caixa de junção, bornes, barreiras e cartão analógico até ser convertido em unidade de engenharia no PLC/CLP ou DCS.</p>
-      <p>Quando esse caminho não é testado ponta a ponta, a planta pode operar com escala incorreta, borne trocado, canal errado, falha de alimentação ou indicação divergente no supervisório.</p>
+      <p>Um valor coerente na tela não prova que toda a malha está correta. O sinal pode ter chegado pelo canal errado, ter sido escalado com outra faixa ou estar associado a uma TAG semelhante. O teste de loop, ou <em>loop check</em>, procura demonstrar o caminho completo entre o ponto de campo e o destino definido no sistema de automação.</p>
+      <p>A IEC 62382:2024 situa o loop check entre a conclusão da construção da malha — incluindo instalação e verificações ponto a ponto — e o início do comissionamento a frio. A norma também admite sua aplicação em expansões, modernizações e após o comissionamento. Ela descreve o que deve ser acordado e verificado, mas não impõe um único método para todas as tecnologias.</p>
 
-      <h2>O que é loop check?</h2>
-      <p>Loop check é o procedimento usado para verificar continuidade, configuração, sentido e coerência de uma malha de instrumentação. Ele confirma se o valor aplicado ou simulado no campo é representado corretamente no sistema de controle e, quando aplicável, nos alarmes e elementos finais.</p>
-      <div class="post-highlight"><strong>Resumo técnico:</strong> instrumento → cabeamento → borne/barreira → AI/AO → PLC/DCS → engenharia → HMI/SCADA.</div>
+      <div class="loop-chain" aria-label="Caminho típico de uma malha analógica">
+        <div>Campo<span>instrumento</span></div><div>Interligação<span>cabo e bornes</span></div><div>Interface<span>barreira/isolador</span></div><div>I/O<span>AI ou AO</span></div><div>Controle<span>PLC ou DCS</span></div><div>Operação<span>HMI/SCADA</span></div>
+      </div>
 
-      <h2>Por que é diferente de calibração?</h2>
-      <p>A calibração compara um instrumento com um padrão de referência e avalia erro. O teste de loop verifica a cadeia instalada. Um transmissor pode estar calibrado e ainda assim chegar errado ao supervisório por causa de range, escala, ligação ou configuração do cartão.</p>
+      <h2>Loop check, ponto a ponto e calibração: objetivos diferentes</h2>
+      <div class="table-scroll"><table><thead><tr><th>Atividade</th><th>Pergunta respondida</th><th>O que não comprova sozinha</th></tr></thead><tbody>
+        <tr><td>Inspeção e ponto a ponto</td><td>A instalação, identificação e continuidade correspondem ao documento aplicável?</td><td>Que a variável aparece corretamente em todas as camadas.</td></tr>
+        <tr><td>Teste de loop</td><td>O estímulo ou estado definido percorre a cadeia e chega ao destino esperado?</td><td>Exatidão metrológica completa do instrumento.</td></tr>
+        <tr><td>Calibração</td><td>Qual é a relação entre indicações e valores fornecidos por padrões, sob condições especificadas?</td><td>Que cabeamento, lógica, alarmes e HMI estão corretos.</td></tr>
+        <tr><td>Teste funcional</td><td>A função executa o comportamento previsto no cenário aprovado?</td><td>Que todos os cenários, proteções ou riscos foram cobertos.</td></tr>
+      </tbody></table></div>
+      <p>O Vocabulário Internacional de Metrologia separa calibração, verificação e ajuste. Portanto, aplicar 4, 12 e 20 mA e observar uma tela pode ser evidência de escala e integração, mas não deve ser apresentado automaticamente como certificado ou calibração rastreável.</p>
 
-      <h2>Exemplo prático em 4-20 mA</h2>
-      <p>Considere um transmissor de pressão configurado de 0 a 10 bar. Em uma escala linear, 4 mA = 0 bar, 12 mA = 5 bar e 20 mA = 10 bar. Durante o teste, esses pontos podem ser simulados para confirmar a leitura no cartão, PLC/DCS e HMI.</p>
-      <p>Para um teste mais completo, use 0%, 25%, 50%, 75% e 100%: <strong>4, 8, 12, 16 e 20 mA</strong>. Se a malha usar função não linear, square root ou split range, os valores esperados devem seguir a configuração real.</p>
+      <h2>Antes de aplicar qualquer sinal: a liberação é parte do teste</h2>
+      <div class="danger-note"><strong>Uma simulação pode atuar equipamentos reais.</strong> Forçar uma entrada, uma saída ou um estado lógico pode disparar alarme, intertravamento, partida, parada ou movimento de válvula. Este artigo não substitui permissão de trabalho, análise de risco, bloqueio, procedimento da instalação nem coordenação com a operação.</div>
+      <p>Antes do teste, o responsável deve confirmar o estado operacional da malha, os efeitos possíveis e quem tem autoridade para liberar, acompanhar e aceitar. Quando houver exposição a perigos elétricos, aplicam-se as medidas de prevenção e os requisitos pertinentes da NR-10. A versão oficial atualizada em 2026 inclui comissionamento, operação e manutenção em seu campo de aplicação e define condições para instalações consideradas desenergizadas.</p>
+      <p>Também precisam ser definidos os limites do teste: somente indicação? Alarmes? Intertravamento? Saída analógica? Elemento final desacoplado ou conectado ao processo? A resposta muda o risco, os participantes, o método e a evidência necessária.</p>
 
-      <h2>Sequência prática de teste</h2>
-      <ol><li>Confirme TAG, variável, LRV, URV, unidade e canal de I/O.</li><li>Coloque a malha em condição segura conforme procedimento e operação.</li><li>Defina se o teste será por simulação de corrente, aplicação da variável ou atuação do elemento de campo.</li><li>Aplique os pontos e registre valor no campo, raw do cartão e unidade de engenharia.</li><li>Confirme indicação em PLC/DCS, HMI/SCADA, alarmes e tendências quando fizer parte do escopo.</li><li>Se houver divergência, separe falha de instrumento, cabeamento, I/O, scaling e lógica.</li><li>Registre resultado, pendências e condição final da malha.</li></ol>
+      <h2>Pacote mínimo para planejar o loop check</h2>
+      <ul>
+        <li>TAG e descrição funcional sem ambiguidade;</li>
+        <li>documento de malha, lista de I/O, lógica, matriz de causa e efeito e telas nas revisões aplicáveis;</li>
+        <li>LRV, URV, unidade, tipo de sinal, alimentação, direção e tratamento de falha;</li>
+        <li>canal, endereço, variável no PLC/DCS e alias na HMI ou historian;</li>
+        <li>pré-condições, isolamentos, permissões e responsáveis por campo, automação e operação;</li>
+        <li>pontos, sequência, critério de aceitação e forma de registrar desvios;</li>
+        <li>condição de restauração, remoção de forças e liberação final.</li>
+      </ul>
+      <p>O critério precisa existir antes do resultado. Não há tolerância universal para todas as malhas: resolução do cartão, classe do instrumento, requisitos do projeto, risco e finalidade influenciam a aceitação. Inventar um limite depois de observar o erro transforma o registro em justificativa, não em evidência.</p>
 
-      <h2>Falhas comuns encontradas</h2>
-      <ul><li>LRV/URV diferentes entre transmissor e PLC.</li><li>AI configurada para faixa incompatível.</li><li>Escala invertida ou engenharia errada.</li><li>Bornes/canais trocados.</li><li>Queda de tensão ou alimentação insuficiente.</li><li>Barreira/isolador configurado incorretamente.</li><li>Alarme ou intertravamento usando TAG/canal incorreto.</li><li>HMI mostrando unidade ou range diferente do controlador.</li></ul>
+      <h2>Exemplo conferível em uma entrada 4–20 mA</h2>
+      <p>Considere um transmissor de pressão configurado de 0 a 10 bar, com relação linear. A conversão ideal é:</p>
+      <div class="formula-box"><p><strong>Pressão = (corrente − 4 mA) ÷ 16 mA × 10 bar</strong></p><p>Assim: 4 mA = 0 bar; 8 mA = 2,5 bar; 12 mA = 5 bar; 16 mA = 7,5 bar; 20 mA = 10 bar.</p></div>
+      <p>Esse conjunto de cinco pontos é um exemplo didático, não uma exigência universal. O plano pode precisar de outra quantidade, sequência ascendente e descendente, pontos próximos a alarmes ou condições específicas. Se houver extração de raiz quadrada, faixa invertida ou linearização, os valores esperados devem seguir a configuração real, não a tabela linear acima.</p>
+      <div class="table-scroll"><table><thead><tr><th>Camada observada</th><th>Registro sugerido</th><th>Divergência que ajuda a localizar</th></tr></thead><tbody>
+        <tr><td>Fonte/estímulo</td><td>Valor aplicado, modo, ponto físico e identificação do recurso usado.</td><td>Estímulo diferente do planejado ou conexão no ponto errado.</td></tr>
+        <tr><td>Entrada do cartão</td><td>Corrente ou contagem bruta, canal e status de diagnóstico.</td><td>Alimentação, interligação, canal, barreira ou configuração de I/O.</td></tr>
+        <tr><td>PLC/DCS</td><td>Valor bruto, valor escalado, unidade e variável.</td><td>LRV/URV, fórmula, tipo de dado ou lógica incorreta.</td></tr>
+        <tr><td>HMI/SCADA</td><td>TAG, valor, unidade, estado e timestamp.</td><td>Alias, unidade, faixa visual, qualidade ou atualização divergente.</td></tr>
+        <tr><td>Historian, se incluído</td><td>TAG histórica, valor, qualidade e horário.</td><td>Mapeamento, deadband, comunicação ou atraso de ingestão.</td></tr>
+      </tbody></table></div>
 
-      <h2>Quando realizar?</h2>
-      <p>Loop checks são especialmente importantes em commissioning, FAT/SAT de integração, partidas, ampliações, troca de instrumentos, substituição de cartões, alterações de lógica ou intervenções em cabos, bornes e painéis.</p>
+      <h2>Sequência de verificação para uma entrada analógica</h2>
+      <ol>
+        <li><strong>Conferir identidade:</strong> localizar TAG, canal e variável nos documentos válidos e no sistema.</li>
+        <li><strong>Confirmar condição segura:</strong> registrar liberações, participantes e impacto do estímulo.</li>
+        <li><strong>Definir o ponto de injeção:</strong> no transmissor, borne, isolador ou cartão, conforme o objetivo. O ponto altera o trecho efetivamente testado.</li>
+        <li><strong>Registrar condição inicial:</strong> configuração e estados relevantes antes de qualquer alteração temporária.</li>
+        <li><strong>Aplicar os pontos aprovados:</strong> anotar valor aplicado e observações em cada camada, sem ajustar para esconder divergência.</li>
+        <li><strong>Classificar o desvio:</strong> separar campo, interligação, I/O, escala, lógica, visualização e histórico.</li>
+        <li><strong>Corrigir somente sob autorização:</strong> a correção muda a configuração e pode exigir novo teste.</li>
+        <li><strong>Retestar e restaurar:</strong> repetir o alcance afetado, remover simulações/forças e obter a liberação final.</li>
+      </ol>
+      <p>Se o objetivo for conferir toda a cadeia, injetar corrente diretamente no cartão não testa o transmissor nem o cabeamento anterior. Da mesma forma, aplicar pressão ao transmissor amplia a cobertura, mas exige método e recurso compatíveis com o instrumento e com a instalação.</p>
 
-      <h2>Documentação do teste</h2>
-      <p>O registro deve identificar TAG, variável, range, sinal aplicado, raw/entrada, valor de engenharia, indicação na HMI/SCADA, status e observações. Em projetos maiores, um checklist por malha ajuda a controlar pendências e retestes.</p>
+      <h2>Saídas, válvulas e motores exigem outra camada de controle</h2>
+      <p>Em uma saída analógica, o caminho pode incluir comando no PLC/DCS, cartão AO, isolador, posicionador e elemento final. A porcentagem comandada, a corrente observada e a posição indicada são grandezas relacionadas, mas não idênticas. Um comando de 50% não garante curso real de 50%, vazão de 50% ou comportamento correto do processo.</p>
+      <p>O teste deve dizer se o elemento final está desacoplado, isolado, em bancada ou conectado. Movimentar uma válvula ligada ao processo, energizar um contator ou alterar uma referência de velocidade sem autorização pode causar consequência real. Nesses casos, a atividade deixa de ser simples conferência de indicação e precisa do procedimento funcional aprovado.</p>
 
-      <h2>Ferramentas relacionadas</h2>
-      <div class="cta-actions"><a class="btn" href="calculadora-4-20ma.html"><i class="fas fa-wave-square"></i> Calculadora 4-20 mA</a><a class="btn secondary" href="calculadora-escala-clp.html"><i class="fas fa-microchip"></i> Escala PLC/CLP</a><a class="btn secondary" href="calculadora-malha-4-20ma-hart-completa.html"><i class="fas fa-network-wired"></i> Malha 4-20/HART</a><a class="btn secondary" href="checklist-teste-de-loop.html"><i class="fas fa-list-check"></i> Checklist de Loop</a></div>
+      <h2>Alarmes, intertravamentos, bypass e forças</h2>
+      <p>Alarmes e intertravamentos devem ter escopo separado no plano. Para cada cenário, registre o estímulo, limite configurado, estado esperado, atraso, destino da indicação e resposta observada. Confirmar apenas que “o alarme apareceu” não demonstra prioridade, texto, reconhecimento, histórico ou ação lógica.</p>
+      <p>Qualquer bypass, inibição ou força temporária precisa de identificação, autorização, responsável, horário de aplicação, motivo e condição para retirada. Uma lista de forças ativa deve ser verificada antes da liberação. Se uma ação prevista não puder ser executada com segurança, o resultado correto é pendência documentada — não um teste marcado como aprovado.</p>
 
-      <h2>Como a ALOGY pode apoiar</h2>
-      <p>A ALOGY atua com instrumentação industrial, automação, testes de malha, documentação técnica e apoio em commissioning. O objetivo é reduzir incerteza entre campo e sistema de controle e entregar evidência clara do que foi testado.</p>
+      <h2>Sinal de falha não é extrapolação de processo</h2>
+      <p>A recomendação NAMUR NE 43 trata a sinalização de falha em transmissores digitais com saída analógica. Quando o dispositivo e o sistema adotam essa recomendação, a estratégia de detecção deve considerar a edição e a configuração efetivamente usadas. Não se deve interpretar toda corrente fora de 4–20 mA como valor de processo extrapolado, nem aplicar limites copiados sem conferir o manual e a lógica.</p>
+
+      <h2>Como registrar antes, durante e depois</h2>
+      <div class="table-scroll"><table><thead><tr><th>Bloco</th><th>Conteúdo mínimo</th></tr></thead><tbody>
+        <tr><td>Identificação</td><td>Malha, TAG, área, desenho, canal, revisão e data.</td></tr>
+        <tr><td>Responsabilidades</td><td>Quem libera, executa, acompanha e aceita cada parte.</td></tr>
+        <tr><td>Pré-condições</td><td>Estado do processo, isolamentos, permissões, bypasses e riscos controlados.</td></tr>
+        <tr><td>Resultados</td><td>Ponto aplicado, valores por camada, esperado, observado, critério e aprovação/reprovação.</td></tr>
+        <tr><td>Desvios</td><td>Sintoma, evidência, ação autorizada, impacto e reteste necessário.</td></tr>
+        <tr><td>Fechamento</td><td>Configuração final, forças removidas, ligações restabelecidas, pendências e liberação.</td></tr>
+      </tbody></table></div>
+      <p>Os termos “condição encontrada” e “condição final” descrevem o estado registrado no escopo. Eles não transformam o formulário em certificado de calibração ou laudo metrológico. Evidências podem incluir valores, capturas autorizadas, número da revisão e assinatura dos responsáveis, conforme as regras do projeto.</p>
+
+      <h2>Diagnóstico por evidência, sem pular etapas</h2>
+      <div class="table-scroll"><table><thead><tr><th>Sintoma</th><th>Hipóteses</th><th>Próxima evidência</th></tr></thead><tbody>
+        <tr><td>Cartão não recebe corrente</td><td>Circuito aberto, alimentação, polaridade, fusível, barreira ou ponto de injeção.</td><td>Diagrama, tensão/corrente no ponto autorizado e continuidade em condição segura.</td></tr>
+        <tr><td>Bruto correto, engenharia errada</td><td>Faixa, tipo de dado, linearização ou lógica.</td><td>Comparar configuração vigente com LRV/URV e valor bruto.</td></tr>
+        <tr><td>PLC correto, HMI errada</td><td>Alias, unidade, escala visual ou atualização.</td><td>Rastrear a variável publicada e o mapeamento da tela.</td></tr>
+        <tr><td>Valor oscila</td><td>Processo, ruído, aterramento, alimentação, conexão ou filtro.</td><td>Comparar sinal em pontos distintos e separar fenômeno real de aquisição.</td></tr>
+        <tr><td>Alarme não atua</td><td>Limite, atraso, qualidade, lógica, inibição ou estado operacional.</td><td>Revisar configuração e estados antes de repetir estímulo autorizado.</td></tr>
+      </tbody></table></div>
+      <p>A tabela orienta a coleta; não fecha diagnóstico. Medir ou abrir circuitos em instalação existente requer competência, autorização e procedimento compatíveis com o perigo.</p>
+
+      <h2>Checklist de restauração</h2>
+      <div class="restore-list"><ul>
+        <li>fontes e simuladores removidos, sem acessórios deixados na malha;</li>
+        <li>ligações, bornes, tampas e proteções restabelecidos conforme o projeto;</li>
+        <li>forças, bypasses, inibições e modos manuais retirados ou formalmente transferidos como pendência;</li>
+        <li>configuração final e revisão dos documentos registradas;</li>
+        <li>alarmes e estados operacionais devolvidos à condição acordada;</li>
+        <li>operação informada e liberação final registrada.</li>
+      </ul></div>
+
+      <h2>Ferramentas e leituras relacionadas</h2>
+      <div class="cta-actions"><a class="btn" href="calculadora-4-20ma.html"><i class="fas fa-wave-square"></i> Calculadora 4–20 mA</a><a class="btn secondary" href="calculadora-escala-clp.html"><i class="fas fa-microchip"></i> Escala PLC/CLP</a><a class="btn secondary" href="calculadora-malha-4-20ma-hart-completa.html"><i class="fas fa-network-wired"></i> Malha 4–20 mA/HART</a><a class="btn secondary" href="checklist-teste-de-loop.html"><i class="fas fa-list-check"></i> Checklist de loop</a></div>
+
+      <h2>Referências primárias</h2>
+      <ul>
+        <li><a href="https://webstore.iec.ch/en/publication/67573" target="_blank" rel="noopener noreferrer">IEC 62382:2024 — Control systems in the process industry — Electrical and instrumentation loop check</a>: escopo, responsabilidades e aplicação do loop check.</li>
+        <li><a href="https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/comissao-tripartite-partitaria-permanente/normas-regulamentadora/normas-regulamentadoras-vigentes/nr-10-atualizada-2026-1.pdf" target="_blank" rel="noopener noreferrer">Ministério do Trabalho e Emprego — NR-10 atualizada em 2026</a>: controle de riscos e medidas de prevenção em instalações e serviços com eletricidade.</li>
+        <li><a href="https://jcgm.bipm.org/vim/en/2.39.html" target="_blank" rel="noopener noreferrer">JCGM VIM 3, item 2.39 — Calibration</a>: definição de calibração e distinção de ajuste e verificação.</li>
+        <li><a href="https://www.namur.net/en/publications/news-archive/ne-43-has-been-revised.html" target="_blank" rel="noopener noreferrer">NAMUR NE 43, edição 2021-07-26</a>: propósito da informação de falha no sinal analógico de transmissores digitais.</li>
+      </ul>
+
+      <h2>Atuação da ALOGY dentro do escopo confirmado</h2>
+      <p>A ALOGY avalia demandas de instrumentação, automação, manutenção, configuração e conferência funcional conforme equipamento, risco, recursos e documentação necessários. O atendimento em Americana e Região Metropolitana de Campinas é definido caso a caso. Testes, entregáveis metrológicos e responsabilidades específicas somente integram a proposta quando as condições forem confirmadas.</p>
+
+      <h2>Perguntas frequentes</h2>
+      <h3>Quantos pontos devem ser usados?</h3><p>Não existe número universal. Os pontos precisam cobrir a finalidade e os riscos do teste conforme o plano aprovado.</p>
+      <h3>Uma leitura correta no PLC aprova a malha?</h3><p>Não necessariamente. Ela pode demonstrar parte da cadeia; a cobertura depende do ponto de estímulo e dos destinos incluídos.</p>
+      <h3>Posso forçar uma entrada para testar o intertravamento?</h3><p>Somente com autorização, análise de risco, coordenação operacional e procedimento específico. Uma força pode gerar ação real.</p>
 
       <h2>Aviso técnico</h2>
-      <p>Este conteúdo é informativo. Testes que possam atuar equipamentos, alarmes, intertravamentos ou processo devem seguir liberação operacional, análise de risco e procedimentos aplicáveis da instalação.</p>
-
-      <div class="cta-actions" style="margin-top:18px"><a class="btn" href="industrial.html"><i class="fas fa-industry"></i> Ver serviços industriais</a><a class="btn secondary" href="/guia/"><i class="fas fa-book-open"></i> Conhecer o Guia</a><a class="btn secondary" href="/#contato"><i class="fas fa-paper-plane"></i> Solicitar contato</a><a class="btn secondary" href="blog.html"><i class="fas fa-arrow-left"></i> Voltar ao blog</a></div>
+      <p>Este conteúdo é educativo. Não execute testes, abra circuitos, force sinais ou movimente elementos finais sem competência, autorização, avaliação de riscos e procedimentos aplicáveis à instalação.</p>
     </div></article>
-
-    <section class="cta-bar" aria-label="Chamada para atendimento"><div><strong>Precisa de loop check, commissioning ou revisão de instrumentação?</strong><br/><span class="muted">Entre em contato para avaliação técnica e definição do próximo passo.</span></div><div class="cta-actions"><a class="btn" href="/#contato"><i class="fas fa-paper-plane"></i> Falar com a ALOGY</a></div></section>
   </main>
 
   <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
