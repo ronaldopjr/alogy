@@ -1,6 +1,6 @@
 # ALOGY — fila operacional atual
 
-> Versão 2026-09-14.16. Esta é a única fila executável. Filas F4/F5 anteriores são históricas.
+> Versão 2026-09-14.17. Esta é a única fila executável. Filas F4/F5 anteriores são históricas.
 
 ## Regra permanente de navegação comercial
 
@@ -119,8 +119,7 @@ Workflows:
 
 - validação: `34889135920`;
 - Pages: `34889153902`, sucesso;
-- artefato: `10366246367`;
-- digest: `sha256:1606ebd5665fa5ed1df60b2c307c1191a7bb2ad8e6a3a0c88af40ac822f3979d`.
+- artefato: `10366246367`.
 
 ### Página 02 — página-pilar de calibração
 
@@ -144,10 +143,7 @@ Workflows:
 
 - validação: `34890160258`, sucesso;
 - Pages: `34890176070`, sucesso;
-- artefato: `10366407235`;
-- digest: `sha256:ebc409b19590693ed4c1d8361fc48169724b5a914611f452aaff2adcf57c10f0`.
-
-O artefato exato implantado foi extraído e inspecionado. Título, seções novas, exemplo, CTA, referências, canonical, AdSense, 1 H1, 18 H2 e os dois JSON-LD foram confirmados. Nenhum vestígio de Cursos ou Hotmart permaneceu.
+- artefato: `10366407235`.
 
 ### Resultado do piloto
 
@@ -157,36 +153,68 @@ Nenhuma solicitação de nova análise foi enviada ao AdSense.
 
 ## E06 — revisão do acervo monetizado
 
-**Estado:** EM EXECUÇÃO — PRIMEIRA PÁGINA SELECIONADA.
+**Estado:** EM EXECUÇÃO — PÁGINA 01 PUBLICADA E VALIDADA; PÁGINA 02 EM SELEÇÃO/PESQUISA.
 
-### E06-ACERVO-SELECTION-01
+### Página 01 — ar de instrumentos e ponto de orvalho
 
-Página: `blog-ar-instrumentos-qualidade-ponto-orvalho.html`.
+Arquivo: `blog-ar-instrumentos-qualidade-ponto-orvalho.html`.
 
-Estado atual:
+Resultado do lote:
 
-- `improve/P0/high`;
-- 949 palavras visíveis;
-- 903 palavras no conteúdo principal;
-- 1 H1 e 8 H2;
-- indexável, canônica, presente no sitemap e com AdSense direto.
+- decisão editorial: `improve/P0/high` → `keep/P1/high`;
+- artefato publicado com 36.002 bytes;
+- aproximadamente 2.424 palavras visíveis e 2.376 no conteúdo principal pelo parser do artefato;
+- 1 H1, 14 H2 e 0 H3;
+- JSON-LD `BlogPosting` e `FAQPage` válidos;
+- canonical e carregador do AdSense preservados;
+- URL presente uma vez em `sitemap-blog.xml`;
+- nenhuma referência `cursos.html`;
+- nenhum link Hotmart;
+- nenhum rótulo separado `Serviços Residenciais` ou `Serviços Industriais`;
+- referências públicas: ISO 8573-1:2010, ISO 8573-3:1999, Vaisala e ISA7;
+- exemplo fictício de diagnóstico explicitamente não usado como critério de aceitação;
+- CTA comercial condicionado ao escopo real da ALOGY;
+- nenhuma promessa automática de laboratório, certificado, classificação ISO ou rastreabilidade.
 
-Motivo: a página é relevante para posicionadores, conversores I/P, solenoides e atuadores, mas precisa identificar fontes e edições, explicar partículas/água/óleo sem prescrever classe universal, diferenciar ponto de orvalho sob pressão, organizar pontos de medição e apresentar diagnóstico reproduzível.
+Publicação:
 
-Relatório de seleção: `E06-ACERVO-SELECTION-01.md`.
-Commit: `1f48c6442c773c709573fe746ec7999ec733229f`.
+- conteúdo: `4c4a51b7fd881a5252995dd00603ee04053daeb8`;
+- relatório: `E06-AIR-INSTRUMENT-ACERVO-01.md`, commit `ade9301300d24ec5a1141cc646eb465633f20c52`;
+- delta do inventário: `E06-INVENTORY-DELTA-01.csv`, commit `610db63f470c122a14ce4e077d0ce23eba8a7b19`;
+- Pages: `34914413210`, sucesso;
+- artefato: `10375960376`;
+- digest: `sha256:0be374895293e9a29a12ae3a8f37f502432055a3283b00e5ee47492cabf93330`.
+
+Observação: a inspeção estrutural foi feita no artefato exato. A tentativa de render headless local não concluiu por limitação do Chromium do ambiente e **não é tratada como validação visual aprovada**. A estrutura responsiva existente foi preservada.
+
+### Pendência de inventário
+
+O CSV canônico continua com a linha anterior desta página. Para evitar substituir um arquivo grande de forma arriscada, a nova linha foi registrada no delta `E06-INVENTORY-DELTA-01.csv`. A consolidação no `ADSENSE-INVENTORY.csv` permanece pendente e explícita; não deve ser esquecida nem tratada como concluída.
+
+### Próximo candidato — página 02
+
+`blog-solenoide-atuador-pneumatico-cv.html` — atualmente `improve/P0/high`.
+
+Motivo da prioridade:
+
+- tema diretamente relacionado a solenóides e atuadores, coerente com o núcleo comercial da ALOGY;
+- artigo monetizado e indexável;
+- o inventário identifica ausência de método reproduzível, premissas claras de pressão/volume/tempo, separação entre alimentação e exaustão, fontes primárias e limites de segurança;
+- menções a aplicações de segurança impedem edição automática sem delimitação e fontes.
 
 ### Próxima ação executável
 
-1. Confirmar fontes oficiais e vigentes sobre qualidade de ar comprimido e ponto de orvalho.
-2. Revisar somente `blog-ar-instrumentos-qualidade-ponto-orvalho.html`.
-3. Preservar canonical, sitemap, AdSense, navegação e estrutura mobile.
-4. Não prescrever classe, ponto de orvalho ou frequência universal.
-5. Não prometer laboratório, ensaio, certificado, classe ISO ou rastreabilidade não confirmada.
-6. Regenerar o inventário após a publicação.
-7. Validar o HTML, o build e o artefato exato do GitHub Pages antes de fechar o lote.
+1. Confirmar fontes primárias públicas para solenóides, atuadores pneumáticos, Cv/fluxo e tempo de atuação.
+2. Separar conteúdo de diagnóstico/manutenção de qualquer dimensionamento ou aplicação de segurança.
+3. Não publicar equivalência universal Cv/Kv ou tempo de atuação sem condições declaradas.
+4. Não alterar calculadoras ou JavaScript técnico neste lote.
+5. Revisar somente o artigo se as fontes permitirem uma melhoria segura.
+6. Validar canonical, sitemap, AdSense, H1/JSON-LD e artefato exato após eventual publicação.
+7. Consolidar o delta E06-01 no inventário canônico em checkpoint seguro.
 
 Páginas `manual-review/P0` permanecem inalteradas até revisão humana proporcional ao risco. Hubs de ferramentas exigem lote arquitetural separado. Páginas dependentes de autoria pessoal, credenciais ou casos reais aguardam fatos confirmados pelo proprietário.
+
+Nenhuma solicitação de nova análise foi enviada ao AdSense.
 
 ## E08-W1 — avisos compartilhados
 
