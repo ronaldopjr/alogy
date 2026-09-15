@@ -1,6 +1,6 @@
 # ALOGY — fila operacional atual
 
-> Versão 2026-09-14.19. Esta é a única fila executável. Filas F4/F5 anteriores são históricas.
+> Versão 2026-09-14.20. Esta é a única fila executável. Filas F4/F5 anteriores são históricas.
 
 ## Regra permanente de navegação comercial
 
@@ -119,7 +119,7 @@ Consolidação: `a04bb693e8aa3d8835183cd1bf3fadb74b5e594d`.
 
 ## E06 — revisão do acervo monetizado
 
-**Estado:** EM EXECUÇÃO — TRÊS PÁGINAS REVISADAS, PUBLICADAS E VALIDADAS.
+**Estado:** EM EXECUÇÃO — QUATRO PÁGINAS REVISADAS, PUBLICADAS E VALIDADAS.
 
 ### Página 01 — ar de instrumentos e ponto de orvalho
 
@@ -151,23 +151,15 @@ Pages: `34914413210`, artefato `10375960376`.
 - 1 H1 / 14 H2 / 6 H3;
 - `BlogPosting` + `FAQPage`;
 - canonical, AdSense e sitemap preservados;
-- URL presente uma vez em `sitemap-blog.xml`;
 - sem Cursos, Hotmart ou rótulos separados de Serviços;
-- HTML do artefato idêntico ao candidato validado;
 - fontes públicas: Emerson/ASCO e Festo;
-- SKU ASCO usado apenas como exemplo específico; nenhum Cv universal;
-- alimentação e exaustão analisadas separadamente;
-- exemplo fictício de diagnóstico sem criar tolerância universal;
 - escopo genérico exclui dimensionamento/validação de ESD, SIS ou shutdown crítico;
 - nenhuma fórmula ou JavaScript das calculadoras alterado.
 
 Conteúdo: `3baa03d6832062d7d0fe24ec4ecae37cf96f0b59`.
-Blob: `f902c6d5a2246bef7193b32c0a14c5936d58fe19`.
 Relatório: `E06-SOLENOID-ACTUATOR-ACERVO-02.md`, commit `212e8e5e6a43649b105399428dddfdca934e5310`.
 Delta: `E06-INVENTORY-DELTA-02.csv`, commit `9e9ab916ebe533fc16aeee248bfbe06083ad5d2b`.
-Pages: `34915228002`, sucesso.
-Artefato: `10376455086`.
-Digest: `sha256:6ed4f6cbaea635c7cff767bf16d30671cd00373ea6504689bed60f19ece07147`.
+Pages: `34915228002`, artefato `10376455086`.
 
 ### Página 03 — hub de Instrumentação Industrial
 
@@ -180,7 +172,6 @@ Digest: `sha256:6ed4f6cbaea635c7cff767bf16d30671cd00373ea6504689bed60f19ece07147
 - `BlogPosting` + `FAQPage`;
 - canonical, AdSense e sitemap preservados;
 - HTML do artefato idêntico byte a byte ao candidato validado;
-- URL presente uma vez nos sitemaps;
 - sem Cursos, Hotmart, `/guia/` ou rótulos separados de Serviços;
 - fontes: BIPM/JCGM 200:2012, ANSI/ISA-5.1-2024, FieldComm Group e NIST;
 - adicionados cadeia de medição, roteiro diagnóstico, exemplo 0–10 bar / 12 mA / 5 bar, tabela de sintomas e trilhas internas;
@@ -189,17 +180,41 @@ Digest: `sha256:6ed4f6cbaea635c7cff767bf16d30671cd00373ea6504689bed60f19ece07147
 - nenhuma fórmula ou JavaScript técnico compartilhado alterado.
 
 Conteúdo: `794c5bd65cd80ce34b30f0ef83c1b422c5584ab5`.
-Blob: `52ae5b3804865343cffe307136fced73754bc680`.
 Relatório: `E06-INSTRUMENTATION-HUB-ACERVO-03.md`, commit `0f27e8e74543b1c6e8e2d0d014d84609b8624a4e`.
 Delta: `E06-INVENTORY-DELTA-03.csv`, commit `00c32a4276a8b98006ae93337e31e2598b5d4ff7`.
-Pages: `34916655362`, sucesso.
-Artefato: `10376422501`.
-Digest: `sha256:c45c6c33c9ea15c9d660841e4ed30c99b59a6b13eff1616395f3adeebc536e05`.
-SHA-256 do HTML: `8a138fae970b5679136d4f097241a7dede877427984644c79fec3a5685787fad`.
+Pages: `34916655362`, artefato `10376422501`.
+
+### Página 04 — criticidade de instrumentos
+
+`blog-criticidade-instrumentos.html`
+
+- `improve/P0/high` → `keep/P1/high`;
+- artefato: 28.362 bytes;
+- 2.012 palavras visíveis / 1.970 no artigo pelo validador final;
+- 1 H1 / 17 H2;
+- `BlogPosting` + `FAQPage`;
+- canonical, AdSense e sitemap preservados;
+- HTML publicado idêntico byte a byte ao candidato validado;
+- URL presente exatamente uma vez em `sitemap-blog.xml`;
+- sem Hotmart, `/guia/` ou rótulos separados de Serviços;
+- matriz 0–3 e faixas 0–3 / 4–7 / 8–12 explicitamente fictícias e apenas didáticas;
+- SIS, SIL, ESD e classificação de risco tolerável excluídos da pontuação genérica;
+- exemplo fictício TT-101 e processo de validação antes de uso em massa;
+- fontes públicas: ISO 14224:2016, ISO 55000:2024, ISO 55001:2024, IEC 60300-3-11:2009 e série IEC 61511;
+- nenhuma fórmula, calculadora ou JavaScript técnico alterado.
+
+Conteúdo: `95ea333e471f7e3d2518363794ca0215585ef6d8`.
+Blob: `e83e015492be3eb4d48d5a34c5cccc40ee881ec1`.
+Relatório: `E06-CRITICALITY-INSTRUMENTS-ACERVO-04.md`, commit `8b639981e007d3a23d90318061cb7f2d541197df`.
+Delta: `E06-INVENTORY-DELTA-04.csv`, commit `9897dc85c5d0525f7438b7e2094957aed7413b1c`.
+Pages: `34919359257`, sucesso.
+Artefato: `10377550959`.
+Digest: `sha256:91f58c4e5da89430d811513e0c88594265fbb62d083bcfe905b753bc347c29fd`.
+SHA-256 do HTML: `99454180eeec26229d6358a040bd993153e981bb74fce9ae3605f6e78c0ac94c`.
 
 ### Pendência explícita do inventário
 
-O `ADSENSE-INVENTORY.csv` canônico **ainda não incorpora as três novas decisões E06**. Os deltas 01, 02 e 03 são a fonte de verdade incremental até uma substituição integral segura do CSV.
+O `ADSENSE-INVENTORY.csv` canônico **ainda não incorpora as quatro novas decisões E06**. Os deltas 01, 02, 03 e 04 são a fonte de verdade incremental até uma substituição integral segura do CSV.
 
 O conector atual consegue substituir o CSV inteiro, mas não aplicar patch por linha nem receber diretamente um arquivo local. Não arriscar truncar o inventário para marcar essa consolidação como concluída.
 
@@ -207,7 +222,7 @@ O conector atual consegue substituir o CSV inteiro, mas não aplicar patch por l
 
 1. Selecionar a próxima página `improve/P0/high` por proximidade com Instrumentação Industrial e potencial de aprofundamento verificável.
 2. Priorizar páginas editoriais não classificadas como `manual-review/P0`.
-3. Consolidar os três deltas no inventário canônico somente quando houver mecanismo seguro de substituição integral/patch.
+3. Consolidar os quatro deltas no inventário canônico somente quando houver mecanismo seguro de substituição integral/patch.
 4. Remover links Guia/Cursos de blog/ferramentas apenas quando cada página entrar em lote seguro.
 5. Não alterar calculadoras/JS técnico sem defeito reproduzido.
 6. Continuar uma página extensa por lote.
