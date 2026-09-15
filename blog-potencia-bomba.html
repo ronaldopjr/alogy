@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Potência de Motor de Bomba | Pump Motor kW, Corrente e VFD | ALOGY</title>
-  <meta name="description" content="Pump motor load check: estime potência hidráulica, potência no eixo, kW elétrico e corrente trifásica para comparar motor, VFD e condição de operação." />
+  <title>Potência de Motor de Bomba | Cálculo de kW e Corrente | ALOGY</title>
+  <meta name="description" content="Calcule potência hidráulica, potência no eixo, entrada elétrica e corrente trifásica de bomba, com exemplo, curva, VFD e diagnóstico." />
   <meta name="robots" content="index,follow" />
   <meta name="theme-color" content="#2C78B9" />
   <link rel="canonical" href="https://www.alogy.com.br/blog-potencia-bomba.html" />
@@ -22,18 +22,21 @@
   <meta property="og:locale" content="pt_BR" />
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="ALOGY Engenharia" />
-  <meta property="og:title" content="Potência de Motor de Bomba: kW, Corrente e VFD" />
-  <meta property="og:description" content="Como usar vazão e altura manométrica para uma conferência elétrica preliminar de motor e inversor, sem confundir estimativa com seleção final." />
+  <meta property="og:title" content="Potência de motor de bomba: cálculo de kW e corrente" />
+  <meta property="og:description" content="Da vazão e altura manométrica à potência hidráulica, eixo, entrada elétrica e corrente trifásica, com limites para curva e VFD." />
   <meta property="og:url" content="https://www.alogy.com.br/blog-potencia-bomba.html" />
   <meta property="og:image" content="https://www.alogy.com.br/capa-blog-potencia-bomba.webp" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="https://www.alogy.com.br/capa-blog-potencia-bomba.webp" />
 
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Potência de motor de bomba: kW, corrente e VFD","description":"Pump motor load check: estime potência hidráulica, potência no eixo, kW elétrico e corrente trifásica para comparar motor, VFD e condição de operação.","dateModified":"2026-09-11","author":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"},"publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/","logo":{"@type":"ImageObject","url":"https://www.alogy.com.br/logo-alogy.webp"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://www.alogy.com.br/blog-potencia-bomba.html"},"inLanguage":"pt-BR","image":"https://www.alogy.com.br/capa-blog-potencia-bomba.webp"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Potência de motor de bomba: cálculo de kW, corrente e análise com VFD","description":"Calcule potência hidráulica, potência no eixo, entrada elétrica e corrente trifásica de bomba, com exemplo, curva, VFD e diagnóstico.","datePublished":"2026-06-29","dateModified":"2026-09-15","author":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/sobre.html"},"publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/","logo":{"@type":"ImageObject","url":"https://www.alogy.com.br/logo-alogy.webp"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://www.alogy.com.br/blog-potencia-bomba.html"},"inLanguage":"pt-BR","image":"https://www.alogy.com.br/capa-blog-potencia-bomba.webp"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"A potência indicada na placa do motor é entrada elétrica?","acceptedAnswer":{"@type":"Answer","text":"Em geral, a potência nominal em kW ou cv na placa representa a potência mecânica disponível no eixo nas condições nominais. A potência elétrica absorvida é maior e depende do rendimento."}},{"@type":"Question","name":"Posso calcular a corrente apenas dividindo kW pela tensão?","acceptedAnswer":{"@type":"Answer","text":"Não para um motor trifásico. A estimativa de corrente de linha usa potência elétrica de entrada, tensão de linha, raiz de três e fator de potência. A comparação final deve usar placa e medição."}},{"@type":"Question","name":"Reduzir a frequência do VFD reduz a potência da bomba ao cubo?","acceptedAnswer":{"@type":"Answer","text":"As leis de afinidade indicam essa tendência para bombas rotodinâmicas geometricamente semelhantes, mas o ponto real também depende da curva do sistema, da eficiência e dos limites do conjunto."}},{"@type":"Question","name":"A corrente alta prova que a bomba está sobrecarregada?","acceptedAnswer":{"@type":"Answer","text":"Não isoladamente. É preciso conferir tensão, desequilíbrio, frequência, ponto de operação, vazão, altura, condição mecânica, parâmetros do VFD e dados de placa."}}]}</script>
   <style>
-    .formula-box{background:#f8fafc;border:1px solid #dbe5ec;border-left:4px solid #006bb1;border-radius:12px;padding:14px;margin:16px 0}
+    .formula-box{background:#f8fafc;border:1px solid #dbe5ec;border-left:4px solid #006bb1;border-radius:12px;padding:14px;margin:16px 0;overflow-x:auto}
     .chain{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:18px 0}.chain div{border:1px solid rgba(0,107,177,.18);border-radius:13px;padding:13px;text-align:center;background:#fff;font-weight:800;color:#0b3a62}.chain span{display:block;color:var(--muted);font-size:.84rem;font-weight:400;margin-top:5px}
-    @media(max-width:760px){.chain{grid-template-columns:1fr 1fr}}@media(max-width:460px){.chain{grid-template-columns:1fr}}
+    .data-table{width:100%;border-collapse:collapse;margin:16px 0}.data-table th,.data-table td{border:1px solid #cbd9e3;padding:10px;text-align:left;vertical-align:top}.data-table th{background:#edf5fa;color:#0b3a62}
+    .faq details{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:14px;padding:14px;margin-top:10px}.faq summary{cursor:pointer;font-weight:900;color:#0b3a62}.faq p{margin:10px 0 0}
+    @media(max-width:760px){.chain{grid-template-columns:1fr 1fr}.data-table{font-size:.92rem}.data-table th,.data-table td{padding:8px}}@media(max-width:460px){.chain{grid-template-columns:1fr}}
     @media print{header,.social-floating,.fab-wrap,.cta-bar,footer,.calc-actions,.no-print{display:none!important}}
   </style>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5586837114309500" crossorigin="anonymous"></script>
@@ -50,36 +53,101 @@
   <main class="container" style="margin-top:18px">
     <a class="floating-back-blog no-print" href="blog.html"><i class="fas fa-arrow-left"></i> Voltar ao Blog</a>
     <article class="blog-post">
-      <h1>Potência de motor de bomba: estimativa de kW e corrente</h1>
-      <p class="muted" data-alogy-content-meta><strong>Conteúdo técnico:</strong> ALOGY Engenharia · <strong>Atualizado em:</strong> 11/09/2026</p>
-      <figure class="article-cover-figure"><img class="article-cover-image" src="capa-blog-potencia-bomba.webp" alt="Motor elétrico acionando bomba centrífuga em aplicação industrial" loading="eager" fetchpriority="high" decoding="async"/><figcaption>A estimativa hidráulica pode ser usada como uma checagem de coerência da carga elétrica do motor, mas não substitui curva da bomba, placa do motor ou dimensionamento do VFD.</figcaption></figure>
+      <h1>Potência de motor de bomba: cálculo de kW, corrente e análise com VFD</h1>
+      <p class="muted" data-alogy-content-meta><strong>Conteúdo técnico:</strong> ALOGY Engenharia · <strong>Atualizado em:</strong> 15/09/2026 · <a href="sobre.html">Escopo editorial e responsável pelo site</a></p>
+      <figure class="article-cover-figure"><img class="article-cover-image" src="capa-blog-potencia-bomba.webp" alt="Motor elétrico acionando bomba centrífuga em aplicação industrial" loading="eager" fetchpriority="high" decoding="async"/><figcaption>A potência percorre uma cadeia: energia transferida ao fluido, potência mecânica no eixo e potência elétrica absorvida. Cada etapa tem perdas e dados próprios.</figcaption></figure>
 
-      <div class="chain"><div>Flow + Head<span>condição hidráulica</span></div><div>Shaft Power<span>rendimento da bomba</span></div><div>Motor kW<span>rendimento elétrico</span></div><div>Current / VFD<span>tensão + power factor</span></div></div>
+      <p>Uma estimativa de potência para bomba ajuda a conferir se vazão, altura manométrica, corrente medida, motor e inversor de frequência contam a mesma história. Ela não seleciona a bomba sozinha e não substitui a curva do fabricante. O cálculo deve separar quatro grandezas que frequentemente são tratadas como se fossem uma só.</p>
+      <div class="chain"><div>Q + H<span>condição hidráulica</span></div><div>Potência no eixo<span>rendimento da bomba</span></div><div>Entrada elétrica<span>rendimento do motor</span></div><div>Corrente / VFD<span>tensão + fator de potência</span></div></div>
+      <p>A distinção é importante porque a potência nominal em kW ou cv da placa do motor representa, em geral, a saída mecânica no eixo em condições nominais. A potência absorvida da rede é maior devido às perdas do motor. Corrente ainda depende de tensão, fator de potência, carga e condição de alimentação.</p>
 
-      <p>Para elétrica industrial, a utilidade deste cálculo é verificar se a carga estimada faz sentido diante da placa do motor, corrente medida e capacidade do inversor. Ele não serve para escolher uma bomba apenas pela potência.</p>
+      <h2>1. Potência hidráulica: vazão, altura e densidade</h2>
+      <div class="formula-box"><strong>P<sub>h</sub> = ρ · g · Q · H</strong><br>P<sub>h</sub> em W; ρ em kg/m³; g em m/s²; Q em m³/s; H em m.</div>
+      <p>A altura manométrica total representa energia por unidade de peso. Não é apenas “pressão de descarga”: deve corresponder à diferença de energia entre sucção e descarga, incluindo componentes de pressão, elevação e velocidade conforme o ponto de referência. Para diagnóstico de campo, vazão e altura precisam ser da mesma condição operacional.</p>
+      <p>Se a vazão estiver em m³/h, divida por 3.600 antes de aplicar a fórmula em SI. Use a densidade na condição aplicável. Para água próxima da condição ambiente, 1.000 kg/m³ costuma ser uma aproximação didática; outros fluidos, concentração e temperatura podem mudar o resultado.</p>
 
-      <h2>Da potência hidráulica à potência elétrica</h2>
-      <div class="formula-box"><strong>Potência hidráulica = ρ × g × Q × H</strong><br/>A potência no eixo depende do rendimento da bomba; a potência elétrica depende também do rendimento do motor.</div>
-      <p>Q, H e densidade precisam representar a condição real de operação. O rendimento da bomba varia com o ponto da curva, portanto um valor assumido pode deslocar bastante o resultado.</p>
+      <h2>2. Da potência hidráulica ao eixo e à entrada elétrica</h2>
+      <div class="formula-box"><strong>P<sub>eixo</sub> = P<sub>h</sub> ÷ η<sub>bomba</sub></strong><br><strong>P<sub>elétrica</sub> = P<sub>eixo</sub> ÷ η<sub>motor</sub></strong></div>
+      <p>Os rendimentos entram como números decimais: 70% corresponde a 0,70. O rendimento da bomba não é uma constante universal; muda ao longo da curva e deve vir do ponto de operação do conjunto. O rendimento do motor também varia com projeto e carga. Quando houver placa e documentação do modelo, elas prevalecem sobre um valor genérico.</p>
+      <p>A potência do eixo é a referência mecânica para comparar a carga requerida pela bomba com a potência nominal disponível do motor. A escolha final considera regime, temperatura, altitude, método de partida, sobrecargas transitórias, acoplamento, requisitos normativos e orientações dos fabricantes. Não aplique uma margem fixa como regra universal.</p>
 
-      <h2>Corrente trifásica como conferência</h2>
-      <p>Para uma estimativa elétrica trifásica, tensão, fator de potência e rendimento do motor entram na relação. Compare o resultado com corrente de placa, corrente efetivamente medida e condição do VFD/partida.</p>
-      <p>Se a corrente real estiver acima do esperado, investigue também condição mecânica, ponto de operação, rotação, tensão, desequilíbrio, fator de potência e dados de placa antes de concluir sobre sobrecarga.</p>
+      <h2>3. Corrente trifásica estimada</h2>
+      <div class="formula-box"><strong>I ≈ P<sub>elétrica</sub> ÷ (√3 · V · FP)</strong><br>I em A; P<sub>elétrica</sub> em W; V é a tensão de linha em V; FP é o fator de potência.</div>
+      <p>Essa relação usa potência ativa de entrada. Se partir da potência mecânica de placa, inclua o rendimento antes de estimar a corrente. A WEG apresenta essas relações em seu guia de especificação de motores e define rendimento como a razão entre potência mecânica disponível e potência elétrica absorvida.</p>
+      <p>A corrente calculada é uma conferência, não um substituto para corrente nominal de placa. Fator de potência e rendimento variam com carga; tensão desequilibrada, harmônicas, frequência, temperatura e alimentação por VFD podem afastar a medição da aproximação.</p>
 
-      <h2>O que o VFD muda</h2>
-      <p>Com inversor de frequência, rotação e ponto de operação podem variar. A corrente de saída do VFD não deve ser interpretada apenas por uma conta fixa de potência; use os dados do motor, parâmetros configurados, limites do drive e medições do próprio sistema.</p>
+      <h2>Exemplo resolvido: bomba com 50 m³/h e 35 m</h2>
+      <p>Considere água com densidade de 1.000 kg/m³, vazão de 50 m³/h, altura total de 35 m, rendimento da bomba de 70%, rendimento do motor de 90%, alimentação trifásica de 380 V e fator de potência de 0,85. São valores didáticos, não uma especificação.</p>
+      <table class="data-table">
+        <thead><tr><th>Etapa</th><th>Cálculo</th><th>Resultado</th></tr></thead>
+        <tbody>
+          <tr><td>Converter vazão</td><td>50 ÷ 3.600</td><td>0,013889 m³/s</td></tr>
+          <tr><td>Potência hidráulica</td><td>1.000 × 9,80665 × 0,013889 × 35</td><td>4,767 kW</td></tr>
+          <tr><td>Potência no eixo</td><td>4,767 ÷ 0,70</td><td>6,810 kW</td></tr>
+          <tr><td>Entrada elétrica</td><td>6,810 ÷ 0,90</td><td>7,567 kW</td></tr>
+          <tr><td>Corrente estimada</td><td>7.567 ÷ (√3 × 380 × 0,85)</td><td>13,53 A</td></tr>
+        </tbody>
+      </table>
+      <p>Uma corrente medida próxima desse valor é apenas evidência de coerência com as premissas. Para comparar com a placa, use a tensão e os valores nominais corretos; para avaliar a carga real, confira simultaneamente vazão, altura, frequência, tensão e corrente. Se o rendimento real da bomba for 60% em vez de 70%, a potência de eixo subiria para 7,945 kW: isso mostra por que o ponto da curva importa.</p>
 
-      <h2>Dados mínimos</h2>
-      <ul><li>vazão e altura manométrica na condição analisada;</li><li>densidade do fluido;</li><li>rendimento da bomba no ponto de operação;</li><li>potência, tensão, corrente, rendimento e fator de potência da placa do motor;</li><li>frequência/rotação e dados do VFD, quando houver;</li><li>corrente e tensão medidas para comparação.</li></ul>
+      <h2>Curva da bomba, curva do sistema e BEP</h2>
+      <p>A bomba opera no encontro entre sua curva e a curva do sistema, não em um valor isolado de potência. O Hydraulic Institute define o ponto de melhor eficiência (BEP) e publica diretrizes de regiões preferida e admissível de operação. Trabalhar longe do ponto previsto pode afetar eficiência, vibração, esforços, temperatura e vida de componentes, conforme o projeto e a aplicação.</p>
+      <p>A fonte do DOE sobre sistemas de bombeamento recomenda olhar o conjunto completo, porque manter componentes sem corrigir a condição do sistema pode preservar a causa do problema. Para uma avaliação útil, reúna curva Q×H, curva de potência, rendimento, diâmetro do rotor, rotação, densidade/viscosidade e curva do sistema.</p>
 
-      <h2>Como usar como diagnóstico</h2>
-      <ol><li>Calcule uma ordem de grandeza da carga pela condição hidráulica.</li><li>Compare com potência nominal e corrente de placa.</li><li>Compare com corrente medida em condição estável.</li><li>Se houver divergência relevante, confirme vazão/head e ponto de operação antes de culpar o motor.</li><li>Verifique tensão, desequilíbrio, VFD, parametrização e condições mecânicas conforme o caso.</li></ol>
+      <h2>O que muda com o inversor de frequência</h2>
+      <p>Para uma mesma bomba rotodinâmica e condições de semelhança, as leis de afinidade indicam tendências: vazão proporcional à rotação, altura proporcional ao quadrado da rotação e potência proporcional ao cubo da rotação.</p>
+      <div class="formula-box"><strong>Q₂/Q₁ ≈ n₂/n₁</strong><br><strong>H₂/H₁ ≈ (n₂/n₁)²</strong><br><strong>P₂/P₁ ≈ (n₂/n₁)³</strong></div>
+      <p>Reduzir a rotação para 80% sugeriria, no modelo ideal, vazão de 80%, altura de 64% e potência de aproximadamente 51,2% dos valores de referência. Isso não garante esses valores no processo: o ponto real depende da curva do sistema, eficiência, limites de rotação, NPSH e controle. Sistemas com alta componente estática não seguem uma simples redução proporcional de vazão.</p>
+      <p>No VFD, compare corrente de saída, frequência, tensão, torque e estado do drive com os parâmetros de placa configurados. A corrente de entrada do inversor não é necessariamente igual à corrente entregue ao motor. Dimensionamento, derating, proteção e frequências críticas dependem dos manuais do motor e do drive.</p>
 
-      <h2>Ferramentas relacionadas</h2>
-      <div class="calc-actions"><a class="mini-btn dark" href="calculadora-potencia-bomba.html"><i class="fas fa-calculator"></i> Potência de motor de bomba</a><a class="mini-btn" href="calculadora-corrente-trifasica.html">Corrente trifásica</a><a class="mini-btn" href="ferramentas-eletrica-industrial.html"><i class="fas fa-bolt"></i> Elétrica</a></div>
+      <h2>Diagnóstico por evidência</h2>
+      <table class="data-table">
+        <thead><tr><th>Sintoma observado</th><th>Hipóteses a investigar</th><th>Evidência necessária</th></tr></thead>
+        <tbody>
+          <tr><td>Corrente alta e vazão baixa</td><td>Restrição, recirculação, fluido diferente, condição mecânica, rotação ou medição incorreta.</td><td>Pressões, vazão independente, frequência, válvulas, densidade, vibração e inspeção.</td></tr>
+          <tr><td>Corrente acima da placa</td><td>Sobrecarga, tensão/desequilíbrio, parametrização, ponto de operação ou atrito.</td><td>Tensões por fase, correntes, frequência, placa, curva, carga e histórico do VFD.</td></tr>
+          <tr><td>Potência estimada muito abaixo da medida</td><td>Head ou vazão subestimados, rendimento menor, perdas, instrumento ou premissa inadequada.</td><td>Conferência dos transmissores, unidades, tomadas, curva e potência elétrica medida.</td></tr>
+          <tr><td>Vibração ou ruído com corrente normal</td><td>Cavitação, alinhamento, fundação, rolamento ou operação fora da região adequada.</td><td>NPSH disponível/requerido, espectro, inspeção mecânica e curva do fabricante.</td></tr>
+        </tbody>
+      </table>
+      <p>Nenhuma linha da tabela fecha o diagnóstico sozinha. A corrente revela carga elétrica, mas não identifica automaticamente a causa. Desenergização, bloqueio, liberação de processo e ensaios devem seguir procedimentos e responsabilidades da instalação.</p>
+
+      <h2>Dados mínimos para uma conferência útil</h2>
+      <ul>
+        <li>vazão, pressões de sucção/descarga, cotas e temperatura na mesma condição;</li>
+        <li>densidade e, quando relevante, viscosidade e composição do fluido;</li>
+        <li>curvas Q×H, potência, rendimento e NPSH do fabricante na rotação/rotor aplicáveis;</li>
+        <li>placa do motor: potência, tensão, corrente, frequência, rotação, rendimento e fator de potência;</li>
+        <li>dados do VFD e parâmetros do motor, quando houver;</li>
+        <li>tensões, correntes, frequência e potência medidas com instrumentos adequados;</li>
+        <li>posição de válvulas, estado de filtros, linha de recirculação e histórico da condição.</li>
+      </ul>
+
+      <h2>Ferramentas e conteúdos relacionados</h2>
+      <div class="calc-actions"><a class="mini-btn dark" href="calculadora-potencia-bomba.html"><i class="fas fa-calculator"></i> Potência de motor de bomba</a><a class="mini-btn" href="calculadora-corrente-trifasica.html">Corrente trifásica</a><a class="mini-btn" href="ferramentas-eletrica-industrial.html"><i class="fas fa-bolt"></i> Ferramentas de elétrica</a></div>
+
+      <h2>Referências primárias consultadas</h2>
+      <ul>
+        <li><a href="https://www.energy.gov/sites/default/files/2014/05/f16/pump.pdf" target="_blank" rel="noopener noreferrer">U.S. Department of Energy — Improving Pumping System Performance</a>: abordagem de sistema, potência do fluido, curvas e operação.</li>
+        <li><a href="https://www1.eere.energy.gov/manufacturing/tech_assistance/pdfs/psat_user_manual.pdf" target="_blank" rel="noopener noreferrer">U.S. Department of Energy — Pumping System Assessment Tool User Manual</a>: vazão, altura, potência, rendimento e dados elétricos para avaliação.</li>
+        <li><a href="https://datatool.pumps.org/pump-fundamentals/pump-principles" target="_blank" rel="noopener noreferrer">Hydraulic Institute — Pump Principles</a>: curvas de desempenho, BEP e NPSH em bombas rotodinâmicas.</li>
+        <li><a href="https://static.weg.net/medias/downloadcenter/ha0/h5f/WEG-motors-specification-of-electric-motors-50039409-brochure-english-web.pdf" target="_blank" rel="noopener noreferrer">WEG — Specification of Electric Motors</a>: potência trifásica, fator de potência, rendimento e grandezas de placa.</li>
+        <li><a href="https://library.abb.com/d/3AFE61389211" target="_blank" rel="noopener noreferrer">ABB — Guide to Variable Speed Drives</a>: motor, torque, carga e aplicação de acionamento de velocidade variável.</li>
+      </ul>
+
+      <h2>Como a ALOGY pode apoiar</h2>
+      <p>A ALOGY pode apoiar, conforme escopo confirmado, em avaliação, inspeção, manutenção, configuração e conferência funcional de instrumentação e sinais associados ao sistema, além de elétrica e automação industrial, com instrumentista sob demanda em Americana e na Região Metropolitana de Campinas. Calibração, ensaio, rastreabilidade ou documentação específica dependem da confirmação prévia de recursos, métodos e eventuais parceiros na proposta.</p>
 
       <h2>Aviso técnico</h2>
-      <p>O cálculo é uma estimativa de engenharia. Seleção de motor, cabos, proteção, VFD e bomba exige placa, curva do fabricante, regime de serviço, normas aplicáveis e medições reais. Não use a corrente estimada como ajuste automático de proteção.</p>
+      <p>Este conteúdo é informativo. Seleção de bomba, motor, cabos, proteção ou VFD exige curvas e manuais dos fabricantes, regime, instalação, normas aplicáveis e engenharia responsável. Não use a corrente estimada como ajuste automático de proteção nem execute intervenção sem procedimento seguro.</p>
+
+      <section class="faq">
+        <h2>Perguntas frequentes</h2>
+        <details><summary>A potência da placa do motor é a entrada elétrica?</summary><p>Em geral, a potência nominal em kW ou cv representa a potência mecânica disponível no eixo. A entrada elétrica é maior e depende do rendimento.</p></details>
+        <details><summary>Posso calcular a corrente dividindo kW pela tensão?</summary><p>Não para motor trifásico. A estimativa inclui potência elétrica de entrada, tensão de linha, raiz de três e fator de potência; placa e medição continuam necessárias.</p></details>
+        <details><summary>Reduzir a frequência do VFD reduz a potência ao cubo?</summary><p>É uma tendência das leis de afinidade sob condições de semelhança. O ponto real também depende da curva do sistema, eficiência e limites do conjunto.</p></details>
+        <details><summary>Corrente alta prova sobrecarga da bomba?</summary><p>Não isoladamente. Confira tensão, desequilíbrio, frequência, ponto de operação, vazão, altura, condição mecânica, parâmetros do VFD e placa.</p></details>
+      </section>
     </article>
   </main>
   <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
