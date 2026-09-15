@@ -1,18 +1,17 @@
 {
   "schema_version": 3,
   "project": "ALOGY AdSense Recovery",
-  "plan_version": "2026-09-14.21",
+  "plan_version": "2026-09-14.22",
   "repository": "ronaldopjr/alogy",
   "base_branch": "main",
   "work_branch": "main",
-  "base_sha_verified": "ba9cb43f8369ea02637108c37163ffdae491ec9d",
+  "base_sha_verified": "1b945ccbcca694966a7fc25206f2048d96bdcf13",
   "verified_at": "2026-09-14",
   "last_completed_stage": "E05",
   "stage_in_progress": "E06",
   "next_stage": "E06",
-  "next_action": "Selecionar a proxima pagina improve/P0/high do acervo monetizado, priorizando instrumentacao industrial e baixo risco editorial. Manter E06-INVENTORY-DELTA-01.csv a E06-INVENTORY-DELTA-05.csv como fonte incremental ate consolidacao segura no inventario canonico. Nao editar manual-review/P0 automaticamente e nao solicitar nova analise do AdSense ainda.",
+  "next_action": "Selecionar a proxima pagina improve/P0/high do acervo monetizado, priorizando instrumentacao industrial e baixo risco editorial. Manter E06-INVENTORY-DELTA-01.csv a E06-INVENTORY-DELTA-06.csv como fonte incremental ate consolidacao segura no inventario canonico. Nao editar manual-review/P0 automaticamente e nao solicitar nova analise do AdSense ainda.",
   "status": "in_progress",
-  "max_pages_per_edit_batch": 5,
   "preferred_editorial_batch": 1,
   "adsense": {
     "reported_status": "low_value_content",
@@ -24,30 +23,26 @@
     "enabled": true,
     "target_branch": "main",
     "method": "validated-atomic-commit",
-    "batch_id": "E06-LOOP-ERROR-ACERVO-05",
-    "latest_site_change_commit": "41421244f4e6cce1e11d81fff25d4c79aaf93f2e",
-    "latest_inventory_report_commit": "ba9cb43f8369ea02637108c37163ffdae491ec9d",
+    "batch_id": "E06-FAT-SAT-ACERVO-06",
+    "latest_site_change_commit": "c9dc10756d8f5f42ef0388131caccbdee1e4f68c",
+    "latest_inventory_report_commit": "1b945ccbcca694966a7fc25206f2048d96bdcf13",
     "services_navigation_commit": "2a047390f543d3a7a0469a3677f17c14fa0dcfeb",
     "canonical_inventory_initial_commit": "da2f61932a21c00741f418870601aafcb42deba6",
     "source_verified_on_main": true,
     "pages_deployment_success": true,
-    "latest_pages_workflow_run": 34920747799,
-    "latest_pages_artifact_id": 10377956619,
-    "latest_pages_artifact_digest": "sha256:0113e7e54d026254980c7d656ed0af7fa2871e2d314ab185f7d527dbb78eab65",
+    "latest_pages_workflow_run": 34922216499,
+    "latest_pages_artifact_id": 10378157849,
+    "latest_pages_artifact_digest": "sha256:54da63bfd243cadd82eea74d9927c619f578f3dfa1d7cb78e19d8148108f6952",
     "live_environment_url": "https://www.alogy.com.br/",
     "artifact_validation_complete": true,
-    "artifact_validation_method": "Exact github-pages artifact extracted and structurally inspected after successful deployment; blog-erro-total-malha-instrumentacao.html matched the locally validated candidate byte-for-byte.",
+    "artifact_validation_method": "Exact github-pages artifact extracted and structurally inspected; blog-fat-sat-instrumentacao.html matched the validated candidate byte-for-byte.",
     "require_clean_validated_diff": true,
     "require_domain_check": true,
     "allow_force": false
   },
   "validation": {
-    "e02_search": {
-      "status": "passed"
-    },
-    "e03_commercial_truth": {
-      "status": "passed"
-    },
+    "e02_search": {"status": "passed"},
+    "e03_commercial_truth": {"status": "passed"},
     "e04_inventory": {
       "status": "completed_for_editorial_work",
       "source_html_total": 271,
@@ -59,19 +54,12 @@
       "indexable_missing_from_sitemap": 0,
       "noindex_present_in_sitemap": 0,
       "indexable_content_missing_canonical": 0,
-      "intentional_canonical_aliases": 7,
       "indexable_h1_anomalies": 0,
       "duplicate_sitemap_urls_after": 0,
-      "jekyll_generated_internal_html_after": 0,
       "direct_adsense_loader_pages": 88,
       "legacy_cursos_source_pages": 137,
       "legacy_cursos_indexable_source_pages": 102,
       "hotmart_link_pages": 128,
-      "published_artifact_recount_complete": true,
-      "guide_runtime_normalization_present": true,
-      "legacy_cursos_redirect_noindex_canonical": true,
-      "canonical_inventory_repository_update_pending": false,
-      "canonical_inventory_initial_commit": "da2f61932a21c00741f418870601aafcb42deba6",
       "services_navigation": {
         "status": "passed",
         "public_label": "Servicos",
@@ -80,102 +68,53 @@
         "legacy_route": "residencial.html",
         "legacy_route_robots": "noindex,follow",
         "legacy_route_canonical": "https://www.alogy.com.br/industrial.html",
-        "legacy_route_in_sitemap": false,
-        "home_replacement": "Instrumentista sob demanda",
-        "technical_formulas_or_javascript_changed": false
+        "legacy_route_in_sitemap": false
       },
-      "guide_navigation_history": {
-        "status": "historical_do_not_expand",
-        "current_rule": "Do not add Guia links to blog/tool pages; remove legacy Guia/Cursos links only when each page enters a safe batch.",
-        "legacy_redirect_preserved": true
-      }
+      "guide_navigation_rule": "Do not add Guia links to blog/tool pages; remove legacy Guia/Cursos links only when each page enters a safe batch."
     },
     "e05_pilot": {
       "status": "passed_completed",
-      "pages_in_order": [
+      "pages": [
         "blog-calibracao-valvula-controle.html",
         "blog-calibracao-instrumentos-industriais.html"
       ],
       "adsense_review_request_allowed": false
     },
     "e06_acervo": {
-      "status": "pages_01_02_03_04_05_passed_published_next_selection_pending",
+      "status": "pages_01_to_06_passed_published_next_selection_pending",
       "canonical_inventory_deltas_pending_merge": [
         "E06-INVENTORY-DELTA-01.csv",
         "E06-INVENTORY-DELTA-02.csv",
         "E06-INVENTORY-DELTA-03.csv",
         "E06-INVENTORY-DELTA-04.csv",
-        "E06-INVENTORY-DELTA-05.csv"
+        "E06-INVENTORY-DELTA-05.csv",
+        "E06-INVENTORY-DELTA-06.csv"
       ],
       "pages": [
+        {"path":"blog-ar-instrumentos-qualidade-ponto-orvalho.html","status":"passed_published","content_commit":"4c4a51b7fd881a5252995dd00603ee04053daeb8","report":"E06-AIR-INSTRUMENT-ACERVO-01.md","inventory_delta":"E06-INVENTORY-DELTA-01.csv","editorial_decision_after":"keep/P1/high"},
+        {"path":"blog-solenoide-atuador-pneumatico-cv.html","status":"passed_published","content_commit":"3baa03d6832062d7d0fe24ec4ecae37cf96f0b59","report":"E06-SOLENOID-ACTUATOR-ACERVO-02.md","inventory_delta":"E06-INVENTORY-DELTA-02.csv","editorial_decision_after":"keep/P1/high"},
+        {"path":"blog-instrumentacao-industrial.html","status":"passed_published","content_commit":"794c5bd65cd80ce34b30f0ef83c1b422c5584ab5","report":"E06-INSTRUMENTATION-HUB-ACERVO-03.md","inventory_delta":"E06-INVENTORY-DELTA-03.csv","editorial_decision_after":"keep/P1/high"},
+        {"path":"blog-criticidade-instrumentos.html","status":"passed_published","content_commit":"95ea333e471f7e3d2518363794ca0215585ef6d8","report":"E06-CRITICALITY-INSTRUMENTS-ACERVO-04.md","inventory_delta":"E06-INVENTORY-DELTA-04.csv","editorial_decision_after":"keep/P1/high"},
+        {"path":"blog-erro-total-malha-instrumentacao.html","status":"passed_published","content_commit":"41421244f4e6cce1e11d81fff25d4c79aaf93f2e","report":"E06-LOOP-ERROR-ACERVO-05.md","inventory_delta":"E06-INVENTORY-DELTA-05.csv","editorial_decision_after":"keep/P1/high"},
         {
-          "page": 1,
-          "path": "blog-ar-instrumentos-qualidade-ponto-orvalho.html",
+          "path": "blog-fat-sat-instrumentacao.html",
           "status": "passed_published",
-          "content_commit": "4c4a51b7fd881a5252995dd00603ee04053daeb8",
-          "report": "E06-AIR-INSTRUMENT-ACERVO-01.md",
-          "report_commit": "ade9301300d24ec5a1141cc646eb465633f20c52",
-          "inventory_delta": "E06-INVENTORY-DELTA-01.csv",
-          "inventory_delta_commit": "610db63f470c122a14ce4e077d0ce23eba8a7b19",
-          "editorial_decision_after": "keep/P1/high"
-        },
-        {
-          "page": 2,
-          "path": "blog-solenoide-atuador-pneumatico-cv.html",
-          "status": "passed_published",
-          "content_commit": "3baa03d6832062d7d0fe24ec4ecae37cf96f0b59",
-          "report": "E06-SOLENOID-ACTUATOR-ACERVO-02.md",
-          "report_commit": "212e8e5e6a43649b105399428dddfdca934e5310",
-          "inventory_delta": "E06-INVENTORY-DELTA-02.csv",
-          "inventory_delta_commit": "9e9ab916ebe533fc16aeee248bfbe06083ad5d2b",
-          "editorial_decision_after": "keep/P1/high"
-        },
-        {
-          "page": 3,
-          "path": "blog-instrumentacao-industrial.html",
-          "status": "passed_published",
-          "content_commit": "794c5bd65cd80ce34b30f0ef83c1b422c5584ab5",
-          "report": "E06-INSTRUMENTATION-HUB-ACERVO-03.md",
-          "report_commit": "0f27e8e74543b1c6e8e2d0d014d84609b8624a4e",
-          "inventory_delta": "E06-INVENTORY-DELTA-03.csv",
-          "inventory_delta_commit": "00c32a4276a8b98006ae93337e31e2598b5d4ff7",
-          "editorial_decision_after": "keep/P1/high"
-        },
-        {
-          "page": 4,
-          "path": "blog-criticidade-instrumentos.html",
-          "status": "passed_published",
-          "content_commit": "95ea333e471f7e3d2518363794ca0215585ef6d8",
-          "report": "E06-CRITICALITY-INSTRUMENTS-ACERVO-04.md",
-          "report_commit": "8b639981e007d3a23d90318061cb7f2d541197df",
-          "inventory_delta": "E06-INVENTORY-DELTA-04.csv",
-          "inventory_delta_commit": "9897dc85c5d0525f7438b7e2094957aed7413b1c",
-          "editorial_decision_after": "keep/P1/high"
-        },
-        {
-          "page": 5,
-          "path": "blog-erro-total-malha-instrumentacao.html",
-          "status": "passed_published",
-          "content_commit": "41421244f4e6cce1e11d81fff25d4c79aaf93f2e",
-          "content_blob": "64f476cd8c23142f13c4191a67d4efd78aafcc5f",
-          "report": "E06-LOOP-ERROR-ACERVO-05.md",
-          "report_commit": "5baf649accae642d90764e36fab5673073120f9b",
-          "inventory_delta": "E06-INVENTORY-DELTA-05.csv",
-          "inventory_delta_commit": "ba9cb43f8369ea02637108c37163ffdae491ec9d",
-          "pages_workflow_run": 34920747799,
-          "pages_artifact_id": 10377956619,
-          "pages_artifact_digest": "sha256:0113e7e54d026254980c7d656ed0af7fa2871e2d314ab185f7d527dbb78eab65",
-          "artifact_html_bytes": 24461,
-          "artifact_html_sha256": "3cf970d83e1b350f7d94a7a6337ea3f0913f1e98c7d7a45886a144c4cc6d48b6",
-          "artifact_visible_words_observed": 1737,
-          "artifact_main_words_observed": 1695,
+          "content_commit": "c9dc10756d8f5f42ef0388131caccbdee1e4f68c",
+          "content_blob": "c25795af2571fdbcc859dde7cc47ed8e243d14cd",
+          "report": "E06-FAT-SAT-ACERVO-06.md",
+          "report_commit": "cfcdea1252e4596e177f5968d708c8bbc05fd697",
+          "inventory_delta": "E06-INVENTORY-DELTA-06.csv",
+          "inventory_delta_commit": "1b945ccbcca694966a7fc25206f2048d96bdcf13",
+          "pages_workflow_run": 34922216499,
+          "pages_artifact_id": 10378157849,
+          "pages_artifact_digest": "sha256:54da63bfd243cadd82eea74d9927c619f578f3dfa1d7cb78e19d8148108f6952",
+          "artifact_html_bytes": 24822,
+          "artifact_html_sha256": "cb6f8413f7136a4794527823adbca917bebb5edd5d428e3456fa824894b900c2",
+          "artifact_visible_words_observed": 1942,
+          "artifact_main_words_observed": 1854,
           "h1_count": 1,
-          "h2_count": 16,
-          "h3_count": 4,
-          "json_ld_types": [
-            "BlogPosting",
-            "FAQPage"
-          ],
+          "h2_count": 19,
+          "json_ld_types": ["BlogPosting", "FAQPage"],
           "canonical_valid": true,
           "adsense_loader_present": true,
           "in_sitemap": true,
@@ -186,15 +125,11 @@
           "separate_service_labels_present": false,
           "artifact_matches_validated_candidate": true,
           "technical_formulas_or_shared_javascript_changed": false,
-          "safety_scope": "Engineering screening only; does not validate SIS/SIL or replace formal measurement uncertainty evaluation.",
+          "safety_scope": "Generic FAT/SAT planning only; SIS validation remains governed by SRS and applicable IEC 61511 lifecycle requirements.",
           "editorial_decision_before": "improve/P0/high",
           "editorial_decision_after": "keep/P1/high"
         }
       ],
-      "next_candidate": {
-        "path": null,
-        "status": "selection_pending_after_page_05"
-      },
       "manual_review_pages_must_remain_unchanged": true,
       "mass_pruning_allowed": false,
       "adsense_review_request_allowed": false
@@ -202,13 +137,6 @@
     "shared_warning_follow_up": "E08-W1"
   },
   "e03_commercial_truth": {
-    "initial_scope_status": "completed",
-    "published_pages": [
-      "industrial.html",
-      "index.html",
-      "sobre.html",
-      "calculadora-4-20ma.html"
-    ],
     "confirmed_owner_fact": "A ALOGY ainda nao possui padrao calibrado confirmado para sustentar emissao propria de laudo de calibracao.",
     "safe_positioning": "Avaliacao, inspecao, manutencao, configuracao e conferencia funcional sob escopo; calibracao, ensaio ou documentacao especifica somente quando recursos e parceiros forem confirmados na proposta.",
     "navigation_rule": "Usar uma unica entrada publica Servicos apontando para industrial.html. Nao restaurar separacao entre servicos industriais e residenciais."
@@ -227,7 +155,6 @@
     "Captura atual do AdSense com motivo, data e disponibilidade de nova analise",
     "Exportacao do Search Console por paginas e consultas, desejavel para priorizacao",
     "Capacidades reais da bancada, funcoes, faixas e situacao metrologica",
-    "Modelos e portes atendidos, meios de teste, local de recebimento, profissionais e parceiros",
     "Dados verdadeiros de autoria, credenciais e evidencias publicaveis"
   ]
 }
