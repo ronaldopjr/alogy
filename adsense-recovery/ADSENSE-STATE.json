@@ -1,16 +1,16 @@
 {
   "schema_version": 3,
   "project": "ALOGY AdSense Recovery",
-  "plan_version": "2026-09-14.23",
+  "plan_version": "2026-09-15.24",
   "repository": "ronaldopjr/alogy",
   "base_branch": "main",
   "work_branch": "main",
-  "base_sha_verified": "04b673746dc4c225bfc89fa987c891a407a962c9",
-  "verified_at": "2026-09-14",
+  "base_sha_verified": "5406c117d0b51ec952461a70ee31620b8f8d91a3",
+  "verified_at": "2026-09-15",
   "last_completed_stage": "E05",
   "stage_in_progress": "E06",
   "next_stage": "E06",
-  "next_action": "Selecionar a proxima pagina improve/P0/high do acervo monetizado, priorizando instrumentacao industrial e baixo risco editorial. Tratar E06-INVENTORY-DELTA-01.csv a E06-INVENTORY-DELTA-07.csv como fonte incremental ate consolidacao segura no inventario canonico. Nao editar manual-review/P0 automaticamente e nao solicitar nova analise do AdSense.",
+  "next_action": "Selecionar a proxima pagina improve/P0/high do acervo monetizado, priorizando instrumentacao industrial e baixo risco editorial. Tratar E06-INVENTORY-DELTA-01.csv a E06-INVENTORY-DELTA-08.csv como fonte incremental ate consolidacao segura no inventario canonico. Nao editar manual-review/P0 automaticamente e nao solicitar nova analise do AdSense.",
   "status": "in_progress",
   "preferred_editorial_batch": 1,
   "adsense": {
@@ -23,20 +23,19 @@
     "enabled": true,
     "target_branch": "main",
     "method": "validated-atomic-commit",
-    "batch_id": "E06-CONDITION-MONITORING-ACERVO-07",
-    "latest_site_change_commit": "3a9c7bb57ec195437bf93eba36fbd8dca3b2af7d",
-    "latest_report_commit": "92f02b8b4e4d5af686d32f3b7df82f1d0ff57eb3",
-    "latest_inventory_delta_commit": "04b673746dc4c225bfc89fa987c891a407a962c9",
+    "batch_id": "E06-TANK-INVENTORY-ACERVO-08",
+    "latest_site_change_commit": "76e0832196a69242387dc35bef6c4051e08f02c0",
+    "latest_report_and_delta_commit": "5406c117d0b51ec952461a70ee31620b8f8d91a3",
     "services_navigation_commit": "2a047390f543d3a7a0469a3677f17c14fa0dcfeb",
     "canonical_inventory_initial_commit": "da2f61932a21c00741f418870601aafcb42deba6",
     "source_verified_on_main": true,
     "pages_deployment_success": true,
-    "latest_pages_workflow_run": 34923087323,
-    "latest_pages_artifact_id": 10378693305,
-    "latest_pages_artifact_digest": "sha256:1ba2d81af4cb448572fb693dec76e886e3aea176ceeb8b49bd6cf8e8cdf85d96",
+    "latest_pages_workflow_run": 34978266626,
+    "latest_pages_artifact_id": 10399778425,
+    "latest_pages_artifact_digest": "sha256:0e3d8044e6a36547d311fb6292d8fc34c6e01e339f2c7c6608946f62fb26f669",
     "live_environment_url": "https://www.alogy.com.br/",
     "artifact_validation_complete": true,
-    "artifact_validation_method": "Exact github-pages artifact extracted and structurally inspected; blog-manutencao-preditiva-instrumentacao-sensores.html matched the locally validated candidate byte-for-byte.",
+    "artifact_validation_method": "Exact github-pages artifact extracted and structurally inspected; blog-massa-tanque-nivel.html Git blob SHA-1 matched the content commit blob exactly.",
     "require_clean_validated_diff": true,
     "allow_force": false
   },
@@ -64,14 +63,11 @@
     },
     "e05_pilot": {
       "status": "passed_completed",
-      "pages": [
-        "blog-calibracao-valvula-controle.html",
-        "blog-calibracao-instrumentos-industriais.html"
-      ],
+      "pages": ["blog-calibracao-valvula-controle.html", "blog-calibracao-instrumentos-industriais.html"],
       "adsense_review_request_allowed": false
     },
     "e06_acervo": {
-      "status": "pages_01_to_07_passed_published_next_selection_pending",
+      "status": "pages_01_to_08_passed_published_next_selection_pending",
       "canonical_inventory_deltas_pending_merge": [
         "E06-INVENTORY-DELTA-01.csv",
         "E06-INVENTORY-DELTA-02.csv",
@@ -79,7 +75,8 @@
         "E06-INVENTORY-DELTA-04.csv",
         "E06-INVENTORY-DELTA-05.csv",
         "E06-INVENTORY-DELTA-06.csv",
-        "E06-INVENTORY-DELTA-07.csv"
+        "E06-INVENTORY-DELTA-07.csv",
+        "E06-INVENTORY-DELTA-08.csv"
       ],
       "pages": [
         {"n":1,"path":"blog-ar-instrumentos-qualidade-ponto-orvalho.html","status":"passed_published","content_commit":"4c4a51b7fd881a5252995dd00603ee04053daeb8","decision_after":"keep/P1/high"},
@@ -88,9 +85,10 @@
         {"n":4,"path":"blog-criticidade-instrumentos.html","status":"passed_published","content_commit":"95ea333e471f7e3d2518363794ca0215585ef6d8","decision_after":"keep/P1/high"},
         {"n":5,"path":"blog-erro-total-malha-instrumentacao.html","status":"passed_published","content_commit":"41421244f4e6cce1e11d81fff25d4c79aaf93f2e","decision_after":"keep/P1/high"},
         {"n":6,"path":"blog-fat-sat-instrumentacao.html","status":"passed_published","content_commit":"c9dc10756d8f5f42ef0388131caccbdee1e4f68c","decision_after":"keep/P1/high"},
-        {"n":7,"path":"blog-manutencao-preditiva-instrumentacao-sensores.html","status":"passed_published","content_commit":"3a9c7bb57ec195437bf93eba36fbd8dca3b2af7d","report":"E06-CONDITION-MONITORING-ACERVO-07.md","report_commit":"92f02b8b4e4d5af686d32f3b7df82f1d0ff57eb3","inventory_delta":"E06-INVENTORY-DELTA-07.csv","inventory_delta_commit":"04b673746dc4c225bfc89fa987c891a407a962c9","pages_workflow_run":34923087323,"pages_artifact_id":10378693305,"artifact_digest":"sha256:1ba2d81af4cb448572fb693dec76e886e3aea176ceeb8b49bd6cf8e8cdf85d96","artifact_html_bytes":25697,"artifact_html_sha256":"21e41b2dcd1dccbef43014a18d43a551ba04f346a661ff4bcd290b8c9badf3f1","artifact_visible_words_observed":1907,"artifact_main_words_observed":1860,"h1_count":1,"h2_count":15,"h3_count":0,"json_ld_types":["BlogPosting","FAQPage"],"canonical_valid":true,"adsense_loader_present":true,"sitemap_occurrences":1,"guide_link_present":false,"hotmart_link_present":false,"separate_service_labels_present":false,"artifact_matches_validated_candidate":true,"technical_formulas_or_shared_javascript_changed":false,"decision_before":"improve/P0/high","decision_after":"keep/P1/high"}
+        {"n":7,"path":"blog-manutencao-preditiva-instrumentacao-sensores.html","status":"passed_published","content_commit":"3a9c7bb57ec195437bf93eba36fbd8dca3b2af7d","decision_after":"keep/P1/high"},
+        {"n":8,"path":"blog-massa-tanque-nivel.html","status":"passed_published","content_commit":"76e0832196a69242387dc35bef6c4051e08f02c0","content_blob":"d996fce38459743ade60e08e552313cfd13d1d66","report":"E06-TANK-INVENTORY-ACERVO-08.md","report_and_delta_commit":"5406c117d0b51ec952461a70ee31620b8f8d91a3","inventory_delta":"E06-INVENTORY-DELTA-08.csv","pages_workflow_run":34978266626,"pages_artifact_id":10399778425,"artifact_digest":"sha256:0e3d8044e6a36547d311fb6292d8fc34c6e01e339f2c7c6608946f62fb26f669","artifact_html_bytes":23639,"artifact_html_sha256":"d02475b3e3709c7a950b009321a94195d67ee3b9aa1b8e23c66c219004511d9f","artifact_visible_words_observed":1705,"artifact_main_words_observed":1654,"h1_count":1,"h2_count":16,"h3_count":4,"json_ld_types":["BlogPosting","FAQPage"],"canonical_valid":true,"adsense_loader_present":true,"sitemap_occurrences_expected":1,"guide_link_present":false,"hotmart_link_present":false,"separate_service_labels_present":false,"artifact_matches_validated_candidate":true,"technical_formulas_or_shared_javascript_changed":false,"decision_before":"improve/P0/high","decision_after":"keep/P1/high"}
       ],
-      "next_candidate": {"path": null,"status":"selection_pending_after_page_07"},
+      "next_candidate": {"path": null,"status":"selection_pending_after_page_08"},
       "manual_review_pages_must_remain_unchanged": true,
       "mass_pruning_allowed": false,
       "adsense_review_request_allowed": false

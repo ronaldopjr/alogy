@@ -1,6 +1,6 @@
 # ALOGY — fila operacional atual
 
-> Versão 2026-09-14.23. Esta é a única fila executável. Filas anteriores são históricas.
+> Versão 2026-09-15.24. Esta é a única fila executável. Filas anteriores são históricas.
 
 ## Regras permanentes
 
@@ -23,7 +23,7 @@
 - Não fazer `noindex` ou pruning em massa.
 - Não inventar equipe, cases, clientes, depoimentos, certificações, equipamentos, laboratório, rastreabilidade, prazo ou capacidade técnica.
 - A ALOGY ainda não possui padrão calibrado confirmado para sustentar emissão própria de laudo/certificado de calibração.
-- Oferta segura: avaliação, inspeção, manutenção, configuração e conferência funcional; calibração, ensaio, rastreabilidade ou documentação específica somente quando recursos e parceiros forem confirmados na proposta.
+- Oferta segura: avaliação, inspeção, manutenção, configuração e conferência funcional; calibração, ensaio, rastreabilidade ou documentação específica somente quando recursos e parceiros estiverem confirmados na proposta.
 - Não alterar fórmula ou JavaScript técnico sem defeito reproduzido e validação proporcional.
 - Não editar automaticamente páginas `manual-review/P0`.
 - Revisões editoriais extensas: uma página por lote.
@@ -38,7 +38,7 @@
 
 ## E06 — revisão do acervo monetizado
 
-**Estado:** EM EXECUÇÃO — SETE PÁGINAS REVISADAS, PUBLICADAS E VALIDADAS.
+**Estado:** EM EXECUÇÃO — OITO PÁGINAS REVISADAS, PUBLICADAS E VALIDADAS.
 
 | # | Página | Decisão | Commit de conteúdo |
 |---|---|---|---|
@@ -49,29 +49,30 @@
 | 05 | `blog-erro-total-malha-instrumentacao.html` | `keep/P1/high` | `41421244f4e6cce1e11d81fff25d4c79aaf93f2e` |
 | 06 | `blog-fat-sat-instrumentacao.html` | `keep/P1/high` | `c9dc10756d8f5f42ef0388131caccbdee1e4f68c` |
 | 07 | `blog-manutencao-preditiva-instrumentacao-sensores.html` | `keep/P1/high` | `3a9c7bb57ec195437bf93eba36fbd8dca3b2af7d` |
+| 08 | `blog-massa-tanque-nivel.html` | `keep/P1/high` | `76e0832196a69242387dc35bef6c4051e08f02c0` |
 
-### Página 07 — condition monitoring e sensores
+### Página 08 — massa em tanque por nível
 
-- relatório: `E06-CONDITION-MONITORING-ACERVO-07.md`, commit `92f02b8b4e4d5af686d32f3b7df82f1d0ff57eb3`;
-- delta: `E06-INVENTORY-DELTA-07.csv`, commit `04b673746dc4c225bfc89fa987c891a407a962c9`;
-- Pages: run `34923087323`, sucesso;
-- artefato: `10378693305`;
-- digest: `sha256:1ba2d81af4cb448572fb693dec76e886e3aea176ceeb8b49bd6cf8e8cdf85d96`;
-- HTML: 25.697 bytes;
-- SHA-256 do HTML: `21e41b2dcd1dccbef43014a18d43a551ba04f346a661ff4bcd290b8c9badf3f1`;
-- 1.907 palavras visíveis / 1.860 no artigo;
-- 1 H1 / 15 H2;
+- relatório: `E06-TANK-INVENTORY-ACERVO-08.md`;
+- delta: `E06-INVENTORY-DELTA-08.csv`;
+- relatório + delta: commit `5406c117d0b51ec952461a70ee31620b8f8d91a3`;
+- Pages: run `34978266626`, build/deploy com sucesso;
+- artefato: `10399778425`;
+- digest: `sha256:0e3d8044e6a36547d311fb6292d8fc34c6e01e339f2c7c6608946f62fb26f669`;
+- HTML: 23.639 bytes;
+- SHA-256 do HTML: `d02475b3e3709c7a950b009321a94195d67ee3b9aa1b8e23c66c219004511d9f`;
+- Git blob do artefato: `d996fce38459743ade60e08e552313cfd13d1d66`, igual ao blob do conteúdo versionado;
+- 1.705 palavras visíveis / 1.654 no artigo;
+- 1 H1 / 16 H2 / 4 H3;
 - `BlogPosting` + `FAQPage`;
-- canonical, AdSense e sitemap preservados;
-- HTML publicado idêntico byte a byte ao candidato;
+- canonical e AdSense preservados;
 - sem `/guia/`, Hotmart ou rótulos separados de Serviços;
-- nenhuma fórmula ou JavaScript técnico compartilhado alterado;
-- fontes primárias: ISO 17359:2018 e NIST;
-- baseline, qualidade do sinal, contexto operacional, exemplo fictício P-201 e limites de diagnóstico documentados.
+- nenhuma fórmula, calculadora ou JavaScript técnico compartilhado alterado;
+- fontes primárias verificadas: ISO 7507-1:2003, ISO 7507-2:2022, Emerson Rosemount TankMaster e JCGM VIM3.
 
 ### Pendência explícita do inventário
 
-O `ADSENSE-INVENTORY.csv` canônico ainda não incorpora as decisões E06. Os arquivos `E06-INVENTORY-DELTA-01.csv` até `E06-INVENTORY-DELTA-07.csv` são a fonte incremental de verdade até existir mecanismo seguro de consolidação integral/patch.
+O `ADSENSE-INVENTORY.csv` canônico ainda não incorpora as decisões E06. Os arquivos `E06-INVENTORY-DELTA-01.csv` até `E06-INVENTORY-DELTA-08.csv` são a fonte incremental de verdade até existir mecanismo seguro de consolidação integral/patch.
 
 Não substituir o CSV grande de forma parcial nem marcar a fusão como concluída sem validar o arquivo inteiro.
 
@@ -79,11 +80,11 @@ Não substituir o CSV grande de forma parcial nem marcar a fusão como concluíd
 
 1. Reler `main`, `ADSENSE-STATE.json` e esta fila antes de qualquer escrita.
 2. Selecionar a próxima página `improve/P0/high` por proximidade com Instrumentação Industrial e baixo risco editorial.
-3. Priorizar conteúdo que fortaleça instrumentação, diagnóstico e manutenção sem entrar em `manual-review/P0`.
+3. Priorizar conteúdo de instrumentação, diagnóstico, manutenção, medição e controle sem entrar em `manual-review/P0`.
 4. Pesquisar fontes primárias atuais antes de editar.
 5. Publicar uma página extensa por lote, validar GitHub Pages e o artefato exato.
 6. Criar relatório e novo delta de inventário.
-7. Atualizar `ADSENSE-STATE.json`, esta fila e o MD de continuidade.
+7. Atualizar `ADSENSE-STATE.json`, esta fila e gerar novo MD de continuidade.
 8. Não solicitar nova análise do AdSense.
 
 ## E08-W1 — avisos compartilhados
