@@ -1,23 +1,20 @@
 # ALOGY — fila operacional atual
 
-> Versão 2026-09-15.30. Esta é a única fila executável. Filas anteriores são históricas.
+> Versão 2026-09-15.31. Esta é a única fila executável. Filas anteriores e relatórios por lote permanecem históricos.
 
 ## Regras permanentes
 
 ### Navegação comercial
-
 - Usar uma única entrada pública **Serviços** apontando para `industrial.html`.
 - Não restaurar `Serviços Industriais` e `Serviços Residenciais` como abas separadas.
-- `residencial.html` permanece apenas como rota legada `noindex,follow`, canonical/redirecionamento para `industrial.html` e fora do sitemap.
+- `residencial.html` permanece rota legada `noindex,follow`, fora do sitemap e apontando para `industrial.html`.
 
 ### Guia x blog/ferramentas
-
-- Artigos do blog e páginas de ferramentas não devem promover nem linkar diretamente o Guia no corpo editorial.
-- O link global **Guia** pode permanecer no menu; não inserir `/guia/`, botão promocional, Cursos ou Hotmart no corpo desses lotes.
-- Links legados são removidos apenas quando a página entra em lote seguro.
+- O link global **Guia** pode permanecer no menu.
+- Não inserir CTA promocional do Guia, Hotmart ou `cursos.html` no corpo de artigos e ferramentas.
+- Migrar referências legadas apenas quando a página entrar em lote seguro; não fazer substituição cega em massa.
 
 ### Verdade comercial e segurança
-
 - Motivo reportado pelo proprietário: **conteúdo de baixo valor**.
 - Não solicitar nova análise do AdSense automaticamente.
 - Não fazer `noindex` ou pruning em massa.
@@ -30,7 +27,6 @@
 - Nunca usar force push.
 
 ## E02–E05
-
 - E02 busca/ferramentas: concluído e validado.
 - E03 oferta comercial verdadeira: concluído no escopo inicial.
 - E04 inventário/higiene: concluído para trabalho editorial; inventário canônico inicial `da2f61932a21c00741f418870601aafcb42deba6`.
@@ -38,7 +34,7 @@
 
 ## E06 — revisão do acervo monetizado
 
-**Estado:** EM EXECUÇÃO — TREZE PÁGINAS REVISADAS, PUBLICADAS E VALIDADAS.
+**Estado:** EM EXECUÇÃO — QUATORZE PÁGINAS REVISADAS, PUBLICADAS E VALIDADAS.
 
 | # | Página | Decisão | Commit de conteúdo |
 |---|---|---|---|
@@ -55,160 +51,48 @@
 | 11 | `blog-potencia-bomba.html` | `keep/P1/high` | `af6f84bbac905b6888c63cf0d7c94da4e0023a5b` |
 | 12 | `blog-gemeo-digital-tags-instrumentacao.html` | `keep/P1/high` | `2e091506da18f788757d1a424fd194228cb763b8` |
 | 13 | `blog-teste-de-loop-instrumentacao.html` | `keep/P1/high` | `3f4f57c65535bd1e8fb243a6cd70de6282a4111c` |
+| 14 | `calculadora-diagnostico-4-20ma-hart.html` | `keep/P1/high` | `225e449cd4b29d59d1066cb430a617babc5c615d` |
 
-### Página 08 — massa em tanque por nível
-
-- relatório: `E06-TANK-INVENTORY-ACERVO-08.md`;
-- delta: `E06-INVENTORY-DELTA-08.csv`;
-- relatório + delta: commit `5406c117d0b51ec952461a70ee31620b8f8d91a3`;
-- Pages: run `34978266626`, build/deploy com sucesso;
-- artefato: `10399778425`;
-- digest: `sha256:0e3d8044e6a36547d311fb6292d8fc34c6e01e339f2c7c6608946f62fb26f669`;
-- HTML: 23.639 bytes;
-- SHA-256 do HTML: `d02475b3e3709c7a950b009321a94195d67ee3b9aa1b8e23c66c219004511d9f`;
-- Git blob do artefato: `d996fce38459743ade60e08e552313cfd13d1d66`, igual ao blob do conteúdo versionado;
-- 1.705 palavras visíveis / 1.654 no artigo;
-- 1 H1 / 16 H2 / 4 H3;
-- `BlogPosting` + `FAQPage`;
-- canonical e AdSense preservados;
-- sem `/guia/`, Hotmart ou rótulos separados de Serviços;
-- nenhuma fórmula, calculadora ou JavaScript técnico compartilhado alterado;
-- fontes primárias verificadas: ISO 7507-1:2003, ISO 7507-2:2022, Emerson Rosemount TankMaster e JCGM VIM3.
-
-### Página 09 — pressão hidrostática, densidade e nível
-
-- relatório: `E06-HYDROSTATIC-PRESSURE-DENSITY-ACERVO-09.md`;
-- delta: `E06-INVENTORY-DELTA-09.csv`;
-- relatório + delta: commit `fd32b44d6bdaae2a73e64372560ccccd6f018605`;
-- conteúdo: commit `e2bbc0c359b99b8e890a732da33c90d704151fc9`;
-- Pages: run `34984984363`, build/deploy com sucesso;
-- artefato: `10403491616`;
-- digest: `sha256:a64dc5963f5e2374fdce6a7d14c376d08af0f6b42f430b3ffd1285f8147dadfa`;
-- domínio: HTTP 200, 25.075 bytes;
-- SHA-256 do HTML servido: `c49a8658f490a6be865957e89a06f707cd6e00cd4c85ee5dcaa3bb349bbf5ccd`;
-- Git blob do domínio: `ef5624a989e9e6476742b13894a0015c7aa60cc2`, igual ao blob do conteúdo versionado;
-- 1.868 palavras visíveis / 1.851 no artigo;
-- 1 H1 / 17 H2 / 4 H3;
-- `BlogPosting` + `FAQPage`;
-- canonical e AdSense preservados;
-- menu global Guia preservado, sem CTA do Guia no corpo; sem Hotmart ou Cursos;
-- nenhuma fórmula de calculadora ou JavaScript técnico compartilhado alterado;
-- fontes primárias verificadas: Endress+Hauser 2026, Emerson DP Level, Emerson Density Measurement e BIPM SI Brochure 2026.
-
-### Página 10 — selo remoto e capilar em nível DP
-
-- relatório: `E06-REMOTE-SEAL-CAPILLARY-ACERVO-10.md`;
-- delta: `E06-INVENTORY-DELTA-10.csv`;
-- relatório + delta: commit `984241c40f34edf0528cb1bfbe5a0ebd58c84bd8`;
-- conteúdo: commit `50b9e645ef4d6c5a9f8b2a6684bd547e850c1248`;
-- Pages: run `34991433678`, build/deploy com sucesso;
-- artefato: `10405678002`;
-- digest: `sha256:a5adbb627328ee3e36c15364996d5534181762dab4aa104edc1be674e9e3dd2c`;
-- domínio: HTTP 200, 25.222 bytes;
-- SHA-256 do HTML servido: `0e613a058715d19e181672b32d3e7bf35827aea9231c406346e7296046c86e14`;
-- Git blob do domínio: `b2b1e11652270ef4e5a8e6ffd2f1730bcc518a04`, igual ao blob do conteúdo versionado;
-- 1.778 palavras visíveis / 1.725 no artigo;
-- 1 H1 / 12 H2 / 0 H3;
-- `BlogPosting` + `FAQPage`;
-- canonical e AdSense preservados;
-- menu global Guia preservado, sem CTA do Guia no corpo; sem Hotmart ou Cursos;
-- cálculo de LRV/URV/span e ponto intermediário conferido independentemente;
-- nenhuma fórmula de calculadora ou JavaScript técnico compartilhado alterado;
-- fontes primárias verificadas: Emerson, Yokogawa, WIKA e BIPM.
-
-### Página 11 — potência de motor de bomba
-
-- relatório: `E06-PUMP-MOTOR-POWER-ACERVO-11.md`;
-- delta: `E06-INVENTORY-DELTA-11.csv`;
-- relatório + delta: commit `87754d133ee2670e1abf637979c7216bea5c87ab`;
-- conteúdo: commit `af6f84bbac905b6888c63cf0d7c94da4e0023a5b`;
-- Pages: run `34997876058`, build/deploy com sucesso;
-- artefato: `10408442738`;
-- digest: `sha256:fe9b6225f2edae8c17ef94b652165103ffd4fec32ea3b784ab8e635117e9dc20`;
-- domínio: HTTP 200, 22.720 bytes;
-- SHA-256 do HTML servido: `ddebae0d07448095da74be153a64471248538c446418fb2059d14cc042f32080`;
-- Git blob do domínio: `13cf57b6de1683968a550fedd553058a0c1f2b32`, igual ao blob do conteúdo versionado;
-- 1.630 palavras visíveis / 1.577 no artigo;
-- 1 H1 / 13 H2 / 0 H3;
-- `BlogPosting` + `FAQPage`;
+### Página 14 — diagnóstico 4–20 mA e HART
+- relatório: `E06-HART-TRIAGE-ACERVO-14.md`;
+- delta: `E06-INVENTORY-DELTA-14.csv`;
+- relatório + delta: commit `19de7722d16cd178aaa39ec7e05fe481d9087dfc`;
+- revisão editorial: `cd22567ab88ba5a6032b62006d9a7c88cff03864`;
+- correção do exemplo, preservando o código funcional: `225e449cd4b29d59d1066cb430a617babc5c615d`;
+- Pages final: run `35033347360`, build/deploy `success`;
+- artefato: `10422481529`;
+- digest: `sha256:4819b7a0b9b305936a9006b16d399b33afe4d24a29edb20975d559e286a9a6bc`;
+- domínio: HTTP 200, 35.436 bytes;
+- SHA-256 do HTML servido: `009d5cb4f2fb36816972b096a17489276b5b5c082996759810c59693ee6b650a`;
+- Git blob do domínio e conteúdo final: `c9ab82a36d0b4f9bf0622534b7938ae91af4745c`;
+- 1.946 palavras visíveis / 1.905 no `main`;
+- 1 H1 / 13 H2 / 8 H3;
+- `WebApplication` + `FAQPage`;
 - canonical, sitemap e AdSense preservados;
-- menu global Guia preservado, sem CTA do Guia no corpo; sem Hotmart ou Cursos;
-- cálculos de potência/corrente e leis de afinidade conferidos independentemente;
-- nenhuma calculadora, fórmula ou JavaScript técnico compartilhado alterado;
-- fontes primárias verificadas: DOE, Hydraulic Institute, WEG e ABB.
-
-### Página 12 — governança de TAGs industriais
-
-- relatório: `E06-TAG-GOVERNANCE-ACERVO-12.md`;
-- delta: `E06-INVENTORY-DELTA-12.csv`;
-- relatório + delta: commit `642f051bb70b848ac7db1c20f5cbdf2ba2009e0a`;
-- conteúdo: commit `2e091506da18f788757d1a424fd194228cb763b8`;
-- Pages: run `35022471938`, build/deploy com sucesso;
-- artefato: `10418386243`;
-- digest: `sha256:13ec1c4662ebdd2c0ad804ff97fc26fe5b2ea10f7fc094d67251b84d4ee7f05c`;
-- domínio: HTTP 200, 24.122 bytes;
-- SHA-256 do HTML servido: `5514716528277fdea638bb3ad516fc1af5d35cf22b910d7df6ed3857f17329ca`;
-- Git blob do domínio: `94800b10238135d48b15515d1126c1232c088a48`, igual ao blob do conteúdo versionado;
-- 1.769 palavras visíveis / 1.716 no artigo;
-- 1 H1 / 15 H2 / 7 H3;
-- `BlogPosting` + `FAQPage`;
-- canonical, sitemap e AdSense preservados;
-- menu global Guia preservado, sem CTA do Guia no corpo; sem Hotmart ou Cursos;
-- cálculo didático 4–20 mA conferido: 12 mA = 500 kPa em 0–1.000 kPa;
-- nenhuma fórmula de ferramenta ou JavaScript técnico compartilhado alterado;
-- fontes primárias verificadas: OPC Foundation, W3C PROV, IDTA AAS e NIST.
-
-### Página 13 — teste de loop em instrumentação
-
-- relatório: `E06-LOOP-CHECK-ACERVO-13.md`;
-- delta: `E06-INVENTORY-DELTA-13.csv`;
-- relatório + delta: commit `79edb1626168d1b8c9bfce0069a115bfae542ee7`;
-- conteúdo e sitemap: commit `3f4f57c65535bd1e8fb243a6cd70de6282a4111c`;
-- Pages: run `35027858568`, build/deploy com sucesso;
-- artefato: `10420108341`;
-- digest: `sha256:18b63a2c976d662a0bf0ac5b305289c1ec0b76f274a874fc2bbfaf8bde7b0676`;
-- domínio: HTTP 200, 27.611 bytes;
-- SHA-256 do HTML servido: `330112dc656194b1933493d9362958baaf7cdf983bbe688c9d2556c56afd0ec6`;
-- Git blob do domínio: `668df2b0317d4abd89b0183c35394bdd1f8b6acf`, igual ao blob do conteúdo versionado;
-- 1.891 palavras visíveis / 1.838 no artigo;
-- 1 H1 / 16 H2 / 3 H3;
-- `BlogPosting` + `FAQPage`;
-- canonical, sitemap e AdSense preservados;
-- menu global Guia preservado; CTA do Guia removido do corpo; sem Hotmart ou Cursos;
-- tabela didática 4–20 mA conferida independentemente;
-- nenhuma calculadora, fórmula ou JavaScript técnico compartilhado alterado;
-- fontes primárias verificadas: IEC 62382:2024, NR-10 atualizada em 2026, JCGM VIM e NAMUR NE 43.
+- menu global Guia preservado; sem CTA promocional do Guia, Hotmart ou Cursos no corpo;
+- JavaScript funcional preservado byte a byte, SHA-256 `e1e0095bf5691898e386304e08a12ed88927cb9781670950b6603385480900e8`;
+- fórmulas e limiares técnicos não foram alterados;
+- exemplo final conferido: 12 mA = 50% = 5 bar; 22 mA × 250 Ω = 5,5 V; tensão necessária 17,5 V; margem 6,5 V em fonte de 24 V;
+- fontes primárias: IEC 60381-1, NAMUR NE 043, Emerson Rosemount 3051S e FieldComm Group.
 
 ### Pendência explícita do inventário
+O `ADSENSE-INVENTORY.csv` canônico ainda não incorpora as decisões E06. Os arquivos `E06-INVENTORY-DELTA-01.csv` a `E06-INVENTORY-DELTA-14.csv` são a fonte incremental de verdade até existir mecanismo seguro de consolidação integral. Não substituir o CSV grande parcialmente.
 
-O `ADSENSE-INVENTORY.csv` canônico ainda não incorpora as decisões E06. Os arquivos `E06-INVENTORY-DELTA-01.csv` até `E06-INVENTORY-DELTA-13.csv` são a fonte incremental de verdade até existir mecanismo seguro de consolidação integral/patch.
-
-Não substituir o CSV grande de forma parcial nem marcar a fusão como concluída sem validar o arquivo inteiro.
-
-### Próxima ação executável
-
+### Próxima ação executável — E06-15
 1. Reler `main`, `ADSENSE-STATE.json` e esta fila antes de qualquer escrita.
-2. Selecionar a próxima página `improve/P0/high` por proximidade com Instrumentação Industrial e baixo risco editorial.
-3. Priorizar conteúdo de instrumentação, diagnóstico, manutenção, medição e controle sem entrar em `manual-review/P0`.
+2. Selecionar a próxima página `improve/P0/high` de instrumentação, automação ou elétrica industrial e baixo risco, excluindo páginas 01–14.
+3. Priorizar diagnóstico, manutenção, medição e controle; manter `manual-review/P0` intactas.
 4. Pesquisar fontes primárias atuais antes de editar.
-5. Publicar uma página extensa por lote, validar GitHub Pages e o artefato exato.
-6. Criar relatório e novo delta de inventário.
-7. Atualizar `ADSENSE-STATE.json`, esta fila e gerar novo MD de continuidade.
+5. Publicar uma página extensa por lote, validar GitHub Pages e o domínio.
+6. Criar relatório e `E06-INVENTORY-DELTA-15.csv`.
+7. Atualizar `ADSENSE-STATE.json`, esta fila e o mesmo MD de continuidade.
 8. Não solicitar nova análise do AdSense.
-9. Preservar E10-I1 para perto do encerramento; não iniciar a padronização global de imagens durante E06.
 
 ## E08-W1 — avisos compartilhados
-
 Pendente, sem bloqueio para E06. Antes de alterar `app.js`, reproduzir o problema em amostra representativa. Não mexer em script compartilhado sem defeito reproduzido.
 
-## E10-I1 — padronização final das imagens desktop/mobile
-
-- Executar perto do encerramento, depois das revisões editoriais, autoria, mobile/desempenho e conta/privacidade.
-- No mobile, reutilizar a mesma imagem ou a mesma cena do desktop; variantes de tamanho/formato derivadas do mesmo original são permitidas.
-- Resolver enquadramento com CSS quando possível; qualquer imagem semanticamente diferente exige justificativa documentada por acessibilidade ou legibilidade.
-- Validar 360, 390 e 430 px e uma largura desktop representativa, sem overflow, sobreposição ou CTA cobrindo o assunto principal.
-- Não antecipar esta correção global durante os lotes editoriais E06.
+## E10-I1 — imagens desktop/mobile
+Reservada para perto do encerramento. O mobile deve reutilizar a mesma imagem/mesma cena do desktop, com `srcset`/otimização derivados do mesmo asset e adaptação por CSS. Manter asset diferente somente quando houver defeito real de acessibilidade/legibilidade não resolvível por enquadramento responsivo, com exceção documentada.
 
 ## E07–E12
-
 Após avanço suficiente do acervo: autoria/transparência, mobile/desempenho, conta/anúncios/privacidade, prontidão, solicitação autorizada e acompanhamento da resposta. E11 continua proibida sem autorização explícita do proprietário.
