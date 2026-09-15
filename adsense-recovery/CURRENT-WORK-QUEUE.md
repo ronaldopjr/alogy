@@ -1,6 +1,6 @@
 # ALOGY — fila operacional atual
 
-> Versão 2026-09-15.31. Esta é a única fila executável. Filas anteriores e relatórios por lote permanecem históricos.
+> Versão 2026-09-15.32. Esta é a única fila executável. Filas anteriores e relatórios por lote permanecem históricos.
 
 ## Regras permanentes
 
@@ -34,7 +34,7 @@
 
 ## E06 — revisão do acervo monetizado
 
-**Estado:** EM EXECUÇÃO — QUATORZE PÁGINAS REVISADAS, PUBLICADAS E VALIDADAS.
+**Estado:** EM EXECUÇÃO — QUINZE PÁGINAS REVISADAS, PUBLICADAS E VALIDADAS.
 
 | # | Página | Decisão | Commit de conteúdo |
 |---|---|---|---|
@@ -52,6 +52,7 @@
 | 12 | `blog-gemeo-digital-tags-instrumentacao.html` | `keep/P1/high` | `2e091506da18f788757d1a424fd194228cb763b8` |
 | 13 | `blog-teste-de-loop-instrumentacao.html` | `keep/P1/high` | `3f4f57c65535bd1e8fb243a6cd70de6282a4111c` |
 | 14 | `calculadora-diagnostico-4-20ma-hart.html` | `keep/P1/high` | `225e449cd4b29d59d1066cb430a617babc5c615d` |
+| 15 | `blog-gemeo-digital-instrumentacao.html` | `keep/P1/high` | `ec20d4e2cb6a08524e725ea19b352e99f95995a2` |
 
 ### Página 14 — diagnóstico 4–20 mA e HART
 - relatório: `E06-HART-TRIAGE-ACERVO-14.md`;
@@ -76,22 +77,36 @@
 - fontes primárias: IEC 60381-1, NAMUR NE 043, Emerson Rosemount 3051S e FieldComm Group.
 
 ### Pendência explícita do inventário
-O `ADSENSE-INVENTORY.csv` canônico ainda não incorpora as decisões E06. Os arquivos `E06-INVENTORY-DELTA-01.csv` a `E06-INVENTORY-DELTA-14.csv` são a fonte incremental de verdade até existir mecanismo seguro de consolidação integral. Não substituir o CSV grande parcialmente.
+O `ADSENSE-INVENTORY.csv` canônico ainda não incorpora as decisões E06. Os arquivos `E06-INVENTORY-DELTA-01.csv` a `E06-INVENTORY-DELTA-15.csv` são a fonte incremental de verdade até existir mecanismo seguro de consolidação integral. Não substituir o CSV grande parcialmente.
 
-### Próxima ação executável — E06-15
+### Página 15 — digital twin industrial
+- página: `blog-gemeo-digital-instrumentacao.html`;
+- conteúdo + sitemap: commit `ec20d4e2cb6a08524e725ea19b352e99f95995a2`;
+- relatório + delta: commit `d16a303bc8e8afa06db41e8e7f57d83e5922bd2f`;
+- relatório: `E06-DIGITAL-TWIN-ARCHITECTURE-ACERVO-15.md`; delta: `E06-INVENTORY-DELTA-15.csv`;
+- blob final: `884c04bbe468d24c8e57fcea15912b8ff4db1b6f`;
+- Pages: run `35035590094`, build/deploy `success`;
+- artefato `10422164895`, digest `sha256:9e01095214668c0ec4511432770e23270df36fa07a81a4f02ad547092077ea3a`;
+- 1.757 palavras visíveis / 1.710 no `main`; 1 H1 / 15 H2;
+- arquitetura, sincronização, qualidade/status, contexto, V&V/VVUQ e exemplo 0–5 m / 4–20 mA adicionados;
+- fontes primárias NIST e IDTA;
+- sem CTA promocional do Guia, Hotmart ou Cursos no corpo; nenhum JS técnico ou fórmula alterado;
+- leitura direta do domínio retornou `cache miss` nesta execução; não declarar equivalência byte a byte ao vivo até nova leitura bem-sucedida.
+
+### Próxima ação executável — E06-16
 1. Reler `main`, `ADSENSE-STATE.json` e esta fila antes de qualquer escrita.
-2. Selecionar a próxima página `improve/P0/high` de instrumentação, automação ou elétrica industrial e baixo risco, excluindo páginas 01–14.
-3. Priorizar diagnóstico, manutenção, medição e controle; manter `manual-review/P0` intactas.
-4. Pesquisar fontes primárias atuais antes de editar.
-5. Publicar uma página extensa por lote, validar GitHub Pages e o domínio.
-6. Criar relatório e `E06-INVENTORY-DELTA-15.csv`.
-7. Atualizar `ADSENSE-STATE.json`, esta fila e o mesmo MD de continuidade.
+2. Selecionar a próxima página `improve/P0/high` segura, excluindo páginas 01–15.
+3. Manter páginas que exigem revisão especializada fora da edição automática.
+4. Pesquisar fontes primárias antes de editar.
+5. Publicar uma página extensa por lote e validar GitHub Pages; validar domínio quando o fetch estiver disponível.
+6. Criar relatório e `E06-INVENTORY-DELTA-16.csv`.
+7. Atualizar controles e o mesmo MD de continuidade.
 8. Não solicitar nova análise do AdSense.
 
 ## E08-W1 — avisos compartilhados
 Pendente, sem bloqueio para E06. Antes de alterar `app.js`, reproduzir o problema em amostra representativa. Não mexer em script compartilhado sem defeito reproduzido.
 
-## E10-I1 — imagens desktop/mobile
+## E10-I1 — Imagens desktop/mobile
 Reservada para perto do encerramento. O mobile deve reutilizar a mesma imagem/mesma cena do desktop, com `srcset`/otimização derivados do mesmo asset e adaptação por CSS. Manter asset diferente somente quando houver defeito real de acessibilidade/legibilidade não resolvível por enquadramento responsivo, com exceção documentada.
 
 ## E07–E12
