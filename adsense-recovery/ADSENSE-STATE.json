@@ -1,16 +1,16 @@
 {
   "schema_version": 3,
   "project": "ALOGY AdSense Recovery",
-  "plan_version": "2026-09-15.29",
+  "plan_version": "2026-09-15.30",
   "repository": "ronaldopjr/alogy",
   "base_branch": "main",
   "work_branch": "main",
-  "base_sha_verified": "79edb1626168d1b8c9bfce0069a115bfae542ee7",
+  "base_sha_verified": "02a1316c79e5feb359f5dcae0de9ba864a04b7a6",
   "verified_at": "2026-09-15",
   "last_completed_stage": "E05",
   "stage_in_progress": "E06",
   "next_stage": "E06",
-  "next_action": "Selecionar a proxima pagina improve/P0/high do acervo monetizado, priorizando instrumentacao, automacao ou eletrica industrial e baixo risco editorial. Tratar E06-INVENTORY-DELTA-01.csv a E06-INVENTORY-DELTA-11.csv como fonte incremental ate consolidacao segura no inventario canonico. Nao editar manual-review/P0 automaticamente e nao solicitar nova analise do AdSense.",
+  "next_action": "Selecionar a proxima pagina improve/P0/high do acervo monetizado, priorizando instrumentacao, automacao ou eletrica industrial e baixo risco editorial. Tratar E06-INVENTORY-DELTA-01.csv a E06-INVENTORY-DELTA-11.csv como fonte incremental ate consolidacao segura no inventario canonico. Nao editar manual-review/P0 automaticamente e nao solicitar nova analise do AdSense. Preservar E10-I1 para perto do encerramento: no mobile, reutilizar a mesma imagem/mesma cena do desktop com adaptação responsiva, salvo exceção documentada por acessibilidade.",
   "status": "in_progress",
   "preferred_editorial_batch": 1,
   "adsense": {
@@ -375,7 +375,8 @@
     "define_universal_tolerance_or_interval": false,
     "link_guide_from_blog_or_tools": false,
     "global_guide_navigation_may_remain": true,
-    "automatic_adsense_review_request": false
+    "automatic_adsense_review_request": false,
+    "same_visual_asset_desktop_mobile_at_e10_i1": true
   },
   "owner_dependencies": [
     "Captura atual do AdSense com motivo, data e disponibilidade de nova analise",

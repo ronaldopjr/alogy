@@ -1,6 +1,6 @@
 # ALOGY — fila operacional atual
 
-> Versão 2026-09-15.29. Esta é a única fila executável. Filas anteriores são históricas.
+> Versão 2026-09-15.30. Esta é a única fila executável. Filas anteriores são históricas.
 
 ## Regras permanentes
 
@@ -195,10 +195,19 @@ Não substituir o CSV grande de forma parcial nem marcar a fusão como concluíd
 6. Criar relatório e novo delta de inventário.
 7. Atualizar `ADSENSE-STATE.json`, esta fila e gerar novo MD de continuidade.
 8. Não solicitar nova análise do AdSense.
+9. Preservar E10-I1 para perto do encerramento; não iniciar a padronização global de imagens durante E06.
 
 ## E08-W1 — avisos compartilhados
 
 Pendente, sem bloqueio para E06. Antes de alterar `app.js`, reproduzir o problema em amostra representativa. Não mexer em script compartilhado sem defeito reproduzido.
+
+## E10-I1 — padronização final das imagens desktop/mobile
+
+- Executar perto do encerramento, depois das revisões editoriais, autoria, mobile/desempenho e conta/privacidade.
+- No mobile, reutilizar a mesma imagem ou a mesma cena do desktop; variantes de tamanho/formato derivadas do mesmo original são permitidas.
+- Resolver enquadramento com CSS quando possível; qualquer imagem semanticamente diferente exige justificativa documentada por acessibilidade ou legibilidade.
+- Validar 360, 390 e 430 px e uma largura desktop representativa, sem overflow, sobreposição ou CTA cobrindo o assunto principal.
+- Não antecipar esta correção global durante os lotes editoriais E06.
 
 ## E07–E12
 
