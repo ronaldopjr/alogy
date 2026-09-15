@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pressão Hidrostática e Nível | Hydrostatic Level, Density e DP | ALOGY</title>
-  <meta name="description" content="Hydrostatic level measurement: entenda ρgh, densidade, altura, LRV/URV, tanque aberto/fechado e erros em transmissores de pressão e nível." />
+  <title>Pressão Hidrostática e Nível: ρgh, Densidade e DP | ALOGY</title>
+  <meta name="description" content="Entenda pressão hidrostática e nível por ρgh, com exemplo calculado, efeito da densidade, tanque aberto ou fechado e diagnóstico de erros em DP." />
   <meta name="robots" content="index,follow" />
   <meta name="theme-color" content="#2C78B9" />
   <link rel="canonical" href="https://www.alogy.com.br/blog-pressao-hidrostatica-densidade.html" />
@@ -22,13 +22,16 @@
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="ALOGY Engenharia" />
   <meta property="og:title" content="Pressão Hidrostática e Nível: ρgh, Densidade e DP" />
-  <meta property="og:description" content="Como altura, densidade, tomadas e referência de pressão entram na medição hidrostática de nível." />
+  <meta property="og:description" content="Da coluna líquida ao sinal do transmissor: cálculo reproduzível, densidade, referência de pressão e diagnóstico por camadas." />
   <meta property="og:url" content="https://www.alogy.com.br/blog-pressao-hidrostatica-densidade.html" />
   <meta property="og:image" content="https://www.alogy.com.br/capa-blog-dp-nivel-tanque-fechado.webp" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="https://www.alogy.com.br/capa-blog-dp-nivel-tanque-fechado.webp" />
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Pressão hidrostática e nível: ρgh, densidade e DP","description":"Hydrostatic level measurement: entenda ρgh, densidade, altura, LRV/URV, tanque aberto/fechado e erros em transmissores de pressão e nível.","dateModified":"2026-09-11","author":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"},"publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/","logo":{"@type":"ImageObject","url":"https://www.alogy.com.br/logo-alogy.webp"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://www.alogy.com.br/blog-pressao-hidrostatica-densidade.html"},"inLanguage":"pt-BR","image":"https://www.alogy.com.br/capa-blog-dp-nivel-tanque-fechado.webp"}</script>
-  <style>.formula-box{background:#f8fafc;border:1px solid #dbe5ec;border-left:4px solid #006bb1;border-radius:12px;padding:14px;margin:16px 0}.chain{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:18px 0}.chain div{border:1px solid rgba(0,107,177,.18);border-radius:13px;padding:14px;text-align:center;background:#fff;font-weight:800;color:#0b3a62}.chain span{display:block;color:var(--muted);font-size:.86rem;font-weight:400;margin-top:5px}@media(max-width:650px){.chain{grid-template-columns:1fr}}@media print{header,.social-floating,.fab-wrap,.cta-bar,footer,.calc-actions,.no-print{display:none!important}}</style>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Pressão hidrostática e nível: ρgh, densidade e DP","description":"Entenda pressão hidrostática e nível por ρgh, com exemplo calculado, efeito da densidade, tanque aberto ou fechado e diagnóstico de erros em DP.","datePublished":"2026-09-11","dateModified":"2026-09-15","author":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"},"publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/","logo":{"@type":"ImageObject","url":"https://www.alogy.com.br/logo-alogy.webp"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://www.alogy.com.br/blog-pressao-hidrostatica-densidade.html"},"inLanguage":"pt-BR","image":"https://www.alogy.com.br/capa-blog-dp-nivel-tanque-fechado.webp"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"O transmissor de pressão mede nível diretamente?","acceptedAnswer":{"@type":"Answer","text":"Não. Ele mede pressão manométrica ou diferencial. O sistema converte essa pressão em nível usando densidade, gravidade e referências geométricas configuradas."}},{"@type":"Question","name":"O que acontece se a densidade real for diferente da configurada?","acceptedAnswer":{"@type":"Answer","text":"A altura indicada fica proporcional à razão entre a densidade real e a densidade configurada. Com densidade real menor, o sistema tende a indicar nível menor que a altura verdadeira, desde que os demais termos estejam corretos."}},{"@type":"Question","name":"Em tanque fechado basta usar um transmissor manométrico no fundo?","acceptedAnswer":{"@type":"Answer","text":"Não em geral. A pressão do espaço de vapor se soma à pressão da coluna. A medição diferencial ou outra compensação adequada precisa separar essa parcela conforme o projeto."}},{"@type":"Question","name":"Uma indicação errada de nível prova que o transmissor está descalibrado?","acceptedAnswer":{"@type":"Answer","text":"Não. Densidade, cotas, LRV e URV, linhas de impulso, perna de referência, manifold e integração também podem alterar a indicação. O diagnóstico deve separar essas causas antes de ajustar o instrumento."}}]}</script>
+  <style>
+    .chain{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:18px 0}.chain div{border:1px solid rgba(0,107,177,.18);border-radius:13px;padding:13px;text-align:center;background:#fff;font-weight:800;color:#0b3a62}.chain span{display:block;color:var(--muted);font-size:.84rem;font-weight:400;margin-top:5px}.formula-box,.example-box{border:1px solid rgba(0,107,177,.2);border-radius:14px;padding:16px;margin:16px 0;background:rgba(44,120,185,.05)}.formula-box strong{font-size:1.08rem;color:#0b3a62}.note-box{border-left:4px solid #0b3a62;padding:12px 14px;margin:16px 0;background:rgba(11,58,98,.05)}.table-scroll{overflow:auto;border:1px solid rgba(0,0,0,.08);border-radius:14px;margin:14px 0}.table-scroll table{width:100%;border-collapse:collapse;background:#fff}.table-scroll th{background:#0b3a62;color:#fff;text-align:left;padding:10px;white-space:nowrap}.table-scroll td{padding:10px;border-bottom:1px solid rgba(0,0,0,.07);vertical-align:top}@media(max-width:760px){.chain{grid-template-columns:1fr 1fr}}@media(max-width:460px){.chain{grid-template-columns:1fr}.table-scroll{font-size:.92rem}}@media print{header,.social-floating,.fab-wrap,footer,.calc-actions,.no-print{display:none!important}}
+  </style>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5586837114309500" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -42,28 +45,108 @@
   <main class="container" style="margin-top:18px">
     <a class="floating-back-blog no-print" href="blog.html"><i class="fas fa-arrow-left"></i> Voltar ao Blog</a>
     <article class="blog-post">
-      <h1>Pressão hidrostática, densidade e medição de nível</h1>
-      <p class="muted" data-alogy-content-meta><strong>Conteúdo técnico:</strong> ALOGY Engenharia · <strong>Atualizado em:</strong> 11/09/2026</p>
-      <figure class="article-cover-figure"><img class="article-cover-image" src="capa-blog-dp-nivel-tanque-fechado.webp" alt="Medição de nível por pressão diferencial em tanque industrial" loading="eager" fetchpriority="high" decoding="async"/><figcaption>Visual técnico compartilhado com a trilha de DP/nível enquanto este artigo não possui capa própria no repositório.</figcaption></figure>
-      <div class="chain"><div>Altura h<span>coluna acima da tomada</span></div><div>Densidade ρ<span>produto na condição real</span></div><div>Pressão ρgh<span>entrada do transmissor</span></div></div>
-      <p>Na medição hidrostática, o transmissor não “enxerga nível” diretamente: ele mede a pressão produzida pela coluna de fluido. Por isso, altura, densidade, gravidade e referência de pressão precisam estar coerentes com a instalação.</p>
-      <h2>Relação fundamental ρgh</h2>
-      <div class="formula-box"><strong>P = ρ × g × h</strong><br/>P é a pressão hidrostática, ρ é a densidade do fluido, g é a aceleração da gravidade e h é a altura efetiva da coluna.</div>
-      <p>Para a mesma altura, um fluido mais denso produz mais pressão. Para a mesma pressão medida, assumir densidade menor do que a real tende a superestimar a altura calculada.</p>
-      <h2>Tanque aberto e tanque fechado</h2>
-      <p>Em tanque aberto, a pressão sobre a superfície é normalmente atmosférica e a leitura manométrica no fundo representa a coluna líquida. Em tanque fechado, a pressão do espaço de vapor precisa ser compensada — normalmente por medição diferencial HP/LP — para que a parcela comum não seja interpretada como nível.</p>
-      <h2>LRV, URV e posição do transmissor</h2>
-      <p>O range deve considerar a cota da tomada, a elevação do transmissor, linhas de impulso e, quando existirem, wet leg, dry leg ou remote seals. Um LRV negativo pode ser consequência normal da instalação; não deve ser “zerado” sem conferir o desenho e a configuração.</p>
-      <h2>Densidade é uma variável de processo</h2>
-      <p>Produto aquecido, mudança de concentração, composição diferente ou gás incorporado podem alterar a densidade. Se o sistema converte DP em nível usando densidade fixa, a indicação pode variar mesmo com altura constante.</p>
-      <h2>Falhas que parecem erro de densidade</h2>
-      <ul><li>linha de impulso parcialmente obstruída ou com bolha;</li><li>condensado ausente/variável em perna molhada;</li><li>manifold em condição incorreta;</li><li>remote seal/capilar com efeito térmico;</li><li>LRV/URV ou cota de tomada diferentes da documentação;</li><li>pressão de vapor não compensada.</li></ul>
-      <h2>Roteiro de diagnóstico</h2>
-      <ol><li>Confirme TAG, unidade, LRV/URV e tipo de pressão.</li><li>Compare cotas de campo com desenho de instalação.</li><li>Verifique a condição de HP/LP, manifold e linhas.</li><li>Confirme densidade e temperatura usadas na conversão.</li><li>Separe erro do transmissor de erro de processo/instalação antes de ajustar.</li></ol>
-      <h2>Ferramentas e conteúdos relacionados</h2>
-      <div class="calc-actions"><a class="mini-btn dark" href="calculadora-pressao-hidrostatica-densidade.html"><i class="fas fa-calculator"></i> Pressão hidrostática</a><a class="mini-btn" href="calculadora-nivel-pressao-hidrostatica.html">Nível por pressão</a><a class="mini-btn" href="calculadora-dp-nivel-tanque-fechado.html">DP tanque fechado</a><a class="mini-btn" href="blog-linha-impulso-transmissor-dp.html">Impulse line</a><a class="mini-btn" href="blog-selo-remoto-capilar-nivel.html">Remote seal</a></div>
-      <h2>Aviso técnico</h2>
-      <p>Este conteúdo apoia conferência e diagnóstico. Para range final, projeto ou intervenção, use densidades/cotas reais, documentação do fabricante, desenho da instalação, procedimento aplicável e profissional habilitado.</p>
+      <h1>Pressão hidrostática e nível: como densidade, altura e DP entram na medição</h1>
+      <p class="muted" data-alogy-content-meta><strong>Conteúdo técnico:</strong> ALOGY Engenharia · <strong>Atualizado em:</strong> 15/09/2026</p>
+      <figure class="article-cover-figure"><img class="article-cover-image" src="capa-blog-dp-nivel-tanque-fechado.webp" alt="Transmissor de pressão diferencial aplicado à medição hidrostática de nível em tanque" loading="eager" fetchpriority="high" decoding="async"/><figcaption>Na medição hidrostática, o instrumento responde à pressão da coluna; nível é o resultado da conversão feita com densidade e referências corretas.</figcaption></figure>
+
+      <p>Um transmissor de pressão instalado em um tanque não “enxerga” diretamente a superfície do líquido. Ele mede a pressão manométrica ou diferencial aplicada ao sensor. Para transformar esse valor em altura, o sistema precisa conhecer a densidade usada no cálculo, a aceleração da gravidade e a geometria de referência da instalação.</p>
+      <p>Essa distinção é o ponto de partida para diagnosticar uma indicação incoerente. O problema pode estar no instrumento, mas também pode vir de densidade, cotas, linhas de impulso, perna de referência, configuração ou escala no PLC/DCS.</p>
+
+      <div class="chain"><div>Coluna h<span>altura acima da tomada</span></div><div>Densidade ρ<span>produto na condição real</span></div><div>Pressão ΔP<span>valor medido pelo sensor</span></div><div>Nível indicado<span>conversão configurada</span></div></div>
+
+      <h2>1. Relação fundamental: p = ρgh</h2>
+      <div class="formula-box"><strong>p = ρ × g × h</strong><br/>p é a pressão hidrostática em pascals, ρ é a densidade em kg/m³, g é a aceleração da gravidade em m/s² e h é a altura da coluna em metros.</div>
+      <p>Em unidades SI coerentes, o resultado sai em pascals porque 1 Pa equivale a 1 N/m². Para cálculos educativos neste artigo, é usado o valor convencional de <strong>g = 9,80665 m/s²</strong>. Em um projeto real, a convenção do projeto e os requisitos metrológicos aplicáveis devem prevalecer.</p>
+      <p>A equação mostra duas relações importantes: mantendo densidade constante, a pressão cresce proporcionalmente à altura; mantendo a altura constante, a pressão cresce proporcionalmente à densidade.</p>
+
+      <h2>2. Exemplo reproduzível em tanque aberto</h2>
+      <div class="example-box">
+        <p><strong>Dados do exemplo:</strong> altura efetiva h = 3,20 m; densidade ρ = 998 kg/m³; g = 9,80665 m/s².</p>
+        <p><strong>Cálculo:</strong> p = 998 × 9,80665 × 3,20 = 31.318,52 Pa.</p>
+        <p><strong>Resultado:</strong> p ≈ 31,319 kPa de pressão manométrica produzida pela coluna.</p>
+      </div>
+      <p>Esse valor não define sozinho a calibração do transmissor. A tomada pode estar acima do fundo útil, o transmissor pode estar em outra cota e o range pode incluir elevação ou supressão de zero. O exemplo apenas reproduz a relação física entre coluna, densidade e pressão.</p>
+
+      <h2>3. Altura física, percentual e volume são grandezas diferentes</h2>
+      <p>Uma pressão convertida em 3,20 m representa a altura hidrostática acima da referência adotada. Isso não significa automaticamente 3,20 m desde o fundo geométrico nem um percentual específico do volume. O sistema ainda pode aplicar zero, span, tabela de capacidade ou geometria do tanque.</p>
+      <p>Em tanques horizontais, fundos abaulados e geometrias irregulares, a relação entre altura e volume não é linear. Para investigar uma divergência, separe primeiro a cadeia pressão → altura; depois verifique a conversão altura → volume.</p>
+
+      <h2>4. Tanque aberto: referência atmosférica</h2>
+      <p>Em um tanque aberto, a superfície e a referência de um sensor manométrico estão expostas à atmosfera. A pressão atmosférica comum aos dois lados é compensada, e o sensor responde essencialmente à pressão produzida pela coluna líquida, dentro das condições da instalação.</p>
+      <p>Uma obstrução na conexão de processo, um respiro inadequado do tanque ou da referência do sensor e uma diferença de cota não documentada podem fazer a aplicação real se afastar desse modelo simples.</p>
+
+      <h2>5. Tanque fechado: a pressão do vapor precisa ser separada</h2>
+      <p>Em tanque pressurizado ou sob vácuo, a pressão do espaço de vapor se soma à pressão no fundo. Usar somente um sensor manométrico na tomada inferior pode fazer o sistema interpretar variação de pressão do vaso como variação de nível.</p>
+      <p>Na configuração diferencial clássica com perna seca, o lado de alta recebe pressão do vapor mais a coluna líquida e o lado de baixa recebe a pressão do vapor. Idealmente, a parcela comum se cancela:</p>
+      <div class="formula-box"><strong>ΔP = (p<sub>vapor</sub> + ρgh) − p<sub>vapor</sub> = ρgh</strong></div>
+      <p>O cancelamento matemático não elimina efeitos reais de instalação. Condensação na linha de baixa, vazamento, obstrução, diferenças de cota e condição incorreta do manifold continuam capazes de deslocar a leitura.</p>
+
+      <h2>6. Perna seca, perna molhada e selos remotos não são intercambiáveis</h2>
+      <p>Uma perna seca pressupõe que a conexão de referência permaneça sem uma coluna líquida significativa. Quando há condensação previsível, o projeto pode usar perna molhada ou selo remoto. Nesses casos, a coluna do lado de referência acrescenta um termo próprio ao DP e pode produzir LRV negativo sem representar defeito.</p>
+      <p>A densidade do fluido de referência, a altura dessa coluna e a montagem precisam ser tratadas conforme desenho e documentação do fabricante. Não “zere” um LRV negativo apenas para fazer a tela parecer intuitiva: confirme primeiro por que ele existe.</p>
+
+      <h2>7. Como a densidade configurada altera o nível indicado</h2>
+      <p>Se o sistema mede a pressão correta, mas converte usando uma densidade diferente da real, a altura indicada pode ser expressa por:</p>
+      <div class="formula-box"><strong>h<sub>indicada</sub> = p ÷ (ρ<sub>configurada</sub> × g) = h<sub>real</sub> × ρ<sub>real</sub> ÷ ρ<sub>configurada</sub></strong></div>
+      <div class="example-box">
+        <p><strong>Exemplo de mudança de produto:</strong> a altura real permanece em 3,20 m, mas a densidade real é 850 kg/m³ e o sistema continua configurado com 1.000 kg/m³.</p>
+        <p>A pressão real será aproximadamente 26,674 kPa. Ao dividir esse valor por 1.000 × g, o sistema indicará cerca de <strong>2,72 m</strong>.</p>
+        <p>A diferença de 0,48 m nasce da hipótese de densidade, não necessariamente de erro do sensor.</p>
+      </div>
+      <p>O sentido do erro também é útil no diagnóstico: densidade real menor que a configurada tende a reduzir a altura indicada; densidade real maior tende a aumentá-la. Essa relação presume que zero, cotas, referência e demais termos estejam corretos.</p>
+
+      <h2>8. Temperatura e composição podem mudar ρ</h2>
+      <p>Densidade não é apenas um dado fixo de cadastro. Temperatura, concentração, composição, pressão e presença de gás podem alterar o valor relevante. Por isso, uma densidade nominal pode ser suficiente para uma estimativa operacional e inadequada para outra finalidade.</p>
+      <p>Registre a origem da densidade, sua unidade, a condição associada e o horário. Misturar densidade em uma condição de referência com nível observado em outra condição pode produzir uma conta numericamente correta e fisicamente incoerente.</p>
+
+      <h2>9. LRV, URV e cotas devem representar a instalação</h2>
+      <p>LRV e URV não são sinônimos automáticos de tanque vazio e tanque cheio. Eles representam os valores de entrada associados a 4 mA e 20 mA, ou aos limites digitais configurados. A posição da tomada, a elevação do transmissor e as colunas nos lados HP e LP podem deslocar ambos.</p>
+      <div class="table-scroll"><table><thead><tr><th>Item</th><th>Pergunta de conferência</th><th>Possível efeito</th></tr></thead><tbody><tr><td>Tomada de processo</td><td>Qual é a cota em relação ao zero útil?</td><td>Desloca a altura efetivamente medida</td></tr><tr><td>Transmissor</td><td>Está acima ou abaixo da tomada?</td><td>Pode exigir elevação ou supressão</td></tr><tr><td>Lado LP</td><td>Está seco, molhado ou ligado a selo?</td><td>Adiciona ou remove coluna de referência</td></tr><tr><td>Densidade</td><td>Qual valor e condição foram configurados?</td><td>Altera a conversão DP → nível</td></tr><tr><td>Escala no sistema</td><td>PLC/DCS usa os mesmos LRV/URV e unidade?</td><td>Pode criar erro mesmo com 4–20 mA correto</td></tr></tbody></table></div>
+
+      <h2>10. Diagnóstico por camadas antes de ajustar</h2>
+      <p>Quando a indicação parece errada, siga uma sequência que preserve evidências:</p>
+      <ol>
+        <li><strong>Defina a grandeza:</strong> confirme se a tela mostra DP, altura, percentual ou volume.</li>
+        <li><strong>Confirme a referência:</strong> compare cotas, tomadas, lado HP/LP, LRV, URV e unidade com o desenho vigente.</li>
+        <li><strong>Observe o processo:</strong> registre pressão do vapor, produto, temperatura e densidade usada.</li>
+        <li><strong>Verifique a instalação:</strong> avalie manifold, válvulas, linhas de impulso, condensado, bolhas, obstruções e vazamentos conforme procedimento seguro.</li>
+        <li><strong>Separe o sinal:</strong> compare valor primário, corrente 4–20 mA, variável digital e escala do PLC/DCS.</li>
+        <li><strong>Decida a intervenção:</strong> ajuste somente depois de identificar qual camada explica a divergência.</li>
+      </ol>
+      <p>Esse roteiro não substitui liberação operacional, bloqueio, despressurização ou procedimento da planta. Ele organiza o raciocínio e reduz o risco de usar um ajuste eletrônico para esconder uma condição de processo ou instalação.</p>
+
+      <h2>11. Matriz rápida: sintoma, hipótese e evidência</h2>
+      <div class="table-scroll"><table><thead><tr><th>Sintoma observado</th><th>Hipóteses iniciais</th><th>Evidência útil</th></tr></thead><tbody><tr><td>Indicação muda após troca de produto</td><td>Densidade fixa inadequada</td><td>Produto, temperatura, ρ configurada e ρ atual</td></tr><tr><td>Nível varia com pressão do vaso</td><td>Referência LP ou compensação do vapor</td><td>DP bruto, pressão do vapor e condição da linha LP</td></tr><tr><td>Erro quase constante em toda a faixa</td><td>Cota, zero, coluna de referência ou escala</td><td>LRV/URV, desenho e leitura em condição conhecida</td></tr><tr><td>Resposta lenta ou presa</td><td>Obstrução, bolha, condensado ou damping</td><td>Tendência temporal e inspeção autorizada das linhas</td></tr><tr><td>Transmissor e DCS divergem</td><td>Escala, unidade, cartão ou integração</td><td>Variável digital, mA medido, raw e unidade de engenharia</td></tr></tbody></table></div>
+
+      <h2>12. Registro mínimo para uma análise conferível</h2>
+      <p>Guarde TAG, data e hora, produto, temperatura, densidade e origem do valor, pressão do vapor quando aplicável, DP bruto, corrente, LRV/URV, unidade, cotas, condição de HP/LP, posição do manifold e valor exibido no sistema. Se houver mudança, preserve os dados <em>as-found</em> antes de registrar a condição final.</p>
+      <p>Esse conjunto não transforma uma conferência funcional em calibração rastreável. Ele torna o diagnóstico reproduzível e ajuda a distinguir medição, configuração, instalação e processo.</p>
+
+      <h2>13. Relação com manutenção de instrumentação</h2>
+      <p>A análise hidrostática é especialmente útil em paradas, comissionamentos e investigação de divergências. Uma sequência documentada pode revelar que o transmissor está respondendo corretamente e que a origem do problema é densidade, perna de referência, cota ou escala de integração.</p>
+      <p>A ALOGY pode apoiar, conforme escopo confirmado, em avaliação, inspeção, manutenção, configuração e conferência funcional de instrumentação, válvulas, atuadores, posicionadores e sinais associados. Calibração, ensaio, rastreabilidade ou documentação metrológica específica dependem da confirmação prévia de recursos, métodos e parceiros na proposta.</p>
+
+      <h2>14. Ferramentas e conteúdos relacionados</h2>
+      <div class="calc-actions"><a class="mini-btn dark" href="calculadora-pressao-hidrostatica-densidade.html"><i class="fas fa-calculator"></i> Pressão por ρgh</a><a class="mini-btn" href="calculadora-nivel-pressao-hidrostatica.html">Nível por pressão</a><a class="mini-btn" href="calculadora-dp-nivel-tanque-fechado.html">DP em tanque fechado</a><a class="mini-btn" href="calculadora-calibracao-transmissor-nivel-dp.html">Conferência de transmissor DP</a><a class="mini-btn" href="blog-linha-impulso-transmissor-dp.html">Linhas de impulso</a><a class="mini-btn" href="blog-selo-remoto-capilar-nivel.html">Selos remotos</a></div>
+      <p>As calculadoras servem como apoio preliminar e não substituem desenho, tabela de range, manual do fabricante, procedimento da planta ou análise de risco.</p>
+
+      <h2>15. Fontes e referências técnicas</h2>
+      <ul>
+        <li><a href="https://www.endress.com/en/support-overview/learning-center/pressure-measuring-principle-animation" target="_blank" rel="noopener noreferrer">Endress+Hauser — Pressure measuring principle</a>, documentação oficial atualizada em 19/01/2026 sobre pressão manométrica, hidrostática e diferencial.</li>
+        <li><a href="https://www.emerson.com/is/content/emerson/en/measurement-instrumentation/technical/products/dp-level/documents/doc-rosemount-dp-00809-0100-4002.pdf" target="_blank" rel="noopener noreferrer">Emerson — Rosemount Differential Pressure Level Transmitters and Diaphragm Seal Systems Reference Manual</a>, manual oficial consultado na edição disponível em 2026.</li>
+        <li><a href="https://www.emerson.com/is/content/emerson/en/measurement-instrumentation/technical/products/dp-level/documents/technical-data-sheet-density-measurement-pressure.pdf" target="_blank" rel="noopener noreferrer">Emerson — Density Measurement Using DP Transmitters</a>, folha técnica oficial com equações para tanque aberto, fechado, perna seca e coluna de referência.</li>
+        <li><a href="https://www.bipm.org/en/publications/si-brochure/" target="_blank" rel="noopener noreferrer">BIPM — The International System of Units (SI Brochure)</a>, 9ª edição, texto oficial atualizado em 2026 para grandezas e unidades SI.</li>
+      </ul>
+
+      <h2>16. Perguntas frequentes</h2>
+      <h3>O transmissor mede nível diretamente?</h3><p>Não. Ele mede pressão manométrica ou diferencial. A conversão para nível depende de densidade, gravidade e referências geométricas.</p>
+      <h3>Por que a troca de produto altera a indicação?</h3><p>Porque a mesma altura gera pressões diferentes quando a densidade muda. Se o sistema continuar usando a densidade anterior, a altura calculada será deslocada.</p>
+      <h3>Em tanque fechado basta medir pressão no fundo?</h3><p>Não em geral. A pressão do espaço de vapor precisa ser separada para não ser interpretada como coluna líquida.</p>
+      <h3>Indicação errada significa transmissor descalibrado?</h3><p>Não. Densidade, cotas, range, linhas, manifold, perna de referência e integração também podem explicar o desvio. Preserve a condição encontrada e teste as hipóteses antes de ajustar.</p>
+
+      <h2>17. Limites deste conteúdo</h2>
+      <div class="note-box"><strong>Uso educativo:</strong> os exemplos mostram relações físicas e um método de diagnóstico. Eles não definem ranges, tolerâncias, critérios de aceitação, intervalos de calibração ou procedimentos universais.</div>
+      <p>Para intervenção real, use a documentação vigente da instalação e do fabricante, confirme as propriedades do produto, cumpra os procedimentos de segurança e envolva profissional habilitado quando aplicável.</p>
     </article>
   </main>
   <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
