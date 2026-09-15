@@ -1,6 +1,6 @@
 # ALOGY — fila operacional atual
 
-> Versão 2026-09-15.27. Esta é a única fila executável. Filas anteriores são históricas.
+> Versão 2026-09-15.28. Esta é a única fila executável. Filas anteriores são históricas.
 
 ## Regras permanentes
 
@@ -38,7 +38,7 @@
 
 ## E06 — revisão do acervo monetizado
 
-**Estado:** EM EXECUÇÃO — ONZE PÁGINAS REVISADAS, PUBLICADAS E VALIDADAS.
+**Estado:** EM EXECUÇÃO — DOZE PÁGINAS REVISADAS, PUBLICADAS E VALIDADAS.
 
 | # | Página | Decisão | Commit de conteúdo |
 |---|---|---|---|
@@ -51,6 +51,7 @@
 | 07 | `blog-manutencao-preditiva-instrumentacao-sensores.html` | `keep/P1/high` | `3a9c7bb57ec195437bf93eba36fbd8dca3b2af7d` |
 | 08 | `blog-massa-tanque-nivel.html` | `keep/P1/high` | `76e0832196a69242387dc35bef6c4051e08f02c0` |
 | 09 | `blog-pressao-hidrostatica-densidade.html` | `keep/P1/high` | `e2bbc0c359b99b8e890a732da33c90d704151fc9` |\n| 10 | `blog-selo-remoto-capilar-nivel.html` | `keep/P1/high` | `50b9e645ef4d6c5a9f8b2a6684bd547e850c1248` |\n| 11 | `blog-potencia-bomba.html` | `keep/P1/high` | `af6f84bbac905b6888c63cf0d7c94da4e0023a5b` |
+| 12 | `blog-gemeo-digital-tags-instrumentacao.html` | `keep/P1/high` | `2e091506da18f788757d1a424fd194228cb763b8` |
 
 ### Página 08 — massa em tanque por nível
 
@@ -133,9 +134,30 @@
 - nenhuma calculadora, fórmula ou JavaScript técnico compartilhado alterado;
 - fontes primárias verificadas: DOE, Hydraulic Institute, WEG e ABB.
 
+### Página 12 — governança de TAGs industriais
+
+- relatório: `E06-TAG-GOVERNANCE-ACERVO-12.md`;
+- delta: `E06-INVENTORY-DELTA-12.csv`;
+- relatório + delta: commit `642f051bb70b848ac7db1c20f5cbdf2ba2009e0a`;
+- conteúdo: commit `2e091506da18f788757d1a424fd194228cb763b8`;
+- Pages: run `35022471938`, build/deploy com sucesso;
+- artefato: `10418386243`;
+- digest: `sha256:13ec1c4662ebdd2c0ad804ff97fc26fe5b2ea10f7fc094d67251b84d4ee7f05c`;
+- domínio: HTTP 200, 24.122 bytes;
+- SHA-256 do HTML servido: `5514716528277fdea638bb3ad516fc1af5d35cf22b910d7df6ed3857f17329ca`;
+- Git blob do domínio: `94800b10238135d48b15515d1126c1232c088a48`, igual ao blob do conteúdo versionado;
+- 1.769 palavras visíveis / 1.716 no artigo;
+- 1 H1 / 15 H2 / 7 H3;
+- `BlogPosting` + `FAQPage`;
+- canonical, sitemap e AdSense preservados;
+- menu global Guia preservado, sem CTA do Guia no corpo; sem Hotmart ou Cursos;
+- cálculo didático 4–20 mA conferido: 12 mA = 500 kPa em 0–1.000 kPa;
+- nenhuma fórmula de ferramenta ou JavaScript técnico compartilhado alterado;
+- fontes primárias verificadas: OPC Foundation, W3C PROV, IDTA AAS e NIST.
+
 ### Pendência explícita do inventário
 
-O `ADSENSE-INVENTORY.csv` canônico ainda não incorpora as decisões E06. Os arquivos `E06-INVENTORY-DELTA-01.csv` até `E06-INVENTORY-DELTA-11.csv` são a fonte incremental de verdade até existir mecanismo seguro de consolidação integral/patch.
+O `ADSENSE-INVENTORY.csv` canônico ainda não incorpora as decisões E06. Os arquivos `E06-INVENTORY-DELTA-01.csv` até `E06-INVENTORY-DELTA-12.csv` são a fonte incremental de verdade até existir mecanismo seguro de consolidação integral/patch.
 
 Não substituir o CSV grande de forma parcial nem marcar a fusão como concluída sem validar o arquivo inteiro.
 

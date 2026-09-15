@@ -1,11 +1,11 @@
 {
   "schema_version": 3,
   "project": "ALOGY AdSense Recovery",
-  "plan_version": "2026-09-15.27",
+  "plan_version": "2026-09-15.28",
   "repository": "ronaldopjr/alogy",
   "base_branch": "main",
   "work_branch": "main",
-  "base_sha_verified": "87754d133ee2670e1abf637979c7216bea5c87ab",
+  "base_sha_verified": "642f051bb70b848ac7db1c20f5cbdf2ba2009e0a",
   "verified_at": "2026-09-15",
   "last_completed_stage": "E05",
   "stage_in_progress": "E06",
@@ -23,19 +23,19 @@
     "enabled": true,
     "target_branch": "main",
     "method": "validated-atomic-commit",
-    "batch_id": "E06-PUMP-MOTOR-POWER-ACERVO-11",
-    "latest_site_change_commit": "af6f84bbac905b6888c63cf0d7c94da4e0023a5b",
-    "latest_report_and_delta_commit": "87754d133ee2670e1abf637979c7216bea5c87ab",
+    "batch_id": "E06-TAG-GOVERNANCE-ACERVO-12",
+    "latest_site_change_commit": "2e091506da18f788757d1a424fd194228cb763b8",
+    "latest_report_and_delta_commit": "642f051bb70b848ac7db1c20f5cbdf2ba2009e0a",
     "services_navigation_commit": "2a047390f543d3a7a0469a3677f17c14fa0dcfeb",
     "canonical_inventory_initial_commit": "da2f61932a21c00741f418870601aafcb42deba6",
     "source_verified_on_main": true,
     "pages_deployment_success": true,
-    "latest_pages_workflow_run": 34997876058,
-    "latest_pages_artifact_id": 10408442738,
-    "latest_pages_artifact_digest": "sha256:fe9b6225f2edae8c17ef94b652165103ffd4fec32ea3b784ab8e635117e9dc20",
+    "latest_pages_workflow_run": 35022471938,
+    "latest_pages_artifact_id": 10418386243,
+    "latest_pages_artifact_digest": "sha256:13ec1c4662ebdd2c0ad804ff97fc26fe5b2ea10f7fc094d67251b84d4ee7f05c",
     "live_environment_url": "https://www.alogy.com.br/",
     "artifact_validation_complete": true,
-    "artifact_validation_method": "GitHub Pages build and deploy completed successfully; live domain returned HTTP 200 and blog-potencia-bomba.html Git blob SHA-1 matched the content commit blob exactly.",
+    "artifact_validation_method": "GitHub Pages build and deploy completed successfully; live domain returned HTTP 200 and blog-gemeo-digital-tags-instrumentacao.html Git blob SHA-1 matched the content commit blob exactly.",
     "require_clean_validated_diff": true,
     "allow_force": false
   },
@@ -74,7 +74,7 @@
       "adsense_review_request_allowed": false
     },
     "e06_acervo": {
-      "status": "pages_01_to_11_passed_published_next_selection_pending",
+      "status": "pages_01_to_12_passed_published_next_selection_pending",
       "canonical_inventory_deltas_pending_merge": [
         "E06-INVENTORY-DELTA-01.csv",
         "E06-INVENTORY-DELTA-02.csv",
@@ -86,7 +86,8 @@
         "E06-INVENTORY-DELTA-08.csv",
         "E06-INVENTORY-DELTA-09.csv",
         "E06-INVENTORY-DELTA-10.csv",
-        "E06-INVENTORY-DELTA-11.csv"
+        "E06-INVENTORY-DELTA-11.csv",
+        "E06-INVENTORY-DELTA-12.csv"
       ],
       "pages": [
         {
@@ -276,11 +277,46 @@
           "technical_formulas_or_shared_javascript_changed": false,
           "decision_before": "improve/P0/high",
           "decision_after": "keep/P1/high"
+        },
+        {
+          "n": 12,
+          "path": "blog-gemeo-digital-tags-instrumentacao.html",
+          "status": "passed_published",
+          "content_commit": "2e091506da18f788757d1a424fd194228cb763b8",
+          "content_blob": "94800b10238135d48b15515d1126c1232c088a48",
+          "report": "E06-TAG-GOVERNANCE-ACERVO-12.md",
+          "report_and_delta_commit": "642f051bb70b848ac7db1c20f5cbdf2ba2009e0a",
+          "inventory_delta": "E06-INVENTORY-DELTA-12.csv",
+          "pages_workflow_run": 35022471938,
+          "pages_artifact_id": 10418386243,
+          "artifact_digest": "sha256:13ec1c4662ebdd2c0ad804ff97fc26fe5b2ea10f7fc094d67251b84d4ee7f05c",
+          "live_html_bytes": 24122,
+          "live_html_sha256": "5514716528277fdea638bb3ad516fc1af5d35cf22b910d7df6ed3857f17329ca",
+          "live_visible_words_observed": 1769,
+          "live_main_words_observed": 1716,
+          "h1_count": 1,
+          "h2_count": 15,
+          "h3_count": 7,
+          "json_ld_types": [
+            "BlogPosting",
+            "FAQPage"
+          ],
+          "canonical_valid": true,
+          "adsense_loader_present": true,
+          "sitemap_occurrences_expected": 1,
+          "global_guide_navigation_preserved": true,
+          "promotional_guide_link_in_article": false,
+          "hotmart_link_present": false,
+          "separate_service_labels_present": false,
+          "live_matches_validated_candidate": true,
+          "technical_formulas_or_shared_javascript_changed": false,
+          "decision_before": "improve/P0/high",
+          "decision_after": "keep/P1/high"
         }
       ],
       "next_candidate": {
         "path": null,
-        "status": "selection_pending_after_page_11"
+        "status": "selection_pending_after_page_12"
       },
       "manual_review_pages_must_remain_unchanged": true,
       "mass_pruning_allowed": false,
