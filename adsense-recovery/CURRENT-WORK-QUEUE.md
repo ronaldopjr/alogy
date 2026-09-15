@@ -1,6 +1,6 @@
 # ALOGY — fila operacional atual
 
-> Versão 2026-09-15.25. Esta é a única fila executável. Filas anteriores são históricas.
+> Versão 2026-09-15.26. Esta é a única fila executável. Filas anteriores são históricas.
 
 ## Regras permanentes
 
@@ -38,7 +38,7 @@
 
 ## E06 — revisão do acervo monetizado
 
-**Estado:** EM EXECUÇÃO — NOVE PÁGINAS REVISADAS, PUBLICADAS E VALIDADAS.
+**Estado:** EM EXECUÇÃO — DEZ PÁGINAS REVISADAS, PUBLICADAS E VALIDADAS.
 
 | # | Página | Decisão | Commit de conteúdo |
 |---|---|---|---|
@@ -50,7 +50,7 @@
 | 06 | `blog-fat-sat-instrumentacao.html` | `keep/P1/high` | `c9dc10756d8f5f42ef0388131caccbdee1e4f68c` |
 | 07 | `blog-manutencao-preditiva-instrumentacao-sensores.html` | `keep/P1/high` | `3a9c7bb57ec195437bf93eba36fbd8dca3b2af7d` |
 | 08 | `blog-massa-tanque-nivel.html` | `keep/P1/high` | `76e0832196a69242387dc35bef6c4051e08f02c0` |
-| 09 | `blog-pressao-hidrostatica-densidade.html` | `keep/P1/high` | `e2bbc0c359b99b8e890a732da33c90d704151fc9` |
+| 09 | `blog-pressao-hidrostatica-densidade.html` | `keep/P1/high` | `e2bbc0c359b99b8e890a732da33c90d704151fc9` |\n| 10 | `blog-selo-remoto-capilar-nivel.html` | `keep/P1/high` | `50b9e645ef4d6c5a9f8b2a6684bd547e850c1248` |
 
 ### Página 08 — massa em tanque por nível
 
@@ -91,9 +91,30 @@
 - nenhuma fórmula de calculadora ou JavaScript técnico compartilhado alterado;
 - fontes primárias verificadas: Endress+Hauser 2026, Emerson DP Level, Emerson Density Measurement e BIPM SI Brochure 2026.
 
+### Página 10 — selo remoto e capilar em nível DP
+
+- relatório: `E06-REMOTE-SEAL-CAPILLARY-ACERVO-10.md`;
+- delta: `E06-INVENTORY-DELTA-10.csv`;
+- relatório + delta: commit `984241c40f34edf0528cb1bfbe5a0ebd58c84bd8`;
+- conteúdo: commit `50b9e645ef4d6c5a9f8b2a6684bd547e850c1248`;
+- Pages: run `34991433678`, build/deploy com sucesso;
+- artefato: `10405678002`;
+- digest: `sha256:a5adbb627328ee3e36c15364996d5534181762dab4aa104edc1be674e9e3dd2c`;
+- domínio: HTTP 200, 25.222 bytes;
+- SHA-256 do HTML servido: `0e613a058715d19e181672b32d3e7bf35827aea9231c406346e7296046c86e14`;
+- Git blob do domínio: `b2b1e11652270ef4e5a8e6ffd2f1730bcc518a04`, igual ao blob do conteúdo versionado;
+- 1.778 palavras visíveis / 1.725 no artigo;
+- 1 H1 / 12 H2 / 0 H3;
+- `BlogPosting` + `FAQPage`;
+- canonical e AdSense preservados;
+- menu global Guia preservado, sem CTA do Guia no corpo; sem Hotmart ou Cursos;
+- cálculo de LRV/URV/span e ponto intermediário conferido independentemente;
+- nenhuma fórmula de calculadora ou JavaScript técnico compartilhado alterado;
+- fontes primárias verificadas: Emerson, Yokogawa, WIKA e BIPM.
+
 ### Pendência explícita do inventário
 
-O `ADSENSE-INVENTORY.csv` canônico ainda não incorpora as decisões E06. Os arquivos `E06-INVENTORY-DELTA-01.csv` até `E06-INVENTORY-DELTA-09.csv` são a fonte incremental de verdade até existir mecanismo seguro de consolidação integral/patch.
+O `ADSENSE-INVENTORY.csv` canônico ainda não incorpora as decisões E06. Os arquivos `E06-INVENTORY-DELTA-01.csv` até `E06-INVENTORY-DELTA-10.csv` são a fonte incremental de verdade até existir mecanismo seguro de consolidação integral/patch.
 
 Não substituir o CSV grande de forma parcial nem marcar a fusão como concluída sem validar o arquivo inteiro.
 

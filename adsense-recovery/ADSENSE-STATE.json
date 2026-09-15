@@ -1,16 +1,16 @@
 {
   "schema_version": 3,
   "project": "ALOGY AdSense Recovery",
-  "plan_version": "2026-09-15.25",
+  "plan_version": "2026-09-15.26",
   "repository": "ronaldopjr/alogy",
   "base_branch": "main",
   "work_branch": "main",
-  "base_sha_verified": "fd32b44d6bdaae2a73e64372560ccccd6f018605",
+  "base_sha_verified": "984241c40f34edf0528cb1bfbe5a0ebd58c84bd8",
   "verified_at": "2026-09-15",
   "last_completed_stage": "E05",
   "stage_in_progress": "E06",
   "next_stage": "E06",
-  "next_action": "Selecionar a proxima pagina improve/P0/high do acervo monetizado, priorizando instrumentacao industrial e baixo risco editorial. Tratar E06-INVENTORY-DELTA-01.csv a E06-INVENTORY-DELTA-09.csv como fonte incremental ate consolidacao segura no inventario canonico. Nao editar manual-review/P0 automaticamente e nao solicitar nova analise do AdSense.",
+  "next_action": "Selecionar a proxima pagina improve/P0/high do acervo monetizado, priorizando instrumentacao industrial e baixo risco editorial. Tratar E06-INVENTORY-DELTA-01.csv a E06-INVENTORY-DELTA-10.csv como fonte incremental ate consolidacao segura no inventario canonico. Nao editar manual-review/P0 automaticamente e nao solicitar nova analise do AdSense.",
   "status": "in_progress",
   "preferred_editorial_batch": 1,
   "adsense": {
@@ -23,25 +23,29 @@
     "enabled": true,
     "target_branch": "main",
     "method": "validated-atomic-commit",
-    "batch_id": "E06-HYDROSTATIC-PRESSURE-DENSITY-ACERVO-09",
-    "latest_site_change_commit": "e2bbc0c359b99b8e890a732da33c90d704151fc9",
-    "latest_report_and_delta_commit": "fd32b44d6bdaae2a73e64372560ccccd6f018605",
+    "batch_id": "E06-REMOTE-SEAL-CAPILLARY-ACERVO-10",
+    "latest_site_change_commit": "50b9e645ef4d6c5a9f8b2a6684bd547e850c1248",
+    "latest_report_and_delta_commit": "984241c40f34edf0528cb1bfbe5a0ebd58c84bd8",
     "services_navigation_commit": "2a047390f543d3a7a0469a3677f17c14fa0dcfeb",
     "canonical_inventory_initial_commit": "da2f61932a21c00741f418870601aafcb42deba6",
     "source_verified_on_main": true,
     "pages_deployment_success": true,
-    "latest_pages_workflow_run": 34984984363,
-    "latest_pages_artifact_id": 10403491616,
-    "latest_pages_artifact_digest": "sha256:a64dc5963f5e2374fdce6a7d14c376d08af0f6b42f430b3ffd1285f8147dadfa",
+    "latest_pages_workflow_run": 34991433678,
+    "latest_pages_artifact_id": 10405678002,
+    "latest_pages_artifact_digest": "sha256:a5adbb627328ee3e36c15364996d5534181762dab4aa104edc1be674e9e3dd2c",
     "live_environment_url": "https://www.alogy.com.br/",
     "artifact_validation_complete": true,
-    "artifact_validation_method": "GitHub Pages build and deploy completed successfully; live domain returned HTTP 200 and blog-pressao-hidrostatica-densidade.html Git blob SHA-1 matched the content commit blob exactly.",
+    "artifact_validation_method": "GitHub Pages build and deploy completed successfully; live domain returned HTTP 200 and blog-selo-remoto-capilar-nivel.html Git blob SHA-1 matched the content commit blob exactly.",
     "require_clean_validated_diff": true,
     "allow_force": false
   },
   "validation": {
-    "e02_search": {"status": "passed"},
-    "e03_commercial_truth": {"status": "passed"},
+    "e02_search": {
+      "status": "passed"
+    },
+    "e03_commercial_truth": {
+      "status": "passed"
+    },
     "e04_inventory": {
       "status": "completed_for_editorial_work",
       "source_html_total": 271,
@@ -63,11 +67,14 @@
     },
     "e05_pilot": {
       "status": "passed_completed",
-      "pages": ["blog-calibracao-valvula-controle.html", "blog-calibracao-instrumentos-industriais.html"],
+      "pages": [
+        "blog-calibracao-valvula-controle.html",
+        "blog-calibracao-instrumentos-industriais.html"
+      ],
       "adsense_review_request_allowed": false
     },
     "e06_acervo": {
-      "status": "pages_01_to_09_passed_published_next_selection_pending",
+      "status": "pages_01_to_10_passed_published_next_selection_pending",
       "canonical_inventory_deltas_pending_merge": [
         "E06-INVENTORY-DELTA-01.csv",
         "E06-INVENTORY-DELTA-02.csv",
@@ -77,20 +84,168 @@
         "E06-INVENTORY-DELTA-06.csv",
         "E06-INVENTORY-DELTA-07.csv",
         "E06-INVENTORY-DELTA-08.csv",
-        "E06-INVENTORY-DELTA-09.csv"
+        "E06-INVENTORY-DELTA-09.csv",
+        "E06-INVENTORY-DELTA-10.csv"
       ],
       "pages": [
-        {"n":1,"path":"blog-ar-instrumentos-qualidade-ponto-orvalho.html","status":"passed_published","content_commit":"4c4a51b7fd881a5252995dd00603ee04053daeb8","decision_after":"keep/P1/high"},
-        {"n":2,"path":"blog-solenoide-atuador-pneumatico-cv.html","status":"passed_published","content_commit":"3baa03d6832062d7d0fe24ec4ecae37cf96f0b59","decision_after":"keep/P1/high"},
-        {"n":3,"path":"blog-instrumentacao-industrial.html","status":"passed_published","content_commit":"794c5bd65cd80ce34b30f0ef83c1b422c5584ab5","decision_after":"keep/P1/high"},
-        {"n":4,"path":"blog-criticidade-instrumentos.html","status":"passed_published","content_commit":"95ea333e471f7e3d2518363794ca0215585ef6d8","decision_after":"keep/P1/high"},
-        {"n":5,"path":"blog-erro-total-malha-instrumentacao.html","status":"passed_published","content_commit":"41421244f4e6cce1e11d81fff25d4c79aaf93f2e","decision_after":"keep/P1/high"},
-        {"n":6,"path":"blog-fat-sat-instrumentacao.html","status":"passed_published","content_commit":"c9dc10756d8f5f42ef0388131caccbdee1e4f68c","decision_after":"keep/P1/high"},
-        {"n":7,"path":"blog-manutencao-preditiva-instrumentacao-sensores.html","status":"passed_published","content_commit":"3a9c7bb57ec195437bf93eba36fbd8dca3b2af7d","decision_after":"keep/P1/high"},
-        {"n":8,"path":"blog-massa-tanque-nivel.html","status":"passed_published","content_commit":"76e0832196a69242387dc35bef6c4051e08f02c0","content_blob":"d996fce38459743ade60e08e552313cfd13d1d66","report":"E06-TANK-INVENTORY-ACERVO-08.md","report_and_delta_commit":"5406c117d0b51ec952461a70ee31620b8f8d91a3","inventory_delta":"E06-INVENTORY-DELTA-08.csv","pages_workflow_run":34978266626,"pages_artifact_id":10399778425,"artifact_digest":"sha256:0e3d8044e6a36547d311fb6292d8fc34c6e01e339f2c7c6608946f62fb26f669","artifact_html_bytes":23639,"artifact_html_sha256":"d02475b3e3709c7a950b009321a94195d67ee3b9aa1b8e23c66c219004511d9f","artifact_visible_words_observed":1705,"artifact_main_words_observed":1654,"h1_count":1,"h2_count":16,"h3_count":4,"json_ld_types":["BlogPosting","FAQPage"],"canonical_valid":true,"adsense_loader_present":true,"sitemap_occurrences_expected":1,"guide_link_present":false,"hotmart_link_present":false,"separate_service_labels_present":false,"artifact_matches_validated_candidate":true,"technical_formulas_or_shared_javascript_changed":false,"decision_before":"improve/P0/high","decision_after":"keep/P1/high"},
-        {"n":9,"path":"blog-pressao-hidrostatica-densidade.html","status":"passed_published","content_commit":"e2bbc0c359b99b8e890a732da33c90d704151fc9","content_blob":"ef5624a989e9e6476742b13894a0015c7aa60cc2","report":"E06-HYDROSTATIC-PRESSURE-DENSITY-ACERVO-09.md","report_and_delta_commit":"fd32b44d6bdaae2a73e64372560ccccd6f018605","inventory_delta":"E06-INVENTORY-DELTA-09.csv","pages_workflow_run":34984984363,"pages_artifact_id":10403491616,"artifact_digest":"sha256:a64dc5963f5e2374fdce6a7d14c376d08af0f6b42f430b3ffd1285f8147dadfa","live_html_bytes":25075,"live_html_sha256":"c49a8658f490a6be865957e89a06f707cd6e00cd4c85ee5dcaa3bb349bbf5ccd","live_visible_words_observed":1868,"live_main_words_observed":1851,"h1_count":1,"h2_count":17,"h3_count":4,"json_ld_types":["BlogPosting","FAQPage"],"canonical_valid":true,"adsense_loader_present":true,"sitemap_occurrences_expected":1,"global_guide_navigation_preserved":true,"promotional_guide_link_in_article":false,"hotmart_link_present":false,"separate_service_labels_present":false,"live_matches_validated_candidate":true,"technical_formulas_or_shared_javascript_changed":false,"decision_before":"improve/P0/high","decision_after":"keep/P1/high"}
+        {
+          "n": 1,
+          "path": "blog-ar-instrumentos-qualidade-ponto-orvalho.html",
+          "status": "passed_published",
+          "content_commit": "4c4a51b7fd881a5252995dd00603ee04053daeb8",
+          "decision_after": "keep/P1/high"
+        },
+        {
+          "n": 2,
+          "path": "blog-solenoide-atuador-pneumatico-cv.html",
+          "status": "passed_published",
+          "content_commit": "3baa03d6832062d7d0fe24ec4ecae37cf96f0b59",
+          "decision_after": "keep/P1/high"
+        },
+        {
+          "n": 3,
+          "path": "blog-instrumentacao-industrial.html",
+          "status": "passed_published",
+          "content_commit": "794c5bd65cd80ce34b30f0ef83c1b422c5584ab5",
+          "decision_after": "keep/P1/high"
+        },
+        {
+          "n": 4,
+          "path": "blog-criticidade-instrumentos.html",
+          "status": "passed_published",
+          "content_commit": "95ea333e471f7e3d2518363794ca0215585ef6d8",
+          "decision_after": "keep/P1/high"
+        },
+        {
+          "n": 5,
+          "path": "blog-erro-total-malha-instrumentacao.html",
+          "status": "passed_published",
+          "content_commit": "41421244f4e6cce1e11d81fff25d4c79aaf93f2e",
+          "decision_after": "keep/P1/high"
+        },
+        {
+          "n": 6,
+          "path": "blog-fat-sat-instrumentacao.html",
+          "status": "passed_published",
+          "content_commit": "c9dc10756d8f5f42ef0388131caccbdee1e4f68c",
+          "decision_after": "keep/P1/high"
+        },
+        {
+          "n": 7,
+          "path": "blog-manutencao-preditiva-instrumentacao-sensores.html",
+          "status": "passed_published",
+          "content_commit": "3a9c7bb57ec195437bf93eba36fbd8dca3b2af7d",
+          "decision_after": "keep/P1/high"
+        },
+        {
+          "n": 8,
+          "path": "blog-massa-tanque-nivel.html",
+          "status": "passed_published",
+          "content_commit": "76e0832196a69242387dc35bef6c4051e08f02c0",
+          "content_blob": "d996fce38459743ade60e08e552313cfd13d1d66",
+          "report": "E06-TANK-INVENTORY-ACERVO-08.md",
+          "report_and_delta_commit": "5406c117d0b51ec952461a70ee31620b8f8d91a3",
+          "inventory_delta": "E06-INVENTORY-DELTA-08.csv",
+          "pages_workflow_run": 34978266626,
+          "pages_artifact_id": 10399778425,
+          "artifact_digest": "sha256:0e3d8044e6a36547d311fb6292d8fc34c6e01e339f2c7c6608946f62fb26f669",
+          "artifact_html_bytes": 23639,
+          "artifact_html_sha256": "d02475b3e3709c7a950b009321a94195d67ee3b9aa1b8e23c66c219004511d9f",
+          "artifact_visible_words_observed": 1705,
+          "artifact_main_words_observed": 1654,
+          "h1_count": 1,
+          "h2_count": 16,
+          "h3_count": 4,
+          "json_ld_types": [
+            "BlogPosting",
+            "FAQPage"
+          ],
+          "canonical_valid": true,
+          "adsense_loader_present": true,
+          "sitemap_occurrences_expected": 1,
+          "guide_link_present": false,
+          "hotmart_link_present": false,
+          "separate_service_labels_present": false,
+          "artifact_matches_validated_candidate": true,
+          "technical_formulas_or_shared_javascript_changed": false,
+          "decision_before": "improve/P0/high",
+          "decision_after": "keep/P1/high"
+        },
+        {
+          "n": 9,
+          "path": "blog-pressao-hidrostatica-densidade.html",
+          "status": "passed_published",
+          "content_commit": "e2bbc0c359b99b8e890a732da33c90d704151fc9",
+          "content_blob": "ef5624a989e9e6476742b13894a0015c7aa60cc2",
+          "report": "E06-HYDROSTATIC-PRESSURE-DENSITY-ACERVO-09.md",
+          "report_and_delta_commit": "fd32b44d6bdaae2a73e64372560ccccd6f018605",
+          "inventory_delta": "E06-INVENTORY-DELTA-09.csv",
+          "pages_workflow_run": 34984984363,
+          "pages_artifact_id": 10403491616,
+          "artifact_digest": "sha256:a64dc5963f5e2374fdce6a7d14c376d08af0f6b42f430b3ffd1285f8147dadfa",
+          "live_html_bytes": 25075,
+          "live_html_sha256": "c49a8658f490a6be865957e89a06f707cd6e00cd4c85ee5dcaa3bb349bbf5ccd",
+          "live_visible_words_observed": 1868,
+          "live_main_words_observed": 1851,
+          "h1_count": 1,
+          "h2_count": 17,
+          "h3_count": 4,
+          "json_ld_types": [
+            "BlogPosting",
+            "FAQPage"
+          ],
+          "canonical_valid": true,
+          "adsense_loader_present": true,
+          "sitemap_occurrences_expected": 1,
+          "global_guide_navigation_preserved": true,
+          "promotional_guide_link_in_article": false,
+          "hotmart_link_present": false,
+          "separate_service_labels_present": false,
+          "live_matches_validated_candidate": true,
+          "technical_formulas_or_shared_javascript_changed": false,
+          "decision_before": "improve/P0/high",
+          "decision_after": "keep/P1/high"
+        },
+        {
+          "n": 10,
+          "path": "blog-selo-remoto-capilar-nivel.html",
+          "status": "passed_published",
+          "content_commit": "50b9e645ef4d6c5a9f8b2a6684bd547e850c1248",
+          "content_blob": "b2b1e11652270ef4e5a8e6ffd2f1730bcc518a04",
+          "report": "E06-REMOTE-SEAL-CAPILLARY-ACERVO-10.md",
+          "report_and_delta_commit": "984241c40f34edf0528cb1bfbe5a0ebd58c84bd8",
+          "inventory_delta": "E06-INVENTORY-DELTA-10.csv",
+          "pages_workflow_run": 34991433678,
+          "pages_artifact_id": 10405678002,
+          "artifact_digest": "sha256:a5adbb627328ee3e36c15364996d5534181762dab4aa104edc1be674e9e3dd2c",
+          "live_html_bytes": 25222,
+          "live_html_sha256": "0e613a058715d19e181672b32d3e7bf35827aea9231c406346e7296046c86e14",
+          "live_visible_words_observed": 1778,
+          "live_main_words_observed": 1725,
+          "h1_count": 1,
+          "h2_count": 12,
+          "h3_count": 0,
+          "json_ld_types": [
+            "BlogPosting",
+            "FAQPage"
+          ],
+          "canonical_valid": true,
+          "adsense_loader_present": true,
+          "sitemap_occurrences_expected": 1,
+          "global_guide_navigation_preserved": true,
+          "promotional_guide_link_in_article": false,
+          "hotmart_link_present": false,
+          "separate_service_labels_present": false,
+          "live_matches_validated_candidate": true,
+          "technical_formulas_or_shared_javascript_changed": false,
+          "decision_before": "improve/P0/high",
+          "decision_after": "keep/P1/high"
+        }
       ],
-      "next_candidate": {"path": null,"status":"selection_pending_after_page_09"},
+      "next_candidate": {
+        "path": null,
+        "status": "selection_pending_after_page_10"
+      },
       "manual_review_pages_must_remain_unchanged": true,
       "mass_pruning_allowed": false,
       "adsense_review_request_allowed": false
