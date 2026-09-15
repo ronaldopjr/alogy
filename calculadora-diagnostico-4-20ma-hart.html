@@ -4,8 +4,8 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Diagnóstico 4-20 mA e HART | ALOGY Engenharia</title>
-<meta content="Ferramenta para diagnóstico de malha 4-20 mA e HART: status do sinal, valor de engenharia, carga da malha, resistor 250 ohms, tensão disponível e tabela" name="description"/>
+<title>Diagnóstico 4-20 mA e HART: triagem rápida | ALOGY</title>
+<meta content="Faça uma triagem de malha 4-20 mA e HART: corrente, escala, carga, margem de tensão, exemplos conferíveis e sequência de diagnóstico em campo." name="description"/>
 <meta content="index,follow" name="robots"/>
 <meta content="#004b80" name="theme-color"/>
 <link href="https://www.alogy.com.br/calculadora-diagnostico-4-20ma-hart.html" rel="canonical"/>
@@ -22,12 +22,12 @@
 <meta content="pt_BR" property="og:locale"/>
 <meta content="website" property="og:type"/>
 <meta content="ALOGY Engenharia" property="og:site_name"/>
-<meta content="Diagnóstico 4-20 mA e HART" property="og:title"/>
-<meta content="Verifique corrente 4-20 mA, valor de engenharia, carga da malha, resistor 250 Ω e condição básica para comunicação HART." property="og:description"/>
+<meta content="Diagnóstico 4-20 mA e HART: triagem rápida" property="og:title"/>
+<meta content="Organize a triagem de uma malha 4-20 mA/HART com escala, carga, margem de tensão, exemplos e limites claros." property="og:description"/>
 <meta content="https://www.alogy.com.br/calculadora-diagnostico-4-20ma-hart.html" property="og:url"/>
 <meta content="https://www.alogy.com.br/favicon-512x512.png" property="og:image"/>
 <meta content="summary_large_image" name="twitter:card"/>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Diagnóstico 4-20 mA e HART","url":"https://www.alogy.com.br/calculadora-diagnostico-4-20ma-hart.html","applicationCategory":"EngineeringApplication","operatingSystem":"Web","description":"Ferramenta auxiliar para diagnóstico de malha 4-20 mA e HART, cálculo de valor de engenharia, carga da malha, tensão disponível e resistor de comunicação.","publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"},"dateModified":"2026-07-21","author":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Diagnóstico 4-20 mA e HART: triagem rápida","url":"https://www.alogy.com.br/calculadora-diagnostico-4-20ma-hart.html","applicationCategory":"EngineeringApplication","operatingSystem":"Web","description":"Ferramenta auxiliar para triagem de malha 4-20 mA e HART, com corrente, valor de engenharia, carga e margem de tensão.","publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"},"dateModified":"2026-09-15","author":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/sobre.html"}}</script>
 <script type="application/ld+json">
   {
     "@context":"https://schema.org",
@@ -36,7 +36,8 @@
       {"@type":"Question","name":"Para que serve o resistor de 250 ohms em uma malha HART?","acceptedAnswer":{"@type":"Answer","text":"O resistor de 250 ohms cria uma carga mínima na malha para permitir a comunicação HART em muitas instalações. A necessidade e o valor exato devem ser confirmados no manual do transmissor, do comunicador e do sistema de entrada analógica."}},
       {"@type":"Question","name":"A corrente 12 mA equivale a quanto em uma malha 4-20 mA?","acceptedAnswer":{"@type":"Answer","text":"Em uma escala linear 4-20 mA, 12 mA equivale a 50% da faixa configurada. O valor de engenharia depende do LRV e URV do instrumento."}},
       {"@type":"Question","name":"Como saber se a fonte 24 Vcc suporta a carga da malha?","acceptedAnswer":{"@type":"Answer","text":"Compare a tensão da fonte com a tensão mínima do transmissor somada à queda de tensão na resistência total da malha. A ferramenta estima essa margem, mas a validação final deve ser feita com o manual do equipamento e medição em campo."}},
-      {"@type":"Question","name":"Essa ferramenta substitui diagnóstico em campo?","acceptedAnswer":{"@type":"Answer","text":"Não. Ela é apenas orientativa. Falhas reais podem envolver alimentação, bornes, cabo, blindagem, cartão analógico, aterramento, parametrização, comunicador HART e condições do processo."}}
+      {"@type":"Question","name":"Essa ferramenta substitui diagnóstico em campo?","acceptedAnswer":{"@type":"Answer","text":"Não. Ela é apenas orientativa. Falhas reais podem envolver alimentação, bornes, cabo, blindagem, cartão analógico, aterramento, parametrização, comunicador HART e condições do processo."}},
+      {"@type":"Question","name":"Corrente normal confirma que a escala está correta?","acceptedAnswer":{"@type":"Answer","text":"Não. A corrente pode estar dentro de 4 a 20 mA e ainda representar valor incorreto se LRV, URV, unidade ou função de transferência diferirem entre transmissor e sistema de controle."}}
     ]
   }
   </script>
@@ -61,8 +62,8 @@
 <main class="container" style="margin-top:18px"><div aria-label="Ações da ferramenta" class="tool-page-actions no-print"><button class="btn print" onclick="window.print()" type="button"><i class="fas fa-print"></i> Imprimir</button></div>
 <div class="no-print" style="margin-bottom:14px;display:flex;gap:10px;flex-wrap:wrap"><a class="btn secondary" href="calculadora-4-20ma.html"><i class="fas fa-wave-square"></i> Calculadora 4-20 mA</a></div>
 <section class="tools-hero">
-<h1>Diagnóstico 4-20 mA e HART</h1>
-<p class="muted" data-alogy-content-meta><strong>Conteúdo técnico:</strong> ALOGY Engenharia · <strong>Atualizado em:</strong> 21/07/2026</p>
+<h1>Diagnóstico 4-20 mA e HART: triagem rápida</h1>
+<p class="muted" data-alogy-content-meta><strong>Conteúdo técnico:</strong> <a href="sobre.html">ALOGY Engenharia</a> · <strong>Atualizado em:</strong> 15/09/2026</p>
 <p>Faça uma triagem rápida da corrente observada, do valor de engenharia e da margem estimada de tensão. A página organiza a leitura inicial; ela não testa comunicação HART nem substitui o procedimento e a documentação do equipamento instalado.</p>
 </section>
 <section aria-label="Aviso de responsabilidade" class="calc-card">
@@ -73,6 +74,7 @@
 <h2><i class="fas fa-filter"></i> Triagem rápida, não projeto completo da malha</h2>
 <p>Use esta ferramenta para conferir se a corrente informada é coerente com uma faixa linear, visualizar o status configurável e estimar a margem de tensão com as entradas declaradas. Ela é útil para organizar a investigação inicial e registrar o que precisa ser confirmado.</p>
 <p>Para análise mais ampla de carga, cabo, alimentação e configuração da malha, consulte a <a href="calculadora-malha-4-20ma-hart-completa.html">calculadora completa de malha 4–20 mA/HART</a>. Nenhuma das duas páginas autoriza abrir circuito, alterar parâmetros ou decidir condição de operação em campo.</p>
+<p><strong>Escolha prática:</strong> permaneça nesta página quando já houver uma corrente medida e a dúvida for “o sinal, a escala e a margem declarada são coerentes?”. Use a calculadora completa quando for necessário decompor cabo, entrada analógica, barreira, isolador e outras cargas ou preparar um memorial de conferência.</p>
 </section>
 <section class="calc-layout">
 <div class="calc-card">
@@ -109,6 +111,33 @@
 <p class="small-muted">Use como referência para teste de loop, CLP, SDCD, IHM e comparação com o valor de engenharia.</p>
 <div class="calc-table-wrap"><table class="calc-table"><thead><tr><th>Ponto</th><th>Corrente</th><th>Percentual</th><th>Valor de engenharia</th><th>Observação</th></tr></thead><tbody id="ha_tabela"></tbody></table></div>
 </section>
+<section class="calc-card" aria-label="Entradas, premissas e saídas da triagem">
+  <h2><i class="fas fa-list-check"></i> O que informar e o que a resposta significa</h2>
+  <p>A qualidade da triagem depende de dados que pertençam à mesma malha e à mesma configuração. Antes de calcular, identifique a TAG, o ponto em que a corrente foi medida e a revisão dos parâmetros usados. Uma leitura de campo comparada com uma faixa antiga do CLP pode parecer matematicamente correta e ainda assim conduzir a uma conclusão errada.</p>
+  <div class="calc-layout">
+    <div>
+      <h3>Entradas que precisam ser confirmadas</h3>
+      <ul>
+        <li><strong>Corrente medida:</strong> valor observado no ponto de teste, em miliampères, com instrumento e método adequados.</li>
+        <li><strong>LRV e URV:</strong> limites configurados para 0% e 100%, na mesma unidade do valor de engenharia.</li>
+        <li><strong>Fonte e tensão mínima:</strong> tensão disponível e requisito do modelo, opção e condição de instalação do transmissor.</li>
+        <li><strong>Carga sem HART:</strong> soma declarada de entrada analógica, cabos, barreiras, isoladores, indicadores e resistências em série.</li>
+        <li><strong>Resistor adicional:</strong> escolha apenas quando ele realmente será somado à carga já informada; não duplique os 250 Ω de uma entrada que já os incorpora.</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Saídas que exigem interpretação</h3>
+      <ul>
+        <li><strong>Percentual e valor:</strong> conversão linear entre LRV e URV; não confirma a variável física nem a configuração real.</li>
+        <li><strong>Status:</strong> classificação por limiares de referência da página, que deve ser comparada com a configuração do dispositivo e do host.</li>
+        <li><strong>Carga total:</strong> soma dos valores declarados; componentes omitidos não aparecem no resultado.</li>
+        <li><strong>Margem da fonte:</strong> reserva estimada na corrente alta adotada pelo cálculo; não inclui automaticamente variações térmicas ou transitórias.</li>
+        <li><strong>HART:</strong> indicação sobre carga resistiva, não um teste de comunicação, qualidade do sinal ou compatibilidade.</li>
+      </ul>
+    </div>
+  </div>
+  <p class="small-muted"><strong>Premissa matemática:</strong> a conversão usa relação linear 4–20 mA. Funções especiais, extração de raiz, caracterização, damping e escala interna do sistema precisam ser verificadas separadamente.</p>
+</section>
 <section class="calc-layout">
 <div class="calc-card">
 <h2><i class="fas fa-circle-info"></i> Como interpretar</h2>
@@ -121,7 +150,32 @@
 <details><summary>Por que usar 250 Ω em HART?</summary><p>Em muitas malhas, o resistor de 250 Ω fornece a carga necessária para o comunicador HART operar. Porém, a necessidade real depende do transmissor, cartão de entrada, fonte e manual do fabricante.</p></details>
 <details><summary>Posso ligar resistor HART em qualquer lugar?</summary><p>Não. A posição deve respeitar o circuito da malha, polaridade, bornes disponíveis e instruções do equipamento. Uma ligação errada pode afetar a medição ou o funcionamento do loop.</p></details>
 <details><summary>O status de falha é universal?</summary><p>Não. Os limites de falha e saturação podem variar conforme configuração do transmissor, sistema e padrão adotado. Use os alertas da ferramenta apenas como referência inicial.</p></details>
+<details><summary>Corrente normal confirma que a escala está correta?</summary><p>Não. Um sinal entre 4 e 20 mA só comprova que a corrente está na faixa nominal. Compare LRV, URV, unidade e função de transferência no transmissor, no cartão e no sistema supervisório.</p></details>
 </div>
+</section>
+<section class="calc-card" aria-label="Exemplos conferíveis de diagnóstico 4-20 mA e HART">
+  <h2><i class="fas fa-flask"></i> Três exemplos conferíveis</h2>
+  <h3>1. Sinal coerente e margem positiva</h3>
+  <p>Com 12 mA, LRV de 0 bar e URV de 10 bar, a conversão linear resulta em 50% e 5 bar. Para fonte de 24 V, requisito de 12 V e carga total declarada de 250 Ω, o cálculo da página considera 22 mA na verificação de tensão: a queda resistiva é 4,4 V, a tensão necessária é 16,4 V e a margem estimada é 7,6 V. O resultado é coerente, mas ainda falta comparar a pressão real e a configuração dos equipamentos.</p>
+  <h3>2. Resistor contado duas vezes</h3>
+  <p>Se a entrada analógica já apresenta 250 Ω e o usuário informa esses 250 Ω em “carga sem HART”, selecionar também “adicionar 250 Ω” produz 500 Ω. A ferramenta está apenas somando o que foi declarado. Antes de concluir que a malha tem pouca margem, consulte o diagrama e confirme se existe mesmo um segundo resistor físico em série.</p>
+  <h3>3. Corrente baixa não localiza a falha</h3>
+  <p>Uma leitura de 3,6 mA é classificada pela página como referência de falha baixa. Isso não identifica sozinho sensor defeituoso, cabo aberto ou processo abaixo da faixa. O próximo passo é verificar a estratégia configurada, observar diagnósticos do dispositivo e comparar corrente, tensão nos terminais, variável digital e leitura do sistema. A recomendação NAMUR NE 43 padroniza níveis para informação de falha, mas a edição aplicável e a configuração real precisam constar da documentação do ativo.</p>
+</section>
+<section class="calc-card" aria-label="Matriz de sintomas e verificações">
+  <h2><i class="fas fa-table-list"></i> Matriz de sintomas: hipótese não é conclusão</h2>
+  <div class="calc-table-wrap">
+    <table class="calc-table">
+      <thead><tr><th>Sintoma observado</th><th>Hipóteses iniciais</th><th>Evidência a conferir</th><th>O que evitar</th></tr></thead>
+      <tbody>
+        <tr><td>0 mA ou quase zero</td><td>Falta de alimentação, circuito aberto, polaridade ou borne incorreto</td><td>Tensão na fonte e no transmissor, continuidade autorizada, diagrama e fusíveis</td><td>Fechar curto ou abrir malha crítica sem procedimento</td></tr>
+        <tr><td>Corrente fixa próxima de um limite</td><td>Alarme configurado, saturação, simulação ativa ou variável fora da faixa</td><td>Status digital, configuração de alarme, PV local e histórico do host</td><td>Tratar o número como código universal sem consultar o manual</td></tr>
+        <tr><td>mA correto, PV errado no CLP</td><td>Escala, unidade, raw, canal ou função de transferência divergente</td><td>LRV/URV nas duas pontas e valor bruto do cartão</td><td>Ajustar o transmissor para compensar erro de escala do sistema</td></tr>
+        <tr><td>Falha ao comunicar por HART</td><td>Carga inadequada, ponto de conexão, ruído, capacitância, aterramento ou interface</td><td>Diagrama, carga efetiva, tensão, compatibilidade e teste com comunicador</td><td>Concluir que o transmissor falhou apenas porque há 250 Ω</td></tr>
+        <tr><td>Sinal limita ao se aproximar de 20 mA</td><td>Orçamento de tensão insuficiente ou carga maior que a declarada</td><td>Tensão nos terminais sob corrente alta e soma real das quedas</td><td>Validar somente com a tensão da fonte sem carga</td></tr>
+      </tbody>
+    </table>
+  </div>
 </section>
 <section class="calc-card" aria-label="Sequência de diagnóstico da malha 4-20 mA e HART">
   <h2><i class="fas fa-clipboard-check"></i> Sequência de diagnóstico da malha</h2>
@@ -144,6 +198,21 @@
     <li>Compare a leitura local, a entrada analógica e o valor no supervisório.</li>
   </ul>
   <p><strong>Limite:</strong> esta análise não localiza automaticamente curto, fuga, ruído, erro de isolação ou falha intermitente.</p>
+</section>
+<section class="calc-card" aria-label="Registro mínimo da triagem">
+  <h2><i class="fas fa-file-lines"></i> Registro mínimo para tornar a triagem repetível</h2>
+  <p>Copiar apenas o resultado numérico não basta para outra pessoa repetir a verificação. Registre TAG, data e hora, ponto de medição, condição do processo, instrumento usado, corrente, tensão da fonte, tensão nos terminais, LRV, URV, unidade, cargas consideradas, indicação local, valor no CLP/SDCD e mensagens de diagnóstico. Anexe a identificação ou revisão dos manuais consultados.</p>
+  <p>Se houver intervenção, registre também o estado anterior, a autorização, o que foi alterado, o teste após a mudança e a restauração da malha. Para laços que participem de alarmes, permissivos ou funções de segurança, siga o procedimento específico e a governança da instalação; esta página não define critérios de aceitação.</p>
+</section>
+<section class="calc-card" aria-label="Referências primárias">
+  <h2><i class="fas fa-book"></i> Referências primárias e limites de aplicação</h2>
+  <ul>
+    <li><a href="https://webstore.iec.ch/en/publication/1948" target="_blank" rel="noopener noreferrer">IEC 60381-1:1982 — sinais analógicos de corrente contínua para sistemas de controle de processo</a>. A página oficial indica a aplicação a sinais usados para transmitir informação entre elementos do sistema e a estabilidade da publicação até 2026.</li>
+    <li><a href="https://www.namur.net/china/en/recommendations-ne-and-worksheets-na.html?cHash=1c608bf9846ff2aa094ac5c1ce9725ab&amp;tx_nena_pi1%5Bda%5D=549" target="_blank" rel="noopener noreferrer">NAMUR — catálogo atual de recomendações</a>, que identifica a NE 043, edição de 26/07/2021, sobre níveis de sinal para informação de falha.</li>
+    <li><a href="https://www.emerson.com/is/content/emerson/en/measurement-instrumentation/technical/products/pressure/documents/doc-rosemount-3051s-00809-0100-4801.pdf" target="_blank" rel="noopener noreferrer">Emerson — manual de referência Rosemount 3051S</a>. O manual exemplifica a necessidade de carga mínima para comunicação e alerta que mudanças severas na malha podem impedir comunicação ou leitura correta de alarmes.</li>
+    <li><a href="https://support.fieldcommgroup.org/support/solutions/articles/8000056458-change-log-for-the-hart-protocol-specifications" target="_blank" rel="noopener noreferrer">FieldComm Group — histórico oficial das especificações HART</a>. Use a documentação correspondente à revisão e aos dispositivos efetivamente instalados.</li>
+  </ul>
+  <p class="small-muted">As referências sustentam conceitos gerais. Valores de alimentação, carga, alarmes, área classificada e conexão devem ser obtidos nos documentos do modelo, revisão, opção e instalação em análise.</p>
 </section>
 </main>
 <footer><p>© Desde 2012 ALOGY Engenharia | www.alogy.com.br</p></footer>
