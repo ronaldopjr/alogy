@@ -1,6 +1,6 @@
 # ALOGY — fila operacional atual
 
-> Versão 2026-09-16.38. Esta é a única fila executável. O histórico detalhado permanece no MD de continuidade e nos relatórios `adsense-recovery`.
+> Versão 2026-09-16.39. Esta é a única fila executável. O histórico detalhado permanece no MD de continuidade e nos relatórios `adsense-recovery`.
 
 ## Regras permanentes
 
@@ -56,13 +56,21 @@
 
 ## E08 — celular, acessibilidade e desempenho
 
+**Estado:** EM EXECUÇÃO.
+
+### E08-ACCESSIBILITY-01 — `sobre.html`
+- Defeito reproduzido na fonte ativa: landmarks de navegação desktop/mobile sem nome acessível e links sociais formados apenas por ícones sem `aria-label`.
+- Correção publicada em `29671d4dc825c8c406d5974b15d3300f2f96d7cc`: `aria-label` nos dois `nav`, identificação de “Redes sociais”, nomes acessíveis em LinkedIn/Instagram/Facebook/YouTube/TikTok e ícones sociais decorativos com `aria-hidden`.
+- Nenhuma fórmula, calculadora ou `app.js` foi alterado.
+- GitHub Pages run `35100866427`: `success`.
+- O cache público de busca ainda não expôs o markup novo; não declarar equivalência byte a byte do domínio para este lote sem nova evidência.
+
 **PRÓXIMA AÇÃO EXECUTÁVEL**
-1. Trabalhar somente na superfície ativa: home, `industrial.html`, `blog.html`, `ferramentas.html`, `sobre.html`, `cases.html`, `/guia/`, um artigo ativo e uma ferramenta ativa representativos.
-2. Reproduzir problemas antes de editar; registrar largura/overflow, navegação por teclado, menu móvel, tabelas/formulários e recursos pesados.
-3. Preservar fórmulas e JavaScript técnico já validados.
+1. Corrigir o próximo defeito material já reproduzido: `index.html` contém dois elementos `<main>`; unificar a semântica da home sem alterar conteúdo, formulários, fórmulas ou `app.js`.
+2. Validar fonte, Pages e comportamento público da home após a publicação.
+3. Continuar a amostra da superfície ativa em 360/390 px, desktop, teclado, foco, overflow, tabelas/formulários e zoom quando houver defeitos reproduzíveis.
 4. `app.js` é grande e compartilhado: medir/identificar impacto antes de qualquer divisão ou refatoração; não reestruturar por suposição.
-5. Corrigir somente bloqueios materiais e validar amostra desktop/mobile.
-6. Não executar ainda a padronização global de imagens desktop/mobile; essa frente é **E10-I1**, perto do encerramento.
+5. Não executar ainda a padronização global de imagens desktop/mobile; essa frente é **E10-I1**, perto do encerramento.
 
 ## E09–E10
 - E09: verificar o que é possível sem autenticação em anúncios/rastreamento/privacidade; conta AdSense, GSC, Analytics e CMP autenticados dependem de autorização/dados reais.
