@@ -1,6 +1,6 @@
 # ALOGY — fila operacional atual
 
-> Versão 2026-09-16.47. Esta é a única fila executável. O histórico detalhado permanece no MD canônico de continuidade e nos relatórios `adsense-recovery`.
+> Versão 2026-09-16.48. Esta é a única fila executável. O histórico detalhado permanece no MD canônico de continuidade e nos relatórios `adsense-recovery`.
 
 ## Regras permanentes
 
@@ -33,48 +33,67 @@ Relatórios relevantes:
 
 **Estado:** ATIVO.
 
-O proprietário confirmou que o único motivo exibido pelo AdSense foi **“conteúdo de baixo valor”**. Isso remove a necessidade de aguardar capturas autenticadas como pré-requisito para continuar o trabalho editorial. A conferência do estado da conta, CMP, Central de políticas e disponibilidade real de revisão fica preservada como gate final antes de qualquer nova solicitação.
+O proprietário confirmou que o único motivo exibido pelo AdSense foi **“conteúdo de baixo valor”**. Portanto, capturas autenticadas da conta não bloqueiam a melhoria editorial. Conta/CMP/Central de políticas e disponibilidade real de revisão permanecem como gate final antes de qualquer reenvio.
 
-A orientação oficial do Google continua sendo usada como critério: conteúdo original, relevante, substancial e útil ao usuário, com navegação clara e sem aparência de página em construção. Não existe meta artificial de palavras ou de quantidade de páginas.
+A estratégia permanece: melhorar páginas ativas com evidência concreta de baixo valor; não criar volume artificial nem perseguir contagem de palavras.
 
 Superfície ativa observada no checkpoint:
 - Blog: 38 ações de artigos;
 - Ferramentas: 30 ações de ferramentas.
 
-A estratégia é melhorar as páginas ativas com evidência concreta de baixo valor; não aumentar volume.
+### Lote 01 — concluído
 
-### Lote 01 — concluído e publicado
+Página: `blog-nova-nr10-2026.html`.
 
-Página: `blog-nova-nr10-2026.html`
+- Conteúdo: `a54d3aa54c4a0b9cbc2a9f34900ab5eea9d013c3`.
+- Sitemap: `b082704285922508a1354dbf1151157a0e36e9a4`.
+- Pages final: `35139779567` — `success`.
+- Artifact: `10465200562`.
+- Digest: `sha256:8fe8a00e7b3521904ec2624fb8c5258857e412f1af0e5f62f96418fe1b0f8b86`.
+- Relatório: `E11-LOW-VALUE-CONTENT-BATCH-01.md`.
+
+### Lote 02 — concluído e publicado
+
+Páginas:
+- `blog-lopa-simplificada.html`;
+- `blog-sil-pfd-didatico.html`.
 
 Correções principais:
-- removido “Checklist em revisão técnica” e o sinal de ferramenta retirada para revisão;
-- explicado o calendário oficial: redação anterior vigente até 31/05/2027 e nova redação da Portaria MTE nº 737/2026 com vigência em 01/06/2027, conforme MTE;
-- incluído roteiro de preparação/transição com limitações claras;
-- referências oficiais do MTE priorizadas;
-- `dateModified` atualizado;
-- navegação alinhada para `Guia` → `/guia/`;
-- removidos `cursos.html` e link Hotmart desta página editorial;
-- escopo comercial restringido, sem inventar habilitação ou capacidade.
+- removidos `Cursos` / `cursos.html` e Hotmart das duas páginas editoriais;
+- removida linguagem de calculadora/conteúdo retirado para revisão;
+- LOPA aprofundado em cenário, evento iniciador, IPL, PFD, documentação, limites e erros de crédito;
+- SIL/PFD aprofundado em SIF, SIS, SIL, PFDavg, proof test, arquitetura, elementos da função e ciclo de vida;
+- relacionados restritos a conteúdos realmente contextuais;
+- referências técnicas direcionadas a CCPS/AIChE, IEC 61511 e IEC 61508;
+- capas existentes preservadas;
+- nenhum JavaScript técnico ou fórmula de ferramenta existente alterado;
+- `lastmod=2026-09-16` sincronizado no sitemap para as duas páginas.
 
 Publicação:
-- conteúdo: `a54d3aa54c4a0b9cbc2a9f34900ab5eea9d013c3`;
-- Pages conteúdo: `35139606395` — success;
-- artifact: `10465210204`;
-- sitemap `lastmod`: `b082704285922508a1354dbf1151157a0e36e9a4`;
-- Pages final: `35139779567` — success;
-- artifact final: `10465200562`;
-- digest final: `sha256:8fe8a00e7b3521904ec2624fb8c5258857e412f1af0e5f62f96418fe1b0f8b86`.
+- LOPA: `fac8b9df48b48e088f403a01e3fe5e7a3ad1d615`;
+- SIL/PFD: `5cffeb23b766b5f2a4aed1f82dbd8a15f8c28d32`;
+- sitemap final: `a1b97f0ee8a95583aabc98a3046447ddafe7242d`;
+- Pages final: `35142441204` — `success`;
+- artifact: `10466051065`;
+- digest: `sha256:06bcd63d8829343b81dd7f4daee9e18e395e93a7e27c16264bdac9c156873202`;
+- relatório: `E11-LOW-VALUE-CONTENT-BATCH-02.md`.
 
-Relatório: `E11-LOW-VALUE-CONTENT-BATCH-01.md`.
+## Próxima ação executável — E11 lote 03
 
-## Próxima ação executável — E11 lote 02
+Fazer **triagem objetiva dos artigos ativos restantes no `blog.html`** e selecionar somente **1 a 3 páginas** com sinais comprováveis de baixo valor. Critérios de seleção:
 
-**Prioridade 1: `blog-lopa-simplificada.html`.** A triagem encontrou navegação antiga `Cursos`, link Hotmart, mensagem de calculadora retirada para revisão, links relacionados fora do tema (Cp/Cpk, vibração e compressor) e duplicação de `blog-sil-pfd-didatico.html`.
+- conteúdo superficial, genérico ou pouco diferenciado;
+- estrutura antiga que não ajuda o leitor a resolver a dúvida principal;
+- navegação `Cursos/cursos.html`, Hotmart ou outros resíduos editoriais antigos;
+- texto indicando conteúdo/ferramenta em revisão ou página incompleta;
+- links relacionados fora do tema ou repetidos;
+- ausência de fonte técnica quando a afirmação depende de norma, fabricante ou referência verificável.
 
-**Prioridade 2: `blog-sil-pfd-didatico.html`.** A triagem encontrou navegação antiga `Cursos`, link Hotmart, mensagem de calculadora retirada para revisão e oportunidade de restringir os relacionados ao contexto de SIF/SIL/LOPA/loop/segurança funcional.
+Não editar automaticamente:
+- `blog-inspecao-instrumentos-area-classificada.html`;
+- `blog-ot-cybersecurity-instrumentacao.html`.
 
-Executar revisão editorial segura das duas páginas, preservando o caráter didático e sem tratá-las como validação formal de segurança funcional. Depois validar deploy, atualizar sitemap quando aplicável, atualizar este estado e o mesmo MD canônico.
+Depois da triagem, revisar somente as páginas selecionadas, validar o Pages, sincronizar sitemap quando aplicável e atualizar este mesmo estado e MD.
 
 ## Dependências preservadas para antes da revisão final
 
@@ -83,6 +102,6 @@ Executar revisão editorial segura das duas páginas, preservando o caráter did
 - confirmação de `Desde 2012` antes de usar como evidência;
 - evidências/autorização dos projetos em `cases.html` antes de ampliar alegações;
 - capacidade real C01-C03;
-- revisão especializada de `blog-inspecao-instrumentos-area-classificada.html` e `blog-ot-cybersecurity-instrumentacao.html`.
+- revisão especializada das duas páginas `manual-review/P0`.
 
 A automação `ALOGY AdSense Contínuo` permanece pausada; a execução manual autorizada continua lote a lote. **Não solicitar revisão do AdSense automaticamente.**
