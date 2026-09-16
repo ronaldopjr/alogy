@@ -1,17 +1,17 @@
 {
   "schema_version": 3,
   "project": "ALOGY AdSense Recovery",
-  "plan_version": "2026-09-16.43",
+  "plan_version": "2026-09-16.44",
   "repository": "ronaldopjr/alogy",
   "base_branch": "main",
   "work_branch": "main",
-  "base_sha_verified": "1029e884bbd09b0fe4c6a14f64b705df9a3a2e2b",
+  "base_sha_verified": "9e8e08607cbf8eb59c62582edfb7a8edb3965dfd",
   "verified_at": "2026-09-16",
-  "last_completed_stage": "E10 readiness checklist",
-  "stage_in_progress": "E10",
-  "next_stage": "E10",
-  "next_action": "Tentar novamente a consolidacao integral de E06-INVENTORY-DELTA-01.csv a E06-INVENTORY-DELTA-18.csv no ADSENSE-INVENTORY.csv somente quando o CSV canonico completo puder ser lido. Validar cabecalho compativel, uma correspondencia canonica unica por path, contagem e ordem preservadas salvo as 18 linhas substituidas; nunca sobrescrever parcialmente. Depois reconciliar o checklist E10. Nao solicitar nova analise do AdSense. Conta/CMP autenticada e paginas manual-review permanecem dependencias do proprietario/especialista.",
-  "status": "in_progress_technical_blocker",
+  "last_completed_stage": "E10 safe automatable scope",
+  "stage_in_progress": "AGUARDA_PROPRIETARIO",
+  "next_stage": "E11 somente com autorizacao explicita",
+  "next_action": "AGUARDA PROPRIETARIO: conferir no painel AdSense o estado atual da reprovacao, verificacao do site, disponibilidade real de nova analise e CMP/Privacidade e mensagens; fornecer somente fatos confirmados de autoria, credenciais, cases e capacidade C01-C03 se quiser publica-los; obter revisao especializada das duas paginas manual-review/P0. Nao solicitar nova analise automaticamente.",
+  "status": "awaiting_owner_automation_paused",
   "adsense": {
     "reported_status": "low_value_content",
     "account_checked_in_this_stage": false,
@@ -26,13 +26,20 @@
     "target_branch": "main",
     "method": "validated-atomic-commit",
     "latest_site_change_commit": "de07a283b54da6d04332475e562bb0d06cc1f4c9",
-    "latest_report_commit": "1029e884bbd09b0fe4c6a14f64b705df9a3a2e2b",
+    "latest_report_commit": "9e8e08607cbf8eb59c62582edfb7a8edb3965dfd",
     "pages_deployment_success": true,
     "latest_pages_workflow_run": 35119165803,
     "latest_pages_artifact_id": 10456032386,
     "latest_pages_artifact_digest": "sha256:ca58f549903678f2db5db8903d7db75bca67dd45219a509dc5548871e3f295fd",
     "live_environment_url": "https://www.alogy.com.br/",
     "allow_force": false
+  },
+  "automation": {
+    "id": "6aa8b2b683d081919a69f5d6a80af894",
+    "title": "ALOGY AdSense Contínuo",
+    "enabled": false,
+    "disabled_at": "2026-09-16T16:50:57.404222Z",
+    "reason": "E02-E10 e todo trabalho seguro independente foram concluidos; restam somente dependencias do proprietario, acesso autenticado e revisao especializada."
   },
   "validation": {
     "e02_search": "passed",
@@ -48,12 +55,20 @@
     "e05_pilot": "passed_completed",
     "e06_acervo": {
       "status": "completed_for_active_surface_safe_work",
-      "historical_deltas_pending_safe_consolidation": 18,
-      "inventory_consolidation_attempt": {
-        "status": "blocked_before_write",
-        "canonical_inventory_written": false,
-        "deltas_present": 18,
-        "reason": "O runtime nao resolveu github.com/raw.githubusercontent.com por DNS e o conector GitHub exibiu o CSV canonico de aproximadamente 164583 bytes truncado; sem leitura integral nao e possivel fazer merge byte-safe nem substituir o arquivo com seguranca."
+      "historical_deltas_pending_safe_consolidation": 0,
+      "inventory_consolidation": {
+        "status": "validated_already_reflected_no_data_diff",
+        "validation_workflow_run": 35124110500,
+        "validation_trigger_commit": "03be4e3760f8793e67f584c8781a0dae2aa755cb",
+        "validation_commit": "c8fb1be75522af7e509494fc483fa4291f9c6e3b",
+        "temporary_workflow_removed_commit": "6307d0307da65580096d5fd35cbcc260e6af9a8b",
+        "report": "adsense-recovery/E06-INVENTORY-CONSOLIDATION.md",
+        "deltas_validated": 18,
+        "physical_lines": 272,
+        "unique_paths": 271,
+        "sha256_before": "12e9e0d3e6729a7fd36c0190fad88862ea3500b209046ae67362a43ce0b883fa",
+        "sha256_after": "12e9e0d3e6729a7fd36c0190fad88862ea3500b209046ae67362a43ce0b883fa",
+        "finding": "Os 18 deltas ja estavam integralmente refletidos no inventario canonico; nenhuma substituicao de linha era necessaria."
       },
       "manual_review_pages": [
         "blog-inspecao-instrumentos-area-classificada.html",
@@ -92,15 +107,15 @@
       "final_html_with_breakpoint_image_switch": 0
     },
     "e10_final_readiness": {
-      "status": "not_ready",
+      "status": "awaiting_owner_not_ready_to_request",
       "report": "adsense-recovery/E10-FINAL-READINESS-CHECKLIST.md",
-      "report_commit": "1029e884bbd09b0fe4c6a14f64b705df9a3a2e2b",
+      "report_commit": "9e8e08607cbf8eb59c62582edfb7a8edb3965dfd",
+      "safe_automatable_scope_completed": true,
       "review_request_sent": false,
       "blockers": [
-        "consolidacao integral dos 18 deltas E06 no inventario canonico bloqueada tecnicamente antes de qualquer escrita",
-        "estado autenticado da conta AdSense/CMP",
+        "estado autenticado da conta AdSense, verificacao do site, disponibilidade de nova analise e CMP",
         "duas paginas manual-review/P0 exigem especialista",
-        "credenciais/cases/C01-C03 dependem de fatos confirmados pelo proprietario"
+        "credenciais, confirmacao de Desde 2012, cases e C01-C03 dependem de fatos e autorizacao do proprietario"
       ]
     }
   },
