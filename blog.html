@@ -195,6 +195,8 @@ document.addEventListener('DOMContentLoaded',function(){
     const link=card.querySelector('a[href^="blog-"]');
     const thumb=card.querySelector('.thumb');
     if(!link||!thumb)return;
+    const heading=card.querySelector('h3');
+    if(heading)link.setAttribute('aria-label','Ler artigo: '+heading.textContent.trim());
     const href=link.getAttribute('href');
     const cover=coverByArticle[href]||['capa-'+href.replace(/\.html$/,'')+'.webp',card.querySelector('h3')?.textContent||'Artigo técnico ALOGY'];
     const img=document.createElement('img');
