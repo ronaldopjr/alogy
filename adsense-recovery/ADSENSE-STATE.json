@@ -1,13 +1,13 @@
 {
   "schema_version": 3,
   "project": "ALOGY AdSense Recovery",
-  "plan_version": "2026-09-16.44",
+  "plan_version": "2026-09-16.45",
   "repository": "ronaldopjr/alogy",
   "base_branch": "main",
   "work_branch": "main",
-  "base_sha_verified": "9e8e08607cbf8eb59c62582edfb7a8edb3965dfd",
+  "base_sha_verified": "43948d69e49329e029dd835ea80aba75b2b169ed",
   "verified_at": "2026-09-16",
-  "last_completed_stage": "E10 safe automatable scope",
+  "last_completed_stage": "E10 exact mobile artifact QA",
   "stage_in_progress": "AGUARDA_PROPRIETARIO",
   "next_stage": "E11 somente com autorizacao explicita",
   "next_action": "AGUARDA PROPRIETARIO: conferir no painel AdSense o estado atual da reprovacao, verificacao do site, disponibilidade real de nova analise e CMP/Privacidade e mensagens; fornecer somente fatos confirmados de autoria, credenciais, cases e capacidade C01-C03 se quiser publica-los; obter revisao especializada das duas paginas manual-review/P0. Nao solicitar nova analise automaticamente.",
@@ -26,11 +26,11 @@
     "target_branch": "main",
     "method": "validated-atomic-commit",
     "latest_site_change_commit": "de07a283b54da6d04332475e562bb0d06cc1f4c9",
-    "latest_report_commit": "9e8e08607cbf8eb59c62582edfb7a8edb3965dfd",
+    "latest_report_commit": "43948d69e49329e029dd835ea80aba75b2b169ed",
     "pages_deployment_success": true,
-    "latest_pages_workflow_run": 35119165803,
-    "latest_pages_artifact_id": 10456032386,
-    "latest_pages_artifact_digest": "sha256:ca58f549903678f2db5db8903d7db75bca67dd45219a509dc5548871e3f295fd",
+    "latest_pages_workflow_run": 35124555723,
+    "latest_pages_artifact_id": 10458756254,
+    "latest_pages_artifact_digest": "sha256:2fdd2d916e3b46a38931a7074ab53245b73f50290b92d6a984b716480df94c02",
     "live_environment_url": "https://www.alogy.com.br/",
     "allow_force": false
   },
@@ -78,7 +78,7 @@
     },
     "e07_transparency": "safe_organizational_scope_completed_owner_facts_pending",
     "e08": {
-      "status": "safe_automatable_checks_completed_exact_mobile_live_environment_limited",
+      "status": "safe_automatable_checks_completed_exact_mobile_artifact_passed",
       "published_batches": [
         ["sobre.html", "29671d4dc825c8c406d5974b15d3300f2f96d7cc", 35100866427],
         ["index.html", "b2865bbf569a42b811d16abf64fb5eac8722424d", 35104117692],
@@ -86,7 +86,16 @@
         ["blog.html", "a8f8538e648b5378e30a44bd26fcb9befeff6e35", 35118075529]
       ],
       "exact_360_390_live_claimed": false,
-      "environment_limit": "headless Chromium e curl nao resolveram www.alogy.com.br neste runtime"
+      "exact_360_390_published_artifact_passed": true,
+      "exact_mobile_report": "adsense-recovery/E10-MOBILE-360-390-ARTIFACT-QA.md",
+      "artifact_pages_workflow_run": 35124555723,
+      "artifact_id": 10458756254,
+      "artifact_digest": "sha256:2fdd2d916e3b46a38931a7074ab53245b73f50290b92d6a984b716480df94c02",
+      "viewports": [360, 390],
+      "pages_checked": ["index.html", "blog.html", "ferramentas.html", "industrial.html"],
+      "document_horizontal_overflow_failures": 0,
+      "mobile_menu_horizontal_overflow_failures": 0,
+      "direct_domain_environment_limit": "container DNS e politica do Chromium impediram navegacao direta ao dominio/local; o artefato exato do Pages foi renderizado de forma autocontida para validar geometria e comportamento mobile"
     },
     "e09": {
       "status": "safe_public_source_checks_completed_authenticated_account_pending",
@@ -109,8 +118,8 @@
     "e10_final_readiness": {
       "status": "awaiting_owner_not_ready_to_request",
       "report": "adsense-recovery/E10-FINAL-READINESS-CHECKLIST.md",
-      "report_commit": "9e8e08607cbf8eb59c62582edfb7a8edb3965dfd",
       "safe_automatable_scope_completed": true,
+      "exact_mobile_artifact_qa_passed": true,
       "review_request_sent": false,
       "blockers": [
         "estado autenticado da conta AdSense, verificacao do site, disponibilidade de nova analise e CMP",

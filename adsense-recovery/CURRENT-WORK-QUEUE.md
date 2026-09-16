@@ -1,6 +1,6 @@
 # ALOGY — fila operacional atual
 
-> Versão 2026-09-16.44. Esta é a única fila executável. O histórico detalhado permanece no MD de continuidade e nos relatórios `adsense-recovery`.
+> Versão 2026-09-16.45. Esta é a única fila executável. O histórico detalhado permanece no MD de continuidade e nos relatórios `adsense-recovery`.
 
 ## Regras permanentes
 
@@ -25,13 +25,18 @@
 
 ## E08 — celular, acessibilidade e desempenho
 
-**Estado:** CONCLUÍDO NO LIMITE AUTOMATIZÁVEL DO AMBIENTE.
+**Estado:** CONCLUÍDO; VIEWPORT EXATA DO ARTEFATO PUBLICADO VALIDADA EM 360/390 PX.
 
 - `sobre.html`: `29671d4dc825c8c406d5974b15d3300f2f96d7cc`; Pages `35100866427` success.
 - `index.html`: `b2865bbf569a42b811d16abf64fb5eac8722424d`; Pages `35104117692` success.
 - `ferramentas.html`: `6576c0e3ddb2a6e7935fb184a34a608ba86e43ab`; Pages `35111374317` success.
 - `blog.html`: `a8f8538e648b5378e30a44bd26fcb9befeff6e35`; Pages `35118075529` success.
-- Limite registrado: o runtime não permitiu alegar teste visual live exato em 360/390 px.
+- Build atual: Pages `35124555723` success; artefato `10458756254`; digest `sha256:2fdd2d916e3b46a38931a7074ab53245b73f50290b92d6a984b716480df94c02`.
+- QA exata em 360 × 844 e 390 × 844 para Home, Blog, Ferramentas e Serviços: zero overflow horizontal do documento e zero overflow do menu mobile aberto.
+- Blog: 38/38 ações com `aria-label` contextual único.
+- Ferramentas: 30/30 ações com `aria-label` único; rolagem horizontal da faixa de categorias é interna e intencional, sem ampliar o documento.
+- Relatório: `E10-MOBILE-360-390-ARTIFACT-QA.md`.
+- O runtime ainda não permite navegação Chromium/curl direta ao domínio, mas isso deixou de bloquear a validação geométrica exata porque o artefato do Pages publicado com `success` foi renderizado diretamente.
 
 ## E09 — anúncios, rastreadores e privacidade
 
@@ -67,9 +72,11 @@
 
 **Estado:** `AGUARDA PROPRIETÁRIO`.
 
-O escopo automatizável seguro E02–E10 está concluído. Não existe próxima ação independente que a automação possa executar com segurança sem novos fatos, revisão especializada ou acesso autenticado.
+O escopo automatizável seguro E02–E10 está concluído. A checagem adicional de viewport 360/390 do artefato publicado também passou e não exigiu alteração do site. Não existe próxima ação independente que a automação possa executar com segurança sem novos fatos, revisão especializada ou acesso autenticado.
 
-Relatório final: `E10-FINAL-READINESS-CHECKLIST.md`.
+Relatórios finais:
+- `E10-FINAL-READINESS-CHECKLIST.md`;
+- `E10-MOBILE-360-390-ARTIFACT-QA.md`.
 
 ### Ações que dependem do proprietário
 

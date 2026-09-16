@@ -13,11 +13,22 @@ Este parecer não prevê nem garante aprovação do Google. Ele registra apenas 
 - E05 piloto: concluído.
 - E06: trabalho automatizável seguro concluído na superfície ativa; lote E06-19 indevido revertido.
 - E07: transparência organizacional segura publicada; dados pessoais/credenciais não foram inventados.
-- E08: quatro lotes seguros publicados (`sobre.html`, home, `ferramentas.html`, `blog.html`), preservando fórmulas e `app.js`. O ambiente não permitiu alegar equivalência visual live exata em 360/390 px.
+- E08: quatro lotes seguros publicados (`sobre.html`, home, `ferramentas.html`, `blog.html`), preservando fórmulas e `app.js`.
+- E08 viewport exata: o artefato atual do Pages foi validado em **360 × 844** e **390 × 844 px** para Home, Blog, Ferramentas e Serviços; zero overflow horizontal do documento e do menu mobile aberto. Relatório `E10-MOBILE-360-390-ARTIFACT-QA.md`.
 - E09 público/source: `ads.txt`, `robots.txt`, publisher e política de privacidade conferidos; unidades manuais em `app.js` permanecem desativadas.
 - E10-I1: consistência de imagens por breakpoint concluída; artefato final do Pages contém zero HTMLs com troca de cena por `_mobile`/`<source media=...>`.
 - U35: consolidação dos 18 deltas E06 foi validada integralmente dentro do GitHub Actions.
 - Nenhuma solicitação de reanálise do AdSense foi enviada.
+
+## QA mobile 360/390 do artefato atual
+
+A `main` `43948d69e49329e029dd835ea80aba75b2b169ed` gerou Pages run `35124555723` com `success` e artefato `10458756254`, digest `sha256:2fdd2d916e3b46a38931a7074ab53245b73f50290b92d6a984b716480df94c02`.
+
+O runtime continuou sem acesso Chromium/curl direto ao domínio e bloqueou navegação local. Para não declarar sucesso sem evidência, o artefato exato foi renderizado de forma autocontida com o HTML cru, CSS local completo e `app.js`. Em todos os oito cenários representativos, `document.documentElement.scrollWidth` foi igual à largura da viewport. A inspeção visual dos screenshots de 360 px com menu aberto também não mostrou corte lateral ou sobreposição estrutural do header/menu.
+
+Controles adicionais: Blog com 38/38 nomes acessíveis únicos nas ações de artigo; Ferramentas com 30/30 nomes acessíveis únicos. A faixa horizontal de categorias de Ferramentas permanece rolável internamente por projeto e não cria overflow do documento.
+
+A limitação de rede do runtime continua registrada, mas **não bloqueia mais o item de viewport exata do artefato publicado**.
 
 ## U35 — inventário E06 validado
 
@@ -38,7 +49,7 @@ O SHA idêntico antes/depois comprova que os 18 deltas já estavam integralmente
 
 ## Dependências do proprietário / revisão especializada
 
-Não restou tarefa segura independente de conteúdo, estrutura, inventário ou configuração pública para a automação executar sem novos fatos ou acesso autorizado. Permanecem:
+Não restou tarefa segura independente de conteúdo, estrutura, inventário, mobile ou configuração pública para a automação executar sem novos fatos ou acesso autorizado. Permanecem:
 
 - estado autenticado da conta AdSense, verificação do site, disponibilidade real de nova análise e CMP/Privacidade e mensagens;
 - identidade/autoria pessoal, formação, registro profissional e experiência apenas se confirmados e autorizados;
@@ -49,7 +60,7 @@ Não restou tarefa segura independente de conteúdo, estrutura, inventário ou c
 
 ## Decisão operacional
 
-**O escopo automatizável seguro E02–E10 está concluído. O projeto passa para `AGUARDA PROPRIETÁRIO`.**
+**O escopo automatizável seguro E02–E10 está concluído. O projeto permanece em `AGUARDA PROPRIETÁRIO`.**
 
 Ainda não registrar o site como “pronto para solicitar” nem enviar nova análise do AdSense, porque o critério de conclusão exige também verificar o estado autenticado da conta/CMP e resolver ou aceitar explicitamente as dependências manuais relevantes.
 
