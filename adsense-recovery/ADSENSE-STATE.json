@@ -1,23 +1,31 @@
 {
   "schema_version": 3,
   "project": "ALOGY AdSense Recovery",
-  "plan_version": "2026-09-16.39",
+  "plan_version": "2026-09-16.40",
   "repository": "ronaldopjr/alogy",
   "base_branch": "main",
   "work_branch": "main",
-  "base_sha_verified": "29671d4dc825c8c406d5974b15d3300f2f96d7cc",
+  "base_sha_verified": "b2865bbf569a42b811d16abf64fb5eac8722424d",
   "verified_at": "2026-09-16",
   "last_completed_stage": "E07-safe",
   "stage_in_progress": "E08",
   "next_stage": "E08",
-  "next_action": "Continuar E08 na superficie ativa. Proximo defeito material ja reproduzido: index.html possui dois elementos main; corrigir a semantica da home sem alterar conteudo, formulas ou app.js, depois validar Pages e dominio. Em paralelo, continuar amostra mobile/teclado/overflow somente quando houver defeito reproduzido. Nao executar ainda E10-I1. Autoria pessoal, credenciais e evidencias dos cases permanecem AGUARDA PROPRIETARIO.",
+  "next_action": "Continuar E08 na superficie ativa com validacao responsiva e por teclado de ferramentas.html e calculadora-4-20ma.html em 360/390 px, desktop e zoom quando suportado. A estrutura estatica atual dessas paginas tem um main, um H1, navegacoes nomeadas e imagens com alt; nao registrar defeito sem reproducao. Preservar formulas e JavaScript tecnico. Nao executar ainda E10-I1. E07 pessoal/cases permanece AGUARDA PROPRIETARIO.",
   "status": "in_progress",
   "preferred_editorial_batch": 1,
   "active_surface_rule": {
     "articles": "automaticamente elegiveis somente quando link/card ativo em blog.html",
     "tools": "automaticamente elegiveis somente quando link/card ativo em ferramentas.html",
     "institutional": "elegivel quando exposta na navegacao institucional vigente",
-    "insufficient_signals": ["arquivo existente", "HTTP 200", "index,follow", "sitemap", "mapa de capas JavaScript", "link residual", "inventario historico"],
+    "insufficient_signals": [
+      "arquivo existente",
+      "HTTP 200",
+      "index,follow",
+      "sitemap",
+      "mapa de capas JavaScript",
+      "link residual",
+      "inventario historico"
+    ],
     "explicitly_out_of_automatic_scope": [
       "blog-ia-na-industria.html",
       "ferramentas-instrumentacao-industrial.html",
@@ -35,21 +43,27 @@
     "enabled": true,
     "target_branch": "main",
     "method": "validated-atomic-commit",
-    "batch_id": "E08-ACCESSIBILITY-01",
-    "latest_site_change_commit": "29671d4dc825c8c406d5974b15d3300f2f96d7cc",
+    "batch_id": "E08-SEMANTICS-02",
+    "latest_site_change_commit": "b2865bbf569a42b811d16abf64fb5eac8722424d",
     "services_navigation_commit": "2a047390f543d3a7a0469a3677f17c14fa0dcfeb",
     "canonical_inventory_initial_commit": "da2f61932a21c00741f418870601aafcb42deba6",
     "pages_deployment_success": true,
-    "latest_pages_workflow_run": 35100866427,
+    "latest_pages_workflow_run": 35104117692,
     "live_environment_url": "https://www.alogy.com.br/",
-    "artifact_validation_complete": false,
-    "artifact_validation_method": "GitHub Pages build/deploy succeeded for 29671d4. Source validation confirms accessible names were added to navigation and icon-only social links on sobre.html. Public search cache did not yet expose the new markup, therefore live byte-equivalence was not claimed.",
+    "artifact_validation_complete": true,
+    "artifact_validation_method": "GitHub Pages run 35104117692 succeeded for b2865bb. Direct browser validation on the live home with a cache key found exactly one main, one H1 and one form; #contato remains inside main and observed desktop body width equals viewport width.",
     "require_clean_validated_diff": true,
-    "allow_force": false
+    "allow_force": false,
+    "latest_pages_artifact_id": 10450070411,
+    "latest_pages_artifact_digest": "sha256:603cff6dea4b608b9324cdc9ef024e384b4e79161b14ade9f0d07f19e96fdfda"
   },
   "validation": {
-    "e02_search": {"status": "passed"},
-    "e03_commercial_truth": {"status": "passed"},
+    "e02_search": {
+      "status": "passed"
+    },
+    "e03_commercial_truth": {
+      "status": "passed"
+    },
     "e04_inventory": {
       "status": "completed_for_editorial_work",
       "source_html_total": 271,
@@ -60,7 +74,9 @@
       "sitemap_unique_urls": 221,
       "canonical_inventory_initial_commit": "da2f61932a21c00741f418870601aafcb42deba6"
     },
-    "e05_pilot": {"status": "passed_completed"},
+    "e05_pilot": {
+      "status": "passed_completed"
+    },
     "e06_acervo": {
       "status": "completed_for_active_surface_safe_work",
       "historical_deltas_pending_safe_consolidation": 18,
@@ -102,9 +118,51 @@
           "technical_javascript_changed": false,
           "formulas_changed": false,
           "live_byte_equivalence_claimed": false
+        },
+        {
+          "id": "E08-SEMANTICS-02",
+          "page": "index.html",
+          "issue_reproduced": "home contained two main landmarks",
+          "content_commit": "b2865bbf569a42b811d16abf64fb5eac8722424d",
+          "content_blob": "b7a4755755cfc188b8930fc46e4722035b06aa7f",
+          "pages_workflow_run": 35104117692,
+          "pages_artifact_id": 10450070411,
+          "artifact_digest": "sha256:603cff6dea4b608b9324cdc9ef024e384b4e79161b14ade9f0d07f19e96fdfda",
+          "pages_conclusion": "success",
+          "source_validation": {
+            "main_before": 2,
+            "main_after": 1,
+            "h1_preserved": true,
+            "form_preserved": true
+          },
+          "live_validation": {
+            "main_count": 1,
+            "h1_count": 1,
+            "form_count": 1,
+            "contact_inside_main": true,
+            "desktop_overflow_observed": false
+          },
+          "technical_javascript_changed": false,
+          "formulas_changed": false,
+          "content_copy_changed": false
         }
       ],
-      "next_reproduced_issue": "index.html contains two main elements and requires a semantic-only correction"
+      "next_reproduced_issue": null,
+      "next_audit_scope": [
+        "ferramentas.html",
+        "calculadora-4-20ma.html"
+      ],
+      "static_sample_check": {
+        "checked_at_commit": "b2865bbf569a42b811d16abf64fb5eac8722424d",
+        "pages": [
+          "ferramentas.html",
+          "industrial.html",
+          "calculadora-4-20ma.html",
+          "blog-instrumentacao-industrial.html",
+          "guia/index.html"
+        ],
+        "result": "each checked page has one main, one H1 and no img without alt; current static scan did not by itself reproduce another defect"
+      }
     }
   },
   "commercial_truth": {

@@ -1,6 +1,6 @@
 # ALOGY — fila operacional atual
 
-> Versão 2026-09-16.39. Esta é a única fila executável. O histórico detalhado permanece no MD de continuidade e nos relatórios `adsense-recovery`.
+> Versão 2026-09-16.40. Esta é a única fila executável. O histórico detalhado permanece no MD de continuidade e nos relatórios `adsense-recovery`.
 
 ## Regras permanentes
 
@@ -65,12 +65,20 @@
 - GitHub Pages run `35100866427`: `success`.
 - O cache público de busca ainda não expôs o markup novo; não declarar equivalência byte a byte do domínio para este lote sem nova evidência.
 
+### E08-SEMANTICS-02 — `index.html`
+- Defeito reproduzido: a home continha dois elementos `main`.
+- Correção publicada em `b2865bbf569a42b811d16abf64fb5eac8722424d`: um único `main` passou a envolver o conteúdo principal; o contêiner do contato permaneceu como `div`.
+- Texto, H1, formulário, CSS, fórmulas e `app.js` foram preservados.
+- Validação de fonte: 2 → 1 aberturas/fechamentos de `main`; um H1 e um formulário preservados.
+- GitHub Pages run `35104117692`: `success`; artefato `10450070411`; digest `sha256:603cff6dea4b608b9324cdc9ef024e384b4e79161b14ade9f0d07f19e96fdfda`.
+- Domínio validado diretamente: um `main`, um H1, um formulário, `#contato` dentro do conteúdo principal e sem overflow horizontal no desktop observado.
+
 **PRÓXIMA AÇÃO EXECUTÁVEL**
-1. Corrigir o próximo defeito material já reproduzido: `index.html` contém dois elementos `<main>`; unificar a semântica da home sem alterar conteúdo, formulários, fórmulas ou `app.js`.
-2. Validar fonte, Pages e comportamento público da home após a publicação.
-3. Continuar a amostra da superfície ativa em 360/390 px, desktop, teclado, foco, overflow, tabelas/formulários e zoom quando houver defeitos reproduzíveis.
-4. `app.js` é grande e compartilhado: medir/identificar impacto antes de qualquer divisão ou refatoração; não reestruturar por suposição.
-5. Não executar ainda a padronização global de imagens desktop/mobile; essa frente é **E10-I1**, perto do encerramento.
+1. Continuar E08 em `ferramentas.html` e `calculadora-4-20ma.html`, reproduzindo navegação por teclado, foco, overflow e uso em 360/390 px e desktop antes de editar.
+2. A varredura estática inicial dessas páginas encontrou um `main`, um H1, navegações nomeadas e imagens com `alt`; isso não substitui a validação responsiva/funcional.
+3. Preservar fórmulas e JavaScript técnico; corrigir somente defeito reproduzido.
+4. `app.js` continua sem refatoração especulativa.
+5. Não executar ainda E10-I1.
 
 ## E09–E10
 - E09: verificar o que é possível sem autenticação em anúncios/rastreamento/privacidade; conta AdSense, GSC, Analytics e CMP autenticados dependem de autorização/dados reais.
