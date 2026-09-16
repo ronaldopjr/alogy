@@ -180,3 +180,5 @@ jobs:
           fi
           git commit -m "AdSense U35: consolida deltas E06 no inventario"
           git push origin HEAD:main
+
+# trigger: 2026-09-16 U35
