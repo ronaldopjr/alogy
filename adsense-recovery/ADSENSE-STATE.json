@@ -1,36 +1,40 @@
 {
   "schema_version": 3,
   "project": "ALOGY AdSense Recovery",
-  "plan_version": "2026-09-16.46",
+  "plan_version": "2026-09-16.47",
   "repository": "ronaldopjr/alogy",
   "base_branch": "main",
   "work_branch": "main",
-  "base_sha_verified": "1855f0976cc8560f9a86bab0019443b6786f04b5",
+  "base_sha_verified": "b082704285922508a1354dbf1151157a0e36e9a4",
   "verified_at": "2026-09-16",
-  "last_completed_stage": "E11 owner checkpoint preparation",
-  "stage_in_progress": "AGUARDA_EVIDENCIA_ADSENSE_AUTENTICADA",
-  "next_stage": "E11 authenticated decision gate",
-  "next_action": "PROPRIETARIO: enviar capturas atuais de AdSense > Sites (alogy.com.br com status de aprovacao e ads.txt), detalhes do site, Privacidade e mensagens/CMP, Central de politicas e tarefas/alertas da pagina inicial. ASSISTENTE: classificar o estado real em A-D e atualizar o mesmo MD canonico. Nao solicitar nova analise automaticamente.",
-  "status": "awaiting_authenticated_adsense_evidence",
+  "last_completed_stage": "E11 low value content batch 01 NR-10",
+  "stage_in_progress": "E11_LOW_VALUE_CONTENT_EDITORIAL_CONTINUATION",
+  "next_stage": "E11 low value content batch 02",
+  "next_action": "Revisar editorialmente as paginas ativas blog-lopa-simplificada.html e blog-sil-pfd-didatico.html: remover sinais de conteudo em revisao, alinhar navegacao Guia/cursos/Hotmart, restringir relacionados ao tema e aprofundar utilidade somente com base tecnica segura. Validar deploy e sitemap. Nao solicitar nova analise automaticamente.",
+  "status": "low_value_content_editorial_recovery_active",
   "adsense": {
     "reported_status": "low_value_content",
+    "reported_status_owner_confirmed": true,
+    "owner_confirmed_only_reason_shown": true,
     "account_checked_in_this_stage": false,
     "ready_to_request_review": false,
     "auto_request_review": false,
     "review_request_sent": false,
     "publisher_id_observed_in_source": "pub-5586837114309500",
-    "authenticated_cmp_checked": false
+    "authenticated_cmp_checked": false,
+    "authenticated_account_gate_deferred_until_pre_review": true
   },
   "publication": {
     "enabled": true,
     "target_branch": "main",
-    "method": "validated-atomic-commit",
-    "latest_site_change_commit": "de07a283b54da6d04332475e562bb0d06cc1f4c9",
-    "latest_report_commit": "1855f0976cc8560f9a86bab0019443b6786f04b5",
+    "method": "validated-commit",
+    "latest_site_change_commit": "b082704285922508a1354dbf1151157a0e36e9a4",
+    "latest_content_change_commit": "a54d3aa54c4a0b9cbc2a9f34900ab5eea9d013c3",
+    "latest_report_commit": "8db777937973674fa087609cc879866c367aa914",
     "pages_deployment_success": true,
-    "latest_pages_workflow_run": 35130851764,
-    "latest_pages_artifact_id": 10461581421,
-    "latest_pages_artifact_digest": "sha256:f54e84109a1a0d6304abc8f4e3b685dacf6f05b53e205c055ee690ff6ac7b706",
+    "latest_pages_workflow_run": 35139779567,
+    "latest_pages_artifact_id": 10465200562,
+    "latest_pages_artifact_digest": "sha256:8fe8a00e7b3521904ec2624fb8c5258857e412f1af0e5f62f96418fe1b0f8b86",
     "live_environment_url": "https://www.alogy.com.br/",
     "allow_force": false
   },
@@ -39,12 +43,13 @@
     "title": "ALOGY AdSense Contínuo",
     "enabled": false,
     "disabled_at": "2026-09-16T16:50:57.404222Z",
-    "reason": "E02-E10 e todo trabalho seguro independente foram concluidos; E11 agora aguarda evidencia autenticada do proprietario e revisao especializada onde aplicavel."
+    "reason": "Automacao permanece pausada; execucao editorial manual autorizada continua lote a lote para conteudo de baixo valor."
   },
   "workflow_rules": {
     "update_same_canonical_md_after_each_stage": true,
     "show_updated_md_to_owner_after_each_stage": true,
-    "always_state_next_step": true
+    "always_state_next_step": true,
+    "automatic_adsense_review_request": false
   },
   "validation": {
     "e02_search": "passed",
@@ -64,7 +69,6 @@
       "inventory_consolidation": {
         "status": "validated_already_reflected_no_data_diff",
         "validation_workflow_run": 35124110500,
-        "validation_trigger_commit": "03be4e3760f8793e67f584c8781a0dae2aa755cb",
         "validation_commit": "c8fb1be75522af7e509494fc483fa4291f9c6e3b",
         "temporary_workflow_removed_commit": "6307d0307da65580096d5fd35cbcc260e6af9a8b",
         "report": "adsense-recovery/E06-INVENTORY-CONSOLIDATION.md",
@@ -72,8 +76,7 @@
         "physical_lines": 272,
         "unique_paths": 271,
         "sha256_before": "12e9e0d3e6729a7fd36c0190fad88862ea3500b209046ae67362a43ce0b883fa",
-        "sha256_after": "12e9e0d3e6729a7fd36c0190fad88862ea3500b209046ae67362a43ce0b883fa",
-        "finding": "Os 18 deltas ja estavam integralmente refletidos no inventario canonico; nenhuma substituicao de linha era necessaria."
+        "sha256_after": "12e9e0d3e6729a7fd36c0190fad88862ea3500b209046ae67362a43ce0b883fa"
       },
       "manual_review_pages": [
         "blog-inspecao-instrumentos-area-classificada.html",
@@ -84,12 +87,6 @@
     "e07_transparency": "safe_organizational_scope_completed_owner_facts_pending",
     "e08": {
       "status": "safe_automatable_checks_completed_exact_mobile_artifact_passed",
-      "published_batches": [
-        ["sobre.html", "29671d4dc825c8c406d5974b15d3300f2f96d7cc", 35100866427],
-        ["index.html", "b2865bbf569a42b811d16abf64fb5eac8722424d", 35104117692],
-        ["ferramentas.html", "6576c0e3ddb2a6e7935fb184a34a608ba86e43ab", 35111374317],
-        ["blog.html", "a8f8538e648b5378e30a44bd26fcb9befeff6e35", 35118075529]
-      ],
       "exact_360_390_live_claimed": false,
       "exact_360_390_published_artifact_passed": true,
       "exact_mobile_report": "adsense-recovery/E10-MOBILE-360-390-ARTIFACT-QA.md",
@@ -99,18 +96,15 @@
       "viewports": [360, 390],
       "pages_checked": ["index.html", "blog.html", "ferramentas.html", "industrial.html"],
       "document_horizontal_overflow_failures": 0,
-      "mobile_menu_horizontal_overflow_failures": 0,
-      "direct_domain_environment_limit": "container DNS e politica do Chromium impediram navegacao direta ao dominio/local; o artefato exato do Pages foi renderizado de forma autocontida para validar geometria e comportamento mobile"
+      "mobile_menu_horizontal_overflow_failures": 0
     },
     "e09": {
-      "status": "safe_public_source_checks_completed_authenticated_account_pending",
+      "status": "safe_public_source_checks_completed_authenticated_account_deferred_to_pre_review_gate",
       "ads_txt": "google.com, pub-5586837114309500, DIRECT, f08c47fec0942fa0",
       "robots": "Allow / and sitemap https://www.alogy.com.br/sitemap.xml",
       "publisher_consistent_with_home_and_adsense_loader": true,
       "privacy_policy_checked": true,
-      "legal_page_direct_adsense_loader_observed": false,
       "manual_ad_units_enabled_in_app_js": false,
-      "cmp_proven_by_site_code": false,
       "authenticated_account_checked": false
     },
     "e10_i1": {
@@ -121,37 +115,65 @@
       "final_html_with_breakpoint_image_switch": 0
     },
     "e10_final_readiness": {
-      "status": "awaiting_owner_not_ready_to_request",
+      "status": "superseded_by_owner_confirmed_low_value_editorial_recovery",
       "report": "adsense-recovery/E10-FINAL-READINESS-CHECKLIST.md",
       "safe_automatable_scope_completed": true,
       "exact_mobile_artifact_qa_passed": true,
-      "review_request_sent": false,
-      "blockers": [
-        "estado autenticado da conta AdSense, verificacao do site, disponibilidade de nova analise e CMP",
-        "duas paginas manual-review/P0 exigem especialista",
-        "credenciais, confirmacao de Desde 2012, cases e C01-C03 dependem de fatos e autorizacao do proprietario"
-      ]
+      "review_request_sent": false
     },
     "e11_owner_checkpoint": {
-      "status": "prepared_awaiting_authenticated_evidence",
+      "status": "prepared_then_deferred_to_pre_review_gate",
       "report": "adsense-recovery/E11-OWNER-CHECKPOINT.md",
       "report_commit": "1855f0976cc8560f9a86bab0019443b6786f04b5",
-      "official_google_guidance_checked_at": "2026-09-16",
       "owner_continuation_authorized": true,
       "owner_review_request_authorized": false,
-      "review_request_sent": false,
-      "required_evidence": [
-        "AdSense > Sites row for alogy.com.br with approval and ads.txt status",
-        "alogy.com.br site details including current reason and review button availability",
-        "Privacy & messaging CMP/European regulations state",
-        "Policy Center current issues or clean state",
-        "AdSense home required tasks or rejection alert if present"
-      ],
-      "decision_gate": {
-        "requires_attention": "record exact reason and fix only proven cause",
-        "requires_review": "verify required tasks, site connection, ads.txt, CMP and Policy Center before any review decision",
-        "getting_ready": "do not remove, resubmit or start another review",
-        "ready": "close approval recovery and move to monetization optimization"
+      "review_request_sent": false
+    },
+    "e11_low_value_content": {
+      "status": "batch_01_completed_batch_02_ready",
+      "owner_confirmed_reason": "low_value_content",
+      "owner_confirmed_only_reason_shown": true,
+      "official_google_guidance_checked_at": "2026-09-16",
+      "active_surface_snapshot": {
+        "blog_actions": 38,
+        "tool_actions": 30
+      },
+      "strategy": "Improve active pages with concrete low-value signals; do not create volume or word-count padding.",
+      "batch_01": {
+        "page": "blog-nova-nr10-2026.html",
+        "report": "adsense-recovery/E11-LOW-VALUE-CONTENT-BATCH-01.md",
+        "report_commit": "9817b050a9e59deb7df1c69ca54c51db5f0ab7d8",
+        "content_commit": "a54d3aa54c4a0b9cbc2a9f34900ab5eea9d013c3",
+        "sitemap_commit": "b082704285922508a1354dbf1151157a0e36e9a4",
+        "pages_workflow_run": 35139779567,
+        "artifact_id": 10465200562,
+        "artifact_digest": "sha256:8fe8a00e7b3521904ec2624fb8c5258857e412f1af0e5f62f96418fe1b0f8b86",
+        "deployment": "success",
+        "findings_fixed": [
+          "unfinished review marker removed",
+          "official NR-10 vigency dates clarified",
+          "official MTE sources prioritized",
+          "Cursos/cursos.html and Hotmart removed from this editorial page",
+          "commercial scope narrowed",
+          "sitemap lastmod updated"
+        ]
+      },
+      "batch_02_triage": {
+        "priority_1": "blog-lopa-simplificada.html",
+        "priority_1_findings": [
+          "old Cursos/cursos.html navigation",
+          "Hotmart link on editorial page",
+          "calculator removed for review wording",
+          "unrelated related-links to Cp/Cpk, vibration and compressor",
+          "duplicate SIL/PFD article link"
+        ],
+        "priority_2": "blog-sil-pfd-didatico.html",
+        "priority_2_findings": [
+          "old Cursos/cursos.html navigation",
+          "Hotmart link on editorial page",
+          "calculator removed for review wording",
+          "related links can be narrowed to functional safety context"
+        ]
       }
     }
   },
@@ -163,7 +185,7 @@
     "automatic_adsense_review_request": false
   },
   "owner_or_manual_dependencies": [
-    "capturas autenticadas do estado atual da conta AdSense, verificacao do site, disponibilidade de reanalise e CMP",
+    "estado autenticado da conta AdSense, CMP e Central de politicas antes da decisao final de solicitar revisao",
     "autoria pessoal e credenciais somente se confirmadas e autorizadas",
     "confirmacao de Desde 2012 quando usado como evidencia de experiencia",
     "evidencias e autorizacao dos cases antes de ampliar alegacoes",
