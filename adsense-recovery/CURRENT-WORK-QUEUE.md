@@ -1,6 +1,6 @@
 # ALOGY — fila operacional atual
 
-> Versão 2026-09-15.32. Esta é a única fila executável. Filas anteriores e relatórios por lote permanecem históricos.
+> Versão 2026-09-15.33. Esta é a única fila executável. Filas anteriores e relatórios por lote permanecem históricos.
 
 ## Regras permanentes
 
@@ -87,11 +87,13 @@ O `ADSENSE-INVENTORY.csv` canônico ainda não incorpora as decisões E06. Os ar
 - blob final: `884c04bbe468d24c8e57fcea15912b8ff4db1b6f`;
 - Pages: run `35035590094`, build/deploy `success`;
 - artefato `10422164895`, digest `sha256:9e01095214668c0ec4511432770e23270df36fa07a81a4f02ad547092077ea3a`;
+- domínio: HTTP 200, 22.615 bytes, SHA-256 `cde4e38ac3bd90d0992ef4b6a0afbb57e4eb30648cbbdef5e8af3504f722c277`;
+- Git blob do HTML servido: `884c04bbe468d24c8e57fcea15912b8ff4db1b6f`, igual ao blob final versionado;
 - 1.757 palavras visíveis / 1.710 no `main`; 1 H1 / 15 H2;
 - arquitetura, sincronização, qualidade/status, contexto, V&V/VVUQ e exemplo 0–5 m / 4–20 mA adicionados;
 - fontes primárias NIST e IDTA;
 - sem CTA promocional do Guia, Hotmart ou Cursos no corpo; nenhum JS técnico ou fórmula alterado;
-- leitura direta do domínio retornou `cache miss` nesta execução; não declarar equivalência byte a byte ao vivo até nova leitura bem-sucedida.
+- leitura direta posterior do domínio validou equivalência byte a byte do HTML ao vivo.
 
 ### Próxima ação executável — E06-16
 1. Reler `main`, `ADSENSE-STATE.json` e esta fila antes de qualquer escrita.

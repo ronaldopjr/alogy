@@ -1,11 +1,11 @@
 {
   "schema_version": 3,
   "project": "ALOGY AdSense Recovery",
-  "plan_version": "2026-09-15.32",
+  "plan_version": "2026-09-15.33",
   "repository": "ronaldopjr/alogy",
   "base_branch": "main",
   "work_branch": "main",
-  "base_sha_verified": "d16a303bc8e8afa06db41e8e7f57d83e5922bd2f",
+  "base_sha_verified": "fdf03c3c92ce449854248f34cf2ff7e1813e8752",
   "verified_at": "2026-09-15",
   "last_completed_stage": "E05",
   "stage_in_progress": "E06",
@@ -35,7 +35,7 @@
     "latest_pages_artifact_digest": "sha256:9e01095214668c0ec4511432770e23270df36fa07a81a4f02ad547092077ea3a",
     "live_environment_url": "https://www.alogy.com.br/",
     "artifact_validation_complete": true,
-    "artifact_validation_method": "GitHub Pages build/deploy succeeded for ec20d4e2; final Git blob reread from main. Direct live-domain fetch returned cache miss in this execution, so byte-for-byte live equivalence was not claimed.",
+    "artifact_validation_method": "GitHub Pages build/deploy succeeded for ec20d4e2; a later direct live-domain fetch returned HTTP 200 and the served HTML Git blob SHA-1 matched the content commit blob exactly.",
     "require_clean_validated_diff": true,
     "allow_force": false
   },
@@ -239,7 +239,10 @@
           "global_guide_navigation_preserved": true,
           "promotional_guide_link_in_body": false,
           "technical_formulas_or_shared_javascript_changed": false,
-          "live_direct_fetch_status": "cache_miss_not_claimed",
+          "live_html_bytes": 22615,
+          "live_html_sha256": "cde4e38ac3bd90d0992ef4b6a0afbb57e4eb30648cbbdef5e8af3504f722c277",
+          "live_direct_fetch_status": "http_200_validated",
+          "live_matches_validated_candidate": true,
           "decision_before": "improve/P0/high",
           "decision_after": "keep/P1/high"
         }

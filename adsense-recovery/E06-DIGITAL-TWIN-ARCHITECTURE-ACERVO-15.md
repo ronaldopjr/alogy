@@ -43,8 +43,18 @@
 - NIST — Framework for a Digital Twin in Manufacturing;
 - IDTA — Asset Administration Shell Specifications, incluindo metamodelo, APIs, dados/unidades, segurança e AASX.
 
-## Validação e limite desta execução
-O GitHub Pages concluiu build/deploy com sucesso para o SHA do conteúdo e gerou o artefato acima. O blob final foi relido diretamente de `main` e coincide com o candidato validado localmente. A tentativa de leitura direta do domínio `www.alogy.com.br` pelo verificador web retornou `cache miss` nesta execução; por isso **não** é declarada equivalência byte a byte do HTML ao vivo neste checkpoint. Essa limitação deve ser preservada até uma leitura direta posterior bem-sucedida.
+## Validação final
+O GitHub Pages concluiu build/deploy com sucesso para o SHA do conteúdo e gerou o artefato acima. O blob final foi relido diretamente de `main` e coincide com o candidato validado localmente.
+
+Uma leitura direta posterior de `https://www.alogy.com.br/blog-gemeo-digital-instrumentacao.html` concluiu a validação do domínio:
+
+- HTTP `200`;
+- `Last-Modified: Tue, 15 Sep 2026 23:32:38 GMT`;
+- 22.615 bytes;
+- SHA-256 `cde4e38ac3bd90d0992ef4b6a0afbb57e4eb30648cbbdef5e8af3504f722c277`;
+- Git blob SHA-1 calculado do HTML servido `884c04bbe468d24c8e57fcea15912b8ff4db1b6f`, igual ao blob final versionado.
+
+Assim, a equivalência byte a byte do HTML ao vivo está confirmada.
 
 ## Próxima ação
 Selecionar E06-16 entre as páginas remanescentes `improve/P0/high`, excluindo E06-01 a E06-15 e páginas com necessidade de revisão especializada. Não solicitar nova análise do AdSense.
