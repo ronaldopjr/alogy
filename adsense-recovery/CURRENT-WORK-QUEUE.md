@@ -1,6 +1,6 @@
 # ALOGY — fila operacional atual
 
-> Versão 2026-09-15.36. Esta é a única fila executável. Filas anteriores e relatórios por lote permanecem históricos.
+> Versão 2026-09-16.37. Esta é a única fila executável. Filas anteriores e relatórios por lote permanecem históricos.
 
 ## Regras permanentes
 
@@ -25,6 +25,7 @@
 - Não editar automaticamente páginas `manual-review/P0`.
 - Revisões editoriais extensas: uma página por lote.
 - Nunca usar force push.
+- Uma revisão automática só é elegível quando a URL está exposta como link/card ativo no `blog.html` ou `ferramentas.html` atual, ou na navegação institucional vigente. Arquivo existente, HTTP 200, `index,follow`, sitemap, link residual ou inventário histórico isoladamente não bastam.
 
 ## E02–E05
 - E02 busca/ferramentas: concluído e validado.
@@ -34,7 +35,7 @@
 
 ## E06 — revisão do acervo monetizado
 
-**Estado:** EM EXECUÇÃO — DEZOITO PÁGINAS REVISADAS, PUBLICADAS E VALIDADAS.
+**Estado:** CONCLUÍDO PARA O TRABALHO SEGURO NA SUPERFÍCIE EDITORIAL ATIVA. As dezoito revisões anteriores permanecem no histórico, mas somente oito páginas revisadas continuam expostas nas centrais atuais; dez rotas revisadas estão hoje fora da vitrine e não podem orientar nova seleção.
 
 | # | Página | Decisão | Commit de conteúdo |
 |---|---|---|---|
@@ -157,15 +158,24 @@ O `ADSENSE-INVENTORY.csv` canônico ainda não incorpora as decisões E06. Os ar
 - nenhum JavaScript técnico, fórmula de ferramenta ou `app.js` alterado;
 - domínio conferido diretamente com chave de cache: título, H1, data, exemplo e FAQ novos presentes. O leitor público textual ainda devolveu cópia anterior em cache; não declarar equivalência byte a byte nesta rodada.
 
-### Próxima ação executável — E06-19
-1. Reler `main`, `ADSENSE-STATE.json` e esta fila antes de qualquer escrita.
-2. Selecionar a próxima página `improve/P0/high` segura, excluindo páginas 01–18.
-3. Manter `blog-inspecao-instrumentos-area-classificada.html` e `blog-ot-cybersecurity-instrumentacao.html` fora da edição automática, pois exigem revisão especializada.
-4. Pesquisar fontes primárias antes de editar.
-5. Publicar uma página extensa por lote e validar GitHub Pages; validar domínio quando o fetch estiver disponível.
-6. Criar relatório e `E06-INVENTORY-DELTA-19.csv`.
-7. Atualizar controles e o mesmo MD de continuidade.
-8. Não solicitar nova análise do AdSense.
+### Correção de escopo e encerramento seguro do E06
+- Regra vigente: `ACTIVE-PUBLICATION-SCOPE.md`.
+- Superfície atual reconciliada: 77 destinos HTML únicos expostos por `blog.html` e `ferramentas.html`.
+- Interseção com `improve/P0/high`: 12 páginas — oito lotes já tratados e ativos, duas páginas `manual-review/P0` que permanecem sem edição automática e duas páginas institucionais dependentes de fatos do proprietário.
+- Dez revisões E06 anteriores ficaram em rotas não expostas nas centrais atuais; permanecem apenas como histórico e não autorizam novas revisões semelhantes.
+- O lote indevido E06-19 de `ferramentas-processo-vazao-nivel.html` foi revertido por `dd4cac5b3f01a360770c788bf3a1e50117be9512`. Nenhum delta 19 foi adotado.
+- Pages da reversão: run `35097729366`, build/deploy `success`; artefato `10446583906`; digest `sha256:c476ab64dff3992a690aa9b0e353f5c137e638ca235553a20f3a2658df25a918`.
+- Domínio validado diretamente: título e H1 originais restaurados; expressões do conteúdo E06-19 ausentes.
+- Esta correção não autoriza poda ou `noindex` em massa.
+
+### Próxima ação executável — E07
+1. Reler `main`, `ADSENSE-STATE.json`, esta fila e `ACTIVE-PUBLICATION-SCOPE.md`.
+2. Auditar autoria e transparência somente na superfície editorial ativa.
+3. Aplicar apenas fatos organizacionais já confirmados; não inventar nome, formação, cargo, experiência, certificação ou credencial pessoal.
+4. Manter `blog-inspecao-instrumentos-area-classificada.html` e `blog-ot-cybersecurity-instrumentacao.html` sem edição automática.
+5. Se a subfrente exigir dados do proprietário, registrar exatamente a dependência como **AGUARDA PROPRIETÁRIO** e avançar para a próxima tarefa segura de E08.
+6. Não solicitar nova análise do AdSense.
+7. Preservar E10-I1 para perto do encerramento.
 
 ## E08-W1 — avisos compartilhados
 Pendente, sem bloqueio para E06. Antes de alterar `app.js`, reproduzir o problema em amostra representativa. Não mexer em script compartilhado sem defeito reproduzido.

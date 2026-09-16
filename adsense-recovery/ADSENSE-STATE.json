@@ -1,16 +1,16 @@
 {
   "schema_version": 3,
   "project": "ALOGY AdSense Recovery",
-  "plan_version": "2026-09-15.36",
+  "plan_version": "2026-09-16.37",
   "repository": "ronaldopjr/alogy",
   "base_branch": "main",
   "work_branch": "main",
-  "base_sha_verified": "1ad799821dca041236291b6bbd6a95003fcec9db",
+  "base_sha_verified": "996ced92f7ce0935222c5202356aac9bbe307d0b",
   "verified_at": "2026-09-16",
-  "last_completed_stage": "E05",
-  "stage_in_progress": "E06",
-  "next_stage": "E06",
-  "next_action": "Selecionar a proxima pagina improve/P0/high do acervo monetizado para E06-19, priorizando instrumentacao, automacao ou eletrica industrial e baixo risco editorial. Excluir E06-01 a E06-18; manter area classificada e ciberseguranca OT fora da edicao automatica. Tratar E06-INVENTORY-DELTA-01.csv a E06-INVENTORY-DELTA-18.csv como fonte incremental ate consolidacao segura. Nao solicitar nova analise do AdSense e preservar E10-I1 para perto do encerramento.",
+  "last_completed_stage": "E06",
+  "stage_in_progress": "E07",
+  "next_stage": "E07",
+  "next_action": "Executar E07 somente na superficie editorial ativa: auditar autoria e transparencia em paginas atualmente expostas por blog.html, ferramentas.html ou navegacao institucional vigente; aplicar apenas fatos organizacionais ja confirmados; nao inventar credenciais pessoais. Se dados de autoria verificavel dependerem do proprietario, registrar AGUARDA PROPRIETARIO para essa subfrente e avancar para a proxima tarefa segura de E08. Nao solicitar nova analise do AdSense; preservar E10-I1 para perto do encerramento.",
   "status": "in_progress",
   "preferred_editorial_batch": 1,
   "adsense": {
@@ -23,19 +23,19 @@
     "enabled": true,
     "target_branch": "main",
     "method": "validated-atomic-commit",
-    "batch_id": "E06-CALIBRATION-TOOLS-HUB-ACERVO-18",
-    "latest_site_change_commit": "c1dc3816a37edf2d5fcb9232d0b20b21fe0e8b5e",
-    "latest_report_and_delta_commit": "1ad799821dca041236291b6bbd6a95003fcec9db",
+    "batch_id": "E06-ACTIVE-SURFACE-CORRECTION",
+    "latest_site_change_commit": "dd4cac5b3f01a360770c788bf3a1e50117be9512",
+    "latest_report_and_delta_commit": "996ced92f7ce0935222c5202356aac9bbe307d0b",
     "services_navigation_commit": "2a047390f543d3a7a0469a3677f17c14fa0dcfeb",
     "canonical_inventory_initial_commit": "da2f61932a21c00741f418870601aafcb42deba6",
     "source_verified_on_main": true,
     "pages_deployment_success": true,
-    "latest_pages_workflow_run": 35071001842,
-    "latest_pages_artifact_id": 10435724263,
-    "latest_pages_artifact_digest": "sha256:2aa43bc6c7943583609300376af6fa296410a46b1b29fd22a1c6543114bdc8be",
+    "latest_pages_workflow_run": 35097729366,
+    "latest_pages_artifact_id": 10446583906,
+    "latest_pages_artifact_digest": "sha256:c476ab64dff3992a690aa9b0e353f5c137e638ca235553a20f3a2658df25a918",
     "live_environment_url": "https://www.alogy.com.br/",
     "artifact_validation_complete": true,
-    "artifact_validation_method": "GitHub Pages build/deploy succeeded for c1dc3816. Direct browser validation with a cache key confirmed the new title, H1, 16/09/2026 date, +0,05 bar example and FAQ on the live domain. The public text reader still returned an older cached copy, so no byte-for-byte live HTML claim is made for this batch.",
+    "artifact_validation_method": "GitHub Pages build/deploy succeeded for revert dd4cac5b. Direct browser validation with cache key confirmed the restored title and H1 and confirmed absence of the E06-19 editorial phrases on the live domain.",
     "require_clean_validated_diff": true,
     "allow_force": false
   },
@@ -74,7 +74,7 @@
       "adsense_review_request_allowed": false
     },
     "e06_acervo": {
-      "status": "pages_01_to_18_passed_published_next_selection_pending",
+      "status": "completed_for_active_surface_safe_work",
       "canonical_inventory_deltas_pending_merge": [
         "E06-INVENTORY-DELTA-01.csv",
         "E06-INVENTORY-DELTA-02.csv",
@@ -359,11 +359,49 @@
       ],
       "next_candidate": {
         "path": null,
-        "status": "selection_pending_after_page_18"
+        "status": "moved_to_e07_after_active_surface_reconciliation"
       },
       "manual_review_pages_must_remain_unchanged": true,
       "mass_pruning_allowed": false,
-      "adsense_review_request_allowed": false
+      "adsense_review_request_allowed": false,
+      "selection_rule": "Eligible only when linked as an active card/link from current blog.html or current ferramentas.html, or explicitly exposed in current institutional navigation. File existence, HTTP 200, indexability, sitemap presence, residual links, or historical inventory classification alone are insufficient.",
+      "scope_rule_file": "adsense-recovery/ACTIVE-PUBLICATION-SCOPE.md",
+      "active_surface_unique_html_destinations": 77,
+      "active_improve_p0_high": 12,
+      "active_e06_completed_pages": 8,
+      "active_manual_review_pages": [
+        "blog-inspecao-instrumentos-area-classificada.html",
+        "blog-ot-cybersecurity-instrumentacao.html"
+      ],
+      "active_owner_dependent_pages": [
+        "industrial.html",
+        "sobre.html"
+      ],
+      "historical_inactive_revisions": [
+        "blog-solenoide-atuador-pneumatico-cv.html",
+        "blog-criticidade-instrumentos.html",
+        "blog-erro-total-malha-instrumentacao.html",
+        "blog-manutencao-preditiva-instrumentacao-sensores.html",
+        "blog-massa-tanque-nivel.html",
+        "blog-pressao-hidrostatica-densidade.html",
+        "blog-gemeo-digital-instrumentacao.html",
+        "blog-ia-na-industria.html",
+        "ferramentas-instrumentacao-industrial.html",
+        "ferramentas-calibracao-instrumentacao.html"
+      ],
+      "historical_inactive_revision_count": 10,
+      "e06_19": {
+        "status": "reverted_not_adopted",
+        "inappropriate_content_commit": "26c92561da21ef8b97c167d80be69f77d41d4db5",
+        "revert_commit": "dd4cac5b3f01a360770c788bf3a1e50117be9512",
+        "restored_page_blob": "7d244d903f13b47c77f09bc0330836d9845c3af8",
+        "restored_sitemap_blob": "91d96281bcbc38161af89e53680939959c7a04c6",
+        "delta_19_adopted": false,
+        "pages_workflow_run": 35097729366,
+        "pages_artifact_id": 10446583906,
+        "artifact_digest": "sha256:c476ab64dff3992a690aa9b0e353f5c137e638ca235553a20f3a2658df25a918",
+        "live_validation": "restored title and H1 present; E06-19 phrases absent"
+      }
     },
     "shared_warning_follow_up": "E08-W1"
   },
@@ -383,7 +421,8 @@
     "link_guide_from_blog_or_tools": false,
     "global_guide_navigation_may_remain": true,
     "automatic_adsense_review_request": false,
-    "same_visual_asset_desktop_mobile_at_e10_i1": true
+    "same_visual_asset_desktop_mobile_at_e10_i1": true,
+    "require_current_editorial_surface_for_automatic_revision": true
   },
   "owner_dependencies": [
     "Captura atual do AdSense com motivo, data e disponibilidade de nova analise",
