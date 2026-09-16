@@ -1,16 +1,16 @@
 {
   "schema_version": 3,
   "project": "ALOGY AdSense Recovery",
-  "plan_version": "2026-09-16.48",
+  "plan_version": "2026-09-16.49",
   "repository": "ronaldopjr/alogy",
   "base_branch": "main",
   "work_branch": "main",
-  "base_sha_verified": "a1b97f0ee8a95583aabc98a3046447ddafe7242d",
+  "base_sha_verified": "12bbf76b7020acde16b19b35094ecffea255dfca",
   "verified_at": "2026-09-16",
-  "last_completed_stage": "E11 low value content batch 02 LOPA and SIL/PFD",
-  "stage_in_progress": "E11_LOW_VALUE_EDITORIAL_TRIAGE_03",
-  "next_stage": "E11 low value content batch 03",
-  "next_action": "Fazer triagem objetiva apenas dos artigos com card/link ativo no blog.html e selecionar 1 a 3 paginas com sinais comprovaveis de baixo valor. Nao editar as paginas manual-review/P0. Depois revisar somente as selecionadas, validar Pages/sitemap e atualizar o mesmo MD. Nao solicitar nova analise automaticamente.",
+  "last_completed_stage": "E11 low value content batch 03 pneumatic tubing and hysteresis",
+  "stage_in_progress": "E11_LOW_VALUE_EDITORIAL_TRIAGE_04",
+  "next_stage": "E11 low value content batch 04",
+  "next_action": "Triar apenas os artigos ainda ativos no blog.html e selecionar no maximo 1 a 3 paginas com sinais objetivos combinados de baixo valor ou residuos editoriais antigos. Nao editar as paginas manual-review/P0. Revisar somente as selecionadas, validar Pages/sitemap, atualizar o mesmo MD e nao solicitar nova analise automaticamente.",
   "status": "low_value_content_editorial_recovery_active",
   "adsense": {
     "reported_status": "low_value_content",
@@ -28,13 +28,13 @@
     "enabled": true,
     "target_branch": "main",
     "method": "validated-commit",
-    "latest_site_change_commit": "a1b97f0ee8a95583aabc98a3046447ddafe7242d",
-    "latest_content_change_commit": "5cffeb23b766b5f2a4aed1f82dbd8a15f8c28d32",
-    "latest_report_commit": "086a27f818286e16b8cf03b32a98f7830413f35d",
+    "latest_site_change_commit": "aea22737642da267996d793513177c74c2ffde00",
+    "latest_content_change_commit": "5cfb0939b49595fc9818c1836b1be78b0e986dc0",
+    "latest_report_commit": "416cc2259231d27d573b2dc1aaf5fe705377117b",
     "pages_deployment_success": true,
-    "latest_pages_workflow_run": 35142441204,
-    "latest_pages_artifact_id": 10466051065,
-    "latest_pages_artifact_digest": "sha256:06bcd63d8829343b81dd7f4daee9e18e395e93a7e27c16264bdac9c156873202",
+    "latest_pages_workflow_run": 35147892933,
+    "latest_pages_artifact_id": 10468250308,
+    "latest_pages_artifact_digest": "sha256:282e89f42d3368ecc231fbd54c92e2fe599a92b8c7775f9b79475cf5569d444e",
     "live_environment_url": "https://www.alogy.com.br/",
     "allow_force": false
   },
@@ -130,7 +130,7 @@
       "review_request_sent": false
     },
     "e11_low_value_content": {
-      "status": "batch_02_completed_triage_03_ready",
+      "status": "batch_03_completed_triage_04_ready",
       "owner_confirmed_reason": "low_value_content",
       "owner_confirmed_only_reason_shown": true,
       "official_google_guidance_checked_at": "2026-09-16",
@@ -162,22 +162,41 @@
         "pages_workflow_run": 35142441204,
         "artifact_id": 10466051065,
         "artifact_digest": "sha256:06bcd63d8829343b81dd7f4daee9e18e395e93a7e27c16264bdac9c156873202",
+        "deployment": "success"
+      },
+      "batch_03": {
+        "pages": [
+          "blog-dimensionamento-tubo-pneumatico-instrumentacao.html",
+          "blog-histerese-pressostato-termostato.html"
+        ],
+        "report": "adsense-recovery/E11-LOW-VALUE-CONTENT-BATCH-03.md",
+        "report_commit": "416cc2259231d27d573b2dc1aaf5fe705377117b",
+        "pneumatic_tubing_content_commit": "5484f22b8e4acf5eed03ba567396e0ec90ca5145",
+        "hysteresis_content_commit": "5cfb0939b49595fc9818c1836b1be78b0e986dc0",
+        "sitemap_commit": "aea22737642da267996d793513177c74c2ffde00",
+        "pages_workflow_run": 35147892933,
+        "artifact_id": 10468250308,
+        "artifact_digest": "sha256:282e89f42d3368ecc231fbd54c92e2fe599a92b8c7775f9b79475cf5569d444e",
         "deployment": "success",
+        "triaged_but_preserved": [
+          "blog-ar-instrumentos-qualidade-ponto-orvalho.html",
+          "blog-calibracao-instrumentos-industriais.html"
+        ],
         "findings_fixed": [
           "old Cursos/cursos.html navigation removed from both pages",
           "Hotmart removed from both editorial pages",
-          "withdrawn calculator/review wording removed",
-          "LOPA related links narrowed and duplicate removed",
-          "LOPA deepened around scenario, initiating event, IPL, PFD and documented assumptions",
-          "SIL/PFD deepened around SIF, SIS, PFDavg, proof testing and safety lifecycle",
-          "technical references aligned to CCPS/AIChE, IEC 61511 and IEC 61508",
+          "pneumatic tubing article deepened around required flow, pressure, inside diameter, restrictions and dynamic response",
+          "generic unsourced pneumatic sizing rules replaced by manufacturer/ISO-grounded workflow",
+          "hysteresis article deepened around switch point, reset, hysteresis, repeatability and test direction",
+          "unrelated ORP and differential-pressure-flow links removed from hysteresis page",
+          "technical references aligned to Festo, SMC, ISO 4414 and WIKA",
           "sitemap lastmod updated for both pages",
-          "no shared technical JavaScript or existing tool formula changed"
+          "no shared technical JavaScript or calculator formula changed"
         ]
       },
-      "batch_03_triage": {
+      "batch_04_triage": {
         "status": "ready",
-        "scope": "active blog cards only",
+        "scope": "remaining active blog cards only",
         "selection_limit": "1_to_3_pages",
         "signals": [
           "superficial or generic content",
