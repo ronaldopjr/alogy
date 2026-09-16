@@ -1,6 +1,6 @@
 # ALOGY — fila operacional atual
 
-> Versão 2026-09-16.40. Esta é a única fila executável. O histórico detalhado permanece no MD de continuidade e nos relatórios `adsense-recovery`.
+> Versão 2026-09-16.41. Esta é a única fila executável. O histórico detalhado permanece no MD de continuidade e nos relatórios `adsense-recovery`.
 
 ## Regras permanentes
 
@@ -73,11 +73,21 @@
 - GitHub Pages run `35104117692`: `success`; artefato `10450070411`; digest `sha256:603cff6dea4b608b9324cdc9ef024e384b4e79161b14ade9f0d07f19e96fdfda`.
 - Domínio validado diretamente: um `main`, um H1, um formulário, `#contato` dentro do conteúdo principal e sem overflow horizontal no desktop observado.
 
+### E08-ACCESSIBILITY-03 — `ferramentas.html` + auditoria de `calculadora-4-20ma.html`
+- Defeito reproduzido: 29 de 30 ações dos cartões tinham o mesmo nome acessível “Abrir ferramenta”; o título visual não integrava o nome do link.
+- Correção publicada em `6576c0e3ddb2a6e7935fb184a34a608ba86e43ab`: 30 `aria-label` contextuais e únicos, sem trocar destinos ou texto visual.
+- Pages `35111374317`: `success`; artefato `10452656669`; digest `sha256:7ba1b6e17bd307c7e95fc9ff63b6b394b0a838974d44fe78b725fe5e8513a482`.
+- Domínio: um `main`, um H1, 30 ações rotuladas e 30 nomes únicos; sem overflow horizontal no desktop observado.
+- A busca por “4-20” filtrou 4 cartões em 2 grupos e o foco após o campo foi visível.
+- `calculadora-4-20ma.html`: sem edição; controles rotulados, foco por teclado visível, FAQ acionável e teste 0–10 bar/12 mA = 50,00%/5,00 bar.
+- Fórmulas e JavaScript técnico permaneceram intactos.
+- Limite registrado: o navegador disponível não expôs viewport exato de 360/390 px nem zoom por atalho; essa validação visual permanece pendente e não foi declarada concluída.
+
 **PRÓXIMA AÇÃO EXECUTÁVEL**
-1. Continuar E08 em `ferramentas.html` e `calculadora-4-20ma.html`, reproduzindo navegação por teclado, foco, overflow e uso em 360/390 px e desktop antes de editar.
-2. A varredura estática inicial dessas páginas encontrou um `main`, um H1, navegações nomeadas e imagens com `alt`; isso não substitui a validação responsiva/funcional.
-3. Preservar fórmulas e JavaScript técnico; corrigir somente defeito reproduzido.
-4. `app.js` continua sem refatoração especulativa.
+1. Continuar E08 em `blog.html` e `industrial.html`, reproduzindo teclado, foco, semântica, overflow e desempenho observável antes de editar.
+2. Corrigir somente defeito reproduzido e manter o critério da superfície ativa.
+3. Preservar fórmulas, JavaScript técnico e `app.js`; não antecipar refatoração especulativa.
+4. Manter registrada a pendência visual exata de 360/390 px para `ferramentas.html` e `calculadora-4-20ma.html`; não tratá-la como concluída sem ambiente compatível.
 5. Não executar ainda E10-I1.
 
 ## E09–E10

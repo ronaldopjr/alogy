@@ -1,16 +1,16 @@
 {
   "schema_version": 3,
   "project": "ALOGY AdSense Recovery",
-  "plan_version": "2026-09-16.40",
+  "plan_version": "2026-09-16.41",
   "repository": "ronaldopjr/alogy",
   "base_branch": "main",
   "work_branch": "main",
-  "base_sha_verified": "b2865bbf569a42b811d16abf64fb5eac8722424d",
+  "base_sha_verified": "6576c0e3ddb2a6e7935fb184a34a608ba86e43ab",
   "verified_at": "2026-09-16",
   "last_completed_stage": "E07-safe",
   "stage_in_progress": "E08",
   "next_stage": "E08",
-  "next_action": "Continuar E08 na superficie ativa com validacao responsiva e por teclado de ferramentas.html e calculadora-4-20ma.html em 360/390 px, desktop e zoom quando suportado. A estrutura estatica atual dessas paginas tem um main, um H1, navegacoes nomeadas e imagens com alt; nao registrar defeito sem reproducao. Preservar formulas e JavaScript tecnico. Nao executar ainda E10-I1. E07 pessoal/cases permanece AGUARDA PROPRIETARIO.",
+  "next_action": "Continuar E08 somente na superfície ativa com amostra de blog.html e industrial.html para teclado, foco, semântica, overflow e desempenho observável; corrigir apenas defeito reproduzido. A validação visual em viewport exato de 360/390 px de ferramentas.html e calculadora-4-20ma.html permanece pendente porque o navegador disponível não expôs controle de viewport/zoom; não declarar essa parte concluída. Preservar fórmulas, JavaScript técnico e E10-I1 para o final.",
   "status": "in_progress",
   "preferred_editorial_batch": 1,
   "active_surface_rule": {
@@ -43,19 +43,19 @@
     "enabled": true,
     "target_branch": "main",
     "method": "validated-atomic-commit",
-    "batch_id": "E08-SEMANTICS-02",
-    "latest_site_change_commit": "b2865bbf569a42b811d16abf64fb5eac8722424d",
+    "batch_id": "E08-ACCESSIBILITY-03",
+    "latest_site_change_commit": "6576c0e3ddb2a6e7935fb184a34a608ba86e43ab",
     "services_navigation_commit": "2a047390f543d3a7a0469a3677f17c14fa0dcfeb",
     "canonical_inventory_initial_commit": "da2f61932a21c00741f418870601aafcb42deba6",
     "pages_deployment_success": true,
-    "latest_pages_workflow_run": 35104117692,
+    "latest_pages_workflow_run": 35111374317,
     "live_environment_url": "https://www.alogy.com.br/",
     "artifact_validation_complete": true,
-    "artifact_validation_method": "GitHub Pages run 35104117692 succeeded for b2865bb. Direct browser validation on the live home with a cache key found exactly one main, one H1 and one form; #contato remains inside main and observed desktop body width equals viewport width.",
+    "artifact_validation_method": "GitHub Pages run 35111374317 succeeded for 6576c0e. Live browser validation found one main, one H1, 30 card action links with 30 unique contextual accessible names, and no desktop horizontal overflow. Exact 360/390 px visual validation was not available and remains pending.",
     "require_clean_validated_diff": true,
     "allow_force": false,
-    "latest_pages_artifact_id": 10450070411,
-    "latest_pages_artifact_digest": "sha256:603cff6dea4b608b9324cdc9ef024e384b4e79161b14ade9f0d07f19e96fdfda"
+    "latest_pages_artifact_id": 10452656669,
+    "latest_pages_artifact_digest": "sha256:7ba1b6e17bd307c7e95fc9ff63b6b394b0a838974d44fe78b725fe5e8513a482"
   },
   "validation": {
     "e02_search": {
@@ -145,12 +145,46 @@
           "technical_javascript_changed": false,
           "formulas_changed": false,
           "content_copy_changed": false
+        },
+        {
+          "id": "E08-ACCESSIBILITY-03",
+          "page": "ferramentas.html",
+          "companion_audit_page": "calculadora-4-20ma.html",
+          "issue_reproduced": "29 of 30 tool-card actions exposed the same accessible name; the visual card heading was not included in the link name",
+          "content_commit": "6576c0e3ddb2a6e7935fb184a34a608ba86e43ab",
+          "content_blob": "c89e87bea3d48dcfafe11615af1d527d77f7453e",
+          "pages_workflow_run": 35111374317,
+          "pages_artifact_id": 10452656669,
+          "artifact_digest": "sha256:7ba1b6e17bd307c7e95fc9ff63b6b394b0a838974d44fe78b725fe5e8513a482",
+          "pages_conclusion": "success",
+          "live_validation": {
+            "main_count": 1,
+            "h1_count": 1,
+            "card_action_links": 30,
+            "contextual_accessible_names": 30,
+            "unique_accessible_names": 30,
+            "desktop_overflow_observed": false
+          },
+          "calculator_validation": {
+            "edited": false,
+            "main_count": 1,
+            "h1_count": 1,
+            "unlabeled_controls": 0,
+            "keyboard_focus_visible": true,
+            "faq_keyboard_operable": true,
+            "example": "0-10 bar at 12 mA returned 50.00% and 5.00 bar",
+            "desktop_overflow_observed": false
+          },
+          "exact_mobile_viewport_validation": "pending_environment_limit_no_viewport_or_zoom_control",
+          "technical_javascript_changed": false,
+          "formulas_changed": false,
+          "visible_copy_changed": false
         }
       ],
       "next_reproduced_issue": null,
       "next_audit_scope": [
-        "ferramentas.html",
-        "calculadora-4-20ma.html"
+        "blog.html",
+        "industrial.html"
       ],
       "static_sample_check": {
         "checked_at_commit": "b2865bbf569a42b811d16abf64fb5eac8722424d",
@@ -162,7 +196,11 @@
           "guia/index.html"
         ],
         "result": "each checked page has one main, one H1 and no img without alt; current static scan did not by itself reproduce another defect"
-      }
+      },
+      "mobile_exact_pending": [
+        "ferramentas.html",
+        "calculadora-4-20ma.html"
+      ]
     }
   },
   "commercial_truth": {
