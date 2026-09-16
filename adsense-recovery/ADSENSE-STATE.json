@@ -1,22 +1,23 @@
 {
   "schema_version": 3,
   "project": "ALOGY AdSense Recovery",
-  "plan_version": "2026-09-16.42",
+  "plan_version": "2026-09-16.43",
   "repository": "ronaldopjr/alogy",
   "base_branch": "main",
   "work_branch": "main",
-  "base_sha_verified": "a2636a9ad90ac157b417e1cb983f7f66d7b344df",
+  "base_sha_verified": "1029e884bbd09b0fe4c6a14f64b705df9a3a2e2b",
   "verified_at": "2026-09-16",
-  "last_completed_stage": "E10-I1",
+  "last_completed_stage": "E10 readiness checklist",
   "stage_in_progress": "E10",
   "next_stage": "E10",
-  "next_action": "Consolidar integralmente E06-INVENTORY-DELTA-01.csv a E06-INVENTORY-DELTA-18.csv no ADSENSE-INVENTORY.csv com validacao de paths, cabecalho e contagem; nunca substituir parcialmente. Depois preencher o checklist final E10. A conta AdSense/CMP autenticada continua AGUARDA PROPRIETARIO e nenhuma nova analise deve ser solicitada automaticamente.",
-  "status": "in_progress",
+  "next_action": "Tentar novamente a consolidacao integral de E06-INVENTORY-DELTA-01.csv a E06-INVENTORY-DELTA-18.csv no ADSENSE-INVENTORY.csv somente quando o CSV canonico completo puder ser lido. Validar cabecalho compativel, uma correspondencia canonica unica por path, contagem e ordem preservadas salvo as 18 linhas substituidas; nunca sobrescrever parcialmente. Depois reconciliar o checklist E10. Nao solicitar nova analise do AdSense. Conta/CMP autenticada e paginas manual-review permanecem dependencias do proprietario/especialista.",
+  "status": "in_progress_technical_blocker",
   "adsense": {
     "reported_status": "low_value_content",
     "account_checked_in_this_stage": false,
     "ready_to_request_review": false,
     "auto_request_review": false,
+    "review_request_sent": false,
     "publisher_id_observed_in_source": "pub-5586837114309500",
     "authenticated_cmp_checked": false
   },
@@ -25,7 +26,7 @@
     "target_branch": "main",
     "method": "validated-atomic-commit",
     "latest_site_change_commit": "de07a283b54da6d04332475e562bb0d06cc1f4c9",
-    "latest_report_commit": "a2636a9ad90ac157b417e1cb983f7f66d7b344df",
+    "latest_report_commit": "1029e884bbd09b0fe4c6a14f64b705df9a3a2e2b",
     "pages_deployment_success": true,
     "latest_pages_workflow_run": 35119165803,
     "latest_pages_artifact_id": 10456032386,
@@ -48,6 +49,12 @@
     "e06_acervo": {
       "status": "completed_for_active_surface_safe_work",
       "historical_deltas_pending_safe_consolidation": 18,
+      "inventory_consolidation_attempt": {
+        "status": "blocked_before_write",
+        "canonical_inventory_written": false,
+        "deltas_present": 18,
+        "reason": "O runtime nao resolveu github.com/raw.githubusercontent.com por DNS e o conector GitHub exibiu o CSV canonico de aproximadamente 164583 bytes truncado; sem leitura integral nao e possivel fazer merge byte-safe nem substituir o arquivo com seguranca."
+      },
       "manual_review_pages": [
         "blog-inspecao-instrumentos-area-classificada.html",
         "blog-ot-cybersecurity-instrumentacao.html"
@@ -63,10 +70,8 @@
         ["ferramentas.html", "6576c0e3ddb2a6e7935fb184a34a608ba86e43ab", 35111374317],
         ["blog.html", "a8f8538e648b5378e30a44bd26fcb9befeff6e35", 35118075529]
       ],
-      "blog_accessibility_fix": "38 card links now receive contextual aria-label from each h3 at runtime; visual copy and href unchanged",
-      "industrial_html_edited": false,
       "exact_360_390_live_claimed": false,
-      "environment_limit": "headless Chromium and curl could not resolve www.alogy.com.br in this runtime"
+      "environment_limit": "headless Chromium e curl nao resolveram www.alogy.com.br neste runtime"
     },
     "e09": {
       "status": "safe_public_source_checks_completed_authenticated_account_pending",
@@ -81,14 +86,22 @@
     },
     "e10_i1": {
       "status": "completed_published_artifact_validated",
-      "pre_fix_html_with_breakpoint_image_switch": 1,
-      "page": "index.html",
-      "removed_mobile_sources": ["banner1_mobile.webp", "banner3_mobile.webp"],
       "content_commit": "de07a283b54da6d04332475e562bb0d06cc1f4c9",
-      "report": "adsense-recovery/E10-I1-RESPONSIVE-ASSET-CONSISTENCY.md",
       "pages_workflow_run": 35119165803,
       "pages_artifact_id": 10456032386,
       "final_html_with_breakpoint_image_switch": 0
+    },
+    "e10_final_readiness": {
+      "status": "not_ready",
+      "report": "adsense-recovery/E10-FINAL-READINESS-CHECKLIST.md",
+      "report_commit": "1029e884bbd09b0fe4c6a14f64b705df9a3a2e2b",
+      "review_request_sent": false,
+      "blockers": [
+        "consolidacao integral dos 18 deltas E06 no inventario canonico bloqueada tecnicamente antes de qualquer escrita",
+        "estado autenticado da conta AdSense/CMP",
+        "duas paginas manual-review/P0 exigem especialista",
+        "credenciais/cases/C01-C03 dependem de fatos confirmados pelo proprietario"
+      ]
     }
   },
   "constraints": {
@@ -99,8 +112,9 @@
     "automatic_adsense_review_request": false
   },
   "owner_or_manual_dependencies": [
-    "estado atual da conta AdSense, disponibilidade de reanalise e CMP autenticada",
+    "estado atual da conta AdSense, verificacao do site, disponibilidade de reanalise e CMP autenticada",
     "autoria pessoal e credenciais somente se confirmadas e autorizadas",
+    "confirmacao de Desde 2012 quando usado como evidencia de experiencia",
     "evidencias e autorizacao dos cases antes de ampliar alegacoes",
     "dados reais de capacidade comercial C01-C03",
     "revisao especializada das duas paginas manual-review/P0"
