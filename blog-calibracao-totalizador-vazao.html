@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Calibração de Totalizador de Vazão: erro e K-factor | ALOGY</title>
-  <meta name="description" content="Veja como comparar volume indicado com referência e estimar fator de correção para totalizadores de vazão." />
+  <meta name="description" content="Entenda como conferir totalizadores de vazão por pulsos, K-factor, resolução, sincronismo, erro e diagnóstico da cadeia." />
   <meta name="robots" content="index,follow" />
   <meta name="theme-color" content="#2C78B9" />
   <link rel="canonical" href="https://www.alogy.com.br/blog-calibracao-totalizador-vazao.html" />
@@ -27,7 +27,7 @@
   <meta property="og:image" content="https://www.alogy.com.br/favicon-512x512.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="https://www.alogy.com.br/favicon-512x512.png" />
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Calibração de Totalizador de Vazão: erro e K-factor","description":"Veja como comparar volume indicado com referência e estimar fator de correção para totalizadores de vazão.","datePublished":"2026-06-29","dateModified":"2026-07-17","author":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"},"publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/","logo":{"@type":"ImageObject","url":"https://www.alogy.com.br/logo-alogy.webp"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://www.alogy.com.br/blog-calibracao-totalizador-vazao.html"},"inLanguage":"pt-BR","image":"https://www.alogy.com.br/favicon-512x512.png"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Calibração de Totalizador de Vazão: erro e K-factor","description":"Conferência de totalizadores de vazão por pulsos, K-factor, resolução, sincronismo e diagnóstico.","datePublished":"2026-06-29","dateModified":"2026-09-16","author":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"},"publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/","logo":{"@type":"ImageObject","url":"https://www.alogy.com.br/logo-alogy.webp"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://www.alogy.com.br/blog-calibracao-totalizador-vazao.html"},"inLanguage":"pt-BR","image":"https://www.alogy.com.br/favicon-512x512.png"}</script>
   <style>
     .mini-help{color:var(--muted);font-size:.92rem;line-height:1.55;margin-top:8px}
     .faq details{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:14px;padding:14px;margin-top:10px;box-shadow:0 6px 16px rgba(0,0,0,.04)}
@@ -48,72 +48,90 @@
     <nav class="desktop" aria-label="Menu principal"><div class="container navlinks"><a href="/">Início</a><a href="industrial.html">Serviços</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></div></nav>
     <nav class="mobile" aria-label="Menu mobile"><a href="/">Início</a><a href="industrial.html">Serviços</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></nav>
   </header>
-  <div class="social-floating" aria-label="Redes sociais"><a href="https://www.linkedin.com/company/alogyengenharia" class="linkedin" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a><a href="https://www.instagram.com/alogyengenharia" class="instagram" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="https://www.facebook.com/alogyengenharia" class="facebook" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><a href="https://www.youtube.com/@alogyengenharia" class="youtube" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a><a href="https://hotmart.com/pt-br/club/alogyengenharia" class="hotmart" target="_blank" rel="noopener noreferrer" aria-label="Hotmart">H</a><a href="https://www.tiktok.com/@alogyengenharia" class="tiktok" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fab fa-tiktok"></i></a></div>
+  <div class="social-floating" aria-label="Redes sociais"><a href="https://www.linkedin.com/company/alogyengenharia" class="linkedin" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a><a href="https://www.instagram.com/alogyengenharia" class="instagram" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="https://www.facebook.com/alogyengenharia" class="facebook" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><a href="https://www.youtube.com/@alogyengenharia" class="youtube" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a><a href="https://www.tiktok.com/@alogyengenharia" class="tiktok" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fab fa-tiktok"></i></a></div>
   <div class="fab-wrap" aria-label="Ações rápidas"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1%21%20Vim%20pelas%20ferramentas%20da%20ALOGY.%20Gostaria%20de%20atendimento." target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
   <main class="container" style="margin-top:22px">
-    <article class="blog-post"><h1>Calibração de Totalizador de Vazão</h1>
-<p>Totalização é a acumulação da quantidade que atravessa o medidor durante um intervalo. Ela não deve ser confundida com a vazão instantânea: um indicador pode apresentar taxa correta e ainda perder pulsos, aplicar K-factor incorreto ou acumular em unidade diferente.</p>
+    <article class="blog-post">
+<h1>Calibração de Totalizador de Vazão</h1>
+<p>Totalização é a acumulação da quantidade que atravessa o medidor durante um intervalo. Ela não é sinônimo de vazão instantânea: a taxa pode parecer correta enquanto pulsos são perdidos, o K-factor está em outra unidade ou o sistema arredonda cada incremento. A conferência precisa seguir toda a cadeia, do sensor até o valor acumulado exibido.</p>
 
-<h2>O que precisa ser comparado</h2>
+<h2>Mapeie a cadeia antes de comparar números</h2>
+<p>Identifique onde o total é calculado: no transmissor, em uma entrada rápida, no CLP, no supervisório ou em mais de um ponto. Depois registre o tipo de sinal, a unidade, o K-factor configurado, o valor por pulso, o limite de frequência, a largura mínima de pulso, o filtro de entrada e a regra de reset ou rollover.</p>
 <ul>
-  <li><strong>Volume de referência:</strong> quantidade determinada pelo padrão ou método de calibração.</li>
-  <li><strong>Volume indicado:</strong> total acumulado no instrumento ou sistema.</li>
-  <li><strong>Pulsos contados:</strong> quantidade recebida no totalizador durante o ensaio.</li>
-  <li><strong>K-factor:</strong> pulsos por unidade de volume, com unidade explicitamente registrada.</li>
+<li><strong>Referência física:</strong> volume ou massa determinado pelo método de referência.</li>
+<li><strong>Contagem elétrica:</strong> pulsos realmente gerados e recebidos.</li>
+<li><strong>Conversão:</strong> K-factor ou valor por pulso aplicado no equipamento.</li>
+<li><strong>Apresentação:</strong> unidade, casas decimais, arredondamento e total inicial.</li>
 </ul>
-<p>Se o K-factor estiver em pulsos por litro e o sistema totalizar metros cúbicos, a conversão deve ser feita antes da comparação.</p>
+<p>Comparar apenas a tela final não revela em qual etapa ocorreu a diferença.</p>
 
-<h2>Equações básicas</h2>
-<p>Quando o fator é expresso em pulsos por unidade de volume:</p>
-<p><strong>volume pelos pulsos = pulsos / K-factor</strong></p>
-<p><strong>erro (%) = (volume indicado − volume de referência) / volume de referência × 100</strong></p>
-<p>Uma estimativa de ajuste do fator, quando o procedimento e o fabricante permitem, é:</p>
-<p><strong>K novo = K atual × volume indicado / volume de referência</strong></p>
-<p>O novo fator não deve ser gravado automaticamente: repetibilidade, unidade, localização do fator e cadeia de pulsos precisam ser confirmadas primeiro.</p>
+<h2>K-factor, valor por pulso e equações</h2>
+<p>Quando o K-factor é expresso em pulsos por unidade de volume:</p>
+<p><strong>Volume calculado = número de pulsos / K-factor</strong></p>
+<p>O valor de cada pulso é o inverso:</p>
+<p><strong>Volume por pulso = 1 / K-factor</strong></p>
+<p>Se 50.000 pulsos forem contados com K = 1.000 pulsos/L, o total esperado será 50 L. Caso a referência física determine 49,8 L e o indicador mostre 50,0 L, usando <em>indicação − referência</em>, o erro é +0,2 L ou +0,402% da referência.</p>
+<p>Uma estimativa de correção pode ser calculada somente depois de confirmar repetibilidade e convenção do equipamento. Para um sistema que divide pulsos por K, uma estimativa é:</p>
+<p><strong>K novo = K atual × (indicação / referência)</strong></p>
+<p>No exemplo, K novo ≈ 1.000 × 50,0 / 49,8 = 1.004,016 pulsos/L. Alguns dispositivos armazenam o inverso, usam unidade diferente ou aplicam o fator em outro estágio; por isso a equação não deve ser gravada sem conferir o manual e o local exato da configuração.</p>
 
-<h2>Exemplo com 50.000 pulsos</h2>
-<p>Com K-factor de 1.000 pulsos/L, 50.000 pulsos representam 50 L. Se a referência for 49,8 L e o totalizador indicar 50,0 L, o erro de indicação é aproximadamente +0,402%. A estimativa do novo K-factor é 1.004,016 pulsos/L.</p>
-<p>Antes de ajustar, repita o ensaio. Uma diferença variável entre ciclos indica problema de repetibilidade, contagem ou condição de processo, não apenas um fator fixo incorreto.</p>
+<h2>Defina uma quantidade de teste que revele o erro</h2>
+<p>A resolução elementar de um totalizador por pulsos é 1/K. Com K = 1.000 pulsos/L, um pulso representa 0,001 L. A incerteza de uma contagem de aproximadamente um pulso pesa muito mais em um teste de 10 pulsos do que em um de 10.000 pulsos. Escolha uma quantidade de teste compatível com a resolução, a repetibilidade e a tolerância desejada.</p>
+<p>Sincronize início e fim do padrão e do totalizador. Registre o total inicial em vez de presumir zero. Em sistemas com comunicação ou supervisório, considere atrasos de atualização e confirme se o valor exibido é o mesmo acumulador usado internamente.</p>
 
-<h2>Falhas que imitam erro de K-factor</h2>
-<ul>
-  <li>Perda de pulsos por largura insuficiente, frequência acima do limite ou entrada mal configurada.</li>
-  <li>Tipo elétrico incompatível entre saída e entrada: contato, coletor aberto, tensão ou frequência.</li>
-  <li>Totalização iniciada ou encerrada fora da mesma janela do padrão.</li>
-  <li>Unidades diferentes entre medidor, CLP, supervisório e relatório.</li>
-  <li>Reset, rollover, filtro ou fator adicional aplicado em mais de um ponto.</li>
-  <li>Compensação de densidade ou temperatura misturando volume, volume normalizado e massa.</li>
-</ul>
-
-<h2>Roteiro de verificação</h2>
+<h2>Procedimento em etapas</h2>
 <ol>
-  <li>Registre leituras iniciais e unidades de todos os totalizadores.</li>
-  <li>Confirme origem, tipo elétrico e unidade do pulso.</li>
-  <li>Execute quantidade suficiente para reduzir influência da resolução.</li>
-  <li>Registre pulsos, volume de referência e volume indicado no mesmo intervalo.</li>
-  <li>Repita o ensaio antes de propor correção.</li>
+<li><strong>Documente a configuração:</strong> unidade, K-factor, escala, frequência máxima, filtro, largura de pulso e total inicial.</li>
+<li><strong>Teste a entrada:</strong> quando seguro, injete uma quantidade conhecida de pulsos e compare a contagem recebida.</li>
+<li><strong>Teste a conversão:</strong> verifique se a contagem é convertida na unidade correta, sem fator duplicado.</li>
+<li><strong>Teste com referência física:</strong> execute quantidade suficiente para a resolução do sistema e sincronize as janelas.</li>
+<li><strong>Repita:</strong> faça séries independentes antes de concluir que existe erro sistemático.</li>
+<li><strong>Restaure:</strong> remova forças e simuladores, recoloque parâmetros autorizados e confirme a retomada do total.</li>
 </ol>
+<p>Preserve os resultados <em>as-found</em> antes de qualquer alteração. Um ajuste que melhora um único ensaio pode piorar a rastreabilidade do diagnóstico se o valor original não estiver registrado.</p>
 
-<h2>Referência técnica</h2>
-<p>A <a href="https://www.endress.com/en/support-overview/learning-center/flow-measuring-principle-vortex" target="_blank" rel="noopener noreferrer">Endress+Hauser</a> descreve o K-factor como número de pulsos por unidade de volume no contexto de medidores vortex. A configuração efetiva deve seguir a documentação do medidor e do totalizador utilizados.</p>
+<h2>Diagnóstico por padrão de falha</h2>
+<table>
+<thead><tr><th>Sintoma</th><th>Causa provável</th><th>Verificação objetiva</th></tr></thead>
+<tbody>
+<tr><td>Erro proporcional e repetível</td><td>K-factor ou unidade incorreta</td><td>Compare K configurado, unidade do sensor e local da conversão</td></tr>
+<tr><td>Diferença cresce com a frequência</td><td>Perda de pulsos ou filtro excessivo</td><td>Teste frequência, largura de pulso e capacidade da entrada</td></tr>
+<tr><td>Erro aproximadamente constante por ensaio</td><td>Sincronismo, total inicial ou pulso de borda</td><td>Registre início/fim e observe habilitação da contagem</td></tr>
+<tr><td>Valor dobra ou divide por dez</td><td>Escala ou unidade aplicada duas vezes</td><td>Revise cada estágio de conversão</td></tr>
+<tr><td>Resultados dispersos</td><td>Referência, processo instável ou contagem intermitente</td><td>Repita ensaios e compare contagem elétrica com referência física</td></tr>
+</tbody>
+</table>
 
-<h2>Ferramenta e conteúdos relacionados</h2>
-<p>A ferramenta relacionada calcula volume por pulsos, erro e uma estimativa de fator corrigido a partir dos dados informados.</p>
+<h2>Pulso elétrico também faz parte da medição</h2>
+<p>Confirme se a saída é contato, transistor, coletor aberto, tensão ativa ou outro padrão previsto. Polaridade, amplitude, alimentação, aterramento e impedância precisam ser compatíveis com a entrada. Um osciloscópio ou contador apropriado pode mostrar se a largura do pulso e a frequência chegam ao receptor, mas a conexão deve respeitar isolamento, categoria e segurança do circuito.</p>
+<p>Se o transmissor totaliza corretamente e o CLP não, concentre a análise na interface elétrica e na entrada. Se ambos recebem a mesma contagem e divergem no total, procure unidade, K-factor, arredondamento ou lógica.</p>
+
+<h2>Vazão instantânea e total devem ser coerentes</h2>
+<p>Para uma vazão aproximadamente estável, o incremento esperado do total é vazão multiplicada pelo intervalo, com unidades consistentes. Essa comparação é uma verificação de coerência, não substitui o padrão físico. Variações rápidas, tempo de amostragem, filtros e integração discreta podem explicar pequenas diferenças entre taxa e total.</p>
+
+<h2>Critério de aceitação e registro</h2>
+<p>Defina previamente tolerância, quantidade mínima, número de repetições e unidade de comparação. Registre referência, indicação, erro absoluto, erro relativo, contagem, configuração e condições do teste. Em medição fiscal, de qualidade ou de processo crítico, qualquer mudança exige o procedimento e a autorização aplicáveis.</p>
+
+<h2>Ferramenta relacionada</h2>
+<p>A ferramenta calcula volume por pulsos, erro e uma estimativa de fator corrigido. Use-a para conferir a aritmética com a convenção correta do equipamento; não grave parâmetros com base apenas no resultado calculado.</p>
 <div class="calc-actions">
-  <a class="mini-btn dark" href="calculadora-calibracao-totalizador-vazao.html"><i class="fas fa-calculator"></i> Abrir ferramenta relacionada</a>
-  <a class="mini-btn" href="ferramentas-instrumentacao-industrial.html"><i class="fas fa-toolbox"></i> Central de Instrumentação</a>
+<a class="mini-btn dark" href="calculadora-calibracao-totalizador-vazao.html"><i class="fas fa-calculator"></i> Abrir ferramenta relacionada</a>
+<a class="mini-btn" href="ferramentas.html"><i class="fas fa-toolbox"></i> Central de Ferramentas</a>
 </div>
-<ul class="mini-help" style="margin-top:12px">
-  <li><a href="calculadora-calibracao-medidor-vazao-coriolis.html">Calculadora de Calibração de Medidor de Vazão Coriolis</a> <span class="mini-help">(ferramenta)</span></li>
-  <li><a href="calculadora-calibracao-medidor-vazao-magnetico.html">Calculadora de Calibração de Medidor de Vazão Magnético</a> <span class="mini-help">(ferramenta)</span></li>
-  <li><a href="calculadora-calibracao-medidor-vazao-ultrassonico.html">Calculadora de Medidor Ultrassônico</a> <span class="mini-help">(ferramenta)</span></li>
-  <li><a href="calculadora-calibracao-transmissor-dp-vazao.html">Calculadora de Calibração de Transmissor DP de Vazão</a> <span class="mini-help">(ferramenta)</span></li>
-  <li><a href="blog-calibracao-transmissor-dp-vazao.html">Calibração de Transmissor DP de Vazão com Raiz Quadrada</a> <span class="mini-help">(artigo)</span></li>
-  <li><a href="blog-k-factor-vazao-pulsos.html">K-Factor em Medidores de Vazão por Pulsos</a> <span class="mini-help">(artigo)</span></li>
-</ul>
 
-<h2>Aviso técnico</h2>
-<p>Este conteúdo é informativo e orientativo. Não substitui método de calibração, padrão rastreável, certificado, manual do fabricante, avaliação das condições de processo, projeto, laudo, ART ou validação por profissional habilitado. Não altere K-factor de medição fiscal, qualidade ou processo crítico sem o procedimento aplicável.</p></article>
+<h2>Perguntas frequentes</h2>
+<details><summary>Taxa de vazão correta garante total correto?</summary><p>Não. O total pode divergir por perda de pulsos, unidade, K-factor, arredondamento, reset ou lógica de integração.</p></details>
+<details><summary>Posso corrigir o K-factor com um único ensaio?</summary><p>Não é uma boa prática. Primeiro confirme repetibilidade, referência, sincronismo, unidade e convenção do fator; depois siga o procedimento autorizado.</p></details>
+<details><summary>Por que o erro aumenta quando a vazão aumenta?</summary><p>Isso pode indicar limite de frequência, pulso estreito demais, filtro ou entrada inadequada. Compare a forma elétrica recebida e a especificação dos dois dispositivos.</p></details>
+<details><summary>Qual total mínimo devo usar no teste?</summary><p>Não há valor universal. Ele deve tornar a resolução por pulso pequena diante da tolerância e ser compatível com a referência e o processo.</p></details>
+
+<h2>Referências primárias</h2>
+<ul>
+<li><a href="https://portal.endress.com/dla/5000000/0995/000/00/TI064DEN.pdf" target="_blank" rel="noopener noreferrer">Endress+Hauser — Proline Prowirl 72F/72W/73F/73W, Technical Information</a>.</li>
+<li><a href="https://jcgm.bipm.org/vim/en/" target="_blank" rel="noopener noreferrer">JCGM/BIPM — Vocabulário Internacional de Metrologia (VIM)</a>.</li>
+</ul>
+<p><strong>Aviso técnico:</strong> este conteúdo é informativo e orientativo. Não substitui método de calibração, referência adequada, certificado, manual do fabricante, avaliação das condições de processo, projeto, laudo, ART ou validação por profissional habilitado. Não altere K-factor de medição fiscal, qualidade ou processo crítico sem o procedimento aplicável.</p>
+</article>
     <section class="cta-bar"><h2>Precisa de apoio técnico?</h2><p>A ALOGY Engenharia apoia projetos, manutenção, instrumentação, automação e melhoria de processos industriais.</p><a class="btn" href="/#contato"><i class="fas fa-envelope"></i> Falar com a ALOGY</a></section>
   </main>
   <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
