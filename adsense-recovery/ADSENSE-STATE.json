@@ -1,233 +1,108 @@
 {
   "schema_version": 3,
   "project": "ALOGY AdSense Recovery",
-  "plan_version": "2026-09-16.41",
+  "plan_version": "2026-09-16.42",
   "repository": "ronaldopjr/alogy",
   "base_branch": "main",
   "work_branch": "main",
-  "base_sha_verified": "6576c0e3ddb2a6e7935fb184a34a608ba86e43ab",
+  "base_sha_verified": "a2636a9ad90ac157b417e1cb983f7f66d7b344df",
   "verified_at": "2026-09-16",
-  "last_completed_stage": "E07-safe",
-  "stage_in_progress": "E08",
-  "next_stage": "E08",
-  "next_action": "Continuar E08 somente na superfície ativa com amostra de blog.html e industrial.html para teclado, foco, semântica, overflow e desempenho observável; corrigir apenas defeito reproduzido. A validação visual em viewport exato de 360/390 px de ferramentas.html e calculadora-4-20ma.html permanece pendente porque o navegador disponível não expôs controle de viewport/zoom; não declarar essa parte concluída. Preservar fórmulas, JavaScript técnico e E10-I1 para o final.",
+  "last_completed_stage": "E10-I1",
+  "stage_in_progress": "E10",
+  "next_stage": "E10",
+  "next_action": "Consolidar integralmente E06-INVENTORY-DELTA-01.csv a E06-INVENTORY-DELTA-18.csv no ADSENSE-INVENTORY.csv com validacao de paths, cabecalho e contagem; nunca substituir parcialmente. Depois preencher o checklist final E10. A conta AdSense/CMP autenticada continua AGUARDA PROPRIETARIO e nenhuma nova analise deve ser solicitada automaticamente.",
   "status": "in_progress",
-  "preferred_editorial_batch": 1,
-  "active_surface_rule": {
-    "articles": "automaticamente elegiveis somente quando link/card ativo em blog.html",
-    "tools": "automaticamente elegiveis somente quando link/card ativo em ferramentas.html",
-    "institutional": "elegivel quando exposta na navegacao institucional vigente",
-    "insufficient_signals": [
-      "arquivo existente",
-      "HTTP 200",
-      "index,follow",
-      "sitemap",
-      "mapa de capas JavaScript",
-      "link residual",
-      "inventario historico"
-    ],
-    "explicitly_out_of_automatic_scope": [
-      "blog-ia-na-industria.html",
-      "ferramentas-instrumentacao-industrial.html",
-      "ferramentas-calibracao-instrumentacao.html",
-      "ferramentas-processo-vazao-nivel.html"
-    ]
-  },
   "adsense": {
     "reported_status": "low_value_content",
     "account_checked_in_this_stage": false,
     "ready_to_request_review": false,
-    "auto_request_review": false
+    "auto_request_review": false,
+    "publisher_id_observed_in_source": "pub-5586837114309500",
+    "authenticated_cmp_checked": false
   },
   "publication": {
     "enabled": true,
     "target_branch": "main",
     "method": "validated-atomic-commit",
-    "batch_id": "E08-ACCESSIBILITY-03",
-    "latest_site_change_commit": "6576c0e3ddb2a6e7935fb184a34a608ba86e43ab",
-    "services_navigation_commit": "2a047390f543d3a7a0469a3677f17c14fa0dcfeb",
-    "canonical_inventory_initial_commit": "da2f61932a21c00741f418870601aafcb42deba6",
+    "latest_site_change_commit": "de07a283b54da6d04332475e562bb0d06cc1f4c9",
+    "latest_report_commit": "a2636a9ad90ac157b417e1cb983f7f66d7b344df",
     "pages_deployment_success": true,
-    "latest_pages_workflow_run": 35111374317,
+    "latest_pages_workflow_run": 35119165803,
+    "latest_pages_artifact_id": 10456032386,
+    "latest_pages_artifact_digest": "sha256:ca58f549903678f2db5db8903d7db75bca67dd45219a509dc5548871e3f295fd",
     "live_environment_url": "https://www.alogy.com.br/",
-    "artifact_validation_complete": true,
-    "artifact_validation_method": "GitHub Pages run 35111374317 succeeded for 6576c0e. Live browser validation found one main, one H1, 30 card action links with 30 unique contextual accessible names, and no desktop horizontal overflow. Exact 360/390 px visual validation was not available and remains pending.",
-    "require_clean_validated_diff": true,
-    "allow_force": false,
-    "latest_pages_artifact_id": 10452656669,
-    "latest_pages_artifact_digest": "sha256:7ba1b6e17bd307c7e95fc9ff63b6b394b0a838974d44fe78b725fe5e8513a482"
+    "allow_force": false
   },
   "validation": {
-    "e02_search": {
-      "status": "passed"
-    },
-    "e03_commercial_truth": {
-      "status": "passed"
-    },
+    "e02_search": "passed",
+    "e03_commercial_truth": "passed",
     "e04_inventory": {
       "status": "completed_for_editorial_work",
       "source_html_total": 271,
-      "editorial_or_route_html": 270,
-      "google_verification_html": 1,
       "public_indexable": 221,
       "public_noindex": 49,
       "sitemap_unique_urls": 221,
       "canonical_inventory_initial_commit": "da2f61932a21c00741f418870601aafcb42deba6"
     },
-    "e05_pilot": {
-      "status": "passed_completed"
-    },
+    "e05_pilot": "passed_completed",
     "e06_acervo": {
       "status": "completed_for_active_surface_safe_work",
       "historical_deltas_pending_safe_consolidation": 18,
-      "active_html_destinations_reconciled": 77,
-      "active_improve_p0_high_reconciled": 12,
-      "active_pages_already_treated": 8,
       "manual_review_pages": [
         "blog-inspecao-instrumentos-area-classificada.html",
         "blog-ot-cybersecurity-instrumentacao.html"
       ],
-      "out_of_scope_batch_reverted": {
-        "path": "ferramentas-processo-vazao-nivel.html",
-        "bad_commit": "26c92561da21ef8b97c167d80be69f77d41d4db5",
-        "revert_commit": "dd4cac5b3f01a360770c788bf3a1e50117be9512",
-        "delta_19_adopted": false
-      }
+      "e06_19_reverted": "dd4cac5b3f01a360770c788bf3a1e50117be9512"
     },
-    "e07_transparency": {
-      "status": "safe_organizational_scope_completed_owner_facts_pending",
-      "page": "sobre.html",
-      "content_commit": "dd49ac0e35709adbaa31d06dfeda5425124143b9",
-      "pages_workflow_run": 35099511862,
-      "pages_artifact_id": 10447711964,
-      "organizational_editorial_responsibility_added": true,
-      "personal_author_claim_added": false,
-      "credentials_invented": false,
-      "cases_changed": false
+    "e07_transparency": "safe_organizational_scope_completed_owner_facts_pending",
+    "e08": {
+      "status": "safe_automatable_checks_completed_exact_mobile_live_environment_limited",
+      "published_batches": [
+        ["sobre.html", "29671d4dc825c8c406d5974b15d3300f2f96d7cc", 35100866427],
+        ["index.html", "b2865bbf569a42b811d16abf64fb5eac8722424d", 35104117692],
+        ["ferramentas.html", "6576c0e3ddb2a6e7935fb184a34a608ba86e43ab", 35111374317],
+        ["blog.html", "a8f8538e648b5378e30a44bd26fcb9befeff6e35", 35118075529]
+      ],
+      "blog_accessibility_fix": "38 card links now receive contextual aria-label from each h3 at runtime; visual copy and href unchanged",
+      "industrial_html_edited": false,
+      "exact_360_390_live_claimed": false,
+      "environment_limit": "headless Chromium and curl could not resolve www.alogy.com.br in this runtime"
     },
-    "e08_mobile_accessibility_performance": {
-      "status": "in_progress",
-      "batches": [
-        {
-          "id": "E08-ACCESSIBILITY-01",
-          "page": "sobre.html",
-          "issue_reproduced": "desktop/mobile nav landmarks and icon-only social links lacked accessible names",
-          "content_commit": "29671d4dc825c8c406d5974b15d3300f2f96d7cc",
-          "pages_workflow_run": 35100866427,
-          "pages_conclusion": "success",
-          "technical_javascript_changed": false,
-          "formulas_changed": false,
-          "live_byte_equivalence_claimed": false
-        },
-        {
-          "id": "E08-SEMANTICS-02",
-          "page": "index.html",
-          "issue_reproduced": "home contained two main landmarks",
-          "content_commit": "b2865bbf569a42b811d16abf64fb5eac8722424d",
-          "content_blob": "b7a4755755cfc188b8930fc46e4722035b06aa7f",
-          "pages_workflow_run": 35104117692,
-          "pages_artifact_id": 10450070411,
-          "artifact_digest": "sha256:603cff6dea4b608b9324cdc9ef024e384b4e79161b14ade9f0d07f19e96fdfda",
-          "pages_conclusion": "success",
-          "source_validation": {
-            "main_before": 2,
-            "main_after": 1,
-            "h1_preserved": true,
-            "form_preserved": true
-          },
-          "live_validation": {
-            "main_count": 1,
-            "h1_count": 1,
-            "form_count": 1,
-            "contact_inside_main": true,
-            "desktop_overflow_observed": false
-          },
-          "technical_javascript_changed": false,
-          "formulas_changed": false,
-          "content_copy_changed": false
-        },
-        {
-          "id": "E08-ACCESSIBILITY-03",
-          "page": "ferramentas.html",
-          "companion_audit_page": "calculadora-4-20ma.html",
-          "issue_reproduced": "29 of 30 tool-card actions exposed the same accessible name; the visual card heading was not included in the link name",
-          "content_commit": "6576c0e3ddb2a6e7935fb184a34a608ba86e43ab",
-          "content_blob": "c89e87bea3d48dcfafe11615af1d527d77f7453e",
-          "pages_workflow_run": 35111374317,
-          "pages_artifact_id": 10452656669,
-          "artifact_digest": "sha256:7ba1b6e17bd307c7e95fc9ff63b6b394b0a838974d44fe78b725fe5e8513a482",
-          "pages_conclusion": "success",
-          "live_validation": {
-            "main_count": 1,
-            "h1_count": 1,
-            "card_action_links": 30,
-            "contextual_accessible_names": 30,
-            "unique_accessible_names": 30,
-            "desktop_overflow_observed": false
-          },
-          "calculator_validation": {
-            "edited": false,
-            "main_count": 1,
-            "h1_count": 1,
-            "unlabeled_controls": 0,
-            "keyboard_focus_visible": true,
-            "faq_keyboard_operable": true,
-            "example": "0-10 bar at 12 mA returned 50.00% and 5.00 bar",
-            "desktop_overflow_observed": false
-          },
-          "exact_mobile_viewport_validation": "pending_environment_limit_no_viewport_or_zoom_control",
-          "technical_javascript_changed": false,
-          "formulas_changed": false,
-          "visible_copy_changed": false
-        }
-      ],
-      "next_reproduced_issue": null,
-      "next_audit_scope": [
-        "blog.html",
-        "industrial.html"
-      ],
-      "static_sample_check": {
-        "checked_at_commit": "b2865bbf569a42b811d16abf64fb5eac8722424d",
-        "pages": [
-          "ferramentas.html",
-          "industrial.html",
-          "calculadora-4-20ma.html",
-          "blog-instrumentacao-industrial.html",
-          "guia/index.html"
-        ],
-        "result": "each checked page has one main, one H1 and no img without alt; current static scan did not by itself reproduce another defect"
-      },
-      "mobile_exact_pending": [
-        "ferramentas.html",
-        "calculadora-4-20ma.html"
-      ]
+    "e09": {
+      "status": "safe_public_source_checks_completed_authenticated_account_pending",
+      "ads_txt": "google.com, pub-5586837114309500, DIRECT, f08c47fec0942fa0",
+      "robots": "Allow / and sitemap https://www.alogy.com.br/sitemap.xml",
+      "publisher_consistent_with_home_and_adsense_loader": true,
+      "privacy_policy_checked": true,
+      "legal_page_direct_adsense_loader_observed": false,
+      "manual_ad_units_enabled_in_app_js": false,
+      "cmp_proven_by_site_code": false,
+      "authenticated_account_checked": false
+    },
+    "e10_i1": {
+      "status": "completed_published_artifact_validated",
+      "pre_fix_html_with_breakpoint_image_switch": 1,
+      "page": "index.html",
+      "removed_mobile_sources": ["banner1_mobile.webp", "banner3_mobile.webp"],
+      "content_commit": "de07a283b54da6d04332475e562bb0d06cc1f4c9",
+      "report": "adsense-recovery/E10-I1-RESPONSIVE-ASSET-CONSISTENCY.md",
+      "pages_workflow_run": 35119165803,
+      "pages_artifact_id": 10456032386,
+      "final_html_with_breakpoint_image_switch": 0
     }
-  },
-  "commercial_truth": {
-    "confirmed_owner_fact": "A ALOGY ainda nao possui padrao calibrado confirmado para sustentar emissao propria de laudo de calibracao.",
-    "safe_positioning": "Avaliacao, inspecao, manutencao, configuracao e conferencia funcional sob escopo; calibracao, ensaio ou documentacao especifica somente quando recursos e parceiros forem confirmados na proposta.",
-    "navigation_rule": "Usar uma unica entrada publica Servicos apontando para industrial.html. Nao restaurar separacao entre servicos industriais e residenciais."
   },
   "constraints": {
     "mass_pruning_allowed": false,
-    "mass_noindex_allowed": false,
     "invent_capabilities_or_credentials": false,
     "change_formula_without_validation": false,
     "change_technical_javascript_without_reproduced_issue": false,
-    "restore_separate_residential_positioning": false,
-    "define_universal_tolerance_or_interval": false,
-    "link_guide_from_blog_or_tools": false,
-    "global_guide_navigation_may_remain": true,
-    "automatic_adsense_review_request": false,
-    "same_visual_asset_desktop_mobile_at_e10_i1": true
+    "automatic_adsense_review_request": false
   },
-  "owner_dependencies": [
-    "Captura atual da reprovação/estado do AdSense e data",
-    "Exportação do Search Console por páginas e consultas; desejável, não bloqueia correções evidentes",
-    "Capacidades reais da bancada, tipos/modelos atendidos e situação metrológica dos equipamentos",
-    "Modelos/portes, meios de teste, condição de recebimento, profissionais disponíveis e parceiros",
-    "Nome/identidade do responsável técnico ou editorial, formação, registro profissional e experiência somente se confirmados e autorizados",
-    "Confirmação do uso de data de fundação/Desde 2012 quando esse dado for usado como evidência de experiência",
-    "Permissão/evidência dos projetos em cases.html e das alegações de resultado antes de aprofundar os cases"
+  "owner_or_manual_dependencies": [
+    "estado atual da conta AdSense, disponibilidade de reanalise e CMP autenticada",
+    "autoria pessoal e credenciais somente se confirmadas e autorizadas",
+    "evidencias e autorizacao dos cases antes de ampliar alegacoes",
+    "dados reais de capacidade comercial C01-C03",
+    "revisao especializada das duas paginas manual-review/P0"
   ]
 }
