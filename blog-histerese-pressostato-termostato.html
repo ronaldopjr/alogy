@@ -1,93 +1,140 @@
 <!DOCTYPE html>
-
 <html lang="pt-br">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Histerese de Pressostato e Termostato | ALOGY Engenharia</title>
-<meta content="Entenda setpoint, reset, diferencial e banda morta em pressostatos, termostatos e alarmes locais." name="description"/>
-<meta content="index,follow" name="robots"/>
-<meta content="#2C78B9" name="theme-color"/>
-<link href="https://www.alogy.com.br/blog-histerese-pressostato-termostato.html" rel="canonical"/>
-<link href="/favicon-48x48.png" rel="icon" sizes="48x48" type="image/png"/>
-<link href="/favicon-192x192.png" rel="icon" sizes="192x192" type="image/png"/>
-<link href="/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
-<link href="/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180"/>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-<link href="style.css?v=20260722-layout-original-uppercase-mobilefix" rel="stylesheet"/>
-<script defer="" src="app.js"></script>
-<meta content="pt_BR" property="og:locale"/>
-<meta content="website" property="og:type"/>
-<meta content="ALOGY Engenharia" property="og:site_name"/>
-<meta content="Histerese de Pressostato e Termostato" property="og:title"/>
-<meta content="Entenda setpoint, reset, diferencial e banda morta em pressostatos, termostatos e alarmes locais." property="og:description"/>
-<meta content="https://www.alogy.com.br/blog-histerese-pressostato-termostato.html" property="og:url"/>
-<meta content="https://www.alogy.com.br/favicon-512x512.png" property="og:image"/>
-<meta content="summary_large_image" name="twitter:card"/>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","name":"Histerese de Pressostato e Termostato","url":"https://www.alogy.com.br/blog-histerese-pressostato-termostato.html","applicationCategory":"EngineeringApplication","operatingSystem":"Web","description":"Entenda setpoint, reset, diferencial e banda morta em pressostatos, termostatos e alarmes locais.","publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/","logo":{"@type":"ImageObject","url":"https://www.alogy.com.br/logo-alogy.webp"}},"dateModified":"2026-07-21","author":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"},"headline":"Histerese de Pressostato e Termostato","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.alogy.com.br/blog-histerese-pressostato-termostato.html"},"image":"https://www.alogy.com.br/favicon-512x512.png"}</script>
-<style>
-    .mini-help{color:var(--muted);font-size:.92rem;line-height:1.55;margin-top:8px}
-    .calc-result.two{grid-template-columns:repeat(2,1fr)} .calc-result.four{grid-template-columns:repeat(4,1fr)} .result-box strong.small{font-size:1.05rem}
-    .pill-ok{color:#146c2e;font-weight:900} .pill-warn{color:#a65f00;font-weight:900} .pill-bad{color:#a10000;font-weight:900}
-    .subcat-nav{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}.subcat-nav a{background:#fff;border:1px solid rgba(0,75,128,.18);border-radius:999px;padding:9px 12px;text-decoration:none;font-weight:800;color:#0b3a62}
-    @media(max-width:900px){.calc-result.two,.calc-result.four{grid-template-columns:1fr}}
-    @media print{header,.social-floating,.fab-wrap,.cta-bar,footer,.calc-actions,.tools-hero .btn,.no-print{display:none!important}body{background:#fff}.container{max-width:100%;padding:0}.calc-card,.tools-hero{box-shadow:none;border:1px solid #ddd}.calc-layout{display:block}.calc-card{margin:12px 0}.calc-table th{background:#eee!important;color:#111!important}}
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Histerese de Pressostato e Termostato: Setpoint e Reset | ALOGY</title>
+  <meta name="description" content="Entenda setpoint, reset, histerese, repetibilidade e roteiro de teste para pressostatos e termostatos industriais, com limites e referências de fabricante." />
+  <meta name="robots" content="index,follow" />
+  <meta name="theme-color" content="#2C78B9" />
+  <link rel="canonical" href="https://www.alogy.com.br/blog-histerese-pressostato-termostato.html" />
+  <link rel="icon" href="/favicon-48x48.png" sizes="48x48" type="image/png" />
+  <link rel="icon" href="/favicon-192x192.png" sizes="192x192" type="image/png" />
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+  <link href="style.css?v=20260911-article-semantic1" rel="stylesheet" />
+  <script defer src="app.js"></script>
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="ALOGY Engenharia" />
+  <meta property="og:title" content="Histerese de Pressostato e Termostato: Setpoint e Reset" />
+  <meta property="og:description" content="Como interpretar ponto de atuação, reset, diferencial de comutação e repetibilidade em pressostatos e termostatos." />
+  <meta property="og:url" content="https://www.alogy.com.br/blog-histerese-pressostato-termostato.html" />
+  <meta property="og:image" content="https://www.alogy.com.br/capa-blog-histerese-pressostato-termostato.webp" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://www.alogy.com.br/capa-blog-histerese-pressostato-termostato.webp" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Histerese de Pressostato e Termostato: Setpoint e Reset","description":"Como interpretar ponto de atuação, reset, diferencial de comutação e repetibilidade em pressostatos e termostatos.","datePublished":"2026-07-21","dateModified":"2026-09-16","image":"https://www.alogy.com.br/capa-blog-histerese-pressostato-termostato.webp","author":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"},"publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/","logo":{"@type":"ImageObject","url":"https://www.alogy.com.br/logo-alogy.webp"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://www.alogy.com.br/blog-histerese-pressostato-termostato.html"},"inLanguage":"pt-BR"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Histerese, diferencial de comutação e dead band são a mesma coisa?","acceptedAnswer":{"@type":"Answer","text":"Na documentação de muitos pressostatos e termostatos, esses termos descrevem a diferença entre o ponto de atuação e o ponto de reset. A terminologia exata deve ser confirmada no manual do modelo."}},{"@type":"Question","name":"O ponto de atuação deve ser medido subindo ou descendo a variável?","acceptedAnswer":{"@type":"Answer","text":"Depende da função e da especificação do equipamento. O procedimento precisa declarar o sentido de aproximação e registrar também o ponto de retorno para que a histerese seja determinada corretamente."}},{"@type":"Question","name":"Histerese alta significa automaticamente defeito?","acceptedAnswer":{"@type":"Answer","text":"Não. Alguns equipamentos possuem diferencial fixo e outros permitem ajuste. A conclusão depende da especificação do fabricante, requisito do processo e repetibilidade observada."}},{"@type":"Question","name":"Testar o contato de um pressostato valida toda uma função de segurança?","acceptedAnswer":{"@type":"Answer","text":"Não. O teste do dispositivo verifica apenas o escopo definido para aquele equipamento. Uma função de segurança pode envolver sensores, lógica, votação, energização, atuadores e procedimentos adicionais."}}]}</script>
+  <style>
+    .post-wrap{max-width:960px;margin:18px auto}.post-card{background:var(--card);border:1px solid rgba(0,0,0,.08);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}.post-content{padding:30px}.post-meta{color:var(--muted);font-size:.95rem;margin-bottom:12px}.post-content h1{font-size:2.15rem;line-height:1.15;margin-bottom:12px;color:var(--text)}.post-content h2{font-size:1.45rem;line-height:1.25;margin:30px 0 10px;color:var(--text)}.post-content h3{font-size:1.12rem;line-height:1.35;margin:22px 0 8px;color:#0b3a62}.post-content p{color:var(--text);margin:0 0 16px;font-size:1.04rem;line-height:1.75}.post-content ul,.post-content ol{margin:0 0 18px 22px}.post-content li{margin:8px 0;line-height:1.65}.post-highlight{background:rgba(0,107,177,.08);border:1px solid rgba(0,107,177,.18);border-radius:14px;padding:16px;margin:22px 0}.post-warning{background:#fff7ed;border:1px solid #fed7aa;color:#7c2d12;border-radius:14px;padding:16px;margin:22px 0;line-height:1.65}.table-wrap{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid rgba(0,0,0,.09);border-radius:14px;margin:14px 0 22px}.article-table{width:100%;min-width:720px;border-collapse:collapse;background:#fff}.article-table th{background:#0b3a62;color:#fff;text-align:left;padding:12px;vertical-align:top}.article-table td{padding:12px;border-bottom:1px solid rgba(0,0,0,.08);vertical-align:top;line-height:1.55}.article-table tr:last-child td{border-bottom:0}.process-steps{counter-reset:step;list-style:none;margin-left:0!important;padding:0}.process-steps li{counter-increment:step;position:relative;padding:14px 14px 14px 54px;border:1px solid rgba(0,107,177,.16);border-radius:14px;background:rgba(0,107,177,.04);margin:10px 0}.process-steps li:before{content:counter(step);position:absolute;left:14px;top:13px;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:#0b3a62;color:#fff;font-weight:700}.reference-list a{overflow-wrap:anywhere}.faq details{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:14px;padding:14px;margin-top:10px;box-shadow:0 6px 16px rgba(0,0,0,.04)}.faq summary{cursor:pointer;font-weight:700;color:#0b3a62}.faq p{margin:10px 0 0;color:var(--text)}@media(max-width:768px){.post-content{padding:22px}.post-content h1{font-size:1.65rem}.article-table{min-width:680px}}
   </style>
-<!-- Google AdSense: carregado somente em páginas editoriais monetizáveis. A exibição e os formatos são controlados no painel do AdSense. -->
-<script async="" crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5586837114309500"></script>
+  <!-- Google AdSense: carregado somente em páginas editoriais monetizáveis. A exibição e os formatos são controlados no painel do AdSense. -->
+  <script async crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5586837114309500"></script>
 </head>
 <body>
-<header>
-<div class="container headbar"><a aria-label="Voltar para o início" class="logo-wrapper" href="/"><img alt="ALOGY Engenharia" decoding="async" height="308" src="logo-alogy.webp" width="878"/></a>
-<button aria-label="Abrir menu" class="menu-toggle" onclick="toggleMobileMenu()"><i class="fas fa-bars"></i></button></div>
-<nav aria-label="Menu principal" class="desktop"><div class="container navlinks"><a href="/">Início</a><a href="industrial.html">Serviços</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></div></nav>
-<nav aria-label="Menu mobile" class="mobile"><a href="/">Início</a><a href="industrial.html">Serviços</a><a href="cases.html">Projetos</a><a href="cursos.html">Cursos</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></nav>
-</header>
-<div aria-label="Redes sociais" class="social-floating"><a aria-label="LinkedIn" class="linkedin" href="https://www.linkedin.com/company/alogyengenharia" rel="noopener noreferrer" target="_blank"><i class="fab fa-linkedin-in"></i></a><a aria-label="Instagram" class="instagram" href="https://www.instagram.com/alogyengenharia" rel="noopener noreferrer" target="_blank"><i class="fab fa-instagram"></i></a><a aria-label="Facebook" class="facebook" href="https://www.facebook.com/alogyengenharia" rel="noopener noreferrer" target="_blank"><i class="fab fa-facebook-f"></i></a><a aria-label="YouTube" class="youtube" href="https://www.youtube.com/@alogyengenharia" rel="noopener noreferrer" target="_blank"><i class="fab fa-youtube"></i></a><a aria-label="Hotmart" class="hotmart" href="https://hotmart.com/pt-br/club/alogyengenharia" rel="noopener noreferrer" target="_blank">H</a><a aria-label="TikTok" class="tiktok" href="https://www.tiktok.com/@alogyengenharia" rel="noopener noreferrer" target="_blank"><i class="fab fa-tiktok"></i></a></div>
-<div aria-label="Ações rápidas" class="fab-wrap"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1%21%20Vim%20pelas%20ferramentas%20da%20ALOGY.%20Gostaria%20de%20atendimento." rel="noopener noreferrer" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
-<main class="container" style="margin-top:18px">
-<article class="calc-card"><h1>Histerese de Pressostato e Termostato</h1>
-<p>Entenda setpoint, reset, diferencial e banda morta em pressostatos, termostatos e alarmes locais.</p>
-<p class="muted" data-alogy-content-meta=""><strong>Conteúdo técnico:</strong> ALOGY Engenharia · <strong>Atualizado em:</strong> 21/07/2026</p>
-<h2>Setpoint, reset e diferencial</h2>
-<p>O setpoint é o valor no qual o contato muda de estado durante a aproximação definida. O reset é o valor em que o contato retorna. A diferença entre esses pontos é a histerese ou diferencial. Em alguns equipamentos o diferencial é fixo; em outros, ajustável.</p>
-<h2>Por que a direção do teste importa</h2>
-<p>O ponto de atuação obtido aumentando a pressão ou a temperatura pode ser diferente do ponto obtido reduzindo. O procedimento deve informar direção, velocidade de variação e tempo de estabilização. Aproximar o ponto em sentidos diferentes e registrar apenas um valor esconde a histerese real.</p>
-<h2>Como executar uma verificação</h2>
-<ul>
-<li>confirme faixa, unidade, estado normal do contato e função no processo;</li>
-<li>aplique a variável lentamente e registre o ponto de atuação;</li>
-<li>ultrapasse o ponto apenas o necessário e retorne de forma controlada;</li>
-<li>registre reset, diferencial e repetibilidade em ciclos sucessivos;</li>
-<li>compare com tolerância e requisito funcional, não apenas com a escala frontal.</li>
-</ul>
-<h2>Diagnóstico pelo padrão do erro</h2>
-<p>Deslocamento semelhante em atuação e retorno pode indicar ajuste de setpoint. Diferencial maior que o esperado pode resultar de desgaste, atrito ou mecanismo danificado. Pontos instáveis podem estar ligados a pulsação, vibração, mau contato ou velocidade excessiva de teste.</p>
-<h2>Aplicação em alarmes e proteção</h2>
-<p>A histerese evita comutação repetitiva próxima do limite, mas valor excessivo pode atrasar o retorno à condição normal. Em intertravamentos, confirme também lógica de selo, reset manual, votação e relação com transmissores independentes.</p>
-<h2>Limites e referências</h2>
-<p>Use manual do fabricante, procedimento de calibração e requisito do processo. Para funções de segurança, o teste do contato não substitui validação de toda a cadeia de atuação.</p>
-<h2>Ferramenta e conteúdos relacionados</h2>
-<p>Para aprofundar Histerese de Pressostato e Termostato, use a ferramenta relacionada e confronte o resultado com os materiais complementares listados abaixo.</p>
-<div class="calc-actions">
-<a class="mini-btn dark" href="calculadora-histerese-pressostato-termostato.html"><i class="fas fa-calculator"></i> Abrir ferramenta relacionada</a>
-<a class="mini-btn" href="ferramentas.html"><i class="fas fa-toolbox"></i> Ver todas as ferramentas</a>
-</div>
-<ul class="mini-help" style="margin-top:12px">
-<li><a href="calculadora-calibracao-pressostato.html">Calculadora de Calibração de Pressostato</a> <span class="mini-help">(ferramenta)</span></li>
-<li><a href="calculadora-calibracao-termostato.html">Calculadora de Calibração de Termostato</a> <span class="mini-help">(ferramenta)</span></li>
-<li><a href="calculadora-orp-mv-percentual.html">Calculadora ORP mV e Faixa de Controle</a> <span class="mini-help">(ferramenta)</span></li>
-<li><a href="calculadora-vazao-pressao-diferencial.html">Calculadora de Vazão por Pressão Diferencial</a> <span class="mini-help">(ferramenta)</span></li>
-<li><a href="blog-calibracao-valvula-controle.html">Calibração de Válvula de Controle 4-20 mA</a> <span class="mini-help">(artigo)</span></li>
+  <header>
+    <div class="container headbar"><a aria-label="Voltar para o início" class="logo-wrapper" href="/"><img alt="ALOGY Engenharia" decoding="async" height="308" src="logo-alogy.webp" width="878" /></a><button aria-label="Abrir menu" class="menu-toggle" onclick="toggleMobileMenu()"><i class="fas fa-bars"></i></button></div>
+    <nav aria-label="Menu principal" class="desktop"><div class="container navlinks"><a href="/">Início</a><a href="industrial.html">Serviços</a><a href="cases.html">Projetos</a><a href="/guia/">Guia</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></div></nav>
+    <nav aria-label="Menu mobile" class="mobile"><a href="/">Início</a><a href="industrial.html">Serviços</a><a href="cases.html">Projetos</a><a href="/guia/">Guia</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a></nav>
+  </header>
+  <div aria-label="Redes sociais" class="social-floating"><a aria-label="LinkedIn" class="linkedin" href="https://www.linkedin.com/company/alogyengenharia" rel="noopener noreferrer" target="_blank"><i class="fab fa-linkedin-in"></i></a><a aria-label="Instagram" class="instagram" href="https://www.instagram.com/alogyengenharia" rel="noopener noreferrer" target="_blank"><i class="fab fa-instagram"></i></a><a aria-label="Facebook" class="facebook" href="https://www.facebook.com/alogyengenharia" rel="noopener noreferrer" target="_blank"><i class="fab fa-facebook-f"></i></a><a aria-label="YouTube" class="youtube" href="https://www.youtube.com/@alogyengenharia" rel="noopener noreferrer" target="_blank"><i class="fab fa-youtube"></i></a><a aria-label="TikTok" class="tiktok" href="https://www.tiktok.com/@alogyengenharia" rel="noopener noreferrer" target="_blank"><i class="fab fa-tiktok"></i></a></div>
+  <div aria-label="Ações rápidas" class="fab-wrap"><a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a><a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1%21%20Li%20o%20artigo%20sobre%20pressostato%20e%20termostato%20da%20ALOGY.%20Gostaria%20de%20avaliar%20um%20escopo%20t%C3%A9cnico." rel="noopener noreferrer" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
 
-</ul>
-<h2>Aviso técnico</h2>
-<p>Este artigo sobre Histerese de Pressostato e Termostato é educativo e apoia pré-dimensionamento e conferência técnica. Em aplicações críticas, compra final ou alteração permanente da instalação, valide o cenário com documentação do fabricante, condições reais de campo, requisitos aplicáveis e profissional habilitado.</p></article>
-<section class="cta-bar"><h2>Precisa de apoio técnico?</h2><p>A ALOGY Engenharia apoia instrumentação, automação, processo e manutenção industrial.</p><a class="btn" href="/#contato"><i class="fas fa-envelope"></i> Falar com a ALOGY</a></section>
-</main>
-<footer><p>© Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
+  <main class="container post-wrap">
+    <a class="floating-back-blog no-print" href="blog.html"><i class="fas fa-arrow-left"></i> Voltar ao Blog</a>
+    <article class="post-card"><div class="post-content">
+      <div class="post-meta">Instrumentação • Pressostato • Termostato • Comutação</div>
+      <h1>Histerese de pressostato e termostato: setpoint, reset e repetibilidade</h1>
+      <p class="muted" data-alogy-content-meta><strong>Conteúdo técnico:</strong> ALOGY Engenharia · <strong>Revisado em:</strong> 16/09/2026</p>
+      <figure class="article-cover-figure"><img class="article-cover-image" src="capa-blog-histerese-pressostato-termostato.webp" alt="Verificação de ponto de atuação e reset em instrumento industrial" loading="eager" fetchpriority="high" decoding="async"/><figcaption>Para caracterizar a comutação, registre o ponto de atuação e o ponto de retorno no sentido de teste definido.</figcaption></figure>
+
+      <p>Em pressostatos e termostatos, o contato normalmente não atua e retorna exatamente no mesmo valor. Essa separação é chamada de <strong>histerese</strong>, <strong>diferencial de comutação</strong> ou, em algumas documentações, <strong>dead band</strong>. A WIKA define esses termos como a diferença entre o ponto de comutação e o ponto de reset.</p>
+      <p>O detalhe importante é que histerese não deve ser confundida com erro de calibração, repetibilidade ou tolerância do processo. Um equipamento pode ter um diferencial intencional e ainda assim repetir seus pontos de forma consistente.</p>
+
+      <div class="post-warning"><strong>Não existe histerese universal aceitável.</strong> O valor pode ser fixo ou ajustável conforme o projeto do equipamento. O critério deve vir da especificação do fabricante, requisito do processo, procedimento aplicável e função que o contato executa.</div>
+
+      <h2>Quatro conceitos que precisam ser separados</h2>
+      <div class="table-wrap"><table class="article-table">
+        <thead><tr><th>Conceito</th><th>O que representa</th><th>Como observar no teste</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Ponto de atuação</strong></td><td>Valor em que o contato muda de estado no sentido definido de aproximação.</td><td>Registrar variável e estado elétrico no instante da mudança.</td></tr>
+          <tr><td><strong>Ponto de reset</strong></td><td>Valor em que o contato retorna ao estado original quando a variável percorre o sentido oposto.</td><td>Continuar o ciclo e registrar o retorno sem misturar os sentidos.</td></tr>
+          <tr><td><strong>Histerese</strong></td><td>Diferença entre ponto de atuação e ponto de reset.</td><td>Calcular a diferença usando a convenção definida no procedimento ou manual.</td></tr>
+          <tr><td><strong>Repetibilidade</strong></td><td>Capacidade de repetir o ponto de comutação em ciclos semelhantes.</td><td>Executar ciclos sucessivos nas mesmas condições e comparar os pontos obtidos.</td></tr>
+        </tbody>
+      </table></div>
+
+      <h2>O sentido do teste faz parte do resultado</h2>
+      <p>Um pressostato pode ser configurado para atuar com pressão crescente ou decrescente; um termostato pode ter lógica de atuação em aquecimento ou resfriamento. Por isso, registrar apenas “setpoint = 5 bar” ou “setpoint = 80 °C” é incompleto quando o sentido e a função do contato não são conhecidos.</p>
+      <p>A documentação de interruptores de temperatura WIKA, por exemplo, define o reset de forma diferente conforme a temperatura está subindo ou descendo. Isso reforça a necessidade de declarar o sentido do teste e o estado normal do contato.</p>
+
+      <h2>Roteiro prático de verificação</h2>
+      <ol class="process-steps">
+        <li><strong>Identifique o instrumento.</strong> Modelo, faixa, unidade, tipo de contato, estado normal e função no processo.</li>
+        <li><strong>Confirme a referência.</strong> Use o manual do modelo, procedimento e requisito funcional que definem ponto, diferencial e tolerância.</li>
+        <li><strong>Defina o sentido de aproximação.</strong> Crescente ou decrescente para a atuação, e o caminho inverso para o reset.</li>
+        <li><strong>Aplique a variável de forma controlada.</strong> Evite variações bruscas que dificultem identificar o ponto real de comutação.</li>
+        <li><strong>Registre o ponto de atuação.</strong> Anote simultaneamente o valor da variável e a mudança elétrica do contato.</li>
+        <li><strong>Ultrapasse o ponto somente o necessário.</strong> Depois reverta a direção e registre o ponto de reset.</li>
+        <li><strong>Repita o ciclo.</strong> Compare os pontos obtidos para avaliar repetibilidade antes de concluir por necessidade de ajuste.</li>
+        <li><strong>Registre as-found e as-left quando houver intervenção.</strong> Se o equipamento for ajustado, preserve a condição encontrada e repita o ensaio após a alteração.</li>
+      </ol>
+
+      <h2>Exemplo simples de interpretação</h2>
+      <p>Considere um pressostato que atua em 6,0 bar durante a subida e retorna em 5,4 bar durante a descida. O diferencial observado é 0,6 bar. Esse número, sozinho, não diz se o equipamento está aprovado ou reprovado: primeiro é preciso comparar com a faixa de diferencial prevista para aquele modelo e com o requisito funcional da aplicação.</p>
+      <p>Se em ciclos sucessivos a atuação ocorrer em 6,0; 6,4; 5,7 e 6,3 bar, a investigação deve olhar também para repetibilidade, estabilidade da fonte, velocidade de teste, pulsação, contato elétrico e condição mecânica. Ajustar o parafuso sem entender essa dispersão pode apenas deslocar o problema.</p>
+
+      <h2>Pressostato mecânico, eletrônico e termostato não são equivalentes</h2>
+      <p>Em dispositivos mecânicos, a histerese pode ser definida pelo mecanismo ou possuir ajuste próprio. Em pressostatos eletrônicos, o usuário frequentemente configura ponto de atuação e reset pela lógica do equipamento. Em termostatos, a relação entre temperatura de comutação e temperatura de reset também depende do projeto e da aplicação.</p>
+      <p>Por isso, não transfira percentuais ou diferenciais de um modelo para outro. Uma especificação de um pressostato não serve automaticamente para outro fabricante, outra faixa ou um termostato.</p>
+
+      <h2>Falhas que podem distorcer o resultado</h2>
+      <ul>
+        <li>pulsação de pressão ou temperatura instável próxima do ponto;</li>
+        <li>velocidade de aproximação diferente entre ciclos;</li>
+        <li>mau contato elétrico, oxidação ou bouncing do contato;</li>
+        <li>atrito, desgaste ou folga no mecanismo;</li>
+        <li>sensor térmico mal acoplado ou com atraso significativo;</li>
+        <li>referência com resolução ou estabilidade inadequada para o diferencial esperado;</li>
+        <li>teste feito sem respeitar tempo de estabilização do processo ou do elemento sensor.</li>
+      </ul>
+
+      <h2>Quando a função está ligada à segurança</h2>
+      <p>Verificar um contato local não valida automaticamente uma função inteira de proteção. Intertravamentos podem incluir alimentação, lógica de controle, relés, votação, permissivos, solenóides, atuadores e requisitos de teste adicionais. A própria WIKA diferencia equipamentos destinados a sistemas de segurança por aprovações e características específicas.</p>
+      <p>Se o pressostato ou termostato participa de uma função instrumentada de segurança, shutdown ou proteção crítica, o procedimento precisa respeitar a documentação do sistema e os critérios definidos para essa função.</p>
+
+      <div class="post-highlight"><strong>Ferramentas relacionadas:</strong> use os cálculos apenas para organizar os pontos e registros do ensaio; eles não substituem o critério do fabricante ou do processo.<div style="margin-top:12px"><a class="btn" href="calculadora-calibracao-pressostato.html"><i class="fas fa-calculator"></i> Calibração de pressostato</a> <a class="btn secondary" href="calculadora-calibracao-termostato.html"><i class="fas fa-temperature-half"></i> Calibração de termostato</a></div></div>
+
+      <h2>Conteúdos relacionados</h2>
+      <ul>
+        <li><a href="blog-calibracao-instrumentos-industriais.html">Calibração de instrumentos: método, erro e incerteza</a></li>
+        <li><a href="blog-teste-de-loop-instrumentacao.html">Teste de loop: do campo ao sistema de controle</a></li>
+      </ul>
+
+      <h2>Referências técnicas</h2>
+      <ul class="reference-list">
+        <li><a href="https://www.wika.com/pt-br/perguntas_frequentes.WIKA" target="_blank" rel="noopener noreferrer">WIKA Brasil — Perguntas frequentes</a>. Define histerese/diferencial de comutação/faixa morta como a diferença entre o ponto de comutação e o ponto de reset para interruptores de pressão ou temperatura.</li>
+        <li><a href="https://www.wika.com/media/Operating-instructions/Operating-instructions/Temperature/Temperature-switches/oi_ts972_en_in.pdf" target="_blank" rel="noopener noreferrer">WIKA TS-972 — Operating instructions</a>. Define reset point e switch differential para interruptor de temperatura.</li>
+        <li><a href="https://www.wika.com/pt-br/psm02.WIKA" target="_blank" rel="noopener noreferrer">WIKA PSM02 — Pressostato compacto</a>. Exemplo industrial de pressostato com histerese ajustável e especificação própria de não repetibilidade.</li>
+        <li><a href="https://www.wika.com/media/Data-sheets/Pressure/Pressure-switches/ds_psm630_en_in.pdf" target="_blank" rel="noopener noreferrer">WIKA PSM-630 — Data sheet</a>. Exemplo de faixas de ponto de comutação, diferencial ajustável e não repetibilidade definidos pelo fabricante.</li>
+      </ul>
+
+      <section class="faq">
+        <h2>Perguntas frequentes</h2>
+        <details><summary>Histerese e dead band são a mesma coisa?</summary><p>Em muitos manuais de pressostatos e termostatos os termos são usados para a diferença entre atuação e reset. Sempre confirme a nomenclatura do fabricante do modelo.</p></details>
+        <details><summary>Preciso testar nos dois sentidos?</summary><p>Sim, quando o objetivo é determinar o diferencial. O ponto de atuação e o ponto de reset pertencem a sentidos opostos do ciclo.</p></details>
+        <details><summary>Histerese alta significa defeito?</summary><p>Não necessariamente. Alguns modelos têm diferencial fixo ou ajustável. Compare o valor observado com a especificação e com o requisito da aplicação.</p></details>
+        <details><summary>Um teste de contato valida um intertravamento completo?</summary><p>Não. Ele verifica apenas o dispositivo dentro do escopo testado. A função completa pode envolver lógica, alimentação e elemento final.</p></details>
+      </section>
+
+      <h2>Aviso técnico</h2>
+      <p>Este artigo é educativo. Procedimentos, tolerâncias e decisões de aprovação devem seguir documentação do fabricante, requisito do processo e procedimentos aplicáveis. Em funções críticas ou de segurança, a validação deve considerar a cadeia completa e os requisitos específicos do sistema.</p>
+    </div></article>
+  </main>
+  <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p><p class="footer-legal-links no-print"><a href="politica-de-privacidade.html">Política de Privacidade e Cookies</a> · <a href="termos-de-uso-ferramentas.html">Termos de Uso das Ferramentas</a></p></footer>
 </body>
 </html>
