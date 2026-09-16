@@ -1,6 +1,6 @@
 # ALOGY — fila operacional atual
 
-> Versão 2026-09-15.35. Esta é a única fila executável. Filas anteriores e relatórios por lote permanecem históricos.
+> Versão 2026-09-15.36. Esta é a única fila executável. Filas anteriores e relatórios por lote permanecem históricos.
 
 ## Regras permanentes
 
@@ -34,7 +34,7 @@
 
 ## E06 — revisão do acervo monetizado
 
-**Estado:** EM EXECUÇÃO — DEZESSETE PÁGINAS REVISADAS, PUBLICADAS E VALIDADAS.
+**Estado:** EM EXECUÇÃO — DEZOITO PÁGINAS REVISADAS, PUBLICADAS E VALIDADAS.
 
 | # | Página | Decisão | Commit de conteúdo |
 |---|---|---|---|
@@ -55,6 +55,7 @@
 | 15 | `blog-gemeo-digital-instrumentacao.html` | `keep/P1/high` | `ec20d4e2cb6a08524e725ea19b352e99f95995a2` |
 | 16 | `blog-ia-na-industria.html` | `keep/P1/high` | `29795678a75517c5cba25d6f250b4672a9ae55e3` |
 | 17 | `ferramentas-instrumentacao-industrial.html` | `keep/P1/high` | `4f6afc59acffcbc00b8f579bae0b90b94f622f6b` |
+| 18 | `ferramentas-calibracao-instrumentacao.html` | `keep/P1/high` | `c1dc3816a37edf2d5fcb9232d0b20b21fe0e8b5e` |
 
 ### Página 14 — diagnóstico 4–20 mA e HART
 - relatório: `E06-HART-TRIAGE-ACERVO-14.md`;
@@ -79,7 +80,7 @@
 - fontes primárias: IEC 60381-1, NAMUR NE 043, Emerson Rosemount 3051S e FieldComm Group.
 
 ### Pendência explícita do inventário
-O `ADSENSE-INVENTORY.csv` canônico ainda não incorpora as decisões E06. Os arquivos `E06-INVENTORY-DELTA-01.csv` a `E06-INVENTORY-DELTA-17.csv` são a fonte incremental de verdade até existir mecanismo seguro de consolidação integral. Não substituir o CSV grande parcialmente.
+O `ADSENSE-INVENTORY.csv` canônico ainda não incorpora as decisões E06. Os arquivos `E06-INVENTORY-DELTA-01.csv` a `E06-INVENTORY-DELTA-18.csv` são a fonte incremental de verdade até existir mecanismo seguro de consolidação integral. Não substituir o CSV grande parcialmente.
 
 ### Página 15 — digital twin industrial
 - página: `blog-gemeo-digital-instrumentacao.html`;
@@ -135,13 +136,34 @@ O `ADSENSE-INVENTORY.csv` canônico ainda não incorpora as decisões E06. Os ar
 - nenhum JavaScript técnico ou fórmula de ferramenta alterado;
 - leitura direta do domínio validou equivalência byte a byte do HTML ao vivo.
 
-### Próxima ação executável — E06-18
+### Página 18 — hub de ferramentas de calibração
+- página: `ferramentas-calibracao-instrumentacao.html`;
+- conteúdo + sitemap: commit `c1dc3816a37edf2d5fcb9232d0b20b21fe0e8b5e`;
+- relatório + delta: commit `1ad799821dca041236291b6bbd6a95003fcec9db`;
+- relatório: `E06-CALIBRATION-TOOLS-HUB-ACERVO-18.md`; delta: `E06-INVENTORY-DELTA-18.csv`;
+- blob final: `4600363743b60bc49b629b33f34e3831c09b8ec7`;
+- Pages: run `35071001842`, build/deploy `success`;
+- artefato `10435724263`, digest `sha256:2aa43bc6c7943583609300376af6fa296410a46b1b29fd22a1c6543114bdc8be`;
+- candidato versionado: 26.357 bytes, SHA-256 `3cd8e4308ed4ca5047bae68dd16f16373a963e5f29cd5319c10d3630923e9e59`;
+- 1.397 palavras visíveis / 1.352 no `main`; 1 H1 / 15 H2 / 3 H3;
+- hub convertido em mapa por pergunta técnica, dados mínimos, primeiro caminho e limite da conclusão;
+- exemplo conferido: 5,00 bar aplicados em transmissor 0–10 bar e 12,08 mA lidos = 5,05 bar, erro +0,05 bar ou +0,5% do span;
+- calibração, verificação, ajuste, rastreabilidade, incerteza e decisão de conformidade claramente separados;
+- fontes primárias JCGM VIM, JCGM 106, ILAC G8 e NIST;
+- oferta corrigida para revisão, manutenção, configuração, diagnóstico, loop check e conferência funcional; calibração, rastreabilidade e documentação específica condicionadas a padrões, recursos e parceiro confirmados;
+- `CollectionPage` + `BreadcrumbList` + `FAQPage`; canonical, sitemap e AdSense preservados;
+- 39 recursos internos conferidos na árvore;
+- menu global Guia preservado; sem CTA promocional do Guia, Hotmart ou Cursos no corpo;
+- nenhum JavaScript técnico, fórmula de ferramenta ou `app.js` alterado;
+- domínio conferido diretamente com chave de cache: título, H1, data, exemplo e FAQ novos presentes. O leitor público textual ainda devolveu cópia anterior em cache; não declarar equivalência byte a byte nesta rodada.
+
+### Próxima ação executável — E06-19
 1. Reler `main`, `ADSENSE-STATE.json` e esta fila antes de qualquer escrita.
-2. Selecionar a próxima página `improve/P0/high` segura, excluindo páginas 01–17.
+2. Selecionar a próxima página `improve/P0/high` segura, excluindo páginas 01–18.
 3. Manter `blog-inspecao-instrumentos-area-classificada.html` e `blog-ot-cybersecurity-instrumentacao.html` fora da edição automática, pois exigem revisão especializada.
 4. Pesquisar fontes primárias antes de editar.
 5. Publicar uma página extensa por lote e validar GitHub Pages; validar domínio quando o fetch estiver disponível.
-6. Criar relatório e `E06-INVENTORY-DELTA-18.csv`.
+6. Criar relatório e `E06-INVENTORY-DELTA-19.csv`.
 7. Atualizar controles e o mesmo MD de continuidade.
 8. Não solicitar nova análise do AdSense.
 

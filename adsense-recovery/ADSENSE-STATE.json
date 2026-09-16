@@ -1,16 +1,16 @@
 {
   "schema_version": 3,
   "project": "ALOGY AdSense Recovery",
-  "plan_version": "2026-09-15.35",
+  "plan_version": "2026-09-15.36",
   "repository": "ronaldopjr/alogy",
   "base_branch": "main",
   "work_branch": "main",
-  "base_sha_verified": "ad46014787ca051d5ccc8e4803e0b331fd8049b1",
+  "base_sha_verified": "1ad799821dca041236291b6bbd6a95003fcec9db",
   "verified_at": "2026-09-16",
   "last_completed_stage": "E05",
   "stage_in_progress": "E06",
   "next_stage": "E06",
-  "next_action": "Selecionar a proxima pagina improve/P0/high do acervo monetizado para E06-18, priorizando instrumentacao, automacao ou eletrica industrial e baixo risco editorial. Excluir E06-01 a E06-17; manter area classificada e ciberseguranca OT fora da edicao automatica. Tratar E06-INVENTORY-DELTA-01.csv a E06-INVENTORY-DELTA-17.csv como fonte incremental ate consolidacao segura. Nao solicitar nova analise do AdSense e preservar E10-I1 para perto do encerramento.",
+  "next_action": "Selecionar a proxima pagina improve/P0/high do acervo monetizado para E06-19, priorizando instrumentacao, automacao ou eletrica industrial e baixo risco editorial. Excluir E06-01 a E06-18; manter area classificada e ciberseguranca OT fora da edicao automatica. Tratar E06-INVENTORY-DELTA-01.csv a E06-INVENTORY-DELTA-18.csv como fonte incremental ate consolidacao segura. Nao solicitar nova analise do AdSense e preservar E10-I1 para perto do encerramento.",
   "status": "in_progress",
   "preferred_editorial_batch": 1,
   "adsense": {
@@ -23,19 +23,19 @@
     "enabled": true,
     "target_branch": "main",
     "method": "validated-atomic-commit",
-    "batch_id": "E06-INSTRUMENTATION-TOOLS-HUB-ACERVO-17",
-    "latest_site_change_commit": "4f6afc59acffcbc00b8f579bae0b90b94f622f6b",
-    "latest_report_and_delta_commit": "ad46014787ca051d5ccc8e4803e0b331fd8049b1",
+    "batch_id": "E06-CALIBRATION-TOOLS-HUB-ACERVO-18",
+    "latest_site_change_commit": "c1dc3816a37edf2d5fcb9232d0b20b21fe0e8b5e",
+    "latest_report_and_delta_commit": "1ad799821dca041236291b6bbd6a95003fcec9db",
     "services_navigation_commit": "2a047390f543d3a7a0469a3677f17c14fa0dcfeb",
     "canonical_inventory_initial_commit": "da2f61932a21c00741f418870601aafcb42deba6",
     "source_verified_on_main": true,
     "pages_deployment_success": true,
-    "latest_pages_workflow_run": 35049832983,
-    "latest_pages_artifact_id": 10427773838,
-    "latest_pages_artifact_digest": "sha256:0591643b0087be733b73a0548de61e19ee4e2d5c54a2c8bcf5875df3a9137778",
+    "latest_pages_workflow_run": 35071001842,
+    "latest_pages_artifact_id": 10435724263,
+    "latest_pages_artifact_digest": "sha256:2aa43bc6c7943583609300376af6fa296410a46b1b29fd22a1c6543114bdc8be",
     "live_environment_url": "https://www.alogy.com.br/",
     "artifact_validation_complete": true,
-    "artifact_validation_method": "GitHub Pages build/deploy succeeded for 4f6afc59; direct live-domain fetch returned HTTP 200 and the served HTML matched the validated candidate byte for byte, including Git blob SHA-1 d96c34d666b3beadcaef04d91298abd3e076d1bf.",
+    "artifact_validation_method": "GitHub Pages build/deploy succeeded for c1dc3816. Direct browser validation with a cache key confirmed the new title, H1, 16/09/2026 date, +0,05 bar example and FAQ on the live domain. The public text reader still returned an older cached copy, so no byte-for-byte live HTML claim is made for this batch.",
     "require_clean_validated_diff": true,
     "allow_force": false
   },
@@ -74,7 +74,7 @@
       "adsense_review_request_allowed": false
     },
     "e06_acervo": {
-      "status": "pages_01_to_17_passed_published_next_selection_pending",
+      "status": "pages_01_to_18_passed_published_next_selection_pending",
       "canonical_inventory_deltas_pending_merge": [
         "E06-INVENTORY-DELTA-01.csv",
         "E06-INVENTORY-DELTA-02.csv",
@@ -92,7 +92,8 @@
         "E06-INVENTORY-DELTA-14.csv",
         "E06-INVENTORY-DELTA-15.csv",
         "E06-INVENTORY-DELTA-16.csv",
-        "E06-INVENTORY-DELTA-17.csv"
+        "E06-INVENTORY-DELTA-17.csv",
+        "E06-INVENTORY-DELTA-18.csv"
       ],
       "pages": [
         {
@@ -317,11 +318,48 @@
           "live_matches_validated_candidate": true,
           "decision_before": "improve/P0/high",
           "decision_after": "keep/P1/high"
+        },
+        {
+          "n": 18,
+          "path": "ferramentas-calibracao-instrumentacao.html",
+          "status": "passed_published",
+          "content_commit": "c1dc3816a37edf2d5fcb9232d0b20b21fe0e8b5e",
+          "content_blob": "4600363743b60bc49b629b33f34e3831c09b8ec7",
+          "report": "E06-CALIBRATION-TOOLS-HUB-ACERVO-18.md",
+          "report_and_delta_commit": "1ad799821dca041236291b6bbd6a95003fcec9db",
+          "inventory_delta": "E06-INVENTORY-DELTA-18.csv",
+          "pages_workflow_run": 35071001842,
+          "pages_artifact_id": 10435724263,
+          "artifact_digest": "sha256:2aa43bc6c7943583609300376af6fa296410a46b1b29fd22a1c6543114bdc8be",
+          "candidate_html_bytes": 26357,
+          "candidate_html_sha256": "3cd8e4308ed4ca5047bae68dd16f16373a963e5f29cd5319c10d3630923e9e59",
+          "visible_words_candidate": 1397,
+          "main_words_candidate": 1352,
+          "h1_count": 1,
+          "h2_count": 15,
+          "h3_count": 3,
+          "json_ld_types": [
+            "CollectionPage",
+            "BreadcrumbList",
+            "FAQPage"
+          ],
+          "canonical_valid": true,
+          "adsense_loader_present": true,
+          "sitemap_occurrences_expected": 1,
+          "internal_resources_verified": 39,
+          "global_guide_navigation_preserved": true,
+          "promotional_guide_link_in_body": false,
+          "hotmart_link_present": false,
+          "technical_formulas_or_shared_javascript_changed": false,
+          "live_updated_content_verified": true,
+          "live_byte_match_claimed": false,
+          "decision_before": "improve/P0/high",
+          "decision_after": "keep/P1/high"
         }
       ],
       "next_candidate": {
         "path": null,
-        "status": "selection_pending_after_page_17"
+        "status": "selection_pending_after_page_18"
       },
       "manual_review_pages_must_remain_unchanged": true,
       "mass_pruning_allowed": false,
