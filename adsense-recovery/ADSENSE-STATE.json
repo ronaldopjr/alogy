@@ -1,16 +1,16 @@
 {
   "schema_version": 3,
   "project": "ALOGY AdSense Recovery",
-  "plan_version": "2026-09-16.47",
+  "plan_version": "2026-09-16.48",
   "repository": "ronaldopjr/alogy",
   "base_branch": "main",
   "work_branch": "main",
-  "base_sha_verified": "b082704285922508a1354dbf1151157a0e36e9a4",
+  "base_sha_verified": "a1b97f0ee8a95583aabc98a3046447ddafe7242d",
   "verified_at": "2026-09-16",
-  "last_completed_stage": "E11 low value content batch 01 NR-10",
-  "stage_in_progress": "E11_LOW_VALUE_CONTENT_EDITORIAL_CONTINUATION",
-  "next_stage": "E11 low value content batch 02",
-  "next_action": "Revisar editorialmente as paginas ativas blog-lopa-simplificada.html e blog-sil-pfd-didatico.html: remover sinais de conteudo em revisao, alinhar navegacao Guia/cursos/Hotmart, restringir relacionados ao tema e aprofundar utilidade somente com base tecnica segura. Validar deploy e sitemap. Nao solicitar nova analise automaticamente.",
+  "last_completed_stage": "E11 low value content batch 02 LOPA and SIL/PFD",
+  "stage_in_progress": "E11_LOW_VALUE_EDITORIAL_TRIAGE_03",
+  "next_stage": "E11 low value content batch 03",
+  "next_action": "Fazer triagem objetiva apenas dos artigos com card/link ativo no blog.html e selecionar 1 a 3 paginas com sinais comprovaveis de baixo valor. Nao editar as paginas manual-review/P0. Depois revisar somente as selecionadas, validar Pages/sitemap e atualizar o mesmo MD. Nao solicitar nova analise automaticamente.",
   "status": "low_value_content_editorial_recovery_active",
   "adsense": {
     "reported_status": "low_value_content",
@@ -28,13 +28,13 @@
     "enabled": true,
     "target_branch": "main",
     "method": "validated-commit",
-    "latest_site_change_commit": "b082704285922508a1354dbf1151157a0e36e9a4",
-    "latest_content_change_commit": "a54d3aa54c4a0b9cbc2a9f34900ab5eea9d013c3",
-    "latest_report_commit": "8db777937973674fa087609cc879866c367aa914",
+    "latest_site_change_commit": "a1b97f0ee8a95583aabc98a3046447ddafe7242d",
+    "latest_content_change_commit": "5cffeb23b766b5f2a4aed1f82dbd8a15f8c28d32",
+    "latest_report_commit": "086a27f818286e16b8cf03b32a98f7830413f35d",
     "pages_deployment_success": true,
-    "latest_pages_workflow_run": 35139779567,
-    "latest_pages_artifact_id": 10465200562,
-    "latest_pages_artifact_digest": "sha256:8fe8a00e7b3521904ec2624fb8c5258857e412f1af0e5f62f96418fe1b0f8b86",
+    "latest_pages_workflow_run": 35142441204,
+    "latest_pages_artifact_id": 10466051065,
+    "latest_pages_artifact_digest": "sha256:06bcd63d8829343b81dd7f4daee9e18e395e93a7e27c16264bdac9c156873202",
     "live_environment_url": "https://www.alogy.com.br/",
     "allow_force": false
   },
@@ -130,7 +130,7 @@
       "review_request_sent": false
     },
     "e11_low_value_content": {
-      "status": "batch_01_completed_batch_02_ready",
+      "status": "batch_02_completed_triage_03_ready",
       "owner_confirmed_reason": "low_value_content",
       "owner_confirmed_only_reason_shown": true,
       "official_google_guidance_checked_at": "2026-09-16",
@@ -142,37 +142,54 @@
       "batch_01": {
         "page": "blog-nova-nr10-2026.html",
         "report": "adsense-recovery/E11-LOW-VALUE-CONTENT-BATCH-01.md",
-        "report_commit": "9817b050a9e59deb7df1c69ca54c51db5f0ab7d8",
         "content_commit": "a54d3aa54c4a0b9cbc2a9f34900ab5eea9d013c3",
         "sitemap_commit": "b082704285922508a1354dbf1151157a0e36e9a4",
         "pages_workflow_run": 35139779567,
         "artifact_id": 10465200562,
         "artifact_digest": "sha256:8fe8a00e7b3521904ec2624fb8c5258857e412f1af0e5f62f96418fe1b0f8b86",
+        "deployment": "success"
+      },
+      "batch_02": {
+        "pages": [
+          "blog-lopa-simplificada.html",
+          "blog-sil-pfd-didatico.html"
+        ],
+        "report": "adsense-recovery/E11-LOW-VALUE-CONTENT-BATCH-02.md",
+        "report_commit": "67470e2bf25dc37c726b6415d2bec994869ac3bc",
+        "lopa_content_commit": "fac8b9df48b48e088f403a01e3fe5e7a3ad1d615",
+        "sil_pfd_content_commit": "5cffeb23b766b5f2a4aed1f82dbd8a15f8c28d32",
+        "sitemap_commit": "a1b97f0ee8a95583aabc98a3046447ddafe7242d",
+        "pages_workflow_run": 35142441204,
+        "artifact_id": 10466051065,
+        "artifact_digest": "sha256:06bcd63d8829343b81dd7f4daee9e18e395e93a7e27c16264bdac9c156873202",
         "deployment": "success",
         "findings_fixed": [
-          "unfinished review marker removed",
-          "official NR-10 vigency dates clarified",
-          "official MTE sources prioritized",
-          "Cursos/cursos.html and Hotmart removed from this editorial page",
-          "commercial scope narrowed",
-          "sitemap lastmod updated"
+          "old Cursos/cursos.html navigation removed from both pages",
+          "Hotmart removed from both editorial pages",
+          "withdrawn calculator/review wording removed",
+          "LOPA related links narrowed and duplicate removed",
+          "LOPA deepened around scenario, initiating event, IPL, PFD and documented assumptions",
+          "SIL/PFD deepened around SIF, SIS, PFDavg, proof testing and safety lifecycle",
+          "technical references aligned to CCPS/AIChE, IEC 61511 and IEC 61508",
+          "sitemap lastmod updated for both pages",
+          "no shared technical JavaScript or existing tool formula changed"
         ]
       },
-      "batch_02_triage": {
-        "priority_1": "blog-lopa-simplificada.html",
-        "priority_1_findings": [
-          "old Cursos/cursos.html navigation",
-          "Hotmart link on editorial page",
-          "calculator removed for review wording",
-          "unrelated related-links to Cp/Cpk, vibration and compressor",
-          "duplicate SIL/PFD article link"
+      "batch_03_triage": {
+        "status": "ready",
+        "scope": "active blog cards only",
+        "selection_limit": "1_to_3_pages",
+        "signals": [
+          "superficial or generic content",
+          "obsolete Cursos/cursos.html or Hotmart residue",
+          "unfinished/review marker",
+          "unrelated or duplicated related links",
+          "weak structure for primary user question",
+          "missing authoritative source where technically required"
         ],
-        "priority_2": "blog-sil-pfd-didatico.html",
-        "priority_2_findings": [
-          "old Cursos/cursos.html navigation",
-          "Hotmart link on editorial page",
-          "calculator removed for review wording",
-          "related links can be narrowed to functional safety context"
+        "excluded_manual_review_pages": [
+          "blog-inspecao-instrumentos-area-classificada.html",
+          "blog-ot-cybersecurity-instrumentacao.html"
         ]
       }
     }
