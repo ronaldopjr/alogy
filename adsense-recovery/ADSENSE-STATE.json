@@ -1,18 +1,30 @@
 {
   "schema_version": 3,
   "project": "ALOGY AdSense Recovery",
-  "plan_version": "2026-09-16.37",
+  "plan_version": "2026-09-16.38",
   "repository": "ronaldopjr/alogy",
   "base_branch": "main",
   "work_branch": "main",
-  "base_sha_verified": "996ced92f7ce0935222c5202356aac9bbe307d0b",
+  "base_sha_verified": "dd49ac0e35709adbaa31d06dfeda5425124143b9",
   "verified_at": "2026-09-16",
-  "last_completed_stage": "E06",
-  "stage_in_progress": "E07",
-  "next_stage": "E07",
-  "next_action": "Executar E07 somente na superficie editorial ativa: auditar autoria e transparencia em paginas atualmente expostas por blog.html, ferramentas.html ou navegacao institucional vigente; aplicar apenas fatos organizacionais ja confirmados; nao inventar credenciais pessoais. Se dados de autoria verificavel dependerem do proprietario, registrar AGUARDA PROPRIETARIO para essa subfrente e avancar para a proxima tarefa segura de E08. Nao solicitar nova analise do AdSense; preservar E10-I1 para perto do encerramento.",
+  "last_completed_stage": "E07-safe",
+  "stage_in_progress": "E08",
+  "next_stage": "E08",
+  "next_action": "Executar auditoria e correcoes materiais de mobile, acessibilidade e desempenho somente na superficie editorial ativa. Reproduzir problemas antes de editar; preservar formulas e JavaScript tecnico validados; medir app.js antes de qualquer refatoracao. Nao executar ainda E10-I1. Autoria pessoal, credenciais e evidencias dos cases permanecem AGUARDA PROPRIETARIO.",
   "status": "in_progress",
   "preferred_editorial_batch": 1,
+  "active_surface_rule": {
+    "articles": "automaticamente elegiveis somente quando link/card ativo em blog.html",
+    "tools": "automaticamente elegiveis somente quando link/card ativo em ferramentas.html",
+    "institutional": "elegivel quando exposta na navegacao institucional vigente",
+    "insufficient_signals": ["arquivo existente", "HTTP 200", "index,follow", "sitemap", "mapa de capas JavaScript", "link residual", "inventario historico"],
+    "explicitly_out_of_automatic_scope": [
+      "blog-ia-na-industria.html",
+      "ferramentas-instrumentacao-industrial.html",
+      "ferramentas-calibracao-instrumentacao.html",
+      "ferramentas-processo-vazao-nivel.html"
+    ]
+  },
   "adsense": {
     "reported_status": "low_value_content",
     "account_checked_in_this_stage": false,
@@ -23,29 +35,23 @@
     "enabled": true,
     "target_branch": "main",
     "method": "validated-atomic-commit",
-    "batch_id": "E06-ACTIVE-SURFACE-CORRECTION",
-    "latest_site_change_commit": "dd4cac5b3f01a360770c788bf3a1e50117be9512",
-    "latest_report_and_delta_commit": "996ced92f7ce0935222c5202356aac9bbe307d0b",
+    "batch_id": "E07-ORGANIZATIONAL-TRANSPARENCY",
+    "latest_site_change_commit": "dd49ac0e35709adbaa31d06dfeda5425124143b9",
     "services_navigation_commit": "2a047390f543d3a7a0469a3677f17c14fa0dcfeb",
     "canonical_inventory_initial_commit": "da2f61932a21c00741f418870601aafcb42deba6",
-    "source_verified_on_main": true,
     "pages_deployment_success": true,
-    "latest_pages_workflow_run": 35097729366,
-    "latest_pages_artifact_id": 10446583906,
-    "latest_pages_artifact_digest": "sha256:c476ab64dff3992a690aa9b0e353f5c137e638ca235553a20f3a2658df25a918",
+    "latest_pages_workflow_run": 35099511862,
+    "latest_pages_artifact_id": 10447711964,
+    "latest_pages_artifact_digest": "sha256:0d184680f166ebe00a85c8bdbf47ab873c59812a6c813bc519bcfa653205492c",
     "live_environment_url": "https://www.alogy.com.br/",
     "artifact_validation_complete": true,
-    "artifact_validation_method": "GitHub Pages build/deploy succeeded for revert dd4cac5b. Direct browser validation with cache key confirmed the restored title and H1 and confirmed absence of the E06-19 editorial phrases on the live domain.",
+    "artifact_validation_method": "GitHub Pages build/deploy succeeded. The public text reader still returned a previous cached copy of sobre.html, so byte-for-byte live equivalence was not claimed for E07.",
     "require_clean_validated_diff": true,
     "allow_force": false
   },
   "validation": {
-    "e02_search": {
-      "status": "passed"
-    },
-    "e03_commercial_truth": {
-      "status": "passed"
-    },
+    "e02_search": {"status": "passed"},
+    "e03_commercial_truth": {"status": "passed"},
     "e04_inventory": {
       "status": "completed_for_editorial_work",
       "source_html_total": 271,
@@ -54,356 +60,37 @@
       "public_indexable": 221,
       "public_noindex": 49,
       "sitemap_unique_urls": 221,
-      "indexable_missing_from_sitemap": 0,
-      "noindex_present_in_sitemap": 0,
-      "indexable_content_missing_canonical": 0,
-      "indexable_h1_anomalies": 0,
-      "duplicate_sitemap_urls_after": 0,
-      "direct_adsense_loader_pages": 88,
-      "legacy_cursos_source_pages": 137,
-      "legacy_cursos_indexable_source_pages": 102,
-      "hotmart_link_pages": 128,
       "canonical_inventory_initial_commit": "da2f61932a21c00741f418870601aafcb42deba6"
     },
-    "e05_pilot": {
-      "status": "passed_completed",
-      "pages": [
-        "blog-calibracao-valvula-controle.html",
-        "blog-calibracao-instrumentos-industriais.html"
-      ],
-      "adsense_review_request_allowed": false
-    },
+    "e05_pilot": {"status": "passed_completed"},
     "e06_acervo": {
       "status": "completed_for_active_surface_safe_work",
-      "canonical_inventory_deltas_pending_merge": [
-        "E06-INVENTORY-DELTA-01.csv",
-        "E06-INVENTORY-DELTA-02.csv",
-        "E06-INVENTORY-DELTA-03.csv",
-        "E06-INVENTORY-DELTA-04.csv",
-        "E06-INVENTORY-DELTA-05.csv",
-        "E06-INVENTORY-DELTA-06.csv",
-        "E06-INVENTORY-DELTA-07.csv",
-        "E06-INVENTORY-DELTA-08.csv",
-        "E06-INVENTORY-DELTA-09.csv",
-        "E06-INVENTORY-DELTA-10.csv",
-        "E06-INVENTORY-DELTA-11.csv",
-        "E06-INVENTORY-DELTA-12.csv",
-        "E06-INVENTORY-DELTA-13.csv",
-        "E06-INVENTORY-DELTA-14.csv",
-        "E06-INVENTORY-DELTA-15.csv",
-        "E06-INVENTORY-DELTA-16.csv",
-        "E06-INVENTORY-DELTA-17.csv",
-        "E06-INVENTORY-DELTA-18.csv"
-      ],
-      "pages": [
-        {
-          "n": 1,
-          "path": "blog-ar-instrumentos-qualidade-ponto-orvalho.html",
-          "status": "passed_published",
-          "content_commit": "4c4a51b7fd881a5252995dd00603ee04053daeb8",
-          "decision_after": "keep/P1/high"
-        },
-        {
-          "n": 2,
-          "path": "blog-solenoide-atuador-pneumatico-cv.html",
-          "status": "passed_published",
-          "content_commit": "3baa03d6832062d7d0fe24ec4ecae37cf96f0b59",
-          "decision_after": "keep/P1/high"
-        },
-        {
-          "n": 3,
-          "path": "blog-instrumentacao-industrial.html",
-          "status": "passed_published",
-          "content_commit": "794c5bd65cd80ce34b30f0ef83c1b422c5584ab5",
-          "decision_after": "keep/P1/high"
-        },
-        {
-          "n": 4,
-          "path": "blog-criticidade-instrumentos.html",
-          "status": "passed_published",
-          "content_commit": "95ea333e471f7e3d2518363794ca0215585ef6d8",
-          "decision_after": "keep/P1/high"
-        },
-        {
-          "n": 5,
-          "path": "blog-erro-total-malha-instrumentacao.html",
-          "status": "passed_published",
-          "content_commit": "41421244f4e6cce1e11d81fff25d4c79aaf93f2e",
-          "decision_after": "keep/P1/high"
-        },
-        {
-          "n": 6,
-          "path": "blog-fat-sat-instrumentacao.html",
-          "status": "passed_published",
-          "content_commit": "c9dc10756d8f5f42ef0388131caccbdee1e4f68c",
-          "decision_after": "keep/P1/high"
-        },
-        {
-          "n": 7,
-          "path": "blog-manutencao-preditiva-instrumentacao-sensores.html",
-          "status": "passed_published",
-          "content_commit": "3a9c7bb57ec195437bf93eba36fbd8dca3b2af7d",
-          "decision_after": "keep/P1/high"
-        },
-        {
-          "n": 8,
-          "path": "blog-massa-tanque-nivel.html",
-          "status": "passed_published",
-          "content_commit": "76e0832196a69242387dc35bef6c4051e08f02c0",
-          "decision_after": "keep/P1/high"
-        },
-        {
-          "n": 9,
-          "path": "blog-pressao-hidrostatica-densidade.html",
-          "status": "passed_published",
-          "content_commit": "e2bbc0c359b99b8e890a732da33c90d704151fc9",
-          "decision_after": "keep/P1/high"
-        },
-        {
-          "n": 10,
-          "path": "blog-selo-remoto-capilar-nivel.html",
-          "status": "passed_published",
-          "content_commit": "50b9e645ef4d6c5a9f8b2a6684bd547e850c1248",
-          "decision_after": "keep/P1/high"
-        },
-        {
-          "n": 11,
-          "path": "blog-potencia-bomba.html",
-          "status": "passed_published",
-          "content_commit": "af6f84bbac905b6888c63cf0d7c94da4e0023a5b",
-          "decision_after": "keep/P1/high"
-        },
-        {
-          "n": 12,
-          "path": "blog-gemeo-digital-tags-instrumentacao.html",
-          "status": "passed_published",
-          "content_commit": "2e091506da18f788757d1a424fd194228cb763b8",
-          "decision_after": "keep/P1/high"
-        },
-        {
-          "n": 13,
-          "path": "blog-teste-de-loop-instrumentacao.html",
-          "status": "passed_published",
-          "content_commit": "3f4f57c65535bd1e8fb243a6cd70de6282a4111c",
-          "decision_after": "keep/P1/high"
-        },
-        {
-          "n": 14,
-          "path": "calculadora-diagnostico-4-20ma-hart.html",
-          "status": "passed_published",
-          "content_commit": "225e449cd4b29d59d1066cb430a617babc5c615d",
-          "content_blob": "c9ab82a36d0b4f9bf0622534b7938ae91af4745c",
-          "report": "E06-HART-TRIAGE-ACERVO-14.md",
-          "report_and_delta_commit": "19de7722d16cd178aaa39ec7e05fe481d9087dfc",
-          "inventory_delta": "E06-INVENTORY-DELTA-14.csv",
-          "pages_workflow_run": 35033347360,
-          "pages_artifact_id": 10422481529,
-          "artifact_digest": "sha256:4819b7a0b9b305936a9006b16d399b33afe4d24a29edb20975d559e286a9a6bc",
-          "live_html_bytes": 35436,
-          "live_html_sha256": "009d5cb4f2fb36816972b096a17489276b5b5c082996759810c59693ee6b650a",
-          "live_visible_words_observed": 1946,
-          "live_main_words_observed": 1905,
-          "h1_count": 1,
-          "h2_count": 13,
-          "h3_count": 8,
-          "json_ld_types": [
-            "WebApplication",
-            "FAQPage"
-          ],
-          "canonical_valid": true,
-          "adsense_loader_present": true,
-          "sitemap_occurrences_expected": 1,
-          "global_guide_navigation_preserved": true,
-          "promotional_guide_link_in_body": false,
-          "hotmart_link_present": false,
-          "technical_formulas_or_shared_javascript_changed": false,
-          "live_matches_validated_candidate": true,
-          "decision_before": "improve/P0/high",
-          "decision_after": "keep/P1/high"
-        },
-        {
-          "n": 15,
-          "path": "blog-gemeo-digital-instrumentacao.html",
-          "status": "passed_published",
-          "content_commit": "ec20d4e2cb6a08524e725ea19b352e99f95995a2",
-          "content_blob": "884c04bbe468d24c8e57fcea15912b8ff4db1b6f",
-          "report": "E06-DIGITAL-TWIN-ARCHITECTURE-ACERVO-15.md",
-          "inventory_delta": "E06-INVENTORY-DELTA-15.csv",
-          "pages_workflow_run": 35035590094,
-          "pages_artifact_id": 10422164895,
-          "artifact_digest": "sha256:9e01095214668c0ec4511432770e23270df36fa07a81a4f02ad547092077ea3a",
-          "visible_words_candidate": 1757,
-          "main_words_candidate": 1710,
-          "h1_count": 1,
-          "h2_count": 15,
-          "h3_count": 0,
-          "canonical_valid": true,
-          "adsense_loader_present": true,
-          "global_guide_navigation_preserved": true,
-          "promotional_guide_link_in_body": false,
-          "technical_formulas_or_shared_javascript_changed": false,
-          "live_html_bytes": 22615,
-          "live_html_sha256": "cde4e38ac3bd90d0992ef4b6a0afbb57e4eb30648cbbdef5e8af3504f722c277",
-          "live_direct_fetch_status": "http_200_validated",
-          "live_matches_validated_candidate": true,
-          "decision_before": "improve/P0/high",
-          "decision_after": "keep/P1/high"
-        },
-        {
-          "n": 16,
-          "path": "blog-ia-na-industria.html",
-          "status": "passed_published",
-          "content_commit": "29795678a75517c5cba25d6f250b4672a9ae55e3",
-          "content_blob": "26a818ca7864c81363b0a196b6dd3d8d5b313446",
-          "report": "E06-INDUSTRIAL-AI-DATA-VALIDATION-ACERVO-16.md",
-          "report_and_delta_commit": "1b255930a04d6cc7ff34667cc5cb771b642a318c",
-          "inventory_delta": "E06-INVENTORY-DELTA-16.csv",
-          "pages_workflow_run": 35045927126,
-          "pages_artifact_id": 10427116945,
-          "artifact_digest": "sha256:aaaa8980367218f67b0cc9e67992d8467a68f2d3b6c25d0d5124a6d697bc0167",
-          "live_html_bytes": 24905,
-          "live_html_sha256": "47bec8f225f7a9d340cb8fc3f739e9cf05954971bd7de21e33117b8244a56134",
-          "live_visible_words_observed": 1893,
-          "live_main_words_observed": 1845,
-          "h1_count": 1,
-          "h2_count": 16,
-          "h3_count": 0,
-          "json_ld_types": [
-            "BlogPosting",
-            "FAQPage"
-          ],
-          "canonical_valid": true,
-          "adsense_loader_present": true,
-          "sitemap_occurrences_expected": 1,
-          "global_guide_navigation_preserved": true,
-          "promotional_guide_link_in_body": false,
-          "hotmart_link_present": false,
-          "technical_formulas_or_shared_javascript_changed": false,
-          "live_matches_validated_candidate": true,
-          "decision_before": "improve/P0/high",
-          "decision_after": "keep/P1/high"
-        },
-        {
-          "n": 17,
-          "path": "ferramentas-instrumentacao-industrial.html",
-          "status": "passed_published",
-          "content_commit": "4f6afc59acffcbc00b8f579bae0b90b94f622f6b",
-          "content_blob": "d96c34d666b3beadcaef04d91298abd3e076d1bf",
-          "report": "E06-INSTRUMENTATION-TOOLS-HUB-ACERVO-17.md",
-          "report_and_delta_commit": "ad46014787ca051d5ccc8e4803e0b331fd8049b1",
-          "inventory_delta": "E06-INVENTORY-DELTA-17.csv",
-          "pages_workflow_run": 35049832983,
-          "pages_artifact_id": 10427773838,
-          "artifact_digest": "sha256:0591643b0087be733b73a0548de61e19ee4e2d5c54a2c8bcf5875df3a9137778",
-          "live_html_bytes": 24994,
-          "live_html_sha256": "e44a8535545f104a1d3facb8cab2cfd615fda124aac50c827cc99b94578233be",
-          "live_visible_words_observed": 1414,
-          "live_main_words_observed": 1367,
-          "h1_count": 1,
-          "h2_count": 12,
-          "h3_count": 2,
-          "json_ld_types": [
-            "CollectionPage",
-            "BreadcrumbList",
-            "FAQPage"
-          ],
-          "canonical_valid": true,
-          "adsense_loader_present": true,
-          "sitemap_occurrences_expected": 1,
-          "internal_destinations_verified": 31,
-          "global_guide_navigation_preserved": true,
-          "promotional_guide_link_in_body": false,
-          "hotmart_link_present": false,
-          "technical_formulas_or_shared_javascript_changed": false,
-          "live_matches_validated_candidate": true,
-          "decision_before": "improve/P0/high",
-          "decision_after": "keep/P1/high"
-        },
-        {
-          "n": 18,
-          "path": "ferramentas-calibracao-instrumentacao.html",
-          "status": "passed_published",
-          "content_commit": "c1dc3816a37edf2d5fcb9232d0b20b21fe0e8b5e",
-          "content_blob": "4600363743b60bc49b629b33f34e3831c09b8ec7",
-          "report": "E06-CALIBRATION-TOOLS-HUB-ACERVO-18.md",
-          "report_and_delta_commit": "1ad799821dca041236291b6bbd6a95003fcec9db",
-          "inventory_delta": "E06-INVENTORY-DELTA-18.csv",
-          "pages_workflow_run": 35071001842,
-          "pages_artifact_id": 10435724263,
-          "artifact_digest": "sha256:2aa43bc6c7943583609300376af6fa296410a46b1b29fd22a1c6543114bdc8be",
-          "candidate_html_bytes": 26357,
-          "candidate_html_sha256": "3cd8e4308ed4ca5047bae68dd16f16373a963e5f29cd5319c10d3630923e9e59",
-          "visible_words_candidate": 1397,
-          "main_words_candidate": 1352,
-          "h1_count": 1,
-          "h2_count": 15,
-          "h3_count": 3,
-          "json_ld_types": [
-            "CollectionPage",
-            "BreadcrumbList",
-            "FAQPage"
-          ],
-          "canonical_valid": true,
-          "adsense_loader_present": true,
-          "sitemap_occurrences_expected": 1,
-          "internal_resources_verified": 39,
-          "global_guide_navigation_preserved": true,
-          "promotional_guide_link_in_body": false,
-          "hotmart_link_present": false,
-          "technical_formulas_or_shared_javascript_changed": false,
-          "live_updated_content_verified": true,
-          "live_byte_match_claimed": false,
-          "decision_before": "improve/P0/high",
-          "decision_after": "keep/P1/high"
-        }
-      ],
-      "next_candidate": {
-        "path": null,
-        "status": "moved_to_e07_after_active_surface_reconciliation"
-      },
-      "manual_review_pages_must_remain_unchanged": true,
-      "mass_pruning_allowed": false,
-      "adsense_review_request_allowed": false,
-      "selection_rule": "Eligible only when linked as an active card/link from current blog.html or current ferramentas.html, or explicitly exposed in current institutional navigation. File existence, HTTP 200, indexability, sitemap presence, residual links, or historical inventory classification alone are insufficient.",
-      "scope_rule_file": "adsense-recovery/ACTIVE-PUBLICATION-SCOPE.md",
-      "active_surface_unique_html_destinations": 77,
-      "active_improve_p0_high": 12,
-      "active_e06_completed_pages": 8,
-      "active_manual_review_pages": [
+      "historical_deltas_pending_safe_consolidation": 18,
+      "active_html_destinations_reconciled": 77,
+      "active_improve_p0_high_reconciled": 12,
+      "active_pages_already_treated": 8,
+      "manual_review_pages": [
         "blog-inspecao-instrumentos-area-classificada.html",
         "blog-ot-cybersecurity-instrumentacao.html"
       ],
-      "active_owner_dependent_pages": [
-        "industrial.html",
-        "sobre.html"
-      ],
-      "historical_inactive_revisions": [
-        "blog-solenoide-atuador-pneumatico-cv.html",
-        "blog-criticidade-instrumentos.html",
-        "blog-erro-total-malha-instrumentacao.html",
-        "blog-manutencao-preditiva-instrumentacao-sensores.html",
-        "blog-massa-tanque-nivel.html",
-        "blog-pressao-hidrostatica-densidade.html",
-        "blog-gemeo-digital-instrumentacao.html",
-        "blog-ia-na-industria.html",
-        "ferramentas-instrumentacao-industrial.html",
-        "ferramentas-calibracao-instrumentacao.html"
-      ],
-      "historical_inactive_revision_count": 10,
-      "e06_19": {
-        "status": "reverted_not_adopted",
-        "inappropriate_content_commit": "26c92561da21ef8b97c167d80be69f77d41d4db5",
+      "out_of_scope_batch_reverted": {
+        "path": "ferramentas-processo-vazao-nivel.html",
+        "bad_commit": "26c92561da21ef8b97c167d80be69f77d41d4db5",
         "revert_commit": "dd4cac5b3f01a360770c788bf3a1e50117be9512",
-        "restored_page_blob": "7d244d903f13b47c77f09bc0330836d9845c3af8",
-        "restored_sitemap_blob": "91d96281bcbc38161af89e53680939959c7a04c6",
-        "delta_19_adopted": false,
-        "pages_workflow_run": 35097729366,
-        "pages_artifact_id": 10446583906,
-        "artifact_digest": "sha256:c476ab64dff3992a690aa9b0e353f5c137e638ca235553a20f3a2658df25a918",
-        "live_validation": "restored title and H1 present; E06-19 phrases absent"
+        "delta_19_adopted": false
       }
     },
-    "shared_warning_follow_up": "E08-W1"
+    "e07_transparency": {
+      "status": "safe_organizational_scope_completed_owner_facts_pending",
+      "page": "sobre.html",
+      "content_commit": "dd49ac0e35709adbaa31d06dfeda5425124143b9",
+      "pages_workflow_run": 35099511862,
+      "pages_artifact_id": 10447711964,
+      "organizational_editorial_responsibility_added": true,
+      "personal_author_claim_added": false,
+      "credentials_invented": false,
+      "cases_changed": false
+    }
   },
   "commercial_truth": {
     "confirmed_owner_fact": "A ALOGY ainda nao possui padrao calibrado confirmado para sustentar emissao propria de laudo de calibracao.",
@@ -421,14 +108,15 @@
     "link_guide_from_blog_or_tools": false,
     "global_guide_navigation_may_remain": true,
     "automatic_adsense_review_request": false,
-    "same_visual_asset_desktop_mobile_at_e10_i1": true,
-    "require_current_editorial_surface_for_automatic_revision": true
+    "same_visual_asset_desktop_mobile_at_e10_i1": true
   },
   "owner_dependencies": [
-    "Captura atual do AdSense com motivo, data e disponibilidade de nova analise",
-    "Exportacao do Search Console por paginas e consultas, desejavel para priorizacao",
-    "Capacidades reais da bancada, funcoes, faixas e situacao metrologica",
-    "Modelos e portes atendidos, meios de teste, local de recebimento, profissionais e parceiros",
-    "Dados verdadeiros de autoria, credenciais e evidencias publicaveis"
+    "Captura atual da reprovação/estado do AdSense e data",
+    "Exportação do Search Console por páginas e consultas; desejável, não bloqueia correções evidentes",
+    "Capacidades reais da bancada, tipos/modelos atendidos e situação metrológica dos equipamentos",
+    "Modelos/portes, meios de teste, condição de recebimento, profissionais disponíveis e parceiros",
+    "Nome/identidade do responsável técnico ou editorial, formação, registro profissional e experiência somente se confirmados e autorizados",
+    "Confirmação do uso de data de fundação/Desde 2012 quando esse dado for usado como evidência de experiência",
+    "Permissão/evidência dos projetos em cases.html e das alegações de resultado antes de aprofundar os cases"
   ]
 }
