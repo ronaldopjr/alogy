@@ -1,17 +1,17 @@
 {
   "schema_version": 3,
   "project": "ALOGY AdSense Recovery",
-  "plan_version": "2026-09-16.45",
+  "plan_version": "2026-09-16.46",
   "repository": "ronaldopjr/alogy",
   "base_branch": "main",
   "work_branch": "main",
-  "base_sha_verified": "d37cef696f6289ce5175cbb882929b964ef432be",
+  "base_sha_verified": "875cb05cc2b921e7303b5a29ce7ee9b4cb9c4912",
   "verified_at": "2026-09-16",
-  "last_completed_stage": "E10 exact mobile artifact QA",
-  "stage_in_progress": "AGUARDA_PROPRIETARIO",
-  "next_stage": "E11 somente com autorizacao explicita",
-  "next_action": "AGUARDA PROPRIETARIO: conferir no painel AdSense o estado atual da reprovacao, verificacao do site, disponibilidade real de nova analise e CMP/Privacidade e mensagens; fornecer somente fatos confirmados de autoria, credenciais, cases e capacidade C01-C03 se quiser publica-los; obter revisao especializada das duas paginas manual-review/P0. Nao solicitar nova analise automaticamente.",
-  "status": "awaiting_owner_automation_paused",
+  "last_completed_stage": "E11 owner checkpoint preparation",
+  "stage_in_progress": "AGUARDA_EVIDENCIA_ADSENSE_AUTENTICADA",
+  "next_stage": "E11 authenticated decision gate",
+  "next_action": "PROPRIETARIO: enviar capturas atuais de AdSense > Sites (alogy.com.br com status de aprovacao e ads.txt), detalhes do site, Privacidade e mensagens/CMP, Central de politicas e tarefas/alertas da pagina inicial. ASSISTENTE: classificar o estado real em A-D e atualizar o mesmo MD canonico. Nao solicitar nova analise automaticamente.",
+  "status": "awaiting_authenticated_adsense_evidence",
   "adsense": {
     "reported_status": "low_value_content",
     "account_checked_in_this_stage": false,
@@ -26,7 +26,7 @@
     "target_branch": "main",
     "method": "validated-atomic-commit",
     "latest_site_change_commit": "de07a283b54da6d04332475e562bb0d06cc1f4c9",
-    "latest_report_commit": "d37cef696f6289ce5175cbb882929b964ef432be",
+    "latest_report_commit": "875cb05cc2b921e7303b5a29ce7ee9b4cb9c4912",
     "pages_deployment_success": true,
     "latest_pages_workflow_run": 35130851764,
     "latest_pages_artifact_id": 10461581421,
@@ -39,7 +39,12 @@
     "title": "ALOGY AdSense Contínuo",
     "enabled": false,
     "disabled_at": "2026-09-16T16:50:57.404222Z",
-    "reason": "E02-E10 e todo trabalho seguro independente foram concluidos; restam somente dependencias do proprietario, acesso autenticado e revisao especializada."
+    "reason": "E02-E10 e todo trabalho seguro independente foram concluidos; E11 agora aguarda evidencia autenticada do proprietario e revisao especializada onde aplicavel."
+  },
+  "workflow_rules": {
+    "update_same_canonical_md_after_each_stage": true,
+    "show_updated_md_to_owner_after_each_stage": true,
+    "always_state_next_step": true
   },
   "validation": {
     "e02_search": "passed",
@@ -126,6 +131,27 @@
         "duas paginas manual-review/P0 exigem especialista",
         "credenciais, confirmacao de Desde 2012, cases e C01-C03 dependem de fatos e autorizacao do proprietario"
       ]
+    },
+    "e11_owner_checkpoint": {
+      "status": "prepared_awaiting_authenticated_evidence",
+      "report": "adsense-recovery/E11-OWNER-CHECKPOINT.md",
+      "official_google_guidance_checked_at": "2026-09-16",
+      "owner_continuation_authorized": true,
+      "owner_review_request_authorized": false,
+      "review_request_sent": false,
+      "required_evidence": [
+        "AdSense > Sites row for alogy.com.br with approval and ads.txt status",
+        "alogy.com.br site details including current reason and review button availability",
+        "Privacy & messaging CMP/European regulations state",
+        "Policy Center current issues or clean state",
+        "AdSense home required tasks or rejection alert if present"
+      ],
+      "decision_gate": {
+        "requires_attention": "record exact reason and fix only proven cause",
+        "requires_review": "verify required tasks, site connection, ads.txt, CMP and Policy Center before any review decision",
+        "getting_ready": "do not remove, resubmit or start another review",
+        "ready": "close approval recovery and move to monetization optimization"
+      }
     }
   },
   "constraints": {
@@ -136,7 +162,7 @@
     "automatic_adsense_review_request": false
   },
   "owner_or_manual_dependencies": [
-    "estado atual da conta AdSense, verificacao do site, disponibilidade de reanalise e CMP autenticada",
+    "capturas autenticadas do estado atual da conta AdSense, verificacao do site, disponibilidade de reanalise e CMP",
     "autoria pessoal e credenciais somente se confirmadas e autorizadas",
     "confirmacao de Desde 2012 quando usado como evidencia de experiencia",
     "evidencias e autorizacao dos cases antes de ampliar alegacoes",
