@@ -1,16 +1,16 @@
 {
   "schema_version": 3,
   "project": "ALOGY AdSense Recovery",
-  "plan_version": "2026-09-16.38",
+  "plan_version": "2026-09-16.39",
   "repository": "ronaldopjr/alogy",
   "base_branch": "main",
   "work_branch": "main",
-  "base_sha_verified": "dd49ac0e35709adbaa31d06dfeda5425124143b9",
+  "base_sha_verified": "29671d4dc825c8c406d5974b15d3300f2f96d7cc",
   "verified_at": "2026-09-16",
   "last_completed_stage": "E07-safe",
   "stage_in_progress": "E08",
   "next_stage": "E08",
-  "next_action": "Executar auditoria e correcoes materiais de mobile, acessibilidade e desempenho somente na superficie editorial ativa. Reproduzir problemas antes de editar; preservar formulas e JavaScript tecnico validados; medir app.js antes de qualquer refatoracao. Nao executar ainda E10-I1. Autoria pessoal, credenciais e evidencias dos cases permanecem AGUARDA PROPRIETARIO.",
+  "next_action": "Continuar E08 na superficie ativa. Proximo defeito material ja reproduzido: index.html possui dois elementos main; corrigir a semantica da home sem alterar conteudo, formulas ou app.js, depois validar Pages e dominio. Em paralelo, continuar amostra mobile/teclado/overflow somente quando houver defeito reproduzido. Nao executar ainda E10-I1. Autoria pessoal, credenciais e evidencias dos cases permanecem AGUARDA PROPRIETARIO.",
   "status": "in_progress",
   "preferred_editorial_batch": 1,
   "active_surface_rule": {
@@ -35,17 +35,15 @@
     "enabled": true,
     "target_branch": "main",
     "method": "validated-atomic-commit",
-    "batch_id": "E07-ORGANIZATIONAL-TRANSPARENCY",
-    "latest_site_change_commit": "dd49ac0e35709adbaa31d06dfeda5425124143b9",
+    "batch_id": "E08-ACCESSIBILITY-01",
+    "latest_site_change_commit": "29671d4dc825c8c406d5974b15d3300f2f96d7cc",
     "services_navigation_commit": "2a047390f543d3a7a0469a3677f17c14fa0dcfeb",
     "canonical_inventory_initial_commit": "da2f61932a21c00741f418870601aafcb42deba6",
     "pages_deployment_success": true,
-    "latest_pages_workflow_run": 35099511862,
-    "latest_pages_artifact_id": 10447711964,
-    "latest_pages_artifact_digest": "sha256:0d184680f166ebe00a85c8bdbf47ab873c59812a6c813bc519bcfa653205492c",
+    "latest_pages_workflow_run": 35100866427,
     "live_environment_url": "https://www.alogy.com.br/",
-    "artifact_validation_complete": true,
-    "artifact_validation_method": "GitHub Pages build/deploy succeeded. The public text reader still returned a previous cached copy of sobre.html, so byte-for-byte live equivalence was not claimed for E07.",
+    "artifact_validation_complete": false,
+    "artifact_validation_method": "GitHub Pages build/deploy succeeded for 29671d4. Source validation confirms accessible names were added to navigation and icon-only social links on sobre.html. Public search cache did not yet expose the new markup, therefore live byte-equivalence was not claimed.",
     "require_clean_validated_diff": true,
     "allow_force": false
   },
@@ -90,6 +88,23 @@
       "personal_author_claim_added": false,
       "credentials_invented": false,
       "cases_changed": false
+    },
+    "e08_mobile_accessibility_performance": {
+      "status": "in_progress",
+      "batches": [
+        {
+          "id": "E08-ACCESSIBILITY-01",
+          "page": "sobre.html",
+          "issue_reproduced": "desktop/mobile nav landmarks and icon-only social links lacked accessible names",
+          "content_commit": "29671d4dc825c8c406d5974b15d3300f2f96d7cc",
+          "pages_workflow_run": 35100866427,
+          "pages_conclusion": "success",
+          "technical_javascript_changed": false,
+          "formulas_changed": false,
+          "live_byte_equivalence_claimed": false
+        }
+      ],
+      "next_reproduced_issue": "index.html contains two main elements and requires a semantic-only correction"
     }
   },
   "commercial_truth": {
