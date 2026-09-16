@@ -1,16 +1,16 @@
 {
   "schema_version": 3,
   "project": "ALOGY AdSense Recovery",
-  "plan_version": "2026-09-15.33",
+  "plan_version": "2026-09-15.34",
   "repository": "ronaldopjr/alogy",
   "base_branch": "main",
   "work_branch": "main",
-  "base_sha_verified": "fdf03c3c92ce449854248f34cf2ff7e1813e8752",
-  "verified_at": "2026-09-15",
+  "base_sha_verified": "1b255930a04d6cc7ff34667cc5cb771b642a318c",
+  "verified_at": "2026-09-16",
   "last_completed_stage": "E05",
   "stage_in_progress": "E06",
   "next_stage": "E06",
-  "next_action": "Selecionar a proxima pagina improve/P0/high do acervo monetizado para E06-16, priorizando instrumentacao, automacao ou eletrica industrial e baixo risco editorial. Excluir E06-01 a E06-15 e manter paginas que exigem revisao especializada fora da edicao automatica. Tratar E06-INVENTORY-DELTA-01.csv a E06-INVENTORY-DELTA-15.csv como fonte incremental ate consolidacao segura. Nao solicitar nova analise do AdSense e preservar E10-I1 para perto do encerramento.",
+  "next_action": "Selecionar a proxima pagina improve/P0/high do acervo monetizado para E06-17, priorizando instrumentacao, automacao ou eletrica industrial e baixo risco editorial. Excluir E06-01 a E06-16 e manter paginas que exigem revisao especializada fora da edicao automatica. Tratar E06-INVENTORY-DELTA-01.csv a E06-INVENTORY-DELTA-16.csv como fonte incremental ate consolidacao segura. Nao solicitar nova analise do AdSense e preservar E10-I1 para perto do encerramento.",
   "status": "in_progress",
   "preferred_editorial_batch": 1,
   "adsense": {
@@ -23,19 +23,19 @@
     "enabled": true,
     "target_branch": "main",
     "method": "validated-atomic-commit",
-    "batch_id": "E06-DIGITAL-TWIN-ARCHITECTURE-ACERVO-15",
-    "latest_site_change_commit": "ec20d4e2cb6a08524e725ea19b352e99f95995a2",
-    "latest_report_and_delta_commit": "d16a303bc8e8afa06db41e8e7f57d83e5922bd2f",
+    "batch_id": "E06-INDUSTRIAL-AI-DATA-VALIDATION-ACERVO-16",
+    "latest_site_change_commit": "29795678a75517c5cba25d6f250b4672a9ae55e3",
+    "latest_report_and_delta_commit": "1b255930a04d6cc7ff34667cc5cb771b642a318c",
     "services_navigation_commit": "2a047390f543d3a7a0469a3677f17c14fa0dcfeb",
     "canonical_inventory_initial_commit": "da2f61932a21c00741f418870601aafcb42deba6",
     "source_verified_on_main": true,
     "pages_deployment_success": true,
-    "latest_pages_workflow_run": 35035590094,
-    "latest_pages_artifact_id": 10422164895,
-    "latest_pages_artifact_digest": "sha256:9e01095214668c0ec4511432770e23270df36fa07a81a4f02ad547092077ea3a",
+    "latest_pages_workflow_run": 35045927126,
+    "latest_pages_artifact_id": 10427116945,
+    "latest_pages_artifact_digest": "sha256:aaaa8980367218f67b0cc9e67992d8467a68f2d3b6c25d0d5124a6d697bc0167",
     "live_environment_url": "https://www.alogy.com.br/",
     "artifact_validation_complete": true,
-    "artifact_validation_method": "GitHub Pages build/deploy succeeded for ec20d4e2; a later direct live-domain fetch returned HTTP 200 and the served HTML Git blob SHA-1 matched the content commit blob exactly.",
+    "artifact_validation_method": "GitHub Pages build/deploy succeeded for 29795678; direct live-domain fetch returned HTTP 200 and the served HTML matched the validated candidate byte for byte, including Git blob SHA-1 26a818ca7864c81363b0a196b6dd3d8d5b313446.",
     "require_clean_validated_diff": true,
     "allow_force": false
   },
@@ -74,7 +74,7 @@
       "adsense_review_request_allowed": false
     },
     "e06_acervo": {
-      "status": "pages_01_to_15_passed_published_next_selection_pending",
+      "status": "pages_01_to_16_passed_published_next_selection_pending",
       "canonical_inventory_deltas_pending_merge": [
         "E06-INVENTORY-DELTA-01.csv",
         "E06-INVENTORY-DELTA-02.csv",
@@ -90,7 +90,8 @@
         "E06-INVENTORY-DELTA-12.csv",
         "E06-INVENTORY-DELTA-13.csv",
         "E06-INVENTORY-DELTA-14.csv",
-        "E06-INVENTORY-DELTA-15.csv"
+        "E06-INVENTORY-DELTA-15.csv",
+        "E06-INVENTORY-DELTA-16.csv"
       ],
       "pages": [
         {
@@ -245,11 +246,45 @@
           "live_matches_validated_candidate": true,
           "decision_before": "improve/P0/high",
           "decision_after": "keep/P1/high"
+        },
+        {
+          "n": 16,
+          "path": "blog-ia-na-industria.html",
+          "status": "passed_published",
+          "content_commit": "29795678a75517c5cba25d6f250b4672a9ae55e3",
+          "content_blob": "26a818ca7864c81363b0a196b6dd3d8d5b313446",
+          "report": "E06-INDUSTRIAL-AI-DATA-VALIDATION-ACERVO-16.md",
+          "report_and_delta_commit": "1b255930a04d6cc7ff34667cc5cb771b642a318c",
+          "inventory_delta": "E06-INVENTORY-DELTA-16.csv",
+          "pages_workflow_run": 35045927126,
+          "pages_artifact_id": 10427116945,
+          "artifact_digest": "sha256:aaaa8980367218f67b0cc9e67992d8467a68f2d3b6c25d0d5124a6d697bc0167",
+          "live_html_bytes": 24905,
+          "live_html_sha256": "47bec8f225f7a9d340cb8fc3f739e9cf05954971bd7de21e33117b8244a56134",
+          "live_visible_words_observed": 1893,
+          "live_main_words_observed": 1845,
+          "h1_count": 1,
+          "h2_count": 16,
+          "h3_count": 0,
+          "json_ld_types": [
+            "BlogPosting",
+            "FAQPage"
+          ],
+          "canonical_valid": true,
+          "adsense_loader_present": true,
+          "sitemap_occurrences_expected": 1,
+          "global_guide_navigation_preserved": true,
+          "promotional_guide_link_in_body": false,
+          "hotmart_link_present": false,
+          "technical_formulas_or_shared_javascript_changed": false,
+          "live_matches_validated_candidate": true,
+          "decision_before": "improve/P0/high",
+          "decision_after": "keep/P1/high"
         }
       ],
       "next_candidate": {
         "path": null,
-        "status": "selection_pending_after_page_15"
+        "status": "selection_pending_after_page_16"
       },
       "manual_review_pages_must_remain_unchanged": true,
       "mass_pruning_allowed": false,

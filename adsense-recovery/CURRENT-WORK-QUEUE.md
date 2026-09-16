@@ -1,6 +1,6 @@
 # ALOGY — fila operacional atual
 
-> Versão 2026-09-15.33. Esta é a única fila executável. Filas anteriores e relatórios por lote permanecem históricos.
+> Versão 2026-09-15.34. Esta é a única fila executável. Filas anteriores e relatórios por lote permanecem históricos.
 
 ## Regras permanentes
 
@@ -34,7 +34,7 @@
 
 ## E06 — revisão do acervo monetizado
 
-**Estado:** EM EXECUÇÃO — QUINZE PÁGINAS REVISADAS, PUBLICADAS E VALIDADAS.
+**Estado:** EM EXECUÇÃO — DEZESSEIS PÁGINAS REVISADAS, PUBLICADAS E VALIDADAS.
 
 | # | Página | Decisão | Commit de conteúdo |
 |---|---|---|---|
@@ -53,6 +53,7 @@
 | 13 | `blog-teste-de-loop-instrumentacao.html` | `keep/P1/high` | `3f4f57c65535bd1e8fb243a6cd70de6282a4111c` |
 | 14 | `calculadora-diagnostico-4-20ma-hart.html` | `keep/P1/high` | `225e449cd4b29d59d1066cb430a617babc5c615d` |
 | 15 | `blog-gemeo-digital-instrumentacao.html` | `keep/P1/high` | `ec20d4e2cb6a08524e725ea19b352e99f95995a2` |
+| 16 | `blog-ia-na-industria.html` | `keep/P1/high` | `29795678a75517c5cba25d6f250b4672a9ae55e3` |
 
 ### Página 14 — diagnóstico 4–20 mA e HART
 - relatório: `E06-HART-TRIAGE-ACERVO-14.md`;
@@ -77,7 +78,7 @@
 - fontes primárias: IEC 60381-1, NAMUR NE 043, Emerson Rosemount 3051S e FieldComm Group.
 
 ### Pendência explícita do inventário
-O `ADSENSE-INVENTORY.csv` canônico ainda não incorpora as decisões E06. Os arquivos `E06-INVENTORY-DELTA-01.csv` a `E06-INVENTORY-DELTA-15.csv` são a fonte incremental de verdade até existir mecanismo seguro de consolidação integral. Não substituir o CSV grande parcialmente.
+O `ADSENSE-INVENTORY.csv` canônico ainda não incorpora as decisões E06. Os arquivos `E06-INVENTORY-DELTA-01.csv` a `E06-INVENTORY-DELTA-16.csv` são a fonte incremental de verdade até existir mecanismo seguro de consolidação integral. Não substituir o CSV grande parcialmente.
 
 ### Página 15 — digital twin industrial
 - página: `blog-gemeo-digital-instrumentacao.html`;
@@ -95,13 +96,31 @@ O `ADSENSE-INVENTORY.csv` canônico ainda não incorpora as decisões E06. Os ar
 - sem CTA promocional do Guia, Hotmart ou Cursos no corpo; nenhum JS técnico ou fórmula alterado;
 - leitura direta posterior do domínio validou equivalência byte a byte do HTML ao vivo.
 
-### Próxima ação executável — E06-16
+### Página 16 — IA industrial
+- página: `blog-ia-na-industria.html`;
+- conteúdo + sitemap: commit `29795678a75517c5cba25d6f250b4672a9ae55e3`;
+- relatório + delta: commit `1b255930a04d6cc7ff34667cc5cb771b642a318c`;
+- relatório: `E06-INDUSTRIAL-AI-DATA-VALIDATION-ACERVO-16.md`; delta: `E06-INVENTORY-DELTA-16.csv`;
+- blob final: `26a818ca7864c81363b0a196b6dd3d8d5b313446`;
+- Pages: run `35045927126`, build/deploy `success`;
+- artefato `10427116945`, digest `sha256:aaaa8980367218f67b0cc9e67992d8467a68f2d3b6c25d0d5124a6d697bc0167`;
+- domínio: HTTP 200, 24.905 bytes, SHA-256 `47bec8f225f7a9d340cb8fc3f739e9cf05954971bd7de21e33117b8244a56134`;
+- Git blob do HTML servido: `26a818ca7864c81363b0a196b6dd3d8d5b313446`, igual ao blob final versionado;
+- 1.893 palavras visíveis / 1.845 no `main`; 1 H1 / 16 H2;
+- exemplo conferido: 12,8 mA = 55% = 5,5 bar em faixa 0–10 bar; escala incorreta 0–16 bar = 8,8 bar;
+- qualidade/contexto, validação temporal, métricas, domínio, operação em sombra, supervisão, monitoramento e fallback aprofundados;
+- fontes primárias NIST, incluindo roadmap de manufatura e documentos de 2026;
+- `BlogPosting` + `FAQPage`; canonical, sitemap e AdSense preservados;
+- sem CTA promocional do Guia, Hotmart ou Cursos no corpo; nenhum JS técnico ou fórmula de ferramenta alterado;
+- leitura direta do domínio validou equivalência byte a byte do HTML ao vivo.
+
+### Próxima ação executável — E06-17
 1. Reler `main`, `ADSENSE-STATE.json` e esta fila antes de qualquer escrita.
-2. Selecionar a próxima página `improve/P0/high` segura, excluindo páginas 01–15.
+2. Selecionar a próxima página `improve/P0/high` segura, excluindo páginas 01–16.
 3. Manter páginas que exigem revisão especializada fora da edição automática.
 4. Pesquisar fontes primárias antes de editar.
 5. Publicar uma página extensa por lote e validar GitHub Pages; validar domínio quando o fetch estiver disponível.
-6. Criar relatório e `E06-INVENTORY-DELTA-16.csv`.
+6. Criar relatório e `E06-INVENTORY-DELTA-17.csv`.
 7. Atualizar controles e o mesmo MD de continuidade.
 8. Não solicitar nova análise do AdSense.
 
