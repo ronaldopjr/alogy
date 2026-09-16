@@ -1,6 +1,6 @@
 # ALOGY — fila operacional atual
 
-> Versão 2026-09-15.34. Esta é a única fila executável. Filas anteriores e relatórios por lote permanecem históricos.
+> Versão 2026-09-15.35. Esta é a única fila executável. Filas anteriores e relatórios por lote permanecem históricos.
 
 ## Regras permanentes
 
@@ -34,7 +34,7 @@
 
 ## E06 — revisão do acervo monetizado
 
-**Estado:** EM EXECUÇÃO — DEZESSEIS PÁGINAS REVISADAS, PUBLICADAS E VALIDADAS.
+**Estado:** EM EXECUÇÃO — DEZESSETE PÁGINAS REVISADAS, PUBLICADAS E VALIDADAS.
 
 | # | Página | Decisão | Commit de conteúdo |
 |---|---|---|---|
@@ -54,6 +54,7 @@
 | 14 | `calculadora-diagnostico-4-20ma-hart.html` | `keep/P1/high` | `225e449cd4b29d59d1066cb430a617babc5c615d` |
 | 15 | `blog-gemeo-digital-instrumentacao.html` | `keep/P1/high` | `ec20d4e2cb6a08524e725ea19b352e99f95995a2` |
 | 16 | `blog-ia-na-industria.html` | `keep/P1/high` | `29795678a75517c5cba25d6f250b4672a9ae55e3` |
+| 17 | `ferramentas-instrumentacao-industrial.html` | `keep/P1/high` | `4f6afc59acffcbc00b8f579bae0b90b94f622f6b` |
 
 ### Página 14 — diagnóstico 4–20 mA e HART
 - relatório: `E06-HART-TRIAGE-ACERVO-14.md`;
@@ -78,7 +79,7 @@
 - fontes primárias: IEC 60381-1, NAMUR NE 043, Emerson Rosemount 3051S e FieldComm Group.
 
 ### Pendência explícita do inventário
-O `ADSENSE-INVENTORY.csv` canônico ainda não incorpora as decisões E06. Os arquivos `E06-INVENTORY-DELTA-01.csv` a `E06-INVENTORY-DELTA-16.csv` são a fonte incremental de verdade até existir mecanismo seguro de consolidação integral. Não substituir o CSV grande parcialmente.
+O `ADSENSE-INVENTORY.csv` canônico ainda não incorpora as decisões E06. Os arquivos `E06-INVENTORY-DELTA-01.csv` a `E06-INVENTORY-DELTA-17.csv` são a fonte incremental de verdade até existir mecanismo seguro de consolidação integral. Não substituir o CSV grande parcialmente.
 
 ### Página 15 — digital twin industrial
 - página: `blog-gemeo-digital-instrumentacao.html`;
@@ -114,13 +115,33 @@ O `ADSENSE-INVENTORY.csv` canônico ainda não incorpora as decisões E06. Os ar
 - sem CTA promocional do Guia, Hotmart ou Cursos no corpo; nenhum JS técnico ou fórmula de ferramenta alterado;
 - leitura direta do domínio validou equivalência byte a byte do HTML ao vivo.
 
-### Próxima ação executável — E06-17
+### Página 17 — hub de ferramentas de instrumentação
+- página: `ferramentas-instrumentacao-industrial.html`;
+- conteúdo + sitemap: commit `4f6afc59acffcbc00b8f579bae0b90b94f622f6b`;
+- relatório + delta: commit `ad46014787ca051d5ccc8e4803e0b331fd8049b1`;
+- relatório: `E06-INSTRUMENTATION-TOOLS-HUB-ACERVO-17.md`; delta: `E06-INVENTORY-DELTA-17.csv`;
+- blob final: `d96c34d666b3beadcaef04d91298abd3e076d1bf`;
+- Pages: run `35049832983`, build/deploy `success`;
+- artefato `10427773838`, digest `sha256:0591643b0087be733b73a0548de61e19ee4e2d5c54a2c8bcf5875df3a9137778`;
+- domínio: HTTP 200, 24.994 bytes, SHA-256 `e44a8535545f104a1d3facb8cab2cfd615fda124aac50c827cc99b94578233be`;
+- Git blob do HTML servido: `d96c34d666b3beadcaef04d91298abd3e076d1bf`, igual ao blob final versionado;
+- 1.414 palavras visíveis / 1.367 no `main`; 1 H1 / 12 H2 / 2 H3;
+- hub convertido em mapa de decisão por sintoma, dado necessário e primeiro caminho, com 31 destinos internos conferidos;
+- exemplos reproduzíveis: 12 mA em 0–10 bar = 50% = 5,0 bar; 50% de curso da válvula não implica 50% de vazão;
+- fontes primárias JCGM VIM e Brochura do SI do BIPM;
+- posicionamento comercial limitado a revisão, manutenção, configuração, diagnóstico e conferência funcional; calibração, ensaio, rastreabilidade e documentação específica condicionados a recursos e parceiros confirmados na proposta;
+- `CollectionPage` + `BreadcrumbList` + `FAQPage`; canonical, sitemap e AdSense preservados;
+- menu global Guia preservado; sem CTA promocional do Guia, Hotmart ou Cursos no corpo;
+- nenhum JavaScript técnico ou fórmula de ferramenta alterado;
+- leitura direta do domínio validou equivalência byte a byte do HTML ao vivo.
+
+### Próxima ação executável — E06-18
 1. Reler `main`, `ADSENSE-STATE.json` e esta fila antes de qualquer escrita.
-2. Selecionar a próxima página `improve/P0/high` segura, excluindo páginas 01–16.
-3. Manter páginas que exigem revisão especializada fora da edição automática.
+2. Selecionar a próxima página `improve/P0/high` segura, excluindo páginas 01–17.
+3. Manter `blog-inspecao-instrumentos-area-classificada.html` e `blog-ot-cybersecurity-instrumentacao.html` fora da edição automática, pois exigem revisão especializada.
 4. Pesquisar fontes primárias antes de editar.
 5. Publicar uma página extensa por lote e validar GitHub Pages; validar domínio quando o fetch estiver disponível.
-6. Criar relatório e `E06-INVENTORY-DELTA-17.csv`.
+6. Criar relatório e `E06-INVENTORY-DELTA-18.csv`.
 7. Atualizar controles e o mesmo MD de continuidade.
 8. Não solicitar nova análise do AdSense.
 
