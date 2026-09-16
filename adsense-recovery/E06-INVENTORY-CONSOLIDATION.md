@@ -1,13 +1,13 @@
 # E06 — consolidação integral do inventário
 
-- Commit de gatilho: `31e1cff541bf5191e5b46506473a037cc0120321`
+- Commit de gatilho: `03be4e3760f8793e67f584c8781a0dae2aa755cb`
 - Deltas aplicados: `E06-INVENTORY-DELTA-01.csv` a `E06-INVENTORY-DELTA-18.csv`.
 - Linhas físicas preservadas: **272**.
 - Paths canônicos únicos preservados: **271**.
 - Cabeçalho preservado sem alteração.
 - Cada um dos 18 paths foi encontrado exatamente uma vez no inventário canônico.
 - Cada linha consolidada foi comparada com o respectivo delta após parse CSV.
-- SHA-256 antes: `aec6ce75091664a6966532a1917420740bd7c6bd08ab7d53597b12c1b6dc6448`
+- SHA-256 antes: `12e9e0d3e6729a7fd36c0190fad88862ea3500b209046ae67362a43ce0b883fa`
 - SHA-256 depois: `12e9e0d3e6729a7fd36c0190fad88862ea3500b209046ae67362a43ce0b883fa`
 
 ## Paths consolidados
