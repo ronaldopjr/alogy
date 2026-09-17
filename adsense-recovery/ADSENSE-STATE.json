@@ -1,16 +1,16 @@
 {
   "schema_version": 3,
   "project": "ALOGY AdSense Recovery",
-  "plan_version": "2026-09-16.49",
+  "plan_version": "2026-09-16.51",
   "repository": "ronaldopjr/alogy",
   "base_branch": "main",
   "work_branch": "main",
-  "base_sha_verified": "12bbf76b7020acde16b19b35094ecffea255dfca",
+  "base_sha_verified": "836f1e2f661a61e86bf6fc88419a38679dc12ec9",
   "verified_at": "2026-09-16",
-  "last_completed_stage": "E11 low value content batch 03 pneumatic tubing and hysteresis",
-  "stage_in_progress": "E11_LOW_VALUE_EDITORIAL_TRIAGE_04",
-  "next_stage": "E11 low value content batch 04",
-  "next_action": "Triar apenas os artigos ainda ativos no blog.html e selecionar no maximo 1 a 3 paginas com sinais objetivos combinados de baixo valor ou residuos editoriais antigos. Nao editar as paginas manual-review/P0. Revisar somente as selecionadas, validar Pages/sitemap, atualizar o mesmo MD e nao solicitar nova analise automaticamente.",
+  "last_completed_stage": "E11 low value content batch 04 analog input, I/P-P/I converter and flow totalizer",
+  "stage_in_progress": "E11_LOW_VALUE_EDITORIAL_TRIAGE_05",
+  "next_stage": "E11 low value content batch 05",
+  "next_action": "Triar somente os artigos ainda ativos restantes no blog.html e selecionar no maximo 1 a 3 paginas com sinais objetivos combinados de baixo valor ou residuos editoriais antigos. Excluir manual-review/P0 e nao reabrir lotes 01-04 sem defeito novo. Revisar somente as selecionadas, validar Pages/sitemap, atualizar o mesmo MD e nao solicitar nova analise automaticamente.",
   "status": "low_value_content_editorial_recovery_active",
   "adsense": {
     "reported_status": "low_value_content",
@@ -28,22 +28,24 @@
     "enabled": true,
     "target_branch": "main",
     "method": "validated-commit",
-    "latest_site_change_commit": "aea22737642da267996d793513177c74c2ffde00",
-    "latest_content_change_commit": "5cfb0939b49595fc9818c1836b1be78b0e986dc0",
-    "latest_report_commit": "416cc2259231d27d573b2dc1aaf5fe705377117b",
+    "latest_site_change_commit": "836f1e2f661a61e86bf6fc88419a38679dc12ec9",
+    "latest_content_change_commit": "94d3854a1e341b0216d4a781a1538ea269baa529",
+    "latest_report_commit": "d60e95b0e1eaf9b02aa197cda3517c92c2d6fc16",
+    "latest_queue_commit": "08ab6cbbbb2ae6abc60b26f15f9e5d9724f1a178",
     "pages_deployment_success": true,
-    "latest_pages_workflow_run": 35147892933,
-    "latest_pages_artifact_id": 10468250308,
-    "latest_pages_artifact_digest": "sha256:282e89f42d3368ecc231fbd54c92e2fe599a92b8c7775f9b79475cf5569d444e",
+    "latest_pages_workflow_run": 35171769423,
+    "latest_pages_artifact_id": 10476029994,
+    "latest_pages_artifact_digest": "sha256:1ab18519a0fc8f42a10c0733cf4d0305097da864c6ed8734decf0420e589f770",
     "live_environment_url": "https://www.alogy.com.br/",
     "allow_force": false
   },
   "automation": {
     "id": "6aa8b2b683d081919a69f5d6a80af894",
     "title": "ALOGY AdSense Contínuo",
-    "enabled": false,
-    "disabled_at": "2026-09-16T16:50:57.404222Z",
-    "reason": "Automacao permanece pausada; execucao editorial manual autorizada continua lote a lote para conteudo de baixo valor."
+    "enabled": true,
+    "schedule": "RRULE:FREQ=HOURLY",
+    "timezone": "America/Sao_Paulo",
+    "reason": "Automacao horaria reativada pelo proprietario; deve seguir a proxima acao mais recente do MD/controles e parar somente quando restarem dependencias do proprietario ou trabalho seguro estiver concluido."
   },
   "workflow_rules": {
     "update_same_canonical_md_after_each_stage": true,
@@ -130,7 +132,7 @@
       "review_request_sent": false
     },
     "e11_low_value_content": {
-      "status": "batch_03_completed_triage_04_ready",
+      "status": "batch_04_completed_triage_05_ready",
       "owner_confirmed_reason": "low_value_content",
       "owner_confirmed_only_reason_shown": true,
       "official_google_guidance_checked_at": "2026-09-16",
@@ -150,10 +152,7 @@
         "deployment": "success"
       },
       "batch_02": {
-        "pages": [
-          "blog-lopa-simplificada.html",
-          "blog-sil-pfd-didatico.html"
-        ],
+        "pages": ["blog-lopa-simplificada.html", "blog-sil-pfd-didatico.html"],
         "report": "adsense-recovery/E11-LOW-VALUE-CONTENT-BATCH-02.md",
         "report_commit": "67470e2bf25dc37c726b6415d2bec994869ac3bc",
         "lopa_content_commit": "fac8b9df48b48e088f403a01e3fe5e7a3ad1d615",
@@ -165,10 +164,7 @@
         "deployment": "success"
       },
       "batch_03": {
-        "pages": [
-          "blog-dimensionamento-tubo-pneumatico-instrumentacao.html",
-          "blog-histerese-pressostato-termostato.html"
-        ],
+        "pages": ["blog-dimensionamento-tubo-pneumatico-instrumentacao.html", "blog-histerese-pressostato-termostato.html"],
         "report": "adsense-recovery/E11-LOW-VALUE-CONTENT-BATCH-03.md",
         "report_commit": "416cc2259231d27d573b2dc1aaf5fe705377117b",
         "pneumatic_tubing_content_commit": "5484f22b8e4acf5eed03ba567396e0ec90ca5145",
@@ -178,23 +174,33 @@
         "artifact_id": 10468250308,
         "artifact_digest": "sha256:282e89f42d3368ecc231fbd54c92e2fe599a92b8c7775f9b79475cf5569d444e",
         "deployment": "success",
-        "triaged_but_preserved": [
-          "blog-ar-instrumentos-qualidade-ponto-orvalho.html",
-          "blog-calibracao-instrumentos-industriais.html"
+        "triaged_but_preserved": ["blog-ar-instrumentos-qualidade-ponto-orvalho.html", "blog-calibracao-instrumentos-industriais.html"]
+      },
+      "batch_04": {
+        "pages": [
+          "blog-calibracao-cartao-analogico-clp.html",
+          "blog-calibracao-conversor-ip-pi.html",
+          "blog-calibracao-totalizador-vazao.html"
         ],
+        "report": "adsense-recovery/E11-LOW-VALUE-CONTENT-BATCH-04.md",
+        "report_commit": "d60e95b0e1eaf9b02aa197cda3517c92c2d6fc16",
+        "automation_content_and_sitemap_commit": "94d3854a1e341b0216d4a781a1538ea269baa529",
+        "converter_navigation_commit": "fea12c4cabd08d0a31c75f7b4c79401a89779327",
+        "totalizer_navigation_commit": "04e96e74ce96ffbee030c84ca604da8cfb167f3b",
+        "analog_input_navigation_commit": "836f1e2f661a61e86bf6fc88419a38679dc12ec9",
+        "pages_workflow_run": 35171769423,
+        "artifact_id": 10476029994,
+        "artifact_digest": "sha256:1ab18519a0fc8f42a10c0733cf4d0305097da864c6ed8734decf0420e589f770",
+        "deployment": "success",
         "findings_fixed": [
-          "old Cursos/cursos.html navigation removed from both pages",
-          "Hotmart removed from both editorial pages",
-          "pneumatic tubing article deepened around required flow, pressure, inside diameter, restrictions and dynamic response",
-          "generic unsourced pneumatic sizing rules replaced by manufacturer/ISO-grounded workflow",
-          "hysteresis article deepened around switch point, reset, hysteresis, repeatability and test direction",
-          "unrelated ORP and differential-pressure-flow links removed from hysteresis page",
-          "technical references aligned to Festo, SMC, ISO 4414 and WIKA",
-          "sitemap lastmod updated for both pages",
+          "three active calibration articles deepened with reproducible examples, diagnostic structure and primary references",
+          "Hotmart removed from selected editorial pages by the initial batch commit",
+          "legacy Cursos/cursos.html navigation removed from all three pages and replaced with Guia /guia/",
+          "sitemap lastmod updated for all three pages",
           "no shared technical JavaScript or calculator formula changed"
         ]
       },
-      "batch_04_triage": {
+      "batch_05_triage": {
         "status": "ready",
         "scope": "remaining active blog cards only",
         "selection_limit": "1_to_3_pages",
@@ -206,6 +212,7 @@
           "weak structure for primary user question",
           "missing authoritative source where technically required"
         ],
+        "do_not_reopen_without_new_defect": "batches_01_to_04",
         "excluded_manual_review_pages": [
           "blog-inspecao-instrumentos-area-classificada.html",
           "blog-ot-cybersecurity-instrumentacao.html"
