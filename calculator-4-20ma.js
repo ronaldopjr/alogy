@@ -56,6 +56,7 @@
 
   function graph(result, unit, dark = true, width = 640) {
     const left = 68, right = width - 18, top = 23, bottom = 151;
+    const labelSize = width <= 400 ? 14 : 11;
     const low = Math.min(result.lrv, result.urv), high = Math.max(result.lrv, result.urv);
     const line = dark ? '#2de0bc' : '#086c91', text = dark ? '#c0d3e0' : '#344d5d', grid = dark ? '#39556a' : '#d8e2e9';
     const y = value => bottom - ((value-low)/(high-low))*(bottom-top);
@@ -64,9 +65,9 @@
     [0, .25, .5, .75, 1].forEach(fraction => {
       const xx = left+fraction*(right-left), yy = bottom-fraction*(bottom-top);
       svg += `<path d="M${left} ${yy}H${right}M${xx} ${top}V${bottom}" fill="none" stroke="${grid}" stroke-width=".7"/>`;
-      svg += `<text x="${left-9}" y="${yy+4}" text-anchor="end" fill="${text}" font-size="11">${esc(fmt(low+fraction*(high-low),2))}</text><text x="${xx}" y="174" text-anchor="middle" fill="${text}" font-size="11">${4+fraction*16}</text>`;
+      svg += `<text x="${left-9}" y="${yy+4}" text-anchor="end" fill="${text}" font-size="${labelSize}">${esc(fmt(low+fraction*(high-low),2))}</text><text x="${xx}" y="174" text-anchor="middle" fill="${text}" font-size="${labelSize}">${4+fraction*16}</text>`;
     });
-    svg += `<text x="${left}" y="12" fill="${text}" font-size="11">${esc(unit || t.eng)}</text><text x="${(left+right)/2}" y="196" text-anchor="middle" fill="${text}" font-size="11">${t.signal}</text>`;
+    svg += `<text x="${left}" y="12" fill="${text}" font-size="${labelSize}">${esc(unit || t.eng)}</text><text x="${(left+right)/2}" y="196" text-anchor="middle" fill="${text}" font-size="${labelSize}">${t.signal}</text>`;
     svg += `<path d="M${left} ${y(result.lrv)}L${right} ${y(result.urv)}" stroke="${line}" stroke-width="3" fill="none"/>`;
     if (result.inRange) {
       svg += `<path d="M${x(result.ma)} ${bottom}V${y(result.eng)}H${left}" fill="none" stroke="${line}" stroke-width="1" stroke-dasharray="4 4" opacity=".6"/><circle cx="${x(result.ma)}" cy="${y(result.eng)}" r="12" fill="${line}" opacity=".15"/><circle cx="${x(result.ma)}" cy="${y(result.eng)}" r="5.5" stroke="${dark?'#fff':'#fff'}" stroke-width="2.5" fill="${line}"/>`;
