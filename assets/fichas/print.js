@@ -3,15 +3,21 @@
   'use strict';
   const C = window.FieldSheetsCore, WIDTH = 841.89, HEIGHT = 595.28;
   const canvas = document.createElement('canvas'), context = canvas.getContext('2d');
-  const clean = value => String(value ?? '').normalize('NFC').replace(/[\r\n\t]+/g,' ').replace(/[^\x20-\x7e\u00a0-\u00ff]/g,'?');
+  const clean = value => String(value ?? '').normalize('NFC').replace(/\t/g,' ').replace(/[\x00-\x08\x0b\x0c\x0e-\x1f\x7f]/g,'');
+  const date = value => /^\d{4}-\d{2}-\d{2}$/.test(value||'') ? value.split('-').reverse().join('/') : value;
   function wrap(value, width, size, bold) {
     context.font = `${bold ? 'bold ' : ''}${size}px Arial`;
-    const out = [], text = clean(value); let line = '';
-    for (const ch of text) {
-      if (context.measureText(line + ch).width > width - 4 && line) { out.push(line.trimEnd()); line = ''; }
-      line += ch;
+    const out = [];
+    for(const paragraph of clean(value).split(/\r?\n/)){
+      let line='';
+      for(const word of paragraph.split(/\s+/)){
+        if(line&&context.measureText(line+' '+word).width>width-4){out.push(line);line='';}
+        if(line)line+=' ';
+        for(const ch of word){if(line&&context.measureText(line+ch).width>width-4){out.push(line);line='';}line+=ch;}
+      }
+      out.push(line);
     }
-    out.push(line.trimEnd()); return out;
+    return out;
   }
   function make(state, points, title, kind, filled) {
     const pages = [], margin = 24, width = WIDTH - 2 * margin, bottom = HEIGHT - 28;
@@ -32,16 +38,17 @@
     const m = state.meta, digits = Number(state.settings.digits), reps = Number(state.settings.repeats);
     function newPage() {
       page = []; pages.push(page); y = 24;
-      text(margin, y, 'FOLHA DE COLETA DE CALIBRAÇÃO - '+title.toUpperCase(), 14, true); y += 22;
+      text(margin, y, 'FOLHA DE COLETA DE CALIBRAÇÃO - '+(kind==='ph'?'pH':title.toUpperCase()), 14, true); y += 22;
       const groups = [
         [['Registro / ordem de serviço',m.record],['TAG',m.tag]],
         [['Empresa / cliente',m.customer],['Local da calibração',m.location]],
         [['Instrumento / modelo',m.instrument],['Número de série / canal',[m.serial,m.channel].filter(Boolean).join(' / ')]],
         [['Padrão / identificação',m.standard],['Certificado / documento do padrão',m.certificate]],
         [['Método / objeto avaliado',m.method],['Procedimento e revisão',m.procedure]],
-        [['Montagem / meio / condições',m.setup],['Critério de estabilização',m.stability]],
-        [['Executante / data',[m.operator,m.date].filter(Boolean).join(' / ')],['Condição / sentido',[m.condition,m.direction].filter(Boolean).join(' / ')]]
+        [[{temperatura:'Meio / inserto / imersão',pressao:'Tipo de pressão / meio / montagem',ph:'Eletrodo / compensação / condições',vazao:'Fluido / montagem / condições',balanca:'Plataforma / nivelamento / montagem'}[kind],m.setup],['Critério de estabilização',m.stability]],
+        [['Executante / data',[m.operator,date(m.date)].filter(Boolean).join(' / ')],['Condição / sentido',[m.condition,m.direction].filter(Boolean).join(' / ')]]
       ];
+      if(kind==='balanca')groups.push([['Tara / condição de zero',m.tare],['Zero inicial / retorno ao zero ('+state.unit+')',(m.zeroStart||'________')+' / '+(m.zeroEnd||'________')]]);
       groups.forEach(pair => {
         const heights = pair.map(([label,value]) => Math.max(24, 13 + wrap(value,width/2-12,9).length*12));
         const h = Math.max(...heights);
@@ -50,18 +57,19 @@
       y += 8; text(margin,y,'CONDIÇÕES AMBIENTAIS',9,true); y+=6;
       const env = [['Temperatura inicial (°C)',m.tempStart],['Umidade inicial (% UR)',m.humidityStart],['Horário inicial',m.timeStart],['Temperatura final (°C)',m.tempEnd],['Umidade final (% UR)',m.humidityEnd],['Horário final',m.timeEnd]];
       y+=Math.max(...env.map(([label,value],i)=>field(margin+i*width/6,y,width/6,label,value)))+9;
-      y+=text(margin,y,`Unidade: ${state.unit}  |  ${points.length} pontos distintos  |  ${reps} leitura(s) por ponto  |  Resolução: ${m.resolution || '________________'}`,8)+6;
+      const range=kind==='ph'?'':`Faixa: ${state.settings.low||'______'} a ${state.settings.high||'______'} ${state.unit}  |  `;
+      const test=kind==='balanca'?`Ensaio: ${{cargas:'Indicação por carga',repetibilidade:'Repetibilidade',excentricidade:'Excentricidade'}[state.settings.test]}  |  `:'';
+      y+=text(margin,y,`${test}${range}Unidade: ${state.unit}  |  ${points.length} ${kind==='balanca'&&state.settings.test!=='cargas'?'aplicações':'pontos distintos'}  |  ${reps} leitura(s) por ponto  |  Resolução: ${m.resolution || '________________'}`,8)+6;
       return y;
     }
     const cols = [36,45,70,...Array(reps*2).fill((width-151-112)/(reps*2)),112];
-    const labels = ['Nº','% faixa',`Nominal (${state.unit})`,...Array.from({length:reps},(_,i)=>[`P${i+1} (${state.unit})`,`I${i+1} (${state.unit})`]).flat(),'Observações'];
+    const fixedLoad=kind==='balanca'&&state.settings.test!=='cargas';
+    const labels = [fixedLoad?(state.settings.test==='excentricidade'?'Pos.':'Ciclo'):'Nº',fixedLoad?'% cap.':'% faixa',`Nominal (${state.unit})`,...Array.from({length:reps},(_,i)=>[`P${i+1} (${state.unit})`,`I${i+1} (${state.unit})`]).flat(),kind==='balanca'?'Pesos / posição / observações':'Observações'];
     function tableHeader() {
       const h=Math.max(25,...labels.map((label,i)=>wrap(label,cols[i]-8,8,true).length*11+7));
       let x=margin; labels.forEach((label,i)=>{rect(x,y,cols[i],h,true);text(x+4,y+11,label,8,true,cols[i]-8);x+=cols[i];});y+=h;
     }
-    const sequence = points.map((point,index)=>({point,index,direction:m.direction==='Sequência informada'?'Sequência informada':'Subida'}));
-    if(m.direction==='Descida') sequence.reverse().forEach(r=>r.direction='Descida');
-    if(m.direction==='Subida e descida') sequence.push(...points.map((point,index)=>({point,index,direction:'Descida'})).reverse());
+    const sequence = C.sequence(points,m.direction);
     newPage(); tableHeader();
     for (const item of sequence) {
       const key = `${item.index}:${item.direction}`, data=state.readings[key]||{pairs:[],note:''};
@@ -69,16 +77,17 @@
       const observation=filled ? data.note||'' : '';
       const values=[String(item.index+1),C.format(item.point.percent,2),C.format(item.point.nominal,digits),...pairs.flatMap(p=>filled?[p.reference||'',p.indication||'']:['','']),observation];
       const height=Math.max(kind==='ph'?42:36,...values.map((v,i)=>14+wrap(v,cols[i]-8,8).length*11+(kind==='ph'&&i>=3&&i<3+reps*2&&i%2===1?wrap(`T: ${filled?pairs[(i-3)/2].temperature||'______':'______'} °C`,cols[i]-8,7).length*10:0)));
-      const buffer=kind==='ph' ? `Tampão / fabricante / lote: ${data.buffer||'________________________'}  |  Validade: ${data.validity||'__________'}  |  Certificado / referência: ${data.certificate||'________________________'}` : '';
+      const buffer=kind==='ph' ? `Tampão / fabricante / lote: ${data.buffer||'________________________'}  |  Validade: ${date(data.validity)||'__________'}  |  Certificado / referência: ${data.certificate||'________________________'}` : '';
       const bufferHeight=kind==='ph'?Math.max(26,wrap(buffer,width-12,8).length*11+8):0;
-      const summaryHeight=filled&&stats.count?18:0;
+      const summary=filled&&stats.count?`${stats.count}/${reps} pares completos - Média P: ${C.format(stats.reference,digits)}  |  Média I: ${C.format(stats.indication,digits)}  |  Diferença I-P: ${C.format(stats.error,digits)} ${state.unit}`:'';
+      const summaryHeight=summary?Math.max(18,wrap(summary,width-8,8).length*11+6):0;
       if(y+height+bufferHeight+summaryHeight>bottom-24){newPage();tableHeader();}
       if(y+height+bufferHeight+summaryHeight>bottom-24)throw Error('Os dados excedem o espaço da folha. Abrevie os campos de identificação ou as observações do ponto.');
       let x=margin;
       values.forEach((value,i)=>{rect(x,y,cols[i],height);text(x+4,y+14,value,8,false,cols[i]-8);if(kind==='ph'&&i>=3&&i<3+reps*2&&i%2===1){const p=pairs[(i-3)/2],t=`T: ${filled?p.temperature||'______':'______'} °C`;text(x+4,y+height-8-(wrap(t,cols[i]-8,7).length-1)*10,t,7,false,cols[i]-8);} x+=cols[i];});
       text(margin+3,y+height-5,item.direction==='Descida'?'D':item.direction==='Subida'?'S':'',7); y+=height;
       if(bufferHeight){rect(margin,y,width,bufferHeight);text(margin+6,y+12,buffer,8,false,width-12);y+=bufferHeight;}
-      if(summaryHeight){text(margin+4,y+12,`${stats.count}/${reps} pares completos - Média P: ${C.format(stats.reference,digits)}  |  Média I: ${C.format(stats.indication,digits)}  |  Diferença I-P: ${C.format(stats.error,digits)} ${state.unit}`,8);y+=summaryHeight;}
+      if(summaryHeight){text(margin+4,y+12,summary,8,false,width-8);y+=summaryHeight;}
     }
     const noteLines=wrap(m.notes||'',width-16,9);
     if(y+42>bottom)newPage();
@@ -102,6 +111,8 @@
     await library;
     const {PDFDocument,StandardFonts,rgb}=window.PDFLib;
     const doc=await PDFDocument.create(),normal=await doc.embedFont(StandardFonts.Helvetica),bold=await doc.embedFont(StandardFonts.HelveticaBold);
+    try{for(const page of pages)for(const item of page)if(item.type==='text')normal.encodeText(item.text);}
+    catch{throw Error('Há um caractere que o PDF direto não suporta. Use Imprimir ficha e Salvar como PDF para preservar o texto original.');}
     doc.setTitle('Folha de coleta de calibração');
     for(const commands of pages){
       const page=doc.addPage([WIDTH,HEIGHT]);

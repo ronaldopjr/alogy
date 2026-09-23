@@ -37,7 +37,24 @@ function tests(){
   for(const range of [[0,0],[2,1],[NaN,1]])assert.throws(()=>C.generate(...range,5));
   for(const v of ['', ' ', 'NaN','Infinity','1.000,50','1,000.50','1e2','12abc'])assert.equal(C.number(v),null);
   assert.equal(C.number('-0,25'),-.25);assert.equal(C.number('0'),0);
+  assert.equal(C.format(-.0001,2),'0,00');
+  const unordered=[{nominal:10,percent:100},{nominal:0,percent:0},{nominal:5,percent:50}];
+  assert.deepEqual(C.sequence(unordered,'Subida').map(r=>r.point.nominal),[0,5,10]);
+  assert.deepEqual(C.sequence(unordered,'Descida').map(r=>r.point.nominal),[10,5,0]);
+  assert.deepEqual(C.sequence(unordered,'Sequência informada').map(r=>r.index),[0,1,2]);
+  assert.deepEqual(C.sequence(unordered,'Subida e descida').map(r=>r.index),[1,2,0,0,2,1]);
   const state=stateFor('temperatura');
+  const balance=stateFor('balanca');
+  assert.deepEqual(C.points(balance.settings,'balanca').map(p=>p.nominal),[0,25,50,75,100]);
+  for(const test of ['repetibilidade','excentricidade']){
+    const p=C.points({...balance.settings,test,count:'6',testLoad:'20'},'balanca');
+    assert.equal(p.length,6);assert.ok(p.every(x=>x.nominal===20&&x.percent===20));
+    assert.equal(p[0].label,test==='repetibilidade'?'Repetição 1':'Posição 1');
+    assert.throws(()=>C.points({...balance.settings,test,testLoad:'101'},'balanca'));
+    assert.throws(()=>C.points({...balance.settings,test,testLoad:'0'},'balanca'));
+  }
+  assert.throws(()=>C.points({...balance.settings,mode:'manual',manual:'0; 101'},'balanca'));
+  assert.throws(()=>C.points({...balance.settings,low:'-1'},'balanca'));
   const stepped=C.points({...state.settings,mode:'step',step:'10'},'temperatura');
   assert.equal(stepped.length,11);assert.equal(stepped[1].nominal,50);
   assert.throws(()=>C.points({...state.settings,mode:'step',step:'30'},'temperatura'));
@@ -47,7 +64,7 @@ function tests(){
   assert.equal(C.summary([{reference:'',indication:''}]).reference,null);
   assert.equal(C.fingerprint(state),C.fingerprint({...state,settings:{...state.settings,digits:'4'}}));
   const P=printer();
-  for(const kind of ['temperatura','pressao','ph','vazao']){
+  for(const kind of ['temperatura','pressao','ph','vazao','balanca']){
     const s=stateFor(kind),p=C.points(s.settings,kind);
     assert.ok(p.length>=3);
     if(kind==='ph'){assert.deepEqual(p.map(x=>x.nominal),[4.01,7,10.01]);assert.ok(p.every(x=>x.percent===null));}
@@ -71,8 +88,12 @@ function tests(){
     const filled=P.make(s,C.points(s.settings,kind),kind,kind,true).flat().map(c=>c.text||'').join(' ');
     assert.doesNotMatch(blank,/123,4567|Leitura de teste/);assert.match(filled,/123,4567/);assert.match(filled,/Média P/);
     if(kind==='ph')assert.match(blank,/Tampão lote 123/);
+    s.meta.date='2026-09-23';s.meta.notes='ΔP registrado\nSegunda linha';
+    const unicode=P.make(s,C.points(s.settings,kind),kind,kind,false).flat().filter(c=>c.type==='text').map(c=>c.text).join(' ');
+    assert.match(unicode,/23\/09\/2026/);assert.match(unicode,/ΔP registrado/);assert.match(unicode,/Segunda linha/);
+    if(kind!=='ph')assert.match(unicode,/Faixa:/);
   }
-  console.log('Field sheets: point generation, validation, averages, blank/filled output and 108 pagination scenarios passed.');
+  console.log('Field sheets: point generation, validation, averages, blank/filled output and 135 pagination scenarios passed.');
 }
 if(require.main===module)tests();
 module.exports={stateFor,printer};
