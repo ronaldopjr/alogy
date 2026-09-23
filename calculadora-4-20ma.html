@@ -1,413 +1,107 @@
-<!DOCTYPE html>
-<html lang="pt-br">
+<!doctype html>
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Calculadora 4-20 mA: corrente, percentual e escala | ALOGY</title>
-  <meta name="description" content="Converta 4-20 mA para percentual e valor de engenharia, ou faça o cálculo inverso com LRV, URV, span e tabela de referência." />
-  <meta name="robots" content="index,follow" />
-  <meta name="theme-color" content="#2C78B9" />
-  <link rel="canonical" href="https://www.alogy.com.br/calculadora-4-20ma.html" />
-  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
-  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png" />
-  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <link rel="stylesheet" href="style.css?v=20260722-layout-original-uppercase-mobilefix" />
-  <link rel="stylesheet" href="tool-visuals.css?v=20260909" />
-  <script src="app.js" defer></script>
-  <meta name="author" content="ALOGY Engenharia" />
-  <meta property="og:locale" content="pt_BR" />
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="ALOGY Engenharia" />
-  <meta property="og:title" content="Calculadora 4-20 mA" />
-  <meta property="og:description" content="Converta corrente 4-20 mA, percentual e valor de engenharia com LRV e URV." />
-  <meta property="og:url" content="https://www.alogy.com.br/calculadora-4-20ma.html" />
-  <meta property="og:image" content="https://www.alogy.com.br/favicon-512x512.png" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"WebApplication",
-    "name":"Calculadora 4-20 mA",
-    "url":"https://www.alogy.com.br/calculadora-4-20ma.html",
-    "applicationCategory":"EngineeringApplication",
-    "operatingSystem":"Web",
-    "description":"Calculadora para conversão linear entre 4-20 mA, percentual e valor de engenharia usando LRV e URV.",
-    "publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"}
-  }
-  </script>
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"FAQPage",
-    "mainEntity":[
-      {"@type":"Question","name":"O que significa 4-20 mA?","acceptedAnswer":{"@type":"Answer","text":"Em uma escala linear típica, 4 mA representa 0% e 20 mA representa 100% da faixa configurada."}},
-      {"@type":"Question","name":"Quanto vale 12 mA?","acceptedAnswer":{"@type":"Answer","text":"12 mA corresponde a 50% da escala. O valor de engenharia depende do LRV e do URV configurados."}},
-      {"@type":"Question","name":"O que significa um valor fora de 4 a 20 mA?","acceptedAnswer":{"@type":"Answer","text":"Nesta calculadora ele é tratado apenas como extrapolação matemática. A causa física deve ser verificada no instrumento, na configuração e na malha."}}
-    ]
-  }
-  </script>
-  <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
-    {"@type":"ListItem","position":1,"name":"Início","item":"https://www.alogy.com.br/"},
-    {"@type":"ListItem","position":2,"name":"Instrumentação industrial","item":"https://www.alogy.com.br/ferramentas-instrumentacao-industrial.html"},
-    {"@type":"ListItem","position":3,"name":"Calculadora 4-20 mA","item":"https://www.alogy.com.br/calculadora-4-20ma.html"}
-  ]}
-  </script>
-  <style>
-    .quick-note{margin:12px 0 0;padding:12px 14px;border:1px solid rgba(0,107,177,.18);border-radius:12px;background:rgba(0,107,177,.06);line-height:1.55}
-    .conversion-summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:12px}
-    .reading-card{border:1px solid rgba(0,107,177,.16);border-radius:14px;padding:14px;background:#fff}
-    .reading-card span{display:block;color:var(--muted);font-size:.88rem;font-weight:700;margin-bottom:4px}
-    .reading-card strong{display:block;color:#0b3a62;font-size:1.15rem;overflow-wrap:anywhere}
-    .calc-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
-    .mini-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:1px solid rgba(0,107,177,.25);background:rgba(0,107,177,.08);color:#0b3a62;border-radius:12px;padding:10px 12px;font-weight:900;cursor:pointer;text-decoration:none;font:inherit}
-    .mini-btn:hover{background:rgba(0,107,177,.12)}
-    .mini-btn.dark{background:#0b3a62;color:#fff;border-color:#0b3a62}
-    .tool-select{width:100%;border:1px solid rgba(0,0,0,.12);border-radius:12px;padding:12px;background:#fff;font:inherit}
-    .span-line{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
-    .span-pill{display:inline-flex;align-items:center;gap:8px;border-radius:999px;background:rgba(0,107,177,.08);border:1px solid rgba(0,107,177,.18);color:#0b3a62;font-weight:900;padding:8px 11px;font-size:.9rem}
-    .example-grid{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
-    .example-btn{border:1px solid rgba(0,107,177,.20);background:#fff;color:#0b3a62;border-radius:999px;padding:8px 10px;font-weight:900;cursor:pointer}
-    .example-btn:hover{background:rgba(0,107,177,.08)}
-    .status-ok{border-color:rgba(34,197,94,.35)!important;background:rgba(34,197,94,.10)!important;color:#166534!important}
-    .status-bad{border-color:rgba(239,68,68,.35)!important;background:rgba(239,68,68,.10)!important;color:#991b1b!important}
-    .status-warn{border-color:rgba(245,158,11,.40)!important;background:rgba(245,158,11,.10)!important;color:#854d0e!important}
-    .classic-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin-top:12px}
-    .classic-point{background:rgba(0,107,177,.06);border:1px solid rgba(0,107,177,.16);border-radius:14px;padding:12px;text-align:center}
-    .classic-point strong{display:block;color:#0b3a62;font-size:1.05rem}.classic-point span{color:var(--muted);font-weight:800;font-size:.88rem}
-    .faq details{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:14px;padding:14px;margin-top:10px;box-shadow:0 6px 16px rgba(0,0,0,.04)}
-    .faq summary{cursor:pointer;font-weight:900;color:#0b3a62}.faq p{margin:10px 0 0;color:var(--muted)}
-    .small-muted{color:var(--muted);font-size:.92rem;line-height:1.55}
-    .technical-list{margin:10px 0 0;padding-left:20px}.technical-list li{margin:7px 0;line-height:1.5}
-    @media(max-width:900px){.conversion-summary{grid-template-columns:1fr}.classic-grid{grid-template-columns:1fr 1fr}.calc-actions .mini-btn{width:100%}}
-    @media print{header,.social-floating,.fab-wrap,.cta-bar,footer,.calc-actions,.tools-hero .btn,.no-print{display:none!important}body{background:#fff}.container{max-width:100%;padding:0}.calc-card,.tools-hero{box-shadow:none;border:1px solid #ddd}.calc-layout{display:block}.calc-card{margin:12px 0}.calc-table th{background:#eee!important;color:#111!important}}
-  </style>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5586837114309500" crossorigin="anonymous"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Calculadora 4-20 mA: escala, percentual e PDF | ALOGY</title>
+<meta name="description" content="Converta 4-20 mA em percentual e valor de engenharia. Explore a escala com gráfico interativo, copie a tabela e gere um PDF gratuito sem marca.">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="theme-color" content="#102f47">
+<meta name="author" content="ALOGY Engenharia">
+<link rel="canonical" href="https://www.alogy.com.br/calculadora-4-20ma.html">
+<link rel="alternate" hreflang="pt-BR" href="https://www.alogy.com.br/calculadora-4-20ma.html">
+<link rel="alternate" hreflang="en" href="https://www.alogy.com.br/4-20ma-calculator.html">
+<link rel="icon" type="image/png" sizes="48x48" href="favicon-48x48.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="stylesheet" href="tool-workbench.css?v=20260923">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="ALOGY Engenharia">
+<meta property="og:title" content="Calculadora 4-20 mA">
+<meta property="og:description" content="Converta 4-20 mA em percentual e valor de engenharia. Explore a escala com gráfico interativo, copie a tabela e gere um PDF gratuito sem marca.">
+<meta property="og:url" content="https://www.alogy.com.br/calculadora-4-20ma.html">
+<meta property="og:image" content="https://www.alogy.com.br/favicon-512x512.png">
+<meta property="og:image:width" content="512">
+<meta property="og:image:height" content="512">
+<meta property="og:image:alt" content="ALOGY Engenharia">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Calculadora 4-20 mA">
+<meta name="twitter:description" content="Converta 4-20 mA em percentual e valor de engenharia. Explore a escala com gráfico interativo, copie a tabela e gere um PDF gratuito sem marca.">
+<meta name="twitter:image" content="https://www.alogy.com.br/favicon-512x512.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","@id":"https://www.alogy.com.br/calculadora-4-20ma.html#calculator","name":"Calculadora 4-20 mA","url":"https://www.alogy.com.br/calculadora-4-20ma.html","description":"Converta 4-20 mA em percentual e valor de engenharia. Explore a escala com gráfico interativo, copie a tabela e gere um PDF gratuito sem marca.","inLanguage":"pt-BR","applicationCategory":"UtilitiesApplication","applicationSubCategory":"Engineering calculator","operatingSystem":"Any","browserRequirements":"Requires JavaScript for calculations and export","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"BRL"},"dateModified":"2026-09-23","publisher":{"@type":"Organization","name":"ALOGY Engenharia","url":"https://www.alogy.com.br/"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Início","item":"https://www.alogy.com.br/"},{"@type":"ListItem","position":2,"name":"Ferramentas","item":"https://www.alogy.com.br/ferramentas.html"},{"@type":"ListItem","position":3,"name":"Calculadora 4-20 mA","item":"https://www.alogy.com.br/calculadora-4-20ma.html"}]},{"@type":"FAQPage","inLanguage":"pt-BR","mainEntity":[{"@type":"Question","name":"Quanto vale 12 mA?","acceptedAnswer":{"@type":"Answer","text":"12 mA corresponde a 50% de uma escala linear 4-20 mA. Em uma faixa de 0 a 10 bar, são 5 bar; em uma faixa de −50 a 150 °C, são 50 °C."}},{"@type":"Question","name":"Como converter um valor de engenharia em mA?","acceptedAnswer":{"@type":"Answer","text":"Subtraia o LRV do valor, divida por URV − LRV, multiplique por 16 e some 4. Na ferramenta, selecione “Valor de engenharia” como entrada."}},{"@type":"Question","name":"Posso usar uma faixa invertida?","acceptedAnswer":{"@type":"Answer","text":"Sim. Se o valor configurado em 4 mA for maior que o valor em 20 mA, a relação é decrescente. A calculadora identifica a faixa invertida e mantém a correspondência dos dois extremos."}},{"@type":"Question","name":"O que acontece abaixo de 4 mA ou acima de 20 mA?","acceptedAnswer":{"@type":"Answer","text":"A ferramenta apresenta a extrapolação matemática e identifica o ponto fora da faixa. A barra permanece limitada a 4-20 mA. Isso não determina falha ou saturação: os limites de diagnóstico dependem do instrumento e da configuração."}},{"@type":"Question","name":"Serve para vazão com extração de raiz quadrada?","acceptedAnswer":{"@type":"Answer","text":"Esta calculadora pressupõe sinal linear com a variável escolhida. Para vazão, use-a se o sinal já estiver linearizado em vazão. Um sinal linear em pressão diferencial exige o tratamento de raiz quadrada para obter vazão."}},{"@type":"Question","name":"O PDF e a impressão têm identificação da ALOGY?","acceptedAnswer":{"@type":"Answer","text":"Não. Os botões geram um relatório neutro com faixa, entrada, resultado, gráfico e tabela. O PDF é baixado diretamente; a impressão abre um relatório separado. Os dados do cálculo são processados no seu dispositivo."}}]}]}</script>
+<script src="calculator-4-20ma-core.js?v=20260923" defer></script>
+<script src="calculator-4-20ma.js?v=20260923" defer></script>
 </head>
-<body class="tools-page alogy-stage3-forms">
-  <header>
-    <div class="container headbar">
-      <a href="/" class="logo-wrapper" aria-label="Voltar para o início"><img src="logo-alogy.webp" alt="ALOGY Engenharia" width="878" height="308" decoding="async" /></a>
-      <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menu"><i class="fas fa-bars"></i></button>
-    </div>
-    <nav class="desktop" aria-label="Menu principal"><div class="container navlinks">
-      <a href="/">Início</a><a href="industrial.html">Serviços</a><a href="cases.html">Projetos</a><a href="/guia/">Guia</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a>
-    </div></nav>
-    <nav class="mobile" aria-label="Menu mobile">
-      <a href="/">Início</a><a href="industrial.html">Serviços</a><a href="cases.html">Projetos</a><a href="/guia/">Guia</a><a href="blog.html">Blog</a><a href="ferramentas.html">Ferramentas</a><a href="sobre.html">Sobre</a><a href="/#contato">Contato</a>
-    </nav>
-  </header>
-
-  <div class="social-floating" aria-label="Redes sociais">
-    <a href="https://www.linkedin.com/company/alogyengenharia" class="linkedin" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-    <a href="https://www.instagram.com/alogyengenharia" class="instagram" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-    <a href="https://www.facebook.com/alogyengenharia" class="facebook" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-    <a href="https://www.youtube.com/@alogyengenharia" class="youtube" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-    <a href="https://www.tiktok.com/@alogyengenharia" class="tiktok" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
-  </div>
-
-  <div class="fab-wrap" aria-label="Ações rápidas">
-    <a class="fab-btn mail" href="mailto:contato@alogy.com.br"><i class="fas fa-envelope"></i> contato@alogy.com.br</a>
-    <a class="fab-btn wa" href="https://wa.me/5519981442448?text=Ol%C3%A1!%20Vim%20pelas%20ferramentas%20de%20instrumenta%C3%A7%C3%A3o%20da%20ALOGY.%20Gostaria%20de%20atendimento." target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-  </div>
-
-  <main class="container" style="margin-top:18px">
-    <div style="margin-bottom:14px;display:flex;gap:10px;flex-wrap:wrap" class="no-print">
-      <a class="floating-back-tools no-print" href="ferramentas-instrumentacao-industrial.html"><i class="fas fa-arrow-left"></i> Voltar para Instrumentação</a>
-      <button class="btn print" type="button" onclick="window.print()"><i class="fas fa-print"></i> Imprimir</button>
-    </div>
-
-    <section class="tools-hero">
-      <h1>Calculadora 4-20 mA</h1>
-      <p class="muted" data-alogy-content-meta><strong>Conteúdo técnico:</strong> ALOGY Engenharia · <strong>Atualizado em:</strong> 10/09/2026</p>
-      <p>Converta corrente 4-20 mA, percentual e valor de engenharia usando LRV e URV. O cálculo fica disponível logo no início para consulta rápida em campo.</p>
-    </section>
-
-    <section class="calc-layout" aria-label="Calculadora 4-20 mA">
-      <div class="calc-card">
-        <h2>Calcular conversão</h2>
-        <p>Informe a faixa configurada no instrumento e escolha o valor de entrada.</p>
-        <form onsubmit="return false" aria-label="Dados da conversão 4-20 mA">
-          <div class="calc-grid">
-            <div class="field"><label for="faixaMin">Faixa mínima / LRV</label><input id="faixaMin" type="text" value="0" inputmode="decimal" /></div>
-            <div class="field"><label for="faixaMax">Faixa máxima / URV</label><input id="faixaMax" type="text" value="10" inputmode="decimal" /></div>
-            <div class="field"><label for="unidade">Unidade</label><input id="unidade" type="text" value="bar" placeholder="Ex.: bar, °C, m³/h" /></div>
-            <div class="field"><label for="modo">Calcular a partir de</label><select id="modo" class="tool-select"><option value="eng">Valor de engenharia</option><option value="ma">Sinal em mA</option><option value="percent">Percentual 0-100%</option></select></div>
-            <div class="field full"><label for="entrada" id="rotuloEntrada">Valor de engenharia</label><input id="entrada" type="text" value="6" inputmode="decimal" /></div>
-          </div>
-        </form>
-        <p class="quick-note"><strong>Escopo:</strong> conversão matemática linear entre 4 e 20 mA. A ferramenta não diagnostica sozinha alimentação, carga HART, integridade da instalação ou condição do instrumento.</p>
-        <div class="span-line" aria-label="Dados da faixa"><span class="span-pill" id="textoSpan">Span: 10,00 bar</span><span class="span-pill" id="textoDirecao">Faixa crescente</span></div>
-
-        <h2 style="margin-top:18px">Resultado</h2>
-        <div class="conversion-summary" aria-label="Valores calculados">
-          <div class="reading-card"><span>Sinal</span><strong id="valorMa">13,600 mA</strong></div>
-          <div class="reading-card"><span>Percentual</span><strong id="valorPercentual">60,00%</strong></div>
-          <div class="reading-card"><span>Valor de engenharia</span><strong id="valorEngenharia">6,00 bar</strong></div>
-        </div>
-        <div id="estadoCalculo" class="calc-note status-ok" aria-live="polite">Dentro da faixa configurada — conversão linear válida para os dados informados.</div>
-        <div class="calc-actions">
-          <button class="mini-btn dark" type="button" id="copiarCalculo"><i class="fas fa-copy"></i> Copiar resultado</button>
-          <button class="mini-btn" type="button" id="limparExemplo"><i class="fas fa-rotate-left"></i> Restaurar exemplo</button>
-        </div>
-      </div>
-
-      <aside class="calc-card">
-        <h2>Exemplos rápidos</h2>
-        <p>Preencha faixas comuns e depois ajuste para o seu instrumento.</p>
-        <div class="example-grid">
-          <button class="example-btn" type="button" data-min="0" data-max="10" data-unit="bar" data-value="6">0 a 10 bar · 6 bar</button>
-          <button class="example-btn" type="button" data-min="0" data-max="100" data-unit="°C" data-value="50">0 a 100 °C</button>
-          <button class="example-btn" type="button" data-min="-50" data-max="150" data-unit="°C" data-value="50">-50 a 150 °C</button>
-          <button class="example-btn" type="button" data-min="0" data-max="1000" data-unit="L/h" data-value="500">0 a 1000 L/h</button>
-          <button class="example-btn" type="button" data-min="100" data-max="0" data-unit="%" data-value="50">Faixa invertida</button>
-        </div>
-        <p class="small-muted" style="margin-top:14px">Faixas invertidas também são calculadas. Valores fora de 0-100% são mostrados como extrapolação, sem concluir a causa física.</p>
-      </aside>
-    </section>
-
-    <section class="calc-card tool-visual" aria-label="Gráfico da escala 4-20 mA">
-      <h2>Visualização da escala</h2>
-      <p>Use o controle para percorrer a corrente entre 4 e 20 mA. Ele muda a entrada para o modo mA.</p>
-      <div id="graficoSinal"></div>
-      <label class="visual-slider-label" for="explorarSinal">Explorar sinal entre 4 e 20 mA</label>
-      <input id="explorarSinal" type="range" min="4" max="20" step="0.1" value="13.6" aria-valuetext="13,6 mA" />
-      <ol class="technical-flow" aria-label="Caminho conceitual do sinal"><li>Instrumento: LRV / URV</li><li>Corrente: 4-20 mA</li><li>CLP/DCS: escala de engenharia</li></ol>
-      <p class="small-muted">O gráfico representa a conversão da escala; não é um esquema de ligação elétrica.</p>
-    </section>
-
-    <section class="calc-layout">
-      <div class="calc-card">
-        <h2>Tabela da faixa</h2>
-        <p>Referência em passos de 2 mA para simulação de sinal, calibração e teste de loop.</p>
-        <div class="calc-table-wrap"><table class="calc-table" aria-label="Tabela 4-20 mA"><thead><tr><th>mA</th><th>Percentual</th><th>Valor da faixa</th></tr></thead><tbody id="tabelaFaixa"></tbody></table></div>
-        <div class="calc-actions"><button class="mini-btn dark" type="button" id="copiarTabela"><i class="fas fa-table"></i> Copiar tabela</button><button class="mini-btn" type="button" id="imprimirPagina"><i class="fas fa-print"></i> Imprimir</button></div>
-      </div>
-      <div class="calc-card">
-        <h2>Pontos clássicos</h2>
-        <p>Valores usuais para conferência de uma escala linear.</p>
-        <div class="classic-grid" id="gradePontos"></div>
-        <p class="small-muted" style="margin-top:12px">4 mA = 0% · 8 mA = 25% · 12 mA = 50% · 16 mA = 75% · 20 mA = 100%.</p>
-      </div>
-    </section>
-
-    <section class="calc-layout">
-      <div class="calc-card">
-        <h2>Como interpretar</h2>
-        <ul class="technical-list">
-          <li><strong>Dentro da faixa:</strong> o cálculo é uma interpolação linear entre LRV e URV.</li>
-          <li><strong>Fora da faixa:</strong> o valor é mostrado como extrapolação matemática; isso não identifica sozinho falha, saturação ou configuração incorreta.</li>
-          <li><strong>Em campo:</strong> compare corrente medida, indicação local e valor no CLP/DCS antes de concluir um diagnóstico.</li>
-        </ul>
-      </div>
-      <div class="calc-card">
-        <h2>Fórmulas</h2>
-        <div class="formula-box">Percentual = ((mA − 4) / 16) × 100<br />Valor = LRV + (Percentual / 100) × (URV − LRV)<br />mA = 4 + (Percentual / 100) × 16<br />Span = URV − LRV</div>
-        <p class="small-muted" style="margin-top:12px">O método pressupõe relação linear entre o sinal e a grandeza de engenharia.</p>
-      </div>
-    </section>
-
-    <section class="calc-card" aria-label="Base técnica e limites">
-      <h2><i class="fas fa-book"></i> Base técnica e limites</h2>
-      <p>A calculadora trata somente a relação matemática da escala 4-20 mA. Ela não comprova alimentação, resistência disponível na malha, comunicação HART, linearidade, exatidão, incerteza, ruído ou condição de instalação.</p>
-      <p>Para aplicações reais, confira o manual do transmissor e do cartão analógico. Como referências técnicas de sinais analógicos e faixas de diagnóstico, consulte a IEC 60381-1 e, quando adotada pelo equipamento, a NAMUR NE 43.</p>
-      <p><a href="termos-de-uso-ferramentas.html"><strong>Consulte os Termos de Uso das Ferramentas</strong></a>.</p>
-    </section>
-
-    <section class="calc-card faq">
-      <h2>Perguntas frequentes</h2>
-      <details><summary>O que significa 4-20 mA?</summary><p>Em uma escala linear típica, 4 mA representa 0% da faixa configurada e 20 mA representa 100%.</p></details>
-      <details><summary>Quanto vale 12 mA?</summary><p>12 mA corresponde a 50% da escala. Em uma faixa de 0 a 10 bar, por exemplo, corresponde a 5 bar.</p></details>
-      <details><summary>A calculadora aceita faixa invertida?</summary><p>Sim. Se o LRV for maior que o URV, a relação continua sendo calculada linearmente e a página identifica a faixa como invertida.</p></details>
-      <details><summary>O que significa corrente fora de 4 a 20 mA?</summary><p>Nesta página, significa apenas que o ponto ficou fora da faixa linear configurada. A causa física precisa ser verificada no equipamento e na malha.</p></details>
-      <details><summary>Serve para vazão com placa de orifício?</summary><p>Somente quando o sinal usado já estiver linearizado. Aplicações com extração de raiz quadrada exigem tratamento específico.</p></details>
-    </section>
-
-    <section class="calc-card no-print">
-      <h2>Ferramentas relacionadas</h2>
-      <div class="tags"><a class="tag" href="calculadora-carga-malha-4-20ma.html">Carga de malha 4-20 mA</a><a class="tag" href="calculadora-diagnostico-4-20ma-hart.html">Diagnóstico 4-20 mA e HART</a><a class="tag" href="calculadora-raiz-quadrada-4-20ma.html">Raiz quadrada 4-20 mA</a><a class="tag" href="calculadora-erro-calibracao.html">Erro de calibração</a></div>
-    </section>
-
-    <section class="cta-bar" aria-label="Avaliação de instrumentação">
-      <div><strong>Precisa avaliar uma malha 4-20 mA ou um instrumento?</strong><br /><span class="muted">Envie equipamento, faixa configurada, sintoma, cidade ou planta e prazo. A ALOGY verifica a viabilidade de teste de loop, diagnóstico, configuração ou manutenção conforme o escopo.</span></div>
-      <div class="cta-actions"><a class="btn secondary" href="blog-teste-de-loop-instrumentacao.html"><i class="fas fa-book-open"></i> Teste de loop</a><a class="btn secondary" href="/#contato"><i class="fas fa-envelope"></i> Solicitar avaliação</a></div>
-    </section>
-  </main>
-
-  <footer><p>&copy; Desde 2012 ALOGY Engenharia | www.alogy.com.br</p></footer>
-  <script src="tool-visuals.js?v=20260909"></script>
-  <script>
-    (function(){
-      const byId = (id) => document.getElementById(id);
-      const faixaMin = byId('faixaMin');
-      const faixaMax = byId('faixaMax');
-      const unidade = byId('unidade');
-      const modo = byId('modo');
-      const entrada = byId('entrada');
-      const rotuloEntrada = byId('rotuloEntrada');
-      const valorMa = byId('valorMa');
-      const valorPercentual = byId('valorPercentual');
-      const valorEngenharia = byId('valorEngenharia');
-      const estadoCalculo = byId('estadoCalculo');
-      const tabelaFaixa = byId('tabelaFaixa');
-      const gradePontos = byId('gradePontos');
-      const textoSpan = byId('textoSpan');
-      const textoDirecao = byId('textoDirecao');
-      const explorarSinal = byId('explorarSinal');
-      let textoCopiar = '';
-      let textoTabela = '';
-
-      function numero(valor){
-        const bruto = String(valor ?? '').trim();
-        if(!bruto) return NaN;
-        const normalizado = bruto.includes(',') ? bruto.replace(/\./g,'').replace(',','.') : bruto;
-        const n = Number(normalizado);
-        return Number.isFinite(n) ? n : NaN;
-      }
-
-      function formatar(n, casas){
-        if(!Number.isFinite(n)) return '-';
-        return n.toLocaleString('pt-BR',{minimumFractionDigits:casas,maximumFractionDigits:casas});
-      }
-
-      function textoUnidade(){ return String(unidade.value || '').trim(); }
-      function comUnidade(n, casas=2){ const u = textoUnidade(); return `${formatar(n,casas)}${u ? ' ' + u : ''}`; }
-
-      function limparSaida(mensagem){
-        valorMa.textContent = '-';
-        valorPercentual.textContent = '-';
-        valorEngenharia.textContent = '-';
-        textoSpan.textContent = 'Span: -';
-        textoDirecao.textContent = 'Faixa inválida';
-        tabelaFaixa.innerHTML = '';
-        gradePontos.innerHTML = '';
-        estadoCalculo.className = 'calc-note status-bad';
-        estadoCalculo.textContent = mensagem;
-        textoCopiar = '';
-        textoTabela = '';
-        if(window.ToolVisuals) ToolVisuals.clear('graficoSinal');
-      }
-
-      function atualizarRotulo(){
-        rotuloEntrada.textContent = modo.value === 'ma' ? 'Sinal em mA' : modo.value === 'percent' ? 'Percentual 0-100%' : 'Valor de engenharia';
-      }
-
-      function preencherTabela(min,max){
-        const span = max - min;
-        const linhas = [];
-        tabelaFaixa.innerHTML = '';
-        for(let ma=4; ma<=20; ma+=2){
-          const pct = ((ma-4)/16)*100;
-          const eng = min + (pct/100)*span;
-          const tr = document.createElement('tr');
-          tr.innerHTML = `<td>${formatar(ma,0)} mA</td><td>${formatar(pct,1)}%</td><td>${comUnidade(eng,2)}</td>`;
-          tabelaFaixa.appendChild(tr);
-          linhas.push(`${formatar(ma,0)} mA\t${formatar(pct,1)}%\t${comUnidade(eng,2)}`);
-        }
-        textoTabela = `mA\tPercentual\tValor\n${linhas.join('\n')}`;
-      }
-
-      function preencherPontos(min,max){
-        const span = max-min;
-        gradePontos.innerHTML = '';
-        [0,25,50,75,100].forEach((pct) => {
-          const ma = 4 + (pct/100)*16;
-          const eng = min + (pct/100)*span;
-          const item = document.createElement('div');
-          item.className = 'classic-point';
-          item.innerHTML = `<strong>${formatar(ma,0)} mA</strong><span>${pct}% · ${comUnidade(eng,2)}</span>`;
-          gradePontos.appendChild(item);
-        });
-      }
-
-      function calcular(){
-        atualizarRotulo();
-        const min = numero(faixaMin.value);
-        const max = numero(faixaMax.value);
-        const bruto = numero(entrada.value);
-        const span = max-min;
-
-        if(!Number.isFinite(min) || !Number.isFinite(max) || !Number.isFinite(bruto) || !Number.isFinite(span) || span === 0){
-          limparSaida('Dados inválidos: LRV e URV precisam ser números diferentes, e a entrada deve ser numérica.');
-          return;
-        }
-
-        let ma, pct, eng;
-        if(modo.value === 'ma'){
-          ma = bruto;
-          pct = ((ma-4)/16)*100;
-          eng = min + (pct/100)*span;
-        }else if(modo.value === 'percent'){
-          pct = bruto;
-          ma = 4 + (pct/100)*16;
-          eng = min + (pct/100)*span;
-        }else{
-          eng = bruto;
-          pct = ((eng-min)/span)*100;
-          ma = 4 + (pct/100)*16;
-        }
-
-        if(![ma,pct,eng].every(Number.isFinite)){
-          limparSaida('Não foi possível calcular com os valores informados. Confira a faixa e a entrada.');
-          return;
-        }
-
-        valorMa.textContent = `${formatar(ma,3)} mA`;
-        valorPercentual.textContent = `${formatar(pct,2)}%`;
-        valorEngenharia.textContent = comUnidade(eng,2);
-        textoSpan.textContent = `Span: ${comUnidade(span,2)}`;
-        textoDirecao.textContent = span < 0 ? 'Faixa invertida' : 'Faixa crescente';
-        preencherTabela(min,max);
-        preencherPontos(min,max);
-
-        const dentro = pct >= 0 && pct <= 100 && ma >= 4 && ma <= 20;
-        if(dentro){
-          estadoCalculo.className = 'calc-note status-ok';
-          estadoCalculo.textContent = 'Dentro da faixa configurada — conversão linear válida para os dados informados.';
-        }else{
-          estadoCalculo.className = 'calc-note status-warn';
-          estadoCalculo.textContent = 'Extrapolação matemática: a entrada está fora da faixa configurada. Isso não identifica sozinho a causa física ou a condição da malha.';
-        }
-
-        textoCopiar = `Calculadora 4-20 mA | LRV ${comUnidade(min,2)} | URV ${comUnidade(max,2)} | Sinal ${formatar(ma,3)} mA | ${formatar(pct,2)}% | Valor ${comUnidade(eng,2)}`;
-        const maLimitado = Math.max(4,Math.min(20,ma));
-        explorarSinal.value = String(maLimitado);
-        explorarSinal.setAttribute('aria-valuetext',`${formatar(maLimitado,2)} mA`);
-        if(window.ToolVisuals) ToolVisuals.line('graficoSinal',min,max,ma,textoUnidade());
-      }
-
-      [faixaMin,faixaMax,unidade,entrada].forEach((el) => el.addEventListener('input',calcular));
-      modo.addEventListener('change',calcular);
-
-      document.querySelectorAll('.example-btn').forEach((btn) => btn.addEventListener('click',() => {
-        faixaMin.value = btn.dataset.min;
-        faixaMax.value = btn.dataset.max;
-        unidade.value = btn.dataset.unit;
-        modo.value = 'eng';
-        entrada.value = btn.dataset.value;
-        calcular();
-      }));
-
-      explorarSinal.addEventListener('input',() => {
-        modo.value = 'ma';
-        entrada.value = explorarSinal.value;
-        calcular();
-      });
-
-      byId('limparExemplo').addEventListener('click',() => {
-        faixaMin.value='0'; faixaMax.value='10'; unidade.value='bar'; modo.value='eng'; entrada.value='6'; calcular();
-      });
-      byId('copiarCalculo').addEventListener('click',async() => { if(textoCopiar) await navigator.clipboard.writeText(textoCopiar); });
-      byId('copiarTabela').addEventListener('click',async() => { if(textoTabela) await navigator.clipboard.writeText(textoTabela); });
-      byId('imprimirPagina').addEventListener('click',() => window.print());
-
-      calcular();
-    })();
-  </script>
-</body>
-</html>
+<body data-language="pt">
+<a class="skip" href="#calculator">Ir para a calculadora</a>
+<header class="site-head"><div class="wrap header-inner">
+<a class="brand" href="/" aria-label="ALOGY · Início"><img src="logo-alogy.webp" alt="ALOGY Engenharia" width="878" height="308" decoding="async"></a>
+<button id="menuToggle" class="menu-toggle" type="button" aria-label="Abrir menu" aria-controls="mainNav" aria-expanded="false"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+<nav class="site-nav" id="mainNav" aria-label="Menu principal">
+<a href="/" class="optional">Início</a><a href="industrial.html" class="optional">Serviços</a><a href="blog.html">Blog</a><a href="ferramentas.html" aria-current="location">Ferramentas</a><a class="nav-guide" href="/guia/?utm_source=calculadora_4_20ma&amp;utm_medium=ferramenta&amp;utm_campaign=guia&amp;utm_content=menu_pt">Guia de instrumentação</a>
+</nav></div></header>
+<main class="wrap">
+<div class="page-intro">
+<a class="breadcrumb" href="ferramentas.html"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m10 5-7 7 7 7M3 12h18"/></svg>Voltar para ferramentas</a>
+<div class="intro-row"><div><h1>Calculadora 4-20 mA</h1><p>Converta corrente, percentual e valor de engenharia. Ajuste a faixa do instrumento e explore o sinal em tempo real.</p></div><span class="intro-mark" aria-hidden="true">4—20 mA</span></div>
+</div>
+<noscript><p class="panel">Ative o JavaScript para calcular, interagir com a escala e exportar resultados. As fórmulas e o exemplo abaixo continuam disponíveis.</p></noscript>
+<section class="workbench" id="calculator" aria-label="Calculadora 4-20 mA">
+<div class="panel input-panel">
+<div class="section-top"><h2><span class="step" aria-hidden="true">01</span>Configure a conversão</h2></div>
+<form id="conversionForm" novalidate aria-label="Configure a conversão">
+<div class="form-grid">
+<div class="field"><label for="lrv">Valor em 4 mA · LRV</label><input id="lrv" type="text" inputmode="decimal" value="0" autocomplete="off" spellcheck="false" maxlength="32" aria-describedby="numberHint resultStatus"></div>
+<div class="field"><label for="urv">Valor em 20 mA · URV</label><input id="urv" type="text" inputmode="decimal" value="10" autocomplete="off" spellcheck="false" maxlength="32" aria-describedby="numberHint resultStatus"></div>
+<div class="field full"><label for="unit">Unidade</label><input id="unit" type="text" value="bar" placeholder="Ex.: bar, °C, m³/h" maxlength="18" autocomplete="off" spellcheck="false" list="unitSuggestions"><datalist id="unitSuggestions"><option value="bar"><option value="°C"><option value="m³/h"><option value="L/h"><option value="kPa"><option value="psi"><option value="mm"><option value="%"></datalist></div>
+</div>
+<div class="range-info" title="A amplitude é |URV − LRV|. O cálculo preserva o sentido da faixa."><span id="rangeWidth">Amplitude: 10 bar</span><span id="rangeDirection">Faixa crescente</span></div>
+<div class="form-grid">
+<div class="field full"><label for="inputMode">Calcular a partir de</label><select id="inputMode"><option value="ma">Corrente em mA</option><option value="percent">Percentual da faixa</option><option value="eng">Valor de engenharia</option></select></div>
+<div class="field full"><label for="inputValue" id="inputLabel">Corrente de entrada</label><div class="input-with-unit"><input id="inputValue" type="text" inputmode="decimal" value="8,4" autocomplete="off" spellcheck="false" maxlength="32" aria-describedby="numberHint resultStatus"><span id="inputUnit">mA</span></div><p id="numberHint" class="field-hint">Aceita vírgula ou ponto decimal. Sem separador de milhar.</p></div>
+</div>
+</form>
+<details class="examples"><summary>Usar um exemplo de faixa</summary><div class="preset-grid"><button class="preset" type="button" data-preset="0">Pressão · 0 a 10 bar</button><button class="preset" type="button" data-preset="1">Temperatura · 0 a 100 °C</button><button class="preset" type="button" data-preset="2">−50 a 150 °C</button><button class="preset" type="button" data-preset="3">Vazão · 0 a 1000 L/h</button><button class="preset" type="button" data-preset="4">Faixa invertida</button></div></details>
+<button class="text-button" id="resetExample" type="button">Restaurar exemplo inicial</button>
+<p class="form-note">Conversão linear. Use os mesmos LRV e URV configurados no instrumento e no CLP.</p>
+</div>
+<div class="panel result-panel">
+<div class="section-top"><h2><span class="step" aria-hidden="true">02</span>Resultado</h2><span class="live-label">Atualização instantânea</span></div>
+<dl class="readings" aria-label="Resultado">
+<div class="reading"><dt>Corrente</dt><dd><strong id="resultMa">8,4</strong><small>mA</small></dd></div>
+<div class="reading"><dt>Percentual</dt><dd><strong id="resultPercent">27,5</strong><small>%</small></dd></div>
+<div class="reading main"><dt>Valor de engenharia</dt><dd><strong id="resultEng">2,75</strong><small id="resultUnit">bar</small></dd></div>
+</dl>
+<p id="resultStatus" class="result-status" data-state="ok" role="status">Dentro da faixa · conversão linear</p><span id="resultAnnouncement" class="sr-only" aria-live="polite" aria-atomic="true"></span>
+<div class="simulation">
+<div class="simulation-head"><label for="signalSlider">Explore o sinal</label><span>Arraste ou use as setas</span></div>
+<input type="range" class="slider" id="signalSlider" min="4" max="20" step="0.01" value="8.4" aria-label="Explorar corrente de 4 a 20 mA" aria-valuetext="8,4 mA → 2,75 bar · 27,5% da faixa">
+<div class="ticks" aria-hidden="true"><span>4 mA</span><span>8 mA</span><span>12 mA</span><span>16 mA</span><span>20 mA</span></div>
+<div class="signal-presets" aria-label="Pontos de referência"><button type="button" data-current="4" aria-pressed="false">0%</button><button type="button" data-current="8" aria-pressed="false">25%</button><button type="button" data-current="12" aria-pressed="false">50%</button><button type="button" data-current="16" aria-pressed="false">75%</button><button type="button" data-current="20" aria-pressed="false">100%</button></div>
+<div class="chart-row"><svg id="scaleChart" viewBox="0 0 640 202" role="img" aria-labelledby="chartTitle chartDesc"><title id="chartTitle">Curva de conversão linear</title><desc id="chartDesc">8,4 mA → 2,75 bar · 27,5% da faixa</desc><g id="chartContent"></g></svg></div>
+<p class="chart-caption" id="chartCaption">8,4 mA → 2,75 bar · 27,5% da faixa</p>
+</div>
+<div class="result-actions"><button class="button on-dark" id="copyResult" type="button"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V3H3v13h5"/></svg>Copiar resultado</button><span class="small">Cálculo no seu dispositivo</span></div>
+</div>
+</section>
+<div class="live-message" id="copyStatus" role="status"></div>
+<aside class="guide-banner" aria-labelledby="guideTitle">
+<div class="guide-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5C8 2 4 3 2 4v15c3-2 7-1 10 1 3-2 7-3 10-1V4c-3-1-7-2-10 1zm0 0v15"/></svg></div>
+<div><div class="eyebrow">Seu próximo passo em instrumentação</div><h2 id="guideTitle">Calculou o sinal. Quer entender a malha?</h2><p>Aprenda a interpretar escalas, testar instrumentos e conectar campo e CLP. Avance dos fundamentos à rotina industrial com o Guia de Instrumentação.</p></div>
+<div class="guide-links"><a class="button buy" href="https://pay.hotmart.com/V93269953X?off=2c0ib3vj&amp;src=calc420_pt" rel="sponsored nofollow">Quero o guia<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h16m-6-6 6 6-6 6"/></svg></a><a href="/guia/?utm_source=calculadora_4_20ma&amp;utm_medium=ferramenta&amp;utm_campaign=guia&amp;utm_content=resultado_pt">Conhecer o conteúdo</a><span class="guide-language">Guia digital em português · 7 capítulos</span></div>
+</aside>
+<div class="content-grid">
+<section class="panel"><div class="table-top"><div><h2>Tabela da faixa</h2><p class="small">Referência para simulação e conferência da escala.</p></div><button class="button" id="copyTable" type="button"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V3H3v13h5"/></svg>Copiar tabela</button></div>
+<div class="table-wrap"><table id="rangeTable"><caption>Pontos de 4 a 20 mA, em passos de 2 mA.</caption><thead><tr><th scope="col">Corrente</th><th scope="col">Percentual</th><th scope="col">Valor da faixa</th></tr></thead><tbody id="tableBody"><tr class="key-row"><td>4 mA</td><td>0,0%</td><td>0,0 bar</td></tr><tr class=""><td>6 mA</td><td>12,5%</td><td>1,25 bar</td></tr><tr class="key-row"><td>8 mA</td><td>25,0%</td><td>2,5 bar</td></tr><tr class=""><td>10 mA</td><td>37,5%</td><td>3,75 bar</td></tr><tr class="key-row"><td>12 mA</td><td>50,0%</td><td>5,0 bar</td></tr><tr class=""><td>14 mA</td><td>62,5%</td><td>6,25 bar</td></tr><tr class="key-row"><td>16 mA</td><td>75,0%</td><td>7,5 bar</td></tr><tr class=""><td>18 mA</td><td>87,5%</td><td>8,75 bar</td></tr><tr class="key-row"><td>20 mA</td><td>100,0%</td><td>10,0 bar</td></tr></tbody></table></div><p class="table-note">Valores calculados para a faixa informada; não são medições de calibração.</p></section>
+<section class="panel"><h2>Como usar o resultado</h2><ol class="steps"><li><strong>Configure a faixa.</strong> LRV é o valor correspondente a 4 mA; URV, a 20 mA. A unidade é a grandeza do seu processo.</li><li><strong>Escolha o que você conhece.</strong> Digite corrente, percentual ou valor de engenharia. Os outros valores são calculados automaticamente.</li><li><strong>Compare as indicações.</strong> Em campo, confronte a corrente medida com a indicação local e a escala do CLP/DCS.</li></ol><h3>Fórmulas da conversão linear</h3><div class="formula">Percentual = (mA − 4) ÷ 16 × 100<br>Valor = LRV + (Percentual ÷ 100) × (URV − LRV)<br>mA = 4 + (Percentual ÷ 100) × 16</div><div class="worked-example"><h3>Exemplo: de 8,4 mA para bar</h3><p>Para um transmissor de <strong>0 a 10 bar</strong>: (8,4 − 4) ÷ 16 = 0,275. Assim, <strong>27,5% × 10 bar = 2,75 bar</strong>. Ao mudar a faixa, o mesmo sinal passa a representar outro valor de engenharia.</p></div></section>
+</div>
+<section class="panel faq-panel"><h2>Perguntas frequentes</h2><details><summary>Quanto vale 12 mA?</summary><p>12 mA corresponde a 50% de uma escala linear 4-20 mA. Em uma faixa de 0 a 10 bar, são 5 bar; em uma faixa de −50 a 150 °C, são 50 °C.</p></details><details><summary>Como converter um valor de engenharia em mA?</summary><p>Subtraia o LRV do valor, divida por URV − LRV, multiplique por 16 e some 4. Na ferramenta, selecione “Valor de engenharia” como entrada.</p></details><details><summary>Posso usar uma faixa invertida?</summary><p>Sim. Se o valor configurado em 4 mA for maior que o valor em 20 mA, a relação é decrescente. A calculadora identifica a faixa invertida e mantém a correspondência dos dois extremos.</p></details><details><summary>O que acontece abaixo de 4 mA ou acima de 20 mA?</summary><p>A ferramenta apresenta a extrapolação matemática e identifica o ponto fora da faixa. A barra permanece limitada a 4-20 mA. Isso não determina falha ou saturação: os limites de diagnóstico dependem do instrumento e da configuração.</p></details><details><summary>Serve para vazão com extração de raiz quadrada?</summary><p>Esta calculadora pressupõe sinal linear com a variável escolhida. Para vazão, use-a se o sinal já estiver linearizado em vazão. Um sinal linear em pressão diferencial exige o tratamento de raiz quadrada para obter vazão.</p></details><details><summary>O PDF e a impressão têm identificação da ALOGY?</summary><p>Não. Os botões geram um relatório neutro com faixa, entrada, resultado, gráfico e tabela. O PDF é baixado diretamente; a impressão abre um relatório separado. Os dados do cálculo são processados no seu dispositivo.</p></details></section>
+<section class="technical"><h2>Base técnica e limites</h2><p>A relação entre LRV, URV e corrente é uma interpolação linear. Esta ferramenta não avalia exatidão, incerteza, alimentação, carga HART ou integridade da instalação. Não é um certificado de calibração. Confirme os parâmetros nos manuais do transmissor e do cartão analógico.</p><div class="reference-links"><a href="https://www.analog.com/en/resources/design-notes/selectablerange-current-loop.html" target="_blank" rel="noopener noreferrer">Referência de aplicação: malha de corrente (Analog Devices)</a><a href="termos-de-uso-ferramentas.html">Termos de uso das ferramentas</a></div></section>
+<nav class="related" aria-label="Continue sua consulta"><h2>Continue sua consulta</h2><a href="calculadora-carga-malha-4-20ma.html">Carga de malha</a><a href="calculadora-diagnostico-4-20ma-hart.html">Diagnóstico 4-20 mA / HART</a><a href="calculadora-raiz-quadrada-4-20ma.html">Raiz quadrada</a><a href="calculadora-erro-calibracao.html">Erro de calibração</a></nav>
+<p class="editorial"><strong>Conteúdo técnico:</strong> ALOGY Engenharia · <strong>Atualizado em:</strong> <time datetime="2026-09-23">23/09/2026</time></p>
+</main>
+<footer class="site-footer"><div class="wrap footer-inner"><span>© ALOGY Engenharia</span><div class="footer-links"><a href="mailto:contato@alogy.com.br">contato@alogy.com.br</a><a href="https://wa.me/5519981442448" target="_blank" rel="noopener noreferrer">WhatsApp</a><a href="politica-de-privacidade.html">Privacidade e cookies</a></div></div></footer>
+<div class="action-dock" aria-label="Ações da ferramenta"><div class="wrap dock-inner"><div class="dock-left"><a class="back-tools" href="ferramentas.html"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m10 5-7 7 7 7M3 12h18"/></svg><span class="long-label">Voltar para ferramentas</span><span class="short-label">Ferramentas</span></a><a class="contact-icon" href="mailto:contato@alogy.com.br" aria-label="E-mail" title="contato@alogy.com.br"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="m3 6 9 7 9-7"/></svg></a><a class="contact-icon" href="https://wa.me/5519981442448" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" title="WhatsApp"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5a9 9 0 0 1-13.5 7.8L3 21l1.6-4.7A9 9 0 1 1 21 11.5Z"/><path d="M8 7c-1 4 1 7 6 9l2-2-3-2-1 1-2-3 1-1z"/></svg></a></div><div class="dock-right"><button type="button" id="printReport" class="button"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8V3h12v5M6 17H3V9h18v8h-3"/><path d="M6 14h12v7H6zM17 11h1"/></svg>Imprimir</button><button type="button" id="downloadPdf" class="button pdf-button"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M13 3H5v18h14V9zM13 3v6h6M12 12v6m-3-3 3 3 3-3"/></svg><span class="pdf-label-long">Gerar PDF</span><span class="pdf-label-short">PDF</span></button></div></div></div>
+<p class="export-status" id="exportStatus" role="status"></p>
+<article class="print-report" id="printFallback"></article>
+</body></html>
