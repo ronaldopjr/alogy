@@ -1,11 +1,12 @@
 # Fichas de coleta de calibração
 
-Quatro páginas independentes, acessíveis pela central de calibração, pelo catálogo de ferramentas e pelas calculadoras correspondentes:
+Cinco páginas independentes, acessíveis pela central de calibração, pelo catálogo de ferramentas e pelas calculadoras correspondentes:
 
 - `ficha-calibracao-temperatura.html`
 - `ficha-calibracao-pressao.html`
 - `ficha-calibracao-ph.html`
 - `ficha-calibracao-vazao.html`
+- `ficha-calibracao-balanca.html`
 
 O fluxo principal é definir pontos, baixar/imprimir uma folha e preencher no campo. O preenchimento digital é opcional. As fichas usam JavaScript e CSS próprios e não dependem do código das calculadoras existentes.
 
@@ -37,7 +38,7 @@ Os quatro PDFs padrão foram gerados pelo código de produção e examinados por
 
 `node tests/tool-calculations.cjs` apresenta falha preexistente em `calibracao-valvula-controle`, campo `valor`. A mesma falha foi reproduzida com os arquivos originais do commit base `3ed4c8b1641bbf4dcdfa90d68856f6a256b4ea21`.
 
-## Verificação visual pendente antes de publicar
+## Histórico e roteiro de verificação visual
 
 Não foi possível executar um navegador neste ambiente: o Playwright está instalado, mas o navegador não está disponível e seu download retornou uma página de indisponibilidade. Os testes de estado usam uma simulação do DOM; não comprovam layout, impressão do navegador ou interação em aparelho real.
 
@@ -50,4 +51,26 @@ Servir a raiz com `python -m http.server 8765` e verificar no navegador:
 5. Na ficha de pH, preencher tampões e temperatura da solução. Confirmar que a ficha em branco preserva identificação dos tampões e omite as medições.
 6. Confirmar os quatro links no catálogo e na central, incluindo pesquisa/filtros existentes.
 
-A alteração deve permanecer em pull request de rascunho até essa revisão visual.
+A primeira versão foi publicada por solicitação expressa do proprietário, no PR #45. As limitações da verificação visual foram comunicadas antes da publicação.
+
+
+## Revisão e balança — 23/09/2026
+
+O proprietário pediu revisão completa, alinhamento ao layout das ferramentas antigas e uma ficha de balança. Este lote mantém o formulário de campo e reaproveita `style.css`, a marcação do cabeçalho preto, menu azul, links, ações de contato e rodapé das calculadoras existentes. Os complementos CSS das fichas são isolados por classe. A navegação móvel inclui estado acessível, fechamento por link, clique externo e Escape. A folha impressa continua neutra, sem marca e com condições ambientais.
+
+Correções incluídas:
+
+- Cartões antigos após alteração de pontos enquanto havia um campo inválido: falha reproduzida no Chrome e coberta por teste de regressão.
+- Importação rejeita linhas de pontos inexistentes, sentidos incompatíveis, leituras extras e datas/horários malformados, preservando o rascunho atual.
+- Uma aba não sobrescreve silenciosamente o rascunho alterado por outra. Falhas no armazenamento não são seguidas por mensagens falsas de sucesso.
+- Listas manuais são ordenadas para subida e descida; “Sequência informada” conserva a ordem digitada.
+- PDF informa faixa, datas brasileiras e rótulos pertinentes a cada grandeza; observações preservam parágrafos. Caracteres incompatíveis com a fonte do PDF direto geram orientação para impressão pelo navegador, em vez de substituição silenciosa por interrogações.
+- Proteção contra downloads duplicados e melhoria de quebra de textos no formulário.
+
+A ficha de balança oferece indicação por carga, repetibilidade e excentricidade. Capacidade e cargas são validadas; repetibilidade e excentricidade mantêm a carga selecionada e criam uma linha por ciclo/posição, sem preencher leituras automaticamente. Campos de pesos/documentos, tara, zero inicial e retorno ao zero complementam a identificação. Os ensaios são registros independentes: guardar backup antes de trocar o ensaio. Não há aprovação automática, correção automática de zero, incerteza completa ou declaração de verificação legal.
+
+Referência consultada para organizar os tipos de ensaio: [OIML R 76-1, edição 2006, Anexo A](https://www.oiml.org/en/files/pdf_r/r076-1-e06.pdf). As cargas, posições e repetições dependem do procedimento aplicado; os valores da interface são exemplos editáveis.
+
+Validação local: testes de geração e 135 cenários de paginação das cinco áreas; testes de estado, recuperação, conflitos entre abas e modos da balança; PDFs padrão e extensos gerados e conferidos. Os cinco padrões cabem em uma folha; documentos extensos usam continuação com identificação e ambiente em todas as páginas.
+
+Acesso ao Chrome remoto foi obtido para a revisão da interface desktop. A superfície disponível não expõe emulação mobile; a tentativa de abrir um arquivo de ensaio local foi rejeitada pela política de navegação. Não houve contorno desse bloqueio. A revisão de CSS usa os mesmos estilos responsivos existentes no site; interação em aparelho móvel real e impressão física seguem como verificações adicionais.
